@@ -1,0 +1,151 @@
+
+===== From Doconce to Other Formats ===== 
+
+Transformation of a Doconce document to various other
+formats applies the script `doconce2format`:
+!bc
+Unix/DOS> doconce2format format mydoc.do.txt
+!ec
+The `preprocess` program is always used to preprocess the file first,
+and options to `preprocess` can be added after the filename. For example,
+!bc
+Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
+!ec
+The variable `FORMAT` is always defined as the current format when
+running `preprocess`. That is, in the last example, `FORMAT` is
+defined as `LaTeX`. Inside the Doconce document one can then perform
+format specific actions through tests like `#if FORMAT == "LaTeX"`.
+
+
+=== HTML ===
+
+Making an HTML version of a Doconce file `mydoc.do.txt`
+is performed by
+!bc
+Unix/DOS> doconce2format HTML mydoc.do.txt
+!ec
+The resulting file `mydoc.html` can be loaded into any web browser for viewing.
+
+=== LaTeX ===
+
+Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
+# Note: putting code blocks inside a list is not successful in many
+# formats - the text may be messed up. A better choice is a paragraph
+# environment, as used here.
+
+__Step 1.__ Filter the doconce text to a pre-LaTeX form `mydoc.p.tex` for
+     `ptex2tex`:
+!bc
+Unix/DOS> doconce2format LaTeX mydoc.do.txt
+!ec
+LaTeX-specific commands ("newcommands") in math formulas and similar
+can be placed in a file `newcommands.tex`. If this file is present,
+it is included in the LaTeX document so that your commands are
+defined.
+
+__Step 2.__ Run `ptex2tex` (if you have it) to make a standard LaTeX file,
+!bc
+Unix/DOS> ptex2tex mydoc
+!ec
+     or just perform a plain copy,
+!bc
+Unix/DOS> cp mydoc.p.tex mydoc.tex
+!ec
+The `ptex2tex` tool makes it possible to easily switch between many
+different fancy formattings of computer or verbatim code in LaTeX
+documents.
+Finally, compile `mydoc.tex` the usual way and create the PDF file.
+
+=== Plain ASCII Text ===
+
+We can go from Doconce "back to" plain untagged text suitable for viewing
+in terminal windows, inclusion in email text, or for insertion in
+computer source code:
+!bc
+Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
+!ec
+
+=== reStructuredText ===
+
+Going from Doconce to reStructuredText gives a lot of possibilities to
+go to other formats. First we filter the Doconce text to a
+reStructuredText file `mydoc.rst`:
+!bc
+Unix/DOS> doconce2format rst mydoc.do.txt
+!ec
+We may now produce various other formats:
+!bc
+Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
+Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+!ec
+The OpenOffice file `mydoc.odt` can be loaded into OpenOffice and
+saved in, among other things, the RTF format or the Microsoft Word format.
+That is, one can easily go from Doconce to Microsoft Word.
+
+=== Sphinx ===
+
+Sphinx documents can be created from a Doconce source in a few steps.
+
+__Step 1.__ Translate Doconce into the Sphinx dialect of
+the reStructuredText format:
+!bc
+Unix/DOS> doconce2format sphinx mydoc.do.txt
+!ec
+
+__Step 2.__ Create a Sphinx root directory with a `conf.py` file, 
+either manually or by using the interactive `sphinx-quickstart`
+program. Here is a scripted version of the steps with the latter:
+!bc
+mkdir sphinx-rootdir
+sphinx-quickstart <<EOF
+sphinx-rootdir
+n
+_
+Name of My Sphinx Document
+Author
+version
+version
+.rst
+index
+y
+n
+n
+n
+n
+y
+n
+n
+y
+y
+EOF
+!ec
+
+__Step 3.__ Move the `tutorial.rst` file to the Sphinx root directory:
+!bc
+Unix/DOS> mv mydoc.rst sphinx-rootdir
+!ec
+
+__Step 4.__ Edit the generated `index.rst` file so that `mydoc.rst`
+is included, i.e., add `mydoc` to the `toctree` section so that it becomes
+!bc
+.. toctree::
+   :maxdepth: 2
+
+   mydoc
+!ec
+(The spaces before `mydoc` are important!)
+
+__Step 5.__ Generate, for instance, an HTML version of the Sphinx source:
+!bc
+make clean   # remove old versions
+make html
+!ec
+Many other formats are also possible.
+
+__Step 6.__ View the result:
+!bc
+Unix/DOS> firefox _build/html/index.html
+!ec
+

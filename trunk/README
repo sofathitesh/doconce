@@ -1,0 +1,45 @@
+Contents:
+=========
+
+A package doconce with a main module doconce.
+Executable scripts: doconce2format, doconce_insertdocstr.
+
+Dependencies:
+=============
+
+Before you can install doconce it is required that you install 
+preprocess.py first. This package is available at the following website:
+
+http://trentm.com/projects/preprocess/
+
+For LaTeX output you also need ptex2tex from googlecode.com.
+
+Install:
+========
+
+python setup.py install
+
+Documentation:
+==============
+
+pydoc doconce
+
+This short text points to a tutorial and a manual.
+
+Demo:
+=====
+
+The lib/doconce/doc and tutorial directories contain a make.sh
+script for creating lots of different format out of a Doconce
+document.
+
+Testing:
+========
+
+cd test; ./test.verify; diff test.v test.r
+(test.r are the reference results)
+
+License:
+========
+
+doconce is licensed under the BSD license, see the included LICENSE file.
