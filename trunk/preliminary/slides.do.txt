@@ -1,4 +1,4 @@
-___Doconce could be handy for quickly writing slides___
+=== Some Ideas for Extending Doconce to Handle Slides ===
 
 __Reasons to use Doconce for slides:__
 
@@ -12,7 +12,7 @@ __Reasons to use Doconce for slides:__
   south specifications as part of the format
 
 
-___How to parse Doconce slides___
+=== How to parse Doconce slides ===
 
 * Parsing is the difficult issue since the output format should be
   latexslides, which is Python, which requires start and stop
@@ -24,7 +24,7 @@ ___How to parse Doconce slides___
   We should then be able to parse the XML and write out the equivalent
   latexslides code in Python.
 
-___Some suggestions for the Doconce slide format___
+=== Some suggestions for the Doconce slide format ===
 
 * Subsubsections define slide titles
 

@@ -526,13 +526,13 @@ Doconce supports tags for *emphasized phrases*, _boldface phrases_,
 and `verbatim text` (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as $\nu = \sin(x)$|$v = sin(x)$.
 
-Emphasized text is typeset inside a pair of asterix, and there should
-be no spaces between an asterix and the emphasized text, as in
+Emphasized text is typeset inside a pair of asterisk, and there should
+be no spaces between an asterisk and the emphasized text, as in
 !bc
 *emphasized words*
 !ec
 
-Boldface font is recognized by an underscore instead of an asterix:
+Boldface font is recognized by an underscore instead of an asterisk:
 !bc
 _several words in boldface_ followed by *ephasized text*.
 !ec
@@ -553,7 +553,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and `ptex2tex`) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterix (i.e., verbatim and
+Watch out for mixing backquotes and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go

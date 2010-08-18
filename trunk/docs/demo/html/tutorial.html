@@ -81,8 +81,8 @@ tags removed for clearer reading).</li>
 text constructions that allow you to control the formating. For example,</p>
 <blockquote>
 <ul class="simple">
-<li>bullet lists arise from lines starting with an asterix,</li>
-<li><em>emphasized words</em> are surrounded by an asterix,</li>
+<li>bullet lists arise from lines starting with an asterisk,</li>
+<li><em>emphasized words</em> are surrounded by asterisks,</li>
 <li><strong>words in boldface</strong> are surrounded by underscores,</li>
 <li>words from computer code are enclosed in back quotes and
 then typeset verbatim,</li>
@@ -115,6 +115,8 @@ Lists can also have automatically numbered items instead of bullets,
   o item 3
 
 URLs with a link word are possible, as in http://folk.uio.no/hpl&lt;hpl&gt;.
+Just a file link goes like URL:"tutorial.do.txt".
+
 Tables are also supperted, e.g.,
 
   |--------------------------------|
@@ -141,7 +143,7 @@ natural in plain text.  Lists are typeset as you would do in an email,</p>
 </blockquote>
 <p>Lists can also have numbered items instead of bullets, just use an</p>
 <ol class="arabic simple">
-<li>(for ordered) instead of the asterix:</li>
+<li>(for ordered) instead of the asterisk:</li>
 </ol>
 <blockquote>
 <ol class="arabic simple">
@@ -150,8 +152,9 @@ natural in plain text.  Lists are typeset as you would do in an email,</p>
 <li>item 3</li>
 </ol>
 </blockquote>
-<p>URLs with a link word are possible, as in hpl (<a class="reference external" href="http://folk.uio.no/hpl">http://folk.uio.no/hpl</a>).
-Tables are also supperted, e.g.,</p>
+<p>URLs with a link word are possible, as in <a class="reference external" href="http://folk.uio.no/hpl">hpl</a>.
+Just a file link goes like <a class="reference external" href="tutorial.do.txt">tutorial.do.txt</a>.</p>
+<p>Tables are also supperted, e.g.,</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="33%" />
@@ -214,7 +217,7 @@ for those who can read LaTeX syntax).</p>
 <p>One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-never copying anything!).</p>
+avoiding copying information!).</p>
 <p>Another document can be included by writing <tt class="docutils literal"><span class="pre">#include</span> <span class="pre">&quot;mynote.do.txt&quot;</span></tt>
 on a line starting with (another) hash sign.  Doconce documents have
 extension <tt class="docutils literal"><span class="pre">do.txt</span></tt>. The <tt class="docutils literal"><span class="pre">do</span></tt> part stands for doconce, while the

@@ -46,9 +46,9 @@ Doconce is two things:
 Doconce text looks like ordinary text, but there are some almost invisible
 text constructions that allow you to control the formating. For example,
 
-  * bullet lists arise from lines starting with an asterix,
+  * bullet lists arise from lines starting with an asterisk,
 
-  * *emphasized words* are surrounded by an asterix, 
+  * *emphasized words* are surrounded by asterisks, 
 
   * _words in boldface_ are surrounded by underscores, 
 
@@ -114,7 +114,7 @@ natural in plain text.  Lists are typeset as you would do in an email,
   * item 3
 
 Lists can also have numbered items instead of bullets, just use an
-o (for ordered) instead of the asterix:
+o (for ordered) instead of the asterisk:
 
   o item 1
   o item 2

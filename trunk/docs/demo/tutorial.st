@@ -36,9 +36,9 @@ What Does Doconce Look Like?
 Doconce text looks like ordinary text, but there are some almost invisible
 text constructions that allow you to control the formating. For example,
 
-  - bullet lists arise from lines starting with an asterix,
+  - bullet lists arise from lines starting with an asterisk,
 
-  - *emphasized words* are surrounded by an asterix, 
+  - *emphasized words* are surrounded by asterisks, 
 
   - **words in boldface** are surrounded by underscores, 
 
@@ -79,6 +79,8 @@ Here is an example of some simple text written in the Doconce format::
           o item 3
         
         URLs with a link word are possible, as in http://folk.uio.no/hpl<hpl>.
+        Just a file link goes like URL:"tutorial.do.txt".
+        
         Tables are also supperted, e.g.,
         
           |--------------------------------|
@@ -101,13 +103,15 @@ natural in plain text.  Lists are typeset as you would do in an email,
   - item 3
 
 Lists can also have numbered items instead of bullets, just use an
-1. (for ordered) instead of the asterix:
+1. (for ordered) instead of the asterisk:
 
  1. item 1
  2. item 2
  3. item 3
 
 URLs with a link word are possible, as in "http://folk.uio.no/hpl":hpl.
+Just a file link goes like "tutorial.do.txt":tutorial.do.txt.
+
 Tables are also supperted, e.g.,
 
 ============  ============  ============  
@@ -159,7 +163,7 @@ You can have blocks of computer code, starting and ending with
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-never copying anything!).
+avoiding copying information!).
 
 Another document can be included by writing '#include "mynote.do.txt"'
 on a line starting with (another) hash sign.  Doconce documents have
