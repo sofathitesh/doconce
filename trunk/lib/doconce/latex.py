@@ -191,16 +191,17 @@ def define(FILENAME_EXTENSION,
 \usepackage[usenames]{color}
 \begin{document}
 """
-    newcommands = 'newcommands.tex'
-    if os.path.isfile(newcommands):
-        INTRO['LaTeX'] += r"""
-\input{newcommands}
-"""
+    newcommands_files = 'newcommands.tex', 'newcommands_replace.tex', \
+                        'newcommands_keep.tex'
+    for filename in newcommands_files:
+        if os.path.isfile(filename):
+            INTRO['LaTeX'] += r"""
+\input{%s}
+""" % filename
         #print '... found', 
     else:
         #print '... did not find',
         pass
-    #print 'newcommands.tex with user-defined LaTeX code'
 
     OUTRO['LaTeX'] = r"""\end{document}
 """

@@ -501,7 +501,7 @@ def inline_tag_subst(filestr, format):
         
 
     
-def process(in_filename, format, out_filename):
+def doconce2format(in_filename, format, out_filename):
     """
     Perform the transformation of a doconce file, stored in in_filename,
     to a given format (HTML, LaTeX, etc.), written to out_filename.
@@ -514,7 +514,7 @@ def process(in_filename, format, out_filename):
     f.close()
 
     # hack to fix a bug with !ec at the end of files, which is not
-    # correctly substituted by nothing in rst, sphinx, st,epytext, plain
+    # correctly substituted by '' in rst, sphinx, st, epytext, plain
     # (the fix is to add "enough" blank lines)
     if format in ('rst', 'sphinx', 'st', 'epytext', 'plain'):
         filestr = filestr.rstrip()
@@ -553,19 +553,22 @@ def process(in_filename, format, out_filename):
         
     debug('%s\n**** The file after removal of code/tex blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
+
+    # 3. step: deal with lists
     filestr = typeset_lists(filestr, format,
                             debug_info=[code_blocks, tex_blocks])
     debug('%s\n**** The file after typesetting of list:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    # does not work at all:
+    # 4. step: deal with tables
     filestr = typeset_tables(filestr, format)
     debug('%s\n**** The file after typesetting of tables:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
+    # 5. step: deal with figures
     filestr = handle_figures(filestr, format)
     
-    # do substitutions:
+    # 6. step: do substitutions:
     filestr = inline_tag_subst(filestr, format)
 
     """
@@ -580,6 +583,7 @@ def process(in_filename, format, out_filename):
 
     debug('%s\n**** The file after all inline substitutions:\n\n%s\n\n' % ('*'*80, filestr))
 
+    # 7. step: insert verbatim and math code blocks again:
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
     filestr += '\n'
     
@@ -587,6 +591,18 @@ def process(in_filename, format, out_filename):
     filestr = CODE[format](filestr, format)
     debug('%s\n**** The file after inserting tex/code blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
+
+    # 8. step: substitute latex-style newcommands:
+    if format != 'LaTeX':
+        from expand_newcommands import expand_newcommands
+        newcommand_files = 'newcommands_replace.tex'
+        if format == 'sphinx':  # replace all newcommands in sphinx
+            newcommand_files.expand(['newcommands.tex', 'newcommands_keep.tex'])
+        for filename in newcommand_files:
+            if os.path.isfile(filename):
+                print 'expanding latex-style newcommands in', filename
+                filestr = expand_newcommands(filename, filestr)
+
 
     if has_title:
         if format in INTRO:
@@ -642,7 +658,7 @@ def main():
     print '\n----- doconce2format %s %s' % (format, filename)
     filename_preprocessed = preprocess(filename, format,
                                        ' '.join(sys.argv[3:]))
-    process(filename_preprocessed, format, out_filename)
+    doconce2format(filename_preprocessed, format, out_filename)
     os.remove(filename_preprocessed)  # clean up
     print '----- successful run: %s filtered to %s\n' % \
           (filename, out_filename)

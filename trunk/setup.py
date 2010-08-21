@@ -79,7 +79,9 @@ setup(
                   'doconce.rst', 'doconce.sphinx',
                   'doconce.st', 'doconce.plaintext',
                   'doconce.html', 'doconce.epytext',
-                  'doconce.DocWriter', 'doconce.wiki', ],
+                  'doconce.DocWriter', 'doconce.wiki', 
+                  'doconce.expand_newcommands',
+                  ],
     scripts = [os.path.join('bin', f) for \
                f in 'doconce_insertdocstr', 'doconce2format', \
                'doconce_old2new_format.py', 'doconce_latin2html.py']
