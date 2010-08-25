@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.8: http://docutils.sourceforge.net/" />
+<title></title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 6253 2010-03-02 00:24:53Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: left }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="doconce-document-once-include-everywhere">
+<h1>Doconce: Document Once, Include Everywhere</h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen, Simula Research Laboratory and University of Oslo</td>
+</tr>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">July 30, 2010</td>
+</tr>
+</tbody>
+</table>
+<!-- lines beginning with # are comment lines
+
+* When writing a note, report, manual, etc., do you find it difficult
+  to choose the typesetting format? That is, to choose between plain
+  (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML,
+  reStructuredText, Sphinx, XML, etc.  Would it be convenient to
+  start with some very simple text-like format that easily converts
+  to the formats listed above, and at some later stage eventually go
+  with a particular format?
+
+* Do you find it problematic that you have the same information
+  scattered around in different documents in different typesetting
+  formats? Would it be a good idea to write things once, in one
+  place, and include it everywhere? -->
+<p>If any of these questions are of interest, you should keep on reading.</p>
+<div class="section" id="the-doconce-concept">
+<h2>The Doconce Concept</h2>
+<p>Doconce is two things:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Doconce is a working strategy for documenting software in a single
+place and avoiding duplication of information. The slogan is:
+&quot;Write once, include everywhere&quot;. This requires that what you
+write can be transformed to many different formats for a variety
+of documents (manuals, tutorials, books, doc strings, source code
+comments, etc.).</li>
+<li>Doconce is a simple and minimally tagged markup language that can
+be used for the above purpose. The Doconce format look
+like ordinary ASCII text (much like what you would use in an
+email), but the text can be transformed to numerous other formats,
+including HTML, Wiki, LaTeX, reStructuredText, Sphinx, XML,
+OpenOffice/Word, Epytext, PDF, XML - and even plain text (with
+tags removed for clearer reading).</li>
+</ol>
+</blockquote>
+</div>
+<div class="section" id="what-does-doconce-look-like">
+<h2>What Does Doconce Look Like?</h2>
+<p>Doconce text looks like ordinary text, but there are some almost invisible
+text constructions that allow you to control the formating. For example,</p>
+<blockquote>
+<ul class="simple">
+<li>bullet lists arise from lines starting with an asterisk,</li>
+<li><em>emphasized words</em> are surrounded by asterisks,</li>
+<li><strong>words in boldface</strong> are surrounded by underscores,</li>
+<li>words from computer code are enclosed in back quotes and
+then typeset verbatim,</li>
+<li>blocks of computer code can easily be included, also from source files,</li>
+<li>blocks of LaTeX mathematics can easily be included,</li>
+<li>there is support oforboth LaTeX and text-like inline mathematics,</li>
+<li>figures with captions, URLs with links, labels and references
+are supported,</li>
+<li>comments can be inserted throughout the text,</li>
+<li>a preprocessor (much like the C preprocessor) is integrated so
+other documents (files) can be included and large portions of text
+can be defined in or out of the text.</li>
+</ul>
+</blockquote>
+<p>Here is an example of some simple text written in the Doconce format:</p>
+<pre class="literal-block">
+===== A Subsection with Sample Text =====
+
+Ordinary text looks like ordinary text, and the tags used for
+_boldface_ words, *emphasized* words, and `computer` words look
+natural in plain text.  Lists are typeset as you would do in an email,
+
+  * item 1
+  * item 2
+  * item 3
+
+Lists can also have automatically numbered items instead of bullets,
+
+  o item 1
+  o item 2
+  o item 3
+
+URLs with a link word are possible, as in http://folk.uio.no/hpl&lt;hpl&gt;.
+Just a file link goes like URL:&quot;tutorial.do.txt&quot;.
+
+Tables are also supperted, e.g.,
+
+  |--------------------------------|
+  |time  | velocity | acceleration |
+  |--------------------------------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+</pre>
+<p>The Doconce text above results in the following little document:</p>
+</div>
+<div class="section" id="a-subsection-with-sample-text">
+<h2>A Subsection with Sample Text</h2>
+<p>Ordinary text looks like ordinary text, and the tags used for
+<strong>boldface</strong> words, <em>emphasized</em> words, and <tt class="docutils literal">computer</tt> words look
+natural in plain text.  Lists are typeset as you would do in an email,</p>
+<blockquote>
+<ul class="simple">
+<li>item 1</li>
+<li>item 2</li>
+<li>item 3</li>
+</ul>
+</blockquote>
+<p>Lists can also have numbered items instead of bullets, just use an</p>
+<ol class="arabic simple">
+<li>(for ordered) instead of the asterisk:</li>
+</ol>
+<blockquote>
+<ol class="arabic simple">
+<li>item 1</li>
+<li>item 2</li>
+<li>item 3</li>
+</ol>
+</blockquote>
+<p>URLs with a link word are possible, as in <a class="reference external" href="http://folk.uio.no/hpl">hpl</a>.
+Just a file link goes like <a class="reference external" href="tutorial.do.txt">tutorial.do.txt</a>.</p>
+<p>Tables are also supperted, e.g.,</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">time</th>
+<th class="head">velocity</th>
+<th class="head">acceleration</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>0.0</td>
+<td>1.4186</td>
+<td>-5.01</td>
+</tr>
+<tr><td>2.0</td>
+<td>1.376512</td>
+<td>11.919</td>
+</tr>
+<tr><td>4.0</td>
+<td>1.1E+1</td>
+<td>14.717624</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mathematics-and-computer-code">
+<h2>Mathematics and Computer Code</h2>
+<p>Inline mathematics, such as v = sin(x),
+allows the formula to be specified both as LaTeX and as plain text.
+This results in a professional LaTeX typesetting, but in other formats
+the text version normally looks better than raw LaTeX mathematics with
+backslashes. An inline formula like v = sin(x) is
+typeset as:</p>
+<pre class="literal-block">
+$\nu = \sin(x)$|$v = sin(x)$
+</pre>
+<p>The pipe symbol acts as a delimiter between LaTeX code and the plain text
+version of the formula.</p>
+<p>Blocks of mathematics are better typeset with raw LaTeX, inside
+<tt class="docutils literal">!bt</tt> and <tt class="docutils literal">!et</tt> (begin tex / end tex) instructions.
+The result looks like this:</p>
+<pre class="literal-block">
+\begin{eqnarray}
+{\partial u\over\partial t} &amp;=&amp; \nabla^2 u + f,\label{myeq1}\\
+{\partial v\over\partial t} &amp;=&amp; \nabla\cdot(q(u)\nabla v) + g
+\end{eqnarray}
+</pre>
+<p>Of course, such blocks only looks nice in LaTeX. The raw
+LaTeX syntax appears in all other formats (but can still be useful
+for those who can read LaTeX syntax).</p>
+<p>You can have blocks of computer code, starting and ending with
+<tt class="docutils literal">!bc</tt> and <tt class="docutils literal">!ec</tt> instructions, respectively. Such blocks look like:</p>
+<pre class="literal-block">
+from math import sin, pi
+def myfunc(x):
+    return sin(pi*x)
+
+import integrate
+I = integrate.trapezoidal(myfunc, 0, pi, 100)
+</pre>
+<p>One can also copy computer code directly from files, either the
+complete file or specified parts.  Computer code is then never
+duplicated in the documentation (important for the principle of
+avoiding copying information!).</p>
+<p>Another document can be included by writing <tt class="docutils literal">#include &quot;mynote.do.txt&quot;</tt>
+on a line starting with (another) hash sign.  Doconce documents have
+extension <tt class="docutils literal">do.txt</tt>. The <tt class="docutils literal">do</tt> part stands for doconce, while the
+trailing <tt class="docutils literal">.txt</tt> denotes a text document so that editors gives you the
+right writing enviroment for plain text.</p>
+</div>
+<div class="section" id="seeing-more-of-what-doconce-is">
+<h2>Seeing More of What Doconce Is</h2>
+<p>After the quick syntax tour above, we recommend to read the Doconce
+source of the current tutorial and compare it with what you see in
+a browser, a PDF document, in plain text, and so forth.
+The Doconce source is found in the folder <tt class="docutils literal">doc/tutorial.do.txt</tt> in the
+source code tree of Doconce. The Doconce example documentation
+displays both the source <tt class="docutils literal">tutorial.do.txt</tt> and the result of many other
+formats.</p>
+<p>A more complete documentation of and motivation for Doconce appears
+in the file <tt class="docutils literal">lib/doconce/doc/doconce.do.txt</tt> in the Doconce
+source code tree. The same documentation appears in the doc string of
+the <tt class="docutils literal">doconce</tt> module.</p>
+<!-- Example on including another Doconce file: -->
+</div>
+<div class="section" id="from-doconce-to-other-formats">
+<h2>From Doconce to Other Formats</h2>
+<p>Transformation of a Doconce document to various other
+formats applies the script <tt class="docutils literal">doconce2format</tt>:</p>
+<pre class="literal-block">
+Unix/DOS&gt; doconce2format format mydoc.do.txt
+</pre>
+<p>The <tt class="docutils literal">preprocess</tt> program is always used to preprocess the file first,
+and options to <tt class="docutils literal">preprocess</tt> can be added after the filename. For example:</p>
+<pre class="literal-block">
+Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt -Dextra_sections
+</pre>
+<p>The variable <tt class="docutils literal">FORMAT</tt> is always defined as the current format when
+running <tt class="docutils literal">preprocess</tt>. That is, in the last example, <tt class="docutils literal">FORMAT</tt> is
+defined as <tt class="docutils literal">LaTeX</tt>. Inside the Doconce document one can then perform
+format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;LaTeX&quot;</tt>.</p>
+<div class="section" id="html">
+<h3>HTML</h3>
+<p>Making an HTML version of a Doconce file <tt class="docutils literal">mydoc.do.txt</tt>
+is performed by:</p>
+<pre class="literal-block">
+Unix/DOS&gt; doconce2format HTML mydoc.do.txt
+</pre>
+<p>The resulting file <tt class="docutils literal">mydoc.html</tt> can be loaded into any web browser for viewing.</p>
+</div>
+<div class="section" id="latex">
+<h3>LaTeX</h3>
+<p>Making a LaTeX file <tt class="docutils literal">mydoc.tex</tt> from <tt class="docutils literal">mydoc.do.txt</tt> is done in two steps:
+.. Note: putting code blocks inside a list is not successful in many
+.. formats - the text may be messed up. A better choice is a paragraph
+.. environment, as used here.</p>
+<dl class="docutils">
+<dt><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal">mydoc.p.tex</tt> for</dt>
+<dd><p class="first"><tt class="docutils literal">ptex2tex</tt>:</p>
+<pre class="last literal-block">
+Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt
+</pre>
+</dd>
+</dl>
+<p>LaTeX-specific commands (&quot;newcommands&quot;) in math formulas and similar
+can be placed in a file <tt class="docutils literal">newcommands.tex</tt>. If this file is present,
+it is included in the LaTeX document so that your commands are
+defined.</p>
+<p><em>Step 2.</em> Run <tt class="docutils literal">ptex2tex</tt> (if you have it) to make a standard LaTeX file:</p>
+<pre class="literal-block">
+   Unix/DOS&gt; ptex2tex mydoc
+
+
+or just perform a plain copy::
+
+   Unix/DOS&gt; cp mydoc.p.tex mydoc.tex
+</pre>
+<p>The <tt class="docutils literal">ptex2tex</tt> tool makes it possible to easily switch between many
+different fancy formattings of computer or verbatim code in LaTeX
+documents.
+Finally, compile <tt class="docutils literal">mydoc.tex</tt> the usual way and create the PDF file.</p>
+</div>
+<div class="section" id="plain-ascii-text">
+<h3>Plain ASCII Text</h3>
+<p>We can go from Doconce &quot;back to&quot; plain untagged text suitable for viewing
+in terminal windows, inclusion in email text, or for insertion in
+computer source code:</p>
+<pre class="literal-block">
+Unix/DOS&gt; doconce2format plain mydoc.do.txt  # results in mydoc.txt
+</pre>
+</div>
+<div class="section" id="restructuredtext">
+<h3>reStructuredText</h3>
+<p>Going from Doconce to reStructuredText gives a lot of possibilities to
+go to other formats. First we filter the Doconce text to a
+reStructuredText file <tt class="docutils literal">mydoc.rst</tt>:</p>
+<pre class="literal-block">
+Unix/DOS&gt; doconce2format rst mydoc.do.txt
+</pre>
+<p>We may now produce various other formats:</p>
+<pre class="literal-block">
+Unix/DOS&gt; rst2html.py  mydoc.rst &gt; mydoc.html # HTML
+Unix/DOS&gt; rst2latex.py mydoc.rst &gt; mydoc.tex  # LaTeX
+Unix/DOS&gt; rst2xml.py   mydoc.rst &gt; mydoc.xml  # XML
+Unix/DOS&gt; rst2odt.py   mydoc.rst &gt; mydoc.odt  # OpenOffice
+</pre>
+<p>The OpenOffice file <tt class="docutils literal">mydoc.odt</tt> can be loaded into OpenOffice and
+saved in, among other things, the RTF format or the Microsoft Word format.
+That is, one can easily go from Doconce to Microsoft Word.</p>
+</div>
+<div class="section" id="sphinx">
+<h3>Sphinx</h3>
+<p>Sphinx documents can be created from a Doconce source in a few steps.</p>
+<p><em>Step 1.</em> Translate Doconce into the Sphinx dialect of
+the reStructuredText format:</p>
+<pre class="literal-block">
+Unix/DOS&gt; doconce2format sphinx mydoc.do.txt
+</pre>
+<p><em>Step 2.</em> Create a Sphinx root directory with a <tt class="docutils literal">conf.py</tt> file,
+either manually or by using the interactive <tt class="docutils literal"><span class="pre">sphinx-quickstart</span></tt>
+program. Here is a scripted version of the steps with the latter:</p>
+<pre class="literal-block">
+mkdir sphinx-rootdir
+sphinx-quickstart &lt;&lt;EOF
+sphinx-rootdir
+n
+_
+Name of My Sphinx Document
+Author
+version
+version
+.rst
+index
+y
+n
+n
+n
+n
+y
+n
+n
+y
+y
+EOF
+</pre>
+<p><em>Step 3.</em> Move the <tt class="docutils literal">tutorial.rst</tt> file to the Sphinx root directory:</p>
+<pre class="literal-block">
+Unix/DOS&gt; mv mydoc.rst sphinx-rootdir
+</pre>
+<p><em>Step 4.</em> Edit the generated <tt class="docutils literal">index.rst</tt> file so that <tt class="docutils literal">mydoc.rst</tt>
+is included, i.e., add <tt class="docutils literal">mydoc</tt> to the <tt class="docutils literal">toctree</tt> section so that it becomes:</p>
+<pre class="literal-block">
+.. toctree::
+   :maxdepth: 2
+
+   mydoc
+</pre>
+<p>(The spaces before <tt class="docutils literal">mydoc</tt> are important!)</p>
+<p><em>Step 5.</em> Generate, for instance, an HTML version of the Sphinx source:</p>
+<pre class="literal-block">
+make clean   # remove old versions
+make html
+</pre>
+<p>Many other formats are also possible.</p>
+<p><em>Step 6.</em> View the result:</p>
+<pre class="literal-block">
+Unix/DOS&gt; firefox _build/html/index.html
+</pre>
+</div>
+<div class="section" id="demos">
+<h3>Demos</h3>
+<p>The current text is generated from a Doconce format stored in the file:</p>
+<pre class="literal-block">
+tutorial/tutorial.do.txt
+</pre>
+<p>The file <tt class="docutils literal">make.sh</tt> in the <tt class="docutils literal">tutorial</tt> directory of the
+Doconce source code contains a demo of how to produce a variety of
+formats.  The source of this tutorial, <tt class="docutils literal">tutorial.do.txt</tt> is the
+starting point.  Running <tt class="docutils literal">make.sh</tt> and studying the various generated
+files and comparing them with the original <tt class="docutils literal">doconce.do.txt</tt> file,
+gives a quick introduction to how Doconce is used in a real case.</p>
+<p>There is another demo in the <tt class="docutils literal">lib/doconce/doc</tt> directory which
+translates the more comprehensive documentation, <tt class="docutils literal">doconce.do.txt</tt>, to
+various formats.  For example, to go from the LaTeX format to PDF, see
+<tt class="docutils literal">latex.sh</tt>.</p>
+</div>
+</div>
+<div class="section" id="the-doconce-documentation-strategy-for-user-manuals">
+<h2>The Doconce Documentation Strategy for User Manuals</h2>
+<p>Doconce was particularly made for writing tutorials or user manuals
+associated with computer codes. The text is written in Doconce format
+in separate files. LaTeX, HTML, XML, and other versions of the text
+is easily produced by the <tt class="docutils literal">doconce2format</tt> script and standard tools.
+A plain text version is often wanted for the computer source code,
+this is easy to make, and then one can use
+<tt class="docutils literal">#include</tt> statements in the computer source code to automatically
+get the manual or tutorial text in comments or doc strings.
+Below is a worked example.</p>
+<p>Consider an example involving a Python module in a <tt class="docutils literal">basename.p.py</tt> file.
+The <tt class="docutils literal">.p.py</tt> extension identifies this as a file that has to be
+preprocessed) by the <tt class="docutils literal">preprocess</tt> program.
+In a doc string in <tt class="docutils literal">basename.p.py</tt> we do a preprocessor include
+in a comment line, say:</p>
+<pre class="literal-block">
+#    #include &quot;docstrings/doc1.dst.txt
+</pre>
+<!-- Note: we insert an error right above as the right quote is missing. -->
+<!-- Then preprocess skips the statement, otherwise it gives an error -->
+<!-- message about a missing file docstrings/doc1.dst.txt (which we don't -->
+<!-- have, it's just a sample file name). Also note that comment lines -->
+<!-- must not come before a code block for the rst/st/epytext formats to work. -->
+<p>The file <tt class="docutils literal">docstrings/doc1.dst.txt</tt> is a file filtered to a specific format
+(typically plain text, reStructedText, or Epytext) from an original
+&quot;singleton&quot; documentation file named <tt class="docutils literal">docstrings/doc1.do.txt</tt>. The <tt class="docutils literal">.dst.txt</tt>
+is the extension of a file filtered ready for being included in a doc
+string (<tt class="docutils literal">d</tt> for doc, <tt class="docutils literal">st</tt> for string).</p>
+<p>For making an Epydoc manual, the <tt class="docutils literal">docstrings/doc1.do.txt</tt> file is
+filtered to <tt class="docutils literal">docstrings/doc1.epytext</tt> and renamed to
+<tt class="docutils literal">docstrings/doc1.dst.txt</tt>.  Then we run the preprocessor on the
+<tt class="docutils literal">basename.p.py</tt> file and create a real Python file
+<tt class="docutils literal">basename.py</tt>. Finally, we run Epydoc on this file. Alternatively, and
+nowadays preferably, we use Sphinx for API documentation and then the
+Doconce <tt class="docutils literal">docstrings/doc1.do.txt</tt> file is filtered to
+<tt class="docutils literal">docstrings/doc1.rst</tt> and renamed to <tt class="docutils literal">docstrings/doc1.dst.txt</tt>. A
+Sphinx directory must have been made with the right <tt class="docutils literal">index.rst</tt> and
+<tt class="docutils literal">conf.py</tt> files. Going to this directory and typing <tt class="docutils literal">make html</tt> makes
+the HTML version of the Sphinx API documentation.</p>
+<p>The next step is to produce the final pure Python source code. For
+this purpose we filter <tt class="docutils literal">docstrings/doc1.do.txt</tt> to plain text format
+(<tt class="docutils literal">docstrings/doc1.txt</tt>) and rename to <tt class="docutils literal">docstrings/doc1.dst.txt</tt>. The
+preprocessor transforms the <tt class="docutils literal">basename.p.py</tt> file to a standard Python
+file <tt class="docutils literal">basename.py</tt>. The doc strings are now in plain text and well
+suited for Pydoc or reading by humans. All these steps are automated
+by the <tt class="docutils literal">insertdocstr.py</tt> script.  Here are the corresponding Unix
+commands:</p>
+<pre class="literal-block">
+# make Epydoc API manual of basename module:
+cd docstrings
+doconce2format epytext doc1.do.txt
+mv doc1.epytext doc1.dst.txt
+cd ..
+preprocess basename.p.py &gt; basename.py
+epydoc basename
+
+# make Sphinx API manual of basename module:
+cd doc
+doconce2format sphinx doc1.do.txt
+mv doc1.rst doc1.dst.txt
+cd ..
+preprocess basename.p.py &gt; basename.py
+cd docstrings/sphinx-rootdir  # sphinx directory for API source
+make clean
+make html
+cd ../..
+
+# make ordinary Python module files with doc strings:
+cd docstrings
+doconce2format plain doc1.do.txt
+mv doc1.txt doc1.dst.txt
+cd ..
+preprocess basename.p.py &gt; basename.py
+
+# can automate inserting doc strings in all .p.py files:
+insertdocstr.py plain .
+# (runs through all .do.txt files and filters them to plain format and
+# renames to .dst.txt extension, then the script runs through all
+# .p.py files and runs the preprocessor, which includes the .dst.txt
+# files)
+</pre>
+</div>
+</div>
+<div class="section" id="warning-disclaimer">
+<h1>Warning/Disclaimer</h1>
+<p>Doconce can be viewed is a unified interface to a variety of
+typesetting formats.  This interface is minimal in the sense that a
+lot of typesetting features are not supported, for example, footnotes
+and bibliography. For many documents the simple Doconce format is
+sufficient, while in other cases you need more sophisticated
+formats. Then you can just filter the Doconce text to a more
+approprite format and continue working in this format only.  For
+example, reStructuredText is a good alternative: it is more tagged
+than Doconce and cannot be filtered to plain, untagged text, or wiki,
+and the LaTeX output is not at all as clean, but it also has a lot
+more typesetting and tagging features than Doconce.</p>
+</div>
+</div>
+</body>
+</html>

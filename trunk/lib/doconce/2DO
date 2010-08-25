@@ -1,0 +1,12 @@
+
+- should check for rst format that comment lines do not appear before !bc and !bt
+  easy check: run through lines[i], if lines[i-1].startswith('#') and
+  lines[i].startswith('!b'): error in rst
+  probably not import for sphinx
+
+- URLs without links:
+  work fine for LaTeX and HTML, but not for rst, plain
+  strange errors
+
+- epytext: improper paragraph indentation, probably after verbatim
+  change with !ec and \n
