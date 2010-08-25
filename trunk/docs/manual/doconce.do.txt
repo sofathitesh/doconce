@@ -12,41 +12,43 @@ Doconce are two things:
 
   o Doconce is a working strategy for documenting software in a single
     place and avoiding duplication of information. The slogan is:
-    "Write once, include everywhere". This requires that what you write
+    "Write once, include anywhere". This requires that what you write
     can be transformed to many different formats for a variety of
-    documents (manuals, tutorials, books, doc strings, source code doc., 
-    etc.).
+    documents (manuals, tutorials, books, doc strings, source code
+    documentation, etc.).
     
   o Doconce is a simple and minimally tagged markup language that can
     be used for the above purpose. That is, the Doconce format look
     like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx
-    reStructuredText, Epytext, and even plain text (where non-obvious
-    formatting/tags are removed for clear reading). From
-    reStructuredText you can go to XML, HTML, and LaTeX.
+    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    Epytext, and also plain text (where non-obvious formatting/tags are
+    removed for clear reading in, e.g., emails). From reStructuredText
+    you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
+    latter to RTF and MS Word.
 
 The first point may be of interest even if you adopt a different
-markup language than Doconce (e.g., reStructuredText). 
+markup language than Doconce, e.g., reStructuredText or Sphinx.
 
-So why not just use reStructuredText? Because Doconce 
+So why not just use reStructuredText or
+http://sphinx.pocoo.org/contents.html<Sphinx>? Because Doconce
 
-  * can convert to plain untagged text, 
-    which may be desirable inside programs and in email, 
+  * can convert to plain *untagged* text, 
+    more desirable for computer programs and email, 
   * has much cleaner LaTeX output,
-  * tagging of text is less cluttered, 
+  * has less cluttered tagging of text,
   * has better support for copying in computer code from other files,
-  * has a much stronger support for mathematical typesetting. 
+  * has stronger support for mathematical typesetting,
+  * works better as a complete or partial source for large LaTeX 
+    documents (reports and books).
 
 Anyway, after having written an initial document in Doconce, you may
-convert to reStructuredText, or similar formats such as the Sphinx
-extension to reStructuredText, and work with that version for the
-future.
+convert to reStructuredText or Sphinx and work with that version for
+the future.
 
-You can jump to the section "The Doconce Documentation Strategy" to
-see a recipe for how to perform the two steps above, but first we
-provide some motivation for the problem of which Doconce is a
-solution.
+You can jump to Section ref{doconce:strategy} to see a recipe for
+how to perform the two steps above, but first some more motivation for
+the problem which Doconce tries to solve is presented.
 
 
 ======= Motivation: Problems with Documenting Software =======
@@ -97,7 +99,7 @@ in verbatim environments). To summarize, we need
 
 The answer to these points is the Doconce markup language, its associated
 tools, and the `preprocess.py` C-like preprocessor (by Mick Trent, for lots
-of languages). Then we can *write once, include everywhere*!
+of languages). Then we can *write once, include anywhere*!
 ...And what we write is close to plain ASCII text.
 
 But isn't reStructuredText exactly the format that fulfills the needs
@@ -127,6 +129,7 @@ decision can be posponed (maybe forever and many documentation projects).
 
 
 ===== The Doconce Documentation Strategy ===== 
+label{doconce:strategy}
 
    * Write software documentation, both tutorials and manuals, in
      the Doconce format. Use many files - and never duplicate information!
@@ -755,22 +758,23 @@ okay in other formats).
 ===== Macros (Newcommands) =====
 label{newcommands}
 
-Doconce supports a type of macros via a LaTeX-style *newcommand* construction.
-The newcommands defined in a file with name `newcommand_replace.tex`
-are expanded when Doconce is filter to other formats, except for
-LaTeX (since LaTeX performs the expansion itself).
-Newcommands in files with names `newcommands.tex`
-and `newcommands_keep.tex` are kept as is when Doconce text is filtered
-to other formats, except for the Sphinx format. Since Sphinx understands
-LaTeX math, but not newcommands in if the Sphinx output is HTML, it makes
-most sense to expand all newcommands.
-Normally, all newcommands that appear in math blocks surrounded by
-`!bt` and `!et` are collected in `newcommands_keep.tex` and kept as is,
-at least if they contribute to make the raw LaTeX math text easier
-to read. Newcommands used elsewhere throughout the text will usually
-be placed in `newcommands_replace.tex` and expanded by Doconce.
-The definitions of newcommands in the `newcommands*.tex` files *must* appear
-on a single line (multi-line newcommands are too hard to parse with regular
+Doconce supports a type of macros via a LaTeX-style *newcommand*
+construction.  The newcommands defined in a file with name
+`newcommand_replace.tex` are expanded when Doconce is filtered to
+other formats, except for LaTeX (since LaTeX performs the expansion
+itself).  Newcommands in files with names `newcommands.tex` and
+`newcommands_keep.tex` are kept unaltered when Doconce text is
+filtered to other formats, except for the Sphinx format. Since Sphinx
+understands LaTeX math, but not newcommands if the Sphinx output is
+HTML, it makes most sense to expand all newcommands.  Normally, a user
+will put all newcommands that appear in math blocks surrounded by
+`!bt` and `!et` in `newcommands_keep.tex` to keep them unchanged, at
+least if they contribute to make the raw LaTeX math text easier to
+read in the formats that cannot render LaTeX.  Newcommands used
+elsewhere throughout the text will usually be placed in
+`newcommands_replace.tex` and expanded by Doconce.  The definitions of
+newcommands in the `newcommands*.tex` files *must* appear on a single
+line (multi-line newcommands are too hard to parse with regular
 expressions).
 
 __Example.__ Suppose we have the following commands in 

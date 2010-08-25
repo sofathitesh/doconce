@@ -1,6 +1,6 @@
-TITLE: Doconce: Document Once, Include Everywhere
+TITLE: Doconce: Document Once, Include Anywhere
 AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-DATE: July 30, 2010
+DATE: August 25, 2010
 
 
 # lines beginning with # are comment lines
@@ -16,7 +16,7 @@ DATE: July 30, 2010
  * Do you find it problematic that you have the same information
    scattered around in different documents in different typesetting
    formats? Would it be a good idea to write things once, in one
-   place, and include it everywhere?
+   place, and include it anywhere?
 
 If any of these questions are of interest, you should keep on reading.
 
@@ -27,18 +27,20 @@ Doconce is two things:
 
   o Doconce is a working strategy for documenting software in a single
     place and avoiding duplication of information. The slogan is:
-    "Write once, include everywhere". This requires that what you
-    write can be transformed to many different formats for a variety
-    of documents (manuals, tutorials, books, doc strings, source code
-    comments, etc.).
+    "Write once, include anywhere". This requires that what you write
+    can be transformed to many different formats for a variety of
+    documents (manuals, tutorials, books, doc strings, source code
+    documentation, etc.).
     
   o Doconce is a simple and minimally tagged markup language that can
-    be used for the above purpose. The Doconce format look
+    be used for the above purpose. That is, the Doconce format look
     like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, reStructuredText, Sphinx, XML,
-    OpenOffice/Word, Epytext, PDF, XML - and even plain text (with
-    tags removed for clearer reading).
+    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    Epytext, and also plain text (where non-obvious formatting/tags are
+    removed for clear reading in, e.g., emails). From reStructuredText
+    you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
+    latter to RTF and MS Word.
 
 
 ===== What Does Doconce Look Like? =====
@@ -193,22 +195,23 @@ right writing enviroment for plain text.
 
 ===== Macros (Newcommands) =====
 
-Doconce supports a type of macros via a LaTeX-style *newcommand* construction.
-The newcommands defined in a file with name `newcommand_replace.tex`
-are expanded when Doconce is filter to other formats, except for
-LaTeX (since LaTeX performs the expansion itself).
-Newcommands in files with names `newcommands.tex`
-and `newcommands_keep.tex` are kept as is when Doconce text is filtered
-to other formats, except for the Sphinx format. Since Sphinx understands
-LaTeX math, but not newcommands in if the Sphinx output is HTML, it makes
-most sense to expand all newcommands.
-Normally, all newcommands that appear in math blocks surrounded by
-`!bt` and `!et` are collected in `newcommands_keep.tex` and kept as is,
-at least if they contribute to make the raw LaTeX math text easier
-to read. Newcommands used elsewhere throughout the text will usually
-be placed in `newcommands_replace.tex` and expanded by Doconce.
-The definitions of newcommands in the `newcommands*.tex` files *must* appear
-on a single line (multi-line newcommands are too hard to parse with regular
+Doconce supports a type of macros via a LaTeX-style *newcommand*
+construction.  The newcommands defined in a file with name
+`newcommand_replace.tex` are expanded when Doconce is filtered to
+other formats, except for LaTeX (since LaTeX performs the expansion
+itself).  Newcommands in files with names `newcommands.tex` and
+`newcommands_keep.tex` are kept unaltered when Doconce text is
+filtered to other formats, except for the Sphinx format. Since Sphinx
+understands LaTeX math, but not newcommands if the Sphinx output is
+HTML, it makes most sense to expand all newcommands.  Normally, a user
+will put all newcommands that appear in math blocks surrounded by
+`!bt` and `!et` in `newcommands_keep.tex` to keep them unchanged, at
+least if they contribute to make the raw LaTeX math text easier to
+read in the formats that cannot render LaTeX.  Newcommands used
+elsewhere throughout the text will usually be placed in
+`newcommands_replace.tex` and expanded by Doconce.  The definitions of
+newcommands in the `newcommands*.tex` files *must* appear on a single
+line (multi-line newcommands are too hard to parse with regular
 expressions).
 
 
