@@ -595,7 +595,7 @@ That is, we provide two alternative expressions, both enclosed in
 dollar signs and separated by a pipe symbol, the expression to the
 left is used in LaTeX, while the expression to the right is used for
 all other formats.  The above text is typeset as "Here is an example
-on a linear system ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, where $\bfA$|$A$ 
+on a linear system ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, where $\bf A$|$A$ 
 is an $n\times n$|$nxn$ matrix, and $\bf x$|$x$ and $\bf b$|$b$
 are vectors of length $n$|$n$."
 

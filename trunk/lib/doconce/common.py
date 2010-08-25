@@ -174,6 +174,9 @@ INLINE_TAGS = {
     'math2':
     r'%s\$(?P<latexmath>[^ `][^$`]*)\$\|\$(?P<puretext>[^ `][^$`]*)\$%s' % \
     (inline_tag_begin, inline_tag_end),
+    # simpler (not tested):
+    #r'%s\$(?P<latexmath>[^$]+?)\$\|\$(?P<puretext>[^$]+)\$%s' % \
+    #(inline_tag_begin, inline_tag_end),
 
     # *emphasized words*
     'emphasize':

@@ -100,10 +100,11 @@ def latex_table(table):
     return s
 
 def handle_ref_and_label(section_label2title, format, filestr):
-    filestr = filestr.replace('label{', r'\label{')
+    filestr = filestr.replace('label{', r'\label{')  # no regex => no fix
     # add ~\ between chapter/section and the reference
-    pattern = r'(section|chapter)(s?)\s+ref\{'
-    replacement = r'\g<1>\g<2>~\ref{\\'
+    pattern = r'(section|chapter)(s?)\s+ref\{'  # no \[A-Za-z] pattern => no fix
+    replacement = fix_latex_command_regex(r'\g<1>\g<2>~\ref{',
+                                          application='replacement')
     filestr = re.sub(pattern, replacement, filestr, flags=re.IGNORECASE)
     # equations are ok in the doconce markup (in doconce2format we
     # make a final ref -> \ref and label -> \label
