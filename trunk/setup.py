@@ -86,7 +86,3 @@ setup(
                f in 'doconce_insertdocstr', 'doconce2format', \
                'doconce_old2new_format.py', 'doconce_latin2html.py']
     )
-    
-               
-
-    
