@@ -1,6 +1,6 @@
 import re, os
 
-
+# not this one: http://en.wikipedia.org/wiki/Help:Wiki_markup ??
 
 def wiki_code(filestr, format):
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
@@ -63,7 +63,7 @@ def handle_ref_and_label(section_label2title, format, filestr):
     # insert anchors (section substitutions are already done)
     for label in section_label2title:
         title = section_label2title[label]
-        filestr = re.sub(r'(\++ %s (\++)' % title,
+        filestr = re.sub(r'(=+ %s (=+)' % title,
                   r'\g<1> <span id="%s">%s</span> \g<2>' % (label, title),
                   filestr)
 
@@ -107,9 +107,9 @@ def define(FILENAME_EXTENSION,
         'verbatim':      r'\g<begin>`\g<subst>`\g<end>',
         'linkURL':       r'\g<begin>[\g<link> | \g<url>]\g<end>',
         'plainURL':      r'[\g<url>]',
-#        'section':       r'= \g<subst> =',
-#        'subsection':    r'== \g<subst> ==',
-#        'subsubsection': r'=== \g<subst> ===',
+#        'section':       r'== \g<subst> ==',
+#        'subsection':    r'=== \g<subst> ===',
+#        'subsubsection': r'==== \g<subst> ====',
         'section':       r'++++ \g<subst> ++++',
         'subsection':    r'++++++ \g<subst> ++++++',
         'subsubsection': r'++++++++ \g<subst> ++++++++',
