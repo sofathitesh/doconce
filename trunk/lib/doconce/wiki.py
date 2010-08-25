@@ -63,7 +63,7 @@ def handle_ref_and_label(section_label2title, format, filestr):
     # insert anchors (section substitutions are already done)
     for label in section_label2title:
         title = section_label2title[label]
-        filestr = re.sub(r'(=+ %s (=+)' % title,
+        filestr = re.sub(r'(\++ %s (\++)' % title,
                   r'\g<1> <span id="%s">%s</span> \g<2>' % (label, title),
                   filestr)
 
@@ -115,7 +115,7 @@ def define(FILENAME_EXTENSION,
         'subsubsection': r'++++++++ \g<subst> ++++++++',
         'paragraph':     r'*\g<subst>* ',
         'title':         r'#summary \g<subst>',
-        'date':          r'<center><h3>\g<subst></h3></center>',
+        'date':          r'\g<subst>',
         'author':        r'<center><h3>\g<name><br>\g<institution></h3></center>',
 #        'figure':        r'<\g<filename>>',
         'figure':        wiki_figure,
