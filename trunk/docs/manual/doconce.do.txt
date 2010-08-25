@@ -49,7 +49,7 @@ provide some motivation for the problem of which Doconce is a
 solution.
 
 
-===== Motivation: Problems with Documenting Software ===== 
+======= Motivation: Problems with Documenting Software =======
 
 __Duplicated Information.__ It is common to write some software
 documentation in the code (doc strings in Python, doxygen in C++,
@@ -109,8 +109,8 @@ Doconce to people who are not familier with any of these formats; 3)
 reStructuredText has no support for inline LaTeX mathematics or blocks
 of LaTeX code (usually for mathematics), which Doconce has.  Doconce
 can, of course, be filtered to reStructuredText to utilize that very
-handy set of tools. More arguments in favor of Doconce appear in the
-section *Why Yet Another Minimally Tagged Markup Language?*.
+handy set of tools. More arguments in favor of Doconce appear in
+Section ref{why:another:markup}.
 
 The Doconce software and methodology were inspired by Python code
 documentation, but can be applied to most other languages (support for
@@ -222,36 +222,8 @@ insertdocstr.py plain .
 # files)
 !ec
 
-===== Demos ===== 
-
-The current text is generated from a Doconce format stored in the
-!bc
-lib/doconce/docstrings/doconce.do.txt
-!ec
-file in the Doconce source code tree. You should view that text and
-compare with a formatted version (in HTML, LaTeX, plain text, etc.).
-
-The file `make.sh` in the same directory as the `doconce.do.txt` file
-(the current text) shows how to run `doconce2format`
-on the `doconce.do.txt` file to obtain documents in various formats.  To
-go from the LaTeX format to PDF, see `latex.sh`.
-Running this demo (`make.sh` and `latex.sh`) and studying the various
-generated files and comparing them with the original `doconce.do.txt`
-file, gives a quick introduction to how Doconce is used in a real case.
-
-Another demo is found in
-!bc
-tutorial/tutorial.do.txt
-!ec
-In the `tutorial` directory there is also a `make.sh` file producing a
-lot of formats.
-
-# Example on including another Doconce file:
-
-# #include "../tutorial/_doconce2anything.do.txt"
-
-
 ===== Why Yet Another Minimally Tagged Markup Language? ===== 
+label{why:another:markup}
 
 The Python community has already produced two successful, ASCII-based
 markup languages with minimal tagging:
@@ -271,7 +243,10 @@ languages do also exist>. So why is Doconce needed?
     in Doconce than in other markup languages. 
 
     The simple Doconce format is less cluttered and easier 
-    to read than more flexible/advanced ASCII-based markup languages.
+    to read than more flexible and advanced ASCII-based markup languages,
+    such as reStructuredText. Many who receive close-to-plain ASCII
+    text in email tend to be annoyed by the tagging and may remove tags
+    and clean up the text.
 
   - Flexibility:
     Epydoc and Sphinx produces complete module/package documentation.
@@ -325,6 +300,34 @@ languages do also exist>. So why is Doconce needed?
 #
 #
 #
+
+
+===== Demos ===== 
+
+The current text is generated from a Doconce format stored in the
+!bc
+docs/manual/doconce.do.txt
+!ec
+file in the Doconce source code tree. You should view that text and
+compare with a formatted version (in HTML, LaTeX, plain text, etc.).
+
+The file `make.sh` in the same directory as the `doconce.do.txt` file
+(the current text) shows how to run `doconce2format` on the
+`doconce.do.txt` file to obtain documents in various formats.  Running
+this demo (`make.sh`) and studying the various generated files and
+comparing them with the original `doconce.do.txt` file, gives a quick
+introduction to how Doconce is used in a real case.
+
+Another demo is found in
+!bc
+docs/tutorial/tutorial.do.txt
+!ec
+In the `tutorial` directory there is also a `make.sh` file producing a
+lot of formats.
+
+# Example on including another Doconce file:
+
+# #include "../tutorial/_doconce2anything.do.txt"
 
 
 
@@ -521,6 +524,7 @@ the section "Blocks of Verbatim Computer Code" below.
 
 
 _____Inline Tagging_____
+label{inline:tagging}
 
 Doconce supports tags for *emphasized phrases*, _boldface phrases_,
 and `verbatim text` (also called type writer text, for inline code)
@@ -560,7 +564,7 @@ Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
 
-URLs with links are typeset as
+Web addresses with links are typeset as
 !bc
 some URL like http://my.place.in.space/src<MyPlace>
 !ec
@@ -572,36 +576,15 @@ URL:"doconce.do.txt"
 !ec
 This constructions results in the link URL:"doconce.do.txt".
 
-References and labels are supported. The syntax is simple:
-!bc
-label{section:verbatim}   # defines a label
-For more information we refer to Section ref{section:verbatim}.
-!ec
-LaTeX and HTML support such labels and references, and the label name
-are invisible in the resulting document. For other formats, especially
-plain text, Epytext and similar, the names inside the `label` and
-`ref` specifications are just printed in the document so the names
-should be carefully chosen to help the reader understand what is meant
-by the label or reference. One suggestion is to apply `type:name` as
-illustrated above (`section:verbatim`), where `type` is the type of
-document element (section, equation, figure, etc.) and `name` is its
-logical name. When transforming Doconce to LaTeX, figure captions
-automatically get a label with a name identical to the basename of the
-figure file.
-
-By the way, here is an example on referencing Figure ref{fig:impact}
-(see the figure caption for an explicit label).
-     
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
 hence nice math formatting is only obtained in LaTeX (Epytext has some
 inline math support that is utilized).  However, mathematical
-expressions in LaTeX syntax often contains special formatting commands
-(such as user-defined newcommands), which appear annoying in plain
-text. Doconce therefore supports an extended inline math syntax where
-the writer can provide an alternative syntax suited for formats close
-to plain ASCII:
+expressions in LaTeX syntax often contains special formatting
+commands, which may appear annoying in plain text. Doconce therefore
+supports an extended inline math syntax where the writer can provide
+an alternative syntax suited for formats close to plain ASCII:
 !bc
 Here is an example on a linear system 
 ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
@@ -615,6 +598,39 @@ all other formats.  The above text is typeset as "Here is an example
 on a linear system ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, where $\bfA$|$A$ 
 is an $n\times n$|$nxn$ matrix, and $\bf x$|$x$ and $\bf b$|$b$
 are vectors of length $n$|$n$."
+
+===== Cross-Referencing =====
+
+References and labels are supported. The syntax is simple:
+!bc
+label{section:verbatim}   # defines a label
+For more information we refer to Section ref{section:verbatim}.
+!ec
+This syntax is close that that of labels and cross-references in
+LaTeX. When the label is placed after a section or subsection heading,
+the plain text, Epytext, and StructuredText formats will simply
+replace the reference by the title of the (sub)section.  All labels
+will become invisible, except those in math environments.  In the
+reStructuredText and Sphinx formats, the end effect is the same, but
+the "label" and "ref" commands are first translated to the proper
+reStructuredText commands by `doconce2format`. In the HTML and Wiki
+formats, labels become anchors and references become links, and with
+LaTeX "label" and "ref" are just equipped with backslashes so these
+commands work as usual in LaTeX.
+
+It is, in general, recommended to use labels and references for
+(sub)sections, equations, and figures only.
+By the way, here is an example on referencing Figure ref{fig:impact}
+(the label appears in the figure caption in the source code of this document).
+Additional references to Sections ref{mathtext} and ref{newcommands} are
+nice to demonstrate, as well as a reference to equations,
+say (ref{my:eq1})--(ref{my:eq2}). A comparison of the output and
+the source of this document illustrates how labels and references
+are handled by the format in question.
+     
+Hyperlinks to files or web addresses are handled as explained
+in Section ref{inline:tagging}.
+
 
 ===== Tables =====
 
@@ -710,7 +726,8 @@ is interpreted by Doconce and replaced by a *pro* or *cod* `ptex2tex`
 environment.)
 
 
-===== LaTeX Blocks of Mathematical Text ===== 
+===== LaTeX Blocks of Mathematical Text =====
+label{mathtext}
 
 Blocks of mathematical text are like computer code blocks, but
 the opening tag is `!bt` (begin TeX) and the closing tag is
@@ -735,9 +752,54 @@ where it is possible to write expressions both in native LaTeX format
 (so it looks good in LaTeX) and in a pure text format (so it looks
 okay in other formats).
 
+===== Macros (Newcommands) =====
+label{newcommands}
+
+Doconce supports a type of macros via a LaTeX-style *newcommand* construction.
+The newcommands defined in a file with name `newcommand_replace.tex`
+are expanded when Doconce is filter to other formats, except for
+LaTeX (since LaTeX performs the expansion itself).
+Newcommands in files with names `newcommands.tex`
+and `newcommands_keep.tex` are kept as is when Doconce text is filtered
+to other formats, except for the Sphinx format. Since Sphinx understands
+LaTeX math, but not newcommands in if the Sphinx output is HTML, it makes
+most sense to expand all newcommands.
+Normally, all newcommands that appear in math blocks surrounded by
+`!bt` and `!et` are collected in `newcommands_keep.tex` and kept as is,
+at least if they contribute to make the raw LaTeX math text easier
+to read. Newcommands used elsewhere throughout the text will usually
+be placed in `newcommands_replace.tex` and expanded by Doconce.
+The definitions of newcommands in the `newcommands*.tex` files *must* appear
+on a single line (multi-line newcommands are too hard to parse with regular
+expressions).
+
+__Example.__ Suppose we have the following commands in 
+`newcommand_replace.tex`:
+
+@@@CODE newcommands_replace.tex
+
+and these in `newcommands_keep.tex`:
+
+@@@CODE newcommands_keep.tex
+
+The LaTeX block
+!bc
+\beqa
+\x\cdot\normalvec &=& 0,\label{my:eq1}\\
+\Ddt{\uvec} &=& \Q \ep\label{my:eq2}
+\eeqa
+!ec
+will then be rendered to
+!bt
+\beqa
+\x\cdot\normalvec &=& 0,\label{my:eq1}\\
+\Ddt{\uvec} &=& \Q \ep\label{my:eq2}
+\eeqa
+!et
+in the current format.
+
 ===== Missing Features ===== 
 
-  * Tables (in progress)
   * Footnotes
   * Citations and bibliography
   * Index

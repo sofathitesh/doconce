@@ -99,6 +99,17 @@ def latex_table(table):
         '\n\n' + r'\noindent' + '\n'
     return s
 
+def handle_ref_and_label(section_label2title, format, filestr):
+    filestr = filestr.replace('label{', r'\label{')
+    # add ~\ between chapter/section and the reference
+    pattern = r'(section|chapter)(s?)\s+ref\{'
+    replacement = r'\g<1>\g<2>~\ref{\\'
+    filestr = re.sub(pattern, replacement, filestr, flags=re.IGNORECASE)
+    # equations are ok in the doconce markup (in doconce2format we
+    # make a final ref -> \ref and label -> \label
+
+    return filestr
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -108,6 +119,7 @@ def define(FILENAME_EXTENSION,
            ARGLIST,
            TABLE,
            FIGURE_EXT,
+           CROSS_REFS,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -124,8 +136,6 @@ def define(FILENAME_EXTENSION,
         'emphasize':     r'\g<begin>\emph{\g<subst>}\g<end>',
         'bold':          r'\g<begin>\\textbf{\g<subst>}\g<end>',  # (re.sub swallows a \)
         'verbatim':      r'\g<begin>\code{\g<subst>}\g<end>',
-        'label':         r'\label{\g<subst>}',
-        'reference':     r'\\ref{\g<subst>}',
         'citation':      r'~\\cite{\g<subst>}',
         'linkURL':       r'\g<begin>\href{\g<url>}{\g<link>}\g<end>',
         'plainURL':      r'\href{\g<url>}{\g<url>}',  # cannot use \code inside \href
@@ -180,6 +190,8 @@ def define(FILENAME_EXTENSION,
 
     FIGURE_EXT['LaTeX'] = ('.ps', '.eps')
 
+    CROSS_REFS['LaTeX'] = handle_ref_and_label
+
     TABLE['LaTeX'] = latex_table
 
     INTRO['LaTeX'] = r"""\documentclass{article}
@@ -205,4 +217,74 @@ def define(FILENAME_EXTENSION,
 
     OUTRO['LaTeX'] = r"""\end{document}
 """
+
+
+def fix_latex_command_regex(pattern, application='match'):
+    """
+    Given a pattern for a regular expression match or substitution,
+    the function checks for problematic patterns commonly
+    encountered when working with LaTeX texts, namely commands
+    starting with a backslash. 
+
+    For a pattern to be matched or substituted, and extra backslash is
+    always needed (either a special regex construction like \w leads
+    to wrong match, or \c leads to wrong substitution since \ just
+    escapes c so only the c is replaced, leaving an undesired
+    backslash). For the replacement pattern in a substitutions, specified
+    by the application='replacement' argument, a backslash
+    before any of the characters abfgnrtv must be preceeded by an
+    additional backslash.
+
+    The application variable equals 'match' if pattern is used for
+    a match and 'replacement' if pattern defines a replacement
+    regex in a re.sub command.
+
+    Caveats: let pattern just contain LaTeX commands, not combination
+    of commands and other regular expressions (\s, \d, etc.) as the
+    latter will end up with an extra undesired backslash.
+
+    Here are examples on failures::
+
+    >>> re.sub(r'\begin\{equation\}', r'\[', r'\begin{equation}')
+    '\\begin{equation}'
+    >>> # match of mbox, not \mbox, and wrong output:
+    >>> re.sub(r'\mbox\{(.+?)\}', r'\fbox{\g<1>}', r'\mbox{not}')
+    '\\\x0cbox{not}'
+
+    Here are examples on using this function:
+
+    >>> from doconce.latex import fix_latex_command_regex as fix
+    >>> pattern = fix(r'\begin\{equation\}', application='match')
+    >>> re.sub(pattern, r'\[', r'\begin{equation}')
+    '\\['
+    >>> pattern = fix(r'\mbox\{(.+?)\}', application='match')
+    >>> replacement = fix(r'\fbox{\g<1>}', application='replacement')
+    >>> re.sub(pattern, replacement, r'\mbox{not}')
+    '\\fbox{not}'
+
+    Avoid mixing LaTeX commands and ordinary regular expression
+    commands, e.g.::
+
+    >>> pattern = fix(r'\mbox\{(\d+)\}', application='match')
+    >>> pattern
+    '\\\\mbox\\{(\\\\d+)\\}'
+    >>> re.sub(pattern, replacement, r'\mbox{987}')
+    '\\mbox{987}'  # no substitution, no match
+    """
+    import string
+    problematic_letters = string.ascii_letters if application == 'match' \
+                          else 'abfgnrtv'
+
+    for letter in problematic_letters:
+        problematic_pattern = '\\' + letter
+
+        if letter == 'g' and application == 'replacement':
+            # no extra \ for \g<...> in pattern
+            if r'\g<' in pattern:
+                continue
+
+        ok_pattern = '\\\\' + letter
+        if problematic_pattern in pattern and not ok_pattern in pattern:
+            pattern = pattern.replace(problematic_pattern, ok_pattern)
+    return pattern
 

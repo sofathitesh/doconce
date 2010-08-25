@@ -38,6 +38,7 @@ def define(FILENAME_EXTENSION,
            ARGLIST,
            TABLE,
            FIGURE_EXT,
+           CROSS_REFS,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -69,6 +70,8 @@ def define(FILENAME_EXTENSION,
     from rst import rst_code, rst_table
     CODE['epytext'] = rst_code
     TABLE['epytext'] = rst_table
+    from plaintext import handle_ref_and_label
+    CROSS_REFS['epytext'] = handle_ref_and_label
 
     LIST['epytext'] = {
         'itemize':

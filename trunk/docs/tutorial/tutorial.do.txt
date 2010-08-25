@@ -59,7 +59,7 @@ text constructions that allow you to control the formating. For example,
 
   * blocks of LaTeX mathematics can easily be included,
  
-  * there is support oforboth LaTeX and text-like inline mathematics,
+  * there is support for both LaTeX and text-like inline mathematics,
 
   * figures with captions, URLs with links, labels and references
     are supported,
@@ -73,6 +73,7 @@ text constructions that allow you to control the formating. For example,
 Here is an example of some simple text written in the Doconce format:
 !bc
 ===== A Subsection with Sample Text =====
+label{my:first:sec}
 
 Ordinary text looks like ordinary text, and the tags used for
 _boldface_ words, *emphasized* words, and `computer` words look
@@ -89,7 +90,10 @@ Lists can also have automatically numbered items instead of bullets,
   o item 3
 
 URLs with a link word are possible, as in http://folk.uio.no/hpl<hpl>.
-Just a file link goes like URL:"tutorial.do.txt".
+Just a file link goes like URL:"tutorial.do.txt". References
+to sections may use logical names as labels (e.g., a "label" command right
+after the section title), as in the reference to 
+Chapter ref{my:first:sec}.
 
 Tables are also supperted, e.g.,
 
@@ -121,7 +125,10 @@ o (for ordered) instead of the asterisk:
   o item 3
 
 URLs with a link word are possible, as in http://folk.uio.no/hpl<hpl>.
-Just a file link goes like URL:"tutorial.do.txt".
+Just a file link goes like URL:"tutorial.do.txt". References
+to sections may use logical names as labels (e.g., a "label" command right
+after the section title), as in the reference to 
+Chapter ref{my:first:sec}.
 
 Tables are also supperted, e.g.,
 
@@ -184,6 +191,27 @@ trailing `.txt` denotes a text document so that editors gives you the
 right writing enviroment for plain text.
 
 
+===== Macros (Newcommands) =====
+
+Doconce supports a type of macros via a LaTeX-style *newcommand* construction.
+The newcommands defined in a file with name `newcommand_replace.tex`
+are expanded when Doconce is filter to other formats, except for
+LaTeX (since LaTeX performs the expansion itself).
+Newcommands in files with names `newcommands.tex`
+and `newcommands_keep.tex` are kept as is when Doconce text is filtered
+to other formats, except for the Sphinx format. Since Sphinx understands
+LaTeX math, but not newcommands in if the Sphinx output is HTML, it makes
+most sense to expand all newcommands.
+Normally, all newcommands that appear in math blocks surrounded by
+`!bt` and `!et` are collected in `newcommands_keep.tex` and kept as is,
+at least if they contribute to make the raw LaTeX math text easier
+to read. Newcommands used elsewhere throughout the text will usually
+be placed in `newcommands_replace.tex` and expanded by Doconce.
+The definitions of newcommands in the `newcommands*.tex` files *must* appear
+on a single line (multi-line newcommands are too hard to parse with regular
+expressions).
+
+
 ===== Seeing More of What Doconce Is ===== 
 
 After the quick syntax tour above, we recommend to read the Doconce
@@ -195,9 +223,8 @@ displays both the source `tutorial.do.txt` and the result of many other
 formats.
 
 A more complete documentation of and motivation for Doconce appears
-in the file `lib/doconce/doc/doconce.do.txt` in the Doconce
-source code tree. The same documentation appears in the doc string of
-the `doconce` module.
+in the file `docs/manual/doconce.do.txt` in the Doconce
+source code tree.
 
 # Example on including another Doconce file:
 

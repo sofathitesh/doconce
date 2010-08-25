@@ -47,6 +47,38 @@ def wiki_table(table):
     s += '\n'
     return s
 
+def handle_ref_and_label(section_label2title, format, filestr):
+    # .... see section ref{my:sec} is replaced by
+    # see the section "...section heading..."
+    pattern = r'[Ss]ection(s?)\s+ref\{'
+    replacement = r'the section\g<1> ref{'
+    filestr = re.sub(pattern, replacement, filestr)
+    pattern = r'[Cc]hapter(s?)\s+ref\{'
+    replacement = r'the chapter\g<1> ref{'
+    filestr = re.sub(pattern, replacement, filestr)
+
+    # remove label{...} from output
+    filestr = re.sub(r'label\{.+?\}', '', filestr)
+
+    # insert anchors (section substitutions are already done)
+    for label in section_label2title:
+        title = section_label2title[label]
+        filestr = re.sub(r'(\++ %s (\++)' % title,
+                  r'\g<1> <span id="%s">%s</span> \g<2>' % (label, title),
+                  filestr)
+
+    # replace all references to sections:
+    for label in section_label2title:
+        title = section_label2title[label]
+        filestr = filestr.replace('ref{%s}' % label,
+                                  '[[#%s|%s]]' % (label, title))
+
+    from common import ref2equations
+    filestr = ref2equations(filestr)
+
+    return filestr
+
+
 def define(FILENAME_EXTENSION,
            BLANKLINE,
            INLINE_TAGS_SUBST,
@@ -55,6 +87,7 @@ def define(FILENAME_EXTENSION,
            ARGLIST,
            TABLE,
            FIGURE_EXT,
+           CROSS_REFS,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -72,11 +105,7 @@ def define(FILENAME_EXTENSION,
         'emphasize':     r'\g<begin>_\g<subst>_\g<end>',
         'bold':          r'\g<begin>*\g<subst>*\g<end>',
         'verbatim':      r'\g<begin>`\g<subst>`\g<end>',
-        'label':         r'\g<subst>',
-#        'reference':     r'\g<subst>',
-#        'reference':     r'\g<begin>[\g<url> \g<link>]\g<end>\g<subst>',
-        'reference':     wiki_reference,
-        'linkURL':       r'\g<begin>[\g<url> \g<link>]\g<end>',
+        'linkURL':       r'\g<begin>[\g<link> | \g<url>]\g<end>',
         'plainURL':      r'[\g<url>]',
 #        'section':       r'= \g<subst> =',
 #        'subsection':    r'== \g<subst> ==',
@@ -122,7 +151,7 @@ def define(FILENAME_EXTENSION,
         }
 
     FIGURE_EXT['wiki'] = ('.png', '.gif', '.jpg', '.jpeg')
-
+    CROSS_REFS['wiki'] = handle_ref_and_label
     TABLE['wiki'] = wiki_table
 
     # document start:

@@ -55,6 +55,7 @@ def define(FILENAME_EXTENSION,
            ARGLIST,
            TABLE,
            FIGURE_EXT,
+           CROSS_REFS,
            INTRO,
            OUTRO):
     if not 'rst' in BLANKLINE:
@@ -77,6 +78,7 @@ def define(FILENAME_EXTENSION,
     LIST['sphinx'] = LIST['rst']
     ARGLIST['sphinx'] = ARGLIST['rst']
     FIGURE_EXT['sphinx'] = FIGURE_EXT['rst']
+    CROSS_REFS['sphinx'] = CROSS_REFS['rst']
     TABLE['sphinx'] = TABLE['rst']
 
     # make true copy of INLINE_TAGS_SUBST:

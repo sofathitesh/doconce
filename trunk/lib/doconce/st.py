@@ -1,4 +1,5 @@
 
+
 def define(FILENAME_EXTENSION,
            BLANKLINE,
            INLINE_TAGS_SUBST,
@@ -7,6 +8,7 @@ def define(FILENAME_EXTENSION,
            ARGLIST,
            TABLE,
            FIGURE_EXT,
+           CROSS_REFS,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -20,8 +22,6 @@ def define(FILENAME_EXTENSION,
         'emphasize': None,
         'bold':      r'\g<begin>**\g<subst>**\g<end>',
         'verbatim':  r"\g<begin>'\g<subst>'\g<end>",
-        'label':     r'\g<subst>',
-        'reference': r'\g<subst>',
         'linkURL':   r'\g<begin>"\g<url>":\g<link>\g<end>',
         'plainURL':  r'"\g<url>":\g<url>',
         # the replacement string differs, depending on the match object m:
@@ -52,3 +52,6 @@ def define(FILENAME_EXTENSION,
         }
     from common import DEFAULT_ARGLIST
     ARGLIST['st'] = DEFAULT_ARGLIST
+    from plaintext import handle_ref_and_label
+    CROSS_REFS['st'] = handle_ref_and_label
+    

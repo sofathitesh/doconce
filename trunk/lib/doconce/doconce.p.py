@@ -29,6 +29,7 @@ this file is not produced.
 from common import *
 import html, latex, rst, sphinx, st, epytext, plaintext, wiki
 for module in html, latex, rst, sphinx, st, epytext, plaintext, wiki:
+    #print 'calling define function in', module.__name__
     module.define(FILENAME_EXTENSION,
                   BLANKLINE,
                   INLINE_TAGS_SUBST,
@@ -37,6 +38,7 @@ for module in html, latex, rst, sphinx, st, epytext, plaintext, wiki:
                   ARGLIST,
                   TABLE,
                   FIGURE_EXT,
+                  CROSS_REFS,
                   INTRO,
                   OUTRO)
 
@@ -135,6 +137,7 @@ def insert_code_from_file(filestr, format):
     
     filestr = '\n'.join(lines)
     return filestr
+
 
                 
 def parse_keyword(keyword, format):
@@ -446,6 +449,32 @@ def handle_figures(filestr, format):
     return filestr
     
 
+def cross_referencing(filestr, format):
+    # 0. syntax check (outside !bt/!et environments there should only
+    # be ref and label *without* the latex-ish backslash
+    label_matches = re.findall(r'\\label\{', filestr)
+    if label_matches:
+        print r'Syntax error: found \label{...} (should be no backslash!)'
+    ref_matches = re.findall(r'\\ref\{', filestr)
+    if ref_matches:
+        print r'Syntax error: found \ref{...} (should be no backslash!)'
+        
+    # 1. find all section/chapter titles and corresponding labels
+    section_pattern = r'(_+|=+)([A-Za-z !.,;0-9]+)(_+|=+)\s*label\{(.+?)\}'
+    section_pattern = r'(_{3,7}|={3,7})(.+?)(_{3,7}|={3,7})\s*label\{(.+?)\}'
+    m = re.findall(section_pattern, filestr)
+    #import pprint
+    #pprint.pprint(m)
+    section_label2title = {}
+    for dummy1, title, dummy2, label in m:
+        section_label2title[label] = title.strip()
+    #pprint.pprint(section_label2title)
+
+    # 2. perform format-specific editing of ref{...} and label{...}
+    filestr = CROSS_REFS[format](section_label2title, format, filestr)
+    return filestr
+
+        
 def inline_tag_subst(filestr, format):
     debug('\n*** Inline tags substitution phase ***')
     ordered_tags = (
@@ -453,7 +482,7 @@ def inline_tag_subst(filestr, format):
         # important to do section, subsection, etc. BEFORE paragraph and bold:
         'section', 'subsection', 'subsubsection',
         'emphasize', 'math2', 'math', 'bold', 'verbatim',
-        'label', 'reference', 'citation',
+        'citation',
         'paragraph',  # after bold and emphasize
         'plainURL', 'linkURL', 
         )
@@ -554,36 +583,44 @@ def doconce2format(in_filename, format, out_filename):
     debug('%s\n**** The file after removal of code/tex blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    # 3. step: deal with lists
+    # 3. step: deal with cross referencing (must occur before other format subst)
+    filestr = cross_referencing(filestr, format)
+    
+    debug('%s\n**** The file after handling ref and label cross referencing\n\n%s\n\n' % ('*'*80, filestr))
+
+
+    # 4. step: deal with lists
     filestr = typeset_lists(filestr, format,
                             debug_info=[code_blocks, tex_blocks])
     debug('%s\n**** The file after typesetting of list:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    # 4. step: deal with tables
+    # 5. step: deal with tables
     filestr = typeset_tables(filestr, format)
     debug('%s\n**** The file after typesetting of tables:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    # 5. step: deal with figures
+    # 6. step: deal with figures
     filestr = handle_figures(filestr, format)
-    
-    # 6. step: do substitutions:
-    filestr = inline_tag_subst(filestr, format)
 
-    """
-    if format == 'LaTeX':  # fix of a seldom problem
-        # if the Doconce text contains \ref{...} text it will be
-        # transformed to \\ref{...} (Doconce should of course not use
-        # \ref{..} but ref{...} so this is seldom a problem)
-        if re.search(r'\\ref\{', filestr):
-            filestr = re.sub(r'\\ref\{', r'ref{', filestr)  # tricky \, still wrong...experiment more...
-        # could do \\label too
-    """
+    # 7. step: do substitutions:
+    filestr = inline_tag_subst(filestr, format)
 
     debug('%s\n**** The file after all inline substitutions:\n\n%s\n\n' % ('*'*80, filestr))
 
-    # 7. step: insert verbatim and math code blocks again:
+    # 8. step: substitute latex-style newcommands in filestr and tex_blocks
+    # (not in code_blocks)
+    from expand_newcommands import expand_newcommands
+    if format != 'LaTeX':
+        newcommand_files = ['newcommands_replace.tex']
+        if format == 'sphinx':  # replace all newcommands in sphinx
+            newcommand_files.extend(['newcommands.tex', 'newcommands_keep.tex'])
+        print 'expanding newcommands in', ', '.join(newcommand_files)
+        filestr = expand_newcommands(newcommand_files, filestr)
+        for i in range(len(tex_blocks)):
+            tex_blocks[i] = expand_newcommands(newcommand_files, tex_blocks[i])
+
+    # 9. step: insert verbatim and math code blocks again:
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
     filestr += '\n'
     
@@ -591,18 +628,6 @@ def doconce2format(in_filename, format, out_filename):
     filestr = CODE[format](filestr, format)
     debug('%s\n**** The file after inserting tex/code blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
-
-    # 8. step: substitute latex-style newcommands:
-    if format != 'LaTeX':
-        from expand_newcommands import expand_newcommands
-        newcommand_files = 'newcommands_replace.tex'
-        if format == 'sphinx':  # replace all newcommands in sphinx
-            newcommand_files.expand(['newcommands.tex', 'newcommands_keep.tex'])
-        for filename in newcommand_files:
-            if os.path.isfile(filename):
-                print 'expanding latex-style newcommands in', filename
-                filestr = expand_newcommands(filename, filestr)
-
 
     if has_title:
         if format in INTRO:
@@ -613,6 +638,7 @@ def doconce2format(in_filename, format, out_filename):
     f = open(out_filename, 'w')
     f.write(filestr)
     f.close()
+
 
 def preprocess(filename, format, preprocess_options=''):
     """

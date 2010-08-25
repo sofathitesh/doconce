@@ -1,5 +1,5 @@
 
-===== From Doconce to Other Formats ===== 
+======= From Doconce to Other Formats =======
 
 Transformation of a Doconce document to various other
 formats applies the script `doconce2format`:
@@ -17,7 +17,7 @@ defined as `LaTeX`. Inside the Doconce document one can then perform
 format specific actions through tests like `#if FORMAT == "LaTeX"`.
 
 
-=== HTML ===
+===== HTML =====
 
 Making an HTML version of a Doconce file `mydoc.do.txt`
 is performed by
@@ -26,7 +26,7 @@ Unix/DOS> doconce2format HTML mydoc.do.txt
 !ec
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
-=== LaTeX ===
+===== LaTeX =====
 
 Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
 # Note: putting code blocks inside a list is not successful in many
@@ -56,7 +56,7 @@ different fancy formattings of computer or verbatim code in LaTeX
 documents.
 Finally, compile `mydoc.tex` the usual way and create the PDF file.
 
-=== Plain ASCII Text ===
+===== Plain ASCII Text =====
 
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
@@ -65,7 +65,7 @@ computer source code:
 Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
 !ec
 
-=== reStructuredText ===
+===== reStructuredText =====
 
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
@@ -84,7 +84,7 @@ The OpenOffice file `mydoc.odt` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
 That is, one can easily go from Doconce to Microsoft Word.
 
-=== Sphinx ===
+===== Sphinx =====
 
 Sphinx documents can be created from a Doconce source in a few steps.
 

@@ -3,14 +3,14 @@ import re
 # how to replace code and LaTeX blocks by HTML (<pre>) environment:
 def HTML_code(filestr, format):
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
-    filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<blockquote><pre>\n',
+    filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<BLOCKQUOTE><PRE>\n',
                     filestr)
     filestr = re.sub(r'!ec\n',
-                     r'</pre></blockquote>\n<! -- END VERBATIM BLOCK -->\n',
+                     r'</PRE></BLOCKQUOTE>\n<! -- END VERBATIM BLOCK -->\n',
                      filestr)
     c = re.compile(r'^!bt\n', re.MULTILINE)
-    filestr = c.sub(r'<blockquote><pre>\n', filestr)
-    filestr = re.sub(r'!et\n', r'</pre></blockquote>\n', filestr)
+    filestr = c.sub(r'<BLOCKQUOTE><PRE>\n', filestr)
+    filestr = re.sub(r'!et\n', r'</PRE></BLOCKQUOTE>\n', filestr)
     return filestr
 
 from common import table_analysis
@@ -39,6 +39,48 @@ def html_table(table):
     s += '</TABLE>\n'
     return s
 
+def handle_ref_and_label(section_label2title, format, filestr):
+    # .... see section ref{my:sec} is replaced by
+    # see the section "...section heading..."
+    pattern = r'[Ss]ection(s?)\s+ref\{'
+    replacement = r'the section\g<1> ref{'
+    filestr = re.sub(pattern, replacement, filestr)
+    pattern = r'[Cc]hapter(s?)\s+ref\{'
+    replacement = r'the chapter\g<1> ref{'
+    filestr = re.sub(pattern, replacement, filestr)
+
+    # turn label{myname} to anchors <A NAME="myname"></a>
+    filestr = re.sub(r'label\{(.+?)\}', r'<A NAME="\g<1>"></A>', filestr)
+
+    # make special anchors for all the section titles:
+    for label in section_label2title:
+        # first remove the anchor with this label as created above:
+        filestr = filestr.replace('<A NAME="%s"></A>' % label, '')
+        # make new anchor for this label (put in title):
+        title = section_label2title[label]
+        title_pattern = r'(_{3,7}|={3,7})\s*%s\s*(_{3,7}|={3,7})' % re.escape(title)  # title may contain ? () etc.
+        filestr, n = re.subn(title_pattern,
+                     '\g<1> %s <A NAME="%s"></A> \g<2>' % (title, label),
+                     filestr)
+        # (a little odd with mix of doconce title syntax and HTML NAME tag...)
+        if n == 0:
+            raise Exception('problem with substituting "%s"' % title)
+
+    # replace all references to sections by section titles:
+    for label in section_label2title:
+        title = section_label2title[label]
+        filestr = filestr.replace('ref{%s}' % label,
+                                  '<A HREF="#%s">%s</a>' % (label, title))
+
+    # replace all other references ref{myname} by <a href="#myname">myname</a>:
+    filestr = re.sub(r'ref\{(.+?)\}', r'<A HREF="#\g<1>">\g<1></a>', filestr)
+
+    from common import ref2equations
+    filestr = ref2equations(filestr)
+
+    return filestr
+
+
 def define(FILENAME_EXTENSION,
            BLANKLINE,
            INLINE_TAGS_SUBST,
@@ -47,33 +89,32 @@ def define(FILENAME_EXTENSION,
            ARGLIST,
            TABLE,
            FIGURE_EXT,
+           CROSS_REFS,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
     
     FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
-    BLANKLINE['HTML'] = '\n<p>\n'         # blank input line => new paragraph
+    BLANKLINE['HTML'] = '\n<P>\n'         # blank input line => new paragraph
 
     INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
         # keep math as is:
         'math':          r'\g<begin>\g<subst>\g<end>',
         'math2':         r'\g<begin>\g<puretext>\g<end>',
-        'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
-        'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
-        'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
-        'label':         r'<a name="\g<subst>">',
-        'reference':     r'<a href="#\g<subst>">\g<subst></a>',
+        'emphasize':     r'\g<begin><EM>\g<subst></EM>\g<end>',
+        'bold':          r'\g<begin><B>\g<subst></B>\g<end>',
+        'verbatim':      r'\g<begin><TT>\g<subst></TT>\g<end>',
         'citation':      '',  # no citations
-        'linkURL':       r'\g<begin><a href="\g<url>">\g<link></a>\g<end>',
-        'plainURL':      r'<a href="\g<url>"><tt>\g<url></tt></a>',
-        'section':       r'<h1>\g<subst></h1>',
-        'subsection':    r'<h3>\g<subst></h3>',
-        'subsubsection': r'<h5>\g<subst></h5>',
-        'paragraph':     r'<b>\g<subst></b> ',
-        'title':         r'<title>\g<subst></title>\n<center><h1>\g<subst></h1></center>',
-        'date':          r'<center><h3>\g<subst></h3></center>',
-        'author':        r'<center><h3>\g<name><br>\g<institution></h3></center>',
-        'figure':        r'<img src="\g<filename>" \g<options>> \g<caption>',
+        'linkURL':       r'\g<begin><A HREF="\g<url>">\g<link></A>\g<end>',
+        'plainURL':      r'<A HREF="\g<url>"><TT>\g<url></TT></A>',
+        'section':       r'<H1>\g<subst></H1>',
+        'subsection':    r'<H3>\g<subst></H3>',
+        'subsubsection': r'<H4>\g<subst></H4>',
+        'paragraph':     r'<B>\g<subst></B> ',
+        'title':         r'<TITLE>\g<subst></TITLE>\n<CENTER><H1>\g<subst></H1></CENTER>',
+        'date':          r'<CENTER><H3>\g<subst></H3></CENTER>',
+        'author':        r'<CENTER><H3>\g<name><BR>\g<institution></H3></CENTER>',
+        'figure':        r'<IMG SRC="\g<filename>" \g<options>> \g<caption>',
         'comment':       '<!-- %s -->',
         }
 
@@ -82,42 +123,42 @@ def define(FILENAME_EXTENSION,
     # how to typeset lists and their items in HTML:
     LIST['HTML'] = {
         'itemize':
-        {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
+        {'begin': '\n<UL>\n', 'item': '<LI>', 'end': '</UL>\n\n'},
 
         'enumerate':
-        {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
+        {'begin': '\n<OL>\n', 'item': '<LI>', 'end': '</OL>\n\n'},
 
         'description':
-        {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\n\n'},
+        {'begin': '\n<DL>\n', 'item': '<DT>%s<DD>', 'end': '</DL>\n\n'},
 
         'separator': '',  # no need for blank lines between items and before/after
         }
 
-    # how to type set description lists for function arguments, return
+    # how to typeset description lists for function arguments, return
     # values, and module/class variables:
     ARGLIST['HTML'] = {
-        'parameter': '<b>argument</b>',
-        'keyword': '<b>keyword argument</b>',
-        'return': '<b>return value(s)</b>',
-        'instance variable': '<b>instance variable</b>',
-        'class variable': '<b>class variable</b>',
-        'module variable': '<b>module variable</b>',
+        'parameter': '<B>argument</B>',
+        'keyword': '<B>keyword argument</B>',
+        'return': '<B>return value(s)</B>',
+        'instance variable': '<B>instance variable</B>',
+        'class variable': '<B>class variable</B>',
+        'module variable': '<B>module variable</B>',
         }
 
     FIGURE_EXT['HTML'] = ('.png', '.gif', '.jpg', '.jpeg')
-
+    CROSS_REFS['HTML'] = handle_ref_and_label
     TABLE['HTML'] = html_table
 
 
     # document start:
     INTRO['HTML'] = """
-    <html>
-    <body bgcolor="white">
+<HTML>
+<BODY BGCOLOR="white">
     """
     # document ending:
     OUTRO['HTML'] = """
-    </body>
-    </html>
+</BODY>
+</HTML>
     """
 
 def latin2html(text):

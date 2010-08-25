@@ -30,6 +30,37 @@ def indent_lines(text, format, indentation=' '*8):
     text = '\n'.join([indentation + line for line in text.splitlines()])
     return text
 
+
+def table_analysis(table):
+    """Return max width of each column."""
+    column_list = []
+    for i, row in enumerate(table):
+        if row != ['horizontal rule']:
+            if not column_list:
+                column_list = [[]]*len(row)
+            for j, column in enumerate(row):
+                column_list[j].append(len(column))
+    return [max(c) for c in column_list]
+            
+
+def ref2equations(filestr):
+    """
+    Replace references to equations:
+    (ref{my:label}) -> Equation (my:label)
+    (ref{my:label1})-(ref{my:label2}) -> Equations (my:label1)-(my:label2)
+    (ref{my:label1}) and (ref{my:label2}) -> Equations (my:label1) and (my:label2)
+    (ref{my:label1}), (ref{my:label2}) and (ref{my:label3}) -> Equations (my:label1), (my:label2) and (ref{my:label2})
+    """
+    filestr = re.sub(r'\(ref\{(.+?)\}\)-\(ref\{(.+?)\}\)',
+                     r'Equations (\g<1>)-(\g<2>)', filestr)
+    filestr = re.sub(r'\(ref\{(.+?)\}\)\s+and\s+\(ref\{(.+?)\}\)',
+                     r'Equations (\g<1>) and (\g<2>)', filestr)
+    filestr = re.sub(r'\(ref\{(.+?)\}\),\s*\(ref\{(.+?)\}\)(,?)\s+and\s+\(ref\{(.+?)\}\)',
+                     r'Equations (\g<1>), (\g<2>)\g<3> and (\g<4>)', filestr)
+    filestr = re.sub(r'\(ref\{(.+?)\}\)',
+                     r'Equation (\g<1>)', filestr)
+    return filestr
+
 def remove_code_and_tex(filestr):
     """
     Remove verbatim and latex (math) code blocks from the file and
@@ -85,8 +116,19 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
                 lines[i] = lines[i].replace('!XX&XX', '%s\n!ec' % code)
                 break
     for tex in tex_blocks:
-        # also here problems with this: (\nabla becomes \n (newline) and abla)
-        #filestr = re.sub(r'#!!TEX_BLOCK', '!bt\n%s!et' % tex, filestr, 1)
+        # Also here problems with this: (\nabla becomes \n (newline) and abla)
+        # which means that
+        # filestr = re.sub(r'#!!TEX_BLOCK', '!bt\n%s!et' % tex, filestr, 1)
+        # does not work properly. Instead, we use str.replace
+
+        if format == 'LaTeX':  # fix
+            # ref/label is ok outside tex environments (see test in 
+            # cross_referencing), but inside !bt/!et environments the user 
+            # is allowed to have ref and label without backslashes 
+            # and these must be equipped by backslashes in LaTeX format
+            filestr = re.sub(r'([^\\])label\{', r'\g<1>\label{', filestr)
+            filestr = re.sub(r'([^\\])ref\{', r'\g<1>\\ref{', filestr)
+
         for i in range(len(lines)):
             if '#!!TEX_BLOCK' in lines[i]:
                 lines[i] = lines[i].replace('#!!TEX_BLOCK',
@@ -95,18 +137,7 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
     filestr = '\n'.join(lines)
     return filestr
 
-def table_analysis(table):
-    """Return max width of each column."""
-    column_list = []
-    for i, row in enumerate(table):
-        if row != ['horizontal rule']:
-            if not column_list:
-                column_list = [[]]*len(row)
-            for j, column in enumerate(row):
-                column_list[j].append(len(column))
-    return [max(c) for c in column_list]
-            
-
+    
 BLANKLINE = {}
 FILENAME_EXTENSION = {}
 LIST = {}
@@ -123,6 +154,7 @@ DEFAULT_ARGLIST = {
     }
 TABLE = {}
 FIGURE_EXT = {}
+CROSS_REFS = {}
 INTRO = {}
 OUTRO = {}
 
@@ -157,14 +189,6 @@ INLINE_TAGS = {
     'bold':
     r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
     (inline_tag_begin, inline_tag_end),
-
-    # label{labelname}
-    'label':
-    r'label\{(?P<subst>[^}]+)\}',
-
-    # ref{labelname}
-    'reference':
-    r'ref\{(?P<subst>[^}]+)\}',
 
     # cite{labelname}
     'citation':
