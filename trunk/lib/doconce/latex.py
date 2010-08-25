@@ -130,7 +130,9 @@ def define(FILENAME_EXTENSION,
 
     INLINE_TAGS_SUBST['LaTeX'] = {
         # Note: re.sub "eats" backslashes: \t and \b will not survive to
-        # latex if text goes through re.sub. Then we must write \\b and \\t here:
+        # latex if text goes through re.sub. Then we must write 
+        # \\b and \\t etc. See the fix_latex_command_regex function below
+        # for the complete story.
 
         'math': None,  # indicates no substitution, leave as is
         'math2':         r'\g<begin>$\g<latexmath>$\g<end>',        
@@ -140,9 +142,9 @@ def define(FILENAME_EXTENSION,
         'citation':      r'~\\cite{\g<subst>}',
         'linkURL':       r'\g<begin>\href{\g<url>}{\g<link>}\g<end>',
         'plainURL':      r'\href{\g<url>}{\g<url>}',  # cannot use \code inside \href
-        'section':       '\n\n' + r'\section*{\g<subst>}' + '\n',
-        'subsection':    '\n' + r'\subsection*{\g<subst>}' + '\n',
-        #'subsubsection': '\n' + r'\subsubsection*{\g<subst>}' + '\n',
+        'section':       '\n\n' + r'\section{\g<subst>}' + '\n',
+        'subsection':    '\n' + r'\subsection{\g<subst>}' + '\n',
+        #'subsubsection': '\n' + r'\subsubsection{\g<subst>}' + '\n',
         'subsubsection': r'\paragraph{\g<subst>.}' + '\n',
         'paragraph':     r'\paragraph{\g<subst>}' + '\n',
         # recall that this is regex so LaTeX commands must be treated carefully:
