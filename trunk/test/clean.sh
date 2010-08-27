@@ -1,2 +1,4 @@
 #!/bin/sh
-rm -rf tmp_* *~ test.v
+files="tmp_* *~ test.v verify*"
+echo $files
+rm -rf $files

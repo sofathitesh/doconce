@@ -1,72 +1,45 @@
-#summary YourOneLineSummary
-<wiki:toc max_depth="1" />
 #summary Doconce: Document Once, Include Anywhere
 <wiki:toc max_depth="2" />
 
 ==== Hans Petter Langtangen, Simula Research Laboratory and University of Oslo ====
+
 ==== August 25, 2010 ====
+
 <wiki:comment> lines beginning with # are comment lines </wiki:comment>
 
 
-<UL>
- <LI> When writing a note, report, manual, etc., do you find it difficult
-   to choose the typesetting format? That is, to choose between plain
-   (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML,
-   reStructuredText, Sphinx, XML, etc.  Would it be convenient to
-   start with some very simple text-like format that easily converts
-   to the formats listed above, and at some later stage eventually go
-   with a particular format?
- <LI> Do you find it problematic that you have the same information
-   scattered around in different documents in different typesetting
-   formats? Would it be a good idea to write things once, in one
-   place, and include it anywhere?
-</UL>
+
+ * When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and at some later stage eventually go   with a particular format?
+ * Do you find it problematic that you have the same information   scattered around in different documents in different typesetting   formats? Would it be a good idea to write things once, in one   place, and include it anywhere?
 
 If any of these questions are of interest, you should keep on reading.
 
 ==== The Doconce Concept ====
+
 Doconce is two things:
 
 
-<OL>
- <LI> Doconce is a working strategy for documenting software in a single
-    place and avoiding duplication of information. The slogan is:
-    "Write once, include anywhere". This requires that what you write
-    can be transformed to many different formats for a variety of
-    documents (manuals, tutorials, books, doc strings, source code
-    documentation, etc.).
- <LI> Doconce is a simple and minimally tagged markup language that can
-    be used for the above purpose. That is, the Doconce format look
-    like ordinary ASCII text (much like what you would use in an
-    email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
-    Epytext, and also plain text (where non-obvious formatting/tags are
-    removed for clear reading in, e.g., emails). From reStructuredText
-    you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
-    latter to RTF and MS Word.
-</OL>
+
+ # Doconce is a working strategy for documenting software in a single    place and avoiding duplication of information. The slogan is:    "Write once, include anywhere". This requires that what you write    can be transformed to many different formats for a variety of    documents (manuals, tutorials, books, doc strings, source code    documentation, etc.).
+ # Doconce is a simple and minimally tagged markup language that can    be used for the above purpose. That is, the Doconce format look    like ordinary ASCII text (much like what you would use in an    email), but the text can be transformed to numerous other formats,    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,    Epytext, and also plain text (where non-obvious formatting/tags are    removed for clear reading in, e.g., emails). From reStructuredText    you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the    latter to RTF and MS Word.
 
 ==== What Does Doconce Look Like? ====
+
 Doconce text looks like ordinary text, but there are some almost invisible
 text constructions that allow you to control the formating. For example,
 
 
-<UL>
-  <LI> bullet lists arise from lines starting with an asterisk,
-  <LI> *emphasized words* are surrounded by asterisks, 
-  <LI> *words in boldface* are surrounded by underscores, 
-  <LI> words from computer code are enclosed in back quotes and 
-    then typeset verbatim,
-  <LI> blocks of computer code can easily be included, also from source files,
-  <LI> blocks of LaTeX mathematics can easily be included,
-  <LI> there is support for both LaTeX and text-like inline mathematics,
-  <LI> figures with captions, URLs with links, labels and references
-    are supported,
-  <LI> comments can be inserted throughout the text,
-  <LI> a preprocessor (much like the C preprocessor) is integrated so
-    other documents (files) can be included and large portions of text
-    can be defined in or out of the text.
-</UL>
+
+  * bullet lists arise from lines starting with an asterisk,
+  * *emphasized words* are surrounded by asterisks, 
+  * *words in boldface* are surrounded by underscores, 
+  * words from computer code are enclosed in back quotes and     then typeset verbatim,
+  * blocks of computer code can easily be included, also from source files,
+  * blocks of LaTeX mathematics can easily be included,
+  * there is support for both LaTeX and text-like inline mathematics,
+  * figures with captions, URLs with links, labels and references    are supported,
+  * comments can be inserted throughout the text,
+  * a preprocessor (much like the C preprocessor) is integrated so    other documents (files) can be included and large portions of text    can be defined in or out of the text.
 
 Here is an example of some simple text written in the Doconce format:
 {{{
@@ -106,46 +79,42 @@ Tables are also supperted, e.g.,
 The Doconce text above results in the following little document:
 
 ==== A Subsection with Sample Text ====
+
 Ordinary text looks like ordinary text, and the tags used for
 *boldface* words, *emphasized* words, and `computer` words look
 natural in plain text.  Lists are typeset as you would do in an email,
 
 
-<UL>
-  <LI> item 1
-  <LI> item 2
-  <LI> item 3
-</UL>
 
-Lists can also have numbered items instead of bullets, just use an
+  * item 1
+  * item 2
+  * item 3
 
-<OL>
-<LI> (for ordered) instead of the asterisk:
+Lists can also have numbered items instead of bullets, just use an `o`
+(for ordered) instead of the asterisk:
 
-<OL>
- <LI> item 1
- <LI> item 2
- <LI> item 3
-</OL>
 
-</OL>
 
-URLs with a link word are possible, as in [hpl | http://folk.uio.no/hpl].
-Just a file link goes like [tutorial.do.txt]. References
+ # item 1
+ # item 2
+ # item 3
+
+URLs with a link word are possible, as in [http://folk.uio.no/hpl hpl].
+Just a file link goes like tutorial.do.txt. References
 to sections may use logical names as labels (e.g., a "label" command right
 after the section title), as in the reference to 
 the chapter ref{my:first:sec}.
 
 Tables are also supperted, e.g.,
 
-<TABLE border="1">
-<TR><TD><B>    time    </B></TD> <TD><B>  velocity  </B></TD> <TD><B>acceleration</B></TD> </TR>
-<TR><TD>   0.0             </TD> <TD>   1.4186          </TD> <TD>   -5.01           </TD> </TR>
-<TR><TD>   2.0             </TD> <TD>   1.376512        </TD> <TD>   11.919          </TD> </TR>
-<TR><TD>   4.0             </TD> <TD>   1.1E+1          </TD> <TD>   14.717624       </TD> </TR>
-</TABLE>
+
+ ||      *time*       ||    *velocity*     ||  *acceleration*   ||
+ ||  0.0              ||  1.4186           ||  -5.01            ||
+ ||  2.0              ||  1.376512         ||  11.919           ||
+ ||  4.0              ||  1.1E+1           ||  14.717624        ||
 
 ==== Mathematics and Computer Code ====
+
 Inline mathematics, such as `v = sin(x)`,
 allows the formula to be specified both as LaTeX and as plain text.
 This results in a professional LaTeX typesetting, but in other formats
@@ -194,6 +163,7 @@ trailing `.txt` denotes a text document so that editors gives you the
 right writing enviroment for plain text.
 
 ==== Macros (Newcommands) ====
+
 Doconce supports a type of macros via a LaTeX-style *newcommand*
 construction.  The newcommands defined in a file with name
 `newcommand_replace.tex` are expanded when Doconce is filtered to
@@ -213,24 +183,14 @@ newcommands in the `newcommands*.tex` files *must* appear on a single
 line (multi-line newcommands are too hard to parse with regular
 expressions).
 
-==== Seeing More of What Doconce Is ====
-After the quick syntax tour above, we recommend to read the Doconce
-source of the current tutorial and compare it with what you see in
-a browser, a PDF document, in plain text, and so forth.
-The Doconce source is found in the folder `doc/tutorial.do.txt` in the
-source code tree of Doconce. The Doconce example documentation
-displays both the source `tutorial.do.txt` and the result of many other
-formats.
 
-A more complete documentation of and motivation for Doconce appears
-in the file `docs/manual/manual.do.txt` in the Doconce
-source code tree.
 
 <wiki:comment> Example on including another Doconce file: </wiki:comment>
 
 
 
 == From Doconce to Other Formats ==
+
 Transformation of a Doconce document to various other
 formats applies the script `doconce2format`:
 {{{
@@ -247,6 +207,7 @@ defined as `LaTeX`. Inside the Doconce document one can then perform
 format specific actions through tests like `#if FORMAT == "LaTeX"`.
 
 ==== HTML ====
+
 Making an HTML version of a Doconce file `mydoc.do.txt`
 is performed by
 {{{
@@ -255,6 +216,7 @@ Unix/DOS> doconce2format HTML mydoc.do.txt
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
 ==== LaTeX ====
+
 Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
 <wiki:comment> Note: putting code blocks inside a list is not successful in many </wiki:comment>
 <wiki:comment> formats - the text may be messed up. A better choice is a paragraph </wiki:comment>
@@ -274,7 +236,7 @@ defined.
 {{{
 Unix/DOS> ptex2tex mydoc
 }}}
-     or just perform a plain copy,
+or just perform a plain copy,
 {{{
 Unix/DOS> cp mydoc.p.tex mydoc.tex
 }}}
@@ -284,6 +246,7 @@ documents.
 Finally, compile `mydoc.tex` the usual way and create the PDF file.
 
 ==== Plain ASCII Text ====
+
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:
@@ -292,6 +255,7 @@ Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
 }}}
 
 ==== reStructuredText ====
+
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file `mydoc.rst`:
@@ -310,6 +274,7 @@ saved in, among other things, the RTF format or the Microsoft Word format.
 That is, one can easily go from Doconce to Microsoft Word.
 
 ==== Sphinx ====
+
 Sphinx documents can be created from a Doconce source in a few steps.
 
 *Step 1.* Translate Doconce into the Sphinx dialect of
@@ -333,14 +298,16 @@ version
 version
 .rst
 index
-y
-n
-n
-n
 n
 y
 n
 n
+n
+n
+y
+n
+n
+y
 y
 y
 EOF
@@ -373,7 +340,22 @@ Many other formats are also possible.
 Unix/DOS> firefox _build/html/index.html
 }}}
 
+==== Google Code Wiki ====
+
+There are several different wiki dialects, but Doconce only support the
+one used by [http://code.google.com/p/support/wiki/WikiSyntax Google Code].
+The transformation to this format, called `gwiki` to explicitly mark
+it as the Google Code dialect, is done by
+{{{
+Unix/DOS> doconce2format gwiki mydoc.do.txt
+}}}
+You can then open a new wiki page for your Google Code project, copy
+the `mydoc.gwiki` output file from `doconce2format` and paste the
+file contents into the wiki page. Press *Preview* or *Save Page* to
+see the formatted result.
+
 ==== Demos ====
+
 The current text is generated from a Doconce format stored in the file
 {{{
 tutorial/tutorial.do.txt
@@ -384,19 +366,23 @@ formats.  The source of this tutorial, `tutorial.do.txt` is the
 starting point.  Running `make.sh` and studying the various generated
 files and comparing them with the original `tutorial.do.txt` file,
 gives a quick introduction to how Doconce is used in a real case.
+[https://doconce.googlecode.com/hg/trunk/docs/demo/index.html Here] is a sample
+of how this tutorial looks in different formats.
 
 There is another demo in the `docs/manual` directory which
 translates the more comprehensive documentation, `manual.do.txt`, to
 various formats. The `make.sh` script runs a set of translations.
 
 ==== Dependencies ====
+
 Doconce needs the Python packages
-[docutils | http://docutils.sourceforge.net],
-[preprocess | http://code.google.com/p/preprocess], and
-[ptex2tex | http://code.google.com/p/ptex2tex]. The latter is only
+[http://docutils.sourceforge.net docutils],
+[http://code.google.com/p/preprocess preprocess], and
+[http://code.google.com/p/ptex2tex ptex2tex]. The latter is only
 needed for the LaTeX formats.
 
 ==== The Doconce Documentation Strategy for User Manuals ====
+
 Doconce was particularly made for writing tutorials or user manuals
 associated with computer codes. The text is written in Doconce format
 in separate files. LaTeX, HTML, XML, and other versions of the text
@@ -486,6 +472,7 @@ insertdocstr.py plain .
 
 
 == Warning/Disclaimer ==
+
 Doconce can be viewed is a unified interface to a variety of
 typesetting formats.  This interface is minimal in the sense that a
 lot of typesetting features are not supported, for example, footnotes
