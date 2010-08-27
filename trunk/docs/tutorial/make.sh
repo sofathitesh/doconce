@@ -45,14 +45,14 @@ make html
 cd ..
 #firefox sphinx-rootdir/_build/html/index.html
 
-# reStructuredText
+# reStructuredText:
 doconce2format rst tutorial.do.txt
 rst2xml.py tutorial.rst > tutorial.xml
 rst2odt.py tutorial.rst > tutorial.odt
 rst2html.py tutorial.rst > tutorial.rst.html
 rst2latex.py tutorial.rst > tutorial.rst.tex
 
-# Other formats
+# Other formats:
 doconce2format plain tutorial.do.txt
 doconce2format wiki tutorial.do.txt
 doconce2format st tutorial.do.txt
@@ -66,8 +66,8 @@ $a2ps_plain -1 -o tutorial.epytext.ps tutorial.epytext
 ps2pdf tutorial.epytext.ps
 $a2ps_plain -1 -o tutorial.txt.ps tutorial.txt
 ps2pdf tutorial.txt.ps
-$a2ps_plain -1 -o tutorial.wiki.ps tutorial.wiki
-ps2pdf tutorial.wiki.ps
+$a2ps_plain -1 -o tutorial.gwiki.ps tutorial.gwiki
+ps2pdf tutorial.gwiki.ps
 $a2ps_plain -1 -o tutorial.xml.ps tutorial.xml
 ps2pdf tutorial.xml.ps
 
@@ -96,11 +96,11 @@ rm -f *.ps
 #wkhtmltopdf tutorial.rst.html tutorial.rst.html.pdf
 #wkhtmltopdf tutorial.html tutorial.html.pdf
 
-pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.wiki.pdf tutorial.sphinx.pdf tutorial.xml.pdf  cat output collection_of_results.pdf
+pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.sphinx.pdf tutorial.xml.pdf  cat output collection_of_results.pdf
 
 rm -rf demo
 mkdir demo
-cp -r tutorial.do.txt tutorial.html tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.wiki tutorial.txt tutorial.epytext tutorial.st collection_of_results.pdf sphinx-rootdir/_build/html demo
+cp -r tutorial.do.txt tutorial.html tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.gwiki tutorial.txt tutorial.epytext tutorial.st collection_of_results.pdf sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -130,13 +130,15 @@ doconce2format rst tutorial.do.txt
 </pre>
 The reST file <a href="tutorial.rst">tutorial.rst</a> is a starting point
 for conversion to many other formats: OpenOffice, 
-<a href="tutorial.xml">XML</a>, <a href="tutorial.sphinx.pdf">Sphinx PDF</a>,
-<a href="html/index.html">Sphinx HTML</a>, <a href="tutorial.rst.html">HTML</a>,
+<a href="tutorial.xml">XML</a>, <a href="tutorial.rst.html">HTML</a>,
 <a href="tutorial.rst.tex">LaTeX</a>, 
 and from LaTeX to <a href="tutorial.rst.pdf">PDF</a>.
+The <a href="tutorial.sphinx.rst'>Sphinx</a> dialect of reST
+can be translated to <a href="tutorial.sphinx.pdf">PDF</a>,
+and <a href="html/index.html">HTML</a>, 
 <p>
 Doconce can also be converted to 
-<a href="tutorial.wiki">a wiki</a>,
+<a href="tutorial.gwiki">a (Google Code) wiki</a>,
 <a href="tutorial.st">Structured Text</a>, 
 <a href="tutorial.epytext">Epytext</a>,
 and maybe the most important format of all:

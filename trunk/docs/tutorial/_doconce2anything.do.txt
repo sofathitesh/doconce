@@ -47,7 +47,7 @@ __Step 2.__ Run `ptex2tex` (if you have it) to make a standard LaTeX file,
 !bc
 Unix/DOS> ptex2tex mydoc
 !ec
-     or just perform a plain copy,
+or just perform a plain copy,
 !bc
 Unix/DOS> cp mydoc.p.tex mydoc.tex
 !ec
@@ -148,4 +148,18 @@ __Step 6.__ View the result:
 !bc
 Unix/DOS> firefox _build/html/index.html
 !ec
+
+===== Google Code Wiki =====
+
+There are several different wiki dialects, but Doconce only support the
+one used by http://code.google.com/p/support/wiki/WikiSyntax<Google Code>.
+The transformation to this format, called `gwiki` to explicitly mark
+it as the Google Code dialect, is done by
+!bc
+Unix/DOS> doconce2format gwiki mydoc.do.txt
+!ec
+You can then open a new wiki page for your Google Code project, copy
+the `mydoc.gwiki` output file from `doconce2format` and paste the
+file contents into the wiki page. Press _Preview_ or _Save Page_ to
+see the formatted result.
 

@@ -27,8 +27,8 @@ this file is not produced.
     
 
 from common import *
-import html, latex, rst, sphinx, st, epytext, plaintext, wiki
-for module in html, latex, rst, sphinx, st, epytext, plaintext, wiki:
+import html, latex, rst, sphinx, st, epytext, plaintext, gwiki
+for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki:
     #print 'calling define function in', module.__name__
     module.define(FILENAME_EXTENSION,
                   BLANKLINE,
@@ -43,7 +43,7 @@ for module in html, latex, rst, sphinx, st, epytext, plaintext, wiki:
                   OUTRO)
 
 def supported_format_names():
-    return 'HTML', 'LaTeX', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'wiki'
+    return 'HTML', 'LaTeX', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki'
 
 #----------------------------------------------------------------------------
 # Translators: (no, do not include! use import! - as shown above)
@@ -265,7 +265,9 @@ def typeset_lists(filestr, format, debug_info=[]):
                           (m.group(0), bug[1])
                 
         if not line or line.isspace():  # blank line?
-            result.write(BLANKLINE[format])
+            if not lists:
+                result.write(BLANKLINE[format])
+            # else: drop writing out blank line inside lists
             debug('  > This is a blank line')
             lastline = line
             continue
@@ -317,9 +319,9 @@ def typeset_lists(filestr, format, debug_info=[]):
 
         # new (sub)section makes end of any indent (we could demand
         # (sub)sections to start in column 1, but we have later relaxed
-        # such a requirement; it is easier to just test for ___ and
+        # such a requirement; it is easier to just test for ___ or === and
         # set indent=0 here):
-        if line.lstrip().startswith('___'):
+        if line.lstrip().startswith('___') or line.lstrip().startswith('==='):
             indent = 0
 
 
@@ -348,8 +350,10 @@ def typeset_lists(filestr, format, debug_info=[]):
 
         if listtype:
             # need blank line between items and last line was not blank?
-            if not (lastline.isspace() or not lastline):
-                result.write(LIST[format]['separator'])
+            # (we don't write out blank lines inside lists anymore!)
+            #if not (lastline.isspace() or not lastline):
+            #    result.write(LIST[format]['separator'])
+            result.write(LIST[format]['separator'])
 
             # first write the list item identifier:
             itemformat = LIST[format][listtype]['item']
@@ -385,13 +389,17 @@ def typeset_lists(filestr, format, debug_info=[]):
             # should check emph, verbatim, etc., syntax check and common errors
             result.write(' '*indent)      # ordinary line
 
-        # this is not a list line and therefore we must
+        # this is not a list definition line and therefore we must
         # add keyword + text because these two items make up the
         # line if a : present
         if keyword:
             text = keyword + text
         debug('text=[%s]' % text)
-        result.write(text + '\n')
+        
+        # hack to make wiki have items on a single line:
+        newline = '' if lists and format == 'gwiki' else '\n'  # hack...
+        #newline = '\n'
+        result.write(text + newline)
         lastindent = indent
         lastline = line
 
