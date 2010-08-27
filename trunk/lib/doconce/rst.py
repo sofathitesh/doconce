@@ -101,7 +101,7 @@ def handle_ref_and_label(section_label2title, format, filestr):
     replacement = r'the chapter\g<1> ref{'
     filestr = re.sub(pattern, replacement, filestr)
 
-    # insert labels before all section headings:
+    # insert labels before all section headings: (not necessary, but ok)
     lines = filestr.splitlines()
     for i in range(len(lines)):
         for label in section_label2title:
@@ -114,7 +114,8 @@ def handle_ref_and_label(section_label2title, format, filestr):
 
     # replace all references to sections:
     for label in section_label2title:
-        filestr = filestr.replace('ref{%s}' % label, ':ref:`%s`' % label)
+        filestr = filestr.replace('ref{%s}' % label,
+                                  '`%s`_' % section_label2title[label])
     
     from common import ref2equations
     filestr = ref2equations(filestr)
@@ -176,7 +177,6 @@ def define(FILENAME_EXTENSION,
         'itemize':
         {'begin': '', 'item': '*', 'end': '\n'},
         # lists must end with a blank line - we insert one extra,
-        # a blank is automatically inserted before the list
 
         'enumerate':
         {'begin': '', 'item': '%d.', 'end': '\n'},

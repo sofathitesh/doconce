@@ -79,7 +79,7 @@ setup(
                   'doconce.rst', 'doconce.sphinx',
                   'doconce.st', 'doconce.plaintext',
                   'doconce.html', 'doconce.epytext',
-                  'doconce.DocWriter', 'doconce.wiki', 
+                  'doconce.DocWriter', 'doconce.gwiki', 
                   'doconce.expand_newcommands',
                   ],
     scripts = [os.path.join('bin', f) for \
