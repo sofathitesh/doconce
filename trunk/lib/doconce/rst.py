@@ -1,9 +1,9 @@
-import re
+import re, os
 from common import remove_code_and_tex, insert_code_and_tex, indent_lines, \
     table_analysis
 
 # replacement patterns for substitutions of inline tags
-def figure_rst(m):
+def rst_figure(m):
     result = ''
     # m is a MatchObject
     caption = m.group('caption').strip()
@@ -11,8 +11,9 @@ def figure_rst(m):
     if m_label:
         label = m.group(1)
         result += '\n.. _%s:\n' % label
-        
-    result += '\n.. figure:: ' + m.group('filename') + '\n'
+
+    filename = m.group('filename')
+    result += '\n.. figure:: ' + filename + '\n'  # utilize flexibility
     opts = m.group('options')
     if opts:
         info = [s.split('=') for s in opts.split()]
@@ -165,7 +166,7 @@ def define(FILENAME_EXTENSION,
         'title':         r'_______\g<subst>_______\n',
         'date':          r':Date: \g<subst>' + '\n',
         'author':        r':Author: \g<name>, \g<institution>',
-        'figure':        figure_rst,
+        'figure':        rst_figure,
         #'comment':       '.. %s',  # rst does not like empty comment lines:
         # so therefore we introduce a function to remove empty comment lines
         'comment':       lambda c: '' if c.isspace() or c == '' else '.. %s' % c

@@ -7,7 +7,7 @@ DATE: August 27, 2010
 
 
 ======= What Is Doconce? ======= 
-
+label{what:is:doconce}
 
 Doconce is two things:
 
@@ -35,7 +35,6 @@ So why not just use reStructuredText or Sphinx? Because Doconce
 
   * can convert to plain *untagged* text, 
     more desirable for computer programs and email, 
-  * has much cleaner LaTeX output,
   * has less cluttered tagging of text,
   * has better support for copying in computer code from other files,
   * has stronger support for mathematical typesetting,
@@ -97,35 +96,35 @@ in verbatim environments). To summarize, we need
   o Tools for inserting appropriately filtered versions of a "singleton"
     documentation file in other documents (doc strings, manuals, tutorials).
 
-The answer to these points is the Doconce markup language, its associated
-tools, and the `preprocess.py` C-like preprocessor (by Mick Trent, for lots
-of languages). Then we can *write once, include anywhere*!
-...And what we write is close to plain ASCII text.
+One answer to these points is the Doconce markup language, its associated
+tools, and the http://code.google.com/p/preprocess/<C-style preprocessor tool>.
+Then we can *write once, include anywhere*!
+And what we write is close to plain ASCII text.
 
 But isn't reStructuredText exactly the format that fulfills the needs
 above? Yes and no. Yes, because reStructuredText can be filtered to a
-lot of the mentioned formats. No, because 1) reStructuredText cannot
-be filtered to plain untagged ASCII text; 2) the reStructuredText
-format is quite tagged, in the sense that it looks more annoying than
-Doconce to people who are not familier with any of these formats; 3)
-reStructuredText has no support for inline LaTeX mathematics or blocks
-of LaTeX code (usually for mathematics), which Doconce has.  Doconce
-can, of course, be filtered to reStructuredText to utilize that very
-handy set of tools. More arguments in favor of Doconce appear in
-Section ref{why:another:markup}.
-
-The Doconce software and methodology were inspired by Python code
-documentation, but can be applied to most other languages (support for
-Javadoc and Doxygen is not yet included, but should be
-straightforward).
+lot of the mentioned formats. No, because of the reasons listed
+in Section ref{what:is:doconce}, but perhaps the strongest feature
+of Doconce is that it integrates well with LaTeX: Large LaTeX documents (book)
+can be made of many smaller Doconce units, typically describing examples
+and computer codes, glued with mathematical pieces written entirely
+in LaTeX and with heavy cross-referencing of equations, as is usual
+in mathematical texts. All the Doconce units can then be available
+also as stand-alone examples in wikis or Sphinx pages and thereby used
+in other occasions (including software documentation and teaching material).
+This is a promising way of composing future books of units that can
+be reused in many contexts and formats, currently being explored by
+the Doconce maintainer.
 
 A final warning may be necessary: The Doconce format is a minimalistic
 formatting language. It is ideal when you start a new project when you
 are uncertain about which format to choose. At some later stage, when
 you need quite some sophisticated formatting and layout, you can
 perform the final filtering of Doconce into something more appropriate
-for the future of your document. The good thing is that the format
-decision can be posponed (maybe forever and many documentation projects).
+for future demands. The convenient thing is that the format decision
+can be posponed (maybe forever - which is the common experience of the
+Doconce developer).
+
 
 ===== Dependencies =====
 
@@ -232,11 +231,13 @@ insertdocstr.py plain .
 # files)
 !ec
 
+# #ifdef MORE_MOTIVATION
+
 ===== Why Yet Another Minimally Tagged Markup Language? ===== 
 label{why:another:markup}
 
 The Python community has already produced two successful, ASCII-based
-markup languages with minimal tagging:
+markup languages with a modest amount of tagging:
 http://docutils.sourceforge.net/rst.html<reStructuredText> (part of
 the http://www.docutils.org<Docutils package>) and Epytext (part of
 http://epydoc.sourceforge.net/<Epydoc for Python APIs>).  The
@@ -250,7 +251,7 @@ http://www.pault.com/xmlalternatives.html<Other minimum-tagged markup languages 
     Consequently, the latter two are more flexible. However,
     their parsing modules are also much more complex, and it is
     an order of magnitude simpler to add support for a new format
-    in Doconce than in other markup languages. 
+    in Doconce than in most other markup languages. 
 
     The simple Doconce format is less cluttered and easier 
     to read than more flexible and advanced ASCII-based markup languages,
@@ -259,7 +260,7 @@ http://www.pault.com/xmlalternatives.html<Other minimum-tagged markup languages 
     and clean up the text.
 
   - Flexibility:
-    Epydoc and Sphinx produces complete module/package documentation.
+    Epydoc and Sphinx produce complete module/package documentation.
     Doconce can work with small pieces of documentation, e.g.,
     module doc strings to be filtered to and used by Epydoc or Sphinx, and
     also included in a LaTeX thesis or a Word document.
@@ -267,12 +268,12 @@ http://www.pault.com/xmlalternatives.html<Other minimum-tagged markup languages 
   - Math:
     Doconce supports inline mathematical expressions and blocks
     of mathematical LaTeX code. (Epytext is easily fooled by TeX
-    code with the backslashes and give lots of error messages
+    code with the backslashes and gives lots of error messages
     even if the code block is to be typeset in varbatim mode.) 
 
-  - Clean output: 
-    The LaTeX output of Doconce is cleaner than the source produced by
-    reStructuredText. This may be important if a book or manual in
+  - Clean output:
+    The LaTeX output of Doconce was much cleaner than the source produced by
+    reStructuredText at the time Doconce was constructed. TThis may be important if a book or manual in
     LaTeX is to be built from some building blocks in a more general
     format and the LaTeX output needs some tweeking before it can
     qualify for a book/manual context. Typically, one wants parts of
@@ -301,6 +302,8 @@ http://www.pault.com/xmlalternatives.html<Other minimum-tagged markup languages 
     verbatim text, lists, etc. are rendered, is all you need to 
     implement a new format.
     (Everything except lists are parsed by regular expressions in Doconce.)
+
+# #endif
 
 #
 # some comment lines that do not affect any formatting

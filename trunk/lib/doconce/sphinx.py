@@ -3,6 +3,26 @@ from rst import *
 
 # redefine what is not appropriate:
 
+def sphinx_figure(m):
+    result = ''
+    # m is a MatchObject
+    caption = m.group('caption').strip()
+    m_label = re.search(r'label\{(.+?)\}', caption)
+    if m_label:
+        label = m.group(1)
+        result += '\n.. _%s:\n' % label
+
+    filename = os.path.splitext(m.group('filename'))[0]
+    result += '\n.. figure:: ' + filename + '.*\n'  # utilize flexibility
+    opts = m.group('options')
+    if opts:
+        info = [s.split('=') for s in opts.split()]
+        rst_info = ['   :%s: %s' % (option, value)  for option, value in info]
+        result += '\n'.join(rst_info)
+    result += '\n\n   ' + caption + '\n'
+    return result
+
+
 def sphinx_code(filestr, format):
     # In rst syntax, code blocks are typeset with :: (verbatim)
     # followed by intended blocks. This function indents everything
@@ -120,5 +140,6 @@ def define(FILENAME_EXTENSION,
     # modify some:
     INLINE_TAGS_SUBST['sphinx']['math'] = r'\g<begin>:math:`\g<subst>`\g<end>'
     INLINE_TAGS_SUBST['sphinx']['math2'] = r'\g<begin>:math:`\g<latexmath>`\g<end>'
+    INLINE_TAGS_SUBST['sphinx']['figure'] = sphinx_figure
     CODE['sphinx'] = sphinx_code  # function for typesetting code
 
