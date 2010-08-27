@@ -138,3 +138,8 @@ EOF
 
 echo
 echo "Go to the demo directory and load index.html into a web browser."
+
+# update demo (recall that there is no .hg dir except in the top dir
+# so we can just take an rm and cp)
+rm -rf ../demo
+cp -r demo ../demo

@@ -188,7 +188,9 @@ Doconce source code contains a demo of how to produce a variety of
 formats.  The source of this tutorial, <literal>tutorial.do.txt</literal> is the
 starting point.  Running <literal>make.sh</literal> and studying the various generated
 files and comparing them with the original <literal>tutorial.do.txt</literal> file,
-gives a quick introduction to how Doconce is used in a real case.</paragraph><paragraph>There is another demo in the <literal>docs/manual</literal> directory which
+gives a quick introduction to how Doconce is used in a real case.
+<reference name="Here" refuri="https://doconce.googlecode.com/hg/trunk/docs/demo/index.html">Here</reference><target ids="here" names="here" refuri="https://doconce.googlecode.com/hg/trunk/docs/demo/index.html"/> is a sample
+of how this tutorial looks in different formats.</paragraph><paragraph>There is another demo in the <literal>docs/manual</literal> directory which
 translates the more comprehensive documentation, <literal>manual.do.txt</literal>, to
 various formats. The <literal>make.sh</literal> script runs a set of translations.</paragraph></section><section ids="dependencies" names="dependencies"><title>Dependencies</title><paragraph>Doconce needs the Python packages
 <reference name="docutils" refuri="http://docutils.sourceforge.net">docutils</reference><target ids="docutils" names="docutils" refuri="http://docutils.sourceforge.net"/>,
