@@ -47,6 +47,37 @@ def sphinx_code(filestr, format):
     filestr = re.sub('&\s*=\s*&', ' &= ', filestr)
     return filestr
 
+def handle_ref_and_label(section_label2title, format, filestr):
+    # .... see section ref{my:sec} is replaced by
+    # see the section "...section heading..."
+    pattern = r'[Ss]ection(s?)\s+ref\{'
+    replacement = r'the section\g<1> ref{'
+    filestr = re.sub(pattern, replacement, filestr)
+    pattern = r'[Cc]hapter(s?)\s+ref\{'
+    replacement = r'the chapter\g<1> ref{'
+    filestr = re.sub(pattern, replacement, filestr)
+
+    # insert labels before all section headings:
+    lines = filestr.splitlines()
+    for i in range(len(lines)):
+        for label in section_label2title:
+            if lines[i].startswith(section_label2title[label]):
+                lines[i] = '.. _%s\n\n' % label + lines[i]
+    filestr = '\n'.join(lines)
+
+    # remove label{...} from output
+    filestr = re.sub(r'label\{.+?\}', '', filestr)
+
+    # replace all references to sections:
+    for label in section_label2title:
+        filestr = filestr.replace('ref{%s}' % label, ':ref:`%s`' % label)
+    
+    from common import ref2equations
+    filestr = ref2equations(filestr)
+    
+    return filestr
+
+
 def define(FILENAME_EXTENSION,
            BLANKLINE,
            INLINE_TAGS_SUBST,
@@ -78,7 +109,7 @@ def define(FILENAME_EXTENSION,
     LIST['sphinx'] = LIST['rst']
     ARGLIST['sphinx'] = ARGLIST['rst']
     FIGURE_EXT['sphinx'] = FIGURE_EXT['rst']
-    CROSS_REFS['sphinx'] = CROSS_REFS['rst']
+    CROSS_REFS['sphinx'] = handle_ref_and_label
     TABLE['sphinx'] = TABLE['rst']
 
     # make true copy of INLINE_TAGS_SUBST:

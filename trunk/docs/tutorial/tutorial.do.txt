@@ -31,7 +31,7 @@ Doconce is two things:
     can be transformed to many different formats for a variety of
     documents (manuals, tutorials, books, doc strings, source code
     documentation, etc.).
-    
+
   o Doconce is a simple and minimally tagged markup language that can
     be used for the above purpose. That is, the Doconce format look
     like ordinary ASCII text (much like what you would use in an
@@ -119,8 +119,8 @@ natural in plain text.  Lists are typeset as you would do in an email,
   * item 2
   * item 3
 
-Lists can also have numbered items instead of bullets, just use an
-o (for ordered) instead of the asterisk:
+Lists can also have numbered items instead of bullets, just use an `o`
+(for ordered) instead of the asterisk:
 
   o item 1
   o item 2
@@ -226,7 +226,7 @@ displays both the source `tutorial.do.txt` and the result of many other
 formats.
 
 A more complete documentation of and motivation for Doconce appears
-in the file `docs/manual/doconce.do.txt` in the Doconce
+in the file `docs/manual/manual.do.txt` in the Doconce
 source code tree.
 
 # Example on including another Doconce file:
@@ -244,13 +244,20 @@ The file `make.sh` in the `tutorial` directory of the
 Doconce source code contains a demo of how to produce a variety of
 formats.  The source of this tutorial, `tutorial.do.txt` is the
 starting point.  Running `make.sh` and studying the various generated
-files and comparing them with the original `doconce.do.txt` file,
+files and comparing them with the original `tutorial.do.txt` file,
 gives a quick introduction to how Doconce is used in a real case.
 
-There is another demo in the `lib/doconce/doc` directory which
-translates the more comprehensive documentation, `doconce.do.txt`, to
-various formats.  For example, to go from the LaTeX format to PDF, see
-`latex.sh`.
+There is another demo in the `docs/manual` directory which
+translates the more comprehensive documentation, `manual.do.txt`, to
+various formats. The `make.sh` script runs a set of translations.
+
+=== Dependencies ===
+
+Doconce needs the Python packages
+http://docutils.sourceforge.net<docutils>,
+http://code.google.com/p/preprocess<preprocess>, and
+http://code.google.com/p/ptex2tex<ptex2tex>. The latter is only
+needed for the LaTeX formats.
 
 
 ===== The Doconce Documentation Strategy for User Manuals ===== 

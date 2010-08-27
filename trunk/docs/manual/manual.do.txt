@@ -1,6 +1,7 @@
-#TITLE: Doconce: Document Once, Include Everywhere
-#AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-#DATE: January 20, 2009
+TITLE: Doconce Description
+AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
+DATE: August 27, 2010
+
 
 # lines beginning with # are comment lines
 
@@ -8,7 +9,7 @@
 ======= What Is Doconce? ======= 
 
 
-Doconce are two things:
+Doconce is two things:
 
   o Doconce is a working strategy for documenting software in a single
     place and avoiding duplication of information. The slogan is:
@@ -30,8 +31,7 @@ Doconce are two things:
 The first point may be of interest even if you adopt a different
 markup language than Doconce, e.g., reStructuredText or Sphinx.
 
-So why not just use reStructuredText or
-http://sphinx.pocoo.org/contents.html<Sphinx>? Because Doconce
+So why not just use reStructuredText or Sphinx? Because Doconce
 
   * can convert to plain *untagged* text, 
     more desirable for computer programs and email, 
@@ -127,6 +127,14 @@ perform the final filtering of Doconce into something more appropriate
 for the future of your document. The good thing is that the format
 decision can be posponed (maybe forever and many documentation projects).
 
+===== Dependencies =====
+
+Doconce needs the Python packages
+http://docutils.sourceforge.net/<docutils>,
+http://code.google.com/p/preprocess/<preprocess>, and
+http://code.google.com/p/ptex2tex/<ptex2tex>. The latter is only
+needed for the LaTeX formats.
+
 
 ===== The Doconce Documentation Strategy ===== 
 label{doconce:strategy}
@@ -144,9 +152,8 @@ label{doconce:strategy}
      documentation; LaTeX for LaTeX manuals; and possibly
      reStructuredText for XML, Docbook, OpenOffice, RTF, Word.
 
-   * Run the preprocessor `preprocess` (by Mick Trent) on the files to 
-     produce native files for pure computer code and for various other 
-     documents.
+   * Run the preprocessor `preprocess` on the files to produce native
+     files for pure computer code and for various other documents.
 
 Consider an example involving a Python module in a `basename.p.py` file.
 The `.p.py` extension identifies this as a file that has to be
@@ -231,11 +238,11 @@ label{why:another:markup}
 The Python community has already produced two successful, ASCII-based
 markup languages with minimal tagging:
 http://docutils.sourceforge.net/rst.html<reStructuredText> (part of
-http://www.docutils.org<Docutils>) and Epytext (part of
-http://epydoc.sourceforge.net/<Epydoc>). http://sphinx.pocoo.org<Sphinx>,
-the standard Python documentation system, builds on reStructuredText.
-http://www.pault.com/xmlalternatives.html<Other minimum-tagged markup
-languages do also exist>. So why is Doconce needed?
+the http://www.docutils.org<Docutils package>) and Epytext (part of
+http://epydoc.sourceforge.net/<Epydoc for Python APIs>).  The
+http://sphinx.pocoo.org<Sphinx documentation system>, now being the
+standard Python documentation system, builds on reStructuredText.
+http://www.pault.com/xmlalternatives.html<Other minimum-tagged markup languages do also exist>. So why is Doconce needed?
 
   - Simplicity:
     Doconce supports only a handful of formatting constructions and
@@ -374,7 +381,14 @@ This list gets typeset as
 
    * item 3
 
-In an ordered list, each item starts with an o (as the first letter 
+# #if FORMAT == "gwiki"
+(As seen, nested lists in (g)wiki format are not treated well by
+Doconce. Plain unnested lists work fine. And the (g)wiki format
+automatically puts multiple lines of an item on a single line as
+required :-)
+# #endif
+
+In an ordered list, each item starts with an `o` (as the first letter 
 in "ordered"):
 
 !bc
@@ -400,6 +414,11 @@ resulting in
      * subitem 2
 
    o item 3
+
+# #if FORMAT == "gwiki"
+(Again, there are problems with mixing nested lists and liststypes
+for the (g)wiki format.)
+# #endif
 
 Ordered lists cannot have an ordered sublist, i.e., the ordering 
 applies to the outer list only.
@@ -462,17 +481,14 @@ Headings can be surrounded by blanks if desired.
 
 Here are some examples:
 !bc
-======= A Section Heading ======= 
+======= Example on a Section Heading ======= 
 
-The running text goes here. One can also use underscores:
+The running text goes here. 
 
-_______   A Section Heading   _______
-with some following text.
-
-      ===== A Subsection Heading ===== 
+      ===== Example on a Subsection Heading ===== 
 The running text goes here.
 
-          ===A Subsubsection Heading===
+          ===Example on a Subsubsection Heading===
 
 The running text goes here.
 
@@ -481,17 +497,14 @@ __A Paragraph.__ The running text goes here.
 
 The result for the present format looks like this:
 
-======= A Section Heading ======= 
+======= Example on a Section Heading ======= 
 
-The running text goes here. One can also use underscores:
+The running text goes here. 
 
-_______   A Section Heading   _______
-with some following text.
-
-      ===== A Subsection Heading ===== 
+      ===== Example on a Subsection Heading ===== 
 The running text goes here.
 
-          ===A Subsubsection Heading===
+          ===Example on a Subsubsection Heading===
 
 The running text goes here.
 
@@ -616,10 +629,10 @@ replace the reference by the title of the (sub)section.  All labels
 will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
-reStructuredText commands by `doconce2format`. In the HTML and Wiki
-formats, labels become anchors and references become links, and with
-LaTeX "label" and "ref" are just equipped with backslashes so these
-commands work as usual in LaTeX.
+reStructuredText commands by `doconce2format`. In the HTML and (Google
+Code) Wiki formats, labels become anchors and references become links,
+and with LaTeX "label" and "ref" are just equipped with backslashes so
+these commands work as usual in LaTeX.
 
 It is, in general, recommended to use labels and references for
 (sub)sections, equations, and figures only.
@@ -852,8 +865,27 @@ previous paragraph. Make sure the `!bt` and `!et` tags are in column 1
 and that the rest of the non-LaTeX surrounding text is correctly indented.
 Using paragraphs instead of list items is a good idea also here.
 
-__Debugging.__
+__Inconsistent Headings in reStructuredText.__
+The `rst2*.py` and Sphinx converters abort if the headers of sections
+are not consistent, i.e., a subsection must come under a section,
+and a subsubsection must come under a subsection (you cannot have
+a subsubsection directly under a section). Search for `===`,
+count the number of equality signs (or underscores if you use that)
+and make sure they decrease by two every time a lower level is encountered.
 
+__Strange Nested Lists in gwiki.__
+Doconce cannot handle nested lists correctly in the gwiki format.
+Use nonnested lists or edit the `.gwiki` file directly.
+
+__Lists in gwiki Look Ugly in the Sourc.__
+Because the Google Code wiki format requires all text of a list item to
+be on one line, Doconce simply concatenates lines in that format,
+and because of the indentation in the original Doconce text, the gwiki
+output looks somewhat ugly. The good thing is that this gwiki source
+is seldom to be looked at - it is the Doconce source that one edits
+further.
+
+__Debugging.__
 Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
 series of transformations of the text. The effect of each of these
@@ -880,45 +912,46 @@ are included, otherwise not.
 
 ===== Basic Parsing Ideas ===== 
 
-  o The (parts of) files with computer code to be directly included in
-    the document are first copied into verbatim blocks.
+# avoid list here since we have code in between (never a good idea)
 
-  o All verbatim and TeX blocks are removed and stored elsewhere
-    to ensure that no formatting rules are not applied to these blocks.
+The (parts of) files with computer code to be directly included in
+the document are first copied into verbatim blocks.
 
-  o The text is examined line by line for typesetting of lists, as well as
-    handling of blank lines and comment lines.
-    List parsing needs some awareness of the context.
-    Each line is interpreted by a regular expression
+All verbatim and TeX blocks are removed and stored elsewhere
+to ensure that no formatting rules are not applied to these blocks.
+
+The text is examined line by line for typesetting of lists, as well as
+handling of blank lines and comment lines.
+List parsing needs some awareness of the context.
+Each line is interpreted by a regular expression
 
 !bc
 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<text>.*)\s?
 !ec
 
-    That is, a possible indent (which we measure), an optional list
-    item identifier, optional space, optional words ended by colon,
-    and optional text. All lines are of this form. However, some
-    ordinary (non-list) lines may contain a colon, and then the keyword
-    and text group must be added to get the line contents. Otherwise,
-    the text group will be the line.
+That is, a possible indent (which we measure), an optional list
+item identifier, optional space, optional words ended by colon,
+and optional text. All lines are of this form. However, some
+ordinary (non-list) lines may contain a colon, and then the keyword
+and text group must be added to get the line contents. Otherwise,
+the text group will be the line.
 
-  o When lists are typeset, the text is examined for sections, paragraphs,
-    title, author, date, plus all the inline tags for emphasized, boldface,
-    and verbatim text. Plain subsitutions based on regular expressions
-    are used for this purpose.
+When lists are typeset, the text is examined for sections, paragraphs,
+title, author, date, plus all the inline tags for emphasized, boldface,
+and verbatim text. Plain subsitutions based on regular expressions
+are used for this purpose.
 
-  o The final step is to insert the code and TeX blocks again (these should
-    be untouched and are therefore left out of the previous parsing).
+The final step is to insert the code and TeX blocks again (these should
+be untouched and are therefore left out of the previous parsing).
 
-  o It is important to keep the Doconce format and parsing simple.
-    When a new format is needed and this format is not obtained by
-    a simple edit of the definition of existing formats, it might be
-    better to convert the document to reStructuredText and then to
-    XML, parse the XML and write out in the new format.
-    When the Doconce format is not sufficient to getting the layout
-    you want, it is suggested to filter the document to another, more
-    complex format, say reStructuredText or LaTeX, and work further on
-    the document in this format.
+It is important to keep the Doconce format and parsing simple.  When a
+new format is needed and this format is not obtained by a simple edit
+of the definition of existing formats, it might be better to convert
+the document to reStructuredText and then to XML, parse the XML and
+write out in the new format.  When the Doconce format is not
+sufficient to getting the layout you want, it is suggested to filter
+the document to another, more complex format, say reStructuredText or
+LaTeX, and work further on the document in this format.
 
 
 ===== A Glimpse of How to Write a New Translator ===== 

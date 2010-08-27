@@ -13,10 +13,14 @@ def process_newcommand(line):
     m = re.search(pattern1, line)
     if m:
         # for a newcommand \x we can have many appearances:
-        # \x |{\x}|\x{}|(\x)|\x, but no ordinary letters
+        # \x |{\x}|\x{}|(\x)|\x, and replacing \x in \xpoint must
+        # but avoided - the idea is to use the regex (\x)([^A-Za-z])
         end_pattern = r'([^A-Za-z])'
         pattern = m.group(1) + end_pattern
-        replacement = m.group(2) + r'\g<1>'
+        replacement = m.group(2) + r'\g<1>'  # \g<1> is the end_pattern
+        # could also use a look ahead pattern: (?=[^A-Za-z]), not tested
+        #pattern = m.group(1) + r'(?=[^A-Za-z])'
+        #replacement = m.group(2)
 
     # newcommand with arguments:
     pattern2 = r'\\newcommand\{(.+)\}\[(\d)\]\{(.+)\}'
