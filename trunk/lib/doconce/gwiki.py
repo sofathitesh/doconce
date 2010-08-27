@@ -44,7 +44,7 @@ def wiki_figure(m):
 
 Figure: %s
 
-(the Figure address of %s on the web must be inserted here)
+(the URL of the image file %s must be inserted here)
 
 <wiki:comment> 
 Put the figure file %s on the web and write the

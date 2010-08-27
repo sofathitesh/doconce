@@ -24,14 +24,16 @@ H. P. Langtangen
 1.0
 .rst
 index
-y
-n
-n
-n
 n
 y
 n
 n
+n
+n
+y
+n
+n
+y
 y
 y
 EOF
@@ -42,7 +44,12 @@ cp index-sphinx sphinx-rootdir/index.rst
 cd sphinx-rootdir
 make clean
 make html
-cd ..
+make latex
+cd _build/latex
+make clean
+make all-pdf
+cp DoconceTutorial.pdf ../../../tutorial.sphinx.pdf
+cd ../../..
 #firefox sphinx-rootdir/_build/html/index.html
 
 # reStructuredText:
@@ -51,6 +58,8 @@ rst2xml.py tutorial.rst > tutorial.xml
 rst2odt.py tutorial.rst > tutorial.odt
 rst2html.py tutorial.rst > tutorial.rst.html
 rst2latex.py tutorial.rst > tutorial.rst.tex
+latex tutorial.rst.tex
+dvipdf tutorial.rst.dvi
 
 # Other formats:
 doconce2format plain tutorial.do.txt
@@ -70,26 +79,6 @@ $a2ps_plain -1 -o tutorial.gwiki.ps tutorial.gwiki
 ps2pdf tutorial.gwiki.ps
 $a2ps_plain -1 -o tutorial.xml.ps tutorial.xml
 ps2pdf tutorial.xml.ps
-
-# run sphinx
-cd sphinx-rootdir
-make clean
-make html
-make latex
-cd _build/latex
-make clean
-make all-pdf
-cp DoconceTutorial.pdf ../../../tutorial.sphinx.pdf
-cd ../../..
-
-# rst latex takes time...
-#cat > tutorial.rst.error <<EOF
-#Running latex on tutorial.rst did not work.
-#EOF
-#$a2ps_plain -1 -o tutorial.rst.ps tutorial.rst.error
-#ps2pdf tutorial.rst.ps
-latex tutorial.rst.tex
-dvipdf tutorial.rst.dvi
 
 rm -f *.ps
 
@@ -133,9 +122,9 @@ for conversion to many other formats: OpenOffice,
 <a href="tutorial.xml">XML</a>, <a href="tutorial.rst.html">HTML</a>,
 <a href="tutorial.rst.tex">LaTeX</a>, 
 and from LaTeX to <a href="tutorial.rst.pdf">PDF</a>.
-The <a href="tutorial.sphinx.rst'>Sphinx</a> dialect of reST
-can be translated to <a href="tutorial.sphinx.pdf">PDF</a>,
-and <a href="html/index.html">HTML</a>, 
+The <a href="tutorial.sphinx.rst">Sphinx</a> dialect of reST
+can be translated to <a href="tutorial.sphinx.pdf">PDF</a>
+and <a href="html/index.html">HTML</a>.
 <p>
 Doconce can also be converted to 
 <a href="tutorial.gwiki">a (Google Code) wiki</a>,
