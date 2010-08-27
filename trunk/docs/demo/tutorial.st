@@ -183,18 +183,6 @@ elsewhere throughout the text will usually be placed in
 newcommands in the 'newcommands*.tex' files *must* appear on a single
 line (multi-line newcommands are too hard to parse with regular
 expressions).
-Seeing More of What Doconce Is
-After the quick syntax tour above, we recommend to read the Doconce
-source of the current tutorial and compare it with what you see in
-a browser, a PDF document, in plain text, and so forth.
-The Doconce source is found in the folder 'doc/tutorial.do.txt' in the
-source code tree of Doconce. The Doconce example documentation
-displays both the source 'tutorial.do.txt' and the result of many other
-formats.
-
-A more complete documentation of and motivation for Doconce appears
-in the file 'docs/manual/manual.do.txt' in the Doconce
-source code tree.
 From Doconce to Other Formats
 Transformation of a Doconce document to various other
 formats applies the script 'doconce2format':

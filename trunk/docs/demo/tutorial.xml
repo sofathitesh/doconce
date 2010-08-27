@@ -114,15 +114,7 @@ elsewhere throughout the text will usually be placed in
 <literal>newcommands_replace.tex</literal> and expanded by Doconce.  The definitions of
 newcommands in the <literal>newcommands*.tex</literal> files <emphasis>must</emphasis> appear on a single
 line (multi-line newcommands are too hard to parse with regular
-expressions).</paragraph></section><section ids="seeing-more-of-what-doconce-is" names="seeing\ more\ of\ what\ doconce\ is"><title>Seeing More of What Doconce Is</title><paragraph>After the quick syntax tour above, we recommend to read the Doconce
-source of the current tutorial and compare it with what you see in
-a browser, a PDF document, in plain text, and so forth.
-The Doconce source is found in the folder <literal>doc/tutorial.do.txt</literal> in the
-source code tree of Doconce. The Doconce example documentation
-displays both the source <literal>tutorial.do.txt</literal> and the result of many other
-formats.</paragraph><paragraph>A more complete documentation of and motivation for Doconce appears
-in the file <literal>docs/manual/manual.do.txt</literal> in the Doconce
-source code tree.</paragraph><comment xml:space="preserve">Example on including another Doconce file:</comment></section></section><section ids="from-doconce-to-other-formats" names="from\ doconce\ to\ other\ formats"><title>From Doconce to Other Formats</title><paragraph>Transformation of a Doconce document to various other
+expressions).</paragraph><comment xml:space="preserve">Example on including another Doconce file:</comment></section></section><section ids="from-doconce-to-other-formats" names="from\ doconce\ to\ other\ formats"><title>From Doconce to Other Formats</title><paragraph>Transformation of a Doconce document to various other
 formats applies the script <literal>doconce2format</literal>:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce2format format mydoc.do.txt</literal_block><paragraph>The <literal>preprocess</literal> program is always used to preprocess the file first,
 and options to <literal>preprocess</literal> can be added after the filename. For example:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt -Dextra_sections</literal_block><paragraph>The variable <literal>FORMAT</literal> is always defined as the current format when
 running <literal>preprocess</literal>. That is, in the last example, <literal>FORMAT</literal> is
