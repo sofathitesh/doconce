@@ -371,6 +371,8 @@ formats.  The source of this tutorial, 'tutorial.do.txt' is the
 starting point.  Running 'make.sh' and studying the various generated
 files and comparing them with the original 'tutorial.do.txt' file,
 gives a quick introduction to how Doconce is used in a real case.
+"https://doconce.googlecode.com/hg/trunk/docs/demo/index.html":Here is a sample
+of how this tutorial looks in different formats.
 
 There is another demo in the 'docs/manual' directory which
 translates the more comprehensive documentation, 'manual.do.txt', to

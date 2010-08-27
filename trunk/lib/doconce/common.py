@@ -203,7 +203,7 @@ INLINE_TAGS = {
 
     # http://some.where.org/mypage<link text>
     'linkURL':
-    r'%s(?P<url>http://[^<]+)<(?P<link>[^>]+)>%s' % \
+    r'%s(?P<url>https?://[^<]+)<(?P<link>[^>]+)>%s' % \
     (inline_tag_begin, inline_tag_end),
 
     'plainURL': 
