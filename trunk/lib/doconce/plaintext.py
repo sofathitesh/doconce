@@ -1,7 +1,18 @@
 
-import re
+import re, sys
 
-def handle_ref_and_label(section_label2title, format, filestr):
+def plain_author(authors_and_institutions, auth2index, 
+               inst2index, index2inst):
+    text = '\n'
+    for author in auth2index:
+        text += '%s %s\n' % (author, str(auth2index[author]))
+    text += '\n'
+    for index in index2inst:
+        text += '[%d] %s\n' % (index, index2inst[index])
+    text += '\n'
+    return text
+
+def plaintext_ref_and_label(section_label2title, format, filestr):
     # .... see section ref{my:sec} is replaced by
     # see the section "...section heading..."
     pattern = r'[Ss]ection(s?)\s+ref\{'
@@ -24,6 +35,39 @@ def handle_ref_and_label(section_label2title, format, filestr):
 
     return filestr
 
+def bibdict2doconcelist(pyfile, citations):
+    """Transform dict with bibliography to a doconce ordered list."""
+    f = open(pyfile, 'r')
+    bibstr = f.read()
+    try:
+        bibdict = eval(bibstr)
+    except:
+        print 'Error in Python dictionary for bibliography in', pyfile
+        sys.exit(1)
+    text = '\n\n======= Bibliography =======\n\n'
+    for label in citations:
+        # remove newlines in reference data:
+        text += '  o ' + ' '.join(bibdict[label].splitlines()) + '\n'
+    text += '\n\n'
+    return text
+
+def plain_index_bib(filestr, index, citations, bibfile):
+    for label in citations:
+        filestr = filestr.replace('cite{%s}' % label, 
+                                  '[%d]' % citations[label])
+    if 'py' in bibfile:
+        bibtext = bibdict2doconcelist(bibfile['py'], citations)
+        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, 
+                         flags=re.MULTILINE)
+
+    filestr = re.sub(r'idx\{.+?\}', '', filestr)  # remove all index entries
+    # no index since line numbers from the .do.txt (in index dict)
+    # never correspond to the output format file
+    #filestr += '\n\n======= Index =======\n\n'
+    #for word in index:
+    #    filestr + = '%s, line %s\n' % (word, ', '.join(index[word]))
+
+    return filestr
     
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -34,6 +78,7 @@ def define(FILENAME_EXTENSION,
            TABLE,
            FIGURE_EXT,
            CROSS_REFS,
+           INDEX_BIB,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -49,6 +94,9 @@ def define(FILENAME_EXTENSION,
         'verbatim':  r'\g<begin>\g<subst>\g<end>',  # no ` chars
         'linkURL':   r'\g<begin>\g<link> (\g<url>)\g<end>',
         'plainURL':  r'\g<url>',
+        'title':     r'======= \g<subst> =======\n',  # doconce top section, to be substituted later
+        'author':    plain_author,
+        'date':      '\nDate: ' + r'\g<subst>' + '\n',
         'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('utf-8'))),
         'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
         'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('utf-8'))),
@@ -71,11 +119,10 @@ def define(FILENAME_EXTENSION,
 
         'separator': '',
         }
-    CROSS_REFS['plain'] = handle_ref_and_label
+    CROSS_REFS['plain'] = plaintext_ref_and_label
     from rst import rst_table
     TABLE['plain'] = rst_table
     #TABLE['plain'] = plain_table
-
-
+    INDEX_BIB['plain'] = plain_index_bib
 
     # no return, rely on in-place modification of dictionaries

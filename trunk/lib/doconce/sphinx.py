@@ -67,7 +67,7 @@ def sphinx_code(filestr, format):
     filestr = re.sub('&\s*=\s*&', ' &= ', filestr)
     return filestr
 
-def handle_ref_and_label(section_label2title, format, filestr):
+def sphinx_ref_and_label(section_label2title, format, filestr):
     # .... see section ref{my:sec} is replaced by
     # see the section "...section heading..."
     pattern = r'[Ss]ection(s?)\s+ref\{'
@@ -78,12 +78,13 @@ def handle_ref_and_label(section_label2title, format, filestr):
     filestr = re.sub(pattern, replacement, filestr)
 
     # insert labels before all section headings:
-    lines = filestr.splitlines()
-    for i in range(len(lines)):
-        for label in section_label2title:
-            if lines[i].startswith(section_label2title[label]):
-                lines[i] = '.. _%s\n\n' % label + lines[i]
-    filestr = '\n'.join(lines)
+    for label in section_label2title:
+        title = section_label2title[label]
+        pattern = r'(_{3,7}|={3,7})(\s*%s\s*)(_{3,7}|={3,7})' % re.escape(title)  # title may contain ? () etc.
+        replacement = '.. _%s:\n\n' % label + r'\g<1>\g<2>\g<3>'
+        filestr, n = re.subn(pattern, replacement, filestr)
+        if n == 0:
+            raise Exception('problem with substituting "%s"' % title)
 
     # remove label{...} from output
     filestr = re.sub(r'label\{.+?\}', '', filestr)
@@ -97,6 +98,20 @@ def handle_ref_and_label(section_label2title, format, filestr):
     
     return filestr
 
+def sphinx_index_bib(filestr, index, citations, bibfile):
+    filestr = rst_bib(filestr, citations, bibfile)
+
+    for word in index:
+        word = word.replace('`', '')  # drop verbatim in index
+        if not '!' in word:
+            filestr = filestr.replace('idx{%s}' % word, 
+                                      '\n.. index:: ' + word + '\n')
+        else:
+            word2 = word.replace('!', '; ')
+            filestr = filestr.replace('idx{%s}' % word,
+                                      '\n.. index::\n   pair: ' + word2 + '\n')
+    return filestr
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -107,6 +122,7 @@ def define(FILENAME_EXTENSION,
            TABLE,
            FIGURE_EXT,
            CROSS_REFS,
+           INDEX_BIB,
            INTRO,
            OUTRO):
     if not 'rst' in BLANKLINE:
@@ -127,9 +143,9 @@ def define(FILENAME_EXTENSION,
     BLANKLINE['sphinx'] = BLANKLINE['rst']
     CODE['sphinx'] = CODE['rst']
     LIST['sphinx'] = LIST['rst']
-    ARGLIST['sphinx'] = ARGLIST['rst']
     FIGURE_EXT['sphinx'] = FIGURE_EXT['rst']
-    CROSS_REFS['sphinx'] = handle_ref_and_label
+    CROSS_REFS['sphinx'] = sphinx_ref_and_label
+    INDEX_BIB['sphinx'] = sphinx_index_bib
     TABLE['sphinx'] = TABLE['rst']
 
     # make true copy of INLINE_TAGS_SUBST:
@@ -137,9 +153,19 @@ def define(FILENAME_EXTENSION,
     for tag in INLINE_TAGS_SUBST['rst']:
         INLINE_TAGS_SUBST['sphinx'][tag] = INLINE_TAGS_SUBST['rst'][tag]
 
-    # modify some:
+    # modify some tags:
     INLINE_TAGS_SUBST['sphinx']['math'] = r'\g<begin>:math:`\g<subst>`\g<end>'
     INLINE_TAGS_SUBST['sphinx']['math2'] = r'\g<begin>:math:`\g<latexmath>`\g<end>'
     INLINE_TAGS_SUBST['sphinx']['figure'] = sphinx_figure
     CODE['sphinx'] = sphinx_code  # function for typesetting code
+
+    ARGLIST['sphinx'] = {
+        'parameter': ':param',
+        'keyword': ':keyword',
+        'return': ':return',
+        'instance variable': ':ivar',
+        'class variable': ':cvar',
+        'module variable': ':var',
+        }
+
 

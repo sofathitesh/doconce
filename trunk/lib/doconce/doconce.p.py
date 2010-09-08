@@ -9,22 +9,6 @@ __version__ = 0.7
 
 import re, os, sys, shutil, commands, pprint
 
-if len(sys.argv) >= 4 and sys.argv[3] == 'debug':
-    debug_flag = True
-    del sys.argv[3]
-else:
-    debug_flag = False
-if debug_flag:
-    _log_filename = '_doconce_debugging.log'
-    _log = open(_log_filename,'w')
-    _log.write("""
-This is a log file for the doconce2format script.
-Debugging is turned on by a 3rd command-line argument 'debug'
-to doconce2format. Without that command-line argument,
-this file is not produced.
-
-""")
-    
 
 from common import *
 import html, latex, rst, sphinx, st, epytext, plaintext, gwiki
@@ -39,6 +23,7 @@ for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki:
                   TABLE,
                   FIGURE_EXT,
                   CROSS_REFS,
+                  INDEX_BIB,
                   INTRO,
                   OUTRO)
 
@@ -457,18 +442,31 @@ def handle_figures(filestr, format):
     return filestr
     
 
-def cross_referencing(filestr, format):
+def handle_cross_referencing(filestr, format):
     # 0. syntax check (outside !bt/!et environments there should only
     # be ref and label *without* the latex-ish backslash
-    label_matches = re.findall(r'\\label\{', filestr)
-    if label_matches:
+    matches = re.findall(r'\\label\{', filestr)
+    if matches:
         print r'Syntax error: found \label{...} (should be no backslash!)'
-    ref_matches = re.findall(r'\\ref\{', filestr)
-    if ref_matches:
+        sys.exit(1)
+    matches = re.findall(r'\\ref\{', filestr)
+    if matches:
         print r'Syntax error: found \ref{...} (should be no backslash!)'
-        
+        sys.exit(1)
+
+    # consistency check between label{} and ref{}:
+    # (does not work well without labels from the !bt environments)
+    """
+    labels = re.findall(r'label\{(.+?)\}', filestr)
+    refs = re.findall(r'ref\{(.+?)\}', filestr)
+    for ref in refs:
+        if not ref in labels:
+            print '...ref{%s} has no corresponding label{%s} (within this file)' % \
+                (ref, ref)
+    """
+
     # 1. find all section/chapter titles and corresponding labels
-    section_pattern = r'(_+|=+)([A-Za-z !.,;0-9]+)(_+|=+)\s*label\{(.+?)\}'
+    #section_pattern = r'(_+|=+)([A-Za-z !.,;0-9]+)(_+|=+)\s*label\{(.+?)\}'
     section_pattern = r'(_{3,7}|={3,7})(.+?)(_{3,7}|={3,7})\s*label\{(.+?)\}'
     m = re.findall(section_pattern, filestr)
     #import pprint
@@ -482,11 +480,136 @@ def cross_referencing(filestr, format):
     filestr = CROSS_REFS[format](section_label2title, format, filestr)
     return filestr
 
+
+def handle_index_and_bib(filestr, format, has_title):
+    """Process idx{...} and cite{...} instructions."""
+    # first deal with possible wrong (LaTeX-inspired) syntax:
+    matches = re.findall(r'\\cite\{', filestr)
+    if matches:
+        print r'Syntax error: found \cite{...} (should be no backslash!)'
+        sys.exit(1)
+    matches = re.findall(r'\\idx\{', filestr)
+    if matches:
+        print r'Syntax error: found \idx{...} (should be no backslash!)'
+        sys.exit(1)
+    matches = re.findall(r'\\index\{', filestr)
+    if matches:
+        print r'Syntax error: found \index{...} (should be idx{...}!)'
+        sys.exit(1)
+
+    index = {}  # index[word] = lineno
+    from collections import OrderedDict
+    citations = OrderedDict()  # citations[label] = no_in_list (1,2,3,...)
+    line_counter = 0
+    cite_counter = 0
+    bibfile = {}
+    for line in filestr.splitlines():
+        line_counter += 1
+        line = line.strip()
+        if line.startswith('BIBFILE:'):
+            files = re.split(r'\s*,\s*', line[8:].strip())
+            for filename in files:
+                stem, ext = os.path.splitext(filename)
+                if ext == '.bib':
+                    bibfile['bib'] = stem
+                elif ext == '.rst':
+                    bibfile['rst'] = filename
+                elif ext == '.py':
+                    bibfile['py'] = filename
+                else:
+                    print '\nUnknown extension of BIBFILE:', filename
+                    sys.exit(1)
+        else:
+            index_words = re.findall(r'idx\{(.+?)\}', line)
+            if index_words:
+                for word in index_words:
+                    if word in index:
+                        index[word].append(line_counter)
+                    else:
+                        index[word] = [line_counter]
+                # note: line numbers in the .do.txt file are of very limited
+                # value for the end format file...anyway, we make them...
+
+            cite_args = re.findall(r'cite\{(.+?)\}', line)
+            if cite_args:
+                # multiple labels can be separated by comma:
+                cite_labels = []
+                for arg in cite_args:
+                    for c in arg.split(','):
+                        cite_labels.append(c.strip())
+                for label in cite_labels:
+                    if not label in citations:
+                        cite_counter += 1  # new citation label
+                        citations[label] = cite_counter
+                # replace cite{label1,label2,...} by individual cite{label1}
+                # cite{label2}, etc. if not LaTeX format:
+                if format != 'LaTeX':
+                    for arg in cite_args:
+                        replacement = ' '.join(['cite{%s}' % label.strip() \
+                                                 for label in arg.split(',')])
+                        filestr = filestr.replace('cite{%s}' % arg,
+                                                  replacement)
+                
+    filestr = INDEX_BIB[format](filestr, index, citations, bibfile)
+    return filestr
+
+def typeset_authors(filestr, format):
+    debug('\n*** Dealing with authors and institutions ***')
+    # first deal with AUTHOR as there can be several such lines
+    author_lines = re.findall(r'^AUTHOR:\s*(?P<author>.+)\s*$', filestr,
+                              flags=re.MULTILINE)
+    filestr = re.sub(r'^AUTHOR:.+$', 'XXXAUTHOR', filestr, flags=re.MULTILINE)
+    # contract multiple AUTHOR lines to one single:
+    filestr = re.sub('(XXXAUTHOR\n)+', 'XXXAUTHOR', filestr)
+
+    # (author, (inst1, inst2, ...) or (author, None)
+    authors_and_institutions = []  
+    for line in author_lines:
+        if ' at ' in line:
+            a, i = line.split(' at ')
+            if ' and ' in i:
+                i = [w.strip() for w in i.split(' and ')]
+            else:
+                i = (i.strip(),)
+            authors_and_institutions.append((a.strip(), i))
+        else:  # just author's name
+            authors_and_institutions.append((line.strip(), None))
+    from collections import OrderedDict
+    inst2index = OrderedDict()
+    index2inst = {}
+    auth2index = OrderedDict()
+    # get unique institutions:
+    for a, institutions in authors_and_institutions:
+        if institutions is not None:
+            for i in institutions:
+                inst2index[i] = None
+    for index, i in enumerate(inst2index):
+        inst2index[i] = index+1
+        index2inst[index+1] = i
+    for a, institutions in authors_and_institutions:
+        if institutions is not None:
+            auth2index[a] = [inst2index[i] for i in institutions]
+        else:
+            auth2index[a] = ''  # leads to empty address
+
+    author_block = INLINE_TAGS_SUBST[format]['author']\
+        (authors_and_institutions, auth2index, inst2index, index2inst)
+    filestr = filestr.replace('XXXAUTHOR', author_block)
+    return filestr
+
         
 def inline_tag_subst(filestr, format):
+    """Deal with all inline tags by substitution.""" 
+    # Note that all tags are *substituted* so that the sequence of
+    # operations are not important for the contents of the document - we
+    # choose a sequence that is appropriate from a substitution point
+    # of view
+
+    filestr = typeset_authors(filestr, format)
     debug('\n*** Inline tags substitution phase ***')
+
     ordered_tags = (
-        'title', 'author', 'date', #'figure',
+        'title', 'date', #'figure',
         # important to do section, subsection, etc. BEFORE paragraph and bold:
         'section', 'subsection', 'subsubsection',
         'emphasize', 'math2', 'math', 'bold', 'verbatim',
@@ -571,7 +694,7 @@ def doconce2format(in_filename, format, out_filename):
     # asterix, which will be replaced later and hence destroyed)
     #if format != 'LaTeX':
     filestr = insert_code_from_file(filestr, format)
-    debug('%s\n**** The file after inserting @@@CODE:\n\n%s\n\n' % \
+    debug('%s\n**** The file after inserting @@@CODE (from file):\n\n%s\n\n' % \
           ('*'*80, filestr))
 
     # 2. step: remove all verbatim and math blocks
@@ -592,47 +715,63 @@ def doconce2format(in_filename, format, out_filename):
           ('*'*80, filestr))
 
     # 3. step: deal with cross referencing (must occur before other format subst)
-    filestr = cross_referencing(filestr, format)
+    filestr = handle_cross_referencing(filestr, format)
     
     debug('%s\n**** The file after handling ref and label cross referencing\n\n%s\n\n' % ('*'*80, filestr))
 
+    # 4. step: deal with index and bibliography (must be done before lists):
+    filestr = handle_index_and_bib(filestr, format, has_title)
 
-    # 4. step: deal with lists
+    debug('%s\n**** The file after handling index and bibliography\n\n%s\n\n' % ('*'*80, filestr))
+
+    # 5. step: deal with lists
     filestr = typeset_lists(filestr, format,
                             debug_info=[code_blocks, tex_blocks])
     debug('%s\n**** The file after typesetting of list:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    # 5. step: deal with tables
+    # 6. step: deal with tables
     filestr = typeset_tables(filestr, format)
     debug('%s\n**** The file after typesetting of tables:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    # 6. step: deal with figures
+    # 7. step: deal with figures
     filestr = handle_figures(filestr, format)
 
-    # 7. step: do substitutions:
+    # 8. step: do substitutions:
     filestr = inline_tag_subst(filestr, format)
 
     debug('%s\n**** The file after all inline substitutions:\n\n%s\n\n' % ('*'*80, filestr))
 
-    # 8. step: substitute latex-style newcommands in filestr and tex_blocks
+    # remove linebreaks within paragraphs:
+    if oneline_paragraphs:
+        # make double linebreaks to triple
+        filestr = re.sub('\n *\n', '[[[[[DOUBLE_NEWLINE]]]]]', filestr)
+        # then remove all single linebreaks
+        filestr = filestr.replace('\n', '')
+        # finally insert double linebreaks
+        filestr = filestr.replace('[[[[[DOUBLE_NEWLINE]]]]]', '\n\n')
+        
+    # 9. step: substitute latex-style newcommands in filestr and tex_blocks
     # (not in code_blocks)
     from expand_newcommands import expand_newcommands
     if format != 'LaTeX':
         newcommand_files = ['newcommands_replace.tex']
         if format == 'sphinx':  # replace all newcommands in sphinx
             newcommand_files.extend(['newcommands.tex', 'newcommands_keep.tex'])
+            # note: could use substitutions (|newcommand|) in rst/sphinx,
+            # but they don't allow arguments so expansion of \newcommand
+            # is probably a better solution
         print 'expanding newcommands in', ', '.join(newcommand_files)
         filestr = expand_newcommands(newcommand_files, filestr)
         for i in range(len(tex_blocks)):
             tex_blocks[i] = expand_newcommands(newcommand_files, tex_blocks[i])
 
-    # 9. step: insert verbatim and math code blocks again:
+    # 10. step: insert verbatim and math code blocks again:
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
     filestr += '\n'
     
-    # substitute code and tex environments:
+    # 11. step: substitute code and tex environments:
     filestr = CODE[format](filestr, format)
     debug('%s\n**** The file after inserting tex/code blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
@@ -663,6 +802,7 @@ def preprocess(filename, format, preprocess_options=''):
     failure, outtext = commands.getstatusoutput(cmd)
     if failure:
         print 'Could not run preprocess:\n%s' % cmd
+        print outtext
         sys.exit(1)
     return resultfile
 
@@ -682,6 +822,35 @@ def main():
     if format not in names:
         print '%s is not among the supported formats:\n%s' % (format, names)
         sys.exit(1)
+
+    # doconce2format accepts to special arguments as the 3rd
+    # command-line argument:
+    #   - debug (for debugging in file _doconce_debugging.log) or
+    #   - oneline (for removal of newlines/linebreaks within paragraphs)
+
+    global debug_flag, oneline_paragraphs, _log
+    if len(sys.argv) >= 4 and sys.argv[3] == 'debug':
+        debug_flag = True
+        del sys.argv[3]
+    else:
+        debug_flag = False
+    if debug_flag:
+        _log_filename = '_doconce_debugging.log'
+        _log = open(_log_filename,'w')
+        _log.write("""
+    This is a log file for the doconce2format script.
+    Debugging is turned on by a 3rd command-line argument 'debug'
+    to doconce2format. Without that command-line argument,
+    this file is not produced.
+
+    """)
+
+    if len(sys.argv) >= 4 and sys.argv[3] == 'oneline':
+        oneline_paragraphs = True
+        del sys.argv[3]
+    else:
+        oneline_paragraphs = False
+
         
     debug('\n\n>>>>>>>>>>>>>>>>> %s >>>>>>>>>>>>>>>>>\n\n' % format)
     if filename[-7:] != '.do.txt':

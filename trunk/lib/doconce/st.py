@@ -1,4 +1,5 @@
 
+from epytext import epytext_author
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -9,6 +10,7 @@ def define(FILENAME_EXTENSION,
            TABLE,
            FIGURE_EXT,
            CROSS_REFS,
+           INDEX_BIB,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -31,7 +33,7 @@ def define(FILENAME_EXTENSION,
         'paragraph':     r'*\g<subst>* ',  # extra blank
         'title':         r'TITLE: \g<subst>',
         'date':          r'DATE: \g<subst>',
-        'author':        r'By: \g<name>, \g<institution>',
+        'author':        epytext_author,
         }
 
     from rst import rst_code, rst_table
@@ -52,6 +54,7 @@ def define(FILENAME_EXTENSION,
         }
     from common import DEFAULT_ARGLIST
     ARGLIST['st'] = DEFAULT_ARGLIST
-    from plaintext import handle_ref_and_label
-    CROSS_REFS['st'] = handle_ref_and_label
+    from plaintext import plaintext_ref_and_label, plain_index_bib
+    CROSS_REFS['st'] = plaintext_ref_and_label
+    INDEX_BIB['st'] = plain_index_bib
     

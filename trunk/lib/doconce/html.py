@@ -39,7 +39,20 @@ def html_table(table):
     s += '</TABLE>\n'
     return s
 
-def handle_ref_and_label(section_label2title, format, filestr):
+def html_author(authors_and_institutions, auth2index, 
+                inst2index, index2inst):
+    text = ''
+    for author in auth2index:
+        text += '\n<CENTER>\n<B>%s</B> %s\n</CENTER>\n' % \
+            (author, str(auth2index[author]))
+    text += '\n<P>\n'
+    for index in index2inst:
+        text += '[%d] <B>%s</B>\n<P>\n' % (index, index2inst[index])
+    text += '\n\n'
+    return text
+
+
+def html_ref_and_label(section_label2title, format, filestr):
     # .... see section ref{my:sec} is replaced by
     # see the section "...section heading..."
     pattern = r'[Ss]ection(s?)\s+ref\{'
@@ -80,6 +93,39 @@ def handle_ref_and_label(section_label2title, format, filestr):
 
     return filestr
 
+def bibdict2htmllist(pyfile, citations):
+    """Transform dict with bibliography to an HTML ordered list with anchors."""
+    f = open(pyfile, 'r')
+    bibstr = f.read()
+    try:
+        bibdict = eval(bibstr)
+    except:
+        print 'Error in Python dictionary for bibliography in', pyfile
+        sys.exit(1)
+    text = '\n\n<H1>Bibliography</H1>\n\n<OL>\n'
+    for label in citations:
+        # remove newlines in reference data:
+        text += '  <P><LI><A NAME="%s"> ' % label + \
+                ' '.join(bibdict[label].splitlines()) + '\n'
+    text += '</OL>\n\n'
+    return text
+
+def html_index_bib(filestr, index, citations, bibfile):
+    for label in citations:
+        filestr = filestr.replace('cite{%s}' % label, 
+                                  '<A HREF="#%s">[%d]</A>' % \
+                                  (label, citations[label]))
+    if 'py' in bibfile:
+        bibtext = bibdict2htmllist(bibfile['py'], citations)
+        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, 
+                         flags=re.MULTILINE)
+
+    # could use anchors for idx{...}, but multiple entries of an index
+    # would lead to multiple anchors
+    filestr = re.sub(r'idx\{.+?\}', '', filestr)  # remove all index entries
+
+    return filestr
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -90,6 +136,7 @@ def define(FILENAME_EXTENSION,
            TABLE,
            FIGURE_EXT,
            CROSS_REFS,
+           INDEX_BIB,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -113,7 +160,7 @@ def define(FILENAME_EXTENSION,
         'paragraph':     r'<B>\g<subst></B> ',
         'title':         r'<TITLE>\g<subst></TITLE>\n<CENTER><H1>\g<subst></H1></CENTER>',
         'date':          r'<CENTER><H3>\g<subst></H3></CENTER>',
-        'author':        r'<CENTER><H3>\g<name><BR>\g<institution></H3></CENTER>',
+        'author':        html_author,
         'figure':        r'<IMG SRC="\g<filename>" \g<options>> \g<caption>',
         'comment':       '<!-- %s -->',
         }
@@ -146,8 +193,9 @@ def define(FILENAME_EXTENSION,
         }
 
     FIGURE_EXT['HTML'] = ('.png', '.gif', '.jpg', '.jpeg')
-    CROSS_REFS['HTML'] = handle_ref_and_label
+    CROSS_REFS['HTML'] = html_ref_and_label
     TABLE['HTML'] = html_table
+    INDEX_BIB['HTML'] = html_index_bib
 
 
     # document start:

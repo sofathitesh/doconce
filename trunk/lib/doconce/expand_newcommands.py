@@ -18,7 +18,7 @@ def process_newcommand(line):
         end_pattern = r'([^A-Za-z])'
         pattern = m.group(1) + end_pattern
         replacement = m.group(2) + r'\g<1>'  # \g<1> is the end_pattern
-        # could also use a look ahead pattern: (?=[^A-Za-z]), not tested
+        # could also use a lookahead pattern: (?=[^A-Za-z]), not tested
         #pattern = m.group(1) + r'(?=[^A-Za-z])'
         #replacement = m.group(2)
 
