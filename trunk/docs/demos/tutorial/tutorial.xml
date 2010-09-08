@@ -15,7 +15,7 @@
 * Do you find it problematic that you have the same information
   scattered around in different documents in different typesetting
   formats? Would it be a good idea to write things once, in one
-  place, and include it anywhere?</comment><paragraph>If any of these questions are of interest, you should keep on reading.</paragraph><section ids="the-doconce-concept" names="the\ doconce\ concept"><title>The Doconce Concept</title><paragraph>Doconce is two things:</paragraph><block_quote><enumerated_list enumtype="arabic" prefix="" suffix="."><list_item><paragraph>Doconce is a working strategy for documenting software in a single
+  place, and include it anywhere?</comment><paragraph>If any of these questions are of interest, you should keep on reading.</paragraph></section><section ids="the-doconce-concept" names="the\ doconce\ concept"><title>The Doconce Concept</title><paragraph>Doconce is two things:</paragraph><block_quote><enumerated_list enumtype="arabic" prefix="" suffix="."><list_item><paragraph>Doconce is a working strategy for documenting software in a single
 place and avoiding duplication of information. The slogan is:
 &quot;Write once, include anywhere&quot;. This requires that what you write
 can be transformed to many different formats for a variety of
@@ -71,7 +71,7 @@ Tables are also supperted, e.g.,
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
-  |--------------------------------|</literal_block><paragraph>The Doconce text above results in the following little document:</paragraph></section><section ids="a-subsection-with-sample-text" names="a\ subsection\ with\ sample\ text"><title>A Subsection with Sample Text</title><paragraph>Ordinary text looks like ordinary text, and the tags used for
+  |--------------------------------|</literal_block><paragraph>The Doconce text above results in the following little document:</paragraph><section ids="a-subsection-with-sample-text" names="a\ subsection\ with\ sample\ text"><title>A Subsection with Sample Text</title><paragraph>Ordinary text looks like ordinary text, and the tags used for
 <strong>boldface</strong> words, <emphasis>emphasized</emphasis> words, and <literal>computer</literal> words look
 natural in plain text.  Lists are typeset as you would do in an email,</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph>item 1</paragraph></list_item><list_item><paragraph>item 2</paragraph></list_item><list_item><paragraph>item 3</paragraph></list_item></bullet_list></block_quote><paragraph>Lists can also have numbered items instead of bullets, just use an <literal>o</literal>
 (for ordered) instead of the asterisk:</paragraph><block_quote><enumerated_list enumtype="arabic" prefix="" suffix="."><list_item><paragraph>item 1</paragraph></list_item><list_item><paragraph>item 2</paragraph></list_item><list_item><paragraph>item 3</paragraph></list_item></enumerated_list></block_quote><paragraph>URLs with a link word are possible, as in <reference name="hpl" refuri="http://folk.uio.no/hpl">hpl</reference><target ids="hpl" names="hpl" refuri="http://folk.uio.no/hpl"/>.
@@ -196,7 +196,7 @@ The transformation to this format, called <literal>gwiki</literal> to explicitly
 it as the Google Code dialect, is done by:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce2format gwiki mydoc.do.txt</literal_block><paragraph>You can then open a new wiki page for your Google Code project, copy
 the <literal>mydoc.gwiki</literal> output file from <literal>doconce2format</literal> and paste the
 file contents into the wiki page. Press <strong>Preview</strong> or <strong>Save Page</strong> to
-see the formatted result.</paragraph><section ids="demos" names="demos"><title>Demos</title><paragraph>The current text is generated from a Doconce format stored in the file:</paragraph><literal_block xml:space="preserve">docs/tutorial/tutorial.do.txt</literal_block><paragraph>The file <literal>make.sh</literal> in the <literal>tutorial</literal> directory of the
+see the formatted result.</paragraph></section><section ids="demos" names="demos"><title>Demos</title><paragraph>The current text is generated from a Doconce format stored in the file:</paragraph><literal_block xml:space="preserve">docs/tutorial/tutorial.do.txt</literal_block><paragraph>The file <literal>make.sh</literal> in the <literal>tutorial</literal> directory of the
 Doconce source code contains a demo of how to produce a variety of
 formats.  The source of this tutorial, <literal>tutorial.do.txt</literal> is the
 starting point.  Running <literal>make.sh</literal> and studying the various generated
@@ -212,7 +212,7 @@ need <reference name="ptex2tex" refuri="http://code.google.com/p/ptex2tex">ptex2
 that ptex2tex potentially makes use of.  Going from reStructuredText
 to formats such as XML, OpenOffice, HTML, and LaTeX requires
 <reference name="docutils" refuri="http://docutils.sourceforge.net/">docutils</reference><target ids="docutils" names="docutils" refuri="http://docutils.sourceforge.net/"/>.  Making Sphinx documents
-requires of course <reference name="sphinx" refuri="http://sphinx.pocoo.org">sphinx</reference><target ids="id1" names="sphinx" refuri="http://sphinx.pocoo.org"/>.</paragraph></section></section><section ids="the-doconce-documentation-strategy-for-user-manuals" names="the\ doconce\ documentation\ strategy\ for\ user\ manuals"><title>The Doconce Documentation Strategy for User Manuals</title><paragraph>Doconce was particularly made for writing tutorials or user manuals
+requires of course <reference name="sphinx" refuri="http://sphinx.pocoo.org">sphinx</reference><target ids="id1" names="sphinx" refuri="http://sphinx.pocoo.org"/>.</paragraph></section><section ids="the-doconce-documentation-strategy-for-user-manuals" names="the\ doconce\ documentation\ strategy\ for\ user\ manuals"><title>The Doconce Documentation Strategy for User Manuals</title><paragraph>Doconce was particularly made for writing tutorials or user manuals
 associated with computer codes. The text is written in Doconce format
 in separate files. LaTeX, HTML, XML, and other versions of the text
 is easily produced by the <literal>doconce2format</literal> script and standard tools.

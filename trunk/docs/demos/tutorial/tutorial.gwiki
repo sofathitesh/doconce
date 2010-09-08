@@ -13,7 +13,9 @@ By *Hans Petter Langtangen*
 
 If any of these questions are of interest, you should keep on reading.
 
-==== The Doconce Concept ====
+
+
+== The Doconce Concept ==
 
 Doconce is two things:
 
@@ -30,7 +32,9 @@ Doconce was particularly written for the following sample applications:
   * Software documentation, primarily Python doc strings, which one wants    to appear as plain untagged text for viewing in Pydoc, as reStructuredText    for use with Sphinx, as wiki text when publishing the software at    googlecode.com, and as LaTeX integrated in, e.g., a master's thesis.
   * Quick memos, which start as plain text in email, then some small    amount of Doconce tagging is added, before the memos can appear as    MS Word documents or in wikis.
 
-==== What Does Doconce Look Like? ====
+
+
+== What Does Doconce Look Like? ==
 
 Doconce text looks like ordinary text, but there are some almost invisible
 text constructions that allow you to control the formating. For example,

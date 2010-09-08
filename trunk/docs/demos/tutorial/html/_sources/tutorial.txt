@@ -25,7 +25,7 @@ If any of these questions are of interest, you should keep on reading.
 
 
 The Doconce Concept
--------------------
+===================
 
 Doconce is two things:
 
@@ -64,7 +64,7 @@ Doconce was particularly written for the following sample applications:
     MS Word documents or in wikis.
 
 What Does Doconce Look Like?
-----------------------------
+============================
 
 Doconce text looks like ordinary text, but there are some almost invisible
 text constructions that allow you to control the formating. For example,
@@ -507,7 +507,7 @@ see the formatted result.
 
 
 Demos
-~~~~~
+-----
 
 The current text is generated from a Doconce format stored in the file
 
@@ -530,7 +530,7 @@ translates the more comprehensive documentation, ``manual.do.txt``, to
 various formats. The ``make.sh`` script runs a set of translations.
 
 Dependencies
-~~~~~~~~~~~~
+------------
 
 Doconce depends on the Python package
 `preprocess <http://code.google.com/p/preprocess/>`_.  To make LaTeX

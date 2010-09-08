@@ -152,6 +152,9 @@ and maybe the most important format of all:
 </HTML>
 EOF
 
+cd ..
+rm -rf ../demos/manual
+cp -r demo ../demos/manual
 echo
 echo "Go to the demo directory and load index.html into a web browser."
 
