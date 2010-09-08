@@ -6,7 +6,7 @@
 ./clean.sh
 
 # The following packages must be installed for this script to run: 
-# doconce, ptex2tex, docutils, preprocess
+# doconce, ptex2tex, docutils, preprocess, sphinx, scitools
 
 d2f=doconce2format
 # doconce HTML format:
@@ -87,6 +87,10 @@ $d2f st manual.do.txt
 $d2f LaTeX manual.do.txt             # produces ptex2tex: manual.p.tex
 ptex2tex manual                      # turn ptex2tex format into plain latex
 rm -f manual.p.tex
+latex manual
+latex manual
+bibtex manual
+makeindex manual
 latex manual
 latex manual
 dvipdf manual.dvi

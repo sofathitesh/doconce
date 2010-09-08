@@ -113,7 +113,10 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
                 lines[i] = re.sub('#!!CODE_BLOCK(.*)',
                                   '!bc\g<1>\n!XX&XX', lines[i])
                 # use string.replace to deal correctly with \n:
-                lines[i] = lines[i].replace('!XX&XX', '%s\n!ec' % code)
+                try:
+                    lines[i] = lines[i].replace('!XX&XX', '%s\n!ec' % code)
+                except UnicodeDecodeError, e:
+                    raise UnicodeDecodeError(e + '\nproblem with code block:\n' + code)
                 break
     for tex in tex_blocks:
         # Also here problems with this: (\nabla becomes \n (newline) and abla)
@@ -155,6 +158,7 @@ DEFAULT_ARGLIST = {
 TABLE = {}
 FIGURE_EXT = {}
 CROSS_REFS = {}
+INDEX_BIB = {}
 INTRO = {}
 OUTRO = {}
 

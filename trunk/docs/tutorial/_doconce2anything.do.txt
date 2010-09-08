@@ -54,7 +54,16 @@ Unix/DOS> cp mydoc.p.tex mydoc.tex
 The `ptex2tex` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents.
-Finally, compile `mydoc.tex` the usual way and create the PDF file.
+Finally, compile `mydoc.tex` the usual way and create the PDF file:
+!bc
+Unix/DOS> latex mydoc
+Unix/DOS> latex mydoc
+Unix/DOS> makeindex mydoc   # if index
+Unix/DOS> bibitem mydoc     # if bibliography
+Unix/DOS> latex mydoc
+Unix/DOS> dvipdf mydoc
+!ec
+
 
 ===== Plain ASCII Text =====
 

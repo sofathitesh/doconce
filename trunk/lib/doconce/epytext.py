@@ -18,17 +18,20 @@ def old_epytext_code(filestr):
 
     # substitute !bc and !ec appropriately:
     # (see rst.rst_code for comments if problems)
-    c = re.compile(r'([a-zA-Z0-9)"])[\n:.?!]\s*?!bc.*?\n', re.DOTALL)
+    from rst import bc_regex_pattern, bt_regex_pattern
+    c = re.compile(bc_regex_pattern, re.DOTALL)
     filestr = c.sub(r'\g<1>::\n\n', filestr)
     filestr = re.sub(r'!ec\n', '\n\n', filestr)
-    #filestr = re.sub(r'!ec\n', '\n', filestr)
-    #filestr = re.sub(r'!ec\n', '', filestr)
-    c = re.compile(r'([a-zA-Z0-9)"])[:.]?\s*?!bt\n', re.DOTALL)
+    c = re.compile(bt_regex_pattern, re.DOTALL)
     filestr = c.sub(r'\g<1>::\n\n', filestr)
     filestr = re.sub(r'!et\n', '\n\n', filestr)
-    #filestr = re.sub(r'!et\n', '\n', filestr)
-    #filestr = re.sub(r'!et\n', '', filestr)
     return filestr
+
+def epytext_author(authors_and_institutions, auth2index, 
+                   inst2index, index2inst):
+    return 'BY: ' + '; '.join(['%s (%s)' % \
+           (author, ', and '.join(institutions)) \
+            for author, institutions in authors_and_institutions])
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -39,6 +42,7 @@ def define(FILENAME_EXTENSION,
            TABLE,
            FIGURE_EXT,
            CROSS_REFS,
+           INDEX_BIB,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -64,14 +68,15 @@ def define(FILENAME_EXTENSION,
         'paragraph':     r'I{\g<subst>} ',
         'title':         r'TITLE: \g<subst>',
         'date':          r'DATE: \g<subst>',
-        'author':        r'BY: \g<name>, \g<institution>',
+        'author':        epytext_author,
         }
 
     from rst import rst_code, rst_table
     CODE['epytext'] = rst_code
     TABLE['epytext'] = rst_table
-    from plaintext import handle_ref_and_label
-    CROSS_REFS['epytext'] = handle_ref_and_label
+    from plaintext import plaintext_ref_and_label, plain_index_bib
+    CROSS_REFS['epytext'] = plaintext_ref_and_label
+    INDEX_BIB['epytext'] = plain_index_bib
 
     LIST['epytext'] = {
         'itemize':

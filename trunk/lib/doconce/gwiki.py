@@ -7,7 +7,7 @@ Here called gwiki to make the dialect clear (g for google).
 
 import re, os
 
-def wiki_code(filestr, format):
+def gwiki_code(filestr, format):
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
     filestr = c.sub(r'{{{\n', filestr)
     filestr = re.sub(r'!ec\n', r'}}}\n', filestr)
@@ -16,7 +16,7 @@ def wiki_code(filestr, format):
     filestr = re.sub(r'!et\n', r'}}}\n', filestr)
     return filestr
 
-def wiki_figure(m):
+def gwiki_figure(m):
     filename = m.group('filename')
     basename  = os.path.basename(filename)
     stem, ext = os.path.splitext(basename)
@@ -24,7 +24,7 @@ def wiki_figure(m):
     if not ext in '.png .gif .jpg .jpeg':
         # try to convert image file to PNG, using
         # convert from ImageMagick:
-        cmd = 'convert %s png:%s' % (filename, pngfilename)
+        cmd = 'convert %s png:%s' % (filename, root+'.png')
         failure, output = commands.getstatusoutput(cmd)
         if failure:
             print '\n**** Warning: could not run', cmd
@@ -61,7 +61,7 @@ http://yourproject.googlecode.com/hg/.../%s
 
 from common import table_analysis
 
-def wiki_table(table):
+def gwiki_table(table):
     """Native gwiki table."""
     # add 2 chars for column width since we add boldface _..._
     # in headlines:
@@ -88,8 +88,22 @@ def wiki_table(table):
     s += '\n\n'
     return s
 
+def gwiki_author(authors_and_institutions, auth2index, 
+                 inst2index, index2inst):
+    authors = ['_%s_' % author \
+               for author, i in authors_and_institutions]
+    if len(authors) ==  1:
+        authors = authors[0]
+    elif len(authors) == 2:
+        authors = authors[0] + ' and ' + authors[1]
+    else:
+        authors[-1] = 'and ' + authors[-1]
+        authors = ', '.join(authors)
+    text = '\n\nBy ' + authors + '\n\n'
+    # we skip institutions in gwiki
+    return text
 
-def handle_ref_and_label(section_label2title, format, filestr):
+def gwiki_ref_and_label(section_label2title, format, filestr):
     # .... see section ref{my:sec} is replaced by
     # see the section "...section heading..."
     pattern = r'[Ss]ection(s?)\s+ref\{'
@@ -125,6 +139,7 @@ def define(FILENAME_EXTENSION,
            TABLE,
            FIGURE_EXT,
            CROSS_REFS,
+           INDEX_BIB,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -151,16 +166,16 @@ def define(FILENAME_EXTENSION,
         'paragraph':     r'*\g<subst>* ',
         'title':         r'#summary \g<subst>\n<wiki:toc max_depth="2" />',
         'date':          r'===== \g<subst> =====',
-        'author':        r'===== \g<name>, \g<institution> =====',
+        'author':        gwiki_author, #r'===== \g<name>, \g<institution> =====',
 #        'figure':        r'<\g<filename>>',
-        'figure':        wiki_figure,
+        'figure':        gwiki_figure,
         'comment':       '<wiki:comment> %s </wiki:comment>',
         }
 
-    CODE['gwiki'] = wiki_code
+    CODE['gwiki'] = gwiki_code
     from html import html_table
     #TABLE['gwiki'] = html_table
-    TABLE['gwiki'] = wiki_table
+    TABLE['gwiki'] = gwiki_table
 
     # native list:
     LIST['gwiki'] = {
@@ -185,7 +200,9 @@ def define(FILENAME_EXTENSION,
         }
 
     FIGURE_EXT['gwiki'] = ('.png', '.gif', '.jpg', '.jpeg')
-    CROSS_REFS['gwiki'] = handle_ref_and_label
+    CROSS_REFS['gwiki'] = gwiki_ref_and_label
+    from plaintext import plain_index_bib
+    INDEX_BIB['gwiki'] = plain_index_bib
 
     # document start:
     INTRO['gwiki'] = ''

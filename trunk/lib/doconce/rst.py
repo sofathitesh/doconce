@@ -22,6 +22,10 @@ def rst_figure(m):
     result += '\n\n   ' + caption + '\n'
     return result
 
+# these global patterns are used in st, epytext, plaintext as well:
+bc_regex_pattern = r'([a-zA-Z0-9)"`.])[\n:.?!, ]\s*?!bc.*?\n'
+bt_regex_pattern = r'([a-zA-Z0-9)"`.])[\n:.?!, ]\s*?!bt.*?\n'
+
 def rst_code(filestr, format):
     # In rst syntax, code blocks are typeset with :: (verbatim)
     # followed by intended blocks. This function indents everything
@@ -37,10 +41,10 @@ def rst_code(filestr, format):
 
     # substitute !bc and !ec appropriately:
     # the line before the !bc block must end in [a-zA-z0-9)"]
-    # followed by [\n:.?!,]
+    # followed by [\n:.?!,] see the bc_regex_pattern global variable above
     # (problems with substituting !bc and !bt may be caused by
     # missing characters in these two families)
-    c = re.compile(r'([a-zA-Z0-9)"`])[\n:.?!,]\s*?!bc.*?\n', re.DOTALL)
+    c = re.compile(bc_regex_pattern, re.DOTALL)
     filestr = c.sub(r'\g<1>::\n\n', filestr)
     filestr = re.sub(r'!ec\n', '\n\n', filestr)
     #filestr = re.sub(r'!ec\n', '\n', filestr)
@@ -52,7 +56,7 @@ def rst_code(filestr, format):
     #filestr = re.sub(r'!bt\n', '.. latex::\n\n', filestr)
 
     # just use the same substitution as for code blocks:
-    c = re.compile(r'([a-zA-Z0-9)"`])[\n:.?!,]\s*?!bt.*?\n', re.DOTALL)
+    c = re.compile(bt_regex_pattern, re.DOTALL)
     filestr = c.sub(r'\g<1>::\n\n', filestr)
     filestr = re.sub(r'!et\n', '\n\n', filestr)
 
@@ -91,8 +95,14 @@ def rst_table(table):
     s += '\n'
     return s
     
+def rst_author(authors_and_institutions, auth2index, 
+               inst2index, index2inst):
+    authors = ', '.join([author for author, i in authors_and_institutions])
+    text = ':Author: ' + authors + '\n\n'
+    # we skip institutions in rst
+    return text
 
-def handle_ref_and_label(section_label2title, format, filestr):
+def rst_ref_and_label(section_label2title, format, filestr):
     # .... see section ref{my:sec} is replaced by
     # see the section "...section heading..."
     pattern = r'[Ss]ection(s?)\s+ref\{'
@@ -103,12 +113,13 @@ def handle_ref_and_label(section_label2title, format, filestr):
     filestr = re.sub(pattern, replacement, filestr)
 
     # insert labels before all section headings: (not necessary, but ok)
-    lines = filestr.splitlines()
-    for i in range(len(lines)):
-        for label in section_label2title:
-            if lines[i].startswith(section_label2title[label]):
-                lines[i] = '.. _%s\n\n' % label + lines[i]
-    filestr = '\n'.join(lines)
+    for label in section_label2title:
+        title = section_label2title[label]
+        pattern = r'(_{3,7}|={3,7})(\s*%s\s*)(_{3,7}|={3,7})' % re.escape(title)  # title may contain ? () etc.
+        replacement = '.. _%s:\n\n' % label + r'\g<1>\g<2>\g<3>'
+        filestr, n = re.subn(pattern, replacement, filestr)
+        if n == 0:
+            raise Exception('problem with substituting "%s"' % title)
 
     # remove label{...} from output
     filestr = re.sub(r'label\{.+?\}', '', filestr)
@@ -123,6 +134,24 @@ def handle_ref_and_label(section_label2title, format, filestr):
     
     return filestr
 
+def rst_bib(filestr, citations, bibfile):
+    for label in citations:
+        filestr = filestr.replace('cite{%s}' % label, '[%s]_' % label)
+    if 'rst' in bibfile:
+        f = open(bibfile['rst'], 'r');  bibtext = f.read();  f.close()
+        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, 
+                         flags=re.MULTILINE)
+    return filestr
+
+def rst_index_bib(filestr, index, citations, bibfile):
+    filestr = rst_bib(filestr, citations, bibfile)
+
+    # reStructuredText does not have index/glossary
+    filestr = re.sub(r'idx\{.+?\}', '', filestr)
+
+    return filestr
+
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -133,6 +162,7 @@ def define(FILENAME_EXTENSION,
            TABLE,
            FIGURE_EXT,
            CROSS_REFS,
+           INDEX_BIB,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -145,7 +175,7 @@ def define(FILENAME_EXTENSION,
         'math2':     r'\g<begin>\g<puretext>\g<end>',
         #'math':      r'\g<begin>:math:`\g<subst>`\g<end>',  # sphinx
         #'math2':     r'\g<begin>:math:`\g<latexmath>`\g<end>',
-        'emphasize': None,
+        'emphasize': None,  # => just use doconce markup (*emphasized words*)
         'bold':      r'\g<begin>**\g<subst>**\g<end>',
         'verbatim':  r'\g<begin>``\g<subst>``\g<end>',
         'label':     r'\g<subst>',  # should be improved, rst has cross ref
@@ -163,9 +193,9 @@ def define(FILENAME_EXTENSION,
         'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
         'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('utf-8'))),
         'paragraph':     r'*\g<subst>* ',  # extra blank
-        'title':         r'_______\g<subst>_______\n',
+        'title':         r'======= \g<subst> =======\n',  # doconce top section, is later replaced
         'date':          r':Date: \g<subst>' + '\n',
-        'author':        r':Author: \g<name>, \g<institution>',
+        'author':        rst_author,
         'figure':        rst_figure,
         #'comment':       '.. %s',  # rst does not like empty comment lines:
         # so therefore we introduce a function to remove empty comment lines
@@ -190,6 +220,7 @@ def define(FILENAME_EXTENSION,
     from common import DEFAULT_ARGLIST
     ARGLIST['rst'] = DEFAULT_ARGLIST
     FIGURE_EXT['rst'] = ('.ps', '.eps', '.gif', '.jpg', '.jpeg')
-    CROSS_REFS['rst'] = handle_ref_and_label
+    CROSS_REFS['rst'] = rst_ref_and_label
+    INDEX_BIB['rst'] = rst_index_bib
 
     TABLE['rst'] = rst_table
