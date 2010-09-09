@@ -11,6 +11,9 @@ def sphinx_figure(m):
     if m_label:
         label = m_label.group(1)
         result += '\n.. _%s:\n' % label
+        # here we do not write label into caption (as in rst.py) 
+        # since we just want to remove the whole label as part 
+        # of the caption (done when handling ref and label)
 
     filename = m.group('filename')
     if not os.path.isfile(filename):
@@ -91,7 +94,8 @@ def sphinx_ref_and_label(section_label2title, format, filestr):
             raise Exception('problem with substituting "%s"' % title)
 
     # remove label{...} from output
-    filestr = re.sub(r'label\{.+?\}' + '\n', '', filestr)
+    filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'label\{.+?\}', '', filestr)  # all the remaining
 
     # replace all references to sections:
     for label in section_label2title:

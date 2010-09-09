@@ -460,7 +460,7 @@ def handle_cross_referencing(filestr, format):
     if matches:
         print r'Syntax error: found \ref{...} (should be no backslash!)'
         print matches
-       sys.exit(1)
+        sys.exit(1)
 
     # consistency check between label{} and ref{}:
     # (does not work well without labels from the !bt environments)
