@@ -8,11 +8,13 @@ Dependencies:
 =============
 
 Before you can install doconce it is required that you install 
-preprocess.py first. This package is available at the following website:
+preprocess first: http://code.google.com/p/preprocess/
 
-http://trentm.com/projects/preprocess/
-
-For LaTeX output you also need ptex2tex from googlecode.com.
+For LaTeX output you also need http://code.google.com/p/ptex2tex
+(ptex2tex may need certain style files and pygments, depending on
+what type of verbatim format you want to use)
+For reStructuredText output you need http://docutils.sourceforge.net/
+For Sphinx output you need http://sphinx.pocoo.org
 
 Install:
 ========
