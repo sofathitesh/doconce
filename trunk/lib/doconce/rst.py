@@ -188,15 +188,13 @@ def define(FILENAME_EXTENSION,
         'plainURL':  r'`<\g<url>>`_',
         # the replacement string differs, depending on the match object m:
         # (note len(m.group('subst')) gives wrong length for non-ascii strings,
-        # better with m.group('subst').decode('utf-8'))
-        #'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst'))),
-        #'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst'))),
-        #'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst'))),
-        'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('utf-8'))),
-        'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
-        'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('utf-8'))),
+        # better with m.group('subst').decode('utf-8')) or latin-1
+        #'section':    lambda m: r'\g<subst>' + '\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
+        'section':       lambda m: r'\g<subst>' + '\n%s' % ('='*len(m.group('subst').decode('latin-1'))),
+        'subsection':    lambda m: r'\g<subst>' + '\n%s' % ('-'*len(m.group('subst').decode('latin-1'))),
+        'subsubsection': lambda m: r'\g<subst>' + '\n%s' % ('~'*len(m.group('subst').decode('latin-1'))),
         'paragraph':     r'*\g<subst>* ',  # extra blank
-        'title':         r'======= \g<subst> =======\n',  # doconce top section, is later replaced
+        'title':         r'======= \g<subst> =======' + '\n',  # doconce top section, is later replaced
         'date':          r':Date: \g<subst>' + '\n',
         'author':        rst_author,
         'figure':        rst_figure,
