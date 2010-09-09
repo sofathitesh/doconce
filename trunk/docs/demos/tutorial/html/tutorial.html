@@ -178,7 +178,7 @@ natural in plain text.  Lists are typeset as you would do in an email,</p>
 Just a file link goes like <a class="reference external" href="tutorial.do.txt">tutorial.do.txt</a>. References
 to sections may use logical names as labels (e.g., a &#8220;label&#8221; command right
 after the section title), as in the reference to
-the chapter ref{my:first:sec}.</p>
+the chapter <em class="xref std std-ref">my:first:sec</em>.</p>
 <p>Tables are also supperted, e.g.,</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -402,6 +402,11 @@ EOF</pre>
 <p><em>Step 3.</em> Move the <tt class="docutils literal"><span class="pre">tutorial.rst</span></tt> file to the Sphinx root directory:</p>
 <div class="highlight-python"><pre>Unix/DOS&gt; mv mydoc.rst sphinx-rootdir</pre>
 </div>
+<p>If you have figures in your document, the relative paths to those will
+be invalid when you work with <tt class="docutils literal"><span class="pre">mydoc.rst</span></tt> in the <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt>
+directory. Either edit <tt class="docutils literal"><span class="pre">mydoc.rst</span></tt> so that figure file paths are correct,
+or simply copy your figure directory to <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt> (if all figures
+are located in a subdirectory).</p>
 <p><em>Step 4.</em> Edit the generated <tt class="docutils literal"><span class="pre">index.rst</span></tt> file so that <tt class="docutils literal"><span class="pre">mydoc.rst</span></tt>
 is included, i.e., add <tt class="docutils literal"><span class="pre">mydoc</span></tt> to the <tt class="docutils literal"><span class="pre">toctree</span></tt> section so that it becomes</p>
 <div class="highlight-python"><pre>.. toctree::

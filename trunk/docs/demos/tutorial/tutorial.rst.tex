@@ -648,6 +648,12 @@ Unix/DOS>~mv~mydoc.rst~sphinx-rootdir
 }
 \end{quote}
 
+If you have figures in your document, the relative paths to those will
+be invalid when you work with \texttt{mydoc.rst} in the \texttt{sphinx-rootdir}
+directory. Either edit \texttt{mydoc.rst} so that figure file paths are correct,
+or simply copy your figure directory to \texttt{sphinx-rootdir} (if all figures
+are located in a subdirectory).
+
 \emph{Step 4.} Edit the generated \texttt{index.rst} file so that \texttt{mydoc.rst}
 is included, i.e., add \texttt{mydoc} to the \texttt{toctree} section so that it becomes:
 %

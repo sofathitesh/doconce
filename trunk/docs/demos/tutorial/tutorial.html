@@ -468,6 +468,11 @@ EOF
 Unix/DOS> mv mydoc.rst sphinx-rootdir
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
+If you have figures in your document, the relative paths to those will
+be invalid when you work with <TT>mydoc.rst</TT> in the <TT>sphinx-rootdir</TT>
+directory. Either edit <TT>mydoc.rst</TT> so that figure file paths are correct,
+or simply copy your figure directory to <TT>sphinx-rootdir</TT> (if all figures
+are located in a subdirectory).
 
 <P>
 <B>Step 4.</B> Edit the generated <TT>index.rst</TT> file so that <TT>mydoc.rst</TT>

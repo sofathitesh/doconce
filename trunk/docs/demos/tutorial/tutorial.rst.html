@@ -705,6 +705,11 @@ EOF
 <pre class="literal-block">
 Unix/DOS&gt; mv mydoc.rst sphinx-rootdir
 </pre>
+<p>If you have figures in your document, the relative paths to those will
+be invalid when you work with <tt class="docutils literal">mydoc.rst</tt> in the <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt>
+directory. Either edit <tt class="docutils literal">mydoc.rst</tt> so that figure file paths are correct,
+or simply copy your figure directory to <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt> (if all figures
+are located in a subdirectory).</p>
 <p><em>Step 4.</em> Edit the generated <tt class="docutils literal">index.rst</tt> file so that <tt class="docutils literal">mydoc.rst</tt>
 is included, i.e., add <tt class="docutils literal">mydoc</tt> to the <tt class="docutils literal">toctree</tt> section so that it becomes:</p>
 <pre class="literal-block">

@@ -451,14 +451,16 @@ def handle_figures(filestr, format):
 def handle_cross_referencing(filestr, format):
     # 0. syntax check (outside !bt/!et environments there should only
     # be ref and label *without* the latex-ish backslash
-    matches = re.findall(r'\\label\{', filestr)
+    matches = re.findall(r'\\label\{.+?\}', filestr)
     if matches:
         print r'Syntax error: found \label{...} (should be no backslash!)'
+        print matches
         sys.exit(1)
-    matches = re.findall(r'\\ref\{', filestr)
+    matches = re.findall(r'\\ref\{.+?\}', filestr)
     if matches:
         print r'Syntax error: found \ref{...} (should be no backslash!)'
-        sys.exit(1)
+        print matches
+       sys.exit(1)
 
     # consistency check between label{} and ref{}:
     # (does not work well without labels from the !bt environments)
@@ -490,17 +492,22 @@ def handle_cross_referencing(filestr, format):
 def handle_index_and_bib(filestr, format, has_title):
     """Process idx{...} and cite{...} instructions."""
     # first deal with possible wrong (LaTeX-inspired) syntax:
-    matches = re.findall(r'\\cite\{', filestr)
+    matches = re.findall(r'\\cite\{.+?\}', filestr)
     if matches:
         print r'Syntax error: found \cite{...} (should be no backslash!)'
+        print matches
         sys.exit(1)
-    matches = re.findall(r'\\idx\{', filestr)
+
+    matches = re.findall(r'\\idx\{.+?\}', filestr)
     if matches:
         print r'Syntax error: found \idx{...} (should be no backslash!)'
+        print matches
         sys.exit(1)
-    matches = re.findall(r'\\index\{', filestr)
+
+    matches = re.findall(r'\\index\{.+?\}', filestr)
     if matches:
         print r'Syntax error: found \index{...} (should be idx{...}!)'
+        print matches
         sys.exit(1)
 
     index = {}  # index[word] = lineno
@@ -724,29 +731,29 @@ def doconce2format(in_filename, format, out_filename):
     debug('%s\n**** The file after removal of code/tex blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    # 3. step: deal with cross referencing (must occur before other format subst)
+    # 3. step: deal with figures
+    filestr = handle_figures(filestr, format)
+
+    # 4. step: deal with cross referencing (must occur before other format subst)
     filestr = handle_cross_referencing(filestr, format)
     
     debug('%s\n**** The file after handling ref and label cross referencing\n\n%s\n\n' % ('*'*80, filestr))
 
-    # 4. step: deal with index and bibliography (must be done before lists):
+    # 5. step: deal with index and bibliography (must be done before lists):
     filestr = handle_index_and_bib(filestr, format, has_title)
 
     debug('%s\n**** The file after handling index and bibliography\n\n%s\n\n' % ('*'*80, filestr))
 
-    # 5. step: deal with lists
+    # 6. step: deal with lists
     filestr = typeset_lists(filestr, format,
                             debug_info=[code_blocks, tex_blocks])
     debug('%s\n**** The file after typesetting of list:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    # 6. step: deal with tables
+    # 7. step: deal with tables
     filestr = typeset_tables(filestr, format)
     debug('%s\n**** The file after typesetting of tables:\n\n%s\n\n' % \
           ('*'*80, filestr))
-
-    # 7. step: deal with figures
-    filestr = handle_figures(filestr, format)
 
     # 8. step: do substitutions:
     filestr = inline_tag_subst(filestr, format)

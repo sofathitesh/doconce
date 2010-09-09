@@ -342,6 +342,11 @@ EOF
 {{{
 Unix/DOS> mv mydoc.rst sphinx-rootdir
 }}}
+If you have figures in your document, the relative paths to those will
+be invalid when you work with `mydoc.rst` in the `sphinx-rootdir`
+directory. Either edit `mydoc.rst` so that figure file paths are correct,
+or simply copy your figure directory to `sphinx-rootdir` (if all figures
+are located in a subdirectory).
 
 *Step 4.* Edit the generated `index.rst` file so that `mydoc.rst`
 is included, i.e., add `mydoc` to the `toctree` section so that it becomes
