@@ -483,6 +483,11 @@ fontfamily=tt,xleftmargin=7mm]
 Unix/DOS> mv mydoc.rst sphinx-rootdir
 \end{Verbatim}
 \noindent
+If you have figures in your document, the relative paths to those will
+be invalid when you work with {\fontsize{10pt}{10pt}\verb!mydoc.rst!} in the {\fontsize{10pt}{10pt}\verb!sphinx-rootdir!}
+directory. Either edit {\fontsize{10pt}{10pt}\verb!mydoc.rst!} so that figure file paths are correct,
+or simply copy your figure directory to {\fontsize{10pt}{10pt}\verb!sphinx-rootdir!} (if all figures
+are located in a subdirectory).
 
 \paragraph{Step 4.}
 Edit the generated {\fontsize{10pt}{10pt}\verb!index.rst!} file so that {\fontsize{10pt}{10pt}\verb!mydoc.rst!}

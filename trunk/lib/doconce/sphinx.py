@@ -9,7 +9,7 @@ def sphinx_figure(m):
     caption = m.group('caption').strip()
     m_label = re.search(r'label\{(.+?)\}', caption)
     if m_label:
-        label = m.group(1)
+        label = m_label.group(1)
         result += '\n.. _%s:\n' % label
 
     filename = m.group('filename')
@@ -100,6 +100,9 @@ def sphinx_ref_and_label(section_label2title, format, filestr):
     from common import ref2equations
     filestr = ref2equations(filestr)
     
+    # replace remaining ref{x} as :ref:`x`
+    filestr = re.sub(r'ref\{(.+?)\}', ':ref:`\g<1>`', filestr)
+
     return filestr
 
 def sphinx_index_bib(filestr, index, citations, bibfile):

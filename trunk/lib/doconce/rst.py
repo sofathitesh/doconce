@@ -190,7 +190,10 @@ def define(FILENAME_EXTENSION,
         # (note len(m.group('subst')) gives wrong length for non-ascii strings,
         # better with m.group('subst').decode('utf-8')) or latin-1
         #'section':    lambda m: r'\g<subst>' + '\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
+        # note: r'\g<subst>\n%s' also works fine ?), despite being different...
+        # (it just works in substitution...)
         'section':       lambda m: r'\g<subst>' + '\n%s' % ('='*len(m.group('subst').decode('latin-1'))),
+        #'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('latin-1'))),
         'subsection':    lambda m: r'\g<subst>' + '\n%s' % ('-'*len(m.group('subst').decode('latin-1'))),
         'subsubsection': lambda m: r'\g<subst>' + '\n%s' % ('~'*len(m.group('subst').decode('latin-1'))),
         'paragraph':     r'*\g<subst>* ',  # extra blank

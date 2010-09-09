@@ -156,7 +156,7 @@ URLs with a link word are possible, as in `hpl <http://folk.uio.no/hpl>`_.
 Just a file link goes like `<tutorial.do.txt>`_. References
 to sections may use logical names as labels (e.g., a "label" command right
 after the section title), as in the reference to 
-the chapter ref{my:first:sec}.
+the chapter :ref:`my:first:sec`.
 
 Tables are also supperted, e.g.,
 
@@ -450,6 +450,11 @@ program. Here is a scripted version of the steps with the latter:
         Unix/DOS> mv mydoc.rst sphinx-rootdir
 
 
+If you have figures in your document, the relative paths to those will
+be invalid when you work with ``mydoc.rst`` in the ``sphinx-rootdir``
+directory. Either edit ``mydoc.rst`` so that figure file paths are correct,
+or simply copy your figure directory to ``sphinx-rootdir`` (if all figures
+are located in a subdirectory).
 
 *Step 4.* Edit the generated ``index.rst`` file so that ``mydoc.rst``
 is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes

@@ -805,10 +805,12 @@ HTML. In such cases, the Doconce translator will convert the file to
 a suitable format (say ``mypic.png`` for HTML output).
 
 
+.. _fig:impact:
+
 .. figure:: figs/dinoimpact.*
    :width: 400
 
-   It can't get worse than this....
+   It can't get worse than this.... 
 
 
 Another type of special lines starts with ``@@@CODE`` and enables copying
@@ -953,7 +955,7 @@ these commands work as usual in LaTeX.
 
 It is, in general, recommended to use labels and references for
 (sub)sections, equations, and figures only.
-By the way, here is an example on referencing Figure ref{fig:impact}
+By the way, here is an example on referencing Figure :ref:`fig:impact`
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections :ref:`mathtext` and :ref:`newcommands` are
 nice to demonstrate, as well as a reference to equations,

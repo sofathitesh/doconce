@@ -730,10 +730,12 @@ HTML. In such cases, the Doconce translator will convert the file to
 a suitable format (say ``mypic.png`` for HTML output).
 
 
+.. _figs/dinoimpact.gif:
+
 .. figure:: figs/dinoimpact.gif
    :width: 400
 
-   It can't get worse than this....
+   It can't get worse than this.... 
 
 
 Another type of special lines starts with ``@@@CODE`` and enables copying

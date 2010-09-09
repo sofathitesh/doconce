@@ -186,7 +186,11 @@ n
 y
 y
 y
-EOF</literal_block><paragraph><emphasis>Step 3.</emphasis> Move the <literal>tutorial.rst</literal> file to the Sphinx root directory:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; mv mydoc.rst sphinx-rootdir</literal_block><paragraph><emphasis>Step 4.</emphasis> Edit the generated <literal>index.rst</literal> file so that <literal>mydoc.rst</literal>
+EOF</literal_block><paragraph><emphasis>Step 3.</emphasis> Move the <literal>tutorial.rst</literal> file to the Sphinx root directory:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; mv mydoc.rst sphinx-rootdir</literal_block><paragraph>If you have figures in your document, the relative paths to those will
+be invalid when you work with <literal>mydoc.rst</literal> in the <literal>sphinx-rootdir</literal>
+directory. Either edit <literal>mydoc.rst</literal> so that figure file paths are correct,
+or simply copy your figure directory to <literal>sphinx-rootdir</literal> (if all figures
+are located in a subdirectory).</paragraph><paragraph><emphasis>Step 4.</emphasis> Edit the generated <literal>index.rst</literal> file so that <literal>mydoc.rst</literal>
 is included, i.e., add <literal>mydoc</literal> to the <literal>toctree</literal> section so that it becomes:</paragraph><literal_block xml:space="preserve">.. toctree::
    :maxdepth: 2
 
