@@ -225,6 +225,7 @@ The Doconce text above results in the following little document:
   \phantomsection%
   \addcontentsline{toc}{subsection}{A Subsection with Sample Text}%
   \label{a-subsection-with-sample-text}%
+  \label{my-first-sec}%
 }
 
 Ordinary text looks like ordinary text, and the tags used for
@@ -269,7 +270,7 @@ URLs with a link word are possible, as in \href{http://folk.uio.no/hpl}{hpl}.
 Just a file link goes like \url{tutorial.do.txt}. References
 to sections may use logical names as labels (e.g., a ``label'' command right
 after the section title), as in the reference to
-the chapter ref\{my:first:sec\}.
+the chapter \hyperref[a-subsection-with-sample-text]{A Subsection with Sample Text}.
 
 Tables are also supperted, e.g.,
 

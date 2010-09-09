@@ -1012,9 +1012,9 @@ For example, a filename \texttt{mypic.eps} is fine for LaTeX output but not for
 HTML. In such cases, the Doconce translator will convert the file to
 a suitable format (say \texttt{mypic.png} for HTML output).
 \begin{figure}
-\phantomsection\label{figs-dinoimpact-gif}
+\phantomsection\label{fig-impact}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=400bp]{figs/dinoimpact}}
-\caption{It can't get worse than this....}
+\caption{It can't get worse than this.... (fig:impact)}
 \end{figure}
 
 Another type of special lines starts with \texttt{@@@CODE} and enables copying
@@ -1151,7 +1151,7 @@ these commands work as usual in LaTeX.
 
 It is, in general, recommended to use labels and references for
 (sub)sections, equations, and figures only.
-By the way, here is an example on referencing Figure ref\{fig:impact\}
+By the way, here is an example on referencing Figure \hyperref[fig-impact]{fig:impact}
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections \hyperref[latex-blocks-of-mathematical-text]{LaTeX Blocks of Mathematical Text} and \hyperref[macros-newcommands]{Macros (Newcommands)} are
 nice to demonstrate, as well as a reference to equations,

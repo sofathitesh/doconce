@@ -317,7 +317,7 @@ part of the caption appearing on the same line as <literal>FIGURE:</literal> wil
 included in the formatted caption).</paragraph><paragraph>The filename extension may not be compatible with the chosen output format.
 For example, a filename <literal>mypic.eps</literal> is fine for LaTeX output but not for
 HTML. In such cases, the Doconce translator will convert the file to
-a suitable format (say <literal>mypic.png</literal> for HTML output).</paragraph><target refid="figs-dinoimpact-gif"/><figure ids="figs-dinoimpact-gif" names="figs/dinoimpact.gif"><image uri="figs/dinoimpact.gif" width="400"/><caption>It can't get worse than this....</caption></figure><paragraph>Another type of special lines starts with <literal>@@@CODE</literal> and enables copying
+a suitable format (say <literal>mypic.png</literal> for HTML output).</paragraph><target refid="fig-impact"/><figure ids="fig-impact" names="fig:impact"><image uri="figs/dinoimpact.gif" width="400"/><caption>It can't get worse than this.... (fig:impact)</caption></figure><paragraph>Another type of special lines starts with <literal>@@@CODE</literal> and enables copying
 of computer code from a file directly into a verbatim environment, see
 the section <reference name="Blocks of Verbatim Computer Code" refid="blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</reference> below.</paragraph><target refid="inline-tagging"/></section></section><section ids="id3 inline-tagging" names="inline\ tagging inline:tagging"><title>Inline Tagging</title><paragraph>Doconce supports tags for <emphasis>emphasized phrases</emphasis>, <strong>boldface phrases</strong>,
 and <literal>verbatim text</literal> (also called type writer text, for inline code)
@@ -365,7 +365,7 @@ Code) Wiki formats, labels become anchors and references become links,
 and with LaTeX &quot;label&quot; and &quot;ref&quot; are just equipped with backslashes so
 these commands work as usual in LaTeX.</paragraph><paragraph>It is, in general, recommended to use labels and references for
 (sub)sections, equations, and figures only.
-By the way, here is an example on referencing Figure ref{fig:impact}
+By the way, here is an example on referencing Figure <reference name="fig:impact" refid="fig-impact">fig:impact</reference>
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections <reference name="LaTeX Blocks of Mathematical Text" refid="latex-blocks-of-mathematical-text">LaTeX Blocks of Mathematical Text</reference> and <reference name="Macros (Newcommands)" refid="macros-newcommands">Macros (Newcommands)</reference> are
 nice to demonstrate, as well as a reference to equations,

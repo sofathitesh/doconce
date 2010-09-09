@@ -13,6 +13,7 @@ Doconce Description
 What Is Doconce?
 ================
 
+
 .. index::
    pair: doconce; short explanation
 
@@ -813,6 +814,7 @@ a suitable format (say ``mypic.png`` for HTML output).
    It can't get worse than this.... 
 
 
+
 Another type of special lines starts with ``@@@CODE`` and enables copying
 of computer code from a file directly into a verbatim environment, see 
 the section :ref:`sec:verbatim:blocks` below.
@@ -822,6 +824,7 @@ the section :ref:`sec:verbatim:blocks` below.
 
 Inline Tagging
 --------------
+
 
 .. index:: inline tagging
 

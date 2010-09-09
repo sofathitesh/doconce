@@ -130,6 +130,8 @@ Here is an example of some simple text written in the Doconce format:
 
 The Doconce text above results in the following little document:
 
+.. _my:first:sec:
+
 A Subsection with Sample Text
 -----------------------------
 

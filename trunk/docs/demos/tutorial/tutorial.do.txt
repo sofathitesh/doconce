@@ -125,6 +125,7 @@ Tables are also supperted, e.g.,
 The Doconce text above results in the following little document:
 
 ===== A Subsection with Sample Text =====
+label{my:first:sec}
 
 Ordinary text looks like ordinary text, and the tags used for
 _boldface_ words, *emphasized* words, and `computer` words look

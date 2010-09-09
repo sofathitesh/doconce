@@ -12,7 +12,7 @@ def rst_figure(m):
         label = m_label.group(1)
         result += '\n.. _%s:\n' % label
         # write label into caption:
-        caption = re.sub(r'label\{(.+?)\}', '\g<1>', caption)
+        caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
 
     filename = m.group('filename')
     if not os.path.isfile(filename):
