@@ -89,5 +89,6 @@ setup(
                   ],
     scripts = [os.path.join('bin', f) for \
                f in 'doconce_insertdocstr', 'doconce2format', \
-               'doconce_old2new_format.py', 'doconce_latin2html.py']
+               'doconce_old2new_format.py', 'doconce_latin2html.py',
+               'doconce_gwiki_figsubst.py']
     )

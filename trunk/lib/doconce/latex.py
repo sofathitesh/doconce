@@ -36,6 +36,8 @@ def latexcode(filestr, format):
 
 def figure_latex(m, includegraphics=True):
     filename = m.group('filename')
+    if not os.path.isfile(filename):
+        raise IOError('no figure file %s' % filename)
     basename  = os.path.basename(filename)
     stem, ext = os.path.splitext(basename)
     root, ext = os.path.splitext(filename)
