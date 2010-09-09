@@ -122,7 +122,7 @@ def rst_ref_and_label(section_label2title, format, filestr):
             raise Exception('problem with substituting "%s"' % title)
 
     # remove label{...} from output
-    filestr = re.sub(r'label\{.+?\}', '', filestr)
+    filestr = re.sub(r'label\{.+?\}' + '\n?', '', filestr)
 
     # replace all references to sections:
     for label in section_label2title:
@@ -147,7 +147,7 @@ def rst_index_bib(filestr, index, citations, bibfile):
     filestr = rst_bib(filestr, citations, bibfile)
 
     # reStructuredText does not have index/glossary
-    filestr = re.sub(r'idx\{.+?\}', '', filestr)
+    filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)
 
     return filestr
 

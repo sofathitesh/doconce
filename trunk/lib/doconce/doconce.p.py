@@ -253,7 +253,7 @@ def typeset_lists(filestr, format, debug_info=[]):
             if not lists:
                 result.write(BLANKLINE[format])
             # else: drop writing out blank line inside lists
-            debug('  > This is a blank line')
+                debug('  > This is a blank line')
             lastline = line
             continue
 
@@ -315,9 +315,17 @@ def typeset_lists(filestr, format, debug_info=[]):
             # begin a new list or sublist:
             lists.append({'listtype': listtype, 'indent': indent})
             result.write(LIST[format][listtype]['begin'])
+            if len(lists) > 1:
+                result.write(LIST[format]['separator'])
+
             lastindent = indent
             if listtype == 'enumerate':
                 enumerate_counter = 0
+        elif listtype:
+            # inside a list, but not in the beginning
+            # (we don't write out blank lines inside lists anymore!)
+            # write a possible blank line if the format wants that between items
+            result.write(LIST[format]['separator'])
 
         if indent < lastindent:
             # end a list or sublist, nest back all list
@@ -334,11 +342,9 @@ def typeset_lists(filestr, format, debug_info=[]):
                   'the same indent (%d blanks)' % indent)
 
         if listtype:
-            # need blank line between items and last line was not blank?
-            # (we don't write out blank lines inside lists anymore!)
-            #if not (lastline.isspace() or not lastline):
-            #    result.write(LIST[format]['separator'])
-            result.write(LIST[format]['separator'])
+            # (a separator (blank line) is written above because we need
+            # to ensure that the separator is not written in the top of
+            # an entire new list)
 
             # first write the list item identifier:
             itemformat = LIST[format][listtype]['item']
@@ -376,12 +382,12 @@ def typeset_lists(filestr, format, debug_info=[]):
 
         # this is not a list definition line and therefore we must
         # add keyword + text because these two items make up the
-        # line if a : present
+        # line if a : present in an ordinary line
         if keyword:
             text = keyword + text
         debug('text=[%s]' % text)
         
-        # hack to make wiki have items on a single line:
+        # hack to make wiki have all text in an item on a single line:
         newline = '' if lists and format == 'gwiki' else '\n'  # hack...
         #newline = '\n'
         result.write(text + newline)

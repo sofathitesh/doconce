@@ -14,6 +14,7 @@ BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)D
    scattered around in different documents in different typesetting
    formats? Would it be a good idea to write things once, in one
    place, and include it anywhere?
+
 If any of these questions are of interest, you should keep on reading.
 The Doconce Concept
 Doconce is two things:
@@ -33,6 +34,7 @@ Doconce is two things:
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
     latter to RTF and MS Word.
+
 Doconce was particularly written for the following sample applications:
 
   - Large books written in LaTeX, but where many pieces (computer demos,
@@ -63,6 +65,7 @@ text constructions that allow you to control the formating. For example,
   - a preprocessor (much like the C preprocessor) is integrated so
     other documents (files) can be included and large portions of text
     can be defined in or out of the text.
+
 Here is an example of some simple text written in the Doconce format::
 
         ===== A Subsection with Sample Text =====
@@ -108,12 +111,14 @@ natural in plain text.  Lists are typeset as you would do in an email,
   - item 1
   - item 2
   - item 3
+
 Lists can also have numbered items instead of bullets, just use an 'o'
 (for ordered) instead of the asterisk:
 
  1. item 1
  2. item 2
  3. item 3
+
 URLs with a link word are possible, as in "http://folk.uio.no/hpl":hpl.
 Just a file link goes like "tutorial.do.txt":tutorial.do.txt. References
 to sections may use logical names as labels (e.g., a "label" command right
@@ -198,16 +203,18 @@ newcommands in the 'newcommands*.tex' files *must* appear on a single
 line (multi-line newcommands are too hard to parse with regular
 expressions).
 
-Recent versions of Doconce also offer cross referencing, typically
-one can define labels below (sub)sections, in figure captions, or
-in equations, and then refer to these later. Entries in an index
-can be defined, and citations to literature, with an accompanying
-bibliography in a file, are also supported features. The syntax
-of labels, references, citations, and the bibliography closely resembles
-that of LaTeX, and Doconce documents therefore integrate well as parts
-of large LaTeX documents. For further details on functionality and syntax
-we refer to the 'docs/manual/manual.do.txt' file
-(see the "https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html":demo page for various formats of this document).
+Recent versions of Doconce also offer cross referencing, typically one
+can define labels below (sub)sections, in figure captions, or in
+equations, and then refer to these later. Entries in an index can be
+defined and result in an index at the end for the LaTeX and Sphinx
+formats. Citations to literature, with an accompanying bibliography in
+a file, are also supported. The syntax of labels, references,
+citations, and the bibliography closely resembles that of LaTeX,
+making it easy for Doconce documents to be integrated in LaTeX
+projects (manuals, books). For further details on functionality and
+syntax we refer to the 'docs/manual/manual.do.txt' file (see the
+"https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html":demo
+page for various formats of this document).
 From Doconce to Other Formats
 Transformation of a Doconce document to various other
 formats applies the script 'doconce2format':

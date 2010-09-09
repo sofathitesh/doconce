@@ -18,6 +18,7 @@ Doconce is two things:
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
     latter to RTF and MS Word.
+
 The first point may be of interest even if you adopt a different
 markup language than Doconce, e.g., reStructuredText or Sphinx.
 
@@ -30,6 +31,7 @@ So why not just use reStructuredText or Sphinx? Because Doconce
   - has stronger support for mathematical typesetting,
   - works better as a complete or partial source for large LaTeX 
     documents (reports and books).
+
 Anyway, after having written an initial document in Doconce, you may
 convert to reStructuredText or Sphinx and work with that version for
 the future.
@@ -46,6 +48,7 @@ Doconce was particularly written for the following sample applications:
   - Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
     MS Word documents or in wikis.
+
 You can jump to the section "The Doconce Software Documentation Strategy" to see a recipe for
 how to use Doconce, but first some more motivation for
 the problem which Doconce tries to solve is presented.
@@ -91,6 +94,7 @@ in verbatim environments). To summarize, we need
     text with completely invivisble tagging. 
  3. Tools for inserting appropriately filtered versions of a "singleton"
     documentation file in other documents (doc strings, manuals, tutorials).
+
 One answer to these points is the Doconce markup language, its associated
 tools, and the "http://code.google.com/p/preprocess/":C-style preprocessor tool.
 Then we can *write once, include anywhere*!
@@ -142,6 +146,7 @@ The Doconce Software Documentation Strategy
      reStructuredText for XML, Docbook, OpenOffice, RTF, Word.
    - Run the preprocessor 'preprocess' on the files to produce native
      files for pure computer code and for various other documents.
+
 Consider an example involving a Python module in a 'basename.p.py' file.
 The '.p.py' extension identifies this as a file that has to be
 preprocessed) by the 'preprocess' program. 
@@ -440,7 +445,9 @@ This list gets typeset as
        be intended as shown here
      - subitem 2,
        also spans two lines
+
    - item 3
+
 In an ordered list, each item starts with an 'o' (as the first letter 
 in "ordered")::
 
@@ -462,7 +469,9 @@ resulting in
   2. item 2
      - subitem 1
      - subitem 2
+
   3. item 3
+
 Ordered lists cannot have an ordered sublist, i.e., the ordering 
 applies to the outer list only.
 
@@ -490,7 +499,6 @@ The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
 sections, subsections, paragraphs., figures, etc.
-
 
 
 Lines starting with 'TITLE:', 'AUTHOR:', and 'DATE:' are optional and used
@@ -535,16 +543,17 @@ format::
 Similar typesetting is done for LaTeX and HTML formats.
 
 
-
 Headlines are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
 or equal signs (=):
+
    - 7 underscores or equal signs for sections
    - 5 for subsections
    - 3 for subsubsections
    - 2 underscrores (only! - it looks best) for paragraphs 
      (paragraph heading will be inlined)
+
 Headings can be surrounded by blanks if desired.
 
 Here are some examples::
@@ -596,7 +605,6 @@ HTML. In such cases, the Doconce translator will convert the file to
 a suitable format (say 'mypic.png' for HTML output).
 
 FIGURE:[figs/dinoimpact.gif, width=400] It can't get worse than this.... 
-
 
 Another type of special lines starts with '@@@CODE' and enables copying
 of computer code from a file directly into a verbatim environment, see 

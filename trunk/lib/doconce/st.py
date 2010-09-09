@@ -42,19 +42,19 @@ def define(FILENAME_EXTENSION,
 
     LIST['st'] = {
         'itemize':
-        {'begin': '', 'item': '-', 'end': ''},
+        {'begin': '', 'item': '-', 'end': '\n'},
 
         'enumerate':
-        {'begin': '', 'item': '%d.', 'end': ''},
+        {'begin': '', 'item': '%d.', 'end': '\n'},
 
         'description':
-        {'begin': '', 'item': '%s -- ', 'end': ''},
+        {'begin': '', 'item': '%s -- ', 'end': '\n'},
 
         'separator': '',
         }
     from common import DEFAULT_ARGLIST
     ARGLIST['st'] = DEFAULT_ARGLIST
-    from plaintext import plaintext_ref_and_label, plain_index_bib
-    CROSS_REFS['st'] = plaintext_ref_and_label
+    from plaintext import plain_ref_and_label, plain_index_bib
+    CROSS_REFS['st'] = plain_ref_and_label
     INDEX_BIB['st'] = plain_index_bib
     

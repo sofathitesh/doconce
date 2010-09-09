@@ -121,8 +121,8 @@ def html_index_bib(filestr, index, citations, bibfile):
                          flags=re.MULTILINE)
 
     # could use anchors for idx{...}, but multiple entries of an index
-    # would lead to multiple anchors
-    filestr = re.sub(r'idx\{.+?\}', '', filestr)  # remove all index entries
+    # would lead to multiple anchors, so remove them all:
+    filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)
 
     return filestr
 

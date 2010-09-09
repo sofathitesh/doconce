@@ -87,7 +87,7 @@ def sphinx_ref_and_label(section_label2title, format, filestr):
             raise Exception('problem with substituting "%s"' % title)
 
     # remove label{...} from output
-    filestr = re.sub(r'label\{.+?\}', '', filestr)
+    filestr = re.sub(r'label\{.+?\}' + '\n', '', filestr)
 
     # replace all references to sections:
     for label in section_label2title:
