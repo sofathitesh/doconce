@@ -635,18 +635,14 @@ a suitable format (say `mypic.png` for HTML output).
 
 ---------------------------------------------------------------
 
-Figure: It can't get worse than this.... 
+Figure: It can't get worse than this.... (fig:impact)
 
 https://doconce.googlecode.com/hg/trunk/docs/manual/figs/dinoimpact.gif
 
 <wiki:comment> 
-Put the figure file figs/dinoimpact.gif on the web and write the
-URL above or below the Figure: ... line. Then remove these comments.
-
-Typical URLs for figures stored along with the code at googlecode.com:
-[http://yourproject.googlecode.com/svn/.../figs/dinoimpact.gif
-http://yourproject.googlecode.com/hg/.../figs/dinoimpact.gif
- /wiki:comment]
+Put the figure file figs/dinoimpact.gif on the web (e.g., as part of the
+googlecode repository) and substitute the line above with the URL.
+</wiki:comment>
 ---------------------------------------------------------------
 
 
@@ -752,7 +748,7 @@ these commands work as usual in LaTeX.
 
 It is, in general, recommended to use labels and references for
 (sub)sections, equations, and figures only.
-By the way, here is an example on referencing Figure ref{fig:impact}
+By the way, here is an example on referencing Figure fig:impact
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections [#LaTeX_Blocks_of_Mathematical_Text] and [#Macros_(Newcommands)] are
 nice to demonstrate, as well as a reference to equations,

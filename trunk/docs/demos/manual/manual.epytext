@@ -7,6 +7,7 @@ BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)D
 What Is Doconce?
 ================
 
+
 Doconce is two things:
 
  1. Doconce is a working strategy for documenting software in a single
@@ -679,7 +680,8 @@ For example, a filename C{mypic.eps} is fine for LaTeX output but not for
 HTML. In such cases, the Doconce translator will convert the file to
 a suitable format (say C{mypic.png} for HTML output).
 
-FIGURE:[figs/dinoimpact.gif, width=400] It can't get worse than this.... 
+FIGURE:[figs/dinoimpact.gif, width=400] It can't get worse than this.... {fig:impact}
+
 
 Another type of special lines starts with C{@@@CODE} and enables copying
 of computer code from a file directly into a verbatim environment, see 
@@ -688,6 +690,7 @@ the section "Blocks of Verbatim Computer Code" below.
 
 Inline Tagging
 --------------
+
 
 Doconce supports tags for I{emphasized phrases}, B{boldface phrases},
 and C{verbatim text} (also called type writer text, for inline code)

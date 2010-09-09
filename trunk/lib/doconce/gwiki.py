@@ -35,7 +35,9 @@ def gwiki_figure(m):
             sys.exit(1)
         filename = root + '.png'
     caption = m.group('caption')
-    
+    # keep label if it's there:
+    caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
+        
     print """
 NOTE: Place %s at some place on the web and edit the
       .gwiki page, either manually (seach for 'Figure: ')
@@ -52,16 +54,12 @@ Figure: %s
 (the URL of the image file %s must be inserted here)
 
 <wiki:comment> 
-Put the figure file %s on the web and write the
-URL above or below the Figure: ... line. Then remove these comments.
-
-Typical URLs for figures stored along with the code at googlecode.com:
-http://yourproject.googlecode.com/svn/.../%s
-http://yourproject.googlecode.com/hg/.../%s
+Put the figure file %s on the web (e.g., as part of the
+googlecode repository) and substitute the line above with the URL.
 </wiki:comment>
 ---------------------------------------------------------------
 
-""" % (caption, filename, filename, filename, filename)
+""" % (caption, filename, filename)
     return result
 
 from common import table_analysis
@@ -121,10 +119,7 @@ def gwiki_ref_and_label(section_label2title, format, filestr):
     replacement = r'the chapter\g<1> ref{'
     filestr = re.sub(pattern, replacement, filestr)
 
-    # remove label{...} from output (when only label{} on a line, remove
-    # the newline too, leave label in figure captions, and remove all the rest)
-    filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
-    filestr = re.sub(r'^(FIGURE:.+)label\{(.+?)\}', '\g<1>(\g<2>)', filestr, flags=re.MULTILINE)
+    # remove label{...} from output
     filestr = re.sub(r'label\{.+?\}', '', filestr)  # all the remaining
 
     # anchors in titles do not work...
@@ -137,6 +132,9 @@ def gwiki_ref_and_label(section_label2title, format, filestr):
 
     from common import ref2equations
     filestr = ref2equations(filestr)
+
+    # replace remaining ref{x} as x
+    filestr = re.sub(r'ref\{(.+?)\}', '\g<1>', filestr)
 
     return filestr
 

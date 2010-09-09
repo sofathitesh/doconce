@@ -123,7 +123,7 @@ URLs with a link word are possible, as in "http://folk.uio.no/hpl":hpl.
 Just a file link goes like "tutorial.do.txt":tutorial.do.txt. References
 to sections may use logical names as labels (e.g., a "label" command right
 after the section title), as in the reference to 
-the chapter ref{my:first:sec}.
+the chapter "A Subsection with Sample Text".
 
 Tables are also supperted, e.g.,
 

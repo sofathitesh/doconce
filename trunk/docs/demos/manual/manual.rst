@@ -13,6 +13,7 @@ Doconce Description
 What Is Doconce?
 ================
 
+
 Doconce is two things:
 
  1. Doconce is a working strategy for documenting software in a single
@@ -730,12 +731,13 @@ HTML. In such cases, the Doconce translator will convert the file to
 a suitable format (say ``mypic.png`` for HTML output).
 
 
-.. _figs/dinoimpact.gif:
+.. _fig:impact:
 
 .. figure:: figs/dinoimpact.gif
    :width: 400
 
-   It can't get worse than this.... 
+   It can't get worse than this.... (fig:impact)
+
 
 
 Another type of special lines starts with ``@@@CODE`` and enables copying
@@ -747,6 +749,7 @@ the section `Blocks of Verbatim Computer Code`_ below.
 
 Inline Tagging
 --------------
+
 
 Doconce supports tags for *emphasized phrases*, **boldface phrases**,
 and ``verbatim text`` (also called type writer text, for inline code)
@@ -850,7 +853,7 @@ these commands work as usual in LaTeX.
 
 It is, in general, recommended to use labels and references for
 (sub)sections, equations, and figures only.
-By the way, here is an example on referencing Figure ref{fig:impact}
+By the way, here is an example on referencing Figure `fig:impact`_
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections `LaTeX Blocks of Mathematical Text`_ and `Macros (Newcommands)`_ are
 nice to demonstrate, as well as a reference to equations,

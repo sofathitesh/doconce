@@ -128,6 +128,8 @@ Here is an example of some simple text written in the Doconce format::
 
 The Doconce text above results in the following little document:
 
+.. _my:first:sec:
+
 A Subsection with Sample Text
 -----------------------------
 
@@ -154,7 +156,7 @@ URLs with a link word are possible, as in `hpl <http://folk.uio.no/hpl>`_.
 Just a file link goes like `<tutorial.do.txt>`_. References
 to sections may use logical names as labels (e.g., a "label" command right
 after the section title), as in the reference to 
-the chapter ref{my:first:sec}.
+the chapter `A Subsection with Sample Text`_.
 
 Tables are also supperted, e.g.,
 
