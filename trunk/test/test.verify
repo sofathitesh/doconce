@@ -34,6 +34,7 @@ files = '.do.txt', '.html', '.tex', '.rst', '.sphinx.rst', '.gwiki', '.st', '.ep
 files = ['testdoc' + ext for ext in files]
 for f in files:
     add(f, log)
+add('make.sh', log)
 log.close()
 
 tutdir = os.path.join(os.pardir, 'docs', 'tutorial')
@@ -55,6 +56,7 @@ files = '.do.txt', '.html', '.tex', '.rst', '.sphinx.rst', '.gwiki', '.st', '.ep
 files = ['tutorial' + ext for ext in files]
 for f in files:
     add(f, log)
+add('make.sh', log)
 
 # test DocWriter:
 os.chdir(thisdir)
@@ -84,5 +86,6 @@ files = '.do.txt', '.html', '.tex', '.rst', '.sphinx.rst', '.gwiki', '.st', '.ep
 files = ['manual' + ext for ext in files]
 for f in files:
     add(f, log)
+add('make.sh', log)
 
 log.close()

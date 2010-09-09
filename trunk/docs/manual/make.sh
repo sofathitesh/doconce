@@ -43,6 +43,7 @@ cp manual.rst manual.sphinx.rst
 cp manual.rst sphinx-rootdir
 # index-sphinx is a ready-made version of index.rst:
 cp index-sphinx sphinx-rootdir/index.rst
+cp -r figs sphinx-rootdir
 # run sphinx:
 cd sphinx-rootdir
 make clean
