@@ -217,7 +217,11 @@ n
 y
 y
 y
-EOF</literal_block><paragraph><emphasis>Step 3.</emphasis> Move the <literal>tutorial.rst</literal> file to the Sphinx root directory:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; mv mydoc.rst sphinx-rootdir</literal_block><paragraph><emphasis>Step 4.</emphasis> Edit the generated <literal>index.rst</literal> file so that <literal>mydoc.rst</literal>
+EOF</literal_block><paragraph><emphasis>Step 3.</emphasis> Move the <literal>tutorial.rst</literal> file to the Sphinx root directory:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; mv mydoc.rst sphinx-rootdir</literal_block><paragraph>If you have figures in your document, the relative paths to those will
+be invalid when you work with <literal>mydoc.rst</literal> in the <literal>sphinx-rootdir</literal>
+directory. Either edit <literal>mydoc.rst</literal> so that figure file paths are correct,
+or simply copy your figure directory to <literal>sphinx-rootdir</literal> (if all figures
+are located in a subdirectory).</paragraph><paragraph><emphasis>Step 4.</emphasis> Edit the generated <literal>index.rst</literal> file so that <literal>mydoc.rst</literal>
 is included, i.e., add <literal>mydoc</literal> to the <literal>toctree</literal> section so that it becomes:</paragraph><literal_block xml:space="preserve">.. toctree::
    :maxdepth: 2
 
@@ -529,7 +533,15 @@ the formatting so that Doconce treats it properly. Doconce is very much
 based on regular expressions, which are known to be non-trivial to
 debug years after they are created. The main developer of Doconce has
 hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.</paragraph><paragraph><emphasis>The LaTeX File Does Not Compile.</emphasis> If the problem is undefined control sequence involving:</paragraph><literal_block xml:space="preserve">\code{...}</literal_block><paragraph>the cause is usually a verbatim inline text (in backquotes in the
+well for his diverse applications of it.</paragraph><paragraph><emphasis>Code Block Errors in reST.</emphasis> Sometimes reStructuredText (reST) reports an &quot;Unexpected indentation&quot;
+at the beginning of a code block. If you see a <literal>!bc</literal>, which should
+have been removed by <literal>doconce2format</literal>, it is usually an error in the
+Doconce source. Check if the line before the code block ends in
+one colon (not two!), a question mark, an exclamation mark, a comma, a
+period, or just a newline/space after text. If not, make sure that
+the ending is among the mentioned. Then <literal>!bc</literal> will be replaced
+and a double colon at the preceding line (which is the right way in
+reST to indicate a verbatim block of text).</paragraph><paragraph><emphasis>The LaTeX File Does Not Compile.</emphasis> If the problem is undefined control sequence involving:</paragraph><literal_block xml:space="preserve">\code{...}</literal_block><paragraph>the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.</paragraph><paragraph><emphasis>Verbatim Code Blocks Inside Lists Look Ugly.</emphasis> Read the Section <emphasis>Blocks of Verbatim Computer Code</emphasis> above.  Start the
 <literal>!bc</literal> and <literal>!ec</literal> tags in column 1 of the file, and be careful with

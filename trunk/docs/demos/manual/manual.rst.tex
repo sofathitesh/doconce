@@ -647,6 +647,12 @@ Unix/DOS>~mv~mydoc.rst~sphinx-rootdir
 }
 \end{quote}
 
+If you have figures in your document, the relative paths to those will
+be invalid when you work with \texttt{mydoc.rst} in the \texttt{sphinx-rootdir}
+directory. Either edit \texttt{mydoc.rst} so that figure file paths are correct,
+or simply copy your figure directory to \texttt{sphinx-rootdir} (if all figures
+are located in a subdirectory).
+
 \emph{Step 4.} Edit the generated \texttt{index.rst} file so that \texttt{mydoc.rst}
 is included, i.e., add \texttt{mydoc} to the \texttt{toctree} section so that it becomes:
 %
@@ -1578,6 +1584,16 @@ based on regular expressions, which are known to be non-trivial to
 debug years after they are created. The main developer of Doconce has
 hardly any time to work on debugging the code, but the software works
 well for his diverse applications of it.
+
+\emph{Code Block Errors in reST.} Sometimes reStructuredText (reST) reports an ``Unexpected indentation''
+at the beginning of a code block. If you see a \texttt{!bc}, which should
+have been removed by \texttt{doconce2format}, it is usually an error in the
+Doconce source. Check if the line before the code block ends in
+one colon (not two!), a question mark, an exclamation mark, a comma, a
+period, or just a newline/space after text. If not, make sure that
+the ending is among the mentioned. Then \texttt{!bc} will be replaced
+and a double colon at the preceding line (which is the right way in
+reST to indicate a verbatim block of text).
 
 \emph{The LaTeX File Does Not Compile.} If the problem is undefined control sequence involving:
 %

@@ -137,6 +137,11 @@ __Step 3.__ Move the `tutorial.rst` file to the Sphinx root directory:
 !bc
 Unix/DOS> mv mydoc.rst sphinx-rootdir
 !ec
+If you have figures in your document, the relative paths to those will
+be invalid when you work with `mydoc.rst` in the `sphinx-rootdir`
+directory. Either edit `mydoc.rst` so that figure file paths are correct,
+or simply copy your figure directory to `sphinx-rootdir` (if all figures
+are located in a subdirectory).
 
 __Step 4.__ Edit the generated `index.rst` file so that `mydoc.rst`
 is included, i.e., add `mydoc` to the `toctree` section so that it becomes

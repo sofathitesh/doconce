@@ -715,6 +715,11 @@ EOF
 <pre class="literal-block">
 Unix/DOS&gt; mv mydoc.rst sphinx-rootdir
 </pre>
+<p>If you have figures in your document, the relative paths to those will
+be invalid when you work with <tt class="docutils literal">mydoc.rst</tt> in the <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt>
+directory. Either edit <tt class="docutils literal">mydoc.rst</tt> so that figure file paths are correct,
+or simply copy your figure directory to <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt> (if all figures
+are located in a subdirectory).</p>
 <p><em>Step 4.</em> Edit the generated <tt class="docutils literal">index.rst</tt> file so that <tt class="docutils literal">mydoc.rst</tt>
 is included, i.e., add <tt class="docutils literal">mydoc</tt> to the <tt class="docutils literal">toctree</tt> section so that it becomes:</p>
 <pre class="literal-block">
@@ -1331,6 +1336,15 @@ based on regular expressions, which are known to be non-trivial to
 debug years after they are created. The main developer of Doconce has
 hardly any time to work on debugging the code, but the software works
 well for his diverse applications of it.</p>
+<p><em>Code Block Errors in reST.</em> Sometimes reStructuredText (reST) reports an &quot;Unexpected indentation&quot;
+at the beginning of a code block. If you see a <tt class="docutils literal">!bc</tt>, which should
+have been removed by <tt class="docutils literal">doconce2format</tt>, it is usually an error in the
+Doconce source. Check if the line before the code block ends in
+one colon (not two!), a question mark, an exclamation mark, a comma, a
+period, or just a newline/space after text. If not, make sure that
+the ending is among the mentioned. Then <tt class="docutils literal">!bc</tt> will be replaced
+and a double colon at the preceding line (which is the right way in
+reST to indicate a verbatim block of text).</p>
 <p><em>The LaTeX File Does Not Compile.</em> If the problem is undefined control sequence involving:</p>
 <pre class="literal-block">
 \code{...}

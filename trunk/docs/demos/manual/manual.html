@@ -527,6 +527,11 @@ EOF
 Unix/DOS> mv mydoc.rst sphinx-rootdir
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
+If you have figures in your document, the relative paths to those will
+be invalid when you work with <TT>mydoc.rst</TT> in the <TT>sphinx-rootdir</TT>
+directory. Either edit <TT>mydoc.rst</TT> so that figure file paths are correct,
+or simply copy your figure directory to <TT>sphinx-rootdir</TT> (if all figures
+are located in a subdirectory).
 
 <P>
 <B>Step 4.</B> Edit the generated <TT>index.rst</TT> file so that <TT>mydoc.rst</TT>
@@ -831,7 +836,7 @@ HTML. In such cases, the Doconce translator will convert the file to
 a suitable format (say <TT>mypic.png</TT> for HTML output).
 
 <P>
-<IMG SRC="figs/dinoimpact.gif"  width=400> It can't get worse than this.... <A NAME="fig:impact"></A>
+<IMG SRC="figs/dinoimpact.gif" ALIGN="center"  width=400> It can't get worse than this.... <A NAME="fig:impact"></A>
 
 <P>
 
@@ -1317,6 +1322,17 @@ based on regular expressions, which are known to be non-trivial to
 debug years after they are created. The main developer of Doconce has
 hardly any time to work on debugging the code, but the software works
 well for his diverse applications of it.
+
+<P>
+<B>Code Block Errors in reST.</B> Sometimes reStructuredText (reST) reports an "Unexpected indentation"
+at the beginning of a code block. If you see a <TT>!bc</TT>, which should
+have been removed by <TT>doconce2format</TT>, it is usually an error in the
+Doconce source. Check if the line before the code block ends in
+one colon (not two!), a question mark, an exclamation mark, a comma, a
+period, or just a newline/space after text. If not, make sure that
+the ending is among the mentioned. Then <TT>!bc</TT> will be replaced 
+and a double colon at the preceding line (which is the right way in
+reST to indicate a verbatim block of text).
 
 <P>
 <B>The LaTeX File Does Not Compile.</B> If the problem is undefined control sequence involving
