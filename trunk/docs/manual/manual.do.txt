@@ -67,7 +67,6 @@ the problem which Doconce tries to solve is presented.
 
 
 ======= Motivation: Problems with Documenting Software =======
-
 idx{doconce!motivation}
 
 __Duplicated Information.__ It is common to write some software
@@ -523,11 +522,13 @@ Headlines are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
 or equal signs (=):
+
    * 7 underscores or equal signs for sections
    * 5 for subsections
    * 3 for subsubsections
    * 2 underscrores (only! - it looks best) for paragraphs 
      (paragraph heading will be inlined)
+
 Headings can be surrounded by blanks if desired.
 
 Here are some examples:

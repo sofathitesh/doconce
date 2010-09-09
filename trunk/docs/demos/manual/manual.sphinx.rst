@@ -13,13 +13,11 @@ Doconce Description
 What Is Doconce?
 ================
 
-
 .. index::
    pair: doconce; short explanation
 
 
 Doconce is two things:
-
 
  1. Doconce is a working strategy for documenting software in a single
     place and avoiding duplication of information. The slogan is:
@@ -43,7 +41,6 @@ markup language than Doconce, e.g., reStructuredText or Sphinx.
 
 So why not just use reStructuredText or Sphinx? Because Doconce
 
-
   * can convert to plain *untagged* text, 
     more desirable for computer programs and email, 
 
@@ -61,7 +58,6 @@ convert to reStructuredText or Sphinx and work with that version for
 the future.
 
 Doconce was particularly written for the following sample applications:
-
 
   * Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
@@ -83,7 +79,6 @@ the problem which Doconce tries to solve is presented.
 
 Motivation: Problems with Documenting Software
 ==============================================
-
 
 .. index::
    pair: doconce; motivation
@@ -122,7 +117,6 @@ LaTeX manuals should have nicely typeset mathematics, while Pydoc,
 Epydoc, and HappyDoc must show LaTeX math in verbatim mode.
 Unfortunately, Epytext is annoyed by even very simple LaTeX math (also
 in verbatim environments). To summarize, we need
-
 
  1. A minimally tagged markup language with full support for 
     for mathematics and verbatim computer code.
@@ -181,8 +175,6 @@ requires of course `sphinx <http://sphinx.pocoo.org>`_.
 
 The Doconce Software Documentation Strategy
 -------------------------------------------
-
-
 
    * Write software documentation, both tutorials and manuals, in
      the Doconce format. Use many files - and never duplicate information!
@@ -598,7 +590,6 @@ and is indented as follows
 
 This list gets typeset as
 
-
    * item 1
 
    * item 2
@@ -632,7 +623,6 @@ in "ordered"):
 
 resulting in
 
-
   1. item 1
 
   2. item 2
@@ -661,7 +651,6 @@ by a keyword followed by a colon:
 
 
 The result becomes
-
 
    keyword1: 
      explanation of keyword1
@@ -817,7 +806,6 @@ a suitable format (say ``mypic.png`` for HTML output).
    It can't get worse than this....
 
 
-
 Another type of special lines starts with ``@@@CODE`` and enables copying
 of computer code from a file directly into a verbatim environment, see 
 the section :ref:`sec:verbatim:blocks` below.
@@ -827,7 +815,6 @@ the section :ref:`sec:verbatim:blocks` below.
 
 Inline Tagging
 --------------
-
 
 .. index:: inline tagging
 
@@ -1095,7 +1082,6 @@ the Doconce source in an ugly way?).
 Blocks of Verbatim Computer Code
 --------------------------------
 
-
 Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" ``!bc`` keyword and an "end code" ``!ec`` keyword. Both
 keywords must be on a single line and *start at the beginning of the
@@ -1202,7 +1188,6 @@ environment.)
 LaTeX Blocks of Mathematical Text
 ---------------------------------
 
-
 Blocks of mathematical text are like computer code blocks, but
 the opening tag is ``!bt`` (begin TeX) and the closing tag is
 ``!et``. It is important that ``!bt`` and ``!et`` appear on the beginning of the
@@ -1232,7 +1217,6 @@ okay in other formats).
 
 Macros (Newcommands)
 --------------------
-
 
 Doconce supports a type of macros via a LaTeX-style *newcommand*
 construction.  The newcommands defined in a file with name
@@ -1300,7 +1284,6 @@ in the current format.
 
 Missing Features
 ----------------
-
 
   * Footnotes
 
@@ -1541,7 +1524,6 @@ arguments and variables are nicely formatted.
 
 The result depends on the output format: all formats except Epytext 
 and Sphinx just typeset the list as a list with keywords.
-
 
     :var x: 
       x value (float),

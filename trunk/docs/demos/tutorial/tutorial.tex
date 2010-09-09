@@ -52,11 +52,14 @@ August 25, 2010
    start with some very simple text-like format that easily converts
    to the formats listed above, and at some later stage eventually go
    with a particular format?
+
  \item Do you find it problematic that you have the same information
    scattered around in different documents in different typesetting
    formats? Would it be a good idea to write things once, in one
    place, and include it anywhere?
 \end{itemize}
+
+\noindent
 If any of these questions are of interest, you should keep on reading.
 
 
@@ -71,6 +74,7 @@ Doconce is two things:
     can be transformed to many different formats for a variety of
     documents (manuals, tutorials, books, doc strings, source code
     documentation, etc.).
+
  \item Doconce is a simple and minimally tagged markup language that can
     be used for the above purpose. That is, the Doconce format look
     like ordinary ASCII text (much like what you would use in an
@@ -81,20 +85,26 @@ Doconce is two things:
     you can go to XML, HTML, {\LaTeX}, PDF, OpenOffice, and from the
     latter to RTF and MS Word.
 \end{enumerate}
+
+\noindent
 Doconce was particularly written for the following sample applications:
 
 \begin{itemize}
   \item Large books written in {\LaTeX}, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
     contexts in other formats, including plain HTML, Sphinx, or MS Word.
+
   \item Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
     googlecode.com, and as {\LaTeX} integrated in, e.g., a master's thesis.
+
   \item Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
     MS Word documents or in wikis.
 \end{itemize}
+
+\noindent
 
 
 \section{What Does Doconce Look Like?}
@@ -104,20 +114,31 @@ text constructions that allow you to control the formating. For example,
 
 \begin{itemize}
   \item bullet lists arise from lines starting with an asterisk,
+
   \item \emph{emphasized words} are surrounded by asterisks, 
+
   \item \textbf{words in boldface} are surrounded by underscores, 
+
   \item words from computer code are enclosed in back quotes and 
     then typeset verbatim,
+
   \item blocks of computer code can easily be included, also from source files,
+
   \item blocks of {\LaTeX} mathematics can easily be included,
+
   \item there is support for both {\LaTeX} and text-like inline mathematics,
+
   \item figures with captions, URLs with links, labels and references
     are supported,
+
   \item comments can be inserted throughout the text,
+
   \item a preprocessor (much like the C preprocessor) is integrated so
     other documents (files) can be included and large portions of text
     can be defined in or out of the text.
 \end{itemize}
+
+\noindent
 Here is an example of some simple text written in the Doconce format:
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
@@ -165,17 +186,25 @@ natural in plain text.  Lists are typeset as you would do in an email,
 
 \begin{itemize}
   \item item 1
+
   \item item 2
+
   \item item 3
 \end{itemize}
+
+\noindent
 Lists can also have numbered items instead of bullets, just use an {\fontsize{10pt}{10pt}\verb!o!}
 (for ordered) instead of the asterisk:
 
 \begin{enumerate}
  \item item 1
+
  \item item 2
+
  \item item 3
 \end{enumerate}
+
+\noindent
 URLs with a link word are possible, as in \href{http://folk.uio.no/hpl}{hpl}.
 Just a file link goes like \href{tutorial.do.txt}{tutorial.do.txt}. References
 to sections may use logical names as labels (e.g., a "label" command right
@@ -270,16 +299,18 @@ newcommands in the {\fontsize{10pt}{10pt}\verb!newcommands*.tex!} files \emph{mu
 line (multi-line newcommands are too hard to parse with regular
 expressions).
 
-Recent versions of Doconce also offer cross referencing, typically
-one can define labels below (sub)sections, in figure captions, or
-in equations, and then refer to these later. Entries in an index
-can be defined, and citations to literature, with an accompanying
-bibliography in a file, are also supported features. The syntax
-of labels, references, citations, and the bibliography closely resembles
-that of {\LaTeX}, and Doconce documents therefore integrate well as parts
-of large {\LaTeX} documents. For further details on functionality and syntax
-we refer to the {\fontsize{10pt}{10pt}\verb!docs/manual/manual.do.txt!} file
-(see the \href{https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html}{demo page} for various formats of this document).
+Recent versions of Doconce also offer cross referencing, typically one
+can define labels below (sub)sections, in figure captions, or in
+equations, and then refer to these later. Entries in an index can be
+defined and result in an index at the end for the {\LaTeX} and Sphinx
+formats. Citations to literature, with an accompanying bibliography in
+a file, are also supported. The syntax of labels, references,
+citations, and the bibliography closely resembles that of {\LaTeX},
+making it easy for Doconce documents to be integrated in {\LaTeX}
+projects (manuals, books). For further details on functionality and
+syntax we refer to the {\fontsize{10pt}{10pt}\verb!docs/manual/manual.do.txt!} file (see the
+\href{https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html}{demo
+page} for various formats of this document).
 
 
 % Example on including another Doconce file:

@@ -12,8 +12,6 @@ Date: August 27, 2010
 What Is Doconce?
 ================
 
-
-
 Doconce is two things:
 
  1. Doconce is a working strategy for documenting software in a single
@@ -22,6 +20,7 @@ Doconce is two things:
     can be transformed to many different formats for a variety of
     documents (manuals, tutorials, books, doc strings, source code
     documentation, etc.).
+
  2. Doconce is a simple and minimally tagged markup language that can
     be used for the above purpose. That is, the Doconce format look
     like ordinary ASCII text (much like what you would use in an
@@ -31,6 +30,7 @@ Doconce is two things:
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
     latter to RTF and MS Word.
+
 The first point may be of interest even if you adopt a different
 markup language than Doconce, e.g., reStructuredText or Sphinx.
 
@@ -38,11 +38,16 @@ So why not just use reStructuredText or Sphinx? Because Doconce
 
   * can convert to plain *untagged* text, 
     more desirable for computer programs and email, 
+
   * has less cluttered tagging of text,
+
   * has better support for copying in computer code from other files,
+
   * has stronger support for mathematical typesetting,
+
   * works better as a complete or partial source for large LaTeX 
     documents (reports and books).
+
 Anyway, after having written an initial document in Doconce, you may
 convert to reStructuredText or Sphinx and work with that version for
 the future.
@@ -52,13 +57,16 @@ Doconce was particularly written for the following sample applications:
   * Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
     contexts in other formats, including plain HTML, Sphinx, or MS Word.
+
   * Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
     googlecode.com, and as LaTeX integrated in, e.g., a master's thesis.
+
   * Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
     MS Word documents or in wikis.
+
 You can jump to the section "The Doconce Software Documentation Strategy" to see a recipe for
 how to use Doconce, but first some more motivation for
 the problem which Doconce tries to solve is presented.
@@ -66,8 +74,6 @@ the problem which Doconce tries to solve is presented.
 
 Motivation: Problems with Documenting Software
 ==============================================
-
-
 
 *Duplicated Information.* It is common to write some software
 documentation in the code (doc strings in Python, doxygen in C++,
@@ -105,11 +111,14 @@ in verbatim environments). To summarize, we need
 
  1. A minimally tagged markup language with full support for 
     for mathematics and verbatim computer code.
+
  2. Filters for producing highly tagged formats (LaTeX, HTML, XML),
     medium tagged formats (reStructuredText, Epytext), and plain
     text with completely invivisble tagging. 
+
  3. Tools for inserting appropriately filtered versions of a "singleton"
     documentation file in other documents (doc strings, manuals, tutorials).
+
 One answer to these points is the Doconce markup language, its associated
 tools, and the C-style preprocessor tool (http://code.google.com/p/preprocess/).
 Then we can *write once, include anywhere*!
@@ -156,9 +165,9 @@ requires of course sphinx (http://sphinx.pocoo.org).
 The Doconce Software Documentation Strategy
 -------------------------------------------
 
-
    * Write software documentation, both tutorials and manuals, in
      the Doconce format. Use many files - and never duplicate information!
+
    * Use #include statements in source code (especially in doc
      strings) and in LaTeX documents for including documentation
      files.  These documentation files must be filtered to an
@@ -168,8 +177,10 @@ The Doconce Software Documentation Strategy
      the Sphinx dialect of reStructuredText for Sphinx API
      documentation; LaTeX for LaTeX manuals; and possibly
      reStructuredText for XML, Docbook, OpenOffice, RTF, Word.
+
    * Run the preprocessor preprocess on the files to produce native
      files for pure computer code and for various other documents.
+
 Consider an example involving a Python module in a basename.p.py file.
 The .p.py extension identifies this as a file that has to be
 preprocessed) by the preprocess program. 
@@ -246,7 +257,6 @@ commands::
 
 Demos
 -----
-
 
 
 The current text is generated from a Doconce format stored in the::
@@ -504,13 +514,19 @@ and is indented as follows::
 This list gets typeset as
 
    * item 1
+
    * item 2
+
      * subitem 1, if there are more
        lines, each line must
        be intended as shown here
+
      * subitem 2,
        also spans two lines
+
+
    * item 3
+
 In an ordered list, each item starts with an o (as the first letter 
 in "ordered")::
 
@@ -529,10 +545,16 @@ in "ordered")::
 resulting in
 
   1. item 1
+
   2. item 2
+
      * subitem 1
+
      * subitem 2
+
+
   3. item 3
+
 Ordered lists cannot have an ordered sublist, i.e., the ordering 
 applies to the outer list only.
 
@@ -551,10 +573,12 @@ The result becomes
 
    keyword1: 
      explanation of keyword1
+
    keyword2: 
      explanation
      of keyword2 (remember to indent properly
      if there are multiple lines)
+
 Special Lines
 -------------
 
@@ -562,7 +586,6 @@ The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
 sections, subsections, paragraphs., figures, etc.
-
 
 
 Lines starting with TITLE:, AUTHOR:, and DATE: are optional and used
@@ -607,16 +630,20 @@ format::
 Similar typesetting is done for LaTeX and HTML formats.
 
 
-
 Headlines are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
 or equal signs (=):
+
    * 7 underscores or equal signs for sections
+
    * 5 for subsections
+
    * 3 for subsubsections
+
    * 2 underscrores (only! - it looks best) for paragraphs 
      (paragraph heading will be inlined)
+
 Headings can be surrounded by blanks if desired.
 
 Here are some examples::
@@ -677,7 +704,6 @@ a suitable format (say mypic.png for HTML output).
 
 FIGURE:[figs/dinoimpact.gif, width=400] It can't get worse than this.... 
 
-
 Another type of special lines starts with @@@CODE and enables copying
 of computer code from a file directly into a verbatim environment, see 
 the section "Blocks of Verbatim Computer Code" below.
@@ -685,8 +711,6 @@ the section "Blocks of Verbatim Computer Code" below.
 
 Inline Tagging
 --------------
-
-
 
 Doconce supports tags for *emphasized phrases*, _boldface phrases_,
 and verbatim text (also called type writer text, for inline code)
@@ -770,7 +794,6 @@ are vectors of length n."
 Cross-Referencing
 -----------------
 
-
 References and labels are supported. The syntax is simple::
 
         label{section:verbatim}   # defines a label
@@ -804,7 +827,6 @@ in the section "Inline Tagging".
 
 Index and Bibliography
 ----------------------
-
 
 An index can be created for the LaTeX and the reStructuredText or
 Sphinx formats by the idx keyword, following a LaTeX-inspired syntax::
@@ -905,7 +927,6 @@ the Doconce source in an ugly way?).
 Blocks of Verbatim Computer Code
 --------------------------------
 
-
 Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code"::
 
@@ -1005,7 +1026,6 @@ environment.)
 LaTeX Blocks of Mathematical Text
 ---------------------------------
 
-
 Blocks of mathematical text are like computer code blocks, but
 the opening tag is::
 
@@ -1034,7 +1054,6 @@ okay in other formats).
 
 Macros (Newcommands)
 --------------------
-
 
 Doconce supports a type of macros via a LaTeX-style *newcommand*
 construction.  The newcommands defined in a file with name
@@ -1096,6 +1115,7 @@ Missing Features
 ----------------
 
   * Footnotes
+
 Troubleshooting
 ---------------
 
@@ -1329,11 +1349,14 @@ and Sphinx just typeset the list as a list with keywords.
     module variable x: 
       x value (float),
       which must be a positive number.
+
     module variable tolerance: 
       tolerance (float) for stopping
       the iterations.
+
 Bibliography
 ============
 
   1. H. P. Langtangen. *A Primer on Scientific Programming with Python*. Springer, 2009.
+
   2. H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. *Advances in Water Resources*, vol 22, 185-195, 1998.

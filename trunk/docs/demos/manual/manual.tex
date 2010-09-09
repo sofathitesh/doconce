@@ -61,6 +61,7 @@ Doconce is two things:
     can be transformed to many different formats for a variety of
     documents (manuals, tutorials, books, doc strings, source code
     documentation, etc.).
+
  \item Doconce is a simple and minimally tagged markup language that can
     be used for the above purpose. That is, the Doconce format look
     like ordinary ASCII text (much like what you would use in an
@@ -71,6 +72,8 @@ Doconce is two things:
     you can go to XML, HTML, {\LaTeX}, PDF, OpenOffice, and from the
     latter to RTF and MS Word.
 \end{enumerate}
+
+\noindent
 The first point may be of interest even if you adopt a different
 markup language than Doconce, e.g., reStructuredText or Sphinx.
 
@@ -79,12 +82,18 @@ So why not just use reStructuredText or Sphinx? Because Doconce
 \begin{itemize}
   \item can convert to plain \emph{untagged} text, 
     more desirable for computer programs and email, 
+
   \item has less cluttered tagging of text,
+
   \item has better support for copying in computer code from other files,
+
   \item has stronger support for mathematical typesetting,
+
   \item works better as a complete or partial source for large {\LaTeX} 
     documents (reports and books).
 \end{itemize}
+
+\noindent
 Anyway, after having written an initial document in Doconce, you may
 convert to reStructuredText or Sphinx and work with that version for
 the future.
@@ -95,14 +104,18 @@ Doconce was particularly written for the following sample applications:
   \item Large books written in {\LaTeX}, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
     contexts in other formats, including plain HTML, Sphinx, or MS Word.
+
   \item Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
     googlecode.com, and as {\LaTeX} integrated in, e.g., a master's thesis.
+
   \item Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
     MS Word documents or in wikis.
 \end{itemize}
+
+\noindent
 You can jump to Section~\ref{doconce:strategy} to see a recipe for
 how to use Doconce, but first some more motivation for
 the problem which Doconce tries to solve is presented.
@@ -153,12 +166,16 @@ in verbatim environments). To summarize, we need
 \begin{enumerate}
  \item A minimally tagged markup language with full support for 
     for mathematics and verbatim computer code.
+
  \item Filters for producing highly tagged formats ({\LaTeX}, HTML, XML),
     medium tagged formats (reStructuredText, Epytext), and plain
     text with completely invivisble tagging. 
+
  \item Tools for inserting appropriately filtered versions of a "singleton"
     documentation file in other documents (doc strings, manuals, tutorials).
 \end{enumerate}
+
+\noindent
 One answer to these points is the Doconce markup language, its associated
 tools, and the \href{http://code.google.com/p/preprocess/}{C-style preprocessor tool}.
 Then we can \emph{write once, include anywhere}!
@@ -206,6 +223,7 @@ requires of course \href{http://sphinx.pocoo.org}{sphinx}.
 \begin{itemize}
    \item Write software documentation, both tutorials and manuals, in
      the Doconce format. Use many files - and never duplicate information!
+
    \item Use {\fontsize{10pt}{10pt}\verb!#include!} statements in source code (especially in doc
      strings) and in {\LaTeX} documents for including documentation
      files.  These documentation files must be filtered to an
@@ -215,9 +233,12 @@ requires of course \href{http://sphinx.pocoo.org}{sphinx}.
      the Sphinx dialect of reStructuredText for Sphinx API
      documentation; {\LaTeX} for {\LaTeX} manuals; and possibly
      reStructuredText for XML, Docbook, OpenOffice, RTF, Word.
+
    \item Run the preprocessor {\fontsize{10pt}{10pt}\verb!preprocess!} on the files to produce native
      files for pure computer code and for various other documents.
 \end{itemize}
+
+\noindent
 Consider an example involving a Python module in a {\fontsize{10pt}{10pt}\verb!basename.p.py!} file.
 The {\fontsize{10pt}{10pt}\verb!.p.py!} extension identifies this as a file that has to be
 preprocessed) by the {\fontsize{10pt}{10pt}\verb!preprocess!} program. 
@@ -587,16 +608,24 @@ This list gets typeset as
 
 \begin{itemize}
    \item item 1
+
    \item item 2
 \begin{itemize}
+
      \item subitem 1, if there are more
        lines, each line must
        be intended as shown here
+
      \item subitem 2,
        also spans two lines
+
 \end{itemize}
+
+\noindent
    \item item 3
 \end{itemize}
+
+\noindent
 In an ordered list, each item starts with an {\fontsize{10pt}{10pt}\verb!o!} (as the first letter 
 in "ordered"):
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
@@ -617,13 +646,21 @@ resulting in
 
 \begin{enumerate}
   \item item 1
+
   \item item 2
 \begin{itemize}
+
      \item subitem 1
+
      \item subitem 2
+
 \end{itemize}
+
+\noindent
   \item item 3
 \end{enumerate}
+
+\noindent
 Ordered lists cannot have an ordered sublist, i.e., the ordering 
 applies to the outer list only.
 
@@ -644,11 +681,14 @@ The result becomes
 \begin{description}
    \item[keyword1:] 
      explanation of keyword1
+
    \item[keyword2:] 
      explanation
      of keyword2 (remember to indent properly
      if there are multiple lines)
 \end{description}
+
+\noindent
 
 \subsection{Special Lines}
 
@@ -709,13 +749,19 @@ Headlines are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
 or equal signs (=):
+
 \begin{itemize}
    \item 7 underscores or equal signs for sections
+
    \item 5 for subsections
+
    \item 3 for subsubsections
+
    \item 2 underscrores (only! - it looks best) for paragraphs 
      (paragraph heading will be inlined)
 \end{itemize}
+
+\noindent
 Headings can be surrounded by blanks if desired.
 
 Here are some examples:
@@ -1254,6 +1300,8 @@ in the current format.
   \item Footnotes
 \end{itemize}
 
+\noindent
+
 \subsection{Troubleshooting}
 
 \paragraph{Disclaimer.}
@@ -1492,10 +1540,13 @@ and Sphinx just typeset the list as a list with keywords.
     \item[module variable x:] 
       x value (float),
       which must be a positive number.
+
     \item[module variable tolerance:] 
       tolerance (float) for stopping
       the iterations.
 \end{description}
+
+\noindent
 \bibliographystyle{plain}
 \bibliography{manual_bib}
 

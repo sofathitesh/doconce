@@ -266,20 +266,22 @@ def define(FILENAME_EXTENSION,
     # verbatim = \code{, }
     # verbatim = \verb!, !
 
+    ending = '\n'
+    ending = '\n\n\\noindent\n'
     LIST['LaTeX'] = {
         'itemize':
         {'begin': r'\begin{itemize}' + '\n',
-         'item': r'\item', 'end': r'\end{itemize}' + '\n'},
+         'item': r'\item', 'end': r'\end{itemize}' + ending},
 
         'enumerate':
         {'begin': r'\begin{enumerate}' + '\n', 'item': r'\item',
-         'end': r'\end{enumerate}' + '\n'},
+         'end': r'\end{enumerate}' + ending},
 
         'description':
         {'begin': r'\begin{description}' + '\n', 'item': r'\item[%s]',
-         'end': r'\end{description}' + '\n'},
+         'end': r'\end{description}' + ending},
 
-        'separator': '',
+        'separator': '\n',
         } 
 
     CODE['LaTeX'] = latexcode

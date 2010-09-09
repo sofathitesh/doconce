@@ -7,8 +7,6 @@ BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)D
 What Is Doconce?
 ================
 
-
-
 Doconce is two things:
 
  1. Doconce is a working strategy for documenting software in a single
@@ -26,6 +24,7 @@ Doconce is two things:
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
     latter to RTF and MS Word.
+
 The first point may be of interest even if you adopt a different
 markup language than Doconce, e.g., reStructuredText or Sphinx.
 
@@ -38,6 +37,7 @@ So why not just use reStructuredText or Sphinx? Because Doconce
   - has stronger support for mathematical typesetting,
   - works better as a complete or partial source for large LaTeX 
     documents (reports and books).
+
 Anyway, after having written an initial document in Doconce, you may
 convert to reStructuredText or Sphinx and work with that version for
 the future.
@@ -54,6 +54,7 @@ Doconce was particularly written for the following sample applications:
   - Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
     MS Word documents or in wikis.
+
 You can jump to the section "The Doconce Software Documentation Strategy" to see a recipe for
 how to use Doconce, but first some more motivation for
 the problem which Doconce tries to solve is presented.
@@ -61,8 +62,6 @@ the problem which Doconce tries to solve is presented.
 
 Motivation: Problems with Documenting Software
 ==============================================
-
-
 
 I{Duplicated Information.} It is common to write some software
 documentation in the code (doc strings in Python, doxygen in C++,
@@ -105,6 +104,7 @@ in verbatim environments). To summarize, we need
     text with completely invivisble tagging. 
  3. Tools for inserting appropriately filtered versions of a "singleton"
     documentation file in other documents (doc strings, manuals, tutorials).
+
 One answer to these points is the Doconce markup language, its associated
 tools, and the U{C-style preprocessor tool<http://code.google.com/p/preprocess/>}.
 Then we can I{write once, include anywhere}!
@@ -151,7 +151,6 @@ requires of course U{sphinx<http://sphinx.pocoo.org>}.
 The Doconce Software Documentation Strategy
 -------------------------------------------
 
-
    - Write software documentation, both tutorials and manuals, in
      the Doconce format. Use many files - and never duplicate information!
    - Use C{#include} statements in source code (especially in doc
@@ -165,6 +164,7 @@ The Doconce Software Documentation Strategy
      reStructuredText for XML, Docbook, OpenOffice, RTF, Word.
    - Run the preprocessor C{preprocess} on the files to produce native
      files for pure computer code and for various other documents.
+
 Consider an example involving a Python module in a C{basename.p.py} file.
 The C{.p.py} extension identifies this as a file that has to be
 preprocessed) by the C{preprocess} program. 
@@ -241,7 +241,6 @@ commands::
 
 Demos
 -----
-
 
 
 The current text is generated from a Doconce format stored in the::
@@ -505,7 +504,9 @@ This list gets typeset as
        be intended as shown here
      - subitem 2,
        also spans two lines
+
    - item 3
+
 In an ordered list, each item starts with an C{o} (as the first letter 
 in "ordered")::
 
@@ -527,7 +528,9 @@ resulting in
   2. item 2
      - subitem 1
      - subitem 2
+
   3. item 3
+
 Ordered lists cannot have an ordered sublist, i.e., the ordering 
 applies to the outer list only.
 
@@ -550,6 +553,7 @@ The result becomes
      explanation
      of keyword2 (remember to indent properly
      if there are multiple lines)
+
 Special Lines
 -------------
 
@@ -557,7 +561,6 @@ The Doconce markup language has a concept called I{special lines}.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
 sections, subsections, paragraphs., figures, etc.
-
 
 
 Lines starting with C{TITLE:}, C{AUTHOR:}, and C{DATE:} are optional and used
@@ -602,16 +605,17 @@ format::
 Similar typesetting is done for LaTeX and HTML formats.
 
 
-
 Headlines are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
 or equal signs (=):
+
    - 7 underscores or equal signs for sections
    - 5 for subsections
    - 3 for subsubsections
    - 2 underscrores (only! - it looks best) for paragraphs 
      (paragraph heading will be inlined)
+
 Headings can be surrounded by blanks if desired.
 
 Here are some examples::
@@ -672,7 +676,6 @@ a suitable format (say C{mypic.png} for HTML output).
 
 FIGURE:[figs/dinoimpact.gif, width=400] It can't get worse than this.... 
 
-
 Another type of special lines starts with C{@@@CODE} and enables copying
 of computer code from a file directly into a verbatim environment, see 
 the section "Blocks of Verbatim Computer Code" below.
@@ -680,8 +683,6 @@ the section "Blocks of Verbatim Computer Code" below.
 
 Inline Tagging
 --------------
-
-
 
 Doconce supports tags for I{emphasized phrases}, B{boldface phrases},
 and C{verbatim text} (also called type writer text, for inline code)
@@ -765,7 +766,6 @@ are vectors of length M{n}."
 Cross-Referencing
 -----------------
 
-
 References and labels are supported. The syntax is simple::
 
         label{section:verbatim}   # defines a label
@@ -799,7 +799,6 @@ in the section "Inline Tagging".
 
 Index and Bibliography
 ----------------------
-
 
 An index can be created for the LaTeX and the reStructuredText or
 Sphinx formats by the C{idx} keyword, following a LaTeX-inspired syntax::
@@ -900,7 +899,6 @@ the Doconce source in an ugly way?).
 Blocks of Verbatim Computer Code
 --------------------------------
 
-
 Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" C{!bc} keyword and an "end code" C{!ec} keyword. Both
 keywords must be on a single line and I{start at the beginning of the
@@ -997,7 +995,6 @@ environment.)
 LaTeX Blocks of Mathematical Text
 ---------------------------------
 
-
 Blocks of mathematical text are like computer code blocks, but
 the opening tag is C{!bt} (begin TeX) and the closing tag is
 C{!et}. It is important that C{!bt} and C{!et} appear on the beginning of the
@@ -1023,7 +1020,6 @@ okay in other formats).
 
 Macros (Newcommands)
 --------------------
-
 
 Doconce supports a type of macros via a LaTeX-style I{newcommand}
 construction.  The newcommands defined in a file with name
@@ -1084,6 +1080,7 @@ Missing Features
 ----------------
 
   - Footnotes
+
 Troubleshooting
 ---------------
 
@@ -1273,6 +1270,7 @@ and Sphinx just typeset the list as a list with keywords.
     @var tolerance: 
       tolerance (float) for stopping
       the iterations.
+
 Bibliography
 ============
 

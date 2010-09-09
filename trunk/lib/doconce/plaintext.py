@@ -12,7 +12,7 @@ def plain_author(authors_and_institutions, auth2index,
     text += '\n'
     return text
 
-def plaintext_ref_and_label(section_label2title, format, filestr):
+def plain_ref_and_label(section_label2title, format, filestr):
     # .... see section ref{my:sec} is replaced by
     # see the section "...section heading..."
     pattern = r'[Ss]ection(s?)\s+ref\{'
@@ -23,7 +23,7 @@ def plaintext_ref_and_label(section_label2title, format, filestr):
     filestr = re.sub(pattern, replacement, filestr)
 
     # remove label{...} from output
-    filestr = re.sub(r'label\{.+?\}', '', filestr)
+    filestr = re.sub(r'label\{.+?\}' + '\n?', '', filestr)
 
     # replace all references to sections:
     for label in section_label2title:
@@ -60,7 +60,8 @@ def plain_index_bib(filestr, index, citations, bibfile):
         filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, 
                          flags=re.MULTILINE)
 
-    filestr = re.sub(r'idx\{.+?\}', '', filestr)  # remove all index entries
+    # remove all index entries:
+    filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)  
     # no index since line numbers from the .do.txt (in index dict)
     # never correspond to the output format file
     #filestr += '\n\n======= Index =======\n\n'
@@ -109,17 +110,17 @@ def define(FILENAME_EXTENSION,
     ARGLIST['plain'] = DEFAULT_ARGLIST
     LIST['plain'] = {
         'itemize':
-        {'begin': '', 'item': '*', 'end': ''},
+        {'begin': '', 'item': '*', 'end': '\n'},
 
         'enumerate':
-        {'begin': '', 'item': '%d.', 'end': ''},
+        {'begin': '', 'item': '%d.', 'end': '\n'},
 
         'description':
-        {'begin': '', 'item': '%s', 'end': ''},
+        {'begin': '', 'item': '%s', 'end': '\n'},
 
-        'separator': '',
+        'separator': '\n',
         }
-    CROSS_REFS['plain'] = plaintext_ref_and_label
+    CROSS_REFS['plain'] = plain_ref_and_label
     from rst import rst_table
     TABLE['plain'] = rst_table
     #TABLE['plain'] = plain_table

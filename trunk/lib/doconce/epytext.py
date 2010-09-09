@@ -29,9 +29,16 @@ def old_epytext_code(filestr):
 
 def epytext_author(authors_and_institutions, auth2index, 
                    inst2index, index2inst):
-    return 'BY: ' + '; '.join(['%s (%s)' % \
-           (author, ', and '.join(institutions)) \
-            for author, institutions in authors_and_institutions])
+    text = 'BY: '
+    ai = []
+    for author, institutions in authors_and_institutions:
+        if institutions is not None:
+            ai.append('%s (%s)' % (author, ', and '.join(institutions)))
+        else:
+            ai.append(author)
+    text += '; '.join(ai)
+    return text
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -57,8 +64,6 @@ def define(FILENAME_EXTENSION,
         'emphasize': r'\g<begin>I{\g<subst>}\g<end>',
         'bold':      r'\g<begin>B{\g<subst>}\g<end>',
         'verbatim':  r'\g<begin>C{\g<subst>}\g<end>',
-        'label':     r'\g<subst>',
-        'reference': r'\g<subst>',
         'linkURL':   r'\g<begin>U{\g<link><\g<url>>}\g<end>',
         'plainURL':  r'U{\g<url><\g<url>>}',
         # the replacement string differs, depending on the match object m:
@@ -74,19 +79,19 @@ def define(FILENAME_EXTENSION,
     from rst import rst_code, rst_table
     CODE['epytext'] = rst_code
     TABLE['epytext'] = rst_table
-    from plaintext import plaintext_ref_and_label, plain_index_bib
-    CROSS_REFS['epytext'] = plaintext_ref_and_label
+    from plaintext import plain_ref_and_label, plain_index_bib
+    CROSS_REFS['epytext'] = plain_ref_and_label
     INDEX_BIB['epytext'] = plain_index_bib
 
     LIST['epytext'] = {
         'itemize':
-        {'begin': '', 'item': '-', 'end': ''},
+        {'begin': '', 'item': '-', 'end': '\n'},
 
         'enumerate':
-        {'begin': '', 'item': '%d.', 'end': ''},
+        {'begin': '', 'item': '%d.', 'end': '\n'},
 
         'description':
-        {'begin': '', 'item': '%s', 'end': ''},
+        {'begin': '', 'item': '%s', 'end': '\n'},
 
         'separator': '',
         } 

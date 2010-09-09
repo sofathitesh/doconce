@@ -50,6 +50,11 @@ failure = os.system('sh ./clean.sh')
 if failure:
     print 'Could not run clean.sh in', os.getcwd()
 os.chdir(thisdir)
+os.chdir('test')
+failure = os.system('sh ./clean.sh')
+if failure:
+    print 'Could not run clean.sh in', os.getcwd()
+os.chdir(thisdir)
 
 # make sure doconce_insertdocstr finds the local bin/doconce2format
 # script, so add the bin dir with full path to the PATH variable first:

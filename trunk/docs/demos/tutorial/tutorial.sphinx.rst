@@ -7,7 +7,6 @@ Doconce: Document Once, Include Anywhere
 
 .. lines beginning with # are comment lines
 
-
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
    (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML,
@@ -29,7 +28,6 @@ The Doconce Concept
 
 Doconce is two things:
 
-
  1. Doconce is a working strategy for documenting software in a single
     place and avoiding duplication of information. The slogan is:
     "Write once, include anywhere". This requires that what you write
@@ -49,7 +47,6 @@ Doconce is two things:
 
 Doconce was particularly written for the following sample applications:
 
-
   * Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
     contexts in other formats, including plain HTML, Sphinx, or MS Word.
@@ -68,7 +65,6 @@ What Does Doconce Look Like?
 
 Doconce text looks like ordinary text, but there are some almost invisible
 text constructions that allow you to control the formating. For example,
-
 
   * bullet lists arise from lines starting with an asterisk,
 
@@ -141,7 +137,6 @@ Ordinary text looks like ordinary text, and the tags used for
 **boldface** words, *emphasized* words, and ``computer`` words look
 natural in plain text.  Lists are typeset as you would do in an email,
 
-
   * item 1
 
   * item 2
@@ -150,7 +145,6 @@ natural in plain text.  Lists are typeset as you would do in an email,
 
 Lists can also have numbered items instead of bullets, just use an ``o``
 (for ordered) instead of the asterisk:
-
 
  1. item 1
 
@@ -256,16 +250,18 @@ newcommands in the ``newcommands*.tex`` files *must* appear on a single
 line (multi-line newcommands are too hard to parse with regular
 expressions).
 
-Recent versions of Doconce also offer cross referencing, typically
-one can define labels below (sub)sections, in figure captions, or
-in equations, and then refer to these later. Entries in an index
-can be defined, and citations to literature, with an accompanying
-bibliography in a file, are also supported features. The syntax
-of labels, references, citations, and the bibliography closely resembles
-that of LaTeX, and Doconce documents therefore integrate well as parts
-of large LaTeX documents. For further details on functionality and syntax
-we refer to the ``docs/manual/manual.do.txt`` file
-(see the `demo page <https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>`_ for various formats of this document).
+Recent versions of Doconce also offer cross referencing, typically one
+can define labels below (sub)sections, in figure captions, or in
+equations, and then refer to these later. Entries in an index can be
+defined and result in an index at the end for the LaTeX and Sphinx
+formats. Citations to literature, with an accompanying bibliography in
+a file, are also supported. The syntax of labels, references,
+citations, and the bibliography closely resembles that of LaTeX,
+making it easy for Doconce documents to be integrated in LaTeX
+projects (manuals, books). For further details on functionality and
+syntax we refer to the ``docs/manual/manual.do.txt`` file (see the
+`demo
+page <https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>`_ for various formats of this document).
 
 
 .. Example on including another Doconce file:
