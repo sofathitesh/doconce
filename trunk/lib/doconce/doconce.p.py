@@ -653,7 +653,11 @@ def inline_tag_subst(filestr, format):
             for i in range(len(lines)):
                 m = re.search(tag_pattern, lines[i])
                 if m:
-                    replacement_str = replacement(m)
+                    try:
+                        replacement_str = replacement(m)
+                    except Exception, e:
+                        print 'Problem at line', lines[i], '\n', e
+                        raise Exception(e)
                     lines[i] = re.sub(tag_pattern, replacement_str, lines[i])
                     occurences += 1
             filestr = '\n'.join(lines)
