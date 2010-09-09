@@ -121,8 +121,11 @@ def gwiki_ref_and_label(section_label2title, format, filestr):
     replacement = r'the chapter\g<1> ref{'
     filestr = re.sub(pattern, replacement, filestr)
 
-    # remove label{...} from output
-    filestr = re.sub(r'label\{.+?\}', '', filestr)
+    # remove label{...} from output (when only label{} on a line, remove
+    # the newline too, leave label in figure captions, and remove all the rest)
+    filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^(FIGURE:.+)label\{(.+?)\}', '\g<1>(\g<2>)', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'label\{.+?\}', '', filestr)  # all the remaining
 
     # anchors in titles do not work...
 

@@ -9,8 +9,10 @@ def rst_figure(m):
     caption = m.group('caption').strip()
     m_label = re.search(r'label\{(.+?)\}', caption)
     if m_label:
-        label = m.group(1)
+        label = m_label.group(1)
         result += '\n.. _%s:\n' % label
+        # write label into caption:
+        caption = re.sub(r'label\{(.+?)\}', '\g<1>', caption)
 
     filename = m.group('filename')
     if not os.path.isfile(filename):
@@ -125,7 +127,8 @@ def rst_ref_and_label(section_label2title, format, filestr):
             raise Exception('problem with substituting "%s"' % title)
 
     # remove label{...} from output
-    filestr = re.sub(r'label\{.+?\}' + '\n?', '', filestr)
+    filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'label\{.+?\}', '', filestr)  # all the remaining
 
     # replace all references to sections:
     for label in section_label2title:
@@ -134,6 +137,9 @@ def rst_ref_and_label(section_label2title, format, filestr):
     
     from common import ref2equations
     filestr = ref2equations(filestr)
+
+    # replace remaining ref{x} as x_
+    filestr = re.sub(r'ref\{(.+?)\}', '`\g<1>`_', filestr)
     
     return filestr
 
