@@ -13,6 +13,9 @@ def rst_figure(m):
         result += '\n.. _%s:\n' % label
 
     filename = m.group('filename')
+    if not os.path.isfile(filename):
+        raise IOError('no figure file %s' % filename)
+
     result += '\n.. figure:: ' + filename + '\n'  # utilize flexibility
     opts = m.group('options')
     if opts:

@@ -5,7 +5,7 @@ Here called gwiki to make the dialect clear (g for google).
 """
 
 
-import re, os
+import re, os, commands, sys
 
 def gwiki_code(filestr, format):
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
@@ -18,10 +18,13 @@ def gwiki_code(filestr, format):
 
 def gwiki_figure(m):
     filename = m.group('filename')
+    if not os.path.isfile(filename):
+        raise IOError('no figure file %s' % filename)
+
     basename  = os.path.basename(filename)
     stem, ext = os.path.splitext(basename)
     root, ext = os.path.splitext(filename)
-    if not ext in '.png .gif .jpg .jpeg':
+    if not ext in '.png .gif .jpg .jpeg'.split():
         # try to convert image file to PNG, using
         # convert from ImageMagick:
         cmd = 'convert %s png:%s' % (filename, root+'.png')
@@ -34,8 +37,10 @@ def gwiki_figure(m):
     caption = m.group('caption')
     
     print """
-*** NOTE: Place %s at some place on the web and edit the
-          .gwiki page manually (seach for 'Figure: ')
+NOTE: Place %s at some place on the web and edit the
+      .gwiki page, either manually (seach for 'Figure: ')
+      or use the doconce_gwiki_figsubst.py script:
+      doconce_gwiki_figsubst.py mydoc.gwiki URL
 """ % filename
 
     result = r"""
@@ -96,9 +101,12 @@ def gwiki_author(authors_and_institutions, auth2index,
         authors = authors[0]
     elif len(authors) == 2:
         authors = authors[0] + ' and ' + authors[1]
-    else:
+    elif len(authors) > 2:
         authors[-1] = 'and ' + authors[-1]
         authors = ', '.join(authors)
+    else:
+        # no authors:
+        return ''
     text = '\n\nBy ' + authors + '\n\n'
     # we skip institutions in gwiki
     return text

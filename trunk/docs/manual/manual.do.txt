@@ -956,6 +956,16 @@ debug years after they are created. The main developer of Doconce has
 hardly any time to work on debugging the code, but the software works
 well for his diverse applications of it.
 
+__Hanging !bc Code Block Starters in reST.__
+Sometimes reStructuredText (reST) reports an "Unexpected indentation"
+at the beginning of a code block. If you see a `!bc`, which should
+have been removed by `doconce2format`, it is usually an error in the
+Doconce source. Check if the line before the code block ends in
+one colon (not two!), a question mark, an exclamation mark, a comma, a
+period, or just a newline/space after text. If not, make sure that
+the ending is correct. Then `!bc` will be replaced and a double colon
+at the preceding line.
+
 __The LaTeX File Does Not Compile.__ 
 If the problem is undefined control sequence involving
 !bc

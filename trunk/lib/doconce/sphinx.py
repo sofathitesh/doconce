@@ -12,7 +12,11 @@ def sphinx_figure(m):
         label = m.group(1)
         result += '\n.. _%s:\n' % label
 
-    filename = os.path.splitext(m.group('filename'))[0]
+    filename = m.group('filename')
+    if not os.path.isfile(filename):
+        raise IOError('no figure file %s' % filename)
+
+    filename = os.path.splitext(filename)[0]
     result += '\n.. figure:: ' + filename + '.*\n'  # utilize flexibility
     opts = m.group('options')
     if opts:
