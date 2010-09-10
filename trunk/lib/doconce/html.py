@@ -47,7 +47,7 @@ def html_author(authors_and_institutions, auth2index,
             (author, str(auth2index[author]))
     text += '\n<P>\n'
     for index in index2inst:
-        text += '[%d] <B>%s</B>\n<P>\n' % (index, index2inst[index])
+        text += '<CENTER>[%d] <B>%s</B></CENTER>\n' % (index, index2inst[index])
     text += '\n\n'
     return text
 

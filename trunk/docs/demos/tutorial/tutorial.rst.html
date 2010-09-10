@@ -321,7 +321,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">August 25, 2010</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">September 10, 2010</td>
 </tr>
 </tbody>
 </table>
@@ -527,10 +527,34 @@ def myfunc(x):
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 </pre>
+<p>It is possible to add a specification of a (ptex2tex-style)
+environment for typesetting the verbatim code block, e.g., <tt class="docutils literal">!bc xxx</tt>
+where <tt class="docutils literal">xxx</tt> is an identifier like <tt class="docutils literal">pycod</tt> for code snippet in Python,
+<tt class="docutils literal">sys</tt> for terminal session, etc. When Doconce is filtered to LaTeX,
+these identifiers are used as in ptex2tex and defined in a
+configuration file <tt class="docutils literal">.ptext2tex.cfg</tt>, while when filtering
+to Sphinx, one can have a comment line in the Doconce file for
+mapping the identifiers to legal language names for Sphinx (which equals
+the legal language names for Pygments):</p>
+<pre class="literal-block">
+# sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+</pre>
+<p>By default, <tt class="docutils literal">pro</tt> and <tt class="docutils literal">cod</tt> are <tt class="docutils literal">python</tt>, <tt class="docutils literal">sys</tt> is <tt class="docutils literal">console</tt>,
+while <tt class="docutils literal">xpro</tt> and <tt class="docutils literal">xcod</tt> are computer language specific for <tt class="docutils literal">x</tt>
+in <tt class="docutils literal">f</tt> (Fortran), <tt class="docutils literal">c</tt> (C), <tt class="docutils literal">cpp</tt> (C++), and <tt class="docutils literal">py</tt> (Python).
+.. <tt class="docutils literal">rb</tt> (Ruby), <tt class="docutils literal">pl</tt> (Perl), and <tt class="docutils literal">sh</tt> (Unix shell).</p>
+<!-- (Any sphinx code-block comment, whether inside verbatim code -->
+<!-- blocks or outside, yields a mapping between bc arguments -->
+<!-- and computer languages. In case of muliple definitions, the -->
+<!-- first one is used.) -->
 <p>One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!).</p>
+avoiding copying information!). A complete file is typeset
+with <tt class="docutils literal">!bc pro</tt>, while a part of a file is copied into a <tt class="docutils literal">!bc cod</tt>
+environment. What <tt class="docutils literal">pro</tt> and <tt class="docutils literal">cod</tt> mean is then defined through
+a <tt class="docutils literal">.ptex2tex.cfg</tt> file for LaTeX and a <tt class="docutils literal">sphinx <span class="pre">code-blocks</span></tt>
+comment for Sphinx.</p>
 <p>Another document can be included by writing <tt class="docutils literal">#include &quot;mynote.do.txt&quot;</tt>
 on a line starting with (another) hash sign.  Doconce documents have
 extension <tt class="docutils literal">do.txt</tt>. The <tt class="docutils literal">do</tt> part stands for doconce, while the
@@ -538,7 +562,7 @@ trailing <tt class="docutils literal">.txt</tt> denotes a text document so that 
 right writing enviroment for plain text.</p>
 </div>
 <div class="section" id="macros-newcommands-cross-references-index-and-bibliography">
-<h2>Macros (Newcommands), Cross-References, Index, and Bibliography</h2>
+<span id="newcommands"></span><h2>Macros (Newcommands), Cross-References, Index, and Bibliography</h2>
 <p>Doconce supports a type of macros via a LaTeX-style <em>newcommand</em>
 construction.  The newcommands defined in a file with name
 <tt class="docutils literal">newcommand_replace.tex</tt> are expanded when Doconce is filtered to
@@ -612,9 +636,10 @@ Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt
 </dd>
 </dl>
 <p>LaTeX-specific commands (&quot;newcommands&quot;) in math formulas and similar
-can be placed in a file <tt class="docutils literal">newcommands.tex</tt>. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.</p>
+can be placed in files <tt class="docutils literal">newcommands.tex</tt>, <tt class="docutils literal">newcommands_keep.tex</tt>, or
+<tt class="docutils literal">newcommands_replace.tex</tt> (see the section <a class="reference internal" href="#macros-newcommands-cross-references-index-and-bibliography">Macros (Newcommands), Cross-References, Index, and Bibliography</a>).
+If these files are present, they are included in the LaTeX document
+so that your commands are defined.</p>
 <p><em>Step 2.</em> Run <tt class="docutils literal">ptex2tex</tt> (if you have it) to make a standard LaTeX file:</p>
 <pre class="literal-block">
 Unix/DOS&gt; ptex2tex mydoc
@@ -623,18 +648,39 @@ Unix/DOS&gt; ptex2tex mydoc
 <pre class="literal-block">
 Unix/DOS&gt; cp mydoc.p.tex mydoc.tex
 </pre>
+<p>Doconce generates a <tt class="docutils literal">.p.tex</tt> file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font:</p>
+<pre class="literal-block">
+Unix/DOS&gt; ptex2tex -DHELVETICA mydoc
+</pre>
+<p>The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX &quot;maketitle&quot; heading
+is also available through:</p>
+<pre class="literal-block">
+Unix/DOS&gt; ptex2tex -DTRAD_LATEX_HEADING mydoc
+</pre>
 <p>The <tt class="docutils literal">ptex2tex</tt> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile <tt class="docutils literal">mydoc.tex</tt> the usual way and create the PDF file:</p>
+documents. After any <tt class="docutils literal">!bc sys</tt> command in the Doconce source you can
+insert verbatim block styles as defined in your <tt class="docutils literal">.ptex2tex.cfg</tt>
+file, e.g., <tt class="docutils literal">!bc sys cod</tt> for a code snippet, where <tt class="docutils literal">cod</tt> is set to
+a certain environment in <tt class="docutils literal">.ptex2tex.cfg</tt> (e.g., <tt class="docutils literal">CodeIntended</tt>).
+There are over 30 styles to choose from.</p>
+<p><em>Step 3.</em> Compile <tt class="docutils literal">mydoc.tex</tt> with <tt class="docutils literal">latex <span class="pre">-shell-escape</span></tt>
+and create the PDF file:</p>
 <pre class="literal-block">
-Unix/DOS&gt; latex mydoc
-Unix/DOS&gt; latex mydoc
+Unix/DOS&gt; latex -shell-escape mydoc
+Unix/DOS&gt; latex -shell-escape mydoc
 Unix/DOS&gt; makeindex mydoc   # if index
 Unix/DOS&gt; bibitem mydoc     # if bibliography
-Unix/DOS&gt; latex mydoc
+Unix/DOS&gt; latex -shell-escape mydoc
 Unix/DOS&gt; dvipdf mydoc
 </pre>
+<p>The <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option is required because <tt class="docutils literal">ptex2tex</tt> inserts an include
+of the <tt class="docutils literal">minted.sty</tt> style, which applies the <tt class="docutils literal">pygments</tt> to format code,
+and this program cannot be run from <tt class="docutils literal">latex</tt> without the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option.</p>
 </div>
 <div class="section" id="plain-ascii-text">
 <h2>Plain ASCII Text</h2>
@@ -729,6 +775,13 @@ make html
 <pre class="literal-block">
 Unix/DOS&gt; firefox _build/html/index.html
 </pre>
+<p>Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows <tt class="docutils literal">!bc</tt>: <tt class="docutils literal">cod</tt> gives Python
+(<tt class="docutils literal"><span class="pre">code-block::</span> python</tt> in Sphinx syntax) and <tt class="docutils literal">cppcod</tt> gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.</p>
+<!-- Desired extension: sphinx can utilize a "pycod" or "c++cod" -->
+<!-- instruction as currently done in latex for ptex2tex and write -->
+<!-- out the right code block name accordingly. -->
 </div>
 <div class="section" id="google-code-wiki">
 <h2>Google Code Wiki</h2>
@@ -743,6 +796,24 @@ Unix/DOS&gt; doconce2format gwiki mydoc.do.txt
 the <tt class="docutils literal">mydoc.gwiki</tt> output file from <tt class="docutils literal">doconce2format</tt> and paste the
 file contents into the wiki page. Press <strong>Preview</strong> or <strong>Save Page</strong> to
 see the formatted result.</p>
+<p>When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).</p>
+</div>
+<div class="section" id="tweaking-the-doconce-output">
+<h2>Tweaking the Doconce Output</h2>
+<p>Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+<tt class="docutils literal">.rst</tt> file is going to be filtered to LaTeX or HTML, it cannot know
+if <tt class="docutils literal">.eps</tt> or <tt class="docutils literal">.png</tt> is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The <tt class="docutils literal">make.sh</tt> files in <tt class="docutils literal">docs/manual</tt> and <tt class="docutils literal">docs/tutorial</tt>
+constitute comprehensive examples on how such scripts can be made.</p>
 </div>
 <div class="section" id="demos">
 <h2>Demos</h2>
@@ -772,89 +843,6 @@ that ptex2tex potentially makes use of.  Going from reStructuredText
 to formats such as XML, OpenOffice, HTML, and LaTeX requires
 <a class="reference external" href="http://docutils.sourceforge.net/">docutils</a>.  Making Sphinx documents
 requires of course <a class="reference external" href="http://sphinx.pocoo.org">sphinx</a>.</p>
-</div>
-<div class="section" id="the-doconce-documentation-strategy-for-user-manuals">
-<h2>The Doconce Documentation Strategy for User Manuals</h2>
-<p>Doconce was particularly made for writing tutorials or user manuals
-associated with computer codes. The text is written in Doconce format
-in separate files. LaTeX, HTML, XML, and other versions of the text
-is easily produced by the <tt class="docutils literal">doconce2format</tt> script and standard tools.
-A plain text version is often wanted for the computer source code,
-this is easy to make, and then one can use
-<tt class="docutils literal">#include</tt> statements in the computer source code to automatically
-get the manual or tutorial text in comments or doc strings.
-Below is a worked example.</p>
-<p>Consider an example involving a Python module in a <tt class="docutils literal">basename.p.py</tt> file.
-The <tt class="docutils literal">.p.py</tt> extension identifies this as a file that has to be
-preprocessed) by the <tt class="docutils literal">preprocess</tt> program.
-In a doc string in <tt class="docutils literal">basename.p.py</tt> we do a preprocessor include
-in a comment line, say:</p>
-<pre class="literal-block">
-#    #include &quot;docstrings/doc1.dst.txt
-</pre>
-<!-- Note: we insert an error right above as the right quote is missing. -->
-<!-- Then preprocess skips the statement, otherwise it gives an error -->
-<!-- message about a missing file docstrings/doc1.dst.txt (which we don't -->
-<!-- have, it's just a sample file name). Also note that comment lines -->
-<!-- must not come before a code block for the rst/st/epytext formats to work. -->
-<p>The file <tt class="docutils literal">docstrings/doc1.dst.txt</tt> is a file filtered to a specific format
-(typically plain text, reStructedText, or Epytext) from an original
-&quot;singleton&quot; documentation file named <tt class="docutils literal">docstrings/doc1.do.txt</tt>. The <tt class="docutils literal">.dst.txt</tt>
-is the extension of a file filtered ready for being included in a doc
-string (<tt class="docutils literal">d</tt> for doc, <tt class="docutils literal">st</tt> for string).</p>
-<p>For making an Epydoc manual, the <tt class="docutils literal">docstrings/doc1.do.txt</tt> file is
-filtered to <tt class="docutils literal">docstrings/doc1.epytext</tt> and renamed to
-<tt class="docutils literal">docstrings/doc1.dst.txt</tt>.  Then we run the preprocessor on the
-<tt class="docutils literal">basename.p.py</tt> file and create a real Python file
-<tt class="docutils literal">basename.py</tt>. Finally, we run Epydoc on this file. Alternatively, and
-nowadays preferably, we use Sphinx for API documentation and then the
-Doconce <tt class="docutils literal">docstrings/doc1.do.txt</tt> file is filtered to
-<tt class="docutils literal">docstrings/doc1.rst</tt> and renamed to <tt class="docutils literal">docstrings/doc1.dst.txt</tt>. A
-Sphinx directory must have been made with the right <tt class="docutils literal">index.rst</tt> and
-<tt class="docutils literal">conf.py</tt> files. Going to this directory and typing <tt class="docutils literal">make html</tt> makes
-the HTML version of the Sphinx API documentation.</p>
-<p>The next step is to produce the final pure Python source code. For
-this purpose we filter <tt class="docutils literal">docstrings/doc1.do.txt</tt> to plain text format
-(<tt class="docutils literal">docstrings/doc1.txt</tt>) and rename to <tt class="docutils literal">docstrings/doc1.dst.txt</tt>. The
-preprocessor transforms the <tt class="docutils literal">basename.p.py</tt> file to a standard Python
-file <tt class="docutils literal">basename.py</tt>. The doc strings are now in plain text and well
-suited for Pydoc or reading by humans. All these steps are automated
-by the <tt class="docutils literal">insertdocstr.py</tt> script.  Here are the corresponding Unix
-commands:</p>
-<pre class="literal-block">
-# make Epydoc API manual of basename module:
-cd docstrings
-doconce2format epytext doc1.do.txt
-mv doc1.epytext doc1.dst.txt
-cd ..
-preprocess basename.p.py &gt; basename.py
-epydoc basename
-
-# make Sphinx API manual of basename module:
-cd doc
-doconce2format sphinx doc1.do.txt
-mv doc1.rst doc1.dst.txt
-cd ..
-preprocess basename.p.py &gt; basename.py
-cd docstrings/sphinx-rootdir  # sphinx directory for API source
-make clean
-make html
-cd ../..
-
-# make ordinary Python module files with doc strings:
-cd docstrings
-doconce2format plain doc1.do.txt
-mv doc1.txt doc1.dst.txt
-cd ..
-preprocess basename.p.py &gt; basename.py
-
-# can automate inserting doc strings in all .p.py files:
-insertdocstr.py plain .
-# (runs through all .do.txt files and filters them to plain format and
-# renames to .dst.txt extension, then the script runs through all
-# .p.py files and runs the preprocessor, which includes the .dst.txt
-# files)
-</pre>
 </div>
 </div>
 <div class="section" id="warning-disclaimer">

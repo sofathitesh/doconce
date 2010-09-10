@@ -79,12 +79,9 @@ The Doconce source code reads
 </CENTER>
 
 <P>
-[1] <B>Center for Biomedical Computing, Simula Research Laboratory</B>
-<P>
-[2] <B>Department of Informatics, University of Oslo</B>
-<P>
-[3] <B>Segfault Inc, Cyberspace</B>
-<P>
+<CENTER>[1] <B>Center for Biomedical Computing, Simula Research Laboratory</B></CENTER>
+<CENTER>[2] <B>Department of Informatics, University of Oslo</B></CENTER>
+<CENTER>[3] <B>Segfault Inc, Cyberspace</B></CENTER>
 
 
 
@@ -169,11 +166,13 @@ The Doconce source code reads
 \documentclass{article}
 \usepackage{hyperref,relsize,,epsfig,makeidx}
 \usepackage[latin1]{inputenc}
-% required by ptex2tex:
-\usepackage{graphicx,hyperref,relsize,fancyvrb,epsfig}
-\usepackage{a4,amsmath,amssymb,framed,subfigure}
-\usepackage[usenames]{color}
-%\usepackage{ptex2tex}  % replaces the above
+\usepackage{ptex2tex}
+
+% #ifdef HELVETICA
+% Set helvetica as the default font family:
+\RequirePackage{helvet}
+\renewcommand\familydefault{phv}
+% #endif
 
 \makeindex
 
@@ -801,8 +800,9 @@ doconce2format HTML tutorial.do.txt
 
 # LaTeX
 doconce2format LaTeX tutorial.do.txt
-ptex2tex tutorial
-latex tutorial.tex
+ptex2tex -DHELVETICA tutorial
+latex -shell-escape tutorial.tex
+latex -shell-escape tutorial.tex
 dvipdf tutorial.dvi
 
 # Sphinx
@@ -943,7 +943,7 @@ cp -r demo ../demos/tutorial
 ************** File: tutorial.do.txt *****************
 TITLE: Doconce: Document Once, Include Anywhere
 AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-DATE: August 25, 2010
+DATE: September 10, 2010
 
 
 # lines beginning with # are comment lines
@@ -1131,7 +1131,7 @@ for those who can read LaTeX syntax).
 
 You can have blocks of computer code, starting and ending with
 `!bc` and `!ec` instructions, respectively. Such blocks look like
-!bc
+!bc cod
 from math import sin, pi
 def myfunc(x):
     return sin(pi*x)
@@ -1139,11 +1139,36 @@ def myfunc(x):
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 !ec
+It is possible to add a specification of a (ptex2tex-style)
+environment for typesetting the verbatim code block, e.g., `!bc xxx`
+where `xxx` is an identifier like `pycod` for code snippet in Python,
+`sys` for terminal session, etc. When Doconce is filtered to LaTeX,
+these identifiers are used as in ptex2tex and defined in a
+configuration file `.ptext2tex.cfg`, while when filtering
+to Sphinx, one can have a comment line in the Doconce file for
+mapping the identifiers to legal language names for Sphinx (which equals
+the legal language names for Pygments):
+!bc
+ # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+!ec
+By default, `pro` and `cod` are `python`, `sys` is `console`,
+while `xpro` and `xcod` are computer language specific for `x`
+in `f` (Fortran), `c` (C), `cpp` (C++), and `py` (Python).
+# `rb` (Ruby), `pl` (Perl), and `sh` (Unix shell).
+
+# (Any sphinx code-block comment, whether inside verbatim code
+# blocks or outside, yields a mapping between bc arguments
+# and computer languages. In case of muliple definitions, the
+# first one is used.)
 
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!).
+avoiding copying information!). A complete file is typeset 
+with `!bc pro`, while a part of a file is copied into a `!bc cod`
+environment. What `pro` and `cod` mean is then defined through
+a `.ptex2tex.cfg` file for LaTeX and a `sphinx code-blocks`
+comment for Sphinx.
 
 Another document can be included by writing `#include "mynote.do.txt"`
 on a line starting with (another) hash sign.  Doconce documents have
@@ -1153,6 +1178,7 @@ right writing enviroment for plain text.
 
 
 ===== Macros (Newcommands), Cross-References, Index, and Bibliography =====
+label{newcommands}
 
 Doconce supports a type of macros via a LaTeX-style *newcommand*
 construction.  The newcommands defined in a file with name
@@ -1223,96 +1249,6 @@ http://docutils.sourceforge.net/<docutils>.  Making Sphinx documents
 requires of course http://sphinx.pocoo.org<sphinx>.
 
 
-===== The Doconce Documentation Strategy for User Manuals ===== 
-
-Doconce was particularly made for writing tutorials or user manuals
-associated with computer codes. The text is written in Doconce format
-in separate files. LaTeX, HTML, XML, and other versions of the text
-is easily produced by the `doconce2format` script and standard tools.
-A plain text version is often wanted for the computer source code,
-this is easy to make, and then one can use
-`#include` statements in the computer source code to automatically
-get the manual or tutorial text in comments or doc strings.
-Below is a worked example.
-
-Consider an example involving a Python module in a `basename.p.py` file.
-The `.p.py` extension identifies this as a file that has to be
-preprocessed) by the `preprocess` program. 
-In a doc string in `basename.p.py` we do a preprocessor include
-in a comment line, say
-!bc
-#    #include "docstrings/doc1.dst.txt
-!ec
-#
-# Note: we insert an error right above as the right quote is missing.
-# Then preprocess skips the statement, otherwise it gives an error
-# message about a missing file docstrings/doc1.dst.txt (which we don't
-# have, it's just a sample file name). Also note that comment lines
-# must not come before a code block for the rst/st/epytext formats to work.
-#
-The file `docstrings/doc1.dst.txt` is a file filtered to a specific format
-(typically plain text, reStructedText, or Epytext) from an original
-"singleton" documentation file named `docstrings/doc1.do.txt`. The `.dst.txt`
-is the extension of a file filtered ready for being included in a doc
-string (`d` for doc, `st` for string).
-
-For making an Epydoc manual, the `docstrings/doc1.do.txt` file is
-filtered to `docstrings/doc1.epytext` and renamed to
-`docstrings/doc1.dst.txt`.  Then we run the preprocessor on the
-`basename.p.py` file and create a real Python file
-`basename.py`. Finally, we run Epydoc on this file. Alternatively, and
-nowadays preferably, we use Sphinx for API documentation and then the
-Doconce `docstrings/doc1.do.txt` file is filtered to
-`docstrings/doc1.rst` and renamed to `docstrings/doc1.dst.txt`. A
-Sphinx directory must have been made with the right `index.rst` and
-`conf.py` files. Going to this directory and typing `make html` makes
-the HTML version of the Sphinx API documentation.
-
-The next step is to produce the final pure Python source code. For
-this purpose we filter `docstrings/doc1.do.txt` to plain text format
-(`docstrings/doc1.txt`) and rename to `docstrings/doc1.dst.txt`. The
-preprocessor transforms the `basename.p.py` file to a standard Python
-file `basename.py`. The doc strings are now in plain text and well
-suited for Pydoc or reading by humans. All these steps are automated
-by the `insertdocstr.py` script.  Here are the corresponding Unix
-commands:
-
-!bc
-# make Epydoc API manual of basename module:
-cd docstrings
-doconce2format epytext doc1.do.txt
-mv doc1.epytext doc1.dst.txt
-cd ..
-preprocess basename.p.py > basename.py
-epydoc basename
-
-# make Sphinx API manual of basename module:
-cd doc
-doconce2format sphinx doc1.do.txt
-mv doc1.rst doc1.dst.txt
-cd ..
-preprocess basename.p.py > basename.py
-cd docstrings/sphinx-rootdir  # sphinx directory for API source
-make clean
-make html
-cd ../..
-
-# make ordinary Python module files with doc strings:
-cd docstrings
-doconce2format plain doc1.do.txt
-mv doc1.txt doc1.dst.txt
-cd ..
-preprocess basename.p.py > basename.py
-
-# can automate inserting doc strings in all .p.py files:
-insertdocstr.py plain .
-# (runs through all .do.txt files and filters them to plain format and
-# renames to .dst.txt extension, then the script runs through all 
-# .p.py files and runs the preprocessor, which includes the .dst.txt
-# files)
-!ec
-
-
 ======= Warning/Disclaimer =======
 
 Doconce can be viewed is a unified interface to a variety of
@@ -1338,13 +1274,11 @@ more typesetting and tagging features than Doconce.
 </CENTER>
 
 <P>
-[1] <B>Simula Research Laboratory</B>
-<P>
-[2] <B>University of Oslo</B>
-<P>
+<CENTER>[1] <B>Simula Research Laboratory</B></CENTER>
+<CENTER>[2] <B>University of Oslo</B></CENTER>
 
 
-<CENTER><H3>August 25, 2010</H3></CENTER>
+<CENTER><H3>September 10, 2010</H3></CENTER>
 <P>
 
 <P>
@@ -1554,7 +1488,7 @@ for those who can read LaTeX syntax).
 <P>
 You can have blocks of computer code, starting and ending with
 <TT>!bc</TT> and <TT>!ec</TT> instructions, respectively. Such blocks look like
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   cod-->
 <BLOCKQUOTE><PRE>
 from math import sin, pi
 def myfunc(x):
@@ -1564,12 +1498,40 @@ import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
+It is possible to add a specification of a (ptex2tex-style)
+environment for typesetting the verbatim code block, e.g., <TT>!bc xxx</TT>
+where <TT>xxx</TT> is an identifier like <TT>pycod</TT> for code snippet in Python,
+<TT>sys</TT> for terminal session, etc. When Doconce is filtered to LaTeX,
+these identifiers are used as in ptex2tex and defined in a
+configuration file <TT>.ptext2tex.cfg</TT>, while when filtering
+to Sphinx, one can have a comment line in the Doconce file for
+mapping the identifiers to legal language names for Sphinx (which equals
+the legal language names for Pygments):
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+ # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+By default, <TT>pro</TT> and <TT>cod</TT> are <TT>python</TT>, <TT>sys</TT> is <TT>console</TT>,
+while <TT>xpro</TT> and <TT>xcod</TT> are computer language specific for <TT>x</TT>
+in <TT>f</TT> (Fortran), <TT>c</TT> (C), <TT>cpp</TT> (C++), and <TT>py</TT> (Python).
+<!-- <TT>rb</TT> (Ruby), <TT>pl</TT> (Perl), and <TT>sh</TT> (Unix shell). -->
+
+<P>
+<!-- (Any sphinx code-block comment, whether inside verbatim code -->
+<!-- blocks or outside, yields a mapping between bc arguments -->
+<!-- and computer languages. In case of muliple definitions, the -->
+<!-- first one is used.) -->
 
 <P>
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!).
+avoiding copying information!). A complete file is typeset 
+with <TT>!bc pro</TT>, while a part of a file is copied into a <TT>!bc cod</TT>
+environment. What <TT>pro</TT> and <TT>cod</TT> mean is then defined through
+a <TT>.ptex2tex.cfg</TT> file for LaTeX and a <TT>sphinx code-blocks</TT>
+comment for Sphinx.
 
 <P>
 Another document can be included by writing <TT>#include "mynote.do.txt"</TT>
@@ -1581,7 +1543,9 @@ right writing enviroment for plain text.
 <P>
 
 <P>
-<H3>Macros (Newcommands), Cross-References, Index, and Bibliography</H3>
+<H3>Macros (Newcommands), Cross-References, Index, and Bibliography <A NAME="newcommands"></A></H3>
+<P>
+
 <P>
 Doconce supports a type of macros via a LaTeX-style <EM>newcommand</EM>
 construction.  The newcommands defined in a file with name
@@ -1628,14 +1592,14 @@ page</A> for various formats of this document).
 <P>
 Transformation of a Doconce document to various other
 formats applies the script <TT>doconce2format</TT>:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format format mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The <TT>preprocess</TT> program is always used to preprocess the file first,
 and options to <TT>preprocess</TT> can be added after the filename. For example,
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
 </PRE></BLOCKQUOTE>
@@ -1652,7 +1616,7 @@ format specific actions through tests like <TT>#if FORMAT == "LaTeX"</TT>.
 <P>
 Making an HTML version of a Doconce file <TT>mydoc.do.txt</TT>
 is performed by
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format HTML mydoc.do.txt
 </PRE></BLOCKQUOTE>
@@ -1670,43 +1634,73 @@ Making a LaTeX file <TT>mydoc.tex</TT> from <TT>mydoc.do.txt</TT> is done in two
 <P>
 <B>Step 1.</B> Filter the doconce text to a pre-LaTeX form <TT>mydoc.p.tex</TT> for
      <TT>ptex2tex</TT>:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format LaTeX mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file <TT>newcommands.tex</TT>. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files <TT>newcommands.tex</TT>, <TT>newcommands_keep.tex</TT>, or
+<TT>newcommands_replace.tex</TT> (see the section <A HREF="#newcommands">Macros (Newcommands), Cross-References, Index, and Bibliography</a>). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 <P>
 <B>Step 2.</B> Run <TT>ptex2tex</TT> (if you have it) to make a standard LaTeX file,
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> ptex2tex mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 or just perform a plain copy,
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> cp mydoc.p.tex mydoc.tex
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
+Doconce generates a <TT>.p.tex</TT> file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font,
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Unix/DOS> ptex2tex -DHELVETICA mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+
+<P>
 The <TT>ptex2tex</TT> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile <TT>mydoc.tex</TT> the usual way and create the PDF file:
-<!-- BEGIN VERBATIM BLOCK  -->
+documents. After any <TT>!bc sys</TT> command in the Doconce source you can
+insert verbatim block styles as defined in your <TT>.ptex2tex.cfg</TT>
+file, e.g., <TT>!bc sys cod</TT> for a code snippet, where <TT>cod</TT> is set to
+a certain environment in <TT>.ptex2tex.cfg</TT> (e.g., <TT>CodeIntended</TT>).
+There are over 30 styles to choose from.
+
+<P>
+<B>Step 3.</B> Compile <TT>mydoc.tex</TT> with <TT>latex -shell-escape</TT> 
+and create the PDF file:
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> latex mydoc
-Unix/DOS> latex mydoc
+Unix/DOS> latex -shell-escape mydoc
+Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> makeindex mydoc   # if index
 Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex mydoc
+Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> dvipdf mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
+The <TT>-shell-escape</TT> option is required because <TT>ptex2tex</TT> inserts an include
+of the <TT>minted.sty</TT> style, which applies the <TT>pygments</TT> to format code,
+and this program cannot be run from <TT>latex</TT> without the <TT>-shell-escape</TT> option.
 
 <P>
 
@@ -1716,7 +1710,7 @@ Unix/DOS> dvipdf mydoc
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
 </PRE></BLOCKQUOTE>
@@ -1728,13 +1722,13 @@ Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file <TT>mydoc.rst</TT>:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format rst mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 We may now produce various other formats:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
 Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
@@ -1754,7 +1748,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 <P>
 <B>Step 1.</B> Translate Doconce into the Sphinx dialect of
 the reStructuredText format:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format sphinx mydoc.do.txt
 </PRE></BLOCKQUOTE>
@@ -1764,7 +1758,7 @@ Unix/DOS> doconce2format sphinx mydoc.do.txt
 <B>Step 2.</B> Create a Sphinx root directory with a <TT>conf.py</TT> file, 
 either manually or by using the interactive <TT>sphinx-quickstart</TT>
 program. Here is a scripted version of the steps with the latter:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 mkdir sphinx-rootdir
 sphinx-quickstart <<EOF
@@ -1795,7 +1789,7 @@ EOF
 
 <P>
 <B>Step 3.</B> Move the <TT>tutorial.rst</TT> file to the Sphinx root directory:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> mv mydoc.rst sphinx-rootdir
 </PRE></BLOCKQUOTE>
@@ -1821,7 +1815,7 @@ is included, i.e., add <TT>mydoc</TT> to the <TT>toctree</TT> section so that it
 
 <P>
 <B>Step 5.</B> Generate, for instance, an HTML version of the Sphinx source:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 make clean   # remove old versions
 make html
@@ -1831,11 +1825,24 @@ Many other formats are also possible.
 
 <P>
 <B>Step 6.</B> View the result:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> firefox _build/html/index.html
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
+
+<P>
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows <TT>!bc</TT>: <TT>cod</TT> gives Python
+(<TT>code-block:: python</TT> in Sphinx syntax) and <TT>cppcod</TT> gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+<P>
+<!-- Desired extension: sphinx can utilize a "pycod" or "c++cod" -->
+<!-- instruction as currently done in latex for ptex2tex and write -->
+<!-- out the right code block name accordingly. -->
+
+<P>
 
 <P>
 <H3>Google Code Wiki</H3>
@@ -1844,7 +1851,7 @@ There are several different wiki dialects, but Doconce only support the
 one used by <A HREF="http://code.google.com/p/support/wiki/WikiSyntax">Google Code</A>.
 The transformation to this format, called <TT>gwiki</TT> to explicitly mark
 it as the Google Code dialect, is done by
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format gwiki mydoc.do.txt
 </PRE></BLOCKQUOTE>
@@ -1855,6 +1862,27 @@ file contents into the wiki page. Press <B>Preview</B> or <B>Save Page</B> to
 see the formatted result.
 
 <P>
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+<P>
+
+<P>
+<H3>Tweaking the Doconce Output</H3>
+<P>
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+<TT>.rst</TT> file is going to be filtered to LaTeX or HTML, it cannot know
+if <TT>.eps</TT> or <TT>.png</TT> is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The <TT>make.sh</TT> files in <TT>docs/manual</TT> and <TT>docs/tutorial</TT> 
+constitute comprehensive examples on how such scripts can be made.
 
 <P>
 
@@ -1896,104 +1924,6 @@ requires of course <A HREF="http://sphinx.pocoo.org">sphinx</A>.
 <P>
 
 <P>
-<H3>The Doconce Documentation Strategy for User Manuals</H3>
-<P>
-Doconce was particularly made for writing tutorials or user manuals
-associated with computer codes. The text is written in Doconce format
-in separate files. LaTeX, HTML, XML, and other versions of the text
-is easily produced by the <TT>doconce2format</TT> script and standard tools.
-A plain text version is often wanted for the computer source code,
-this is easy to make, and then one can use
-<TT>#include</TT> statements in the computer source code to automatically
-get the manual or tutorial text in comments or doc strings.
-Below is a worked example.
-
-<P>
-Consider an example involving a Python module in a <TT>basename.p.py</TT> file.
-The <TT>.p.py</TT> extension identifies this as a file that has to be
-preprocessed) by the <TT>preprocess</TT> program. 
-In a doc string in <TT>basename.p.py</TT> we do a preprocessor include
-in a comment line, say
-<!-- BEGIN VERBATIM BLOCK  -->
-<BLOCKQUOTE><PRE>
-#    #include "docstrings/doc1.dst.txt
-</PRE></BLOCKQUOTE>
-<! -- END VERBATIM BLOCK -->
-<!--  -->
-<!-- Note: we insert an error right above as the right quote is missing. -->
-<!-- Then preprocess skips the statement, otherwise it gives an error -->
-<!-- message about a missing file docstrings/doc1.dst.txt (which we don't -->
-<!-- have, it's just a sample file name). Also note that comment lines -->
-<!-- must not come before a code block for the rst/st/epytext formats to work. -->
-<!--  -->
-The file <TT>docstrings/doc1.dst.txt</TT> is a file filtered to a specific format
-(typically plain text, reStructedText, or Epytext) from an original
-"singleton" documentation file named <TT>docstrings/doc1.do.txt</TT>. The <TT>.dst.txt</TT>
-is the extension of a file filtered ready for being included in a doc
-string (<TT>d</TT> for doc, <TT>st</TT> for string).
-
-<P>
-For making an Epydoc manual, the <TT>docstrings/doc1.do.txt</TT> file is
-filtered to <TT>docstrings/doc1.epytext</TT> and renamed to
-<TT>docstrings/doc1.dst.txt</TT>.  Then we run the preprocessor on the
-<TT>basename.p.py</TT> file and create a real Python file
-<TT>basename.py</TT>. Finally, we run Epydoc on this file. Alternatively, and
-nowadays preferably, we use Sphinx for API documentation and then the
-Doconce <TT>docstrings/doc1.do.txt</TT> file is filtered to
-<TT>docstrings/doc1.rst</TT> and renamed to <TT>docstrings/doc1.dst.txt</TT>. A
-Sphinx directory must have been made with the right <TT>index.rst</TT> and
-<TT>conf.py</TT> files. Going to this directory and typing <TT>make html</TT> makes
-the HTML version of the Sphinx API documentation.
-
-<P>
-The next step is to produce the final pure Python source code. For
-this purpose we filter <TT>docstrings/doc1.do.txt</TT> to plain text format
-(<TT>docstrings/doc1.txt</TT>) and rename to <TT>docstrings/doc1.dst.txt</TT>. The
-preprocessor transforms the <TT>basename.p.py</TT> file to a standard Python
-file <TT>basename.py</TT>. The doc strings are now in plain text and well
-suited for Pydoc or reading by humans. All these steps are automated
-by the <TT>insertdocstr.py</TT> script.  Here are the corresponding Unix
-commands:
-<!-- BEGIN VERBATIM BLOCK  -->
-<BLOCKQUOTE><PRE>
-# make Epydoc API manual of basename module:
-cd docstrings
-doconce2format epytext doc1.do.txt
-mv doc1.epytext doc1.dst.txt
-cd ..
-preprocess basename.p.py > basename.py
-epydoc basename
-
-# make Sphinx API manual of basename module:
-cd doc
-doconce2format sphinx doc1.do.txt
-mv doc1.rst doc1.dst.txt
-cd ..
-preprocess basename.p.py > basename.py
-cd docstrings/sphinx-rootdir  # sphinx directory for API source
-make clean
-make html
-cd ../..
-
-# make ordinary Python module files with doc strings:
-cd docstrings
-doconce2format plain doc1.do.txt
-mv doc1.txt doc1.dst.txt
-cd ..
-preprocess basename.p.py > basename.py
-
-# can automate inserting doc strings in all .p.py files:
-insertdocstr.py plain .
-# (runs through all .do.txt files and filters them to plain format and
-# renames to .dst.txt extension, then the script runs through all 
-# .p.py files and runs the preprocessor, which includes the .dst.txt
-# files)
-</PRE></BLOCKQUOTE>
-<! -- END VERBATIM BLOCK -->
-
-<P>
-
-<P>
 <H1>Warning/Disclaimer</H1>
 <P>
 Doconce can be viewed is a unified interface to a variety of
@@ -2019,7 +1949,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: August 25, 2010
+:Date: September 10, 2010
 
 .. lines beginning with # are comment lines
 
@@ -2225,11 +2155,37 @@ You can have blocks of computer code, starting and ending with
         I = integrate.trapezoidal(myfunc, 0, pi, 100)
 
 
+It is possible to add a specification of a (ptex2tex-style)
+environment for typesetting the verbatim code block, e.g., ``!bc xxx``
+where ``xxx`` is an identifier like ``pycod`` for code snippet in Python,
+``sys`` for terminal session, etc. When Doconce is filtered to LaTeX,
+these identifiers are used as in ptex2tex and defined in a
+configuration file ``.ptext2tex.cfg``, while when filtering
+to Sphinx, one can have a comment line in the Doconce file for
+mapping the identifiers to legal language names for Sphinx (which equals
+the legal language names for Pygments)::
+
+         # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
+
+By default, ``pro`` and ``cod`` are ``python``, ``sys`` is ``console``,
+while ``xpro`` and ``xcod`` are computer language specific for ``x``
+in ``f`` (Fortran), ``c`` (C), ``cpp`` (C++), and ``py`` (Python).
+.. ``rb`` (Ruby), ``pl`` (Perl), and ``sh`` (Unix shell).
+
+.. (Any sphinx code-block comment, whether inside verbatim code
+.. blocks or outside, yields a mapping between bc arguments
+.. and computer languages. In case of muliple definitions, the
+.. first one is used.)
 
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!).
+avoiding copying information!). A complete file is typeset 
+with ``!bc pro``, while a part of a file is copied into a ``!bc cod``
+environment. What ``pro`` and ``cod`` mean is then defined through
+a ``.ptex2tex.cfg`` file for LaTeX and a ``sphinx code-blocks``
+comment for Sphinx.
 
 Another document can be included by writing ``#include "mynote.do.txt"``
 on a line starting with (another) hash sign.  Doconce documents have
@@ -2237,6 +2193,8 @@ extension ``do.txt``. The ``do`` part stands for doconce, while the
 trailing ``.txt`` denotes a text document so that editors gives you the
 right writing enviroment for plain text.
 
+
+.. _newcommands:
 
 Macros (Newcommands), Cross-References, Index, and Bibliography
 ---------------------------------------------------------------
@@ -2324,9 +2282,10 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file ``newcommands.tex``. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
+``newcommands_replace.tex`` (see the section `Macros (Newcommands), Cross-References, Index, and Bibliography`_). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file::
 
@@ -2338,19 +2297,44 @@ or just perform a plain copy::
         Unix/DOS> cp mydoc.p.tex mydoc.tex
 
 
+Doconce generates a ``.p.tex`` file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font::
+
+        Unix/DOS> ptex2tex -DHELVETICA mydoc
+
+
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through::
+
+        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+
+
+
 The ``ptex2tex`` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile ``mydoc.tex`` the usual way and create the PDF file::
+documents. After any ``!bc sys`` command in the Doconce source you can
+insert verbatim block styles as defined in your ``.ptex2tex.cfg``
+file, e.g., ``!bc sys cod`` for a code snippet, where ``cod`` is set to
+a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
+There are over 30 styles to choose from.
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
+*Step 3.* Compile ``mydoc.tex`` with ``latex -shell-escape`` 
+and create the PDF file::
+
+        Unix/DOS> latex -shell-escape mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> makeindex mydoc   # if index
         Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
 
 
+The ``-shell-escape`` option is required because ``ptex2tex`` inserts an include
+of the ``minted.sty`` style, which applies the ``pygments`` to format code,
+and this program cannot be run from ``latex`` without the ``-shell-escape`` option.
 
 
 Plain ASCII Text
@@ -2465,6 +2449,16 @@ Many other formats are also possible.
 
 
 
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows ``!bc``: ``cod`` gives Python
+(``code-block:: python`` in Sphinx syntax) and ``cppcod`` gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+.. Desired extension: sphinx can utilize a "pycod" or "c++cod"
+.. instruction as currently done in latex for ptex2tex and write
+.. out the right code block name accordingly.
+
+
 Google Code Wiki
 ----------------
 
@@ -2481,6 +2475,26 @@ the ``mydoc.gwiki`` output file from ``doconce2format`` and paste the
 file contents into the wiki page. Press **Preview** or **Save Page** to
 see the formatted result.
 
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+
+Tweaking the Doconce Output
+---------------------------
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+``.rst`` file is going to be filtered to LaTeX or HTML, it cannot know
+if ``.eps`` or ``.png`` is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The ``make.sh`` files in ``docs/manual`` and ``docs/tutorial`` 
+constitute comprehensive examples on how such scripts can be made.
 
 
 Demos
@@ -2517,98 +2531,6 @@ to formats such as XML, OpenOffice, HTML, and LaTeX requires
 requires of course `sphinx <http://sphinx.pocoo.org>`_.
 
 
-The Doconce Documentation Strategy for User Manuals
----------------------------------------------------
-
-Doconce was particularly made for writing tutorials or user manuals
-associated with computer codes. The text is written in Doconce format
-in separate files. LaTeX, HTML, XML, and other versions of the text
-is easily produced by the ``doconce2format`` script and standard tools.
-A plain text version is often wanted for the computer source code,
-this is easy to make, and then one can use
-``#include`` statements in the computer source code to automatically
-get the manual or tutorial text in comments or doc strings.
-Below is a worked example.
-
-Consider an example involving a Python module in a ``basename.p.py`` file.
-The ``.p.py`` extension identifies this as a file that has to be
-preprocessed) by the ``preprocess`` program. 
-In a doc string in ``basename.p.py`` we do a preprocessor include
-in a comment line, say::
-
-        #    #include "docstrings/doc1.dst.txt
-
-
-
-.. Note: we insert an error right above as the right quote is missing.
-.. Then preprocess skips the statement, otherwise it gives an error
-.. message about a missing file docstrings/doc1.dst.txt (which we don't
-.. have, it's just a sample file name). Also note that comment lines
-.. must not come before a code block for the rst/st/epytext formats to work.
-
-The file ``docstrings/doc1.dst.txt`` is a file filtered to a specific format
-(typically plain text, reStructedText, or Epytext) from an original
-"singleton" documentation file named ``docstrings/doc1.do.txt``. The ``.dst.txt``
-is the extension of a file filtered ready for being included in a doc
-string (``d`` for doc, ``st`` for string).
-
-For making an Epydoc manual, the ``docstrings/doc1.do.txt`` file is
-filtered to ``docstrings/doc1.epytext`` and renamed to
-``docstrings/doc1.dst.txt``.  Then we run the preprocessor on the
-``basename.p.py`` file and create a real Python file
-``basename.py``. Finally, we run Epydoc on this file. Alternatively, and
-nowadays preferably, we use Sphinx for API documentation and then the
-Doconce ``docstrings/doc1.do.txt`` file is filtered to
-``docstrings/doc1.rst`` and renamed to ``docstrings/doc1.dst.txt``. A
-Sphinx directory must have been made with the right ``index.rst`` and
-``conf.py`` files. Going to this directory and typing ``make html`` makes
-the HTML version of the Sphinx API documentation.
-
-The next step is to produce the final pure Python source code. For
-this purpose we filter ``docstrings/doc1.do.txt`` to plain text format
-(``docstrings/doc1.txt``) and rename to ``docstrings/doc1.dst.txt``. The
-preprocessor transforms the ``basename.p.py`` file to a standard Python
-file ``basename.py``. The doc strings are now in plain text and well
-suited for Pydoc or reading by humans. All these steps are automated
-by the ``insertdocstr.py`` script.  Here are the corresponding Unix
-commands::
-
-        # make Epydoc API manual of basename module:
-        cd docstrings
-        doconce2format epytext doc1.do.txt
-        mv doc1.epytext doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        epydoc basename
-        
-        # make Sphinx API manual of basename module:
-        cd doc
-        doconce2format sphinx doc1.do.txt
-        mv doc1.rst doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        cd docstrings/sphinx-rootdir  # sphinx directory for API source
-        make clean
-        make html
-        cd ../..
-        
-        # make ordinary Python module files with doc strings:
-        cd docstrings
-        doconce2format plain doc1.do.txt
-        mv doc1.txt doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        
-        # can automate inserting doc strings in all .p.py files:
-        insertdocstr.py plain .
-        # (runs through all .do.txt files and filters them to plain format and
-        # renames to .dst.txt extension, then the script runs through all 
-        # .p.py files and runs the preprocessor, which includes the .dst.txt
-        # files)
-
-
-
-
 Warning/Disclaimer
 ==================
 
@@ -2629,7 +2551,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: August 25, 2010
+:Date: September 10, 2010
 
 .. lines beginning with # are comment lines
 
@@ -2718,7 +2640,7 @@ text constructions that allow you to control the formating. For example,
 
 Here is an example of some simple text written in the Doconce format:
 
-.. code-block:: python
+.. code-block:: py
 
         ===== A Subsection with Sample Text =====
         label{my:first:sec}
@@ -2807,7 +2729,7 @@ the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like :math:`\nu = \sin(x)` is
 typeset as
 
-.. code-block:: python
+.. code-block:: py
 
         $\nu = \sin(x)$|$v = sin(x)$
 
@@ -2822,7 +2744,7 @@ The result looks like this:
 .. math::
 
         
-        {\partial u\over\partial t}  &=  \nabla^2 u + f,\label{myeq1}\\
+        {\partial u\over\partial t}  &=  \nabla^2 u + f,\\
         {\partial v\over\partial t}  &=  \nabla\cdot(q(u)\nabla v) + g
         
 
@@ -2833,7 +2755,7 @@ for those who can read LaTeX syntax).
 You can have blocks of computer code, starting and ending with
 ``!bc`` and ``!ec`` instructions, respectively. Such blocks look like
 
-.. code-block:: python
+.. code-block:: py
 
         from math import sin, pi
         def myfunc(x):
@@ -2843,11 +2765,39 @@ You can have blocks of computer code, starting and ending with
         I = integrate.trapezoidal(myfunc, 0, pi, 100)
 
 
+It is possible to add a specification of a (ptex2tex-style)
+environment for typesetting the verbatim code block, e.g., ``!bc xxx``
+where ``xxx`` is an identifier like ``pycod`` for code snippet in Python,
+``sys`` for terminal session, etc. When Doconce is filtered to LaTeX,
+these identifiers are used as in ptex2tex and defined in a
+configuration file ``.ptext2tex.cfg``, while when filtering
+to Sphinx, one can have a comment line in the Doconce file for
+mapping the identifiers to legal language names for Sphinx (which equals
+the legal language names for Pygments):
+
+.. code-block:: py
+
+         # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
+
+By default, ``pro`` and ``cod`` are ``python``, ``sys`` is ``console``,
+while ``xpro`` and ``xcod`` are computer language specific for ``x``
+in ``f`` (Fortran), ``c`` (C), ``cpp`` (C++), and ``py`` (Python).
+.. ``rb`` (Ruby), ``pl`` (Perl), and ``sh`` (Unix shell).
+
+.. (Any sphinx code-block comment, whether inside verbatim code
+.. blocks or outside, yields a mapping between bc arguments
+.. and computer languages. In case of muliple definitions, the
+.. first one is used.)
 
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!).
+avoiding copying information!). A complete file is typeset 
+with ``!bc pro``, while a part of a file is copied into a ``!bc cod``
+environment. What ``pro`` and ``cod`` mean is then defined through
+a ``.ptex2tex.cfg`` file for LaTeX and a ``sphinx code-blocks``
+comment for Sphinx.
 
 Another document can be included by writing ``#include "mynote.do.txt"``
 on a line starting with (another) hash sign.  Doconce documents have
@@ -2855,6 +2805,8 @@ extension ``do.txt``. The ``do`` part stands for doconce, while the
 trailing ``.txt`` denotes a text document so that editors gives you the
 right writing enviroment for plain text.
 
+
+.. _newcommands:
 
 Macros (Newcommands), Cross-References, Index, and Bibliography
 ---------------------------------------------------------------
@@ -2901,7 +2853,7 @@ From Doconce to Other Formats
 Transformation of a Doconce document to various other
 formats applies the script ``doconce2format``:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format format mydoc.do.txt
 
@@ -2909,7 +2861,7 @@ formats applies the script ``doconce2format``:
 The ``preprocess`` program is always used to preprocess the file first,
 and options to ``preprocess`` can be added after the filename. For example,
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
 
@@ -2926,7 +2878,7 @@ HTML
 Making an HTML version of a Doconce file ``mydoc.do.txt``
 is performed by
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format HTML mydoc.do.txt
 
@@ -2944,45 +2896,75 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 *Step 1.* Filter the doconce text to a pre-LaTeX form ``mydoc.p.tex`` for
      ``ptex2tex``:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format LaTeX mydoc.do.txt
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file ``newcommands.tex``. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
+``newcommands_replace.tex`` (see the section :ref:`newcommands`). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file,
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> ptex2tex mydoc
 
 
 or just perform a plain copy,
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> cp mydoc.p.tex mydoc.tex
 
 
+Doconce generates a ``.p.tex`` file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font,
+
+.. code-block:: console
+
+        Unix/DOS> ptex2tex -DHELVETICA mydoc
+
+
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through
+
+.. code-block:: console
+
+        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+
+
+
 The ``ptex2tex`` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile ``mydoc.tex`` the usual way and create the PDF file:
+documents. After any ``!bc sys`` command in the Doconce source you can
+insert verbatim block styles as defined in your ``.ptex2tex.cfg``
+file, e.g., ``!bc sys cod`` for a code snippet, where ``cod`` is set to
+a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
+There are over 30 styles to choose from.
 
-.. code-block:: python
+*Step 3.* Compile ``mydoc.tex`` with ``latex -shell-escape`` 
+and create the PDF file:
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
+.. code-block:: console
+
+        Unix/DOS> latex -shell-escape mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> makeindex mydoc   # if index
         Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
 
 
+The ``-shell-escape`` option is required because ``ptex2tex`` inserts an include
+of the ``minted.sty`` style, which applies the ``pygments`` to format code,
+and this program cannot be run from ``latex`` without the ``-shell-escape`` option.
 
 
 Plain ASCII Text
@@ -2992,7 +2974,7 @@ We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
 
@@ -3005,14 +2987,14 @@ Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file ``mydoc.rst``:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format rst mydoc.do.txt
 
 
 We may now produce various other formats:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
         Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
@@ -3032,7 +3014,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 *Step 1.* Translate Doconce into the Sphinx dialect of
 the reStructuredText format:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format sphinx mydoc.do.txt
 
@@ -3042,7 +3024,7 @@ the reStructuredText format:
 either manually or by using the interactive ``sphinx-quickstart``
 program. Here is a scripted version of the steps with the latter:
 
-.. code-block:: python
+.. code-block:: console
 
         mkdir sphinx-rootdir
         sphinx-quickstart <<EOF
@@ -3073,7 +3055,7 @@ program. Here is a scripted version of the steps with the latter:
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> mv mydoc.rst sphinx-rootdir
 
@@ -3087,7 +3069,7 @@ are located in a subdirectory).
 *Step 4.* Edit the generated ``index.rst`` file so that ``mydoc.rst``
 is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes
 
-.. code-block:: python
+.. code-block:: py
 
         .. toctree::
            :maxdepth: 2
@@ -3099,7 +3081,7 @@ is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes
 
 *Step 5.* Generate, for instance, an HTML version of the Sphinx source:
 
-.. code-block:: python
+.. code-block:: console
 
         make clean   # remove old versions
         make html
@@ -3109,10 +3091,20 @@ Many other formats are also possible.
 
 *Step 6.* View the result:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> firefox _build/html/index.html
 
+
+
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows ``!bc``: ``cod`` gives Python
+(``code-block:: python`` in Sphinx syntax) and ``cppcod`` gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+.. Desired extension: sphinx can utilize a "pycod" or "c++cod"
+.. instruction as currently done in latex for ptex2tex and write
+.. out the right code block name accordingly.
 
 
 Google Code Wiki
@@ -3123,7 +3115,7 @@ one used by `Google Code <http://code.google.com/p/support/wiki/WikiSyntax>`_.
 The transformation to this format, called ``gwiki`` to explicitly mark
 it as the Google Code dialect, is done by
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format gwiki mydoc.do.txt
 
@@ -3133,6 +3125,26 @@ the ``mydoc.gwiki`` output file from ``doconce2format`` and paste the
 file contents into the wiki page. Press **Preview** or **Save Page** to
 see the formatted result.
 
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+
+Tweaking the Doconce Output
+---------------------------
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+``.rst`` file is going to be filtered to LaTeX or HTML, it cannot know
+if ``.eps`` or ``.png`` is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The ``make.sh`` files in ``docs/manual`` and ``docs/tutorial`` 
+constitute comprehensive examples on how such scripts can be made.
 
 
 Demos
@@ -3140,7 +3152,7 @@ Demos
 
 The current text is generated from a Doconce format stored in the file
 
-.. code-block:: python
+.. code-block:: py
 
         docs/tutorial/tutorial.do.txt
 
@@ -3171,102 +3183,6 @@ to formats such as XML, OpenOffice, HTML, and LaTeX requires
 requires of course `sphinx <http://sphinx.pocoo.org>`_.
 
 
-The Doconce Documentation Strategy for User Manuals
----------------------------------------------------
-
-Doconce was particularly made for writing tutorials or user manuals
-associated with computer codes. The text is written in Doconce format
-in separate files. LaTeX, HTML, XML, and other versions of the text
-is easily produced by the ``doconce2format`` script and standard tools.
-A plain text version is often wanted for the computer source code,
-this is easy to make, and then one can use
-``#include`` statements in the computer source code to automatically
-get the manual or tutorial text in comments or doc strings.
-Below is a worked example.
-
-Consider an example involving a Python module in a ``basename.p.py`` file.
-The ``.p.py`` extension identifies this as a file that has to be
-preprocessed) by the ``preprocess`` program. 
-In a doc string in ``basename.p.py`` we do a preprocessor include
-in a comment line, say
-
-.. code-block:: python
-
-        #    #include "docstrings/doc1.dst.txt
-
-
-
-.. Note: we insert an error right above as the right quote is missing.
-.. Then preprocess skips the statement, otherwise it gives an error
-.. message about a missing file docstrings/doc1.dst.txt (which we don't
-.. have, it's just a sample file name). Also note that comment lines
-.. must not come before a code block for the rst/st/epytext formats to work.
-
-The file ``docstrings/doc1.dst.txt`` is a file filtered to a specific format
-(typically plain text, reStructedText, or Epytext) from an original
-"singleton" documentation file named ``docstrings/doc1.do.txt``. The ``.dst.txt``
-is the extension of a file filtered ready for being included in a doc
-string (``d`` for doc, ``st`` for string).
-
-For making an Epydoc manual, the ``docstrings/doc1.do.txt`` file is
-filtered to ``docstrings/doc1.epytext`` and renamed to
-``docstrings/doc1.dst.txt``.  Then we run the preprocessor on the
-``basename.p.py`` file and create a real Python file
-``basename.py``. Finally, we run Epydoc on this file. Alternatively, and
-nowadays preferably, we use Sphinx for API documentation and then the
-Doconce ``docstrings/doc1.do.txt`` file is filtered to
-``docstrings/doc1.rst`` and renamed to ``docstrings/doc1.dst.txt``. A
-Sphinx directory must have been made with the right ``index.rst`` and
-``conf.py`` files. Going to this directory and typing ``make html`` makes
-the HTML version of the Sphinx API documentation.
-
-The next step is to produce the final pure Python source code. For
-this purpose we filter ``docstrings/doc1.do.txt`` to plain text format
-(``docstrings/doc1.txt``) and rename to ``docstrings/doc1.dst.txt``. The
-preprocessor transforms the ``basename.p.py`` file to a standard Python
-file ``basename.py``. The doc strings are now in plain text and well
-suited for Pydoc or reading by humans. All these steps are automated
-by the ``insertdocstr.py`` script.  Here are the corresponding Unix
-commands:
-
-.. code-block:: python
-
-        # make Epydoc API manual of basename module:
-        cd docstrings
-        doconce2format epytext doc1.do.txt
-        mv doc1.epytext doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        epydoc basename
-        
-        # make Sphinx API manual of basename module:
-        cd doc
-        doconce2format sphinx doc1.do.txt
-        mv doc1.rst doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        cd docstrings/sphinx-rootdir  # sphinx directory for API source
-        make clean
-        make html
-        cd ../..
-        
-        # make ordinary Python module files with doc strings:
-        cd docstrings
-        doconce2format plain doc1.do.txt
-        mv doc1.txt doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        
-        # can automate inserting doc strings in all .p.py files:
-        insertdocstr.py plain .
-        # (runs through all .do.txt files and filters them to plain format and
-        # renames to .dst.txt extension, then the script runs through all 
-        # .p.py files and runs the preprocessor, which includes the .dst.txt
-        # files)
-
-
-
-
 Warning/Disclaimer
 ==================
 
@@ -3286,7 +3202,7 @@ more typesetting and tagging features than Doconce.
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== August 25, 2010 ====
+==== September 10, 2010 ====
 
 <wiki:comment> lines beginning with # are comment lines </wiki:comment>
 
@@ -3439,11 +3355,36 @@ def myfunc(x):
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 }}}
+It is possible to add a specification of a (ptex2tex-style)
+environment for typesetting the verbatim code block, e.g., `!bc xxx`
+where `xxx` is an identifier like `pycod` for code snippet in Python,
+`sys` for terminal session, etc. When Doconce is filtered to LaTeX,
+these identifiers are used as in ptex2tex and defined in a
+configuration file `.ptext2tex.cfg`, while when filtering
+to Sphinx, one can have a comment line in the Doconce file for
+mapping the identifiers to legal language names for Sphinx (which equals
+the legal language names for Pygments):
+{{{
+ # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+}}}
+By default, `pro` and `cod` are `python`, `sys` is `console`,
+while `xpro` and `xcod` are computer language specific for `x`
+in `f` (Fortran), `c` (C), `cpp` (C++), and `py` (Python).
+<wiki:comment> `rb` (Ruby), `pl` (Perl), and `sh` (Unix shell). </wiki:comment>
+
+<wiki:comment> (Any sphinx code-block comment, whether inside verbatim code </wiki:comment>
+<wiki:comment> blocks or outside, yields a mapping between bc arguments </wiki:comment>
+<wiki:comment> and computer languages. In case of muliple definitions, the </wiki:comment>
+<wiki:comment> first one is used.) </wiki:comment>
 
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!).
+avoiding copying information!). A complete file is typeset 
+with `!bc pro`, while a part of a file is copied into a `!bc cod`
+environment. What `pro` and `cod` mean is then defined through
+a `.ptex2tex.cfg` file for LaTeX and a `sphinx code-blocks`
+comment for Sphinx.
 
 Another document can be included by writing `#include "mynote.do.txt"`
 on a line starting with (another) hash sign.  Doconce documents have
@@ -3529,9 +3470,10 @@ Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
 Unix/DOS> doconce2format LaTeX mydoc.do.txt
 }}}
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file `newcommands.tex`. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files `newcommands.tex`, `newcommands_keep.tex`, or
+`newcommands_replace.tex` (see the section [#Macros_(Newcommands),_Cross-References,_Index,_and_Bibliography]). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 *Step 2.* Run `ptex2tex` (if you have it) to make a standard LaTeX file,
 {{{
@@ -3541,18 +3483,41 @@ or just perform a plain copy,
 {{{
 Unix/DOS> cp mydoc.p.tex mydoc.tex
 }}}
+Doconce generates a `.p.tex` file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font,
+{{{
+Unix/DOS> ptex2tex -DHELVETICA mydoc
+}}}
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through
+{{{
+Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+}}}
+
 The `ptex2tex` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile `mydoc.tex` the usual way and create the PDF file:
+documents. After any `!bc sys` command in the Doconce source you can
+insert verbatim block styles as defined in your `.ptex2tex.cfg`
+file, e.g., `!bc sys cod` for a code snippet, where `cod` is set to
+a certain environment in `.ptex2tex.cfg` (e.g., `CodeIntended`).
+There are over 30 styles to choose from.
+
+*Step 3.* Compile `mydoc.tex` with `latex -shell-escape` 
+and create the PDF file:
 {{{
-Unix/DOS> latex mydoc
-Unix/DOS> latex mydoc
+Unix/DOS> latex -shell-escape mydoc
+Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> makeindex mydoc   # if index
 Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex mydoc
+Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> dvipdf mydoc
 }}}
+The `-shell-escape` option is required because `ptex2tex` inserts an include
+of the `minted.sty` style, which applies the `pygments` to format code,
+and this program cannot be run from `latex` without the `-shell-escape` option.
 
 ==== Plain ASCII Text ====
 
@@ -3654,6 +3619,15 @@ Many other formats are also possible.
 Unix/DOS> firefox _build/html/index.html
 }}}
 
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows `!bc`: `cod` gives Python
+(`code-block:: python` in Sphinx syntax) and `cppcod` gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+<wiki:comment> Desired extension: sphinx can utilize a "pycod" or "c++cod" </wiki:comment>
+<wiki:comment> instruction as currently done in latex for ptex2tex and write </wiki:comment>
+<wiki:comment> out the right code block name accordingly. </wiki:comment>
+
 ==== Google Code Wiki ====
 
 There are several different wiki dialects, but Doconce only support the
@@ -3667,6 +3641,25 @@ You can then open a new wiki page for your Google Code project, copy
 the `mydoc.gwiki` output file from `doconce2format` and paste the
 file contents into the wiki page. Press *Preview* or *Save Page* to
 see the formatted result.
+
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+==== Tweaking the Doconce Output ====
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+`.rst` file is going to be filtered to LaTeX or HTML, it cannot know
+if `.eps` or `.png` is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The `make.sh` files in `docs/manual` and `docs/tutorial` 
+constitute comprehensive examples on how such scripts can be made.
 
 ==== Demos ====
 
@@ -3698,94 +3691,6 @@ to formats such as XML, OpenOffice, HTML, and LaTeX requires
 [http://docutils.sourceforge.net/ docutils].  Making Sphinx documents
 requires of course [http://sphinx.pocoo.org sphinx].
 
-==== The Doconce Documentation Strategy for User Manuals ====
-
-Doconce was particularly made for writing tutorials or user manuals
-associated with computer codes. The text is written in Doconce format
-in separate files. LaTeX, HTML, XML, and other versions of the text
-is easily produced by the `doconce2format` script and standard tools.
-A plain text version is often wanted for the computer source code,
-this is easy to make, and then one can use
-`#include` statements in the computer source code to automatically
-get the manual or tutorial text in comments or doc strings.
-Below is a worked example.
-
-Consider an example involving a Python module in a `basename.p.py` file.
-The `.p.py` extension identifies this as a file that has to be
-preprocessed) by the `preprocess` program. 
-In a doc string in `basename.p.py` we do a preprocessor include
-in a comment line, say
-{{{
-#    #include "docstrings/doc1.dst.txt
-}}}
-<wiki:comment>  </wiki:comment>
-<wiki:comment> Note: we insert an error right above as the right quote is missing. </wiki:comment>
-<wiki:comment> Then preprocess skips the statement, otherwise it gives an error </wiki:comment>
-<wiki:comment> message about a missing file docstrings/doc1.dst.txt (which we don't </wiki:comment>
-<wiki:comment> have, it's just a sample file name). Also note that comment lines </wiki:comment>
-<wiki:comment> must not come before a code block for the rst/st/epytext formats to work. </wiki:comment>
-<wiki:comment>  </wiki:comment>
-The file `docstrings/doc1.dst.txt` is a file filtered to a specific format
-(typically plain text, reStructedText, or Epytext) from an original
-"singleton" documentation file named `docstrings/doc1.do.txt`. The `.dst.txt`
-is the extension of a file filtered ready for being included in a doc
-string (`d` for doc, `st` for string).
-
-For making an Epydoc manual, the `docstrings/doc1.do.txt` file is
-filtered to `docstrings/doc1.epytext` and renamed to
-`docstrings/doc1.dst.txt`.  Then we run the preprocessor on the
-`basename.p.py` file and create a real Python file
-`basename.py`. Finally, we run Epydoc on this file. Alternatively, and
-nowadays preferably, we use Sphinx for API documentation and then the
-Doconce `docstrings/doc1.do.txt` file is filtered to
-`docstrings/doc1.rst` and renamed to `docstrings/doc1.dst.txt`. A
-Sphinx directory must have been made with the right `index.rst` and
-`conf.py` files. Going to this directory and typing `make html` makes
-the HTML version of the Sphinx API documentation.
-
-The next step is to produce the final pure Python source code. For
-this purpose we filter `docstrings/doc1.do.txt` to plain text format
-(`docstrings/doc1.txt`) and rename to `docstrings/doc1.dst.txt`. The
-preprocessor transforms the `basename.p.py` file to a standard Python
-file `basename.py`. The doc strings are now in plain text and well
-suited for Pydoc or reading by humans. All these steps are automated
-by the `insertdocstr.py` script.  Here are the corresponding Unix
-commands:
-{{{
-# make Epydoc API manual of basename module:
-cd docstrings
-doconce2format epytext doc1.do.txt
-mv doc1.epytext doc1.dst.txt
-cd ..
-preprocess basename.p.py > basename.py
-epydoc basename
-
-# make Sphinx API manual of basename module:
-cd doc
-doconce2format sphinx doc1.do.txt
-mv doc1.rst doc1.dst.txt
-cd ..
-preprocess basename.p.py > basename.py
-cd docstrings/sphinx-rootdir  # sphinx directory for API source
-make clean
-make html
-cd ../..
-
-# make ordinary Python module files with doc strings:
-cd docstrings
-doconce2format plain doc1.do.txt
-mv doc1.txt doc1.dst.txt
-cd ..
-preprocess basename.p.py > basename.py
-
-# can automate inserting doc strings in all .p.py files:
-insertdocstr.py plain .
-# (runs through all .do.txt files and filters them to plain format and
-# renames to .dst.txt extension, then the script runs through all 
-# .p.py files and runs the preprocessor, which includes the .dst.txt
-# files)
-}}}
-
 
 
 == Warning/Disclaimer ==
@@ -3804,7 +3709,7 @@ more typesetting and tagging features than Doconce.
 
 ************** File: tutorial.st *****************
 TITLE: Doconce: Document Once, Include Anywhere
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: August 25, 2010
+BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: September 10, 2010
 
 
 
@@ -3977,11 +3882,32 @@ You can have blocks of computer code, starting and ending with
         I = integrate.trapezoidal(myfunc, 0, pi, 100)
 
 
+It is possible to add a specification of a (ptex2tex-style)
+environment for typesetting the verbatim code block, e.g., '!bc xxx'
+where 'xxx' is an identifier like 'pycod' for code snippet in Python,
+'sys' for terminal session, etc. When Doconce is filtered to LaTeX,
+these identifiers are used as in ptex2tex and defined in a
+configuration file '.ptext2tex.cfg', while when filtering
+to Sphinx, one can have a comment line in the Doconce file for
+mapping the identifiers to legal language names for Sphinx (which equals
+the legal language names for Pygments)::
+
+         # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
+
+By default, 'pro' and 'cod' are 'python', 'sys' is 'console',
+while 'xpro' and 'xcod' are computer language specific for 'x'
+in 'f' (Fortran), 'c' (C), 'cpp' (C++), and 'py' (Python).
+
 
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!).
+avoiding copying information!). A complete file is typeset 
+with '!bc pro', while a part of a file is copied into a '!bc cod'
+environment. What 'pro' and 'cod' mean is then defined through
+a '.ptex2tex.cfg' file for LaTeX and a 'sphinx code-blocks'
+comment for Sphinx.
 
 Another document can be included by writing '#include "mynote.do.txt"'
 on a line starting with (another) hash sign.  Doconce documents have
@@ -4023,7 +3949,7 @@ page for various formats of this document).
 From Doconce to Other Formats
 Transformation of a Doconce document to various other
 formats applies the script 'doconce2format':
-!bc  
+!bc   sys
         Unix/DOS> doconce2format format mydoc.do.txt
 
 
@@ -4050,14 +3976,15 @@ Making a LaTeX file 'mydoc.tex' from 'mydoc.do.txt' is done in two steps:
 
 *Step 1.* Filter the doconce text to a pre-LaTeX form 'mydoc.p.tex' for
      'ptex2tex':
-!bc  
+!bc   sys
         Unix/DOS> doconce2format LaTeX mydoc.do.txt
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file 'newcommands.tex'. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files 'newcommands.tex', 'newcommands_keep.tex', or
+'newcommands_replace.tex' (see the section "Macros (Newcommands), Cross-References, Index, and Bibliography"). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 *Step 2.* Run 'ptex2tex' (if you have it) to make a standard LaTeX file::
 
@@ -4069,19 +3996,44 @@ or just perform a plain copy::
         Unix/DOS> cp mydoc.p.tex mydoc.tex
 
 
+Doconce generates a '.p.tex' file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font::
+
+        Unix/DOS> ptex2tex -DHELVETICA mydoc
+
+
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through::
+
+        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+
+
+
 The 'ptex2tex' tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile 'mydoc.tex' the usual way and create the PDF file::
+documents. After any '!bc sys' command in the Doconce source you can
+insert verbatim block styles as defined in your '.ptex2tex.cfg'
+file, e.g., '!bc sys cod' for a code snippet, where 'cod' is set to
+a certain environment in '.ptex2tex.cfg' (e.g., 'CodeIntended').
+There are over 30 styles to choose from.
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
+*Step 3.* Compile 'mydoc.tex' with 'latex -shell-escape' 
+and create the PDF file::
+
+        Unix/DOS> latex -shell-escape mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> makeindex mydoc   # if index
         Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
 
 
+The '-shell-escape' option is required because 'ptex2tex' inserts an include
+of the 'minted.sty' style, which applies the 'pygments' to format code,
+and this program cannot be run from 'latex' without the '-shell-escape' option.
 Plain ASCII Text
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
@@ -4094,7 +4046,7 @@ reStructuredText
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file 'mydoc.rst':
-!bc  
+!bc   sys
         Unix/DOS> doconce2format rst mydoc.do.txt
 
 
@@ -4185,6 +4137,11 @@ Many other formats are also possible.
         Unix/DOS> firefox _build/html/index.html
 
 
+
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows '!bc': 'cod' gives Python
+('code-block:: python' in Sphinx syntax) and 'cppcod' gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
 Google Code Wiki
 There are several different wiki dialects, but Doconce only support the
 one used by "http://code.google.com/p/support/wiki/WikiSyntax":Google Code.
@@ -4198,6 +4155,23 @@ You can then open a new wiki page for your Google Code project, copy
 the 'mydoc.gwiki' output file from 'doconce2format' and paste the
 file contents into the wiki page. Press **Preview** or **Save Page** to
 see the formatted result.
+
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+Tweaking the Doconce Output
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+'.rst' file is going to be filtered to LaTeX or HTML, it cannot know
+if '.eps' or '.png' is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The 'make.sh' files in 'docs/manual' and 'docs/tutorial' 
+constitute comprehensive examples on how such scripts can be made.
 Demos
 The current text is generated from a Doconce format stored in the file::
 
@@ -4225,87 +4199,6 @@ that ptex2tex potentially makes use of.  Going from reStructuredText
 to formats such as XML, OpenOffice, HTML, and LaTeX requires
 "http://docutils.sourceforge.net/":docutils.  Making Sphinx documents
 requires of course "http://sphinx.pocoo.org":sphinx.
-The Doconce Documentation Strategy for User Manuals
-Doconce was particularly made for writing tutorials or user manuals
-associated with computer codes. The text is written in Doconce format
-in separate files. LaTeX, HTML, XML, and other versions of the text
-is easily produced by the 'doconce2format' script and standard tools.
-A plain text version is often wanted for the computer source code,
-this is easy to make, and then one can use
-'#include' statements in the computer source code to automatically
-get the manual or tutorial text in comments or doc strings.
-Below is a worked example.
-
-Consider an example involving a Python module in a 'basename.p.py' file.
-The '.p.py' extension identifies this as a file that has to be
-preprocessed) by the 'preprocess' program. 
-In a doc string in 'basename.p.py' we do a preprocessor include
-in a comment line, say::
-
-        #    #include "docstrings/doc1.dst.txt
-
-
-The file 'docstrings/doc1.dst.txt' is a file filtered to a specific format
-(typically plain text, reStructedText, or Epytext) from an original
-"singleton" documentation file named 'docstrings/doc1.do.txt'. The '.dst.txt'
-is the extension of a file filtered ready for being included in a doc
-string ('d' for doc, 'st' for string).
-
-For making an Epydoc manual, the 'docstrings/doc1.do.txt' file is
-filtered to 'docstrings/doc1.epytext' and renamed to
-'docstrings/doc1.dst.txt'.  Then we run the preprocessor on the
-'basename.p.py' file and create a real Python file
-'basename.py'. Finally, we run Epydoc on this file. Alternatively, and
-nowadays preferably, we use Sphinx for API documentation and then the
-Doconce 'docstrings/doc1.do.txt' file is filtered to
-'docstrings/doc1.rst' and renamed to 'docstrings/doc1.dst.txt'. A
-Sphinx directory must have been made with the right 'index.rst' and
-'conf.py' files. Going to this directory and typing 'make html' makes
-the HTML version of the Sphinx API documentation.
-
-The next step is to produce the final pure Python source code. For
-this purpose we filter 'docstrings/doc1.do.txt' to plain text format
-('docstrings/doc1.txt') and rename to 'docstrings/doc1.dst.txt'. The
-preprocessor transforms the 'basename.p.py' file to a standard Python
-file 'basename.py'. The doc strings are now in plain text and well
-suited for Pydoc or reading by humans. All these steps are automated
-by the 'insertdocstr.py' script.  Here are the corresponding Unix
-commands::
-
-        # make Epydoc API manual of basename module:
-        cd docstrings
-        doconce2format epytext doc1.do.txt
-        mv doc1.epytext doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        epydoc basename
-        
-        # make Sphinx API manual of basename module:
-        cd doc
-        doconce2format sphinx doc1.do.txt
-        mv doc1.rst doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        cd docstrings/sphinx-rootdir  # sphinx directory for API source
-        make clean
-        make html
-        cd ../..
-        
-        # make ordinary Python module files with doc strings:
-        cd docstrings
-        doconce2format plain doc1.do.txt
-        mv doc1.txt doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        
-        # can automate inserting doc strings in all .p.py files:
-        insertdocstr.py plain .
-        # (runs through all .do.txt files and filters them to plain format and
-        # renames to .dst.txt extension, then the script runs through all 
-        # .p.py files and runs the preprocessor, which includes the .dst.txt
-        # files)
-
-
 Warning/Disclaimer
 Doconce can be viewed is a unified interface to a variety of
 typesetting formats.  This interface is minimal in the sense that a
@@ -4320,7 +4213,7 @@ and the LaTeX output is not at all as clean, but it also has a lot
 more typesetting and tagging features than Doconce.
 ************** File: tutorial.epytext *****************
 TITLE: Doconce: Document Once, Include Anywhere
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: August 25, 2010
+BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: September 10, 2010
 
 
 
@@ -4510,11 +4403,32 @@ C{!bc} and C{!ec} instructions, respectively. Such blocks look like::
         I = integrate.trapezoidal(myfunc, 0, pi, 100)
 
 
+It is possible to add a specification of a (ptex2tex-style)
+environment for typesetting the verbatim code block, e.g., C{!bc xxx}
+where C{xxx} is an identifier like C{pycod} for code snippet in Python,
+C{sys} for terminal session, etc. When Doconce is filtered to LaTeX,
+these identifiers are used as in ptex2tex and defined in a
+configuration file C{.ptext2tex.cfg}, while when filtering
+to Sphinx, one can have a comment line in the Doconce file for
+mapping the identifiers to legal language names for Sphinx (which equals
+the legal language names for Pygments)::
+
+         # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
+
+By default, C{pro} and C{cod} are C{python}, C{sys} is C{console},
+while C{xpro} and C{xcod} are computer language specific for C{x}
+in C{f} (Fortran), C{c} (C), C{cpp} (C++), and C{py} (Python).
+
 
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!).
+avoiding copying information!). A complete file is typeset 
+with C{!bc pro}, while a part of a file is copied into a C{!bc cod}
+environment. What C{pro} and C{cod} mean is then defined through
+a C{.ptex2tex.cfg} file for LaTeX and a C{sphinx code-blocks}
+comment for Sphinx.
 
 Another document can be included by writing C{#include "mynote.do.txt"}
 on a line starting with (another) hash sign.  Doconce documents have
@@ -4566,7 +4480,7 @@ From Doconce to Other Formats
 
 Transformation of a Doconce document to various other
 formats applies the script C{doconce2format}:
-!bc  
+!bc   sys
         Unix/DOS> doconce2format format mydoc.do.txt
 
 
@@ -4600,14 +4514,15 @@ Making a LaTeX file C{mydoc.tex} from C{mydoc.do.txt} is done in two steps:
 
 I{Step 1.} Filter the doconce text to a pre-LaTeX form C{mydoc.p.tex} for
      C{ptex2tex}:
-!bc  
+!bc   sys
         Unix/DOS> doconce2format LaTeX mydoc.do.txt
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file C{newcommands.tex}. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files C{newcommands.tex}, C{newcommands_keep.tex}, or
+C{newcommands_replace.tex} (see the section "Macros (Newcommands), Cross-References, Index, and Bibliography"). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 I{Step 2.} Run C{ptex2tex} (if you have it) to make a standard LaTeX file::
 
@@ -4619,19 +4534,44 @@ or just perform a plain copy::
         Unix/DOS> cp mydoc.p.tex mydoc.tex
 
 
+Doconce generates a C{.p.tex} file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font::
+
+        Unix/DOS> ptex2tex -DHELVETICA mydoc
+
+
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through::
+
+        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+
+
+
 The C{ptex2tex} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile C{mydoc.tex} the usual way and create the PDF file::
+documents. After any C{!bc sys} command in the Doconce source you can
+insert verbatim block styles as defined in your C{.ptex2tex.cfg}
+file, e.g., C{!bc sys cod} for a code snippet, where C{cod} is set to
+a certain environment in C{.ptex2tex.cfg} (e.g., C{CodeIntended}).
+There are over 30 styles to choose from.
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
+I{Step 3.} Compile C{mydoc.tex} with C{latex -shell-escape} 
+and create the PDF file::
+
+        Unix/DOS> latex -shell-escape mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> makeindex mydoc   # if index
         Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
 
 
+The C{-shell-escape} option is required because C{ptex2tex} inserts an include
+of the C{minted.sty} style, which applies the C{pygments} to format code,
+and this program cannot be run from C{latex} without the C{-shell-escape} option.
 
 
 Plain ASCII Text
@@ -4651,7 +4591,7 @@ reStructuredText
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file C{mydoc.rst}:
-!bc  
+!bc   sys
         Unix/DOS> doconce2format rst mydoc.do.txt
 
 
@@ -4746,6 +4686,13 @@ I{Step 6.} View the result::
 
 
 
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows C{!bc}: C{cod} gives Python
+(C{code-block:: python} in Sphinx syntax) and C{cppcod} gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+
+
 Google Code Wiki
 ----------------
 
@@ -4762,6 +4709,26 @@ the C{mydoc.gwiki} output file from C{doconce2format} and paste the
 file contents into the wiki page. Press B{Preview} or B{Save Page} to
 see the formatted result.
 
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+
+Tweaking the Doconce Output
+---------------------------
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+C{.rst} file is going to be filtered to LaTeX or HTML, it cannot know
+if C{.eps} or C{.png} is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The C{make.sh} files in C{docs/manual} and C{docs/tutorial} 
+constitute comprehensive examples on how such scripts can be made.
 
 
 Demos
@@ -4798,91 +4765,6 @@ U{docutils<http://docutils.sourceforge.net/>}.  Making Sphinx documents
 requires of course U{sphinx<http://sphinx.pocoo.org>}.
 
 
-The Doconce Documentation Strategy for User Manuals
----------------------------------------------------
-
-Doconce was particularly made for writing tutorials or user manuals
-associated with computer codes. The text is written in Doconce format
-in separate files. LaTeX, HTML, XML, and other versions of the text
-is easily produced by the C{doconce2format} script and standard tools.
-A plain text version is often wanted for the computer source code,
-this is easy to make, and then one can use
-C{#include} statements in the computer source code to automatically
-get the manual or tutorial text in comments or doc strings.
-Below is a worked example.
-
-Consider an example involving a Python module in a C{basename.p.py} file.
-The C{.p.py} extension identifies this as a file that has to be
-preprocessed) by the C{preprocess} program. 
-In a doc string in C{basename.p.py} we do a preprocessor include
-in a comment line, say::
-
-        #    #include "docstrings/doc1.dst.txt
-
-
-The file C{docstrings/doc1.dst.txt} is a file filtered to a specific format
-(typically plain text, reStructedText, or Epytext) from an original
-"singleton" documentation file named C{docstrings/doc1.do.txt}. The C{.dst.txt}
-is the extension of a file filtered ready for being included in a doc
-string (C{d} for doc, C{st} for string).
-
-For making an Epydoc manual, the C{docstrings/doc1.do.txt} file is
-filtered to C{docstrings/doc1.epytext} and renamed to
-C{docstrings/doc1.dst.txt}.  Then we run the preprocessor on the
-C{basename.p.py} file and create a real Python file
-C{basename.py}. Finally, we run Epydoc on this file. Alternatively, and
-nowadays preferably, we use Sphinx for API documentation and then the
-Doconce C{docstrings/doc1.do.txt} file is filtered to
-C{docstrings/doc1.rst} and renamed to C{docstrings/doc1.dst.txt}. A
-Sphinx directory must have been made with the right C{index.rst} and
-C{conf.py} files. Going to this directory and typing C{make html} makes
-the HTML version of the Sphinx API documentation.
-
-The next step is to produce the final pure Python source code. For
-this purpose we filter C{docstrings/doc1.do.txt} to plain text format
-(C{docstrings/doc1.txt}) and rename to C{docstrings/doc1.dst.txt}. The
-preprocessor transforms the C{basename.p.py} file to a standard Python
-file C{basename.py}. The doc strings are now in plain text and well
-suited for Pydoc or reading by humans. All these steps are automated
-by the C{insertdocstr.py} script.  Here are the corresponding Unix
-commands::
-
-        # make Epydoc API manual of basename module:
-        cd docstrings
-        doconce2format epytext doc1.do.txt
-        mv doc1.epytext doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        epydoc basename
-        
-        # make Sphinx API manual of basename module:
-        cd doc
-        doconce2format sphinx doc1.do.txt
-        mv doc1.rst doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        cd docstrings/sphinx-rootdir  # sphinx directory for API source
-        make clean
-        make html
-        cd ../..
-        
-        # make ordinary Python module files with doc strings:
-        cd docstrings
-        doconce2format plain doc1.do.txt
-        mv doc1.txt doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        
-        # can automate inserting doc strings in all .p.py files:
-        insertdocstr.py plain .
-        # (runs through all .do.txt files and filters them to plain format and
-        # renames to .dst.txt extension, then the script runs through all 
-        # .p.py files and runs the preprocessor, which includes the .dst.txt
-        # files)
-
-
-
-
 Warning/Disclaimer
 ==================
 
@@ -4907,7 +4789,7 @@ Hans Petter Langtangen [1, 2]
 [2] University of Oslo
 
 
-Date: August 25, 2010
+Date: September 10, 2010
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -5100,7 +4982,7 @@ for those who can read LaTeX syntax).
 
 You can have blocks of computer code, starting and ending with::
 
-        !bc 
+        !bc  cod
         from math import sin, pi
         def myfunc(x):
             return sin(pi*x)
@@ -5109,11 +4991,34 @@ You can have blocks of computer code, starting and ending with::
         I = integrate.trapezoidal(myfunc, 0, pi, 100)
 
 
+It is possible to add a specification of a (ptex2tex-style)
+environment for typesetting the verbatim code block, e.g.::
+
+where xxx is an identifier like pycod for code snippet in Python,
+sys for terminal session, etc. When Doconce is filtered to LaTeX,
+these identifiers are used as in ptex2tex and defined in a
+configuration file .ptext2tex.cfg, while when filtering
+to Sphinx, one can have a comment line in the Doconce file for
+mapping the identifiers to legal language names for Sphinx (which equals
+the legal language names for Pygments)::
+
+         # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
+
+By default, pro and cod are python, sys is console,
+while xpro and xcod are computer language specific for x
+in f (Fortran), c (C), cpp (C++), and py (Python).
+
 
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!).
+avoiding copying information!). A complete file is typeset 
+with::
+
+environment. What pro and cod mean is then defined through
+a .ptex2tex.cfg file for LaTeX and a sphinx code-blocks
+comment for Sphinx.
 
 Another document can be included by writing #include "mynote.do.txt"
 on a line starting with (another) hash sign.  Doconce documents have
@@ -5204,9 +5109,10 @@ Making a LaTeX file mydoc.tex from mydoc.do.txt is done in two steps:
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file newcommands.tex. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files newcommands.tex, newcommands_keep.tex, or
+newcommands_replace.tex (see the section "Macros (Newcommands), Cross-References, Index, and Bibliography"). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 *Step 2.* Run ptex2tex (if you have it) to make a standard LaTeX file::
 
@@ -5218,19 +5124,46 @@ or just perform a plain copy::
         Unix/DOS> cp mydoc.p.tex mydoc.tex
 
 
+Doconce generates a .p.tex file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font::
+
+        Unix/DOS> ptex2tex -DHELVETICA mydoc
+
+
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through::
+
+        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+
+
+
 The ptex2tex tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile mydoc.tex the usual way and create the PDF file::
+documents. After any::
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
+insert verbatim block styles as defined in your .ptex2tex.cfg
+file, e.g.::
+
+a certain environment in .ptex2tex.cfg (e.g., CodeIntended).
+There are over 30 styles to choose from.
+
+*Step 3.* Compile mydoc.tex with latex -shell-escape 
+and create the PDF file::
+
+        Unix/DOS> latex -shell-escape mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> makeindex mydoc   # if index
         Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
 
 
+The -shell-escape option is required because ptex2tex inserts an include
+of the minted.sty style, which applies the pygments to format code,
+and this program cannot be run from latex without the -shell-escape option.
 
 
 Plain ASCII Text
@@ -5345,6 +5278,14 @@ Many other formats are also possible.
 
 
 
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows::
+
+(code-block:: python in Sphinx syntax) and cppcod gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+
+
 Google Code Wiki
 ----------------
 
@@ -5361,6 +5302,26 @@ the mydoc.gwiki output file from doconce2format and paste the
 file contents into the wiki page. Press _Preview_ or _Save Page_ to
 see the formatted result.
 
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+
+Tweaking the Doconce Output
+---------------------------
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+.rst file is going to be filtered to LaTeX or HTML, it cannot know
+if .eps or .png is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The make.sh files in docs/manual and docs/tutorial 
+constitute comprehensive examples on how such scripts can be made.
 
 
 Demos
@@ -5397,91 +5358,6 @@ docutils (http://docutils.sourceforge.net/).  Making Sphinx documents
 requires of course sphinx (http://sphinx.pocoo.org).
 
 
-The Doconce Documentation Strategy for User Manuals
----------------------------------------------------
-
-Doconce was particularly made for writing tutorials or user manuals
-associated with computer codes. The text is written in Doconce format
-in separate files. LaTeX, HTML, XML, and other versions of the text
-is easily produced by the doconce2format script and standard tools.
-A plain text version is often wanted for the computer source code,
-this is easy to make, and then one can use
-#include statements in the computer source code to automatically
-get the manual or tutorial text in comments or doc strings.
-Below is a worked example.
-
-Consider an example involving a Python module in a basename.p.py file.
-The .p.py extension identifies this as a file that has to be
-preprocessed) by the preprocess program. 
-In a doc string in basename.p.py we do a preprocessor include
-in a comment line, say::
-
-        #    #include "docstrings/doc1.dst.txt
-
-
-The file docstrings/doc1.dst.txt is a file filtered to a specific format
-(typically plain text, reStructedText, or Epytext) from an original
-"singleton" documentation file named docstrings/doc1.do.txt. The .dst.txt
-is the extension of a file filtered ready for being included in a doc
-string (d for doc, st for string).
-
-For making an Epydoc manual, the docstrings/doc1.do.txt file is
-filtered to docstrings/doc1.epytext and renamed to
-docstrings/doc1.dst.txt.  Then we run the preprocessor on the
-basename.p.py file and create a real Python file
-basename.py. Finally, we run Epydoc on this file. Alternatively, and
-nowadays preferably, we use Sphinx for API documentation and then the
-Doconce docstrings/doc1.do.txt file is filtered to
-docstrings/doc1.rst and renamed to docstrings/doc1.dst.txt. A
-Sphinx directory must have been made with the right index.rst and
-conf.py files. Going to this directory and typing make html makes
-the HTML version of the Sphinx API documentation.
-
-The next step is to produce the final pure Python source code. For
-this purpose we filter docstrings/doc1.do.txt to plain text format
-(docstrings/doc1.txt) and rename to docstrings/doc1.dst.txt. The
-preprocessor transforms the basename.p.py file to a standard Python
-file basename.py. The doc strings are now in plain text and well
-suited for Pydoc or reading by humans. All these steps are automated
-by the insertdocstr.py script.  Here are the corresponding Unix
-commands::
-
-        # make Epydoc API manual of basename module:
-        cd docstrings
-        doconce2format epytext doc1.do.txt
-        mv doc1.epytext doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        epydoc basename
-        
-        # make Sphinx API manual of basename module:
-        cd doc
-        doconce2format sphinx doc1.do.txt
-        mv doc1.rst doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        cd docstrings/sphinx-rootdir  # sphinx directory for API source
-        make clean
-        make html
-        cd ../..
-        
-        # make ordinary Python module files with doc strings:
-        cd docstrings
-        doconce2format plain doc1.do.txt
-        mv doc1.txt doc1.dst.txt
-        cd ..
-        preprocess basename.p.py > basename.py
-        
-        # can automate inserting doc strings in all .p.py files:
-        insertdocstr.py plain .
-        # (runs through all .do.txt files and filters them to plain format and
-        # renames to .dst.txt extension, then the script runs through all 
-        # .p.py files and runs the preprocessor, which includes the .dst.txt
-        # files)
-
-
-
-
 Warning/Disclaimer
 ==================
 
@@ -5500,7 +5376,7 @@ more typesetting and tagging features than Doconce.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Fri, 10 Sep 2010 (01:03)
+DATE: Fri, 10 Sep 2010 (18:26)
 
 
 
@@ -5604,7 +5480,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Fri, 10 Sep 2010 (01:03)
+DATE: Fri, 10 Sep 2010 (18:26)
 
 
 
@@ -5718,7 +5594,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Fri, 10 Sep 2010 (01:03)</CENTER>
+<CENTER>Fri, 10 Sep 2010 (18:26)</CENTER>
 
 
 
@@ -5849,7 +5725,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Fri, 10 Sep 2010 (01:03)</CENTER>
+<CENTER>Fri, 10 Sep 2010 (18:26)</CENTER>
 
 
 
@@ -6057,12 +5933,12 @@ $d2f st manual.do.txt
 $d2f LaTeX manual.do.txt             # produces ptex2tex: manual.p.tex
 ptex2tex manual                      # turn ptex2tex format into plain latex
 rm -f manual.p.tex
-latex manual
-latex manual
+latex -shell-escape manual
+latex -shell-escape manual
 bibtex manual
 makeindex manual
-latex manual
-latex manual
+latex -shell-escape manual
+latex -shell-escape manual
 dvipdf manual.dvi
 
 # Google Code wiki:
@@ -6075,7 +5951,7 @@ rm -f *.ps
 
 rm -rf demo
 mkdir demo
-cp -r manual.do.txt manual.html manual.tex manual.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.txt manual.epytext manual.st sphinx-rootdir/_build/html demo
+cp -r manual.do.txt manual.html figs manual.tex manual.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.txt manual.epytext manual.st sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -6134,7 +6010,7 @@ echo "Go to the demo directory and load index.html into a web browser."
 ************** File: manual.do.txt *****************
 TITLE: Doconce Description
 AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-DATE: August 27, 2010
+DATE: September 10, 2010
 
 
 # lines beginning with # are comment lines
@@ -6350,7 +6226,7 @@ suited for Pydoc or reading by humans. All these steps are automated
 by the `insertdocstr.py` script.  Here are the corresponding Unix
 commands:
 
-!bc
+!bc sys
 # make Epydoc API manual of basename module:
 cd docstrings
 doconce2format epytext doc1.do.txt
@@ -6474,7 +6350,7 @@ http://www.pault.com/xmlalternatives.html<Other minimum-tagged markup languages 
 idx{demos}
 
 The current text is generated from a Doconce format stored in the
-!bc
+!bc sys
 docs/manual/manual.do.txt
 !ec
 file in the Doconce source code tree. We have made a 
@@ -6487,7 +6363,7 @@ The file `make.sh` in the same directory as the `manual.do.txt` file
 Doconce file to obtain documents in various formats.
 
 Another demo is found in
-!bc
+!bc sys
 docs/tutorial/tutorial.do.txt
 !ec
 In the `tutorial` directory there is also a `make.sh` file producing a
@@ -6933,17 +6809,51 @@ Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" `!bc` keyword and an "end code" `!ec` keyword. Both
 keywords must be on a single line and *start at the beginning of the
 line*.  There may be an argument after the `!bc` tag to specify a
-certain `ptex2tex` environ (for instance, `!bc dat` corresponds to the
-data file environment in `ptex2tex`; if there is no argument, one
-assumes the ccq environment, which is plain verbatim in LaTeX).  The
-argument has effect only for the LaTeX format.  .  The `!ec` tag must
+certain `ptex2tex` environment (for instance, `!bc dat` corresponds to
+the data file environment in `ptex2tex`, and `!bc cod` is typically
+used for a code snippet, but any argument can be defined). If there is
+no argument, one assumes the ccq environment, which is plain LaTeX
+verbatim in the default `.ptex2tex.cfg`. However, all these arguments
+can be redefined in the `.ptex2tex.cfg` file.
+
+The argument after `!bc` is also used
+in a Sphinx context. Then argument is mapped onto a valid Pygments
+language for typesetting of the verbatim block by Pygments. This
+mapping takes place in an optional comment to be inserted in the Doconce
+source file, e.g.,
+!bc
+# sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+!ec
+Here, three arguments are defined: `pycod` for Python code,
+`cod` also for Python code, `cppcod` for C++ code, and `sys`
+for terminal sessions. The same arguments would be defined
+in `.ptex2tex.cfg` for how to typeset the blocks in LaTeX using
+various verbatim styles (Pygments can also be used in a LaTeX
+context).
+
+By default, `pro` is used for complete programs in Python, `cod`
+is for a code snippet in Python, while `xcod` and `xpro` implies
+computer language specific typesetting where `x` can be
+`f` for Fortran, `c` for C, `cpp` for C++, and `py` for Python.
+The argument `sys` means by default `console` for Sphinx and
+`CodeTerminal` (ptex2tex environent) for LaTeX. All these definitions
+of the arguments after `!bc` can be redefined in the `.ptex2tex.cfg`
+configuration file for ptex2tex/LaTeX and in the `sphinx code-blocks`
+comments for Sphinx. Support for other languages is easily added.
+
+# (Any sphinx code-block comment, whether inside verbatim code
+# blocks or outside, yields a mapping between bc arguments
+# and computer languages. In case of muliple definitions, the
+# first one is used.)
+
+The enclosing `!ec` tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block:
+Here is a verbatim code block with Python code:
 !bc cod
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -6960,6 +6870,14 @@ INLINE_TAGS = {
     (inline_tag_begin, inline_tag_end),
 }
 !ec
+And here is a C++ code snippet:
+!bc cppcod
+void myfunc(double* x, const double& myarr) {
+    for (int i = 1; i < myarr.size(); i++) {
+        myarr[i] = myarr[i] - x[i]*myarr[i-1]
+    }
+}
+!ec    
 
 Computer code can be copied directly from a file, if desired. The syntax
 is then
@@ -6967,16 +6885,19 @@ is then
  @@@CODE myfile.f
  @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 !ec
-The first line implies that all lines in the file `myfile.f` are copied
-into a verbatim block. The second line has a `fromto:' directive, which
-implies copying code between two lines in the code. Two regular
-expressions, separated by the `@` sign, define the "from" and "to" lines.
-The "from" line is included in the verbatim block, while the "to" line
-is not. In the example above, we copy code from the line matching
-`subroutine test` (with as many blanks as desired between the two words)
-and the line matching `C      END1` (C followed by 5 blanks and then
-the text END1). The final line with the "to" text is not
-included in the verbatim block. 
+The first line implies that all lines in the file `myfile.f` are
+copied into a verbatim block, typset in a `!bc pro` environment.  The
+second line has a `fromto:' directive, which implies copying code
+between two lines in the code, typset within a !`bc cod`
+environment. (The `pro` and `cod` arguments are only used for LaTeX
+and Sphinx output, all other formats will have the code typeset within
+a plain `!bc` environment.) Two regular expressions, separated by the
+`@` sign, define the "from" and "to" lines.  The "from" line is
+included in the verbatim block, while the "to" line is not. In the
+example above, we copy code from the line matching `subroutine test`
+(with as many blanks as desired between the two words) and the line
+matching `C END1` (C followed by 5 blanks and then the text END1). The
+final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above):
 
@@ -7361,13 +7282,11 @@ BIBFILE: manual_bib.bib, manual_bib.rst, manual_bib.py
 </CENTER>
 
 <P>
-[1] <B>Simula Research Laboratory</B>
-<P>
-[2] <B>University of Oslo</B>
-<P>
+<CENTER>[1] <B>Simula Research Laboratory</B></CENTER>
+<CENTER>[2] <B>University of Oslo</B></CENTER>
 
 
-<CENTER><H3>August 27, 2010</H3></CENTER>
+<CENTER><H3>September 10, 2010</H3></CENTER>
 <P>
 
 <P>
@@ -7614,7 +7533,7 @@ file <TT>basename.py</TT>. The doc strings are now in plain text and well
 suited for Pydoc or reading by humans. All these steps are automated
 by the <TT>insertdocstr.py</TT> script.  Here are the corresponding Unix
 commands:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 # make Epydoc API manual of basename module:
 cd docstrings
@@ -7671,7 +7590,7 @@ insertdocstr.py plain .
 
 <P>
 The current text is generated from a Doconce format stored in the
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 docs/manual/manual.do.txt
 </PRE></BLOCKQUOTE>
@@ -7688,7 +7607,7 @@ Doconce file to obtain documents in various formats.
 
 <P>
 Another demo is found in
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 docs/tutorial/tutorial.do.txt
 </PRE></BLOCKQUOTE>
@@ -7708,14 +7627,14 @@ of the results.
 <P>
 Transformation of a Doconce document to various other
 formats applies the script <TT>doconce2format</TT>:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format format mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The <TT>preprocess</TT> program is always used to preprocess the file first,
 and options to <TT>preprocess</TT> can be added after the filename. For example,
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
 </PRE></BLOCKQUOTE>
@@ -7732,7 +7651,7 @@ format specific actions through tests like <TT>#if FORMAT == "LaTeX"</TT>.
 <P>
 Making an HTML version of a Doconce file <TT>mydoc.do.txt</TT>
 is performed by
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format HTML mydoc.do.txt
 </PRE></BLOCKQUOTE>
@@ -7750,43 +7669,73 @@ Making a LaTeX file <TT>mydoc.tex</TT> from <TT>mydoc.do.txt</TT> is done in two
 <P>
 <B>Step 1.</B> Filter the doconce text to a pre-LaTeX form <TT>mydoc.p.tex</TT> for
      <TT>ptex2tex</TT>:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format LaTeX mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file <TT>newcommands.tex</TT>. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files <TT>newcommands.tex</TT>, <TT>newcommands_keep.tex</TT>, or
+<TT>newcommands_replace.tex</TT> (see the section <A HREF="#newcommands">Macros (Newcommands)</a>). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 <P>
 <B>Step 2.</B> Run <TT>ptex2tex</TT> (if you have it) to make a standard LaTeX file,
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> ptex2tex mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 or just perform a plain copy,
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> cp mydoc.p.tex mydoc.tex
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
+Doconce generates a <TT>.p.tex</TT> file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font,
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Unix/DOS> ptex2tex -DHELVETICA mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+
+<P>
 The <TT>ptex2tex</TT> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile <TT>mydoc.tex</TT> the usual way and create the PDF file:
-<!-- BEGIN VERBATIM BLOCK  -->
+documents. After any <TT>!bc sys</TT> command in the Doconce source you can
+insert verbatim block styles as defined in your <TT>.ptex2tex.cfg</TT>
+file, e.g., <TT>!bc sys cod</TT> for a code snippet, where <TT>cod</TT> is set to
+a certain environment in <TT>.ptex2tex.cfg</TT> (e.g., <TT>CodeIntended</TT>).
+There are over 30 styles to choose from.
+
+<P>
+<B>Step 3.</B> Compile <TT>mydoc.tex</TT> with <TT>latex -shell-escape</TT> 
+and create the PDF file:
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> latex mydoc
-Unix/DOS> latex mydoc
+Unix/DOS> latex -shell-escape mydoc
+Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> makeindex mydoc   # if index
 Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex mydoc
+Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> dvipdf mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
+The <TT>-shell-escape</TT> option is required because <TT>ptex2tex</TT> inserts an include
+of the <TT>minted.sty</TT> style, which applies the <TT>pygments</TT> to format code,
+and this program cannot be run from <TT>latex</TT> without the <TT>-shell-escape</TT> option.
 
 <P>
 
@@ -7796,7 +7745,7 @@ Unix/DOS> dvipdf mydoc
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
 </PRE></BLOCKQUOTE>
@@ -7808,13 +7757,13 @@ Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file <TT>mydoc.rst</TT>:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format rst mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 We may now produce various other formats:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
 Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
@@ -7834,7 +7783,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 <P>
 <B>Step 1.</B> Translate Doconce into the Sphinx dialect of
 the reStructuredText format:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format sphinx mydoc.do.txt
 </PRE></BLOCKQUOTE>
@@ -7844,7 +7793,7 @@ Unix/DOS> doconce2format sphinx mydoc.do.txt
 <B>Step 2.</B> Create a Sphinx root directory with a <TT>conf.py</TT> file, 
 either manually or by using the interactive <TT>sphinx-quickstart</TT>
 program. Here is a scripted version of the steps with the latter:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 mkdir sphinx-rootdir
 sphinx-quickstart <<EOF
@@ -7875,7 +7824,7 @@ EOF
 
 <P>
 <B>Step 3.</B> Move the <TT>tutorial.rst</TT> file to the Sphinx root directory:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> mv mydoc.rst sphinx-rootdir
 </PRE></BLOCKQUOTE>
@@ -7901,7 +7850,7 @@ is included, i.e., add <TT>mydoc</TT> to the <TT>toctree</TT> section so that it
 
 <P>
 <B>Step 5.</B> Generate, for instance, an HTML version of the Sphinx source:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 make clean   # remove old versions
 make html
@@ -7911,11 +7860,24 @@ Many other formats are also possible.
 
 <P>
 <B>Step 6.</B> View the result:
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> firefox _build/html/index.html
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
+
+<P>
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows <TT>!bc</TT>: <TT>cod</TT> gives Python
+(<TT>code-block:: python</TT> in Sphinx syntax) and <TT>cppcod</TT> gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+<P>
+<!-- Desired extension: sphinx can utilize a "pycod" or "c++cod" -->
+<!-- instruction as currently done in latex for ptex2tex and write -->
+<!-- out the right code block name accordingly. -->
+
+<P>
 
 <P>
 <H3>Google Code Wiki</H3>
@@ -7924,7 +7886,7 @@ There are several different wiki dialects, but Doconce only support the
 one used by <A HREF="http://code.google.com/p/support/wiki/WikiSyntax">Google Code</A>.
 The transformation to this format, called <TT>gwiki</TT> to explicitly mark
 it as the Google Code dialect, is done by
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format gwiki mydoc.do.txt
 </PRE></BLOCKQUOTE>
@@ -7935,6 +7897,27 @@ file contents into the wiki page. Press <B>Preview</B> or <B>Save Page</B> to
 see the formatted result.
 
 <P>
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+<P>
+
+<P>
+<H3>Tweaking the Doconce Output</H3>
+<P>
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+<TT>.rst</TT> file is going to be filtered to LaTeX or HTML, it cannot know
+if <TT>.eps</TT> or <TT>.png</TT> is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The <TT>make.sh</TT> files in <TT>docs/manual</TT> and <TT>docs/tutorial</TT> 
+constitute comprehensive examples on how such scripts can be made.
 
 <P>
 
@@ -8454,10 +8437,50 @@ Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" <TT>!bc</TT> keyword and an "end code" <TT>!ec</TT> keyword. Both
 keywords must be on a single line and <EM>start at the beginning of the
 line</EM>.  There may be an argument after the <TT>!bc</TT> tag to specify a
-certain <TT>ptex2tex</TT> environ (for instance, <TT>!bc dat</TT> corresponds to the
-data file environment in <TT>ptex2tex</TT>; if there is no argument, one
-assumes the ccq environment, which is plain verbatim in LaTeX).  The
-argument has effect only for the LaTeX format.  .  The <TT>!ec</TT> tag must
+certain <TT>ptex2tex</TT> environment (for instance, <TT>!bc dat</TT> corresponds to
+the data file environment in <TT>ptex2tex</TT>, and <TT>!bc cod</TT> is typically
+used for a code snippet, but any argument can be defined). If there is
+no argument, one assumes the ccq environment, which is plain LaTeX
+verbatim in the default <TT>.ptex2tex.cfg</TT>. However, all these arguments
+can be redefined in the <TT>.ptex2tex.cfg</TT> file.
+
+<P>
+The argument after <TT>!bc</TT> is also used
+in a Sphinx context. Then argument is mapped onto a valid Pygments
+language for typesetting of the verbatim block by Pygments. This
+mapping takes place in an optional comment to be inserted in the Doconce
+source file, e.g.,
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+# sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+Here, three arguments are defined: <TT>pycod</TT> for Python code,
+<TT>cod</TT> also for Python code, <TT>cppcod</TT> for C++ code, and <TT>sys</TT>
+for terminal sessions. The same arguments would be defined
+in <TT>.ptex2tex.cfg</TT> for how to typeset the blocks in LaTeX using
+various verbatim styles (Pygments can also be used in a LaTeX
+context).
+
+<P>
+By default, <TT>pro</TT> is used for complete programs in Python, <TT>cod</TT>
+is for a code snippet in Python, while <TT>xcod</TT> and <TT>xpro</TT> implies
+computer language specific typesetting where <TT>x</TT> can be
+<TT>f</TT> for Fortran, <TT>c</TT> for C, <TT>cpp</TT> for C++, and <TT>py</TT> for Python.
+The argument <TT>sys</TT> means by default <TT>console</TT> for Sphinx and
+<TT>CodeTerminal</TT> (ptex2tex environent) for LaTeX. All these definitions
+of the arguments after <TT>!bc</TT> can be redefined in the <TT>.ptex2tex.cfg</TT>
+configuration file for ptex2tex/LaTeX and in the <TT>sphinx code-blocks</TT>
+comments for Sphinx. Support for other languages is easily added.
+
+<P>
+<!-- (Any sphinx code-block comment, whether inside verbatim code -->
+<!-- blocks or outside, yields a mapping between bc arguments -->
+<!-- and computer languages. In case of muliple definitions, the -->
+<!-- first one is used.) -->
+
+<P>
+The enclosing <TT>!ec</TT> tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
@@ -8465,7 +8488,7 @@ in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
 <P>
-Here is a verbatim code block:
+Here is a verbatim code block with Python code:
 <!-- BEGIN VERBATIM BLOCK   cod-->
 <BLOCKQUOTE><PRE>
 # regular expressions for inline tags:
@@ -8484,26 +8507,37 @@ INLINE_TAGS = {
 }
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
+And here is a C++ code snippet:
+<!-- BEGIN VERBATIM BLOCK   cppcod-->
+<BLOCKQUOTE><PRE>
+void myfunc(double* x, const double& myarr) {
+    for (int i = 1; i < myarr.size(); i++) {
+        myarr[i] = myarr[i] - x[i]*myarr[i-1]
+    }
+}
+!ec    
 
-<P>
 Computer code can be copied directly from a file, if desired. The syntax
 is then
-<!-- BEGIN VERBATIM BLOCK  -->
+<!-- BEGIN VERBATIM BLOCK -->
 <BLOCKQUOTE><PRE>
  @@@CODE myfile.f
  @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-The first line implies that all lines in the file <TT>myfile.f</TT> are copied
-into a verbatim block. The second line has a `fromto:' directive, which
-implies copying code between two lines in the code. Two regular
-expressions, separated by the <TT>@</TT> sign, define the "from" and "to" lines.
-The "from" line is included in the verbatim block, while the "to" line
-is not. In the example above, we copy code from the line matching
-<TT>subroutine test</TT> (with as many blanks as desired between the two words)
-and the line matching <TT>C      END1</TT> (C followed by 5 blanks and then
-the text END1). The final line with the "to" text is not
-included in the verbatim block. 
+The first line implies that all lines in the file <TT>myfile.f</TT> are
+copied into a verbatim block, typset in a <TT>!bc pro</TT> environment.  The
+second line has a `fromto:' directive, which implies copying code
+between two lines in the code, typset within a !`bc cod`
+environment. (The <TT>pro</TT> and <TT>cod</TT> arguments are only used for LaTeX
+and Sphinx output, all other formats will have the code typeset within
+a plain <TT>!bc</TT> environment.) Two regular expressions, separated by the
+<TT>@</TT> sign, define the "from" and "to" lines.  The "from" line is
+included in the verbatim block, while the "to" line is not. In the
+example above, we copy code from the line matching <TT>subroutine test</TT>
+(with as many blanks as desired between the two words) and the line
+matching <TT>C END1</TT> (C followed by 5 blanks and then the text END1). The
+final line with the "to" text is not included in the verbatim block.
 
 <P>
 Let us copy a whole file (the first line above):
@@ -8959,7 +8993,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: August 27, 2010
+:Date: September 10, 2010
 
 .. lines beginning with # are comment lines
 
@@ -9308,9 +9342,10 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file ``newcommands.tex``. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
+``newcommands_replace.tex`` (see the section `Macros (Newcommands)`_). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file::
 
@@ -9322,19 +9357,44 @@ or just perform a plain copy::
         Unix/DOS> cp mydoc.p.tex mydoc.tex
 
 
+Doconce generates a ``.p.tex`` file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font::
+
+        Unix/DOS> ptex2tex -DHELVETICA mydoc
+
+
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through::
+
+        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+
+
+
 The ``ptex2tex`` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile ``mydoc.tex`` the usual way and create the PDF file::
+documents. After any ``!bc sys`` command in the Doconce source you can
+insert verbatim block styles as defined in your ``.ptex2tex.cfg``
+file, e.g., ``!bc sys cod`` for a code snippet, where ``cod`` is set to
+a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
+There are over 30 styles to choose from.
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
+*Step 3.* Compile ``mydoc.tex`` with ``latex -shell-escape`` 
+and create the PDF file::
+
+        Unix/DOS> latex -shell-escape mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> makeindex mydoc   # if index
         Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
 
 
+The ``-shell-escape`` option is required because ``ptex2tex`` inserts an include
+of the ``minted.sty`` style, which applies the ``pygments`` to format code,
+and this program cannot be run from ``latex`` without the ``-shell-escape`` option.
 
 
 Plain ASCII Text
@@ -9449,6 +9509,16 @@ Many other formats are also possible.
 
 
 
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows ``!bc``: ``cod`` gives Python
+(``code-block:: python`` in Sphinx syntax) and ``cppcod`` gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+.. Desired extension: sphinx can utilize a "pycod" or "c++cod"
+.. instruction as currently done in latex for ptex2tex and write
+.. out the right code block name accordingly.
+
+
 Google Code Wiki
 ----------------
 
@@ -9465,6 +9535,26 @@ the ``mydoc.gwiki`` output file from ``doconce2format`` and paste the
 file contents into the wiki page. Press **Preview** or **Save Page** to
 see the formatted result.
 
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+
+Tweaking the Doconce Output
+---------------------------
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+``.rst`` file is going to be filtered to LaTeX or HTML, it cannot know
+if ``.eps`` or ``.png`` is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The ``make.sh`` files in ``docs/manual`` and ``docs/tutorial`` 
+constitute comprehensive examples on how such scripts can be made.
 
 
 
@@ -9928,17 +10018,52 @@ Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" ``!bc`` keyword and an "end code" ``!ec`` keyword. Both
 keywords must be on a single line and *start at the beginning of the
 line*.  There may be an argument after the ``!bc`` tag to specify a
-certain ``ptex2tex`` environ (for instance, ``!bc dat`` corresponds to the
-data file environment in ``ptex2tex``; if there is no argument, one
-assumes the ccq environment, which is plain verbatim in LaTeX).  The
-argument has effect only for the LaTeX format.  .  The ``!ec`` tag must
+certain ``ptex2tex`` environment (for instance, ``!bc dat`` corresponds to
+the data file environment in ``ptex2tex``, and ``!bc cod`` is typically
+used for a code snippet, but any argument can be defined). If there is
+no argument, one assumes the ccq environment, which is plain LaTeX
+verbatim in the default ``.ptex2tex.cfg``. However, all these arguments
+can be redefined in the ``.ptex2tex.cfg`` file.
+
+The argument after ``!bc`` is also used
+in a Sphinx context. Then argument is mapped onto a valid Pygments
+language for typesetting of the verbatim block by Pygments. This
+mapping takes place in an optional comment to be inserted in the Doconce
+source file, e.g.::
+
+        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
+
+Here, three arguments are defined: ``pycod`` for Python code,
+``cod`` also for Python code, ``cppcod`` for C++ code, and ``sys``
+for terminal sessions. The same arguments would be defined
+in ``.ptex2tex.cfg`` for how to typeset the blocks in LaTeX using
+various verbatim styles (Pygments can also be used in a LaTeX
+context).
+
+By default, ``pro`` is used for complete programs in Python, ``cod``
+is for a code snippet in Python, while ``xcod`` and ``xpro`` implies
+computer language specific typesetting where ``x`` can be
+``f`` for Fortran, ``c`` for C, ``cpp`` for C++, and ``py`` for Python.
+The argument ``sys`` means by default ``console`` for Sphinx and
+``CodeTerminal`` (ptex2tex environent) for LaTeX. All these definitions
+of the arguments after ``!bc`` can be redefined in the ``.ptex2tex.cfg``
+configuration file for ptex2tex/LaTeX and in the ``sphinx code-blocks``
+comments for Sphinx. Support for other languages is easily added.
+
+.. (Any sphinx code-block comment, whether inside verbatim code
+.. blocks or outside, yields a mapping between bc arguments
+.. and computer languages. In case of muliple definitions, the
+.. first one is used.)
+
+The enclosing ``!ec`` tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block::
+Here is a verbatim code block with Python code::
 
         # regular expressions for inline tags:
         inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -9956,24 +10081,35 @@ Here is a verbatim code block::
         }
 
 
+And here is a C++ code snippet::
 
-Computer code can be copied directly from a file, if desired. The syntax
-is then::
+        void myfunc(double* x, const double& myarr) {
+            for (int i = 1; i < myarr.size(); i++) {
+                myarr[i] = myarr[i] - x[i]*myarr[i-1]
+            }
+        }
+        !ec    
+        
+        Computer code can be copied directly from a file, if desired. The syntax
+        is then::
 
          @@@CODE myfile.f
          @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 
 
-The first line implies that all lines in the file ``myfile.f`` are copied
-into a verbatim block. The second line has a `fromto:' directive, which
-implies copying code between two lines in the code. Two regular
-expressions, separated by the ``@`` sign, define the "from" and "to" lines.
-The "from" line is included in the verbatim block, while the "to" line
-is not. In the example above, we copy code from the line matching
-``subroutine test`` (with as many blanks as desired between the two words)
-and the line matching ``C      END1`` (C followed by 5 blanks and then
-the text END1). The final line with the "to" text is not
-included in the verbatim block. 
+The first line implies that all lines in the file ``myfile.f`` are
+copied into a verbatim block, typset in a ``!bc pro`` environment.  The
+second line has a `fromto:' directive, which implies copying code
+between two lines in the code, typset within a !`bc cod`
+environment. (The ``pro`` and ``cod`` arguments are only used for LaTeX
+and Sphinx output, all other formats will have the code typeset within
+a plain ``!bc`` environment.) Two regular expressions, separated by the
+``@`` sign, define the "from" and "to" lines.  The "from" line is
+included in the verbatim block, while the "to" line is not. In the
+example above, we copy code from the line matching ``subroutine test``
+(with as many blanks as desired between the two words) and the line
+matching ``C END1`` (C followed by 5 blanks and then the text END1). The
+final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above)::
 
@@ -10373,7 +10509,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: August 27, 2010
+:Date: September 10, 2010
 
 .. lines beginning with # are comment lines
 
@@ -10569,7 +10705,7 @@ preprocessed) by the ``preprocess`` program.
 In a doc string in ``basename.p.py`` we do a preprocessor include
 in a comment line, say
 
-.. code-block:: python
+.. code-block:: py
 
         #    #include "docstrings/doc1.dst.txt
 
@@ -10608,7 +10744,7 @@ suited for Pydoc or reading by humans. All these steps are automated
 by the ``insertdocstr.py`` script.  Here are the corresponding Unix
 commands:
 
-.. code-block:: python
+.. code-block:: console
 
         # make Epydoc API manual of basename module:
         cd docstrings
@@ -10665,7 +10801,7 @@ Demos
 
 The current text is generated from a Doconce format stored in the
 
-.. code-block:: python
+.. code-block:: console
 
         docs/manual/manual.do.txt
 
@@ -10681,7 +10817,7 @@ Doconce file to obtain documents in various formats.
 
 Another demo is found in
 
-.. code-block:: python
+.. code-block:: console
 
         docs/tutorial/tutorial.do.txt
 
@@ -10700,7 +10836,7 @@ From Doconce to Other Formats
 Transformation of a Doconce document to various other
 formats applies the script ``doconce2format``:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format format mydoc.do.txt
 
@@ -10708,7 +10844,7 @@ formats applies the script ``doconce2format``:
 The ``preprocess`` program is always used to preprocess the file first,
 and options to ``preprocess`` can be added after the filename. For example,
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
 
@@ -10725,7 +10861,7 @@ HTML
 Making an HTML version of a Doconce file ``mydoc.do.txt``
 is performed by
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format HTML mydoc.do.txt
 
@@ -10743,45 +10879,75 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 *Step 1.* Filter the doconce text to a pre-LaTeX form ``mydoc.p.tex`` for
      ``ptex2tex``:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format LaTeX mydoc.do.txt
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file ``newcommands.tex``. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
+``newcommands_replace.tex`` (see the section :ref:`newcommands`). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file,
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> ptex2tex mydoc
 
 
 or just perform a plain copy,
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> cp mydoc.p.tex mydoc.tex
 
 
+Doconce generates a ``.p.tex`` file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font,
+
+.. code-block:: console
+
+        Unix/DOS> ptex2tex -DHELVETICA mydoc
+
+
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through
+
+.. code-block:: console
+
+        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+
+
+
 The ``ptex2tex`` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile ``mydoc.tex`` the usual way and create the PDF file:
+documents. After any ``!bc sys`` command in the Doconce source you can
+insert verbatim block styles as defined in your ``.ptex2tex.cfg``
+file, e.g., ``!bc sys cod`` for a code snippet, where ``cod`` is set to
+a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
+There are over 30 styles to choose from.
 
-.. code-block:: python
+*Step 3.* Compile ``mydoc.tex`` with ``latex -shell-escape`` 
+and create the PDF file:
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
+.. code-block:: console
+
+        Unix/DOS> latex -shell-escape mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> makeindex mydoc   # if index
         Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
 
 
+The ``-shell-escape`` option is required because ``ptex2tex`` inserts an include
+of the ``minted.sty`` style, which applies the ``pygments`` to format code,
+and this program cannot be run from ``latex`` without the ``-shell-escape`` option.
 
 
 Plain ASCII Text
@@ -10791,7 +10957,7 @@ We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
 
@@ -10804,14 +10970,14 @@ Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file ``mydoc.rst``:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format rst mydoc.do.txt
 
 
 We may now produce various other formats:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
         Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
@@ -10831,7 +10997,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 *Step 1.* Translate Doconce into the Sphinx dialect of
 the reStructuredText format:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format sphinx mydoc.do.txt
 
@@ -10841,7 +11007,7 @@ the reStructuredText format:
 either manually or by using the interactive ``sphinx-quickstart``
 program. Here is a scripted version of the steps with the latter:
 
-.. code-block:: python
+.. code-block:: console
 
         mkdir sphinx-rootdir
         sphinx-quickstart <<EOF
@@ -10872,7 +11038,7 @@ program. Here is a scripted version of the steps with the latter:
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> mv mydoc.rst sphinx-rootdir
 
@@ -10886,7 +11052,7 @@ are located in a subdirectory).
 *Step 4.* Edit the generated ``index.rst`` file so that ``mydoc.rst``
 is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes
 
-.. code-block:: python
+.. code-block:: py
 
         .. toctree::
            :maxdepth: 2
@@ -10898,7 +11064,7 @@ is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes
 
 *Step 5.* Generate, for instance, an HTML version of the Sphinx source:
 
-.. code-block:: python
+.. code-block:: console
 
         make clean   # remove old versions
         make html
@@ -10908,10 +11074,20 @@ Many other formats are also possible.
 
 *Step 6.* View the result:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> firefox _build/html/index.html
 
+
+
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows ``!bc``: ``cod`` gives Python
+(``code-block:: python`` in Sphinx syntax) and ``cppcod`` gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+.. Desired extension: sphinx can utilize a "pycod" or "c++cod"
+.. instruction as currently done in latex for ptex2tex and write
+.. out the right code block name accordingly.
 
 
 Google Code Wiki
@@ -10922,7 +11098,7 @@ one used by `Google Code <http://code.google.com/p/support/wiki/WikiSyntax>`_.
 The transformation to this format, called ``gwiki`` to explicitly mark
 it as the Google Code dialect, is done by
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format gwiki mydoc.do.txt
 
@@ -10932,6 +11108,26 @@ the ``mydoc.gwiki`` output file from ``doconce2format`` and paste the
 file contents into the wiki page. Press **Preview** or **Save Page** to
 see the formatted result.
 
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+
+Tweaking the Doconce Output
+---------------------------
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+``.rst`` file is going to be filtered to LaTeX or HTML, it cannot know
+if ``.eps`` or ``.png`` is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The ``make.sh`` files in ``docs/manual`` and ``docs/tutorial`` 
+constitute comprehensive examples on how such scripts can be made.
 
 
 
@@ -10947,7 +11143,7 @@ Lists
 An unordered bullet list makes use of the ``*`` as bullet sign
 and is indented as follows
 
-.. code-block:: python
+.. code-block:: py
 
            * item 1
         
@@ -10983,7 +11179,7 @@ This list gets typeset as
 In an ordered list, each item starts with an ``o`` (as the first letter 
 in "ordered"):
 
-.. code-block:: python
+.. code-block:: py
 
            o item 1
         
@@ -11016,7 +11212,7 @@ applies to the outer list only.
 In a description list, each item is recognized by a dash followed
 by a keyword followed by a colon:
 
-.. code-block:: python
+.. code-block:: py
 
            - keyword1: explanation of keyword1
         
@@ -11052,7 +11248,7 @@ title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
 the syntax 
 
-.. code-block:: python
+.. code-block:: py
 
         name at institution1 and institution2 and institution3
 
@@ -11065,7 +11261,7 @@ Multiple authors require multiple ``AUTHOR:`` lines. All information
 associated with ``TITLE:`` and ``AUTHOR:`` keywords must appear on a single
 line.  Here is an example:
 
-.. code-block:: python
+.. code-block:: py
 
         TITLE: On an Ultimate Markup Language
         AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
@@ -11080,7 +11276,7 @@ only the author names appear. Some formats have
 "intelligence" in listing authors and institutions, e.g., the plain text
 format:
 
-.. code-block:: python
+.. code-block:: py
 
         Hans Petter Langtangen [1, 2]
         Kaare Dump [3]
@@ -11117,7 +11313,7 @@ Headings can be surrounded by blanks if desired.
 
 Here are some examples:
 
-.. code-block:: python
+.. code-block:: py
 
         ======= Example on a Section Heading ======= 
         
@@ -11154,7 +11350,7 @@ The running text goes here.
 
 Figures are recognized by the special line syntax
 
-.. code-block:: python
+.. code-block:: py
 
         FIGURE:[filename, height=xxx width=yyy scale=zzz] caption
 
@@ -11212,7 +11408,7 @@ plus LaTeX/TeX inline mathematics, such as :math:`\nu = \sin(x)`.
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
 
-.. code-block:: python
+.. code-block:: py
 
         *emphasized words*
 
@@ -11220,7 +11416,7 @@ be no spaces between an asterisk and the emphasized text, as in
 
 Boldface font is recognized by an underscore instead of an asterisk:
 
-.. code-block:: python
+.. code-block:: py
 
         _several words in boldface_ followed by *ephasized text*.
 
@@ -11231,7 +11427,7 @@ The line above gets typeset as
 Verbatim text, typically used for short inline code,
 is typeset between backquotes:
 
-.. code-block:: python
+.. code-block:: py
 
         `call myroutine(a, b)` looks like a Fortran call
         while `void myfunc(double *a, double *b)` must be C.
@@ -11254,7 +11450,7 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 
-.. code-block:: python
+.. code-block:: py
 
         some URL like http://my.place.in.space/src<MyPlace>
 
@@ -11263,7 +11459,7 @@ which appears as some URL like `MyPlace <http://my.place.in.space/src>`_.
 Link to a file is done by the URL keyword, a colon, and enclosing the
 filename in double quotes:
 
-.. code-block:: python
+.. code-block:: py
 
         URL:"manual.do.txt"
 
@@ -11280,7 +11476,7 @@ commands, which may appear annoying in plain text. Doconce therefore
 supports an extended inline math syntax where the writer can provide
 an alternative syntax suited for formats close to plain ASCII:
 
-.. code-block:: python
+.. code-block:: py
 
         Here is an example on a linear system 
         ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
@@ -11308,7 +11504,7 @@ Cross-Referencing
 
 References and labels are supported. The syntax is simple:
 
-.. code-block:: python
+.. code-block:: py
 
         label{section:verbatim}   # defines a label
         For more information we refer to Section ref{section:verbatim}.
@@ -11352,7 +11548,7 @@ Index and Bibliography
 An index can be created for the LaTeX and the reStructuredText or
 Sphinx formats by the ``idx`` keyword, following a LaTeX-inspired syntax:
 
-.. code-block:: python
+.. code-block:: py
 
         idx{some index entry}
         idx{main entry!subentry}
@@ -11362,7 +11558,7 @@ Sphinx formats by the ``idx`` keyword, following a LaTeX-inspired syntax:
 The exclamation mark divides a main entry and a subentry. Backquotes
 surround verbatim text, which is correctly transformed in a LaTeX setting to
 
-.. code-block:: python
+.. code-block:: py
 
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
@@ -11372,7 +11568,7 @@ plain text, Epytext, StructuredText, HTML, and Wiki formats.
 
 Literature citations also follow a LaTeX-inspired style:
 
-.. code-block:: python
+.. code-block:: py
 
         as found in cite{Larsen:86,Nielsen:99}.
 
@@ -11383,7 +11579,7 @@ and Sphinx the labels can be clicked, while in all the other text
 formats the labels are consecutively numbered so the above citation
 will typically look like
 
-.. code-block:: python
+.. code-block:: py
 
         as found in [3][14]
 
@@ -11400,7 +11596,7 @@ The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
 in the bibliography. Doconce markup can be used in this text, e.g.,
 
-.. code-block:: python
+.. code-block:: py
 
         {
         'Nielsen:99': """
@@ -11442,7 +11638,7 @@ A table like
 
 is built up of pipe symbols and dashes:
 
-.. code-block:: python
+.. code-block:: py
 
           |--------------------------------|
           |time  | velocity | acceleration |
@@ -11466,19 +11662,56 @@ Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" ``!bc`` keyword and an "end code" ``!ec`` keyword. Both
 keywords must be on a single line and *start at the beginning of the
 line*.  There may be an argument after the ``!bc`` tag to specify a
-certain ``ptex2tex`` environ (for instance, ``!bc dat`` corresponds to the
-data file environment in ``ptex2tex``; if there is no argument, one
-assumes the ccq environment, which is plain verbatim in LaTeX).  The
-argument has effect only for the LaTeX format.  .  The ``!ec`` tag must
+certain ``ptex2tex`` environment (for instance, ``!bc dat`` corresponds to
+the data file environment in ``ptex2tex``, and ``!bc cod`` is typically
+used for a code snippet, but any argument can be defined). If there is
+no argument, one assumes the ccq environment, which is plain LaTeX
+verbatim in the default ``.ptex2tex.cfg``. However, all these arguments
+can be redefined in the ``.ptex2tex.cfg`` file.
+
+The argument after ``!bc`` is also used
+in a Sphinx context. Then argument is mapped onto a valid Pygments
+language for typesetting of the verbatim block by Pygments. This
+mapping takes place in an optional comment to be inserted in the Doconce
+source file, e.g.,
+
+.. code-block:: py
+
+        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
+
+Here, three arguments are defined: ``pycod`` for Python code,
+``cod`` also for Python code, ``cppcod`` for C++ code, and ``sys``
+for terminal sessions. The same arguments would be defined
+in ``.ptex2tex.cfg`` for how to typeset the blocks in LaTeX using
+various verbatim styles (Pygments can also be used in a LaTeX
+context).
+
+By default, ``pro`` is used for complete programs in Python, ``cod``
+is for a code snippet in Python, while ``xcod`` and ``xpro`` implies
+computer language specific typesetting where ``x`` can be
+``f`` for Fortran, ``c`` for C, ``cpp`` for C++, and ``py`` for Python.
+The argument ``sys`` means by default ``console`` for Sphinx and
+``CodeTerminal`` (ptex2tex environent) for LaTeX. All these definitions
+of the arguments after ``!bc`` can be redefined in the ``.ptex2tex.cfg``
+configuration file for ptex2tex/LaTeX and in the ``sphinx code-blocks``
+comments for Sphinx. Support for other languages is easily added.
+
+.. (Any sphinx code-block comment, whether inside verbatim code
+.. blocks or outside, yields a mapping between bc arguments
+.. and computer languages. In case of muliple definitions, the
+.. first one is used.)
+
+The enclosing ``!ec`` tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block:
+Here is a verbatim code block with Python code:
 
-.. code-block:: python
+.. code-block:: py
 
         # regular expressions for inline tags:
         inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -11496,30 +11729,41 @@ Here is a verbatim code block:
         }
 
 
+And here is a C++ code snippet:
 
-Computer code can be copied directly from a file, if desired. The syntax
-is then
+.. code-block:: c++
 
-.. code-block:: python
-
+        void myfunc(double* x, const double& myarr) {
+            for (int i = 1; i < myarr.size(); i++) {
+                myarr[i] = myarr[i] - x[i]*myarr[i-1]
+            }
+        }
+        !ec    
+        
+        Computer code can be copied directly from a file, if desired. The syntax
+        is then
+        !bc
          @@@CODE myfile.f
          @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 
 
-The first line implies that all lines in the file ``myfile.f`` are copied
-into a verbatim block. The second line has a `fromto:' directive, which
-implies copying code between two lines in the code. Two regular
-expressions, separated by the ``@`` sign, define the "from" and "to" lines.
-The "from" line is included in the verbatim block, while the "to" line
-is not. In the example above, we copy code from the line matching
-``subroutine test`` (with as many blanks as desired between the two words)
-and the line matching ``C      END1`` (C followed by 5 blanks and then
-the text END1). The final line with the "to" text is not
-included in the verbatim block. 
+The first line implies that all lines in the file ``myfile.f`` are
+copied into a verbatim block, typset in a ``!bc pro`` environment.  The
+second line has a `fromto:' directive, which implies copying code
+between two lines in the code, typset within a !`bc cod`
+environment. (The ``pro`` and ``cod`` arguments are only used for LaTeX
+and Sphinx output, all other formats will have the code typeset within
+a plain ``!bc`` environment.) Two regular expressions, separated by the
+``@`` sign, define the "from" and "to" lines.  The "from" line is
+included in the verbatim block, while the "to" line is not. In the
+example above, we copy code from the line matching ``subroutine test``
+(with as many blanks as desired between the two words) and the line
+matching ``C END1`` (C followed by 5 blanks and then the text END1). The
+final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above):
 
-.. code-block:: python
+.. code-block:: py
 
         C     a comment
         
@@ -11542,7 +11786,7 @@ Let us copy a whole file (the first line above):
 Let us then copy just a piece in the middle as indicated by the ``fromto:``
 directive above:
 
-.. code-block:: python
+.. code-block:: py
 
               subroutine    test()
               integer i
@@ -11578,7 +11822,7 @@ Here is the result of a ``!bt`` - ``!et`` block:
 .. math::
 
         
-        {\partial u\over\partial t}  &=  \nabla^2 u + f,\label{myeq1}\\
+        {\partial u\over\partial t}  &=  \nabla^2 u + f,\\
         {\partial v\over\partial t}  &=  \nabla\cdot(q(u)\nabla v) + g
         
 
@@ -11620,10 +11864,10 @@ expressions).
 *Example.* Suppose we have the following commands in 
 ``newcommand_replace.tex``:
 
-.. code-block:: python
+.. code-block:: py
 
-        \newcommand{a}{}
-        \newcommand{a}{}
+        \newcommand{}{}
+        \newcommand{}{}
         \newcommand{\ep}{\thinspace . }
         \newcommand{\uvec}{\vec u}
         \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
@@ -11633,7 +11877,7 @@ expressions).
 
 and these in ``newcommands_keep.tex``:
 
-.. code-block:: python
+.. code-block:: py
 
         \newcommand{\x}{\mathbfx{x}}
         \newcommand{\normalvec}{\mathbfx{n}}
@@ -11643,12 +11887,12 @@ and these in ``newcommands_keep.tex``:
 
 The LaTeX block
 
-.. code-block:: python
+.. code-block:: py
 
-        a
+        
         \x\cdot\normalvec  &=  0,\label{my:eq1}\\
         \Ddt{\uvec}  &=  \Q \ep\label{my:eq2}
-        a
+        
 
 
 will then be rendered to
@@ -11656,8 +11900,8 @@ will then be rendered to
 .. math::
 
         
-        {\mbox{\boldmath $x$}}\cdot{\mbox{\boldmath $n$}}  &=  0,\label{my:eq1}\\
-        \frac{D\vec u}{dt}  &=  {\mbox{\boldmath $Q$}} \thinspace . \label{my:eq2}
+        {\mbox{\boldmath $x$}}\cdot{\mbox{\boldmath $n$}}  &=  0,\\
+        \frac{D\vec u}{dt}  &=  {\mbox{\boldmath $Q$}} \thinspace . 
         
 
 in the current format.
@@ -11698,7 +11942,7 @@ reST to indicate a verbatim block of text).
 
 *The LaTeX File Does Not Compile.* If the problem is undefined control sequence involving
 
-.. code-block:: python
+.. code-block:: py
 
         \code{...}
 
@@ -11780,7 +12024,7 @@ handling of blank lines and comment lines.
 List parsing needs some awareness of the context.
 Each line is interpreted by a regular expression
 
-.. code-block:: python
+.. code-block:: py
 
         (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<text>.*)\s?
 
@@ -11817,7 +12061,7 @@ A Glimpse of How to Write a New Translator
 This is the HTML-specific part of the
 source code of the HTML translator:
 
-.. code-block:: python
+.. code-block:: py
 
         FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
         BLANKLINE['HTML'] = '<p>\n'           # blank input line => new paragraph
@@ -11898,7 +12142,7 @@ only legal keywords (descriptions) for the description list in this
 context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
 arguments and variables are nicely formatted. 
 
-.. code-block:: python
+.. code-block:: py
 
             - argument x: x value (float),
               which must be a positive number.
@@ -11936,7 +12180,7 @@ and Sphinx just typeset the list as a list with keywords.
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== August 27, 2010 ====
+==== September 10, 2010 ====
 
 <wiki:comment> lines beginning with # are comment lines </wiki:comment>
 
@@ -12219,9 +12463,10 @@ Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
 Unix/DOS> doconce2format LaTeX mydoc.do.txt
 }}}
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file `newcommands.tex`. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files `newcommands.tex`, `newcommands_keep.tex`, or
+`newcommands_replace.tex` (see the section [#Macros_(Newcommands)]). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 *Step 2.* Run `ptex2tex` (if you have it) to make a standard LaTeX file,
 {{{
@@ -12231,18 +12476,41 @@ or just perform a plain copy,
 {{{
 Unix/DOS> cp mydoc.p.tex mydoc.tex
 }}}
+Doconce generates a `.p.tex` file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font,
+{{{
+Unix/DOS> ptex2tex -DHELVETICA mydoc
+}}}
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through
+{{{
+Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+}}}
+
 The `ptex2tex` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile `mydoc.tex` the usual way and create the PDF file:
+documents. After any `!bc sys` command in the Doconce source you can
+insert verbatim block styles as defined in your `.ptex2tex.cfg`
+file, e.g., `!bc sys cod` for a code snippet, where `cod` is set to
+a certain environment in `.ptex2tex.cfg` (e.g., `CodeIntended`).
+There are over 30 styles to choose from.
+
+*Step 3.* Compile `mydoc.tex` with `latex -shell-escape` 
+and create the PDF file:
 {{{
-Unix/DOS> latex mydoc
-Unix/DOS> latex mydoc
+Unix/DOS> latex -shell-escape mydoc
+Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> makeindex mydoc   # if index
 Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex mydoc
+Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> dvipdf mydoc
 }}}
+The `-shell-escape` option is required because `ptex2tex` inserts an include
+of the `minted.sty` style, which applies the `pygments` to format code,
+and this program cannot be run from `latex` without the `-shell-escape` option.
 
 ==== Plain ASCII Text ====
 
@@ -12344,6 +12612,15 @@ Many other formats are also possible.
 Unix/DOS> firefox _build/html/index.html
 }}}
 
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows `!bc`: `cod` gives Python
+(`code-block:: python` in Sphinx syntax) and `cppcod` gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+<wiki:comment> Desired extension: sphinx can utilize a "pycod" or "c++cod" </wiki:comment>
+<wiki:comment> instruction as currently done in latex for ptex2tex and write </wiki:comment>
+<wiki:comment> out the right code block name accordingly. </wiki:comment>
+
 ==== Google Code Wiki ====
 
 There are several different wiki dialects, but Doconce only support the
@@ -12357,6 +12634,25 @@ You can then open a new wiki page for your Google Code project, copy
 the `mydoc.gwiki` output file from `doconce2format` and paste the
 file contents into the wiki page. Press *Preview* or *Save Page* to
 see the formatted result.
+
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+==== Tweaking the Doconce Output ====
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+`.rst` file is going to be filtered to LaTeX or HTML, it cannot know
+if `.eps` or `.png` is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The `make.sh` files in `docs/manual` and `docs/tutorial` 
+constitute comprehensive examples on how such scripts can be made.
 
 
 
@@ -12787,17 +13083,51 @@ Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" `!bc` keyword and an "end code" `!ec` keyword. Both
 keywords must be on a single line and *start at the beginning of the
 line*.  There may be an argument after the `!bc` tag to specify a
-certain `ptex2tex` environ (for instance, `!bc dat` corresponds to the
-data file environment in `ptex2tex`; if there is no argument, one
-assumes the ccq environment, which is plain verbatim in LaTeX).  The
-argument has effect only for the LaTeX format.  .  The `!ec` tag must
+certain `ptex2tex` environment (for instance, `!bc dat` corresponds to
+the data file environment in `ptex2tex`, and `!bc cod` is typically
+used for a code snippet, but any argument can be defined). If there is
+no argument, one assumes the ccq environment, which is plain LaTeX
+verbatim in the default `.ptex2tex.cfg`. However, all these arguments
+can be redefined in the `.ptex2tex.cfg` file.
+
+The argument after `!bc` is also used
+in a Sphinx context. Then argument is mapped onto a valid Pygments
+language for typesetting of the verbatim block by Pygments. This
+mapping takes place in an optional comment to be inserted in the Doconce
+source file, e.g.,
+{{{
+# sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+}}}
+Here, three arguments are defined: `pycod` for Python code,
+`cod` also for Python code, `cppcod` for C++ code, and `sys`
+for terminal sessions. The same arguments would be defined
+in `.ptex2tex.cfg` for how to typeset the blocks in LaTeX using
+various verbatim styles (Pygments can also be used in a LaTeX
+context).
+
+By default, `pro` is used for complete programs in Python, `cod`
+is for a code snippet in Python, while `xcod` and `xpro` implies
+computer language specific typesetting where `x` can be
+`f` for Fortran, `c` for C, `cpp` for C++, and `py` for Python.
+The argument `sys` means by default `console` for Sphinx and
+`CodeTerminal` (ptex2tex environent) for LaTeX. All these definitions
+of the arguments after `!bc` can be redefined in the `.ptex2tex.cfg`
+configuration file for ptex2tex/LaTeX and in the `sphinx code-blocks`
+comments for Sphinx. Support for other languages is easily added.
+
+<wiki:comment> (Any sphinx code-block comment, whether inside verbatim code </wiki:comment>
+<wiki:comment> blocks or outside, yields a mapping between bc arguments </wiki:comment>
+<wiki:comment> and computer languages. In case of muliple definitions, the </wiki:comment>
+<wiki:comment> first one is used.) </wiki:comment>
+
+The enclosing `!ec` tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block:
+Here is a verbatim code block with Python code:
 {{{
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -12814,6 +13144,14 @@ INLINE_TAGS = {
     (inline_tag_begin, inline_tag_end),
 }
 }}}
+And here is a C++ code snippet:
+{{{
+void myfunc(double* x, const double& myarr) {
+    for (int i = 1; i < myarr.size(); i++) {
+        myarr[i] = myarr[i] - x[i]*myarr[i-1]
+    }
+}
+!ec    
 
 Computer code can be copied directly from a file, if desired. The syntax
 is then
@@ -12821,16 +13159,19 @@ is then
  @@@CODE myfile.f
  @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 }}}
-The first line implies that all lines in the file `myfile.f` are copied
-into a verbatim block. The second line has a `fromto:' directive, which
-implies copying code between two lines in the code. Two regular
-expressions, separated by the `@` sign, define the "from" and "to" lines.
-The "from" line is included in the verbatim block, while the "to" line
-is not. In the example above, we copy code from the line matching
-`subroutine test` (with as many blanks as desired between the two words)
-and the line matching `C      END1` (C followed by 5 blanks and then
-the text END1). The final line with the "to" text is not
-included in the verbatim block. 
+The first line implies that all lines in the file `myfile.f` are
+copied into a verbatim block, typset in a `!bc pro` environment.  The
+second line has a `fromto:' directive, which implies copying code
+between two lines in the code, typset within a !`bc cod`
+environment. (The `pro` and `cod` arguments are only used for LaTeX
+and Sphinx output, all other formats will have the code typeset within
+a plain `!bc` environment.) Two regular expressions, separated by the
+`@` sign, define the "from" and "to" lines.  The "from" line is
+included in the verbatim block, while the "to" line is not. In the
+example above, we copy code from the line matching `subroutine test`
+(with as many blanks as desired between the two words) and the line
+matching `C END1` (C followed by 5 blanks and then the text END1). The
+final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above):
 {{{
@@ -13198,7 +13539,7 @@ and Sphinx just typeset the list as a list with keywords.
 
 ************** File: manual.st *****************
 TITLE: Doconce Description
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: August 27, 2010
+BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: September 10, 2010
 What Is Doconce?
 Doconce is two things:
 
@@ -13443,7 +13784,7 @@ of the results.
 From Doconce to Other Formats
 Transformation of a Doconce document to various other
 formats applies the script 'doconce2format':
-!bc  
+!bc   sys
         Unix/DOS> doconce2format format mydoc.do.txt
 
 
@@ -13470,14 +13811,15 @@ Making a LaTeX file 'mydoc.tex' from 'mydoc.do.txt' is done in two steps:
 
 *Step 1.* Filter the doconce text to a pre-LaTeX form 'mydoc.p.tex' for
      'ptex2tex':
-!bc  
+!bc   sys
         Unix/DOS> doconce2format LaTeX mydoc.do.txt
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file 'newcommands.tex'. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files 'newcommands.tex', 'newcommands_keep.tex', or
+'newcommands_replace.tex' (see the section "Macros (Newcommands)"). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 *Step 2.* Run 'ptex2tex' (if you have it) to make a standard LaTeX file::
 
@@ -13489,19 +13831,44 @@ or just perform a plain copy::
         Unix/DOS> cp mydoc.p.tex mydoc.tex
 
 
+Doconce generates a '.p.tex' file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font::
+
+        Unix/DOS> ptex2tex -DHELVETICA mydoc
+
+
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through::
+
+        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+
+
+
 The 'ptex2tex' tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile 'mydoc.tex' the usual way and create the PDF file::
+documents. After any '!bc sys' command in the Doconce source you can
+insert verbatim block styles as defined in your '.ptex2tex.cfg'
+file, e.g., '!bc sys cod' for a code snippet, where 'cod' is set to
+a certain environment in '.ptex2tex.cfg' (e.g., 'CodeIntended').
+There are over 30 styles to choose from.
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
+*Step 3.* Compile 'mydoc.tex' with 'latex -shell-escape' 
+and create the PDF file::
+
+        Unix/DOS> latex -shell-escape mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> makeindex mydoc   # if index
         Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
 
 
+The '-shell-escape' option is required because 'ptex2tex' inserts an include
+of the 'minted.sty' style, which applies the 'pygments' to format code,
+and this program cannot be run from 'latex' without the '-shell-escape' option.
 Plain ASCII Text
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
@@ -13514,7 +13881,7 @@ reStructuredText
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file 'mydoc.rst':
-!bc  
+!bc   sys
         Unix/DOS> doconce2format rst mydoc.do.txt
 
 
@@ -13605,6 +13972,11 @@ Many other formats are also possible.
         Unix/DOS> firefox _build/html/index.html
 
 
+
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows '!bc': 'cod' gives Python
+('code-block:: python' in Sphinx syntax) and 'cppcod' gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
 Google Code Wiki
 There are several different wiki dialects, but Doconce only support the
 one used by "http://code.google.com/p/support/wiki/WikiSyntax":Google Code.
@@ -13618,6 +13990,23 @@ You can then open a new wiki page for your Google Code project, copy
 the 'mydoc.gwiki' output file from 'doconce2format' and paste the
 file contents into the wiki page. Press **Preview** or **Save Page** to
 see the formatted result.
+
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+Tweaking the Doconce Output
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+'.rst' file is going to be filtered to LaTeX or HTML, it cannot know
+if '.eps' or '.png' is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The 'make.sh' files in 'docs/manual' and 'docs/tutorial' 
+constitute comprehensive examples on how such scripts can be made.
 The Doconce Markup Language
 The Doconce format introduces four constructs to markup text:
 lists, special lines, inline tags, and environments.
@@ -14020,17 +14409,48 @@ Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" '!bc' keyword and an "end code" '!ec' keyword. Both
 keywords must be on a single line and *start at the beginning of the
 line*.  There may be an argument after the '!bc' tag to specify a
-certain 'ptex2tex' environ (for instance, '!bc dat' corresponds to the
-data file environment in 'ptex2tex'; if there is no argument, one
-assumes the ccq environment, which is plain verbatim in LaTeX).  The
-argument has effect only for the LaTeX format.  .  The '!ec' tag must
+certain 'ptex2tex' environment (for instance, '!bc dat' corresponds to
+the data file environment in 'ptex2tex', and '!bc cod' is typically
+used for a code snippet, but any argument can be defined). If there is
+no argument, one assumes the ccq environment, which is plain LaTeX
+verbatim in the default '.ptex2tex.cfg'. However, all these arguments
+can be redefined in the '.ptex2tex.cfg' file.
+
+The argument after '!bc' is also used
+in a Sphinx context. Then argument is mapped onto a valid Pygments
+language for typesetting of the verbatim block by Pygments. This
+mapping takes place in an optional comment to be inserted in the Doconce
+source file, e.g.::
+
+        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
+
+Here, three arguments are defined: 'pycod' for Python code,
+'cod' also for Python code, 'cppcod' for C++ code, and 'sys'
+for terminal sessions. The same arguments would be defined
+in '.ptex2tex.cfg' for how to typeset the blocks in LaTeX using
+various verbatim styles (Pygments can also be used in a LaTeX
+context).
+
+By default, 'pro' is used for complete programs in Python, 'cod'
+is for a code snippet in Python, while 'xcod' and 'xpro' implies
+computer language specific typesetting where 'x' can be
+'f' for Fortran, 'c' for C, 'cpp' for C++, and 'py' for Python.
+The argument 'sys' means by default 'console' for Sphinx and
+'CodeTerminal' (ptex2tex environent) for LaTeX. All these definitions
+of the arguments after '!bc' can be redefined in the '.ptex2tex.cfg'
+configuration file for ptex2tex/LaTeX and in the 'sphinx code-blocks'
+comments for Sphinx. Support for other languages is easily added.
+
+
+The enclosing '!ec' tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block::
+Here is a verbatim code block with Python code::
 
         # regular expressions for inline tags:
         inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -14048,24 +14468,35 @@ Here is a verbatim code block::
         }
 
 
+And here is a C++ code snippet::
 
-Computer code can be copied directly from a file, if desired. The syntax
-is then::
+        void myfunc(double* x, const double& myarr) {
+            for (int i = 1; i < myarr.size(); i++) {
+                myarr[i] = myarr[i] - x[i]*myarr[i-1]
+            }
+        }
+        !ec    
+        
+        Computer code can be copied directly from a file, if desired. The syntax
+        is then::
 
          @@@CODE myfile.f
          @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 
 
-The first line implies that all lines in the file 'myfile.f' are copied
-into a verbatim block. The second line has a `fromto:' directive, which
-implies copying code between two lines in the code. Two regular
-expressions, separated by the '@' sign, define the "from" and "to" lines.
-The "from" line is included in the verbatim block, while the "to" line
-is not. In the example above, we copy code from the line matching
-'subroutine test' (with as many blanks as desired between the two words)
-and the line matching 'C      END1' (C followed by 5 blanks and then
-the text END1). The final line with the "to" text is not
-included in the verbatim block. 
+The first line implies that all lines in the file 'myfile.f' are
+copied into a verbatim block, typset in a '!bc pro' environment.  The
+second line has a `fromto:' directive, which implies copying code
+between two lines in the code, typset within a !`bc cod`
+environment. (The 'pro' and 'cod' arguments are only used for LaTeX
+and Sphinx output, all other formats will have the code typeset within
+a plain '!bc' environment.) Two regular expressions, separated by the
+'@' sign, define the "from" and "to" lines.  The "from" line is
+included in the verbatim block, while the "to" line is not. In the
+example above, we copy code from the line matching 'subroutine test'
+(with as many blanks as desired between the two words) and the line
+matching 'C END1' (C followed by 5 blanks and then the text END1). The
+final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above)::
 
@@ -14420,7 +14851,7 @@ Bibliography
 
 ************** File: manual.epytext *****************
 TITLE: Doconce Description
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: August 27, 2010
+BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: September 10, 2010
 
 
 
@@ -14696,7 +15127,7 @@ From Doconce to Other Formats
 
 Transformation of a Doconce document to various other
 formats applies the script C{doconce2format}:
-!bc  
+!bc   sys
         Unix/DOS> doconce2format format mydoc.do.txt
 
 
@@ -14730,14 +15161,15 @@ Making a LaTeX file C{mydoc.tex} from C{mydoc.do.txt} is done in two steps:
 
 I{Step 1.} Filter the doconce text to a pre-LaTeX form C{mydoc.p.tex} for
      C{ptex2tex}:
-!bc  
+!bc   sys
         Unix/DOS> doconce2format LaTeX mydoc.do.txt
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file C{newcommands.tex}. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files C{newcommands.tex}, C{newcommands_keep.tex}, or
+C{newcommands_replace.tex} (see the section "Macros (Newcommands)"). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 I{Step 2.} Run C{ptex2tex} (if you have it) to make a standard LaTeX file::
 
@@ -14749,19 +15181,44 @@ or just perform a plain copy::
         Unix/DOS> cp mydoc.p.tex mydoc.tex
 
 
+Doconce generates a C{.p.tex} file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font::
+
+        Unix/DOS> ptex2tex -DHELVETICA mydoc
+
+
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through::
+
+        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+
+
+
 The C{ptex2tex} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile C{mydoc.tex} the usual way and create the PDF file::
+documents. After any C{!bc sys} command in the Doconce source you can
+insert verbatim block styles as defined in your C{.ptex2tex.cfg}
+file, e.g., C{!bc sys cod} for a code snippet, where C{cod} is set to
+a certain environment in C{.ptex2tex.cfg} (e.g., C{CodeIntended}).
+There are over 30 styles to choose from.
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
+I{Step 3.} Compile C{mydoc.tex} with C{latex -shell-escape} 
+and create the PDF file::
+
+        Unix/DOS> latex -shell-escape mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> makeindex mydoc   # if index
         Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
 
 
+The C{-shell-escape} option is required because C{ptex2tex} inserts an include
+of the C{minted.sty} style, which applies the C{pygments} to format code,
+and this program cannot be run from C{latex} without the C{-shell-escape} option.
 
 
 Plain ASCII Text
@@ -14781,7 +15238,7 @@ reStructuredText
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file C{mydoc.rst}:
-!bc  
+!bc   sys
         Unix/DOS> doconce2format rst mydoc.do.txt
 
 
@@ -14876,6 +15333,13 @@ I{Step 6.} View the result::
 
 
 
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows C{!bc}: C{cod} gives Python
+(C{code-block:: python} in Sphinx syntax) and C{cppcod} gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+
+
 Google Code Wiki
 ----------------
 
@@ -14892,6 +15356,26 @@ the C{mydoc.gwiki} output file from C{doconce2format} and paste the
 file contents into the wiki page. Press B{Preview} or B{Save Page} to
 see the formatted result.
 
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+
+Tweaking the Doconce Output
+---------------------------
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+C{.rst} file is going to be filtered to LaTeX or HTML, it cannot know
+if C{.eps} or C{.png} is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The C{make.sh} files in C{docs/manual} and C{docs/tutorial} 
+constitute comprehensive examples on how such scripts can be made.
 
 
 
@@ -15332,17 +15816,48 @@ Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" C{!bc} keyword and an "end code" C{!ec} keyword. Both
 keywords must be on a single line and I{start at the beginning of the
 line}.  There may be an argument after the C{!bc} tag to specify a
-certain C{ptex2tex} environ (for instance, C{!bc dat} corresponds to the
-data file environment in C{ptex2tex}; if there is no argument, one
-assumes the ccq environment, which is plain verbatim in LaTeX).  The
-argument has effect only for the LaTeX format.  .  The C{!ec} tag must
+certain C{ptex2tex} environment (for instance, C{!bc dat} corresponds to
+the data file environment in C{ptex2tex}, and C{!bc cod} is typically
+used for a code snippet, but any argument can be defined). If there is
+no argument, one assumes the ccq environment, which is plain LaTeX
+verbatim in the default C{.ptex2tex.cfg}. However, all these arguments
+can be redefined in the C{.ptex2tex.cfg} file.
+
+The argument after C{!bc} is also used
+in a Sphinx context. Then argument is mapped onto a valid Pygments
+language for typesetting of the verbatim block by Pygments. This
+mapping takes place in an optional comment to be inserted in the Doconce
+source file, e.g.::
+
+        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
+
+Here, three arguments are defined: C{pycod} for Python code,
+C{cod} also for Python code, C{cppcod} for C++ code, and C{sys}
+for terminal sessions. The same arguments would be defined
+in C{.ptex2tex.cfg} for how to typeset the blocks in LaTeX using
+various verbatim styles (Pygments can also be used in a LaTeX
+context).
+
+By default, C{pro} is used for complete programs in Python, C{cod}
+is for a code snippet in Python, while C{xcod} and C{xpro} implies
+computer language specific typesetting where C{x} can be
+C{f} for Fortran, C{c} for C, C{cpp} for C++, and C{py} for Python.
+The argument C{sys} means by default C{console} for Sphinx and
+C{CodeTerminal} (ptex2tex environent) for LaTeX. All these definitions
+of the arguments after C{!bc} can be redefined in the C{.ptex2tex.cfg}
+configuration file for ptex2tex/LaTeX and in the C{sphinx code-blocks}
+comments for Sphinx. Support for other languages is easily added.
+
+
+The enclosing C{!ec} tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block::
+Here is a verbatim code block with Python code::
 
         # regular expressions for inline tags:
         inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -15360,24 +15875,35 @@ Here is a verbatim code block::
         }
 
 
+And here is a C++ code snippet::
 
-Computer code can be copied directly from a file, if desired. The syntax
-is then::
+        void myfunc(double* x, const double& myarr) {
+            for (int i = 1; i < myarr.size(); i++) {
+                myarr[i] = myarr[i] - x[i]*myarr[i-1]
+            }
+        }
+        !ec    
+        
+        Computer code can be copied directly from a file, if desired. The syntax
+        is then::
 
          @@@CODE myfile.f
          @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 
 
-The first line implies that all lines in the file C{myfile.f} are copied
-into a verbatim block. The second line has a `fromto:' directive, which
-implies copying code between two lines in the code. Two regular
-expressions, separated by the C{@} sign, define the "from" and "to" lines.
-The "from" line is included in the verbatim block, while the "to" line
-is not. In the example above, we copy code from the line matching
-C{subroutine test} (with as many blanks as desired between the two words)
-and the line matching C{C      END1} (C followed by 5 blanks and then
-the text END1). The final line with the "to" text is not
-included in the verbatim block. 
+The first line implies that all lines in the file C{myfile.f} are
+copied into a verbatim block, typset in a C{!bc pro} environment.  The
+second line has a `fromto:' directive, which implies copying code
+between two lines in the code, typset within a !`bc cod`
+environment. (The C{pro} and C{cod} arguments are only used for LaTeX
+and Sphinx output, all other formats will have the code typeset within
+a plain C{!bc} environment.) Two regular expressions, separated by the
+C{@} sign, define the "from" and "to" lines.  The "from" line is
+included in the verbatim block, while the "to" line is not. In the
+example above, we copy code from the line matching C{subroutine test}
+(with as many blanks as desired between the two words) and the line
+matching C{C END1} (C followed by 5 blanks and then the text END1). The
+final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above)::
 
@@ -15725,7 +16251,7 @@ Hans Petter Langtangen [1, 2]
 [2] University of Oslo
 
 
-Date: August 27, 2010
+Date: September 10, 2010
 
 What Is Doconce?
 ================
@@ -16048,9 +16574,10 @@ Making a LaTeX file mydoc.tex from mydoc.do.txt is done in two steps:
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file newcommands.tex. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files newcommands.tex, newcommands_keep.tex, or
+newcommands_replace.tex (see the section "Macros (Newcommands)"). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 *Step 2.* Run ptex2tex (if you have it) to make a standard LaTeX file::
 
@@ -16062,19 +16589,46 @@ or just perform a plain copy::
         Unix/DOS> cp mydoc.p.tex mydoc.tex
 
 
+Doconce generates a .p.tex file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font::
+
+        Unix/DOS> ptex2tex -DHELVETICA mydoc
+
+
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through::
+
+        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+
+
+
 The ptex2tex tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile mydoc.tex the usual way and create the PDF file::
+documents. After any::
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
+insert verbatim block styles as defined in your .ptex2tex.cfg
+file, e.g.::
+
+a certain environment in .ptex2tex.cfg (e.g., CodeIntended).
+There are over 30 styles to choose from.
+
+*Step 3.* Compile mydoc.tex with latex -shell-escape 
+and create the PDF file::
+
+        Unix/DOS> latex -shell-escape mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> makeindex mydoc   # if index
         Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
 
 
+The -shell-escape option is required because ptex2tex inserts an include
+of the minted.sty style, which applies the pygments to format code,
+and this program cannot be run from latex without the -shell-escape option.
 
 
 Plain ASCII Text
@@ -16189,6 +16743,14 @@ Many other formats are also possible.
 
 
 
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows::
+
+(code-block:: python in Sphinx syntax) and cppcod gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+
+
 Google Code Wiki
 ----------------
 
@@ -16205,6 +16767,26 @@ the mydoc.gwiki output file from doconce2format and paste the
 file contents into the wiki page. Press _Preview_ or _Save Page_ to
 see the formatted result.
 
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+
+Tweaking the Doconce Output
+---------------------------
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+.rst file is going to be filtered to LaTeX or HTML, it cannot know
+if .eps or .png is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The make.sh files in docs/manual and docs/tutorial 
+constitute comprehensive examples on how such scripts can be made.
 
 
 
@@ -16659,18 +17241,52 @@ Blocks of computer code, to be typeset verbatim, must appear inside a
 keywords must be on a single line and *start at the beginning of the
 line*.  There may be an argument after the::
 
-certain ptex2tex environ (for instance::
+certain ptex2tex environment (for instance::
 
-data file environment in ptex2tex; if there is no argument, one
-assumes the ccq environment, which is plain verbatim in LaTeX).  The
-argument has effect only for the LaTeX format.  .  The !ec tag must
+the data file environment in ptex2tex, and::
+
+used for a code snippet, but any argument can be defined). If there is
+no argument, one assumes the ccq environment, which is plain LaTeX
+verbatim in the default .ptex2tex.cfg. However, all these arguments
+can be redefined in the .ptex2tex.cfg file.
+
+The argument after::
+
+in a Sphinx context. Then argument is mapped onto a valid Pygments
+language for typesetting of the verbatim block by Pygments. This
+mapping takes place in an optional comment to be inserted in the Doconce
+source file, e.g.::
+
+        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
+
+Here, three arguments are defined: pycod for Python code,
+cod also for Python code, cppcod for C++ code, and sys
+for terminal sessions. The same arguments would be defined
+in .ptex2tex.cfg for how to typeset the blocks in LaTeX using
+various verbatim styles (Pygments can also be used in a LaTeX
+context).
+
+By default, pro is used for complete programs in Python, cod
+is for a code snippet in Python, while xcod and xpro implies
+computer language specific typesetting where x can be
+f for Fortran, c for C, cpp for C++, and py for Python.
+The argument sys means by default console for Sphinx and
+CodeTerminal (ptex2tex environent) for LaTeX. All these definitions
+of the arguments after::
+
+configuration file for ptex2tex/LaTeX and in the sphinx code-blocks
+comments for Sphinx. Support for other languages is easily added.
+
+
+The enclosing !ec tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block::
+Here is a verbatim code block with Python code::
 
         # regular expressions for inline tags:
         inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -16688,24 +17304,37 @@ Here is a verbatim code block::
         }
 
 
+And here is a C++ code snippet::
 
-Computer code can be copied directly from a file, if desired. The syntax
-is then::
+        void myfunc(double* x, const double& myarr) {
+            for (int i = 1; i < myarr.size(); i++) {
+                myarr[i] = myarr[i] - x[i]*myarr[i-1]
+            }
+        }
+        !ec    
+        
+        Computer code can be copied directly from a file, if desired. The syntax
+        is then::
 
          @@@CODE myfile.f
          @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 
 
-The first line implies that all lines in the file myfile.f are copied
-into a verbatim block. The second line has a `fromto:' directive, which
-implies copying code between two lines in the code. Two regular
-expressions, separated by the @ sign, define the "from" and "to" lines.
-The "from" line is included in the verbatim block, while the "to" line
-is not. In the example above, we copy code from the line matching
-subroutine test (with as many blanks as desired between the two words)
-and the line matching C      END1 (C followed by 5 blanks and then
-the text END1). The final line with the "to" text is not
-included in the verbatim block. 
+The first line implies that all lines in the file myfile.f are
+copied into a verbatim block, typset in a::
+
+second line has a `fromto:' directive, which implies copying code
+between two lines in the code, typset within a !`bc cod`
+environment. (The pro and cod arguments are only used for LaTeX
+and Sphinx output, all other formats will have the code typeset within
+a plain::
+
+@ sign, define the "from" and "to" lines.  The "from" line is
+included in the verbatim block, while the "to" line is not. In the
+example above, we copy code from the line matching subroutine test
+(with as many blanks as desired between the two words) and the line
+matching C END1 (C followed by 5 blanks and then the text END1). The
+final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above)::
 

@@ -317,11 +317,13 @@ def define(FILENAME_EXTENSION,
     INTRO['LaTeX'] = r"""\documentclass{article}
 \usepackage{hyperref,relsize,,epsfig,makeidx}
 \usepackage[latin1]{inputenc}
-% required by ptex2tex:
-\usepackage{graphicx,hyperref,relsize,fancyvrb,epsfig}
-\usepackage{a4,amsmath,amssymb,framed,subfigure}
-\usepackage[usenames]{color}
-%\usepackage{ptex2tex}  % replaces the above
+\usepackage{ptex2tex}
+
+% #ifdef HELVETICA
+% Set helvetica as the default font family:
+\RequirePackage{helvet}
+\renewcommand\familydefault{phv}
+% #endif
 
 \makeindex
 

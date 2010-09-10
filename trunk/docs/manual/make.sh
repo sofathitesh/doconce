@@ -88,12 +88,12 @@ $d2f st manual.do.txt
 $d2f LaTeX manual.do.txt             # produces ptex2tex: manual.p.tex
 ptex2tex manual                      # turn ptex2tex format into plain latex
 rm -f manual.p.tex
-latex manual
-latex manual
+latex -shell-escape manual
+latex -shell-escape manual
 bibtex manual
 makeindex manual
-latex manual
-latex manual
+latex -shell-escape manual
+latex -shell-escape manual
 dvipdf manual.dvi
 
 # Google Code wiki:
@@ -106,7 +106,7 @@ rm -f *.ps
 
 rm -rf demo
 mkdir demo
-cp -r manual.do.txt manual.html manual.tex manual.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.txt manual.epytext manual.st sphinx-rootdir/_build/html demo
+cp -r manual.do.txt manual.html figs manual.tex manual.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.txt manual.epytext manual.st sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF

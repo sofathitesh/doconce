@@ -1,6 +1,6 @@
 TITLE: Doconce Description
 AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-DATE: August 27, 2010
+DATE: September 10, 2010
 
 
 # lines beginning with # are comment lines
@@ -216,7 +216,7 @@ suited for Pydoc or reading by humans. All these steps are automated
 by the `insertdocstr.py` script.  Here are the corresponding Unix
 commands:
 
-!bc
+!bc sys
 # make Epydoc API manual of basename module:
 cd docstrings
 doconce2format epytext doc1.do.txt
@@ -340,7 +340,7 @@ http://www.pault.com/xmlalternatives.html<Other minimum-tagged markup languages 
 idx{demos}
 
 The current text is generated from a Doconce format stored in the
-!bc
+!bc sys
 docs/manual/manual.do.txt
 !ec
 file in the Doconce source code tree. We have made a 
@@ -353,7 +353,7 @@ The file `make.sh` in the same directory as the `manual.do.txt` file
 Doconce file to obtain documents in various formats.
 
 Another demo is found in
-!bc
+!bc sys
 docs/tutorial/tutorial.do.txt
 !ec
 In the `tutorial` directory there is also a `make.sh` file producing a
@@ -799,17 +799,51 @@ Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" `!bc` keyword and an "end code" `!ec` keyword. Both
 keywords must be on a single line and *start at the beginning of the
 line*.  There may be an argument after the `!bc` tag to specify a
-certain `ptex2tex` environ (for instance, `!bc dat` corresponds to the
-data file environment in `ptex2tex`; if there is no argument, one
-assumes the ccq environment, which is plain verbatim in LaTeX).  The
-argument has effect only for the LaTeX format.  .  The `!ec` tag must
+certain `ptex2tex` environment (for instance, `!bc dat` corresponds to
+the data file environment in `ptex2tex`, and `!bc cod` is typically
+used for a code snippet, but any argument can be defined). If there is
+no argument, one assumes the ccq environment, which is plain LaTeX
+verbatim in the default `.ptex2tex.cfg`. However, all these arguments
+can be redefined in the `.ptex2tex.cfg` file.
+
+The argument after `!bc` is also used
+in a Sphinx context. Then argument is mapped onto a valid Pygments
+language for typesetting of the verbatim block by Pygments. This
+mapping takes place in an optional comment to be inserted in the Doconce
+source file, e.g.,
+!bc
+# sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+!ec
+Here, three arguments are defined: `pycod` for Python code,
+`cod` also for Python code, `cppcod` for C++ code, and `sys`
+for terminal sessions. The same arguments would be defined
+in `.ptex2tex.cfg` for how to typeset the blocks in LaTeX using
+various verbatim styles (Pygments can also be used in a LaTeX
+context).
+
+By default, `pro` is used for complete programs in Python, `cod`
+is for a code snippet in Python, while `xcod` and `xpro` implies
+computer language specific typesetting where `x` can be
+`f` for Fortran, `c` for C, `cpp` for C++, and `py` for Python.
+The argument `sys` means by default `console` for Sphinx and
+`CodeTerminal` (ptex2tex environent) for LaTeX. All these definitions
+of the arguments after `!bc` can be redefined in the `.ptex2tex.cfg`
+configuration file for ptex2tex/LaTeX and in the `sphinx code-blocks`
+comments for Sphinx. Support for other languages is easily added.
+
+# (Any sphinx code-block comment, whether inside verbatim code
+# blocks or outside, yields a mapping between bc arguments
+# and computer languages. In case of muliple definitions, the
+# first one is used.)
+
+The enclosing `!ec` tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block:
+Here is a verbatim code block with Python code:
 !bc cod
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -826,6 +860,14 @@ INLINE_TAGS = {
     (inline_tag_begin, inline_tag_end),
 }
 !ec
+And here is a C++ code snippet:
+!bc cppcod
+void myfunc(double* x, const double& myarr) {
+    for (int i = 1; i < myarr.size(); i++) {
+        myarr[i] = myarr[i] - x[i]*myarr[i-1]
+    }
+}
+!ec    
 
 Computer code can be copied directly from a file, if desired. The syntax
 is then
@@ -833,16 +875,19 @@ is then
  @@@CODE myfile.f
  @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 !ec
-The first line implies that all lines in the file `myfile.f` are copied
-into a verbatim block. The second line has a `fromto:' directive, which
-implies copying code between two lines in the code. Two regular
-expressions, separated by the `@` sign, define the "from" and "to" lines.
-The "from" line is included in the verbatim block, while the "to" line
-is not. In the example above, we copy code from the line matching
-`subroutine test` (with as many blanks as desired between the two words)
-and the line matching `C      END1` (C followed by 5 blanks and then
-the text END1). The final line with the "to" text is not
-included in the verbatim block. 
+The first line implies that all lines in the file `myfile.f` are
+copied into a verbatim block, typset in a `!bc pro` environment.  The
+second line has a `fromto:' directive, which implies copying code
+between two lines in the code, typset within a !`bc cod`
+environment. (The `pro` and `cod` arguments are only used for LaTeX
+and Sphinx output, all other formats will have the code typeset within
+a plain `!bc` environment.) Two regular expressions, separated by the
+`@` sign, define the "from" and "to" lines.  The "from" line is
+included in the verbatim block, while the "to" line is not. In the
+example above, we copy code from the line matching `subroutine test`
+(with as many blanks as desired between the two words) and the line
+matching `C END1` (C followed by 5 blanks and then the text END1). The
+final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above):
 

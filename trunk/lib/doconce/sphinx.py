@@ -1,6 +1,68 @@
 # can reuse most of rst module:
 from rst import *
 
+legal_pygments_languages = [
+    'Cucumber', 'cucumber', 'Gherkin', 'gherkin', 
+    'abap', 'ada', 'ada95ada2005', 
+    'antlr-as', 'antlr-actionscript', 'antlr-cpp', 'antlr-csharp', 
+    'antlr-c#', 'antlr-java', 'antlr-objc', 'antlr-perl', 
+    'antlr-python', 'antlr-ruby', 'antlr-rb', 'antlr', 
+    'apacheconf', 'aconf', 'apache', 'applescript', 'as', 
+    'actionscript', 'as3', 'actionscript3', 'aspx-cs', 'aspx-vb', 
+    'asy', 'asymptote', 'basemake', 'bash', 'sh', 'ksh', 'bat', 
+    'bbcode', 'befunge', 'boo', 'brainfuck', 'bf', 'c-objdump', 
+    'c', 'cfm', 'cfs', 'cheetah', 'spitfire', 'clojure', 'clj', 
+    'cmake', 'coffee-script', 'coffeescript', 'common-lisp', 
+    'cl', 'console', 'control', 
+    'cpp', 'c++', 'cpp-objdump', 'c++-objdumb', 'cxx-objdump', 
+    'csharp', 'c#', 
+    'css+django', 'css+jinja', 'css+erb', 'css+ruby', 
+    'css+genshitext', 'css+genshi', 'css+mako', 'css+myghty', 
+    'css+php', 'css+smarty', 'css', 
+    'cython', 'pyx', 'd-objdump', 'd', 'delphi', 'pas', 
+    'pascal', 'objectpascal', 'diff', 'udiff', 
+    'django', 'jinja', 'dpatch', 'dylan', 'erb', 
+    'erl', 'erlang', 'evoque', 'felix', 'flx', 
+    'fortran', 'gas', 'genshi', 'kid', 
+    'xml+genshi', 'xml+kid', 'genshitext', 'glsl', 
+    'gnuplot', 'go', 'groff', 'nroff', 'man', 'haml', 
+    'HAML', 'haskell', 'hs', 
+    'html+cheetah', 'html+spitfire', 'html+django', 'html+jinja', 
+    'html+evoque', 'html+genshi', 'html+kid', 'html+mako', 
+    'html+myghty', 'html+php', 'html+smarty', 'html', 
+    'hx', 'haXe', 'ini', 'cfg', 'io', 'irc', 
+    'java', 'js+cheetah', 'javascript+cheetah', 'js+spitfire', 
+    'javascript+spitfire', 'js+django', 'javascript+django', 
+    'js+jinja', 'javascript+jinja', 'js+erb', 'javascript+erb', 
+    'js+ruby', 'javascript+ruby', 'js+genshitext', 'js+genshi', 
+    'javascript+genshitext', 'javascript+genshi', 'js+mako', 
+    'javascript+mako', 'js+myghty', 'javascript+myghty', 
+    'js+php', 'javascript+php', 'js+smarty', 'javascript+smarty', 
+    'js', 'javascript', 'jsp', 
+    'lhs', 'literate-haskell', 'lighty', 'lighttpd', 'llvm', 
+    'logtalk', 'lua', 'make', 'makefile', 'mf', 'bsdmake', 
+    'mako', 'matlab', 'octave', 'matlabsession', 'minid', 
+    'modelica', 'modula2', 'm2', 'moocode', 'mupad', 'mxml', 
+    'myghty', 'mysql', 'nasm', 'newspeak', 'nginx', 'numpy', 
+    'objdump', 'objective-c', 'objectivec', 'obj-c', 'objc', 
+    'objective-j', 'objectivej', 'obj-j', 'objj', 'ocaml', 
+    'ooc', 'perl', 'pl', 'php', 'php3', 'php4', 'php5', 
+    'pot', 'po', 'pov', 'prolog', 'py3tb', 'pycon', 'pytb', 
+    'python', 'py', 'python3', 'py3', 'ragel-c', 'ragel-cpp', 
+    'ragel-d', 'ragel-em', 'ragel-java', 'ragel-objc', 
+    'ragel-ruby', 'ragel-rb', 'ragel', 'raw', 'rb', 'ruby', 
+    'rbcon', 'irb', 'rconsole', 'rout', 'rebol', 'redcode', 
+    'rhtml', 'html+erb', 'html+ruby', 'rst', 'rest', 
+    'restructuredtext', 'sass', 'SASS', 'scala', 'scheme', 
+    'scm', 'smalltalk', 'squeak', 'smarty', 'sourceslist', 
+    'sources.list', 'splus', 's', 'r', 'sql', 'sqlite3', 
+    'squidconf', 'squid.conf', 'squid', 'tcl', 'tcsh', 
+    'csh', 'tex', 'latex', 'text', 'trac-wiki', 'moin', 
+    'vala', 'vapi', 'vb.net', 'vbnet', 'vim', 
+    'xml+cheetah', 'xml+spitfire', 'xml+django', 'xml+jinja', 
+    'xml+erb', 'xml+ruby', 'xml+evoque', 'xml+mako', 
+    'xml+myghty', 'xml+php', 'xml+smarty', 'xml', 'xslt', 'yaml']
+
 # redefine what is not appropriate:
 
 def sphinx_figure(m):
@@ -29,21 +91,59 @@ def sphinx_figure(m):
     result += '\n\n   ' + caption + '\n'
     return result
 
+from latex import fix_latex_command_regex as fix_latex
 
 def sphinx_code(filestr, format):
     # In rst syntax, code blocks are typeset with :: (verbatim)
     # followed by intended blocks. This function indents everything
     # inside code (or TeX) blocks.
     
-    # first indent all code/tex blocks:
+    # first indent all code/tex blocks by 1) extracting all blocks,
+    # 2) intending each block, and 3) inserting the blocks:
     filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
     for i in range(len(code_blocks)):
         code_blocks[i] = indent_lines(code_blocks[i], format)
     for i in range(len(tex_blocks)):
         tex_blocks[i] = indent_lines(tex_blocks[i], format)
+        # remove all \label{}s inside tex blocks:
+        tex_blocks[i] = re.sub(fix_latex(r'\label\{.+?\}', application='match'),
+                              '', tex_blocks[i])
+        # remove those without \ if there are any:
+        tex_blocks[i] = re.sub(r'label\{.+?\}', '', tex_blocks[i])
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
 
-    filestr = re.sub(r'!bc *[a-z]*\n', '\n.. code-block:: python\n\n', filestr)
+    # grab #sphinx code-blocks: cod=python cpp=c++ etc line
+    m = re.search(r'#\s*[Ss]phinx\s+code-blocks?:(.+?)\n', filestr)
+    if m:
+        defs_line = m.group(1)
+        # turn defs into a dictionary definition:
+        defs = {}
+        for definition in defs_line.split():
+            key, value = definition.split('=')
+            defs[key] = value
+    else:
+        # default mappings:
+        defs = dict(cod='python', pycod='python', cppcod='c++',
+                    fcod='fortran', ccod='c', 
+                    pro='python', pypro='python', cpppro='c++',
+                    fpro='fortran', cpro='c', 
+                    sys='console', dat='python')
+        # (the "python" typesetting is neutral if the text
+        # does not parse as python)
+
+    for key in defs:
+        language = defs[key]
+        if not language in legal_pygments_languages:
+            raise TypeError('%s is not a legal Pygments language '\
+                            '(lexer) in line with:\n  %s' % \
+                                (language, defs_line))
+        filestr = re.sub(r'^!bc\s+%s\s*\n' % key, 
+                         '\n.. code-block:: %s\n\n' % defs[key], filestr,
+                         flags=re.MULTILINE)
+    # any !bc with/without argument becomes a py (python) block:
+    filestr = re.sub(r'^!bc.+\n', '\n.. code-block:: py\n\n', filestr,
+                     flags=re.MULTILINE)
+
     filestr = re.sub(r'!ec\n', '\n\n', filestr)
     #filestr = re.sub(r'!ec\n', '\n', filestr)
     #filestr = re.sub(r'!ec\n', '', filestr)
@@ -62,12 +162,12 @@ def sphinx_code(filestr, format):
                 r'\[',
                 r'\]',
                 # some common abbreviations (newcommands):
-                r'\beq',
-                r'\eeq',
-                r'\beqa',
-                r'\eeqa',
                 r'\beqan',
                 r'\eeqan',
+                r'\beqa',
+                r'\eeqa',
+                r'\beq',
+                r'\eeq',  # the simplest, contained in others, must come last...
                 ]
     for command in commands:
         filestr = filestr.replace(command, '')

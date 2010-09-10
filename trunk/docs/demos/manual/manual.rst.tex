@@ -57,7 +57,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-August 27, 2010
+September 10, 2010
 
 \end{DUfieldlist}
 
@@ -506,9 +506,10 @@ Unix/DOS>~doconce2format~LaTeX~mydoc.do.txt
 \end{description}
 
 LaTeX-specific commands (``newcommands'') in math formulas and similar
-can be placed in a file \texttt{newcommands.tex}. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files \texttt{newcommands.tex}, \texttt{newcommands\_keep.tex}, or
+\texttt{newcommands\_replace.tex} (see the section \hyperref[macros-newcommands]{Macros (Newcommands)}).
+If these files are present, they are included in the LaTeX document
+so that your commands are defined.
 
 \emph{Step 2.} Run \texttt{ptex2tex} (if you have it) to make a standard LaTeX file:
 %
@@ -524,20 +525,49 @@ Unix/DOS>~cp~mydoc.p.tex~mydoc.tex
 }
 \end{quote}
 
-The \texttt{ptex2tex} tool makes it possible to easily switch between many
-different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile \texttt{mydoc.tex} the usual way and create the PDF file:
+Doconce generates a \texttt{.p.tex} file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~latex~mydoc\\
-Unix/DOS>~latex~mydoc\\
+Unix/DOS>~ptex2tex~-DHELVETICA~mydoc
+}
+\end{quote}
+
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX ``maketitle'' heading
+is also available through:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix/DOS>~ptex2tex~-DTRAD\_LATEX\_HEADING~mydoc
+}
+\end{quote}
+
+The \texttt{ptex2tex} tool makes it possible to easily switch between many
+different fancy formattings of computer or verbatim code in LaTeX
+documents. After any \texttt{!bc sys} command in the Doconce source you can
+insert verbatim block styles as defined in your \texttt{.ptex2tex.cfg}
+file, e.g., \texttt{!bc sys cod} for a code snippet, where \texttt{cod} is set to
+a certain environment in \texttt{.ptex2tex.cfg} (e.g., \texttt{CodeIntended}).
+There are over 30 styles to choose from.
+
+\emph{Step 3.} Compile \texttt{mydoc.tex} with \texttt{latex -shell-escape}
+and create the PDF file:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix/DOS>~latex~-shell-escape~mydoc\\
+Unix/DOS>~latex~-shell-escape~mydoc\\
 Unix/DOS>~makeindex~mydoc~~~\#~if~index\\
 Unix/DOS>~bibitem~mydoc~~~~~\#~if~bibliography\\
-Unix/DOS>~latex~mydoc\\
+Unix/DOS>~latex~-shell-escape~mydoc\\
 Unix/DOS>~dvipdf~mydoc
 }
 \end{quote}
+
+The \texttt{-shell-escape} option is required because \texttt{ptex2tex} inserts an include
+of the \texttt{minted.sty} style, which applies the \texttt{pygments} to format code,
+and this program cannot be run from \texttt{latex} without the \texttt{-shell-escape} option.
 
 
 %___________________________________________________________________________
@@ -683,6 +713,17 @@ Unix/DOS>~firefox~\_build/html/index.html
 }
 \end{quote}
 
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows \texttt{!bc}: \texttt{cod} gives Python
+(\texttt{code-block:: python} in Sphinx syntax) and \texttt{cppcod} gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+% Desired extension: sphinx can utilize a "pycod" or "c++cod"
+
+% instruction as currently done in latex for ptex2tex and write
+
+% out the right code block name accordingly.
+
 
 %___________________________________________________________________________
 
@@ -706,6 +747,32 @@ You can then open a new wiki page for your Google Code project, copy
 the \texttt{mydoc.gwiki} output file from \texttt{doconce2format} and paste the
 file contents into the wiki page. Press \textbf{Preview} or \textbf{Save Page} to
 see the formatted result.
+
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+
+%___________________________________________________________________________
+
+\subsection*{Tweaking the Doconce Output%
+  \phantomsection%
+  \addcontentsline{toc}{subsection}{Tweaking the Doconce Output}%
+  \label{tweaking-the-doconce-output}%
+}
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+\texttt{.rst} file is going to be filtered to LaTeX or HTML, it cannot know
+if \texttt{.eps} or \texttt{.png} is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The \texttt{make.sh} files in \texttt{docs/manual} and \texttt{docs/tutorial}
+constitute comprehensive examples on how such scripts can be made.
 
 
 %___________________________________________________________________________
@@ -1341,17 +1408,57 @@ Blocks of computer code, to be typeset verbatim, must appear inside a
 ``begin code'' \texttt{!bc} keyword and an ``end code'' \texttt{!ec} keyword. Both
 keywords must be on a single line and \emph{start at the beginning of the
 line}.  There may be an argument after the \texttt{!bc} tag to specify a
-certain \texttt{ptex2tex} environ (for instance, \texttt{!bc dat} corresponds to the
-data file environment in \texttt{ptex2tex}; if there is no argument, one
-assumes the ccq environment, which is plain verbatim in LaTeX).  The
-argument has effect only for the LaTeX format.  .  The \texttt{!ec} tag must
+certain \texttt{ptex2tex} environment (for instance, \texttt{!bc dat} corresponds to
+the data file environment in \texttt{ptex2tex}, and \texttt{!bc cod} is typically
+used for a code snippet, but any argument can be defined). If there is
+no argument, one assumes the ccq environment, which is plain LaTeX
+verbatim in the default \texttt{.ptex2tex.cfg}. However, all these arguments
+can be redefined in the \texttt{.ptex2tex.cfg} file.
+
+The argument after \texttt{!bc} is also used
+in a Sphinx context. Then argument is mapped onto a valid Pygments
+language for typesetting of the verbatim block by Pygments. This
+mapping takes place in an optional comment to be inserted in the Doconce
+source file, e.g.:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+\#~sphinx~code-blocks:~pycod=python~cod=py~cppcod=c++~sys=console
+}
+\end{quote}
+
+Here, three arguments are defined: \texttt{pycod} for Python code,
+\texttt{cod} also for Python code, \texttt{cppcod} for C++ code, and \texttt{sys}
+for terminal sessions. The same arguments would be defined
+in \texttt{.ptex2tex.cfg} for how to typeset the blocks in LaTeX using
+various verbatim styles (Pygments can also be used in a LaTeX
+context).
+
+By default, \texttt{pro} is used for complete programs in Python, \texttt{cod}
+is for a code snippet in Python, while \texttt{xcod} and \texttt{xpro} implies
+computer language specific typesetting where \texttt{x} can be
+\texttt{f} for Fortran, \texttt{c} for C, \texttt{cpp} for C++, and \texttt{py} for Python.
+The argument \texttt{sys} means by default \texttt{console} for Sphinx and
+\texttt{CodeTerminal} (ptex2tex environent) for LaTeX. All these definitions
+of the arguments after \texttt{!bc} can be redefined in the \texttt{.ptex2tex.cfg}
+configuration file for ptex2tex/LaTeX and in the \texttt{sphinx code-blocks}
+comments for Sphinx. Support for other languages is easily added.
+
+% (Any sphinx code-block comment, whether inside verbatim code
+
+% blocks or outside, yields a mapping between bc arguments
+
+% and computer languages. In case of muliple definitions, the
+
+% first one is used.)
+
+The enclosing \texttt{!ec} tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block:
+Here is a verbatim code block with Python code:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 \#~regular~expressions~for~inline~tags:\\
@@ -1371,25 +1478,37 @@ INLINE\_TAGS~=~\{\\
 }
 \end{quote}
 
-Computer code can be copied directly from a file, if desired. The syntax
-is then:
+And here is a C++ code snippet:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-@@@CODE~myfile.f\\
-@@@CODE~myfile.f~fromto:subroutine\textbackslash{}s+test@\textasciicircum{}C\textbackslash{}s\{5\}END1
+void~myfunc(double*~x,~const~double\&~myarr)~\{\\
+~~~~for~(int~i~=~1;~i~<~myarr.size();~i++)~\{\\
+~~~~~~~~myarr{[}i{]}~=~myarr{[}i{]}~-~x{[}i{]}*myarr{[}i-1{]}\\
+~~~~\}\\
+\}\\
+!ec\\
+~\\
+Computer~code~can~be~copied~directly~from~a~file,~if~desired.~The~syntax\\
+is~then::\\
+~\\
+~@@@CODE~myfile.f\\
+~@@@CODE~myfile.f~fromto:subroutine\textbackslash{}s+test@\textasciicircum{}C\textbackslash{}s\{5\}END1
 }
 \end{quote}
 
-The first line implies that all lines in the file \texttt{myfile.f} are copied
-into a verbatim block. The second line has a \DUroletitlereference{fromto:' directive, which
-implies copying code between two lines in the code. Two regular
-expressions, separated by the ``@`} sign, define the ``from'' and ``to'' lines.
-The ``from'' line is included in the verbatim block, while the ``to'' line
-is not. In the example above, we copy code from the line matching
-\texttt{subroutine test} (with as many blanks as desired between the two words)
-and the line matching \texttt{C ~ ~ ~END1} (C followed by 5 blanks and then
-the text END1). The final line with the ``to'' text is not
-included in the verbatim block.
+The first line implies that all lines in the file \texttt{myfile.f} are
+copied into a verbatim block, typset in a \texttt{!bc pro} environment.  The
+second line has a \DUroletitlereference{fromto:' directive, which implies copying code
+between two lines in the code, typset within a !`bc cod}
+environment. (The \texttt{pro} and \texttt{cod} arguments are only used for LaTeX
+and Sphinx output, all other formats will have the code typeset within
+a plain \texttt{!bc} environment.) Two regular expressions, separated by the
+\texttt{@} sign, define the ``from'' and ``to'' lines.  The ``from'' line is
+included in the verbatim block, while the ``to'' line is not. In the
+example above, we copy code from the line matching \texttt{subroutine test}
+(with as many blanks as desired between the two words) and the line
+matching \texttt{C END1} (C followed by 5 blanks and then the text END1). The
+final line with the ``to'' text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above):
 %
