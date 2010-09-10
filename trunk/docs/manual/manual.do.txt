@@ -843,8 +843,9 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code:
-!bc cod
+Here is a verbatim code block with Python code (`pycod` style,
+typeset via minted and pygments):
+!bc pycod
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P<begin>(^|\s+))'
 inline_tag_end = r'(?P<end>[.,?!;:)\s])'
@@ -860,7 +861,8 @@ INLINE_TAGS = {
     (inline_tag_begin, inline_tag_end),
 }
 !ec
-And here is a C++ code snippet:
+And here is a C++ code snippet (`cppcod` style,
+typeset via minted and pygments):
 !bc cppcod
 void myfunc(double* x, const double& myarr) {
     for (int i = 1; i < myarr.size(); i++) {

@@ -1244,7 +1244,8 @@ forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).</p>
-<p>Here is a verbatim code block with Python code:</p>
+<p>Here is a verbatim code block with Python code (<tt class="docutils literal">pycod</tt> style,
+typeset via minted and pygments):</p>
 <pre class="literal-block">
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P&lt;begin&gt;(^|\s+))'
@@ -1261,7 +1262,8 @@ INLINE_TAGS = {
     (inline_tag_begin, inline_tag_end),
 }
 </pre>
-<p>And here is a C++ code snippet:</p>
+<p>And here is a C++ code snippet (<tt class="docutils literal">cppcod</tt> style,
+typeset via minted and pygments):</p>
 <pre class="literal-block">
 void myfunc(double* x, const double&amp; myarr) {
     for (int i = 1; i &lt; myarr.size(); i++) {

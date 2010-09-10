@@ -1203,9 +1203,10 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code:
+Here is a verbatim code block with Python code (``pycod`` style,
+typeset via minted and pygments):
 
-.. code-block:: py
+.. code-block:: python
 
         # regular expressions for inline tags:
         inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -1223,7 +1224,8 @@ Here is a verbatim code block with Python code:
         }
 
 
-And here is a C++ code snippet:
+And here is a C++ code snippet (``cppcod`` style,
+typeset via minted and pygments):
 
 .. code-block:: c++
 
