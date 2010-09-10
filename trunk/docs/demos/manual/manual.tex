@@ -1182,23 +1182,9 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code:
-\providecommand{\shadedskip}{}
-\definecolor{shadecolor}{rgb}{0.87843, 0.95686, 1.0}
-\renewenvironment{shadedskip}{
-\def\FrameCommand{\colorbox{shadecolor}}\FrameRule0.6pt
-\MakeFramed {\FrameRestore}\vskip3mm}{\vskip0mm\endMakeFramed}
-\providecommand{\shadedquoteBlue}{}
-\renewenvironment{shadedquoteBlue}[1][]{
-\bgroup\rmfamily
-\fboxsep=0mm\relax
-\begin{shadedskip}
-\list{}{\parsep=-2mm\parskip=0mm\topsep=0pt\leftmargin=2mm
-\rightmargin=2\leftmargin\leftmargin=4pt\relax}
-\item\relax}
-{\endlist\end{shadedskip}\egroup}\begin{shadedquoteBlue}
-\fontsize{9pt}{9pt}
-\begin{Verbatim}
+Here is a verbatim code block with Python code ({\fontsize{10pt}{10pt}\verb!pycod!} style,
+typeset via minted and pygments):
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P<begin>(^|\s+))'
 inline_tag_end = r'(?P<end>[.,?!;:)\s])'
@@ -1213,10 +1199,10 @@ INLINE_TAGS = {
     r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
     (inline_tag_begin, inline_tag_end),
 }
-\end{Verbatim}
-\end{shadedquoteBlue}
+\end{minted}
 \noindent
-And here is a C++ code snippet:
+And here is a C++ code snippet ({\fontsize{10pt}{10pt}\verb!cppcod!} style,
+typeset via minted and pygments):
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{c++}
 void myfunc(double* x, const double& myarr) {
     for (int i = 1; i < myarr.size(); i++) {
@@ -1286,7 +1272,20 @@ C     END1
 
 Let us then copy just a piece in the middle as indicated by the {\fontsize{10pt}{10pt}\verb!fromto:!}
 directive above:
-\begin{shadedquoteBlue}
+\providecommand{\shadedskip}{}
+\definecolor{shadecolor}{rgb}{0.87843, 0.95686, 1.0}
+\renewenvironment{shadedskip}{
+\def\FrameCommand{\colorbox{shadecolor}}\FrameRule0.6pt
+\MakeFramed {\FrameRestore}\vskip3mm}{\vskip0mm\endMakeFramed}
+\providecommand{\shadedquoteBlue}{}
+\renewenvironment{shadedquoteBlue}[1][]{
+\bgroup\rmfamily
+\fboxsep=0mm\relax
+\begin{shadedskip}
+\list{}{\parsep=-2mm\parskip=0mm\topsep=0pt\leftmargin=2mm
+\rightmargin=2\leftmargin\leftmargin=4pt\relax}
+\item\relax}
+{\endlist\end{shadedskip}\egroup}\begin{shadedquoteBlue}
 \fontsize{9pt}{9pt}
 \begin{Verbatim}
       subroutine    test()

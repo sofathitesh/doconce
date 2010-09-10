@@ -472,7 +472,8 @@ be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
-common errors are naturally avoided).</paragraph><paragraph>Here is a verbatim code block with Python code:</paragraph><literal_block xml:space="preserve"># regular expressions for inline tags:
+common errors are naturally avoided).</paragraph><paragraph>Here is a verbatim code block with Python code (<literal>pycod</literal> style,
+typeset via minted and pygments):</paragraph><literal_block xml:space="preserve"># regular expressions for inline tags:
 inline_tag_begin = r'(?P&lt;begin&gt;(^|\s+))'
 inline_tag_end = r'(?P&lt;end&gt;[.,?!;:)\s])'
 INLINE_TAGS = {
@@ -485,7 +486,8 @@ INLINE_TAGS = {
     'bold':
     r'%s_(?P&lt;subst&gt;[^ `][^_`]*)_%s' % \
     (inline_tag_begin, inline_tag_end),
-}</literal_block><paragraph>And here is a C++ code snippet:</paragraph><literal_block xml:space="preserve">void myfunc(double* x, const double&amp; myarr) {
+}</literal_block><paragraph>And here is a C++ code snippet (<literal>cppcod</literal> style,
+typeset via minted and pygments):</paragraph><literal_block xml:space="preserve">void myfunc(double* x, const double&amp; myarr) {
     for (int i = 1; i &lt; myarr.size(); i++) {
         myarr[i] = myarr[i] - x[i]*myarr[i-1]
     }

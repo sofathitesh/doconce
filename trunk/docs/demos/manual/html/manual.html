@@ -938,8 +938,9 @@ forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).</p>
-<p>Here is a verbatim code block with Python code:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="c"># regular expressions for inline tags:</span>
+<p>Here is a verbatim code block with Python code (<tt class="docutils literal"><span class="pre">pycod</span></tt> style,
+typeset via minted and pygments):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># regular expressions for inline tags:</span>
 <span class="n">inline_tag_begin</span> <span class="o">=</span> <span class="s">r&#39;(?P&lt;begin&gt;(^|\s+))&#39;</span>
 <span class="n">inline_tag_end</span> <span class="o">=</span> <span class="s">r&#39;(?P&lt;end&gt;[.,?!;:)\s])&#39;</span>
 <span class="n">INLINE_TAGS</span> <span class="o">=</span> <span class="p">{</span>
@@ -955,7 +956,8 @@ common errors are naturally avoided).</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>And here is a C++ code snippet:</p>
+<p>And here is a C++ code snippet (<tt class="docutils literal"><span class="pre">cppcod</span></tt> style,
+typeset via minted and pygments):</p>
 <div class="highlight-c++"><pre>void myfunc(double* x, const double&amp; myarr) {
     for (int i = 1; i &lt; myarr.size(); i++) {
         myarr[i] = myarr[i] - x[i]*myarr[i-1]

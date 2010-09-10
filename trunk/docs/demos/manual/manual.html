@@ -1214,8 +1214,9 @@ in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
 <P>
-Here is a verbatim code block with Python code:
-<!-- BEGIN VERBATIM BLOCK   cod-->
+Here is a verbatim code block with Python code (<TT>pycod</TT> style,
+typeset via minted and pygments):
+<!-- BEGIN VERBATIM BLOCK   pycod-->
 <BLOCKQUOTE><PRE>
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P&lt;begin&gt;(^|\s+))'
@@ -1233,7 +1234,8 @@ INLINE_TAGS = {
 }
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-And here is a C++ code snippet:
+And here is a C++ code snippet (<TT>cppcod</TT> style,
+typeset via minted and pygments):
 <!-- BEGIN VERBATIM BLOCK   cppcod-->
 <BLOCKQUOTE><PRE>
 void myfunc(double* x, const double& myarr) {
