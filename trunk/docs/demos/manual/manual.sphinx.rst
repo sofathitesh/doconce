@@ -3,7 +3,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: August 27, 2010
+:Date: September 10, 2010
 
 .. lines beginning with # are comment lines
 
@@ -199,7 +199,7 @@ preprocessed) by the ``preprocess`` program.
 In a doc string in ``basename.p.py`` we do a preprocessor include
 in a comment line, say
 
-.. code-block:: python
+.. code-block:: py
 
         #    #include "docstrings/doc1.dst.txt
 
@@ -238,7 +238,7 @@ suited for Pydoc or reading by humans. All these steps are automated
 by the ``insertdocstr.py`` script.  Here are the corresponding Unix
 commands:
 
-.. code-block:: python
+.. code-block:: console
 
         # make Epydoc API manual of basename module:
         cd docstrings
@@ -295,7 +295,7 @@ Demos
 
 The current text is generated from a Doconce format stored in the
 
-.. code-block:: python
+.. code-block:: console
 
         docs/manual/manual.do.txt
 
@@ -311,7 +311,7 @@ Doconce file to obtain documents in various formats.
 
 Another demo is found in
 
-.. code-block:: python
+.. code-block:: console
 
         docs/tutorial/tutorial.do.txt
 
@@ -330,7 +330,7 @@ From Doconce to Other Formats
 Transformation of a Doconce document to various other
 formats applies the script ``doconce2format``:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format format mydoc.do.txt
 
@@ -338,7 +338,7 @@ formats applies the script ``doconce2format``:
 The ``preprocess`` program is always used to preprocess the file first,
 and options to ``preprocess`` can be added after the filename. For example,
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
 
@@ -355,7 +355,7 @@ HTML
 Making an HTML version of a Doconce file ``mydoc.do.txt``
 is performed by
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format HTML mydoc.do.txt
 
@@ -373,45 +373,75 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 *Step 1.* Filter the doconce text to a pre-LaTeX form ``mydoc.p.tex`` for
      ``ptex2tex``:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format LaTeX mydoc.do.txt
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
-can be placed in a file ``newcommands.tex``. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
+``newcommands_replace.tex`` (see the section :ref:`newcommands`). 
+If these files are present, they are included in the LaTeX document 
+so that your commands are defined.
 
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file,
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> ptex2tex mydoc
 
 
 or just perform a plain copy,
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> cp mydoc.p.tex mydoc.tex
 
 
+Doconce generates a ``.p.tex`` file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font,
+
+.. code-block:: console
+
+        Unix/DOS> ptex2tex -DHELVETICA mydoc
+
+
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX "maketitle" heading
+is also available through
+
+.. code-block:: console
+
+        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+
+
+
 The ``ptex2tex`` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile ``mydoc.tex`` the usual way and create the PDF file:
+documents. After any ``!bc sys`` command in the Doconce source you can
+insert verbatim block styles as defined in your ``.ptex2tex.cfg``
+file, e.g., ``!bc sys cod`` for a code snippet, where ``cod`` is set to
+a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
+There are over 30 styles to choose from.
 
-.. code-block:: python
+*Step 3.* Compile ``mydoc.tex`` with ``latex -shell-escape`` 
+and create the PDF file:
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
+.. code-block:: console
+
+        Unix/DOS> latex -shell-escape mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> makeindex mydoc   # if index
         Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
+        Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
 
 
+The ``-shell-escape`` option is required because ``ptex2tex`` inserts an include
+of the ``minted.sty`` style, which applies the ``pygments`` to format code,
+and this program cannot be run from ``latex`` without the ``-shell-escape`` option.
 
 
 Plain ASCII Text
@@ -421,7 +451,7 @@ We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
 
@@ -434,14 +464,14 @@ Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file ``mydoc.rst``:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format rst mydoc.do.txt
 
 
 We may now produce various other formats:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
         Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
@@ -461,7 +491,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 *Step 1.* Translate Doconce into the Sphinx dialect of
 the reStructuredText format:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format sphinx mydoc.do.txt
 
@@ -471,7 +501,7 @@ the reStructuredText format:
 either manually or by using the interactive ``sphinx-quickstart``
 program. Here is a scripted version of the steps with the latter:
 
-.. code-block:: python
+.. code-block:: console
 
         mkdir sphinx-rootdir
         sphinx-quickstart <<EOF
@@ -502,7 +532,7 @@ program. Here is a scripted version of the steps with the latter:
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> mv mydoc.rst sphinx-rootdir
 
@@ -516,7 +546,7 @@ are located in a subdirectory).
 *Step 4.* Edit the generated ``index.rst`` file so that ``mydoc.rst``
 is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes
 
-.. code-block:: python
+.. code-block:: py
 
         .. toctree::
            :maxdepth: 2
@@ -528,7 +558,7 @@ is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes
 
 *Step 5.* Generate, for instance, an HTML version of the Sphinx source:
 
-.. code-block:: python
+.. code-block:: console
 
         make clean   # remove old versions
         make html
@@ -538,10 +568,20 @@ Many other formats are also possible.
 
 *Step 6.* View the result:
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> firefox _build/html/index.html
 
+
+
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows ``!bc``: ``cod`` gives Python
+(``code-block:: python`` in Sphinx syntax) and ``cppcod`` gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+.. Desired extension: sphinx can utilize a "pycod" or "c++cod"
+.. instruction as currently done in latex for ptex2tex and write
+.. out the right code block name accordingly.
 
 
 Google Code Wiki
@@ -552,7 +592,7 @@ one used by `Google Code <http://code.google.com/p/support/wiki/WikiSyntax>`_.
 The transformation to this format, called ``gwiki`` to explicitly mark
 it as the Google Code dialect, is done by
 
-.. code-block:: python
+.. code-block:: console
 
         Unix/DOS> doconce2format gwiki mydoc.do.txt
 
@@ -562,6 +602,26 @@ the ``mydoc.gwiki`` output file from ``doconce2format`` and paste the
 file contents into the wiki page. Press **Preview** or **Save Page** to
 see the formatted result.
 
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+
+Tweaking the Doconce Output
+---------------------------
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+``.rst`` file is going to be filtered to LaTeX or HTML, it cannot know
+if ``.eps`` or ``.png`` is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The ``make.sh`` files in ``docs/manual`` and ``docs/tutorial`` 
+constitute comprehensive examples on how such scripts can be made.
 
 
 
@@ -577,7 +637,7 @@ Lists
 An unordered bullet list makes use of the ``*`` as bullet sign
 and is indented as follows
 
-.. code-block:: python
+.. code-block:: py
 
            * item 1
         
@@ -613,7 +673,7 @@ This list gets typeset as
 In an ordered list, each item starts with an ``o`` (as the first letter 
 in "ordered"):
 
-.. code-block:: python
+.. code-block:: py
 
            o item 1
         
@@ -646,7 +706,7 @@ applies to the outer list only.
 In a description list, each item is recognized by a dash followed
 by a keyword followed by a colon:
 
-.. code-block:: python
+.. code-block:: py
 
            - keyword1: explanation of keyword1
         
@@ -682,7 +742,7 @@ title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
 the syntax 
 
-.. code-block:: python
+.. code-block:: py
 
         name at institution1 and institution2 and institution3
 
@@ -695,7 +755,7 @@ Multiple authors require multiple ``AUTHOR:`` lines. All information
 associated with ``TITLE:`` and ``AUTHOR:`` keywords must appear on a single
 line.  Here is an example:
 
-.. code-block:: python
+.. code-block:: py
 
         TITLE: On an Ultimate Markup Language
         AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
@@ -710,7 +770,7 @@ only the author names appear. Some formats have
 "intelligence" in listing authors and institutions, e.g., the plain text
 format:
 
-.. code-block:: python
+.. code-block:: py
 
         Hans Petter Langtangen [1, 2]
         Kaare Dump [3]
@@ -747,7 +807,7 @@ Headings can be surrounded by blanks if desired.
 
 Here are some examples:
 
-.. code-block:: python
+.. code-block:: py
 
         ======= Example on a Section Heading ======= 
         
@@ -784,7 +844,7 @@ The running text goes here.
 
 Figures are recognized by the special line syntax
 
-.. code-block:: python
+.. code-block:: py
 
         FIGURE:[filename, height=xxx width=yyy scale=zzz] caption
 
@@ -842,7 +902,7 @@ plus LaTeX/TeX inline mathematics, such as :math:`\nu = \sin(x)`.
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
 
-.. code-block:: python
+.. code-block:: py
 
         *emphasized words*
 
@@ -850,7 +910,7 @@ be no spaces between an asterisk and the emphasized text, as in
 
 Boldface font is recognized by an underscore instead of an asterisk:
 
-.. code-block:: python
+.. code-block:: py
 
         _several words in boldface_ followed by *ephasized text*.
 
@@ -861,7 +921,7 @@ The line above gets typeset as
 Verbatim text, typically used for short inline code,
 is typeset between backquotes:
 
-.. code-block:: python
+.. code-block:: py
 
         `call myroutine(a, b)` looks like a Fortran call
         while `void myfunc(double *a, double *b)` must be C.
@@ -884,7 +944,7 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 
-.. code-block:: python
+.. code-block:: py
 
         some URL like http://my.place.in.space/src<MyPlace>
 
@@ -893,7 +953,7 @@ which appears as some URL like `MyPlace <http://my.place.in.space/src>`_.
 Link to a file is done by the URL keyword, a colon, and enclosing the
 filename in double quotes:
 
-.. code-block:: python
+.. code-block:: py
 
         URL:"manual.do.txt"
 
@@ -910,7 +970,7 @@ commands, which may appear annoying in plain text. Doconce therefore
 supports an extended inline math syntax where the writer can provide
 an alternative syntax suited for formats close to plain ASCII:
 
-.. code-block:: python
+.. code-block:: py
 
         Here is an example on a linear system 
         ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
@@ -938,7 +998,7 @@ Cross-Referencing
 
 References and labels are supported. The syntax is simple:
 
-.. code-block:: python
+.. code-block:: py
 
         label{section:verbatim}   # defines a label
         For more information we refer to Section ref{section:verbatim}.
@@ -982,7 +1042,7 @@ Index and Bibliography
 An index can be created for the LaTeX and the reStructuredText or
 Sphinx formats by the ``idx`` keyword, following a LaTeX-inspired syntax:
 
-.. code-block:: python
+.. code-block:: py
 
         idx{some index entry}
         idx{main entry!subentry}
@@ -992,7 +1052,7 @@ Sphinx formats by the ``idx`` keyword, following a LaTeX-inspired syntax:
 The exclamation mark divides a main entry and a subentry. Backquotes
 surround verbatim text, which is correctly transformed in a LaTeX setting to
 
-.. code-block:: python
+.. code-block:: py
 
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
@@ -1002,7 +1062,7 @@ plain text, Epytext, StructuredText, HTML, and Wiki formats.
 
 Literature citations also follow a LaTeX-inspired style:
 
-.. code-block:: python
+.. code-block:: py
 
         as found in cite{Larsen:86,Nielsen:99}.
 
@@ -1013,7 +1073,7 @@ and Sphinx the labels can be clicked, while in all the other text
 formats the labels are consecutively numbered so the above citation
 will typically look like
 
-.. code-block:: python
+.. code-block:: py
 
         as found in [3][14]
 
@@ -1030,7 +1090,7 @@ The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
 in the bibliography. Doconce markup can be used in this text, e.g.,
 
-.. code-block:: python
+.. code-block:: py
 
         {
         'Nielsen:99': """
@@ -1072,7 +1132,7 @@ A table like
 
 is built up of pipe symbols and dashes:
 
-.. code-block:: python
+.. code-block:: py
 
           |--------------------------------|
           |time  | velocity | acceleration |
@@ -1096,19 +1156,56 @@ Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" ``!bc`` keyword and an "end code" ``!ec`` keyword. Both
 keywords must be on a single line and *start at the beginning of the
 line*.  There may be an argument after the ``!bc`` tag to specify a
-certain ``ptex2tex`` environ (for instance, ``!bc dat`` corresponds to the
-data file environment in ``ptex2tex``; if there is no argument, one
-assumes the ccq environment, which is plain verbatim in LaTeX).  The
-argument has effect only for the LaTeX format.  .  The ``!ec`` tag must
+certain ``ptex2tex`` environment (for instance, ``!bc dat`` corresponds to
+the data file environment in ``ptex2tex``, and ``!bc cod`` is typically
+used for a code snippet, but any argument can be defined). If there is
+no argument, one assumes the ccq environment, which is plain LaTeX
+verbatim in the default ``.ptex2tex.cfg``. However, all these arguments
+can be redefined in the ``.ptex2tex.cfg`` file.
+
+The argument after ``!bc`` is also used
+in a Sphinx context. Then argument is mapped onto a valid Pygments
+language for typesetting of the verbatim block by Pygments. This
+mapping takes place in an optional comment to be inserted in the Doconce
+source file, e.g.,
+
+.. code-block:: py
+
+        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
+
+Here, three arguments are defined: ``pycod`` for Python code,
+``cod`` also for Python code, ``cppcod`` for C++ code, and ``sys``
+for terminal sessions. The same arguments would be defined
+in ``.ptex2tex.cfg`` for how to typeset the blocks in LaTeX using
+various verbatim styles (Pygments can also be used in a LaTeX
+context).
+
+By default, ``pro`` is used for complete programs in Python, ``cod``
+is for a code snippet in Python, while ``xcod`` and ``xpro`` implies
+computer language specific typesetting where ``x`` can be
+``f`` for Fortran, ``c`` for C, ``cpp`` for C++, and ``py`` for Python.
+The argument ``sys`` means by default ``console`` for Sphinx and
+``CodeTerminal`` (ptex2tex environent) for LaTeX. All these definitions
+of the arguments after ``!bc`` can be redefined in the ``.ptex2tex.cfg``
+configuration file for ptex2tex/LaTeX and in the ``sphinx code-blocks``
+comments for Sphinx. Support for other languages is easily added.
+
+.. (Any sphinx code-block comment, whether inside verbatim code
+.. blocks or outside, yields a mapping between bc arguments
+.. and computer languages. In case of muliple definitions, the
+.. first one is used.)
+
+The enclosing ``!ec`` tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block:
+Here is a verbatim code block with Python code:
 
-.. code-block:: python
+.. code-block:: py
 
         # regular expressions for inline tags:
         inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -1126,30 +1223,41 @@ Here is a verbatim code block:
         }
 
 
+And here is a C++ code snippet:
 
-Computer code can be copied directly from a file, if desired. The syntax
-is then
+.. code-block:: c++
 
-.. code-block:: python
-
+        void myfunc(double* x, const double& myarr) {
+            for (int i = 1; i < myarr.size(); i++) {
+                myarr[i] = myarr[i] - x[i]*myarr[i-1]
+            }
+        }
+        !ec    
+        
+        Computer code can be copied directly from a file, if desired. The syntax
+        is then
+        !bc
          @@@CODE myfile.f
          @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 
 
-The first line implies that all lines in the file ``myfile.f`` are copied
-into a verbatim block. The second line has a `fromto:' directive, which
-implies copying code between two lines in the code. Two regular
-expressions, separated by the ``@`` sign, define the "from" and "to" lines.
-The "from" line is included in the verbatim block, while the "to" line
-is not. In the example above, we copy code from the line matching
-``subroutine test`` (with as many blanks as desired between the two words)
-and the line matching ``C      END1`` (C followed by 5 blanks and then
-the text END1). The final line with the "to" text is not
-included in the verbatim block. 
+The first line implies that all lines in the file ``myfile.f`` are
+copied into a verbatim block, typset in a ``!bc pro`` environment.  The
+second line has a `fromto:' directive, which implies copying code
+between two lines in the code, typset within a !`bc cod`
+environment. (The ``pro`` and ``cod`` arguments are only used for LaTeX
+and Sphinx output, all other formats will have the code typeset within
+a plain ``!bc`` environment.) Two regular expressions, separated by the
+``@`` sign, define the "from" and "to" lines.  The "from" line is
+included in the verbatim block, while the "to" line is not. In the
+example above, we copy code from the line matching ``subroutine test``
+(with as many blanks as desired between the two words) and the line
+matching ``C END1`` (C followed by 5 blanks and then the text END1). The
+final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above):
 
-.. code-block:: python
+.. code-block:: py
 
         C     a comment
         
@@ -1172,7 +1280,7 @@ Let us copy a whole file (the first line above):
 Let us then copy just a piece in the middle as indicated by the ``fromto:``
 directive above:
 
-.. code-block:: python
+.. code-block:: py
 
               subroutine    test()
               integer i
@@ -1208,7 +1316,7 @@ Here is the result of a ``!bt`` - ``!et`` block:
 .. math::
 
         
-        {\partial u\over\partial t}  &=  \nabla^2 u + f,\label{myeq1}\\
+        {\partial u\over\partial t}  &=  \nabla^2 u + f,\\
         {\partial v\over\partial t}  &=  \nabla\cdot(q(u)\nabla v) + g
         
 
@@ -1250,10 +1358,10 @@ expressions).
 *Example.* Suppose we have the following commands in 
 ``newcommand_replace.tex``:
 
-.. code-block:: python
+.. code-block:: py
 
-        \newcommand{a}{}
-        \newcommand{a}{}
+        \newcommand{}{}
+        \newcommand{}{}
         \newcommand{\ep}{\thinspace . }
         \newcommand{\uvec}{\vec u}
         \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
@@ -1263,7 +1371,7 @@ expressions).
 
 and these in ``newcommands_keep.tex``:
 
-.. code-block:: python
+.. code-block:: py
 
         \newcommand{\x}{\mathbfx{x}}
         \newcommand{\normalvec}{\mathbfx{n}}
@@ -1273,12 +1381,12 @@ and these in ``newcommands_keep.tex``:
 
 The LaTeX block
 
-.. code-block:: python
+.. code-block:: py
 
-        a
+        
         \x\cdot\normalvec  &=  0,\label{my:eq1}\\
         \Ddt{\uvec}  &=  \Q \ep\label{my:eq2}
-        a
+        
 
 
 will then be rendered to
@@ -1286,8 +1394,8 @@ will then be rendered to
 .. math::
 
         
-        {\mbox{\boldmath $x$}}\cdot{\mbox{\boldmath $n$}}  &=  0,\label{my:eq1}\\
-        \frac{D\vec u}{dt}  &=  {\mbox{\boldmath $Q$}} \thinspace . \label{my:eq2}
+        {\mbox{\boldmath $x$}}\cdot{\mbox{\boldmath $n$}}  &=  0,\\
+        \frac{D\vec u}{dt}  &=  {\mbox{\boldmath $Q$}} \thinspace . 
         
 
 in the current format.
@@ -1328,7 +1436,7 @@ reST to indicate a verbatim block of text).
 
 *The LaTeX File Does Not Compile.* If the problem is undefined control sequence involving
 
-.. code-block:: python
+.. code-block:: py
 
         \code{...}
 
@@ -1410,7 +1518,7 @@ handling of blank lines and comment lines.
 List parsing needs some awareness of the context.
 Each line is interpreted by a regular expression
 
-.. code-block:: python
+.. code-block:: py
 
         (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<text>.*)\s?
 
@@ -1447,7 +1555,7 @@ A Glimpse of How to Write a New Translator
 This is the HTML-specific part of the
 source code of the HTML translator:
 
-.. code-block:: python
+.. code-block:: py
 
         FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
         BLANKLINE['HTML'] = '<p>\n'           # blank input line => new paragraph
@@ -1528,7 +1636,7 @@ only legal keywords (descriptions) for the description list in this
 context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
 arguments and variables are nicely formatted. 
 
-.. code-block:: python
+.. code-block:: py
 
             - argument x: x value (float),
               which must be a positive number.

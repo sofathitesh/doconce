@@ -1,6 +1,6 @@
 TITLE: Doconce: Document Once, Include Anywhere
 AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-DATE: August 25, 2010
+DATE: September 10, 2010
 
 
 # lines beginning with # are comment lines
@@ -188,7 +188,7 @@ for those who can read LaTeX syntax).
 
 You can have blocks of computer code, starting and ending with
 `!bc` and `!ec` instructions, respectively. Such blocks look like
-!bc
+!bc cod
 from math import sin, pi
 def myfunc(x):
     return sin(pi*x)
@@ -196,11 +196,36 @@ def myfunc(x):
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 !ec
+It is possible to add a specification of a (ptex2tex-style)
+environment for typesetting the verbatim code block, e.g., `!bc xxx`
+where `xxx` is an identifier like `pycod` for code snippet in Python,
+`sys` for terminal session, etc. When Doconce is filtered to LaTeX,
+these identifiers are used as in ptex2tex and defined in a
+configuration file `.ptext2tex.cfg`, while when filtering
+to Sphinx, one can have a comment line in the Doconce file for
+mapping the identifiers to legal language names for Sphinx (which equals
+the legal language names for Pygments):
+!bc
+ # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+!ec
+By default, `pro` and `cod` are `python`, `sys` is `console`,
+while `xpro` and `xcod` are computer language specific for `x`
+in `f` (Fortran), `c` (C), `cpp` (C++), and `py` (Python).
+# `rb` (Ruby), `pl` (Perl), and `sh` (Unix shell).
+
+# (Any sphinx code-block comment, whether inside verbatim code
+# blocks or outside, yields a mapping between bc arguments
+# and computer languages. In case of muliple definitions, the
+# first one is used.)
 
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!).
+avoiding copying information!). A complete file is typeset 
+with `!bc pro`, while a part of a file is copied into a `!bc cod`
+environment. What `pro` and `cod` mean is then defined through
+a `.ptex2tex.cfg` file for LaTeX and a `sphinx code-blocks`
+comment for Sphinx.
 
 Another document can be included by writing `#include "mynote.do.txt"`
 on a line starting with (another) hash sign.  Doconce documents have
@@ -210,6 +235,7 @@ right writing enviroment for plain text.
 
 
 ===== Macros (Newcommands), Cross-References, Index, and Bibliography =====
+label{newcommands}
 
 Doconce supports a type of macros via a LaTeX-style *newcommand*
 construction.  The newcommands defined in a file with name
@@ -278,96 +304,6 @@ that ptex2tex potentially makes use of.  Going from reStructuredText
 to formats such as XML, OpenOffice, HTML, and LaTeX requires
 http://docutils.sourceforge.net/<docutils>.  Making Sphinx documents
 requires of course http://sphinx.pocoo.org<sphinx>.
-
-
-===== The Doconce Documentation Strategy for User Manuals ===== 
-
-Doconce was particularly made for writing tutorials or user manuals
-associated with computer codes. The text is written in Doconce format
-in separate files. LaTeX, HTML, XML, and other versions of the text
-is easily produced by the `doconce2format` script and standard tools.
-A plain text version is often wanted for the computer source code,
-this is easy to make, and then one can use
-`#include` statements in the computer source code to automatically
-get the manual or tutorial text in comments or doc strings.
-Below is a worked example.
-
-Consider an example involving a Python module in a `basename.p.py` file.
-The `.p.py` extension identifies this as a file that has to be
-preprocessed) by the `preprocess` program. 
-In a doc string in `basename.p.py` we do a preprocessor include
-in a comment line, say
-!bc
-#    #include "docstrings/doc1.dst.txt
-!ec
-#
-# Note: we insert an error right above as the right quote is missing.
-# Then preprocess skips the statement, otherwise it gives an error
-# message about a missing file docstrings/doc1.dst.txt (which we don't
-# have, it's just a sample file name). Also note that comment lines
-# must not come before a code block for the rst/st/epytext formats to work.
-#
-The file `docstrings/doc1.dst.txt` is a file filtered to a specific format
-(typically plain text, reStructedText, or Epytext) from an original
-"singleton" documentation file named `docstrings/doc1.do.txt`. The `.dst.txt`
-is the extension of a file filtered ready for being included in a doc
-string (`d` for doc, `st` for string).
-
-For making an Epydoc manual, the `docstrings/doc1.do.txt` file is
-filtered to `docstrings/doc1.epytext` and renamed to
-`docstrings/doc1.dst.txt`.  Then we run the preprocessor on the
-`basename.p.py` file and create a real Python file
-`basename.py`. Finally, we run Epydoc on this file. Alternatively, and
-nowadays preferably, we use Sphinx for API documentation and then the
-Doconce `docstrings/doc1.do.txt` file is filtered to
-`docstrings/doc1.rst` and renamed to `docstrings/doc1.dst.txt`. A
-Sphinx directory must have been made with the right `index.rst` and
-`conf.py` files. Going to this directory and typing `make html` makes
-the HTML version of the Sphinx API documentation.
-
-The next step is to produce the final pure Python source code. For
-this purpose we filter `docstrings/doc1.do.txt` to plain text format
-(`docstrings/doc1.txt`) and rename to `docstrings/doc1.dst.txt`. The
-preprocessor transforms the `basename.p.py` file to a standard Python
-file `basename.py`. The doc strings are now in plain text and well
-suited for Pydoc or reading by humans. All these steps are automated
-by the `insertdocstr.py` script.  Here are the corresponding Unix
-commands:
-
-!bc
-# make Epydoc API manual of basename module:
-cd docstrings
-doconce2format epytext doc1.do.txt
-mv doc1.epytext doc1.dst.txt
-cd ..
-preprocess basename.p.py > basename.py
-epydoc basename
-
-# make Sphinx API manual of basename module:
-cd doc
-doconce2format sphinx doc1.do.txt
-mv doc1.rst doc1.dst.txt
-cd ..
-preprocess basename.p.py > basename.py
-cd docstrings/sphinx-rootdir  # sphinx directory for API source
-make clean
-make html
-cd ../..
-
-# make ordinary Python module files with doc strings:
-cd docstrings
-doconce2format plain doc1.do.txt
-mv doc1.txt doc1.dst.txt
-cd ..
-preprocess basename.p.py > basename.py
-
-# can automate inserting doc strings in all .p.py files:
-insertdocstr.py plain .
-# (runs through all .do.txt files and filters them to plain format and
-# renames to .dst.txt extension, then the script runs through all 
-# .p.py files and runs the preprocessor, which includes the .dst.txt
-# files)
-!ec
 
 
 ======= Warning/Disclaimer =======

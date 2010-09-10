@@ -52,7 +52,7 @@
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">August 27, 2010</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">September 10, 2010</td>
 </tr>
 </tbody>
 </table>
@@ -219,7 +219,7 @@ The <tt class="docutils literal"><span class="pre">.p.py</span></tt> extension i
 preprocessed) by the <tt class="docutils literal"><span class="pre">preprocess</span></tt> program.
 In a doc string in <tt class="docutils literal"><span class="pre">basename.p.py</span></tt> we do a preprocessor include
 in a comment line, say</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="c">#    #include &quot;docstrings/doc1.dst.txt</span>
+<div class="highlight-py"><div class="highlight"><pre><span class="c">#    #include &quot;docstrings/doc1.dst.txt</span>
 </pre></div>
 </div>
 <p>The file <tt class="docutils literal"><span class="pre">docstrings/doc1.dst.txt</span></tt> is a file filtered to a specific format
@@ -246,44 +246,45 @@ file <tt class="docutils literal"><span class="pre">basename.py</span></tt>. The
 suited for Pydoc or reading by humans. All these steps are automated
 by the <tt class="docutils literal"><span class="pre">insertdocstr.py</span></tt> script.  Here are the corresponding Unix
 commands:</p>
-<div class="highlight-python"><pre># make Epydoc API manual of basename module:
-cd docstrings
-doconce2format epytext doc1.do.txt
-mv doc1.epytext doc1.dst.txt
-cd ..
-preprocess basename.p.py &gt; basename.py
-epydoc basename
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> make Epydoc API manual of basename module:
+<span class="go">cd docstrings</span>
+<span class="go">doconce2format epytext doc1.do.txt</span>
+<span class="go">mv doc1.epytext doc1.dst.txt</span>
+<span class="go">cd ..</span>
+<span class="go">preprocess basename.p.py &gt; basename.py</span>
+<span class="go">epydoc basename</span>
 
-# make Sphinx API manual of basename module:
-cd doc
-doconce2format sphinx doc1.do.txt
-mv doc1.rst doc1.dst.txt
-cd ..
-preprocess basename.p.py &gt; basename.py
-cd docstrings/sphinx-rootdir  # sphinx directory for API source
-make clean
-make html
-cd ../..
+<span class="gp">#</span> make Sphinx API manual of basename module:
+<span class="go">cd doc</span>
+<span class="go">doconce2format sphinx doc1.do.txt</span>
+<span class="go">mv doc1.rst doc1.dst.txt</span>
+<span class="go">cd ..</span>
+<span class="go">preprocess basename.p.py &gt; basename.py</span>
+<span class="go">cd docstrings/sphinx-rootdir  # sphinx directory for API source</span>
+<span class="go">make clean</span>
+<span class="go">make html</span>
+<span class="go">cd ../..</span>
 
-# make ordinary Python module files with doc strings:
-cd docstrings
-doconce2format plain doc1.do.txt
-mv doc1.txt doc1.dst.txt
-cd ..
-preprocess basename.p.py &gt; basename.py
+<span class="gp">#</span> make ordinary Python module files with doc strings:
+<span class="go">cd docstrings</span>
+<span class="go">doconce2format plain doc1.do.txt</span>
+<span class="go">mv doc1.txt doc1.dst.txt</span>
+<span class="go">cd ..</span>
+<span class="go">preprocess basename.p.py &gt; basename.py</span>
 
-# can automate inserting doc strings in all .p.py files:
-insertdocstr.py plain .
-# (runs through all .do.txt files and filters them to plain format and
-# renames to .dst.txt extension, then the script runs through all
-# .p.py files and runs the preprocessor, which includes the .dst.txt
-# files)</pre>
+<span class="gp">#</span> can automate inserting doc strings in all .p.py files:
+<span class="go">insertdocstr.py plain .</span>
+<span class="gp">#</span> <span class="o">(</span>runs through all .do.txt files and filters them to plain format and
+<span class="gp">#</span> renames to .dst.txt extension, <span class="k">then </span>the script runs through all
+<span class="gp">#</span> .p.py files and runs the preprocessor, which includes the .dst.txt
+<span class="gp">#</span> files<span class="o">)</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="demos">
 <h2>Demos<a class="headerlink" href="#demos" title="Permalink to this headline">¶</a></h2>
 <p id="index-2">The current text is generated from a Doconce format stored in the</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">docs</span><span class="o">/</span><span class="n">manual</span><span class="o">/</span><span class="n">manual</span><span class="o">.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">docs/manual/manual.do.txt</span>
 </pre></div>
 </div>
 <p>file in the Doconce source code tree. We have made a
@@ -294,7 +295,7 @@ different formats: HTML, LaTeX, plain text, etc.</p>
 (the current text) shows how to run <tt class="docutils literal"><span class="pre">doconce2format</span></tt> on the
 Doconce file to obtain documents in various formats.</p>
 <p>Another demo is found in</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">docs</span><span class="o">/</span><span class="n">tutorial</span><span class="o">/</span><span class="n">tutorial</span><span class="o">.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">docs/tutorial/tutorial.do.txt</span>
 </pre></div>
 </div>
 <p>In the <tt class="docutils literal"><span class="pre">tutorial</span></tt> directory there is also a <tt class="docutils literal"><span class="pre">make.sh</span></tt> file producing a
@@ -307,11 +308,13 @@ of the results.</p>
 <h1>From Doconce to Other Formats<a class="headerlink" href="#from-doconce-to-other-formats" title="Permalink to this headline">¶</a></h1>
 <p>Transformation of a Doconce document to various other
 formats applies the script <tt class="docutils literal"><span class="pre">doconce2format</span></tt>:</p>
-<div class="highlight-python"><pre>Unix/DOS&gt; doconce2format format mydoc.do.txt</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; doconce2format format mydoc.do.txt</span>
+</pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">preprocess</span></tt> program is always used to preprocess the file first,
 and options to <tt class="docutils literal"><span class="pre">preprocess</span></tt> can be added after the filename. For example,</p>
-<div class="highlight-python"><pre>Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt -Dextra_sections</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt -Dextra_sections</span>
+</pre></div>
 </div>
 <p>The variable <tt class="docutils literal"><span class="pre">FORMAT</span></tt> is always defined as the current format when
 running <tt class="docutils literal"><span class="pre">preprocess</span></tt>. That is, in the last example, <tt class="docutils literal"><span class="pre">FORMAT</span></tt> is
@@ -321,7 +324,8 @@ format specific actions through tests like <tt class="docutils literal"><span cl
 <h2>HTML<a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h2>
 <p>Making an HTML version of a Doconce file <tt class="docutils literal"><span class="pre">mydoc.do.txt</span></tt>
 is performed by</p>
-<div class="highlight-python"><pre>Unix/DOS&gt; doconce2format HTML mydoc.do.txt</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; doconce2format HTML mydoc.do.txt</span>
+</pre></div>
 </div>
 <p>The resulting file <tt class="docutils literal"><span class="pre">mydoc.html</span></tt> can be loaded into any web browser for viewing.</p>
 </div>
@@ -335,36 +339,63 @@ is performed by</p>
 <dt><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal"><span class="pre">mydoc.p.tex</span></tt> for</dt>
 <dd><tt class="docutils literal"><span class="pre">ptex2tex</span></tt>:</dd>
 </dl>
-<div class="highlight-python"><pre>Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt</span>
+</pre></div>
 </div>
 <p>LaTeX-specific commands (&#8220;newcommands&#8221;) in math formulas and similar
-can be placed in a file <tt class="docutils literal"><span class="pre">newcommands.tex</span></tt>. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.</p>
+can be placed in files <tt class="docutils literal"><span class="pre">newcommands.tex</span></tt>, <tt class="docutils literal"><span class="pre">newcommands_keep.tex</span></tt>, or
+<tt class="docutils literal"><span class="pre">newcommands_replace.tex</span></tt> (see the section <a class="reference internal" href="#newcommands"><em>Macros (Newcommands)</em></a>).
+If these files are present, they are included in the LaTeX document
+so that your commands are defined.</p>
 <p><em>Step 2.</em> Run <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> (if you have it) to make a standard LaTeX file,</p>
-<div class="highlight-python"><pre>Unix/DOS&gt; ptex2tex mydoc</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; ptex2tex mydoc</span>
+</pre></div>
 </div>
 <p>or just perform a plain copy,</p>
-<div class="highlight-python"><pre>Unix/DOS&gt; cp mydoc.p.tex mydoc.tex</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; cp mydoc.p.tex mydoc.tex</span>
+</pre></div>
+</div>
+<p>Doconce generates a <tt class="docutils literal"><span class="pre">.p.tex</span></tt> file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font,</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; ptex2tex -DHELVETICA mydoc</span>
+</pre></div>
+</div>
+<p>The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX &#8220;maketitle&#8221; heading
+is also available through</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; ptex2tex -DTRAD_LATEX_HEADING mydoc</span>
+</pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt> the usual way and create the PDF file:</p>
-<div class="highlight-python"><pre>Unix/DOS&gt; latex mydoc
-Unix/DOS&gt; latex mydoc
-Unix/DOS&gt; makeindex mydoc   # if index
-Unix/DOS&gt; bibitem mydoc     # if bibliography
-Unix/DOS&gt; latex mydoc
-Unix/DOS&gt; dvipdf mydoc</pre>
+documents. After any <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">sys</span></tt> command in the Doconce source you can
+insert verbatim block styles as defined in your <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt>
+file, e.g., <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">sys</span> <span class="pre">cod</span></tt> for a code snippet, where <tt class="docutils literal"><span class="pre">cod</span></tt> is set to
+a certain environment in <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt> (e.g., <tt class="docutils literal"><span class="pre">CodeIntended</span></tt>).
+There are over 30 styles to choose from.</p>
+<p><em>Step 3.</em> Compile <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt> with <tt class="docutils literal"><span class="pre">latex</span> <span class="pre">-shell-escape</span></tt>
+and create the PDF file:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; latex -shell-escape mydoc</span>
+<span class="go">Unix/DOS&gt; latex -shell-escape mydoc</span>
+<span class="go">Unix/DOS&gt; makeindex mydoc   # if index</span>
+<span class="go">Unix/DOS&gt; bibitem mydoc     # if bibliography</span>
+<span class="go">Unix/DOS&gt; latex -shell-escape mydoc</span>
+<span class="go">Unix/DOS&gt; dvipdf mydoc</span>
+</pre></div>
 </div>
+<p>The <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option is required because <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> inserts an include
+of the <tt class="docutils literal"><span class="pre">minted.sty</span></tt> style, which applies the <tt class="docutils literal"><span class="pre">pygments</span></tt> to format code,
+and this program cannot be run from <tt class="docutils literal"><span class="pre">latex</span></tt> without the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option.</p>
 </div>
 <div class="section" id="plain-ascii-text">
 <h2>Plain ASCII Text<a class="headerlink" href="#plain-ascii-text" title="Permalink to this headline">¶</a></h2>
 <p>We can go from Doconce &#8220;back to&#8221; plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:</p>
-<div class="highlight-python"><pre>Unix/DOS&gt; doconce2format plain mydoc.do.txt  # results in mydoc.txt</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; doconce2format plain mydoc.do.txt  # results in mydoc.txt</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="restructuredtext">
@@ -372,13 +403,15 @@ computer source code:</p>
 <p>Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file <tt class="docutils literal"><span class="pre">mydoc.rst</span></tt>:</p>
-<div class="highlight-python"><pre>Unix/DOS&gt; doconce2format rst mydoc.do.txt</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; doconce2format rst mydoc.do.txt</span>
+</pre></div>
 </div>
 <p>We may now produce various other formats:</p>
-<div class="highlight-python"><pre>Unix/DOS&gt; rst2html.py  mydoc.rst &gt; mydoc.html # HTML
-Unix/DOS&gt; rst2latex.py mydoc.rst &gt; mydoc.tex  # LaTeX
-Unix/DOS&gt; rst2xml.py   mydoc.rst &gt; mydoc.xml  # XML
-Unix/DOS&gt; rst2odt.py   mydoc.rst &gt; mydoc.odt  # OpenOffice</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; rst2html.py  mydoc.rst &gt; mydoc.html # HTML</span>
+<span class="go">Unix/DOS&gt; rst2latex.py mydoc.rst &gt; mydoc.tex  # LaTeX</span>
+<span class="go">Unix/DOS&gt; rst2xml.py   mydoc.rst &gt; mydoc.xml  # XML</span>
+<span class="go">Unix/DOS&gt; rst2odt.py   mydoc.rst &gt; mydoc.odt  # OpenOffice</span>
+</pre></div>
 </div>
 <p>The OpenOffice file <tt class="docutils literal"><span class="pre">mydoc.odt</span></tt> can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -389,38 +422,41 @@ That is, one can easily go from Doconce to Microsoft Word.</p>
 <p>Sphinx documents can be created from a Doconce source in a few steps.</p>
 <p><em>Step 1.</em> Translate Doconce into the Sphinx dialect of
 the reStructuredText format:</p>
-<div class="highlight-python"><pre>Unix/DOS&gt; doconce2format sphinx mydoc.do.txt</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; doconce2format sphinx mydoc.do.txt</span>
+</pre></div>
 </div>
 <p><em>Step 2.</em> Create a Sphinx root directory with a <tt class="docutils literal"><span class="pre">conf.py</span></tt> file,
 either manually or by using the interactive <tt class="docutils literal"><span class="pre">sphinx-quickstart</span></tt>
 program. Here is a scripted version of the steps with the latter:</p>
-<div class="highlight-python"><pre>mkdir sphinx-rootdir
-sphinx-quickstart &lt;&lt;EOF
-sphinx-rootdir
-n
-_
-Name of My Sphinx Document
-Author
-version
-version
-.rst
-index
-n
-y
-n
-n
-n
-n
-y
-n
-n
-y
-y
-y
-EOF</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">mkdir sphinx-rootdir</span>
+<span class="go">sphinx-quickstart &lt;&lt;EOF</span>
+<span class="go">sphinx-rootdir</span>
+<span class="go">n</span>
+<span class="go">_</span>
+<span class="go">Name of My Sphinx Document</span>
+<span class="go">Author</span>
+<span class="go">version</span>
+<span class="go">version</span>
+<span class="go">.rst</span>
+<span class="go">index</span>
+<span class="go">n</span>
+<span class="go">y</span>
+<span class="go">n</span>
+<span class="go">n</span>
+<span class="go">n</span>
+<span class="go">n</span>
+<span class="go">y</span>
+<span class="go">n</span>
+<span class="go">n</span>
+<span class="go">y</span>
+<span class="go">y</span>
+<span class="go">y</span>
+<span class="go">EOF</span>
+</pre></div>
 </div>
 <p><em>Step 3.</em> Move the <tt class="docutils literal"><span class="pre">tutorial.rst</span></tt> file to the Sphinx root directory:</p>
-<div class="highlight-python"><pre>Unix/DOS&gt; mv mydoc.rst sphinx-rootdir</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; mv mydoc.rst sphinx-rootdir</span>
+</pre></div>
 </div>
 <p>If you have figures in your document, the relative paths to those will
 be invalid when you work with <tt class="docutils literal"><span class="pre">mydoc.rst</span></tt> in the <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt>
@@ -429,20 +465,26 @@ or simply copy your figure directory to <tt class="docutils literal"><span class
 are located in a subdirectory).</p>
 <p><em>Step 4.</em> Edit the generated <tt class="docutils literal"><span class="pre">index.rst</span></tt> file so that <tt class="docutils literal"><span class="pre">mydoc.rst</span></tt>
 is included, i.e., add <tt class="docutils literal"><span class="pre">mydoc</span></tt> to the <tt class="docutils literal"><span class="pre">toctree</span></tt> section so that it becomes</p>
-<div class="highlight-python"><pre>.. toctree::
+<div class="highlight-py"><pre>.. toctree::
    :maxdepth: 2
 
    mydoc</pre>
 </div>
 <p>(The spaces before <tt class="docutils literal"><span class="pre">mydoc</span></tt> are important!)</p>
 <p><em>Step 5.</em> Generate, for instance, an HTML version of the Sphinx source:</p>
-<div class="highlight-python"><pre>make clean   # remove old versions
-make html</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">make clean   # remove old versions</span>
+<span class="go">make html</span>
+</pre></div>
 </div>
 <p>Many other formats are also possible.</p>
 <p><em>Step 6.</em> View the result:</p>
-<div class="highlight-python"><pre>Unix/DOS&gt; firefox _build/html/index.html</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; firefox _build/html/index.html</span>
+</pre></div>
 </div>
+<p>Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows <tt class="docutils literal"><span class="pre">!bc</span></tt>: <tt class="docutils literal"><span class="pre">cod</span></tt> gives Python
+(<tt class="docutils literal"><span class="pre">code-block::</span> <span class="pre">python</span></tt> in Sphinx syntax) and <tt class="docutils literal"><span class="pre">cppcod</span></tt> gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.</p>
 </div>
 <div class="section" id="google-code-wiki">
 <h2>Google Code Wiki<a class="headerlink" href="#google-code-wiki" title="Permalink to this headline">¶</a></h2>
@@ -450,12 +492,31 @@ make html</pre>
 one used by <a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Google Code</a>.
 The transformation to this format, called <tt class="docutils literal"><span class="pre">gwiki</span></tt> to explicitly mark
 it as the Google Code dialect, is done by</p>
-<div class="highlight-python"><pre>Unix/DOS&gt; doconce2format gwiki mydoc.do.txt</pre>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; doconce2format gwiki mydoc.do.txt</span>
+</pre></div>
 </div>
 <p>You can then open a new wiki page for your Google Code project, copy
 the <tt class="docutils literal"><span class="pre">mydoc.gwiki</span></tt> output file from <tt class="docutils literal"><span class="pre">doconce2format</span></tt> and paste the
 file contents into the wiki page. Press <strong>Preview</strong> or <strong>Save Page</strong> to
 see the formatted result.</p>
+<p>When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).</p>
+</div>
+<div class="section" id="tweaking-the-doconce-output">
+<h2>Tweaking the Doconce Output<a class="headerlink" href="#tweaking-the-doconce-output" title="Permalink to this headline">¶</a></h2>
+<p>Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+<tt class="docutils literal"><span class="pre">.rst</span></tt> file is going to be filtered to LaTeX or HTML, it cannot know
+if <tt class="docutils literal"><span class="pre">.eps</span></tt> or <tt class="docutils literal"><span class="pre">.png</span></tt> is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The <tt class="docutils literal"><span class="pre">make.sh</span></tt> files in <tt class="docutils literal"><span class="pre">docs/manual</span></tt> and <tt class="docutils literal"><span class="pre">docs/tutorial</span></tt>
+constitute comprehensive examples on how such scripts can be made.</p>
 </div>
 </div>
 <div class="section" id="the-doconce-markup-language">
@@ -466,7 +527,7 @@ lists, special lines, inline tags, and environments.</p>
 <h2>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h2>
 <p>An unordered bullet list makes use of the <tt class="docutils literal"><span class="pre">*</span></tt> as bullet sign
 and is indented as follows</p>
-<div class="highlight-python"><pre>* item 1
+<div class="highlight-py"><pre>* item 1
 
 * item 2
 
@@ -496,7 +557,7 @@ also spans two lines</li>
 </blockquote>
 <p>In an ordered list, each item starts with an <tt class="docutils literal"><span class="pre">o</span></tt> (as the first letter
 in &#8220;ordered&#8221;):</p>
-<div class="highlight-python"><pre>o item 1
+<div class="highlight-py"><pre>o item 1
 
 o item 2
 
@@ -522,7 +583,7 @@ o item 3</pre>
 applies to the outer list only.</p>
 <p>In a description list, each item is recognized by a dash followed
 by a keyword followed by a colon:</p>
-<div class="highlight-python"><pre>- keyword1: explanation of keyword1
+<div class="highlight-py"><pre>- keyword1: explanation of keyword1
 
 - keyword2: explanation
   of keyword2 (remember to indent properly
@@ -552,7 +613,7 @@ to identify a title of the document, the authors, and the date. The
 title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
 the syntax</p>
-<div class="highlight-python"><pre>name at institution1 and institution2 and institution3</pre>
+<div class="highlight-py"><pre>name at institution1 and institution2 and institution3</pre>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">at</span></tt> with surrounding spaces
 is essential for adding information about institution(s)
@@ -561,7 +622,7 @@ essential as delimiter between different institutions.
 Multiple authors require multiple <tt class="docutils literal"><span class="pre">AUTHOR:</span></tt> lines. All information
 associated with <tt class="docutils literal"><span class="pre">TITLE:</span></tt> and <tt class="docutils literal"><span class="pre">AUTHOR:</span></tt> keywords must appear on a single
 line.  Here is an example:</p>
-<div class="highlight-python"><pre>TITLE: On an Ultimate Markup Language
+<div class="highlight-py"><pre>TITLE: On an Ultimate Markup Language
 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
@@ -572,7 +633,7 @@ and no institution. In some formats (including reStructuredText and Sphinx)
 only the author names appear. Some formats have
 &#8220;intelligence&#8221; in listing authors and institutions, e.g., the plain text
 format:</p>
-<div class="highlight-python"><pre>Hans Petter Langtangen [1, 2]
+<div class="highlight-py"><pre>Hans Petter Langtangen [1, 2]
 Kaare Dump [3]
 A. Dummy Author
 
@@ -596,7 +657,7 @@ or equal signs (=):</p>
 </blockquote>
 <p>Headings can be surrounded by blanks if desired.</p>
 <p>Here are some examples:</p>
-<div class="highlight-python"><pre>======= Example on a Section Heading =======
+<div class="highlight-py"><pre>======= Example on a Section Heading =======
 
 The running text goes here.
 
@@ -623,7 +684,7 @@ __A Paragraph.__ The running text goes here.</pre>
 <p>The running text goes here.</p>
 <p><em>A Paragraph.</em> The running text goes here.</p>
 <p>Figures are recognized by the special line syntax</p>
-<div class="highlight-python"><pre>FIGURE:[filename, height=xxx width=yyy scale=zzz] caption</pre>
+<div class="highlight-py"><pre>FIGURE:[filename, height=xxx width=yyy scale=zzz] caption</pre>
 </div>
 <p>The height, width, and scale keywords (and others) can be included
 if desired and may have effect for some formats. Note the comma
@@ -654,16 +715,16 @@ and <tt class="docutils literal"><span class="pre">verbatim</span> <span class="
 plus LaTeX/TeX inline mathematics, such as <img class="math" src="_images/math/67368952c3d7b7712f81f70c910a7d2e8c169d2f.png" alt="\nu = \sin(x)"/>.</p>
 <p>Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in</p>
-<div class="highlight-python"><pre>*emphasized words*</pre>
+<div class="highlight-py"><pre>*emphasized words*</pre>
 </div>
 <p>Boldface font is recognized by an underscore instead of an asterisk:</p>
-<div class="highlight-python"><pre>_several words in boldface_ followed by *ephasized text*.</pre>
+<div class="highlight-py"><pre>_several words in boldface_ followed by *ephasized text*.</pre>
 </div>
 <p>The line above gets typeset as
 <strong>several words in boldface</strong> followed by <em>ephasized text</em>.</p>
 <p>Verbatim text, typically used for short inline code,
 is typeset between backquotes:</p>
-<div class="highlight-python"><pre>`call myroutine(a, b)` looks like a Fortran call
+<div class="highlight-py"><pre>`call myroutine(a, b)` looks like a Fortran call
 while `void myfunc(double *a, double *b)` must be C.</pre>
 </div>
 <p>The typesetting result looks like this:
@@ -679,12 +740,12 @@ Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).</p>
 <p>Web addresses with links are typeset as</p>
-<div class="highlight-python"><pre>some URL like http://my.place.in.space/src&lt;MyPlace&gt;</pre>
+<div class="highlight-py"><pre>some URL like http://my.place.in.space/src&lt;MyPlace&gt;</pre>
 </div>
 <p>which appears as some URL like <a class="reference external" href="http://my.place.in.space/src">MyPlace</a>.
 Link to a file is done by the URL keyword, a colon, and enclosing the
 filename in double quotes:</p>
-<div class="highlight-python"><pre>URL:"manual.do.txt"</pre>
+<div class="highlight-py"><pre>URL:"manual.do.txt"</pre>
 </div>
 <p>This construction results in the link <a class="reference external" href="manual.do.txt">manual.do.txt</a>.</p>
 <p>Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
@@ -695,7 +756,7 @@ expressions in LaTeX syntax often contains special formatting
 commands, which may appear annoying in plain text. Doconce therefore
 supports an extended inline math syntax where the writer can provide
 an alternative syntax suited for formats close to plain ASCII:</p>
-<div class="highlight-python"><pre>Here is an example on a linear system
+<div class="highlight-py"><pre>Here is an example on a linear system
 ${\bf A}{\bf x} = {\bf b}$|$Ax=b$,
 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and
 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.</pre>
@@ -711,7 +772,7 @@ are vectors of length <img class="math" src="_images/math/174fadd07fd54c9afe288e
 <div class="section" id="cross-referencing">
 <h2>Cross-Referencing<a class="headerlink" href="#cross-referencing" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="index-9"></span><span class="target" id="index-10"></span><p id="index-11">References and labels are supported. The syntax is simple:</p>
-<div class="highlight-python"><pre>label{section:verbatim}   # defines a label
+<div class="highlight-py"><pre>label{section:verbatim}   # defines a label
 For more information we refer to Section ref{section:verbatim}.</pre>
 </div>
 <p>This syntax is close that that of labels and cross-references in
@@ -741,25 +802,25 @@ in the section <a class="reference internal" href="#inline-tagging"><em>Inline T
 <h2>Index and Bibliography<a class="headerlink" href="#index-and-bibliography" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="index-12"></span><span class="target" id="index-13"></span><p id="index-14">An index can be created for the LaTeX and the reStructuredText or
 Sphinx formats by the <tt class="docutils literal"><span class="pre">idx</span></tt> keyword, following a LaTeX-inspired syntax:</p>
-<div class="highlight-python"><pre>idx{some index entry}
+<div class="highlight-py"><pre>idx{some index entry}
 idx{main entry!subentry}
 idx{`verbatim_text` and more}</pre>
 </div>
 <p>The exclamation mark divides a main entry and a subentry. Backquotes
 surround verbatim text, which is correctly transformed in a LaTeX setting to</p>
-<div class="highlight-python"><pre>\index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}</pre>
+<div class="highlight-py"><pre>\index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}</pre>
 </div>
 <p>Everything related to the index simply becomes invisible in
 plain text, Epytext, StructuredText, HTML, and Wiki formats.</p>
 <p>Literature citations also follow a LaTeX-inspired style:</p>
-<div class="highlight-python"><pre>as found in cite{Larsen:86,Nielsen:99}.</pre>
+<div class="highlight-py"><pre>as found in cite{Larsen:86,Nielsen:99}.</pre>
 </div>
 <p>Citation labels can be separated by comma. In LaTeX, this is directly
 translated to the corresponding <tt class="docutils literal"><span class="pre">cite</span></tt> command; in reStructuredText
 and Sphinx the labels can be clicked, while in all the other text
 formats the labels are consecutively numbered so the above citation
 will typically look like</p>
-<div class="highlight-python"><pre>as found in [3][14]</pre>
+<div class="highlight-py"><pre>as found in [3][14]</pre>
 </div>
 <p>if <tt class="docutils literal"><span class="pre">Larsen:86</span></tt> has already appeared in the 3rd citation in the document
 and <tt class="docutils literal"><span class="pre">Nielsen:99</span></tt> is a new (the 14th) citation. The citation labels
@@ -771,7 +832,7 @@ or simply a Python dictionary written in a file with extension <tt class="docuti
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
 in the bibliography. Doconce markup can be used in this text, e.g.,</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<div class="highlight-py"><div class="highlight"><pre><span class="p">{</span>
 <span class="s">&#39;Nielsen:99&#39;</span><span class="p">:</span> <span class="s">&quot;&quot;&quot;</span>
 <span class="s">K. Nielsen. *Some Comments on Markup Languages*.</span>
 <span class="s">URL:&quot;http://some.where.net/nielsen/comments&quot;, 1999.</span>
@@ -825,7 +886,7 @@ and both of them simultaneously <a class="reference internal" href="#python-prim
 </tbody>
 </table>
 <p>is built up of pipe symbols and dashes:</p>
-<div class="highlight-python"><pre>|--------------------------------|
+<div class="highlight-py"><pre>|--------------------------------|
 |time  | velocity | acceleration |
 |--------------------------------|
 | 0.0  | 1.4186   | -5.01        |
@@ -842,17 +903,43 @@ the Doconce source in an ugly way?).</p>
 &#8220;begin code&#8221; <tt class="docutils literal"><span class="pre">!bc</span></tt> keyword and an &#8220;end code&#8221; <tt class="docutils literal"><span class="pre">!ec</span></tt> keyword. Both
 keywords must be on a single line and <em>start at the beginning of the
 line</em>.  There may be an argument after the <tt class="docutils literal"><span class="pre">!bc</span></tt> tag to specify a
-certain <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> environ (for instance, <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">dat</span></tt> corresponds to the
-data file environment in <tt class="docutils literal"><span class="pre">ptex2tex</span></tt>; if there is no argument, one
-assumes the ccq environment, which is plain verbatim in LaTeX).  The
-argument has effect only for the LaTeX format.  .  The <tt class="docutils literal"><span class="pre">!ec</span></tt> tag must
+certain <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> environment (for instance, <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">dat</span></tt> corresponds to
+the data file environment in <tt class="docutils literal"><span class="pre">ptex2tex</span></tt>, and <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">cod</span></tt> is typically
+used for a code snippet, but any argument can be defined). If there is
+no argument, one assumes the ccq environment, which is plain LaTeX
+verbatim in the default <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt>. However, all these arguments
+can be redefined in the <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt> file.</p>
+<p>The argument after <tt class="docutils literal"><span class="pre">!bc</span></tt> is also used
+in a Sphinx context. Then argument is mapped onto a valid Pygments
+language for typesetting of the verbatim block by Pygments. This
+mapping takes place in an optional comment to be inserted in the Doconce
+source file, e.g.,</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="c"># sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console</span>
+</pre></div>
+</div>
+<p>Here, three arguments are defined: <tt class="docutils literal"><span class="pre">pycod</span></tt> for Python code,
+<tt class="docutils literal"><span class="pre">cod</span></tt> also for Python code, <tt class="docutils literal"><span class="pre">cppcod</span></tt> for C++ code, and <tt class="docutils literal"><span class="pre">sys</span></tt>
+for terminal sessions. The same arguments would be defined
+in <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt> for how to typeset the blocks in LaTeX using
+various verbatim styles (Pygments can also be used in a LaTeX
+context).</p>
+<p>By default, <tt class="docutils literal"><span class="pre">pro</span></tt> is used for complete programs in Python, <tt class="docutils literal"><span class="pre">cod</span></tt>
+is for a code snippet in Python, while <tt class="docutils literal"><span class="pre">xcod</span></tt> and <tt class="docutils literal"><span class="pre">xpro</span></tt> implies
+computer language specific typesetting where <tt class="docutils literal"><span class="pre">x</span></tt> can be
+<tt class="docutils literal"><span class="pre">f</span></tt> for Fortran, <tt class="docutils literal"><span class="pre">c</span></tt> for C, <tt class="docutils literal"><span class="pre">cpp</span></tt> for C++, and <tt class="docutils literal"><span class="pre">py</span></tt> for Python.
+The argument <tt class="docutils literal"><span class="pre">sys</span></tt> means by default <tt class="docutils literal"><span class="pre">console</span></tt> for Sphinx and
+<tt class="docutils literal"><span class="pre">CodeTerminal</span></tt> (ptex2tex environent) for LaTeX. All these definitions
+of the arguments after <tt class="docutils literal"><span class="pre">!bc</span></tt> can be redefined in the <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt>
+configuration file for ptex2tex/LaTeX and in the <tt class="docutils literal"><span class="pre">sphinx</span> <span class="pre">code-blocks</span></tt>
+comments for Sphinx. Support for other languages is easily added.</p>
+<p>The enclosing <tt class="docutils literal"><span class="pre">!ec</span></tt> tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).</p>
-<p>Here is a verbatim code block:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="c"># regular expressions for inline tags:</span>
+<p>Here is a verbatim code block with Python code:</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="c"># regular expressions for inline tags:</span>
 <span class="n">inline_tag_begin</span> <span class="o">=</span> <span class="s">r&#39;(?P&lt;begin&gt;(^|\s+))&#39;</span>
 <span class="n">inline_tag_end</span> <span class="o">=</span> <span class="s">r&#39;(?P&lt;end&gt;[.,?!;:)\s])&#39;</span>
 <span class="n">INLINE_TAGS</span> <span class="o">=</span> <span class="p">{</span>
@@ -868,23 +955,35 @@ common errors are naturally avoided).</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Computer code can be copied directly from a file, if desired. The syntax
-is then</p>
-<div class="highlight-python"><pre>@@@CODE myfile.f
-@@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1</pre>
+<p>And here is a C++ code snippet:</p>
+<div class="highlight-c++"><pre>void myfunc(double* x, const double&amp; myarr) {
+    for (int i = 1; i &lt; myarr.size(); i++) {
+        myarr[i] = myarr[i] - x[i]*myarr[i-1]
+    }
+}
+!ec
+
+Computer code can be copied directly from a file, if desired. The syntax
+is then
+!bc
+ @@@CODE myfile.f
+ @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1</pre>
 </div>
-<p>The first line implies that all lines in the file <tt class="docutils literal"><span class="pre">myfile.f</span></tt> are copied
-into a verbatim block. The second line has a <cite>fromto:&#8217; directive, which
-implies copying code between two lines in the code. Two regular
-expressions, separated by the ``&#64;`</cite> sign, define the &#8220;from&#8221; and &#8220;to&#8221; lines.
-The &#8220;from&#8221; line is included in the verbatim block, while the &#8220;to&#8221; line
-is not. In the example above, we copy code from the line matching
-<tt class="docutils literal"><span class="pre">subroutine</span> <span class="pre">test</span></tt> (with as many blanks as desired between the two words)
-and the line matching <tt class="docutils literal"><span class="pre">C</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">END1</span></tt> (C followed by 5 blanks and then
-the text END1). The final line with the &#8220;to&#8221; text is not
-included in the verbatim block.</p>
+<p>The first line implies that all lines in the file <tt class="docutils literal"><span class="pre">myfile.f</span></tt> are
+copied into a verbatim block, typset in a <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">pro</span></tt> environment.  The
+second line has a <cite>fromto:&#8217; directive, which implies copying code
+between two lines in the code, typset within a !`bc cod</cite>
+environment. (The <tt class="docutils literal"><span class="pre">pro</span></tt> and <tt class="docutils literal"><span class="pre">cod</span></tt> arguments are only used for LaTeX
+and Sphinx output, all other formats will have the code typeset within
+a plain <tt class="docutils literal"><span class="pre">!bc</span></tt> environment.) Two regular expressions, separated by the
+<tt class="docutils literal"><span class="pre">&#64;</span></tt> sign, define the &#8220;from&#8221; and &#8220;to&#8221; lines.  The &#8220;from&#8221; line is
+included in the verbatim block, while the &#8220;to&#8221; line is not. In the
+example above, we copy code from the line matching <tt class="docutils literal"><span class="pre">subroutine</span> <span class="pre">test</span></tt>
+(with as many blanks as desired between the two words) and the line
+matching <tt class="docutils literal"><span class="pre">C</span> <span class="pre">END1</span></tt> (C followed by 5 blanks and then the text END1). The
+final line with the &#8220;to&#8221; text is not included in the verbatim block.</p>
 <p>Let us copy a whole file (the first line above):</p>
-<div class="highlight-python"><pre>C     a comment
+<div class="highlight-py"><pre>C     a comment
 
       subroutine    test()
       integer i
@@ -902,7 +1001,7 @@ C     END1
 </div>
 <p>Let us then copy just a piece in the middle as indicated by the <tt class="docutils literal"><span class="pre">fromto:</span></tt>
 directive above:</p>
-<div class="highlight-python"><pre>subroutine    test()
+<div class="highlight-py"><pre>subroutine    test()
 integer i
 real*8 r
 r = 0
@@ -926,7 +1025,7 @@ the opening tag is <tt class="docutils literal"><span class="pre">!bt</span></tt
 line and followed by a newline.</p>
 <p>Here is the result of a <tt class="docutils literal"><span class="pre">!bt</span></tt> - <tt class="docutils literal"><span class="pre">!et</span></tt> block:</p>
 <div class="math">
-<p><img src="_images/math/1c6d07416addb94790f3fcef2ffa931358a5ccc4.png" alt="{\partial u\over\partial t}  &amp;=  \nabla^2 u + f,\label{myeq1}\\
+<p><img src="_images/math/c172fcfc42990c9b594f7257ca3ba2d233add401.png" alt="{\partial u\over\partial t}  &amp;=  \nabla^2 u + f,\\
 {\partial v\over\partial t}  &amp;=  \nabla\cdot(q(u)\nabla v) + g" /></p>
 </div><p>This text looks ugly in all Doconce supported formats, except from
 LaTeX and Sphinx.  If HTML is desired, the best is to filter the Doconce text
@@ -960,78 +1059,27 @@ line (multi-line newcommands are too hard to parse with regular
 expressions).</p>
 <p><em>Example.</em> Suppose we have the following commands in
 <tt class="docutils literal"><span class="pre">newcommand_replace.tex</span></tt>:</p>
-<div class="highlight-python"><pre>\newcommand{a}{}
-\newcommand{a}{}
+<div class="highlight-py"><pre>\newcommand{}{}
+\newcommand{}{}
 \newcommand{\ep}{\thinspace . }
 \newcommand{\uvec}{\vec u}
 \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
 \newcommand{\Q}{\mathbfx{Q}}</pre>
 </div>
 <p>and these in <tt class="docutils literal"><span class="pre">newcommands_keep.tex</span></tt>:</p>
-<div class="highlight-python"><pre>\newcommand{\x}{\mathbfx{x}}
+<div class="highlight-py"><pre>\newcommand{\x}{\mathbfx{x}}
 \newcommand{\normalvec}{\mathbfx{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}</pre>
 </div>
 <p>The LaTeX block</p>
-<div class="highlight-python"><pre>a
-\x\cdot\normalvec  &amp;=  0,\label{my:eq1}\\
-\Ddt{\uvec}  &amp;=  \Q \ep\label{my:eq2}
-a</pre>
+<div class="highlight-py"><pre>\x\cdot\normalvec  &amp;=  0,\label{my:eq1}\\
+\Ddt{\uvec}  &amp;=  \Q \ep\label{my:eq2}</pre>
 </div>
 <p>will then be rendered to</p>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">{\mbox{\boldmath $x$}}\cdot{\mbox{\boldmath $n$}}  &amp;=  0,\label{my:eq1}\\
-\frac{D\vec u}{dt}  &amp;=  {\mbox{\boldmath $Q$}} \thinspace . \label{my:eq2}</tt>)</p>
-latex exited with error:
-[stderr]
-
-[stdout]
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
- restricted \write18 enabled.
-entering extended mode
-(./math.tex
-LaTeX2e &lt;2009/09/24&gt;
-Babel &lt;v3.8l&gt; and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texmf-texlive/tex/latex/base/size12.clo))
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
-(/usr/share/texmf-texlive/tex/latex/ucs/utf8x.def))
-(/usr/share/texmf-texlive/tex/latex/ucs/ucs.sty
-(/usr/share/texmf-texlive/tex/latex/ucs/data/uni-global.def))
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?&#8217; option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texmf-texlive/tex/latex/amscls/amsthm.sty)
-(/usr/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty))
-(/usr/share/texmf-texlive/tex/latex/tools/bm.sty) (./math.aux)
-(/usr/share/texmf-texlive/tex/latex/ucs/ucsencs.def)
-(/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
-(/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
-
-! Package amsmath Error: Multiple \label&#8217;s: label &#8216;my:eq1&#8217; will be lost.
-
-See the amsmath package documentation for explanation.
-Type  H &lt;return&gt;  for immediate help.
- ...                                              
-                                                  
-l.15 \end{gather}
-                 
-[1] (./math.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- )
-(see the transcript file for additional information)
-Output written on math.dvi (1 page, 496 bytes).
-Transcript written on math.log.
-</div>
-<p>in the current format.</p>
+<div class="math">
+<p><img src="_images/math/9ee23e141b56f4354916506139910b486cf8e748.png" alt="{\mbox{\boldmath $x$}}\cdot{\mbox{\boldmath $n$}}  &amp;=  0,\\
+\frac{D\vec u}{dt}  &amp;=  {\mbox{\boldmath $Q$}} \thinspace ." /></p>
+</div><p>in the current format.</p>
 </div>
 <div class="section" id="missing-features">
 <h2>Missing Features<a class="headerlink" href="#missing-features" title="Permalink to this headline">¶</a></h2>
@@ -1067,7 +1115,7 @@ the ending is among the mentioned. Then <tt class="docutils literal"><span class
 and a double colon at the preceding line (which is the right way in
 reST to indicate a verbatim block of text).</p>
 <p><em>The LaTeX File Does Not Compile.</em> If the problem is undefined control sequence involving</p>
-<div class="highlight-python"><pre>\code{...}</pre>
+<div class="highlight-py"><pre>\code{...}</pre>
 </div>
 <p>the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
@@ -1130,7 +1178,7 @@ to ensure that no formatting rules are not applied to these blocks.</p>
 handling of blank lines and comment lines.
 List parsing needs some awareness of the context.
 Each line is interpreted by a regular expression</p>
-<div class="highlight-python"><pre>(?P&lt;indent&gt; *(?P&lt;listtype&gt;[*o-] )? *)(?P&lt;keyword&gt;[^:]+?:)?(?P&lt;text&gt;.*)\s?</pre>
+<div class="highlight-py"><pre>(?P&lt;indent&gt; *(?P&lt;listtype&gt;[*o-] )? *)(?P&lt;keyword&gt;[^:]+?:)?(?P&lt;text&gt;.*)\s?</pre>
 </div>
 <p>That is, a possible indent (which we measure), an optional list
 item identifier, optional space, optional words ended by colon,
@@ -1157,7 +1205,7 @@ LaTeX, and work further on the document in this format.</p>
 <h2>A Glimpse of How to Write a New Translator<a class="headerlink" href="#a-glimpse-of-how-to-write-a-new-translator" title="Permalink to this headline">¶</a></h2>
 <p>This is the HTML-specific part of the
 source code of the HTML translator:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">FILENAME_EXTENSION</span><span class="p">[</span><span class="s">&#39;HTML&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;.html&#39;</span>  <span class="c"># output file extension</span>
+<div class="highlight-py"><div class="highlight"><pre><span class="n">FILENAME_EXTENSION</span><span class="p">[</span><span class="s">&#39;HTML&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;.html&#39;</span>  <span class="c"># output file extension</span>
 <span class="n">BLANKLINE</span><span class="p">[</span><span class="s">&#39;HTML&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;&lt;p&gt;</span><span class="se">\n</span><span class="s">&#39;</span>           <span class="c"># blank input line =&gt; new paragraph</span>
 <span class="n">INLINE_TAGS_SUBST</span><span class="p">[</span><span class="s">&#39;HTML&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>         <span class="c"># from inline tags to HTML tags</span>
     <span class="c"># keep math as is:</span>
@@ -1233,7 +1281,7 @@ the doc string</em>. Note that <tt class="docutils literal"><span class="pre">ar
 only legal keywords (descriptions) for the description list in this
 context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
 arguments and variables are nicely formatted.</p>
-<div class="highlight-python"><pre>- argument x: x value (float),
+<div class="highlight-py"><pre>- argument x: x value (float),
   which must be a positive number.
 - keyword argument tolerance: tolerance (float) for stopping
   the iterations.
@@ -1302,6 +1350,7 @@ groundwater flow.
 <li><a class="reference internal" href="#restructuredtext">reStructuredText</a></li>
 <li><a class="reference internal" href="#id2">Sphinx</a></li>
 <li><a class="reference internal" href="#google-code-wiki">Google Code Wiki</a></li>
+<li><a class="reference internal" href="#tweaking-the-doconce-output">Tweaking the Doconce Output</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#the-doconce-markup-language">The Doconce Markup Language</a><ul>

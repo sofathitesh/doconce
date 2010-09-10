@@ -51,7 +51,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-August 25, 2010
+September 10, 2010
 
 \end{DUfieldlist}
 
@@ -379,10 +379,42 @@ I~=~integrate.trapezoidal(myfunc,~0,~pi,~100)
 }
 \end{quote}
 
+It is possible to add a specification of a (ptex2tex-style)
+environment for typesetting the verbatim code block, e.g., \texttt{!bc xxx}
+where \texttt{xxx} is an identifier like \texttt{pycod} for code snippet in Python,
+\texttt{sys} for terminal session, etc. When Doconce is filtered to LaTeX,
+these identifiers are used as in ptex2tex and defined in a
+configuration file \texttt{.ptext2tex.cfg}, while when filtering
+to Sphinx, one can have a comment line in the Doconce file for
+mapping the identifiers to legal language names for Sphinx (which equals
+the legal language names for Pygments):
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+\#~sphinx~code-blocks:~pycod=python~cod=py~cppcod=c++~sys=console
+}
+\end{quote}
+
+By default, \texttt{pro} and \texttt{cod} are \texttt{python}, \texttt{sys} is \texttt{console},
+while \texttt{xpro} and \texttt{xcod} are computer language specific for \texttt{x}
+in \texttt{f} (Fortran), \texttt{c} (C), \texttt{cpp} (C++), and \texttt{py} (Python).
+.. \texttt{rb} (Ruby), \texttt{pl} (Perl), and \texttt{sh} (Unix shell).
+
+% (Any sphinx code-block comment, whether inside verbatim code
+
+% blocks or outside, yields a mapping between bc arguments
+
+% and computer languages. In case of muliple definitions, the
+
+% first one is used.)
+
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!).
+avoiding copying information!). A complete file is typeset
+with \texttt{!bc pro}, while a part of a file is copied into a \texttt{!bc cod}
+environment. What \texttt{pro} and \texttt{cod} mean is then defined through
+a \texttt{.ptex2tex.cfg} file for LaTeX and a \texttt{sphinx code-blocks}
+comment for Sphinx.
 
 Another document can be included by writing \texttt{\#include "mynote.do.txt"}
 on a line starting with (another) hash sign.  Doconce documents have
@@ -397,6 +429,7 @@ right writing enviroment for plain text.
   \phantomsection%
   \addcontentsline{toc}{subsection}{Macros (Newcommands), Cross-References, Index, and Bibliography}%
   \label{macros-newcommands-cross-references-index-and-bibliography}%
+  \label{newcommands}%
 }
 
 Doconce supports a type of macros via a LaTeX-style \emph{newcommand}
@@ -508,9 +541,10 @@ Unix/DOS>~doconce2format~LaTeX~mydoc.do.txt
 \end{description}
 
 LaTeX-specific commands (``newcommands'') in math formulas and similar
-can be placed in a file \texttt{newcommands.tex}. If this file is present,
-it is included in the LaTeX document so that your commands are
-defined.
+can be placed in files \texttt{newcommands.tex}, \texttt{newcommands\_keep.tex}, or
+\texttt{newcommands\_replace.tex} (see the section \hyperref[macros-newcommands-cross-references-index-and-bibliography]{Macros (Newcommands), Cross-References, Index, and Bibliography}).
+If these files are present, they are included in the LaTeX document
+so that your commands are defined.
 
 \emph{Step 2.} Run \texttt{ptex2tex} (if you have it) to make a standard LaTeX file:
 %
@@ -526,20 +560,49 @@ Unix/DOS>~cp~mydoc.p.tex~mydoc.tex
 }
 \end{quote}
 
-The \texttt{ptex2tex} tool makes it possible to easily switch between many
-different fancy formattings of computer or verbatim code in LaTeX
-documents.
-Finally, compile \texttt{mydoc.tex} the usual way and create the PDF file:
+Doconce generates a \texttt{.p.tex} file with some preprocessor macros.
+For example, to enable font Helvetica instead of the standard
+Computer Modern font:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~latex~mydoc\\
-Unix/DOS>~latex~mydoc\\
+Unix/DOS>~ptex2tex~-DHELVETICA~mydoc
+}
+\end{quote}
+
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. The standard LaTeX ``maketitle'' heading
+is also available through:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix/DOS>~ptex2tex~-DTRAD\_LATEX\_HEADING~mydoc
+}
+\end{quote}
+
+The \texttt{ptex2tex} tool makes it possible to easily switch between many
+different fancy formattings of computer or verbatim code in LaTeX
+documents. After any \texttt{!bc sys} command in the Doconce source you can
+insert verbatim block styles as defined in your \texttt{.ptex2tex.cfg}
+file, e.g., \texttt{!bc sys cod} for a code snippet, where \texttt{cod} is set to
+a certain environment in \texttt{.ptex2tex.cfg} (e.g., \texttt{CodeIntended}).
+There are over 30 styles to choose from.
+
+\emph{Step 3.} Compile \texttt{mydoc.tex} with \texttt{latex -shell-escape}
+and create the PDF file:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix/DOS>~latex~-shell-escape~mydoc\\
+Unix/DOS>~latex~-shell-escape~mydoc\\
 Unix/DOS>~makeindex~mydoc~~~\#~if~index\\
 Unix/DOS>~bibitem~mydoc~~~~~\#~if~bibliography\\
-Unix/DOS>~latex~mydoc\\
+Unix/DOS>~latex~-shell-escape~mydoc\\
 Unix/DOS>~dvipdf~mydoc
 }
 \end{quote}
+
+The \texttt{-shell-escape} option is required because \texttt{ptex2tex} inserts an include
+of the \texttt{minted.sty} style, which applies the \texttt{pygments} to format code,
+and this program cannot be run from \texttt{latex} without the \texttt{-shell-escape} option.
 
 
 %___________________________________________________________________________
@@ -685,6 +748,17 @@ Unix/DOS>~firefox~\_build/html/index.html
 }
 \end{quote}
 
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows \texttt{!bc}: \texttt{cod} gives Python
+(\texttt{code-block:: python} in Sphinx syntax) and \texttt{cppcod} gives C++, but
+all such arguments can be customized both for Sphinx and LaTeX output.
+
+% Desired extension: sphinx can utilize a "pycod" or "c++cod"
+
+% instruction as currently done in latex for ptex2tex and write
+
+% out the right code block name accordingly.
+
 
 %___________________________________________________________________________
 
@@ -708,6 +782,32 @@ You can then open a new wiki page for your Google Code project, copy
 the \texttt{mydoc.gwiki} output file from \texttt{doconce2format} and paste the
 file contents into the wiki page. Press \textbf{Preview} or \textbf{Save Page} to
 see the formatted result.
+
+When the Doconce file contains figures, each figure filename must be
+replaced by a URL where the figure is available. There are instructions
+in the file for doing this. Usually, one performs this substitution
+automatically (see next section).
+
+
+%___________________________________________________________________________
+
+\subsection*{Tweaking the Doconce Output%
+  \phantomsection%
+  \addcontentsline{toc}{subsection}{Tweaking the Doconce Output}%
+  \label{tweaking-the-doconce-output}%
+}
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+\texttt{.rst} file is going to be filtered to LaTeX or HTML, it cannot know
+if \texttt{.eps} or \texttt{.png} is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The \texttt{make.sh} files in \texttt{docs/manual} and \texttt{docs/tutorial}
+constitute comprehensive examples on how such scripts can be made.
 
 
 %___________________________________________________________________________
@@ -755,109 +855,6 @@ that ptex2tex potentially makes use of.  Going from reStructuredText
 to formats such as XML, OpenOffice, HTML, and LaTeX requires
 \href{http://docutils.sourceforge.net/}{docutils}.  Making Sphinx documents
 requires of course \href{http://sphinx.pocoo.org}{sphinx}.
-
-
-%___________________________________________________________________________
-
-\subsection*{The Doconce Documentation Strategy for User Manuals%
-  \phantomsection%
-  \addcontentsline{toc}{subsection}{The Doconce Documentation Strategy for User Manuals}%
-  \label{the-doconce-documentation-strategy-for-user-manuals}%
-}
-
-Doconce was particularly made for writing tutorials or user manuals
-associated with computer codes. The text is written in Doconce format
-in separate files. LaTeX, HTML, XML, and other versions of the text
-is easily produced by the \texttt{doconce2format} script and standard tools.
-A plain text version is often wanted for the computer source code,
-this is easy to make, and then one can use
-\texttt{\#include} statements in the computer source code to automatically
-get the manual or tutorial text in comments or doc strings.
-Below is a worked example.
-
-Consider an example involving a Python module in a \texttt{basename.p.py} file.
-The \texttt{.p.py} extension identifies this as a file that has to be
-preprocessed) by the \texttt{preprocess} program.
-In a doc string in \texttt{basename.p.py} we do a preprocessor include
-in a comment line, say:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-\#~~~~\#include~"docstrings/doc1.dst.txt
-}
-\end{quote}
-
-% Note: we insert an error right above as the right quote is missing.
-
-% Then preprocess skips the statement, otherwise it gives an error
-
-% message about a missing file docstrings/doc1.dst.txt (which we don't
-
-% have, it's just a sample file name). Also note that comment lines
-
-% must not come before a code block for the rst/st/epytext formats to work.
-
-The file \texttt{docstrings/doc1.dst.txt} is a file filtered to a specific format
-(typically plain text, reStructedText, or Epytext) from an original
-``singleton'' documentation file named \texttt{docstrings/doc1.do.txt}. The \texttt{.dst.txt}
-is the extension of a file filtered ready for being included in a doc
-string (\texttt{d} for doc, \texttt{st} for string).
-
-For making an Epydoc manual, the \texttt{docstrings/doc1.do.txt} file is
-filtered to \texttt{docstrings/doc1.epytext} and renamed to
-\texttt{docstrings/doc1.dst.txt}.  Then we run the preprocessor on the
-\texttt{basename.p.py} file and create a real Python file
-\texttt{basename.py}. Finally, we run Epydoc on this file. Alternatively, and
-nowadays preferably, we use Sphinx for API documentation and then the
-Doconce \texttt{docstrings/doc1.do.txt} file is filtered to
-\texttt{docstrings/doc1.rst} and renamed to \texttt{docstrings/doc1.dst.txt}. A
-Sphinx directory must have been made with the right \texttt{index.rst} and
-\texttt{conf.py} files. Going to this directory and typing \texttt{make html} makes
-the HTML version of the Sphinx API documentation.
-
-The next step is to produce the final pure Python source code. For
-this purpose we filter \texttt{docstrings/doc1.do.txt} to plain text format
-(\texttt{docstrings/doc1.txt}) and rename to \texttt{docstrings/doc1.dst.txt}. The
-preprocessor transforms the \texttt{basename.p.py} file to a standard Python
-file \texttt{basename.py}. The doc strings are now in plain text and well
-suited for Pydoc or reading by humans. All these steps are automated
-by the \texttt{insertdocstr.py} script.  Here are the corresponding Unix
-commands:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-\#~make~Epydoc~API~manual~of~basename~module:\\
-cd~docstrings\\
-doconce2format~epytext~doc1.do.txt\\
-mv~doc1.epytext~doc1.dst.txt\\
-cd~..\\
-preprocess~basename.p.py~>~basename.py\\
-epydoc~basename\\
-~\\
-\#~make~Sphinx~API~manual~of~basename~module:\\
-cd~doc\\
-doconce2format~sphinx~doc1.do.txt\\
-mv~doc1.rst~doc1.dst.txt\\
-cd~..\\
-preprocess~basename.p.py~>~basename.py\\
-cd~docstrings/sphinx-rootdir~~\#~sphinx~directory~for~API~source\\
-make~clean\\
-make~html\\
-cd~../..\\
-~\\
-\#~make~ordinary~Python~module~files~with~doc~strings:\\
-cd~docstrings\\
-doconce2format~plain~doc1.do.txt\\
-mv~doc1.txt~doc1.dst.txt\\
-cd~..\\
-preprocess~basename.p.py~>~basename.py\\
-~\\
-\#~can~automate~inserting~doc~strings~in~all~.p.py~files:\\
-insertdocstr.py~plain~.\\
-\#~(runs~through~all~.do.txt~files~and~filters~them~to~plain~format~and\\
-\#~renames~to~.dst.txt~extension,~then~the~script~runs~through~all\\
-\#~.p.py~files~and~runs~the~preprocessor,~which~includes~the~.dst.txt\\
-\#~files)
-}
-\end{quote}
 
 
 %___________________________________________________________________________

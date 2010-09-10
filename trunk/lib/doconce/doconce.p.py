@@ -110,7 +110,7 @@ def insert_code_from_file(filestr, format):
                         codelines.append(codeline)
                 code = ''.join(codelines)
 
-            if format == 'LaTeX':
+            if format == 'LaTeX' or format == 'sphinx':
                 # insert a cod or pro directive for ptex2tex:
                 if complete_file:
                     code = "!bc pro\n%s\n!ec" % code
