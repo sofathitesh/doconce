@@ -48,6 +48,35 @@ def debug(out):
         _log.write(out + '\n')
         _log.close()
 
+
+def make_one_line_paragraphs(filestr, format):
+    # THIS FUNCTION DOES NOT WORK WELL - it's difficult to make
+    # one-line paragraphs...
+
+    # make double linebreaks to triple
+    filestr = re.sub('\n *\n', '[[[[[DOUBLE_NEWLINE]]]]]', filestr)
+    # save some single linebreaks
+    # section headings
+    filestr = re.sub('(===+)\n', r'\g<1>[[[[[SINGLE_NEWLINE]]]]]\n', filestr)
+    # tables
+    filestr = re.sub('(\\|\\s*)\n', r'\g<1>[[[[[SINGLE_NEWLINE]]]]]\n', filestr)
+    # idx/label/ref{}
+    filestr = re.sub('(\\}\\s*)\n', r'\g<1>[[[[[SINGLE_NEWLINE]]]]]\n', filestr)
+    filestr = re.sub('\n(AUTHOR|TITLE|DATE|FIGURE)', r'\n[[[[[SINGLE_NEWLINE]]]]]\g<1>', filestr)
+    debug('\n\n\n**** ONELINE1:\n\n%s\n\n' % filestr)
+
+    # then remove all single linebreaks + following indentation
+    filestr = re.sub('\n *', ' ', filestr)
+    debug('\n\n\n**** ONELINE2:\n\n%s\n\n' % filestr)
+    # finally insert single and double linebreaks
+    filestr = filestr.replace('[[[[[SINGLE_NEWLINE]]]]] ', '\n')
+    filestr = filestr.replace('[[[[[SINGLE_NEWLINE]]]]]', '\n')
+    debug('\n\n\n**** ONELINE3:\n\n%s\n\n' % filestr)
+    filestr = filestr.replace('[[[[[DOUBLE_NEWLINE]]]]] ', '\n\n')
+    filestr = filestr.replace('[[[[[DOUBLE_NEWLINE]]]]]', '\n\n')
+    debug('\n\n\n**** ONELINE4:\n\n%s\n\n' % filestr)
+    return filestr
+
 def insert_code_from_file(filestr, format):
     lines = filestr.splitlines()
     inside_verbatim = False
@@ -731,6 +760,32 @@ def doconce2format(in_filename, format, out_filename):
     debug('%s\n**** The file after removal of code/tex blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
+    # remove linebreaks within paragraphs:
+    if oneline_paragraphs:
+        filestr = make_one_line_paragraphs(filestr, format)
+        # make double linebreaks to triple
+        filestr = re.sub('\n *\n', '[[[[[DOUBLE_NEWLINE]]]]]', filestr)
+        # save some single linebreaks
+        # section headings
+        filestr = re.sub('(===+)\n', r'\g<1>[[[[[SINGLE_NEWLINE]]]]]\n', filestr)
+        # tables
+        filestr = re.sub('(\\|\\s*)\n', r'\g<1>[[[[[SINGLE_NEWLINE]]]]]\n', filestr)
+        # idx/label/ref{}
+        filestr = re.sub('(\\}\\s*)\n', r'\g<1>[[[[[SINGLE_NEWLINE]]]]]\n', filestr)
+        filestr = re.sub('\n(AUTHOR|TITLE|DATE|FIGURE)', r'\n[[[[[SINGLE_NEWLINE]]]]]\g<1>', filestr)
+        debug('\n\n\n**** ONELINE1:\n\n%s\n\n' % filestr)
+
+        # then remove all single linebreaks + following indentation
+        filestr = re.sub('\n *', ' ', filestr)
+        debug('\n\n\n**** ONELINE2:\n\n%s\n\n' % filestr)
+        # finally insert single and double linebreaks
+        filestr = filestr.replace('[[[[[SINGLE_NEWLINE]]]]] ', '\n')
+        filestr = filestr.replace('[[[[[SINGLE_NEWLINE]]]]]', '\n')
+        debug('\n\n\n**** ONELINE3:\n\n%s\n\n' % filestr)
+        filestr = filestr.replace('[[[[[DOUBLE_NEWLINE]]]]] ', '\n\n')
+        filestr = filestr.replace('[[[[[DOUBLE_NEWLINE]]]]]', '\n\n')
+        debug('\n\n\n**** ONELINE4:\n\n%s\n\n' % filestr)
+
     # 3. step: deal with figures
     filestr = handle_figures(filestr, format)
 
@@ -759,15 +814,6 @@ def doconce2format(in_filename, format, out_filename):
     filestr = inline_tag_subst(filestr, format)
 
     debug('%s\n**** The file after all inline substitutions:\n\n%s\n\n' % ('*'*80, filestr))
-
-    # remove linebreaks within paragraphs:
-    if oneline_paragraphs:
-        # make double linebreaks to triple
-        filestr = re.sub('\n *\n', '[[[[[DOUBLE_NEWLINE]]]]]', filestr)
-        # then remove all single linebreaks
-        filestr = filestr.replace('\n', '')
-        # finally insert double linebreaks
-        filestr = filestr.replace('[[[[[DOUBLE_NEWLINE]]]]]', '\n\n')
         
     # 9. step: substitute latex-style newcommands in filestr and tex_blocks
     # (not in code_blocks)
@@ -851,6 +897,7 @@ def main():
         del sys.argv[3]
     else:
         debug_flag = False
+    
     if debug_flag:
         _log_filename = '_doconce_debugging.log'
         _log = open(_log_filename,'w')

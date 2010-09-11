@@ -77,7 +77,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.
+one motivation for developing the Doconce concept and tool.
 
 __Different Tagging for Different Formats.__ A problem with doc
 strings (in Python) is that they benefit greatly from some tagging,
@@ -843,8 +843,7 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code (`pycod` style,
-typeset via minted and pygments):
+Here is a verbatim code block with Python code (`pycod` style):
 !bc pycod
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -861,8 +860,7 @@ INLINE_TAGS = {
     (inline_tag_begin, inline_tag_end),
 }
 !ec
-And here is a C++ code snippet (`cppcod` style,
-typeset via minted and pygments):
+And here is a C++ code snippet (`cppcod` style):
 !bc cppcod
 void myfunc(double* x, const double& myarr) {
     for (int i = 1; i < myarr.size(); i++) {
