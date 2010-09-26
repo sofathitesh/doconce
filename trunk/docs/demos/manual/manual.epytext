@@ -72,7 +72,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.
+one motivation for developing the Doconce concept and tool.
 
 I{Different Tagging for Different Formats.} A problem with doc
 strings (in Python) is that they benefit greatly from some tagging,
@@ -353,8 +353,27 @@ file, e.g., C{!bc sys cod} for a code snippet, where C{cod} is set to
 a certain environment in C{.ptex2tex.cfg} (e.g., C{CodeIntended}).
 There are over 30 styles to choose from.
 
-I{Step 3.} Compile C{mydoc.tex} with C{latex -shell-escape} 
+I{Step 3.} Compile C{mydoc.tex}
 and create the PDF file::
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the C{Minted_Python}, C{Minted_Cpp}, etc., environments
+in C{ptex2tex} for typesetting code, the C{minted} LaTeX package is needed.
+This package is included by running C{doconce2format} with the
+C{-DMINTED} option::
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, C{latex} must be run with the
+C{-shell-escape} option::
 
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> latex -shell-escape mydoc
@@ -364,9 +383,9 @@ and create the PDF file::
         Unix/DOS> dvipdf mydoc
 
 
-The C{-shell-escape} option is required because C{ptex2tex} inserts an include
-of the C{minted.sty} style, which applies the C{pygments} to format code,
-and this program cannot be run from C{latex} without the C{-shell-escape} option.
+The C{-shell-escape} option is required because the C{minted.sty} style
+file runs the C{pygments} program to format code, and this program
+cannot be run from C{latex} without the C{-shell-escape} option.
 
 
 Plain ASCII Text
@@ -1005,8 +1024,7 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code (C{pycod} style,
-typeset via minted and pygments)::
+Here is a verbatim code block with Python code (C{pycod} style)::
 
         # regular expressions for inline tags:
         inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -1024,8 +1042,7 @@ typeset via minted and pygments)::
         }
 
 
-And here is a C++ code snippet (C{cppcod} style,
-typeset via minted and pygments)::
+And here is a C++ code snippet (C{cppcod} style)::
 
         void myfunc(double* x, const double& myarr) {
             for (int i = 1; i < myarr.size(); i++) {

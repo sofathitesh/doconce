@@ -104,7 +104,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.
+one motivation for developing the Doconce concept and tool.
 
 <P>
 <B>Different Tagging for Different Formats.</B> A problem with doc
@@ -447,8 +447,29 @@ a certain environment in <TT>.ptex2tex.cfg</TT> (e.g., <TT>CodeIntended</TT>).
 There are over 30 styles to choose from.
 
 <P>
-<B>Step 3.</B> Compile <TT>mydoc.tex</TT> with <TT>latex -shell-escape</TT> 
+<B>Step 3.</B> Compile <TT>mydoc.tex</TT>
 and create the PDF file:
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Unix/DOS> latex mydoc
+Unix/DOS> latex mydoc
+Unix/DOS> makeindex mydoc   # if index
+Unix/DOS> bibitem mydoc     # if bibliography
+Unix/DOS> latex mydoc
+Unix/DOS> dvipdf mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+If one wishes to use the <TT>Minted_Python</TT>, <TT>Minted_Cpp</TT>, etc., environments
+in <TT>ptex2tex</TT> for typesetting code, the <TT>minted</TT> LaTeX package is needed.
+This package is included by running <TT>doconce2format</TT> with the
+<TT>-DMINTED</TT> option:
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Unix/DOS> ptex2tex -DMINTED mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+In this case, <TT>latex</TT> must be run with the
+<TT>-shell-escape</TT> option:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> latex -shell-escape mydoc
@@ -459,9 +480,9 @@ Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> dvipdf mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-The <TT>-shell-escape</TT> option is required because <TT>ptex2tex</TT> inserts an include
-of the <TT>minted.sty</TT> style, which applies the <TT>pygments</TT> to format code,
-and this program cannot be run from <TT>latex</TT> without the <TT>-shell-escape</TT> option.
+The <TT>-shell-escape</TT> option is required because the <TT>minted.sty</TT> style
+file runs the <TT>pygments</TT> program to format code, and this program
+cannot be run from <TT>latex</TT> without the <TT>-shell-escape</TT> option.
 
 <P>
 
@@ -1214,8 +1235,7 @@ in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
 <P>
-Here is a verbatim code block with Python code (<TT>pycod</TT> style,
-typeset via minted and pygments):
+Here is a verbatim code block with Python code (<TT>pycod</TT> style):
 <!-- BEGIN VERBATIM BLOCK   pycod-->
 <BLOCKQUOTE><PRE>
 # regular expressions for inline tags:
@@ -1234,8 +1254,7 @@ INLINE_TAGS = {
 }
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-And here is a C++ code snippet (<TT>cppcod</TT> style,
-typeset via minted and pygments):
+And here is a C++ code snippet (<TT>cppcod</TT> style):
 <!-- BEGIN VERBATIM BLOCK   cppcod-->
 <BLOCKQUOTE><PRE>
 void myfunc(double* x, const double& myarr) {

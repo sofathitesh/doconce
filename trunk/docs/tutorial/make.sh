@@ -7,8 +7,8 @@ doconce2format HTML tutorial.do.txt
 # LaTeX
 doconce2format LaTeX tutorial.do.txt
 ptex2tex -DHELVETICA tutorial
-latex -shell-escape tutorial.tex
-latex -shell-escape tutorial.tex
+latex tutorial.tex  # no -shell-escape since no -DMINTED to ptex2tex
+latex tutorial.tex
 dvipdf tutorial.dvi
 
 # Sphinx

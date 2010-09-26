@@ -93,7 +93,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.
+one motivation for developing the Doconce concept and tool.
 
 *Different Tagging for Different Formats.* A problem with doc
 strings (in Python) is that they benefit greatly from some tagging,
@@ -426,8 +426,31 @@ file, e.g., ``!bc sys cod`` for a code snippet, where ``cod`` is set to
 a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
 There are over 30 styles to choose from.
 
-*Step 3.* Compile ``mydoc.tex`` with ``latex -shell-escape`` 
+*Step 3.* Compile ``mydoc.tex``
 and create the PDF file:
+
+.. code-block:: console
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
+in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
+This package is included by running ``doconce2format`` with the
+``-DMINTED`` option:
+
+.. code-block:: console
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, ``latex`` must be run with the
+``-shell-escape`` option:
 
 .. code-block:: console
 
@@ -439,9 +462,9 @@ and create the PDF file:
         Unix/DOS> dvipdf mydoc
 
 
-The ``-shell-escape`` option is required because ``ptex2tex`` inserts an include
-of the ``minted.sty`` style, which applies the ``pygments`` to format code,
-and this program cannot be run from ``latex`` without the ``-shell-escape`` option.
+The ``-shell-escape`` option is required because the ``minted.sty`` style
+file runs the ``pygments`` program to format code, and this program
+cannot be run from ``latex`` without the ``-shell-escape`` option.
 
 
 Plain ASCII Text
@@ -1203,8 +1226,7 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code (``pycod`` style,
-typeset via minted and pygments):
+Here is a verbatim code block with Python code (``pycod`` style):
 
 .. code-block:: python
 
@@ -1224,8 +1246,7 @@ typeset via minted and pygments):
         }
 
 
-And here is a C++ code snippet (``cppcod`` style,
-typeset via minted and pygments):
+And here is a C++ code snippet (``cppcod`` style):
 
 .. code-block:: c++
 

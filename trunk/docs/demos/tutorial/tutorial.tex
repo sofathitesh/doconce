@@ -455,8 +455,29 @@ a certain environment in {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!} (e.g., {\fo
 There are over 30 styles to choose from.
 
 \paragraph{Step 3.}
-Compile {\fontsize{10pt}{10pt}\verb!mydoc.tex!} with {\fontsize{10pt}{10pt}\verb!latex -shell-escape!} 
+Compile {\fontsize{10pt}{10pt}\verb!mydoc.tex!}
 and create the PDF file:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Unix/DOS> latex mydoc
+Unix/DOS> latex mydoc
+Unix/DOS> makeindex mydoc   # if index
+Unix/DOS> bibitem mydoc     # if bibliography
+Unix/DOS> latex mydoc
+Unix/DOS> dvipdf mydoc
+\end{Verbatim}
+If one wishes to use the {\fontsize{10pt}{10pt}\verb!Minted_Python!}, {\fontsize{10pt}{10pt}\verb!Minted_Cpp!}, etc., environments
+in {\fontsize{10pt}{10pt}\verb!ptex2tex!} for typesetting code, the {\fontsize{10pt}{10pt}\verb!minted!} {\LaTeX} package is needed.
+This package is included by running {\fontsize{10pt}{10pt}\verb!doconce2format!} with the
+{\fontsize{10pt}{10pt}\verb!-DMINTED!} option:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Unix/DOS> ptex2tex -DMINTED mydoc
+\end{Verbatim}
+In this case, {\fontsize{10pt}{10pt}\verb!latex!} must be run with the
+{\fontsize{10pt}{10pt}\verb!-shell-escape!} option:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
@@ -467,9 +488,9 @@ Unix/DOS> bibitem mydoc     # if bibliography
 Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> dvipdf mydoc
 \end{Verbatim}
-The {\fontsize{10pt}{10pt}\verb!-shell-escape!} option is required because {\fontsize{10pt}{10pt}\verb!ptex2tex!} inserts an include
-of the {\fontsize{10pt}{10pt}\verb!minted.sty!} style, which applies the {\fontsize{10pt}{10pt}\verb!pygments!} to format code,
-and this program cannot be run from {\fontsize{10pt}{10pt}\verb!latex!} without the {\fontsize{10pt}{10pt}\verb!-shell-escape!} option.
+The {\fontsize{10pt}{10pt}\verb!-shell-escape!} option is required because the {\fontsize{10pt}{10pt}\verb!minted.sty!} style
+file runs the {\fontsize{10pt}{10pt}\verb!pygments!} program to format code, and this program
+cannot be run from {\fontsize{10pt}{10pt}\verb!latex!} without the {\fontsize{10pt}{10pt}\verb!-shell-escape!} option.
 
 \subsection{Plain ASCII Text}
 
