@@ -344,8 +344,27 @@ file, e.g., C{!bc sys cod} for a code snippet, where C{cod} is set to
 a certain environment in C{.ptex2tex.cfg} (e.g., C{CodeIntended}).
 There are over 30 styles to choose from.
 
-I{Step 3.} Compile C{mydoc.tex} with C{latex -shell-escape} 
+I{Step 3.} Compile C{mydoc.tex}
 and create the PDF file::
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the C{Minted_Python}, C{Minted_Cpp}, etc., environments
+in C{ptex2tex} for typesetting code, the C{minted} LaTeX package is needed.
+This package is included by running C{doconce2format} with the
+C{-DMINTED} option::
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, C{latex} must be run with the
+C{-shell-escape} option::
 
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> latex -shell-escape mydoc
@@ -355,9 +374,9 @@ and create the PDF file::
         Unix/DOS> dvipdf mydoc
 
 
-The C{-shell-escape} option is required because C{ptex2tex} inserts an include
-of the C{minted.sty} style, which applies the C{pygments} to format code,
-and this program cannot be run from C{latex} without the C{-shell-escape} option.
+The C{-shell-escape} option is required because the C{minted.sty} style
+file runs the C{pygments} program to format code, and this program
+cannot be run from C{latex} without the C{-shell-escape} option.
 
 
 Plain ASCII Text

@@ -318,6 +318,9 @@ def define(FILENAME_EXTENSION,
 \usepackage{hyperref,relsize,,epsfig,makeidx}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
+% #ifdef MINTED
+\usepackage{minted}  % requires latex -shell-escape (for Minted_* envirs)
+% #endif
 
 % #ifdef HELVETICA
 % Set helvetica as the default font family:

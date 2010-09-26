@@ -85,8 +85,8 @@ $d2f epytext manual.do.txt
 $d2f st manual.do.txt
 
 # doconce LaTeX:
-$d2f LaTeX manual.do.txt             # produces ptex2tex: manual.p.tex
-ptex2tex manual                      # turn ptex2tex format into plain latex
+$d2f LaTeX manual.do.txt    # produces ptex2tex: manual.p.tex
+ptex2tex -DMINTED manual    # turn ptex2tex format into plain latex
 rm -f manual.p.tex
 latex -shell-escape manual
 latex -shell-escape manual

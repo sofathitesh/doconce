@@ -374,8 +374,25 @@ insert verbatim block styles as defined in your <tt class="docutils literal"><sp
 file, e.g., <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">sys</span> <span class="pre">cod</span></tt> for a code snippet, where <tt class="docutils literal"><span class="pre">cod</span></tt> is set to
 a certain environment in <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt> (e.g., <tt class="docutils literal"><span class="pre">CodeIntended</span></tt>).
 There are over 30 styles to choose from.</p>
-<p><em>Step 3.</em> Compile <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt> with <tt class="docutils literal"><span class="pre">latex</span> <span class="pre">-shell-escape</span></tt>
+<p><em>Step 3.</em> Compile <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt>
 and create the PDF file:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; latex mydoc</span>
+<span class="go">Unix/DOS&gt; latex mydoc</span>
+<span class="go">Unix/DOS&gt; makeindex mydoc   # if index</span>
+<span class="go">Unix/DOS&gt; bibitem mydoc     # if bibliography</span>
+<span class="go">Unix/DOS&gt; latex mydoc</span>
+<span class="go">Unix/DOS&gt; dvipdf mydoc</span>
+</pre></div>
+</div>
+<p>If one wishes to use the <tt class="docutils literal"><span class="pre">Minted_Python</span></tt>, <tt class="docutils literal"><span class="pre">Minted_Cpp</span></tt>, etc., environments
+in <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> for typesetting code, the <tt class="docutils literal"><span class="pre">minted</span></tt> LaTeX package is needed.
+This package is included by running <tt class="docutils literal"><span class="pre">doconce2format</span></tt> with the
+<tt class="docutils literal"><span class="pre">-DMINTED</span></tt> option:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; ptex2tex -DMINTED mydoc</span>
+</pre></div>
+</div>
+<p>In this case, <tt class="docutils literal"><span class="pre">latex</span></tt> must be run with the
+<tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; latex -shell-escape mydoc</span>
 <span class="go">Unix/DOS&gt; latex -shell-escape mydoc</span>
 <span class="go">Unix/DOS&gt; makeindex mydoc   # if index</span>
@@ -384,9 +401,9 @@ and create the PDF file:</p>
 <span class="go">Unix/DOS&gt; dvipdf mydoc</span>
 </pre></div>
 </div>
-<p>The <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option is required because <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> inserts an include
-of the <tt class="docutils literal"><span class="pre">minted.sty</span></tt> style, which applies the <tt class="docutils literal"><span class="pre">pygments</span></tt> to format code,
-and this program cannot be run from <tt class="docutils literal"><span class="pre">latex</span></tt> without the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option.</p>
+<p>The <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option is required because the <tt class="docutils literal"><span class="pre">minted.sty</span></tt> style
+file runs the <tt class="docutils literal"><span class="pre">pygments</span></tt> program to format code, and this program
+cannot be run from <tt class="docutils literal"><span class="pre">latex</span></tt> without the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option.</p>
 </div>
 <div class="section" id="plain-ascii-text">
 <h2>Plain ASCII Text<a class="headerlink" href="#plain-ascii-text" title="Permalink to this headline">¶</a></h2>

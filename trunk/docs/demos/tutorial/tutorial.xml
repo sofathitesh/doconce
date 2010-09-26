@@ -170,15 +170,24 @@ documents. After any <literal>!bc sys</literal> command in the Doconce source yo
 insert verbatim block styles as defined in your <literal>.ptex2tex.cfg</literal>
 file, e.g., <literal>!bc sys cod</literal> for a code snippet, where <literal>cod</literal> is set to
 a certain environment in <literal>.ptex2tex.cfg</literal> (e.g., <literal>CodeIntended</literal>).
-There are over 30 styles to choose from.</paragraph><paragraph><emphasis>Step 3.</emphasis> Compile <literal>mydoc.tex</literal> with <literal>latex -shell-escape</literal>
-and create the PDF file:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; latex -shell-escape mydoc
+There are over 30 styles to choose from.</paragraph><paragraph><emphasis>Step 3.</emphasis> Compile <literal>mydoc.tex</literal>
+and create the PDF file:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; latex mydoc
+Unix/DOS&gt; latex mydoc
+Unix/DOS&gt; makeindex mydoc   # if index
+Unix/DOS&gt; bibitem mydoc     # if bibliography
+Unix/DOS&gt; latex mydoc
+Unix/DOS&gt; dvipdf mydoc</literal_block><paragraph>If one wishes to use the <literal>Minted_Python</literal>, <literal>Minted_Cpp</literal>, etc., environments
+in <literal>ptex2tex</literal> for typesetting code, the <literal>minted</literal> LaTeX package is needed.
+This package is included by running <literal>doconce2format</literal> with the
+<literal>-DMINTED</literal> option:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; ptex2tex -DMINTED mydoc</literal_block><paragraph>In this case, <literal>latex</literal> must be run with the
+<literal>-shell-escape</literal> option:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; latex -shell-escape mydoc
 Unix/DOS&gt; latex -shell-escape mydoc
 Unix/DOS&gt; makeindex mydoc   # if index
 Unix/DOS&gt; bibitem mydoc     # if bibliography
 Unix/DOS&gt; latex -shell-escape mydoc
-Unix/DOS&gt; dvipdf mydoc</literal_block><paragraph>The <literal>-shell-escape</literal> option is required because <literal>ptex2tex</literal> inserts an include
-of the <literal>minted.sty</literal> style, which applies the <literal>pygments</literal> to format code,
-and this program cannot be run from <literal>latex</literal> without the <literal>-shell-escape</literal> option.</paragraph></section><section ids="plain-ascii-text" names="plain\ ascii\ text"><title>Plain ASCII Text</title><paragraph>We can go from Doconce &quot;back to&quot; plain untagged text suitable for viewing
+Unix/DOS&gt; dvipdf mydoc</literal_block><paragraph>The <literal>-shell-escape</literal> option is required because the <literal>minted.sty</literal> style
+file runs the <literal>pygments</literal> program to format code, and this program
+cannot be run from <literal>latex</literal> without the <literal>-shell-escape</literal> option.</paragraph></section><section ids="plain-ascii-text" names="plain\ ascii\ text"><title>Plain ASCII Text</title><paragraph>We can go from Doconce &quot;back to&quot; plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce2format plain mydoc.do.txt  # results in mydoc.txt</literal_block></section><section ids="restructuredtext" names="restructuredtext"><title>reStructuredText</title><paragraph>Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a

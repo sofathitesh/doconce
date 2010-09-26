@@ -125,7 +125,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.</p>
+one motivation for developing the Doconce concept and tool.</p>
 <p><em>Different Tagging for Different Formats.</em> A problem with doc
 strings (in Python) is that they benefit greatly from some tagging,
 Epytext or reStructuredText, when transformed to HTML or PDF
@@ -375,8 +375,25 @@ insert verbatim block styles as defined in your <tt class="docutils literal"><sp
 file, e.g., <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">sys</span> <span class="pre">cod</span></tt> for a code snippet, where <tt class="docutils literal"><span class="pre">cod</span></tt> is set to
 a certain environment in <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt> (e.g., <tt class="docutils literal"><span class="pre">CodeIntended</span></tt>).
 There are over 30 styles to choose from.</p>
-<p><em>Step 3.</em> Compile <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt> with <tt class="docutils literal"><span class="pre">latex</span> <span class="pre">-shell-escape</span></tt>
+<p><em>Step 3.</em> Compile <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt>
 and create the PDF file:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; latex mydoc</span>
+<span class="go">Unix/DOS&gt; latex mydoc</span>
+<span class="go">Unix/DOS&gt; makeindex mydoc   # if index</span>
+<span class="go">Unix/DOS&gt; bibitem mydoc     # if bibliography</span>
+<span class="go">Unix/DOS&gt; latex mydoc</span>
+<span class="go">Unix/DOS&gt; dvipdf mydoc</span>
+</pre></div>
+</div>
+<p>If one wishes to use the <tt class="docutils literal"><span class="pre">Minted_Python</span></tt>, <tt class="docutils literal"><span class="pre">Minted_Cpp</span></tt>, etc., environments
+in <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> for typesetting code, the <tt class="docutils literal"><span class="pre">minted</span></tt> LaTeX package is needed.
+This package is included by running <tt class="docutils literal"><span class="pre">doconce2format</span></tt> with the
+<tt class="docutils literal"><span class="pre">-DMINTED</span></tt> option:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; ptex2tex -DMINTED mydoc</span>
+</pre></div>
+</div>
+<p>In this case, <tt class="docutils literal"><span class="pre">latex</span></tt> must be run with the
+<tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; latex -shell-escape mydoc</span>
 <span class="go">Unix/DOS&gt; latex -shell-escape mydoc</span>
 <span class="go">Unix/DOS&gt; makeindex mydoc   # if index</span>
@@ -385,9 +402,9 @@ and create the PDF file:</p>
 <span class="go">Unix/DOS&gt; dvipdf mydoc</span>
 </pre></div>
 </div>
-<p>The <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option is required because <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> inserts an include
-of the <tt class="docutils literal"><span class="pre">minted.sty</span></tt> style, which applies the <tt class="docutils literal"><span class="pre">pygments</span></tt> to format code,
-and this program cannot be run from <tt class="docutils literal"><span class="pre">latex</span></tt> without the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option.</p>
+<p>The <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option is required because the <tt class="docutils literal"><span class="pre">minted.sty</span></tt> style
+file runs the <tt class="docutils literal"><span class="pre">pygments</span></tt> program to format code, and this program
+cannot be run from <tt class="docutils literal"><span class="pre">latex</span></tt> without the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option.</p>
 </div>
 <div class="section" id="plain-ascii-text">
 <h2>Plain ASCII Text<a class="headerlink" href="#plain-ascii-text" title="Permalink to this headline">¶</a></h2>
@@ -938,8 +955,7 @@ forget to indent the plain text surrounding the code blocks. In
 general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).</p>
-<p>Here is a verbatim code block with Python code (<tt class="docutils literal"><span class="pre">pycod</span></tt> style,
-typeset via minted and pygments):</p>
+<p>Here is a verbatim code block with Python code (<tt class="docutils literal"><span class="pre">pycod</span></tt> style):</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># regular expressions for inline tags:</span>
 <span class="n">inline_tag_begin</span> <span class="o">=</span> <span class="s">r&#39;(?P&lt;begin&gt;(^|\s+))&#39;</span>
 <span class="n">inline_tag_end</span> <span class="o">=</span> <span class="s">r&#39;(?P&lt;end&gt;[.,?!;:)\s])&#39;</span>
@@ -956,8 +972,7 @@ typeset via minted and pygments):</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>And here is a C++ code snippet (<tt class="docutils literal"><span class="pre">cppcod</span></tt> style,
-typeset via minted and pygments):</p>
+<p>And here is a C++ code snippet (<tt class="docutils literal"><span class="pre">cppcod</span></tt> style):</p>
 <div class="highlight-c++"><pre>void myfunc(double* x, const double&amp; myarr) {
     for (int i = 1; i &lt; myarr.size(); i++) {
         myarr[i] = myarr[i] - x[i]*myarr[i-1]

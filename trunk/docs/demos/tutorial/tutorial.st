@@ -310,8 +310,27 @@ file, e.g., '!bc sys cod' for a code snippet, where 'cod' is set to
 a certain environment in '.ptex2tex.cfg' (e.g., 'CodeIntended').
 There are over 30 styles to choose from.
 
-*Step 3.* Compile 'mydoc.tex' with 'latex -shell-escape' 
+*Step 3.* Compile 'mydoc.tex'
 and create the PDF file::
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the 'Minted_Python', 'Minted_Cpp', etc., environments
+in 'ptex2tex' for typesetting code, the 'minted' LaTeX package is needed.
+This package is included by running 'doconce2format' with the
+'-DMINTED' option::
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, 'latex' must be run with the
+'-shell-escape' option::
 
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> latex -shell-escape mydoc
@@ -321,9 +340,9 @@ and create the PDF file::
         Unix/DOS> dvipdf mydoc
 
 
-The '-shell-escape' option is required because 'ptex2tex' inserts an include
-of the 'minted.sty' style, which applies the 'pygments' to format code,
-and this program cannot be run from 'latex' without the '-shell-escape' option.
+The '-shell-escape' option is required because the 'minted.sty' style
+file runs the 'pygments' program to format code, and this program
+cannot be run from 'latex' without the '-shell-escape' option.
 Plain ASCII Text
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in

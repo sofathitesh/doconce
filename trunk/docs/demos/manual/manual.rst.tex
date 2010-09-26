@@ -176,7 +176,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.
+one motivation for developing the Doconce concept and tool.
 
 \emph{Different Tagging for Different Formats.} A problem with doc
 strings (in Python) is that they benefit greatly from some tagging,
@@ -552,8 +552,31 @@ file, e.g., \texttt{!bc sys cod} for a code snippet, where \texttt{cod} is set t
 a certain environment in \texttt{.ptex2tex.cfg} (e.g., \texttt{CodeIntended}).
 There are over 30 styles to choose from.
 
-\emph{Step 3.} Compile \texttt{mydoc.tex} with \texttt{latex -shell-escape}
+\emph{Step 3.} Compile \texttt{mydoc.tex}
 and create the PDF file:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix/DOS>~latex~mydoc\\
+Unix/DOS>~latex~mydoc\\
+Unix/DOS>~makeindex~mydoc~~~\#~if~index\\
+Unix/DOS>~bibitem~mydoc~~~~~\#~if~bibliography\\
+Unix/DOS>~latex~mydoc\\
+Unix/DOS>~dvipdf~mydoc
+}
+\end{quote}
+
+If one wishes to use the \texttt{Minted\_Python}, \texttt{Minted\_Cpp}, etc., environments
+in \texttt{ptex2tex} for typesetting code, the \texttt{minted} LaTeX package is needed.
+This package is included by running \texttt{doconce2format} with the
+\texttt{-DMINTED} option:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix/DOS>~ptex2tex~-DMINTED~mydoc
+}
+\end{quote}
+
+In this case, \texttt{latex} must be run with the
+\texttt{-shell-escape} option:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Unix/DOS>~latex~-shell-escape~mydoc\\
@@ -565,9 +588,9 @@ Unix/DOS>~dvipdf~mydoc
 }
 \end{quote}
 
-The \texttt{-shell-escape} option is required because \texttt{ptex2tex} inserts an include
-of the \texttt{minted.sty} style, which applies the \texttt{pygments} to format code,
-and this program cannot be run from \texttt{latex} without the \texttt{-shell-escape} option.
+The \texttt{-shell-escape} option is required because the \texttt{minted.sty} style
+file runs the \texttt{pygments} program to format code, and this program
+cannot be run from \texttt{latex} without the \texttt{-shell-escape} option.
 
 
 %___________________________________________________________________________
@@ -1458,8 +1481,7 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code (\texttt{pycod} style,
-typeset via minted and pygments):
+Here is a verbatim code block with Python code (\texttt{pycod} style):
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 \#~regular~expressions~for~inline~tags:\\
@@ -1479,8 +1501,7 @@ INLINE\_TAGS~=~\{\\
 }
 \end{quote}
 
-And here is a C++ code snippet (\texttt{cppcod} style,
-typeset via minted and pygments):
+And here is a C++ code snippet (\texttt{cppcod} style):
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 void~myfunc(double*~x,~const~double\&~myarr)~\{\\
