@@ -315,7 +315,7 @@ def define(FILENAME_EXTENSION,
     INDEX_BIB['LaTeX'] = latex_index_bib
 
     INTRO['LaTeX'] = r"""\documentclass{article}
-\usepackage{hyperref,relsize,,epsfig,makeidx}
+\usepackage{hyperref,relsize,epsfig,makeidx}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MINTED

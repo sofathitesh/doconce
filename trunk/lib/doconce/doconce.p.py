@@ -706,7 +706,25 @@ def inline_tag_subst(filestr, format):
     return filestr
         
 
-    
+def encoding_guesser(filename):
+    """Try to guess the encoding of a file."""
+    f = open(filename, 'r')
+    text = f.read()
+    f.close()
+    encodings = ['utf-8', 'ascii', 'us-ascii', 'iso-8859-1', 'iso-8859-2',
+                 'iso-8859-3', 'iso-8859-4', 'cp37', 'cp930', 'cp1047',
+                 'utf-16', 'windows-1250', 'windows-1252',]
+    for encoding in encodings:
+        try:
+            #print 'Trying encoding', encoding
+            unicode(text, encoding, "strict")
+        except:
+            pass
+        else:
+            break
+    return encoding
+
+
 def doconce2format(in_filename, format, out_filename):
     """
     Perform the transformation of a doconce file, stored in in_filename,
@@ -714,8 +732,19 @@ def doconce2format(in_filename, format, out_filename):
     This is the "main" function in the module.
     """
     print '\n2nd step: run doconce2format on preprocessed file', in_filename
-    f = open(in_filename, 'r')
-    #import codecs; f = codecs.open(in_filename, 'r', 'utf-8')
+
+    # if trouble with encoding:
+    # Unix> file myfile.do.txt
+    # myfile.do.txt: UTF-8 Unicode English text
+    # Unix> # convert to latin-1:
+    # Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+    if guess_encoding:  # global variable
+        encoding = encoding_guesser(in_filename)
+        print 'Detected encoding as', encoding
+        import codecs
+        f = codecs.open(in_filename, 'r', encoding)
+    else:
+        f = open(in_filename, 'r')
     filestr = f.read()
     f.close()
 
@@ -844,8 +873,11 @@ def doconce2format(in_filename, format, out_filename):
             filestr = INTRO[format] + filestr
         if format in OUTRO:
             filestr = filestr + OUTRO[format]
-        
-    f = open(out_filename, 'w')
+     
+    if guess_encoding:
+        f = codecs.open(out_filename, 'w', encoding)
+    else:
+        f = open(out_filename, 'w')
     f.write(filestr)
     f.close()
 
@@ -891,7 +923,9 @@ def main():
     #   - debug (for debugging in file _doconce_debugging.log) or
     #   - oneline (for removal of newlines/linebreaks within paragraphs)
 
-    global debug_flag, oneline_paragraphs, _log
+    global debug_flag, oneline_paragraphs, _log, guess_encoding
+    guess_encoding = False  # used in doconce2format function
+
     if len(sys.argv) >= 4 and sys.argv[3] == 'debug':
         debug_flag = True
         del sys.argv[3]
