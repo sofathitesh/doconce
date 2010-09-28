@@ -1059,6 +1059,15 @@ __Problems with Boldface and Emphasize.__
 Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
 
+__Strange Non-English Characters.___
+Check the encoding of the `.do.txt` file with the Unix `file` command.
+If UTF-8, convert to latin-1 using the Unix command
+!bc
+Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+!ec
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
+
 __Debugging.__
 Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
