@@ -202,7 +202,10 @@ URLs~with~a~link~word~are~possible,~as~in~http://folk.uio.no/hpl<hpl>.\\
 Just~a~file~link~goes~like~URL:"tutorial.do.txt".~References\\
 to~sections~may~use~logical~names~as~labels~(e.g.,~a~"label"~command~right\\
 after~the~section~title),~as~in~the~reference~to\\
-Chapter~ref\{my:first:sec\}.\\
+Chapter~ref\{my:first:sec\}.~Doconce~also~allows~inline~comments~such\\
+as~{[}hpl:~here~I~will~make~some~remarks~to~the~text{]}~for~allowing\\
+authors~to~make~notes.~Inline~comments~can~be~removed~from~the~output\\
+by~a~command-line~argument~(see~Chapter~ref\{doconce2formats\}~for~an~example).\\
 ~\\
 Tables~are~also~supperted,~e.g.,\\
 ~\\
@@ -473,6 +476,7 @@ page} for various formats of this document).
   \phantomsection%
   \addcontentsline{toc}{section}{From Doconce to Other Formats}%
   \label{from-doconce-to-other-formats}%
+  \label{doconce2formats}%
 }
 
 Transformation of a Doconce document to various other
@@ -495,6 +499,24 @@ The variable \texttt{FORMAT} is always defined as the current format when
 running \texttt{preprocess}. That is, in the last example, \texttt{FORMAT} is
 defined as \texttt{LaTeX}. Inside the Doconce document one can then perform
 format specific actions through tests like \texttt{\#if FORMAT == "LaTeX"}.
+
+Inline comments in the text are removed from the output by:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix/DOS>~doconce2format~LaTeX~mydoc.do.txt~remove\_inline\_comments
+}
+\end{quote}
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the \texttt{bin} folder of the Doconce
+source code:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix/DOS>~doconce\_remove\_inline\_comments.py~mydoc.do.txt
+}
+\end{quote}
+
+This action is convenient when a Doconce document reaches its final form.
 
 
 %___________________________________________________________________________

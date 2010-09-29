@@ -227,6 +227,7 @@ def define(FILENAME_EXTENSION,
         'citation':      r'~\\cite{\g<subst>}',
         'linkURL':       r'\g<begin>\href{\g<url>}{\g<link>}\g<end>',
         'plainURL':      r'\href{\g<url>}{\g<url>}',  # cannot use \code inside \href
+        'inlinecomment': r'\inlinecomment{\g<name>}{\g<comment>}',
         'section':       '\n\n' + r'\section{\g<subst>}' + '\n',
         'subsection':    '\n' + r'\subsection{\g<subst>}' + '\n',
         #'subsubsection': '\n' + r'\subsubsection{\g<subst>}' + '\n',
@@ -327,6 +328,9 @@ def define(FILENAME_EXTENSION,
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
 % #endif
+
+\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
+%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
 \makeindex
 

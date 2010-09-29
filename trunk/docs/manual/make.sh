@@ -79,7 +79,7 @@ rst2newlatex.py manual.rst > manual.rst_new.tex
 
 
 # plain text:
-$d2f plain manual.do.txt
+$d2f plain manual.do.txt remove_inline_comments 
 
 $d2f epytext manual.do.txt
 $d2f st manual.do.txt

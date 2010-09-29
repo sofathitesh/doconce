@@ -258,6 +258,20 @@ The variable 'FORMAT' is always defined as the current format when
 running 'preprocess'. That is, in the last example, 'FORMAT' is
 defined as 'LaTeX'. Inside the Doconce document one can then perform
 format specific actions through tests like '#if FORMAT == "LaTeX"'.
+
+Inline comments in the text are removed from the output by::
+
+        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the 'bin' folder of the Doconce
+source code::
+
+        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
+
+This action is convenient when a Doconce document reaches its final form.
 HTML
 Making an HTML version of a Doconce file 'mydoc.do.txt'
 is performed by::
@@ -738,6 +752,21 @@ filename in double quotes::
 
 This construction results in the link "manual.do.txt":manual.do.txt.
 
+Doconce also supports inline comments in the text::
+
+        [name: comment]
+
+
+where 'name' is the name of the author of the command, and 'comment' is a 
+plain text text. [hpl: Note that there must be a space after the colon,
+otherwise the comment is not recognized.]
+The name and comment are visible in the output unless 'doconce2format'
+is run with a command-line specification of removing such comments
+(see the chapter "From Doconce to Other Formats" for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the '.do.txt' file
+(see the chapter "From Doconce to Other Formats").
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
@@ -859,6 +888,9 @@ in the document.
 Finally, we must test the citation command and bibliography by 
 citing a book [1], a paper [2],
 and both of them simultaneously [1] [2].
+
+[hpl: comments, citations, and references in the latex style
+is a special feature of doconce :-) ]
 Tables
 A table like
 
@@ -1165,6 +1197,15 @@ further.
 
 *Problems with Boldface and Emphasize.* Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
+
+*Strange Non-English Characters.* Check the encoding of the '.do.txt' file with the Unix 'file' command.
+If UTF-8, convert to latin-1 using the Unix command::
+
+        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+
+
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
 
 *Debugging.* Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a

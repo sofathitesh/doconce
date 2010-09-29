@@ -162,12 +162,14 @@ different formats: HTML, LaTeX, plain text, etc.</paragraph><paragraph>The file 
 Doconce file to obtain documents in various formats.</paragraph><paragraph>Another demo is found in:</paragraph><literal_block xml:space="preserve">docs/tutorial/tutorial.do.txt</literal_block><paragraph>In the <literal>tutorial</literal> directory there is also a <literal>make.sh</literal> file producing a
 lot of formats, with a corresponding
 <reference name="web demo" refuri="https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html">web demo</reference><target ids="web-demo" names="web\ demo" refuri="https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html"/>
-of the results.</paragraph><comment xml:space="preserve">Example on including another Doconce file:</comment></section></section><section ids="from-doconce-to-other-formats" names="from\ doconce\ to\ other\ formats"><title>From Doconce to Other Formats</title><paragraph>Transformation of a Doconce document to various other
+of the results.</paragraph><comment xml:space="preserve">Example on including another Doconce file:</comment><target refid="doconce2formats"/></section></section><section ids="from-doconce-to-other-formats doconce2formats" names="from\ doconce\ to\ other\ formats doconce2formats"><title>From Doconce to Other Formats</title><paragraph>Transformation of a Doconce document to various other
 formats applies the script <literal>doconce2format</literal>:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce2format format mydoc.do.txt</literal_block><paragraph>The <literal>preprocess</literal> program is always used to preprocess the file first,
 and options to <literal>preprocess</literal> can be added after the filename. For example:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt -Dextra_sections</literal_block><paragraph>The variable <literal>FORMAT</literal> is always defined as the current format when
 running <literal>preprocess</literal>. That is, in the last example, <literal>FORMAT</literal> is
 defined as <literal>LaTeX</literal>. Inside the Doconce document one can then perform
-format specific actions through tests like <literal>#if FORMAT == &quot;LaTeX&quot;</literal>.</paragraph><section ids="html" names="html"><title>HTML</title><paragraph>Making an HTML version of a Doconce file <literal>mydoc.do.txt</literal>
+format specific actions through tests like <literal>#if FORMAT == &quot;LaTeX&quot;</literal>.</paragraph><paragraph>Inline comments in the text are removed from the output by:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt remove_inline_comments</literal_block><paragraph>One can also remove such comments from the original Doconce file
+by running a helper script in the <literal>bin</literal> folder of the Doconce
+source code:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce_remove_inline_comments.py mydoc.do.txt</literal_block><paragraph>This action is convenient when a Doconce document reaches its final form.</paragraph><section ids="html" names="html"><title>HTML</title><paragraph>Making an HTML version of a Doconce file <literal>mydoc.do.txt</literal>
 is performed by:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce2format HTML mydoc.do.txt</literal_block><paragraph>The resulting file <literal>mydoc.html</literal> can be loaded into any web browser for viewing.</paragraph></section><section ids="latex" names="latex"><title>LaTeX</title><paragraph>Making a LaTeX file <literal>mydoc.tex</literal> from <literal>mydoc.do.txt</literal> is done in two steps:
 .. Note: putting code blocks inside a list is not successful in many
 .. formats - the text may be messed up. A better choice is a paragraph
@@ -373,7 +375,16 @@ Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).</paragraph><paragraph>Web addresses with links are typeset as:</paragraph><literal_block xml:space="preserve">some URL like http://my.place.in.space/src&lt;MyPlace&gt;</literal_block><paragraph>which appears as some URL like <reference name="MyPlace" refuri="http://my.place.in.space/src">MyPlace</reference><target ids="myplace" names="myplace" refuri="http://my.place.in.space/src"/>.
 Link to a file is done by the URL keyword, a colon, and enclosing the
-filename in double quotes:</paragraph><literal_block xml:space="preserve">URL:&quot;manual.do.txt&quot;</literal_block><paragraph>This construction results in the link <reference name="manual.do.txt" refuri="manual.do.txt">manual.do.txt</reference><target ids="manual-do-txt" names="manual.do.txt" refuri="manual.do.txt"/>.</paragraph><paragraph>Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
+filename in double quotes:</paragraph><literal_block xml:space="preserve">URL:&quot;manual.do.txt&quot;</literal_block><paragraph>This construction results in the link <reference name="manual.do.txt" refuri="manual.do.txt">manual.do.txt</reference><target ids="manual-do-txt" names="manual.do.txt" refuri="manual.do.txt"/>.</paragraph><paragraph>Doconce also supports inline comments in the text:</paragraph><literal_block xml:space="preserve">[name: comment]</literal_block><paragraph>where <literal>name</literal> is the name of the author of the command, and <literal>comment</literal> is a
+plain text text. <strong>hpl</strong>: Note that there must be a space after the colon,
+otherwise the comment is not recognized.
+The name and comment are visible in the output unless <literal>doconce2format</literal>
+is run with a command-line specification of removing such comments
+(see the chapter <reference name="From Doconce to Other Formats" refid="from-doconce-to-other-formats">From Doconce to Other Formats</reference> for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the <literal>.do.txt</literal> file
+(see the chapter <reference name="From Doconce to Other Formats" refid="from-doconce-to-other-formats">From Doconce to Other Formats</reference>).</paragraph><paragraph>Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
 hence nice math formatting is only obtained in LaTeX (Epytext has some
 inline math support that is utilized).  However, mathematical
@@ -443,7 +454,8 @@ appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the <literal>BIBFILE:</literal> line
 in the document.</paragraph><paragraph>Finally, we must test the citation command and bibliography by
 citing a book <citation_reference ids="id4" refid="python-primer-09">Python:Primer:09</citation_reference>, a paper <citation_reference ids="id5" refid="osnes-98">Osnes:98</citation_reference>,
-and both of them simultaneously <citation_reference ids="id6" refid="python-primer-09">Python:Primer:09</citation_reference> <citation_reference ids="id7" refid="osnes-98">Osnes:98</citation_reference>.</paragraph></section><section ids="tables" names="tables"><title>Tables</title><paragraph>A table like</paragraph><table><tgroup cols="3"><colspec colwidth="12"/><colspec colwidth="12"/><colspec colwidth="12"/><thead><row><entry><paragraph>time</paragraph></entry><entry><paragraph>velocity</paragraph></entry><entry><paragraph>acceleration</paragraph></entry></row></thead><tbody><row><entry><paragraph>0.0</paragraph></entry><entry><paragraph>1.4186</paragraph></entry><entry><paragraph>-5.01</paragraph></entry></row><row><entry><paragraph>2.0</paragraph></entry><entry><paragraph>1.376512</paragraph></entry><entry><paragraph>11.919</paragraph></entry></row><row><entry><paragraph>4.0</paragraph></entry><entry><paragraph>1.1E+1</paragraph></entry><entry><paragraph>14.717624</paragraph></entry></row></tbody></tgroup></table><paragraph>is built up of pipe symbols and dashes:</paragraph><literal_block xml:space="preserve">|--------------------------------|
+and both of them simultaneously <citation_reference ids="id6" refid="python-primer-09">Python:Primer:09</citation_reference> <citation_reference ids="id7" refid="osnes-98">Osnes:98</citation_reference>.</paragraph><paragraph><strong>hpl</strong>: comments, citations, and references in the latex style
+is a special feature of doconce :-)</paragraph></section><section ids="tables" names="tables"><title>Tables</title><paragraph>A table like</paragraph><table><tgroup cols="3"><colspec colwidth="12"/><colspec colwidth="12"/><colspec colwidth="12"/><thead><row><entry><paragraph>time</paragraph></entry><entry><paragraph>velocity</paragraph></entry><entry><paragraph>acceleration</paragraph></entry></row></thead><tbody><row><entry><paragraph>0.0</paragraph></entry><entry><paragraph>1.4186</paragraph></entry><entry><paragraph>-5.01</paragraph></entry></row><row><entry><paragraph>2.0</paragraph></entry><entry><paragraph>1.376512</paragraph></entry><entry><paragraph>11.919</paragraph></entry></row><row><entry><paragraph>4.0</paragraph></entry><entry><paragraph>1.1E+1</paragraph></entry><entry><paragraph>14.717624</paragraph></entry></row></tbody></tgroup></table><paragraph>is built up of pipe symbols and dashes:</paragraph><literal_block xml:space="preserve">|--------------------------------|
 |time  | velocity | acceleration |
 |--------------------------------|
 | 0.0  | 1.4186   | -5.01        |
@@ -631,7 +643,9 @@ and because of the indentation in the original Doconce text, the gwiki
 output looks somewhat ugly. The good thing is that this gwiki source
 is seldom to be looked at - it is the Doconce source that one edits
 further.</paragraph><paragraph><emphasis>Problems with Boldface and Emphasize.</emphasis> Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.</paragraph><paragraph><emphasis>Debugging.</emphasis> Given a problem, extract a small portion of text surrounding the
+correctly. Merge them into one common expression.</paragraph><paragraph><emphasis>Strange Non-English Characters.</emphasis> Check the encoding of the <literal>.do.txt</literal> file with the Unix <literal>file</literal> command.
+If UTF-8, convert to latin-1 using the Unix command:</paragraph><literal_block xml:space="preserve">Unix&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile</literal_block><paragraph>(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)</paragraph><paragraph><emphasis>Debugging.</emphasis> Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
 series of transformations of the text. The effect of each of these
 transformation steps are dumped to a logfile, named

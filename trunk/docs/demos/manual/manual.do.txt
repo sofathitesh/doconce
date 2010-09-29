@@ -593,6 +593,7 @@ Section ref{sec:verbatim:blocks} below.
 ===== Inline Tagging =====
 label{inline:tagging}
 idx{inline tagging} idx{emphasized words} idx{boldface words} idx{verbatim text}
+idx{inline comments}
 
 Doconce supports tags for *emphasized phrases*, _boldface phrases_,
 and `verbatim text` (also called type writer text, for inline code)
@@ -644,6 +645,20 @@ URL:"manual.do.txt"
 !ec
 This construction results in the link URL:"manual.do.txt".
 
+Doconce also supports inline comments in the text:
+!bc
+[name: comment]
+!ec
+where `name` is the name of the author of the command, and `comment` is a 
+plain text text. [hpl: Note that there must be a space after the colon,
+otherwise the comment is not recognized.]
+The name and comment are visible in the output unless `doconce2format`
+is run with a command-line specification of removing such comments
+(see Chapter ref{doconce2formats} for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the `.do.txt` file
+(see Chapter ref{doconce2formats}).
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
@@ -764,6 +779,9 @@ in the document.
 Finally, we must test the citation command and bibliography by 
 citing a book cite{Python:Primer:09}, a paper cite{Osnes:98},
 and both of them simultaneously cite{Python:Primer:09,Osnes:98}.
+
+[hpl: comments, citations, and references in the latex style
+is a special feature of doconce :-) ]
 
 
 ===== Tables =====
@@ -1058,6 +1076,15 @@ further.
 __Problems with Boldface and Emphasize.__
 Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
+
+__Strange Non-English Characters.__
+Check the encoding of the `.do.txt` file with the Unix `file` command.
+If UTF-8, convert to latin-1 using the Unix command
+!bc
+Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+!ec
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
 
 __Debugging.__
 Given a problem, extract a small portion of text surrounding the

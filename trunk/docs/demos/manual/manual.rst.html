@@ -583,7 +583,7 @@ of the results.</p>
 </div>
 </div>
 <div class="section" id="from-doconce-to-other-formats">
-<h1>From Doconce to Other Formats</h1>
+<span id="doconce2formats"></span><h1>From Doconce to Other Formats</h1>
 <p>Transformation of a Doconce document to various other
 formats applies the script <tt class="docutils literal">doconce2format</tt>:</p>
 <pre class="literal-block">
@@ -598,6 +598,17 @@ Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt -Dextra_sections
 running <tt class="docutils literal">preprocess</tt>. That is, in the last example, <tt class="docutils literal">FORMAT</tt> is
 defined as <tt class="docutils literal">LaTeX</tt>. Inside the Doconce document one can then perform
 format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;LaTeX&quot;</tt>.</p>
+<p>Inline comments in the text are removed from the output by:</p>
+<pre class="literal-block">
+Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt remove_inline_comments
+</pre>
+<p>One can also remove such comments from the original Doconce file
+by running a helper script in the <tt class="docutils literal">bin</tt> folder of the Doconce
+source code:</p>
+<pre class="literal-block">
+Unix/DOS&gt; doconce_remove_inline_comments.py mydoc.do.txt
+</pre>
+<p>This action is convenient when a Doconce document reaches its final form.</p>
 <div class="section" id="html">
 <h2>HTML</h2>
 <p>Making an HTML version of a Doconce file <tt class="docutils literal">mydoc.do.txt</tt>
@@ -1060,6 +1071,20 @@ filename in double quotes:</p>
 URL:&quot;manual.do.txt&quot;
 </pre>
 <p>This construction results in the link <a class="reference external" href="manual.do.txt">manual.do.txt</a>.</p>
+<p>Doconce also supports inline comments in the text:</p>
+<pre class="literal-block">
+[name: comment]
+</pre>
+<p>where <tt class="docutils literal">name</tt> is the name of the author of the command, and <tt class="docutils literal">comment</tt> is a
+plain text text. <strong>hpl</strong>: Note that there must be a space after the colon,
+otherwise the comment is not recognized.
+The name and comment are visible in the output unless <tt class="docutils literal">doconce2format</tt>
+is run with a command-line specification of removing such comments
+(see the chapter <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a> for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the <tt class="docutils literal">.do.txt</tt> file
+(see the chapter <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a>).</p>
 <p>Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
 hence nice math formatting is only obtained in LaTeX (Epytext has some
@@ -1172,6 +1197,8 @@ in the document.</p>
 <p>Finally, we must test the citation command and bibliography by
 citing a book <a class="citation-reference" href="#python-primer-09" id="id4">[Python:Primer:09]</a>, a paper <a class="citation-reference" href="#osnes-98" id="id5">[Osnes:98]</a>,
 and both of them simultaneously <a class="citation-reference" href="#python-primer-09" id="id6">[Python:Primer:09]</a> <a class="citation-reference" href="#osnes-98" id="id7">[Osnes:98]</a>.</p>
+<p><strong>hpl</strong>: comments, citations, and references in the latex style
+is a special feature of doconce :-)</p>
 </div>
 <div class="section" id="tables">
 <h2>Tables</h2>
@@ -1484,6 +1511,13 @@ is seldom to be looked at - it is the Doconce source that one edits
 further.</p>
 <p><em>Problems with Boldface and Emphasize.</em> Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.</p>
+<p><em>Strange Non-English Characters.</em> Check the encoding of the <tt class="docutils literal">.do.txt</tt> file with the Unix <tt class="docutils literal">file</tt> command.
+If UTF-8, convert to latin-1 using the Unix command:</p>
+<pre class="literal-block">
+Unix&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+</pre>
+<p>(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)</p>
 <p><em>Debugging.</em> Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
 series of transformations of the text. The effect of each of these

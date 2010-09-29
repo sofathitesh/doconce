@@ -164,15 +164,21 @@ The Doconce source code reads
     
 ************** File: testdoc.p.tex *****************
 \documentclass{article}
-\usepackage{hyperref,relsize,,epsfig,makeidx}
+\usepackage{hyperref,relsize,epsfig,makeidx}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
+% #ifdef MINTED
+\usepackage{minted}  % requires latex -shell-escape (for Minted_* envirs)
+% #endif
 
 % #ifdef HELVETICA
 % Set helvetica as the default font family:
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
 % #endif
+
+\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
+%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
 \makeindex
 
@@ -801,8 +807,8 @@ doconce2format HTML tutorial.do.txt
 # LaTeX
 doconce2format LaTeX tutorial.do.txt
 ptex2tex -DHELVETICA tutorial
-latex -shell-escape tutorial.tex
-latex -shell-escape tutorial.tex
+latex tutorial.tex  # no -shell-escape since no -DMINTED to ptex2tex
+latex tutorial.tex
 dvipdf tutorial.dvi
 
 # Sphinx
@@ -1053,7 +1059,10 @@ URLs with a link word are possible, as in http://folk.uio.no/hpl<hpl>.
 Just a file link goes like URL:"tutorial.do.txt". References
 to sections may use logical names as labels (e.g., a "label" command right
 after the section title), as in the reference to 
-Chapter ref{my:first:sec}.
+Chapter ref{my:first:sec}. Doconce also allows inline comments such
+as [hpl: here I will make some remarks to the text] for allowing
+authors to make notes. Inline comments can be removed from the output
+by a command-line argument (see Chapter ref{doconce2formats} for an example).
 
 Tables are also supperted, e.g.,
 
@@ -1393,7 +1402,10 @@ URLs with a link word are possible, as in http://folk.uio.no/hpl&lt;hpl&gt;.
 Just a file link goes like URL:"tutorial.do.txt". References
 to sections may use logical names as labels (e.g., a "label" command right
 after the section title), as in the reference to 
-Chapter ref{my:first:sec}.
+Chapter ref{my:first:sec}. Doconce also allows inline comments such
+as [hpl: here I will make some remarks to the text] for allowing
+authors to make notes. Inline comments can be removed from the output
+by a command-line argument (see Chapter ref{doconce2formats} for an example).
 
 Tables are also supperted, e.g.,
 
@@ -1588,7 +1600,9 @@ page</A> for various formats of this document).
 <P>
 
 <P>
-<H1>From Doconce to Other Formats</H1>
+<H1>From Doconce to Other Formats <A NAME="doconce2formats"></A></H1>
+<P>
+
 <P>
 Transformation of a Doconce document to various other
 formats applies the script <TT>doconce2format</TT>:
@@ -1608,6 +1622,23 @@ The variable <TT>FORMAT</TT> is always defined as the current format when
 running <TT>preprocess</TT>. That is, in the last example, <TT>FORMAT</TT> is
 defined as <TT>LaTeX</TT>. Inside the Doconce document one can then perform
 format specific actions through tests like <TT>#if FORMAT == "LaTeX"</TT>.
+
+<P>
+Inline comments in the text are removed from the output by
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+One can also remove such comments from the original Doconce file
+by running a helper script in the <TT>bin</TT> folder of the Doconce
+source code:
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+This action is convenient when a Doconce document reaches its final form.
 
 <P>
 
@@ -1686,8 +1717,29 @@ a certain environment in <TT>.ptex2tex.cfg</TT> (e.g., <TT>CodeIntended</TT>).
 There are over 30 styles to choose from.
 
 <P>
-<B>Step 3.</B> Compile <TT>mydoc.tex</TT> with <TT>latex -shell-escape</TT> 
+<B>Step 3.</B> Compile <TT>mydoc.tex</TT>
 and create the PDF file:
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Unix/DOS> latex mydoc
+Unix/DOS> latex mydoc
+Unix/DOS> makeindex mydoc   # if index
+Unix/DOS> bibitem mydoc     # if bibliography
+Unix/DOS> latex mydoc
+Unix/DOS> dvipdf mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+If one wishes to use the <TT>Minted_Python</TT>, <TT>Minted_Cpp</TT>, etc., environments
+in <TT>ptex2tex</TT> for typesetting code, the <TT>minted</TT> LaTeX package is needed.
+This package is included by running <TT>doconce2format</TT> with the
+<TT>-DMINTED</TT> option:
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Unix/DOS> ptex2tex -DMINTED mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+In this case, <TT>latex</TT> must be run with the
+<TT>-shell-escape</TT> option:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> latex -shell-escape mydoc
@@ -1698,9 +1750,9 @@ Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> dvipdf mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-The <TT>-shell-escape</TT> option is required because <TT>ptex2tex</TT> inserts an include
-of the <TT>minted.sty</TT> style, which applies the <TT>pygments</TT> to format code,
-and this program cannot be run from <TT>latex</TT> without the <TT>-shell-escape</TT> option.
+The <TT>-shell-escape</TT> option is required because the <TT>minted.sty</TT> style
+file runs the <TT>pygments</TT> program to format code, and this program
+cannot be run from <TT>latex</TT> without the <TT>-shell-escape</TT> option.
 
 <P>
 
@@ -2059,7 +2111,10 @@ Here is an example of some simple text written in the Doconce format::
         Just a file link goes like URL:"tutorial.do.txt". References
         to sections may use logical names as labels (e.g., a "label" command right
         after the section title), as in the reference to 
-        Chapter ref{my:first:sec}.
+        Chapter ref{my:first:sec}. Doconce also allows inline comments such
+        as [hpl: here I will make some remarks to the text] for allowing
+        authors to make notes. Inline comments can be removed from the output
+        by a command-line argument (see Chapter ref{doconce2formats} for an example).
         
         Tables are also supperted, e.g.,
         
@@ -2235,6 +2290,8 @@ page <https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>`_ fo
 .. Example on including another Doconce file:
 
 
+.. _doconce2formats:
+
 From Doconce to Other Formats
 =============================
 
@@ -2254,6 +2311,20 @@ The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
 defined as ``LaTeX``. Inside the Doconce document one can then perform
 format specific actions through tests like ``#if FORMAT == "LaTeX"``.
+
+Inline comments in the text are removed from the output by::
+
+        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the ``bin`` folder of the Doconce
+source code::
+
+        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
+
+This action is convenient when a Doconce document reaches its final form.
 
 
 HTML
@@ -2321,8 +2392,27 @@ file, e.g., ``!bc sys cod`` for a code snippet, where ``cod`` is set to
 a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
 There are over 30 styles to choose from.
 
-*Step 3.* Compile ``mydoc.tex`` with ``latex -shell-escape`` 
+*Step 3.* Compile ``mydoc.tex``
 and create the PDF file::
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
+in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
+This package is included by running ``doconce2format`` with the
+``-DMINTED`` option::
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, ``latex`` must be run with the
+``-shell-escape`` option::
 
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> latex -shell-escape mydoc
@@ -2332,9 +2422,9 @@ and create the PDF file::
         Unix/DOS> dvipdf mydoc
 
 
-The ``-shell-escape`` option is required because ``ptex2tex`` inserts an include
-of the ``minted.sty`` style, which applies the ``pygments`` to format code,
-and this program cannot be run from ``latex`` without the ``-shell-escape`` option.
+The ``-shell-escape`` option is required because the ``minted.sty`` style
+file runs the ``pygments`` program to format code, and this program
+cannot be run from ``latex`` without the ``-shell-escape`` option.
 
 
 Plain ASCII Text
@@ -2663,7 +2753,10 @@ Here is an example of some simple text written in the Doconce format:
         Just a file link goes like URL:"tutorial.do.txt". References
         to sections may use logical names as labels (e.g., a "label" command right
         after the section title), as in the reference to 
-        Chapter ref{my:first:sec}.
+        Chapter ref{my:first:sec}. Doconce also allows inline comments such
+        as [hpl: here I will make some remarks to the text] for allowing
+        authors to make notes. Inline comments can be removed from the output
+        by a command-line argument (see Chapter ref{doconce2formats} for an example).
         
         Tables are also supperted, e.g.,
         
@@ -2847,6 +2940,8 @@ page <https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>`_ fo
 .. Example on including another Doconce file:
 
 
+.. _doconce2formats:
+
 From Doconce to Other Formats
 =============================
 
@@ -2870,6 +2965,24 @@ The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
 defined as ``LaTeX``. Inside the Doconce document one can then perform
 format specific actions through tests like ``#if FORMAT == "LaTeX"``.
+
+Inline comments in the text are removed from the output by
+
+.. code-block:: console
+
+        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the ``bin`` folder of the Doconce
+source code:
+
+.. code-block:: py
+
+        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
+
+This action is convenient when a Doconce document reaches its final form.
 
 
 HTML
@@ -2949,8 +3062,31 @@ file, e.g., ``!bc sys cod`` for a code snippet, where ``cod`` is set to
 a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
 There are over 30 styles to choose from.
 
-*Step 3.* Compile ``mydoc.tex`` with ``latex -shell-escape`` 
+*Step 3.* Compile ``mydoc.tex``
 and create the PDF file:
+
+.. code-block:: console
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
+in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
+This package is included by running ``doconce2format`` with the
+``-DMINTED`` option:
+
+.. code-block:: console
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, ``latex`` must be run with the
+``-shell-escape`` option:
 
 .. code-block:: console
 
@@ -2962,9 +3098,9 @@ and create the PDF file:
         Unix/DOS> dvipdf mydoc
 
 
-The ``-shell-escape`` option is required because ``ptex2tex`` inserts an include
-of the ``minted.sty`` style, which applies the ``pygments`` to format code,
-and this program cannot be run from ``latex`` without the ``-shell-escape`` option.
+The ``-shell-escape`` option is required because the ``minted.sty`` style
+file runs the ``pygments`` program to format code, and this program
+cannot be run from ``latex`` without the ``-shell-escape`` option.
 
 
 Plain ASCII Text
@@ -3271,7 +3407,10 @@ URLs with a link word are possible, as in http://folk.uio.no/hpl<hpl>.
 Just a file link goes like URL:"tutorial.do.txt". References
 to sections may use logical names as labels (e.g., a "label" command right
 after the section title), as in the reference to 
-Chapter ref{my:first:sec}.
+Chapter ref{my:first:sec}. Doconce also allows inline comments such
+as [hpl: here I will make some remarks to the text] for allowing
+authors to make notes. Inline comments can be removed from the output
+by a command-line argument (see Chapter ref{doconce2formats} for an example).
 
 Tables are also supperted, e.g.,
 
@@ -3448,6 +3587,18 @@ running `preprocess`. That is, in the last example, `FORMAT` is
 defined as `LaTeX`. Inside the Doconce document one can then perform
 format specific actions through tests like `#if FORMAT == "LaTeX"`.
 
+Inline comments in the text are removed from the output by
+{{{
+Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+}}}
+One can also remove such comments from the original Doconce file
+by running a helper script in the `bin` folder of the Doconce
+source code:
+{{{
+Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+}}}
+This action is convenient when a Doconce document reaches its final form.
+
 ==== HTML ====
 
 Making an HTML version of a Doconce file `mydoc.do.txt`
@@ -3505,8 +3656,25 @@ file, e.g., `!bc sys cod` for a code snippet, where `cod` is set to
 a certain environment in `.ptex2tex.cfg` (e.g., `CodeIntended`).
 There are over 30 styles to choose from.
 
-*Step 3.* Compile `mydoc.tex` with `latex -shell-escape` 
+*Step 3.* Compile `mydoc.tex`
 and create the PDF file:
+{{{
+Unix/DOS> latex mydoc
+Unix/DOS> latex mydoc
+Unix/DOS> makeindex mydoc   # if index
+Unix/DOS> bibitem mydoc     # if bibliography
+Unix/DOS> latex mydoc
+Unix/DOS> dvipdf mydoc
+}}}
+If one wishes to use the `Minted_Python`, `Minted_Cpp`, etc., environments
+in `ptex2tex` for typesetting code, the `minted` LaTeX package is needed.
+This package is included by running `doconce2format` with the
+`-DMINTED` option:
+{{{
+Unix/DOS> ptex2tex -DMINTED mydoc
+}}}
+In this case, `latex` must be run with the
+`-shell-escape` option:
 {{{
 Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> latex -shell-escape mydoc
@@ -3515,9 +3683,9 @@ Unix/DOS> bibitem mydoc     # if bibliography
 Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> dvipdf mydoc
 }}}
-The `-shell-escape` option is required because `ptex2tex` inserts an include
-of the `minted.sty` style, which applies the `pygments` to format code,
-and this program cannot be run from `latex` without the `-shell-escape` option.
+The `-shell-escape` option is required because the `minted.sty` style
+file runs the `pygments` program to format code, and this program
+cannot be run from `latex` without the `-shell-escape` option.
 
 ==== Plain ASCII Text ====
 
@@ -3799,7 +3967,10 @@ Here is an example of some simple text written in the Doconce format::
         Just a file link goes like URL:"tutorial.do.txt". References
         to sections may use logical names as labels (e.g., a "label" command right
         after the section title), as in the reference to 
-        Chapter ref{my:first:sec}.
+        Chapter ref{my:first:sec}. Doconce also allows inline comments such
+        as [hpl: here I will make some remarks to the text] for allowing
+        authors to make notes. Inline comments can be removed from the output
+        by a command-line argument (see Chapter ref{doconce2formats} for an example).
         
         Tables are also supperted, e.g.,
         
@@ -3963,6 +4134,20 @@ The variable 'FORMAT' is always defined as the current format when
 running 'preprocess'. That is, in the last example, 'FORMAT' is
 defined as 'LaTeX'. Inside the Doconce document one can then perform
 format specific actions through tests like '#if FORMAT == "LaTeX"'.
+
+Inline comments in the text are removed from the output by::
+
+        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the 'bin' folder of the Doconce
+source code::
+
+        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
+
+This action is convenient when a Doconce document reaches its final form.
 HTML
 Making an HTML version of a Doconce file 'mydoc.do.txt'
 is performed by::
@@ -4020,8 +4205,27 @@ file, e.g., '!bc sys cod' for a code snippet, where 'cod' is set to
 a certain environment in '.ptex2tex.cfg' (e.g., 'CodeIntended').
 There are over 30 styles to choose from.
 
-*Step 3.* Compile 'mydoc.tex' with 'latex -shell-escape' 
+*Step 3.* Compile 'mydoc.tex'
 and create the PDF file::
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the 'Minted_Python', 'Minted_Cpp', etc., environments
+in 'ptex2tex' for typesetting code, the 'minted' LaTeX package is needed.
+This package is included by running 'doconce2format' with the
+'-DMINTED' option::
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, 'latex' must be run with the
+'-shell-escape' option::
 
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> latex -shell-escape mydoc
@@ -4031,9 +4235,9 @@ and create the PDF file::
         Unix/DOS> dvipdf mydoc
 
 
-The '-shell-escape' option is required because 'ptex2tex' inserts an include
-of the 'minted.sty' style, which applies the 'pygments' to format code,
-and this program cannot be run from 'latex' without the '-shell-escape' option.
+The '-shell-escape' option is required because the 'minted.sty' style
+file runs the 'pygments' program to format code, and this program
+cannot be run from 'latex' without the '-shell-escape' option.
 Plain ASCII Text
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
@@ -4310,7 +4514,10 @@ Here is an example of some simple text written in the Doconce format::
         Just a file link goes like URL:"tutorial.do.txt". References
         to sections may use logical names as labels (e.g., a "label" command right
         after the section title), as in the reference to 
-        Chapter ref{my:first:sec}.
+        Chapter ref{my:first:sec}. Doconce also allows inline comments such
+        as [hpl: here I will make some remarks to the text] for allowing
+        authors to make notes. Inline comments can be removed from the output
+        by a command-line argument (see Chapter ref{doconce2formats} for an example).
         
         Tables are also supperted, e.g.,
         
@@ -4495,6 +4702,20 @@ running C{preprocess}. That is, in the last example, C{FORMAT} is
 defined as C{LaTeX}. Inside the Doconce document one can then perform
 format specific actions through tests like C{#if FORMAT == "LaTeX"}.
 
+Inline comments in the text are removed from the output by::
+
+        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the C{bin} folder of the Doconce
+source code::
+
+        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
+
+This action is convenient when a Doconce document reaches its final form.
+
 
 HTML
 ----
@@ -4558,8 +4779,27 @@ file, e.g., C{!bc sys cod} for a code snippet, where C{cod} is set to
 a certain environment in C{.ptex2tex.cfg} (e.g., C{CodeIntended}).
 There are over 30 styles to choose from.
 
-I{Step 3.} Compile C{mydoc.tex} with C{latex -shell-escape} 
+I{Step 3.} Compile C{mydoc.tex}
 and create the PDF file::
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the C{Minted_Python}, C{Minted_Cpp}, etc., environments
+in C{ptex2tex} for typesetting code, the C{minted} LaTeX package is needed.
+This package is included by running C{doconce2format} with the
+C{-DMINTED} option::
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, C{latex} must be run with the
+C{-shell-escape} option::
 
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> latex -shell-escape mydoc
@@ -4569,9 +4809,9 @@ and create the PDF file::
         Unix/DOS> dvipdf mydoc
 
 
-The C{-shell-escape} option is required because C{ptex2tex} inserts an include
-of the C{minted.sty} style, which applies the C{pygments} to format code,
-and this program cannot be run from C{latex} without the C{-shell-escape} option.
+The C{-shell-escape} option is required because the C{minted.sty} style
+file runs the C{pygments} program to format code, and this program
+cannot be run from C{latex} without the C{-shell-escape} option.
 
 
 Plain ASCII Text
@@ -4897,7 +5137,10 @@ Here is an example of some simple text written in the Doconce format::
         Just a file link goes like URL:"tutorial.do.txt". References
         to sections may use logical names as labels (e.g., a "label" command right
         after the section title), as in the reference to 
-        Chapter ref{my:first:sec}.
+        Chapter ref{my:first:sec}. Doconce also allows inline comments such
+        as [hpl: here I will make some remarks to the text] for allowing
+        authors to make notes. Inline comments can be removed from the output
+        by a command-line argument (see Chapter ref{doconce2formats} for an example).
         
         Tables are also supperted, e.g.,
         
@@ -5085,6 +5328,20 @@ running preprocess. That is, in the last example, FORMAT is
 defined as LaTeX. Inside the Doconce document one can then perform
 format specific actions through tests like #if FORMAT == "LaTeX".
 
+Inline comments in the text are removed from the output by::
+
+        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the bin folder of the Doconce
+source code::
+
+        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
+
+This action is convenient when a Doconce document reaches its final form.
+
 
 HTML
 ----
@@ -5150,8 +5407,27 @@ file, e.g.::
 a certain environment in .ptex2tex.cfg (e.g., CodeIntended).
 There are over 30 styles to choose from.
 
-*Step 3.* Compile mydoc.tex with latex -shell-escape 
+*Step 3.* Compile mydoc.tex
 and create the PDF file::
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the Minted_Python, Minted_Cpp, etc., environments
+in ptex2tex for typesetting code, the minted LaTeX package is needed.
+This package is included by running doconce2format with the
+-DMINTED option::
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, latex must be run with the
+-shell-escape option::
 
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> latex -shell-escape mydoc
@@ -5161,9 +5437,9 @@ and create the PDF file::
         Unix/DOS> dvipdf mydoc
 
 
-The -shell-escape option is required because ptex2tex inserts an include
-of the minted.sty style, which applies the pygments to format code,
-and this program cannot be run from latex without the -shell-escape option.
+The -shell-escape option is required because the minted.sty style
+file runs the pygments program to format code, and this program
+cannot be run from latex without the -shell-escape option.
 
 
 Plain ASCII Text
@@ -5376,7 +5652,7 @@ more typesetting and tagging features than Doconce.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Fri, 10 Sep 2010 (18:26)
+DATE: Wed, 29 Sep 2010 (07:13)
 
 
 
@@ -5480,7 +5756,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Fri, 10 Sep 2010 (18:26)
+DATE: Wed, 29 Sep 2010 (07:13)
 
 
 
@@ -5594,7 +5870,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Fri, 10 Sep 2010 (18:26)</CENTER>
+<CENTER>Wed, 29 Sep 2010 (07:13)</CENTER>
 
 
 
@@ -5725,7 +6001,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Fri, 10 Sep 2010 (18:26)</CENTER>
+<CENTER>Wed, 29 Sep 2010 (07:13)</CENTER>
 
 
 
@@ -5924,14 +6200,14 @@ rst2newlatex.py manual.rst > manual.rst_new.tex
 
 
 # plain text:
-$d2f plain manual.do.txt
+$d2f plain manual.do.txt remove_inline_comments 
 
 $d2f epytext manual.do.txt
 $d2f st manual.do.txt
 
 # doconce LaTeX:
-$d2f LaTeX manual.do.txt             # produces ptex2tex: manual.p.tex
-ptex2tex manual                      # turn ptex2tex format into plain latex
+$d2f LaTeX manual.do.txt    # produces ptex2tex: manual.p.tex
+ptex2tex -DMINTED manual    # turn ptex2tex format into plain latex
 rm -f manual.p.tex
 latex -shell-escape manual
 latex -shell-escape manual
@@ -6087,7 +6363,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.
+one motivation for developing the Doconce concept and tool.
 
 __Different Tagging for Different Formats.__ A problem with doc
 strings (in Python) is that they benefit greatly from some tagging,
@@ -6603,6 +6879,7 @@ Section ref{sec:verbatim:blocks} below.
 ===== Inline Tagging =====
 label{inline:tagging}
 idx{inline tagging} idx{emphasized words} idx{boldface words} idx{verbatim text}
+idx{inline comments}
 
 Doconce supports tags for *emphasized phrases*, _boldface phrases_,
 and `verbatim text` (also called type writer text, for inline code)
@@ -6654,6 +6931,20 @@ URL:"manual.do.txt"
 !ec
 This construction results in the link URL:"manual.do.txt".
 
+Doconce also supports inline comments in the text:
+!bc
+[name: comment]
+!ec
+where `name` is the name of the author of the command, and `comment` is a 
+plain text text. [hpl: Note that there must be a space after the colon,
+otherwise the comment is not recognized.]
+The name and comment are visible in the output unless `doconce2format`
+is run with a command-line specification of removing such comments
+(see Chapter ref{doconce2formats} for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the `.do.txt` file
+(see Chapter ref{doconce2formats}).
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
@@ -6775,6 +7066,9 @@ Finally, we must test the citation command and bibliography by
 citing a book cite{Python:Primer:09}, a paper cite{Osnes:98},
 and both of them simultaneously cite{Python:Primer:09,Osnes:98}.
 
+[hpl: comments, citations, and references in the latex style
+is a special feature of doconce :-) ]
+
 
 ===== Tables =====
 
@@ -6853,8 +7147,8 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code:
-!bc cod
+Here is a verbatim code block with Python code (`pycod` style):
+!bc pycod
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P<begin>(^|\s+))'
 inline_tag_end = r'(?P<end>[.,?!;:)\s])'
@@ -6870,7 +7164,7 @@ INLINE_TAGS = {
     (inline_tag_begin, inline_tag_end),
 }
 !ec
-And here is a C++ code snippet:
+And here is a C++ code snippet (`cppcod` style):
 !bc cppcod
 void myfunc(double* x, const double& myarr) {
     for (int i = 1; i < myarr.size(); i++) {
@@ -7068,6 +7362,15 @@ further.
 __Problems with Boldface and Emphasize.__
 Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
+
+__Strange Non-English Characters.__
+Check the encoding of the `.do.txt` file with the Unix `file` command.
+If UTF-8, convert to latin-1 using the Unix command
+!bc
+Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+!ec
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
 
 __Debugging.__
 Given a problem, extract a small portion of text surrounding the
@@ -7378,7 +7681,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.
+one motivation for developing the Doconce concept and tool.
 
 <P>
 <B>Different Tagging for Different Formats.</B> A problem with doc
@@ -7623,7 +7926,9 @@ of the results.
 <P>
 
 <P>
-<H1>From Doconce to Other Formats</H1>
+<H1>From Doconce to Other Formats <A NAME="doconce2formats"></A></H1>
+<P>
+
 <P>
 Transformation of a Doconce document to various other
 formats applies the script <TT>doconce2format</TT>:
@@ -7643,6 +7948,23 @@ The variable <TT>FORMAT</TT> is always defined as the current format when
 running <TT>preprocess</TT>. That is, in the last example, <TT>FORMAT</TT> is
 defined as <TT>LaTeX</TT>. Inside the Doconce document one can then perform
 format specific actions through tests like <TT>#if FORMAT == "LaTeX"</TT>.
+
+<P>
+Inline comments in the text are removed from the output by
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+One can also remove such comments from the original Doconce file
+by running a helper script in the <TT>bin</TT> folder of the Doconce
+source code:
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+This action is convenient when a Doconce document reaches its final form.
 
 <P>
 
@@ -7721,8 +8043,29 @@ a certain environment in <TT>.ptex2tex.cfg</TT> (e.g., <TT>CodeIntended</TT>).
 There are over 30 styles to choose from.
 
 <P>
-<B>Step 3.</B> Compile <TT>mydoc.tex</TT> with <TT>latex -shell-escape</TT> 
+<B>Step 3.</B> Compile <TT>mydoc.tex</TT>
 and create the PDF file:
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Unix/DOS> latex mydoc
+Unix/DOS> latex mydoc
+Unix/DOS> makeindex mydoc   # if index
+Unix/DOS> bibitem mydoc     # if bibliography
+Unix/DOS> latex mydoc
+Unix/DOS> dvipdf mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+If one wishes to use the <TT>Minted_Python</TT>, <TT>Minted_Cpp</TT>, etc., environments
+in <TT>ptex2tex</TT> for typesetting code, the <TT>minted</TT> LaTeX package is needed.
+This package is included by running <TT>doconce2format</TT> with the
+<TT>-DMINTED</TT> option:
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Unix/DOS> ptex2tex -DMINTED mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+In this case, <TT>latex</TT> must be run with the
+<TT>-shell-escape</TT> option:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> latex -shell-escape mydoc
@@ -7733,9 +8076,9 @@ Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> dvipdf mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-The <TT>-shell-escape</TT> option is required because <TT>ptex2tex</TT> inserts an include
-of the <TT>minted.sty</TT> style, which applies the <TT>pygments</TT> to format code,
-and this program cannot be run from <TT>latex</TT> without the <TT>-shell-escape</TT> option.
+The <TT>-shell-escape</TT> option is required because the <TT>minted.sty</TT> style
+file runs the <TT>pygments</TT> program to format code, and this program
+cannot be run from <TT>latex</TT> without the <TT>-shell-escape</TT> option.
 
 <P>
 
@@ -8255,6 +8598,22 @@ URL:"manual.do.txt"
 This construction results in the link <A HREF="manual.do.txt"><TT>manual.do.txt</TT></A>.
 
 <P>
+Doconce also supports inline comments in the text:
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+[name: comment]
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+where <TT>name</TT> is the name of the author of the command, and <TT>comment</TT> is a 
+plain text text. [<B>hpl</B>: <EM>Note that there must be a space after the colon,
+otherwise the comment is not recognized.</EM>]
+The name and comment are visible in the output unless <TT>doconce2format</TT>
+is run with a command-line specification of removing such comments
+(see the chapter <A HREF="#doconce2formats">From Doconce to Other Formats</a> for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the <TT>.do.txt</TT> file
+(see the chapter <A HREF="#doconce2formats">From Doconce to Other Formats</a>).
 
 <P>
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
@@ -8397,6 +8756,10 @@ citing a book <A HREF="#Python:Primer:09">[1]</A>, a paper <A HREF="#Osnes:98">[
 and both of them simultaneously <A HREF="#Python:Primer:09">[1]</A> <A HREF="#Osnes:98">[2]</A>.
 
 <P>
+[<B>hpl</B>: <EM>comments, citations, and references in the latex style
+is a special feature of doconce :-) </EM>]
+
+<P>
 
 <P>
 <H3>Tables</H3>
@@ -8488,8 +8851,8 @@ in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
 <P>
-Here is a verbatim code block with Python code:
-<!-- BEGIN VERBATIM BLOCK   cod-->
+Here is a verbatim code block with Python code (<TT>pycod</TT> style):
+<!-- BEGIN VERBATIM BLOCK   pycod-->
 <BLOCKQUOTE><PRE>
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P&lt;begin&gt;(^|\s+))'
@@ -8507,7 +8870,7 @@ INLINE_TAGS = {
 }
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-And here is a C++ code snippet:
+And here is a C++ code snippet (<TT>cppcod</TT> style):
 <!-- BEGIN VERBATIM BLOCK   cppcod-->
 <BLOCKQUOTE><PRE>
 void myfunc(double* x, const double& myarr) {
@@ -8769,6 +9132,17 @@ further.
 <P>
 <B>Problems with Boldface and Emphasize.</B> Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
+
+<P>
+<B>Strange Non-English Characters.</B> Check the encoding of the <TT>.do.txt</TT> file with the Unix <TT>file</TT> command.
+If UTF-8, convert to latin-1 using the Unix command
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
 
 <P>
 <B>Debugging.</B> Given a problem, extract a small portion of text surrounding the
@@ -9075,7 +9449,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.
+one motivation for developing the Doconce concept and tool.
 
 *Different Tagging for Different Formats.* A problem with doc
 strings (in Python) is that they benefit greatly from some tagging,
@@ -9295,6 +9669,8 @@ of the results.
 .. Example on including another Doconce file:
 
 
+.. _doconce2formats:
+
 From Doconce to Other Formats
 =============================
 
@@ -9314,6 +9690,20 @@ The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
 defined as ``LaTeX``. Inside the Doconce document one can then perform
 format specific actions through tests like ``#if FORMAT == "LaTeX"``.
+
+Inline comments in the text are removed from the output by::
+
+        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the ``bin`` folder of the Doconce
+source code::
+
+        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
+
+This action is convenient when a Doconce document reaches its final form.
 
 
 HTML
@@ -9381,8 +9771,27 @@ file, e.g., ``!bc sys cod`` for a code snippet, where ``cod`` is set to
 a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
 There are over 30 styles to choose from.
 
-*Step 3.* Compile ``mydoc.tex`` with ``latex -shell-escape`` 
+*Step 3.* Compile ``mydoc.tex``
 and create the PDF file::
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
+in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
+This package is included by running ``doconce2format`` with the
+``-DMINTED`` option::
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, ``latex`` must be run with the
+``-shell-escape`` option::
 
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> latex -shell-escape mydoc
@@ -9392,9 +9801,9 @@ and create the PDF file::
         Unix/DOS> dvipdf mydoc
 
 
-The ``-shell-escape`` option is required because ``ptex2tex`` inserts an include
-of the ``minted.sty`` style, which applies the ``pygments`` to format code,
-and this program cannot be run from ``latex`` without the ``-shell-escape`` option.
+The ``-shell-escape`` option is required because the ``minted.sty`` style
+file runs the ``pygments`` program to format code, and this program
+cannot be run from ``latex`` without the ``-shell-escape`` option.
 
 
 Plain ASCII Text
@@ -9852,6 +10261,21 @@ filename in double quotes::
 
 This construction results in the link `<manual.do.txt>`_.
 
+Doconce also supports inline comments in the text::
+
+        [name: comment]
+
+
+where ``name`` is the name of the author of the command, and ``comment`` is a 
+plain text text. **hpl**: Note that there must be a space after the colon,
+otherwise the comment is not recognized.
+The name and comment are visible in the output unless ``doconce2format``
+is run with a command-line specification of removing such comments
+(see the chapter `From Doconce to Other Formats`_ for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the ``.do.txt`` file
+(see the chapter `From Doconce to Other Formats`_).
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
@@ -9980,6 +10404,9 @@ Finally, we must test the citation command and bibliography by
 citing a book [Python:Primer:09]_, a paper [Osnes:98]_,
 and both of them simultaneously [Python:Primer:09]_ [Osnes:98]_.
 
+**hpl**: comments, citations, and references in the latex style
+is a special feature of doconce :-) 
+
 
 Tables
 ------
@@ -10063,7 +10490,7 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code::
+Here is a verbatim code block with Python code (``pycod`` style)::
 
         # regular expressions for inline tags:
         inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -10081,7 +10508,7 @@ Here is a verbatim code block with Python code::
         }
 
 
-And here is a C++ code snippet::
+And here is a C++ code snippet (``cppcod`` style)::
 
         void myfunc(double* x, const double& myarr) {
             for (int i = 1; i < myarr.size(); i++) {
@@ -10316,6 +10743,15 @@ further.
 
 *Problems with Boldface and Emphasize.* Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
+
+*Strange Non-English Characters.* Check the encoding of the ``.do.txt`` file with the Unix ``file`` command.
+If UTF-8, convert to latin-1 using the Unix command::
+
+        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+
+
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
 
 *Debugging.* Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
@@ -10599,7 +11035,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.
+one motivation for developing the Doconce concept and tool.
 
 *Different Tagging for Different Formats.* A problem with doc
 strings (in Python) is that they benefit greatly from some tagging,
@@ -10830,6 +11266,8 @@ of the results.
 .. Example on including another Doconce file:
 
 
+.. _doconce2formats:
+
 From Doconce to Other Formats
 =============================
 
@@ -10853,6 +11291,24 @@ The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
 defined as ``LaTeX``. Inside the Doconce document one can then perform
 format specific actions through tests like ``#if FORMAT == "LaTeX"``.
+
+Inline comments in the text are removed from the output by
+
+.. code-block:: console
+
+        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the ``bin`` folder of the Doconce
+source code:
+
+.. code-block:: py
+
+        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
+
+This action is convenient when a Doconce document reaches its final form.
 
 
 HTML
@@ -10932,8 +11388,31 @@ file, e.g., ``!bc sys cod`` for a code snippet, where ``cod`` is set to
 a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
 There are over 30 styles to choose from.
 
-*Step 3.* Compile ``mydoc.tex`` with ``latex -shell-escape`` 
+*Step 3.* Compile ``mydoc.tex``
 and create the PDF file:
+
+.. code-block:: console
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
+in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
+This package is included by running ``doconce2format`` with the
+``-DMINTED`` option:
+
+.. code-block:: console
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, ``latex`` must be run with the
+``-shell-escape`` option:
 
 .. code-block:: console
 
@@ -10945,9 +11424,9 @@ and create the PDF file:
         Unix/DOS> dvipdf mydoc
 
 
-The ``-shell-escape`` option is required because ``ptex2tex`` inserts an include
-of the ``minted.sty`` style, which applies the ``pygments`` to format code,
-and this program cannot be run from ``latex`` without the ``-shell-escape`` option.
+The ``-shell-escape`` option is required because the ``minted.sty`` style
+file runs the ``pygments`` program to format code, and this program
+cannot be run from ``latex`` without the ``-shell-escape`` option.
 
 
 Plain ASCII Text
@@ -11401,6 +11880,9 @@ Inline Tagging
 .. index:: verbatim text
 
 
+.. index:: inline comments
+
+
 Doconce supports tags for *emphasized phrases*, **boldface phrases**,
 and ``verbatim text`` (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as :math:`\nu = \sin(x)`.
@@ -11466,6 +11948,23 @@ filename in double quotes:
 
 This construction results in the link `<manual.do.txt>`_.
 
+Doconce also supports inline comments in the text:
+
+.. code-block:: py
+
+        [name: comment]
+
+
+where ``name`` is the name of the author of the command, and ``comment`` is a 
+plain text text. **hpl**: Note that there must be a space after the colon,
+otherwise the comment is not recognized.
+The name and comment are visible in the output unless ``doconce2format``
+is run with a command-line specification of removing such comments
+(see the chapter :ref:`doconce2formats` for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the ``.do.txt`` file
+(see the chapter :ref:`doconce2formats`).
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
@@ -11622,6 +12121,9 @@ Finally, we must test the citation command and bibliography by
 citing a book [Python:Primer:09]_, a paper [Osnes:98]_,
 and both of them simultaneously [Python:Primer:09]_ [Osnes:98]_.
 
+**hpl**: comments, citations, and references in the latex style
+is a special feature of doconce :-) 
+
 
 Tables
 ------
@@ -11709,9 +12211,9 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code:
+Here is a verbatim code block with Python code (``pycod`` style):
 
-.. code-block:: py
+.. code-block:: python
 
         # regular expressions for inline tags:
         inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -11729,7 +12231,7 @@ Here is a verbatim code block with Python code:
         }
 
 
-And here is a C++ code snippet:
+And here is a C++ code snippet (``cppcod`` style):
 
 .. code-block:: c++
 
@@ -11983,6 +12485,17 @@ further.
 *Problems with Boldface and Emphasize.* Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
 
+*Strange Non-English Characters.* Check the encoding of the ``.do.txt`` file with the Unix ``file`` command.
+If UTF-8, convert to latin-1 using the Unix command
+
+.. code-block:: py
+
+        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+
+
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
+
 *Debugging.* Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
 series of transformations of the text. The effect of each of these
@@ -12233,7 +12746,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.
+one motivation for developing the Doconce concept and tool.
 
 *Different Tagging for Different Formats.* A problem with doc
 strings (in Python) is that they benefit greatly from some tagging,
@@ -12441,6 +12954,18 @@ running `preprocess`. That is, in the last example, `FORMAT` is
 defined as `LaTeX`. Inside the Doconce document one can then perform
 format specific actions through tests like `#if FORMAT == "LaTeX"`.
 
+Inline comments in the text are removed from the output by
+{{{
+Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+}}}
+One can also remove such comments from the original Doconce file
+by running a helper script in the `bin` folder of the Doconce
+source code:
+{{{
+Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+}}}
+This action is convenient when a Doconce document reaches its final form.
+
 ==== HTML ====
 
 Making an HTML version of a Doconce file `mydoc.do.txt`
@@ -12498,8 +13023,25 @@ file, e.g., `!bc sys cod` for a code snippet, where `cod` is set to
 a certain environment in `.ptex2tex.cfg` (e.g., `CodeIntended`).
 There are over 30 styles to choose from.
 
-*Step 3.* Compile `mydoc.tex` with `latex -shell-escape` 
+*Step 3.* Compile `mydoc.tex`
 and create the PDF file:
+{{{
+Unix/DOS> latex mydoc
+Unix/DOS> latex mydoc
+Unix/DOS> makeindex mydoc   # if index
+Unix/DOS> bibitem mydoc     # if bibliography
+Unix/DOS> latex mydoc
+Unix/DOS> dvipdf mydoc
+}}}
+If one wishes to use the `Minted_Python`, `Minted_Cpp`, etc., environments
+in `ptex2tex` for typesetting code, the `minted` LaTeX package is needed.
+This package is included by running `doconce2format` with the
+`-DMINTED` option:
+{{{
+Unix/DOS> ptex2tex -DMINTED mydoc
+}}}
+In this case, `latex` must be run with the
+`-shell-escape` option:
 {{{
 Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> latex -shell-escape mydoc
@@ -12508,9 +13050,9 @@ Unix/DOS> bibitem mydoc     # if bibliography
 Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> dvipdf mydoc
 }}}
-The `-shell-escape` option is required because `ptex2tex` inserts an include
-of the `minted.sty` style, which applies the `pygments` to format code,
-and this program cannot be run from `latex` without the `-shell-escape` option.
+The `-shell-escape` option is required because the `minted.sty` style
+file runs the `pygments` program to format code, and this program
+cannot be run from `latex` without the `-shell-escape` option.
 
 ==== Plain ASCII Text ====
 
@@ -12934,6 +13476,20 @@ URL:"manual.do.txt"
 }}}
 This construction results in the link manual.do.txt.
 
+Doconce also supports inline comments in the text:
+{{{
+[name: comment]
+}}}
+where `name` is the name of the author of the command, and `comment` is a 
+plain text text. [hpl: Note that there must be a space after the colon,
+otherwise the comment is not recognized.]
+The name and comment are visible in the output unless `doconce2format`
+is run with a command-line specification of removing such comments
+(see the chapter [#From_Doconce_to_Other_Formats] for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the `.do.txt` file
+(see the chapter [#From_Doconce_to_Other_Formats]).
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
@@ -13053,6 +13609,9 @@ Finally, we must test the citation command and bibliography by
 citing a book [1], a paper [2],
 and both of them simultaneously [1] [2].
 
+[hpl: comments, citations, and references in the latex style
+is a special feature of doconce :-) ]
+
 ==== Tables ====
 
 A table like
@@ -13127,7 +13686,7 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code:
+Here is a verbatim code block with Python code (`pycod` style):
 {{{
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -13144,7 +13703,7 @@ INLINE_TAGS = {
     (inline_tag_begin, inline_tag_end),
 }
 }}}
-And here is a C++ code snippet:
+And here is a C++ code snippet (`cppcod` style):
 {{{
 void myfunc(double* x, const double& myarr) {
     for (int i = 1; i < myarr.size(); i++) {
@@ -13363,6 +13922,14 @@ further.
 
 *Problems with Boldface and Emphasize.* Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
+
+*Strange Non-English Characters.* Check the encoding of the `.do.txt` file with the Unix `file` command.
+If UTF-8, convert to latin-1 using the Unix command
+{{{
+Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+}}}
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
 
 *Debugging.* Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
@@ -13601,7 +14168,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.
+one motivation for developing the Doconce concept and tool.
 
 *Different Tagging for Different Formats.* A problem with doc
 strings (in Python) is that they benefit greatly from some tagging,
@@ -13798,6 +14365,20 @@ The variable 'FORMAT' is always defined as the current format when
 running 'preprocess'. That is, in the last example, 'FORMAT' is
 defined as 'LaTeX'. Inside the Doconce document one can then perform
 format specific actions through tests like '#if FORMAT == "LaTeX"'.
+
+Inline comments in the text are removed from the output by::
+
+        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the 'bin' folder of the Doconce
+source code::
+
+        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
+
+This action is convenient when a Doconce document reaches its final form.
 HTML
 Making an HTML version of a Doconce file 'mydoc.do.txt'
 is performed by::
@@ -13855,8 +14436,27 @@ file, e.g., '!bc sys cod' for a code snippet, where 'cod' is set to
 a certain environment in '.ptex2tex.cfg' (e.g., 'CodeIntended').
 There are over 30 styles to choose from.
 
-*Step 3.* Compile 'mydoc.tex' with 'latex -shell-escape' 
+*Step 3.* Compile 'mydoc.tex'
 and create the PDF file::
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the 'Minted_Python', 'Minted_Cpp', etc., environments
+in 'ptex2tex' for typesetting code, the 'minted' LaTeX package is needed.
+This package is included by running 'doconce2format' with the
+'-DMINTED' option::
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, 'latex' must be run with the
+'-shell-escape' option::
 
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> latex -shell-escape mydoc
@@ -13866,9 +14466,9 @@ and create the PDF file::
         Unix/DOS> dvipdf mydoc
 
 
-The '-shell-escape' option is required because 'ptex2tex' inserts an include
-of the 'minted.sty' style, which applies the 'pygments' to format code,
-and this program cannot be run from 'latex' without the '-shell-escape' option.
+The '-shell-escape' option is required because the 'minted.sty' style
+file runs the 'pygments' program to format code, and this program
+cannot be run from 'latex' without the '-shell-escape' option.
 Plain ASCII Text
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
@@ -14259,6 +14859,21 @@ filename in double quotes::
 
 This construction results in the link "manual.do.txt":manual.do.txt.
 
+Doconce also supports inline comments in the text::
+
+        [name: comment]
+
+
+where 'name' is the name of the author of the command, and 'comment' is a 
+plain text text. [hpl: Note that there must be a space after the colon,
+otherwise the comment is not recognized.]
+The name and comment are visible in the output unless 'doconce2format'
+is run with a command-line specification of removing such comments
+(see the chapter "From Doconce to Other Formats" for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the '.do.txt' file
+(see the chapter "From Doconce to Other Formats").
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
@@ -14380,6 +14995,9 @@ in the document.
 Finally, we must test the citation command and bibliography by 
 citing a book [1], a paper [2],
 and both of them simultaneously [1] [2].
+
+[hpl: comments, citations, and references in the latex style
+is a special feature of doconce :-) ]
 Tables
 A table like
 
@@ -14450,7 +15068,7 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code::
+Here is a verbatim code block with Python code ('pycod' style)::
 
         # regular expressions for inline tags:
         inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -14468,7 +15086,7 @@ Here is a verbatim code block with Python code::
         }
 
 
-And here is a C++ code snippet::
+And here is a C++ code snippet ('cppcod' style)::
 
         void myfunc(double* x, const double& myarr) {
             for (int i = 1; i < myarr.size(); i++) {
@@ -14686,6 +15304,15 @@ further.
 
 *Problems with Boldface and Emphasize.* Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
+
+*Strange Non-English Characters.* Check the encoding of the '.do.txt' file with the Unix 'file' command.
+If UTF-8, convert to latin-1 using the Unix command::
+
+        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+
+
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
 
 *Debugging.* Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
@@ -14924,7 +15551,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.
+one motivation for developing the Doconce concept and tool.
 
 I{Different Tagging for Different Formats.} A problem with doc
 strings (in Python) is that they benefit greatly from some tagging,
@@ -15142,6 +15769,20 @@ running C{preprocess}. That is, in the last example, C{FORMAT} is
 defined as C{LaTeX}. Inside the Doconce document one can then perform
 format specific actions through tests like C{#if FORMAT == "LaTeX"}.
 
+Inline comments in the text are removed from the output by::
+
+        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the C{bin} folder of the Doconce
+source code::
+
+        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
+
+This action is convenient when a Doconce document reaches its final form.
+
 
 HTML
 ----
@@ -15205,8 +15846,27 @@ file, e.g., C{!bc sys cod} for a code snippet, where C{cod} is set to
 a certain environment in C{.ptex2tex.cfg} (e.g., C{CodeIntended}).
 There are over 30 styles to choose from.
 
-I{Step 3.} Compile C{mydoc.tex} with C{latex -shell-escape} 
+I{Step 3.} Compile C{mydoc.tex}
 and create the PDF file::
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the C{Minted_Python}, C{Minted_Cpp}, etc., environments
+in C{ptex2tex} for typesetting code, the C{minted} LaTeX package is needed.
+This package is included by running C{doconce2format} with the
+C{-DMINTED} option::
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, C{latex} must be run with the
+C{-shell-escape} option::
 
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> latex -shell-escape mydoc
@@ -15216,9 +15876,9 @@ and create the PDF file::
         Unix/DOS> dvipdf mydoc
 
 
-The C{-shell-escape} option is required because C{ptex2tex} inserts an include
-of the C{minted.sty} style, which applies the C{pygments} to format code,
-and this program cannot be run from C{latex} without the C{-shell-escape} option.
+The C{-shell-escape} option is required because the C{minted.sty} style
+file runs the C{pygments} program to format code, and this program
+cannot be run from C{latex} without the C{-shell-escape} option.
 
 
 Plain ASCII Text
@@ -15652,6 +16312,21 @@ filename in double quotes::
 
 This construction results in the link U{manual.do.txt<manual.do.txt>}.
 
+Doconce also supports inline comments in the text::
+
+        [name: comment]
+
+
+where C{name} is the name of the author of the command, and C{comment} is a 
+plain text text. [hpl: Note that there must be a space after the colon,
+otherwise the comment is not recognized.]
+The name and comment are visible in the output unless C{doconce2format}
+is run with a command-line specification of removing such comments
+(see the chapter "From Doconce to Other Formats" for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the C{.do.txt} file
+(see the chapter "From Doconce to Other Formats").
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
@@ -15780,6 +16455,9 @@ Finally, we must test the citation command and bibliography by
 citing a book [1], a paper [2],
 and both of them simultaneously [1] [2].
 
+[hpl: comments, citations, and references in the latex style
+is a special feature of doconce :-) ]
+
 
 Tables
 ------
@@ -15857,7 +16535,7 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code::
+Here is a verbatim code block with Python code (C{pycod} style)::
 
         # regular expressions for inline tags:
         inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -15875,7 +16553,7 @@ Here is a verbatim code block with Python code::
         }
 
 
-And here is a C++ code snippet::
+And here is a C++ code snippet (C{cppcod} style)::
 
         void myfunc(double* x, const double& myarr) {
             for (int i = 1; i < myarr.size(); i++) {
@@ -16106,6 +16784,15 @@ further.
 I{Problems with Boldface and Emphasize.} Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
 
+I{Strange Non-English Characters.} Check the encoding of the C{.do.txt} file with the Unix C{file} command.
+If UTF-8, convert to latin-1 using the Unix command::
+
+        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+
+
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
+
 I{Debugging.} Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
 series of transformations of the text. The effect of each of these
@@ -16328,7 +17015,7 @@ documentation may start out to be the same, different physical files
 must be used since very different tagging is required for different
 output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
-the motivation for developing the Doconce concept and tool.
+one motivation for developing the Doconce concept and tool.
 
 *Different Tagging for Different Formats.* A problem with doc
 strings (in Python) is that they benefit greatly from some tagging,
@@ -16550,6 +17237,20 @@ running preprocess. That is, in the last example, FORMAT is
 defined as LaTeX. Inside the Doconce document one can then perform
 format specific actions through tests like #if FORMAT == "LaTeX".
 
+Inline comments in the text are removed from the output by::
+
+        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the bin folder of the Doconce
+source code::
+
+        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
+
+This action is convenient when a Doconce document reaches its final form.
+
 
 HTML
 ----
@@ -16615,8 +17316,27 @@ file, e.g.::
 a certain environment in .ptex2tex.cfg (e.g., CodeIntended).
 There are over 30 styles to choose from.
 
-*Step 3.* Compile mydoc.tex with latex -shell-escape 
+*Step 3.* Compile mydoc.tex
 and create the PDF file::
+
+        Unix/DOS> latex mydoc
+        Unix/DOS> latex mydoc
+        Unix/DOS> makeindex mydoc   # if index
+        Unix/DOS> bibitem mydoc     # if bibliography
+        Unix/DOS> latex mydoc
+        Unix/DOS> dvipdf mydoc
+
+
+If one wishes to use the Minted_Python, Minted_Cpp, etc., environments
+in ptex2tex for typesetting code, the minted LaTeX package is needed.
+This package is included by running doconce2format with the
+-DMINTED option::
+
+        Unix/DOS> ptex2tex -DMINTED mydoc
+
+
+In this case, latex must be run with the
+-shell-escape option::
 
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> latex -shell-escape mydoc
@@ -16626,9 +17346,9 @@ and create the PDF file::
         Unix/DOS> dvipdf mydoc
 
 
-The -shell-escape option is required because ptex2tex inserts an include
-of the minted.sty style, which applies the pygments to format code,
-and this program cannot be run from latex without the -shell-escape option.
+The -shell-escape option is required because the minted.sty style
+file runs the pygments program to format code, and this program
+cannot be run from latex without the -shell-escape option.
 
 
 Plain ASCII Text
@@ -17008,73 +17728,14 @@ For example, a filename mypic.eps is fine for LaTeX output but not for
 HTML. In such cases, the Doconce translator will convert the file to
 a suitable format (say mypic.png for HTML output).
 
-FIGURE:[figs/dinoimpact.gif, width=400] It can't get worse than this.... {fig:impact}
-
-
-Another type of special lines starts with @@@CODE and enables copying
-of computer code from a file directly into a verbatim environment, see 
-the section "Blocks of Verbatim Computer Code" below.
-
-
-Inline Tagging
---------------
-
-
-Doconce supports tags for *emphasized phrases*, _boldface phrases_,
-and verbatim text (also called type writer text, for inline code)
-plus LaTeX/TeX inline mathematics, such as v = sin(x).
-
-Emphasized text is typeset inside a pair of asterisk, and there should
-be no spaces between an asterisk and the emphasized text, as in::
-
-        *emphasized words*
-
-
-
-Boldface font is recognized by an underscore instead of an asterisk::
-
-        _several words in boldface_ followed by *ephasized text*.
-
-
-The line above gets typeset as
-_several words in boldface_ followed by *ephasized text*.
-
-Verbatim text, typically used for short inline code,
-is typeset between backquotes::
-
-        `call myroutine(a, b)` looks like a Fortran call
-        while `void myfunc(double *a, double *b)` must be C.
-
-
-The typesetting result looks like this:
-call myroutine(a, b) looks like a Fortran call
-while void myfunc(double *a, double *b) must be C.
-
-It is recommended to have inline verbatim text on the same line in
-the Doconce file, because some formats (LaTeX and ptex2tex) will have
-problems with inline verbatim text that is split over two lines.
-
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
-emphasized code): the Doconce interpreter is not very smart so inline
-computer code can soon lead to problems in the final format. Go back to the
-Doconce source and modify it so the format to which you want to go
-becomes correct (sometimes a trial and error process - sticking to
-very simple formatting usually avoids such problems).
-
-Web addresses with links are typeset as::
-
-        some URL like http://my.place.in.space/src<MyPlace>
-
-
-which appears as some URL like MyPlace (http://my.place.in.space/src).
-Link to a file is done by the URL keyword, a colon, and enclosing the
-filename in double quotes::
-
-        URL:"manual.do.txt"
-
-
-This construction results in the link manual.do.txt.
-
+FIGURE:
+The name and comment are visible in the output unless doconce2format
+is run with a command-line specification of removing such comments
+(see the chapter "From Doconce to Other Formats" for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the .do.txt file
+(see the chapter "From Doconce to Other Formats").
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
@@ -17085,10 +17746,7 @@ commands, which may appear annoying in plain text. Doconce therefore
 supports an extended inline math syntax where the writer can provide
 an alternative syntax suited for formats close to plain ASCII::
 
-        Here is an example on a linear system 
-        ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
-        where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and 
-        $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
+        *emphasized words*
 
 
 That is, we provide two alternative expressions, both enclosed in
@@ -17104,8 +17762,7 @@ Cross-Referencing
 
 References and labels are supported. The syntax is simple::
 
-        label{section:verbatim}   # defines a label
-        For more information we refer to Section ref{section:verbatim}.
+        _several words in boldface_ followed by *ephasized text*.
 
 
 This syntax is close that that of labels and cross-references in
@@ -17131,7 +17788,7 @@ the source of this document illustrates how labels and references
 are handled by the format in question.
 
 Hyperlinks to files or web addresses are handled as explained
-in the section "Inline Tagging".
+in the section ref{inline:tagging}.
 
 Index and Bibliography
 ----------------------
@@ -17139,15 +17796,14 @@ Index and Bibliography
 An index can be created for the LaTeX and the reStructuredText or
 Sphinx formats by the idx keyword, following a LaTeX-inspired syntax::
 
-        idx{some index entry}
-        idx{main entry!subentry}
-        idx{`verbatim_text` and more}
+        `call myroutine(a, b)` looks like a Fortran call
+        while `void myfunc(double *a, double *b)` must be C.
 
 
 The exclamation mark divides a main entry and a subentry. Backquotes
 surround verbatim text, which is correctly transformed in a LaTeX setting to::
 
-        \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
+        some URL like http://my.place.in.space/src<MyPlace>
 
 
 Everything related to the index simply becomes invisible in 
@@ -17155,7 +17811,7 @@ plain text, Epytext, StructuredText, HTML, and Wiki formats.
 
 Literature citations also follow a LaTeX-inspired style::
 
-        as found in cite{Larsen:86,Nielsen:99}.
+        URL:"manual.do.txt"
 
 
 Citation labels can be separated by comma. In LaTeX, this is directly
@@ -17164,7 +17820,7 @@ and Sphinx the labels can be clicked, while in all the other text
 formats the labels are consecutively numbered so the above citation
 will typically look like::
 
-        as found in [3][14]
+        [name: comment]
 
 
 if Larsen:86 has already appeared in the 3rd citation in the document
@@ -17179,17 +17835,10 @@ The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
 in the bibliography. Doconce markup can be used in this text, e.g.::
 
-        {
-        'Nielsen:99': """
-        K. Nielsen. *Some Comments on Markup Languages*. 
-        URL:"http://some.where.net/nielsen/comments", 1999.
-        """,
-        'Larsen:86': 
-        """
-        O. B. Larsen. On Markup and Generality.
-        *Personal Press*. 1986.
-        """
-        }
+        Here is an example on a linear system 
+        ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
+        where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and 
+        $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
 
 
 In the LaTeX format, the .bib file will be used in the standard way,
@@ -17202,6 +17851,8 @@ in the document.
 Finally, we must test the citation command and bibliography by 
 citing a book [1], a paper [2],
 and both of them simultaneously [1] [2].
+
+
 
 
 Tables
@@ -17219,13 +17870,8 @@ A table like
 
 is built up of pipe symbols and dashes::
 
-          |--------------------------------|
-          |time  | velocity | acceleration |
-          |--------------------------------|
-          | 0.0  | 1.4186   | -5.01        |
-          | 2.0  | 1.376512 | 11.919       |
-          | 4.0  | 1.1E+1   | 14.717624    |
-          |--------------------------------|
+        label{section:verbatim}   # defines a label
+        For more information we refer to Section ref{section:verbatim}.
 
 
 The pipes and column values do not need to be aligned (but why write
@@ -17257,7 +17903,9 @@ language for typesetting of the verbatim block by Pygments. This
 mapping takes place in an optional comment to be inserted in the Doconce
 source file, e.g.::
 
-        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+        idx{some index entry}
+        idx{main entry!subentry}
+        idx{`verbatim_text` and more}
 
 
 Here, three arguments are defined: pycod for Python code,
@@ -17286,38 +17934,14 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
-Here is a verbatim code block with Python code::
+Here is a verbatim code block with Python code (pycod style)::
 
-        # regular expressions for inline tags:
-        inline_tag_begin = r'(?P<begin>(^|\s+))'
-        inline_tag_end = r'(?P<end>[.,?!;:)\s])'
-        INLINE_TAGS = {
-            'emphasize':
-            r'%s\*(?P<subst>[^ `][^*`]*)\*%s' % \
-            (inline_tag_begin, inline_tag_end),
-            'verbatim':
-            r'%s`(?P<subst>[^ ][^`]*)`%s' % \
-            (inline_tag_begin, inline_tag_end),
-            'bold':
-            r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
-            (inline_tag_begin, inline_tag_end),
-        }
+        \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
 
-And here is a C++ code snippet::
+And here is a C++ code snippet (cppcod style)::
 
-        void myfunc(double* x, const double& myarr) {
-            for (int i = 1; i < myarr.size(); i++) {
-                myarr[i] = myarr[i] - x[i]*myarr[i-1]
-            }
-        }
-        !ec    
-        
-        Computer code can be copied directly from a file, if desired. The syntax
-        is then::
-
-         @@@CODE myfile.f
-         @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
+        as found in cite{Larsen:86,Nielsen:99}.
 
 
 The first line implies that all lines in the file myfile.f are
@@ -17338,35 +17962,24 @@ final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above)::
 
-        C     a comment
-        
-              subroutine    test()
-              integer i
-              real*8 r
-              r = 0
-              do i = 1, i
-                 r = r + i
-              end do
-              return
-        C     END1
-        
-              program testme
-              call test()
-              return
+        as found in [3][14]
 
 
 
 Let us then copy just a piece in the middle as indicated by the fromto:
 directive above::
 
-              subroutine    test()
-              integer i
-              real*8 r
-              r = 0
-              do i = 1, i
-                 r = r + i
-              end do
-              return
+        {
+        'Nielsen:99': """
+        K. Nielsen. *Some Comments on Markup Languages*. 
+        URL:"http://some.where.net/nielsen/comments", 1999.
+        """,
+        'Larsen:86': 
+        """
+        O. B. Larsen. On Markup and Generality.
+        *Personal Press*. 1986.
+        """
+        }
 
 
 
@@ -17432,29 +18045,38 @@ expressions).
 *Example.* Suppose we have the following commands in 
 newcommand_replace.tex::
 
-        \newcommand{\beqa}{\begin{eqnarray}}
-        \newcommand{\eeqa}{\end{eqnarray}}
-        \newcommand{\ep}{\thinspace . }
-        \newcommand{\uvec}{\vec u}
-        \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
-        \newcommand{\Q}{\mathbfx{Q}}
+          |--------------------------------|
+          |time  | velocity | acceleration |
+          |--------------------------------|
+          | 0.0  | 1.4186   | -5.01        |
+          | 2.0  | 1.376512 | 11.919       |
+          | 4.0  | 1.1E+1   | 14.717624    |
+          |--------------------------------|
 
 
 
 and these in newcommands_keep.tex::
 
-        \newcommand{\x}{\mathbfx{x}}
-        \newcommand{\normalvec}{\mathbfx{n}}
-        \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
 
 
 
 The LaTeX block::
 
-        \beqa
-        \x\cdot\normalvec &=& 0,\label{my:eq1}\\
-        \Ddt{\uvec} &=& \Q \ep\label{my:eq2}
-        \eeqa
+        # regular expressions for inline tags:
+        inline_tag_begin = r'(?P<begin>(^|\s+))'
+        inline_tag_end = r'(?P<end>[.,?!;:)\s])'
+        INLINE_TAGS = {
+            'emphasize':
+            r'%s\*(?P<subst>[^ `][^*`]*)\*%s' % \
+            (inline_tag_begin, inline_tag_end),
+            'verbatim':
+            r'%s`(?P<subst>[^ ][^`]*)`%s' % \
+            (inline_tag_begin, inline_tag_end),
+            'bold':
+            r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
+            (inline_tag_begin, inline_tag_end),
+        }
 
 
 will then be rendered to::
@@ -17504,7 +18126,18 @@ reST to indicate a verbatim block of text).
 
 *The LaTeX File Does Not Compile.* If the problem is undefined control sequence involving::
 
-        \code{...}
+        void myfunc(double* x, const double& myarr) {
+            for (int i = 1; i < myarr.size(); i++) {
+                myarr[i] = myarr[i] - x[i]*myarr[i-1]
+            }
+        }
+        !ec    
+        
+        Computer code can be copied directly from a file, if desired. The syntax
+        is then::
+
+         @@@CODE myfile.f
+         @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 
 
 the cause is usually a verbatim inline text (in backquotes in the
@@ -17544,47 +18177,77 @@ that all inline verbatim text appears on the same line.
         *Problems with Boldface and Emphasize.* Two boldface or emphasize expressions after each other are not rendered
         correctly. Merge them into one common expression.
         
-        *Debugging.* Given a problem, extract a small portion of text surrounding the
-        problematic area and debug that small piece of text. Doconce does a
-        series of transformations of the text. The effect of each of these
-        transformation steps are dumped to a logfile, named
-        _doconce_debugging.log, if the third argument to doconce2format
-        is debug. The logfile is inteded for the developers of Doconce, but
-        may still give some idea of what is wrong.  The section "Basic Parsing
-        Ideas" explains how the Doconce text is transformed into a specific
-        format, and you need to know these steps to make use of the logfile.
-        
-        
-        Header and Footer
-        -----------------
-        
-        Some formats use a header and footer in the document. LaTeX and
-        HTML are two examples of such formats. When the document is to be
-        included in another document (which is often the case with
-        Doconce-based documents), the header and footer are not wanted, while
-        these are needed (at least in a LaTeX context) if the document is
-        stand-alone. We have introduce the convention that if TITLE: or
-        #TITLE: is found at the beginning of the line (i.e., the document
-        has, or has an intention have, a title), the header and footer
-        are included, otherwise not.
-        
-        
-        Basic Parsing Ideas
-        -------------------
-        
-        
-        The (parts of) files with computer code to be directly included in
-        the document are first copied into verbatim blocks.
-        
-        All verbatim and TeX blocks are removed and stored elsewhere
-        to ensure that no formatting rules are not applied to these blocks.
-        
-        The text is examined line by line for typesetting of lists, as well as
-        handling of blank lines and comment lines.
-        List parsing needs some awareness of the context.
-        Each line is interpreted by a regular expression::
+        *Strange Non-English Characters.* Check the encoding of the .do.txt file with the Unix file command.
+        If UTF-8, convert to latin-1 using the Unix command::
 
-        (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<text>.*)\s?
+        C     a comment
+        
+              subroutine    test()
+              integer i
+              real*8 r
+              r = 0
+              do i = 1, i
+                 r = r + i
+              end do
+              return
+        C     END1
+        
+              program testme
+              call test()
+              return
+
+
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
+
+*Debugging.* Given a problem, extract a small portion of text surrounding the
+problematic area and debug that small piece of text. Doconce does a
+series of transformations of the text. The effect of each of these
+transformation steps are dumped to a logfile, named
+_doconce_debugging.log, if the third argument to doconce2format
+is debug. The logfile is inteded for the developers of Doconce, but
+may still give some idea of what is wrong.  The section "Basic Parsing
+Ideas" explains how the Doconce text is transformed into a specific
+format, and you need to know these steps to make use of the logfile.
+
+
+Header and Footer
+-----------------
+
+Some formats use a header and footer in the document. LaTeX and
+HTML are two examples of such formats. When the document is to be
+included in another document (which is often the case with
+Doconce-based documents), the header and footer are not wanted, while
+these are needed (at least in a LaTeX context) if the document is
+stand-alone. We have introduce the convention that if TITLE: or
+#TITLE: is found at the beginning of the line (i.e., the document
+has, or has an intention have, a title), the header and footer
+are included, otherwise not.
+
+
+Basic Parsing Ideas
+-------------------
+
+
+The (parts of) files with computer code to be directly included in
+the document are first copied into verbatim blocks.
+
+All verbatim and TeX blocks are removed and stored elsewhere
+to ensure that no formatting rules are not applied to these blocks.
+
+The text is examined line by line for typesetting of lists, as well as
+handling of blank lines and comment lines.
+List parsing needs some awareness of the context.
+Each line is interpreted by a regular expression::
+
+              subroutine    test()
+              integer i
+              real*8 r
+              r = 0
+              do i = 1, i
+                 r = r + i
+              end do
+              return
 
 
 
@@ -17619,67 +18282,12 @@ A Glimpse of How to Write a New Translator
 This is the HTML-specific part of the
 source code of the HTML translator::
 
-        FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
-        BLANKLINE['HTML'] = '<p>\n'           # blank input line => new paragraph
-        INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
-            # keep math as is:
-            'math': None,  # indicates no substitution
-            'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
-            'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
-            'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
-            'URL':           r'\g<begin><a href="\g<url>">\g<link></a>',
-            'section':       r'<h1>\g<subst></h1>',
-            'subsection':    r'<h3>\g<subst></h3>',
-            'subsubsection': r'<h5>\g<subst></h5>',
-            'paragraph':     r'<b>\g<subst></b>. ',
-            'title':         r'<title>\g<subst></title>\n<center><h1>\g<subst></h1></center>',
-            'date':          r'<center><h3>\g<subst></h3></center>',
-            'author':        r'<center><h3>\g<subst></h3></center>',
-            }
-        
-        # how to replace code and LaTeX blocks by HTML (<pre>) environment:
-        def HTML_code(filestr):
-            c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
-            filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre>\n', filestr)
-            filestr = re.sub(r'!ec\n',
-                             r'</pre>\n<! -- END VERBATIM BLOCK -->\n', filestr)
-            c = re.compile(r'^!bt\n', re.MULTILINE)
-            filestr = c.sub(r'<pre>\n', filestr)
-            filestr = re.sub(r'!et\n', r'</pre>\n', filestr)
-            return filestr
-        CODE['HTML'] = HTML_code
-        
-        # how to typeset lists and their items in HTML:
-        LIST['HTML'] = {
-            'itemize':
-            {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
-            'enumerate':
-            {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
-            'description':
-            {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\n\n'},
-            }
-        
-        # how to type set description lists for function arguments, return
-        # values, and module/class variables:
-        ARGLIST['HTML'] = {
-            'parameter': '<b>argument</b>',
-            'keyword': '<b>keyword argument</b>',
-            'return': '<b>return value(s)</b>',
-            'instance variable': '<b>instance variable</b>',
-            'class variable': '<b>class variable</b>',
-            'module variable': '<b>module variable</b>',
-            }
-        
-        # document start:
-        INTRO['HTML'] = """
-        <html>
-        <body bgcolor="white">
-        """
-        # document ending:
-        OUTRO['HTML'] = """
-        </body>
-        </html>
-        """
+        \newcommand{\beqa}{\begin{eqnarray}}
+        \newcommand{\eeqa}{\end{eqnarray}}
+        \newcommand{\ep}{\thinspace . }
+        \newcommand{\uvec}{\vec u}
+        \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
+        \newcommand{\Q}{\mathbfx{Q}}
 
 
 
@@ -17698,15 +18306,9 @@ only legal keywords (descriptions) for the description list in this
 context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
 arguments and variables are nicely formatted::
 
-            - argument x: x value (float),
-              which must be a positive number.
-            - keyword argument tolerance: tolerance (float) for stopping
-              the iterations.
-            - return: the root of the equation (float), if found, otherwise None.
-            - instance variable eta: surface elevation (array).
-            - class variable items: the total number of MyClass objects (int).
-            - module variable debug: True: debug mode is on; False: no debugging 
-              (bool variable).
+        \newcommand{\x}{\mathbfx{x}}
+        \newcommand{\normalvec}{\mathbfx{n}}
+        \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
 
 
 

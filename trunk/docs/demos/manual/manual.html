@@ -349,7 +349,9 @@ of the results.
 <P>
 
 <P>
-<H1>From Doconce to Other Formats</H1>
+<H1>From Doconce to Other Formats <A NAME="doconce2formats"></A></H1>
+<P>
+
 <P>
 Transformation of a Doconce document to various other
 formats applies the script <TT>doconce2format</TT>:
@@ -369,6 +371,23 @@ The variable <TT>FORMAT</TT> is always defined as the current format when
 running <TT>preprocess</TT>. That is, in the last example, <TT>FORMAT</TT> is
 defined as <TT>LaTeX</TT>. Inside the Doconce document one can then perform
 format specific actions through tests like <TT>#if FORMAT == "LaTeX"</TT>.
+
+<P>
+Inline comments in the text are removed from the output by
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+One can also remove such comments from the original Doconce file
+by running a helper script in the <TT>bin</TT> folder of the Doconce
+source code:
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+This action is convenient when a Doconce document reaches its final form.
 
 <P>
 
@@ -1002,6 +1021,22 @@ URL:"manual.do.txt"
 This construction results in the link <A HREF="manual.do.txt"><TT>manual.do.txt</TT></A>.
 
 <P>
+Doconce also supports inline comments in the text:
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+[name: comment]
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+where <TT>name</TT> is the name of the author of the command, and <TT>comment</TT> is a 
+plain text text. [<B>hpl</B>: <EM>Note that there must be a space after the colon,
+otherwise the comment is not recognized.</EM>]
+The name and comment are visible in the output unless <TT>doconce2format</TT>
+is run with a command-line specification of removing such comments
+(see the chapter <A HREF="#doconce2formats">From Doconce to Other Formats</a> for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the <TT>.do.txt</TT> file
+(see the chapter <A HREF="#doconce2formats">From Doconce to Other Formats</a>).
 
 <P>
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
@@ -1142,6 +1177,10 @@ in the document.
 Finally, we must test the citation command and bibliography by 
 citing a book <A HREF="#Python:Primer:09">[1]</A>, a paper <A HREF="#Osnes:98">[2]</A>,
 and both of them simultaneously <A HREF="#Python:Primer:09">[1]</A> <A HREF="#Osnes:98">[2]</A>.
+
+<P>
+[<B>hpl</B>: <EM>comments, citations, and references in the latex style
+is a special feature of doconce :-) </EM>]
 
 <P>
 
@@ -1516,6 +1555,17 @@ further.
 <P>
 <B>Problems with Boldface and Emphasize.</B> Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
+
+<P>
+<B>Strange Non-English Characters.</B> Check the encoding of the <TT>.do.txt</TT> file with the Unix <TT>file</TT> command.
+If UTF-8, convert to latin-1 using the Unix command
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
 
 <P>
 <B>Debugging.</B> Given a problem, extract a small portion of text surrounding the

@@ -140,7 +140,10 @@ URLs with a link word are possible, as in http://folk.uio.no/hpl&lt;hpl&gt;.
 Just a file link goes like URL:"tutorial.do.txt". References
 to sections may use logical names as labels (e.g., a "label" command right
 after the section title), as in the reference to
-Chapter ref{my:first:sec}.
+Chapter ref{my:first:sec}. Doconce also allows inline comments such
+as [hpl: here I will make some remarks to the text] for allowing
+authors to make notes. Inline comments can be removed from the output
+by a command-line argument (see Chapter ref{doconce2formats} for an example).
 
 Tables are also supperted, e.g.,
 
@@ -304,7 +307,7 @@ page</a> for various formats of this document).</p>
 </div>
 </div>
 <div class="section" id="from-doconce-to-other-formats">
-<h1>From Doconce to Other Formats<a class="headerlink" href="#from-doconce-to-other-formats" title="Permalink to this headline">¶</a></h1>
+<span id="doconce2formats"></span><h1>From Doconce to Other Formats<a class="headerlink" href="#from-doconce-to-other-formats" title="Permalink to this headline">¶</a></h1>
 <p>Transformation of a Doconce document to various other
 formats applies the script <tt class="docutils literal"><span class="pre">doconce2format</span></tt>:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; doconce2format format mydoc.do.txt</span>
@@ -319,6 +322,16 @@ and options to <tt class="docutils literal"><span class="pre">preprocess</span><
 running <tt class="docutils literal"><span class="pre">preprocess</span></tt>. That is, in the last example, <tt class="docutils literal"><span class="pre">FORMAT</span></tt> is
 defined as <tt class="docutils literal"><span class="pre">LaTeX</span></tt>. Inside the Doconce document one can then perform
 format specific actions through tests like <tt class="docutils literal"><span class="pre">#if</span> <span class="pre">FORMAT</span> <span class="pre">==</span> <span class="pre">&quot;LaTeX&quot;</span></tt>.</p>
+<p>Inline comments in the text are removed from the output by</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt remove_inline_comments</span>
+</pre></div>
+</div>
+<p>One can also remove such comments from the original Doconce file
+by running a helper script in the <tt class="docutils literal"><span class="pre">bin</span></tt> folder of the Doconce
+source code:</p>
+<div class="highlight-py"><pre>Unix/DOS&gt; doconce_remove_inline_comments.py mydoc.do.txt</pre>
+</div>
+<p>This action is convenient when a Doconce document reaches its final form.</p>
 <div class="section" id="html">
 <h2>HTML<a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h2>
 <p>Making an HTML version of a Doconce file <tt class="docutils literal"><span class="pre">mydoc.do.txt</span></tt>
