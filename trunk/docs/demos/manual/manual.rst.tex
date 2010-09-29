@@ -438,6 +438,7 @@ of the results.
   \phantomsection%
   \addcontentsline{toc}{section}{From Doconce to Other Formats}%
   \label{from-doconce-to-other-formats}%
+  \label{doconce2formats}%
 }
 
 Transformation of a Doconce document to various other
@@ -460,6 +461,24 @@ The variable \texttt{FORMAT} is always defined as the current format when
 running \texttt{preprocess}. That is, in the last example, \texttt{FORMAT} is
 defined as \texttt{LaTeX}. Inside the Doconce document one can then perform
 format specific actions through tests like \texttt{\#if FORMAT == "LaTeX"}.
+
+Inline comments in the text are removed from the output by:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix/DOS>~doconce2format~LaTeX~mydoc.do.txt~remove\_inline\_comments
+}
+\end{quote}
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the \texttt{bin} folder of the Doconce
+source code:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix/DOS>~doconce\_remove\_inline\_comments.py~mydoc.do.txt
+}
+\end{quote}
+
+This action is convenient when a Doconce document reaches its final form.
 
 
 %___________________________________________________________________________
@@ -1185,6 +1204,24 @@ URL:"manual.do.txt"
 
 This construction results in the link \url{manual.do.txt}.
 
+Doconce also supports inline comments in the text:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+{[}name:~comment{]}
+}
+\end{quote}
+
+where \texttt{name} is the name of the author of the command, and \texttt{comment} is a
+plain text text. \textbf{hpl}: Note that there must be a space after the colon,
+otherwise the comment is not recognized.
+The name and comment are visible in the output unless \texttt{doconce2format}
+is run with a command-line specification of removing such comments
+(see the chapter \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats} for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the \texttt{.do.txt} file
+(see the chapter \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats}).
+
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
 hence nice math formatting is only obtained in LaTeX (Epytext has some
@@ -1337,6 +1374,9 @@ in the document.
 Finally, we must test the citation command and bibliography by
 citing a book [\hyperlink{python-primer-09}{Python:Primer:09}], a paper [\hyperlink{osnes-98}{Osnes:98}],
 and both of them simultaneously [\hyperlink{python-primer-09}{Python:Primer:09}] [\hyperlink{osnes-98}{Osnes:98}].
+
+\textbf{hpl}: comments, citations, and references in the latex style
+is a special feature of doconce :-)
 
 
 %___________________________________________________________________________
@@ -1780,6 +1820,17 @@ further.
 
 \emph{Problems with Boldface and Emphasize.} Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
+
+\emph{Strange Non-English Characters.} Check the encoding of the \texttt{.do.txt} file with the Unix \texttt{file} command.
+If UTF-8, convert to latin-1 using the Unix command:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix>~iconv~-f~utf-8~-t~LATIN1~myfile.do.txt~-{}-output~newfile
+}
+\end{quote}
+
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
 
 \emph{Debugging.} Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a

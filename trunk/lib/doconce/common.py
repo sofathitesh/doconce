@@ -213,6 +213,9 @@ INLINE_TAGS = {
     'plainURL': 
     r'URL:"(?P<url>.+)"',
 
+    'inlinecomment':
+    r'''\[(?P<name>[A-Za-z0-9_'-]+?):\s+(?P<comment>[^\]]*?)\]''',
+
     # _______Seven Underscores Before and Any After Section Title_______
     # or ======= Seven Equality Signs =======
     'section':

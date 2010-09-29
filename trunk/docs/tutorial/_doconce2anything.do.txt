@@ -1,5 +1,6 @@
 
 ======= From Doconce to Other Formats =======
+label{doconce2formats}
 
 Transformation of a Doconce document to various other
 formats applies the script `doconce2format`:
@@ -15,6 +16,18 @@ The variable `FORMAT` is always defined as the current format when
 running `preprocess`. That is, in the last example, `FORMAT` is
 defined as `LaTeX`. Inside the Doconce document one can then perform
 format specific actions through tests like `#if FORMAT == "LaTeX"`.
+
+Inline comments in the text are removed from the output by
+!bc sys
+Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+!ec
+One can also remove such comments from the original Doconce file
+by running a helper script in the `bin` folder of the Doconce
+source code:
+!bc
+Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+!ec
+This action is convenient when a Doconce document reaches its final form.
 
 
 ===== HTML =====

@@ -40,8 +40,8 @@ def supported_format_names():
 # include "latex.py"
 #----------------------------------------------------------------------------
 
-def debug(out):
-    if debug_flag:
+def debugpr(out):
+    if debug:
         #print out
         global _log
         _log = open('_doconce_debugging.log','a')
@@ -52,7 +52,8 @@ def debug(out):
 def make_one_line_paragraphs(filestr, format):
     # THIS FUNCTION DOES NOT WORK WELL - it's difficult to make
     # one-line paragraphs...
-
+    print 'make_one_line_paragraphs: this function does not work well'
+    print 'drop oneline_paragraphs option on the command line...'
     # make double linebreaks to triple
     filestr = re.sub('\n *\n', '[[[[[DOUBLE_NEWLINE]]]]]', filestr)
     # save some single linebreaks
@@ -63,18 +64,18 @@ def make_one_line_paragraphs(filestr, format):
     # idx/label/ref{}
     filestr = re.sub('(\\}\\s*)\n', r'\g<1>[[[[[SINGLE_NEWLINE]]]]]\n', filestr)
     filestr = re.sub('\n(AUTHOR|TITLE|DATE|FIGURE)', r'\n[[[[[SINGLE_NEWLINE]]]]]\g<1>', filestr)
-    debug('\n\n\n**** ONELINE1:\n\n%s\n\n' % filestr)
+    debugpr('\n\n\n**** ONELINE1:\n\n%s\n\n' % filestr)
 
     # then remove all single linebreaks + following indentation
     filestr = re.sub('\n *', ' ', filestr)
-    debug('\n\n\n**** ONELINE2:\n\n%s\n\n' % filestr)
+    debugpr('\n\n\n**** ONELINE2:\n\n%s\n\n' % filestr)
     # finally insert single and double linebreaks
     filestr = filestr.replace('[[[[[SINGLE_NEWLINE]]]]] ', '\n')
     filestr = filestr.replace('[[[[[SINGLE_NEWLINE]]]]]', '\n')
-    debug('\n\n\n**** ONELINE3:\n\n%s\n\n' % filestr)
+    debugpr('\n\n\n**** ONELINE3:\n\n%s\n\n' % filestr)
     filestr = filestr.replace('[[[[[DOUBLE_NEWLINE]]]]] ', '\n\n')
     filestr = filestr.replace('[[[[[DOUBLE_NEWLINE]]]]]', '\n\n')
-    debug('\n\n\n**** ONELINE4:\n\n%s\n\n' % filestr)
+    debugpr('\n\n\n**** ONELINE4:\n\n%s\n\n' % filestr)
     return filestr
 
 def insert_code_from_file(filestr, format):
@@ -82,7 +83,7 @@ def insert_code_from_file(filestr, format):
     inside_verbatim = False
     for i in range(len(lines)):
         line = lines[i]
-        debug('Read ' + line)
+        debugpr('Read ' + line)
         line = line.lstrip()
 
         # detect if we are inside verbatim blocks:
@@ -94,7 +95,7 @@ def insert_code_from_file(filestr, format):
             continue
             
         if line.startswith('@@@CODE'):
-            debug('Found verbatim copy (line %d): %s' % (i+1, line))
+            debugpr('Found verbatim copy (line %d): %s' % (i+1, line))
             try:
                 filename = line.split()[1]
             except IndexError:
@@ -111,7 +112,7 @@ def insert_code_from_file(filestr, format):
                 # no from/to regex, read the whole file:
                 complete_file = True
                 code = f.read()
-                debug('copy the file "%s" into a verbatim block\n' % filename)
+                debugpr('copy the file "%s" into a verbatim block\n' % filename)
                
             else:
                 complete_file = False
@@ -134,7 +135,7 @@ def insert_code_from_file(filestr, format):
                         copy = False
                         # now the to line is not included
                     if copy:
-                        debug('copy from "%s" the line\n%s' % \
+                        debugpr('copy from "%s" the line\n%s' % \
                               (filename, codeline))
                         codelines.append(codeline)
                 code = ''.join(codelines)
@@ -255,7 +256,7 @@ def typeset_lists(filestr, format, debug_info=[]):
     have been removed from the file.
     This function also treats comment lines and blank lines.
     """
-    debug('*** List typesetting phase + comments and blank lines ***')
+    debugpr('*** List typesetting phase + comments and blank lines ***')
     from StringIO import StringIO
     result = StringIO()
     lastindent = 0
@@ -268,7 +269,7 @@ def typeset_lists(filestr, format, debug_info=[]):
 
     for line in lines:
         
-        debug('\n------------------------\nsource line=[%s]' % line)
+        debugpr('\n------------------------\nsource line=[%s]' % line)
         # do a syntax check:
         for tag in INLINE_TAGS_BUGS:
             bug = INLINE_TAGS_BUGS[tag]
@@ -282,7 +283,7 @@ def typeset_lists(filestr, format, debug_info=[]):
             if not lists:
                 result.write(BLANKLINE[format])
             # else: drop writing out blank line inside lists
-                debug('  > This is a blank line')
+                debugpr('  > This is a blank line')
             lastline = line
             continue
 
@@ -291,17 +292,17 @@ def typeset_lists(filestr, format, debug_info=[]):
             # first do some debug output:
             if line.startswith('#!!CODE') and len(debug_info) >= 1:
                 result.write(line + '\n')
-                debug('  > Here is a code block:\n%s\n--------' % \
+                debugpr('  > Here is a code block:\n%s\n--------' % \
                       debug_info[0][_code_block_no])
                 _code_block_no += 1
             elif line.startswith('#!!TEX') and len(debug_info) >= 2:
                 result.write(line + '\n')
-                debug('  > Here is a latex block:\n%s\n--------' % \
+                debugpr('  > Here is a latex block:\n%s\n--------' % \
                       debug_info[1][_tex_block_no])
                 _tex_block_no += 1
                 
             else:
-                debug('  > This is just a comment line')
+                debugpr('  > This is just a comment line')
                 # the comment can be propagated to some formats
                 # (rst, LaTeX, HTML):
                 line = line[1:]  # strip off initial #
@@ -329,7 +330,7 @@ def typeset_lists(filestr, format, debug_info=[]):
             listtype = LIST_SYMBOL[listtype]
         keyword = m.group('keyword')
         text = m.group('text')
-        debug('  > indent=%d (previous indent=%d)' % (indent, lastindent))
+        debugpr('  > indent=%d (previous indent=%d)' % (indent, lastindent))
 
         # new (sub)section makes end of any indent (we could demand
         # (sub)sections to start in column 1, but we have later relaxed
@@ -340,7 +341,7 @@ def typeset_lists(filestr, format, debug_info=[]):
 
 
         if indent > lastindent and listtype:
-            debug('  > This is a new list of type "%s"' % listtype)
+            debugpr('  > This is a new list of type "%s"' % listtype)
             # begin a new list or sublist:
             lists.append({'listtype': listtype, 'indent': indent})
             result.write(LIST[format][listtype]['begin'])
@@ -360,14 +361,14 @@ def typeset_lists(filestr, format, debug_info=[]):
             # end a list or sublist, nest back all list
             # environments on the lists stack:
             while lists and lists[-1]['indent'] > indent:
-                 debug('  > This is the end of a %s list' % \
+                 debugpr('  > This is the end of a %s list' % \
                        lists[-1]['listtype'])
                  result.write(LIST[format][lists[-1]['listtype']]['end'])
                  del lists[-1]
             lastindent = indent
 
         if indent == lastindent:
-            debug('  > This line belongs to the previous block since it has '\
+            debugpr('  > This line belongs to the previous block since it has '\
                   'the same indent (%d blanks)' % indent)
 
         if listtype:
@@ -379,7 +380,7 @@ def typeset_lists(filestr, format, debug_info=[]):
             itemformat = LIST[format][listtype]['item']
             item = itemformat
             if listtype == 'enumerate':
-                debug('  > This is an item in an enumerate list')
+                debugpr('  > This is an item in an enumerate list')
                 enumerate_counter += 1
                 if '%d' in itemformat:
                     item = itemformat % enumerate_counter
@@ -391,7 +392,7 @@ def typeset_lists(filestr, format, debug_info=[]):
                     if keyword:
                         keyword = parse_keyword(keyword, format) + ':'
                         item = itemformat % keyword + ' '
-                        debug('  > This is an item in a description list '\
+                        debugpr('  > This is an item in a description list '\
                               'with keyword "%s"' % keyword)
                         keyword = '' # to avoid adding keyword up in
                         # below (ugly hack, but easy linescan parsing...)
@@ -400,12 +401,12 @@ def typeset_lists(filestr, format, debug_info=[]):
                 if not (text.isspace() or not text):
                     result.write('\n' + ' '*(indent-1))
             else:
-                debug('  > This is an item in a bullet list')
+                debugpr('  > This is an item in a bullet list')
                 result.write(' '*(indent-2))  # indent here counts with '* '
                 result.write(item + ' ')
 
         else:
-            debug('  > This line is not part of a list environment...')
+            debugpr('  > This line is not part of a list environment...')
             # should check emph, verbatim, etc., syntax check and common errors
             result.write(' '*indent)      # ordinary line
 
@@ -414,7 +415,7 @@ def typeset_lists(filestr, format, debug_info=[]):
         # line if a : present in an ordinary line
         if keyword:
             text = keyword + text
-        debug('text=[%s]' % text)
+        debugpr('text=[%s]' % text)
         
         # hack to make wiki have all text in an item on a single line:
         newline = '' if lists and format == 'gwiki' else '\n'  # hack...
@@ -425,7 +426,7 @@ def typeset_lists(filestr, format, debug_info=[]):
 
     # end lists if any are left:
     while lists:
-        debug('  > This is the end of a %s list' % lists[-1]['listtype'])
+        debugpr('  > This is the end of a %s list' % lists[-1]['listtype'])
         result.write(LIST[format][lists[-1]['listtype']]['end'])
         del lists[-1]
     
@@ -596,7 +597,7 @@ def handle_index_and_bib(filestr, format, has_title):
     return filestr
 
 def typeset_authors(filestr, format):
-    debug('\n*** Dealing with authors and institutions ***')
+    debugpr('\n*** Dealing with authors and institutions ***')
     # first deal with AUTHOR as there can be several such lines
     author_lines = re.findall(r'^AUTHOR:\s*(?P<author>.+)\s*$', filestr,
                               flags=re.MULTILINE)
@@ -648,19 +649,20 @@ def inline_tag_subst(filestr, format):
     # of view
 
     filestr = typeset_authors(filestr, format)
-    debug('\n*** Inline tags substitution phase ***')
+    debugpr('\n*** Inline tags substitution phase ***')
 
     ordered_tags = (
         'title', 'date', #'figure',
         # important to do section, subsection, etc. BEFORE paragraph and bold:
         'section', 'subsection', 'subsubsection',
         'emphasize', 'math2', 'math', 'bold', 'verbatim',
+        'inlinecomment',
         'citation',
         'paragraph',  # after bold and emphasize
         'plainURL', 'linkURL', 
         )
     for tag in ordered_tags:
-        debug('Working with tag "%s"' % tag)
+        debugpr('Working with tag "%s"' % tag)
         tag_pattern = INLINE_TAGS[tag]
         c = re.compile(tag_pattern, re.MULTILINE)
         try:
@@ -676,8 +678,8 @@ def inline_tag_subst(filestr, format):
             occurences = len(findlist)
             findlist = pprint.pformat(findlist)
             if occurences > 0:
-                debug('Found %d occurences of "%s":\n%s' % (occurences, tag, findlist))
-                debug('%s is to be replaced using %s' % (tag, replacement))
+                debugpr('Found %d occurences of "%s":\n%s' % (occurences, tag, findlist))
+                debugpr('%s is to be replaced using %s' % (tag, replacement))
             
             filestr = c.sub(replacement, filestr)
         elif callable(replacement):
@@ -701,10 +703,15 @@ def inline_tag_subst(filestr, format):
         else:
             raise ValueError, 'replacement is of type %s' % type(replacement)
         if occurences > 0:
-            debug('\n**** The file after %d "%s" substitutions ***\n%s\n%s\n\n' % \
+            debugpr('\n**** The file after %d "%s" substitutions ***\n%s\n%s\n\n' % \
                   (occurences, tag, filestr, ':'*80))
     return filestr
         
+def subst_away_inline_comments(filestr):
+    # inline comments: [hpl: this is a comment]
+    pattern = r'\[(?P<name>[^:]*?):(?P<comment>[^\]]*?)\]'
+    filestr = re.sub(pattern, '', filestr)
+    return filestr
 
 def encoding_guesser(filename):
     """Try to guess the encoding of a file."""
@@ -769,7 +776,7 @@ def doconce2format(in_filename, format, out_filename):
     # asterix, which will be replaced later and hence destroyed)
     #if format != 'LaTeX':
     filestr = insert_code_from_file(filestr, format)
-    debug('%s\n**** The file after inserting @@@CODE (from file):\n\n%s\n\n' % \
+    debugpr('%s\n**** The file after inserting @@@CODE (from file):\n\n%s\n\n' % \
           ('*'*80, filestr))
 
     # 2. step: remove all verbatim and math blocks
@@ -786,34 +793,15 @@ def doconce2format(in_filename, format, out_filename):
         # in the first line in the HTML file:
         filestr = html.latin2html(filestr)
         
-    debug('%s\n**** The file after removal of code/tex blocks:\n\n%s\n\n' % \
+    debugpr('%s\n**** The file after removal of code/tex blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
     # remove linebreaks within paragraphs:
     if oneline_paragraphs:
         filestr = make_one_line_paragraphs(filestr, format)
-        # make double linebreaks to triple
-        filestr = re.sub('\n *\n', '[[[[[DOUBLE_NEWLINE]]]]]', filestr)
-        # save some single linebreaks
-        # section headings
-        filestr = re.sub('(===+)\n', r'\g<1>[[[[[SINGLE_NEWLINE]]]]]\n', filestr)
-        # tables
-        filestr = re.sub('(\\|\\s*)\n', r'\g<1>[[[[[SINGLE_NEWLINE]]]]]\n', filestr)
-        # idx/label/ref{}
-        filestr = re.sub('(\\}\\s*)\n', r'\g<1>[[[[[SINGLE_NEWLINE]]]]]\n', filestr)
-        filestr = re.sub('\n(AUTHOR|TITLE|DATE|FIGURE)', r'\n[[[[[SINGLE_NEWLINE]]]]]\g<1>', filestr)
-        debug('\n\n\n**** ONELINE1:\n\n%s\n\n' % filestr)
 
-        # then remove all single linebreaks + following indentation
-        filestr = re.sub('\n *', ' ', filestr)
-        debug('\n\n\n**** ONELINE2:\n\n%s\n\n' % filestr)
-        # finally insert single and double linebreaks
-        filestr = filestr.replace('[[[[[SINGLE_NEWLINE]]]]] ', '\n')
-        filestr = filestr.replace('[[[[[SINGLE_NEWLINE]]]]]', '\n')
-        debug('\n\n\n**** ONELINE3:\n\n%s\n\n' % filestr)
-        filestr = filestr.replace('[[[[[DOUBLE_NEWLINE]]]]] ', '\n\n')
-        filestr = filestr.replace('[[[[[DOUBLE_NEWLINE]]]]]', '\n\n')
-        debug('\n\n\n**** ONELINE4:\n\n%s\n\n' % filestr)
+    if remove_inline_comments:
+        filestr = subst_away_inline_comments(filestr)
 
     # 3. step: deal with figures
     filestr = handle_figures(filestr, format)
@@ -821,28 +809,28 @@ def doconce2format(in_filename, format, out_filename):
     # 4. step: deal with cross referencing (must occur before other format subst)
     filestr = handle_cross_referencing(filestr, format)
     
-    debug('%s\n**** The file after handling ref and label cross referencing\n\n%s\n\n' % ('*'*80, filestr))
+    debugpr('%s\n**** The file after handling ref and label cross referencing\n\n%s\n\n' % ('*'*80, filestr))
 
     # 5. step: deal with index and bibliography (must be done before lists):
     filestr = handle_index_and_bib(filestr, format, has_title)
 
-    debug('%s\n**** The file after handling index and bibliography\n\n%s\n\n' % ('*'*80, filestr))
+    debugpr('%s\n**** The file after handling index and bibliography\n\n%s\n\n' % ('*'*80, filestr))
 
     # 6. step: deal with lists
     filestr = typeset_lists(filestr, format,
                             debug_info=[code_blocks, tex_blocks])
-    debug('%s\n**** The file after typesetting of list:\n\n%s\n\n' % \
+    debugpr('%s\n**** The file after typesetting of list:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
     # 7. step: deal with tables
     filestr = typeset_tables(filestr, format)
-    debug('%s\n**** The file after typesetting of tables:\n\n%s\n\n' % \
+    debugpr('%s\n**** The file after typesetting of tables:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
     # 8. step: do substitutions:
     filestr = inline_tag_subst(filestr, format)
 
-    debug('%s\n**** The file after all inline substitutions:\n\n%s\n\n' % ('*'*80, filestr))
+    debugpr('%s\n**** The file after all inline substitutions:\n\n%s\n\n' % ('*'*80, filestr))
         
     # 9. step: substitute latex-style newcommands in filestr and tex_blocks
     # (not in code_blocks)
@@ -865,7 +853,7 @@ def doconce2format(in_filename, format, out_filename):
     
     # 11. step: substitute code and tex environments:
     filestr = CODE[format](filestr, format)
-    debug('%s\n**** The file after inserting tex/code blocks:\n\n%s\n\n' % \
+    debugpr('%s\n**** The file after inserting tex/code blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
     if has_title:
@@ -902,12 +890,24 @@ def preprocess(filename, format, preprocess_options=''):
     return resultfile
 
 def main():
+    # doconce2format accepts to special command-line arguments:
+    #   - debug (for debugging in file _doconce_debugging.log) or
+    #   - remove_inline_comments
+    #   - oneline (for removal of newlines/linebreaks within paragraphs)
+    #   - encoding utf-8 (e.g.)
+    #   - guess_encoding
+    #   - preprocess options (-DVAR etc.)
+
+    global debug, _log, oneline_paragraphs, guess_encoding, \
+           remove_inline_comments, encoding
+    options = ['debug', 'remove_inline_comments', 'encoding=',
+               'guess_encoding', 'oneline_paragraphs']
     try:
         format = sys.argv[1]
         filename = sys.argv[2]
     except IndexError:
-        print 'Usage: %s format filename [preprocess options]\n' \
-              % sys.argv[0]
+        print 'Usage: %s format filename [%s] [preprocess options]\n' \
+              % (sys.argv[0], '|'.join(options))
         print 'formats:', supported_format_names()
         print '-DFORMAT=format is always defined when running preprocess'
         print 'Other -Dvar preprocess options can be added'
@@ -918,21 +918,37 @@ def main():
         print '%s is not among the supported formats:\n%s' % (format, names)
         sys.exit(1)
 
-    # doconce2format accepts to special arguments as the 3rd
-    # command-line argument:
-    #   - debug (for debugging in file _doconce_debugging.log) or
-    #   - oneline (for removal of newlines/linebreaks within paragraphs)
+    debug = False
+    oneline_paragraphs = False
+    remove_inline_comments = False
+    guess_encoding = False
+    encoding = ''
 
-    global debug_flag, oneline_paragraphs, _log, guess_encoding
-    guess_encoding = False  # used in doconce2format function
+    for opt in options:
+        if opt[-1] == '=':
+            opt = opt[:-1]  # strip off =
+            opt_value = True
+        else:
+            opt_value = False
+        if opt in sys.argv:
+            i = sys.argv.index(opt)
+            if opt_value:
+                try:
+                    v = sys.argv[i+1]
+                    del sys.argv[i+1]
+                except IndexError:
+                    print 'Error: option "%s" must have value' % opt
+                    sys.exit(1)
+                cmd = '%s = %s' % (opt, v)
+                #print cmd
+                exec(cmd, globals())
+            else:
+                cmd = '%s = True' % opt
+                #print cmd
+                exec(cmd, globals())
+            del sys.argv[i]
 
-    if len(sys.argv) >= 4 and sys.argv[3] == 'debug':
-        debug_flag = True
-        del sys.argv[3]
-    else:
-        debug_flag = False
-    
-    if debug_flag:
+    if debug:
         _log_filename = '_doconce_debugging.log'
         _log = open(_log_filename,'w')
         _log.write("""
@@ -943,14 +959,8 @@ def main():
 
     """)
 
-    if len(sys.argv) >= 4 and sys.argv[3] == 'oneline':
-        oneline_paragraphs = True
-        del sys.argv[3]
-    else:
-        oneline_paragraphs = False
-
         
-    debug('\n\n>>>>>>>>>>>>>>>>> %s >>>>>>>>>>>>>>>>>\n\n' % format)
+    debugpr('\n\n>>>>>>>>>>>>>>>>> %s >>>>>>>>>>>>>>>>>\n\n' % format)
     if filename[-7:] != '.do.txt':
         print 'Wrong extension of %s, must be ".do.txt"' % filename
         sys.exit(1)

@@ -306,6 +306,20 @@ running preprocess. That is, in the last example, FORMAT is
 defined as LaTeX. Inside the Doconce document one can then perform
 format specific actions through tests like #if FORMAT == "LaTeX".
 
+Inline comments in the text are removed from the output by::
+
+        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the bin folder of the Doconce
+source code::
+
+        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
+
+This action is convenient when a Doconce document reaches its final form.
+
 
 HTML
 ----
@@ -783,73 +797,14 @@ For example, a filename mypic.eps is fine for LaTeX output but not for
 HTML. In such cases, the Doconce translator will convert the file to
 a suitable format (say mypic.png for HTML output).
 
-FIGURE:[figs/dinoimpact.gif, width=400] It can't get worse than this.... {fig:impact}
-
-
-Another type of special lines starts with @@@CODE and enables copying
-of computer code from a file directly into a verbatim environment, see 
-the section "Blocks of Verbatim Computer Code" below.
-
-
-Inline Tagging
---------------
-
-
-Doconce supports tags for *emphasized phrases*, _boldface phrases_,
-and verbatim text (also called type writer text, for inline code)
-plus LaTeX/TeX inline mathematics, such as v = sin(x).
-
-Emphasized text is typeset inside a pair of asterisk, and there should
-be no spaces between an asterisk and the emphasized text, as in::
-
-        *emphasized words*
-
-
-
-Boldface font is recognized by an underscore instead of an asterisk::
-
-        _several words in boldface_ followed by *ephasized text*.
-
-
-The line above gets typeset as
-_several words in boldface_ followed by *ephasized text*.
-
-Verbatim text, typically used for short inline code,
-is typeset between backquotes::
-
-        `call myroutine(a, b)` looks like a Fortran call
-        while `void myfunc(double *a, double *b)` must be C.
-
-
-The typesetting result looks like this:
-call myroutine(a, b) looks like a Fortran call
-while void myfunc(double *a, double *b) must be C.
-
-It is recommended to have inline verbatim text on the same line in
-the Doconce file, because some formats (LaTeX and ptex2tex) will have
-problems with inline verbatim text that is split over two lines.
-
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
-emphasized code): the Doconce interpreter is not very smart so inline
-computer code can soon lead to problems in the final format. Go back to the
-Doconce source and modify it so the format to which you want to go
-becomes correct (sometimes a trial and error process - sticking to
-very simple formatting usually avoids such problems).
-
-Web addresses with links are typeset as::
-
-        some URL like http://my.place.in.space/src<MyPlace>
-
-
-which appears as some URL like MyPlace (http://my.place.in.space/src).
-Link to a file is done by the URL keyword, a colon, and enclosing the
-filename in double quotes::
-
-        URL:"manual.do.txt"
-
-
-This construction results in the link manual.do.txt.
-
+FIGURE:
+The name and comment are visible in the output unless doconce2format
+is run with a command-line specification of removing such comments
+(see the chapter "From Doconce to Other Formats" for an example). Inline comments
+are helpful during development of a document since different authors
+and readers can comment on formulations, missing points, etc.
+All such comments can easily be removed from the .do.txt file
+(see the chapter "From Doconce to Other Formats").
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Most formats leave this syntax as it is (including to dollar signs),
@@ -860,10 +815,7 @@ commands, which may appear annoying in plain text. Doconce therefore
 supports an extended inline math syntax where the writer can provide
 an alternative syntax suited for formats close to plain ASCII::
 
-        Here is an example on a linear system 
-        ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
-        where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and 
-        $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
+        *emphasized words*
 
 
 That is, we provide two alternative expressions, both enclosed in
@@ -879,8 +831,7 @@ Cross-Referencing
 
 References and labels are supported. The syntax is simple::
 
-        label{section:verbatim}   # defines a label
-        For more information we refer to Section ref{section:verbatim}.
+        _several words in boldface_ followed by *ephasized text*.
 
 
 This syntax is close that that of labels and cross-references in
@@ -906,7 +857,7 @@ the source of this document illustrates how labels and references
 are handled by the format in question.
 
 Hyperlinks to files or web addresses are handled as explained
-in the section "Inline Tagging".
+in the section ref{inline:tagging}.
 
 Index and Bibliography
 ----------------------
@@ -914,15 +865,14 @@ Index and Bibliography
 An index can be created for the LaTeX and the reStructuredText or
 Sphinx formats by the idx keyword, following a LaTeX-inspired syntax::
 
-        idx{some index entry}
-        idx{main entry!subentry}
-        idx{`verbatim_text` and more}
+        `call myroutine(a, b)` looks like a Fortran call
+        while `void myfunc(double *a, double *b)` must be C.
 
 
 The exclamation mark divides a main entry and a subentry. Backquotes
 surround verbatim text, which is correctly transformed in a LaTeX setting to::
 
-        \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
+        some URL like http://my.place.in.space/src<MyPlace>
 
 
 Everything related to the index simply becomes invisible in 
@@ -930,7 +880,7 @@ plain text, Epytext, StructuredText, HTML, and Wiki formats.
 
 Literature citations also follow a LaTeX-inspired style::
 
-        as found in cite{Larsen:86,Nielsen:99}.
+        URL:"manual.do.txt"
 
 
 Citation labels can be separated by comma. In LaTeX, this is directly
@@ -939,7 +889,7 @@ and Sphinx the labels can be clicked, while in all the other text
 formats the labels are consecutively numbered so the above citation
 will typically look like::
 
-        as found in [3][14]
+        [name: comment]
 
 
 if Larsen:86 has already appeared in the 3rd citation in the document
@@ -954,17 +904,10 @@ The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
 in the bibliography. Doconce markup can be used in this text, e.g.::
 
-        {
-        'Nielsen:99': """
-        K. Nielsen. *Some Comments on Markup Languages*. 
-        URL:"http://some.where.net/nielsen/comments", 1999.
-        """,
-        'Larsen:86': 
-        """
-        O. B. Larsen. On Markup and Generality.
-        *Personal Press*. 1986.
-        """
-        }
+        Here is an example on a linear system 
+        ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
+        where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and 
+        $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
 
 
 In the LaTeX format, the .bib file will be used in the standard way,
@@ -977,6 +920,8 @@ in the document.
 Finally, we must test the citation command and bibliography by 
 citing a book [1], a paper [2],
 and both of them simultaneously [1] [2].
+
+
 
 
 Tables
@@ -994,13 +939,8 @@ A table like
 
 is built up of pipe symbols and dashes::
 
-          |--------------------------------|
-          |time  | velocity | acceleration |
-          |--------------------------------|
-          | 0.0  | 1.4186   | -5.01        |
-          | 2.0  | 1.376512 | 11.919       |
-          | 4.0  | 1.1E+1   | 14.717624    |
-          |--------------------------------|
+        label{section:verbatim}   # defines a label
+        For more information we refer to Section ref{section:verbatim}.
 
 
 The pipes and column values do not need to be aligned (but why write
@@ -1032,7 +972,9 @@ language for typesetting of the verbatim block by Pygments. This
 mapping takes place in an optional comment to be inserted in the Doconce
 source file, e.g.::
 
-        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+        idx{some index entry}
+        idx{main entry!subentry}
+        idx{`verbatim_text` and more}
 
 
 Here, three arguments are defined: pycod for Python code,
@@ -1063,36 +1005,12 @@ common errors are naturally avoided).
 
 Here is a verbatim code block with Python code (pycod style)::
 
-        # regular expressions for inline tags:
-        inline_tag_begin = r'(?P<begin>(^|\s+))'
-        inline_tag_end = r'(?P<end>[.,?!;:)\s])'
-        INLINE_TAGS = {
-            'emphasize':
-            r'%s\*(?P<subst>[^ `][^*`]*)\*%s' % \
-            (inline_tag_begin, inline_tag_end),
-            'verbatim':
-            r'%s`(?P<subst>[^ ][^`]*)`%s' % \
-            (inline_tag_begin, inline_tag_end),
-            'bold':
-            r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
-            (inline_tag_begin, inline_tag_end),
-        }
+        \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
 
 And here is a C++ code snippet (cppcod style)::
 
-        void myfunc(double* x, const double& myarr) {
-            for (int i = 1; i < myarr.size(); i++) {
-                myarr[i] = myarr[i] - x[i]*myarr[i-1]
-            }
-        }
-        !ec    
-        
-        Computer code can be copied directly from a file, if desired. The syntax
-        is then::
-
-         @@@CODE myfile.f
-         @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
+        as found in cite{Larsen:86,Nielsen:99}.
 
 
 The first line implies that all lines in the file myfile.f are
@@ -1113,35 +1031,24 @@ final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above)::
 
-        C     a comment
-        
-              subroutine    test()
-              integer i
-              real*8 r
-              r = 0
-              do i = 1, i
-                 r = r + i
-              end do
-              return
-        C     END1
-        
-              program testme
-              call test()
-              return
+        as found in [3][14]
 
 
 
 Let us then copy just a piece in the middle as indicated by the fromto:
 directive above::
 
-              subroutine    test()
-              integer i
-              real*8 r
-              r = 0
-              do i = 1, i
-                 r = r + i
-              end do
-              return
+        {
+        'Nielsen:99': """
+        K. Nielsen. *Some Comments on Markup Languages*. 
+        URL:"http://some.where.net/nielsen/comments", 1999.
+        """,
+        'Larsen:86': 
+        """
+        O. B. Larsen. On Markup and Generality.
+        *Personal Press*. 1986.
+        """
+        }
 
 
 
@@ -1207,29 +1114,38 @@ expressions).
 *Example.* Suppose we have the following commands in 
 newcommand_replace.tex::
 
-        \newcommand{\beqa}{\begin{eqnarray}}
-        \newcommand{\eeqa}{\end{eqnarray}}
-        \newcommand{\ep}{\thinspace . }
-        \newcommand{\uvec}{\vec u}
-        \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
-        \newcommand{\Q}{\mathbfx{Q}}
+          |--------------------------------|
+          |time  | velocity | acceleration |
+          |--------------------------------|
+          | 0.0  | 1.4186   | -5.01        |
+          | 2.0  | 1.376512 | 11.919       |
+          | 4.0  | 1.1E+1   | 14.717624    |
+          |--------------------------------|
 
 
 
 and these in newcommands_keep.tex::
 
-        \newcommand{\x}{\mathbfx{x}}
-        \newcommand{\normalvec}{\mathbfx{n}}
-        \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
 
 
 
 The LaTeX block::
 
-        \beqa
-        \x\cdot\normalvec &=& 0,\label{my:eq1}\\
-        \Ddt{\uvec} &=& \Q \ep\label{my:eq2}
-        \eeqa
+        # regular expressions for inline tags:
+        inline_tag_begin = r'(?P<begin>(^|\s+))'
+        inline_tag_end = r'(?P<end>[.,?!;:)\s])'
+        INLINE_TAGS = {
+            'emphasize':
+            r'%s\*(?P<subst>[^ `][^*`]*)\*%s' % \
+            (inline_tag_begin, inline_tag_end),
+            'verbatim':
+            r'%s`(?P<subst>[^ ][^`]*)`%s' % \
+            (inline_tag_begin, inline_tag_end),
+            'bold':
+            r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
+            (inline_tag_begin, inline_tag_end),
+        }
 
 
 will then be rendered to::
@@ -1279,7 +1195,18 @@ reST to indicate a verbatim block of text).
 
 *The LaTeX File Does Not Compile.* If the problem is undefined control sequence involving::
 
-        \code{...}
+        void myfunc(double* x, const double& myarr) {
+            for (int i = 1; i < myarr.size(); i++) {
+                myarr[i] = myarr[i] - x[i]*myarr[i-1]
+            }
+        }
+        !ec    
+        
+        Computer code can be copied directly from a file, if desired. The syntax
+        is then::
+
+         @@@CODE myfile.f
+         @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 
 
 the cause is usually a verbatim inline text (in backquotes in the
@@ -1319,47 +1246,77 @@ that all inline verbatim text appears on the same line.
         *Problems with Boldface and Emphasize.* Two boldface or emphasize expressions after each other are not rendered
         correctly. Merge them into one common expression.
         
-        *Debugging.* Given a problem, extract a small portion of text surrounding the
-        problematic area and debug that small piece of text. Doconce does a
-        series of transformations of the text. The effect of each of these
-        transformation steps are dumped to a logfile, named
-        _doconce_debugging.log, if the third argument to doconce2format
-        is debug. The logfile is inteded for the developers of Doconce, but
-        may still give some idea of what is wrong.  The section "Basic Parsing
-        Ideas" explains how the Doconce text is transformed into a specific
-        format, and you need to know these steps to make use of the logfile.
-        
-        
-        Header and Footer
-        -----------------
-        
-        Some formats use a header and footer in the document. LaTeX and
-        HTML are two examples of such formats. When the document is to be
-        included in another document (which is often the case with
-        Doconce-based documents), the header and footer are not wanted, while
-        these are needed (at least in a LaTeX context) if the document is
-        stand-alone. We have introduce the convention that if TITLE: or
-        #TITLE: is found at the beginning of the line (i.e., the document
-        has, or has an intention have, a title), the header and footer
-        are included, otherwise not.
-        
-        
-        Basic Parsing Ideas
-        -------------------
-        
-        
-        The (parts of) files with computer code to be directly included in
-        the document are first copied into verbatim blocks.
-        
-        All verbatim and TeX blocks are removed and stored elsewhere
-        to ensure that no formatting rules are not applied to these blocks.
-        
-        The text is examined line by line for typesetting of lists, as well as
-        handling of blank lines and comment lines.
-        List parsing needs some awareness of the context.
-        Each line is interpreted by a regular expression::
+        *Strange Non-English Characters.* Check the encoding of the .do.txt file with the Unix file command.
+        If UTF-8, convert to latin-1 using the Unix command::
 
-        (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<text>.*)\s?
+        C     a comment
+        
+              subroutine    test()
+              integer i
+              real*8 r
+              r = 0
+              do i = 1, i
+                 r = r + i
+              end do
+              return
+        C     END1
+        
+              program testme
+              call test()
+              return
+
+
+(Doconce has a feature to detect the encoding, but it is not reliable and
+therefore turned off.)
+
+*Debugging.* Given a problem, extract a small portion of text surrounding the
+problematic area and debug that small piece of text. Doconce does a
+series of transformations of the text. The effect of each of these
+transformation steps are dumped to a logfile, named
+_doconce_debugging.log, if the third argument to doconce2format
+is debug. The logfile is inteded for the developers of Doconce, but
+may still give some idea of what is wrong.  The section "Basic Parsing
+Ideas" explains how the Doconce text is transformed into a specific
+format, and you need to know these steps to make use of the logfile.
+
+
+Header and Footer
+-----------------
+
+Some formats use a header and footer in the document. LaTeX and
+HTML are two examples of such formats. When the document is to be
+included in another document (which is often the case with
+Doconce-based documents), the header and footer are not wanted, while
+these are needed (at least in a LaTeX context) if the document is
+stand-alone. We have introduce the convention that if TITLE: or
+#TITLE: is found at the beginning of the line (i.e., the document
+has, or has an intention have, a title), the header and footer
+are included, otherwise not.
+
+
+Basic Parsing Ideas
+-------------------
+
+
+The (parts of) files with computer code to be directly included in
+the document are first copied into verbatim blocks.
+
+All verbatim and TeX blocks are removed and stored elsewhere
+to ensure that no formatting rules are not applied to these blocks.
+
+The text is examined line by line for typesetting of lists, as well as
+handling of blank lines and comment lines.
+List parsing needs some awareness of the context.
+Each line is interpreted by a regular expression::
+
+              subroutine    test()
+              integer i
+              real*8 r
+              r = 0
+              do i = 1, i
+                 r = r + i
+              end do
+              return
 
 
 
@@ -1394,67 +1351,12 @@ A Glimpse of How to Write a New Translator
 This is the HTML-specific part of the
 source code of the HTML translator::
 
-        FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
-        BLANKLINE['HTML'] = '<p>\n'           # blank input line => new paragraph
-        INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
-            # keep math as is:
-            'math': None,  # indicates no substitution
-            'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
-            'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
-            'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
-            'URL':           r'\g<begin><a href="\g<url>">\g<link></a>',
-            'section':       r'<h1>\g<subst></h1>',
-            'subsection':    r'<h3>\g<subst></h3>',
-            'subsubsection': r'<h5>\g<subst></h5>',
-            'paragraph':     r'<b>\g<subst></b>. ',
-            'title':         r'<title>\g<subst></title>\n<center><h1>\g<subst></h1></center>',
-            'date':          r'<center><h3>\g<subst></h3></center>',
-            'author':        r'<center><h3>\g<subst></h3></center>',
-            }
-        
-        # how to replace code and LaTeX blocks by HTML (<pre>) environment:
-        def HTML_code(filestr):
-            c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
-            filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre>\n', filestr)
-            filestr = re.sub(r'!ec\n',
-                             r'</pre>\n<! -- END VERBATIM BLOCK -->\n', filestr)
-            c = re.compile(r'^!bt\n', re.MULTILINE)
-            filestr = c.sub(r'<pre>\n', filestr)
-            filestr = re.sub(r'!et\n', r'</pre>\n', filestr)
-            return filestr
-        CODE['HTML'] = HTML_code
-        
-        # how to typeset lists and their items in HTML:
-        LIST['HTML'] = {
-            'itemize':
-            {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
-            'enumerate':
-            {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
-            'description':
-            {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\n\n'},
-            }
-        
-        # how to type set description lists for function arguments, return
-        # values, and module/class variables:
-        ARGLIST['HTML'] = {
-            'parameter': '<b>argument</b>',
-            'keyword': '<b>keyword argument</b>',
-            'return': '<b>return value(s)</b>',
-            'instance variable': '<b>instance variable</b>',
-            'class variable': '<b>class variable</b>',
-            'module variable': '<b>module variable</b>',
-            }
-        
-        # document start:
-        INTRO['HTML'] = """
-        <html>
-        <body bgcolor="white">
-        """
-        # document ending:
-        OUTRO['HTML'] = """
-        </body>
-        </html>
-        """
+        \newcommand{\beqa}{\begin{eqnarray}}
+        \newcommand{\eeqa}{\end{eqnarray}}
+        \newcommand{\ep}{\thinspace . }
+        \newcommand{\uvec}{\vec u}
+        \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
+        \newcommand{\Q}{\mathbfx{Q}}
 
 
 
@@ -1473,15 +1375,9 @@ only legal keywords (descriptions) for the description list in this
 context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
 arguments and variables are nicely formatted::
 
-            - argument x: x value (float),
-              which must be a positive number.
-            - keyword argument tolerance: tolerance (float) for stopping
-              the iterations.
-            - return: the root of the equation (float), if found, otherwise None.
-            - instance variable eta: surface elevation (array).
-            - class variable items: the total number of MyClass objects (int).
-            - module variable debug: True: debug mode is on; False: no debugging 
-              (bool variable).
+        \newcommand{\x}{\mathbfx{x}}
+        \newcommand{\normalvec}{\mathbfx{n}}
+        \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
 
 
 

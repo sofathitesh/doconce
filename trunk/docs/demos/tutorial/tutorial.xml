@@ -60,7 +60,10 @@ URLs with a link word are possible, as in http://folk.uio.no/hpl&lt;hpl&gt;.
 Just a file link goes like URL:&quot;tutorial.do.txt&quot;. References
 to sections may use logical names as labels (e.g., a &quot;label&quot; command right
 after the section title), as in the reference to
-Chapter ref{my:first:sec}.
+Chapter ref{my:first:sec}. Doconce also allows inline comments such
+as [hpl: here I will make some remarks to the text] for allowing
+authors to make notes. Inline comments can be removed from the output
+by a command-line argument (see Chapter ref{doconce2formats} for an example).
 
 Tables are also supperted, e.g.,
 
@@ -146,12 +149,14 @@ making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
 syntax we refer to the <literal>docs/manual/manual.do.txt</literal> file (see the
 <reference name="demo page" refuri="https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html">demo
-page</reference><target ids="demo-page" names="demo\ page" refuri="https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html"/> for various formats of this document).</paragraph><comment xml:space="preserve">Example on including another Doconce file:</comment></section></section><section ids="from-doconce-to-other-formats" names="from\ doconce\ to\ other\ formats"><title>From Doconce to Other Formats</title><paragraph>Transformation of a Doconce document to various other
+page</reference><target ids="demo-page" names="demo\ page" refuri="https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html"/> for various formats of this document).</paragraph><comment xml:space="preserve">Example on including another Doconce file:</comment><target refid="doconce2formats"/></section></section><section ids="from-doconce-to-other-formats doconce2formats" names="from\ doconce\ to\ other\ formats doconce2formats"><title>From Doconce to Other Formats</title><paragraph>Transformation of a Doconce document to various other
 formats applies the script <literal>doconce2format</literal>:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce2format format mydoc.do.txt</literal_block><paragraph>The <literal>preprocess</literal> program is always used to preprocess the file first,
 and options to <literal>preprocess</literal> can be added after the filename. For example:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt -Dextra_sections</literal_block><paragraph>The variable <literal>FORMAT</literal> is always defined as the current format when
 running <literal>preprocess</literal>. That is, in the last example, <literal>FORMAT</literal> is
 defined as <literal>LaTeX</literal>. Inside the Doconce document one can then perform
-format specific actions through tests like <literal>#if FORMAT == &quot;LaTeX&quot;</literal>.</paragraph><section ids="html" names="html"><title>HTML</title><paragraph>Making an HTML version of a Doconce file <literal>mydoc.do.txt</literal>
+format specific actions through tests like <literal>#if FORMAT == &quot;LaTeX&quot;</literal>.</paragraph><paragraph>Inline comments in the text are removed from the output by:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt remove_inline_comments</literal_block><paragraph>One can also remove such comments from the original Doconce file
+by running a helper script in the <literal>bin</literal> folder of the Doconce
+source code:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce_remove_inline_comments.py mydoc.do.txt</literal_block><paragraph>This action is convenient when a Doconce document reaches its final form.</paragraph><section ids="html" names="html"><title>HTML</title><paragraph>Making an HTML version of a Doconce file <literal>mydoc.do.txt</literal>
 is performed by:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce2format HTML mydoc.do.txt</literal_block><paragraph>The resulting file <literal>mydoc.html</literal> can be loaded into any web browser for viewing.</paragraph></section><section ids="latex" names="latex"><title>LaTeX</title><paragraph>Making a LaTeX file <literal>mydoc.tex</literal> from <literal>mydoc.do.txt</literal> is done in two steps:
 .. Note: putting code blocks inside a list is not successful in many
 .. formats - the text may be messed up. A better choice is a paragraph

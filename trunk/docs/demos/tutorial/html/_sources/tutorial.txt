@@ -115,7 +115,10 @@ Here is an example of some simple text written in the Doconce format:
         Just a file link goes like URL:"tutorial.do.txt". References
         to sections may use logical names as labels (e.g., a "label" command right
         after the section title), as in the reference to 
-        Chapter ref{my:first:sec}.
+        Chapter ref{my:first:sec}. Doconce also allows inline comments such
+        as [hpl: here I will make some remarks to the text] for allowing
+        authors to make notes. Inline comments can be removed from the output
+        by a command-line argument (see Chapter ref{doconce2formats} for an example).
         
         Tables are also supperted, e.g.,
         
@@ -299,6 +302,8 @@ page <https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>`_ fo
 .. Example on including another Doconce file:
 
 
+.. _doconce2formats:
+
 From Doconce to Other Formats
 =============================
 
@@ -322,6 +327,24 @@ The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
 defined as ``LaTeX``. Inside the Doconce document one can then perform
 format specific actions through tests like ``#if FORMAT == "LaTeX"``.
+
+Inline comments in the text are removed from the output by
+
+.. code-block:: console
+
+        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
+
+One can also remove such comments from the original Doconce file
+by running a helper script in the ``bin`` folder of the Doconce
+source code:
+
+.. code-block:: py
+
+        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
+
+This action is convenient when a Doconce document reaches its final form.
 
 
 HTML
