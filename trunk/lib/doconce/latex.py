@@ -154,7 +154,7 @@ def latex_ref_and_label(section_label2title, format, filestr):
     pattern = r'(section|chapter)(s?)\s+ref\{'  # no \[A-Za-z] pattern => no fix
     replacement = fix_latex_command_regex(r'\g<1>\g<2>~\ref{',
                                           application='replacement')
-    filestr = re.sub(pattern, replacement, filestr, flags=re.IGNORECASE)
+    filestr = re.sub(pattern, replacement, filestr, re.IGNORECASE)
     # the rest of the ref{}:
     filestr = re.sub(fix_latex_command_regex(r'\sref\{', application='math'),
                      fix_latex_command_regex(r'~\ref{',  application='replacement'),
@@ -191,7 +191,7 @@ def latex_index_bib(filestr, index, citations, bibfile):
 \bibliography{%s}
 """ % bibfile['bib'], application='replacement')
         filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, 
-                         flags=re.MULTILINE)
+                         re.MULTILINE)
     return filestr
     
 

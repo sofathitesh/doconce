@@ -541,8 +541,7 @@ def handle_index_and_bib(filestr, format, has_title):
         sys.exit(1)
 
     index = {}  # index[word] = lineno
-    from collections import OrderedDict
-    citations = OrderedDict()  # citations[label] = no_in_list (1,2,3,...)
+    citations = {}  # citations[label] = no_in_list (1,2,3,...)
     line_counter = 0
     cite_counter = 0
     bibfile = {}
@@ -600,8 +599,8 @@ def typeset_authors(filestr, format):
     debugpr('\n*** Dealing with authors and institutions ***')
     # first deal with AUTHOR as there can be several such lines
     author_lines = re.findall(r'^AUTHOR:\s*(?P<author>.+)\s*$', filestr,
-                              flags=re.MULTILINE)
-    filestr = re.sub(r'^AUTHOR:.+$', 'XXXAUTHOR', filestr, flags=re.MULTILINE)
+                              re.MULTILINE)
+    filestr = re.sub(r'^AUTHOR:.+$', 'XXXAUTHOR', filestr, re.MULTILINE)
     # contract multiple AUTHOR lines to one single:
     filestr = re.sub('(XXXAUTHOR\n)+', 'XXXAUTHOR', filestr)
 
@@ -617,10 +616,9 @@ def typeset_authors(filestr, format):
             authors_and_institutions.append((a.strip(), i))
         else:  # just author's name
             authors_and_institutions.append((line.strip(), None))
-    from collections import OrderedDict
-    inst2index = OrderedDict()
+    inst2index = {}
     index2inst = {}
-    auth2index = OrderedDict()
+    auth2index = {}
     # get unique institutions:
     for a, institutions in authors_and_institutions:
         if institutions is not None:

@@ -139,10 +139,10 @@ def sphinx_code(filestr, format):
                                 (language, defs_line))
         filestr = re.sub(r'^!bc\s+%s\s*\n' % key, 
                          '\n.. code-block:: %s\n\n' % defs[key], filestr,
-                         flags=re.MULTILINE)
+                         re.MULTILINE)
     # any !bc with/without argument becomes a py (python) block:
     filestr = re.sub(r'^!bc.+\n', '\n.. code-block:: py\n\n', filestr,
-                     flags=re.MULTILINE)
+                     re.MULTILINE)
 
     filestr = re.sub(r'!ec\n', '\n\n', filestr)
     #filestr = re.sub(r'!ec\n', '\n', filestr)
@@ -194,7 +194,7 @@ def sphinx_ref_and_label(section_label2title, format, filestr):
             raise Exception('problem with substituting "%s"' % title)
 
     # remove label{...} from output
-    filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, re.MULTILINE)
     filestr = re.sub(r'label\{.+?\}', '', filestr)  # all the remaining
 
     # replace all references to sections:
