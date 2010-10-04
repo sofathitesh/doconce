@@ -127,7 +127,7 @@ def rst_ref_and_label(section_label2title, format, filestr):
             raise Exception('problem with substituting "%s"' % title)
 
     # remove label{...} from output
-    filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, re.MULTILINE)
     filestr = re.sub(r'label\{.+?\}', '', filestr)  # all the remaining
 
     # replace all references to sections:
@@ -148,8 +148,7 @@ def rst_bib(filestr, citations, bibfile):
         filestr = filestr.replace('cite{%s}' % label, '[%s]_' % label)
     if 'rst' in bibfile:
         f = open(bibfile['rst'], 'r');  bibtext = f.read();  f.close()
-        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, 
-                         flags=re.MULTILINE)
+        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, re.MULTILINE)
     return filestr
 
 def rst_index_bib(filestr, index, citations, bibfile):
