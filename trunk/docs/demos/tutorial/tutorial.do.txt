@@ -3,8 +3,6 @@ AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of O
 DATE: September 10, 2010
 
 
-# lines beginning with # are comment lines
-
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
    (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML,
@@ -124,6 +122,8 @@ Tables are also supperted, e.g.,
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
+
+# lines beginning with # are comment lines
 !ec
 The Doconce text above results in the following little document:
 

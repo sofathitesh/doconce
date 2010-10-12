@@ -162,10 +162,28 @@ def latex_ref_and_label(section_label2title, format, filestr):
     
     # equations are ok in the doconce markup
 
-    # perform a substitution of LaTeX (and ensure \LaTeX is not there)
+    # perform a substitution of LaTeX (and ensure \LaTeX is not there):
     filestr = re.sub(fix_latex_command_regex(r'\LaTeX({})?', application='match'), 'LaTeX', filestr)
     filestr = re.sub('''([^"'`*_])LaTeX([^"'`*_])''', 
                      r'\g<1>{\LaTeX}\g<2>', filestr)
+
+    # handle & (Texas A&M -> Texas A{\&}M):
+    filestr = re.sub(r'([A-Za-z])\s*&\s*([A-Za-z])', r'\g<1>{\&}\g<2>', filestr)
+
+    # handle non-English characters:
+    chars = {'æ': r'{\ae}', 'ø': r'{\o}', 'å': r'{\aa}',
+             'Æ': r'{\AE}', 'Ø': r'{\O}', 'Å': r'{\AA}',
+             }
+    #for c in chars:
+    #    filestr, n = re.subn(c, chars[c], filestr)
+    #    print '%d subst of %s' % (n, c)
+    #    #filestr = filestr.replace(c, chars[c])
+
+    # fix periods followed by too long space:
+    prefix = 'Univ.', 'Prof.', 'Dr.', 'Mr.', 'Ms.', 'Mss.', 'Fig.', 'Tab.', \
+             'Dept.', 
+    for p in prefix:
+        filestr = re.sub(r'%s +([\\A-Za-z0-9])' % p, r'%s~\g<1>' % p, filestr)
                     
     return filestr
 
@@ -315,7 +333,10 @@ def define(FILENAME_EXTENSION,
     TABLE['LaTeX'] = latex_table
     INDEX_BIB['LaTeX'] = latex_index_bib
 
-    INTRO['LaTeX'] = r"""\documentclass{article}
+    INTRO['LaTeX'] = r"""%%
+%% Automatically generated LaTeX file from Doconce source (http://code.google.com/p/doconce/)
+%%
+\documentclass{article}
 \usepackage{hyperref,relsize,epsfig,makeidx}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}

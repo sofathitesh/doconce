@@ -1,11 +1,12 @@
+.. Automatically generated reST file from Doconce source 
+   (http://code.google.com/p/doconce/)
+
 Doconce: Document Once, Include Anywhere
 ========================================
 
 :Author: Hans Petter Langtangen
 
 :Date: September 10, 2010
-
-.. lines beginning with # are comment lines
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -129,6 +130,8 @@ Here is an example of some simple text written in the Doconce format:
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
+        
+        # lines beginning with # are comment lines
 
 
 The Doconce text above results in the following little document:

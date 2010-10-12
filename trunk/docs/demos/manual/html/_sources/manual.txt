@@ -1,3 +1,6 @@
+.. Automatically generated reST file from Doconce source 
+   (http://code.google.com/p/doconce/)
+
 Doconce Description
 ===================
 
@@ -95,8 +98,8 @@ output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
 one motivation for developing the Doconce concept and tool.
 
-*Different Tagging for Different Formats.* A problem with doc
-strings (in Python) is that they benefit greatly from some tagging,
+*Tagging Issues in Python Documentation.* A problem with doc
+strings in Python is that they benefit greatly from some tagging,
 Epytext or reStructuredText, when transformed to HTML or PDF
 manuals. However, such tagging looks annoying in Pydoc, which just
 shows the pure doc string. For Pydoc we should have more minimal (or
@@ -127,7 +130,7 @@ in verbatim environments). To summarize, we need
     text with completely invivisble tagging. 
 
  3. Tools for inserting appropriately filtered versions of a "singleton"
-    documentation file in other documents (doc strings, manuals, tutorials).
+    documentation file in other documents (manuals, tutorials, doc strings).
 
 One answer to these points is the Doconce markup language, its associated
 tools, and the `C-style preprocessor tool <http://code.google.com/p/preprocess/>`_.

@@ -79,8 +79,8 @@ output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
 one motivation for developing the Doconce concept and tool.
 
-__Different Tagging for Different Formats.__ A problem with doc
-strings (in Python) is that they benefit greatly from some tagging,
+__Tagging Issues in Python Documentation.__ A problem with doc
+strings in Python is that they benefit greatly from some tagging,
 Epytext or reStructuredText, when transformed to HTML or PDF
 manuals. However, such tagging looks annoying in Pydoc, which just
 shows the pure doc string. For Pydoc we should have more minimal (or
@@ -111,7 +111,7 @@ in verbatim environments). To summarize, we need
     text with completely invivisble tagging. 
 
   o Tools for inserting appropriately filtered versions of a "singleton"
-    documentation file in other documents (doc strings, manuals, tutorials).
+    documentation file in other documents (manuals, tutorials, doc strings).
 
 One answer to these points is the Doconce markup language, its associated
 tools, and the http://code.google.com/p/preprocess/<C-style preprocessor tool>.

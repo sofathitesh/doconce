@@ -200,8 +200,19 @@ def define(FILENAME_EXTENSION,
 
 
     # document start:
-    INTRO['HTML'] = """
+    INTRO['HTML'] = """\
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+Automatically generated HTML file from Doconce source 
+(http://code.google.com/p/doconce/) 
+-->
+
 <HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+</HEAD>
+
 <BODY BGCOLOR="white">
     """
     # document ending:

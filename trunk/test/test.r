@@ -61,8 +61,18 @@ The Doconce source code reads
 
 
 ************** File: testdoc.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+Automatically generated HTML file from Doconce source 
+(http://code.google.com/p/doconce/) 
+-->
 
 <HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+</HEAD>
+
 <BODY BGCOLOR="white">
     <TITLE>A Test Document</TITLE>
 <CENTER><H1>A Test Document</H1></CENTER>
@@ -163,6 +173,9 @@ The Doconce source code reads
 </HTML>
     
 ************** File: testdoc.p.tex *****************
+%%
+%% Automatically generated LaTeX file from Doconce source (http://code.google.com/p/doconce/)
+%%
 \documentclass{article}
 \usepackage{hyperref,relsize,epsfig,makeidx}
 \usepackage[latin1]{inputenc}
@@ -327,6 +340,9 @@ The Doconce source code reads
 \end{document}
 
 ************** File: testdoc.rst *****************
+.. Automatically generated reST file from Doconce source 
+   (http://code.google.com/p/doconce/)
+
 A Test Document
 ===============
 
@@ -417,6 +433,9 @@ The Doconce source code reads::
 
 
 ************** File: testdoc.sphinx.rst *****************
+.. Automatically generated reST file from Doconce source 
+   (http://code.google.com/p/doconce/)
+
 A Test Document
 ===============
 
@@ -952,8 +971,6 @@ AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of O
 DATE: September 10, 2010
 
 
-# lines beginning with # are comment lines
-
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
    (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML,
@@ -1073,6 +1090,8 @@ Tables are also supperted, e.g.,
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
+
+# lines beginning with # are comment lines
 !ec
 The Doconce text above results in the following little document:
 
@@ -1273,8 +1292,18 @@ and the LaTeX output is not at all as clean, but it also has a lot
 more typesetting and tagging features than Doconce.
 
 ************** File: tutorial.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+Automatically generated HTML file from Doconce source 
+(http://code.google.com/p/doconce/) 
+-->
 
 <HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+</HEAD>
+
 <BODY BGCOLOR="white">
     <TITLE>Doconce: Document Once, Include Anywhere</TITLE>
 <CENTER><H1>Doconce: Document Once, Include Anywhere</H1></CENTER>
@@ -1289,9 +1318,6 @@ more typesetting and tagging features than Doconce.
 
 <CENTER><H3>September 10, 2010</H3></CENTER>
 <P>
-
-<P>
-<!-- lines beginning with # are comment lines -->
 
 <P>
 
@@ -1416,6 +1442,8 @@ Tables are also supperted, e.g.,
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
+
+# lines beginning with # are comment lines
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The Doconce text above results in the following little document:
@@ -1996,14 +2024,15 @@ more typesetting and tagging features than Doconce.
 ************** File: tutorial.p.tex *****************
 NOT FOUND!
 ************** File: tutorial.rst *****************
+.. Automatically generated reST file from Doconce source 
+   (http://code.google.com/p/doconce/)
+
 Doconce: Document Once, Include Anywhere
 ========================================
 
 :Author: Hans Petter Langtangen
 
 :Date: September 10, 2010
-
-.. lines beginning with # are comment lines
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -2125,6 +2154,8 @@ Here is an example of some simple text written in the Doconce format::
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
+        
+        # lines beginning with # are comment lines
 
 
 The Doconce text above results in the following little document:
@@ -2636,14 +2667,15 @@ than Doconce and cannot be filtered to plain, untagged text, or wiki,
 and the LaTeX output is not at all as clean, but it also has a lot
 more typesetting and tagging features than Doconce.
 ************** File: tutorial.sphinx.rst *****************
+.. Automatically generated reST file from Doconce source 
+   (http://code.google.com/p/doconce/)
+
 Doconce: Document Once, Include Anywhere
 ========================================
 
 :Author: Hans Petter Langtangen
 
 :Date: September 10, 2010
-
-.. lines beginning with # are comment lines
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -2767,6 +2799,8 @@ Here is an example of some simple text written in the Doconce format:
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
+        
+        # lines beginning with # are comment lines
 
 
 The Doconce text above results in the following little document:
@@ -3340,9 +3374,6 @@ By *Hans Petter Langtangen*
 
 ==== September 10, 2010 ====
 
-<wiki:comment> lines beginning with # are comment lines </wiki:comment>
-
-
  * When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and at some later stage eventually go   with a particular format?
  * Do you find it problematic that you have the same information   scattered around in different documents in different typesetting   formats? Would it be a good idea to write things once, in one   place, and include it anywhere?
 
@@ -3421,6 +3452,8 @@ Tables are also supperted, e.g.,
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
+
+# lines beginning with # are comment lines
 }}}
 The Doconce text above results in the following little document:
 
@@ -3880,7 +3913,6 @@ TITLE: Doconce: Document Once, Include Anywhere
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: September 10, 2010
 
 
-
  - When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
    (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML,
@@ -3981,6 +4013,8 @@ Here is an example of some simple text written in the Doconce format::
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
+        
+        # lines beginning with # are comment lines
 
 
 The Doconce text above results in the following little document:
@@ -4420,7 +4454,6 @@ TITLE: Doconce: Document Once, Include Anywhere
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: September 10, 2010
 
 
-
  - When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
    (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML,
@@ -4528,6 +4561,8 @@ Here is an example of some simple text written in the Doconce format::
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
+        
+        # lines beginning with # are comment lines
 
 
 The Doconce text above results in the following little document:
@@ -5151,6 +5186,8 @@ Here is an example of some simple text written in the Doconce format::
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
+        
+        # lines beginning with # are comment lines
 
 
 The Doconce text above results in the following little document:
@@ -5652,7 +5689,7 @@ more typesetting and tagging features than Doconce.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 29 Sep 2010 (07:13)
+DATE: Tue, 12 Oct 2010 (09:50)
 
 
 
@@ -5756,7 +5793,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 29 Sep 2010 (07:13)
+DATE: Tue, 12 Oct 2010 (09:50)
 
 
 
@@ -5870,7 +5907,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Wed, 29 Sep 2010 (07:13)</CENTER>
+<CENTER>Tue, 12 Oct 2010 (09:50)</CENTER>
 
 
 
@@ -6001,7 +6038,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Wed, 29 Sep 2010 (07:13)</CENTER>
+<CENTER>Tue, 12 Oct 2010 (09:50)</CENTER>
 
 
 
@@ -6365,8 +6402,8 @@ output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
 one motivation for developing the Doconce concept and tool.
 
-__Different Tagging for Different Formats.__ A problem with doc
-strings (in Python) is that they benefit greatly from some tagging,
+__Tagging Issues in Python Documentation.__ A problem with doc
+strings in Python is that they benefit greatly from some tagging,
 Epytext or reStructuredText, when transformed to HTML or PDF
 manuals. However, such tagging looks annoying in Pydoc, which just
 shows the pure doc string. For Pydoc we should have more minimal (or
@@ -6397,7 +6434,7 @@ in verbatim environments). To summarize, we need
     text with completely invivisble tagging. 
 
   o Tools for inserting appropriately filtered versions of a "singleton"
-    documentation file in other documents (doc strings, manuals, tutorials).
+    documentation file in other documents (manuals, tutorials, doc strings).
 
 One answer to these points is the Doconce markup language, its associated
 tools, and the http://code.google.com/p/preprocess/<C-style preprocessor tool>.
@@ -7575,8 +7612,18 @@ BIBFILE: manual_bib.bib, manual_bib.rst, manual_bib.py
 
 
 ************** File: manual.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+Automatically generated HTML file from Doconce source 
+(http://code.google.com/p/doconce/) 
+-->
 
 <HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+</HEAD>
+
 <BODY BGCOLOR="white">
     <TITLE>Doconce Description</TITLE>
 <CENTER><H1>Doconce Description</H1></CENTER>
@@ -7684,8 +7731,8 @@ diverge. Severe problems with such unsynchronized documentation was
 one motivation for developing the Doconce concept and tool.
 
 <P>
-<B>Different Tagging for Different Formats.</B> A problem with doc
-strings (in Python) is that they benefit greatly from some tagging,
+<B>Tagging Issues in Python Documentation.</B> A problem with doc
+strings in Python is that they benefit greatly from some tagging,
 Epytext or reStructuredText, when transformed to HTML or PDF
 manuals. However, such tagging looks annoying in Pydoc, which just
 shows the pure doc string. For Pydoc we should have more minimal (or
@@ -7719,7 +7766,7 @@ in verbatim environments). To summarize, we need
     medium tagged formats (reStructuredText, Epytext), and plain
     text with completely invivisble tagging. 
  <LI> Tools for inserting appropriately filtered versions of a "singleton"
-    documentation file in other documents (doc strings, manuals, tutorials).
+    documentation file in other documents (manuals, tutorials, doc strings).
 </OL>
 
 One answer to these points is the Doconce markup language, its associated
@@ -9362,6 +9409,9 @@ and Sphinx just typeset the list as a list with keywords.
 ************** File: manual.p.tex *****************
 NOT FOUND!
 ************** File: manual.rst *****************
+.. Automatically generated reST file from Doconce source 
+   (http://code.google.com/p/doconce/)
+
 Doconce Description
 ===================
 
@@ -9451,8 +9501,8 @@ output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
 one motivation for developing the Doconce concept and tool.
 
-*Different Tagging for Different Formats.* A problem with doc
-strings (in Python) is that they benefit greatly from some tagging,
+*Tagging Issues in Python Documentation.* A problem with doc
+strings in Python is that they benefit greatly from some tagging,
 Epytext or reStructuredText, when transformed to HTML or PDF
 manuals. However, such tagging looks annoying in Pydoc, which just
 shows the pure doc string. For Pydoc we should have more minimal (or
@@ -9483,7 +9533,7 @@ in verbatim environments). To summarize, we need
     text with completely invivisble tagging. 
 
  3. Tools for inserting appropriately filtered versions of a "singleton"
-    documentation file in other documents (doc strings, manuals, tutorials).
+    documentation file in other documents (manuals, tutorials, doc strings).
 
 One answer to these points is the Doconce markup language, its associated
 tools, and the `C-style preprocessor tool <http://code.google.com/p/preprocess/>`_.
@@ -10940,6 +10990,9 @@ and Sphinx just typeset the list as a list with keywords.
    groundwater flow.
    *Advances in Water Resources*, vol 22, 185-195, 1998.
 ************** File: manual.sphinx.rst *****************
+.. Automatically generated reST file from Doconce source 
+   (http://code.google.com/p/doconce/)
+
 Doconce Description
 ===================
 
@@ -11037,8 +11090,8 @@ output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
 one motivation for developing the Doconce concept and tool.
 
-*Different Tagging for Different Formats.* A problem with doc
-strings (in Python) is that they benefit greatly from some tagging,
+*Tagging Issues in Python Documentation.* A problem with doc
+strings in Python is that they benefit greatly from some tagging,
 Epytext or reStructuredText, when transformed to HTML or PDF
 manuals. However, such tagging looks annoying in Pydoc, which just
 shows the pure doc string. For Pydoc we should have more minimal (or
@@ -11069,7 +11122,7 @@ in verbatim environments). To summarize, we need
     text with completely invivisble tagging. 
 
  3. Tools for inserting appropriately filtered versions of a "singleton"
-    documentation file in other documents (doc strings, manuals, tutorials).
+    documentation file in other documents (manuals, tutorials, doc strings).
 
 One answer to these points is the Doconce markup language, its associated
 tools, and the `C-style preprocessor tool <http://code.google.com/p/preprocess/>`_.
@@ -12748,8 +12801,8 @@ output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
 one motivation for developing the Doconce concept and tool.
 
-*Different Tagging for Different Formats.* A problem with doc
-strings (in Python) is that they benefit greatly from some tagging,
+*Tagging Issues in Python Documentation.* A problem with doc
+strings in Python is that they benefit greatly from some tagging,
 Epytext or reStructuredText, when transformed to HTML or PDF
 manuals. However, such tagging looks annoying in Pydoc, which just
 shows the pure doc string. For Pydoc we should have more minimal (or
@@ -12775,7 +12828,7 @@ in verbatim environments). To summarize, we need
 
  # A minimally tagged markup language with full support for     for mathematics and verbatim computer code.
  # Filters for producing highly tagged formats (LaTeX, HTML, XML),    medium tagged formats (reStructuredText, Epytext), and plain    text with completely invivisble tagging. 
- # Tools for inserting appropriately filtered versions of a "singleton"    documentation file in other documents (doc strings, manuals, tutorials).
+ # Tools for inserting appropriately filtered versions of a "singleton"    documentation file in other documents (manuals, tutorials, doc strings).
 
 One answer to these points is the Doconce markup language, its associated
 tools, and the [http://code.google.com/p/preprocess/ C-style preprocessor tool].
@@ -14170,8 +14223,8 @@ output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
 one motivation for developing the Doconce concept and tool.
 
-*Different Tagging for Different Formats.* A problem with doc
-strings (in Python) is that they benefit greatly from some tagging,
+*Tagging Issues in Python Documentation.* A problem with doc
+strings in Python is that they benefit greatly from some tagging,
 Epytext or reStructuredText, when transformed to HTML or PDF
 manuals. However, such tagging looks annoying in Pydoc, which just
 shows the pure doc string. For Pydoc we should have more minimal (or
@@ -14200,7 +14253,7 @@ in verbatim environments). To summarize, we need
     medium tagged formats (reStructuredText, Epytext), and plain
     text with completely invivisble tagging. 
  3. Tools for inserting appropriately filtered versions of a "singleton"
-    documentation file in other documents (doc strings, manuals, tutorials).
+    documentation file in other documents (manuals, tutorials, doc strings).
 
 One answer to these points is the Doconce markup language, its associated
 tools, and the "http://code.google.com/p/preprocess/":C-style preprocessor tool.
@@ -15553,8 +15606,8 @@ output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
 one motivation for developing the Doconce concept and tool.
 
-I{Different Tagging for Different Formats.} A problem with doc
-strings (in Python) is that they benefit greatly from some tagging,
+I{Tagging Issues in Python Documentation.} A problem with doc
+strings in Python is that they benefit greatly from some tagging,
 Epytext or reStructuredText, when transformed to HTML or PDF
 manuals. However, such tagging looks annoying in Pydoc, which just
 shows the pure doc string. For Pydoc we should have more minimal (or
@@ -15583,7 +15636,7 @@ in verbatim environments). To summarize, we need
     medium tagged formats (reStructuredText, Epytext), and plain
     text with completely invivisble tagging. 
  3. Tools for inserting appropriately filtered versions of a "singleton"
-    documentation file in other documents (doc strings, manuals, tutorials).
+    documentation file in other documents (manuals, tutorials, doc strings).
 
 One answer to these points is the Doconce markup language, its associated
 tools, and the U{C-style preprocessor tool<http://code.google.com/p/preprocess/>}.
@@ -17017,8 +17070,8 @@ output formats. Over time the duplicated information starts to
 diverge. Severe problems with such unsynchronized documentation was
 one motivation for developing the Doconce concept and tool.
 
-*Different Tagging for Different Formats.* A problem with doc
-strings (in Python) is that they benefit greatly from some tagging,
+*Tagging Issues in Python Documentation.* A problem with doc
+strings in Python is that they benefit greatly from some tagging,
 Epytext or reStructuredText, when transformed to HTML or PDF
 manuals. However, such tagging looks annoying in Pydoc, which just
 shows the pure doc string. For Pydoc we should have more minimal (or
@@ -17049,7 +17102,7 @@ in verbatim environments). To summarize, we need
     text with completely invivisble tagging. 
 
  3. Tools for inserting appropriately filtered versions of a "singleton"
-    documentation file in other documents (doc strings, manuals, tutorials).
+    documentation file in other documents (manuals, tutorials, doc strings).
 
 One answer to these points is the Doconce markup language, its associated
 tools, and the C-style preprocessor tool (http://code.google.com/p/preprocess/).

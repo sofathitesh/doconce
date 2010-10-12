@@ -235,3 +235,8 @@ def define(FILENAME_EXTENSION,
     INDEX_BIB['rst'] = rst_index_bib
 
     TABLE['rst'] = rst_table
+    INTRO['rst'] = """\
+.. Automatically generated reST file from Doconce source 
+   (http://code.google.com/p/doconce/)
+
+"""

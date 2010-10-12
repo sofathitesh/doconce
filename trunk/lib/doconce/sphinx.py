@@ -258,6 +258,7 @@ def define(FILENAME_EXTENSION,
     CROSS_REFS['sphinx'] = sphinx_ref_and_label
     INDEX_BIB['sphinx'] = sphinx_index_bib
     TABLE['sphinx'] = TABLE['rst']
+    INTRO['sphinx'] = INTRO['rst']
 
     # make true copy of INLINE_TAGS_SUBST:
     INLINE_TAGS_SUBST['sphinx'] = {}

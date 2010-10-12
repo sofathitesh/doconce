@@ -2,7 +2,6 @@ TITLE: Doconce: Document Once, Include Anywhere
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: September 10, 2010
 
 
-
  - When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
    (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML,
@@ -103,6 +102,8 @@ Here is an example of some simple text written in the Doconce format::
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
+        
+        # lines beginning with # are comment lines
 
 
 The Doconce text above results in the following little document:
