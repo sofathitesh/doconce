@@ -1,0 +1,47 @@
+Contents:
+=========
+
+A package doconce with a main module doconce.
+Executable scripts: doconce2format, doconce_insertdocstr.
+
+Dependencies:
+=============
+
+Before you can install doconce it is required that you install 
+preprocess first: http://code.google.com/p/preprocess/
+
+For LaTeX output you also need http://code.google.com/p/ptex2tex
+(ptex2tex may need certain style files and pygments, depending on
+what type of verbatim format you want to use)
+For reStructuredText output you need http://docutils.sourceforge.net/
+For Sphinx output you need http://sphinx.pocoo.org
+
+Install:
+========
+
+python setup.py install
+
+Documentation:
+==============
+
+pydoc doconce
+
+This short text points to a tutorial and a manual.
+
+Demo:
+=====
+
+The lib/doconce/doc and tutorial directories contain a make.sh
+script for creating lots of different format out of a Doconce
+document.
+
+Testing:
+========
+
+cd test; ./test.verify; diff test.v test.r
+(test.r are the reference results)
+
+License:
+========
+
+doconce is licensed under the BSD license, see the included LICENSE file.

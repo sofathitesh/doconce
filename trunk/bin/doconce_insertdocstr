@@ -1,0 +1,141 @@
+#!/usr/bin/env python
+"""
+This scripts first finds all .do.txt (Doconce source code) files in a
+directory tree and transforms these to a format given as command-line
+argument to the present script. The transformed file has the extension
+.dst.txt (dst for Doc STring), regardless of the format.
+
+In the next phase, all .p.py files (Python files that need preprocessing)
+are visited, and for each file the C-like preprocessor (preprocess.py)
+is run on the file to include .dst.txt files into doc strings.
+The result is an ordinary .py file.
+
+Example:
+A file basename.p.py has a module doc string which looks like
+'''
+# #include "docstrings/doc1.dst.txt
+'''
+
+In the subdirectory docstrings we have the file doc1.do.txt, which
+contains the documentation in Doconce format. The current script
+detects this file, transforms it to be desired format, say Epytext.
+That action results in doc1.epytext. This file is then renamed to
+doc1.dst.txt.
+
+In the next step, files of the form basename.p.py is visisted, the
+preprocess program is run, and the docstrings/doc1.dst.txt file is
+inserted in the doc string. One can run with Epytext format, which is
+suitable for running Epydoc on the files afterwards, then run with
+Sphinx, and finally re-run with "plain" format such that only quite
+raw plain text appears in the final basename.py file (this is suitable
+for Pydoc, for instance).
+
+%s
+"""
+import os, sys, shutil, commands
+
+usage = 'Usage: %s format root [preprocessor options]' % sys.argv[0]
+__doc__ += __doc__ % usage
+
+
+def filename_after_preprocess(filename_before_preprocess):
+    """
+    Given a file to be preprocessed, whose name filename_before_preprocess,
+    is of the form basename.p.ext, return the name of the resulting file
+    basename.ext.
+    """
+    basename_dotp, ext = os.path.splitext(filename_preprocess)
+    basename, dotp = os.path.splitext(basename_dotp)
+    return basename + ext
+
+def preprocess_all_files(rootdir, options=''):
+    """
+    Run preprocess on all files of the form basename.p.ext
+    in the directory with root rootdir. The output of each
+    preprocess run is directed to basename.ext.
+    """
+    def treat_a_dir(arg, d, files):
+        for f in files:
+            path = os.path.join(d, f)
+            if '.p.' in f and not '.svn' in f:
+                basename_dotp, ext = os.path.splitext(f)
+                basename, dotp = os.path.splitext(basename_dotp)
+                outfilename = basename + ext
+                outpath = os.path.join(d, outfilename)
+                cmd = 'preprocess %s %s > %s' % (options, path, outpath)
+                #print cmd
+                failure = os.system(cmd)
+                if failure:
+                    print 'WARNING: could not run\n  %s' %  cmd
+    os.path.walk(rootdir, treat_a_dir, None)
+
+def run_doconce(filename_doconce, format):
+    """
+    Run doconce2format -D=format on a .do.txt file (filename_doconce).
+    The result is a file with extension .dst.txt (same basename
+    as filename_doconce).
+    """
+    global doconce_program # set in main (test block)
+    cmd = '%s %s %s' % (doconce_program, format, filename_doconce)
+    print '>>>> run doconce:', cmd
+    failure, outtext = commands.getstatusoutput(cmd)
+    if failure:
+        raise OSError, 'Could not run\n%s\nin %s\n%s\n\n\n' % \
+              (cmd, os.getcwd(), outtext)
+    out_filename = outtext.split()[-1]
+    root, ext = os.path.splitext(out_filename)
+    new_filename = root + '.dst.txt'
+    os.rename(out_filename, new_filename)
+    print '(renamed %s to %s for possible inclusion in doc strings)\n' % (out_filename, new_filename)
+
+def walker_doconce(arg, dir, files):
+    format = arg
+    # we move to the dir:
+    origdir = os.getcwd()
+    os.chdir(dir)
+    for f in files:
+        if f[-7:] == '.do.txt':
+            run_doconce(f, format)
+    os.chdir(origdir)
+                          
+def run_preprocess4includes(filename_dotp_py, options=''):
+    pyfile = filename_dotp_py[:-5] + '.py'
+    cmd = 'preprocess %s %s > %s' % (options, filename_dotp_py, pyfile)
+    print '>>>>', cmd
+    failure, outtext = commands.getstatusoutput(cmd)
+    #os.remove(tmp_filename)
+    if failure:
+        raise OSError, 'Could not run\n%s\nin %s\n%s\n\n\n' % \
+              (cmd, os.getcwd(), outtext)
+    
+def walker_include(arg, dir, files):
+    options = arg
+    # we move to the dir:
+    origdir = os.getcwd()
+    os.chdir(dir)
+    for f in files:
+        if f[-5:] == '.p.py':
+            run_preprocess4includes(f, options)
+    os.chdir(origdir)
+
+if __name__ == '__main__':
+    try:
+        format = sys.argv[1]
+        root = sys.argv[2]
+    except:
+        print usage; sys.exit(1)
+
+    doconce_program = 'doconce2format'  # must be found somewhere in PATH
+    # alternative: use sys.argv[3] argument to tell where to find doconce2format
+    # can then run "bin/doconce_insertdocstr bin" from setup.py
+
+    print '\n----- insertdocstr %s %s\nFind and transform doconce files (.do.txt) ...' % \
+          (format, root)
+    arg = format
+    os.path.walk(root, walker_doconce, arg)
+
+    print 'Run preprocess on .p.py files (insert doc strings etc.)...'
+    arg = ' '.join(sys.argv[3:])  # options for preprocessor
+    os.path.walk(root, walker_include, arg)
+    print '----- end of insertdocstr -----\n'
+    

@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+"""
+Run the doconce module on a file (with extension .do.txt) in Doconce format
+and produce another format (LaTeX, HTML, plain text, reStructuredText, ...).
+
+doconce2format HTML mydoc.do.txt
+"""
+
+import sys, os, shutil
+try:
+    import doconce
+except ImportError:
+    # use local doconce module in the doconce package source:
+    try:
+        thisdir = os.path.dirname(sys.argv[0])
+        doconce_lib = os.path.join(thisdir, os.pardir, 'lib', 'doconce')
+        sys.path.insert(0, doconce_lib)
+        doconce_py = os.path.join(doconce_lib, 'doconce.py')
+        if not os.path.isfile(doconce_py):
+            # make doconce.py as a simple copy of doconce.p.py
+            # (doconce_insertdocstr will later run preprocess and
+            # insert documentation properly)
+            shutil.copy(os.path.join(doconce_lib, 'doconce.p.py'), doconce_py)
+        import doconce
+        print 'Successfull import of doconce locally'
+    except ImportError, e:
+        print e
+        print 'Could not import doconce from directory\n', os.getcwd()
+        sys.exit(1)
+
+if __name__ == '__main__':
+    doconce.main()
