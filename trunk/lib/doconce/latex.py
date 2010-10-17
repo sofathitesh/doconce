@@ -1,3 +1,5 @@
+# -*- coding: iso-8859-15 -*-
+
 import os, commands, re
 
 def latex_code(filestr, format):
@@ -171,8 +173,8 @@ def latex_ref_and_label(section_label2title, format, filestr):
     filestr = re.sub(r'([A-Za-z])\s*&\s*([A-Za-z])', r'\g<1>{\&}\g<2>', filestr)
 
     # handle non-English characters:
-    chars = {'Ã¦': r'{\ae}', 'Ã¸': r'{\o}', 'Ã¥': r'{\aa}',
-             'Ã†': r'{\AE}', 'Ã˜': r'{\O}', 'Ã…': r'{\AA}',
+    chars = {'æ': r'{\ae}', 'ø': r'{\o}', 'å': r'{\aa}',
+             'Æ': r'{\AE}', 'Ø': r'{\O}', 'Å': r'{\AA}',
              }
     #for c in chars:
     #    filestr, n = re.subn(c, chars[c], filestr)
