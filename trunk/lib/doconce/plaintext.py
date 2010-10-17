@@ -1,7 +1,7 @@
 
 import re, sys
 
-def plain_author(authors_and_institutions, auth2index, 
+def plain_author(authors_and_institutions, auth2index,
                inst2index, index2inst):
     text = '\n'
     for author in auth2index:
@@ -24,8 +24,8 @@ def plain_ref_and_label(section_label2title, format, filestr):
 
     # remove label{...} from output (when only label{} on a line, remove
     # the newline too, leave label in figure captions, and remove all the rest)
-    filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
-    filestr = re.sub(r'^(FIGURE:.+)label\{(.+?)\}', '\g<1>{\g<2>}', filestr, flags=re.MULTILINE)
+    filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, re.MULTILINE)
+    filestr = re.sub(r'^(FIGURE:.+)label\{(.+?)\}', '\g<1>{\g<2>}', filestr, re.MULTILINE)
     filestr = re.sub(r'label\{.+?\}', '', filestr)  # all the remaining
 
     # replace all references to sections:
@@ -56,15 +56,14 @@ def bibdict2doconcelist(pyfile, citations):
 
 def plain_index_bib(filestr, index, citations, bibfile):
     for label in citations:
-        filestr = filestr.replace('cite{%s}' % label, 
+        filestr = filestr.replace('cite{%s}' % label,
                                   '[%d]' % citations[label])
     if 'py' in bibfile:
         bibtext = bibdict2doconcelist(bibfile['py'], citations)
-        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, 
-                         flags=re.MULTILINE)
+        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, re.MULTILINE)
 
     # remove all index entries:
-    filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)  
+    filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)
     # no index since line numbers from the .do.txt (in index dict)
     # never correspond to the output format file
     #filestr += '\n\n======= Index =======\n\n'
@@ -72,7 +71,7 @@ def plain_index_bib(filestr, index, citations, bibfile):
     #    filestr + = '%s, line %s\n' % (word, ', '.join(index[word]))
 
     return filestr
-    
+
 def define(FILENAME_EXTENSION,
            BLANKLINE,
            INLINE_TAGS_SUBST,
