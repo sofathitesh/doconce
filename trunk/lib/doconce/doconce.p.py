@@ -541,7 +541,13 @@ def handle_index_and_bib(filestr, format, has_title):
         sys.exit(1)
 
     index = {}  # index[word] = lineno
-    citations = {}  # citations[label] = no_in_list (1,2,3,...)
+    try:
+        from collections import OrderedDict   # v2.7 and v3.1
+    except ImportError:
+        # use standard arbitrary-ordered dict instead (original order of
+        # citations is then lost)
+        OrderedDict = dict
+    citations = OrderedDict()  # citations[label] = no_in_list (1,2,3,...)
     line_counter = 0
     cite_counter = 0
     bibfile = {}
@@ -592,6 +598,9 @@ def handle_index_and_bib(filestr, format, has_title):
                         filestr = filestr.replace('cite{%s}' % arg,
                                                   replacement)
                 
+    # version < 2.7 warning:
+    if len(citations) > 0 and OrderedDict is dict:
+        print 'Warning: citations may appear in random order unless you upgrade to Python version 2.7 or 3.1'
     filestr = INDEX_BIB[format](filestr, index, citations, bibfile)
     return filestr
 
@@ -616,9 +625,15 @@ def typeset_authors(filestr, format):
             authors_and_institutions.append((a.strip(), i))
         else:  # just author's name
             authors_and_institutions.append((line.strip(), None))
-    inst2index = {}
+    try:
+        from collections import OrderedDict  # v2.7 and v3.1
+    except ImportError:
+        # use standard arbitrary-ordered dict instead (original order of
+        # multiple authors is then lost)
+        OrderedDict = dict
+    inst2index = OrderedDict()
     index2inst = {}
-    auth2index = {}
+    auth2index = OrderedDict()
     # get unique institutions:
     for a, institutions in authors_and_institutions:
         if institutions is not None:
@@ -633,6 +648,9 @@ def typeset_authors(filestr, format):
         else:
             auth2index[a] = ''  # leads to empty address
 
+    # version < 2.7 warning:
+    if len(auth2index) > 1 and OrderedDict is dict:
+        print 'Warning: multiple authors\n - correct order of authors requires Python version 2.7 or 3.1 (or higher)'
     author_block = INLINE_TAGS_SUBST[format]['author']\
         (authors_and_institutions, auth2index, inst2index, index2inst)
     filestr = filestr.replace('XXXAUTHOR', author_block)
