@@ -609,7 +609,9 @@ def typeset_authors(filestr, format):
     # first deal with AUTHOR as there can be several such lines
     author_lines = re.findall(r'^AUTHOR:\s*(?P<author>.+)\s*$', filestr,
                               re.MULTILINE)
-    filestr = re.sub(r'^AUTHOR:.+$', 'XXXAUTHOR', filestr, re.MULTILINE)
+    #filestr = re.sub(r'^AUTHOR:.+$', 'XXXAUTHOR', filestr, flags=re.MULTILINE)
+    cpattern = re.compile(r'^AUTHOR:.+$', re.MULTILINE)
+    filestr = cpattern.sub('XXXAUTHOR', filestr)  # v2.6 way of doing it
     # contract multiple AUTHOR lines to one single:
     filestr = re.sub('(XXXAUTHOR\n)+', 'XXXAUTHOR', filestr)
 

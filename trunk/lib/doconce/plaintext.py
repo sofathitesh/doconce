@@ -24,8 +24,12 @@ def plain_ref_and_label(section_label2title, format, filestr):
 
     # remove label{...} from output (when only label{} on a line, remove
     # the newline too, leave label in figure captions, and remove all the rest)
-    filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, re.MULTILINE)
-    filestr = re.sub(r'^(FIGURE:.+)label\{(.+?)\}', '\g<1>{\g<2>}', filestr, re.MULTILINE)
+    #filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
+    cpattern = re.compile(r'^label\{.+?\}\s*$', flags=re.MULTILINE)
+    filestr = cpattern.sub('', filestr)
+    #filestr = re.sub(r'^(FIGURE:.+)label\{(.+?)\}', '\g<1>{\g<2>}', filestr, flags=re.MULTILINE)
+    cpattern = re.compile(r'^(FIGURE:.+)label\{(.+?)\}', flags=re.MULTILINE)
+    filestr = cpattern.sub('\g<1>{\g<2>}', filestr)
     filestr = re.sub(r'label\{.+?\}', '', filestr)  # all the remaining
 
     # replace all references to sections:
@@ -60,7 +64,9 @@ def plain_index_bib(filestr, index, citations, bibfile):
                                   '[%d]' % citations[label])
     if 'py' in bibfile:
         bibtext = bibdict2doconcelist(bibfile['py'], citations)
-        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, re.MULTILINE)
+        #filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
+        cpattern = re.compile(r'^BIBFILE:.+$', flags=re.MULTILINE)
+        filestr = cpattern.sub(bibtext, filestr)
 
     # remove all index entries:
     filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)
