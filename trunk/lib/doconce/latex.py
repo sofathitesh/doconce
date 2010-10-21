@@ -157,7 +157,7 @@ def latex_ref_and_label(section_label2title, format, filestr):
     replacement = fix_latex_command_regex(r'\g<1>\g<2>~\ref{',
                                           application='replacement')
     #filestr = re.sub(pattern, replacement, filestr, flags=re.IGNORECASE)
-    cpattern = re.compile(pattern, flags=re.IGNORECASE
+    cpattern = re.compile(pattern, flags=re.IGNORECASE)
     filestr = cpattern.sub(replacement, filestr)
     # the rest of the ref{}:
     filestr = re.sub(fix_latex_command_regex(r'\sref\{', application='math'),

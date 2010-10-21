@@ -5689,7 +5689,7 @@ more typesetting and tagging features than Doconce.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Tue, 12 Oct 2010 (09:50)
+DATE: Fri, 22 Oct 2010 (01:21)
 
 
 
@@ -5793,7 +5793,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Tue, 12 Oct 2010 (09:50)
+DATE: Fri, 22 Oct 2010 (01:21)
 
 
 
@@ -5907,7 +5907,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Tue, 12 Oct 2010 (09:50)</CENTER>
+<CENTER>Fri, 22 Oct 2010 (01:21)</CENTER>
 
 
 
@@ -6038,7 +6038,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Tue, 12 Oct 2010 (09:50)</CENTER>
+<CENTER>Fri, 22 Oct 2010 (01:21)</CENTER>
 
 
 
