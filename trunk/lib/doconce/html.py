@@ -117,7 +117,9 @@ def html_index_bib(filestr, index, citations, bibfile):
                                   (label, citations[label]))
     if 'py' in bibfile:
         bibtext = bibdict2htmllist(bibfile['py'], citations)
-        filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, re.MULTILINE)
+        #filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
+        cpattern = re.compile(r'^BIBFILE:.+$', flags=re.MULTILINE)  
+        filestr = cpattern.sub(bibtext, filestr) # v2.6
 
     # could use anchors for idx{...}, but multiple entries of an index
     # would lead to multiple anchors, so remove them all:

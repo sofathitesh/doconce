@@ -137,12 +137,17 @@ def sphinx_code(filestr, format):
             raise TypeError('%s is not a legal Pygments language '\
                             '(lexer) in line with:\n  %s' % \
                                 (language, defs_line))
-        filestr = re.sub(r'^!bc\s+%s\s*\n' % key, 
-                         '\n.. code-block:: %s\n\n' % defs[key], filestr,
-                         re.MULTILINE)
+        #filestr = re.sub(r'^!bc\s+%s\s*\n' % key, 
+        #                 '\n.. code-block:: %s\n\n' % defs[key], filestr,
+        #                 flags=re.MULTILINE)
+        cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
+        filestr = cpattern.sub('\n.. code-block:: %s\n\n' % defs[key], filestr)
+                         
     # any !bc with/without argument becomes a py (python) block:
-    filestr = re.sub(r'^!bc.+\n', '\n.. code-block:: py\n\n', filestr,
-                     re.MULTILINE)
+    #filestr = re.sub(r'^!bc.+\n', '\n.. code-block:: py\n\n', filestr,
+    #                 flags=re.MULTILINE)
+    cpattern = re.compile(r'^!bc.+\n', flags=re.MULTILINE)
+    filestr = cpattern.sub('\n.. code-block:: py\n\n', filestr)
 
     filestr = re.sub(r'!ec\n', '\n\n', filestr)
     #filestr = re.sub(r'!ec\n', '\n', filestr)
@@ -194,7 +199,9 @@ def sphinx_ref_and_label(section_label2title, format, filestr):
             raise Exception('problem with substituting "%s"' % title)
 
     # remove label{...} from output
-    filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, re.MULTILINE)
+    #filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
+    cpattern = re.compile(r'^label\{.+?\}\s*$', flags=re.MULTILINE)
+    filestr = cpattern.sub('', filestr)
     filestr = re.sub(r'label\{.+?\}', '', filestr)  # all the remaining
 
     # replace all references to sections:
