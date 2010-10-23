@@ -28,8 +28,8 @@ def rst_figure(m):
     return result
 
 # these global patterns are used in st, epytext, plaintext as well:
-bc_regex_pattern = r'([a-zA-Z0-9)"`.])[\n:.?!, ]\s*?!bc.*?\n'
-bt_regex_pattern = r'([a-zA-Z0-9)"`.])[\n:.?!, ]\s*?!bt.*?\n'
+bc_regex_pattern = r'([a-zA-Z0-9)"`.])[\n:.?!, ]\s*?^!bc.*?$'
+bt_regex_pattern = r'([a-zA-Z0-9)"`.])[\n:.?!, ]\s*?^!bt.*?$'
 
 def rst_code(filestr, format):
     # In rst syntax, code blocks are typeset with :: (verbatim)
@@ -38,6 +38,7 @@ def rst_code(filestr, format):
     
     # first indent all code/tex blocks:
     filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
+
     for i in range(len(code_blocks)):
         code_blocks[i] = indent_lines(code_blocks[i], format)
     for i in range(len(tex_blocks)):
@@ -49,7 +50,8 @@ def rst_code(filestr, format):
     # followed by [\n:.?!,] see the bc_regex_pattern global variable above
     # (problems with substituting !bc and !bt may be caused by
     # missing characters in these two families)
-    c = re.compile(bc_regex_pattern, re.DOTALL)
+    #c = re.compile(bc_regex_pattern, re.DOTALL)
+    c = re.compile(bc_regex_pattern, re.MULTILINE)
     filestr = c.sub(r'\g<1>::\n\n', filestr)
     filestr = re.sub(r'!ec\n', '\n\n', filestr)
     #filestr = re.sub(r'!ec\n', '\n', filestr)
@@ -61,9 +63,11 @@ def rst_code(filestr, format):
     #filestr = re.sub(r'!bt\n', '.. latex::\n\n', filestr)
 
     # just use the same substitution as for code blocks:
-    c = re.compile(bt_regex_pattern, re.DOTALL)
-    filestr = c.sub(r'\g<1>::\n\n', filestr)
-    filestr = re.sub(r'!et\n', '\n\n', filestr)
+    c = re.compile(bt_regex_pattern, re.MULTILINE)
+    #filestr = c.sub(r'\g<1>::\n\n', filestr)
+    filestr = c.sub(r'\g<1>::\n', filestr)
+    #filestr = re.sub(r'!et *\n', '\n\n', filestr)
+    filestr = re.sub(r'!et *\n', '\n', filestr)
 
     # sphinx math:
     #filestr = re.sub(r'!bt\n', '\n.. math::\n\n', filestr)

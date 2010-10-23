@@ -6,6 +6,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{ifthen}
 \usepackage{babel}
+\usepackage{color}
 \usepackage{float} % float configuration
 \floatplacement{figure}{H} % place figures here definitely
 \usepackage{graphicx}
@@ -24,12 +25,34 @@
 
 %%% Fallback definitions for Docutils-specific commands
 
+% admonition (specially marked topic)
+\providecommand{\DUadmonition}[2][class-arg]{%
+  % try \DUadmonition#1{#2}:
+  \ifcsname DUadmonition#1\endcsname%
+    \csname DUadmonition#1\endcsname{#2}%
+  \else
+    \begin{center}
+      \fbox{\parbox{0.9\textwidth}{#2}}
+    \end{center}
+  \fi
+}
+
 % fieldlist environment
 \ifthenelse{\isundefined{\DUfieldlist}}{
   \newenvironment{DUfieldlist}%
     {\quote\description}
     {\enddescription\endquote}
 }{}
+
+% title for topics, admonitions and sidebar
+\providecommand*{\DUtitle}[2][class-arg]{%
+  % call \DUtitle#1{#2} if it exists:
+  \ifcsname DUtitle#1\endcsname%
+    \csname DUtitle#1\endcsname{#2}%
+  \else
+    \smallskip\noindent\textbf{#2}\smallskip%
+  \fi
+}
 
 % titlereference role
 \providecommand*{\DUroletitlereference}[1]{\textsl{#1}}
@@ -1555,14 +1578,16 @@ void~myfunc(double*~x,~const~double\&~myarr)~\{\\
 ~~~~for~(int~i~=~1;~i~<~myarr.size();~i++)~\{\\
 ~~~~~~~~myarr{[}i{]}~=~myarr{[}i{]}~-~x{[}i{]}*myarr{[}i-1{]}\\
 ~~~~\}\\
-\}\\
-!ec\\
-~\\
-Computer~code~can~be~copied~directly~from~a~file,~if~desired.~The~syntax\\
-is~then::\\
-~\\
-~@@@CODE~myfile.f\\
-~@@@CODE~myfile.f~fromto:subroutine\textbackslash{}s+test@\textasciicircum{}C\textbackslash{}s\{5\}END1
+\}
+}
+\end{quote}
+
+Computer code can be copied directly from a file, if desired. The syntax
+is then:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+@@@CODE~myfile.f\\
+@@@CODE~myfile.f~fromto:subroutine\textbackslash{}s+test@\textasciicircum{}C\textbackslash{}s\{5\}END1
 }
 \end{quote}
 
@@ -1729,6 +1754,15 @@ will then be rendered to:
 }
 \end{quote}
 
+\DUadmonition[system-message]{
+\DUtitle[system-message]{system-message}
+
+
+{\color{red}WARNING/2} in \texttt{manual.rst}, line~1433
+
+Literal block ends without a blank line; unexpected unindent.
+backrefs: }
+
 in the current format.
 
 
@@ -1796,7 +1830,7 @@ the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
-\emph{Verbatim Code Blocks Inside Lists Look Ugly.} Read the Section \emph{Blocks of Verbatim Computer Code} above.  Start the
+\emph{Verbatim Code Blocks Inside Lists Look Ugly.} Read the the section \hyperref[blocks-of-verbatim-computer-code]{Blocks of Verbatim Computer Code} above.  Start the
 \texttt{!bc} and \texttt{!ec} tags in column 1 of the file, and be careful with
 indenting the surrounding plain text of the list item correctly. If
 you cannot resolve the problem this way, get rid of the list and use

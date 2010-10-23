@@ -187,6 +187,7 @@ Tables are also supperted, e.g.,
   |--------------------------------|
 
 # lines beginning with # are comment lines
+
 \end{Verbatim}
 \noindent
 The Doconce text above results in the following little document:
@@ -221,10 +222,17 @@ Lists can also have numbered items instead of bullets, just use an {\fontsize{10
 
 \noindent
 URLs with a link word are possible, as in \href{http://folk.uio.no/hpl}{hpl}.
-Just a file link goes like \href{tutorial.do.txt}{tutorial.do.txt}. References
-to sections may use logical names as labels (e.g., a "label" command right
-after the section title), as in the reference to 
-Chapter~\ref{my:first:sec}.
+If the word is URL, the URL itself becomes the link name,
+as in \href{tutorial.do.txt}{tutorial.do.txt}.
+
+References to sections may use logical names as labels (e.g., a
+"label" command right after the section title), as in the reference to
+Chapter~\ref{my:first:sec}. 
+
+Doconce also allows inline comments such as \inlinecomment{hpl}{here I will make
+some remarks to the text} for allowing authors to make notes. Inline
+comments can be removed from the output by a command-line argument
+(see Chapter~\ref{doconce2formats} for an example).
 
 Tables are also supperted, e.g.,
 
@@ -252,6 +260,7 @@ typeset as
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
 $\nu = \sin(x)$|$v = sin(x)$
+
 \end{Verbatim}
 \noindent
 The pipe symbol acts as a delimiter between {\LaTeX} code and the plain text
@@ -293,6 +302,7 @@ def myfunc(x):
 
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
+
 \end{Verbatim}
 \end{shadedquoteBlue}
 \noindent
@@ -308,6 +318,7 @@ the legal language names for Pygments):
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
  # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
 \end{Verbatim}
 \noindent
 By default, {\fontsize{10pt}{10pt}\verb!pro!} and {\fontsize{10pt}{10pt}\verb!cod!} are {\fontsize{10pt}{10pt}\verb!python!}, {\fontsize{10pt}{10pt}\verb!sys!} is {\fontsize{10pt}{10pt}\verb!console!},
@@ -385,6 +396,7 @@ formats applies the script {\fontsize{10pt}{10pt}\verb!doconce2format!}:
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> doconce2format format mydoc.do.txt
+
 \end{Verbatim}
 The {\fontsize{10pt}{10pt}\verb!preprocess!} program is always used to preprocess the file first,
 and options to {\fontsize{10pt}{10pt}\verb!preprocess!} can be added after the filename. For example,
@@ -392,6 +404,7 @@ and options to {\fontsize{10pt}{10pt}\verb!preprocess!} can be added after the f
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
+
 \end{Verbatim}
 The variable {\fontsize{10pt}{10pt}\verb!FORMAT!} is always defined as the current format when
 running {\fontsize{10pt}{10pt}\verb!preprocess!}. That is, in the last example, {\fontsize{10pt}{10pt}\verb!FORMAT!} is
@@ -403,6 +416,7 @@ Inline comments in the text are removed from the output by
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
 \end{Verbatim}
 One can also remove such comments from the original Doconce file
 by running a helper script in the {\fontsize{10pt}{10pt}\verb!bin!} folder of the Doconce
@@ -410,6 +424,7 @@ source code:
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
 Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
 \end{Verbatim}
 \noindent
 This action is convenient when a Doconce document reaches its final form.
@@ -422,6 +437,7 @@ is performed by
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> doconce2format HTML mydoc.do.txt
+
 \end{Verbatim}
 The resulting file {\fontsize{10pt}{10pt}\verb!mydoc.html!} can be loaded into any web browser for viewing.
 
@@ -439,6 +455,7 @@ Filter the doconce text to a pre-{\LaTeX} form {\fontsize{10pt}{10pt}\verb!mydoc
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> doconce2format LaTeX mydoc.do.txt
+
 \end{Verbatim}
 {\LaTeX}-specific commands ("newcommands") in math formulas and similar
 can be placed in files {\fontsize{10pt}{10pt}\verb!newcommands.tex!}, {\fontsize{10pt}{10pt}\verb!newcommands_keep.tex!}, or
@@ -452,12 +469,14 @@ Run {\fontsize{10pt}{10pt}\verb!ptex2tex!} (if you have it) to make a standard {
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> ptex2tex mydoc
+
 \end{Verbatim}
 or just perform a plain copy,
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> cp mydoc.p.tex mydoc.tex
+
 \end{Verbatim}
 Doconce generates a {\fontsize{10pt}{10pt}\verb!.p.tex!} file with some preprocessor macros.
 For example, to enable font Helvetica instead of the standard
@@ -466,6 +485,7 @@ Computer Modern font,
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> ptex2tex -DHELVETICA mydoc
+
 \end{Verbatim}
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
@@ -475,6 +495,7 @@ is also available through
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+
 \end{Verbatim}
 
 The {\fontsize{10pt}{10pt}\verb!ptex2tex!} tool makes it possible to easily switch between many
@@ -497,6 +518,7 @@ Unix/DOS> makeindex mydoc   # if index
 Unix/DOS> bibitem mydoc     # if bibliography
 Unix/DOS> latex mydoc
 Unix/DOS> dvipdf mydoc
+
 \end{Verbatim}
 If one wishes to use the {\fontsize{10pt}{10pt}\verb!Minted_Python!}, {\fontsize{10pt}{10pt}\verb!Minted_Cpp!}, etc., environments
 in {\fontsize{10pt}{10pt}\verb!ptex2tex!} for typesetting code, the {\fontsize{10pt}{10pt}\verb!minted!} {\LaTeX} package is needed.
@@ -506,6 +528,7 @@ This package is included by running {\fontsize{10pt}{10pt}\verb!doconce2format!}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> ptex2tex -DMINTED mydoc
+
 \end{Verbatim}
 In this case, {\fontsize{10pt}{10pt}\verb!latex!} must be run with the
 {\fontsize{10pt}{10pt}\verb!-shell-escape!} option:
@@ -518,6 +541,7 @@ Unix/DOS> makeindex mydoc   # if index
 Unix/DOS> bibitem mydoc     # if bibliography
 Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> dvipdf mydoc
+
 \end{Verbatim}
 The {\fontsize{10pt}{10pt}\verb!-shell-escape!} option is required because the {\fontsize{10pt}{10pt}\verb!minted.sty!} style
 file runs the {\fontsize{10pt}{10pt}\verb!pygments!} program to format code, and this program
@@ -532,6 +556,7 @@ computer source code:
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
+
 \end{Verbatim}
 
 \subsection{reStructuredText}
@@ -543,6 +568,7 @@ reStructuredText file {\fontsize{10pt}{10pt}\verb!mydoc.rst!}:
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> doconce2format rst mydoc.do.txt
+
 \end{Verbatim}
 We may now produce various other formats:
 \vspace{4pt}
@@ -552,6 +578,7 @@ Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
 Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
 Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+
 \end{Verbatim}
 The OpenOffice file {\fontsize{10pt}{10pt}\verb!mydoc.odt!} can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -568,6 +595,7 @@ the reStructuredText format:
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> doconce2format sphinx mydoc.do.txt
+
 \end{Verbatim}
 
 \paragraph{Step 2.}
@@ -601,6 +629,7 @@ y
 y
 y
 EOF
+
 \end{Verbatim}
 
 \paragraph{Step 3.}
@@ -609,6 +638,7 @@ Move the {\fontsize{10pt}{10pt}\verb!tutorial.rst!} file to the Sphinx root dire
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> mv mydoc.rst sphinx-rootdir
+
 \end{Verbatim}
 If you have figures in your document, the relative paths to those will
 be invalid when you work with {\fontsize{10pt}{10pt}\verb!mydoc.rst!} in the {\fontsize{10pt}{10pt}\verb!sphinx-rootdir!}
@@ -625,6 +655,7 @@ fontfamily=tt,xleftmargin=7mm]
    :maxdepth: 2
 
    mydoc
+
 \end{Verbatim}
 \noindent
 (The spaces before {\fontsize{10pt}{10pt}\verb!mydoc!} are important!)
@@ -636,6 +667,7 @@ Generate, for instance, an HTML version of the Sphinx source:
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 make clean   # remove old versions
 make html
+
 \end{Verbatim}
 Many other formats are also possible.
 
@@ -645,6 +677,7 @@ View the result:
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> firefox _build/html/index.html
+
 \end{Verbatim}
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -666,6 +699,7 @@ it as the Google Code dialect, is done by
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Unix/DOS> doconce2format gwiki mydoc.do.txt
+
 \end{Verbatim}
 You can then open a new wiki page for your Google Code project, copy
 the {\fontsize{10pt}{10pt}\verb!mydoc.gwiki!} output file from {\fontsize{10pt}{10pt}\verb!doconce2format!} and paste the
@@ -697,6 +731,7 @@ The current text is generated from a Doconce format stored in the file
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
 docs/tutorial/tutorial.do.txt
+
 \end{Verbatim}
 \noindent
 The file {\fontsize{10pt}{10pt}\verb!make.sh!} in the {\fontsize{10pt}{10pt}\verb!tutorial!} directory of the

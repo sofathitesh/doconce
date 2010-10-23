@@ -194,7 +194,9 @@ preprocessed) by the ``preprocess`` program.
 In a doc string in ``basename.p.py`` we do a preprocessor include
 in a comment line, say::
 
+
         #    #include "docstrings/doc1.dst.txt
+        
 
 
 
@@ -231,6 +233,7 @@ suited for Pydoc or reading by humans. All these steps are automated
 by the ``insertdocstr.py`` script.  Here are the corresponding Unix
 commands::
 
+
         # make Epydoc API manual of basename module:
         cd docstrings
         doconce2format epytext doc1.do.txt
@@ -263,6 +266,7 @@ commands::
         # renames to .dst.txt extension, then the script runs through all 
         # .p.py files and runs the preprocessor, which includes the .dst.txt
         # files)
+        
 
 
 
@@ -283,7 +287,9 @@ Demos
 
 The current text is generated from a Doconce format stored in the::
 
+
         docs/manual/manual.do.txt
+        
 
 
 file in the Doconce source code tree. We have made a 
@@ -297,7 +303,9 @@ Doconce file to obtain documents in various formats.
 
 Another demo is found in::
 
+
         docs/tutorial/tutorial.do.txt
+        
 
 
 In the ``tutorial`` directory there is also a ``make.sh`` file producing a
@@ -316,13 +324,17 @@ From Doconce to Other Formats
 Transformation of a Doconce document to various other
 formats applies the script ``doconce2format``::
 
+
         Unix/DOS> doconce2format format mydoc.do.txt
+        
 
 
 The ``preprocess`` program is always used to preprocess the file first,
 and options to ``preprocess`` can be added after the filename. For example::
 
+
         Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
+        
 
 
 The variable ``FORMAT`` is always defined as the current format when
@@ -332,14 +344,18 @@ format specific actions through tests like ``#if FORMAT == "LaTeX"``.
 
 Inline comments in the text are removed from the output by::
 
+
         Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+        
 
 
 One can also remove such comments from the original Doconce file
 by running a helper script in the ``bin`` folder of the Doconce
 source code::
 
+
         Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+        
 
 
 This action is convenient when a Doconce document reaches its final form.
@@ -351,7 +367,9 @@ HTML
 Making an HTML version of a Doconce file ``mydoc.do.txt``
 is performed by::
 
+
         Unix/DOS> doconce2format HTML mydoc.do.txt
+        
 
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
@@ -367,7 +385,9 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 *Step 1.* Filter the doconce text to a pre-LaTeX form ``mydoc.p.tex`` for
      ``ptex2tex``::
 
+
         Unix/DOS> doconce2format LaTeX mydoc.do.txt
+        
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
@@ -378,19 +398,25 @@ so that your commands are defined.
 
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file::
 
+
         Unix/DOS> ptex2tex mydoc
+        
 
 
 or just perform a plain copy::
 
+
         Unix/DOS> cp mydoc.p.tex mydoc.tex
+        
 
 
 Doconce generates a ``.p.tex`` file with some preprocessor macros.
 For example, to enable font Helvetica instead of the standard
 Computer Modern font::
 
+
         Unix/DOS> ptex2tex -DHELVETICA mydoc
+        
 
 
 The title, authors, and date are by default typeset in a non-standard
@@ -398,7 +424,9 @@ way to enable a nicer treatment of multiple authors having
 institutions in common. The standard LaTeX "maketitle" heading
 is also available through::
 
+
         Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        
 
 
 
@@ -413,12 +441,14 @@ There are over 30 styles to choose from.
 *Step 3.* Compile ``mydoc.tex``
 and create the PDF file::
 
+
         Unix/DOS> latex mydoc
         Unix/DOS> latex mydoc
         Unix/DOS> makeindex mydoc   # if index
         Unix/DOS> bibitem mydoc     # if bibliography
         Unix/DOS> latex mydoc
         Unix/DOS> dvipdf mydoc
+        
 
 
 If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
@@ -426,11 +456,14 @@ in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
 This package is included by running ``doconce2format`` with the
 ``-DMINTED`` option::
 
+
         Unix/DOS> ptex2tex -DMINTED mydoc
+        
 
 
 In this case, ``latex`` must be run with the
 ``-shell-escape`` option::
+
 
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> latex -shell-escape mydoc
@@ -438,6 +471,7 @@ In this case, ``latex`` must be run with the
         Unix/DOS> bibitem mydoc     # if bibliography
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
+        
 
 
 The ``-shell-escape`` option is required because the ``minted.sty`` style
@@ -452,7 +486,9 @@ We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code::
 
+
         Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
+        
 
 
 
@@ -463,15 +499,19 @@ Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file ``mydoc.rst``::
 
+
         Unix/DOS> doconce2format rst mydoc.do.txt
+        
 
 
 We may now produce various other formats::
+
 
         Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
         Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
         Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        
 
 
 The OpenOffice file ``mydoc.odt`` can be loaded into OpenOffice and
@@ -486,13 +526,16 @@ Sphinx documents can be created from a Doconce source in a few steps.
 *Step 1.* Translate Doconce into the Sphinx dialect of
 the reStructuredText format::
 
+
         Unix/DOS> doconce2format sphinx mydoc.do.txt
+        
 
 
 
 *Step 2.* Create a Sphinx root directory with a ``conf.py`` file, 
 either manually or by using the interactive ``sphinx-quickstart``
 program. Here is a scripted version of the steps with the latter::
+
 
         mkdir sphinx-rootdir
         sphinx-quickstart <<EOF
@@ -518,12 +561,15 @@ program. Here is a scripted version of the steps with the latter::
         y
         y
         EOF
+        
 
 
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory::
 
+
         Unix/DOS> mv mydoc.rst sphinx-rootdir
+        
 
 
 If you have figures in your document, the relative paths to those will
@@ -535,25 +581,31 @@ are located in a subdirectory).
 *Step 4.* Edit the generated ``index.rst`` file so that ``mydoc.rst``
 is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes::
 
+
         .. toctree::
            :maxdepth: 2
         
            mydoc
+        
 
 
 (The spaces before ``mydoc`` are important!)
 
 *Step 5.* Generate, for instance, an HTML version of the Sphinx source::
 
+
         make clean   # remove old versions
         make html
+        
 
 
 Many other formats are also possible.
 
 *Step 6.* View the result::
 
+
         Unix/DOS> firefox _build/html/index.html
+        
 
 
 
@@ -575,7 +627,9 @@ one used by `Google Code <http://code.google.com/p/support/wiki/WikiSyntax>`_.
 The transformation to this format, called ``gwiki`` to explicitly mark
 it as the Google Code dialect, is done by::
 
+
         Unix/DOS> doconce2format gwiki mydoc.do.txt
+        
 
 
 You can then open a new wiki page for your Google Code project, copy
@@ -618,6 +672,7 @@ Lists
 An unordered bullet list makes use of the ``*`` as bullet sign
 and is indented as follows::
 
+
            * item 1
         
            * item 2
@@ -630,6 +685,7 @@ and is indented as follows::
                also spans two lines
         
            * item 3
+        
 
 
 
@@ -652,6 +708,7 @@ This list gets typeset as
 In an ordered list, each item starts with an ``o`` (as the first letter 
 in "ordered")::
 
+
            o item 1
         
            o item 2
@@ -661,6 +718,7 @@ in "ordered")::
              * subitem 2
         
            o item 3
+        
 
 
 
@@ -683,11 +741,13 @@ applies to the outer list only.
 In a description list, each item is recognized by a dash followed
 by a keyword followed by a colon::
 
+
            - keyword1: explanation of keyword1
         
            - keyword2: explanation
              of keyword2 (remember to indent properly
              if there are multiple lines)
+        
 
 
 
@@ -716,7 +776,9 @@ title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
 the syntax::
 
+
         name at institution1 and institution2 and institution3
+        
 
 
 The ``at`` with surrounding spaces
@@ -727,11 +789,13 @@ Multiple authors require multiple ``AUTHOR:`` lines. All information
 associated with ``TITLE:`` and ``AUTHOR:`` keywords must appear on a single
 line.  Here is an example::
 
+
         TITLE: On an Ultimate Markup Language
         AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
         AUTHOR: Kaare Dump at Segfault, Cyberspace Inc.
         AUTHOR: A. Dummy Author
         DATE: November 9, 2016
+        
 
 
 Note the how one can specify a single institution, multiple institutions,
@@ -740,6 +804,7 @@ only the author names appear. Some formats have
 "intelligence" in listing authors and institutions, e.g., the plain text
 format::
 
+
         Hans Petter Langtangen [1, 2]
         Kaare Dump [3]
         A. Dummy Author 
@@ -747,6 +812,7 @@ format::
         [1] Center for Biomedical Computing, Simula Research Laboratory
         [2] Department of Informatics, University of Oslo
         [3] Segfault, Cyberspace Inc.
+        
 
 
 Similar typesetting is done for LaTeX and HTML formats.
@@ -770,6 +836,7 @@ Headings can be surrounded by blanks if desired.
 
 Here are some examples::
 
+
         ======= Example on a Section Heading ======= 
         
         The running text goes here. 
@@ -782,6 +849,7 @@ Here are some examples::
         The running text goes here.
         
         __A Paragraph.__ The running text goes here.
+        
 
 
 
@@ -805,7 +873,9 @@ The running text goes here.
 
 Figures are recognized by the special line syntax::
 
+
         FIGURE:[filename, height=xxx width=yyy scale=zzz] caption
+        
 
 
 The height, width, and scale keywords (and others) can be included
@@ -852,13 +922,17 @@ plus LaTeX/TeX inline mathematics, such as v = sin(x).
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in::
 
+
         *emphasized words*
+        
 
 
 
 Boldface font is recognized by an underscore instead of an asterisk::
 
+
         _several words in boldface_ followed by *ephasized text*.
+        
 
 
 The line above gets typeset as
@@ -867,8 +941,10 @@ The line above gets typeset as
 Verbatim text, typically used for short inline code,
 is typeset between backquotes::
 
+
         `call myroutine(a, b)` looks like a Fortran call
         while `void myfunc(double *a, double *b)` must be C.
+        
 
 
 The typesetting result looks like this:
@@ -888,7 +964,9 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as::
 
+
         some URL like "MyPlace": "http://my.place.in.space/src"
+        
 
 
 which appears as some URL like `MyPlace <http://my.place.in.space/src>`_.
@@ -896,17 +974,21 @@ The space after colon is optional.
 Link to a file is done by the URL keyword, a colon, and enclosing the
 filename in double quotes::
 
+
         URL:"manual.do.txt"
         "URL": "manual.do.txt"
         url: "manual.do.txt"
         "url":"manual.do.txt"
+        
 
 
 All these constructions result in the link `<manual.do.txt>`_.
 
 Doconce also supports inline comments in the text::
 
+
         [name: comment]
+        
 
 
 where ``name`` is the name of the author of the command, and ``comment`` is a 
@@ -929,10 +1011,12 @@ commands, which may appear annoying in plain text. Doconce therefore
 supports an extended inline math syntax where the writer can provide
 an alternative syntax suited for formats close to plain ASCII::
 
+
         Here is an example on a linear system 
         ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
         where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and 
         $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
+        
 
 
 That is, we provide two alternative expressions, both enclosed in
@@ -948,8 +1032,10 @@ Cross-Referencing
 
 References and labels are supported. The syntax is simple::
 
+
         label{section:verbatim}   # defines a label
         For more information we refer to Section ref{section:verbatim}.
+        
 
 
 This syntax is close that that of labels and cross-references in
@@ -983,15 +1069,19 @@ Index and Bibliography
 An index can be created for the LaTeX and the reStructuredText or
 Sphinx formats by the ``idx`` keyword, following a LaTeX-inspired syntax::
 
+
         idx{some index entry}
         idx{main entry!subentry}
         idx{`verbatim_text` and more}
+        
 
 
 The exclamation mark divides a main entry and a subentry. Backquotes
 surround verbatim text, which is correctly transformed in a LaTeX setting to::
 
+
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
+        
 
 
 Everything related to the index simply becomes invisible in 
@@ -999,7 +1089,9 @@ plain text, Epytext, StructuredText, HTML, and Wiki formats.
 
 Literature citations also follow a LaTeX-inspired style::
 
+
         as found in cite{Larsen:86,Nielsen:99}.
+        
 
 
 Citation labels can be separated by comma. In LaTeX, this is directly
@@ -1008,7 +1100,9 @@ and Sphinx the labels can be clicked, while in all the other text
 formats the labels are consecutively numbered so the above citation
 will typically look like::
 
+
         as found in [3][14]
+        
 
 
 if ``Larsen:86`` has already appeared in the 3rd citation in the document
@@ -1023,6 +1117,7 @@ The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
 in the bibliography. Doconce markup can be used in this text, e.g.::
 
+
         {
         'Nielsen:99': """
         K. Nielsen. *Some Comments on Markup Languages*. 
@@ -1034,6 +1129,7 @@ in the bibliography. Doconce markup can be used in this text, e.g.::
         *Personal Press*. 1986.
         """
         }
+        
 
 
 In the LaTeX format, the ``.bib`` file will be used in the standard way,
@@ -1066,6 +1162,7 @@ A table like
 
 is built up of pipe symbols and dashes::
 
+
           |--------------------------------|
           |time  | velocity | acceleration |
           |--------------------------------|
@@ -1073,6 +1170,7 @@ is built up of pipe symbols and dashes::
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
+        
 
 
 The pipes and column values do not need to be aligned (but why write
@@ -1101,7 +1199,9 @@ language for typesetting of the verbatim block by Pygments. This
 mapping takes place in an optional comment to be inserted in the Doconce
 source file, e.g.::
 
+
         # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+        
 
 
 Here, three arguments are defined: ``pycod`` for Python code,
@@ -1135,6 +1235,7 @@ common errors are naturally avoided).
 
 Here is a verbatim code block with Python code (``pycod`` style)::
 
+
         # regular expressions for inline tags:
         inline_tag_begin = r'(?P<begin>(^|\s+))'
         inline_tag_end = r'(?P<end>[.,?!;:)\s])'
@@ -1149,22 +1250,28 @@ Here is a verbatim code block with Python code (``pycod`` style)::
             r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
             (inline_tag_begin, inline_tag_end),
         }
+        
 
 
 And here is a C++ code snippet (``cppcod`` style)::
+
 
         void myfunc(double* x, const double& myarr) {
             for (int i = 1; i < myarr.size(); i++) {
                 myarr[i] = myarr[i] - x[i]*myarr[i-1]
             }
         }
-        !ec    
         
-        Computer code can be copied directly from a file, if desired. The syntax
-        is then::
+
+
+
+Computer code can be copied directly from a file, if desired. The syntax
+is then::
+
 
          @@@CODE myfile.f
          @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
+        
 
 
 The first line implies that all lines in the file ``myfile.f`` are
@@ -1183,6 +1290,7 @@ final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above)::
 
+
         C     a comment
         
               subroutine    test()
@@ -1198,11 +1306,15 @@ Let us copy a whole file (the first line above)::
               program testme
               call test()
               return
+        
+        
+        
 
 
 
 Let us then copy just a piece in the middle as indicated by the ``fromto:``
 directive above::
+
 
               subroutine    test()
               integer i
@@ -1212,6 +1324,8 @@ directive above::
                  r = r + i
               end do
               return
+        
+        
 
 
 
@@ -1239,7 +1353,6 @@ Here is the result of a ``!bt`` - ``!et`` block::
         {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
         {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
         \end{eqnarray}
-
 
 This text looks ugly in all Doconce supported formats, except from
 LaTeX and Sphinx.  If HTML is desired, the best is to filter the Doconce text
@@ -1278,29 +1391,37 @@ expressions).
 *Example.* Suppose we have the following commands in 
 ``newcommand_replace.tex``::
 
+
         \newcommand{\beqa}{\begin{eqnarray}}
         \newcommand{\eeqa}{\end{eqnarray}}
         \newcommand{\ep}{\thinspace . }
         \newcommand{\uvec}{\vec u}
         \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
         \newcommand{\Q}{\mathbfx{Q}}
+        
+        
 
 
 
 and these in ``newcommands_keep.tex``::
 
+
         \newcommand{\x}{\mathbfx{x}}
         \newcommand{\normalvec}{\mathbfx{n}}
         \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+        
+        
 
 
 
 The LaTeX block::
 
+
         \beqa
         \x\cdot\normalvec &=& 0,\label{my:eq1}\\
         \Ddt{\uvec} &=& \Q \ep\label{my:eq2}
         \eeqa
+        
 
 
 will then be rendered to::
@@ -1309,7 +1430,6 @@ will then be rendered to::
         \x\cdot\normalvec &=& 0,\label{my:eq1}\\
         \Ddt{\vec u} &=& {\mbox{\boldmath $Q$}} \thinspace . \label{my:eq2}
         \end{eqnarray}
-
 in the current format.
 
 Missing Features
@@ -1348,14 +1468,16 @@ reST to indicate a verbatim block of text).
 
 *The LaTeX File Does Not Compile.* If the problem is undefined control sequence involving::
 
+
         \code{...}
+        
 
 
 the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
-*Verbatim Code Blocks Inside Lists Look Ugly.* Read the Section *Blocks of Verbatim Computer Code* above.  Start the
+*Verbatim Code Blocks Inside Lists Look Ugly.* Read the the section `Blocks of Verbatim Computer Code`_ above.  Start the
 ``!bc`` and ``!ec`` tags in column 1 of the file, and be careful with
 indenting the surrounding plain text of the list item correctly. If
 you cannot resolve the problem this way, get rid of the list and use
@@ -1390,7 +1512,9 @@ correctly. Merge them into one common expression.
 *Strange Non-English Characters.* Check the encoding of the ``.do.txt`` file with the Unix ``file`` command.
 If UTF-8, convert to latin-1 using the Unix command::
 
+
         Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+        
 
 
 (Doconce has a feature to detect the encoding, but it is not reliable and
@@ -1437,7 +1561,9 @@ handling of blank lines and comment lines.
 List parsing needs some awareness of the context.
 Each line is interpreted by a regular expression::
 
+
         (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<text>.*)\s?
+        
 
 
 
@@ -1471,6 +1597,7 @@ A Glimpse of How to Write a New Translator
 
 This is the HTML-specific part of the
 source code of the HTML translator::
+
 
         FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
         BLANKLINE['HTML'] = '<p>\n'           # blank input line => new paragraph
@@ -1533,6 +1660,7 @@ source code of the HTML translator::
         </body>
         </html>
         """
+        
 
 
 
@@ -1551,6 +1679,7 @@ only legal keywords (descriptions) for the description list in this
 context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
 arguments and variables are nicely formatted::
 
+
             - argument x: x value (float),
               which must be a positive number.
             - keyword argument tolerance: tolerance (float) for stopping
@@ -1560,6 +1689,7 @@ arguments and variables are nicely formatted::
             - class variable items: the total number of MyClass objects (int).
             - module variable debug: True: debug mode is on; False: no debugging 
               (bool variable).
+        
 
 
 

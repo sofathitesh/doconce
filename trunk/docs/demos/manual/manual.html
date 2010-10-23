@@ -232,6 +232,7 @@ in a comment line, say
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 #    #include "docstrings/doc1.dst.txt
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 <!--  -->
@@ -269,6 +270,8 @@ file <TT>basename.py</TT>. The doc strings are now in plain text and well
 suited for Pydoc or reading by humans. All these steps are automated
 by the <TT>insertdocstr.py</TT> script.  Here are the corresponding Unix
 commands:
+
+<P>
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 # make Epydoc API manual of basename module:
@@ -303,6 +306,7 @@ insertdocstr.py plain .
 # renames to .dst.txt extension, then the script runs through all 
 # .p.py files and runs the preprocessor, which includes the .dst.txt
 # files)
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -329,6 +333,7 @@ The current text is generated from a Doconce format stored in the
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 docs/manual/manual.do.txt
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 file in the Doconce source code tree. We have made a 
@@ -346,6 +351,7 @@ Another demo is found in
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 docs/tutorial/tutorial.do.txt
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 In the <TT>tutorial</TT> directory there is also a <TT>make.sh</TT> file producing a
@@ -368,6 +374,7 @@ formats applies the script <TT>doconce2format</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format format mydoc.do.txt
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The <TT>preprocess</TT> program is always used to preprocess the file first,
@@ -375,6 +382,7 @@ and options to <TT>preprocess</TT> can be added after the filename. For example,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The variable <TT>FORMAT</TT> is always defined as the current format when
@@ -387,6 +395,7 @@ Inline comments in the text are removed from the output by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 One can also remove such comments from the original Doconce file
@@ -395,6 +404,7 @@ source code:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 This action is convenient when a Doconce document reaches its final form.
@@ -409,6 +419,7 @@ is performed by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format HTML mydoc.do.txt
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The resulting file <TT>mydoc.html</TT> can be loaded into any web browser for viewing.
@@ -427,6 +438,7 @@ Making a LaTeX file <TT>mydoc.tex</TT> from <TT>mydoc.do.txt</TT> is done in two
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format LaTeX mydoc.do.txt
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 LaTeX-specific commands ("newcommands") in math formulas and similar
@@ -440,12 +452,14 @@ so that your commands are defined.
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> ptex2tex mydoc
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 or just perform a plain copy,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> cp mydoc.p.tex mydoc.tex
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 Doconce generates a <TT>.p.tex</TT> file with some preprocessor macros.
@@ -454,6 +468,7 @@ Computer Modern font,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> ptex2tex -DHELVETICA mydoc
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The title, authors, and date are by default typeset in a non-standard
@@ -463,6 +478,7 @@ is also available through
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -486,6 +502,7 @@ Unix/DOS> makeindex mydoc   # if index
 Unix/DOS> bibitem mydoc     # if bibliography
 Unix/DOS> latex mydoc
 Unix/DOS> dvipdf mydoc
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 If one wishes to use the <TT>Minted_Python</TT>, <TT>Minted_Cpp</TT>, etc., environments
@@ -495,6 +512,7 @@ This package is included by running <TT>doconce2format</TT> with the
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> ptex2tex -DMINTED mydoc
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 In this case, <TT>latex</TT> must be run with the
@@ -507,6 +525,7 @@ Unix/DOS> makeindex mydoc   # if index
 Unix/DOS> bibitem mydoc     # if bibliography
 Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> dvipdf mydoc
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The <TT>-shell-escape</TT> option is required because the <TT>minted.sty</TT> style
@@ -524,6 +543,7 @@ computer source code:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -536,6 +556,7 @@ reStructuredText file <TT>mydoc.rst</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format rst mydoc.do.txt
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 We may now produce various other formats:
@@ -545,6 +566,7 @@ Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
 Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
 Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The OpenOffice file <TT>mydoc.odt</TT> can be loaded into OpenOffice and
@@ -562,6 +584,7 @@ the reStructuredText format:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format sphinx mydoc.do.txt
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -595,6 +618,7 @@ y
 y
 y
 EOF
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -603,6 +627,7 @@ EOF
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> mv mydoc.rst sphinx-rootdir
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 If you have figures in your document, the relative paths to those will
@@ -620,6 +645,7 @@ is included, i.e., add <TT>mydoc</TT> to the <TT>toctree</TT> section so that it
    :maxdepth: 2
 
    mydoc
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 (The spaces before <TT>mydoc</TT> are important!)
@@ -630,6 +656,7 @@ is included, i.e., add <TT>mydoc</TT> to the <TT>toctree</TT> section so that it
 <BLOCKQUOTE><PRE>
 make clean   # remove old versions
 make html
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 Many other formats are also possible.
@@ -639,6 +666,7 @@ Many other formats are also possible.
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> firefox _build/html/index.html
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -665,6 +693,7 @@ it as the Google Code dialect, is done by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format gwiki mydoc.do.txt
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 You can then open a new wiki page for your Google Code project, copy
@@ -710,6 +739,8 @@ lists, special lines, inline tags, and environments.
 <P>
 An unordered bullet list makes use of the <TT>*</TT> as bullet sign
 and is indented as follows
+
+<P>
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
    * item 1
@@ -724,6 +755,7 @@ and is indented as follows
        also spans two lines
 
    * item 3
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -749,6 +781,8 @@ This list gets typeset as
 
 In an ordered list, each item starts with an <TT>o</TT> (as the first letter 
 in "ordered"):
+
+<P>
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
    o item 1
@@ -760,6 +794,7 @@ in "ordered"):
      * subitem 2
 
    o item 3
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -786,6 +821,8 @@ applies to the outer list only.
 <P>
 In a description list, each item is recognized by a dash followed
 by a keyword followed by a colon:
+
+<P>
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
    - keyword1: explanation of keyword1
@@ -793,6 +830,7 @@ by a keyword followed by a colon:
    - keyword2: explanation
      of keyword2 (remember to indent properly
      if there are multiple lines)
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -827,6 +865,7 @@ the syntax
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 name at institution1 and institution2 and institution3
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The <TT>at</TT> with surrounding spaces
@@ -843,6 +882,7 @@ AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Lab
 AUTHOR: Kaare Dump at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: November 9, 2016
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 Note the how one can specify a single institution, multiple institutions,
@@ -859,6 +899,7 @@ A. Dummy Author
 [1] Center for Biomedical Computing, Simula Research Laboratory
 [2] Department of Informatics, University of Oslo
 [3] Segfault, Cyberspace Inc.
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 Similar typesetting is done for LaTeX and HTML formats.
@@ -899,6 +940,7 @@ The running text goes here.
 The running text goes here.
 
 __A Paragraph.__ The running text goes here.
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -927,6 +969,7 @@ Figures are recognized by the special line syntax
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 FIGURE:[filename, height=xxx width=yyy scale=zzz] caption
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The height, width, and scale keywords (and others) can be included
@@ -974,6 +1017,7 @@ be no spaces between an asterisk and the emphasized text, as in
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 *emphasized words*
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -982,6 +1026,7 @@ Boldface font is recognized by an underscore instead of an asterisk:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 _several words in boldface_ followed by *ephasized text*.
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The line above gets typeset as
@@ -994,6 +1039,7 @@ is typeset between backquotes:
 <BLOCKQUOTE><PRE>
 `call myroutine(a, b)` looks like a Fortran call
 while `void myfunc(double *a, double *b)` must be C.
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The typesetting result looks like this:
@@ -1018,6 +1064,7 @@ Web addresses with links are typeset as
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 some URL like "MyPlace": "http://my.place.in.space/src"
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 which appears as some URL like <A HREF="http://my.place.in.space/src">MyPlace</A>.
@@ -1030,6 +1077,7 @@ URL:"manual.do.txt"
 "URL": "manual.do.txt"
 url: "manual.do.txt"
 "url":"manual.do.txt"
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 All these constructions result in the link <A HREF="manual.do.txt"><TT>manual.do.txt</TT></A>.
@@ -1039,6 +1087,7 @@ Doconce also supports inline comments in the text:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 [name: comment]
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 where <TT>name</TT> is the name of the author of the command, and <TT>comment</TT> is a 
@@ -1067,6 +1116,7 @@ Here is an example on a linear system
 ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and 
 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 That is, we provide two alternative expressions, both enclosed in
@@ -1085,6 +1135,7 @@ References and labels are supported. The syntax is simple:
 <BLOCKQUOTE><PRE>
 label{section:verbatim}   # defines a label
 For more information we refer to Section ref{section:verbatim}.
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 This syntax is close that that of labels and cross-references in
@@ -1124,6 +1175,7 @@ Sphinx formats by the <TT>idx</TT> keyword, following a LaTeX-inspired syntax:
 idx{some index entry}
 idx{main entry!subentry}
 idx{`verbatim_text` and more}
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The exclamation mark divides a main entry and a subentry. Backquotes
@@ -1131,6 +1183,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 Everything related to the index simply becomes invisible in 
@@ -1141,6 +1194,7 @@ Literature citations also follow a LaTeX-inspired style:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 as found in cite{Larsen:86,Nielsen:99}.
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 Citation labels can be separated by comma. In LaTeX, this is directly
@@ -1151,6 +1205,7 @@ will typically look like
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 as found in [3][14]
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 if <TT>Larsen:86</TT> has already appeared in the 3rd citation in the document
@@ -1178,6 +1233,7 @@ O. B. Larsen. On Markup and Generality.
 *Personal Press*. 1986.
 """
 }
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 In the LaTeX format, the <TT>.bib</TT> file will be used in the standard way,
@@ -1221,6 +1277,7 @@ is built up of pipe symbols and dashes:
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The pipes and column values do not need to be aligned (but why write
@@ -1253,6 +1310,7 @@ source file, e.g.,
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 Here, three arguments are defined: <TT>pycod</TT> for Python code,
@@ -1305,6 +1363,7 @@ INLINE_TAGS = {
     r'%s_(?P&lt;subst&gt;[^ `][^_`]*)_%s' % \
     (inline_tag_begin, inline_tag_end),
 }
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 And here is a C++ code snippet (<TT>cppcod</TT> style):
@@ -1315,14 +1374,18 @@ void myfunc(double* x, const double& myarr) {
         myarr[i] = myarr[i] - x[i]*myarr[i-1]
     }
 }
-!ec    
 
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+
+<P>
 Computer code can be copied directly from a file, if desired. The syntax
 is then
-<!-- BEGIN VERBATIM BLOCK -->
+<!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
  @@@CODE myfile.f
  @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The first line implies that all lines in the file <TT>myfile.f</TT> are
@@ -1341,6 +1404,8 @@ final line with the "to" text is not included in the verbatim block.
 
 <P>
 Let us copy a whole file (the first line above):
+
+<P>
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 C     a comment
@@ -1358,12 +1423,17 @@ C     END1
       program testme
       call test()
       return
+
+
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
 <P>
 Let us then copy just a piece in the middle as indicated by the <TT>fromto:</TT>
 directive above:
+
+<P>
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
       subroutine    test()
@@ -1374,6 +1444,8 @@ directive above:
          r = r + i
       end do
       return
+
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -1444,6 +1516,8 @@ expressions).
 <P>
 <B>Example.</B> Suppose we have the following commands in 
 <TT>newcommand_replace.tex</TT>:
+
+<P>
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 \newcommand{\beqa}{\begin{eqnarray}}
@@ -1452,16 +1526,22 @@ expressions).
 \newcommand{\uvec}{\vec u}
 \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
 \newcommand{\Q}{\mathbfx{Q}}
+
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
 <P>
 and these in <TT>newcommands_keep.tex</TT>:
+
+<P>
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 \newcommand{\x}{\mathbfx{x}}
 \newcommand{\normalvec}{\mathbfx{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -1473,6 +1553,7 @@ The LaTeX block
 \x\cdot\normalvec &=& 0,\label{my:eq1}\\
 \Ddt{\uvec} &=& \Q \ep\label{my:eq2}
 \eeqa
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 will then be rendered to
@@ -1526,6 +1607,7 @@ reST to indicate a verbatim block of text).
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 \code{...}
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 the cause is usually a verbatim inline text (in backquotes in the
@@ -1533,7 +1615,7 @@ Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
 <P>
-<B>Verbatim Code Blocks Inside Lists Look Ugly.</B> Read the Section <EM>Blocks of Verbatim Computer Code</EM> above.  Start the
+<B>Verbatim Code Blocks Inside Lists Look Ugly.</B> Read the the section <A HREF="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> above.  Start the
 <TT>!bc</TT> and <TT>!ec</TT> tags in column 1 of the file, and be careful with
 indenting the surrounding plain text of the list item correctly. If
 you cannot resolve the problem this way, get rid of the list and use
@@ -1576,6 +1658,7 @@ If UTF-8, convert to latin-1 using the Unix command
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 (Doconce has a feature to detect the encoding, but it is not reliable and
@@ -1627,9 +1710,12 @@ The text is examined line by line for typesetting of lists, as well as
 handling of blank lines and comment lines.
 List parsing needs some awareness of the context.
 Each line is interpreted by a regular expression
+
+<P>
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 (?P&lt;indent&gt; *(?P&lt;listtype&gt;[*o-] )? *)(?P&lt;keyword&gt;[^:]+?:)?(?P&lt;text&gt;.*)\s?
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -1671,6 +1757,10 @@ source code of the HTML translator:
 (note that in HTML one of the the less-than and greater-than signs
 in a link come up wrong because of the simple regex that is used
 to substitute these pair of signs by special HTML expressions)
+
+<P>
+
+<P>
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
@@ -1734,6 +1824,7 @@ OUTRO['HTML'] = """
 &lt;/body&gt;
 &lt;/html&gt;
 """
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -1752,6 +1843,8 @@ the doc string</EM>. Note that <TT>argument</TT>, <TT>keyword argument</TT>, <TT
 only legal keywords (descriptions) for the description list in this
 context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
 arguments and variables are nicely formatted. 
+
+<P>
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
     - argument x: x value (float),
@@ -1763,6 +1856,7 @@ arguments and variables are nicely formatted.
     - class variable items: the total number of MyClass objects (int).
     - module variable debug: True: debug mode is on; False: no debugging 
       (bool variable).
+
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 

@@ -471,10 +471,15 @@ natural in plain text.  Lists are typeset as you would do in an email,</p>
 </ol>
 </blockquote>
 <p>URLs with a link word are possible, as in <a class="reference external" href="http://folk.uio.no/hpl">hpl</a>.
-Just a file link goes like <a class="reference external" href="tutorial.do.txt">tutorial.do.txt</a>. References
-to sections may use logical names as labels (e.g., a &quot;label&quot; command right
-after the section title), as in the reference to
+If the word is URL, the URL itself becomes the link name,
+as in <a class="reference external" href="tutorial.do.txt">tutorial.do.txt</a>.</p>
+<p>References to sections may use logical names as labels (e.g., a
+&quot;label&quot; command right after the section title), as in the reference to
 the chapter <a class="reference internal" href="#a-subsection-with-sample-text">A Subsection with Sample Text</a>.</p>
+<p>Doconce also allows inline comments such as <strong>hpl</strong>: here I will make
+some remarks to the text for allowing authors to make notes. Inline
+comments can be removed from the output by a command-line argument
+(see the chapter <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a> for an example).</p>
 <p>Tables are also supperted, e.g.,</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -526,6 +531,9 @@ The result looks like this:</p>
 {\partial v\over\partial t} &amp;=&amp; \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}
 </pre>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 217)</p>
+Literal block ends without a blank line; unexpected unindent.</div>
 <p>Of course, such blocks only looks nice in LaTeX. The raw
 LaTeX syntax appears in all other formats (but can still be useful
 for those who can read LaTeX syntax).</p>

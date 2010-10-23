@@ -146,14 +146,14 @@ def sphinx_code(filestr, format):
     # any !bc with/without argument becomes a py (python) block:
     #filestr = re.sub(r'^!bc.+\n', '\n.. code-block:: py\n\n', filestr,
     #                 flags=re.MULTILINE)
-    cpattern = re.compile(r'^!bc.+\n', flags=re.MULTILINE)
+    cpattern = re.compile(r'^!bc.+$', flags=re.MULTILINE)
     filestr = cpattern.sub('\n.. code-block:: py\n\n', filestr)
 
-    filestr = re.sub(r'!ec\n', '\n\n', filestr)
+    filestr = re.sub(r'!ec *\n', '\n\n', filestr)
     #filestr = re.sub(r'!ec\n', '\n', filestr)
     #filestr = re.sub(r'!ec\n', '', filestr)
-    filestr = re.sub(r'!bt\n', '\n.. math::\n\n', filestr)
-    filestr = re.sub(r'!et\n', '\n\n', filestr)
+    filestr = re.sub(r'!bt *\n', '\n.. math::\n\n', filestr)
+    filestr = re.sub(r'!et *\n', '\n\n', filestr)
 
     # fix latex constructions that do not work with sphinx math
     commands = [r'\begin{equation}',
