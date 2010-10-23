@@ -677,6 +677,7 @@ def inline_tag_subst(filestr, format):
         'inlinecomment',
         'citation',
         'paragraph',  # after bold and emphasize
+        'linkURL2',   # must come before plainURL (which has "URL" as link)
         'plainURL', 'linkURL', 
         )
     for tag in ordered_tags:

@@ -1017,18 +1017,22 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
-some URL like http://my.place.in.space/src&lt;MyPlace&gt;
+some URL like "MyPlace": "http://my.place.in.space/src"
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 which appears as some URL like <A HREF="http://my.place.in.space/src">MyPlace</A>.
+The space after colon is optional.
 Link to a file is done by the URL keyword, a colon, and enclosing the
 filename in double quotes:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 URL:"manual.do.txt"
+"URL": "manual.do.txt"
+url: "manual.do.txt"
+"url":"manual.do.txt"
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-This construction results in the link <A HREF="manual.do.txt"><TT>manual.do.txt</TT></A>.
+All these constructions result in the link <A HREF="manual.do.txt"><TT>manual.do.txt</TT></A>.
 
 <P>
 Doconce also supports inline comments in the text:
@@ -1189,7 +1193,7 @@ citing a book <A HREF="#Python:Primer:09">[1]</A>, a paper <A HREF="#Osnes:98">[
 and both of them simultaneously <A HREF="#Python:Primer:09">[1]</A> <A HREF="#Osnes:98">[2]</A>.
 
 <P>
-[<B>hpl</B>: <EM>comments, citations, and references in the latex style
+[<B>somereader</B>: <EM>comments, citations, and references in the latex style
 is a special feature of doconce :-) </EM>]
 
 <P>

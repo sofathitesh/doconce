@@ -888,17 +888,21 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as::
 
-        some URL like http://my.place.in.space/src<MyPlace>
+        some URL like "MyPlace": "http://my.place.in.space/src"
 
 
 which appears as some URL like `MyPlace <http://my.place.in.space/src>`_.
+The space after colon is optional.
 Link to a file is done by the URL keyword, a colon, and enclosing the
 filename in double quotes::
 
         URL:"manual.do.txt"
+        "URL": "manual.do.txt"
+        url: "manual.do.txt"
+        "url":"manual.do.txt"
 
 
-This construction results in the link `<manual.do.txt>`_.
+All these constructions result in the link `<manual.do.txt>`_.
 
 Doconce also supports inline comments in the text::
 
@@ -1043,7 +1047,7 @@ Finally, we must test the citation command and bibliography by
 citing a book [Python:Primer:09]_, a paper [Osnes:98]_,
 and both of them simultaneously [Python:Primer:09]_ [Osnes:98]_.
 
-**hpl**: comments, citations, and references in the latex style
+**somereader**: comments, citations, and references in the latex style
 is a special feature of doconce :-) 
 
 

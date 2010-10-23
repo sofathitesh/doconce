@@ -767,14 +767,18 @@ Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).</p>
 <p>Web addresses with links are typeset as</p>
-<div class="highlight-py"><pre>some URL like http://my.place.in.space/src&lt;MyPlace&gt;</pre>
+<div class="highlight-py"><pre>some URL like "MyPlace": "http://my.place.in.space/src"</pre>
 </div>
 <p>which appears as some URL like <a class="reference external" href="http://my.place.in.space/src">MyPlace</a>.
+The space after colon is optional.
 Link to a file is done by the URL keyword, a colon, and enclosing the
 filename in double quotes:</p>
-<div class="highlight-py"><pre>URL:"manual.do.txt"</pre>
+<div class="highlight-py"><pre>URL:"manual.do.txt"
+"URL": "manual.do.txt"
+url: "manual.do.txt"
+"url":"manual.do.txt"</pre>
 </div>
-<p>This construction results in the link <a class="reference external" href="manual.do.txt">manual.do.txt</a>.</p>
+<p>All these constructions result in the link <a class="reference external" href="manual.do.txt">manual.do.txt</a>.</p>
 <p>Doconce also supports inline comments in the text:</p>
 <div class="highlight-py"><pre>[name: comment]</pre>
 </div>
@@ -894,7 +898,7 @@ in the document.</p>
 <p>Finally, we must test the citation command and bibliography by
 citing a book <a class="reference internal" href="#python-primer-09">[Python:Primer:09]</a>, a paper <a class="reference internal" href="#osnes-98">[Osnes:98]</a>,
 and both of them simultaneously <a class="reference internal" href="#python-primer-09">[Python:Primer:09]</a> <a class="reference internal" href="#osnes-98">[Osnes:98]</a>.</p>
-<p><strong>hpl</strong>: comments, citations, and references in the latex style
+<p><strong>somereader</strong>: comments, citations, and references in the latex style
 is a special feature of doconce :-)</p>
 </div>
 <div class="section" id="tables">

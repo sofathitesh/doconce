@@ -102,6 +102,7 @@ def define(FILENAME_EXTENSION,
         'bold':      None,
         'verbatim':  r'\g<begin>\g<subst>\g<end>',  # no ` chars
         'linkURL':   r'\g<begin>\g<link> (\g<url>)\g<end>',
+        'linkURL2':  r'\g<link> (\g<url>)',
         'plainURL':  r'\g<url>',
         'title':     r'======= \g<subst> =======\n',  # doconce top section, to be substituted later
         'author':    plain_author,

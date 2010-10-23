@@ -25,6 +25,7 @@ def define(FILENAME_EXTENSION,
         'bold':      r'\g<begin>**\g<subst>**\g<end>',
         'verbatim':  r"\g<begin>'\g<subst>'\g<end>",
         'linkURL':   r'\g<begin>"\g<url>":\g<link>\g<end>',
+        'linkURL2':  r'"\g<url>":\g<link>',
         'plainURL':  r'"\g<url>":\g<url>',
         # the replacement string differs, depending on the match object m:
         'section':       r'\g<subst>',
