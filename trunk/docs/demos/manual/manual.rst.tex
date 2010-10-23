@@ -1192,20 +1192,24 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-some~URL~like~http://my.place.in.space/src<MyPlace>
+some~URL~like~"MyPlace":~"http://my.place.in.space/src"
 }
 \end{quote}
 
 which appears as some URL like \href{http://my.place.in.space/src}{MyPlace}.
+The space after colon is optional.
 Link to a file is done by the URL keyword, a colon, and enclosing the
 filename in double quotes:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-URL:"manual.do.txt"
+URL:"manual.do.txt"\\
+"URL":~"manual.do.txt"\\
+url:~"manual.do.txt"\\
+"url":"manual.do.txt"
 }
 \end{quote}
 
-This construction results in the link \url{manual.do.txt}.
+All these constructions result in the link \url{manual.do.txt}.
 
 Doconce also supports inline comments in the text:
 %
@@ -1378,7 +1382,7 @@ Finally, we must test the citation command and bibliography by
 citing a book [\hyperlink{python-primer-09}{Python:Primer:09}], a paper [\hyperlink{osnes-98}{Osnes:98}],
 and both of them simultaneously [\hyperlink{python-primer-09}{Python:Primer:09}] [\hyperlink{osnes-98}{Osnes:98}].
 
-\textbf{hpl}: comments, citations, and references in the latex style
+\textbf{somereader}: comments, citations, and references in the latex style
 is a special feature of doconce :-)
 
 

@@ -65,6 +65,7 @@ def define(FILENAME_EXTENSION,
         'bold':      r'\g<begin>B{\g<subst>}\g<end>',
         'verbatim':  r'\g<begin>C{\g<subst>}\g<end>',
         'linkURL':   r'\g<begin>U{\g<link><\g<url>>}\g<end>',
+        'linkURL2':  r'U{\g<link><\g<url>>}',
         'plainURL':  r'U{\g<url><\g<url>>}',
         # the replacement string differs, depending on the match object m:
         'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst'))),

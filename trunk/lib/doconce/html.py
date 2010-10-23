@@ -154,6 +154,7 @@ def define(FILENAME_EXTENSION,
         'verbatim':      r'\g<begin><TT>\g<subst></TT>\g<end>',
         'citation':      '',  # no citations
         'linkURL':       r'\g<begin><A HREF="\g<url>">\g<link></A>\g<end>',
+        'linkURL2':      r'<A HREF="\g<url>">\g<link></A>',
         'plainURL':      r'<A HREF="\g<url>"><TT>\g<url></TT></A>',
         'inlinecomment': r'[<B>\g<name></B>: <EM>\g<comment></EM>]',
         'section':       r'<H1>\g<subst></H1>',

@@ -250,6 +250,7 @@ def define(FILENAME_EXTENSION,
         'verbatim':      r'\g<begin>\code{\g<subst>}\g<end>',
         'citation':      r'~\\cite{\g<subst>}',
         'linkURL':       r'\g<begin>\href{\g<url>}{\g<link>}\g<end>',
+        'linkURL2':      r'\href{\g<url>}{\g<link>}',
         'plainURL':      r'\href{\g<url>}{\g<url>}',  # cannot use \code inside \href
         'inlinecomment': r'\inlinecomment{\g<name>}{\g<comment>}',
         'section':       '\n\n' + r'\section{\g<subst>}' + '\n',

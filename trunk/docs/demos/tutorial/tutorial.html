@@ -130,14 +130,18 @@ Lists can also have automatically numbered items instead of bullets,
   o item 2
   o item 3
 
-URLs with a link word are possible, as in http://folk.uio.no/hpl&lt;hpl&gt;.
-Just a file link goes like URL:"tutorial.do.txt". References
-to sections may use logical names as labels (e.g., a "label" command right
-after the section title), as in the reference to 
-Chapter ref{my:first:sec}. Doconce also allows inline comments such
-as [hpl: here I will make some remarks to the text] for allowing
-authors to make notes. Inline comments can be removed from the output
-by a command-line argument (see Chapter ref{doconce2formats} for an example).
+URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
+If the word is URL, the URL itself becomes the link name,
+as in "URL":"tutorial.do.txt".
+
+References to sections may use logical names as labels (e.g., a
+"label" command right after the section title), as in the reference to
+Chapter ref{my:first:sec}. 
+
+Doconce also allows inline comments such as [hpl: here I will make
+some remarks to the text] for allowing authors to make notes. Inline
+comments can be removed from the output by a command-line argument
+(see Chapter ref{doconce2formats} for an example).
 
 Tables are also supperted, e.g.,
 

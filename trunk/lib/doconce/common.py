@@ -210,8 +210,14 @@ INLINE_TAGS = {
     r'%s(?P<url>https?://[^<]+)<(?P<link>[^>]+)>%s' % \
     (inline_tag_begin, inline_tag_end),
 
+    'linkURL2':
+    r'"(?P<link>.+?)" ?: *"(?P<url>(file:/|https?:)//[^<]+?)"',
+    #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
+
     'plainURL': 
-    r'URL:"(?P<url>.+)"',
+    #r'"URL" ?: ?"(?P<url>.+?)"',
+    #r'"?(URL|url)"? ?: ?"(?P<url>.+?)"',
+    r'("URL"|"url"|URL|url) ?: *"(?P<url>.+?)"',
 
     'inlinecomment':
     r'''\[(?P<name>[A-Za-z0-9_'-]+?):\s+(?P<comment>[^\]]*?)\]''',

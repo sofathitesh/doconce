@@ -872,7 +872,7 @@ Sphinx formats by the idx keyword, following a LaTeX-inspired syntax::
 The exclamation mark divides a main entry and a subentry. Backquotes
 surround verbatim text, which is correctly transformed in a LaTeX setting to::
 
-        some URL like http://my.place.in.space/src<MyPlace>
+        some URL like "MyPlace": "http://my.place.in.space/src"
 
 
 Everything related to the index simply becomes invisible in 
@@ -881,6 +881,9 @@ plain text, Epytext, StructuredText, HTML, and Wiki formats.
 Literature citations also follow a LaTeX-inspired style::
 
         URL:"manual.do.txt"
+        "URL": "manual.do.txt"
+        url: "manual.do.txt"
+        "url":"manual.do.txt"
 
 
 Citation labels can be separated by comma. In LaTeX, this is directly

@@ -193,6 +193,7 @@ def define(FILENAME_EXTENSION,
         'label':     r'\g<subst>',  # should be improved, rst has cross ref
         'reference': r'\g<subst>',
         'linkURL':   r'\g<begin>`\g<link> <\g<url>>`_\g<end>',
+        'linkURL2':  r'`\g<link> <\g<url>>`_',
         #'linkURL':   r'\g<begin>`\g<link>`_\g<end>' + '\n\n.. ' + r'_\g<link>: \g<url>' + '\n\n',  # better (?): make function instead that stacks up the URLs and dumps them at the end; can be used for citations as well
         'plainURL':  r'`<\g<url>>`_',
         'inlinecomment': r'**\g<name>**: \g<comment>',

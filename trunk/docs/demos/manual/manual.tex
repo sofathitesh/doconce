@@ -994,18 +994,22 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
-some URL like http://my.place.in.space/src<MyPlace>
+some URL like "MyPlace": "http://my.place.in.space/src"
 \end{Verbatim}
 \noindent
 which appears as some URL like \href{http://my.place.in.space/src}{MyPlace}.
+The space after colon is optional.
 Link to a file is done by the URL keyword, a colon, and enclosing the
 filename in double quotes:
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
 URL:"manual.do.txt"
+"URL": "manual.do.txt"
+url: "manual.do.txt"
+"url":"manual.do.txt"
 \end{Verbatim}
 \noindent
-This construction results in the link \href{manual.do.txt}{manual.do.txt}.
+All these constructions result in the link \href{manual.do.txt}{manual.do.txt}.
 
 Doconce also supports inline comments in the text:
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
@@ -1160,7 +1164,7 @@ Finally, we must test the citation command and bibliography by
 citing a book \cite{Python:Primer:09}, a paper \cite{Osnes:98},
 and both of them simultaneously \cite{Python:Primer:09,Osnes:98}.
 
-\inlinecomment{hpl}{comments, citations, and references in the latex style
+\inlinecomment{somereader}{comments, citations, and references in the latex style
 is a special feature of doconce :-) }
 
 \subsection{Tables}
