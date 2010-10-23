@@ -515,14 +515,9 @@ INLINE_TAGS = {
     for (int i = 1; i &lt; myarr.size(); i++) {
         myarr[i] = myarr[i] - x[i]*myarr[i-1]
     }
-}
-!ec
-
-Computer code can be copied directly from a file, if desired. The syntax
-is then::
-
- @@@CODE myfile.f
- @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1</literal_block><paragraph>The first line implies that all lines in the file <literal>myfile.f</literal> are
+}</literal_block><paragraph>Computer code can be copied directly from a file, if desired. The syntax
+is then:</paragraph><literal_block xml:space="preserve">@@@CODE myfile.f
+@@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1</literal_block><paragraph>The first line implies that all lines in the file <literal>myfile.f</literal> are
 copied into a verbatim block, typset in a <literal>!bc pro</literal> environment.  The
 second line has a <title_reference>fromto:' directive, which implies copying code
 between two lines in the code, typset within a !`bc cod</title_reference>
@@ -606,7 +601,7 @@ expressions).</paragraph><paragraph><emphasis>Example.</emphasis> Suppose we hav
 \eeqa</literal_block><paragraph>will then be rendered to:</paragraph><literal_block xml:space="preserve">\begin{eqnarray}
 \x\cdot\normalvec &amp;=&amp; 0,\label{my:eq1}\\
 \Ddt{\vec u} &amp;=&amp; {\mbox{\boldmath $Q$}} \thinspace . \label{my:eq2}
-\end{eqnarray}</literal_block><paragraph>in the current format.</paragraph></section><section ids="missing-features" names="missing\ features"><title>Missing Features</title><block_quote><bullet_list bullet="*"><list_item><paragraph>Footnotes</paragraph></list_item></bullet_list></block_quote></section><section ids="troubleshooting" names="troubleshooting"><title>Troubleshooting</title><paragraph><emphasis>Disclaimer.</emphasis> First of all, Doconce has hardly any support for
+\end{eqnarray}</literal_block><system_message level="2" line="1433" source="manual.rst" type="WARNING"><paragraph>Literal block ends without a blank line; unexpected unindent.</paragraph></system_message><paragraph>in the current format.</paragraph></section><section ids="missing-features" names="missing\ features"><title>Missing Features</title><block_quote><bullet_list bullet="*"><list_item><paragraph>Footnotes</paragraph></list_item></bullet_list></block_quote></section><section ids="troubleshooting" names="troubleshooting"><title>Troubleshooting</title><paragraph><emphasis>Disclaimer.</emphasis> First of all, Doconce has hardly any support for
 syntax checking. This means that if you encounter Python errors while
 running <literal>doconce2format</literal>, the reason for the error is most likely a
 syntax problem in your Doconce source file. You have to track down
@@ -628,7 +623,7 @@ the ending is among the mentioned. Then <literal>!bc</literal> will be replaced
 and a double colon at the preceding line (which is the right way in
 reST to indicate a verbatim block of text).</paragraph><paragraph><emphasis>The LaTeX File Does Not Compile.</emphasis> If the problem is undefined control sequence involving:</paragraph><literal_block xml:space="preserve">\code{...}</literal_block><paragraph>the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
-that all inline verbatim text appears on the same line.</paragraph><paragraph><emphasis>Verbatim Code Blocks Inside Lists Look Ugly.</emphasis> Read the Section <emphasis>Blocks of Verbatim Computer Code</emphasis> above.  Start the
+that all inline verbatim text appears on the same line.</paragraph><paragraph><emphasis>Verbatim Code Blocks Inside Lists Look Ugly.</emphasis> Read the the section <reference name="Blocks of Verbatim Computer Code" refid="blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</reference> above.  Start the
 <literal>!bc</literal> and <literal>!ec</literal> tags in column 1 of the file, and be careful with
 indenting the surrounding plain text of the list item correctly. If
 you cannot resolve the problem this way, get rid of the list and use

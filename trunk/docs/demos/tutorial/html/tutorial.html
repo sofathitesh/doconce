@@ -199,10 +199,15 @@ natural in plain text.  Lists are typeset as you would do in an email,</p>
 </ol>
 </blockquote>
 <p>URLs with a link word are possible, as in <a class="reference external" href="http://folk.uio.no/hpl">hpl</a>.
-Just a file link goes like <a class="reference external" href="tutorial.do.txt">tutorial.do.txt</a>. References
-to sections may use logical names as labels (e.g., a &#8220;label&#8221; command right
-after the section title), as in the reference to
+If the word is URL, the URL itself becomes the link name,
+as in <a class="reference external" href="tutorial.do.txt">tutorial.do.txt</a>.</p>
+<p>References to sections may use logical names as labels (e.g., a
+&#8220;label&#8221; command right after the section title), as in the reference to
 the chapter <a class="reference internal" href="#my-first-sec"><em>A Subsection with Sample Text</em></a>.</p>
+<p>Doconce also allows inline comments such as <strong>hpl</strong>: here I will make
+some remarks to the text for allowing authors to make notes. Inline
+comments can be removed from the output by a command-line argument
+(see the chapter <a class="reference internal" href="#doconce2formats"><em>From Doconce to Other Formats</em></a> for an example).</p>
 <p>Tables are also supperted, e.g.,</p>
 <table border="1" class="docutils">
 <colgroup>

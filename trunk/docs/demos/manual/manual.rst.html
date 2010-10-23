@@ -1318,13 +1318,12 @@ void myfunc(double* x, const double&amp; myarr) {
         myarr[i] = myarr[i] - x[i]*myarr[i-1]
     }
 }
-!ec
-
-Computer code can be copied directly from a file, if desired. The syntax
-is then::
-
- &#64;&#64;&#64;CODE myfile.f
- &#64;&#64;&#64;CODE myfile.f fromto:subroutine\s+test&#64;^C\s{5}END1
+</pre>
+<p>Computer code can be copied directly from a file, if desired. The syntax
+is then:</p>
+<pre class="literal-block">
+&#64;&#64;&#64;CODE myfile.f
+&#64;&#64;&#64;CODE myfile.f fromto:subroutine\s+test&#64;^C\s{5}END1
 </pre>
 <p>The first line implies that all lines in the file <tt class="docutils literal">myfile.f</tt> are
 copied into a verbatim block, typset in a <tt class="docutils literal">!bc pro</tt> environment.  The
@@ -1449,6 +1448,9 @@ expressions).</p>
 \Ddt{\vec u} &amp;=&amp; {\mbox{\boldmath $Q$}} \thinspace . \label{my:eq2}
 \end{eqnarray}
 </pre>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">manual.rst</tt>, line 1433)</p>
+Literal block ends without a blank line; unexpected unindent.</div>
 <p>in the current format.</p>
 </div>
 <div class="section" id="missing-features">
@@ -1491,7 +1493,7 @@ reST to indicate a verbatim block of text).</p>
 <p>the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.</p>
-<p><em>Verbatim Code Blocks Inside Lists Look Ugly.</em> Read the Section <em>Blocks of Verbatim Computer Code</em> above.  Start the
+<p><em>Verbatim Code Blocks Inside Lists Look Ugly.</em> Read the the section <a class="reference internal" href="#blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</a> above.  Start the
 <tt class="docutils literal">!bc</tt> and <tt class="docutils literal">!ec</tt> tags in column 1 of the file, and be careful with
 indenting the surrounding plain text of the list item correctly. If
 you cannot resolve the problem this way, get rid of the list and use

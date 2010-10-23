@@ -93,6 +93,7 @@ text constructions that allow you to control the formating. For example,
 
 Here is an example of some simple text written in the Doconce format::
 
+
         ===== A Subsection with Sample Text =====
         label{my:first:sec}
         
@@ -134,6 +135,7 @@ Here is an example of some simple text written in the Doconce format::
           |--------------------------------|
         
         # lines beginning with # are comment lines
+        
 
 
 The Doconce text above results in the following little document:
@@ -163,10 +165,17 @@ Lists can also have numbered items instead of bullets, just use an ``o``
  3. item 3
 
 URLs with a link word are possible, as in `hpl <http://folk.uio.no/hpl>`_.
-Just a file link goes like `<tutorial.do.txt>`_. References
-to sections may use logical names as labels (e.g., a "label" command right
-after the section title), as in the reference to 
-the chapter `A Subsection with Sample Text`_.
+If the word is URL, the URL itself becomes the link name,
+as in `<tutorial.do.txt>`_.
+
+References to sections may use logical names as labels (e.g., a
+"label" command right after the section title), as in the reference to
+the chapter `A Subsection with Sample Text`_. 
+
+Doconce also allows inline comments such as **hpl**: here I will make
+some remarks to the text for allowing authors to make notes. Inline
+comments can be removed from the output by a command-line argument
+(see the chapter `From Doconce to Other Formats`_ for an example).
 
 Tables are also supperted, e.g.,
 
@@ -189,7 +198,9 @@ the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like v = sin(x) is
 typeset as::
 
+
         $\nu = \sin(x)$|$v = sin(x)$
+        
 
 
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
@@ -203,7 +214,6 @@ The result looks like this::
         {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
         {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
         \end{eqnarray}
-
 Of course, such blocks only looks nice in LaTeX. The raw
 LaTeX syntax appears in all other formats (but can still be useful
 for those who can read LaTeX syntax).
@@ -211,12 +221,14 @@ for those who can read LaTeX syntax).
 You can have blocks of computer code, starting and ending with
 ``!bc`` and ``!ec`` instructions, respectively. Such blocks look like::
 
+
         from math import sin, pi
         def myfunc(x):
             return sin(pi*x)
         
         import integrate
         I = integrate.trapezoidal(myfunc, 0, pi, 100)
+        
 
 
 It is possible to add a specification of a (ptex2tex-style)
@@ -229,7 +241,9 @@ to Sphinx, one can have a comment line in the Doconce file for
 mapping the identifiers to legal language names for Sphinx (which equals
 the legal language names for Pygments)::
 
+
          # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+        
 
 
 By default, ``pro`` and ``cod`` are ``python``, ``sys`` is ``console``,
@@ -307,13 +321,17 @@ From Doconce to Other Formats
 Transformation of a Doconce document to various other
 formats applies the script ``doconce2format``::
 
+
         Unix/DOS> doconce2format format mydoc.do.txt
+        
 
 
 The ``preprocess`` program is always used to preprocess the file first,
 and options to ``preprocess`` can be added after the filename. For example::
 
+
         Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
+        
 
 
 The variable ``FORMAT`` is always defined as the current format when
@@ -323,14 +341,18 @@ format specific actions through tests like ``#if FORMAT == "LaTeX"``.
 
 Inline comments in the text are removed from the output by::
 
+
         Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+        
 
 
 One can also remove such comments from the original Doconce file
 by running a helper script in the ``bin`` folder of the Doconce
 source code::
 
+
         Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+        
 
 
 This action is convenient when a Doconce document reaches its final form.
@@ -342,7 +364,9 @@ HTML
 Making an HTML version of a Doconce file ``mydoc.do.txt``
 is performed by::
 
+
         Unix/DOS> doconce2format HTML mydoc.do.txt
+        
 
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
@@ -358,7 +382,9 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 *Step 1.* Filter the doconce text to a pre-LaTeX form ``mydoc.p.tex`` for
      ``ptex2tex``::
 
+
         Unix/DOS> doconce2format LaTeX mydoc.do.txt
+        
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
@@ -369,19 +395,25 @@ so that your commands are defined.
 
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file::
 
+
         Unix/DOS> ptex2tex mydoc
+        
 
 
 or just perform a plain copy::
 
+
         Unix/DOS> cp mydoc.p.tex mydoc.tex
+        
 
 
 Doconce generates a ``.p.tex`` file with some preprocessor macros.
 For example, to enable font Helvetica instead of the standard
 Computer Modern font::
 
+
         Unix/DOS> ptex2tex -DHELVETICA mydoc
+        
 
 
 The title, authors, and date are by default typeset in a non-standard
@@ -389,7 +421,9 @@ way to enable a nicer treatment of multiple authors having
 institutions in common. The standard LaTeX "maketitle" heading
 is also available through::
 
+
         Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        
 
 
 
@@ -404,12 +438,14 @@ There are over 30 styles to choose from.
 *Step 3.* Compile ``mydoc.tex``
 and create the PDF file::
 
+
         Unix/DOS> latex mydoc
         Unix/DOS> latex mydoc
         Unix/DOS> makeindex mydoc   # if index
         Unix/DOS> bibitem mydoc     # if bibliography
         Unix/DOS> latex mydoc
         Unix/DOS> dvipdf mydoc
+        
 
 
 If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
@@ -417,11 +453,14 @@ in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
 This package is included by running ``doconce2format`` with the
 ``-DMINTED`` option::
 
+
         Unix/DOS> ptex2tex -DMINTED mydoc
+        
 
 
 In this case, ``latex`` must be run with the
 ``-shell-escape`` option::
+
 
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> latex -shell-escape mydoc
@@ -429,6 +468,7 @@ In this case, ``latex`` must be run with the
         Unix/DOS> bibitem mydoc     # if bibliography
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
+        
 
 
 The ``-shell-escape`` option is required because the ``minted.sty`` style
@@ -443,7 +483,9 @@ We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code::
 
+
         Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
+        
 
 
 
@@ -454,15 +496,19 @@ Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file ``mydoc.rst``::
 
+
         Unix/DOS> doconce2format rst mydoc.do.txt
+        
 
 
 We may now produce various other formats::
+
 
         Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
         Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
         Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        
 
 
 The OpenOffice file ``mydoc.odt`` can be loaded into OpenOffice and
@@ -477,13 +523,16 @@ Sphinx documents can be created from a Doconce source in a few steps.
 *Step 1.* Translate Doconce into the Sphinx dialect of
 the reStructuredText format::
 
+
         Unix/DOS> doconce2format sphinx mydoc.do.txt
+        
 
 
 
 *Step 2.* Create a Sphinx root directory with a ``conf.py`` file, 
 either manually or by using the interactive ``sphinx-quickstart``
 program. Here is a scripted version of the steps with the latter::
+
 
         mkdir sphinx-rootdir
         sphinx-quickstart <<EOF
@@ -509,12 +558,15 @@ program. Here is a scripted version of the steps with the latter::
         y
         y
         EOF
+        
 
 
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory::
 
+
         Unix/DOS> mv mydoc.rst sphinx-rootdir
+        
 
 
 If you have figures in your document, the relative paths to those will
@@ -526,25 +578,31 @@ are located in a subdirectory).
 *Step 4.* Edit the generated ``index.rst`` file so that ``mydoc.rst``
 is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes::
 
+
         .. toctree::
            :maxdepth: 2
         
            mydoc
+        
 
 
 (The spaces before ``mydoc`` are important!)
 
 *Step 5.* Generate, for instance, an HTML version of the Sphinx source::
 
+
         make clean   # remove old versions
         make html
+        
 
 
 Many other formats are also possible.
 
 *Step 6.* View the result::
 
+
         Unix/DOS> firefox _build/html/index.html
+        
 
 
 
@@ -566,7 +624,9 @@ one used by `Google Code <http://code.google.com/p/support/wiki/WikiSyntax>`_.
 The transformation to this format, called ``gwiki`` to explicitly mark
 it as the Google Code dialect, is done by::
 
+
         Unix/DOS> doconce2format gwiki mydoc.do.txt
+        
 
 
 You can then open a new wiki page for your Google Code project, copy
@@ -601,7 +661,9 @@ Demos
 
 The current text is generated from a Doconce format stored in the file::
 
+
         docs/tutorial/tutorial.do.txt
+        
 
 
 The file ``make.sh`` in the ``tutorial`` directory of the

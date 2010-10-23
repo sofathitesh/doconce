@@ -1044,7 +1044,7 @@ Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
 __Verbatim Code Blocks Inside Lists Look Ugly.__ 
-Read the Section *Blocks of Verbatim Computer Code* above.  Start the
+Read the Section ref{sec:verbatim:blocks} above.  Start the
 `!bc` and `!ec` tags in column 1 of the file, and be careful with
 indenting the surrounding plain text of the list item correctly. If
 you cannot resolve the problem this way, get rid of the list and use

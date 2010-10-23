@@ -75,12 +75,7 @@ def remove_code_and_tex(filestr):
     # (similarly for the tex block).
     
     # (recall that !bc can be followed by extra information that we must keep:)
-    # (we now allow extra space in front of !bc and !ec so that these can
-    # be indented in lists for prettier look of Doconce code, but this
-    # may have side effects - in that case go back to the first regex
-    # and update the documentation (section Blocks of Verbatim Computer Code)
-    #code = re.compile(r'^!bc(.*?)\n(.*?)!ec\n', re.DOTALL|re.MULTILINE)
-    code = re.compile(r'^\s*!bc(.*?)\n(.*?)\s*!ec\n', re.DOTALL|re.MULTILINE)
+    code = re.compile(r'^!bc(.*?)\n(.*?)^!ec *\n', re.DOTALL|re.MULTILINE)
     code_blocks = [c for opt, c in code.findall(filestr)]
     tex = re.compile(r'^!bt\n(.*?)!et\n', re.DOTALL|re.MULTILINE)
     tex_blocks = tex.findall(filestr)

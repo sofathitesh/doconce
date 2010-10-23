@@ -204,7 +204,9 @@ in a comment line, say
 
 .. code-block:: py
 
+
         #    #include "docstrings/doc1.dst.txt
+        
 
 
 
@@ -241,6 +243,7 @@ suited for Pydoc or reading by humans. All these steps are automated
 by the ``insertdocstr.py`` script.  Here are the corresponding Unix
 commands:
 
+
 .. code-block:: console
 
         # make Epydoc API manual of basename module:
@@ -275,6 +278,7 @@ commands:
         # renames to .dst.txt extension, then the script runs through all 
         # .p.py files and runs the preprocessor, which includes the .dst.txt
         # files)
+        
 
 
 
@@ -301,6 +305,7 @@ The current text is generated from a Doconce format stored in the
 .. code-block:: console
 
         docs/manual/manual.do.txt
+        
 
 
 file in the Doconce source code tree. We have made a 
@@ -317,6 +322,7 @@ Another demo is found in
 .. code-block:: console
 
         docs/tutorial/tutorial.do.txt
+        
 
 
 In the ``tutorial`` directory there is also a ``make.sh`` file producing a
@@ -338,6 +344,7 @@ formats applies the script ``doconce2format``:
 .. code-block:: console
 
         Unix/DOS> doconce2format format mydoc.do.txt
+        
 
 
 The ``preprocess`` program is always used to preprocess the file first,
@@ -346,6 +353,7 @@ and options to ``preprocess`` can be added after the filename. For example,
 .. code-block:: console
 
         Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
+        
 
 
 The variable ``FORMAT`` is always defined as the current format when
@@ -358,6 +366,7 @@ Inline comments in the text are removed from the output by
 .. code-block:: console
 
         Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+        
 
 
 One can also remove such comments from the original Doconce file
@@ -366,7 +375,9 @@ source code:
 
 .. code-block:: py
 
+
         Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+        
 
 
 This action is convenient when a Doconce document reaches its final form.
@@ -381,6 +392,7 @@ is performed by
 .. code-block:: console
 
         Unix/DOS> doconce2format HTML mydoc.do.txt
+        
 
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
@@ -399,6 +411,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 .. code-block:: console
 
         Unix/DOS> doconce2format LaTeX mydoc.do.txt
+        
 
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
@@ -412,6 +425,7 @@ so that your commands are defined.
 .. code-block:: console
 
         Unix/DOS> ptex2tex mydoc
+        
 
 
 or just perform a plain copy,
@@ -419,6 +433,7 @@ or just perform a plain copy,
 .. code-block:: console
 
         Unix/DOS> cp mydoc.p.tex mydoc.tex
+        
 
 
 Doconce generates a ``.p.tex`` file with some preprocessor macros.
@@ -428,6 +443,7 @@ Computer Modern font,
 .. code-block:: console
 
         Unix/DOS> ptex2tex -DHELVETICA mydoc
+        
 
 
 The title, authors, and date are by default typeset in a non-standard
@@ -438,6 +454,7 @@ is also available through
 .. code-block:: console
 
         Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        
 
 
 
@@ -460,6 +477,7 @@ and create the PDF file:
         Unix/DOS> bibitem mydoc     # if bibliography
         Unix/DOS> latex mydoc
         Unix/DOS> dvipdf mydoc
+        
 
 
 If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
@@ -470,6 +488,7 @@ This package is included by running ``doconce2format`` with the
 .. code-block:: console
 
         Unix/DOS> ptex2tex -DMINTED mydoc
+        
 
 
 In this case, ``latex`` must be run with the
@@ -483,6 +502,7 @@ In this case, ``latex`` must be run with the
         Unix/DOS> bibitem mydoc     # if bibliography
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
+        
 
 
 The ``-shell-escape`` option is required because the ``minted.sty`` style
@@ -500,6 +520,7 @@ computer source code:
 .. code-block:: console
 
         Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
+        
 
 
 
@@ -513,6 +534,7 @@ reStructuredText file ``mydoc.rst``:
 .. code-block:: console
 
         Unix/DOS> doconce2format rst mydoc.do.txt
+        
 
 
 We may now produce various other formats:
@@ -523,6 +545,7 @@ We may now produce various other formats:
         Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
         Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        
 
 
 The OpenOffice file ``mydoc.odt`` can be loaded into OpenOffice and
@@ -540,6 +563,7 @@ the reStructuredText format:
 .. code-block:: console
 
         Unix/DOS> doconce2format sphinx mydoc.do.txt
+        
 
 
 
@@ -573,6 +597,7 @@ program. Here is a scripted version of the steps with the latter:
         y
         y
         EOF
+        
 
 
 
@@ -581,6 +606,7 @@ program. Here is a scripted version of the steps with the latter:
 .. code-block:: console
 
         Unix/DOS> mv mydoc.rst sphinx-rootdir
+        
 
 
 If you have figures in your document, the relative paths to those will
@@ -594,10 +620,12 @@ is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes
 
 .. code-block:: py
 
+
         .. toctree::
            :maxdepth: 2
         
            mydoc
+        
 
 
 (The spaces before ``mydoc`` are important!)
@@ -608,6 +636,7 @@ is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes
 
         make clean   # remove old versions
         make html
+        
 
 
 Many other formats are also possible.
@@ -617,6 +646,7 @@ Many other formats are also possible.
 .. code-block:: console
 
         Unix/DOS> firefox _build/html/index.html
+        
 
 
 
@@ -641,6 +671,7 @@ it as the Google Code dialect, is done by
 .. code-block:: console
 
         Unix/DOS> doconce2format gwiki mydoc.do.txt
+        
 
 
 You can then open a new wiki page for your Google Code project, copy
@@ -683,7 +714,9 @@ Lists
 An unordered bullet list makes use of the ``*`` as bullet sign
 and is indented as follows
 
+
 .. code-block:: py
+
 
            * item 1
         
@@ -697,6 +730,7 @@ and is indented as follows
                also spans two lines
         
            * item 3
+        
 
 
 
@@ -719,7 +753,9 @@ This list gets typeset as
 In an ordered list, each item starts with an ``o`` (as the first letter 
 in "ordered"):
 
+
 .. code-block:: py
+
 
            o item 1
         
@@ -730,6 +766,7 @@ in "ordered"):
              * subitem 2
         
            o item 3
+        
 
 
 
@@ -752,13 +789,16 @@ applies to the outer list only.
 In a description list, each item is recognized by a dash followed
 by a keyword followed by a colon:
 
+
 .. code-block:: py
+
 
            - keyword1: explanation of keyword1
         
            - keyword2: explanation
              of keyword2 (remember to indent properly
              if there are multiple lines)
+        
 
 
 
@@ -790,7 +830,9 @@ the syntax
 
 .. code-block:: py
 
+
         name at institution1 and institution2 and institution3
+        
 
 
 The ``at`` with surrounding spaces
@@ -803,11 +845,13 @@ line.  Here is an example:
 
 .. code-block:: py
 
+
         TITLE: On an Ultimate Markup Language
         AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
         AUTHOR: Kaare Dump at Segfault, Cyberspace Inc.
         AUTHOR: A. Dummy Author
         DATE: November 9, 2016
+        
 
 
 Note the how one can specify a single institution, multiple institutions,
@@ -818,6 +862,7 @@ format:
 
 .. code-block:: py
 
+
         Hans Petter Langtangen [1, 2]
         Kaare Dump [3]
         A. Dummy Author 
@@ -825,6 +870,7 @@ format:
         [1] Center for Biomedical Computing, Simula Research Laboratory
         [2] Department of Informatics, University of Oslo
         [3] Segfault, Cyberspace Inc.
+        
 
 
 Similar typesetting is done for LaTeX and HTML formats.
@@ -855,6 +901,7 @@ Here are some examples:
 
 .. code-block:: py
 
+
         ======= Example on a Section Heading ======= 
         
         The running text goes here. 
@@ -867,6 +914,7 @@ Here are some examples:
         The running text goes here.
         
         __A Paragraph.__ The running text goes here.
+        
 
 
 
@@ -892,7 +940,9 @@ Figures are recognized by the special line syntax
 
 .. code-block:: py
 
+
         FIGURE:[filename, height=xxx width=yyy scale=zzz] caption
+        
 
 
 The height, width, and scale keywords (and others) can be included
@@ -953,7 +1003,9 @@ be no spaces between an asterisk and the emphasized text, as in
 
 .. code-block:: py
 
+
         *emphasized words*
+        
 
 
 
@@ -961,7 +1013,9 @@ Boldface font is recognized by an underscore instead of an asterisk:
 
 .. code-block:: py
 
+
         _several words in boldface_ followed by *ephasized text*.
+        
 
 
 The line above gets typeset as
@@ -972,8 +1026,10 @@ is typeset between backquotes:
 
 .. code-block:: py
 
+
         `call myroutine(a, b)` looks like a Fortran call
         while `void myfunc(double *a, double *b)` must be C.
+        
 
 
 The typesetting result looks like this:
@@ -995,7 +1051,9 @@ Web addresses with links are typeset as
 
 .. code-block:: py
 
+
         some URL like "MyPlace": "http://my.place.in.space/src"
+        
 
 
 which appears as some URL like `MyPlace <http://my.place.in.space/src>`_.
@@ -1005,10 +1063,12 @@ filename in double quotes:
 
 .. code-block:: py
 
+
         URL:"manual.do.txt"
         "URL": "manual.do.txt"
         url: "manual.do.txt"
         "url":"manual.do.txt"
+        
 
 
 All these constructions result in the link `<manual.do.txt>`_.
@@ -1017,7 +1077,9 @@ Doconce also supports inline comments in the text:
 
 .. code-block:: py
 
+
         [name: comment]
+        
 
 
 where ``name`` is the name of the author of the command, and ``comment`` is a 
@@ -1042,10 +1104,12 @@ an alternative syntax suited for formats close to plain ASCII:
 
 .. code-block:: py
 
+
         Here is an example on a linear system 
         ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
         where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and 
         $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
+        
 
 
 That is, we provide two alternative expressions, both enclosed in
@@ -1070,8 +1134,10 @@ References and labels are supported. The syntax is simple:
 
 .. code-block:: py
 
+
         label{section:verbatim}   # defines a label
         For more information we refer to Section ref{section:verbatim}.
+        
 
 
 This syntax is close that that of labels and cross-references in
@@ -1114,9 +1180,11 @@ Sphinx formats by the ``idx`` keyword, following a LaTeX-inspired syntax:
 
 .. code-block:: py
 
+
         idx{some index entry}
         idx{main entry!subentry}
         idx{`verbatim_text` and more}
+        
 
 
 The exclamation mark divides a main entry and a subentry. Backquotes
@@ -1124,7 +1192,9 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 
 .. code-block:: py
 
+
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
+        
 
 
 Everything related to the index simply becomes invisible in 
@@ -1134,7 +1204,9 @@ Literature citations also follow a LaTeX-inspired style:
 
 .. code-block:: py
 
+
         as found in cite{Larsen:86,Nielsen:99}.
+        
 
 
 Citation labels can be separated by comma. In LaTeX, this is directly
@@ -1145,7 +1217,9 @@ will typically look like
 
 .. code-block:: py
 
+
         as found in [3][14]
+        
 
 
 if ``Larsen:86`` has already appeared in the 3rd citation in the document
@@ -1162,6 +1236,7 @@ in the bibliography. Doconce markup can be used in this text, e.g.,
 
 .. code-block:: py
 
+
         {
         'Nielsen:99': """
         K. Nielsen. *Some Comments on Markup Languages*. 
@@ -1173,6 +1248,7 @@ in the bibliography. Doconce markup can be used in this text, e.g.,
         *Personal Press*. 1986.
         """
         }
+        
 
 
 In the LaTeX format, the ``.bib`` file will be used in the standard way,
@@ -1207,6 +1283,7 @@ is built up of pipe symbols and dashes:
 
 .. code-block:: py
 
+
           |--------------------------------|
           |time  | velocity | acceleration |
           |--------------------------------|
@@ -1214,6 +1291,7 @@ is built up of pipe symbols and dashes:
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
+        
 
 
 The pipes and column values do not need to be aligned (but why write
@@ -1244,7 +1322,9 @@ source file, e.g.,
 
 .. code-block:: py
 
+
         # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+        
 
 
 Here, three arguments are defined: ``pycod`` for Python code,
@@ -1294,6 +1374,7 @@ Here is a verbatim code block with Python code (``pycod`` style):
             r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
             (inline_tag_begin, inline_tag_end),
         }
+        
 
 
 And here is a C++ code snippet (``cppcod`` style):
@@ -1305,13 +1386,19 @@ And here is a C++ code snippet (``cppcod`` style):
                 myarr[i] = myarr[i] - x[i]*myarr[i-1]
             }
         }
-        !ec    
         
-        Computer code can be copied directly from a file, if desired. The syntax
-        is then
-        !bc
+
+
+
+Computer code can be copied directly from a file, if desired. The syntax
+is then
+
+.. code-block:: py
+
+
          @@@CODE myfile.f
          @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
+        
 
 
 The first line implies that all lines in the file ``myfile.f`` are
@@ -1330,7 +1417,9 @@ final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above):
 
+
 .. code-block:: py
+
 
         C     a comment
         
@@ -1347,11 +1436,15 @@ Let us copy a whole file (the first line above):
               program testme
               call test()
               return
+        
+        
+        
 
 
 
 Let us then copy just a piece in the middle as indicated by the ``fromto:``
 directive above:
+
 
 .. code-block:: py
 
@@ -1363,6 +1456,8 @@ directive above:
                  r = r + i
               end do
               return
+        
+        
 
 
 
@@ -1431,7 +1526,9 @@ expressions).
 *Example.* Suppose we have the following commands in 
 ``newcommand_replace.tex``:
 
+
 .. code-block:: py
+
 
         \newcommand{}{}
         \newcommand{}{}
@@ -1439,16 +1536,22 @@ expressions).
         \newcommand{\uvec}{\vec u}
         \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
         \newcommand{\Q}{\mathbfx{Q}}
+        
+        
 
 
 
 and these in ``newcommands_keep.tex``:
 
+
 .. code-block:: py
+
 
         \newcommand{\x}{\mathbfx{x}}
         \newcommand{\normalvec}{\mathbfx{n}}
         \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+        
+        
 
 
 
@@ -1456,9 +1559,11 @@ The LaTeX block
 
 .. code-block:: py
 
+
         
         \x\cdot\normalvec  &=  0,\label{my:eq1}\\
         \Ddt{\uvec}  &=  \Q \ep\label{my:eq2}
+        
         
 
 
@@ -1511,14 +1616,16 @@ reST to indicate a verbatim block of text).
 
 .. code-block:: py
 
+
         \code{...}
+        
 
 
 the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
-*Verbatim Code Blocks Inside Lists Look Ugly.* Read the Section *Blocks of Verbatim Computer Code* above.  Start the
+*Verbatim Code Blocks Inside Lists Look Ugly.* Read the the section :ref:`sec:verbatim:blocks` above.  Start the
 ``!bc`` and ``!ec`` tags in column 1 of the file, and be careful with
 indenting the surrounding plain text of the list item correctly. If
 you cannot resolve the problem this way, get rid of the list and use
@@ -1555,7 +1662,9 @@ If UTF-8, convert to latin-1 using the Unix command
 
 .. code-block:: py
 
+
         Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+        
 
 
 (Doconce has a feature to detect the encoding, but it is not reliable and
@@ -1602,9 +1711,12 @@ handling of blank lines and comment lines.
 List parsing needs some awareness of the context.
 Each line is interpreted by a regular expression
 
+
 .. code-block:: py
 
+
         (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<text>.*)\s?
+        
 
 
 
@@ -1639,7 +1751,10 @@ A Glimpse of How to Write a New Translator
 This is the HTML-specific part of the
 source code of the HTML translator:
 
+
+
 .. code-block:: py
+
 
         FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
         BLANKLINE['HTML'] = '<p>\n'           # blank input line => new paragraph
@@ -1702,6 +1817,7 @@ source code of the HTML translator:
         </body>
         </html>
         """
+        
 
 
 
@@ -1720,7 +1836,9 @@ only legal keywords (descriptions) for the description list in this
 context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
 arguments and variables are nicely formatted. 
 
+
 .. code-block:: py
+
 
             - argument x: x value (float),
               which must be a positive number.
@@ -1731,6 +1849,7 @@ arguments and variables are nicely formatted.
             - class variable items: the total number of MyClass objects (int).
             - module variable debug: True: debug mode is on; False: no debugging 
               (bool variable).
+        
 
 
 
