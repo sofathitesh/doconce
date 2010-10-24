@@ -184,8 +184,8 @@ def latex_ref_and_label(section_label2title, format, filestr):
     #    #filestr = filestr.replace(c, chars[c])
 
     # fix periods followed by too long space:
-    prefix = 'Univ.', 'Prof.', 'Dr.', 'Mr.', 'Ms.', 'Mss.', 'Fig.', 'Tab.', \
-             'Dept.', 
+    prefix = 'Univ.', 'Prof.', 'prof.', 'Dr.', 'Mr.', 'Ms.', 'Mss.', \
+             'Fig.', 'Tab.', 'Dept.', 'abbr.', 'cf.', 'e.g.',
     for p in prefix:
         filestr = re.sub(r'%s +([\\A-Za-z0-9])' % p, r'%s~\g<1>' % p, filestr)
                     
