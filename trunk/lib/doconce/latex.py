@@ -184,10 +184,13 @@ def latex_ref_and_label(section_label2title, format, filestr):
     #    #filestr = filestr.replace(c, chars[c])
 
     # fix periods followed by too long space:
-    prefix = 'Univ.', 'Prof.', 'prof.', 'Dr.', 'Mr.', 'Ms.', 'Mss.', \
-             'Fig.', 'Tab.', 'Dept.', 'abbr.', 'cf.', 'e.g.',
+    prefix = r'Univ\.', r'Prof\.', r'prof\.', r'Dr\.', \
+             r'Mr\.', r'Ms\.', 'Mss\.', \
+             r'Fig\.', r'Tab\.', r'Dept\.', r'abbr\.', r'cf\.', \
+             r'e\.g\.', r'E\.g\.', r'i\.e\.',
     for p in prefix:
-        filestr = re.sub(r'%s +([\\A-Za-z0-9])' % p, r'%s~\g<1>' % p, filestr)
+        filestr = re.sub(r'(%s) +([\\A-Za-z0-9])' % p, r'\g<1>~\g<2>', 
+                         filestr)
                     
     return filestr
 
@@ -341,7 +344,8 @@ def define(FILENAME_EXTENSION,
     INDEX_BIB['LaTeX'] = latex_index_bib
 
     INTRO['LaTeX'] = r"""%%
-%% Automatically generated LaTeX file from Doconce source (http://code.google.com/p/doconce/)
+%% Automatically generated LaTeX file from Doconce source 
+%% http://code.google.com/p/doconce/
 %%
 \documentclass{article}
 \usepackage{hyperref,relsize,epsfig,makeidx}
@@ -377,6 +381,7 @@ def define(FILENAME_EXTENSION,
         pass
 
     OUTRO['LaTeX'] = r"""
+
 \printindex
 
 \end{document}
