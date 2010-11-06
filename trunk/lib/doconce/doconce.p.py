@@ -7,7 +7,7 @@
 __author__ = 'Hans Petter Langtangen <hpl@simula.no>'
 __version__ = 0.7
 
-import re, os, sys, shutil, commands, pprint
+import re, os, sys, shutil, commands, pprint, time
 
 
 from common import *
@@ -667,6 +667,15 @@ def inline_tag_subst(filestr, format):
     # of view
 
     filestr = typeset_authors(filestr, format)
+
+    # deal with DATE: today (i.e., find today's date)
+    m = re.search(r'^(DATE:\s*[Tt]oday)', filestr, re.MULTILINE)
+    if m:
+        origstr = m.group(1)
+        w = time.asctime().split()
+        date = w[1] + ' ' + w[2] + ', ' + w[4]
+        filestr = filestr.replace(origstr, 'DATE: ' + date)
+
     debugpr('\n*** Inline tags substitution phase ***')
 
     ordered_tags = (
