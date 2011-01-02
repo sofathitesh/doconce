@@ -220,7 +220,7 @@ to Sphinx, one can have a comment line in the Doconce file for
 mapping the identifiers to legal language names for Sphinx (which equals
 the legal language names for Pygments):
 !bc
- # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+# sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
 !ec
 By default, `pro` and `cod` are `python`, `sys` is `console`,
 while `xpro` and `xcod` are computer language specific for `x`

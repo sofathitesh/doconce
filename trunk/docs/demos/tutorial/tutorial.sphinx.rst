@@ -137,8 +137,6 @@ Here is an example of some simple text written in the Doconce format:
           |--------------------------------|
         
         # lines beginning with # are comment lines
-        
-
 
 The Doconce text above results in the following little document:
 
@@ -174,8 +172,8 @@ References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
 the chapter :ref:`my:first:sec`. 
 
-Doconce also allows inline comments such as **hpl**: here I will make
-some remarks to the text for allowing authors to make notes. Inline
+Doconce also allows inline comments such as (**hpl**: here I will make
+some remarks to the text) for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
 (see the chapter :ref:`doconce2formats` for an example).
 
@@ -204,8 +202,6 @@ typeset as
 
 
         $\nu = \sin(x)$|$v = sin(x)$
-        
-
 
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
 version of the formula.
@@ -236,8 +232,6 @@ You can have blocks of computer code, starting and ending with
         
         import integrate
         I = integrate.trapezoidal(myfunc, 0, pi, 100)
-        
-
 
 It is possible to add a specification of a (ptex2tex-style)
 environment for typesetting the verbatim code block, e.g., ``!bc xxx``
@@ -252,9 +246,7 @@ the legal language names for Pygments):
 .. code-block:: py
 
 
-         # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
-        
-
+        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
 
 By default, ``pro`` and ``cod`` are ``python``, ``sys`` is ``console``,
 while ``xpro`` and ``xcod`` are computer language specific for ``x``
@@ -334,8 +326,6 @@ formats applies the script ``doconce2format``:
 .. code-block:: console
 
         Unix/DOS> doconce2format format mydoc.do.txt
-        
-
 
 The ``preprocess`` program is always used to preprocess the file first,
 and options to ``preprocess`` can be added after the filename. For example,
@@ -343,8 +333,6 @@ and options to ``preprocess`` can be added after the filename. For example,
 .. code-block:: console
 
         Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
-        
-
 
 The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
@@ -356,8 +344,6 @@ Inline comments in the text are removed from the output by
 .. code-block:: console
 
         Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
-        
-
 
 One can also remove such comments from the original Doconce file
 by running a helper script in the ``bin`` folder of the Doconce
@@ -367,8 +353,6 @@ source code:
 
 
         Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
-        
-
 
 This action is convenient when a Doconce document reaches its final form.
 
@@ -382,8 +366,6 @@ is performed by
 .. code-block:: console
 
         Unix/DOS> doconce2format HTML mydoc.do.txt
-        
-
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
@@ -401,8 +383,6 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 .. code-block:: console
 
         Unix/DOS> doconce2format LaTeX mydoc.do.txt
-        
-
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
@@ -415,16 +395,12 @@ so that your commands are defined.
 .. code-block:: console
 
         Unix/DOS> ptex2tex mydoc
-        
-
 
 or just perform a plain copy,
 
 .. code-block:: console
 
         Unix/DOS> cp mydoc.p.tex mydoc.tex
-        
-
 
 Doconce generates a ``.p.tex`` file with some preprocessor macros.
 For example, to enable font Helvetica instead of the standard
@@ -433,8 +409,6 @@ Computer Modern font,
 .. code-block:: console
 
         Unix/DOS> ptex2tex -DHELVETICA mydoc
-        
-
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
@@ -444,8 +418,6 @@ is also available through
 .. code-block:: console
 
         Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
-        
-
 
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
@@ -467,8 +439,6 @@ and create the PDF file:
         Unix/DOS> bibitem mydoc     # if bibliography
         Unix/DOS> latex mydoc
         Unix/DOS> dvipdf mydoc
-        
-
 
 If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
 in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
@@ -478,8 +448,6 @@ This package is included by running ``doconce2format`` with the
 .. code-block:: console
 
         Unix/DOS> ptex2tex -DMINTED mydoc
-        
-
 
 In this case, ``latex`` must be run with the
 ``-shell-escape`` option:
@@ -492,8 +460,6 @@ In this case, ``latex`` must be run with the
         Unix/DOS> bibitem mydoc     # if bibliography
         Unix/DOS> latex -shell-escape mydoc
         Unix/DOS> dvipdf mydoc
-        
-
 
 The ``-shell-escape`` option is required because the ``minted.sty`` style
 file runs the ``pygments`` program to format code, and this program
@@ -510,8 +476,6 @@ computer source code:
 .. code-block:: console
 
         Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
-        
-
 
 
 reStructuredText
@@ -524,8 +488,6 @@ reStructuredText file ``mydoc.rst``:
 .. code-block:: console
 
         Unix/DOS> doconce2format rst mydoc.do.txt
-        
-
 
 We may now produce various other formats:
 
@@ -535,8 +497,6 @@ We may now produce various other formats:
         Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
         Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
-        
-
 
 The OpenOffice file ``mydoc.odt`` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -553,8 +513,6 @@ the reStructuredText format:
 .. code-block:: console
 
         Unix/DOS> doconce2format sphinx mydoc.do.txt
-        
-
 
 
 *Step 2.* Create a Sphinx root directory with a ``conf.py`` file, 
@@ -587,8 +545,6 @@ program. Here is a scripted version of the steps with the latter:
         y
         y
         EOF
-        
-
 
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory:
@@ -596,8 +552,6 @@ program. Here is a scripted version of the steps with the latter:
 .. code-block:: console
 
         Unix/DOS> mv mydoc.rst sphinx-rootdir
-        
-
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with ``mydoc.rst`` in the ``sphinx-rootdir``
@@ -615,8 +569,6 @@ is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes
            :maxdepth: 2
         
            mydoc
-        
-
 
 (The spaces before ``mydoc`` are important!)
 
@@ -626,8 +578,6 @@ is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes
 
         make clean   # remove old versions
         make html
-        
-
 
 Many other formats are also possible.
 
@@ -636,8 +586,6 @@ Many other formats are also possible.
 .. code-block:: console
 
         Unix/DOS> firefox _build/html/index.html
-        
-
 
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -661,8 +609,6 @@ it as the Google Code dialect, is done by
 .. code-block:: console
 
         Unix/DOS> doconce2format gwiki mydoc.do.txt
-        
-
 
 You can then open a new wiki page for your Google Code project, copy
 the ``mydoc.gwiki`` output file from ``doconce2format`` and paste the
@@ -700,8 +646,6 @@ The current text is generated from a Doconce format stored in the file
 
 
         docs/tutorial/tutorial.do.txt
-        
-
 
 The file ``make.sh`` in the ``tutorial`` directory of the
 Doconce source code contains a demo of how to produce a variety of

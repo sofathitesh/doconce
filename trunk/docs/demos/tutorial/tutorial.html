@@ -154,7 +154,6 @@ Tables are also supperted, e.g.,
   |--------------------------------|
 
 # lines beginning with # are comment lines
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The Doconce text above results in the following little document:
@@ -226,7 +225,6 @@ typeset as
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 $\nu = \sin(x)$|$v = sin(x)$
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
@@ -257,7 +255,6 @@ def myfunc(x):
 
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 It is possible to add a specification of a (ptex2tex-style)
@@ -271,8 +268,7 @@ mapping the identifiers to legal language names for Sphinx (which equals
 the legal language names for Pygments):
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
- # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
-
+# sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 By default, <TT>pro</TT> and <TT>cod</TT> are <TT>python</TT>, <TT>sys</TT> is <TT>console</TT>,
@@ -360,7 +356,6 @@ formats applies the script <TT>doconce2format</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format format mydoc.do.txt
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The <TT>preprocess</TT> program is always used to preprocess the file first,
@@ -368,7 +363,6 @@ and options to <TT>preprocess</TT> can be added after the filename. For example,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The variable <TT>FORMAT</TT> is always defined as the current format when
@@ -381,7 +375,6 @@ Inline comments in the text are removed from the output by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 One can also remove such comments from the original Doconce file
@@ -390,7 +383,6 @@ source code:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 This action is convenient when a Doconce document reaches its final form.
@@ -405,7 +397,6 @@ is performed by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format HTML mydoc.do.txt
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The resulting file <TT>mydoc.html</TT> can be loaded into any web browser for viewing.
@@ -424,7 +415,6 @@ Making a LaTeX file <TT>mydoc.tex</TT> from <TT>mydoc.do.txt</TT> is done in two
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format LaTeX mydoc.do.txt
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 LaTeX-specific commands ("newcommands") in math formulas and similar
@@ -438,14 +428,12 @@ so that your commands are defined.
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> ptex2tex mydoc
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 or just perform a plain copy,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> cp mydoc.p.tex mydoc.tex
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 Doconce generates a <TT>.p.tex</TT> file with some preprocessor macros.
@@ -454,7 +442,6 @@ Computer Modern font,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> ptex2tex -DHELVETICA mydoc
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The title, authors, and date are by default typeset in a non-standard
@@ -464,7 +451,6 @@ is also available through
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -488,7 +474,6 @@ Unix/DOS> makeindex mydoc   # if index
 Unix/DOS> bibitem mydoc     # if bibliography
 Unix/DOS> latex mydoc
 Unix/DOS> dvipdf mydoc
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 If one wishes to use the <TT>Minted_Python</TT>, <TT>Minted_Cpp</TT>, etc., environments
@@ -498,7 +483,6 @@ This package is included by running <TT>doconce2format</TT> with the
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> ptex2tex -DMINTED mydoc
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 In this case, <TT>latex</TT> must be run with the
@@ -511,7 +495,6 @@ Unix/DOS> makeindex mydoc   # if index
 Unix/DOS> bibitem mydoc     # if bibliography
 Unix/DOS> latex -shell-escape mydoc
 Unix/DOS> dvipdf mydoc
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The <TT>-shell-escape</TT> option is required because the <TT>minted.sty</TT> style
@@ -529,7 +512,6 @@ computer source code:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -542,7 +524,6 @@ reStructuredText file <TT>mydoc.rst</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format rst mydoc.do.txt
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 We may now produce various other formats:
@@ -552,7 +533,6 @@ Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
 Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
 Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The OpenOffice file <TT>mydoc.odt</TT> can be loaded into OpenOffice and
@@ -570,7 +550,6 @@ the reStructuredText format:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format sphinx mydoc.do.txt
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -604,7 +583,6 @@ y
 y
 y
 EOF
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -613,7 +591,6 @@ EOF
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> mv mydoc.rst sphinx-rootdir
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 If you have figures in your document, the relative paths to those will
@@ -631,7 +608,6 @@ is included, i.e., add <TT>mydoc</TT> to the <TT>toctree</TT> section so that it
    :maxdepth: 2
 
    mydoc
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 (The spaces before <TT>mydoc</TT> are important!)
@@ -642,7 +618,6 @@ is included, i.e., add <TT>mydoc</TT> to the <TT>toctree</TT> section so that it
 <BLOCKQUOTE><PRE>
 make clean   # remove old versions
 make html
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 Many other formats are also possible.
@@ -652,7 +627,6 @@ Many other formats are also possible.
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> firefox _build/html/index.html
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -679,7 +653,6 @@ it as the Google Code dialect, is done by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
 Unix/DOS> doconce2format gwiki mydoc.do.txt
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 You can then open a new wiki page for your Google Code project, copy
@@ -719,7 +692,6 @@ The current text is generated from a Doconce format stored in the file
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 docs/tutorial/tutorial.do.txt
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The file <TT>make.sh</TT> in the <TT>tutorial</TT> directory of the
