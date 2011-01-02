@@ -109,7 +109,9 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
                                   '!bc\g<1>\n!XX&XX', lines[i])
                 # use string.replace to deal correctly with \n:
                 try:
-                    lines[i] = lines[i].replace('!XX&XX', '%s\n!ec' % code)
+                    #lines[i] = lines[i].replace('!XX&XX', '%s\n!ec' % code)
+                    # the \n should not be there (gives extra newline)
+                    lines[i] = lines[i].replace('!XX&XX', '%s!ec' % code)
                 except UnicodeDecodeError, e:
                     raise UnicodeDecodeError(e + '\nproblem with code block:\n' + code)
                 break
