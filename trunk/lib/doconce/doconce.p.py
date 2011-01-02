@@ -823,6 +823,10 @@ def doconce2format(in_filename, format, out_filename):
         
     debugpr('%s\n**** The file after removal of code/tex blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
+    debugpr('%s\n**** The code blocks:\n\n%s\n\n' % \
+          ('*'*80, pprint.pformat(code_blocks)))
+    debugpr('%s\n**** The tex blocks:\n\n%s\n\n' % \
+          ('*'*80, pprint.pformat(tex_blocks)))
 
     # remove linebreaks within paragraphs:
     if oneline_paragraphs:
@@ -925,6 +929,8 @@ def main():
     #   - encoding utf-8 (e.g.)
     #   - guess_encoding
     #   - preprocess options (-DVAR etc.)
+
+    # guess_encoding and online are inactive (these don't work well yet)
 
     global debug, _log, oneline_paragraphs, guess_encoding, \
            remove_inline_comments, encoding
