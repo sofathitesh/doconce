@@ -97,22 +97,10 @@ def sphinx_code(filestr, format):
     # In rst syntax, code blocks are typeset with :: (verbatim)
     # followed by intended blocks. This function indents everything
     # inside code (or TeX) blocks.
-    
-    # first indent all code/tex blocks by 1) extracting all blocks,
-    # 2) intending each block, and 3) inserting the blocks:
-    filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
-    for i in range(len(code_blocks)):
-        code_blocks[i] = indent_lines(code_blocks[i], format)
-    for i in range(len(tex_blocks)):
-        tex_blocks[i] = indent_lines(tex_blocks[i], format)
-        # remove all \label{}s inside tex blocks:
-        tex_blocks[i] = re.sub(fix_latex(r'\label\{.+?\}', application='match'),
-                              '', tex_blocks[i])
-        # remove those without \ if there are any:
-        tex_blocks[i] = re.sub(r'label\{.+?\}', '', tex_blocks[i])
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
 
     # grab #sphinx code-blocks: cod=python cpp=c++ etc line
+    # (do this before code is inserted in case verbatim blocks contain
+    # such specifications for illustration)
     m = re.search(r'#\s*[Ss]phinx\s+code-blocks?:(.+?)\n', filestr)
     if m:
         defs_line = m.group(1)
@@ -130,6 +118,20 @@ def sphinx_code(filestr, format):
                     sys='console', dat='python')
         # (the "python" typesetting is neutral if the text
         # does not parse as python)
+    
+    # first indent all code/tex blocks by 1) extracting all blocks,
+    # 2) intending each block, and 3) inserting the blocks:
+    filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
+    for i in range(len(code_blocks)):
+        code_blocks[i] = indent_lines(code_blocks[i], format)
+    for i in range(len(tex_blocks)):
+        tex_blocks[i] = indent_lines(tex_blocks[i], format)
+        # remove all \label{}s inside tex blocks:
+        tex_blocks[i] = re.sub(fix_latex(r'\label\{.+?\}', application='match'),
+                              '', tex_blocks[i])
+        # remove those without \ if there are any:
+        tex_blocks[i] = re.sub(r'label\{.+?\}', '', tex_blocks[i])
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
 
     for key in defs:
         language = defs[key]

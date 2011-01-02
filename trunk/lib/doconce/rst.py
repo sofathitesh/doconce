@@ -67,7 +67,7 @@ def rst_code(filestr, format):
     #filestr = c.sub(r'\g<1>::\n\n', filestr)
     filestr = c.sub(r'\g<1>::\n', filestr)
     #filestr = re.sub(r'!et *\n', '\n\n', filestr)
-    filestr = re.sub(r'!et *\n', '\n', filestr)
+    filestr = re.sub(r'!et *\n', '\n\n', filestr)
 
     # sphinx math:
     #filestr = re.sub(r'!bt\n', '\n.. math::\n\n', filestr)

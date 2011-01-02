@@ -6,7 +6,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage{ifthen}
 \usepackage{babel}
-\usepackage{color}
 \usepackage{longtable}
 \usepackage{array}
 \setlength{\extrarowheight}{2pt}
@@ -22,34 +21,12 @@
 
 %%% Fallback definitions for Docutils-specific commands
 
-% admonition (specially marked topic)
-\providecommand{\DUadmonition}[2][class-arg]{%
-  % try \DUadmonition#1{#2}:
-  \ifcsname DUadmonition#1\endcsname%
-    \csname DUadmonition#1\endcsname{#2}%
-  \else
-    \begin{center}
-      \fbox{\parbox{0.9\textwidth}{#2}}
-    \end{center}
-  \fi
-}
-
 % fieldlist environment
 \ifthenelse{\isundefined{\DUfieldlist}}{
   \newenvironment{DUfieldlist}%
     {\quote\description}
     {\enddescription\endquote}
 }{}
-
-% title for topics, admonitions and sidebar
-\providecommand*{\DUtitle}[2][class-arg]{%
-  % call \DUtitle#1{#2} if it exists:
-  \ifcsname DUtitle#1\endcsname%
-    \csname DUtitle#1\endcsname{#2}%
-  \else
-    \smallskip\noindent\textbf{#2}\smallskip%
-  \fi
-}
 
 % hyperlinks:
 \ifthenelse{\isundefined{\hypersetup}}{
@@ -311,8 +288,8 @@ References to sections may use logical names as labels (e.g., a
 ``label'' command right after the section title), as in the reference to
 the chapter \hyperref[a-subsection-with-sample-text]{A Subsection with Sample Text}.
 
-Doconce also allows inline comments such as \textbf{hpl}: here I will make
-some remarks to the text for allowing authors to make notes. Inline
+Doconce also allows inline comments such as (\textbf{hpl}: here I will make
+some remarks to the text) for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
 (see the chapter \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats} for an example).
 
@@ -405,15 +382,6 @@ The result looks like this:
 \textbackslash{}end\{eqnarray\}
 }
 \end{quote}
-
-\DUadmonition[system-message]{
-\DUtitle[system-message]{system-message}
-
-
-{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~217
-
-Literal block ends without a blank line; unexpected unindent.
-backrefs: }
 
 Of course, such blocks only looks nice in LaTeX. The raw
 LaTeX syntax appears in all other formats (but can still be useful
