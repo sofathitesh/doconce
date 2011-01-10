@@ -935,10 +935,11 @@ def main():
     global debug, _log, oneline_paragraphs, guess_encoding, \
            remove_inline_comments, encoding
     options = ['debug', 'remove_inline_comments', 'encoding=',
-               'guess_encoding', 'oneline_paragraphs']
+               'guess_encoding', 'oneline_paragraphs', 'tmp1']
     try:
         format = sys.argv[1]
         filename = sys.argv[2]
+        del sys.argv[1:3]
     except IndexError:
         print 'Usage: %s format filename [%s] [preprocess options]\n' \
               % (sys.argv[0], '|'.join(options))
@@ -953,34 +954,41 @@ def main():
         sys.exit(1)
 
     debug = False
-    oneline_paragraphs = False
-    remove_inline_comments = False
-    guess_encoding = False
-    encoding = ''
+    if 'debug' in sys.argv[1:] or '--debug' in sys.argv[1:]:
+        debug = True
 
-    for opt in options:
-        if opt[-1] == '=':
-            opt = opt[:-1]  # strip off =
-            opt_value = True
-        else:
-            opt_value = False
-        if opt in sys.argv:
-            i = sys.argv.index(opt)
-            if opt_value:
-                try:
-                    v = sys.argv[i+1]
-                    del sys.argv[i+1]
-                except IndexError:
-                    print 'Error: option "%s" must have value' % opt
-                    sys.exit(1)
-                cmd = '%s = %s' % (opt, v)
-                #print cmd
-                exec(cmd, globals())
-            else:
-                cmd = '%s = True' % opt
-                #print cmd
-                exec(cmd, globals())
-            del sys.argv[i]
+    oneline_paragraphs = False
+    if 'oneline_paragraphs' in sys.argv[1:] or '--oneline_paragraphs' in sys.argv[1:]:
+        oneline_paragraphs = True
+    
+    remove_inline_comments = False
+    if 'remove_inline_comments' in sys.argv[1:] or '--remove_inline_comments' in sys.argv[1:]:
+        remove_inline_comments = True
+        
+    guess_encoding = False
+    if 'guess_encoding' in sys.argv[1:] or '--guess_encoding' in sys.argv[1:]:
+        guess_encoding = True
+        
+    encoding = ''
+    if 'encoding' in sys.argv[1:]:
+        i = sys.argv.index('encoding')
+        try:
+            encoding = sys.argv[i+1]
+        except IndexError:
+            print 'encoding must be given a value'
+            sys.exit(1)
+    if '--encoding' in sys.argv[1:]:
+        i = sys.argv.index('--encoding')
+        try:
+            encoding = sys.argv[i+1]
+        except IndexError:
+            print 'encoding must be given a value'
+            sys.exit(1)
+
+    tmp = False  # output file is tmp.ext
+    if 'tmp' in sys.argv[1:] or '--tmp' in sys.argv[1:]:
+        tmp = True
+        
 
     if debug:
         _log_filename = '_doconce_debugging.log'
@@ -995,10 +1003,19 @@ def main():
 
         
     debugpr('\n\n>>>>>>>>>>>>>>>>> %s >>>>>>>>>>>>>>>>>\n\n' % format)
-    if filename[-7:] != '.do.txt':
-        print 'Wrong extension of %s, must be ".do.txt"' % filename
-        sys.exit(1)
-    basename = filename[:-7]
+
+    if not os.path.isfile(filename):
+        basename = filename
+        filename = filename + '.do.txt'
+        if not os.path.isfile(filename):
+            print 'No such file:r %s or %s' % (filename[:-7], filename)
+            sys.exit(1)
+    else:
+        basename = filename[:-7]
+
+    if tmp:
+        basename = 'tmp'
+        
     out_filename = basename + FILENAME_EXTENSION[format]
     print '\n----- doconce2format %s %s' % (format, filename)
     filename_preprocessed = preprocess(filename, format,
