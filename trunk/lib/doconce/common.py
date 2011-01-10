@@ -204,17 +204,17 @@ INLINE_TAGS = {
 
     # http://some.where.org/mypage<link text>
     'linkURL':
-    r'%s(?P<url>https?://[^<]+)<(?P<link>[^>]+)>%s' % \
+    r'%s(?P<url>https?://[^<\n]+)<(?P<link>[^>]+)>%s' % \
     (inline_tag_begin, inline_tag_end),
 
-    'linkURL2':
-    r'"(?P<link>.+?)" ?: *"(?P<url>(file:/|https?:)//[^<]+?)"',
+    'linkURL2':  # "some link": "https://bla-bla"
+    r'"(?P<link>.+?)" ?:\s*"(?P<url>(file:/|https?:)//.+?)"',
     #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
 
     'plainURL': 
     #r'"URL" ?: ?"(?P<url>.+?)"',
     #r'"?(URL|url)"? ?: ?"(?P<url>.+?)"',
-    r'("URL"|"url"|URL|url) ?: *"(?P<url>.+?)"',
+    r'("URL"|"url"|URL|url) ?:\s*"(?P<url>.+?)"',
 
     'inlinecomment':
     r'''\[(?P<name>[A-Za-z0-9_'-]+?):\s+(?P<comment>[^\]]*?)\]''',

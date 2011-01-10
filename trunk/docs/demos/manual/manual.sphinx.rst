@@ -992,6 +992,15 @@ filename in double quotes:
         "url":"manual.do.txt"
 
 All these constructions result in the link `<manual.do.txt>`_.
+To make the URL itself appear as link name, put an "URL", URL, or
+the lower case version, before the text of the URL enclosed in double
+quotes:
+
+.. code-block:: py
+
+
+        Click on this link: URL:"http://some.where.net".
+
 
 Doconce also supports inline comments in the text:
 
