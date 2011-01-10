@@ -161,8 +161,7 @@ Lists can also have numbered items instead of bullets, just use an o
 
  3. item 3
 
-URLs with a link word are possible, as in hpl (demo
-page (http://folk.uio.no/hpl).
+URLs with a link word are possible, as in hpl (http://folk.uio.no/hpl).
 If the word is URL, the URL itself becomes the link name,
 as in tutorial.do.txt.
 
@@ -292,7 +291,8 @@ citations, and the bibliography closely resembles that of LaTeX,
 making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
 syntax we refer to the docs/manual/manual.do.txt file (see the
-https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html) for various formats of this document).
+demo
+page (https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html) for various formats of this document).
 
 
 

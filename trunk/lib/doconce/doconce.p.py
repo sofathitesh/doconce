@@ -686,8 +686,9 @@ def inline_tag_subst(filestr, format):
         'inlinecomment',
         'citation',
         'paragraph',  # after bold and emphasize
-        'linkURL2',   # must come before plainURL (which has "URL" as link)
-        'plainURL', 'linkURL', 
+        'plainURL',   # before linkURL2 to avoid "URL" as linkename
+        'linkURL2',
+        'linkURL', 
         )
     for tag in ordered_tags:
         debugpr('Working with tag "%s"' % tag)

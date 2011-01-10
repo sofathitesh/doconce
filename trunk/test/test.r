@@ -62,7 +62,10 @@ The Doconce source code reads
 ===== URLs ======
 
 Here are some nice URLs, e.g., hpl's home page "hpl":"http://folk.uio.no/hpl",
-and a plain file link "URL":"testdoc.do.txt", or "url":"testdoc.do.txt",
+or the URL if desired, "URL": "http://folk.uio.no/hpl".
+Here is a plain file link "URL": "testdoc.do.txt", or "url":"testdoc.do.txt",
+# note that when there is no http: or file:, it can be a file link
+# if the link name is URL, url, "URL", or "url".
 or URL: "testdoc.do.txt" or url : "testdoc.do.txt". Can test spaces
 with the link with word too: "hpl": "http://folk.uio.no/hpl" or
 "hpl" : "http://folk.uio.no/hpl". The old syntax must also be
@@ -195,7 +198,10 @@ The Doconce source code reads
 <H3>URLs</H3>
 <P>
 Here are some nice URLs, e.g., hpl's home page <A HREF="http://folk.uio.no/hpl">hpl</A>,
-and a plain file link <A HREF="testdoc.do.txt"><TT>testdoc.do.txt</TT></A>, or <A HREF="testdoc.do.txt"><TT>testdoc.do.txt</TT></A>,
+or the URL if desired, <A HREF="http://folk.uio.no/hpl"><TT>http://folk.uio.no/hpl</TT></A>.
+Here is a plain file link <A HREF="testdoc.do.txt"><TT>testdoc.do.txt</TT></A>, or <A HREF="testdoc.do.txt"><TT>testdoc.do.txt</TT></A>,
+<!-- note that when there is no http: or file:, it can be a file link -->
+<!-- if the link name is URL, url, "URL", or "url". -->
 or <A HREF="testdoc.do.txt"><TT>testdoc.do.txt</TT></A> or <A HREF="testdoc.do.txt"><TT>testdoc.do.txt</TT></A>. Can test spaces
 with the link with word too: <A HREF="http://folk.uio.no/hpl">hpl</A> or
 <A HREF="http://folk.uio.no/hpl">hpl</A>. The old syntax must also be
@@ -374,7 +380,10 @@ The Doconce source code reads
 \subsection{URLs}
 
 Here are some nice URLs, e.g., hpl's home page \href{http://folk.uio.no/hpl}{hpl},
-and a plain file link \href{testdoc.do.txt}{testdoc.do.txt}, or \href{testdoc.do.txt}{testdoc.do.txt},
+or the URL if desired, \href{http://folk.uio.no/hpl}{http://folk.uio.no/hpl}.
+Here is a plain file link \href{testdoc.do.txt}{testdoc.do.txt}, or \href{testdoc.do.txt}{testdoc.do.txt},
+% note that when there is no http: or file:, it can be a file link
+% if the link name is URL, url, "URL", or "url".
 or \href{testdoc.do.txt}{testdoc.do.txt} or \href{testdoc.do.txt}{testdoc.do.txt}. Can test spaces
 with the link with word too: \href{http://folk.uio.no/hpl}{hpl} or
 \href{http://folk.uio.no/hpl}{hpl}. The old syntax must also be
@@ -488,7 +497,10 @@ URLs
 ----
 
 Here are some nice URLs, e.g., hpl's home page `hpl <http://folk.uio.no/hpl>`_,
-and a plain file link `<testdoc.do.txt>`_, or `<testdoc.do.txt>`_,
+or the URL if desired, `<http://folk.uio.no/hpl>`_.
+Here is a plain file link `<testdoc.do.txt>`_, or `<testdoc.do.txt>`_,
+.. note that when there is no http: or file:, it can be a file link
+.. if the link name is URL, url, "URL", or "url".
 or `<testdoc.do.txt>`_ or `<testdoc.do.txt>`_. Can test spaces
 with the link with word too: `hpl <http://folk.uio.no/hpl>`_ or
 `hpl <http://folk.uio.no/hpl>`_. The old syntax must also be
@@ -589,7 +601,10 @@ URLs
 ----
 
 Here are some nice URLs, e.g., hpl's home page `hpl <http://folk.uio.no/hpl>`_,
-and a plain file link `<testdoc.do.txt>`_, or `<testdoc.do.txt>`_,
+or the URL if desired, `<http://folk.uio.no/hpl>`_.
+Here is a plain file link `<testdoc.do.txt>`_, or `<testdoc.do.txt>`_,
+.. note that when there is no http: or file:, it can be a file link
+.. if the link name is URL, url, "URL", or "url".
 or `<testdoc.do.txt>`_ or `<testdoc.do.txt>`_. Can test spaces
 with the link with word too: `hpl <http://folk.uio.no/hpl>`_ or
 `hpl <http://folk.uio.no/hpl>`_. The old syntax must also be
@@ -671,7 +686,10 @@ The Doconce source code reads
 ==== URLs ====
 
 Here are some nice URLs, e.g., hpl's home page [http://folk.uio.no/hpl hpl],
-and a plain file link testdoc.do.txt, or testdoc.do.txt,
+or the URL if desired, http://folk.uio.no/hpl.
+Here is a plain file link testdoc.do.txt, or testdoc.do.txt,
+<wiki:comment> note that when there is no http: or file:, it can be a file link </wiki:comment>
+<wiki:comment> if the link name is URL, url, "URL", or "url". </wiki:comment>
 or testdoc.do.txt or testdoc.do.txt. Can test spaces
 with the link with word too: [http://folk.uio.no/hpl hpl] or
 [http://folk.uio.no/hpl hpl]. The old syntax must also be
@@ -729,7 +747,8 @@ The Doconce source code reads::
 
 URLs
 Here are some nice URLs, e.g., hpl's home page "http://folk.uio.no/hpl":hpl,
-and a plain file link "testdoc.do.txt":testdoc.do.txt, or "testdoc.do.txt":testdoc.do.txt,
+or the URL if desired, "http://folk.uio.no/hpl":http://folk.uio.no/hpl.
+Here is a plain file link "testdoc.do.txt":testdoc.do.txt, or "testdoc.do.txt":testdoc.do.txt,
 or "testdoc.do.txt":testdoc.do.txt or "testdoc.do.txt":testdoc.do.txt. Can test spaces
 with the link with word too: "http://folk.uio.no/hpl":hpl or
 "http://folk.uio.no/hpl":hpl. The old syntax must also be
@@ -801,7 +820,8 @@ URLs
 ----
 
 Here are some nice URLs, e.g., hpl's home page U{hpl<http://folk.uio.no/hpl>},
-and a plain file link U{testdoc.do.txt<testdoc.do.txt>}, or U{testdoc.do.txt<testdoc.do.txt>},
+or the URL if desired, U{http://folk.uio.no/hpl<http://folk.uio.no/hpl>}.
+Here is a plain file link U{testdoc.do.txt<testdoc.do.txt>}, or U{testdoc.do.txt<testdoc.do.txt>},
 or U{testdoc.do.txt<testdoc.do.txt>} or U{testdoc.do.txt<testdoc.do.txt>}. Can test spaces
 with the link with word too: U{hpl<http://folk.uio.no/hpl>} or
 U{hpl<http://folk.uio.no/hpl>}. The old syntax must also be
@@ -890,12 +910,13 @@ The Doconce source code reads::
 URLs
 ----
 
-Here are some nice URLs, e.g., hpl's home page hpl (hpl's homepage (http://folk.uio.no/hpl),
-and a plain file link testdoc.do.txt, or testdoc.do.txt,
+Here are some nice URLs, e.g., hpl's home page hpl (http://folk.uio.no/hpl),
+or the URL if desired, http://folk.uio.no/hpl.
+Here is a plain file link testdoc.do.txt, or testdoc.do.txt,
 or testdoc.do.txt or testdoc.do.txt. Can test spaces
 with the link with word too: hpl (http://folk.uio.no/hpl) or
 hpl (http://folk.uio.no/hpl). The old syntax must also be
-tested: http://folk.uio.no/hpl). Now also file:///
+tested: hpl's homepage (http://folk.uio.no/hpl). Now also file:///
 works: link to a file (file:///home/hpl/vc/doconce/trunk/test/tmp_HTML.html)
 is fine to have.
 ************** File: make.sh *****************
@@ -5364,8 +5385,7 @@ Lists can also have numbered items instead of bullets, just use an o
 
  3. item 3
 
-URLs with a link word are possible, as in hpl (demo
-page (http://folk.uio.no/hpl).
+URLs with a link word are possible, as in hpl (http://folk.uio.no/hpl).
 If the word is URL, the URL itself becomes the link name,
 as in tutorial.do.txt.
 
@@ -5495,7 +5515,8 @@ citations, and the bibliography closely resembles that of LaTeX,
 making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
 syntax we refer to the docs/manual/manual.do.txt file (see the
-https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html) for various formats of this document).
+demo
+page (https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html) for various formats of this document).
 
 
 
@@ -5841,7 +5862,7 @@ more typesetting and tagging features than Doconce.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sun, 02 Jan 2011 (12:48)
+DATE: Mon, 10 Jan 2011 (08:36)
 
 
 
@@ -5945,7 +5966,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sun, 02 Jan 2011 (12:48)
+DATE: Mon, 10 Jan 2011 (08:36)
 
 
 
@@ -6059,7 +6080,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Sun, 02 Jan 2011 (12:48)</CENTER>
+<CENTER>Mon, 10 Jan 2011 (08:36)</CENTER>
 
 
 
@@ -6190,7 +6211,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Sun, 02 Jan 2011 (12:48)</CENTER>
+<CENTER>Mon, 10 Jan 2011 (08:36)</CENTER>
 
 
 
@@ -7123,6 +7144,12 @@ url: "manual.do.txt"
 "url":"manual.do.txt"
 !ec
 All these constructions result in the link URL: "manual.do.txt".
+To make the URL itself appear as link name, put an "URL", URL, or
+the lower case version, before the text of the URL enclosed in double
+quotes:
+!bc
+Click on this link: URL:"http://some.where.net".
+!ec
 
 Doconce also supports inline comments in the text:
 !bc
@@ -8811,6 +8838,14 @@ url: "manual.do.txt"
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 All these constructions result in the link <A HREF="manual.do.txt"><TT>manual.do.txt</TT></A>.
+To make the URL itself appear as link name, put an "URL", URL, or
+the lower case version, before the text of the URL enclosed in double
+quotes:
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Click on this link: URL:"http://some.where.net".
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
 
 <P>
 Doconce also supports inline comments in the text:
@@ -10505,6 +10540,13 @@ filename in double quotes::
         "url":"manual.do.txt"
 
 All these constructions result in the link `<manual.do.txt>`_.
+To make the URL itself appear as link name, put an "URL", URL, or
+the lower case version, before the text of the URL enclosed in double
+quotes::
+
+
+        Click on this link: URL:"http://some.where.net".
+
 
 Doconce also supports inline comments in the text::
 
@@ -12185,6 +12227,15 @@ filename in double quotes:
         "url":"manual.do.txt"
 
 All these constructions result in the link `<manual.do.txt>`_.
+To make the URL itself appear as link name, put an "URL", URL, or
+the lower case version, before the text of the URL enclosed in double
+quotes:
+
+.. code-block:: py
+
+
+        Click on this link: URL:"http://some.where.net".
+
 
 Doconce also supports inline comments in the text:
 
@@ -13734,6 +13785,12 @@ url: "manual.do.txt"
 "url":"manual.do.txt"
 }}}
 All these constructions result in the link manual.do.txt.
+To make the URL itself appear as link name, put an "URL", URL, or
+the lower case version, before the text of the URL enclosed in double
+quotes:
+{{{
+Click on this link: URL:"http://some.where.net".
+}}}
 
 Doconce also supports inline comments in the text:
 {{{
@@ -15131,6 +15188,13 @@ filename in double quotes::
         "url":"manual.do.txt"
 
 All these constructions result in the link "manual.do.txt":manual.do.txt.
+To make the URL itself appear as link name, put an "URL", URL, or
+the lower case version, before the text of the URL enclosed in double
+quotes::
+
+
+        Click on this link: URL:"http://some.where.net".
+
 
 Doconce also supports inline comments in the text::
 
@@ -16591,6 +16655,13 @@ filename in double quotes::
         "url":"manual.do.txt"
 
 All these constructions result in the link U{manual.do.txt<manual.do.txt>}.
+To make the URL itself appear as link name, put an "URL", URL, or
+the lower case version, before the text of the URL enclosed in double
+quotes::
+
+
+        Click on this link: URL:"http://some.where.net".
+
 
 Doconce also supports inline comments in the text::
 
@@ -18105,7 +18176,7 @@ formats the labels are consecutively numbered so the above citation
 will typically look like::
 
 
-        [name: comment]
+        Click on this link: URL:"http://some.where.net".
 
 if Larsen:86 has already appeared in the 3rd citation in the document
 and Nielsen:99 is a new (the 14th) citation. The citation labels
@@ -18120,10 +18191,7 @@ keys, with corresponding values as the full reference text for an item
 in the bibliography. Doconce markup can be used in this text, e.g.::
 
 
-        Here is an example on a linear system 
-        ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
-        where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and 
-        $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
+        [name: comment]
 
 In the LaTeX format, the .bib file will be used in the standard way,
 in the reStructuredText and Sphinx formats, the .rst file will be
@@ -18155,8 +18223,10 @@ A table like
 is built up of pipe symbols and dashes::
 
 
-        label{section:verbatim}   # defines a label
-        For more information we refer to Section ref{section:verbatim}.
+        Here is an example on a linear system 
+        ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
+        where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and 
+        $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
 
 The pipes and column values do not need to be aligned (but why write
 the Doconce source in an ugly way?).
@@ -18183,9 +18253,8 @@ mapping takes place in an optional comment to be inserted in the Doconce
 source file, e.g.::
 
 
-        idx{some index entry}
-        idx{main entry!subentry}
-        idx{`verbatim_text` and more}
+        label{section:verbatim}   # defines a label
+        For more information we refer to Section ref{section:verbatim}.
 
 Here, three arguments are defined: pycod for Python code,
 cod also for Python code, cppcod for C++ code, and sys
@@ -18215,19 +18284,21 @@ common errors are naturally avoided).
 Here is a verbatim code block with Python code (pycod style)::
 
 
-        \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
+        idx{some index entry}
+        idx{main entry!subentry}
+        idx{`verbatim_text` and more}
 
 And here is a C++ code snippet (cppcod style)::
 
 
-        as found in cite{Larsen:86,Nielsen:99}.
+        \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
 
 Computer code can be copied directly from a file, if desired. The syntax
 is then::
 
 
-        as found in [3][14]
+        as found in cite{Larsen:86,Nielsen:99}.
 
 The first line implies that all lines in the file myfile.f are
 copied into a verbatim block, typset in a !bc pro environment.  The
@@ -18246,6 +18317,13 @@ final line with the "to" text is not included in the verbatim block.
 Let us copy a whole file (the first line above)::
 
 
+        as found in [3][14]
+
+
+Let us then copy just a piece in the middle as indicated by the fromto:
+directive above::
+
+
         {
         'Nielsen:99': """
         K. Nielsen. *Some Comments on Markup Languages*. 
@@ -18257,19 +18335,6 @@ Let us copy a whole file (the first line above)::
         *Personal Press*. 1986.
         """
         }
-
-
-Let us then copy just a piece in the middle as indicated by the fromto:
-directive above::
-
-
-          |--------------------------------|
-          |time  | velocity | acceleration |
-          |--------------------------------|
-          | 0.0  | 1.4186   | -5.01        |
-          | 2.0  | 1.376512 | 11.919       |
-          | 4.0  | 1.1E+1   | 14.717624    |
-          |--------------------------------|
 
 
 (Remark for those familiar with ptex2tex: The from-to
@@ -18332,10 +18397,22 @@ expressions).
 newcommand_replace.tex::
 
 
-        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+          |--------------------------------|
+          |time  | velocity | acceleration |
+          |--------------------------------|
+          | 0.0  | 1.4186   | -5.01        |
+          | 2.0  | 1.376512 | 11.919       |
+          | 4.0  | 1.1E+1   | 14.717624    |
+          |--------------------------------|
 
 
 and these in newcommands_keep.tex::
+
+
+        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+
+
+The LaTeX block::
 
 
         # regular expressions for inline tags:
@@ -18351,16 +18428,6 @@ and these in newcommands_keep.tex::
             'bold':
             r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
             (inline_tag_begin, inline_tag_end),
-        }
-
-
-The LaTeX block::
-
-
-        void myfunc(double* x, const double& myarr) {
-            for (int i = 1; i < myarr.size(); i++) {
-                myarr[i] = myarr[i] - x[i]*myarr[i-1]
-            }
         }
 
 will then be rendered to::
@@ -18409,8 +18476,11 @@ reST to indicate a verbatim block of text).
 *The LaTeX File Does Not Compile.* If the problem is undefined control sequence involving::
 
 
-         @@@CODE myfile.f
-         @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
+        void myfunc(double* x, const double& myarr) {
+            for (int i = 1; i < myarr.size(); i++) {
+                myarr[i] = myarr[i] - x[i]*myarr[i-1]
+            }
+        }
 
 the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
@@ -18452,23 +18522,8 @@ that all inline verbatim text appears on the same line.
         *Strange Non-English Characters.* Check the encoding of the .do.txt file with the Unix file command.
         If UTF-8, convert to latin-1 using the Unix command
         !bc 
-        C     a comment
-        
-              subroutine    test()
-              integer i
-              real*8 r
-              r = 0
-              do i = 1, i
-                 r = r + i
-              end do
-              return
-        C     END1
-        
-              program testme
-              call test()
-              return
-        
-        
+         @@@CODE myfile.f
+         @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 
 (Doconce has a feature to detect the encoding, but it is not reliable and
 therefore turned off.)
@@ -18514,6 +18569,8 @@ List parsing needs some awareness of the context.
 Each line is interpreted by a regular expression::
 
 
+        C     a comment
+        
               subroutine    test()
               integer i
               real*8 r
@@ -18522,6 +18579,12 @@ Each line is interpreted by a regular expression::
                  r = r + i
               end do
               return
+        C     END1
+        
+              program testme
+              call test()
+              return
+        
         
 
 
@@ -18557,12 +18620,14 @@ This is the HTML-specific part of the
 source code of the HTML translator::
 
 
-        \newcommand{\beqa}{\begin{eqnarray}}
-        \newcommand{\eeqa}{\end{eqnarray}}
-        \newcommand{\ep}{\thinspace . }
-        \newcommand{\uvec}{\vec u}
-        \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
-        \newcommand{\Q}{\mathbfx{Q}}
+              subroutine    test()
+              integer i
+              real*8 r
+              r = 0
+              do i = 1, i
+                 r = r + i
+              end do
+              return
         
 
 
@@ -18582,9 +18647,12 @@ context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
 arguments and variables are nicely formatted::
 
 
-        \newcommand{\x}{\mathbfx{x}}
-        \newcommand{\normalvec}{\mathbfx{n}}
-        \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+        \newcommand{\beqa}{\begin{eqnarray}}
+        \newcommand{\eeqa}{\end{eqnarray}}
+        \newcommand{\ep}{\thinspace . }
+        \newcommand{\uvec}{\vec u}
+        \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
+        \newcommand{\Q}{\mathbfx{Q}}
         
 
 
