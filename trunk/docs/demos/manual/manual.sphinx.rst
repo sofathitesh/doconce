@@ -894,7 +894,7 @@ a suitable format (say ``mypic.png`` for HTML output).
 
 .. _fig:impact:
 
-.. figure:: figs/dinoimpact.*
+.. figure:: figs/dinoimpact.gif
    :width: 400
 
    It can't get worse than this.... 
