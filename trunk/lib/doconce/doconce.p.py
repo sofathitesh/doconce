@@ -448,9 +448,10 @@ def handle_figures(filestr, format):
     else:
         extensions = FIGURE_EXT[format]  # is list
     for f in files:
+        if not os.path.isfile(f):
+            raise ValueError('file %s does not exist' % f)
         basepath, ext = os.path.splitext(f)
         if not ext in extensions:
-            print 'Figure', f, 'must have extension(s)', extensions
             # use convert from ImageMagick:
             for e in extensions:
                 newfile = basepath + e
@@ -460,7 +461,8 @@ def handle_figures(filestr, format):
                     if ext:
                         failure = os.system('convert %s %s' % (f, newfile))
                         if not failure:
-                            print '....ok, converted %s to %s' % (f, newfile)
+                            print 'Figure', f, 'must have extension(s)', extensions
+                            print '....converted %s to %s' % (f, newfile)
                             filestr = filestr.replace(f, newfile)
                             break  # jump out of inner e loop
                 else:  # right file exists:

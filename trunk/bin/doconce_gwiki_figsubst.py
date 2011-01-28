@@ -19,13 +19,18 @@ fstr = f.read()
 f.close()
 
 pattern = r'\(the URL of the image file (.+?) must be inserted here\)'
-figfiles = re.findall(pattern, fstr)
+#figfiles = re.findall(pattern, fstr)
 replacement = r'%s/\g<1>' % URLstem
 fstr, n = re.subn(pattern, replacement, fstr)
+pattern = re.compile(r'<wiki:comment>\s+Put the figure file .*?</wiki:comment>', re.DOTALL)
+fstr, n2 = pattern.subn('', fstr)
 f = open(gwikifile, 'w')
 f.write(fstr)
 f.close()
 print 'Replaced %d figure references in' % n, gwikifile
+if n != n2:
+    print 'Something strange: %d fig references and %g comments... Bug.' % \
+          (n, n2)
 
 
 
