@@ -78,11 +78,9 @@ def sphinx_figure(m):
         # of the caption (done when handling ref and label)
 
     filename = m.group('filename')
-    if not os.path.isfile(filename):
-        raise IOError('no figure file %s' % filename)
-
-    filename = os.path.splitext(filename)[0]
-    result += '\n.. figure:: ' + filename + '.*\n'  # utilize flexibility
+    #stem = os.path.splitext(filename)[0]
+    #result += '\n.. figure:: ' + stem + '.*\n'  # utilize flexibility  # does not work yet
+    result += '\n.. figure:: ' + filename + '\n'
     opts = m.group('options')
     if opts:
         info = [s.split('=') for s in opts.split()]
@@ -263,7 +261,7 @@ def define(FILENAME_EXTENSION,
     BLANKLINE['sphinx'] = BLANKLINE['rst']
     CODE['sphinx'] = CODE['rst']
     LIST['sphinx'] = LIST['rst']
-    FIGURE_EXT['sphinx'] = FIGURE_EXT['rst']
+    FIGURE_EXT['sphinx'] = ('.png', '.gif', '.jpg', '.jpeg')
     CROSS_REFS['sphinx'] = sphinx_ref_and_label
     INDEX_BIB['sphinx'] = sphinx_index_bib
     TABLE['sphinx'] = TABLE['rst']

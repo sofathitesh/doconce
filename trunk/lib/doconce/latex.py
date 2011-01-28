@@ -38,19 +38,11 @@ def latex_code(filestr, format):
 
 def latex_figure(m, includegraphics=True):
     filename = m.group('filename')
-    if not os.path.isfile(filename):
-        raise IOError('no figure file %s' % filename)
     basename  = os.path.basename(filename)
     stem, ext = os.path.splitext(basename)
-    root, ext = os.path.splitext(filename)
-    if not ext in ('.ps', '.eps'):
-        # try to convert image file to PostScript, using
-        # convert from ImageMagick:
-        cmd = 'convert %s ps:%s.ps' % (filename, root)
-        failure, output = commands.getstatusoutput(cmd)
-        if failure:
-            print '\n**** Warning: could not run', cmd
-        filename = root + '.ps'
+    #root, ext = os.path.splitext(filename)
+    # doconce.py ensures that images are transformed to .ps or .eps
+
     # note that label{...} are substituted by \label{...} (inline
     # label tag) so we write just label and not \label below:
     if includegraphics:
