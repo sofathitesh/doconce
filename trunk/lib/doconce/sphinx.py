@@ -129,6 +129,52 @@ def sphinx_code(filestr, format):
                               '', tex_blocks[i])
         # remove those without \ if there are any:
         tex_blocks[i] = re.sub(r'label\{.+?\}', '', tex_blocks[i])
+
+        # fix latex constructions that do not work with sphinx math
+        commands = [r'\begin{equation}',
+                    r'\end{equation}',
+                    r'\begin{equation*}',
+                    r'\end{equation*}',
+                    r'\begin{eqnarray}',
+                    r'\end{eqnarray}',
+                    r'\begin{eqnarray*}',
+                    r'\end{eqnarray*}',
+                    r'\begin{align}',
+                    r'\end{align}',
+                    r'\begin{align*}',
+                    r'\end{align*}',
+                    r'\begin{multline}',
+                    r'\end{multline}',
+                    r'\begin{multline*}',
+                    r'\end{multline*}',
+                    r'\begin{split}',
+                    r'\end{split}',
+                    r'\begin{gather}',
+                    r'\end{gather}',
+                    r'\begin{gather*}',
+                    r'\end{gather*}',
+                    r'\[',
+                    r'\]',
+                    # some common abbreviations (newcommands):
+                    r'\beqan',
+                    r'\eeqan',
+                    r'\beqa',
+                    r'\eeqa',
+                    r'\balnn',
+                    r'\ealnn',
+                    r'\baln',
+                    r'\ealn',
+                    r'\beq',
+                    r'\eeq',  # the simplest, contained in others, must come last...
+                    ]
+        for command in commands:
+            tex_blocks[i] = tex_blocks[i].replace(command, '')
+        tex_blocks[i] = re.sub('&\s*=\s*&', ' &= ', tex_blocks[i])
+        # provide warnings for problematic environments
+        if '{alignat' in tex_blocks[i]:
+            print '\nWarning: the "alignat" environment will give errors in Sphinx:\n\n', tex_blocks[i], '\n'
+    
+        
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
 
     for key in defs:
@@ -155,28 +201,6 @@ def sphinx_code(filestr, format):
     filestr = re.sub(r'!bt *\n', '\n.. math::\n\n', filestr)
     filestr = re.sub(r'!et *\n', '\n\n', filestr)
 
-    # fix latex constructions that do not work with sphinx math
-    commands = [r'\begin{equation}',
-                r'\end{equation}',
-                r'\begin{eqnarray}',
-                r'\end{eqnarray}',
-                r'\begin{eqnarray*}',
-                r'\end{eqnarray*}',
-                r'\begin{align}',
-                r'\end{align}',
-                r'\[',
-                r'\]',
-                # some common abbreviations (newcommands):
-                r'\beqan',
-                r'\eeqan',
-                r'\beqa',
-                r'\eeqa',
-                r'\beq',
-                r'\eeq',  # the simplest, contained in others, must come last...
-                ]
-    for command in commands:
-        filestr = filestr.replace(command, '')
-    filestr = re.sub('&\s*=\s*&', ' &= ', filestr)
     return filestr
 
 def sphinx_ref_and_label(section_label2title, format, filestr):
@@ -220,14 +244,14 @@ def sphinx_index_bib(filestr, index, citations, bibfile):
     filestr = rst_bib(filestr, citations, bibfile)
 
     for word in index:
-        word = word.replace('`', '')  # drop verbatim in index
+        word2 = word.replace('`', '')  # drop verbatim in index
         if not '!' in word:
             filestr = filestr.replace('idx{%s}' % word, 
-                                      '\n.. index:: ' + word + '\n')
+                                      '\n.. index:: ' + word2 + '\n')
         else:
-            word2 = word.replace('!', '; ')
+            word3 = word2.replace('!', '; ')
             filestr = filestr.replace('idx{%s}' % word,
-                                      '\n.. index::\n   pair: ' + word2 + '\n')
+                                      '\n.. index::\n   pair: ' + word3 + '\n')
     return filestr
 
 

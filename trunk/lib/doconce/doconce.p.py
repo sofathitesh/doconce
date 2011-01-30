@@ -49,6 +49,162 @@ def debugpr(out):
         _log.close()
 
 
+def syntax_check(filestr, format):
+
+    pattern = re.compile(r'^.+![eb][ct]', re.MULTILINE)
+    m = pattern.search(filestr)
+    if m:
+        print '\nSyntax error: !bc/!bt/!ec/!et does not start at the beginning of the line'
+        print filestr[m.start():m.start()+80]
+        sys.exit(1)
+    
+    pattern = r'[^\n:.?!, ]\s*?^!b[ct]'
+    m = re.search(pattern, filestr)
+    if m:
+        print '\nSyntax error: Line before !bc/!bt blocks ends with wrong character:'
+        print filestr[m.start():m.start()+80]
+        sys.exit(1)
+    
+    pattern = r'[^a-zA-Z0-9)"`.*_}][\n:.?!, ]\s*?^!b[ct]'
+    m = re.search(pattern, filestr)
+    if m:
+        print '\nSyntax error: Line before !bc/!bt blocks has wrong character right before the final one (must be in [a-zA-Z0-9)"`.*_}]:'
+        print filestr[m.start():m.start()+80]
+        sys.exit(1)
+    
+    matches = re.findall(r'\\cite\{.+?\}', filestr)
+    if matches:
+        print r'\nSyntax error: found \cite{...} (should be no backslash!)'
+        print matches
+        sys.exit(1)
+
+    matches = re.findall(r'\\idx\{.+?\}', filestr)
+    if matches:
+        print r'\nSyntax error: found \idx{...} (should be no backslash!)'
+        print matches
+        sys.exit(1)
+
+    matches = re.findall(r'\\index\{.+?\}', filestr)
+    if matches:
+        print r'\nSyntax error: found \index{...} (should be idx{...}!)'
+        print matches
+        sys.exit(1)
+
+    # outside !bt/!et environments there should only
+    # be ref and label *without* the latex-ish backslash
+    matches = re.findall(r'\\label\{.+?\}', filestr)
+    if matches:
+        print r'\nSyntax error: found \label{...} (should be no backslash!)'
+        print matches
+        sys.exit(1)
+    matches = re.findall(r'\\ref\{.+?\}', filestr)
+    if matches:
+        print r'\nSyntax error: found \ref{...} (should be no backslash!)'
+        print matches
+        sys.exit(1)
+
+    # consistency check between label{} and ref{}:
+    # (does not work well without labels from the !bt environments)
+    """
+    labels = re.findall(r'label\{(.+?)\}', filestr)
+    refs = re.findall(r'ref\{(.+?)\}', filestr)
+    for ref in refs:
+        if not ref in labels:
+            print '...ref{%s} has no corresponding label{%s} (within this file)' % \
+                (ref, ref)
+    """
+
+    # Double quotes and not double single quotes in plain text:
+    if "``" in filestr:
+        print '''\nSyntax error: Double back-quotes `` found in file - should be "'''
+        sys.exit(1)
+    if "''" in filestr:
+        print '''\nSyntaxerror: Double forward-quotes '' found in file - should be "'''
+        sys.exit(1)
+
+    commands = [
+        'begin{equation}',
+        'end{equation}',
+        'begin{equation*}',
+        'end{equation*}',
+        'begin{eqnarray}',
+        'end{eqnarray}',
+        'begin{eqnarray*}',
+        'end{eqnarray*}',
+        'begin{align}',
+        'end{align}',
+        'begin{align*}',
+        'end{align*}',
+        'begin{multline}',
+        'end{multline}',
+        'begin{multline*}',
+        'end{multline*}',
+        'begin{split}',
+        'end{split}',
+        'begin{gather}',
+        'end{gather}',
+        'begin{gather*}',
+        'end{gather*}',
+        # some common abbreviations (newcommands):
+        'beqan',
+        'eeqan',
+        'beqa',
+        'eeqa',
+        'balnn',
+        'ealnn',
+        'baln',
+        'ealn',
+        'beq',
+        'eeq',  # the simplest, contained in others, must come last...
+        ]
+    lines = filestr.splitlines()
+    for i in range(len(lines)):
+        for c in commands:
+            if c[0] == 'b':
+                if c in lines[i] or r'\[' in lines[i]:
+                    # begin math, do we have !bt at the line before?
+                    if not lines[i-1].startswith('!bt'):
+                        print '\nSyntax error: forgot to precede math (%s) by !bt:' % c
+                        print lines[i-1]
+                        print lines[i]
+                        print lines[i+1]
+                        sys.exit(1)
+            elif c[0] == 'e':
+                # actually, the end part is never reached, because
+                # if the begin part is missing, program stops, and
+                # if the begin part is there, the whole block, incl
+                # an erroneous end part, is removed when this syntax
+                # check is performed...
+                pass
+            """
+                if c in lines[i] or r'\]' in lines[i]:
+                    # end math, do we have !et at the line after?
+                    if not lines[i+1].startswith('!et'):
+                        print '\nSyntax error: forgot to proceed math (%s) by !et:' % c
+                        print lines[i-1]
+                        print lines[i]
+                        print lines[i+1]
+                        sys.exit(1)
+            """
+    pattern = r'__[A-Za-z0-9,:` ]+__\.'
+    matches = re.findall(pattern, filestr)
+    if matches:
+        print 'Syntax error: Wrong paragraphs'
+        print matches
+        sys.exit(1)
+    
+    pattern = r'__[A-Za-z0-9,:` ]+[^.]__'
+    matches = re.findall(pattern, filestr)
+    if matches:
+        print 'Warning: Missing period after paragraph heading'
+        print matches
+    
+    pattern = r'idx\{[^}]*?\\_[^}]*?\}'
+    matches = re.findall(pattern, filestr)
+    if matches:
+        print 'Warning: Backslash before underscore in idx'
+        print matches
+    
 def make_one_line_paragraphs(filestr, format):
     # THIS FUNCTION DOES NOT WORK WELL - it's difficult to make
     # one-line paragraphs...
@@ -466,11 +622,10 @@ def handle_figures(filestr, format):
                             filestr = filestr.replace(f, newfile)
                             break  # jump out of inner e loop
                 else:  # right file exists:
-                    print '....ok, ', newfile, 'exists'
+                    #print '....ok, ', newfile, 'exists'
                     filestr = filestr.replace(f, newfile)
                     break
                 
-
     # replace FIGURE... by format specific syntax:
     try:
         replacement = INLINE_TAGS_SUBST[format]['figure']
@@ -481,30 +636,6 @@ def handle_figures(filestr, format):
     
 
 def handle_cross_referencing(filestr, format):
-    # 0. syntax check (outside !bt/!et environments there should only
-    # be ref and label *without* the latex-ish backslash
-    matches = re.findall(r'\\label\{.+?\}', filestr)
-    if matches:
-        print r'Syntax error: found \label{...} (should be no backslash!)'
-        print matches
-        sys.exit(1)
-    matches = re.findall(r'\\ref\{.+?\}', filestr)
-    if matches:
-        print r'Syntax error: found \ref{...} (should be no backslash!)'
-        print matches
-        sys.exit(1)
-
-    # consistency check between label{} and ref{}:
-    # (does not work well without labels from the !bt environments)
-    """
-    labels = re.findall(r'label\{(.+?)\}', filestr)
-    refs = re.findall(r'ref\{(.+?)\}', filestr)
-    for ref in refs:
-        if not ref in labels:
-            print '...ref{%s} has no corresponding label{%s} (within this file)' % \
-                (ref, ref)
-    """
-
     # 1. find all section/chapter titles and corresponding labels
     #section_pattern = r'(_+|=+)([A-Za-z !.,;0-9]+)(_+|=+)\s*label\{(.+?)\}'
     section_pattern = r'(_{3,7}|={3,7})(.+?)(_{3,7}|={3,7})\s*label\{(.+?)\}'
@@ -523,25 +654,6 @@ def handle_cross_referencing(filestr, format):
 
 def handle_index_and_bib(filestr, format, has_title):
     """Process idx{...} and cite{...} instructions."""
-    # first deal with possible wrong (LaTeX-inspired) syntax:
-    matches = re.findall(r'\\cite\{.+?\}', filestr)
-    if matches:
-        print r'Syntax error: found \cite{...} (should be no backslash!)'
-        print matches
-        sys.exit(1)
-
-    matches = re.findall(r'\\idx\{.+?\}', filestr)
-    if matches:
-        print r'Syntax error: found \idx{...} (should be no backslash!)'
-        print matches
-        sys.exit(1)
-
-    matches = re.findall(r'\\index\{.+?\}', filestr)
-    if matches:
-        print r'Syntax error: found \index{...} (should be idx{...}!)'
-        print matches
-        sys.exit(1)
-
     index = {}  # index[word] = lineno
     try:
         from collections import OrderedDict   # v2.7 and v3.1
@@ -820,6 +932,15 @@ def doconce2format(in_filename, format, out_filename):
         for i in range(len(code_blocks)):
             code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
                                     '&lt;\g<2>&gt;', code_blocks[i])
+        # This special character transformation is easier done
+        # with encoding="utf-8" in the first line in the HTML file:
+        # (but we do it explicitly to make it robust)
+        filestr = html.latin2html(filestr)
+    elif format == 'LaTeX':  # fix
+        # labels inside tex envirs must have backslash \label:
+        for i in range(len(tex_blocks)):
+            tex_blocks[i] = re.sub(r'([^\\])label', r'\g<1>\\label',
+                                    tex_blocks[i])
         # this transformation is easier done with encoding="utf-8"
         # in the first line in the HTML file:
         filestr = html.latin2html(filestr)
@@ -837,6 +958,8 @@ def doconce2format(in_filename, format, out_filename):
 
     if remove_inline_comments:
         filestr = subst_away_inline_comments(filestr)
+
+    syntax_check(filestr, format)
 
     # 3. step: deal with figures
     filestr = handle_figures(filestr, format)

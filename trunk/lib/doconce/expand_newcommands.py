@@ -9,7 +9,8 @@ import shutil, re, sys, os
 def process_newcommand(line):
     line = line.replace('renewcommand', 'newcommand') # make syntax uniform
     # newcommand without arguments:
-    pattern1 = r'\\newcommand\{(.+)\}\s*\{(.+)\}'
+    pattern1 = r'\\newcommand\{(.+)\}\s*\{(.*)\}'
+    found = False
     m = re.search(pattern1, line)
     if m:
         # for a newcommand \x we can have many appearances:
@@ -21,9 +22,10 @@ def process_newcommand(line):
         # could also use a lookahead pattern: (?=[^A-Za-z]), not tested
         #pattern = m.group(1) + r'(?=[^A-Za-z])'
         #replacement = m.group(2)
+        found = True
 
     # newcommand with arguments:
-    pattern2 = r'\\newcommand\{(.+)\}\[(\d)\]\{(.+)\}'
+    pattern2 = r'\\newcommand\{(.+)\}\[(\d)\]\{(.*)\}'
     m = re.search(pattern2, line)
     if m:
         nargs = int(m.group(2))
@@ -32,12 +34,14 @@ def process_newcommand(line):
         replacement = m.group(3)
         for i in range(1, nargs+1):
             replacement = replacement.replace('#%d' % i, r'\g<%d>' % i)
+        found = True
 
-    # fix \x, \b, \r... etc in strings
-    from latex import fix_latex_command_regex as fix
-    pattern = fix(pattern, 'match')
-    replacement = fix(replacement, 'replacement')
-    return pattern, replacement
+    if found:
+        # fix \x, \b, \r... etc in strings
+        from latex import fix_latex_command_regex as fix
+        pattern = fix(pattern, 'match')
+        replacement = fix(replacement, 'replacement')
+        return pattern, replacement
 
 def parse_newcommands(filename):
     f = open(filename, 'r')

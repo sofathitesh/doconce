@@ -742,6 +742,8 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 !ec
 Everything related to the index simply becomes invisible in 
 plain text, Epytext, StructuredText, HTML, and Wiki formats.
+Note: `idx` commands should be inserted outside paragraphs, not in between
+the text as this may cause some strange behaviour of the formatting.
 
 Literature citations also follow a LaTeX-inspired style:
 !bc
@@ -1029,16 +1031,30 @@ debug years after they are created. The main developer of Doconce has
 hardly any time to work on debugging the code, but the software works
 well for his diverse applications of it.
 
-__Code Block Errors in reST.__
+__Code or TeX Block Errors in reST.__
 Sometimes reStructuredText (reST) reports an "Unexpected indentation"
 at the beginning of a code block. If you see a `!bc`, which should
 have been removed by `doconce2format`, it is usually an error in the
-Doconce source. Check if the line before the code block ends in
-one colon (not two!), a question mark, an exclamation mark, a comma, a
-period, or just a newline/space after text. If not, make sure that
-the ending is among the mentioned. Then `!bc` will be replaced 
-and a double colon at the preceding line (which is the right way in
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then `!bc` will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
 reST to indicate a verbatim block of text).
+
+__Strange Errors Around Code or TeX Blocks in reST.__
+If `idx` commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+__Error Message "Undefined substitution..." from reSt.__
+This may happen if there is much inline math in the text. reSt cannot
+understand inline LaTeX commands and interprets them as illegal code.
+Just ignore these error messages.
 
 __The LaTeX File Does Not Compile.__ 
 If the problem is undefined control sequence involving

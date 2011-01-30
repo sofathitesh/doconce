@@ -28,8 +28,8 @@ def rst_figure(m):
     return result
 
 # these global patterns are used in st, epytext, plaintext as well:
-bc_regex_pattern = r'([a-zA-Z0-9)"`.])[\n:.?!, ]\s*?^!bc.*?$'
-bt_regex_pattern = r'([a-zA-Z0-9)"`.])[\n:.?!, ]\s*?^!bt.*?$'
+bc_regex_pattern = r'([a-zA-Z0-9)"`.*_}])[\n:.?!, ]\s*?^!bc.*?$'
+bt_regex_pattern = r'([a-zA-Z0-9)"`.*_}])[\n:.?!, ]\s*?^!bt.*?$'
 
 def rst_code(filestr, format):
     # In rst syntax, code blocks are typeset with :: (verbatim)
@@ -124,7 +124,13 @@ def rst_ref_and_label(section_label2title, format, filestr):
     # insert labels before all section headings: (not necessary, but ok)
     for label in section_label2title:
         title = section_label2title[label]
-        pattern = r'(_{3,7}|={3,7})(\s*%s\s*)(_{3,7}|={3,7})' % re.escape(title)  # title may contain ? () etc.
+        # Problem: one title can be common to many sections and different
+        # labels, making this first regex
+        #pattern = r'(_{3,7}|={3,7})(\s*%s\s*)(_{3,7}|={3,7})' % title
+        # lead to several rst labels for a title. The remedy is to
+        # title may contain ? () etc.
+        pattern = r'(_{3,7}|={3,7})(\s*%s\s*)(_{3,7}|={3,7})\s*label\{%s\}' \
+                  % (re.escape(title), label)
         replacement = '.. _%s:\n\n' % label + r'\g<1>\g<2>\g<3>'
         filestr, n = re.subn(pattern, replacement, filestr)
         if n == 0:
