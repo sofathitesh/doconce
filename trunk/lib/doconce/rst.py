@@ -121,20 +121,52 @@ def rst_ref_and_label(section_label2title, format, filestr):
     replacement = r'the chapter\g<1> ref{'
     filestr = re.sub(pattern, replacement, filestr)
 
-    # insert labels before all section headings: (not necessary, but ok)
+    # Deal with the problem of identical titles, which makes problem
+    # with non-unique links in reST: add a counter to the title
+    title2label = {}
+    for label in section_label2title:
+        title = section_label2title[label]
+        if title in title2label:
+            title2label[title].append(label)
+        else:
+            title2label[title] = [label]
+    problematic_titles = [title for title in title2label \
+                          if len(title2label[title]) > 1]
+    adjusted_titles = {}
+    for title in problematic_titles:
+        counter = 1
+        for label in title2label[title]:
+            # Add counter to non-unique titles (only for rst and sphinx)
+            adjusted_titles[(title,label)] = title + ' (%d)' % counter
+            counter += 1
+    print 'Problematic titles:', problematic_titles
+    print 'Adjusted:', adjusted_titles
+            
+    # Insert labels before all section headings: (not necessary, but ok)
     for label in section_label2title:
         title = section_label2title[label]
         # Problem: one title can be common to many sections and different
         # labels, making this first regex
         #pattern = r'(_{3,7}|={3,7})(\s*%s\s*)(_{3,7}|={3,7})' % title
-        # lead to several rst labels for a title. The remedy is to
-        # title may contain ? () etc.
+        # lead to several rst labels for a title. The remedy consists of
+        # two steps: a pattern regex that matches the label too, and
+        # adding a counter to titles with the same name (done above)
         pattern = r'(_{3,7}|={3,7})(\s*%s\s*)(_{3,7}|={3,7})\s*label\{%s\}' \
                   % (re.escape(title), label)
-        replacement = '.. _%s:\n\n' % label + r'\g<1>\g<2>\g<3>'
+        # (title may contain ? () etc., that's why we take re.escape)
+        try:
+            new_title = adjusted_titles[(title,label)]
+            print 'found an adjusted title:', new_title
+        except KeyError:
+            new_title = title
+        replacement = '.. _%s:\n\n' % label + r'\g<1> %s \g<3>' % \
+                      new_title
         filestr, n = re.subn(pattern, replacement, filestr)
         if n == 0:
             raise Exception('problem with substituting "%s"' % title)
+    # Update label2title mapping with new titles
+    for title, label in adjusted_titles:
+        section_label2title[label] = adjusted_titles[(title,label)]
 
     # remove label{...} from output
     #filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
