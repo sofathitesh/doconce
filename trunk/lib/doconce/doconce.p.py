@@ -189,7 +189,7 @@ def syntax_check(filestr, format):
     pattern = r'__[A-Za-z0-9,:` ]+__\.'
     matches = re.findall(pattern, filestr)
     if matches:
-        print 'Syntax error: Wrong paragraphs'
+        print '\nSyntax error: Wrong paragraphs'
         print matches
         sys.exit(1)
     
@@ -202,8 +202,41 @@ def syntax_check(filestr, format):
     pattern = r'idx\{[^}]*?\\_[^}]*?\}'
     matches = re.findall(pattern, filestr)
     if matches:
-        print 'Warning: Backslash before underscore in idx'
+        print 'Warning: Backslash before underscore(s) in idx'
         print matches
+
+    # Figure without comman between filename and options? Or initial spaces?
+    pattern = r'^FIGURE:\s*\[[^,\]]+ +[^\]]*\]'
+    cpattern = re.compile(pattern, re.MULTILINE)
+    matches = cpattern.findall(filestr)
+    if matches:
+        print '\nSyntax error in FIGURE specification'\
+              '\nmissing comma after filename, before options'
+        print matches
+        sys.exit(1)
+
+    # Keywords at the beginning of the lines:
+    keywords = 'AUTHOR', 'TITLE', 'DATE', 'FIGURE', 'BIBFILE'
+    for kw in keywords:
+        pattern = '^ +' + kw
+        cpattern = re.compile(pattern, re.MULTILINE)
+        matches = cpattern.findall(filestr)
+        if matches:
+            print '\nSyntax error in %s specification'\
+                  '\ninitial space(s) online before keyword' % kw
+            print matches
+            sys.exit(1)
+    
+    # Keywords without colon:
+    for kw in keywords:
+        pattern = '^' + kw + ' +'
+        cpattern = re.compile(pattern, re.MULTILINE)
+        matches = cpattern.findall(filestr)
+        if matches:
+            print '\nSyntax error in %s: specification'\
+                  '\nmissing colon after keyword' % kw
+            print matches
+            sys.exit(1)
     
 def make_one_line_paragraphs(filestr, format):
     # THIS FUNCTION DOES NOT WORK WELL - it's difficult to make
