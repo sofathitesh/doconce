@@ -6,13 +6,28 @@ from common import remove_code_and_tex, insert_code_and_tex, indent_lines, \
 def rst_figure(m):
     result = ''
     # m is a MatchObject
+
     caption = m.group('caption').strip()
+
+    # Stubstitute Doconce label by rst label in caption
+    # (also, remove final period in caption since caption is used as hyperlink
+    # text to figures).
+
     m_label = re.search(r'label\{(.+?)\}', caption)
     if m_label:
         label = m_label.group(1)
         result += '\n.. _%s:\n' % label
-        # write label into caption:
+        # remove . at the end of the caption text
+        parts = caption.split('label')
+        parts[0] = parts[0].rstrip()
+        if parts[0][-1] == '.':
+            parts[0] = parts[0][:-1]
+        caption = '  label'.join(parts)
         caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
+    else:
+        if caption[-1] == '.':
+            caption = caption[:-1]          
+
 
     filename = m.group('filename')
     if not os.path.isfile(filename):
@@ -24,6 +39,10 @@ def rst_figure(m):
         info = [s.split('=') for s in opts.split()]
         rst_info = ['   :%s: %s' % (option, value)  for option, value in info]
         result += '\n'.join(rst_info)
+    # remove final period in caption since caption is used as hyperlink
+    # text to figures
+    if caption[-1] == '.':
+        caption = caption[:-1]  
     result += '\n\n   ' + caption + '\n'
     return result
 
@@ -120,6 +139,11 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
     pattern = r'[Cc]hapter(s?)\s+ref\{'
     replacement = r'the chapter\g<1> ref{'
     filestr = re.sub(pattern, replacement, filestr)
+    # Need special adjustment to handle start of sentence (capital) or not.
+    pattern = r'([.?!])\s+the (sections?|captions?)\s+ref'
+    replacement = r'\g<1> The \g<2> ref'
+    filestr = re.sub(pattern, replacement, filestr)
+    
 
     # Deal with the problem of identical titles, which makes problem
     # with non-unique links in reST: add a counter to the title

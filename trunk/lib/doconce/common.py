@@ -195,7 +195,7 @@ INLINE_TAGS = {
 
     # _underscore before and after signifies bold_
     'bold':
-    r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
+    r'%s_(?P<subst>[^ `][^\]_`]*)_%s' % \
     (inline_tag_begin, inline_tag_end),
 
     # cite{labelname}

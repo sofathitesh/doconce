@@ -744,6 +744,10 @@ Everything related to the index simply becomes invisible in
 plain text, Epytext, StructuredText, HTML, and Wiki formats.
 Note: `idx` commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
+Index items are naturally placed right after section headings, before the
+text begins. Index items related to the heading of a paragraph, however,
+should be placed above the paragraph heading and not in between the
+heading and the text.
 
 Literature citations also follow a LaTeX-inspired style:
 !bc
