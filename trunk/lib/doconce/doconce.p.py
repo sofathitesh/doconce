@@ -50,7 +50,7 @@ def supported_format_names():
 
 def syntax_check(filestr, format):
 
-    pattern = re.compile(r'^.+![eb][ct]', re.MULTILINE)
+    pattern = re.compile(r'^ +![eb][ct]', re.MULTILINE)
     m = pattern.search(filestr)
     if m:
         print '\nSyntax error: !bc/!bt/!ec/!et does not start at the beginning of the line'

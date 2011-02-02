@@ -16,23 +16,14 @@ Doconce Description
 What Is Doconce?
 ================
 
-
 .. index::
    pair: doconce; short explanation
 
 
 Doconce is two things:
 
- 1. Doconce is a working strategy for documenting software in a single
-    place and avoiding duplication of information. The slogan is:
-    "Write once, include anywhere". This requires that what you write
-    can be transformed to many different formats for a variety of
-    documents (manuals, tutorials, books, doc strings, source code
-    documentation, etc.).
-
- 2. Doconce is a simple and minimally tagged markup language that can
-    be used for the above purpose. That is, the Doconce format look
-    like ordinary ASCII text (much like what you would use in an
+ 1. Doconce is a very simple and minimally tagged markup language that
+    look like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
     including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
@@ -40,26 +31,31 @@ Doconce is two things:
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
     latter to RTF and MS Word.
 
-The first point may be of interest even if you adopt a different
-markup language than Doconce, e.g., reStructuredText or Sphinx.
+ 2. Doconce is a working strategy for never duplicating information.
+    Text is written in a single place and then transformed to
+    a number of different destinations of diverse type (software
+    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
+    The Doconce markup language support this working strategy.
+    The slogan is: "Write once, include anywhere".
 
-So why not just use reStructuredText or Sphinx? Because Doconce
+A wide range of markup languages exist. For example, reStructuredText and Sphinx
+have recently become popular. So why another one?
 
-  * can convert to plain *untagged* text, 
-    more desirable for computer programs and email, 
+  * Doconce can convert to plain *untagged* text, 
+    more desirable for computer programs and email.
 
-  * has less cluttered tagging of text,
+  * Doconce has less cluttered tagging of text.
 
-  * has better support for copying in computer code from other files,
+  * Doconce has better support for copying in parts of computer code,
+    say in examples, directly from the source code files.
 
-  * has stronger support for mathematical typesetting,
+  * Doconce has stronger support for mathematical typesetting, and
+    has many features for being integrated with (big) LaTeX projects.
 
-  * works better as a complete or partial source for large LaTeX 
-    documents (reports and books).
-
-Anyway, after having written an initial document in Doconce, you may
-convert to reStructuredText or Sphinx and work with that version for
-the future.
+  * Doconce is almost self-explanatory and is a handy starting point
+    for generating documents in more complicated markup languages, such
+    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or Wiki document.
 
 Doconce was particularly written for the following sample applications:
 
@@ -70,15 +66,22 @@ Doconce was particularly written for the following sample applications:
   * Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
-    googlecode.com, and as LaTeX integrated in, e.g., a master's thesis.
+    googlecode.com, and as LaTeX integrated in, e.g., a thesis.
 
   * Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
     MS Word documents or in wikis.
 
+Disclaimer: Doconce is a simple tool, largely based on interpreting
+and handling text through regular expressions. The possibility for
+tweaking the layout is obviously limited since the text can go to
+all sorts of sophisticated markup languages. Moreover, because of
+limitations of regular expressions, some formatting may face problems 
+when transformed to other formats.
+
 You can jump to the section :ref:`doconce:strategy` to see a recipe for
-how to use Doconce, but first some more motivation for
-the problem which Doconce tries to solve is presented.
+how to use Doconce, unless you need some more motivation for
+the problem which Doconce tries to solve.
 
 
 Motivation: Problems with Documenting Software
@@ -760,7 +763,13 @@ Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
 sections, subsections, paragraphs., figures, etc.
 
-idx{`TITLE` keyword} idx{`AUTHOR` keyword} idx{`DATE` keyword}
+
+.. index:: TITLE keyword
+
+.. index:: AUTHOR keyword
+
+.. index:: DATE keyword
+
 
 Lines starting with ``TITLE:``, ``AUTHOR:``, and ``DATE:`` are optional and used
 to identify a title of the document, the authors, and the date. The
@@ -897,7 +906,7 @@ a suitable format (say ``mypic.png`` for HTML output).
 .. figure:: figs/dinoimpact.gif
    :width: 400
 
-   It can't get worse than this.... 
+   It can't get worse than this...  
 
 
 
@@ -910,7 +919,6 @@ the section :ref:`sec:verbatim:blocks` below.
 
 Inline Tagging
 --------------
-
 
 .. index:: inline tagging
 
@@ -1118,6 +1126,12 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 
 Everything related to the index simply becomes invisible in 
 plain text, Epytext, StructuredText, HTML, and Wiki formats.
+Note: ``idx`` commands should be inserted outside paragraphs, not in between
+the text as this may cause some strange behaviour of the formatting.
+Index items are naturally placed right after section headings, before the
+text begins. Index items related to the heading of a paragraph, however,
+should be placed above the paragraph heading and not in between the
+heading and the text.
 
 Literature citations also follow a LaTeX-inspired style:
 
@@ -1429,8 +1443,8 @@ expressions).
 .. code-block:: py
 
 
-        \newcommand{}{}
-        \newcommand{}{}
+        \newcommand{\beqa}{\begin{eqnarray}}
+        \newcommand{\eeqa}{\end{eqnarray}}
         \newcommand{\ep}{\thinspace . }
         \newcommand{\uvec}{\vec u}
         \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
@@ -1455,10 +1469,10 @@ The LaTeX block
 .. code-block:: py
 
 
-        
-        \x\cdot\normalvec  &=  0,\label{my:eq1}\\
-        \Ddt{\uvec}  &=  \Q \ep\label{my:eq2}
-        
+        \beqa
+        \x\cdot\normalvec &=& 0,\label{my:eq1}\\
+        \Ddt{\uvec} &=& \Q \ep\label{my:eq2}
+        \eeqa
 
 will then be rendered to
 
@@ -1495,15 +1509,27 @@ debug years after they are created. The main developer of Doconce has
 hardly any time to work on debugging the code, but the software works
 well for his diverse applications of it.
 
-*Code Block Errors in reST.* Sometimes reStructuredText (reST) reports an "Unexpected indentation"
+*Code or TeX Block Errors in reST.* Sometimes reStructuredText (reST) reports an "Unexpected indentation"
 at the beginning of a code block. If you see a ``!bc``, which should
 have been removed by ``doconce2format``, it is usually an error in the
-Doconce source. Check if the line before the code block ends in
-one colon (not two!), a question mark, an exclamation mark, a comma, a
-period, or just a newline/space after text. If not, make sure that
-the ending is among the mentioned. Then ``!bc`` will be replaced 
-and a double colon at the preceding line (which is the right way in
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then ``!bc`` will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
 reST to indicate a verbatim block of text).
+
+*Strange Errors Around Code or TeX Blocks in reST.* If ``idx`` commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+*Error Message "Undefined substitution..." from reSt.* This may happen if there is much inline math in the text. reSt cannot
+understand inline LaTeX commands and interprets them as illegal code.
+Just ignore these error messages.
 
 *The LaTeX File Does Not Compile.* If the problem is undefined control sequence involving
 

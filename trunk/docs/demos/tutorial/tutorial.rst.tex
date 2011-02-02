@@ -63,7 +63,7 @@ to choose the typesetting format? That is, to choose between plain
 (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML,
 reStructuredText, Sphinx, XML, etc.  Would it be convenient to
 start with some very simple text-like format that easily converts
-to the formats listed above, and at some later stage eventually go
+to the formats listed above, and then at some later stage eventually go
 with a particular format?
 
 \item Do you find it problematic that you have the same information
@@ -96,23 +96,49 @@ Doconce is two things:
 \setlength{\rightmargin}{\leftmargin}
 }
 
-\item Doconce is a working strategy for documenting software in a single
-place and avoiding duplication of information. The slogan is:
-``Write once, include anywhere''. This requires that what you write
-can be transformed to many different formats for a variety of
-documents (manuals, tutorials, books, doc strings, source code
-documentation, etc.).
-
-\item Doconce is a simple and minimally tagged markup language that can
-be used for the above purpose. That is, the Doconce format look
-like ordinary ASCII text (much like what you would use in an
+\item Doconce is a very simple and minimally tagged markup language that
+look like ordinary ASCII text (much like what you would use in an
 email), but the text can be transformed to numerous other formats,
 including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
 Epytext, and also plain text (where non-obvious formatting/tags are
 removed for clear reading in, e.g., emails). From reStructuredText
 you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
 latter to RTF and MS Word.
+
+\item Doconce is a working strategy for never duplicating information.
+Text is written in a single place and then transformed to
+a number of different destinations of diverse type (software
+source code, manuals, tutorials, books, wikis, memos, emails, etc.).
+The Doconce markup language support this working strategy.
+The slogan is: ``Write once, include anywhere''.
 \end{list}
+
+\end{quote}
+
+A wide range of markup languages exist. For example, reStructuredText and Sphinx
+have recently become popular. So why another one?
+%
+\begin{quote}
+%
+\begin{itemize}
+
+\item Doconce can convert to plain \emph{untagged} text,
+more desirable for computer programs and email.
+
+\item Doconce has less cluttered tagging of text.
+
+\item Doconce has better support for copying in parts of computer code,
+say in examples, directly from the source code files.
+
+\item Doconce has stronger support for mathematical typesetting, and
+has many features for being integrated with (big) LaTeX projects.
+
+\item Doconce is almost self-explanatory and is a handy starting point
+for generating documents in more complicated markup languages, such
+as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
+is just to make the initial versions of a Sphinx or Wiki document.
+
+\end{itemize}
 
 \end{quote}
 
@@ -129,7 +155,7 @@ contexts in other formats, including plain HTML, Sphinx, or MS Word.
 \item Software documentation, primarily Python doc strings, which one wants
 to appear as plain untagged text for viewing in Pydoc, as reStructuredText
 for use with Sphinx, as wiki text when publishing the software at
-googlecode.com, and as LaTeX integrated in, e.g., a master's thesis.
+googlecode.com, and as LaTeX integrated in, e.g., a thesis.
 
 \item Quick memos, which start as plain text in email, then some small
 amount of Doconce tagging is added, before the memos can appear as
@@ -138,6 +164,13 @@ MS Word documents or in wikis.
 \end{itemize}
 
 \end{quote}
+
+Disclaimer: Doconce is a simple tool, largely based on interpreting
+and handling text through regular expressions. The possibility for
+tweaking the layout is obviously limited since the text can go to
+all sorts of sophisticated markup languages. Moreover, because of
+limitations of regular expressions, some formatting may face problems
+when transformed to other formats.
 
 
 %___________________________________________________________________________
