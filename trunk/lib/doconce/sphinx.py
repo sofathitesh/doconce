@@ -68,15 +68,30 @@ legal_pygments_languages = [
 def sphinx_figure(m):
     result = ''
     # m is a MatchObject
+
     caption = m.group('caption').strip()
+
+    # Stubstitute Doconce label by rst label in caption
+    # (also, remove final period in caption since caption is used as hyperlink
+    # text to figures).
+
     m_label = re.search(r'label\{(.+?)\}', caption)
     if m_label:
         label = m_label.group(1)
         result += '\n.. _%s:\n' % label
-        # here we do not write label into caption (as in rst.py) 
-        # since we just want to remove the whole label as part 
-        # of the caption (done when handling ref and label)
-
+        # remove . at the end of the caption text
+        parts = caption.split('label')
+        parts[0] = parts[0].rstrip()
+        if parts[0][-1] == '.':
+            parts[0] = parts[0][:-1]
+        caption = '  label'.join(parts)
+        # contrary to rst_figure, we do not write label into caption
+        # since we just want to remove the whole label as part of
+        # the caption (done when handling ref and label)
+    else:
+        if caption[-1] == '.':
+            caption = caption[:-1]          
+    
     filename = m.group('filename')
     #stem = os.path.splitext(filename)[0]
     #result += '\n.. figure:: ' + stem + '.*\n'  # utilize flexibility  # does not work yet
@@ -87,6 +102,7 @@ def sphinx_figure(m):
         rst_info = ['   :%s: %s' % (option, value)  for option, value in info]
         result += '\n'.join(rst_info)
     result += '\n\n   ' + caption + '\n'
+    #print 'sphinx figure: caption=\n', caption, '\nresult:\n', result
     return result
 
 from latex import fix_latex_command_regex as fix_latex
