@@ -3,10 +3,10 @@
 %% http://code.google.com/p/doconce/
 %%
 \documentclass{article}
-\usepackage{hyperref,relsize,epsfig,makeidx}
+\usepackage{hyperref,relsize,epsfig,makeidx,amsmath}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
-\usepackage{minted}  % requires latex -shell-escape (for Minted_* envirs)
+\usepackage{minted}  % requires latex -shell-escape (for Minted_* ptex2tex envirs)
 
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
@@ -16,8 +16,8 @@
 
 \begin{document}
 
-\input{newcommands_replace.tex}
-\input{newcommands_keep.tex}
+\input{newcommands_replace}
+\input{newcommands_keep}
 
 
 
@@ -60,49 +60,46 @@ September 10, 2010
 Doconce is two things:
 
 \begin{enumerate}
- \item Doconce is a working strategy for documenting software in a single
-    place and avoiding duplication of information. The slogan is:
-    "Write once, include anywhere". This requires that what you write
-    can be transformed to many different formats for a variety of
-    documents (manuals, tutorials, books, doc strings, source code
-    documentation, etc.).
-
- \item Doconce is a simple and minimally tagged markup language that can
-    be used for the above purpose. That is, the Doconce format look
-    like ordinary ASCII text (much like what you would use in an
+ \item Doconce is a very simple and minimally tagged markup language that
+    look like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
     including HTML, Wiki, {\LaTeX}, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, {\LaTeX}, PDF, OpenOffice, and from the
     latter to RTF and MS Word.
+
+ \item Doconce is a working strategy for never duplicating information.
+    Text is written in a single place and then transformed to
+    a number of different destinations of diverse type (software
+    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
+    The Doconce markup language support this working strategy.
+    The slogan is: "Write once, include anywhere".
 \end{enumerate}
 
 \noindent
-The first point may be of interest even if you adopt a different
-markup language than Doconce, e.g., reStructuredText or Sphinx.
-
-So why not just use reStructuredText or Sphinx? Because Doconce
+A wide range of markup languages exist. For example, reStructuredText and Sphinx
+have recently become popular. So why another one?
 
 \begin{itemize}
-  \item can convert to plain \emph{untagged} text, 
-    more desirable for computer programs and email, 
+  \item Doconce can convert to plain \emph{untagged} text, 
+    more desirable for computer programs and email.
 
-  \item has less cluttered tagging of text,
+  \item Doconce has less cluttered tagging of text.
 
-  \item has better support for copying in computer code from other files,
+  \item Doconce has better support for copying in parts of computer code,
+    say in examples, directly from the source code files.
 
-  \item has stronger support for mathematical typesetting,
+  \item Doconce has stronger support for mathematical typesetting, and
+    has many features for being integrated with (big) {\LaTeX} projects.
 
-  \item works better as a complete or partial source for large {\LaTeX} 
-    documents (reports and books).
+  \item Doconce is almost self-explanatory and is a handy starting point
+    for generating documents in more complicated markup languages, such
+    as Google Wiki, {\LaTeX}, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or Wiki document.
 \end{itemize}
 
 \noindent
-Anyway, after having written an initial document in Doconce, you may
-convert to reStructuredText or Sphinx and work with that version for
-the future.
-
 Doconce was particularly written for the following sample applications:
 
 \begin{itemize}
@@ -113,7 +110,7 @@ Doconce was particularly written for the following sample applications:
   \item Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
-    googlecode.com, and as {\LaTeX} integrated in, e.g., a master's thesis.
+    googlecode.com, and as {\LaTeX} integrated in, e.g., a thesis.
 
   \item Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
@@ -121,9 +118,16 @@ Doconce was particularly written for the following sample applications:
 \end{itemize}
 
 \noindent
+Disclaimer: Doconce is a simple tool, largely based on interpreting
+and handling text through regular expressions. The possibility for
+tweaking the layout is obviously limited since the text can go to
+all sorts of sophisticated markup languages. Moreover, because of
+limitations of regular expressions, some formatting may face problems 
+when transformed to other formats.
+
 You can jump to Section~\ref{doconce:strategy} to see a recipe for
-how to use Doconce, but first some more motivation for
-the problem which Doconce tries to solve is presented.
+how to use Doconce, unless you need some more motivation for
+the problem which Doconce tries to solve.
 
 
 \section{Motivation: Problems with Documenting Software}
@@ -807,7 +811,7 @@ Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
 sections, subsections, paragraphs., figures, etc.
 
-\index{TITLE@{\rm\smaller\texttt{TITLE}} keyword} \index{AUTHOR@{\rm\smaller\texttt{AUTHOR}} keyword} \index{DATE@{\rm\smaller\texttt{DATE}} keyword}
+\index{TITLE@{\rm\texttt{TITLE}} keyword} \index{AUTHOR@{\rm\texttt{AUTHOR}} keyword} \index{DATE@{\rm\texttt{DATE}} keyword}
 
 Lines starting with {\fontsize{10pt}{10pt}\verb!TITLE:!}, {\fontsize{10pt}{10pt}\verb!AUTHOR:!}, and {\fontsize{10pt}{10pt}\verb!DATE:!} are optional and used
 to identify a title of the document, the authors, and the date. The
@@ -933,7 +937,7 @@ a suitable format (say {\fontsize{10pt}{10pt}\verb!mypic.png!} for HTML output).
 
 
 \begin{figure}
-  \centerline{\includegraphics[width=\linewidth]{figs/dinoimpact.ps}}
+  \centerline{\includegraphics[width=0.9\linewidth]{figs/dinoimpact.ps}}
   \caption{
   It can't get worse than this.... \label{fig:impact}
   % \label{fig:dinoimpact}  % (autogenerated label, not used anymore)
@@ -1094,7 +1098,7 @@ By the way, here is an example on referencing Figure~\ref{fig:impact}
 (the label appears in the figure caption in the source code of this document).
 Additional references to Sections~\ref{mathtext} and~\ref{newcommands} are
 nice to demonstrate, as well as a reference to equations,
-say (ref{my:eq1})--(ref{my:eq2}). A comparison of the output and
+say (\ref{my:eq1})--(\ref{my:eq2}). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -1118,11 +1122,17 @@ The exclamation mark divides a main entry and a subentry. Backquotes
 surround verbatim text, which is correctly transformed in a {\LaTeX} setting to
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
-\index{verbatim_text@\texttt{\rm\smaller verbatim_text and more}}
+\index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 \end{Verbatim}
 \noindent
 Everything related to the index simply becomes invisible in 
 plain text, Epytext, StructuredText, HTML, and Wiki formats.
+Note: {\fontsize{10pt}{10pt}\verb!idx!} commands should be inserted outside paragraphs, not in between
+the text as this may cause some strange behaviour of the formatting.
+Index items are naturally placed right after section headings, before the
+text begins. Index items related to the heading of a paragraph, however,
+should be placed above the paragraph heading and not in between the
+heading and the text.
 
 Literature citations also follow a {\LaTeX}-inspired style:
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
@@ -1403,7 +1413,6 @@ the opening tag is {\fontsize{10pt}{10pt}\verb!!bt!} (begin TeX) and the closing
 line and followed by a newline. 
 
 Here is the result of a {\fontsize{10pt}{10pt}\verb!!bt!} - {\fontsize{10pt}{10pt}\verb!!et!} block:
-
 \begin{eqnarray}
 {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
@@ -1483,7 +1492,6 @@ fontfamily=tt,xleftmargin=7mm]
 \end{Verbatim}
 \noindent
 will then be rendered to
-
 \beqa
 \x\cdot\normalvec &=& 0,\label{my:eq1}\\
 \Ddt{\uvec} &=& \Q \ep\label{my:eq2}
@@ -1517,16 +1525,30 @@ debug years after they are created. The main developer of Doconce has
 hardly any time to work on debugging the code, but the software works
 well for his diverse applications of it.
 
-\paragraph{Code Block Errors in reST.}
+\paragraph{Code or TeX Block Errors in reST.}
 Sometimes reStructuredText (reST) reports an "Unexpected indentation"
 at the beginning of a code block. If you see a {\fontsize{10pt}{10pt}\verb!!bc!}, which should
 have been removed by {\fontsize{10pt}{10pt}\verb!doconce2format!}, it is usually an error in the
-Doconce source. Check if the line before the code block ends in
-one colon (not two!), a question mark, an exclamation mark, a comma, a
-period, or just a newline/space after text. If not, make sure that
-the ending is among the mentioned. Then {\fontsize{10pt}{10pt}\verb!!bc!} will be replaced 
-and a double colon at the preceding line (which is the right way in
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then {\fontsize{10pt}{10pt}\verb!!bc!} will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
 reST to indicate a verbatim block of text).
+
+\paragraph{Strange Errors Around Code or TeX Blocks in reST.}
+If {\fontsize{10pt}{10pt}\verb!idx!} commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+\paragraph{Error Message "Undefined substitution..." from reSt.}
+This may happen if there is much inline math in the text. reSt cannot
+understand inline {\LaTeX} commands and interprets them as illegal code.
+Just ignore these error messages.
 
 \paragraph{The {\LaTeX} File Does Not Compile.}
 If the problem is undefined control sequence involving

@@ -7,7 +7,7 @@ BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)D
    (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML,
    reStructuredText, Sphinx, XML, etc.  Would it be convenient to
    start with some very simple text-like format that easily converts
-   to the formats listed above, and at some later stage eventually go
+   to the formats listed above, and then at some later stage eventually go
    with a particular format?
  - Do you find it problematic that you have the same information
    scattered around in different documents in different typesetting
@@ -22,21 +22,35 @@ The Doconce Concept
 
 Doconce is two things:
 
- 1. Doconce is a working strategy for documenting software in a single
-    place and avoiding duplication of information. The slogan is:
-    "Write once, include anywhere". This requires that what you write
-    can be transformed to many different formats for a variety of
-    documents (manuals, tutorials, books, doc strings, source code
-    documentation, etc.).
- 2. Doconce is a simple and minimally tagged markup language that can
-    be used for the above purpose. That is, the Doconce format look
-    like ordinary ASCII text (much like what you would use in an
+ 1. Doconce is a very simple and minimally tagged markup language that
+    look like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
     including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
     latter to RTF and MS Word.
+ 2. Doconce is a working strategy for never duplicating information.
+    Text is written in a single place and then transformed to
+    a number of different destinations of diverse type (software
+    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
+    The Doconce markup language support this working strategy.
+    The slogan is: "Write once, include anywhere".
+
+A wide range of markup languages exist. For example, reStructuredText and Sphinx
+have recently become popular. So why another one?
+
+  - Doconce can convert to plain I{untagged} text, 
+    more desirable for computer programs and email.
+  - Doconce has less cluttered tagging of text.
+  - Doconce has better support for copying in parts of computer code,
+    say in examples, directly from the source code files.
+  - Doconce has stronger support for mathematical typesetting, and
+    has many features for being integrated with (big) LaTeX projects.
+  - Doconce is almost self-explanatory and is a handy starting point
+    for generating documents in more complicated markup languages, such
+    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or Wiki document.
 
 Doconce was particularly written for the following sample applications:
 
@@ -46,10 +60,18 @@ Doconce was particularly written for the following sample applications:
   - Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
-    googlecode.com, and as LaTeX integrated in, e.g., a master's thesis.
+    googlecode.com, and as LaTeX integrated in, e.g., a thesis.
   - Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
     MS Word documents or in wikis.
+
+Disclaimer: Doconce is a simple tool, largely based on interpreting
+and handling text through regular expressions. The possibility for
+tweaking the layout is obviously limited since the text can go to
+all sorts of sophisticated markup languages. Moreover, because of
+limitations of regular expressions, some formatting may face problems 
+when transformed to other formats.
+
 
 What Does Doconce Look Like?
 ============================
@@ -280,8 +302,9 @@ From Doconce to Other Formats
 =============================
 
 Transformation of a Doconce document to various other
-formats applies the script C{doconce2format}:
-!bc   sys
+formats applies the script C{doconce2format}::
+
+
         Unix/DOS> doconce2format format mydoc.do.txt
 
 The C{preprocess} program is always used to preprocess the file first,
@@ -327,8 +350,9 @@ LaTeX
 Making a LaTeX file C{mydoc.tex} from C{mydoc.do.txt} is done in two steps:
 
 I{Step 1.} Filter the doconce text to a pre-LaTeX form C{mydoc.p.tex} for
-     C{ptex2tex}:
-!bc   sys
+     C{ptex2tex}::
+
+
         Unix/DOS> doconce2format LaTeX mydoc.do.txt
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
@@ -422,8 +446,9 @@ reStructuredText
 
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
-reStructuredText file C{mydoc.rst}:
-!bc   sys
+reStructuredText file C{mydoc.rst}::
+
+
         Unix/DOS> doconce2format rst mydoc.do.txt
 
 We may now produce various other formats::
