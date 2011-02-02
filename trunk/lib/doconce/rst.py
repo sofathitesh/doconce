@@ -111,7 +111,7 @@ def rst_author(authors_and_institutions, auth2index,
     # we skip institutions in rst
     return text
 
-def rst_ref_and_label(section_label2title, format, filestr):
+def ref_and_label_commoncode(section_label2title, format, filestr):
     # .... see section ref{my:sec} is replaced by
     # see the section "...section heading..."
     pattern = r'[Ss]ection(s?)\s+ref\{'
@@ -139,8 +139,8 @@ def rst_ref_and_label(section_label2title, format, filestr):
             # Add counter to non-unique titles (only for rst and sphinx)
             adjusted_titles[(title,label)] = title + ' (%d)' % counter
             counter += 1
-    print 'Problematic titles:', problematic_titles
-    print 'Adjusted:', adjusted_titles
+    debugtext = '\nProblematic multiple titles:\n%s\nAdjusted titles:\n%s' %\
+                (problematic_titles, adjusted_titles)
             
     # Insert labels before all section headings: (not necessary, but ok)
     for label in section_label2title:
@@ -156,7 +156,7 @@ def rst_ref_and_label(section_label2title, format, filestr):
         # (title may contain ? () etc., that's why we take re.escape)
         try:
             new_title = adjusted_titles[(title,label)]
-            print 'found an adjusted title:', new_title
+            debugtext += 'Found an adjusted title: %s\n' % new_title
         except KeyError:
             new_title = title
         replacement = '.. _%s:\n\n' % label + r'\g<1> %s \g<3>' % \
@@ -170,9 +170,18 @@ def rst_ref_and_label(section_label2title, format, filestr):
 
     # remove label{...} from output
     #filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
-    cpattern = re.compile(r'^label\{.+?\}\s*$', flags=re.MULTILINE)
+    cpattern = re.compile(r'^label\{[^}]+?\}\s*$', flags=re.MULTILINE)
     filestr = cpattern.sub('', filestr)
-    filestr = re.sub(r'label\{.+?\}', '', filestr)  # all the remaining
+    filestr = re.sub(r'label\{[^}]+?\}', '', filestr)  # all the remaining
+
+    import doconce
+    doconce.debugpr(debugtext)
+    
+    return filestr
+
+
+def rst_ref_and_label(section_label2title, format, filestr):
+    filestr = ref_and_label_commoncode(section_label2title, format, filestr)
 
     # replace all references to sections:
     for label in section_label2title:
@@ -181,7 +190,6 @@ def rst_ref_and_label(section_label2title, format, filestr):
     
     from common import ref2equations
     filestr = ref2equations(filestr)
-
     # replace remaining ref{x} as x_
     filestr = re.sub(r'ref\{(.+?)\}', '`\g<1>`_', filestr)
     

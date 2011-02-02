@@ -9,6 +9,14 @@ __version__ = 0.7
 
 import re, os, sys, shutil, commands, pprint, time
 
+def debugpr(out):
+    if debug:
+        #print out
+        global _log
+        _log = open('_doconce_debugging.log','a')
+        _log.write(out + '\n')
+        _log.close()
+
 
 from common import *
 import html, latex, rst, sphinx, st, epytext, plaintext, gwiki
@@ -39,15 +47,6 @@ def supported_format_names():
 # include "plaintext.py"
 # include "latex.py"
 #----------------------------------------------------------------------------
-
-def debugpr(out):
-    if debug:
-        #print out
-        global _log
-        _log = open('_doconce_debugging.log','a')
-        _log.write(out + '\n')
-        _log.close()
-
 
 def syntax_check(filestr, format):
 

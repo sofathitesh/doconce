@@ -204,29 +204,7 @@ def sphinx_code(filestr, format):
     return filestr
 
 def sphinx_ref_and_label(section_label2title, format, filestr):
-    # .... see section ref{my:sec} is replaced by
-    # see the section "...section heading..."
-    pattern = r'[Ss]ection(s?)\s+ref\{'
-    replacement = r'the section\g<1> ref{'
-    filestr = re.sub(pattern, replacement, filestr)
-    pattern = r'[Cc]hapter(s?)\s+ref\{'
-    replacement = r'the chapter\g<1> ref{'
-    filestr = re.sub(pattern, replacement, filestr)
-
-    # insert labels before all section headings:
-    for label in section_label2title:
-        title = section_label2title[label]
-        pattern = r'(_{3,7}|={3,7})(\s*%s\s*)(_{3,7}|={3,7})' % re.escape(title)  # title may contain ? () etc.
-        replacement = '.. _%s:\n\n' % label + r'\g<1>\g<2>\g<3>'
-        filestr, n = re.subn(pattern, replacement, filestr)
-        if n == 0:
-            raise Exception('problem with substituting "%s"' % title)
-
-    # remove label{...} from output
-    #filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
-    cpattern = re.compile(r'^label\{.+?\}\s*$', flags=re.MULTILINE)
-    filestr = cpattern.sub('', filestr)
-    filestr = re.sub(r'label\{.+?\}', '', filestr)  # all the remaining
+    filestr = ref_and_label_commoncode(section_label2title, format, filestr)
 
     # replace all references to sections:
     for label in section_label2title:
