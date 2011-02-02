@@ -2,7 +2,7 @@
 This module contains data structures used in translation of the
 Doconce format to other formats.  Some convenience functions used in
 translation modules (latex.py, html.py, etc.) are also included in
-this module.
+here.
 """
 import re
 
