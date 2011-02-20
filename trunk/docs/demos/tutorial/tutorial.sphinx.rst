@@ -6,7 +6,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: September 10, 2010
+:Date: Feb 20, 2011
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -113,9 +113,12 @@ text constructions that allow you to control the formating. For example,
 
   * comments can be inserted throughout the text,
 
-  * a preprocessor (much like the C preprocessor) is integrated so
-    other documents (files) can be included and large portions of text
-    can be defined in or out of the text.
+  * with a simple preprocessor, which is integrated, one can include
+    other documents (files) and large portions of text can be defined
+    in or out of the text,
+
+  * with the Mako preprocessor one can even embed Python
+    code and use this to steer generation of Doconce text.
 
 Here is an example of some simple text written in the Doconce format:
 
@@ -338,7 +341,7 @@ syntax we refer to the ``docs/manual/manual.do.txt`` file (see the
 page <https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>`_ for various formats of this document).
 
 
-.. Example on including another Doconce file:
+.. Example on including another Doconce file (using preprocess):
 
 
 .. _doconce2formats:
@@ -347,18 +350,18 @@ From Doconce to Other Formats
 =============================
 
 Transformation of a Doconce document to various other
-formats applies the script ``doconce2format``:
+formats applies the script ``doconce format``:
 
 .. code-block:: console
 
-        Unix/DOS> doconce2format format mydoc.do.txt
+        Unix/DOS> doconce format format mydoc.do.txt
 
 The ``preprocess`` program is always used to preprocess the file first,
 and options to ``preprocess`` can be added after the filename. For example,
 
 .. code-block:: console
 
-        Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
+        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
 
 The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
@@ -369,7 +372,7 @@ Inline comments in the text are removed from the output by
 
 .. code-block:: console
 
-        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running a helper script in the ``bin`` folder of the Doconce
@@ -378,7 +381,7 @@ source code:
 .. code-block:: py
 
 
-        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
 
 This action is convenient when a Doconce document reaches its final form.
 
@@ -391,7 +394,7 @@ is performed by
 
 .. code-block:: console
 
-        Unix/DOS> doconce2format HTML mydoc.do.txt
+        Unix/DOS> doconce format HTML mydoc.do.txt
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
@@ -408,7 +411,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 
 .. code-block:: console
 
-        Unix/DOS> doconce2format LaTeX mydoc.do.txt
+        Unix/DOS> doconce format LaTeX mydoc.do.txt
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
@@ -468,7 +471,7 @@ and create the PDF file:
 
 If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
 in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
-This package is included by running ``doconce2format`` with the
+This package is included by running ``doconce format`` with the
 ``-DMINTED`` option:
 
 .. code-block:: console
@@ -501,7 +504,7 @@ computer source code:
 
 .. code-block:: console
 
-        Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
+        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 
 reStructuredText
@@ -513,7 +516,7 @@ reStructuredText file ``mydoc.rst``:
 
 .. code-block:: console
 
-        Unix/DOS> doconce2format rst mydoc.do.txt
+        Unix/DOS> doconce format rst mydoc.do.txt
 
 We may now produce various other formats:
 
@@ -538,7 +541,7 @@ the reStructuredText format:
 
 .. code-block:: console
 
-        Unix/DOS> doconce2format sphinx mydoc.do.txt
+        Unix/DOS> doconce format sphinx mydoc.do.txt
 
 
 *Step 2.* Create a Sphinx root directory with a ``conf.py`` file, 
@@ -571,6 +574,12 @@ program. Here is a scripted version of the steps with the latter:
         y
         y
         EOF
+
+These statements are automated by the command
+
+.. code-block:: console
+
+        Unix/DOS> doconce sphinx_dir mydoc.do.txt
 
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory:
@@ -634,10 +643,10 @@ it as the Google Code dialect, is done by
 
 .. code-block:: console
 
-        Unix/DOS> doconce2format gwiki mydoc.do.txt
+        Unix/DOS> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
-the ``mydoc.gwiki`` output file from ``doconce2format`` and paste the
+the ``mydoc.gwiki`` output file from ``doconce format`` and paste the
 file contents into the wiki page. Press **Preview** or **Save Page** to
 see the formatted result.
 
@@ -689,14 +698,16 @@ various formats. The ``make.sh`` script runs a set of translations.
 Dependencies
 ------------
 
-Doconce depends on the Python package
-`preprocess <http://code.google.com/p/preprocess/>`_.  To make LaTeX
+If you make use of preprocessor directives in the Doconce source,
+either `Preprocess <http://code.google.com/p/preprocess>`_ or `Mako <http://www.makotemplates.org>`_ must be installed.  To make LaTeX
 documents (without going through the reStructuredText format) you also
-need `ptex2tex <http://code.google.com/p/ptex2tex>`_ and some style files
-that ptex2tex potentially makes use of.  Going from reStructuredText
-to formats such as XML, OpenOffice, HTML, and LaTeX requires
-`docutils <http://docutils.sourceforge.net/>`_.  Making Sphinx documents
-requires of course `sphinx <http://sphinx.pocoo.org>`_.
+need `ptex2tex <http://code.google.com/p/ptex2tex>`_ and some style
+files that ``ptex2tex`` potentially makes use of.  Going from
+reStructuredText to formats such as XML, OpenOffice, HTML, and LaTeX
+requires `docutils <http://docutils.sourceforge.net>`_.  Making Sphinx
+documents requires of course `Sphinx <http://sphinx.pocoo.org>`_.
+All of the mentioned potential dependencies are pure Python packages
+which are easily installed.
 
 
 Warning/Disclaimer

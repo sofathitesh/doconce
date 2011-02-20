@@ -60,7 +60,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-September 10, 2010
+Feb 20, 2011
 
 \end{DUfieldlist}
 
@@ -230,10 +230,9 @@ documentation file in other documents (manuals, tutorials, doc strings).
 
 \end{quote}
 
-One answer to these points is the Doconce markup language, its associated
-tools, and the \href{http://code.google.com/p/preprocess/}{C-style preprocessor tool}.
-Then we can \emph{write once, include anywhere}!
-And what we write is close to plain ASCII text.
+One answer to these points is the Doconce markup language, its
+associated tools, and a \href{http://code.google.com/p/preprocess}{C-style preprocessor tool} or the \href{http://www.makotemplates.org/}{Mako template system}.  Then we can \emph{write once, include
+anywhere}!  And what we write is close to plain ASCII text.
 
 But isn't reStructuredText exactly the format that fulfills the needs
 above? Yes and no. Yes, because reStructuredText can be filtered to a
@@ -268,14 +267,16 @@ Doconce developer).
   \label{dependencies}%
 }
 
-Doconce depends on the Python package
-\href{http://code.google.com/p/preprocess/}{preprocess}.  To make LaTeX
+If you make use of preprocessor directives in the Doconce source,
+either \href{http://code.google.com/p/preprocess}{Preprocess} or \href{http://www.makotemplates.org}{Mako} must be installed.  To make LaTeX
 documents (without going through the reStructuredText format) you also
-need \href{http://code.google.com/p/ptex2tex}{ptex2tex} and some style files
-that ptex2tex potentially makes use of.  Going from reStructuredText
-to formats such as XML, OpenOffice, HTML, and LaTeX requires
-\href{http://docutils.sourceforge.net/}{docutils}.  Making Sphinx documents
-requires of course \href{http://sphinx.pocoo.org}{sphinx}.
+need \href{http://code.google.com/p/ptex2tex}{ptex2tex} and some style
+files that \texttt{ptex2tex} potentially makes use of.  Going from
+reStructuredText to formats such as XML, OpenOffice, HTML, and LaTeX
+requires \href{http://docutils.sourceforge.net}{docutils}.  Making Sphinx
+documents requires of course \href{http://sphinx.pocoo.org}{Sphinx}.
+All of the mentioned potential dependencies are pure Python packages
+which are easily installed.
 
 
 %___________________________________________________________________________
@@ -297,7 +298,7 @@ the Doconce format. Use many files - and never duplicate information!
 \item Use \texttt{\#include} statements in source code (especially in doc
 strings) and in LaTeX documents for including documentation
 files.  These documentation files must be filtered to an
-appropriate format by the program \texttt{doconce2format} before being
+appropriate format by the program \texttt{doconce} before being
 included. In a Python context, this means plain text for computer
 source code (and Pydoc); Epytext for Epydoc API documentation, or
 the Sphinx dialect of reStructuredText for Sphinx API
@@ -315,10 +316,14 @@ Consider an example involving a Python module in a \texttt{basename.p.py} file.
 The \texttt{.p.py} extension identifies this as a file that has to be
 preprocessed) by the \texttt{preprocess} program.
 In a doc string in \texttt{basename.p.py} we do a preprocessor include
-in a comment line, say:
+in a comment line, say (use triple quotes in the doc string in case
+the \texttt{doc1} documentation includes code snippets with doc strings
+with the usual triple double quotes):
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-\#~~~~\#include~"docstrings/doc1.dst.txt
+'{}'{}'\\
+\#~~~~\#include~"docstrings/doc1.dst.txt\\
+'{}'{}'
 }
 \end{quote}
 
@@ -362,7 +367,7 @@ commands:
 \begin{quote}{\ttfamily \raggedright \noindent
 \#~make~Epydoc~API~manual~of~basename~module:\\
 cd~docstrings\\
-doconce2format~epytext~doc1.do.txt\\
+doconce~format~epytext~doc1.do.txt\\
 mv~doc1.epytext~doc1.dst.txt\\
 cd~..\\
 preprocess~basename.p.py~>~basename.py\\
@@ -370,7 +375,7 @@ epydoc~basename\\
 ~\\
 \#~make~Sphinx~API~manual~of~basename~module:\\
 cd~doc\\
-doconce2format~sphinx~doc1.do.txt\\
+doconce~format~sphinx~doc1.do.txt\\
 mv~doc1.rst~doc1.dst.txt\\
 cd~..\\
 preprocess~basename.p.py~>~basename.py\\
@@ -381,7 +386,7 @@ cd~../..\\
 ~\\
 \#~make~ordinary~Python~module~files~with~doc~strings:\\
 cd~docstrings\\
-doconce2format~plain~doc1.do.txt\\
+doconce~format~plain~doc1.do.txt\\
 mv~doc1.txt~doc1.dst.txt\\
 cd~..\\
 preprocess~basename.p.py~>~basename.py\\
@@ -421,7 +426,7 @@ where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.
 
 The file \texttt{make.sh} in the same directory as the \texttt{manual.do.txt} file
-(the current text) shows how to run \texttt{doconce2format} on the
+(the current text) shows how to run \texttt{doconce format} on the
 Doconce file to obtain documents in various formats.
 
 Another demo is found in:
@@ -449,10 +454,10 @@ of the results.
 }
 
 Transformation of a Doconce document to various other
-formats applies the script \texttt{doconce2format}:
+formats applies the script \texttt{doconce format}:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~format~mydoc.do.txt
+Unix/DOS>~doconce~format~format~mydoc.do.txt
 }
 \end{quote}
 
@@ -460,7 +465,7 @@ The \texttt{preprocess} program is always used to preprocess the file first,
 and options to \texttt{preprocess} can be added after the filename. For example:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~LaTeX~mydoc.do.txt~-Dextra\_sections
+Unix/DOS>~doconce~format~LaTeX~mydoc.do.txt~-Dextra\_sections
 }
 \end{quote}
 
@@ -472,7 +477,7 @@ format specific actions through tests like \texttt{\#if FORMAT == "LaTeX"}.
 Inline comments in the text are removed from the output by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~LaTeX~mydoc.do.txt~remove\_inline\_comments
+Unix/DOS>~doconce~format~LaTeX~mydoc.do.txt~remove\_inline\_comments
 }
 \end{quote}
 
@@ -481,7 +486,7 @@ by running a helper script in the \texttt{bin} folder of the Doconce
 source code:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce\_remove\_inline\_comments.py~mydoc.do.txt
+Unix/DOS>~doconce~remove\_inline\_comments~mydoc.do.txt
 }
 \end{quote}
 
@@ -500,7 +505,7 @@ Making an HTML version of a Doconce file \texttt{mydoc.do.txt}
 is performed by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~HTML~mydoc.do.txt
+Unix/DOS>~doconce~format~HTML~mydoc.do.txt
 }
 \end{quote}
 
@@ -525,7 +530,7 @@ Making a LaTeX file \texttt{mydoc.tex} from \texttt{mydoc.do.txt} is done in two
 \texttt{ptex2tex}:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~LaTeX~mydoc.do.txt
+Unix/DOS>~doconce~format~LaTeX~mydoc.do.txt
 }
 \end{quote}
 
@@ -593,7 +598,7 @@ Unix/DOS>~dvipdf~mydoc
 
 If one wishes to use the \texttt{Minted\_Python}, \texttt{Minted\_Cpp}, etc., environments
 in \texttt{ptex2tex} for typesetting code, the \texttt{minted} LaTeX package is needed.
-This package is included by running \texttt{doconce2format} with the
+This package is included by running \texttt{doconce format} with the
 \texttt{-DMINTED} option:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
@@ -632,7 +637,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~plain~mydoc.do.txt~~\#~results~in~mydoc.txt
+Unix/DOS>~doconce~format~plain~mydoc.do.txt~~\#~results~in~mydoc.txt
 }
 \end{quote}
 
@@ -650,7 +655,7 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file \texttt{mydoc.rst}:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~rst~mydoc.do.txt
+Unix/DOS>~doconce~format~rst~mydoc.do.txt
 }
 \end{quote}
 
@@ -683,7 +688,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 the reStructuredText format:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~sphinx~mydoc.do.txt
+Unix/DOS>~doconce~format~sphinx~mydoc.do.txt
 }
 \end{quote}
 
@@ -716,6 +721,13 @@ y\\
 y\\
 y\\
 EOF
+}
+\end{quote}
+
+These statements are automated by the command:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix/DOS>~doconce~sphinx\_dir~mydoc.do.txt
 }
 \end{quote}
 
@@ -788,12 +800,12 @@ The transformation to this format, called \texttt{gwiki} to explicitly mark
 it as the Google Code dialect, is done by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~gwiki~mydoc.do.txt
+Unix/DOS>~doconce~format~gwiki~mydoc.do.txt
 }
 \end{quote}
 
 You can then open a new wiki page for your Google Code project, copy
-the \texttt{mydoc.gwiki} output file from \texttt{doconce2format} and paste the
+the \texttt{mydoc.gwiki} output file from \texttt{doconce format} and paste the
 file contents into the wiki page. Press \textbf{Preview} or \textbf{Save Page} to
 see the formatted result.
 
@@ -1112,6 +1124,12 @@ FIGURE:{[}filename,~height=xxx~width=yyy~scale=zzz{]}~caption
 }
 \end{quote}
 
+The filename can be without extension, and Doconce will search for an
+appropriate file with the right extension. If the extension is wrong,
+say \texttt{.eps} when requesting an HTML format, Doconce tries to find another
+file, and if not, the given file is converted to a proper format
+(using ImageMagick's \texttt{convert} utility).
+
 The height, width, and scale keywords (and others) can be included
 if desired and may have effect for some formats. Note the comma
 between the sespecifications and that there should be no space
@@ -1122,14 +1140,9 @@ related to a figure line must be written on the same line. Introducing
 newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as \texttt{FIGURE:} will be
 included in the formatted caption).
-
-The filename extension may not be compatible with the chosen output format.
-For example, a filename \texttt{mypic.eps} is fine for LaTeX output but not for
-HTML. In such cases, the Doconce translator will convert the file to
-a suitable format (say \texttt{mypic.png} for HTML output).
 \begin{figure}
 \phantomsection\label{fig-impact}
-\noindent\makebox[\textwidth][c]{\includegraphics[width=400bp]{figs/dinoimpact}}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=400bp]{figs/dinoimpact.ps}}
 \caption{It can't get worse than this...  (fig:impact)}
 \end{figure}
 
@@ -1233,7 +1246,7 @@ Doconce also supports inline comments in the text:
 where \texttt{name} is the name of the author of the command, and \texttt{comment} is a
 plain text text. (\textbf{hpl}: Note that there must be a space after the colon,
 otherwise the comment is not recognized.)
-The name and comment are visible in the output unless \texttt{doconce2format}
+The name and comment are visible in the output unless \texttt{doconce format}
 is run with a command-line specification of removing such comments
 (see the chapter \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats} for an example). Inline comments
 are helpful during development of a document since different authors
@@ -1290,7 +1303,7 @@ replace the reference by the title of the (sub)section.  All labels
 will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the ``label'' and ``ref'' commands are first translated to the proper
-reStructuredText commands by \texttt{doconce2format}. In the HTML and (Google
+reStructuredText commands by \texttt{doconce format}. In the HTML and (Google
 Code) Wiki formats, labels become anchors and references become links,
 and with LaTeX ``label'' and ``ref'' are just equipped with backslashes so
 these commands work as usual in LaTeX.
@@ -1754,6 +1767,38 @@ in the current format.
 
 %___________________________________________________________________________
 
+\subsection*{Preprocessing Steps%
+  \phantomsection%
+  \addcontentsline{toc}{subsection}{Preprocessing Steps}%
+  \label{preprocessing-steps}%
+}
+
+Doconce allows preprocessor commands for, e.g., including files,
+leaving out text, or inserting special text depending on the format.
+Two preprocessors are supported: Preprocess
+(\url{http://code.google.com/p/preprocess}) and Mako
+(\url{http://www.makotemplates.org/}). The former allows include and if-else
+statements much like the well-known preprocessor in C and C++ (but it
+does not allow sophisticated macro substitutions). The latter
+preprocessor is a very powerful template system.  With Mako you can
+automatically generate various type of text and steer the generation
+through Python code embedded in the Doconce document. An arbitrary set
+of \texttt{name=value} command-line arguments (at the end of the command line)
+automatically define Mako variables that are substituted in the document.
+
+Doconce will detect if Preprocess or Mako commands are used and run
+the relevant preprocessor prior to translating the Doconce source to a
+specific format.
+
+Preprocess and Mako always have the variable \texttt{FORMAT} to be the desired
+output format of Doconce. It is then easy to test on the value of \texttt{FORMAT}
+and take different actions for different formats. For example, one may
+create special LaTeX output for figures, say with multiple plots within
+a figure, while other formats may apply a separate figure for each plot.
+
+
+%___________________________________________________________________________
+
 \subsection*{Missing Features%
   \phantomsection%
   \addcontentsline{toc}{subsection}{Missing Features}%
@@ -1781,7 +1826,7 @@ in the current format.
 
 \emph{Disclaimer.} First of all, Doconce has hardly any support for
 syntax checking. This means that if you encounter Python errors while
-running \texttt{doconce2format}, the reason for the error is most likely a
+running \texttt{doconce format}, the reason for the error is most likely a
 syntax problem in your Doconce source file. You have to track down
 this syntax problem yourself.
 
@@ -1797,7 +1842,7 @@ well for his diverse applications of it.
 
 \emph{Code or TeX Block Errors in reST.} Sometimes reStructuredText (reST) reports an ``Unexpected indentation''
 at the beginning of a code block. If you see a \texttt{!bc}, which should
-have been removed by \texttt{doconce2format}, it is usually an error in the
+have been removed by \texttt{doconce format}, it is usually an error in the
 Doconce source, or a problem with the rst/sphinx translator.  Check if
 the line before the code block ends in one colon (not two!), a
 question mark, an exclamation mark, a comma, a period, or just a
@@ -1813,9 +1858,13 @@ code blocks that cause errors when the reST text is transformed to
 other formats. The remedy is to define items for the index outside
 paragraphs.
 
-\emph{Error Message ``Undefined substitution...'' from reSt.} This may happen if there is much inline math in the text. reSt cannot
+\emph{Error Message ``Undefined substitution...'' from reST.} This may happen if there is much inline math in the text. reST cannot
 understand inline LaTeX commands and interprets them as illegal code.
 Just ignore these error messages.
+
+\emph{Preprocessor Directives Do Not Work.} Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
 
 \emph{The LaTeX File Does Not Compile.} If the problem is undefined control sequence involving:
 %
@@ -1875,7 +1924,7 @@ therefore turned off.)
 problematic area and debug that small piece of text. Doconce does a
 series of transformations of the text. The effect of each of these
 transformation steps are dumped to a logfile, named
-\texttt{\_doconce\_debugging.log}, if the third argument to \texttt{doconce2format}
+\texttt{\_doconce\_debugging.log}, if the to \texttt{doconce format} after the filename
 is \texttt{debug}. The logfile is inteded for the developers of Doconce, but
 may still give some idea of what is wrong.  The section ``Basic Parsing
 Ideas'' explains how the Doconce text is transformed into a specific

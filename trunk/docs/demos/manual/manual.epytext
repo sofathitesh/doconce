@@ -1,5 +1,5 @@
 TITLE: Doconce Description
-BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: September 10, 2010
+BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
 
 
 
@@ -110,10 +110,9 @@ in verbatim environments). To summarize, we need
  3. Tools for inserting appropriately filtered versions of a "singleton"
     documentation file in other documents (manuals, tutorials, doc strings).
 
-One answer to these points is the Doconce markup language, its associated
-tools, and the U{C-style preprocessor tool<http://code.google.com/p/preprocess/>}.
-Then we can I{write once, include anywhere}!
-And what we write is close to plain ASCII text.
+One answer to these points is the Doconce markup language, its
+associated tools, and a U{C-style preprocessor tool<http://code.google.com/p/preprocess>} or the U{Mako template system<http://www.makotemplates.org/>}.  Then we can I{write once, include
+anywhere}!  And what we write is close to plain ASCII text.
 
 But isn't reStructuredText exactly the format that fulfills the needs
 above? Yes and no. Yes, because reStructuredText can be filtered to a
@@ -143,14 +142,16 @@ Doconce developer).
 Dependencies
 ------------
 
-Doconce depends on the Python package
-U{preprocess<http://code.google.com/p/preprocess/>}.  To make LaTeX
+If you make use of preprocessor directives in the Doconce source,
+either U{Preprocess<http://code.google.com/p/preprocess>} or U{Mako<http://www.makotemplates.org>} must be installed.  To make LaTeX
 documents (without going through the reStructuredText format) you also
-need U{ptex2tex<http://code.google.com/p/ptex2tex>} and some style files
-that ptex2tex potentially makes use of.  Going from reStructuredText
-to formats such as XML, OpenOffice, HTML, and LaTeX requires
-U{docutils<http://docutils.sourceforge.net/>}.  Making Sphinx documents
-requires of course U{sphinx<http://sphinx.pocoo.org>}.
+need U{ptex2tex<http://code.google.com/p/ptex2tex>} and some style
+files that C{ptex2tex} potentially makes use of.  Going from
+reStructuredText to formats such as XML, OpenOffice, HTML, and LaTeX
+requires U{docutils<http://docutils.sourceforge.net>}.  Making Sphinx
+documents requires of course U{Sphinx<http://sphinx.pocoo.org>}.
+All of the mentioned potential dependencies are pure Python packages
+which are easily installed.
 
 
 The Doconce Software Documentation Strategy
@@ -161,7 +162,7 @@ The Doconce Software Documentation Strategy
    - Use C{#include} statements in source code (especially in doc
      strings) and in LaTeX documents for including documentation
      files.  These documentation files must be filtered to an
-     appropriate format by the program C{doconce2format} before being
+     appropriate format by the program C{doconce} before being
      included. In a Python context, this means plain text for computer
      source code (and Pydoc); Epytext for Epydoc API documentation, or
      the Sphinx dialect of reStructuredText for Sphinx API
@@ -174,10 +175,14 @@ Consider an example involving a Python module in a C{basename.p.py} file.
 The C{.p.py} extension identifies this as a file that has to be
 preprocessed) by the C{preprocess} program. 
 In a doc string in C{basename.p.py} we do a preprocessor include
-in a comment line, say::
+in a comment line, say (use triple quotes in the doc string in case
+the C{doc1} documentation includes code snippets with doc strings
+with the usual triple double quotes)::
 
 
+        '''
         #    #include "docstrings/doc1.dst.txt
+        '''
 
 The file C{docstrings/doc1.dst.txt} is a file filtered to a specific format
 (typically plain text, reStructedText, or Epytext) from an original
@@ -209,7 +214,7 @@ commands::
 
         # make Epydoc API manual of basename module:
         cd docstrings
-        doconce2format epytext doc1.do.txt
+        doconce format epytext doc1.do.txt
         mv doc1.epytext doc1.dst.txt
         cd ..
         preprocess basename.p.py > basename.py
@@ -217,7 +222,7 @@ commands::
         
         # make Sphinx API manual of basename module:
         cd doc
-        doconce2format sphinx doc1.do.txt
+        doconce format sphinx doc1.do.txt
         mv doc1.rst doc1.dst.txt
         cd ..
         preprocess basename.p.py > basename.py
@@ -228,7 +233,7 @@ commands::
         
         # make ordinary Python module files with doc strings:
         cd docstrings
-        doconce2format plain doc1.do.txt
+        doconce format plain doc1.do.txt
         mv doc1.txt doc1.dst.txt
         cd ..
         preprocess basename.p.py > basename.py
@@ -259,7 +264,7 @@ where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.
 
 The file C{make.sh} in the same directory as the C{manual.do.txt} file
-(the current text) shows how to run C{doconce2format} on the
+(the current text) shows how to run C{doconce format} on the
 Doconce file to obtain documents in various formats.
 
 Another demo is found in::
@@ -278,16 +283,16 @@ From Doconce to Other Formats
 =============================
 
 Transformation of a Doconce document to various other
-formats applies the script C{doconce2format}::
+formats applies the script C{doconce format}::
 
 
-        Unix/DOS> doconce2format format mydoc.do.txt
+        Unix/DOS> doconce format format mydoc.do.txt
 
 The C{preprocess} program is always used to preprocess the file first,
 and options to C{preprocess} can be added after the filename. For example::
 
 
-        Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
+        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
 
 The variable C{FORMAT} is always defined as the current format when
 running C{preprocess}. That is, in the last example, C{FORMAT} is
@@ -297,14 +302,14 @@ format specific actions through tests like C{#if FORMAT == "LaTeX"}.
 Inline comments in the text are removed from the output by::
 
 
-        Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running a helper script in the C{bin} folder of the Doconce
 source code::
 
 
-        Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
 
 This action is convenient when a Doconce document reaches its final form.
 
@@ -316,7 +321,7 @@ Making an HTML version of a Doconce file C{mydoc.do.txt}
 is performed by::
 
 
-        Unix/DOS> doconce2format HTML mydoc.do.txt
+        Unix/DOS> doconce format HTML mydoc.do.txt
 
 The resulting file C{mydoc.html} can be loaded into any web browser for viewing.
 
@@ -329,7 +334,7 @@ I{Step 1.} Filter the doconce text to a pre-LaTeX form C{mydoc.p.tex} for
      C{ptex2tex}::
 
 
-        Unix/DOS> doconce2format LaTeX mydoc.do.txt
+        Unix/DOS> doconce format LaTeX mydoc.do.txt
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files C{newcommands.tex}, C{newcommands_keep.tex}, or
@@ -384,7 +389,7 @@ and create the PDF file::
 
 If one wishes to use the C{Minted_Python}, C{Minted_Cpp}, etc., environments
 in C{ptex2tex} for typesetting code, the C{minted} LaTeX package is needed.
-This package is included by running C{doconce2format} with the
+This package is included by running C{doconce format} with the
 C{-DMINTED} option::
 
 
@@ -414,7 +419,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code::
 
 
-        Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
+        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 
 reStructuredText
@@ -425,7 +430,7 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file C{mydoc.rst}::
 
 
-        Unix/DOS> doconce2format rst mydoc.do.txt
+        Unix/DOS> doconce format rst mydoc.do.txt
 
 We may now produce various other formats::
 
@@ -448,7 +453,7 @@ I{Step 1.} Translate Doconce into the Sphinx dialect of
 the reStructuredText format::
 
 
-        Unix/DOS> doconce2format sphinx mydoc.do.txt
+        Unix/DOS> doconce format sphinx mydoc.do.txt
 
 
 I{Step 2.} Create a Sphinx root directory with a C{conf.py} file, 
@@ -480,6 +485,11 @@ program. Here is a scripted version of the steps with the latter::
         y
         y
         EOF
+
+These statements are automated by the command::
+
+
+        Unix/DOS> doconce sphinx_dir mydoc.do.txt
 
 
 I{Step 3.} Move the C{tutorial.rst} file to the Sphinx root directory::
@@ -534,10 +544,10 @@ The transformation to this format, called C{gwiki} to explicitly mark
 it as the Google Code dialect, is done by::
 
 
-        Unix/DOS> doconce2format gwiki mydoc.do.txt
+        Unix/DOS> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
-the C{mydoc.gwiki} output file from C{doconce2format} and paste the
+the C{mydoc.gwiki} output file from C{doconce format} and paste the
 file contents into the wiki page. Press B{Preview} or B{Save Page} to
 see the formatted result.
 
@@ -754,6 +764,12 @@ Figures are recognized by the special line syntax::
 
         FIGURE:[filename, height=xxx width=yyy scale=zzz] caption
 
+The filename can be without extension, and Doconce will search for an
+appropriate file with the right extension. If the extension is wrong,
+say C{.eps} when requesting an HTML format, Doconce tries to find another
+file, and if not, the given file is converted to a proper format
+(using ImageMagick's C{convert} utility).
+
 The height, width, and scale keywords (and others) can be included
 if desired and may have effect for some formats. Note the comma
 between the sespecifications and that there should be no space
@@ -765,12 +781,7 @@ newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as C{FIGURE:} will be
 included in the formatted caption).
 
-The filename extension may not be compatible with the chosen output format.
-For example, a filename C{mypic.eps} is fine for LaTeX output but not for
-HTML. In such cases, the Doconce translator will convert the file to
-a suitable format (say C{mypic.png} for HTML output).
-
-FIGURE:[figs/dinoimpact.gif, width=400] It can't get worse than this.... {fig:impact}
+FIGURE:[figs/dinoimpact, width=400] It can't get worse than this.... {fig:impact}
 
 
 Another type of special lines starts with C{@@@CODE} and enables copying
@@ -856,7 +867,7 @@ Doconce also supports inline comments in the text::
 where C{name} is the name of the author of the command, and C{comment} is a 
 plain text text. [hpl: Note that there must be a space after the colon,
 otherwise the comment is not recognized.]
-The name and comment are visible in the output unless C{doconce2format}
+The name and comment are visible in the output unless C{doconce format}
 is run with a command-line specification of removing such comments
 (see the chapter "From Doconce to Other Formats" for an example). Inline comments
 are helpful during development of a document since different authors
@@ -903,7 +914,7 @@ replace the reference by the title of the (sub)section.  All labels
 will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
-reStructuredText commands by C{doconce2format}. In the HTML and (Google
+reStructuredText commands by C{doconce format}. In the HTML and (Google
 Code) Wiki formats, labels become anchors and references become links,
 and with LaTeX "label" and "ref" are just equipped with backslashes so
 these commands work as usual in LaTeX.
@@ -1255,6 +1266,33 @@ will then be rendered to::
 
 in the current format.
 
+Preprocessing Steps
+-------------------
+
+Doconce allows preprocessor commands for, e.g., including files,
+leaving out text, or inserting special text depending on the format.
+Two preprocessors are supported: Preprocess 
+(U{http://code.google.com/p/preprocess<http://code.google.com/p/preprocess>}) and Mako
+(U{http://www.makotemplates.org/<http://www.makotemplates.org/>}). The former allows include and if-else
+statements much like the well-known preprocessor in C and C++ (but it
+does not allow sophisticated macro substitutions). The latter
+preprocessor is a very powerful template system.  With Mako you can
+automatically generate various type of text and steer the generation
+through Python code embedded in the Doconce document. An arbitrary set
+of C{name=value} command-line arguments (at the end of the command line)
+automatically define Mako variables that are substituted in the document.
+
+Doconce will detect if Preprocess or Mako commands are used and run
+the relevant preprocessor prior to translating the Doconce source to a
+specific format.
+
+Preprocess and Mako always have the variable C{FORMAT} to be the desired
+output format of Doconce. It is then easy to test on the value of C{FORMAT}
+and take different actions for different formats. For example, one may
+create special LaTeX output for figures, say with multiple plots within
+a figure, while other formats may apply a separate figure for each plot.
+
+
 Missing Features
 ----------------
 
@@ -1265,7 +1303,7 @@ Troubleshooting
 
 I{Disclaimer.} First of all, Doconce has hardly any support for
 syntax checking. This means that if you encounter Python errors while
-running C{doconce2format}, the reason for the error is most likely a
+running C{doconce format}, the reason for the error is most likely a
 syntax problem in your Doconce source file. You have to track down
 this syntax problem yourself.
 
@@ -1281,7 +1319,7 @@ well for his diverse applications of it.
 
 I{Code or TeX Block Errors in reST.} Sometimes reStructuredText (reST) reports an "Unexpected indentation"
 at the beginning of a code block. If you see a C{!bc}, which should
-have been removed by C{doconce2format}, it is usually an error in the
+have been removed by C{doconce format}, it is usually an error in the
 Doconce source, or a problem with the rst/sphinx translator.  Check if
 the line before the code block ends in one colon (not two!), a
 question mark, an exclamation mark, a comma, a period, or just a
@@ -1297,9 +1335,13 @@ code blocks that cause errors when the reST text is transformed to
 other formats. The remedy is to define items for the index outside
 paragraphs.
 
-I{Error Message "Undefined substitution..." from reSt.} This may happen if there is much inline math in the text. reSt cannot
+I{Error Message "Undefined substitution..." from reST.} This may happen if there is much inline math in the text. reST cannot
 understand inline LaTeX commands and interprets them as illegal code.
 Just ignore these error messages.
+
+I{Preprocessor Directives Do Not Work.} Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
 
 I{The LaTeX File Does Not Compile.} If the problem is undefined control sequence involving::
 
@@ -1355,7 +1397,7 @@ I{Debugging.} Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
 series of transformations of the text. The effect of each of these
 transformation steps are dumped to a logfile, named
-C{_doconce_debugging.log}, if the third argument to C{doconce2format}
+C{_doconce_debugging.log}, if the to C{doconce format} after the filename
 is C{debug}. The logfile is inteded for the developers of Doconce, but
 may still give some idea of what is wrong.  The section "Basic Parsing
 Ideas" explains how the Doconce text is transformed into a specific
