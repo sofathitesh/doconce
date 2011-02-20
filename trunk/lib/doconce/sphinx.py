@@ -1,3 +1,5 @@
+# http://sphinx.pocoo.org/ext/math.html#
+
 # can reuse most of rst module:
 from rst import *
 
@@ -219,15 +221,96 @@ def sphinx_code(filestr, format):
 
     return filestr
 
+def sphinx_code_newmathlabels(filestr, format):
+    # In rst syntax, code blocks are typeset with :: (verbatim)
+    # followed by intended blocks. This function indents everything
+    # inside code (or TeX) blocks.
+
+    # grab #sphinx code-blocks: cod=python cpp=c++ etc line
+    # (do this before code is inserted in case verbatim blocks contain
+    # such specifications for illustration)
+    m = re.search(r'#\s*[Ss]phinx\s+code-blocks?:(.+?)\n', filestr)
+    if m:
+        defs_line = m.group(1)
+        # turn defs into a dictionary definition:
+        defs = {}
+        for definition in defs_line.split():
+            key, value = definition.split('=')
+            defs[key] = value
+    else:
+        # default mappings:
+        defs = dict(cod='python', pycod='python', cppcod='c++',
+                    fcod='fortran', ccod='c', 
+                    pro='python', pypro='python', cpppro='c++',
+                    fpro='fortran', cpro='c', 
+                    sys='console', dat='python')
+        # (the "python" typesetting is neutral if the text
+        # does not parse as python)
+    
+    # First indent all code/tex blocks by 1) extracting all blocks,
+    # 2) intending each block, and 3) inserting the blocks.
+    # In between, handle the math blocks.
+    
+    filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
+    for i in range(len(code_blocks)):
+        code_blocks[i] = indent_lines(code_blocks[i], format)
+
+    math_labels = []
+    for i in range(len(tex_blocks)):
+        tex_blocks[i] = indent_lines(tex_blocks[i], format)
+        # extract all \label{}s inside tex blocks and typeset them
+        # with :label: tags
+        label_regex1 = fix_latex(r'\label\{(.+?)\}', application='match')
+        label_regex2 = fix_latex( r'label\{(.+?)\}', application='match')
+        math_labels.extend(re.findall(label_regex1, tex_blocks[i]))
+        tex_blocks[i] = re.sub(label_regex1,
+                              r' :label: \g<1> ', tex_blocks[i])
+        # handle also those without \ if there are any:
+        math_labels.extend(re.findall(label_regex2, tex_blocks[i]))
+        tex_blocks[i] = re.sub(label_regex2, r' :label: \g<1> ', tex_blocks[i])
+
+    # replace all references to equations:
+    for label in math_labels:
+        filestr = filestr.replace(':ref:`%s`' % label, ':eq:`%s`' % label)
+     
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
+
+    for key in defs:
+        language = defs[key]
+        if not language in legal_pygments_languages:
+            raise TypeError('%s is not a legal Pygments language '\
+                            '(lexer) in line with:\n  %s' % \
+                                (language, defs_line))
+        #filestr = re.sub(r'^!bc\s+%s\s*\n' % key, 
+        #                 '\n.. code-block:: %s\n\n' % defs[key], filestr,
+        #                 flags=re.MULTILINE)
+        cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
+        filestr = cpattern.sub('\n.. code-block:: %s\n\n' % defs[key], filestr)
+                         
+    # any !bc with/without argument becomes a py (python) block:
+    #filestr = re.sub(r'^!bc.+\n', '\n.. code-block:: py\n\n', filestr,
+    #                 flags=re.MULTILINE)
+    cpattern = re.compile(r'^!bc.+$', flags=re.MULTILINE)
+    filestr = cpattern.sub('\n.. code-block:: py\n\n', filestr)
+
+    filestr = re.sub(r'!ec *\n', '\n\n', filestr)
+    #filestr = re.sub(r'!ec\n', '\n', filestr)
+    #filestr = re.sub(r'!ec\n', '', filestr)
+    filestr = re.sub(r'!bt *\n', '\n.. math::\n   :nowrap:\n\n', filestr)
+    filestr = re.sub(r'!et *\n', '\n\n', filestr)
+
+    return filestr
+
 def sphinx_ref_and_label(section_label2title, format, filestr):
     filestr = ref_and_label_commoncode(section_label2title, format, filestr)
 
     # replace all references to sections:
     for label in section_label2title:
         filestr = filestr.replace('ref{%s}' % label, ':ref:`%s`' % label)
-    
-    from common import ref2equations
-    filestr = ref2equations(filestr)
+
+    # not of interest after sphinx got equation references:
+    #from common import ref2equations
+    #filestr = ref2equations(filestr)
     
     # replace remaining ref{x} as :ref:`x`
     filestr = re.sub(r'ref\{(.+?)\}', ':ref:`\g<1>`', filestr)

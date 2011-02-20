@@ -323,7 +323,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">September 10, 2010</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Feb 20, 2011</td>
 </tr>
 </tbody>
 </table>
@@ -435,10 +435,9 @@ text with completely invivisble tagging.</li>
 documentation file in other documents (manuals, tutorials, doc strings).</li>
 </ol>
 </blockquote>
-<p>One answer to these points is the Doconce markup language, its associated
-tools, and the <a class="reference external" href="http://code.google.com/p/preprocess/">C-style preprocessor tool</a>.
-Then we can <em>write once, include anywhere</em>!
-And what we write is close to plain ASCII text.</p>
+<p>One answer to these points is the Doconce markup language, its
+associated tools, and a <a class="reference external" href="http://code.google.com/p/preprocess">C-style preprocessor tool</a> or the <a class="reference external" href="http://www.makotemplates.org/">Mako template system</a>.  Then we can <em>write once, include
+anywhere</em>!  And what we write is close to plain ASCII text.</p>
 <p>But isn't reStructuredText exactly the format that fulfills the needs
 above? Yes and no. Yes, because reStructuredText can be filtered to a
 lot of the mentioned formats. No, because of the reasons listed
@@ -463,14 +462,16 @@ can be posponed (maybe forever - which is the common experience of the
 Doconce developer).</p>
 <div class="section" id="dependencies">
 <h2>Dependencies</h2>
-<p>Doconce depends on the Python package
-<a class="reference external" href="http://code.google.com/p/preprocess/">preprocess</a>.  To make LaTeX
+<p>If you make use of preprocessor directives in the Doconce source,
+either <a class="reference external" href="http://code.google.com/p/preprocess">Preprocess</a> or <a class="reference external" href="http://www.makotemplates.org">Mako</a> must be installed.  To make LaTeX
 documents (without going through the reStructuredText format) you also
-need <a class="reference external" href="http://code.google.com/p/ptex2tex">ptex2tex</a> and some style files
-that ptex2tex potentially makes use of.  Going from reStructuredText
-to formats such as XML, OpenOffice, HTML, and LaTeX requires
-<a class="reference external" href="http://docutils.sourceforge.net/">docutils</a>.  Making Sphinx documents
-requires of course <a class="reference external" href="http://sphinx.pocoo.org">sphinx</a>.</p>
+need <a class="reference external" href="http://code.google.com/p/ptex2tex">ptex2tex</a> and some style
+files that <tt class="docutils literal">ptex2tex</tt> potentially makes use of.  Going from
+reStructuredText to formats such as XML, OpenOffice, HTML, and LaTeX
+requires <a class="reference external" href="http://docutils.sourceforge.net">docutils</a>.  Making Sphinx
+documents requires of course <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a>.
+All of the mentioned potential dependencies are pure Python packages
+which are easily installed.</p>
 </div>
 <div class="section" id="the-doconce-software-documentation-strategy">
 <span id="doconce-strategy"></span><h2>The Doconce Software Documentation Strategy</h2>
@@ -481,7 +482,7 @@ the Doconce format. Use many files - and never duplicate information!</li>
 <li>Use <tt class="docutils literal">#include</tt> statements in source code (especially in doc
 strings) and in LaTeX documents for including documentation
 files.  These documentation files must be filtered to an
-appropriate format by the program <tt class="docutils literal">doconce2format</tt> before being
+appropriate format by the program <tt class="docutils literal">doconce</tt> before being
 included. In a Python context, this means plain text for computer
 source code (and Pydoc); Epytext for Epydoc API documentation, or
 the Sphinx dialect of reStructuredText for Sphinx API
@@ -495,9 +496,13 @@ files for pure computer code and for various other documents.</li>
 The <tt class="docutils literal">.p.py</tt> extension identifies this as a file that has to be
 preprocessed) by the <tt class="docutils literal">preprocess</tt> program.
 In a doc string in <tt class="docutils literal">basename.p.py</tt> we do a preprocessor include
-in a comment line, say:</p>
+in a comment line, say (use triple quotes in the doc string in case
+the <tt class="docutils literal">doc1</tt> documentation includes code snippets with doc strings
+with the usual triple double quotes):</p>
 <pre class="literal-block">
+'''
 #    #include &quot;docstrings/doc1.dst.txt
+'''
 </pre>
 <!-- Note: we insert an error right above as the right quote is missing. -->
 <!-- Then preprocess skips the statement, otherwise it gives an error -->
@@ -531,7 +536,7 @@ commands:</p>
 <pre class="literal-block">
 # make Epydoc API manual of basename module:
 cd docstrings
-doconce2format epytext doc1.do.txt
+doconce format epytext doc1.do.txt
 mv doc1.epytext doc1.dst.txt
 cd ..
 preprocess basename.p.py &gt; basename.py
@@ -539,7 +544,7 @@ epydoc basename
 
 # make Sphinx API manual of basename module:
 cd doc
-doconce2format sphinx doc1.do.txt
+doconce format sphinx doc1.do.txt
 mv doc1.rst doc1.dst.txt
 cd ..
 preprocess basename.p.py &gt; basename.py
@@ -550,7 +555,7 @@ cd ../..
 
 # make ordinary Python module files with doc strings:
 cd docstrings
-doconce2format plain doc1.do.txt
+doconce format plain doc1.do.txt
 mv doc1.txt doc1.dst.txt
 cd ..
 preprocess basename.p.py &gt; basename.py
@@ -576,7 +581,7 @@ docs/manual/manual.do.txt
 where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.</p>
 <p>The file <tt class="docutils literal">make.sh</tt> in the same directory as the <tt class="docutils literal">manual.do.txt</tt> file
-(the current text) shows how to run <tt class="docutils literal">doconce2format</tt> on the
+(the current text) shows how to run <tt class="docutils literal">doconce format</tt> on the
 Doconce file to obtain documents in various formats.</p>
 <p>Another demo is found in:</p>
 <pre class="literal-block">
@@ -592,14 +597,14 @@ of the results.</p>
 <div class="section" id="from-doconce-to-other-formats">
 <span id="doconce2formats"></span><h1>From Doconce to Other Formats</h1>
 <p>Transformation of a Doconce document to various other
-formats applies the script <tt class="docutils literal">doconce2format</tt>:</p>
+formats applies the script <tt class="docutils literal">doconce format</tt>:</p>
 <pre class="literal-block">
-Unix/DOS&gt; doconce2format format mydoc.do.txt
+Unix/DOS&gt; doconce format format mydoc.do.txt
 </pre>
 <p>The <tt class="docutils literal">preprocess</tt> program is always used to preprocess the file first,
 and options to <tt class="docutils literal">preprocess</tt> can be added after the filename. For example:</p>
 <pre class="literal-block">
-Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt -Dextra_sections
+Unix/DOS&gt; doconce format LaTeX mydoc.do.txt -Dextra_sections
 </pre>
 <p>The variable <tt class="docutils literal">FORMAT</tt> is always defined as the current format when
 running <tt class="docutils literal">preprocess</tt>. That is, in the last example, <tt class="docutils literal">FORMAT</tt> is
@@ -607,13 +612,13 @@ defined as <tt class="docutils literal">LaTeX</tt>. Inside the Doconce document 
 format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;LaTeX&quot;</tt>.</p>
 <p>Inline comments in the text are removed from the output by:</p>
 <pre class="literal-block">
-Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt remove_inline_comments
+Unix/DOS&gt; doconce format LaTeX mydoc.do.txt remove_inline_comments
 </pre>
 <p>One can also remove such comments from the original Doconce file
 by running a helper script in the <tt class="docutils literal">bin</tt> folder of the Doconce
 source code:</p>
 <pre class="literal-block">
-Unix/DOS&gt; doconce_remove_inline_comments.py mydoc.do.txt
+Unix/DOS&gt; doconce remove_inline_comments mydoc.do.txt
 </pre>
 <p>This action is convenient when a Doconce document reaches its final form.</p>
 <div class="section" id="html">
@@ -621,7 +626,7 @@ Unix/DOS&gt; doconce_remove_inline_comments.py mydoc.do.txt
 <p>Making an HTML version of a Doconce file <tt class="docutils literal">mydoc.do.txt</tt>
 is performed by:</p>
 <pre class="literal-block">
-Unix/DOS&gt; doconce2format HTML mydoc.do.txt
+Unix/DOS&gt; doconce format HTML mydoc.do.txt
 </pre>
 <p>The resulting file <tt class="docutils literal">mydoc.html</tt> can be loaded into any web browser for viewing.</p>
 </div>
@@ -635,7 +640,7 @@ Unix/DOS&gt; doconce2format HTML mydoc.do.txt
 <dt><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal">mydoc.p.tex</tt> for</dt>
 <dd><p class="first"><tt class="docutils literal">ptex2tex</tt>:</p>
 <pre class="last literal-block">
-Unix/DOS&gt; doconce2format LaTeX mydoc.do.txt
+Unix/DOS&gt; doconce format LaTeX mydoc.do.txt
 </pre>
 </dd>
 </dl>
@@ -684,7 +689,7 @@ Unix/DOS&gt; dvipdf mydoc
 </pre>
 <p>If one wishes to use the <tt class="docutils literal">Minted_Python</tt>, <tt class="docutils literal">Minted_Cpp</tt>, etc., environments
 in <tt class="docutils literal">ptex2tex</tt> for typesetting code, the <tt class="docutils literal">minted</tt> LaTeX package is needed.
-This package is included by running <tt class="docutils literal">doconce2format</tt> with the
+This package is included by running <tt class="docutils literal">doconce format</tt> with the
 <tt class="docutils literal"><span class="pre">-DMINTED</span></tt> option:</p>
 <pre class="literal-block">
 Unix/DOS&gt; ptex2tex -DMINTED mydoc
@@ -709,7 +714,7 @@ cannot be run from <tt class="docutils literal">latex</tt> without the <tt class
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:</p>
 <pre class="literal-block">
-Unix/DOS&gt; doconce2format plain mydoc.do.txt  # results in mydoc.txt
+Unix/DOS&gt; doconce format plain mydoc.do.txt  # results in mydoc.txt
 </pre>
 </div>
 <div class="section" id="restructuredtext">
@@ -718,7 +723,7 @@ Unix/DOS&gt; doconce2format plain mydoc.do.txt  # results in mydoc.txt
 go to other formats. First we filter the Doconce text to a
 reStructuredText file <tt class="docutils literal">mydoc.rst</tt>:</p>
 <pre class="literal-block">
-Unix/DOS&gt; doconce2format rst mydoc.do.txt
+Unix/DOS&gt; doconce format rst mydoc.do.txt
 </pre>
 <p>We may now produce various other formats:</p>
 <pre class="literal-block">
@@ -737,7 +742,7 @@ That is, one can easily go from Doconce to Microsoft Word.</p>
 <p><em>Step 1.</em> Translate Doconce into the Sphinx dialect of
 the reStructuredText format:</p>
 <pre class="literal-block">
-Unix/DOS&gt; doconce2format sphinx mydoc.do.txt
+Unix/DOS&gt; doconce format sphinx mydoc.do.txt
 </pre>
 <p><em>Step 2.</em> Create a Sphinx root directory with a <tt class="docutils literal">conf.py</tt> file,
 either manually or by using the interactive <tt class="docutils literal"><span class="pre">sphinx-quickstart</span></tt>
@@ -767,6 +772,10 @@ y
 y
 y
 EOF
+</pre>
+<p>These statements are automated by the command:</p>
+<pre class="literal-block">
+Unix/DOS&gt; doconce sphinx_dir mydoc.do.txt
 </pre>
 <p><em>Step 3.</em> Move the <tt class="docutils literal">tutorial.rst</tt> file to the Sphinx root directory:</p>
 <pre class="literal-block">
@@ -811,10 +820,10 @@ one used by <a class="reference external" href="http://code.google.com/p/support
 The transformation to this format, called <tt class="docutils literal">gwiki</tt> to explicitly mark
 it as the Google Code dialect, is done by:</p>
 <pre class="literal-block">
-Unix/DOS&gt; doconce2format gwiki mydoc.do.txt
+Unix/DOS&gt; doconce format gwiki mydoc.do.txt
 </pre>
 <p>You can then open a new wiki page for your Google Code project, copy
-the <tt class="docutils literal">mydoc.gwiki</tt> output file from <tt class="docutils literal">doconce2format</tt> and paste the
+the <tt class="docutils literal">mydoc.gwiki</tt> output file from <tt class="docutils literal">doconce format</tt> and paste the
 file contents into the wiki page. Press <strong>Preview</strong> or <strong>Save Page</strong> to
 see the formatted result.</p>
 <p>When the Doconce file contains figures, each figure filename must be
@@ -1011,6 +1020,11 @@ __A Paragraph.__ The running text goes here.
 <pre class="literal-block">
 FIGURE:[filename, height=xxx width=yyy scale=zzz] caption
 </pre>
+<p>The filename can be without extension, and Doconce will search for an
+appropriate file with the right extension. If the extension is wrong,
+say <tt class="docutils literal">.eps</tt> when requesting an HTML format, Doconce tries to find another
+file, and if not, the given file is converted to a proper format
+(using ImageMagick's <tt class="docutils literal">convert</tt> utility).</p>
 <p>The height, width, and scale keywords (and others) can be included
 if desired and may have effect for some formats. Note the comma
 between the sespecifications and that there should be no space
@@ -1020,12 +1034,8 @@ related to a figure line must be written on the same line. Introducing
 newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as <tt class="docutils literal">FIGURE:</tt> will be
 included in the formatted caption).</p>
-<p>The filename extension may not be compatible with the chosen output format.
-For example, a filename <tt class="docutils literal">mypic.eps</tt> is fine for LaTeX output but not for
-HTML. In such cases, the Doconce translator will convert the file to
-a suitable format (say <tt class="docutils literal">mypic.png</tt> for HTML output).</p>
 <div class="figure" id="fig-impact">
-<img alt="figs/dinoimpact.gif" src="figs/dinoimpact.gif" style="width: 400px;" />
+<img alt="figs/dinoimpact.ps" src="figs/dinoimpact.ps" style="width: 400px;" />
 <p class="caption">It can't get worse than this...  (fig:impact)</p>
 </div>
 <p>Another type of special lines starts with <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> and enables copying
@@ -1095,7 +1105,7 @@ Click on this link: URL:&quot;http://some.where.net&quot;.
 <p>where <tt class="docutils literal">name</tt> is the name of the author of the command, and <tt class="docutils literal">comment</tt> is a
 plain text text. (<strong>hpl</strong>: Note that there must be a space after the colon,
 otherwise the comment is not recognized.)
-The name and comment are visible in the output unless <tt class="docutils literal">doconce2format</tt>
+The name and comment are visible in the output unless <tt class="docutils literal">doconce format</tt>
 is run with a command-line specification of removing such comments
 (see the chapter <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a> for an example). Inline comments
 are helpful during development of a document since different authors
@@ -1138,7 +1148,7 @@ replace the reference by the title of the (sub)section.  All labels
 will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the &quot;label&quot; and &quot;ref&quot; commands are first translated to the proper
-reStructuredText commands by <tt class="docutils literal">doconce2format</tt>. In the HTML and (Google
+reStructuredText commands by <tt class="docutils literal">doconce format</tt>. In the HTML and (Google
 Code) Wiki formats, labels become anchors and references become links,
 and with LaTeX &quot;label&quot; and &quot;ref&quot; are just equipped with backslashes so
 these commands work as usual in LaTeX.</p>
@@ -1467,6 +1477,29 @@ expressions).</p>
 </pre>
 <p>in the current format.</p>
 </div>
+<div class="section" id="preprocessing-steps">
+<h2>Preprocessing Steps</h2>
+<p>Doconce allows preprocessor commands for, e.g., including files,
+leaving out text, or inserting special text depending on the format.
+Two preprocessors are supported: Preprocess
+(<a class="reference external" href="http://code.google.com/p/preprocess">http://code.google.com/p/preprocess</a>) and Mako
+(<a class="reference external" href="http://www.makotemplates.org/">http://www.makotemplates.org/</a>). The former allows include and if-else
+statements much like the well-known preprocessor in C and C++ (but it
+does not allow sophisticated macro substitutions). The latter
+preprocessor is a very powerful template system.  With Mako you can
+automatically generate various type of text and steer the generation
+through Python code embedded in the Doconce document. An arbitrary set
+of <tt class="docutils literal">name=value</tt> command-line arguments (at the end of the command line)
+automatically define Mako variables that are substituted in the document.</p>
+<p>Doconce will detect if Preprocess or Mako commands are used and run
+the relevant preprocessor prior to translating the Doconce source to a
+specific format.</p>
+<p>Preprocess and Mako always have the variable <tt class="docutils literal">FORMAT</tt> to be the desired
+output format of Doconce. It is then easy to test on the value of <tt class="docutils literal">FORMAT</tt>
+and take different actions for different formats. For example, one may
+create special LaTeX output for figures, say with multiple plots within
+a figure, while other formats may apply a separate figure for each plot.</p>
+</div>
 <div class="section" id="missing-features">
 <h2>Missing Features</h2>
 <blockquote>
@@ -1479,7 +1512,7 @@ expressions).</p>
 <h2>Troubleshooting</h2>
 <p><em>Disclaimer.</em> First of all, Doconce has hardly any support for
 syntax checking. This means that if you encounter Python errors while
-running <tt class="docutils literal">doconce2format</tt>, the reason for the error is most likely a
+running <tt class="docutils literal">doconce format</tt>, the reason for the error is most likely a
 syntax problem in your Doconce source file. You have to track down
 this syntax problem yourself.</p>
 <p>However, the problem may well be a bug in Doconce. The Doconce
@@ -1493,7 +1526,7 @@ hardly any time to work on debugging the code, but the software works
 well for his diverse applications of it.</p>
 <p><em>Code or TeX Block Errors in reST.</em> Sometimes reStructuredText (reST) reports an &quot;Unexpected indentation&quot;
 at the beginning of a code block. If you see a <tt class="docutils literal">!bc</tt>, which should
-have been removed by <tt class="docutils literal">doconce2format</tt>, it is usually an error in the
+have been removed by <tt class="docutils literal">doconce format</tt>, it is usually an error in the
 Doconce source, or a problem with the rst/sphinx translator.  Check if
 the line before the code block ends in one colon (not two!), a
 question mark, an exclamation mark, a comma, a period, or just a
@@ -1507,9 +1540,12 @@ and especially right before a code block, the reST translator
 code blocks that cause errors when the reST text is transformed to
 other formats. The remedy is to define items for the index outside
 paragraphs.</p>
-<p><em>Error Message &quot;Undefined substitution...&quot; from reSt.</em> This may happen if there is much inline math in the text. reSt cannot
+<p><em>Error Message &quot;Undefined substitution...&quot; from reST.</em> This may happen if there is much inline math in the text. reST cannot
 understand inline LaTeX commands and interprets them as illegal code.
 Just ignore these error messages.</p>
+<p><em>Preprocessor Directives Do Not Work.</em> Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.</p>
 <p><em>The LaTeX File Does Not Compile.</em> If the problem is undefined control sequence involving:</p>
 <pre class="literal-block">
 \code{...}
@@ -1554,7 +1590,7 @@ therefore turned off.)</p>
 problematic area and debug that small piece of text. Doconce does a
 series of transformations of the text. The effect of each of these
 transformation steps are dumped to a logfile, named
-<tt class="docutils literal">_doconce_debugging.log</tt>, if the third argument to <tt class="docutils literal">doconce2format</tt>
+<tt class="docutils literal">_doconce_debugging.log</tt>, if the to <tt class="docutils literal">doconce format</tt> after the filename
 is <tt class="docutils literal">debug</tt>. The logfile is inteded for the developers of Doconce, but
 may still give some idea of what is wrong.  The section &quot;Basic Parsing
 Ideas&quot; explains how the Doconce text is transformed into a specific

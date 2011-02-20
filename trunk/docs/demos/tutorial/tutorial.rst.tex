@@ -54,7 +54,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-September 10, 2010
+Feb 20, 2011
 %
 \begin{itemize}
 
@@ -208,9 +208,12 @@ are supported,
 
 \item comments can be inserted throughout the text,
 
-\item a preprocessor (much like the C preprocessor) is integrated so
-other documents (files) can be included and large portions of text
-can be defined in or out of the text.
+\item with a simple preprocessor, which is integrated, one can include
+other documents (files) and large portions of text can be defined
+in or out of the text,
+
+\item with the Mako preprocessor one can even embed Python
+code and use this to steer generation of Doconce text.
 
 \end{itemize}
 
@@ -518,7 +521,7 @@ syntax we refer to the \texttt{docs/manual/manual.do.txt} file (see the
 \href{https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html}{demo
 page} for various formats of this document).
 
-% Example on including another Doconce file:
+% Example on including another Doconce file (using preprocess):
 
 
 %___________________________________________________________________________
@@ -531,10 +534,10 @@ page} for various formats of this document).
 }
 
 Transformation of a Doconce document to various other
-formats applies the script \texttt{doconce2format}:
+formats applies the script \texttt{doconce format}:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~format~mydoc.do.txt
+Unix/DOS>~doconce~format~format~mydoc.do.txt
 }
 \end{quote}
 
@@ -542,7 +545,7 @@ The \texttt{preprocess} program is always used to preprocess the file first,
 and options to \texttt{preprocess} can be added after the filename. For example:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~LaTeX~mydoc.do.txt~-Dextra\_sections
+Unix/DOS>~doconce~format~LaTeX~mydoc.do.txt~-Dextra\_sections
 }
 \end{quote}
 
@@ -554,7 +557,7 @@ format specific actions through tests like \texttt{\#if FORMAT == "LaTeX"}.
 Inline comments in the text are removed from the output by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~LaTeX~mydoc.do.txt~remove\_inline\_comments
+Unix/DOS>~doconce~format~LaTeX~mydoc.do.txt~remove\_inline\_comments
 }
 \end{quote}
 
@@ -563,7 +566,7 @@ by running a helper script in the \texttt{bin} folder of the Doconce
 source code:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce\_remove\_inline\_comments.py~mydoc.do.txt
+Unix/DOS>~doconce~remove\_inline\_comments~mydoc.do.txt
 }
 \end{quote}
 
@@ -582,7 +585,7 @@ Making an HTML version of a Doconce file \texttt{mydoc.do.txt}
 is performed by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~HTML~mydoc.do.txt
+Unix/DOS>~doconce~format~HTML~mydoc.do.txt
 }
 \end{quote}
 
@@ -607,7 +610,7 @@ Making a LaTeX file \texttt{mydoc.tex} from \texttt{mydoc.do.txt} is done in two
 \texttt{ptex2tex}:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~LaTeX~mydoc.do.txt
+Unix/DOS>~doconce~format~LaTeX~mydoc.do.txt
 }
 \end{quote}
 
@@ -675,7 +678,7 @@ Unix/DOS>~dvipdf~mydoc
 
 If one wishes to use the \texttt{Minted\_Python}, \texttt{Minted\_Cpp}, etc., environments
 in \texttt{ptex2tex} for typesetting code, the \texttt{minted} LaTeX package is needed.
-This package is included by running \texttt{doconce2format} with the
+This package is included by running \texttt{doconce format} with the
 \texttt{-DMINTED} option:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
@@ -714,7 +717,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~plain~mydoc.do.txt~~\#~results~in~mydoc.txt
+Unix/DOS>~doconce~format~plain~mydoc.do.txt~~\#~results~in~mydoc.txt
 }
 \end{quote}
 
@@ -732,7 +735,7 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file \texttt{mydoc.rst}:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~rst~mydoc.do.txt
+Unix/DOS>~doconce~format~rst~mydoc.do.txt
 }
 \end{quote}
 
@@ -765,7 +768,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 the reStructuredText format:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~sphinx~mydoc.do.txt
+Unix/DOS>~doconce~format~sphinx~mydoc.do.txt
 }
 \end{quote}
 
@@ -798,6 +801,13 @@ y\\
 y\\
 y\\
 EOF
+}
+\end{quote}
+
+These statements are automated by the command:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix/DOS>~doconce~sphinx\_dir~mydoc.do.txt
 }
 \end{quote}
 
@@ -870,12 +880,12 @@ The transformation to this format, called \texttt{gwiki} to explicitly mark
 it as the Google Code dialect, is done by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Unix/DOS>~doconce2format~gwiki~mydoc.do.txt
+Unix/DOS>~doconce~format~gwiki~mydoc.do.txt
 }
 \end{quote}
 
 You can then open a new wiki page for your Google Code project, copy
-the \texttt{mydoc.gwiki} output file from \texttt{doconce2format} and paste the
+the \texttt{mydoc.gwiki} output file from \texttt{doconce format} and paste the
 file contents into the wiki page. Press \textbf{Preview} or \textbf{Save Page} to
 see the formatted result.
 
@@ -943,14 +953,16 @@ various formats. The \texttt{make.sh} script runs a set of translations.
   \label{dependencies}%
 }
 
-Doconce depends on the Python package
-\href{http://code.google.com/p/preprocess/}{preprocess}.  To make LaTeX
+If you make use of preprocessor directives in the Doconce source,
+either \href{http://code.google.com/p/preprocess}{Preprocess} or \href{http://www.makotemplates.org}{Mako} must be installed.  To make LaTeX
 documents (without going through the reStructuredText format) you also
-need \href{http://code.google.com/p/ptex2tex}{ptex2tex} and some style files
-that ptex2tex potentially makes use of.  Going from reStructuredText
-to formats such as XML, OpenOffice, HTML, and LaTeX requires
-\href{http://docutils.sourceforge.net/}{docutils}.  Making Sphinx documents
-requires of course \href{http://sphinx.pocoo.org}{sphinx}.
+need \href{http://code.google.com/p/ptex2tex}{ptex2tex} and some style
+files that \texttt{ptex2tex} potentially makes use of.  Going from
+reStructuredText to formats such as XML, OpenOffice, HTML, and LaTeX
+requires \href{http://docutils.sourceforge.net}{docutils}.  Making Sphinx
+documents requires of course \href{http://sphinx.pocoo.org}{Sphinx}.
+All of the mentioned potential dependencies are pure Python packages
+which are easily installed.
 
 
 %___________________________________________________________________________

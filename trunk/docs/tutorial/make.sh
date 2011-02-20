@@ -2,46 +2,22 @@
 ./clean.sh
 
 # HTML
-doconce2format HTML tutorial.do.txt
+doconce format HTML tutorial.do.txt
 
 # LaTeX
-doconce2format LaTeX tutorial.do.txt
+doconce format LaTeX tutorial.do.txt
 ptex2tex -DHELVETICA tutorial
 latex tutorial.tex  # no -shell-escape since no -DMINTED to ptex2tex
 latex tutorial.tex
 dvipdf tutorial.dvi
 
 # Sphinx
-doconce2format sphinx tutorial.do.txt
-rm -rf sphinx-rootdir
-mkdir sphinx-rootdir
-sphinx-quickstart <<EOF
-sphinx-rootdir
-n
-_
-Doconce Tutorial
-H. P. Langtangen
-1.0
-1.0
-.rst
-index
-n
-y
-n
-n
-n
-n
-y
-n
-n
-y
-y
-y
-EOF
+doconce format sphinx tutorial.do.txt
+doconce sphinx_dir tutorial.do.txt
 cp tutorial.rst tutorial.sphinx.rst
 mv tutorial.rst sphinx-rootdir
 # index-sphinx is a ready-made version of index.rst:
-cp index-sphinx sphinx-rootdir/index.rst
+cp index-sphinx sphinx-rootdir/index.rst   # necessary?
 cd sphinx-rootdir
 make clean
 make html
@@ -49,12 +25,12 @@ make latex
 cd _build/latex
 make clean
 make all-pdf
-cp DoconceTutorial.pdf ../../../tutorial.sphinx.pdf
+cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
 cd ../../..
 #firefox sphinx-rootdir/_build/html/index.html
 
 # reStructuredText:
-doconce2format rst tutorial.do.txt
+doconce format rst tutorial.do.txt
 rst2xml.py tutorial.rst > tutorial.xml
 rst2odt.py tutorial.rst > tutorial.odt
 rst2html.py tutorial.rst > tutorial.rst.html
@@ -63,10 +39,10 @@ latex tutorial.rst.tex
 dvipdf tutorial.rst.dvi
 
 # Other formats:
-doconce2format plain tutorial.do.txt
-doconce2format gwiki tutorial.do.txt
-doconce2format st tutorial.do.txt
-doconce2format epytext tutorial.do.txt
+doconce format plain tutorial.do.txt
+doconce format gwiki tutorial.do.txt
+doconce format st tutorial.do.txt
+doconce format epytext tutorial.do.txt
 
 # Make PDF of most of the above:
 a2ps_plain='a2ps --left-title='\'''\'' --right-title='\'''\'' --left-footer='\'''\'' --right-footer='\'''\'' --footer='\'''\'''
@@ -103,12 +79,12 @@ Doconce is a minimum tagged markup language. The file
 Doconce tutorial, written in the Doconce format.
 Running
 <pre>
-doconce2format HTML tutorial.do.txt
+doconce format HTML tutorial.do.txt
 </pre>
 produces the HTML file <a href="tutorial.html">tutorial.html</a>.
 Going from Doconce to LaTeX is done by
 <pre>
-doconce2format LaTeX tutorial.do.txt
+doconce format LaTeX tutorial.do.txt
 </pre>
 resulting in the file <a href="tutorial.tex">tutorial.tex</a>, which can
 be compiled to a PDF file <a href="tutorial.pdf">tutorial.pdf</a>
@@ -116,7 +92,7 @@ by running <tt>latex</tt> and <tt>dvipdf</tt> the standard way.
 <p>
 The reStructuredText (reST) format is of particular interest:
 <pre>
-doconce2format rst tutorial.do.txt
+doconce format rst tutorial.do.txt
 </pre>
 The reST file <a href="tutorial.rst">tutorial.rst</a> is a starting point
 for conversion to many other formats: OpenOffice, 

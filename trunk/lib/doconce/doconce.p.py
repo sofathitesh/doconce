@@ -7,7 +7,7 @@
 __author__ = 'Hans Petter Langtangen <hpl@simula.no>'
 __version__ = 0.7
 
-import re, os, sys, shutil, commands, pprint, time
+import re, os, sys, shutil, commands, pprint, time, glob
 
 def debugpr(out):
     if debug:
@@ -635,29 +635,51 @@ def handle_figures(filestr, format):
         extensions = [FIGURE_EXT[format]]
     else:
         extensions = FIGURE_EXT[format]  # is list
-    for f in files:
-        if not os.path.isfile(f):
-            raise ValueError('file %s does not exist' % f)
-        basepath, ext = os.path.splitext(f)
+    for figfile in files:
+        file_found = False
+        if not os.path.isfile(figfile):
+            basepath, ext = os.path.splitext(figfile)
+            if not ext:  # no extension?
+                # try to see if f + ext exists:
+                for ext in extensions:
+                    newname = figfile + ext
+                    if os.path.isfile(newname):
+                        filestr = filestr.replace(figfile, newname)
+                        figfile = newname
+                        file_found = True
+                        break
+                # try to see if other extensions exist:
+                if not file_found:
+                    candidate_files = glob.glob(figfile + '.*')
+                    for newname in candidate_files:
+                        if os.path.isfile(newname):
+                            filestr = filestr.replace(figfile, newname)
+                            figfile = newname
+                            file_found = True
+                            break
+        if not os.path.isfile(figfile):
+            raise ValueError('file %s does not exist' % figfile)
+
+        basepath, ext = os.path.splitext(figfile)
         if not ext in extensions:
-            # use convert from ImageMagick:
+            # use convert from ImageMagick to convert to proper format:
             for e in extensions:
-                newfile = basepath + e
-                if not os.path.isfile(newfile):
+                converted_file = basepath + e
+                if not os.path.isfile(converted_file):
                     # ext might be empty, in that case we cannot convert
                     # anything:
                     if ext:
-                        failure = os.system('convert %s %s' % (f, newfile))
+                        failure = os.system('convert %s %s' % (figfile, converted_file))
                         if not failure:
-                            print 'Figure', f, 'must have extension(s)', extensions
-                            print '....converted %s to %s' % (f, newfile)
-                            filestr = filestr.replace(f, newfile)
+                            print 'Figure', figfile, 'must have extension(s)', extensions
+                            print '....converted %s to %s' % (figfile, converted_file)
+                            filestr = filestr.replace(figfile, converted_file)
                             break  # jump out of inner e loop
                 else:  # right file exists:
-                    #print '....ok, ', newfile, 'exists'
-                    filestr = filestr.replace(f, newfile)
+                    #print '....ok, ', converted_file, 'exists'
+                    filestr = filestr.replace(figfile, converted_file)
                     break
-                
+            
     # replace FIGURE... by format specific syntax:
     try:
         replacement = INLINE_TAGS_SUBST[format]['figure']
@@ -913,7 +935,10 @@ def doconce2format(in_filename, format, out_filename):
     to a given format (HTML, LaTeX, etc.), written to out_filename.
     This is the "main" function in the module.
     """
-    print '\n2nd step: run doconce2format on preprocessed file', in_filename
+    if in_filename.startswith('__'):
+        print 'translate preprocessed Doconce text in', in_filename
+    else:
+        print 'translate Doconce text in', in_filename
 
     # if trouble with encoding:
     # Unix> file myfile.do.txt
@@ -957,6 +982,7 @@ def doconce2format(in_filename, format, out_filename):
     # 2. step: remove all verbatim and math blocks
     
     filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
+
     # for HTML we should make replacements of < ... > in code_blocks,
     # and handle latin-1 characters
     if format == 'HTML':  # fix
@@ -1032,7 +1058,6 @@ def doconce2format(in_filename, format, out_filename):
             # note: could use substitutions (|newcommand|) in rst/sphinx,
             # but they don't allow arguments so expansion of \newcommand
             # is probably a better solution
-        print 'expanding newcommands in', ', '.join(newcommand_files)
         filestr = expand_newcommands(newcommand_files, filestr)
         for i in range(len(tex_blocks)):
             tex_blocks[i] = expand_newcommands(newcommand_files, tex_blocks[i])
@@ -1062,47 +1087,74 @@ def doconce2format(in_filename, format, out_filename):
 
 def preprocess(filename, format, preprocess_options=''):
     """
-    Run the preprocess script on filename and return the name
+    Run Mako or the preprocess script on filename and return the name
     of the resulting file. In the call, all sys.argv[3:] arguments
-    are given as preprocess_options. In addition, -DFORMAT=format is
+    are given as preprocess_options. In addition, FORMAT (=format) is
     always defined.
     """
     resultfile = '__tmp.do.txt'
-    print '1st step: run preprocessor on', filename
-    cmd = 'preprocess -DFORMAT=%s %s %s > %s' % \
-          (format, preprocess_options, filename, resultfile)
-    print '>>>>', cmd
-    failure, outtext = commands.getstatusoutput(cmd)
-    if failure:
-        print 'Could not run preprocess:\n%s' % cmd
-        print outtext
-        sys.exit(1)
+
+    f = open(filename, 'r'); filestr = f.read(); f.close()
+    preprocessor = None
+    if re.search(r'^#\s*#(if|define|include)', filestr, re.MULTILINE):
+        #print 'run Preprocess on', filename, 'to make', resultfile
+        preprocessor = 'preprocess'
+        
+        cmd = 'preprocess -DFORMAT=%s %s %s > %s' % \
+              (format, preprocess_options, filename, resultfile)
+        print 'run', cmd
+        failure, outtext = commands.getstatusoutput(cmd)
+        if failure:
+            print 'Could not run preprocessor:\n%s' % cmd
+            print outtext
+            sys.exit(1)
+
+    if re.search(r'^\s*<?%', filestr, re.MULTILINE):
+        if preprocessor is not None:
+            print 'Preprocess and Mako preprocessor statements are mixed!'
+            print 'Use only one of them!'
+            sys.exit(1)
+        preprocessor = 'mako'
+        print 'run Mako preprocessor on', filename, 'to make', resultfile
+        from mako.template import Template
+        temp = Template(filename=filename)
+        f = open(resultfile, 'w')
+        kwargs = {'FORMAT': format}
+        kwargs.update(eval('dict(%s)' % ','.join(preprocess_options.split())))
+        f.write(temp.render(**kwargs))
+        f.close()
+    if preprocessor is None:
+        # no preprocessor syntax detected
+        shutil.copy(filename, resultfile)
+    
     return resultfile
 
 def main():
-    # doconce2format accepts to special command-line arguments:
+    # doconce format accepts special command-line arguments:
     #   - debug (for debugging in file _doconce_debugging.log) or
     #   - remove_inline_comments
     #   - oneline (for removal of newlines/linebreaks within paragraphs)
     #   - encoding utf-8 (e.g.)
     #   - guess_encoding
-    #   - preprocess options (-DVAR etc.)
+    #   - preprocessor options (-DVAR etc. for preprocess)
 
     # guess_encoding and online are inactive (these don't work well yet)
 
     global debug, _log, oneline_paragraphs, guess_encoding, \
            remove_inline_comments, encoding
     options = ['debug', 'remove_inline_comments', 'encoding=',
-               'guess_encoding', 'oneline_paragraphs', 'tmp1']
+               'guess_encoding', 'oneline_paragraphs',] # 'tmp1']
     try:
         format = sys.argv[1]
         filename = sys.argv[2]
         del sys.argv[1:3]
     except IndexError:
-        print 'Usage: %s format filename [%s] [preprocess options]\n' \
-              % (sys.argv[0], '|'.join(options))
-        print 'formats:', supported_format_names()
-        print '-DFORMAT=format is always defined when running preprocess'
+        print 'Usage: %s format filename [%s] [preprocessor options]\n' \
+              % (sys.argv[0], ' | '.join(options))
+        if os.path.isfile(sys.argv[1]):
+            print 'Missing format specification!'
+        print 'formats:', str(supported_format_names())[1:-1]
+        print '\n-DFORMAT=format is always defined when running preprocess'
         print 'Other -Dvar preprocess options can be added'
         sys.exit(1)
 
@@ -1112,42 +1164,45 @@ def main():
         sys.exit(1)
 
     debug = False
-    if 'debug' in sys.argv[1:] or '--debug' in sys.argv[1:]:
+    if 'debug' in sys.argv[1:]:
         debug = True
-
+        sys.argv.remove('debug')
+    if '--debug' in sys.argv[1:]:
+        debug = True
+        sys.argv.remove('--debug')
+        
     oneline_paragraphs = False
-    if 'oneline_paragraphs' in sys.argv[1:] or '--oneline_paragraphs' in sys.argv[1:]:
+    if 'oneline_paragraphs' in sys.argv[1:]:
         oneline_paragraphs = True
+        sys.argv.remove('oneline_paragraphs')
+    if '--oneline_paragraphs' in sys.argv[1:]:
+        oneline_paragraphs = True
+        sys.argv.remove('--oneline_paragraphs')
     
     remove_inline_comments = False
-    if 'remove_inline_comments' in sys.argv[1:] or '--remove_inline_comments' in sys.argv[1:]:
+    if 'remove_inline_comments' in sys.argv[1:]:
         remove_inline_comments = True
+        sys.argv.remove('remove_inline_comments')
+    if '--remove_inline_comments' in sys.argv[1:]:
+        remove_inline_comments = True
+        sys.argv.remove('--remove_inline_comments')
         
     guess_encoding = False
-    if 'guess_encoding' in sys.argv[1:] or '--guess_encoding' in sys.argv[1:]:
+    if 'guess_encoding' in sys.argv[1:]:
+        sys.argv.remove('guess_encoding')
         guess_encoding = True
+    if '--guess_encoding' in sys.argv[1:]:
+        guess_encoding = True
+        sys.argv.remove('--guess_encoding')
         
     encoding = ''
-    if 'encoding' in sys.argv[1:]:
-        i = sys.argv.index('encoding')
-        try:
-            encoding = sys.argv[i+1]
-        except IndexError:
-            print 'encoding must be given a value'
-            sys.exit(1)
-    if '--encoding' in sys.argv[1:]:
-        i = sys.argv.index('--encoding')
-        try:
-            encoding = sys.argv[i+1]
-        except IndexError:
-            print 'encoding must be given a value'
-            sys.exit(1)
-
-    tmp = False  # output file is tmp.ext
-    if 'tmp' in sys.argv[1:] or '--tmp' in sys.argv[1:]:
-        tmp = True
+    for arg in sys.argv[1:]:
+        if arg.startswith('encoding=') or arg.startswith('--encoding='):
+            dummy, encoding = arg.split('=')
+            break
+    if encoding:
+        sys.argv.remove(arg)
         
-
     if debug:
         _log_filename = '_doconce_debugging.log'
         _log = open(_log_filename,'w')
@@ -1171,17 +1226,14 @@ def main():
     else:
         basename = filename[:-7]
 
-    if tmp:
-        basename = 'tmp'
-        
     out_filename = basename + FILENAME_EXTENSION[format]
-    print '\n----- doconce2format %s %s' % (format, filename)
+    #print '\n----- doconce format %s %s' % (format, filename)
     filename_preprocessed = preprocess(filename, format,
-                                       ' '.join(sys.argv[3:]))
+                                       ' '.join(sys.argv[1:]))
     doconce2format(filename_preprocessed, format, out_filename)
     os.remove(filename_preprocessed)  # clean up
-    print '----- successful run: %s filtered to %s\n' % \
-          (filename, out_filename)
+    #print '----- successful run: %s filtered to %s\n' % (filename, out_filename)
+    print 'output in', out_filename
     
 if __name__ == '__main__':
     main()

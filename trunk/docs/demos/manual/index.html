@@ -7,12 +7,12 @@ Doconce is a minimum tagged markup language. The file
 a Doconce Description, written in the Doconce format.
 Running
 <pre>
-doconce2format HTML manual.do.txt
+doconce format HTML manual.do.txt
 </pre>
 produces the HTML file <a href="manual.html">manual.html</a>.
 Going from Doconce to LaTeX is done by
 <pre>
-doconce2format LaTeX manual.do.txt
+doconce format LaTeX manual.do.txt
 </pre>
 resulting in the file <a href="manual.tex">manual.tex</a>, which can
 be compiled to a PDF file <a href="manual.pdf">manual.pdf</a>
@@ -20,7 +20,7 @@ by running <tt>latex</tt> and <tt>dvipdf</tt> the standard way.
 <p>
 The reStructuredText (reST) format is of particular interest:
 <pre>
-doconce2format rst manual.do.txt
+doconce format rst manual.do.txt
 </pre>
 The reST file <a href="manual.rst">manual.rst</a> is a starting point
 for conversion to many other formats: OpenOffice, 

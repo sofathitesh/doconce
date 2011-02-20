@@ -45,7 +45,7 @@
 
 
 \begin{center}
-September 10, 2010
+Feb 20, 2011
 \end{center}
 
 
@@ -185,10 +185,9 @@ in verbatim environments). To summarize, we need
 \end{enumerate}
 
 \noindent
-One answer to these points is the Doconce markup language, its associated
-tools, and the \href{http://code.google.com/p/preprocess/}{C-style preprocessor tool}.
-Then we can \emph{write once, include anywhere}!
-And what we write is close to plain ASCII text.
+One answer to these points is the Doconce markup language, its
+associated tools, and a \href{http://code.google.com/p/preprocess}{C-style preprocessor tool} or the \href{http://www.makotemplates.org/}{Mako template system}.  Then we can \emph{write once, include
+anywhere}!  And what we write is close to plain ASCII text.
 
 But isn't reStructuredText exactly the format that fulfills the needs
 above? Yes and no. Yes, because reStructuredText can be filtered to a
@@ -216,14 +215,16 @@ Doconce developer).
 
 \subsection{Dependencies}
 
-Doconce depends on the Python package
-\href{http://code.google.com/p/preprocess/}{preprocess}.  To make {\LaTeX}
+If you make use of preprocessor directives in the Doconce source,
+either \href{http://code.google.com/p/preprocess}{Preprocess} or \href{http://www.makotemplates.org}{Mako} must be installed.  To make {\LaTeX}
 documents (without going through the reStructuredText format) you also
-need \href{http://code.google.com/p/ptex2tex}{ptex2tex} and some style files
-that ptex2tex potentially makes use of.  Going from reStructuredText
-to formats such as XML, OpenOffice, HTML, and {\LaTeX} requires
-\href{http://docutils.sourceforge.net/}{docutils}.  Making Sphinx documents
-requires of course \href{http://sphinx.pocoo.org}{sphinx}.
+need \href{http://code.google.com/p/ptex2tex}{ptex2tex} and some style
+files that {\fontsize{10pt}{10pt}\verb!ptex2tex!} potentially makes use of.  Going from
+reStructuredText to formats such as XML, OpenOffice, HTML, and {\LaTeX}
+requires \href{http://docutils.sourceforge.net}{docutils}.  Making Sphinx
+documents requires of course \href{http://sphinx.pocoo.org}{Sphinx}.
+All of the mentioned potential dependencies are pure Python packages
+which are easily installed.
 
 \subsection{The Doconce Software Documentation Strategy}
 
@@ -236,7 +237,7 @@ requires of course \href{http://sphinx.pocoo.org}{sphinx}.
    \item Use {\fontsize{10pt}{10pt}\verb!#include!} statements in source code (especially in doc
      strings) and in {\LaTeX} documents for including documentation
      files.  These documentation files must be filtered to an
-     appropriate format by the program {\fontsize{10pt}{10pt}\verb!doconce2format!} before being
+     appropriate format by the program {\fontsize{10pt}{10pt}\verb!doconce!} before being
      included. In a Python context, this means plain text for computer
      source code (and Pydoc); Epytext for Epydoc API documentation, or
      the Sphinx dialect of reStructuredText for Sphinx API
@@ -252,10 +253,14 @@ Consider an example involving a Python module in a {\fontsize{10pt}{10pt}\verb!b
 The {\fontsize{10pt}{10pt}\verb!.p.py!} extension identifies this as a file that has to be
 preprocessed) by the {\fontsize{10pt}{10pt}\verb!preprocess!} program. 
 In a doc string in {\fontsize{10pt}{10pt}\verb!basename.p.py!} we do a preprocessor include
-in a comment line, say
+in a comment line, say (use triple quotes in the doc string in case
+the {\fontsize{10pt}{10pt}\verb!doc1!} documentation includes code snippets with doc strings
+with the usual triple double quotes)
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
+'''
 #    #include "docstrings/doc1.dst.txt
+'''
 \end{Verbatim}
 \noindent
 % 
@@ -297,7 +302,7 @@ commands:
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 # make Epydoc API manual of basename module:
 cd docstrings
-doconce2format epytext doc1.do.txt
+doconce format epytext doc1.do.txt
 mv doc1.epytext doc1.dst.txt
 cd ..
 preprocess basename.p.py > basename.py
@@ -305,7 +310,7 @@ epydoc basename
 
 # make Sphinx API manual of basename module:
 cd doc
-doconce2format sphinx doc1.do.txt
+doconce format sphinx doc1.do.txt
 mv doc1.rst doc1.dst.txt
 cd ..
 preprocess basename.p.py > basename.py
@@ -316,7 +321,7 @@ cd ../..
 
 # make ordinary Python module files with doc strings:
 cd docstrings
-doconce2format plain doc1.do.txt
+doconce format plain doc1.do.txt
 mv doc1.txt doc1.dst.txt
 cd ..
 preprocess basename.p.py > basename.py
@@ -355,7 +360,7 @@ where you can compare the Doconce source with the output in many
 different formats: HTML, {\LaTeX}, plain text, etc.
 
 The file {\fontsize{10pt}{10pt}\verb!make.sh!} in the same directory as the {\fontsize{10pt}{10pt}\verb!manual.do.txt!} file
-(the current text) shows how to run {\fontsize{10pt}{10pt}\verb!doconce2format!} on the
+(the current text) shows how to run {\fontsize{10pt}{10pt}\verb!doconce format!} on the
 Doconce file to obtain documents in various formats.
 
 Another demo is found in
@@ -377,18 +382,18 @@ of the results.
 \label{doconce2formats}
 
 Transformation of a Doconce document to various other
-formats applies the script {\fontsize{10pt}{10pt}\verb!doconce2format!}:
+formats applies the script {\fontsize{10pt}{10pt}\verb!doconce format!}:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Unix/DOS> doconce2format format mydoc.do.txt
+Unix/DOS> doconce format format mydoc.do.txt
 \end{Verbatim}
 The {\fontsize{10pt}{10pt}\verb!preprocess!} program is always used to preprocess the file first,
 and options to {\fontsize{10pt}{10pt}\verb!preprocess!} can be added after the filename. For example,
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Unix/DOS> doconce2format LaTeX mydoc.do.txt -Dextra_sections
+Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
 \end{Verbatim}
 The variable {\fontsize{10pt}{10pt}\verb!FORMAT!} is always defined as the current format when
 running {\fontsize{10pt}{10pt}\verb!preprocess!}. That is, in the last example, {\fontsize{10pt}{10pt}\verb!FORMAT!} is
@@ -399,14 +404,14 @@ Inline comments in the text are removed from the output by
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Unix/DOS> doconce2format LaTeX mydoc.do.txt remove_inline_comments
+Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
 \end{Verbatim}
 One can also remove such comments from the original Doconce file
 by running a helper script in the {\fontsize{10pt}{10pt}\verb!bin!} folder of the Doconce
 source code:
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
-Unix/DOS> doconce_remove_inline_comments.py mydoc.do.txt
+Unix/DOS> doconce remove_inline_comments mydoc.do.txt
 \end{Verbatim}
 \noindent
 This action is convenient when a Doconce document reaches its final form.
@@ -418,7 +423,7 @@ is performed by
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Unix/DOS> doconce2format HTML mydoc.do.txt
+Unix/DOS> doconce format HTML mydoc.do.txt
 \end{Verbatim}
 The resulting file {\fontsize{10pt}{10pt}\verb!mydoc.html!} can be loaded into any web browser for viewing.
 
@@ -435,7 +440,7 @@ Filter the doconce text to a pre-{\LaTeX} form {\fontsize{10pt}{10pt}\verb!mydoc
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Unix/DOS> doconce2format LaTeX mydoc.do.txt
+Unix/DOS> doconce format LaTeX mydoc.do.txt
 \end{Verbatim}
 {\LaTeX}-specific commands ("newcommands") in math formulas and similar
 can be placed in files {\fontsize{10pt}{10pt}\verb!newcommands.tex!}, {\fontsize{10pt}{10pt}\verb!newcommands_keep.tex!}, or
@@ -497,7 +502,7 @@ Unix/DOS> dvipdf mydoc
 \end{Verbatim}
 If one wishes to use the {\fontsize{10pt}{10pt}\verb!Minted_Python!}, {\fontsize{10pt}{10pt}\verb!Minted_Cpp!}, etc., environments
 in {\fontsize{10pt}{10pt}\verb!ptex2tex!} for typesetting code, the {\fontsize{10pt}{10pt}\verb!minted!} {\LaTeX} package is needed.
-This package is included by running {\fontsize{10pt}{10pt}\verb!doconce2format!} with the
+This package is included by running {\fontsize{10pt}{10pt}\verb!doconce format!} with the
 {\fontsize{10pt}{10pt}\verb!-DMINTED!} option:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
@@ -528,7 +533,7 @@ computer source code:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Unix/DOS> doconce2format plain mydoc.do.txt  # results in mydoc.txt
+Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
 \end{Verbatim}
 
 \subsection{reStructuredText}
@@ -539,7 +544,7 @@ reStructuredText file {\fontsize{10pt}{10pt}\verb!mydoc.rst!}:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Unix/DOS> doconce2format rst mydoc.do.txt
+Unix/DOS> doconce format rst mydoc.do.txt
 \end{Verbatim}
 We may now produce various other formats:
 \vspace{4pt}
@@ -564,7 +569,7 @@ the reStructuredText format:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Unix/DOS> doconce2format sphinx mydoc.do.txt
+Unix/DOS> doconce format sphinx mydoc.do.txt
 \end{Verbatim}
 
 \paragraph{Step 2.}
@@ -598,6 +603,12 @@ y
 y
 y
 EOF
+\end{Verbatim}
+These statements are automated by the command
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Unix/DOS> doconce sphinx_dir mydoc.do.txt
 \end{Verbatim}
 
 \paragraph{Step 3.}
@@ -662,10 +673,10 @@ it as the Google Code dialect, is done by
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Unix/DOS> doconce2format gwiki mydoc.do.txt
+Unix/DOS> doconce format gwiki mydoc.do.txt
 \end{Verbatim}
 You can then open a new wiki page for your Google Code project, copy
-the {\fontsize{10pt}{10pt}\verb!mydoc.gwiki!} output file from {\fontsize{10pt}{10pt}\verb!doconce2format!} and paste the
+the {\fontsize{10pt}{10pt}\verb!mydoc.gwiki!} output file from {\fontsize{10pt}{10pt}\verb!doconce format!} and paste the
 file contents into the wiki page. Press \textbf{Preview} or \textbf{Save Page} to
 see the formatted result.
 
@@ -919,6 +930,12 @@ fontfamily=tt,xleftmargin=7mm]
 FIGURE:[filename, height=xxx width=yyy scale=zzz] caption
 \end{Verbatim}
 \noindent
+The filename can be without extension, and Doconce will search for an
+appropriate file with the right extension. If the extension is wrong,
+say {\fontsize{10pt}{10pt}\verb!.eps!} when requesting an HTML format, Doconce tries to find another
+file, and if not, the given file is converted to a proper format
+(using ImageMagick's {\fontsize{10pt}{10pt}\verb!convert!} utility).
+
 The height, width, and scale keywords (and others) can be included
 if desired and may have effect for some formats. Note the comma
 between the sespecifications and that there should be no space
@@ -929,11 +946,6 @@ related to a figure line must be written on the same line. Introducing
 newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as {\fontsize{10pt}{10pt}\verb!FIGURE:!} will be
 included in the formatted caption).
-
-The filename extension may not be compatible with the chosen output format.
-For example, a filename {\fontsize{10pt}{10pt}\verb!mypic.eps!} is fine for {\LaTeX} output but not for
-HTML. In such cases, the Doconce translator will convert the file to
-a suitable format (say {\fontsize{10pt}{10pt}\verb!mypic.png!} for HTML output).
 
 
 \begin{figure}
@@ -1037,7 +1049,7 @@ fontfamily=tt,xleftmargin=7mm]
 where {\fontsize{10pt}{10pt}\verb!name!} is the name of the author of the command, and {\fontsize{10pt}{10pt}\verb!comment!} is a 
 plain text text. \inlinecomment{hpl}{Note that there must be a space after the colon,
 otherwise the comment is not recognized.}
-The name and comment are visible in the output unless {\fontsize{10pt}{10pt}\verb!doconce2format!}
+The name and comment are visible in the output unless {\fontsize{10pt}{10pt}\verb!doconce format!}
 is run with a command-line specification of removing such comments
 (see Chapter~\ref{doconce2formats} for an example). Inline comments
 are helpful during development of a document since different authors
@@ -1087,7 +1099,7 @@ replace the reference by the title of the (sub)section.  All labels
 will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
-reStructuredText commands by {\fontsize{10pt}{10pt}\verb!doconce2format!}. In the HTML and (Google
+reStructuredText commands by {\fontsize{10pt}{10pt}\verb!doconce format!}. In the HTML and (Google
 Code) Wiki formats, labels become anchors and references become links,
 and with {\LaTeX} "label" and "ref" are just equipped with backslashes so
 these commands work as usual in {\LaTeX}.
@@ -1498,6 +1510,31 @@ will then be rendered to
 \eeqa
 in the current format.
 
+\subsection{Preprocessing Steps}
+
+Doconce allows preprocessor commands for, e.g., including files,
+leaving out text, or inserting special text depending on the format.
+Two preprocessors are supported: Preprocess 
+(\href{http://code.google.com/p/preprocess}{http://code.google.com/p/preprocess}) and Mako
+(\href{http://www.makotemplates.org/}{http://www.makotemplates.org/}). The former allows include and if-else
+statements much like the well-known preprocessor in C and C++ (but it
+does not allow sophisticated macro substitutions). The latter
+preprocessor is a very powerful template system.  With Mako you can
+automatically generate various type of text and steer the generation
+through Python code embedded in the Doconce document. An arbitrary set
+of {\fontsize{10pt}{10pt}\verb!name=value!} command-line arguments (at the end of the command line)
+automatically define Mako variables that are substituted in the document.
+
+Doconce will detect if Preprocess or Mako commands are used and run
+the relevant preprocessor prior to translating the Doconce source to a
+specific format.
+
+Preprocess and Mako always have the variable {\fontsize{10pt}{10pt}\verb!FORMAT!} to be the desired
+output format of Doconce. It is then easy to test on the value of {\fontsize{10pt}{10pt}\verb!FORMAT!}
+and take different actions for different formats. For example, one may
+create special {\LaTeX} output for figures, say with multiple plots within
+a figure, while other formats may apply a separate figure for each plot.
+
 \subsection{Missing Features}
 
 \begin{itemize}
@@ -1511,7 +1548,7 @@ in the current format.
 \paragraph{Disclaimer.}
 First of all, Doconce has hardly any support for
 syntax checking. This means that if you encounter Python errors while
-running {\fontsize{10pt}{10pt}\verb!doconce2format!}, the reason for the error is most likely a
+running {\fontsize{10pt}{10pt}\verb!doconce format!}, the reason for the error is most likely a
 syntax problem in your Doconce source file. You have to track down
 this syntax problem yourself.
 
@@ -1528,7 +1565,7 @@ well for his diverse applications of it.
 \paragraph{Code or TeX Block Errors in reST.}
 Sometimes reStructuredText (reST) reports an "Unexpected indentation"
 at the beginning of a code block. If you see a {\fontsize{10pt}{10pt}\verb!!bc!}, which should
-have been removed by {\fontsize{10pt}{10pt}\verb!doconce2format!}, it is usually an error in the
+have been removed by {\fontsize{10pt}{10pt}\verb!doconce format!}, it is usually an error in the
 Doconce source, or a problem with the rst/sphinx translator.  Check if
 the line before the code block ends in one colon (not two!), a
 question mark, an exclamation mark, a comma, a period, or just a
@@ -1545,10 +1582,15 @@ code blocks that cause errors when the reST text is transformed to
 other formats. The remedy is to define items for the index outside
 paragraphs.
 
-\paragraph{Error Message "Undefined substitution..." from reSt.}
-This may happen if there is much inline math in the text. reSt cannot
+\paragraph{Error Message "Undefined substitution..." from reST.}
+This may happen if there is much inline math in the text. reST cannot
 understand inline {\LaTeX} commands and interprets them as illegal code.
 Just ignore these error messages.
+
+\paragraph{Preprocessor Directives Do Not Work.}
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
 
 \paragraph{The {\LaTeX} File Does Not Compile.}
 If the problem is undefined control sequence involving
@@ -1615,7 +1657,7 @@ Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
 series of transformations of the text. The effect of each of these
 transformation steps are dumped to a logfile, named
-{\fontsize{10pt}{10pt}\verb!_doconce_debugging.log!}, if the third argument to {\fontsize{10pt}{10pt}\verb!doconce2format!}
+{\fontsize{10pt}{10pt}\verb!_doconce_debugging.log!}, if the to {\fontsize{10pt}{10pt}\verb!doconce format!} after the filename
 is {\fontsize{10pt}{10pt}\verb!debug!}. The logfile is inteded for the developers of Doconce, but
 may still give some idea of what is wrong.  The section "Basic Parsing
 Ideas" explains how the Doconce text is transformed into a specific

@@ -28,7 +28,7 @@ from distutils.core import setup
 # If there are problems with installation, try cd test; ./clean_all.sh
 
 print 'setup.py:'
-# Before we can install, we must run doconce_insertdocstr on the files
+# Before we can install, we must run doconce insertdocstr on the files
 # in lib/doconce such that documentation is copied from doconce files
 # into doc strings in Python files.
 
@@ -56,12 +56,13 @@ if failure:
     print 'Could not run clean.sh in', os.getcwd()
 os.chdir(thisdir)
 
-# make sure doconce_insertdocstr finds the local bin/doconce2format
+# make sure doconce insertdocstr finds the local bin/doconce
 # script, so add the bin dir with full path to the PATH variable first:
-os.environ['PATH'] = os.path.join(os.getcwd(), 'bin') + \
-                     os.pathsep + os.environ['PATH']
-# python bin/doconce_insertdocstr plain lib/doconce:
-cmd = 'python ' + os.path.join('bin', 'doconce_insertdocstr') + ' plain ' + os.path.join('lib', 'doconce')
+#os.environ['PATH'] = os.path.join(os.getcwd(), 'bin') + \
+#                     os.pathsep + os.environ['PATH']
+
+# python bin/doconce insertdocstr plain lib/doconce:
+cmd = 'python ' + os.path.join('bin', 'doconce') + ' insertdocstr plain ' + os.path.join('lib', 'doconce')
 print '\n\nrun', cmd
 failure = os.system(cmd) # run preprocessing step
 if failure:
@@ -88,7 +89,9 @@ setup(
                   'doconce.expand_newcommands',
                   ],
     scripts = [os.path.join('bin', f) for \
-               f in 'doconce_insertdocstr', 'doconce2format', \
-               'doconce_old2new_format.py', 'doconce_latin2html.py',
-               'doconce_gwiki_figsubst.py']
+               f in ['doconce']]
     )
+
+oldbin = ['doconce_insertdocstr', 'doconce2format',
+          'doconce_old2new_format.py', 'doconce_latin2html.py',
+          'doconce_gwiki_figsubst.py']

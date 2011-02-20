@@ -3,7 +3,7 @@
 import doconce
 __doc__ += doconce.__doc__
 
-__version__ = '0.3'
+__version__ = '0.4'
 version = __version__
 __author__ = 'Hans Petter Langtangen', 'Johannes H. Ring'
 author = __author__

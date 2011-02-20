@@ -8,37 +8,13 @@
 # The following packages must be installed for this script to run: 
 # doconce, ptex2tex, docutils, preprocess, sphinx, scitools
 
-d2f=doconce2format
+d2f="doconce format"
 # doconce HTML format:
 $d2f HTML manual.do.txt
 
 # Sphinx
 $d2f sphinx manual.do.txt
-rm -rf sphinx-rootdir
-mkdir sphinx-rootdir
-sphinx-quickstart <<EOF
-sphinx-rootdir
-n
-_
-Doconce Description
-H. P. Langtangen
-1.0
-1.0
-.rst
-index
-n
-y
-n
-n
-n
-n
-y
-n
-n
-y
-y
-y
-EOF
+doconce sphinx_dir manual.do.txt
 cp manual.rst manual.sphinx.rst
 cp manual.rst sphinx-rootdir
 # index-sphinx is a ready-made version of index.rst:
@@ -99,7 +75,7 @@ dvipdf manual.dvi
 # Google Code wiki:
 $d2f gwiki manual.do.txt
 
-# fix figure in wiki:
+# fix figure in wiki: (can also by done by doconce gwiki_figsubst)
 scitools subst "\(the URL of the image file figs/dinoimpact.gif must be inserted here\)" "https://doconce.googlecode.com/hg/trunk/docs/manual/figs/dinoimpact.gif" manual.gwiki
 
 rm -f *.ps
@@ -119,12 +95,12 @@ Doconce is a minimum tagged markup language. The file
 a Doconce Description, written in the Doconce format.
 Running
 <pre>
-doconce2format HTML manual.do.txt
+doconce format HTML manual.do.txt
 </pre>
 produces the HTML file <a href="manual.html">manual.html</a>.
 Going from Doconce to LaTeX is done by
 <pre>
-doconce2format LaTeX manual.do.txt
+doconce format LaTeX manual.do.txt
 </pre>
 resulting in the file <a href="manual.tex">manual.tex</a>, which can
 be compiled to a PDF file <a href="manual.pdf">manual.pdf</a>
@@ -132,7 +108,7 @@ by running <tt>latex</tt> and <tt>dvipdf</tt> the standard way.
 <p>
 The reStructuredText (reST) format is of particular interest:
 <pre>
-doconce2format rst manual.do.txt
+doconce format rst manual.do.txt
 </pre>
 The reST file <a href="manual.rst">manual.rst</a> is a starting point
 for conversion to many other formats: OpenOffice, 
