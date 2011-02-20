@@ -116,7 +116,7 @@ fool a regex substitution with only i.e. since the dot matches anything.
 Also, look at Fig. 4 to see how the data compares with Tab. ref{mytab}.
 % endif
 
-Here is an equation
+Here is an equation without label:
 !bt
 \[ a = b + c \]
 !et
@@ -126,10 +126,11 @@ or with number and label, as in (ref{my:eq1}):
 {\partial u\over\partial t} = \nabla^2 u\label{my:eq1}
 \end{equation}
 !et
+We can refer to this equation by (ref{my:eq1}).
 Or a system of equations with labels,
 !bt
 \begin{align}
-a &= q + 4 + 5+ 6\label{eq1} \\ 
+a &= q + 4 + 5+ 6\label{eq1} \\
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
 !et
@@ -137,7 +138,7 @@ We can refer to (ref{eq1})-(ref{eq2}).
 Or align without eq numbers:
 !bt
 \begin{align*}
-a &= q + 4 + 5+ 6 \\ 
+a &= q + 4 + 5+ 6 \\
 b &= \nabla^2 u + \nabla^4 x
 \end{align*}
 !et
@@ -146,36 +147,49 @@ Or with multline?
 !bt
 \begin{multline}
 a = b = q + \\
-  f + \nabla\cdot\nabla u
+  f + \nabla\cdot\nabla u 
+label{multiline:eq1}
 \end{multline}
 !et
 Maybe split is better:
 !bt
 \begin{equation}
+label{split:envir:eq}
 \begin{split}
 a = b = q &+ \\
   & f + \nabla\cdot\nabla u
 \end{split}
 \end{equation}
 !et
+And we can refer to the last equation by (ref{split:envir:eq}).
 
-Or gather?
+What about gather?
 !bt
 \begin{gather}
 a = b \\
-c = d+ 7 + 9
+c = d + 7 + 9
 \end{gather}
 !et
 
 And what about alignat?
 !bt
 \begin{alignat}{2}
-a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0\label{eq1a} \\ 
+a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0\label{eq1a} \\
 b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
 !et
 Let us refer to (ref{eq1})-(ref{eq2}) again, and to the
-alignat variant (ref{eq1a})-(ref{eq2a}).
+alignat variant (ref{eq1a})-(ref{eq2a}), and to (ref{my:eq1}).
+
+Here is eqnarray:
+!bt
+\begin{eqnarray}
+{\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
+\end{eqnarray}
+!et
+
+
 
 ************** File: testdoc.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
@@ -319,7 +333,7 @@ is fine to have.
 <P>
 
 <P>
-Here is an equation
+Here is an equation without label:
 <BLOCKQUOTE><PRE>
 \[ a = b + c \]
 </PRE></BLOCKQUOTE>
@@ -329,6 +343,7 @@ or with number and label, as in (<A HREF="#my:eq1">my:eq1</a>):
 {\partial u\over\partial t} = \nabla^2 u\label{my:eq1}
 \end{equation}
 </PRE></BLOCKQUOTE>
+We can refer to this equation by (<A HREF="#my:eq1">my:eq1</a>).
 Or a system of equations with labels,
 <BLOCKQUOTE><PRE>
 \begin{align}
@@ -349,23 +364,29 @@ b &= \nabla^2 u + \nabla^4 x
 Or with multline?
 <BLOCKQUOTE><PRE>
 \begin{multline}
-a = b = q + \  f + \nabla\cdot\nabla u
+a = b = q + \\ 
+  f + \nabla\cdot\nabla u 
+label{multiline:eq1}
 \end{multline}
 </PRE></BLOCKQUOTE>
 Maybe split is better:
 <BLOCKQUOTE><PRE>
 \begin{equation}
+label{split:envir:eq}
 \begin{split}
-a = b = q &+ \  & f + \nabla\cdot\nabla u
+a = b = q &+ \\ 
+  & f + \nabla\cdot\nabla u
 \end{split}
 \end{equation}
 </PRE></BLOCKQUOTE>
+And we can refer to the last equation by (<A HREF="#split:envir:eq">split:envir:eq</a>).
 
 <P>
-Or gather?
+What about gather?
 <BLOCKQUOTE><PRE>
 \begin{gather}
-a = b \c = d+ 7 + 9
+a = b \\ 
+c = d + 7 + 9
 \end{gather}
 </PRE></BLOCKQUOTE>
 
@@ -378,7 +399,18 @@ b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
 </PRE></BLOCKQUOTE>
 Let us refer to (<A HREF="#eq1">eq1</a>)-(<A HREF="#eq2">eq2</a>) again, and to the
-alignat variant (<A HREF="#eq1a">eq1a</a>)-(<A HREF="#eq2a">eq2a</a>).
+alignat variant (<A HREF="#eq1a">eq1a</a>)-(<A HREF="#eq2a">eq2a</a>), and to (<A HREF="#my:eq1">my:eq1</a>).
+
+<P>
+Here is eqnarray:
+<BLOCKQUOTE><PRE>
+\begin{eqnarray}
+{\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\ 
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
+\end{eqnarray}
+</PRE></BLOCKQUOTE>
+
+<P>
 
 </BODY>
 </HTML>
@@ -589,12 +621,13 @@ with Ms.~Larsen. A sentence containing "refines lines" could easily
 fool a regex substitution with only i.e.~since the dot matches anything.
 Also, look at Fig.~4 to see how the data compares with Tab.~\ref{mytab}.
 
-Here is an equation
+Here is an equation without label:
 \[ a = b + c \]
 or with number and label, as in (\ref{my:eq1}):
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u\label{my:eq1}
 \end{equation}
+We can refer to this equation by (\ref{my:eq1}).
 Or a system of equations with labels,
 \begin{align}
 a &= q + 4 + 5+ 6\label{eq1} \\ 
@@ -609,18 +642,24 @@ b &= \nabla^2 u + \nabla^4 x
 
 Or with multline?
 \begin{multline}
-a = b = q + \  f + \nabla\cdot\nabla u
+a = b = q + \\ 
+  f + \nabla\cdot\nabla u 
+\label{multiline:eq1}
 \end{multline}
 Maybe split is better:
 \begin{equation}
+\label{split:envir:eq}
 \begin{split}
-a = b = q &+ \  & f + \nabla\cdot\nabla u
+a = b = q &+ \\ 
+  & f + \nabla\cdot\nabla u
 \end{split}
 \end{equation}
+And we can refer to the last equation by (\ref{split:envir:eq}).
 
-Or gather?
+What about gather?
 \begin{gather}
-a = b \c = d+ 7 + 9
+a = b \\ 
+c = d + 7 + 9
 \end{gather}
 
 And what about alignat?
@@ -629,7 +668,14 @@ a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0\label{eq1a} \\
 b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
 Let us refer to (\ref{eq1})-(\ref{eq2}) again, and to the
-alignat variant (\ref{eq1a})-(\ref{eq2a}).
+alignat variant (\ref{eq1a})-(\ref{eq2a}), and to (\ref{my:eq1}).
+
+Here is eqnarray:
+\begin{eqnarray}
+{\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\ 
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
+\end{eqnarray}
+
 
 \printindex
 
@@ -750,7 +796,7 @@ is fine to have.
 .. if the link name is URL, url, "URL", or "url".
 
 
-Here is an equation::
+Here is an equation without label::
 
         \[ a = b + c \]
 
@@ -760,6 +806,7 @@ or with number and label, as in Equation (my:eq1)::
         {\partial u\over\partial t} = \nabla^2 u\label{my:eq1}
         \end{equation}
 
+We can refer to this equation by Equation (my:eq1).
 Or a system of equations with labels::
 
         \begin{align}
@@ -779,22 +826,28 @@ Or align without eq numbers::
 Or with multline::
 
         \begin{multline}
-        a = b = q + \  f + \nabla\cdot\nabla u
+        a = b = q + \\ 
+          f + \nabla\cdot\nabla u 
+        label{multiline:eq1}
         \end{multline}
 
 Maybe split is better::
 
         \begin{equation}
+        label{split:envir:eq}
         \begin{split}
-        a = b = q &+ \  & f + \nabla\cdot\nabla u
+        a = b = q &+ \\ 
+          & f + \nabla\cdot\nabla u
         \end{split}
         \end{equation}
 
+And we can refer to the last equation by Equation (split:envir:eq).
 
-Or gather::
+What about gather::
 
         \begin{gather}
-        a = b \c = d+ 7 + 9
+        a = b \\ 
+        c = d + 7 + 9
         \end{gather}
 
 
@@ -806,7 +859,20 @@ And what about alignat::
         \end{alignat}
 
 Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a).
+alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
+
+Here is eqnarray::
+
+        \begin{eqnarray}
+        {\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\ 
+        {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
+        \end{eqnarray}
+
+
+
+
+
+
 ************** File: testdoc.sphinx.rst *****************
 .. Automatically generated reST file from Doconce source 
    (http://code.google.com/p/doconce/)
@@ -932,24 +998,23 @@ is fine to have.
 .. if the link name is URL, url, "URL", or "url".
 
 
-Here is an equation
+Here is an equation without label:
 
 .. math::
-
          a = b + c 
 
-or with number and label, as in (:ref:`my:eq1`):
+or with number and label, as in :eq:`my:eq1`:
 
 .. math::
-
+   :label: my:eq1
         
         {\partial u\over\partial t} = \nabla^2 u
         
 
+We can refer to this equation by :eq:`my:eq1`.
 Or a system of equations with labels,
 
 .. math::
-
         
         a &= q + 4 + 5+ 6 \\ 
         b &= \nabla^2 u + \nabla^4 x 
@@ -959,7 +1024,6 @@ We can refer to (:ref:`eq1`)-(:ref:`eq2`).
 Or align without eq numbers:
 
 .. math::
-
         
         a &= q + 4 + 5+ 6 \\ 
         b &= \nabla^2 u + \nabla^4 x
@@ -969,42 +1033,61 @@ Or align without eq numbers:
 Or with multline?
 
 .. math::
-
+   :label: multiline:eq1
         
-        a = b = q + \  f + \nabla\cdot\nabla u
+        a = b = q + \\ 
+          f + \nabla\cdot\nabla u 
+        
         
 
 Maybe split is better:
 
 .. math::
+   :label: split:envir:eq
+        
+        
+        
+        a = b = q &+ \\ 
+          & f + \nabla\cdot\nabla u
+        
+        
 
-        
-        
-        a = b = q &+ \  & f + \nabla\cdot\nabla u
-        
-        
+And we can refer to the last equation by :eq:`split:envir:eq`.
 
-
-Or gather?
+What about gather?
 
 .. math::
-
         
-        a = b \c = d+ 7 + 9
+        a = b \\ 
+        c = d + 7 + 9
         
 
 
 And what about alignat?
 
 .. math::
-
         \begin{alignat}{2}
         a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \\ 
         b &= \nabla^2 u + \nabla^4 x & x\in\Omega 
         \end{alignat}
 
 Let us refer to (:ref:`eq1`)-(:ref:`eq2`) again, and to the
-alignat variant (:ref:`eq1a`)-(:ref:`eq2a`).
+alignat variant (:ref:`eq1a`)-(:ref:`eq2a`), and to :eq:`my:eq1`.
+
+Here is eqnarray:
+
+.. math::
+   :label: myeq1
+        
+        {\partial u\over\partial t}  &=  \nabla^2 u + f,\\ 
+        {\partial v\over\partial t}  &=  \nabla\cdot(q(u)\nabla v) + g
+        
+
+
+
+
+
+
 ************** File: testdoc.gwiki *****************
 
 
@@ -1101,7 +1184,7 @@ is fine to have.
 <wiki:comment> if the link name is URL, url, "URL", or "url". </wiki:comment>
 
 
-Here is an equation
+Here is an equation without label:
 {{{
 \[ a = b + c \]
 }}}
@@ -1111,6 +1194,7 @@ or with number and label, as in Equation (my:eq1):
 {\partial u\over\partial t} = \nabla^2 u\label{my:eq1}
 \end{equation}
 }}}
+We can refer to this equation by Equation (my:eq1).
 Or a system of equations with labels,
 {{{
 \begin{align}
@@ -1130,22 +1214,28 @@ b &= \nabla^2 u + \nabla^4 x
 Or with multline?
 {{{
 \begin{multline}
-a = b = q + \  f + \nabla\cdot\nabla u
+a = b = q + \\ 
+  f + \nabla\cdot\nabla u 
+label{multiline:eq1}
 \end{multline}
 }}}
 Maybe split is better:
 {{{
 \begin{equation}
+label{split:envir:eq}
 \begin{split}
-a = b = q &+ \  & f + \nabla\cdot\nabla u
+a = b = q &+ \\ 
+  & f + \nabla\cdot\nabla u
 \end{split}
 \end{equation}
 }}}
+And we can refer to the last equation by Equation (split:envir:eq).
 
-Or gather?
+What about gather?
 {{{
 \begin{gather}
-a = b \c = d+ 7 + 9
+a = b \\ 
+c = d + 7 + 9
 \end{gather}
 }}}
 
@@ -1157,7 +1247,16 @@ b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
 }}}
 Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a).
+alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
+
+Here is eqnarray:
+{{{
+\begin{eqnarray}
+{\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\ 
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
+\end{eqnarray}
+}}}
+
 
 ************** File: testdoc.st *****************
 
@@ -1225,7 +1324,7 @@ is fine to have.
 
 
 
-Here is an equation::
+Here is an equation without label::
 
         \[ a = b + c \]
 
@@ -1235,6 +1334,7 @@ or with number and label, as in Equation (my:eq1)::
         {\partial u\over\partial t} = \nabla^2 u\label{my:eq1}
         \end{equation}
 
+We can refer to this equation by Equation (my:eq1).
 Or a system of equations with labels::
 
         \begin{align}
@@ -1254,22 +1354,28 @@ Or align without eq numbers::
 Or with multline::
 
         \begin{multline}
-        a = b = q + \  f + \nabla\cdot\nabla u
+        a = b = q + \\ 
+          f + \nabla\cdot\nabla u 
+        label{multiline:eq1}
         \end{multline}
 
 Maybe split is better::
 
         \begin{equation}
+        label{split:envir:eq}
         \begin{split}
-        a = b = q &+ \  & f + \nabla\cdot\nabla u
+        a = b = q &+ \\ 
+          & f + \nabla\cdot\nabla u
         \end{split}
         \end{equation}
 
+And we can refer to the last equation by Equation (split:envir:eq).
 
-Or gather::
+What about gather::
 
         \begin{gather}
-        a = b \c = d+ 7 + 9
+        a = b \\ 
+        c = d + 7 + 9
         \end{gather}
 
 
@@ -1281,7 +1387,23 @@ And what about alignat::
         \end{alignat}
 
 Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a).
+alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
+
+Here is eqnarray::
+
+        \begin{eqnarray}
+        {\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\ 
+        {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
+        \end{eqnarray}
+
+
+
+
+
+
+
+
+
 ************** File: testdoc.epytext *****************
 
 
@@ -1364,7 +1486,7 @@ is fine to have.
 
 
 
-Here is an equation::
+Here is an equation without label::
 
         \[ a = b + c \]
 
@@ -1375,6 +1497,7 @@ or with number and label, as in Equation (my:eq1)::
                   it causes problems for Epytext.
 
 
+We can refer to this equation by Equation (my:eq1).
 Or a system of equations with labels::
 
             
@@ -1405,11 +1528,13 @@ Maybe split is better::
                   it causes problems for Epytext.
 
 
+And we can refer to the last equation by Equation (split:envir:eq).
 
-Or gather::
+What about gather::
 
         \begin{gather}
-        a = b \c = d+ 7 + 9
+        a = b \\ 
+        c = d + 7 + 9
         \end{gather}
 
 
@@ -1421,7 +1546,20 @@ And what about alignat::
 
 
 Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a).
+alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
+
+Here is eqnarray::
+
+            
+            NOTE: A verbatim block has been removed because
+                  it causes problems for Epytext.
+
+
+
+
+
+
+
 ************** File: testdoc.txt *****************
 
 
@@ -1522,7 +1660,7 @@ is fine to have.
 
 
 
-Here is an equation::
+Here is an equation without label::
 
         \[ a = b + c \]
 
@@ -1532,6 +1670,7 @@ or with number and label, as in Equation (my:eq1)::
         {\partial u\over\partial t} = \nabla^2 u\label{my:eq1}
         \end{equation}
 
+We can refer to this equation by Equation (my:eq1).
 Or a system of equations with labels::
 
         \begin{align}
@@ -1551,22 +1690,28 @@ Or align without eq numbers::
 Or with multline::
 
         \begin{multline}
-        a = b = q + \  f + \nabla\cdot\nabla u
+        a = b = q + \\ 
+          f + \nabla\cdot\nabla u 
+        label{multiline:eq1}
         \end{multline}
 
 Maybe split is better::
 
         \begin{equation}
+        label{split:envir:eq}
         \begin{split}
-        a = b = q &+ \  & f + \nabla\cdot\nabla u
+        a = b = q &+ \\ 
+          & f + \nabla\cdot\nabla u
         \end{split}
         \end{equation}
 
+And we can refer to the last equation by Equation (split:envir:eq).
 
-Or gather::
+What about gather::
 
         \begin{gather}
-        a = b \c = d+ 7 + 9
+        a = b \\ 
+        c = d + 7 + 9
         \end{gather}
 
 
@@ -1578,7 +1723,20 @@ And what about alignat::
         \end{alignat}
 
 Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a).
+alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
+
+Here is eqnarray::
+
+        \begin{eqnarray}
+        {\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\ 
+        {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
+        \end{eqnarray}
+
+
+
+
+
+
 ************** File: make.sh *****************
 #!/bin/sh
 # test multiple authors:
@@ -1937,7 +2095,7 @@ Blocks of mathematics are better typeset with raw LaTeX, inside
 The result looks like this:
 !bt
 \begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
+{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}
 !et
@@ -2352,7 +2510,7 @@ Blocks of mathematics are better typeset with raw LaTeX, inside
 The result looks like this:
 <BLOCKQUOTE><PRE>
 \begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
+{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}
 </PRE></BLOCKQUOTE>
@@ -3105,7 +3263,7 @@ Blocks of mathematics are better typeset with raw LaTeX, inside
 The result looks like this::
 
         \begin{eqnarray}
-        {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
+        {\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
         {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
         \end{eqnarray}
 
@@ -3799,9 +3957,9 @@ Blocks of mathematics are better typeset with raw LaTeX, inside
 The result looks like this:
 
 .. math::
-
+   :label: myeq1
         
-        {\partial u\over\partial t}  &=  \nabla^2 u + f,\\
+        {\partial u\over\partial t}  &=  \nabla^2 u + f, \\
         {\partial v\over\partial t}  &=  \nabla\cdot(q(u)\nabla v) + g
         
 
@@ -4454,7 +4612,7 @@ Blocks of mathematics are better typeset with raw LaTeX, inside
 The result looks like this:
 {{{
 \begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
+{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}
 }}}
@@ -5053,7 +5211,7 @@ Blocks of mathematics are better typeset with raw LaTeX, inside
 The result looks like this::
 
         \begin{eqnarray}
-        {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
+        {\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
         {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
         \end{eqnarray}
 
@@ -6323,7 +6481,7 @@ Blocks of mathematics are better typeset with raw LaTeX, inside::
 The result looks like this::
 
         \begin{eqnarray}
-        {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
+        {\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
         {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
         \end{eqnarray}
 
@@ -6762,7 +6920,7 @@ more typesetting and tagging features than Doconce.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sun, 20 Feb 2011 (12:13)
+DATE: Sun, 20 Feb 2011 (22:42)
 
 
 
@@ -6866,7 +7024,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sun, 20 Feb 2011 (12:13)
+DATE: Sun, 20 Feb 2011 (22:42)
 
 
 
@@ -6980,7 +7138,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Sun, 20 Feb 2011 (12:13)</CENTER>
+<CENTER>Sun, 20 Feb 2011 (22:42)</CENTER>
 
 
 
@@ -7111,7 +7269,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Sun, 20 Feb 2011 (12:13)</CENTER>
+<CENTER>Sun, 20 Feb 2011 (22:42)</CENTER>
 
 
 
@@ -13715,7 +13873,7 @@ line and followed by a newline.
 Here is the result of a ``!bt`` - ``!et`` block:
 
 .. math::
-
+   :label: myeq1
         
         {\partial u\over\partial t}  &=  \nabla^2 u + f,\\
         {\partial v\over\partial t}  &=  \nabla\cdot(q(u)\nabla v) + g
@@ -13797,7 +13955,6 @@ The LaTeX block
 will then be rendered to
 
 .. math::
-
         
         {\mbox{\boldmath $x$}}\cdot{\mbox{\boldmath $n$}}  &=  0,\\
         \frac{D\vec u}{dt}  &=  {\mbox{\boldmath $Q$}} \thinspace . 

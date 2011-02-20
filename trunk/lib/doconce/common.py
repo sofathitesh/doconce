@@ -77,8 +77,10 @@ def remove_code_and_tex(filestr):
     # (recall that !bc can be followed by extra information that we must keep:)
     code = re.compile(r'^!bc(.*?)\n(.*?)^!ec *\n', re.DOTALL|re.MULTILINE)
     code_blocks = [c for opt, c in code.findall(filestr)]
+
     tex = re.compile(r'^!bt\n(.*?)!et *\n', re.DOTALL|re.MULTILINE)
     tex_blocks = tex.findall(filestr)
+
     # remove blocks and substitute by a one-line sign:
     filestr = code.sub('#!!CODE_BLOCK \g<1>\n', filestr)
     filestr = tex.sub('#!!TEX_BLOCK\n', filestr)

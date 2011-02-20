@@ -41,8 +41,8 @@ def gwiki_figure(m):
     print """
 NOTE: Place %s at some place on the web and edit the
       .gwiki page, either manually (seach for 'Figure: ')
-      or use the doconce_gwiki_figsubst.py script:
-      doconce_gwiki_figsubst.py mydoc.gwiki URL
+      or use the doconce script:
+      doconce gwiki_figsubst.py mydoc.gwiki URL
 """ % filename
 
     result = r"""

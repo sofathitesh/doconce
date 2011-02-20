@@ -1407,7 +1407,7 @@ line and followed by a newline.
 Here is the result of a ``!bt`` - ``!et`` block:
 
 .. math::
-
+   :label: myeq1
         
         {\partial u\over\partial t}  &=  \nabla^2 u + f,\\
         {\partial v\over\partial t}  &=  \nabla\cdot(q(u)\nabla v) + g
@@ -1489,7 +1489,6 @@ The LaTeX block
 will then be rendered to
 
 .. math::
-
         
         {\mbox{\boldmath $x$}}\cdot{\mbox{\boldmath $n$}}  &=  0,\\
         \frac{D\vec u}{dt}  &=  {\mbox{\boldmath $Q$}} \thinspace . 

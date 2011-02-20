@@ -955,12 +955,12 @@ def doconce2format(in_filename, format, out_filename):
     filestr = f.read()
     f.close()
 
-    # hack to fix a bug with !ec at the end of files, which is not
+    # hack to fix a bug with !ec/!et at the end of files, which is not
     # correctly substituted by '' in rst, sphinx, st, epytext, plain
     # (the fix is to add "enough" blank lines)
     if format in ('rst', 'sphinx', 'st', 'epytext', 'plain'):
         filestr = filestr.rstrip()
-        if filestr.endswith('!ec'):
+        if filestr.endswith('!ec') or filestr.endswith('!et'):
             filestr += '\n'*10
 
     # 0. step: check if ^#?TITLE: is present, and if so, header and footer
@@ -1092,13 +1092,20 @@ def preprocess(filename, format, preprocess_options=''):
     are given as preprocess_options. In addition, FORMAT (=format) is
     always defined.
     """
-    resultfile = '__tmp.do.txt'
 
     f = open(filename, 'r'); filestr = f.read(); f.close()
     preprocessor = None
     if re.search(r'^#\s*#(if|define|include)', filestr, re.MULTILINE):
         #print 'run Preprocess on', filename, 'to make', resultfile
         preprocessor = 'preprocess'
+        resultfile = '__tmp.do.txt'
+
+        try:
+            import preprocess
+        except IndexError:
+            print '%s makes use of Preprocess directives and therefore '\
+                  'requires code.google.com/p/preprocess to be installed'
+            sys.exit(1)
         
         cmd = 'preprocess -DFORMAT=%s %s %s > %s' % \
               (format, preprocess_options, filename, resultfile)
@@ -1115,17 +1122,36 @@ def preprocess(filename, format, preprocess_options=''):
             print 'Use only one of them!'
             sys.exit(1)
         preprocessor = 'mako'
+        resultfile = '__tmp.do.txt'
+
+        try:
+            import mako
+        except IndexError:
+            print '%s makes use of Preprocess directives and therefore '\
+                  'requires www.makotemplates.org to be installed'
+            sys.exit(1)
+        
         print 'run Mako preprocessor on', filename, 'to make', resultfile
+        # add a space after \\ at the end of lines (otherwise Mako
+        # eats one of the backslashes in tex blocks)
+        f = open(filename, 'r')
+        filestr = f.read()
+        f.close()
+        filestr = filestr.replace('\\\\\n', '\\\\ \n')
+        f = open(resultfile, 'w')
+        f.write(filestr)
+        f.close()
         from mako.template import Template
-        temp = Template(filename=filename)
+        temp = Template(filename=resultfile)
         f = open(resultfile, 'w')
         kwargs = {'FORMAT': format}
         kwargs.update(eval('dict(%s)' % ','.join(preprocess_options.split())))
         f.write(temp.render(**kwargs))
         f.close()
+
     if preprocessor is None:
         # no preprocessor syntax detected
-        shutil.copy(filename, resultfile)
+        resultfile = filename
     
     return resultfile
 
@@ -1221,7 +1247,7 @@ def main():
         basename = filename
         filename = filename + '.do.txt'
         if not os.path.isfile(filename):
-            print 'No such file:r %s or %s' % (filename[:-7], filename)
+            print 'No such Doconce file: %s or %s' % (filename[:-7], filename)
             sys.exit(1)
     else:
         basename = filename[:-7]
@@ -1231,7 +1257,8 @@ def main():
     filename_preprocessed = preprocess(filename, format,
                                        ' '.join(sys.argv[1:]))
     doconce2format(filename_preprocessed, format, out_filename)
-    os.remove(filename_preprocessed)  # clean up
+    if filename_preprocessed.startswith('__'):
+        os.remove(filename_preprocessed)  # clean up
     #print '----- successful run: %s filtered to %s\n' % (filename, out_filename)
     print 'output in', out_filename
     

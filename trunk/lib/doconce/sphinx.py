@@ -109,7 +109,7 @@ def sphinx_figure(m):
 
 from latex import fix_latex_command_regex as fix_latex
 
-def sphinx_code(filestr, format):
+def sphinx_code_orig(filestr, format):
     # In rst syntax, code blocks are typeset with :: (verbatim)
     # followed by intended blocks. This function indents everything
     # inside code (or TeX) blocks.
@@ -183,7 +183,7 @@ def sphinx_code(filestr, format):
                     r'\baln',
                     r'\ealn',
                     r'\beq',
-                    r'\eeq',  # the simplest, contained in others, must come last...
+                    r'\eeq',  # the simplest, contained in others, must come last!
                     ]
         for command in commands:
             tex_blocks[i] = tex_blocks[i].replace(command, '')
@@ -297,6 +297,136 @@ def sphinx_code_newmathlabels(filestr, format):
     #filestr = re.sub(r'!ec\n', '\n', filestr)
     #filestr = re.sub(r'!ec\n', '', filestr)
     filestr = re.sub(r'!bt *\n', '\n.. math::\n   :nowrap:\n\n', filestr)
+    filestr = re.sub(r'!et *\n', '\n\n', filestr)
+
+    return filestr
+
+def sphinx_code(filestr, format):
+    # In rst syntax, code blocks are typeset with :: (verbatim)
+    # followed by intended blocks. This function indents everything
+    # inside code (or TeX) blocks.
+
+    # grab #sphinx code-blocks: cod=python cpp=c++ etc line
+    # (do this before code is inserted in case verbatim blocks contain
+    # such specifications for illustration)
+    m = re.search(r'#\s*[Ss]phinx\s+code-blocks?:(.+?)\n', filestr)
+    if m:
+        defs_line = m.group(1)
+        # turn defs into a dictionary definition:
+        defs = {}
+        for definition in defs_line.split():
+            key, value = definition.split('=')
+            defs[key] = value
+    else:
+        # default mappings:
+        defs = dict(cod='python', pycod='python', cppcod='c++',
+                    fcod='fortran', ccod='c', 
+                    pro='python', pypro='python', cpppro='c++',
+                    fpro='fortran', cpro='c', 
+                    sys='console', dat='python')
+        # (the "python" typesetting is neutral if the text
+        # does not parse as python)
+    
+    # First indent all code/tex blocks by 1) extracting all blocks,
+    # 2) intending each block, and 3) inserting the blocks.
+    # In between, handle the math blocks.
+    
+    filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
+    for i in range(len(code_blocks)):
+        code_blocks[i] = indent_lines(code_blocks[i], format)
+
+    # Treat math labels. Drop labels in environments with multiple
+    # equations since these do not work in Sphinx. Method: keep
+    # label if there is one and only one. Otherwise use old
+    # method of removing labels. Do not use :nowrap: since this will
+    # generate other labels that we cannot refer to.
+    # 
+    math_labels = []
+    for i in range(len(tex_blocks)):
+        tex_blocks[i] = indent_lines(tex_blocks[i], format)
+        # extract all \label{}s inside tex blocks and typeset them
+        # with :label: tags
+        label_regex1 = fix_latex(r'\label\{(.+?)\}', application='match')
+        label_regex2 = fix_latex( r'label\{(.+?)\}', application='match')
+        for label_regex in (label_regex1, label_regex2):
+            labels = re.findall(label_regex, tex_blocks[i])
+            if len(labels) == 1:
+                math_labels.extend(labels)
+                tex_blocks[i] = '   :label: %s\n' % labels[0] + tex_blocks[i]
+            tex_blocks[i] = re.sub(label_regex, '', tex_blocks[i])
+
+        # fix latex constructions that do not work with sphinx math
+        commands = [r'\begin{equation}',
+                    r'\end{equation}',
+                    r'\begin{equation*}',
+                    r'\end{equation*}',
+                    r'\begin{eqnarray}',
+                    r'\end{eqnarray}',
+                    r'\begin{eqnarray*}',
+                    r'\end{eqnarray*}',
+                    r'\begin{align}',
+                    r'\end{align}',
+                    r'\begin{align*}',
+                    r'\end{align*}',
+                    r'\begin{multline}',
+                    r'\end{multline}',
+                    r'\begin{multline*}',
+                    r'\end{multline*}',
+                    r'\begin{split}',
+                    r'\end{split}',
+                    r'\begin{gather}',
+                    r'\end{gather}',
+                    r'\begin{gather*}',
+                    r'\end{gather*}',
+                    r'\[',
+                    r'\]',
+                    # some common abbreviations (newcommands):
+                    r'\beqan',
+                    r'\eeqan',
+                    r'\beqa',
+                    r'\eeqa',
+                    r'\balnn',
+                    r'\ealnn',
+                    r'\baln',
+                    r'\ealn',
+                    r'\beq',
+                    r'\eeq',  # the simplest, contained in others, must come last!
+                    ]
+        for command in commands:
+            tex_blocks[i] = tex_blocks[i].replace(command, '')
+        tex_blocks[i] = re.sub('&\s*=\s*&', ' &= ', tex_blocks[i])
+        # provide warnings for problematic environments
+        if '{alignat' in tex_blocks[i]:
+            print '\nWarning: the "alignat" environment will give errors in Sphinx:\n\n', tex_blocks[i], '\n'
+
+    # replace all references to equations that have labels in math environments:
+    for label in math_labels:
+        filestr = filestr.replace('(:ref:`%s`)' % label, ':eq:`%s`' % label)
+     
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
+
+    for key in defs:
+        language = defs[key]
+        if not language in legal_pygments_languages:
+            raise TypeError('%s is not a legal Pygments language '\
+                            '(lexer) in line with:\n  %s' % \
+                                (language, defs_line))
+        #filestr = re.sub(r'^!bc\s+%s\s*\n' % key, 
+        #                 '\n.. code-block:: %s\n\n' % defs[key], filestr,
+        #                 flags=re.MULTILINE)
+        cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
+        filestr = cpattern.sub('\n.. code-block:: %s\n\n' % defs[key], filestr)
+                         
+    # any !bc with/without argument becomes a py (python) block:
+    #filestr = re.sub(r'^!bc.+\n', '\n.. code-block:: py\n\n', filestr,
+    #                 flags=re.MULTILINE)
+    cpattern = re.compile(r'^!bc.+$', flags=re.MULTILINE)
+    filestr = cpattern.sub('\n.. code-block:: py\n\n', filestr)
+
+    filestr = re.sub(r'!ec *\n', '\n\n', filestr)
+    #filestr = re.sub(r'!ec\n', '\n', filestr)
+    #filestr = re.sub(r'!ec\n', '', filestr)
+    filestr = re.sub(r'!bt *\n', '\n.. math::\n', filestr)
     filestr = re.sub(r'!et *\n', '\n\n', filestr)
 
     return filestr

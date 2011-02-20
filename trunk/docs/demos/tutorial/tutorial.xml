@@ -107,7 +107,7 @@ typeset as:</paragraph><literal_block xml:space="preserve">$\nu = \sin(x)$|$v = 
 version of the formula.</paragraph><paragraph>Blocks of mathematics are better typeset with raw LaTeX, inside
 <literal>!bt</literal> and <literal>!et</literal> (begin tex / end tex) instructions.
 The result looks like this:</paragraph><literal_block xml:space="preserve">\begin{eqnarray}
-{\partial u\over\partial t} &amp;=&amp; \nabla^2 u + f,\label{myeq1}\\
+{\partial u\over\partial t} &amp;=&amp; \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &amp;=&amp; \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}</literal_block><paragraph>Of course, such blocks only looks nice in LaTeX. The raw
 LaTeX syntax appears in all other formats (but can still be useful
