@@ -240,9 +240,9 @@ Blocks of mathematics are better typeset with raw LaTeX, inside
 The result looks like this:
 
 .. math::
-
+   :label: myeq1
         
-        {\partial u\over\partial t}  &=  \nabla^2 u + f,\\
+        {\partial u\over\partial t}  &=  \nabla^2 u + f, \\
         {\partial v\over\partial t}  &=  \nabla\cdot(q(u)\nabla v) + g
         
 
