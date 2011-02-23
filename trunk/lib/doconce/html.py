@@ -164,7 +164,7 @@ def define(FILENAME_EXTENSION,
         'title':         r'<TITLE>\g<subst></TITLE>\n<CENTER><H1>\g<subst></H1></CENTER>',
         'date':          r'<CENTER><H3>\g<subst></H3></CENTER>',
         'author':        html_author,
-        'figure':        r'<IMG SRC="\g<filename>" ALIGN="bottom" \g<options>> \g<caption>',
+        'figure':        r'<IMG SRC="\g<filename>" ALIGN="bottom" \g<options>> <p><EM>\g<caption></EM></P>',
         'comment':       '<!-- %s -->',
         }
 
