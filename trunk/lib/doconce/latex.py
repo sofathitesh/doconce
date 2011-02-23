@@ -333,7 +333,7 @@ def define(FILENAME_EXTENSION,
         'module variable': r'module variable',
         }
 
-    FIGURE_EXT['LaTeX'] = ('.ps', '.eps')
+    FIGURE_EXT['LaTeX'] = ('.eps', '.ps')
 
     CROSS_REFS['LaTeX'] = latex_ref_and_label
 

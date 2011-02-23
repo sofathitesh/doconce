@@ -47,8 +47,8 @@ def rst_figure(m):
     return result
 
 # these global patterns are used in st, epytext, plaintext as well:
-bc_regex_pattern = r'([a-zA-Z0-9)"`.*_}])[\n:.?!, ]\s*?^!bc.*?$'
-bt_regex_pattern = r'([a-zA-Z0-9)"`.*_}])[\n:.?!, ]\s*?^!bt.*?$'
+bc_regex_pattern = r'([a-zA-Z0-9)"`.*_}=-^~])[\n:.?!, ]\s*?^!bc.*?$'
+bt_regex_pattern = r'([a-zA-Z0-9)"`.*_}=-^~])[\n:.?!, ]\s*?^!bt.*?$'
 
 def rst_code(filestr, format):
     # In rst syntax, code blocks are typeset with :: (verbatim)
@@ -94,6 +94,15 @@ def rst_code(filestr, format):
 
     #filestr = re.sub(r'!et\n', '\n', filestr)
     #filestr = re.sub(r'!et\n', '', filestr)
+
+    # Fix: if there are !bc-!ec or !bt-!et environments after each
+    # other without text in between, there is a difficulty with the
+    # :: symbol before the code block. In these cases, we get
+    # !ec:: and !et:: from the above substitutions. We just replace
+    # these by empty text.
+    filestr = filestr.replace('!ec::', '')
+    filestr = filestr.replace('!et::', '')
+    
     return filestr
 
     
@@ -308,7 +317,7 @@ def define(FILENAME_EXTENSION,
         }
     from common import DEFAULT_ARGLIST
     ARGLIST['rst'] = DEFAULT_ARGLIST
-    FIGURE_EXT['rst'] = ('.ps', '.eps', '.gif', '.jpg', '.jpeg')
+    FIGURE_EXT['rst'] = ('.png', '.gif', '.jpg', '.jpeg', '.eps', '.ps')
     CROSS_REFS['rst'] = rst_ref_and_label
     INDEX_BIB['rst'] = rst_index_bib
 
