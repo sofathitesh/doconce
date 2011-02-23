@@ -1247,7 +1247,7 @@ def main():
         basename = filename
         filename = filename + '.do.txt'
         if not os.path.isfile(filename):
-            print 'No such Doconce file: %s or %s' % (filename[:-7], filename)
+            print 'No such Doconce file: %s' % (filename[:-7])
             sys.exit(1)
     else:
         basename = filename[:-7]
