@@ -1,0 +1,412 @@
+#!/usr/bin/env python
+import os, sys, shutil, re
+from commands import getstatusoutput
+
+def format():
+    """
+    Run the doconce module on a file (with extension .do.txt) in Doconce format
+    and produce another format (LaTeX, HTML, plain text, reStructuredText, ...).
+
+    doconce2format HTML mydoc.do.txt
+    """
+    import sys, os, shutil
+
+    try:
+        import doconce
+    except ImportError:
+        # use local doconce module in the doconce package source:
+        try:
+            thisdir = os.path.dirname(sys.argv[0])
+            doconce_lib = os.path.join(thisdir, os.pardir, 'lib', 'doconce')
+            sys.path.insert(0, doconce_lib)
+            doconce_py = os.path.join(doconce_lib, 'doconce.py')
+            if not os.path.isfile(doconce_py):
+                # make doconce.py as a simple copy of doconce.p.py
+                # (doconce_insertdocstr will later run preprocess and
+                # insert documentation properly)
+                shutil.copy(os.path.join(doconce_lib, 'doconce.p.py'), doconce_py)
+            import doconce
+            print 'Successfull import of doconce locally'
+        except ImportError, e:
+            print e
+            print 'Could not import doconce from directory\n', os.getcwd()
+            sys.exit(1)
+
+    doconce.main()
+
+# ----------------------- functions for insertdocstr -----------------------
+
+def insertdocstr():
+    """
+    This scripts first finds all .do.txt (Doconce source code) files in a
+    directory tree and transforms these to a format given as command-line
+    argument to the present script. The transformed file has the extension
+    .dst.txt (dst for Doc STring), regardless of the format.
+
+    In the next phase, all .p.py files (Python files that need preprocessing)
+    are visited, and for each file the C-like preprocessor (preprocess.py)
+    is run on the file to include .dst.txt files into doc strings.
+    The result is an ordinary .py file.
+
+    Example:
+    A file basename.p.py has a module doc string which looks like
+    '''
+    # #include "docstrings/doc1.dst.txt
+    '''
+
+    In the subdirectory docstrings we have the file doc1.do.txt, which
+    contains the documentation in Doconce format. The current script
+    detects this file, transforms it to be desired format, say Epytext.
+    That action results in doc1.epytext. This file is then renamed to
+    doc1.dst.txt.
+
+    In the next step, files of the form basename.p.py is visisted, the
+    preprocess program is run, and the docstrings/doc1.dst.txt file is
+    inserted in the doc string. One can run with Epytext format, which is
+    suitable for running Epydoc on the files afterwards, then run with
+    Sphinx, and finally re-run with "plain" format such that only quite
+    raw plain text appears in the final basename.py file (this is suitable
+    for Pydoc, for instance).
+
+    Usage: doconce insertdocstr format root [preprocessor options]
+    """
+
+    try:
+        format = sys.argv[1]
+        root = sys.argv[2]
+    except:
+        print 'Usage: doconce insertdocstr format root [preprocessor options]'
+        sys.exit(1)
+
+    global doconce_program
+    if os.path.isfile(os.path.join('bin', 'doconce')):
+        doconce_program = os.path.join(os.getcwd(), 'bin', 'doconce')
+    else:
+        doconce_program = 'doconce'  # must be found somewhere in PATH
+    # alternative: use sys.argv[3] argument to tell where to find doconce
+    # can then run "bin/doconce insertdocstr bin" from setup.py
+
+    print '\n----- doconce insertdocstr %s %s\nFind and transform doconce files (.do.txt) ...' % (format, root)
+    arg = format
+    os.path.walk(root, _walker_doconce, arg)
+
+    print 'Find and preprocess .p.py files (insert doc strings etc.)...'
+    arg = ' '.join(sys.argv[3:])  # options for preprocessor
+    os.path.walk(root, _walker_include, arg)
+    print '----- end of doconce insertdocstr -----\n'
+
+
+
+# not used:
+def _preprocess_all_files(rootdir, options=''):
+    """
+    Run preprocess on all files of the form basename.p.ext
+    in the directory with root rootdir. The output of each
+    preprocess run is directed to basename.ext.
+    """
+    def _treat_a_dir(arg, d, files):
+        for f in files:
+            path = os.path.join(d, f)
+            if '.p.' in f and not '.svn' in f:
+                basename_dotp, ext = os.path.splitext(f)
+                basename, dotp = os.path.splitext(basename_dotp)
+                outfilename = basename + ext
+                outpath = os.path.join(d, outfilename)
+                cmd = 'preprocess %s %s > %s' % (options, path, outpath)
+                #print cmd
+                failure = os.system(cmd)
+                if failure:
+                    print 'WARNING: could not run\n  %s' %  cmd
+    
+    os.path.walk(rootdir, _treat_a_dir, None)
+
+def _run_doconce(filename_doconce, format):
+    """
+    Run doconce format filename_doconce.
+    The result is a file with extension .dst.txt (same basename
+    as filename_doconce).
+    """
+    if filename_doconce.startswith('__'):
+        # old preprocessed file from aborted doconce execution
+        print 'skipped', filename_doconce
+        return
+    
+    global doconce_program # set elsewhere
+    cmd = '%s format %s %s' % (doconce_program, format, filename_doconce)
+    print 'run', cmd
+    failure, outtext = getstatusoutput(cmd)
+    if failure:
+        raise OSError, 'Could not run\n%s\nin %s\n%s\n\n\n' % \
+              (cmd, os.getcwd(), outtext)
+    out_filename = outtext.split()[-1]
+    root, ext = os.path.splitext(out_filename)
+    new_filename = root + '.dst.txt'
+    os.rename(out_filename, new_filename)
+    print '(renamed %s to %s for possible inclusion in doc strings)\n' % (out_filename, new_filename)
+
+def _walker_doconce(arg, dir, files):
+    format = arg
+    # we move to the dir:
+    origdir = os.getcwd()
+    os.chdir(dir)
+    for f in files:
+        if f[-7:] == '.do.txt':
+            _run_doconce(f, format)
+    os.chdir(origdir)
+                          
+def _run_preprocess4includes(filename_dotp_py, options=''):
+    pyfile = filename_dotp_py[:-5] + '.py'
+    cmd = 'preprocess %s %s > %s' % (options, filename_dotp_py, pyfile)
+    print 'run', cmd
+    failure, outtext = getstatusoutput(cmd)
+    #os.remove(tmp_filename)
+    if failure:
+        raise OSError, 'Could not run\n%s\nin %s\n%s\n\n\n' % \
+              (cmd, os.getcwd(), outtext)
+    
+def _walker_include(arg, dir, files):
+    options = arg
+    # we move to the dir:
+    origdir = os.getcwd()
+    os.chdir(dir)
+    for f in files:
+        if f[-5:] == '.p.py':
+            _run_preprocess4includes(f, options)
+    os.chdir(origdir)
+
+
+def old2new_format():
+    if len(sys.argv) == 1:
+        print 'Usage: %s file1.do.txt file2.do.txt ...' % sys.argv[0]
+        sys.exit(1)
+
+    for filename in sys.argv[1:]:
+        print 'Converting', filename
+        _old2new(filename)
+
+def _old2new(filename):
+    """
+    Read file with name filename and make substitutions of
+    ___headings___ to === headings ===, etc.
+    A backup of the old file is made (filename + '.old').
+    """
+    f = open(filename, 'r')
+    lines = f.readlines()
+    f.close()
+    os.rename(filename, filename + '.old')
+
+    # perform substitutions:
+    nchanges = 0
+    for i in range(len(lines)):
+        oldline = lines[i]
+        # change from ___headings___ to === headings ===:
+        lines[i] = re.sub(r'(^\s*)_{7}\s*(?P<title>[^ ].*?)\s*_+\s*$',
+                          r'\g<1>======= \g<title> =======' + '\n', lines[i])
+        lines[i] = re.sub(r'(^\s*)_{5}\s*(?P<title>[^ ].*?)\s*_+\s*$',
+                          r'\g<1>===== \g<title> =====' + '\n', lines[i])
+        lines[i] = re.sub(r'(^\s*)_{3}\s*(?P<title>[^ ].*?)\s*_+\s*$',
+                          r'\g<1>=== \g<title> ===' + '\n', lines[i])
+        if lines[i].startswith('AUTHOR:'):
+            # swith to "name at institution":
+            if not ' at ' in lines[i]:
+                print 'Warning, file "%s": AUTHOR line needs "name at institution" syntax' % filename
+
+        if oldline != lines[i]:
+            nchanges += 1
+            print 'Changing\n  ', oldline, 'to\n  ', lines[i]
+
+    print 'Performed %d changes in "%s"' % (nchanges, filename)
+    f = open(filename, 'w')
+    f.writelines(lines)
+    f.close()
+
+def remove_inline_comments():
+    try:
+        filename = sys.argv[1]
+    except IndexError:
+        print 'Usage: doconce_remove_inline_comments.py doconcefile'
+        sys.exit(1)
+
+    shutil.copy(filename, filename + '.old~~')
+    f = open(filename, 'r')
+    filestr = f.read()
+    f.close()
+    import doconce
+    filestr = doconce.doconce.subst_away_inline_comments(filestr)
+    f = open(filename, 'w')
+    f.write(filestr)
+    f.close()
+    print 'inline comments removed in', filename
+
+def latin2html():
+    """
+    Substitute latin characters by their equivalent HTML encoding
+    in an HTML file. See doconce.html.latin2html for more
+    documentation.
+    """
+    from doconce.html import latin2html
+    import os, shutil, sys
+    for filename in sys.argv[1:]:
+        if not os.path.isfile(filename):
+            continue
+        oldfilename = filename + '.old~'
+        shutil.copy(filename, oldfilename)
+        print 'transformin latin characters to HTML encoding in', filename
+        f = open(oldfilename, 'r')
+        try:
+            text = f.read()
+            newtext = latin2html(text)
+            f.close()
+            f = open(filename, 'w')
+            f.write(newtext)
+            f.close()
+        except Exception, e:
+            print e.__class__.__name__, ':', e, 
+
+def gwiki_figsubst():
+    try:
+        gwikifile = sys.argv[1]
+        URLstem = sys.argv[2]
+    except IndexError:
+        print 'Usage: %s wikifile URL-stem' % sys.argv[0]
+        print 'Ex:    %s somefile.gwiki http://code.google.com/p/myproject/trunk/doc/somedir' % sys.argv[0]
+        sys.exit(1)
+
+    # first grep out all filenames with local path:
+    shutil.copy(gwikifile, gwikifile + 'old~~')
+    f = open(gwikifile, 'r')
+    fstr = f.read()
+    f.close()
+
+    pattern = r'\(the URL of the image file (.+?) must be inserted here\)'
+    #figfiles = re.findall(pattern, fstr)
+    replacement = r'%s/\g<1>' % URLstem
+    fstr, n = re.subn(pattern, replacement, fstr)
+    pattern = re.compile(r'<wiki:comment>\s+Put the figure file .*?</wiki:comment>', re.DOTALL)
+    fstr, n2 = pattern.subn('', fstr)
+    f = open(gwikifile, 'w')
+    f.write(fstr)
+    f.close()
+    print 'Replaced %d figure references in' % n, gwikifile
+    if n != n2:
+        print 'Something strange: %d fig references and %g comments... Bug.' % \
+              (n, n2)
+
+
+def sphinx_dir():
+    try:
+        doconce_file = sys.argv[1]
+    except:
+        print 'must have doconce file as argument'
+        sys.exit(1)
+    casename = doconce_file[:-7]
+    sphinx_rootdir = 'sphinx-rootdir'
+    title = casename # grab real title below, if any
+    f = open(doconce_file, 'r'); fstr = f.read(); f.close()
+    for line in fstr.splitlines():
+        if line.startswith('TITLE:'):
+            title = line[6:].strip()
+            break
+        
+    f = open('tmp_sphinx_gen.sh', 'w')
+    f.write("""\
+#!/bin/bash
+rm -rf %(sphinx_rootdir)s
+echo Making %(sphinx_rootdir)s
+mkdir %(sphinx_rootdir)s
+sphinx-quickstart <<EOF
+%(sphinx_rootdir)s
+n
+_
+%(title)s
+Author
+1.0
+1.0
+.rst
+index
+n
+y
+n
+n
+n
+n
+y
+n
+n
+y
+y
+y
+EOF
+""" % vars())
+    f.close()
+    failure = os.system('sh tmp_sphinx_gen.sh')
+    if failure:
+        print 'Could not run script for making sphinx directory'
+        sys.exit(1)
+    shutil.copy(doconce_file, os.path.join(sphinx_rootdir, casename + '.rst'))
+    os.chdir(sphinx_rootdir)
+    f = open('index.rst', 'w')
+    f.write("""
+.. Master file automatically created by doconce sphinx_dir
+
+Welcome to %(title)s!
+==================================================================
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   %(casename)s
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+""" % vars())
+    f.close()
+    os.chdir(os.pardir)
+    f = open('tmp_make_sphinx.sh', 'w')
+    f.write("""\
+#!/bin/bash
+# Autogenerated file (by doconce sphinx_dir)
+# Purpose: create HTML Sphinx version of %(casename)s.do.txt
+echo Make sure figure files/directories are placed in %(sphinx_rootdir)s
+cp %(casename)s.rst %(sphinx_rootdir)s
+cd %(sphinx_rootdir)s
+make clean
+make html
+echo
+echo "firefox %(sphinx_rootdir)s/_build/html/index.html"
+""" % vars())
+    f.close()
+    print "'tmp_make_sphinx.sh' contains the steps to compile the sphinx version"
+
+
+    
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir'.split()
+
+def main():
+    if len(sys.argv) == 1:
+        print 'Usage: doconce command [optional arguments]'
+        print 'commands: %s' % (' '.join(commands))
+        sys.exit(1)
+
+    command = sys.argv[1]
+    del sys.argv[1]
+    if command == '2format':
+        command = 'format'
+
+    found = False
+    for registered_command in commands:
+        if command == registered_command:
+            found = True
+            eval(command + '()')
+    if not found:
+        print 'command', command, 'not legal, must be among'
+        print ', '.join(commands)
+
+main()
