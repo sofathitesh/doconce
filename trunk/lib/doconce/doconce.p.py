@@ -118,7 +118,7 @@ def syntax_check(filestr, format):
         print '''\nSyntax error: Double back-quotes `` found in file - should be "'''
         sys.exit(1)
     if "''" in filestr:
-        print '''\nSyntaxerror: Double forward-quotes '' found in file - should be "'''
+        print '''\nWarning: Double forward-quotes '' found in file - should be " (unless derivatives in math)'''
         sys.exit(1)
 
     commands = [
