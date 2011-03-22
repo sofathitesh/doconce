@@ -1,4 +1,4 @@
-import re
+import re, os, glob
 
 # how to replace code and LaTeX blocks by HTML (<pre>) environment:
 def HTML_code(filestr, format):
@@ -38,6 +38,41 @@ def html_table(table):
         s += '</TR>\n'
     s += '</TABLE>\n'
     return s
+
+def html_movie(m):
+    filename = m.group('filename')
+    options = m.group('options')
+    caption = m.group('caption')
+    if '*' in filename:
+        # glob files
+        plotfiles = glob.glob(filename)
+        if not plotfiles:
+            print 'No plotfiles on the form', filename
+            sys.exit(1)
+        plotfiles.sort()
+        # Turn options to dictionary
+        options = options.split()
+        kwargs = {}
+        for opt in options:
+            if opt.startswith('width') or opt.startswith('WIDTH'):
+                kwargs['width'] = int(eval(opt.split('=')[1]))
+            if opt.startswith('height') or opt.startswith('HEIGHT'):
+                kwargs['height'] = int(eval(opt.split('=')[1]))
+        basename  = os.path.basename(plotfiles[0])
+        stem, ext = os.path.splitext(basename)
+        kwargs['casename'] = stem
+        import DocWriter
+        header, jscode, form, footer = DocWriter.html_movie(plotfiles, **kwargs)
+        text = jscode + form
+    else:
+        text = """
+<EMBED SRC="%s" %s> AUTOPLAY="TRUE" LOOP="TRUE">
+</EMBED>
+<P>
+<EM>%s</EM>
+</P>
+""" % (filename, options, caption)
+    return text
 
 def html_author(authors_and_institutions, auth2index, 
                 inst2index, index2inst):
@@ -165,7 +200,7 @@ def define(FILENAME_EXTENSION,
         'date':          r'<CENTER><H3>\g<subst></H3></CENTER>',
         'author':        html_author,
         'figure':        r'<IMG SRC="\g<filename>" ALIGN="bottom" \g<options>> <P><EM>\g<caption></EM></P>',
-        'movie':        r'<EMBED SRC="\g<filename>" \g<options> AUTOPLAY="TRUE" LOOP="TRUE"></EMBED> <P><EM>\g<caption></EM></P>',
+        'movie':         html_movie,
         'comment':       '<!-- %s -->',
         }
 
