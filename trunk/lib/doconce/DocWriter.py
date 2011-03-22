@@ -720,6 +720,79 @@ func_to_method(_%s, DocWriter, '%s')
     #print 'Autogenerating\n', code
     exec code
   
+def html_movie_wmp(moviefile, width=400, height=400):
+    """Return HTML text for embedding a movie file
+    (Windows Media Player code)."""
+    text = """
+<object id="MediaPlayer1" width="180" height="200"
+classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95"
+codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701"
+standby="Loading Microsoft® Windows® Media Player components..."
+type="application/x-oleobject" align="middle">
+<param name="FileName" value="%(moviefile)s">
+<param name="ShowStatusBar" value="True">
+<param name="DefaultFrame" value="mainFrame">
+<param name="autostart" value="false">
+<embed type="application/x-mplayer2"
+pluginspage = "http://www.microsoft.com/Windows/MediaPlayer/"
+src="%(moviefile)s"
+autostart="false"
+align="middle"
+width="%(width)s"
+height="%(height)s"
+loop="100"
+defaultframe="rightFrame"
+showstatusbar="true">
+</embed>
+</object>
+<!--
+<a href="%(moviefile)s"><font size="2">Download movie file</font></a>
+<a href="http://www.microsoft.com/windows/windowsmedia/mp10/default.aspx">
+<font size="1">Download Windows Media Player</font></a></p>
+-->
+<!--
+Attributes of the <embed> tag are:
+SRC - tells what file to use.
+AUTOSTART="TRUE" - tells the computer to start the Video playing upon loading the page.
+AUTOSTART="FALSE" - tells the computer not to start the Video playing upon loading the page. You must click the start button to make the Video play.
+ALIGN=Middle - tells the computer to put the start/stop buttons to the middle.
+WIDTH= and HEIGHT= - are the dimensions of a small button panel that will appear when the page loads and contains both a START & STOP button so the visitor can start/stop the Video.
+LOOP=2 - will play the Video for two complete loops.
+-->
+""" % vars()
+    return text
+
+def html_movie_qt(moviefile, width=400, height=400):
+    """Return HTML for embedding a moviefile (QuickTime code)."""
+    text = """
+<OBJECT CLASSID="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
+CODEBASE="http://www.apple.com/qtactivex/qtplugin.cab"
+WIDTH="%(width)s" HEIGHT="%(height)s" >
+<PARAM NAME="src" VALUE="%(moviefile)s" >
+<PARAM NAME="autoplay" VALUE="true" >
+<EMBED SRC="%(moviefile)s"
+PLUGINSPAGE="http://www.apple.com/quicktime/download"
+WIDTH="%(width)s" HEIGHT="%(height)s" AUTOPLAY="true">
+</EMBED>
+</OBJECT>
+""" % vars()
+    return text
+
+def html_movie(moviefile, width=400, height=400):
+    """
+    Return HTML for embedding a moviefile using the default
+    handling of such files.
+    """
+    text = """
+<EMBED src="%(moviefile)s"
+WIDTH="%(width)s"
+HEIGHT="%(height)s"
+AUTOPLAY="TRUE"
+LOOP="TRUE">
+</EMBED>
+""" % vars()
+    return text
+
 
 def _test(d):
     # d is formatclass() or DocWriter(HTML, LaTeX, ...)
