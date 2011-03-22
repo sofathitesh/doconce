@@ -637,9 +637,9 @@ Unix/DOS&gt; doconce format HTML mydoc.do.txt
 <div class="section" id="latex">
 <h2>LaTeX</h2>
 <p>Making a LaTeX file <tt class="docutils literal">mydoc.tex</tt> from <tt class="docutils literal">mydoc.do.txt</tt> is done in two steps:
-.. Note: putting code blocks inside a list is not successful in many
-.. formats - the text may be messed up. A better choice is a paragraph
-.. environment, as used here.</p>
+.. Note: putting code blocks inside a list is not successful in many</p>
+<!-- formats - the text may be messed up. A better choice is a paragraph -->
+<!-- environment, as used here. -->
 <dl class="docutils">
 <dt><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal">mydoc.p.tex</tt> for</dt>
 <dd><p class="first"><tt class="docutils literal">ptex2tex</tt>:</p>
@@ -1048,9 +1048,6 @@ feature works only for the <tt class="docutils literal">LaTeX</tt> and <tt class
 MOVIE: [filename, height=xxx width=yyy] possible caption
 </pre>
 <!-- PDF does not support movies everywhere -->
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">manual.rst</tt>, line 858)</p>
-Explicit markup ends without a blank line; unexpected unindent.</div>
 <p>MOVIE: [figs/demo.mpeg, width=600, height=470]</p>
 <p><em>Computer Code.</em> Another type of special lines starts with <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> and enables copying
 of computer code from a file directly into a verbatim environment, see

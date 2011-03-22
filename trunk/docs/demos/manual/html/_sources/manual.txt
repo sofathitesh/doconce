@@ -11,6 +11,7 @@ Doconce Description
 .. lines beginning with # are comment lines
 
 
+
 .. _what:is:doconce:
 
 What Is Doconce?
@@ -217,10 +218,15 @@ with the usual triple double quotes)
 
 
 .. Note: we insert an error right above as the right quote is missing.
+
 .. Then preprocess skips the statement, otherwise it gives an error
+
 .. message about a missing file docstrings/doc1.dst.txt (which we don't
+
 .. have, it's just a sample file name). Also note that comment lines
+
 .. must not come before a code block for the rst/st/epytext formats to work.
+
 
 The file ``docstrings/doc1.dst.txt`` is a file filtered to a specific format
 (typically plain text, reStructedText, or Epytext) from an original
@@ -289,7 +295,9 @@ commands:
 
 
 .. some comment lines that do not affect any formatting
+
 .. these lines are simply removed
+
 
 
 
@@ -331,6 +339,7 @@ lot of formats, with a corresponding
 of the results.
 
 .. Example on including another Doconce file:
+
 
 
 .. _doconce2formats:
@@ -392,8 +401,11 @@ LaTeX
 
 Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 .. Note: putting code blocks inside a list is not successful in many
+
 .. formats - the text may be messed up. A better choice is a paragraph
+
 .. environment, as used here.
+
 
 *Step 1.* Filter the doconce text to a pre-LaTeX form ``mydoc.p.tex`` for
      ``ptex2tex``:
@@ -618,8 +630,11 @@ depending the argument that follows ``!bc``: ``cod`` gives Python
 all such arguments can be customized both for Sphinx and LaTeX output.
 
 .. Desired extension: sphinx can utilize a "pycod" or "c++cod"
+
 .. instruction as currently done in latex for ptex2tex and write
+
 .. out the right code block name accordingly.
+
 
 
 Google Code Wiki
@@ -931,6 +946,7 @@ feature works only for the ``LaTeX`` and ``HTML`` formats.
 
 
 .. PDF does not support movies everywhere
+
 MOVIE: [figs/demo.mpeg, width=600, height=470]
 
 *Computer Code.* Another type of special lines starts with ``@@@CODE`` and enables copying
@@ -1293,9 +1309,13 @@ configuration file for ptex2tex/LaTeX and in the ``sphinx code-blocks``
 comments for Sphinx. Support for other languages is easily added.
 
 .. (Any sphinx code-block comment, whether inside verbatim code
+
 .. blocks or outside, yields a mapping between bc arguments
+
 .. and computer languages. In case of muliple definitions, the
+
 .. first one is used.)
+
 
 The enclosing ``!ec`` tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
@@ -1669,6 +1689,7 @@ Basic Parsing Ideas
 -------------------
 
 .. avoid list here since we have code in between (never a good idea)
+
 
 The (parts of) files with computer code to be directly included in
 the document are first copied into verbatim blocks.
