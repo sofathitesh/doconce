@@ -1,4 +1,4 @@
-import re, os, glob
+import re, os, glob, sys
 
 # how to replace code and LaTeX blocks by HTML (<pre>) environment:
 def HTML_code(filestr, format):
@@ -63,7 +63,13 @@ def html_movie(m):
         kwargs['casename'] = stem
         import DocWriter
         header, jscode, form, footer = DocWriter.html_movie(plotfiles, **kwargs)
-        text = jscode + form
+        #text = jscode + form  # does not work well with several movies
+        moviehtml = stem + '.html'
+        f = open(moviehtml, 'w')
+        f.write(header + jscode + form + footer)
+        f.close()
+        text = """<P><A HREF="%s">Movie of files <TT>%s</TT></A>\n<EM>%s</EM>""" % \
+               (moviehtml, filename, caption)
     else:
         text = """
 <EMBED SRC="%s" %s> AUTOPLAY="TRUE" LOOP="TRUE">
