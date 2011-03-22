@@ -9,7 +9,7 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 6253 2010-03-02 00:24:53Z milde $
+:Id: $Id: html4css1.css 6511 2011-01-03 14:49:11Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
@@ -46,6 +46,10 @@ blockquote.epigraph {
 
 dl.docutils dd {
   margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
 
 /* Uncomment (and remove this text!) to get bold-faced definition list terms
 dl.docutils dt {
@@ -185,7 +189,7 @@ img.align-center, .figure.align-center, object.align-center {
 
 /* reset inner alignment in figures */
 div.align-right {
-  text-align: left }
+  text-align: inherit }
 
 /* div.align-center * { */
 /*   text-align: left } */
@@ -323,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Feb 20, 2011</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Mar 22, 2011</td>
 </tr>
 </tbody>
 </table>
@@ -937,7 +941,7 @@ if there are multiple lines)</dd>
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
 sections, subsections, paragraphs., figures, etc.</p>
-<p>Lines starting with <tt class="docutils literal">TITLE:</tt>, <tt class="docutils literal">AUTHOR:</tt>, and <tt class="docutils literal">DATE:</tt> are optional and used
+<p><em>Heading with Title and Author(s).</em> Lines starting with <tt class="docutils literal">TITLE:</tt>, <tt class="docutils literal">AUTHOR:</tt>, and <tt class="docutils literal">DATE:</tt> are optional and used
 to identify a title of the document, the authors, and the date. The
 title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
@@ -974,7 +978,7 @@ A. Dummy Author
 [3] Segfault, Cyberspace Inc.
 </pre>
 <p>Similar typesetting is done for LaTeX and HTML formats.</p>
-<p>Headlines are recognized by being surrounded by equal signs (=) or
+<p><em>Section Headings.</em> Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
 or equal signs (=):</p>
@@ -1016,9 +1020,9 @@ __A Paragraph.__ The running text goes here.
 <h3>Example on a Subsubsection Heading</h3>
 <p>The running text goes here.</p>
 <p><em>A Paragraph.</em> The running text goes here.</p>
-<p>Figures are recognized by the special line syntax:</p>
+<p><em>Figures.</em> Figures are recognized by the special line syntax:</p>
 <pre class="literal-block">
-FIGURE:[filename, height=xxx width=yyy scale=zzz] caption
+FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
 </pre>
 <p>The filename can be without extension, and Doconce will search for an
 appropriate file with the right extension. If the extension is wrong,
@@ -1035,10 +1039,20 @@ newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as <tt class="docutils literal">FIGURE:</tt> will be
 included in the formatted caption).</p>
 <div class="figure" id="fig-impact">
-<img alt="figs/dinoimpact.ps" src="figs/dinoimpact.ps" style="width: 400px;" />
+<img alt="figs/dinoimpact.gif" src="figs/dinoimpact.gif" style="width: 400px;" />
 <p class="caption">It can't get worse than this...  (fig:impact)</p>
 </div>
-<p>Another type of special lines starts with <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> and enables copying
+<p><em>Movies.</em> Here is an example on the <tt class="docutils literal">MOVIE:</tt> keyword for embedding movies. This
+feature works only for the <tt class="docutils literal">LaTeX</tt> and <tt class="docutils literal">HTML</tt> formats:</p>
+<pre class="literal-block">
+MOVIE: [filename, height=xxx width=yyy] possible caption
+</pre>
+<!-- PDF does not support movies everywhere -->
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">manual.rst</tt>, line 858)</p>
+Explicit markup ends without a blank line; unexpected unindent.</div>
+<p>MOVIE: [figs/demo.mpeg, width=600, height=470]</p>
+<p><em>Computer Code.</em> Another type of special lines starts with <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> and enables copying
 of computer code from a file directly into a verbatim environment, see
 the section <a class="reference internal" href="#blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</a> below.</p>
 </div>
@@ -1108,6 +1122,8 @@ otherwise the comment is not recognized.)
 The name and comment are visible in the output unless <tt class="docutils literal">doconce format</tt>
 is run with a command-line specification of removing such comments
 (see the chapter <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a> for an example). Inline comments
+(<strong>hpl</strong>: Here is a specific example on an inline comment. It can
+span several lines.)
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the <tt class="docutils literal">.do.txt</tt> file

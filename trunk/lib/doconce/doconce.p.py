@@ -847,7 +847,9 @@ def inline_tag_subst(filestr, format):
     debugpr('\n*** Inline tags substitution phase ***')
 
     ordered_tags = (
-        'title', 'date', #'figure',
+        'title', 'date',
+        #'figure',
+        'movie',
         # important to do section, subsection, etc. BEFORE paragraph and bold:
         'section', 'subsection', 'subsubsection',
         'emphasize', 'math2', 'math', 'bold', 'verbatim',
@@ -906,7 +908,7 @@ def inline_tag_subst(filestr, format):
         
 def subst_away_inline_comments(filestr):
     # inline comments: [hpl: this is a comment]
-    pattern = r'\[(?P<name>[^:]*?):(?P<comment>[^\]]*?)\]'
+    pattern = r'\[(?P<name>[A-Za-z0-9_ ,.@]+?):(?P<comment>[^\]]*?)\]\s*'
     filestr = re.sub(pattern, '', filestr)
     return filestr
 

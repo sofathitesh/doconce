@@ -22,7 +22,7 @@ Automatically generated HTML file from Doconce source
 <CENTER>[2] <B>University of Oslo</B></CENTER>
 
 
-<CENTER><H3>Feb 20, 2011</H3></CENTER>
+<CENTER><H3>Mar 22, 2011</H3></CENTER>
 <P>
 
 <P>
@@ -841,7 +841,7 @@ sections, subsections, paragraphs., figures, etc.
 <P>
 
 <P>
-Lines starting with <TT>TITLE:</TT>, <TT>AUTHOR:</TT>, and <TT>DATE:</TT> are optional and used
+<B>Heading with Title and Author(s).</B> Lines starting with <TT>TITLE:</TT>, <TT>AUTHOR:</TT>, and <TT>DATE:</TT> are optional and used
 to identify a title of the document, the authors, and the date. The
 title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
@@ -888,7 +888,7 @@ Similar typesetting is done for LaTeX and HTML formats.
 <P>
 
 <P>
-Headlines are recognized by being surrounded by equal signs (=) or
+<B>Section Headings.</B> Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
 or equal signs (=):
@@ -945,10 +945,10 @@ The running text goes here.
 <B>A Paragraph.</B> The running text goes here.
 
 <P>
-Figures are recognized by the special line syntax
+<B>Figures.</B> Figures are recognized by the special line syntax
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
-FIGURE:[filename, height=xxx width=yyy scale=zzz] caption
+FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The filename can be without extension, and Doconce will search for an
@@ -971,12 +971,23 @@ part of the caption appearing on the same line as <TT>FIGURE:</TT> will be
 included in the formatted caption).
 
 <P>
-<IMG SRC="figs/dinoimpact.gif" ALIGN="bottom"  width=400> It can't get worse than this.... <A NAME="fig:impact"></A>
+<IMG SRC="figs/dinoimpact.gif" ALIGN="bottom"  width=400> <P><EM> It can't get worse than this.... <A NAME="fig:impact"></A></EM></P>
 
 <P>
+<B>Movies.</B> Here is an example on the <TT>MOVIE:</TT> keyword for embedding movies. This
+feature works only for the <TT>LaTeX</TT> and <TT>HTML</TT> formats.
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+MOVIE: [filename, height=xxx width=yyy] possible caption
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
 
 <P>
-Another type of special lines starts with <TT>@@@CODE</TT> and enables copying
+<!-- PDF does not support movies everywhere -->
+<EMBED SRC="figs/demo.mpeg"  width=600, height=470 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED> <P><EM></EM></P>
+
+<P>
+<B>Computer Code.</B> Another type of special lines starts with <TT>@@@CODE</TT> and enables copying
 of computer code from a file directly into a verbatim environment, see 
 the section <A HREF="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> below.
 
@@ -1078,6 +1089,8 @@ otherwise the comment is not recognized.</EM>]
 The name and comment are visible in the output unless <TT>doconce format</TT>
 is run with a command-line specification of removing such comments
 (see the chapter <A HREF="#doconce2formats">From Doconce to Other Formats</a> for an example). Inline comments
+[<B>hpl</B>: <EM>Here is a specific example on an inline comment. It can
+span several lines.</EM>]
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the <TT>.do.txt</TT> file

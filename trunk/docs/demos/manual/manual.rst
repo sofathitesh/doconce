@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Feb 20, 2011
+:Date: Mar 22, 2011
 
 .. lines beginning with # are comment lines
 
@@ -723,7 +723,7 @@ line and are used to mark document title, authors, date,
 sections, subsections, paragraphs., figures, etc.
 
 
-Lines starting with ``TITLE:``, ``AUTHOR:``, and ``DATE:`` are optional and used
+*Heading with Title and Author(s).* Lines starting with ``TITLE:``, ``AUTHOR:``, and ``DATE:`` are optional and used
 to identify a title of the document, the authors, and the date. The
 title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
@@ -765,7 +765,7 @@ format::
 Similar typesetting is done for LaTeX and HTML formats.
 
 
-Headlines are recognized by being surrounded by equal signs (=) or
+*Section Headings.* Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
 or equal signs (=):
@@ -816,10 +816,10 @@ The running text goes here.
 
 *A Paragraph.* The running text goes here.
 
-Figures are recognized by the special line syntax::
+*Figures.* Figures are recognized by the special line syntax::
 
 
-        FIGURE:[filename, height=xxx width=yyy scale=zzz] caption
+        FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
 
 The filename can be without extension, and Doconce will search for an
 appropriate file with the right extension. If the extension is wrong,
@@ -841,14 +841,23 @@ included in the formatted caption).
 
 .. _fig:impact:
 
-.. figure:: figs/dinoimpact.ps
+.. figure:: figs/dinoimpact.gif
    :width: 400
 
    It can't get worse than this...  (fig:impact)
 
 
+*Movies.* Here is an example on the ``MOVIE:`` keyword for embedding movies. This
+feature works only for the ``LaTeX`` and ``HTML`` formats::
 
-Another type of special lines starts with ``@@@CODE`` and enables copying
+
+        MOVIE: [filename, height=xxx width=yyy] possible caption
+
+
+.. PDF does not support movies everywhere
+MOVIE: [figs/demo.mpeg, width=600, height=470]
+
+*Computer Code.* Another type of special lines starts with ``@@@CODE`` and enables copying
 of computer code from a file directly into a verbatim environment, see 
 the section `Blocks of Verbatim Computer Code`_ below.
 
@@ -935,6 +944,8 @@ otherwise the comment is not recognized.)
 The name and comment are visible in the output unless ``doconce format``
 is run with a command-line specification of removing such comments
 (see the chapter `From Doconce to Other Formats`_ for an example). Inline comments
+(**hpl**: Here is a specific example on an inline comment. It can
+span several lines.)
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the ``.do.txt`` file
