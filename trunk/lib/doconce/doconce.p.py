@@ -214,8 +214,18 @@ def syntax_check(filestr, format):
         print matches
         sys.exit(1)
 
+    # Movie without comman between filename and options? Or initial spaces?
+    pattern = r'^MOVIE:\s*\[[^,\]]+ +[^\]]*\]'
+    cpattern = re.compile(pattern, re.MULTILINE)
+    matches = cpattern.findall(filestr)
+    if matches:
+        print '\nSyntax error in MOVIE specification'\
+              '\nmissing comma after filename, before options'
+        print matches
+        sys.exit(1)
+
     # Keywords at the beginning of the lines:
-    keywords = 'AUTHOR', 'TITLE', 'DATE', 'FIGURE', 'BIBFILE'
+    keywords = 'AUTHOR', 'TITLE', 'DATE', 'FIGURE', 'BIBFILE', 'MOVIE'
     for kw in keywords:
         pattern = '^ +' + kw
         cpattern = re.compile(pattern, re.MULTILINE)
