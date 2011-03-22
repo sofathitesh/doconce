@@ -6,7 +6,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Feb 20, 2011
+:Date: Mar 22, 2011
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -273,10 +273,15 @@ while ``xpro`` and ``xcod`` are computer language specific for ``x``
 in ``f`` (Fortran), ``c`` (C), ``cpp`` (C++), and ``py`` (Python).
 .. ``rb`` (Ruby), ``pl`` (Perl), and ``sh`` (Unix shell).
 
+
 .. (Any sphinx code-block comment, whether inside verbatim code
+
 .. blocks or outside, yields a mapping between bc arguments
+
 .. and computer languages. In case of muliple definitions, the
+
 .. first one is used.)
+
 
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
@@ -335,6 +340,7 @@ page <https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>`_ fo
 .. Example on including another Doconce file (using preprocess):
 
 
+
 .. _doconce2formats:
 
 From Doconce to Other Formats
@@ -388,8 +394,11 @@ LaTeX
 
 Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 .. Note: putting code blocks inside a list is not successful in many
+
 .. formats - the text may be messed up. A better choice is a paragraph
+
 .. environment, as used here.
+
 
 *Step 1.* Filter the doconce text to a pre-LaTeX form ``mydoc.p.tex`` for
      ``ptex2tex``::
@@ -595,8 +604,11 @@ depending the argument that follows ``!bc``: ``cod`` gives Python
 all such arguments can be customized both for Sphinx and LaTeX output.
 
 .. Desired extension: sphinx can utilize a "pycod" or "c++cod"
+
 .. instruction as currently done in latex for ptex2tex and write
+
 .. out the right code block name accordingly.
+
 
 
 Google Code Wiki

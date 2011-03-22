@@ -164,7 +164,8 @@ def define(FILENAME_EXTENSION,
         'title':         r'<TITLE>\g<subst></TITLE>\n<CENTER><H1>\g<subst></H1></CENTER>',
         'date':          r'<CENTER><H3>\g<subst></H3></CENTER>',
         'author':        html_author,
-        'figure':        r'<IMG SRC="\g<filename>" ALIGN="bottom" \g<options>> <p><EM>\g<caption></EM></P>',
+        'figure':        r'<IMG SRC="\g<filename>" ALIGN="bottom" \g<options>> <P><EM>\g<caption></EM></P>',
+        'movie':        r'<EMBED SRC="\g<filename>" \g<options> AUTOPLAY="TRUE" LOOP="TRUE"></EMBED> <P><EM>\g<caption></EM></P>',
         'comment':       '<!-- %s -->',
         }
 

@@ -264,6 +264,9 @@ INLINE_TAGS = {
     # FIGURE:[filename, options] some caption text label{some:label}
     'figure':
     r'^FIGURE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]\s*?(?P<caption>.*)$',
+    # MOVIE:[filename, options] some caption text label{some:label}
+    'movie':
+    r'^MOVIE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]\s*?(?P<caption>.*)$',
     }
 INLINE_TAGS_SUBST = {}
 

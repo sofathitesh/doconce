@@ -3,13 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Doconce: Document Once, Include Anywhere &mdash; Doconce: Document Once, Include Anywhere v1.0 documentation</title>
+    <title>Doconce: Document Once, Include Anywhere &mdash; Doconce: Document Once, Include Anywhere 1.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
@@ -22,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Doconce: Document Once, Include Anywhere v1.0 documentation" href="index.html" />
+    <link rel="top" title="Doconce: Document Once, Include Anywhere 1.0 documentation" href="index.html" />
     <link rel="prev" title="Welcome to Doconce Tutorial’s documentation!" href="index.html" /> 
   </head>
   <body>
@@ -35,7 +38,7 @@
         <li class="right" >
           <a href="index.html" title="Welcome to Doconce Tutorial’s documentation!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Doconce: Document Once, Include Anywhere v1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Doconce: Document Once, Include Anywhere 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -50,10 +53,10 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Feb 20, 2011</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Mar 22, 2011</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -77,7 +80,7 @@ place, and include it anywhere?</li>
 <h1>The Doconce Concept<a class="headerlink" href="#the-doconce-concept" title="Permalink to this headline">¶</a></h1>
 <p>Doconce is two things:</p>
 <blockquote>
-<ol class="arabic simple">
+<div><ol class="arabic simple">
 <li>Doconce is a very simple and minimally tagged markup language that
 look like ordinary ASCII text (much like what you would use in an
 email), but the text can be transformed to numerous other formats,
@@ -93,11 +96,11 @@ source code, manuals, tutorials, books, wikis, memos, emails, etc.).
 The Doconce markup language support this working strategy.
 The slogan is: &#8220;Write once, include anywhere&#8221;.</li>
 </ol>
-</blockquote>
+</div></blockquote>
 <p>A wide range of markup languages exist. For example, reStructuredText and Sphinx
 have recently become popular. So why another one?</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>Doconce can convert to plain <em>untagged</em> text,
 more desirable for computer programs and email.</li>
 <li>Doconce has less cluttered tagging of text.</li>
@@ -110,10 +113,10 @@ for generating documents in more complicated markup languages, such
 as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
 is just to make the initial versions of a Sphinx or Wiki document.</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Doconce was particularly written for the following sample applications:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>Large books written in LaTeX, but where many pieces (computer demos,
 projects, examples) can be written in Doconce to appear in other
 contexts in other formats, including plain HTML, Sphinx, or MS Word.</li>
@@ -125,7 +128,7 @@ googlecode.com, and as LaTeX integrated in, e.g., a thesis.</li>
 amount of Doconce tagging is added, before the memos can appear as
 MS Word documents or in wikis.</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Disclaimer: Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
@@ -138,7 +141,7 @@ when transformed to other formats.</p>
 <p>Doconce text looks like ordinary text, but there are some almost invisible
 text constructions that allow you to control the formating. For example,</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>bullet lists arise from lines starting with an asterisk,</li>
 <li><em>emphasized words</em> are surrounded by asterisks,</li>
 <li><strong>words in boldface</strong> are surrounded by underscores,</li>
@@ -156,7 +159,7 @@ in or out of the text,</li>
 <li>with the Mako preprocessor one can even embed Python
 code and use this to steer generation of Doconce text.</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Here is an example of some simple text written in the Doconce format:</p>
 <div class="highlight-py"><pre>===== A Subsection with Sample Text =====
 label{my:first:sec}
@@ -207,21 +210,21 @@ Tables are also supperted, e.g.,
 <strong>boldface</strong> words, <em>emphasized</em> words, and <tt class="docutils literal"><span class="pre">computer</span></tt> words look
 natural in plain text.  Lists are typeset as you would do in an email,</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>item 1</li>
 <li>item 2</li>
 <li>item 3</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Lists can also have numbered items instead of bullets, just use an <tt class="docutils literal"><span class="pre">o</span></tt>
 (for ordered) instead of the asterisk:</p>
 <blockquote>
-<ol class="arabic simple">
+<div><ol class="arabic simple">
 <li>item 1</li>
 <li>item 2</li>
 <li>item 3</li>
 </ol>
-</blockquote>
+</div></blockquote>
 <p>URLs with a link word are possible, as in <a class="reference external" href="http://folk.uio.no/hpl">hpl</a>.
 If the word is URL, the URL itself becomes the link name,
 as in <a class="reference external" href="tutorial.do.txt">tutorial.do.txt</a>.</p>
@@ -240,21 +243,21 @@ comments can be removed from the output by a command-line argument
 <col width="33%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">time</th>
+<tr class="row-odd"><th class="head">time</th>
 <th class="head">velocity</th>
 <th class="head">acceleration</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>0.0</td>
+<tr class="row-even"><td>0.0</td>
 <td>1.4186</td>
 <td>-5.01</td>
 </tr>
-<tr><td>2.0</td>
+<tr class="row-odd"><td>2.0</td>
 <td>1.376512</td>
 <td>11.919</td>
 </tr>
-<tr><td>4.0</td>
+<tr class="row-even"><td>4.0</td>
 <td>1.1E+1</td>
 <td>14.717624</td>
 </tr>
@@ -278,7 +281,7 @@ version of the formula.</p>
 The result looks like this:</p>
 <div class="math" id="equation-myeq1">
 <p><span class="eqno">(1)</span><img src="_images/math/0a1f9aabc11902208928bdbfe2f0b3deedaa2d8e.png" alt="{\partial u\over\partial t}  &amp;=  \nabla^2 u + f, \\
-     {\partial v\over\partial t}  &amp;=  \nabla\cdot(q(u)\nabla v) + g" /></p>
+     {\partial v\over\partial t}  &amp;=  \nabla\cdot(q(u)\nabla v) + g"/></p>
 </div><p>Of course, such blocks only looks nice in LaTeX. The raw
 LaTeX syntax appears in all other formats (but can still be useful
 for those who can read LaTeX syntax).</p>
@@ -394,9 +397,7 @@ is performed by</p>
 <div class="section" id="latex">
 <h2>LaTeX<a class="headerlink" href="#latex" title="Permalink to this headline">¶</a></h2>
 <p>Making a LaTeX file <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt> from <tt class="docutils literal"><span class="pre">mydoc.do.txt</span></tt> is done in two steps:
-.. Note: putting code blocks inside a list is not successful in many
-.. formats - the text may be messed up. A better choice is a paragraph
-.. environment, as used here.</p>
+.. Note: putting code blocks inside a list is not successful in many</p>
 <dl class="docutils">
 <dt><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal"><span class="pre">mydoc.p.tex</span></tt> for</dt>
 <dd><tt class="docutils literal"><span class="pre">ptex2tex</span></tt>:</dd>
@@ -713,12 +714,12 @@ more typesetting and tagging features than Doconce.</p>
         <li class="right" >
           <a href="index.html" title="Welcome to Doconce Tutorial’s documentation!"
              >previous</a> |</li>
-        <li><a href="index.html">Doconce: Document Once, Include Anywhere v1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Doconce: Document Once, Include Anywhere 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2011, Author.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1pre.
     </div>
   </body>
 </html>
