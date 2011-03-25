@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Mar 22, 2011</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Mar 25, 2011</td>
 </tr>
 </tbody>
 </table>
@@ -1047,8 +1047,14 @@ feature works only for the <tt class="docutils literal">LaTeX</tt> and <tt class
 <pre class="literal-block">
 MOVIE: [filename, height=xxx width=yyy] possible caption
 </pre>
-<!-- PDF does not support movies everywhere -->
+<!-- LaTeX/PDF format requires movie15 package for displaying movies -->
 <p>MOVIE: [figs/demo.mpeg, width=600, height=470]</p>
+<p>The LaTeX format results in a file that requires the movie15 package
+in order to play movies in PDF via Acroread. The HTML format will play
+the movie right away, while for all other formats there is no
+movie support. The HTML format can also treat filenames of the form
+<tt class="docutils literal"><span class="pre">myframes*.png</span></tt>. In that case, a player for showing the sequence of frames
+is inserted in the HTML file.</p>
 <p><em>Computer Code.</em> Another type of special lines starts with <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> and enables copying
 of computer code from a file directly into a verbatim environment, see
 the section <a class="reference internal" href="#blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</a> below.</p>

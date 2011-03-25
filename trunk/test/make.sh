@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 # test multiple authors:
 doconce format HTML testdoc.do.txt
 doconce format LaTeX testdoc.do.txt

@@ -22,7 +22,7 @@ Automatically generated HTML file from Doconce source
 <CENTER>[2] <B>University of Oslo</B></CENTER>
 
 
-<CENTER><H3>Mar 22, 2011</H3></CENTER>
+<CENTER><H3>Mar 25, 2011</H3></CENTER>
 <P>
 
 <P>
@@ -983,8 +983,24 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
 <! -- END VERBATIM BLOCK -->
 
 <P>
-<!-- PDF does not support movies everywhere -->
-<EMBED SRC="figs/demo.mpeg"  width=600, height=470 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED> <P><EM></EM></P>
+<!-- LaTeX/PDF format requires movie15 package for displaying movies -->
+
+<P>
+
+<EMBED SRC="figs/demo.mpeg"  width=600, height=470> AUTOPLAY="TRUE" LOOP="TRUE">
+</EMBED>
+<P>
+<EM></EM>
+</P>
+
+
+<P>
+The LaTeX format results in a file that requires the movie15 package
+in order to play movies in PDF via Acroread. The HTML format will play
+the movie right away, while for all other formats there is no
+movie support. The HTML format can also treat filenames of the form
+<TT>myframes*.png</TT>. In that case, a player for showing the sequence of frames
+is inserted in the HTML file. 
 
 <P>
 <B>Computer Code.</B> Another type of special lines starts with <TT>@@@CODE</TT> and enables copying

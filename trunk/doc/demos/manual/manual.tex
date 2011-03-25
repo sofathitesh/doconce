@@ -6,7 +6,7 @@
 \usepackage{hyperref,relsize,epsfig,makeidx,amsmath}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
-%\usepackage{movie15}
+\usepackage{movie15}
 \usepackage{minted}  % requires latex -shell-escape (for Minted_* ptex2tex envirs)
 
 
@@ -46,7 +46,7 @@
 
 
 \begin{center}
-Mar 22, 2011
+Mar 25, 2011
 \end{center}
 
 
@@ -970,7 +970,25 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
 \end{Verbatim}
 \noindent
 
-% PDF does not support movies everywhere
+% {\LaTeX}/PDF format requires movie15 package for displaying movies
+
+
+\begin{figure}[ht]
+\begin{center}
+\includemovie[poster,
+text={\small (Loading figs/demo.mpeg)},
+]{0.9\linewidth}{0.9\linewidth}{figs/demo.mpeg}    % requires \usepackage{movie15}
+\end{center}
+\caption{}
+\end{figure}
+
+
+The {\LaTeX} format results in a file that requires the movie15 package
+in order to play movies in PDF via Acroread. The HTML format will play
+the movie right away, while for all other formats there is no
+movie support. The HTML format can also treat filenames of the form
+{\fontsize{10pt}{10pt}\verb!myframes*.png!}. In that case, a player for showing the sequence of frames
+is inserted in the HTML file. 
 
 \paragraph{Computer Code.}
 Another type of special lines starts with {\fontsize{10pt}{10pt}\verb!@@@CODE!} and enables copying

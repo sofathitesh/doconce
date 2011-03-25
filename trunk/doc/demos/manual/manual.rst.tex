@@ -59,7 +59,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Mar 22, 2011
+Mar 25, 2011
 
 \end{DUfieldlist}
 
@@ -1155,9 +1155,16 @@ MOVIE:~{[}filename,~height=xxx~width=yyy{]}~possible~caption
 }
 \end{quote}
 
-% PDF does not support movies everywhere
+% LaTeX/PDF format requires movie15 package for displaying movies
 
 MOVIE: {[}figs/demo.mpeg, width=600, height=470{]}
+
+The LaTeX format results in a file that requires the movie15 package
+in order to play movies in PDF via Acroread. The HTML format will play
+the movie right away, while for all other formats there is no
+movie support. The HTML format can also treat filenames of the form
+\texttt{myframes*.png}. In that case, a player for showing the sequence of frames
+is inserted in the HTML file.
 
 \emph{Computer Code.} Another type of special lines starts with \texttt{@@@CODE} and enables copying
 of computer code from a file directly into a verbatim environment, see

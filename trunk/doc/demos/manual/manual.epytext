@@ -790,7 +790,15 @@ feature works only for the C{LaTeX} and C{HTML} formats::
         MOVIE: [filename, height=xxx width=yyy] possible caption
 
 
+
 MOVIE: [figs/demo.mpeg, width=600, height=470]
+
+The LaTeX format results in a file that requires the movie15 package
+in order to play movies in PDF via Acroread. The HTML format will play
+the movie right away, while for all other formats there is no
+movie support. The HTML format can also treat filenames of the form
+C{myframes*.png}. In that case, a player for showing the sequence of frames
+is inserted in the HTML file. 
 
 I{Computer Code.} Another type of special lines starts with C{@@@CODE} and enables copying
 of computer code from a file directly into a verbatim environment, see 
