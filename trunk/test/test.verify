@@ -41,11 +41,11 @@ for f in files:
 add('make.sh', log)
 log.close()
 
-tutdir = os.path.join(os.pardir, 'docs', 'tutorial')
+tutdir = os.path.join(os.pardir, 'doc', 'tutorial')
 print 'cd', tutdir
 os.chdir(tutdir)
 
-print '...running ./make.sh in docs/tutorial'  # works only under Unix...
+print '...running ./make.sh in doc/tutorial'  # works only under Unix...
 failure = os.system('./clean.sh')
 if failure:
     raise OSError, 'Could not run clean.sh successfully'    
@@ -73,11 +73,11 @@ for f in files:
 log.close()
 
 # test manual:
-mandir = os.path.join(os.pardir, 'docs', 'manual')
+mandir = os.path.join(os.pardir, 'doc', 'manual')
 print 'cd', mandir
 os.chdir(mandir)
 
-print '...running ./make.sh in docs/manual'  # works only under Unix...
+print '...running ./make.sh in doc/manual'  # works only under Unix...
 failure = os.system('./clean.sh')
 if failure:
     raise OSError, 'Could not run clean.sh successfully'    

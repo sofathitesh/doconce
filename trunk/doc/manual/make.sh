@@ -76,7 +76,7 @@ dvipdf manual.dvi
 $d2f gwiki manual.do.txt
 
 # fix figure in wiki: (can also by done by doconce gwiki_figsubst)
-scitools subst "\(the URL of the image file figs/dinoimpact.gif must be inserted here\)" "https://doconce.googlecode.com/hg/trunk/docs/manual/figs/dinoimpact.gif" manual.gwiki
+scitools subst "\(the URL of the image file figs/dinoimpact.gif must be inserted here\)" "https://doconce.googlecode.com/hg/trunk/doc/manual/figs/dinoimpact.gif" manual.gwiki
 
 rm -f *.ps
 

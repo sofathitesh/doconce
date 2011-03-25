@@ -16,7 +16,7 @@ doconce2format sphinx docstring.do.txt
 mv -f docstring.rst docstring.dst.txt
 cd ..
 preprocess doconce.p.py > doconce.py
-cd ../../docs/api-source/sphinx-rootdir
+cd ../../doc/api-source/sphinx-rootdir
 make clean
 make html
 
