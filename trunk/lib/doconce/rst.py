@@ -297,7 +297,7 @@ def define(FILENAME_EXTENSION,
         'figure':        rst_figure,
         #'comment':       '.. %s',  # rst does not like empty comment lines:
         # so therefore we introduce a function to remove empty comment lines
-        'comment':       lambda c: '' if c.isspace() or c == '' else '.. %s' % c
+        'comment':       lambda c: '' if c.isspace() or c == '' else '.. %s\n' % c
         }
 
     CODE['rst'] = rst_code  # function for typesetting code

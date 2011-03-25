@@ -9,7 +9,7 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 6253 2010-03-02 00:24:53Z milde $
+:Id: $Id: html4css1.css 6511 2011-01-03 14:49:11Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
@@ -46,6 +46,10 @@ blockquote.epigraph {
 
 dl.docutils dd {
   margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
 
 /* Uncomment (and remove this text!) to get bold-faced definition list terms
 dl.docutils dt {
@@ -185,7 +189,7 @@ img.align-center, .figure.align-center, object.align-center {
 
 /* reset inner alignment in figures */
 div.align-right {
-  text-align: left }
+  text-align: inherit }
 
 /* div.align-center * { */
 /*   text-align: left } */
@@ -324,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Feb 20, 2011</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Mar 22, 2011</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -676,9 +680,9 @@ Unix/DOS&gt; doconce format HTML mydoc.do.txt
 <div class="section" id="latex">
 <h2>LaTeX</h2>
 <p>Making a LaTeX file <tt class="docutils literal">mydoc.tex</tt> from <tt class="docutils literal">mydoc.do.txt</tt> is done in two steps:
-.. Note: putting code blocks inside a list is not successful in many
-.. formats - the text may be messed up. A better choice is a paragraph
-.. environment, as used here.</p>
+.. Note: putting code blocks inside a list is not successful in many</p>
+<!-- formats - the text may be messed up. A better choice is a paragraph -->
+<!-- environment, as used here. -->
 <dl class="docutils">
 <dt><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal">mydoc.p.tex</tt> for</dt>
 <dd><p class="first"><tt class="docutils literal">ptex2tex</tt>:</p>

@@ -100,6 +100,7 @@ def define(FILENAME_EXTENSION,
         'math2':     r'\g<begin>\g<puretext>\g<end>',
         'emphasize': None,
         'bold':      None,
+        'figure':    None,
         'verbatim':  r'\g<begin>\g<subst>\g<end>',  # no ` chars
         'linkURL':   r'\g<begin>\g<link> (\g<url>)\g<end>',
         'linkURL2':  r'\g<link> (\g<url>)',
