@@ -40,12 +40,12 @@ failure = os.system('sh ./clean.sh')
 if failure:
     print 'Could not run clean.sh in', os.getcwd()
 os.chdir(thisdir)
-os.chdir(os.path.join('docs', 'tutorial'))
+os.chdir(os.path.join('doc', 'tutorial'))
 failure = os.system('sh ./clean.sh')
 if failure:
     print 'Could not run clean.sh in', os.getcwd()
 os.chdir(thisdir)
-os.chdir(os.path.join('docs', 'manual'))
+os.chdir(os.path.join('doc', 'manual'))
 failure = os.system('sh ./clean.sh')
 if failure:
     print 'Could not run clean.sh in', os.getcwd()
@@ -92,6 +92,3 @@ setup(
                f in ['doconce']]
     )
 
-oldbin = ['doconce_insertdocstr', 'doconce2format',
-          'doconce_old2new_format.py', 'doconce_latin2html.py',
-          'doconce_gwiki_figsubst.py']
