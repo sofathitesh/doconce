@@ -1,6 +1,7 @@
 # -*- coding: iso-8859-15 -*-
 
 import os, commands, re
+additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
 def latex_code(filestr, format):
     lines = filestr.splitlines()
@@ -189,12 +190,6 @@ def latex_ref_and_label(section_label2title, format, filestr):
         filestr = re.sub(r'(%s) +([\\A-Za-z0-9])' % p, r'\g<1>~\g<2>', 
                          filestr)
 
-    # Other fixes, not related to ref/label:
-    # MOVIE
-    if 'MOVIE:' in filestr or r'\includemovie[' in filestr:
-        filestr = filestr.replace(r'%\usepackage{movie15}',
-                                  r'\usepackage{movie15}')
-                    
     return filestr
 
 def latex_index_bib(filestr, index, citations, bibfile):
@@ -299,9 +294,12 @@ def define(FILENAME_EXTENSION,
 """, application='replacement'),
         'figure':        latex_figure,
         'movie':  r"""
-% requires \usepackage{movie15} (uncomment in preamble)
 \\begin{figure}[ht]
-\includemovie[poster]{}{}{\g<filename>}
+\\begin{center}
+\includemovie[poster,
+text={\small (Loading \g<filename>)},
+]{0.9\linewidth}{0.9\linewidth}{\g<filename>}    % requires \usepackage{movie15}
+\end{center}
 \caption{\g<caption>}
 \end{figure}
 """,
@@ -361,7 +359,10 @@ def define(FILENAME_EXTENSION,
 \usepackage{hyperref,relsize,epsfig,makeidx,amsmath}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
-%\usepackage{movie15}
+% #define MOVIE
+% #ifdef MOVIE
+\usepackage{movie15}
+% #endif
 % #ifdef MINTED
 \usepackage{minted}  % requires latex -shell-escape (for Minted_* ptex2tex envirs)
 % #endif
