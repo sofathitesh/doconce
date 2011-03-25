@@ -3,13 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Doconce Description &mdash; Doconce Description v1.0 documentation</title>
+    <title>Doconce Description &mdash; Doconce Description 1.0 documentation</title>
+    
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
@@ -22,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Doconce Description v1.0 documentation" href="index.html" />
+    <link rel="top" title="Doconce Description 1.0 documentation" href="index.html" />
     <link rel="prev" title="Welcome to a Doconce Description!" href="index.html" /> 
   </head>
   <body>
@@ -35,7 +38,7 @@
         <li class="right" >
           <a href="index.html" title="Welcome to a Doconce Description!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Doconce Description v1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Doconce Description 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -50,9 +53,9 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Feb 20, 2011</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 22, 2011</td>
 </tr>
 </tbody>
 </table>
@@ -61,7 +64,7 @@
 <span id="id1"></span><h1>What Is Doconce?<a class="headerlink" href="#what-is-doconce" title="Permalink to this headline">¶</a></h1>
 <p id="index-0">Doconce is two things:</p>
 <blockquote>
-<ol class="arabic simple">
+<div><ol class="arabic simple">
 <li>Doconce is a very simple and minimally tagged markup language that
 look like ordinary ASCII text (much like what you would use in an
 email), but the text can be transformed to numerous other formats,
@@ -77,11 +80,11 @@ source code, manuals, tutorials, books, wikis, memos, emails, etc.).
 The Doconce markup language support this working strategy.
 The slogan is: &#8220;Write once, include anywhere&#8221;.</li>
 </ol>
-</blockquote>
+</div></blockquote>
 <p>A wide range of markup languages exist. For example, reStructuredText and Sphinx
 have recently become popular. So why another one?</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>Doconce can convert to plain <em>untagged</em> text,
 more desirable for computer programs and email.</li>
 <li>Doconce has less cluttered tagging of text.</li>
@@ -94,10 +97,10 @@ for generating documents in more complicated markup languages, such
 as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
 is just to make the initial versions of a Sphinx or Wiki document.</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Doconce was particularly written for the following sample applications:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>Large books written in LaTeX, but where many pieces (computer demos,
 projects, examples) can be written in Doconce to appear in other
 contexts in other formats, including plain HTML, Sphinx, or MS Word.</li>
@@ -109,7 +112,7 @@ googlecode.com, and as LaTeX integrated in, e.g., a thesis.</li>
 amount of Doconce tagging is added, before the memos can appear as
 MS Word documents or in wikis.</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Disclaimer: Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
@@ -153,7 +156,7 @@ Epydoc, and HappyDoc must show LaTeX math in verbatim mode.
 Unfortunately, Epytext is annoyed by even very simple LaTeX math (also
 in verbatim environments). To summarize, we need</p>
 <blockquote>
-<ol class="arabic simple">
+<div><ol class="arabic simple">
 <li>A minimally tagged markup language with full support for
 for mathematics and verbatim computer code.</li>
 <li>Filters for producing highly tagged formats (LaTeX, HTML, XML),
@@ -162,7 +165,7 @@ text with completely invivisble tagging.</li>
 <li>Tools for inserting appropriately filtered versions of a &#8220;singleton&#8221;
 documentation file in other documents (manuals, tutorials, doc strings).</li>
 </ol>
-</blockquote>
+</div></blockquote>
 <p>One answer to these points is the Doconce markup language, its
 associated tools, and a <a class="reference external" href="http://code.google.com/p/preprocess">C-style preprocessor tool</a> or the <a class="reference external" href="http://www.makotemplates.org/">Mako template system</a>.  Then we can <em>write once, include
 anywhere</em>!  And what we write is close to plain ASCII text.</p>
@@ -204,7 +207,7 @@ which are easily installed.</p>
 <div class="section" id="the-doconce-software-documentation-strategy">
 <span id="doconce-strategy"></span><h2>The Doconce Software Documentation Strategy<a class="headerlink" href="#the-doconce-software-documentation-strategy" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>Write software documentation, both tutorials and manuals, in
 the Doconce format. Use many files - and never duplicate information!</li>
 <li>Use <tt class="docutils literal"><span class="pre">#include</span></tt> statements in source code (especially in doc
@@ -219,7 +222,7 @@ reStructuredText for XML, Docbook, OpenOffice, RTF, Word.</li>
 <li>Run the preprocessor <tt class="docutils literal"><span class="pre">preprocess</span></tt> on the files to produce native
 files for pure computer code and for various other documents.</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Consider an example involving a Python module in a <tt class="docutils literal"><span class="pre">basename.p.py</span></tt> file.
 The <tt class="docutils literal"><span class="pre">.p.py</span></tt> extension identifies this as a file that has to be
 preprocessed) by the <tt class="docutils literal"><span class="pre">preprocess</span></tt> program.
@@ -352,9 +355,7 @@ is performed by</p>
 <div class="section" id="latex">
 <h2>LaTeX<a class="headerlink" href="#latex" title="Permalink to this headline">¶</a></h2>
 <p>Making a LaTeX file <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt> from <tt class="docutils literal"><span class="pre">mydoc.do.txt</span></tt> is done in two steps:
-.. Note: putting code blocks inside a list is not successful in many
-.. formats - the text may be messed up. A better choice is a paragraph
-.. environment, as used here.</p>
+.. Note: putting code blocks inside a list is not successful in many</p>
 <dl class="docutils">
 <dt><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal"><span class="pre">mydoc.p.tex</span></tt> for</dt>
 <dd><tt class="docutils literal"><span class="pre">ptex2tex</span></tt>:</dd>
@@ -583,7 +584,7 @@ and is indented as follows</p>
 </div>
 <p>This list gets typeset as</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>item 1</li>
 <li>item 2<ul>
 <li>subitem 1, if there are more
@@ -595,7 +596,7 @@ also spans two lines</li>
 </li>
 <li>item 3</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>In an ordered list, each item starts with an <tt class="docutils literal"><span class="pre">o</span></tt> (as the first letter
 in &#8220;ordered&#8221;):</p>
 <div class="highlight-py"><pre>o item 1
@@ -610,7 +611,7 @@ o item 3</pre>
 </div>
 <p>resulting in</p>
 <blockquote>
-<ol class="arabic simple">
+<div><ol class="arabic simple">
 <li>item 1</li>
 <li>item 2<ul>
 <li>subitem 1</li>
@@ -619,7 +620,7 @@ o item 3</pre>
 </li>
 <li>item 3</li>
 </ol>
-</blockquote>
+</div></blockquote>
 <p>Ordered lists cannot have an ordered sublist, i.e., the ordering
 applies to the outer list only.</p>
 <p>In a description list, each item is recognized by a dash followed
@@ -632,7 +633,7 @@ by a keyword followed by a colon:</p>
 </div>
 <p>The result becomes</p>
 <blockquote>
-<dl class="docutils">
+<div><dl class="docutils">
 <dt>keyword1:</dt>
 <dd>explanation of keyword1</dd>
 <dt>keyword2:</dt>
@@ -640,7 +641,7 @@ by a keyword followed by a colon:</p>
 of keyword2 (remember to indent properly
 if there are multiple lines)</dd>
 </dl>
-</blockquote>
+</div></blockquote>
 </div>
 <div class="section" id="special-lines">
 <h2>Special Lines<a class="headerlink" href="#special-lines" title="Permalink to this headline">¶</a></h2>
@@ -648,7 +649,7 @@ if there are multiple lines)</dd>
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
 sections, subsections, paragraphs., figures, etc.</p>
-<span class="target" id="index-3"></span><span class="target" id="index-4"></span><p id="index-5">Lines starting with <tt class="docutils literal"><span class="pre">TITLE:</span></tt>, <tt class="docutils literal"><span class="pre">AUTHOR:</span></tt>, and <tt class="docutils literal"><span class="pre">DATE:</span></tt> are optional and used
+<span class="target" id="index-3"></span><span class="target" id="index-4"></span><p id="index-5"><em>Heading with Title and Author(s).</em> Lines starting with <tt class="docutils literal"><span class="pre">TITLE:</span></tt>, <tt class="docutils literal"><span class="pre">AUTHOR:</span></tt>, and <tt class="docutils literal"><span class="pre">DATE:</span></tt> are optional and used
 to identify a title of the document, the authors, and the date. The
 title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
@@ -682,19 +683,19 @@ A. Dummy Author
 [3] Segfault, Cyberspace Inc.</pre>
 </div>
 <p>Similar typesetting is done for LaTeX and HTML formats.</p>
-<span class="target" id="index-6"></span><p id="index-7">Headlines are recognized by being surrounded by equal signs (=) or
+<span class="target" id="index-6"></span><p id="index-7"><em>Section Headings.</em> Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
 or equal signs (=):</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>7 underscores or equal signs for sections</li>
 <li>5 for subsections</li>
 <li>3 for subsubsections</li>
 <li>2 underscrores (only! - it looks best) for paragraphs
 (paragraph heading will be inlined)</li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>Headings can be surrounded by blanks if desired.</p>
 <p>Here are some examples:</p>
 <div class="highlight-py"><pre>======= Example on a Section Heading =======
@@ -723,8 +724,8 @@ __A Paragraph.__ The running text goes here.</pre>
 <h3>Example on a Subsubsection Heading<a class="headerlink" href="#example-on-a-subsubsection-heading" title="Permalink to this headline">¶</a></h3>
 <p>The running text goes here.</p>
 <p><em>A Paragraph.</em> The running text goes here.</p>
-<p>Figures are recognized by the special line syntax</p>
-<div class="highlight-py"><pre>FIGURE:[filename, height=xxx width=yyy scale=zzz] caption</pre>
+<p><em>Figures.</em> Figures are recognized by the special line syntax</p>
+<div class="highlight-py"><pre>FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption</pre>
 </div>
 <p>The filename can be without extension, and Doconce will search for an
 appropriate file with the right extension. If the extension is wrong,
@@ -744,7 +745,12 @@ included in the formatted caption).</p>
 <img alt="_images/dinoimpact.gif" src="_images/dinoimpact.gif" style="width: 400px;" />
 <p class="caption">It can&#8217;t get worse than this...</p>
 </div>
-<p>Another type of special lines starts with <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> and enables copying
+<p><em>Movies.</em> Here is an example on the <tt class="docutils literal"><span class="pre">MOVIE:</span></tt> keyword for embedding movies. This
+feature works only for the <tt class="docutils literal"><span class="pre">LaTeX</span></tt> and <tt class="docutils literal"><span class="pre">HTML</span></tt> formats.</p>
+<div class="highlight-py"><pre>MOVIE: [filename, height=xxx width=yyy] possible caption</pre>
+</div>
+<p>MOVIE: [figs/demo.mpeg, width=600, height=470]</p>
+<p><em>Computer Code.</em> Another type of special lines starts with <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> and enables copying
 of computer code from a file directly into a verbatim environment, see
 the section <a class="reference internal" href="#sec-verbatim-blocks"><em>Blocks of Verbatim Computer Code</em></a> below.</p>
 </div>
@@ -807,6 +813,8 @@ otherwise the comment is not recognized.)
 The name and comment are visible in the output unless <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt>
 is run with a command-line specification of removing such comments
 (see the chapter <a class="reference internal" href="#doconce2formats"><em>From Doconce to Other Formats</em></a> for an example). Inline comments
+(<strong>hpl</strong>: Here is a specific example on an inline comment. It can
+span several lines.)
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the <tt class="docutils literal"><span class="pre">.do.txt</span></tt> file
@@ -936,21 +944,21 @@ is a special feature of doconce :-) )</p>
 <col width="33%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">time</th>
+<tr class="row-odd"><th class="head">time</th>
 <th class="head">velocity</th>
 <th class="head">acceleration</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>0.0</td>
+<tr class="row-even"><td>0.0</td>
 <td>1.4186</td>
 <td>-5.01</td>
 </tr>
-<tr><td>2.0</td>
+<tr class="row-odd"><td>2.0</td>
 <td>1.376512</td>
 <td>11.919</td>
 </tr>
-<tr><td>4.0</td>
+<tr class="row-even"><td>4.0</td>
 <td>1.1E+1</td>
 <td>14.717624</td>
 </tr>
@@ -1096,7 +1104,7 @@ line and followed by a newline.</p>
 <p>Here is the result of a <tt class="docutils literal"><span class="pre">!bt</span></tt> - <tt class="docutils literal"><span class="pre">!et</span></tt> block:</p>
 <div class="math" id="equation-myeq1">
 <p><span class="eqno">(1)</span><img src="_images/math/5c368e202d32fcf823b6aef67e34d471f6e74ce5.png" alt="{\partial u\over\partial t}  &amp;=  \nabla^2 u + f,\\
-     {\partial v\over\partial t}  &amp;=  \nabla\cdot(q(u)\nabla v) + g" /></p>
+     {\partial v\over\partial t}  &amp;=  \nabla\cdot(q(u)\nabla v) + g"/></p>
 </div><p>This text looks ugly in all Doconce supported formats, except from
 LaTeX and Sphinx.  If HTML is desired, the best is to filter the Doconce text
 first to LaTeX and then use the widely available tex4ht tool to
@@ -1150,7 +1158,7 @@ expressions).</p>
 <p>will then be rendered to</p>
 <div class="math">
 <p><img src="_images/math/9ee23e141b56f4354916506139910b486cf8e748.png" alt="{\mbox{\boldmath $x$}}\cdot{\mbox{\boldmath $n$}}  &amp;=  0,\\
-\frac{D\vec u}{dt}  &amp;=  {\mbox{\boldmath $Q$}} \thinspace ." /></p>
+\frac{D\vec u}{dt}  &amp;=  {\mbox{\boldmath $Q$}} \thinspace ."/></p>
 </div><p>in the current format.</p>
 </div>
 <div class="section" id="preprocessing-steps">
@@ -1179,10 +1187,10 @@ a figure, while other formats may apply a separate figure for each plot.</p>
 <div class="section" id="missing-features">
 <h2>Missing Features<a class="headerlink" href="#missing-features" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li>Footnotes</li>
 </ul>
-</blockquote>
+</div></blockquote>
 </div>
 <div class="section" id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
@@ -1408,19 +1416,19 @@ arguments and variables are nicely formatted.</p>
 <p>The result depends on the output format: all formats except Epytext
 and Sphinx just typeset the list as a list with keywords.</p>
 <blockquote>
-<table class="docutils field-list" frame="void" rules="none">
+<div><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">var x:</th><td class="field-body">x value (float),
+<tr class="field-odd field"><th class="field-name">var x:</th><td class="field-body">x value (float),
 which must be a positive number.</td>
 </tr>
-<tr class="field"><th class="field-name">var tolerance:</th><td class="field-body">tolerance (float) for stopping
+<tr class="field-even field"><th class="field-name">var tolerance:</th><td class="field-body">tolerance (float) for stopping
 the iterations.</td>
 </tr>
 </tbody>
 </table>
-</blockquote>
+</div></blockquote>
 <table class="docutils citation" frame="void" id="python-primer-09" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -1529,12 +1537,12 @@ groundwater flow.
         <li class="right" >
           <a href="index.html" title="Welcome to a Doconce Description!"
              >previous</a> |</li>
-        <li><a href="index.html">Doconce Description v1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Doconce Description 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2011, Author.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1pre.
     </div>
   </body>
 </html>

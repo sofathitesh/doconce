@@ -214,8 +214,18 @@ def syntax_check(filestr, format):
         print matches
         sys.exit(1)
 
+    # Movie without comman between filename and options? Or initial spaces?
+    pattern = r'^MOVIE:\s*\[[^,\]]+ +[^\]]*\]'
+    cpattern = re.compile(pattern, re.MULTILINE)
+    matches = cpattern.findall(filestr)
+    if matches:
+        print '\nSyntax error in MOVIE specification'\
+              '\nmissing comma after filename, before options'
+        print matches
+        sys.exit(1)
+
     # Keywords at the beginning of the lines:
-    keywords = 'AUTHOR', 'TITLE', 'DATE', 'FIGURE', 'BIBFILE'
+    keywords = 'AUTHOR', 'TITLE', 'DATE', 'FIGURE', 'BIBFILE', 'MOVIE'
     for kw in keywords:
         pattern = '^ +' + kw
         cpattern = re.compile(pattern, re.MULTILINE)
@@ -847,7 +857,9 @@ def inline_tag_subst(filestr, format):
     debugpr('\n*** Inline tags substitution phase ***')
 
     ordered_tags = (
-        'title', 'date', #'figure',
+        'title', 'date',
+        #'figure',
+        'movie',
         # important to do section, subsection, etc. BEFORE paragraph and bold:
         'section', 'subsection', 'subsubsection',
         'emphasize', 'math2', 'math', 'bold', 'verbatim',
@@ -906,7 +918,7 @@ def inline_tag_subst(filestr, format):
         
 def subst_away_inline_comments(filestr):
     # inline comments: [hpl: this is a comment]
-    pattern = r'\[(?P<name>[^:]*?):(?P<comment>[^\]]*?)\]'
+    pattern = r'\[(?P<name>[A-Za-z0-9_ ,.@]+?):(?P<comment>[^\]]*?)\]\s*'
     filestr = re.sub(pattern, '', filestr)
     return filestr
 

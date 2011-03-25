@@ -188,6 +188,12 @@ def latex_ref_and_label(section_label2title, format, filestr):
     for p in prefix:
         filestr = re.sub(r'(%s) +([\\A-Za-z0-9])' % p, r'\g<1>~\g<2>', 
                          filestr)
+
+    # Other fixes, not related to ref/label:
+    # MOVIE
+    if 'MOVIE:' in filestr or r'\includemovie[' in filestr:
+        filestr = filestr.replace(r'%\usepackage{movie15}',
+                                  r'\usepackage{movie15}')
                     
     return filestr
 
@@ -292,6 +298,13 @@ def define(FILENAME_EXTENSION,
 % #endif
 """, application='replacement'),
         'figure':        latex_figure,
+        'movie':  r"""
+% requires \usepackage{movie15} (uncomment in preamble)
+\\begin{figure}[ht]
+\includemovie[poster]{}{}{\g<filename>}
+\caption{\g<caption>}
+\end{figure}
+""",
         'comment':       '%% %s',
         }
     # should be configureable:
@@ -348,6 +361,7 @@ def define(FILENAME_EXTENSION,
 \usepackage{hyperref,relsize,epsfig,makeidx,amsmath}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
+%\usepackage{movie15}
 % #ifdef MINTED
 \usepackage{minted}  % requires latex -shell-escape (for Minted_* ptex2tex envirs)
 % #endif
