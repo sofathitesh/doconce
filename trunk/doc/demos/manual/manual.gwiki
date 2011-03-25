@@ -2,7 +2,7 @@
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== Mar 22, 2011 ====
+==== Mar 25, 2011 ====
 
 <wiki:comment> lines beginning with # are comment lines </wiki:comment>
 
@@ -733,7 +733,7 @@ included in the formatted caption).
 
 Figure:  It can't get worse than this.... (fig:impact)
 
-https://doconce.googlecode.com/hg/trunk/docs/manual/figs/dinoimpact.gif
+https://doconce.googlecode.com/hg/trunk/doc/manual/figs/dinoimpact.gif
 
 <wiki:comment> 
 Put the figure file figs/dinoimpact.gif on the web (e.g., as part of the
@@ -749,8 +749,16 @@ feature works only for the `LaTeX` and `HTML` formats.
 MOVIE: [filename, height=xxx width=yyy] possible caption
 }}}
 
-<wiki:comment> PDF does not support movies everywhere </wiki:comment>
+<wiki:comment> LaTeX/PDF format requires movie15 package for displaying movies </wiki:comment>
+
 MOVIE: [figs/demo.mpeg, width=600, height=470]
+
+The LaTeX format results in a file that requires the movie15 package
+in order to play movies in PDF via Acroread. The HTML format will play
+the movie right away, while for all other formats there is no
+movie support. The HTML format can also treat filenames of the form
+`myframes*.png`. In that case, a player for showing the sequence of frames
+is inserted in the HTML file. 
 
 *Computer Code.* Another type of special lines starts with `@@@CODE` and enables copying
 of computer code from a file directly into a verbatim environment, see 
