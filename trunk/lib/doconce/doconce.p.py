@@ -1088,6 +1088,11 @@ def doconce2format(in_filename, format, out_filename):
             filestr = INTRO[format] + filestr
         if format in OUTRO:
             filestr = filestr + OUTRO[format]
+
+    if format == 'LaTeX':
+        if r'\includemovie[' not in filestr:
+            # avoid the need for movie15 package in LaTeX file
+            filestr = filestr.replace('define MOVIE', 'undef MOVIE')
      
     if guess_encoding:
         f = codecs.open(out_filename, 'w', encoding)

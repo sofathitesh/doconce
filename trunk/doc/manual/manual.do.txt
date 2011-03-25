@@ -608,10 +608,16 @@ feature works only for the `LaTeX` and `HTML` formats.
 MOVIE: [filename, height=xxx width=yyy] possible caption
 !ec
 
-# PDF does not support movies everywhere
-# #if FORMAT != "LaTeX"
+# LaTeX/PDF format requires movie15 package for displaying movies
+
 MOVIE: [figs/demo.mpeg, width=600, height=470]
-# #endif
+
+The LaTeX format results in a file that requires the movie15 package
+in order to play movies in PDF via Acroread. The HTML format will play
+the movie right away, while for all other formats there is no
+movie support. The HTML format can also treat filenames of the form
+`myframes*.png`. In that case, a player for showing the sequence of frames
+is inserted in the HTML file. 
 
 __Computer Code.__
 Another type of special lines starts with `@@@CODE` and enables copying
