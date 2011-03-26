@@ -25,7 +25,7 @@ cd sphinx-rootdir
 make clean
 make html
 make latex
-scitools subst '\.\*' '.pdf' _build/latex/DoconceDescription.tex  # .* doesn't work
+doconce subst '\.\*' '.pdf' _build/latex/DoconceDescription.tex  # .* doesn't work
 ln -s `pwd`/../figs _build/latex/figs
 cd _build/latex
 make clean
@@ -46,8 +46,8 @@ rst2xml.py manual.rst > manual.xml
 rst2latex.py manual.rst > manual.rst.tex
 
 # fix figure extension:
-# lookahead don't work: scitools subst '(?=includegraphics.+)\.gif' '.ps' manual.rst.tex
-scitools subst '\.gif' '' manual.rst.tex   # no extension in graphics file
+# lookahead don't work: doconce subst '(?=includegraphics.+)\.gif' '.ps' manual.rst.tex
+doconce subst '\.gif' '' manual.rst.tex   # no extension in graphics file
 latex manual.rst.tex   # pdflatex works too
 latex manual.rst.tex
 dvipdf manual.rst.dvi
@@ -76,7 +76,7 @@ dvipdf manual.dvi
 $d2f gwiki manual.do.txt
 
 # fix figure in wiki: (can also by done by doconce gwiki_figsubst)
-scitools subst "\(the URL of the image file figs/dinoimpact.gif must be inserted here\)" "https://doconce.googlecode.com/hg/trunk/doc/manual/figs/dinoimpact.gif" manual.gwiki
+doconce subst "\(the URL of the image file figs/dinoimpact.gif must be inserted here\)" "https://doconce.googlecode.com/hg/trunk/doc/manual/figs/dinoimpact.gif" manual.gwiki
 
 rm -f *.ps
 

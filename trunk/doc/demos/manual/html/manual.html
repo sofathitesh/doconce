@@ -55,7 +55,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 25, 2011</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 26, 2011</td>
 </tr>
 </tbody>
 </table>
@@ -229,13 +229,8 @@ preprocessed) by the <tt class="docutils literal"><span class="pre">preprocess</
 In a doc string in <tt class="docutils literal"><span class="pre">basename.p.py</span></tt> we do a preprocessor include
 in a comment line, say (use triple quotes in the doc string in case
 the <tt class="docutils literal"><span class="pre">doc1</span></tt> documentation includes code snippets with doc strings
-with the usual triple double quotes)</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">#    #include &quot;docstrings/doc1.dst.txt</span>
-<span class="sd">&#39;&#39;&#39;</span>
-</pre></div>
-</div>
-<p>The file <tt class="docutils literal"><span class="pre">docstrings/doc1.dst.txt</span></tt> is a file filtered to a specific format
+with the usual triple double quotes): <tt class="docutils literal"><span class="pre">#</span>&nbsp; <span class="pre">#include</span> <span class="pre">docstrings/doc1.dst.txt</span></tt>.
+The file <tt class="docutils literal"><span class="pre">docstrings/doc1.dst.txt</span></tt> is a file filtered to a specific format
 (typically plain text, reStructedText, or Epytext) from an original
 &#8220;singleton&#8221; documentation file named <tt class="docutils literal"><span class="pre">docstrings/doc1.do.txt</span></tt>. The <tt class="docutils literal"><span class="pre">.dst.txt</span></tt>
 is the extension of a file filtered ready for being included in a doc

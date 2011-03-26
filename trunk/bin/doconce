@@ -385,6 +385,142 @@ echo "firefox %(sphinx_rootdir)s/_build/html/index.html"
     f.close()
     print "'tmp_make_sphinx.sh' contains the steps to compile the sphinx version"
 
+def usage_subst():
+    print 'Usage: scitools subst [-s -m -x --restore] pattern '\
+          'replacement file1 file2 file3 ...'
+    print '--restore brings back the backup files'
+    print '-s is the re.DOTALL or re.S modifier'
+    print '-m is the re.MULTILINE or re.M modifier'
+    print '-x is the re.VERBODE or re.X modifier'
+
+def _scitools_subst(patterns, replacements, filenames,
+                    pattern_matching_modifiers=0):
+    """
+    Replace a set of patterns by a set of replacement strings (regular
+    expressions) in a series of files.
+    The function essentially performs::
+
+      for filename in filenames:
+          file_string = open(filename, 'r').read()
+          for pattern, replacement in zip(patterns, replacements):
+              file_string = re.sub(pattern, replacement, file_string)
+
+    A copy of the original file is taken, with extension `.old~`.
+    """
+    # if some arguments are strings, convert them to lists:
+    if isinstance(patterns, basestring):
+        patterns = [patterns]
+    if isinstance(replacements, basestring):
+        replacements = [replacements]
+    if isinstance(filenames, basestring):
+        filenames = [filenames]
+
+    # pre-compile patterns:
+    cpatterns = [re.compile(pattern, pattern_matching_modifiers) \
+                 for pattern in patterns]
+    modified_files = dict([(p,[]) for p in patterns])  # init
+    messages = []   # for return info
+
+    for filename in filenames:
+        if not os.path.isfile(filename):
+            raise IOError('%s is not a file!' % filename)
+        f = open(filename, 'r');
+        filestr = f.read()
+        f.close()
+
+        for pattern, cpattern, replacement in \
+            zip(patterns, cpatterns, replacements):
+            if cpattern.search(filestr):
+                filestr = cpattern.sub(replacement, filestr)
+                shutil.copy2(filename, filename + '.old~') # backup
+                f = open(filename, 'w')
+                f.write(filestr)
+                f.close()
+                modified_files[pattern].append(filename)
+
+    # make a readable return string with substitution info:
+    for pattern in sorted(modified_files):
+        if modified_files[pattern]:
+            replacement = replacements[patterns.index(pattern)]
+            messages.append('%s replaced by %s in %s' % \
+                                (pattern, replacement, 
+                                 ', '.join(modified_files[pattern])))
+
+    return ', '.join(messages) if messages else 'no substitutions'
+
+def wildcard_notation(files):
+    """
+    On Unix, a command-line argument like *.py is expanded
+    by the shell. This is not done on Windows, where we must
+    use glob.glob inside Python. This function provides a
+    uniform solution.
+    """
+    if isinstance(files, basestring):
+        files = [files]  # ensure list
+    if sys.platform[:3] == 'win':
+        import glob, operator
+        filelist = [glob.glob(arg) for arg in files]
+        files = reduce(operator.add, filelist)  # flatten
+    return files
+
+def subst():
+    if len(sys.argv) < 3:
+        usage_subst()
+        sys.exit(1)
+
+    from getopt import getopt
+    optlist, args = getopt(sys.argv[1:], 'smx', 'restore')
+    restore = False
+    pmm = 0  # pattern matching modifiers (re.compile flags)
+    for opt, value in optlist:
+        if opt in ('-s',):
+            if not pmm:  pmm = re.DOTALL
+            else:        pmm = pmm|re.DOTALL
+        if opt in ('-m',):
+            if not pmm:  pmm = re.MULTILINE
+            else:        pmm = pmm|re.MULTILINE
+        if opt in ('-x',):
+            if not pmm:  pmm = re.VERBOSE
+            else:        pmm = pmm|re.VERBOSE
+        if opt in ('--restore',):
+            restore = True
+
+    if restore:
+        for oldfile in args:
+            newfile = re.sub(r'\.old~$', '', oldfile)
+            if not os.path.isfile(oldfile):
+                print '%s is not a file!' % oldfile; continue
+            os.rename(oldfile, newfile)
+            print 'restoring %s as %s' % (oldfile,newfile)
+    else:
+        pattern = args[0]; replacement = args[1]
+        s = _scitools_subst(pattern, replacement,
+                            wildcard_notation(args[2:]), pmm)
+        print s  # print info about substitutions
+
+def usage_replace():
+    print 'Usage: scitools replace from-text to-text file1 file2 ...'
+
+def main_replace():
+    if len(sys.argv) < 3:
+        usage_subst()
+        sys.exit(1)
+
+    from_text = sys.argv[1]
+    to_text = sys.argv[2]
+    files = sys.argv[3:]
+    for filename in files:
+        f = open(filename, 'r')
+        text = f.read()
+        f.close()
+        if from_text in text:
+            backup_filename = filename + '.old~~'
+            shutil.copy(filename, backup_filename)
+            print 'replacing %s by %s in' % (from_text, to_text), filename
+            text = text.replace(from_text, to_text)
+            f = open(filename, 'w')
+            f.write(text)
+            f.close()
 
 def clean():
     """Remove all Doconce generated files."""
@@ -399,12 +535,40 @@ def clean():
             os.remove(f)
     print 'Removed', ', '.join(removed)
         
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir clean'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace clean help'.split()
 
+def help():
+    print """
+doconce format HTML|LaTeX|rst|sphinx|plain|epydoc|st file.do.txt
+
+doconce subst [-s -m -x --restore] regex-pattern regex-replacement file1 file2 ...
+(-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier,
+ -x is the re.VERBOSE modifier, --restore copies backup files back again)
+
+doconce replace from-text to-text file1 file2 ...
+
+doconce gwiki_figsubst file.gwiki URL-of-fig-dir
+
+doconce remove_inline_comments file.do.txt
+
+doconce sphinx_dir file.do.txt
+(requires sphinx version >= 1.1)
+
+doconce latin2html file.html
+
+doconce insertdocstr rootdir
+
+doconce clean
+(remove all files that the doconce format can regenerate)
+"""
+
+    
 def main():
-    if len(sys.argv) == 1:
+    if len(sys.argv) == 1 or '--help' in sys.argv or '-help' in sys.argv or \
+           'help' in sys.argv:
         print 'Usage: doconce command [optional arguments]'
         print 'commands: %s' % (' '.join(commands))
+        help()
         sys.exit(1)
 
     command = sys.argv[1]

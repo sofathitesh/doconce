@@ -49,6 +49,11 @@ idx{figures are nice}
 
 FIGURE:[../doc/manual/figs/dinoimpact.gif, width=200] It can't get worse than this.... label{fig:impact}
 
+What about a movie?
+idx{movies are nice}
+
+MOVIE: [../doc/manual/figs/demo.mpeg, width=200] Mjolnir movie.
+
 ===== Table Demo =====
 label{subsec:table}
 
@@ -70,6 +75,7 @@ label{mytab}
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
+
 % if FORMAT == "LaTeX":
 \end{table}
 % endif
