@@ -1,10 +1,10 @@
 Doconce Description
 ===================
 
-Hans Petter Langtangen [2, 1]
+Hans Petter Langtangen [1, 2]
 
-[1] University of Oslo
-[2] Simula Research Laboratory
+[1] Simula Research Laboratory
+[2] University of Oslo
 
 
 Date: Mar 26, 2011
