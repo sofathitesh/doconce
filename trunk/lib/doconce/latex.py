@@ -308,11 +308,13 @@ text={\small (Loading \g<filename>)},
 repeat,
 ]{0.9\linewidth}{0.9\linewidth}{\g<filename>}    % requires \usepackage{movie15}
 % #ifndef EXTERNAL_MOVIE_VIEWER
+
 \movieref[rate=0.5]{\g<filename>}{Slower}
 \movieref[rate=2]{\g<filename>}{Faster}
 \movieref[default]{\g<filename>}{Normal}
 \movieref[pause]{\g<filename>}{Play/Pause}
 \movieref[stop]{\g<filename>}{Stop}
+
 % #else
 %\href{run:\g<filename>}{\g<filename>}
 % #endif
