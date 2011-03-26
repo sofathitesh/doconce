@@ -158,13 +158,7 @@ preprocessed) by the 'preprocess' program.
 In a doc string in 'basename.p.py' we do a preprocessor include
 in a comment line, say (use triple quotes in the doc string in case
 the 'doc1' documentation includes code snippets with doc strings
-with the usual triple double quotes)::
-
-
-        '''
-        #    #include "docstrings/doc1.dst.txt
-        '''
-
+with the usual triple double quotes): '#  #include docstrings/doc1.dst.txt'.
 The file 'docstrings/doc1.dst.txt' is a file filtered to a specific format
 (typically plain text, reStructedText, or Epytext) from an original
 "singleton" documentation file named 'docstrings/doc1.do.txt'. The '.dst.txt'

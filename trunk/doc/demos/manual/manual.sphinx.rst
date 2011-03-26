@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Mar 25, 2011
+:Date: Mar 26, 2011
 
 .. lines beginning with # are comment lines
 
@@ -207,27 +207,7 @@ preprocessed) by the ``preprocess`` program.
 In a doc string in ``basename.p.py`` we do a preprocessor include
 in a comment line, say (use triple quotes in the doc string in case
 the ``doc1`` documentation includes code snippets with doc strings
-with the usual triple double quotes)
-
-.. code-block:: py
-
-
-        '''
-        #    #include "docstrings/doc1.dst.txt
-        '''
-
-
-.. Note: we insert an error right above as the right quote is missing.
-
-.. Then preprocess skips the statement, otherwise it gives an error
-
-.. message about a missing file docstrings/doc1.dst.txt (which we don't
-
-.. have, it's just a sample file name). Also note that comment lines
-
-.. must not come before a code block for the rst/st/epytext formats to work.
-
-
+with the usual triple double quotes): ``#  #include docstrings/doc1.dst.txt``.
 The file ``docstrings/doc1.dst.txt`` is a file filtered to a specific format
 (typically plain text, reStructedText, or Epytext) from an original
 "singleton" documentation file named ``docstrings/doc1.do.txt``. The ``.dst.txt``

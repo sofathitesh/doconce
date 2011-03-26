@@ -14,15 +14,15 @@ Automatically generated HTML file from Doconce source
     <TITLE>Doconce Description</TITLE>
 <CENTER><H1>Doconce Description</H1></CENTER>
 <CENTER>
-<B>Hans Petter Langtangen</B> [1, 2]
+<B>Hans Petter Langtangen</B> [2, 1]
 </CENTER>
 
 <P>
-<CENTER>[1] <B>Simula Research Laboratory</B></CENTER>
-<CENTER>[2] <B>University of Oslo</B></CENTER>
+<CENTER>[1] <B>University of Oslo</B></CENTER>
+<CENTER>[2] <B>Simula Research Laboratory</B></CENTER>
 
 
-<CENTER><H3>Mar 25, 2011</H3></CENTER>
+<CENTER><H3>Mar 26, 2011</H3></CENTER>
 <P>
 
 <P>
@@ -234,21 +234,7 @@ preprocessed) by the <TT>preprocess</TT> program.
 In a doc string in <TT>basename.p.py</TT> we do a preprocessor include
 in a comment line, say (use triple quotes in the doc string in case
 the <TT>doc1</TT> documentation includes code snippets with doc strings
-with the usual triple double quotes)
-<!-- BEGIN VERBATIM BLOCK  -->
-<BLOCKQUOTE><PRE>
-'''
-#    #include "docstrings/doc1.dst.txt
-'''
-</PRE></BLOCKQUOTE>
-<! -- END VERBATIM BLOCK -->
-<!--  -->
-<!-- Note: we insert an error right above as the right quote is missing. -->
-<!-- Then preprocess skips the statement, otherwise it gives an error -->
-<!-- message about a missing file docstrings/doc1.dst.txt (which we don't -->
-<!-- have, it's just a sample file name). Also note that comment lines -->
-<!-- must not come before a code block for the rst/st/epytext formats to work. -->
-<!--  -->
+with the usual triple double quotes): <TT>#  #include docstrings/doc1.dst.txt</TT>.
 The file <TT>docstrings/doc1.dst.txt</TT> is a file filtered to a specific format
 (typically plain text, reStructedText, or Epytext) from an original
 "singleton" documentation file named <TT>docstrings/doc1.do.txt</TT>. The <TT>.dst.txt</TT>

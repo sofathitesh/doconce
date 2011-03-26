@@ -7,7 +7,7 @@ dir=`pwd`
 echo "Removing in $dir:"
 /bin/ls $files 2> /dev/null
 rm -rf $files
-rm -rf ../../build
+#rm -rf ../../build
 
 
 

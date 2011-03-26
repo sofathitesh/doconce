@@ -29,15 +29,15 @@
 
 
 \begin{center}
-{\bf Hans Petter Langtangen${}^{1, 2}$} \\ [0mm]
+{\bf Hans Petter Langtangen${}^{2, 1}$} \\ [0mm]
 \end{center}
 
 \begin{center}
-{\small ${}^1$Simula Research Laboratory} \\ [-1.0mm]
+{\small ${}^1$University of Oslo} \\ [-1.0mm]
 \end{center}
 
 \begin{center}
-{\small ${}^2$University of Oslo} \\ [-1.0mm]
+{\small ${}^2$Simula Research Laboratory} \\ [-1.0mm]
 \end{center}
 
 %\vspace{4mm}
@@ -46,7 +46,7 @@
 
 
 \begin{center}
-Mar 25, 2011
+Mar 26, 2011
 \end{center}
 
 
@@ -256,21 +256,7 @@ preprocessed) by the {\fontsize{10pt}{10pt}\verb!preprocess!} program.
 In a doc string in {\fontsize{10pt}{10pt}\verb!basename.p.py!} we do a preprocessor include
 in a comment line, say (use triple quotes in the doc string in case
 the {\fontsize{10pt}{10pt}\verb!doc1!} documentation includes code snippets with doc strings
-with the usual triple double quotes)
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
-'''
-#    #include "docstrings/doc1.dst.txt
-'''
-\end{Verbatim}
-\noindent
-% 
-% Note: we insert an error right above as the right quote is missing.
-% Then preprocess skips the statement, otherwise it gives an error
-% message about a missing file docstrings/doc1.dst.txt (which we don't
-% have, it's just a sample file name). Also note that comment lines
-% must not come before a code block for the rst/st/epytext formats to work.
-% 
+with the usual triple double quotes): {\fontsize{10pt}{10pt}\verb!#  #include docstrings/doc1.dst.txt!}.
 The file {\fontsize{10pt}{10pt}\verb!docstrings/doc1.dst.txt!} is a file filtered to a specific format
 (typically plain text, reStructedText, or Epytext) from an original
 "singleton" documentation file named {\fontsize{10pt}{10pt}\verb!docstrings/doc1.do.txt!}. The {\fontsize{10pt}{10pt}\verb!.dst.txt!}
@@ -976,8 +962,15 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
 \begin{figure}[ht]
 \begin{center}
 \includemovie[poster,
+label=figs/demo.mpeg,
+autoplay,
+controls,
+toolbar,
+%externalviewer,
 text={\small (Loading figs/demo.mpeg)},
+repeat,
 ]{0.9\linewidth}{0.9\linewidth}{figs/demo.mpeg}    % requires \usepackage{movie15}
+\movieref[rate=0.5]{figs/demo.mpeg}{Slow}
 \end{center}
 \caption{}
 \end{figure}
