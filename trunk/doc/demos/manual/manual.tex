@@ -966,11 +966,14 @@ label=figs/demo.mpeg,
 autoplay,
 controls,
 toolbar,
-%externalviewer,
 text={\small (Loading figs/demo.mpeg)},
 repeat,
 ]{0.9\linewidth}{0.9\linewidth}{figs/demo.mpeg}    % requires \usepackage{movie15}
-\movieref[rate=0.5]{figs/demo.mpeg}{Slow}
+\movieref[rate=0.5]{figs/demo.mpeg}{Slower}
+\movieref[rate=2]{figs/demo.mpeg}{Faster}
+\movieref[default]{figs/demo.mpeg}{Normal}
+\movieref[pause]{figs/demo.mpeg}{Play/Pause}
+\movieref[stop]{figs/demo.mpeg}{Stop}
 \end{center}
 \caption{}
 \end{figure}
