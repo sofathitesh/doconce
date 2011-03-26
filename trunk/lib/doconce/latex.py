@@ -299,8 +299,8 @@ def define(FILENAME_EXTENSION,
 \includemovie[poster,
 label=\g<filename>,
 autoplay,
-controls,
-toolbar,
+%controls,
+%toolbar,
 % #ifdef EXTERNAL_MOVIE_VIEWER
 externalviewer,
 % #endif
