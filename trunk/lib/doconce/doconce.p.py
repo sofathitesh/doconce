@@ -4,8 +4,6 @@
 # #include "docstrings/docstring.dst.txt"
 
 '''
-__author__ = 'Hans Petter Langtangen <hpl@simula.no>'
-__version__ = 0.7
 
 import re, os, sys, shutil, commands, pprint, time, glob
 

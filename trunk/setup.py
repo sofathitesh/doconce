@@ -69,8 +69,12 @@ if failure:
     print 'Could not run\n  ', cmd
     sys.exit(1)
 
+# make sure we import from doconce in this package, not an installed one:
+sys.path.insert(0, os.path.join('lib')); import doconce
+
+
 setup(
-    version = "0.5", 
+    version = str(doconce.version), 
     author = "Hans Petter Langtangen",
     author_email = "<hpl@simula.no>",
     description = __doc__,
