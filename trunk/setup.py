@@ -70,7 +70,7 @@ if failure:
     sys.exit(1)
 
 setup(
-    version = "0.2", 
+    version = "0.5", 
     author = "Hans Petter Langtangen",
     author_email = "<hpl@simula.no>",
     description = __doc__,
