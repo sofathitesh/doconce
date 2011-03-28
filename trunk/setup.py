@@ -25,53 +25,11 @@ __acknowledgemets__ = 'Johannes H. Ring',
 
 from distutils.core import setup
 
-# If there are problems with installation, try cd test; ./clean_all.sh
-
-print 'setup.py:'
-# Before we can install, we must run doconce insertdocstr on the files
-# in lib/doconce such that documentation is copied from doconce files
-# into doc strings in Python files.
-
 import os, sys
-# remove files that are to be regenerated:
-thisdir = os.getcwd()
-os.chdir(os.path.join('lib', 'doconce', 'docstrings'))
-failure = os.system('sh ./clean.sh')
-if failure:
-    print 'Could not run clean.sh in', os.getcwd()
-os.chdir(thisdir)
-os.chdir(os.path.join('doc', 'tutorial'))
-failure = os.system('sh ./clean.sh')
-if failure:
-    print 'Could not run clean.sh in', os.getcwd()
-os.chdir(thisdir)
-os.chdir(os.path.join('doc', 'manual'))
-failure = os.system('sh ./clean.sh')
-if failure:
-    print 'Could not run clean.sh in', os.getcwd()
-os.chdir(thisdir)
-os.chdir('test')
-failure = os.system('sh ./clean.sh')
-if failure:
-    print 'Could not run clean.sh in', os.getcwd()
-os.chdir(thisdir)
 
-# make sure doconce insertdocstr finds the local bin/doconce
-# script, so add the bin dir with full path to the PATH variable first:
-#os.environ['PATH'] = os.path.join(os.getcwd(), 'bin') + \
-#                     os.pathsep + os.environ['PATH']
-
-# python bin/doconce insertdocstr plain lib/doconce:
-cmd = 'python ' + os.path.join('bin', 'doconce') + ' insertdocstr plain ' + os.path.join('lib', 'doconce')
-print '\n\nrun', cmd
-failure = os.system(cmd) # run preprocessing step
-if failure:
-    print 'Could not run\n  ', cmd
-    sys.exit(1)
-
-# make sure we import from doconce in this package, not an installed one:
+# Make sure we import from doconce in this package, not an installed one:
+# (need this for extracting the version below)
 sys.path.insert(0, os.path.join('lib')); import doconce
-
 
 setup(
     version = str(doconce.version), 
