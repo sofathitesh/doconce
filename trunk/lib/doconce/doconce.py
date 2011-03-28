@@ -1,10 +1,4 @@
 #!/usr/bin/env python
-'''
-
-# #include "docstrings/docstring.dst.txt"
-
-'''
-
 import re, os, sys, shutil, commands, pprint, time, glob
 
 def debugpr(out):
