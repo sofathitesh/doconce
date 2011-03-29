@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-The doconce package contans the doconce.py script/module and
+The doconce package contains the doconce.py script/module and
 the DocWriter module (and associated helper modules).
 
 Doconce is a very simple, minimal tagged markup language for
