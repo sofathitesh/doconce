@@ -38,7 +38,7 @@ setup(
     description = __doc__,
     license = "BSD",
     name = "Doconce",
-    url = "",
+    url = "http://doconce.googlecode.com",
     package_dir = {'': 'lib'},
     #packages = ['doconce'],
     # list individual modules since .p.py and _update.py etc. are not
