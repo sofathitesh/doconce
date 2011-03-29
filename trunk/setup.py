@@ -51,6 +51,8 @@ setup(
                   'doconce.expand_newcommands',
                   ],
     scripts = [os.path.join('bin', f) for \
-               f in ['doconce']]
+               f in ['doconce']],
+    data_files=[(os.path.join("share", "man", "man1"),
+                 [os.path.join("doc", "man", "man1", "doconce.1.gz"),])],
     )
 
