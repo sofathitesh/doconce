@@ -5,4 +5,4 @@ syntax: glob
 *~
 
 # local build
-trunk/build/*
+build/*
