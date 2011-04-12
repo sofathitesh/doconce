@@ -184,7 +184,8 @@ def syntax_check(filestr, format):
         print matches
         sys.exit(1)
     
-    pattern = r'__[A-Za-z0-9,:` ]+[^.]__'
+    pattern = r'[^`]__[A-Za-z0-9,:` ]+[^.]__[^`]'
+    # (exclude misunderstood paragraphs like `__call__`)
     matches = re.findall(pattern, filestr)
     if matches:
         print 'Warning: Missing period after paragraph heading'

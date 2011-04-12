@@ -297,9 +297,10 @@ def sphinx_dir():
         doconce_file = sys.argv[1]
     except:
         print 'must have doconce file as argument'
+        print 'doconce sphinx_dir somefile.do.txt'
         sys.exit(1)
     import sphinx
-    if float(spinx.__version__[:3]) < 1.0:
+    if float(sphinx.__version__[:3]) < 1.0:
         print 'Abort: sphinx version >= 1.0 required'
         sys.exit(1)
     casename = doconce_file[:-7]
