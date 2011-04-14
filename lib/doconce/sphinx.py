@@ -127,8 +127,8 @@ def sphinx_code_orig(filestr, format):
             defs[key] = value
     else:
         # default mappings:
-        defs = dict(cod='python', pycod='python', cppcod='c++',
-                    fcod='fortran', ccod='c', 
+        defs = dict(cod='python', pycod='python', cycod='cython',
+                    fcod='fortran', ccod='c', cppcod='c++',
                     pro='python', pypro='python', cpppro='c++',
                     fpro='fortran', cpro='c', 
                     sys='console', dat='python')
