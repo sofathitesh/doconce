@@ -1004,9 +1004,6 @@ def doconce2format(in_filename, format, out_filename):
         for i in range(len(tex_blocks)):
             tex_blocks[i] = re.sub(r'([^\\])label', r'\g<1>\\label',
                                     tex_blocks[i])
-        # this transformation is easier done with encoding="utf-8"
-        # in the first line in the HTML file:
-        filestr = html.latin2html(filestr)
         
     debugpr('%s\n**** The file after removal of code/tex blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
