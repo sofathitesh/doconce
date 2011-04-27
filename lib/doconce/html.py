@@ -72,7 +72,7 @@ def html_movie(m):
                (moviehtml, filename, caption)
     else:
         text = """
-<EMBED SRC="%s" %s> AUTOPLAY="TRUE" LOOP="TRUE">
+<EMBED SRC="%s" %s AUTOPLAY="TRUE" LOOP="TRUE">
 </EMBED>
 <P>
 <EM>%s</EM>
