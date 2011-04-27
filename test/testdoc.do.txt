@@ -52,7 +52,7 @@ FIGURE:[../doc/manual/figs/streamtubes, width=200] It can't get worse than this.
 What about a movie?
 idx{movies are nice}
 
-MOVIE: [../doc/manual/figs/demo.mpeg, width=200] Mjolnir movie.
+MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=200] Mjolnir tsunami (by Sylfest Glimsdal).
 
 ===== Table Demo =====
 label{subsec:table}

@@ -1,13 +1,13 @@
 Doconce: Document Once, Include Anywhere
 ========================================
 
-Hans Petter Langtangen [1, 2]
+Hans Petter Langtangen [2, 1]
 
-[1] Simula Research Laboratory
-[2] University of Oslo
+[1] University of Oslo
+[2] Simula Research Laboratory
 
 
-Date: Mar 26, 2011
+Date: Apr 27, 2011
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain

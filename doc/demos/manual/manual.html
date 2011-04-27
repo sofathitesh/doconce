@@ -14,15 +14,15 @@ Automatically generated HTML file from Doconce source
     <TITLE>Doconce Description</TITLE>
 <CENTER><H1>Doconce Description</H1></CENTER>
 <CENTER>
-<B>Hans Petter Langtangen</B> [1, 2]
+<B>Hans Petter Langtangen</B> [2, 1]
 </CENTER>
 
 <P>
-<CENTER>[1] <B>Simula Research Laboratory</B></CENTER>
-<CENTER>[2] <B>University of Oslo</B></CENTER>
+<CENTER>[1] <B>University of Oslo</B></CENTER>
+<CENTER>[2] <B>Simula Research Laboratory</B></CENTER>
 
 
-<CENTER><H3>Mar 26, 2011</H3></CENTER>
+<CENTER><H3>Apr 27, 2011</H3></CENTER>
 <P>
 
 <P>
@@ -957,7 +957,7 @@ part of the caption appearing on the same line as <TT>FIGURE:</TT> will be
 included in the formatted caption).
 
 <P>
-<IMG SRC="figs/dinoimpact.gif" ALIGN="bottom"  width=400> <P><EM> It can't get worse than this.... <A NAME="fig:impact"></A></EM></P>
+<IMG SRC="figs/streamtubes.png" ALIGN="bottom"  width=400> <P><EM> Streamtube visualization of a fluid flow. <A NAME="fig:viz"></A></EM></P>
 
 <P>
 <B>Movies.</B> Here is an example on the <TT>MOVIE:</TT> keyword for embedding movies. This
@@ -973,12 +973,18 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
 
 <P>
 
-<EMBED SRC="figs/demo.mpeg"  width=600, height=470> AUTOPLAY="TRUE" LOOP="TRUE">
+<EMBED SRC="figs/mjolnir.mpeg"  width=600, height=470 AUTOPLAY="TRUE" LOOP="TRUE">
 </EMBED>
 <P>
 <EM></EM>
 </P>
 
+
+<P>
+<!-- MOVIE: [figs/wavepacket.gif, width=600, height=470] -->
+
+<P>
+<!-- MOVIE: [figs/wavepacket2.mpeg, width=600, height=470] -->
 
 <P>
 The LaTeX format results in a file that requires the movie15 package
@@ -1148,7 +1154,7 @@ these commands work as usual in LaTeX.
 <P>
 It is, in general, recommended to use labels and references for
 (sub)sections, equations, and figures only.
-By the way, here is an example on referencing Figure <A HREF="#fig:impact">fig:impact</a>
+By the way, here is an example on referencing Figure <A HREF="#fig:viz">fig:viz</a>
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections <A HREF="#mathtext">LaTeX Blocks of Mathematical Text</a> and <A HREF="#newcommands">Macros (Newcommands)</a> are
 nice to demonstrate, as well as a reference to equations,

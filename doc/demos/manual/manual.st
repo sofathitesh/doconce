@@ -696,7 +696,7 @@ newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as 'FIGURE:' will be
 included in the formatted caption).
 
-FIGURE:[figs/dinoimpact, width=400] It can't get worse than this.... {fig:impact}
+FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. {fig:viz}
 
 *Movies.* Here is an example on the 'MOVIE:' keyword for embedding movies. This
 feature works only for the 'LaTeX' and 'HTML' formats::
@@ -706,7 +706,9 @@ feature works only for the 'LaTeX' and 'HTML' formats::
 
 
 
-MOVIE: [figs/demo.mpeg, width=600, height=470]
+MOVIE: [figs/mjolnir.mpeg, width=600, height=470]
+
+
 
 The LaTeX format results in a file that requires the movie15 package
 in order to play movies in PDF via Acroread. The HTML format will play
@@ -846,7 +848,7 @@ these commands work as usual in LaTeX.
 
 It is, in general, recommended to use labels and references for
 (sub)sections, equations, and figures only.
-By the way, here is an example on referencing Figure ref{fig:impact}
+By the way, here is an example on referencing Figure ref{fig:viz}
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections "LaTeX Blocks of Mathematical Text" and "Macros (Newcommands)" are
 nice to demonstrate, as well as a reference to equations,

@@ -46,8 +46,8 @@ rst2xml.py manual.rst > manual.xml
 rst2latex.py manual.rst > manual.rst.tex
 
 # fix figure extension:
-# lookahead don't work: doconce subst '(?=includegraphics.+)\.gif' '.ps' manual.rst.tex
-doconce subst '\.gif' '' manual.rst.tex   # no extension in graphics file
+# lookahead don't work: doconce subst '(?=includegraphics.+)\.png' '.eps' manual.rst.tex
+doconce subst '\.png' '' manual.rst.tex   # no extension in graphics file
 latex manual.rst.tex   # pdflatex works too
 latex manual.rst.tex
 dvipdf manual.rst.dvi
@@ -76,7 +76,7 @@ dvipdf manual.dvi
 $d2f gwiki manual.do.txt
 
 # fix figure in wiki: (can also by done by doconce gwiki_figsubst)
-doconce subst "\(the URL of the image file figs/dinoimpact.gif must be inserted here\)" "https://doconce.googlecode.com/hg/trunk/doc/manual/figs/dinoimpact.gif" manual.gwiki
+doconce subst "\(the URL of the image file figs/streamtubes.png must be inserted here\)" "https://doconce.googlecode.com/hg/trunk/doc/manual/figs/streamtubes.png" manual.gwiki
 
 rm -f *.ps
 
