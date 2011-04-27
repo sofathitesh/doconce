@@ -598,9 +598,11 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
 
 # LaTeX/PDF format requires movie15 package for displaying movies
 
-MOVIE: [figs/demomovie.gif, width=600, height=470]
+MOVIE: [figs/mjolnir.mpeg, width=600, height=470]
 
-#MOVIE: [figs/demomovie2.mpeg, width=600, height=470]
+#MOVIE: [figs/wavepacket.gif, width=600, height=470]
+
+#MOVIE: [figs/wavepacket2.mpeg, width=600, height=470]
 
 The LaTeX format results in a file that requires the movie15 package
 in order to play movies in PDF via Acroread. The HTML format will play

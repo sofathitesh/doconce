@@ -36,7 +36,7 @@ def clean_and_make(append=True):
     f = open(outputfilename, 'a');  f.write(output);  f.close()
     if failure:
         where = os.getcwd()
-        raise OSError('Could not run %s/make.sh successfully' % where)
+        raise OSError('Could not run %s/make.sh successfully!\nRerun manually (go to %s and run ./make.sh' % (where, where))
 
 # test multiple authors, figure, movie, math, etc:
 print '...running ./make.sh in test'  # works only under Unix...
