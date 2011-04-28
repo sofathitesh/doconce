@@ -31,7 +31,7 @@ This short text points to a tutorial and a manual.
 Demo:
 =====
 
-The lib/doconce/doc and tutorial directories contain a make.sh
+The doc/manual and doc/tutorial directories contain a make.sh
 script for creating lots of different format out of a Doconce
 document.
 
@@ -45,3 +45,6 @@ License:
 ========
 
 doconce is licensed under the BSD license, see the included LICENSE file.
+
+The files in doc/manual/figs are made by the doconce author and are
+released under the same conditions as doconce itself.
