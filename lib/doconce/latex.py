@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-15 -*-
 
-import os, commands, re
+import os, commands, re, sys
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
 def latex_code(filestr, format):
@@ -28,6 +28,11 @@ def latex_code(filestr, format):
         m = ec.search(lines[i])
         if m:
             #print 'yes, this is a !ec line with arg =', arg
+            if arg == None:
+                print '\n'.join(lines[:i+1])
+                print '\n\nError: !ec with a non-matching !bc before, '\
+                      'see print out above, up to the problematic line.'
+                sys.exit(1)
             lines[i] = ec.sub(r'\\e' + arg, lines[i])
             #print 'new e envir:', lines[i]
             arg = None
