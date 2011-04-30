@@ -47,12 +47,12 @@ label{subsec:ex}
 What about a figure?
 idx{figures are nice}
 
-FIGURE:[../doc/manual/figs/streamtubes, width=200] It can't get worse than this.... label{fig:impact}
+FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. label{fig:impact}
 
 What about a movie?
 idx{movies are nice}
 
-MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=200] Mjolnir tsunami (by Sylfest Glimsdal).
+MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=700 height=400] Mjolnir tsunami (by Sylfest Glimsdal).
 
 ===== Table Demo =====
 label{subsec:table}
