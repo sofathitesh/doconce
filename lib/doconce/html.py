@@ -68,15 +68,14 @@ def html_movie(m):
         f = open(moviehtml, 'w')
         f.write(header + jscode + form + footer)
         f.close()
-        text = """<P><A HREF="%s">Movie of files <TT>%s</TT></A>\n<EM>%s</EM>""" % \
+        text = """   <P><A HREF="%s">Movie of files <TT>%s</TT></A>\n<EM>%s</EM>""" % \
                (moviehtml, filename, caption)
     else:
         text = """
-<EMBED SRC="%s" %s AUTOPLAY="TRUE" LOOP="TRUE">
-</EMBED>
-<P>
-<EM>%s</EM>
-</P>
+   <EMBED SRC="%s" %s AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+   <P>
+   <EM>%s</EM>
+   </P>
 """ % (filename, options, caption)
     return text
 

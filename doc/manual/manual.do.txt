@@ -591,7 +591,7 @@ FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. l
 
 __Movies.__
 Here is an example on the `MOVIE:` keyword for embedding movies. This
-feature works only for the `LaTeX` and `HTML` formats.
+feature works only for the `LaTeX`, `HTML`, `rst`, and `sphinx` formats.
 !bc
 MOVIE: [filename, height=xxx width=yyy] possible caption
 !ec

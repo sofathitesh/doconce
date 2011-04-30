@@ -1,6 +1,7 @@
 import re, os
 from common import remove_code_and_tex, insert_code_and_tex, indent_lines, \
     table_analysis
+from html import html_movie
 
 # replacement patterns for substitutions of inline tags
 def rst_figure(m):
@@ -46,6 +47,10 @@ def rst_figure(m):
     result += '\n\n   ' + caption + '\n'
     return result
 
+def rst_movie(m):
+    text = '.. raw:: html\n' + html_movie(m) + '\n\n'
+    return text
+    
 # these global patterns are used in st, epytext, plaintext as well:
 bc_regex_pattern = r'([a-zA-Z0-9)"`.*_}=-^~])[\n:.?!, ]\s*?^!bc.*?$'
 bt_regex_pattern = r'([a-zA-Z0-9)"`.*_}=-^~])[\n:.?!, ]\s*?^!bt.*?$'
@@ -295,6 +300,7 @@ def define(FILENAME_EXTENSION,
         'date':          r':Date: \g<subst>' + '\n',
         'author':        rst_author,
         'figure':        rst_figure,
+        'movie':         rst_movie,
         #'comment':       '.. %s',  # rst does not like empty comment lines:
         # so therefore we introduce a function to remove empty comment lines
         'comment':       lambda c: '' if c.isspace() or c == '' else '.. %s\n' % c
