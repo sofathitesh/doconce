@@ -821,6 +821,9 @@ appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the `BIBFILE:` line
 in the document.
 
+# see ketch/tex2rst for nice bibtex to rst converter which could
+# be used here
+
 Finally, we must test the citation command and bibliography by 
 citing a book cite{Python:Primer:09}, a paper cite{Osnes:98},
 and both of them simultaneously cite{Python:Primer:09,Osnes:98}.
@@ -1376,4 +1379,5 @@ and Sphinx just typeset the list as a list with keywords.
       the iterations.
 
 BIBFILE: manual_bib.bib, manual_bib.rst, manual_bib.py
+
 
