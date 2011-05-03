@@ -11,8 +11,8 @@ def debugpr(out):
 
 
 from common import *
-import html, latex, rst, sphinx, st, epytext, plaintext, gwiki
-for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki:
+import html, latex, rst, sphinx, st, epytext, plaintext, gwiki, pandoc
+for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki, pandoc:
     #print 'calling define function in', module.__name__
     module.define(FILENAME_EXTENSION,
                   BLANKLINE,
@@ -28,7 +28,7 @@ for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki:
                   OUTRO)
 
 def supported_format_names():
-    return 'HTML', 'LaTeX', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki'
+    return 'HTML', 'LaTeX', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'pandoc'
 
 #----------------------------------------------------------------------------
 # Translators: (no, do not include! use import! - as shown above)
@@ -1053,7 +1053,7 @@ def doconce2format(in_filename, format, out_filename):
     # 9. step: substitute latex-style newcommands in filestr and tex_blocks
     # (not in code_blocks)
     from expand_newcommands import expand_newcommands
-    if format != 'LaTeX':
+    if format != 'LaTeX' and format != 'pandoc':
         newcommand_files = ['newcommands_replace.tex']
         if format == 'sphinx':  # replace all newcommands in sphinx
             newcommand_files.extend(['newcommands.tex', 'newcommands_keep.tex'])

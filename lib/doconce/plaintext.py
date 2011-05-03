@@ -2,7 +2,7 @@
 import re, sys
 
 def plain_author(authors_and_institutions, auth2index,
-               inst2index, index2inst):
+                 inst2index, index2inst):
     text = '\n'
     for author in auth2index:
         text += '%s %s\n' % (author, str(auth2index[author]))
