@@ -358,9 +358,9 @@ a file, are also supported. The syntax of labels, references,
 citations, and the bibliography closely resembles that of LaTeX,
 making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
-syntax we refer to the ``docs/manual/manual.do.txt`` file (see the
-`demo
-page <https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>`_ for various formats of this document).
+syntax we refer to the ``doc/manual/manual.do.txt`` file (see the
+`demo page <https://doconce.googlecode.com/hg/doc/demos/manual/index.html>`_
+for various formats of this document).
 
 
 .. Example on including another Doconce file (using preprocess):
@@ -717,7 +717,7 @@ formats.  The source of this tutorial, ``tutorial.do.txt`` is the
 starting point.  Running ``make.sh`` and studying the various generated
 files and comparing them with the original ``tutorial.do.txt`` file,
 gives a quick introduction to how Doconce is used in a real case.
-`Here <https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html>`_ 
+`Here <https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html>`_
 is a sample of how this tutorial looks in different formats.
 
 There is another demo in the ``docs/manual`` directory which
