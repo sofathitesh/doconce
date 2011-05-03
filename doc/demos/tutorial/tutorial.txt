@@ -7,11 +7,11 @@ Hans Petter Langtangen [2, 1]
 [2] Simula Research Laboratory
 
 
-Date: Apr 27, 2011
+Date: May 3, 2011
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
-   (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML,
+   (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML, Markdown,
    reStructuredText, Sphinx, XML, etc.  Would it be convenient to
    start with some very simple text-like format that easily converts
    to the formats listed above, and then at some later stage eventually go
@@ -19,8 +19,8 @@ Date: Apr 27, 2011
 
  * Do you find it problematic that you have the same information
    scattered around in different documents in different typesetting
-   formats? Would it be a good idea to write things once, in one
-   place, and include it anywhere?
+   formats? Would it be a good idea to write things once, in one format,
+   stored in one place, and include it anywhere?
 
 If any of these questions are of interest, you should keep on reading.
 
@@ -31,13 +31,16 @@ The Doconce Concept
 Doconce is two things:
 
  1. Doconce is a very simple and minimally tagged markup language that
-    look like ordinary ASCII text (much like what you would use in an
+    looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
     including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
     latter to RTF and MS Word.
+    (An experimental translator to Pandoc is under development, and from
+    Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF, DocBook XML,
+    OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and other formats.)
 
  2. Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
@@ -46,24 +49,29 @@ Doconce is two things:
     The Doconce markup language support this working strategy.
     The slogan is: "Write once, include anywhere".
 
-A wide range of markup languages exist. For example, reStructuredText and Sphinx
-have recently become popular. So why another one?
+Here are some Doconce features:
 
-  * Doconce can convert to plain *untagged* text, 
-    more desirable for computer programs and email.
+  * Doconce markup does include tags, so the format is more tagged than 
+    Markdown and Pandoc, but less than reST, and very much less than 
+    LaTeX and HTML. 
 
-  * Doconce has less cluttered tagging of text.
+  * Doconce can be converted to plain *untagged* text, 
+    often desirable for computer programs and email.
 
-  * Doconce has better support for copying in parts of computer code,
+  * Doconce has good support for copying in parts of computer code,
     say in examples, directly from the source code files.
 
-  * Doconce has stronger support for mathematical typesetting, and
-    has many features for being integrated with (big) LaTeX projects.
+  * Doconce has full support for LaTeX math, and integrates very well
+    with big LaTeX projects (books).
 
   * Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
     as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
     is just to make the initial versions of a Sphinx or Wiki document.
+
+  * Contrary to the similar Pandoc translator, Doconce integrates with
+    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
 
@@ -74,18 +82,27 @@ Doconce was particularly written for the following sample applications:
   * Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
-    googlecode.com, and as LaTeX integrated in, e.g., a thesis.
+    web sites, and as LaTeX integrated in, e.g., a thesis.
 
   * Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
     MS Word documents or in wikis.
+
+History: Doconce was developed in 2006 at a time when most popular
+markup languages used quite some tagging.  Later, almost untagged
+markup languages like Markdown and Pandoc became popular. Doconce is
+not a replacement of Pandoc, which is a considerably more
+sophisticated project. Moreover, Doconce was developed mainly to
+fulfill the needs for a flexible source code base for books with much
+mathematics and computer code.
 
 Disclaimer: Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
 limitations of regular expressions, some formatting may face problems 
-when transformed to other formats.
+when transformed to other formats. 
+
 
 
 What Does Doconce Look Like?
@@ -654,19 +671,5 @@ requires docutils (http://docutils.sourceforge.net).  Making Sphinx
 documents requires of course Sphinx (http://sphinx.pocoo.org).
 All of the mentioned potential dependencies are pure Python packages
 which are easily installed.
-
-
-Warning/Disclaimer
-==================
-
-Doconce can be viewed is a unified interface to a variety of
-typesetting formats.  This interface is minimal in the sense that a
-lot of typesetting features are not supported, for example, footnotes
-and bibliography. For many documents the simple Doconce format is
-sufficient, while in other cases you need more sophisticated
-formats. Then you can just filter the Doconce text to a more
-approprite format and continue working in this format only.  For
-example, reStructuredText is a good alternative: it is more tagged
-than Doconce and cannot be filtered to plain, untagged text, or wiki,
-and the LaTeX output is not at all as clean, but it also has a lot
-more typesetting and tagging features than Doconce.
+If translation to Pandoc (http://johnmacfarlane.net/pandoc/) is desired, 
+the Pandoc Haskell program must of course be installed.

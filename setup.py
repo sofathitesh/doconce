@@ -47,7 +47,8 @@ setup(
                   'doconce.rst', 'doconce.sphinx',
                   'doconce.st', 'doconce.plaintext',
                   'doconce.html', 'doconce.epytext',
-                  'doconce.DocWriter', 'doconce.gwiki', 
+                  'doconce.DocWriter', 'doconce.gwiki',
+                  'doconce.pandoc', 
                   'doconce.expand_newcommands',
                   ],
     scripts = [os.path.join('bin', f) for \

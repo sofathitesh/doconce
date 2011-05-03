@@ -249,7 +249,7 @@ def define(FILENAME_EXTENSION,
         # \\b and \\t etc. See the fix_latex_command_regex function below
         # for the complete story.
 
-        'math': None,  # indicates no substitution, leave as is
+        'math':          None,  # indicates no substitution, leave as is
         'math2':         r'\g<begin>$\g<latexmath>$\g<end>',        
         'emphasize':     r'\g<begin>\emph{\g<subst>}\g<end>',
         'bold':          r'\g<begin>\\textbf{\g<subst>}\g<end>',  # (re.sub swallows a \)
@@ -323,6 +323,10 @@ repeat,
 % #else
 %\href{run:\g<filename>}{\g<filename>}
 % #endif
+
+% alternative: \movie command that comes with beamer itself
+% \movie[options]{\g<filename>}{\g<filename>}
+    
 \end{center}
 \caption{\g<caption>}
 \end{figure}
