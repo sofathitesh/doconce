@@ -108,7 +108,8 @@ by running <tt>latex</tt> and <tt>dvipdf</tt> the standard way.
 <p>
 The reStructuredText (reST) format is of particular interest:
 <pre>
-doconce format rst manual.do.txt
+doconce format rst    manual.do.txt  # standard reST
+doconce format sphinx manual.do.txt  # Sphinx extension of reST
 </pre>
 The reST file <a href="manual.rst">manual.rst</a> is a starting point
 for conversion to many other formats: OpenOffice, 

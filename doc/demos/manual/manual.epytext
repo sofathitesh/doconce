@@ -106,7 +106,7 @@ The current text is generated from a Doconce format stored in the::
         docs/manual/manual.do.txt
 
 file in the Doconce source code tree. We have made a 
-U{demo web page<https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>}
+U{demo web page<https://doconce.googlecode.com/hg/doc/demos/manual/index.html>}
 where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.
 
@@ -121,7 +121,7 @@ Another demo is found in::
 
 In the C{tutorial} directory there is also a C{make.sh} file producing a
 lot of formats, with a corresponding
-U{web demo<https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html>}
+U{web demo<https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html>}
 of the results.
 
 

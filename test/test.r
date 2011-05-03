@@ -1963,7 +1963,8 @@ by running <tt>latex</tt> and <tt>dvipdf</tt> the standard way.
 <p>
 The reStructuredText (reST) format is of particular interest:
 <pre>
-doconce format rst tutorial.do.txt
+doconce format rst    tutorial.do.txt  # standard reST
+doconce format sphinx tutorial.do.txt  # Sphinx extension of reST
 </pre>
 The reST file <a href="tutorial.rst">tutorial.rst</a> is a starting point
 for conversion to many other formats: OpenOffice, 
@@ -2318,9 +2319,9 @@ a file, are also supported. The syntax of labels, references,
 citations, and the bibliography closely resembles that of LaTeX,
 making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
-syntax we refer to the `docs/manual/manual.do.txt` file (see the
-https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html<demo
-page> for various formats of this document).
+syntax we refer to the `doc/manual/manual.do.txt` file (see the
+"demo page": "https://doconce.googlecode.com/hg/doc/demos/manual/index.html"
+for various formats of this document).
 
 
 # Example on including another Doconce file (using preprocess):
@@ -2340,7 +2341,7 @@ formats.  The source of this tutorial, `tutorial.do.txt` is the
 starting point.  Running `make.sh` and studying the various generated
 files and comparing them with the original `tutorial.do.txt` file,
 gives a quick introduction to how Doconce is used in a real case.
-https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html<Here> 
+"Here": "https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html"
 is a sample of how this tutorial looks in different formats.
 
 There is another demo in the `docs/manual` directory which
@@ -2752,9 +2753,9 @@ a file, are also supported. The syntax of labels, references,
 citations, and the bibliography closely resembles that of LaTeX,
 making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
-syntax we refer to the <TT>docs/manual/manual.do.txt</TT> file (see the
-<A HREF="https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html">demo
-page</A> for various formats of this document).
+syntax we refer to the <TT>doc/manual/manual.do.txt</TT> file (see the
+<A HREF="https://doconce.googlecode.com/hg/doc/demos/manual/index.html">demo page</A>
+for various formats of this document).
 
 <P>
 
@@ -3123,7 +3124,7 @@ formats.  The source of this tutorial, <TT>tutorial.do.txt</TT> is the
 starting point.  Running <TT>make.sh</TT> and studying the various generated
 files and comparing them with the original <TT>tutorial.do.txt</TT> file,
 gives a quick introduction to how Doconce is used in a real case.
-<A HREF="https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html">Here</A> 
+<A HREF="https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html">Here</A>
 is a sample of how this tutorial looks in different formats.
 
 <P>
@@ -3506,9 +3507,9 @@ a file, are also supported. The syntax of labels, references,
 citations, and the bibliography closely resembles that of LaTeX,
 making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
-syntax we refer to the ``docs/manual/manual.do.txt`` file (see the
-`demo
-page <https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>`_ for various formats of this document).
+syntax we refer to the ``doc/manual/manual.do.txt`` file (see the
+`demo page <https://doconce.googlecode.com/hg/doc/demos/manual/index.html>`_
+for various formats of this document).
 
 
 .. Example on including another Doconce file (using preprocess):
@@ -3837,7 +3838,7 @@ formats.  The source of this tutorial, ``tutorial.do.txt`` is the
 starting point.  Running ``make.sh`` and studying the various generated
 files and comparing them with the original ``tutorial.do.txt`` file,
 gives a quick introduction to how Doconce is used in a real case.
-`Here <https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html>`_ 
+`Here <https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html>`_
 is a sample of how this tutorial looks in different formats.
 
 There is another demo in the ``docs/manual`` directory which
@@ -4220,9 +4221,9 @@ a file, are also supported. The syntax of labels, references,
 citations, and the bibliography closely resembles that of LaTeX,
 making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
-syntax we refer to the ``docs/manual/manual.do.txt`` file (see the
-`demo
-page <https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>`_ for various formats of this document).
+syntax we refer to the ``doc/manual/manual.do.txt`` file (see the
+`demo page <https://doconce.googlecode.com/hg/doc/demos/manual/index.html>`_
+for various formats of this document).
 
 
 .. Example on including another Doconce file (using preprocess):
@@ -4579,7 +4580,7 @@ formats.  The source of this tutorial, ``tutorial.do.txt`` is the
 starting point.  Running ``make.sh`` and studying the various generated
 files and comparing them with the original ``tutorial.do.txt`` file,
 gives a quick introduction to how Doconce is used in a real case.
-`Here <https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html>`_ 
+`Here <https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html>`_
 is a sample of how this tutorial looks in different formats.
 
 There is another demo in the ``docs/manual`` directory which
@@ -4865,9 +4866,9 @@ a file, are also supported. The syntax of labels, references,
 citations, and the bibliography closely resembles that of LaTeX,
 making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
-syntax we refer to the `docs/manual/manual.do.txt` file (see the
-[https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html demo
-page] for various formats of this document).
+syntax we refer to the `doc/manual/manual.do.txt` file (see the
+[https://doconce.googlecode.com/hg/doc/demos/manual/index.html demo page]
+for various formats of this document).
 
 
 <wiki:comment> Example on including another Doconce file (using preprocess): </wiki:comment>
@@ -5149,7 +5150,7 @@ formats.  The source of this tutorial, `tutorial.do.txt` is the
 starting point.  Running `make.sh` and studying the various generated
 files and comparing them with the original `tutorial.do.txt` file,
 gives a quick introduction to how Doconce is used in a real case.
-[https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html Here] 
+[https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html Here]
 is a sample of how this tutorial looks in different formats.
 
 There is another demo in the `docs/manual` directory which
@@ -5461,9 +5462,9 @@ a file, are also supported. The syntax of labels, references,
 citations, and the bibliography closely resembles that of LaTeX,
 making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
-syntax we refer to the 'docs/manual/manual.do.txt' file (see the
-"https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html":demo
-page for various formats of this document).
+syntax we refer to the 'doc/manual/manual.do.txt' file (see the
+"https://doconce.googlecode.com/hg/doc/demos/manual/index.html":demo page
+for various formats of this document).
 From Doconce to Other Formats
 Transformation of a Doconce document to various other
 formats applies the script 'doconce format':
@@ -5737,7 +5738,7 @@ formats.  The source of this tutorial, 'tutorial.do.txt' is the
 starting point.  Running 'make.sh' and studying the various generated
 files and comparing them with the original 'tutorial.do.txt' file,
 gives a quick introduction to how Doconce is used in a real case.
-"https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html":Here 
+"https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html":Here
 is a sample of how this tutorial looks in different formats.
 
 There is another demo in the 'docs/manual' directory which
@@ -6068,9 +6069,9 @@ a file, are also supported. The syntax of labels, references,
 citations, and the bibliography closely resembles that of LaTeX,
 making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
-syntax we refer to the C{docs/manual/manual.do.txt} file (see the
-U{demo
-page<https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>} for various formats of this document).
+syntax we refer to the C{doc/manual/manual.do.txt} file (see the
+U{demo page<https://doconce.googlecode.com/hg/doc/demos/manual/index.html>}
+for various formats of this document).
 
 
 
@@ -6383,7 +6384,7 @@ formats.  The source of this tutorial, C{tutorial.do.txt} is the
 starting point.  Running C{make.sh} and studying the various generated
 files and comparing them with the original C{tutorial.do.txt} file,
 gives a quick introduction to how Doconce is used in a real case.
-U{Here<https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html>} 
+U{Here<https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html>}
 is a sample of how this tutorial looks in different formats.
 
 There is another demo in the C{docs/manual} directory which
@@ -6744,9 +6745,9 @@ a file, are also supported. The syntax of labels, references,
 citations, and the bibliography closely resembles that of LaTeX,
 making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
-syntax we refer to the docs/manual/manual.do.txt file (see the
-demo
-page (https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html) for various formats of this document).
+syntax we refer to the doc/manual/manual.do.txt file (see the
+demo page (https://doconce.googlecode.com/hg/doc/demos/manual/index.html)
+for various formats of this document).
 
 
 
@@ -7059,7 +7060,7 @@ formats.  The source of this tutorial, tutorial.do.txt is the
 starting point.  Running make.sh and studying the various generated
 files and comparing them with the original tutorial.do.txt file,
 gives a quick introduction to how Doconce is used in a real case.
-Here (https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html) 
+Here (https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html)
 is a sample of how this tutorial looks in different formats.
 
 There is another demo in the docs/manual directory which
@@ -7085,7 +7086,7 @@ the Pandoc Haskell program must of course be installed.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Tue, 03 May 2011 (11:03)
+DATE: Tue, 03 May 2011 (18:54)
 
 
 
@@ -7189,7 +7190,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Tue, 03 May 2011 (11:03)
+DATE: Tue, 03 May 2011 (18:54)
 
 
 
@@ -7303,7 +7304,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Tue, 03 May 2011 (11:03)</CENTER>
+<CENTER>Tue, 03 May 2011 (18:54)</CENTER>
 
 
 
@@ -7434,7 +7435,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Tue, 03 May 2011 (11:03)</CENTER>
+<CENTER>Tue, 03 May 2011 (18:54)</CENTER>
 
 
 
@@ -7662,7 +7663,8 @@ by running <tt>latex</tt> and <tt>dvipdf</tt> the standard way.
 <p>
 The reStructuredText (reST) format is of particular interest:
 <pre>
-doconce format rst manual.do.txt
+doconce format rst    manual.do.txt  # standard reST
+doconce format sphinx manual.do.txt  # Sphinx extension of reST
 </pre>
 The reST file <a href="manual.rst">manual.rst</a> is a starting point
 for conversion to many other formats: OpenOffice, 
@@ -7816,7 +7818,7 @@ The current text is generated from a Doconce format stored in the
 docs/manual/manual.do.txt
 !ec
 file in the Doconce source code tree. We have made a 
-https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html<demo web page>
+https://doconce.googlecode.com/hg/doc/demos/manual/index.html<demo web page>
 where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.
 
@@ -7830,7 +7832,7 @@ docs/tutorial/tutorial.do.txt
 !ec
 In the `tutorial` directory there is also a `make.sh` file producing a
 lot of formats, with a corresponding
-https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html<web demo>
+"web demo": "https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html"
 of the results.
 
 # Example on including another Doconce file:
@@ -9016,7 +9018,7 @@ docs/manual/manual.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 file in the Doconce source code tree. We have made a 
-<A HREF="https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html">demo web page</A>
+<A HREF="https://doconce.googlecode.com/hg/doc/demos/manual/index.html">demo web page</A>
 where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.
 
@@ -9034,7 +9036,7 @@ docs/tutorial/tutorial.do.txt
 <! -- END VERBATIM BLOCK -->
 In the <TT>tutorial</TT> directory there is also a <TT>make.sh</TT> file producing a
 lot of formats, with a corresponding
-<A HREF="https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html">web demo</A>
+<A HREF="https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html">web demo</A>
 of the results.
 
 <P>
@@ -10756,7 +10758,7 @@ The current text is generated from a Doconce format stored in the::
         docs/manual/manual.do.txt
 
 file in the Doconce source code tree. We have made a 
-`demo web page <https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>`_
+`demo web page <https://doconce.googlecode.com/hg/doc/demos/manual/index.html>`_
 where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.
 
@@ -10771,7 +10773,7 @@ Another demo is found in::
 
 In the ``tutorial`` directory there is also a ``make.sh`` file producing a
 lot of formats, with a corresponding
-`web demo <https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html>`_
+`web demo <https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html>`_
 of the results.
 
 .. Example on including another Doconce file:
@@ -12312,7 +12314,7 @@ The current text is generated from a Doconce format stored in the
         docs/manual/manual.do.txt
 
 file in the Doconce source code tree. We have made a 
-`demo web page <https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>`_
+`demo web page <https://doconce.googlecode.com/hg/doc/demos/manual/index.html>`_
 where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.
 
@@ -12328,7 +12330,7 @@ Another demo is found in
 
 In the ``tutorial`` directory there is also a ``make.sh`` file producing a
 lot of formats, with a corresponding
-`web demo <https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html>`_
+`web demo <https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html>`_
 of the results.
 
 .. Example on including another Doconce file:
@@ -13959,7 +13961,7 @@ The current text is generated from a Doconce format stored in the
 docs/manual/manual.do.txt
 }}}
 file in the Doconce source code tree. We have made a 
-[https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html demo web page]
+[https://doconce.googlecode.com/hg/doc/demos/manual/index.html demo web page]
 where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.
 
@@ -13973,7 +13975,7 @@ docs/tutorial/tutorial.do.txt
 }}}
 In the `tutorial` directory there is also a `make.sh` file producing a
 lot of formats, with a corresponding
-[https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html web demo]
+[https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html web demo]
 of the results.
 
 <wiki:comment> Example on including another Doconce file: </wiki:comment>
@@ -15339,7 +15341,7 @@ The current text is generated from a Doconce format stored in the::
         docs/manual/manual.do.txt
 
 file in the Doconce source code tree. We have made a 
-"https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html":demo web page
+"https://doconce.googlecode.com/hg/doc/demos/manual/index.html":demo web page
 where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.
 
@@ -15354,7 +15356,7 @@ Another demo is found in::
 
 In the 'tutorial' directory there is also a 'make.sh' file producing a
 lot of formats, with a corresponding
-"https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html":web demo
+"https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html":web demo
 of the results.
 From Doconce to Other Formats
 Transformation of a Doconce document to various other
@@ -16678,7 +16680,7 @@ The current text is generated from a Doconce format stored in the::
         docs/manual/manual.do.txt
 
 file in the Doconce source code tree. We have made a 
-U{demo web page<https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html>}
+U{demo web page<https://doconce.googlecode.com/hg/doc/demos/manual/index.html>}
 where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.
 
@@ -16693,7 +16695,7 @@ Another demo is found in::
 
 In the C{tutorial} directory there is also a C{make.sh} file producing a
 lot of formats, with a corresponding
-U{web demo<https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html>}
+U{web demo<https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html>}
 of the results.
 
 
@@ -18089,7 +18091,7 @@ The current text is generated from a Doconce format stored in the::
         docs/manual/manual.do.txt
 
 file in the Doconce source code tree. We have made a 
-demo web page (https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html)
+demo web page (https://doconce.googlecode.com/hg/doc/demos/manual/index.html)
 where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.
 
@@ -18104,7 +18106,7 @@ Another demo is found in::
 
 In the tutorial directory there is also a make.sh file producing a
 lot of formats, with a corresponding
-web demo (https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html)
+web demo (https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html)
 of the results.
 
 
@@ -19640,7 +19642,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (12 pages, 52788 bytes).
+Output written on tutorial.dvi (12 pages, 52768 bytes).
 Transcript written on tutorial.log.
 + latex tutorial.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -19750,7 +19752,7 @@ Overfull \hbox (20.44847pt too wide) in paragraph at lines 776--788
 No file tutorial.ind.
 [12] (./tutorial.aux) )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (12 pages, 54912 bytes).
+Output written on tutorial.dvi (12 pages, 54896 bytes).
 Transcript written on tutorial.log.
 + dvipdf tutorial.dvi
 + doconce format sphinx tutorial.do.txt
@@ -20022,7 +20024,7 @@ etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 xlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/u
 rw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 190279 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 190266 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -20169,7 +20171,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 201047 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 201034 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -20316,7 +20318,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 201047 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 201034 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -20469,7 +20471,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 201047 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 201034 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -20616,7 +20618,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 201047 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 201034 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -20829,7 +20831,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.rst.dvi (11 pages, 50804 bytes).
+Output written on tutorial.rst.dvi (11 pages, 50788 bytes).
 Transcript written on tutorial.rst.log.
 + dvipdf tutorial.rst.dvi
 Page 6 may be too complex to print
@@ -20861,12 +20863,12 @@ output in tutorial.epytext
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.epytext.ps tutorial.epytext
 [tutorial.epytext (plain): 12 pages on 12 sheets]
 [Total: 12 pages on 12 sheets] saved into the file `tutorial.epytext.ps'
-[5 lines wrapped]
+[4 lines wrapped]
 + ps2pdf tutorial.epytext.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.txt.ps tutorial.txt
 [tutorial.txt (plain): 12 pages on 12 sheets]
 [Total: 12 pages on 12 sheets] saved into the file `tutorial.txt.ps'
-[4 lines wrapped]
+[3 lines wrapped]
 + ps2pdf tutorial.txt.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.gwiki.ps tutorial.gwiki
 [tutorial.gwiki (plain): 11 pages on 11 sheets]
@@ -20876,7 +20878,7 @@ output in tutorial.epytext
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
 [tutorial.xml (plain): 11 pages on 11 sheets]
 [Total: 11 pages on 11 sheets] saved into the file `tutorial.xml.ps'
-[288 lines wrapped]
+[286 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -21231,7 +21233,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDescription.pdf (37 pages, 326016 bytes).
+Output written on DoconceDescription.pdf (37 pages, 326002 bytes).
 Transcript written on DoconceDescription.log.
 pdflatex  'DoconceDescription.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -21405,7 +21407,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDescription.pdf (37 pages, 344278 bytes).
+Output written on DoconceDescription.pdf (37 pages, 344264 bytes).
 Transcript written on DoconceDescription.log.
 pdflatex  'DoconceDescription.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -21579,7 +21581,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDescription.pdf (37 pages, 344278 bytes).
+Output written on DoconceDescription.pdf (37 pages, 344264 bytes).
 Transcript written on DoconceDescription.log.
 makeindex -s python.ist 'DoconceDescription.idx'
 This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
@@ -21760,7 +21762,7 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDescription.pdf (39 pages, 353870 bytes).
+Output written on DoconceDescription.pdf (39 pages, 353856 bytes).
 Transcript written on DoconceDescription.log.
 pdflatex  'DoconceDescription.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -21933,7 +21935,7 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDescription.pdf (39 pages, 354346 bytes).
+Output written on DoconceDescription.pdf (39 pages, 354332 bytes).
 Transcript written on DoconceDescription.log.
 + cp DoconceDescription.pdf ../../../manual.sphinx.pdf
 + cd ../../..
@@ -22254,7 +22256,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (25 pages, 104848 bytes).
+Output written on manual.rst.dvi (25 pages, 104836 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -22523,7 +22525,7 @@ LaTeX Warning: There were undefined references.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (25 pages, 107992 bytes).
+Output written on manual.rst.dvi (25 pages, 107980 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 Page 3 may be too complex to print
@@ -22751,7 +22753,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (26 pages, 120724 bytes).
+Output written on manual.dvi (26 pages, 120708 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -22896,7 +22898,7 @@ LaTeX Warning: There were undefined references.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (26 pages, 126024 bytes).
+Output written on manual.dvi (26 pages, 126008 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -23049,7 +23051,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (27 pages, 132124 bytes).
+Output written on manual.dvi (27 pages, 132112 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -23168,7 +23170,7 @@ Overfull \hbox (19.95741pt too wide) in paragraph at lines 1347--1349
 [20] [21] [22] [23] [24] [25] (./manual.bbl) (./manual.ind [26] [27])
 (./manual.aux) )
 (see the transcript file for additional information)
-Output written on manual.dvi (27 pages, 133004 bytes).
+Output written on manual.dvi (27 pages, 132988 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 Error: /rangecheck in -->>--

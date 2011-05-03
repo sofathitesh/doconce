@@ -177,9 +177,9 @@ a file, are also supported. The syntax of labels, references,
 citations, and the bibliography closely resembles that of LaTeX,
 making it easy for Doconce documents to be integrated in LaTeX
 projects (manuals, books). For further details on functionality and
-syntax we refer to the <literal>docs/manual/manual.do.txt</literal> file (see the
-<reference name="demo page" refuri="https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html">demo
-page</reference><target ids="demo-page" names="demo\ page" refuri="https://doconce.googlecode.com/hg/trunk/docs/demos/manual/index.html"/> for various formats of this document).</paragraph><comment xml:space="preserve">Example on including another Doconce file (using preprocess):</comment><target refid="doconce2formats"/></section></section><section ids="from-doconce-to-other-formats doconce2formats" names="from\ doconce\ to\ other\ formats doconce2formats"><title>From Doconce to Other Formats</title><paragraph>Transformation of a Doconce document to various other
+syntax we refer to the <literal>doc/manual/manual.do.txt</literal> file (see the
+<reference name="demo page" refuri="https://doconce.googlecode.com/hg/doc/demos/manual/index.html">demo page</reference><target ids="demo-page" names="demo\ page" refuri="https://doconce.googlecode.com/hg/doc/demos/manual/index.html"/>
+for various formats of this document).</paragraph><comment xml:space="preserve">Example on including another Doconce file (using preprocess):</comment><target refid="doconce2formats"/></section></section><section ids="from-doconce-to-other-formats doconce2formats" names="from\ doconce\ to\ other\ formats doconce2formats"><title>From Doconce to Other Formats</title><paragraph>Transformation of a Doconce document to various other
 formats applies the script <literal>doconce format</literal>:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce format format mydoc.do.txt</literal_block><paragraph>The <literal>preprocess</literal> program is always used to preprocess the file first,
 and options to <literal>preprocess</literal> can be added after the filename. For example:</paragraph><literal_block xml:space="preserve">Unix/DOS&gt; doconce format LaTeX mydoc.do.txt -Dextra_sections</literal_block><paragraph>The variable <literal>FORMAT</literal> is always defined as the current format when
 running <literal>preprocess</literal>. That is, in the last example, <literal>FORMAT</literal> is
@@ -292,7 +292,7 @@ formats.  The source of this tutorial, <literal>tutorial.do.txt</literal> is the
 starting point.  Running <literal>make.sh</literal> and studying the various generated
 files and comparing them with the original <literal>tutorial.do.txt</literal> file,
 gives a quick introduction to how Doconce is used in a real case.
-<reference name="Here" refuri="https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html">Here</reference><target ids="here" names="here" refuri="https://doconce.googlecode.com/hg/trunk/docs/demos/tutorial/index.html"/>
+<reference name="Here" refuri="https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html">Here</reference><target ids="here" names="here" refuri="https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html"/>
 is a sample of how this tutorial looks in different formats.</paragraph><paragraph>There is another demo in the <literal>docs/manual</literal> directory which
 translates the more comprehensive documentation, <literal>manual.do.txt</literal>, to
 various formats. The <literal>make.sh</literal> script runs a set of translations.</paragraph></section><section ids="dependencies" names="dependencies"><title>Dependencies</title><paragraph>If you make use of preprocessor directives in the Doconce source,
