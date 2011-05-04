@@ -46,5 +46,10 @@ License:
 
 doconce is licensed under the BSD license, see the included LICENSE file.
 
-The files in doc/manual/figs are made by the doconce author and are
-released under the same conditions as doconce itself.
+The files doc/manual/figs/streamtubes.* and
+doc/manual/figs/wavepacket.* was made by the doconce author and is
+released under the same conditions as doconce.
+
+The file doc/manual/figs/mjolnir.mpeg was made by Dr. Sylfest
+Glimsdal, University of Oslo and is, with his permission, released
+under the same conditions as doconce.
