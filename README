@@ -7,14 +7,16 @@ Executable scripts: doconce2format, doconce_insertdocstr.
 Dependencies:
 =============
 
-Before you can install doconce it is required that you install 
-preprocess first: http://code.google.com/p/preprocess/
+If you make use of preprocessor directives in the Doconce source,
+either preprocess (http://code.google.com/p/preprocess) or Mako
+(http://www.makotemplates.org) must be installed.
 
 For LaTeX output you also need http://code.google.com/p/ptex2tex
 (ptex2tex may need certain style files and pygments, depending on
 what type of verbatim format you want to use)
 For reStructuredText output you need http://docutils.sourceforge.net/
 For Sphinx output you need http://sphinx.pocoo.org
+For translation to Pandoc you need http://johnmacfarlane.net/pandoc
 
 Install:
 ========
