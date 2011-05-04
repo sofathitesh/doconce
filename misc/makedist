@@ -32,7 +32,9 @@ hg push
 echo "--- Creating release $VERSION of Doconce"
 rm -f dist/doconce-$VERSION.tar.gz
 mkdir -p dist
-hg archive --type tgz --exclude ".hg*" dist/doconce-$VERSION.tar.gz
+hg archive --prefix "doconce-$VERSION" --type tgz \
+    --exclude ".hg*" --exclude "doc/api" --exclude "doc/demos" \
+    dist/doconce-$VERSION.tar.gz
 
 # Upload files to googlecode
 echo '--- Uploading files to googlecode'
