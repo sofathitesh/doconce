@@ -600,7 +600,10 @@ in the document.
 # see ketch/tex2rst for nice bibtex to rst converter which could
 # be used here
 
-Finally, we must test the citation command and bibliography by 
+Conversion of BibTeX databases to reStructuredText format can be
+done by the "bibliograph.parsing":"http://pypi.python.org/pypi/bibliograph.parsing/" tool.
+
+Finally, we here test the citation command and bibliography by 
 citing a book cite{Python:Primer:09}, a paper cite{Osnes:98},
 and both of them simultaneously cite{Python:Primer:09,Osnes:98}.
 
