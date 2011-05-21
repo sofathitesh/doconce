@@ -111,7 +111,6 @@ def syntax_check(filestr, format):
         sys.exit(1)
     if "''" in filestr:
         print '''\nWarning: Double forward-quotes '' found in file - should be " (unless derivatives in math)'''
-        sys.exit(1)
 
     commands = [
         'begin{equation}',
