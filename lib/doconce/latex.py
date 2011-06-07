@@ -384,7 +384,8 @@ repeat,
 %% http://code.google.com/p/doconce/
 %%
 \documentclass{article}
-\usepackage{hyperref,relsize,epsfig,makeidx,amsmath}
+\usepackage{relsize,epsfig,makeidx,amsmath}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=black,filecolor=blue,urlcolor=blue]{hyperref}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #define MOVIE
