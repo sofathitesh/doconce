@@ -257,7 +257,7 @@ def define(FILENAME_EXTENSION,
         'citation':      r'~\\cite{\g<subst>}',
         'linkURL':       r'\g<begin>\href{\g<url>}{\g<link>}\g<end>',
         'linkURL2':      r'\href{\g<url>}{\g<link>}',
-        'plainURL':      r'\href{\g<url>}{\g<url>}',  # cannot use \code inside \href
+        'plainURL':      r'\href{\g<url>}{\nolinkurl{\g<url>}}',  # cannot use \code inside \href, use \nolinkurl to handle _ and # etc. (implies verbatim font)
         'inlinecomment': r'\inlinecomment{\g<name>}{\g<comment>}',
         'section':       '\n\n' + r'\section{\g<subst>}' + '\n',
         'subsection':    '\n' + r'\subsection{\g<subst>}' + '\n',
