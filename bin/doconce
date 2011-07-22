@@ -44,7 +44,7 @@ def insertdocstr():
     Example:
     A file basename.p.py has a module doc string which looks like
     '''
-    # #include "docstrings/doc1.dst.txt
+    # #include "docstrings/doc1.dst.txt"
     '''
 
     In the subdirectory docstrings we have the file doc1.do.txt, which
