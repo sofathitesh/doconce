@@ -9,7 +9,7 @@ version = __version__
 __author__ = 'Hans Petter Langtangen', 'Johannes H. Ring'
 author = __author__
 
-__acknowledgmets__ = ''
+__acknowledgments__ = ''
 
 from doconce import main
 
