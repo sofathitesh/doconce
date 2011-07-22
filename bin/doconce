@@ -385,7 +385,7 @@ echo "firefox %(sphinx_rootdir)s/_build/html/index.html"
     print "'tmp_make_sphinx.sh' contains the steps to compile the sphinx version"
 
 def usage_subst():
-    print 'Usage: scitools subst [-s -m -x --restore] pattern '\
+    print 'Usage: doconce subst [-s -m -x --restore] pattern '\
           'replacement file1 file2 file3 ...'
     print '--restore brings back the backup files'
     print '-s is the re.DOTALL or re.S modifier'
@@ -498,7 +498,7 @@ def subst():
         print s  # print info about substitutions
 
 def usage_replace():
-    print 'Usage: scitools replace from-text to-text file1 file2 ...'
+    print 'Usage: doconce replace from-text to-text file1 file2 ...'
 
 def main_replace():
     if len(sys.argv) < 3:
