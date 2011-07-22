@@ -1108,9 +1108,11 @@ def preprocess(filename, format, preprocess_options=''):
 
         try:
             import preprocess
-        except IndexError:
+        except ImportError:
             print '%s makes use of Preprocess directives and therefore '\
-                  'requires code.google.com/p/preprocess to be installed'
+                  'requires code.google.com/p/preprocess to be installed. '\
+                  'On Debian systems this is available by installing the '\
+                  'the \'preprocess\' package.' % filename
             sys.exit(1)
         
         cmd = 'preprocess -DFORMAT=%s %s %s > %s' % \
@@ -1132,9 +1134,11 @@ def preprocess(filename, format, preprocess_options=''):
 
         try:
             import mako
-        except IndexError:
+        except ImportError:
             print '%s makes use of Preprocess directives and therefore '\
-                  'requires www.makotemplates.org to be installed'
+                  'requires www.makotemplates.org to be installed. '\
+                  'On Debian systems this is available by installing the '\
+                  'the \'python-mako\' package.' % filename
             sys.exit(1)
         
         print 'run Mako preprocessor on', filename, 'to make', resultfile
