@@ -538,7 +538,7 @@ commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comm
 
 def help():
     print """
-doconce format HTML|LaTeX|rst|sphinx|plain|epydoc|st file.do.txt
+doconce format HTML|LaTeX|rst|sphinx|st|epytext|plain|gwiki|pandoc file.do.txt
 
 doconce subst [-s -m -x --restore] regex-pattern regex-replacement file1 file2 ...
 (-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier,
