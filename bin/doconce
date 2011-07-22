@@ -293,8 +293,14 @@ def sphinx_dir():
         print 'must have doconce file as argument'
         print 'doconce sphinx_dir somefile.do.txt'
         sys.exit(1)
-    import sphinx
+    try:
+        import sphinx
+    except ImportError:
+        print 'Unable to import sphinx. Install sphinx from sphinx.pocoo.org.'
+        print 'On Debian systems, install the \'python-sphinx\' package.'
+        sys.exit(1)
     if float(sphinx.__version__[:3]) < 1.0:
+        # FIXME: Is >= 1.0 or >= 1.1 required? doconce help says >= 1.1
         print 'Abort: sphinx version >= 1.0 required'
         sys.exit(1)
     casename = doconce_file[:-7]
