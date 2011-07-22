@@ -6,7 +6,7 @@
 ./clean.sh
 
 # The following packages must be installed for this script to run: 
-# doconce, ptex2tex, docutils, preprocess, sphinx, scitools
+# doconce, ptex2tex, docutils, preprocess, sphinx
 
 d2f="doconce format"
 # doconce HTML format:
