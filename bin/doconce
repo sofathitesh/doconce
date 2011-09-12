@@ -380,15 +380,17 @@ Indices and tables
 # Purpose: create HTML Sphinx version of %(casename)s.do.txt
 echo Make sure figure files/directories are placed in %(sphinx_rootdir)s
 echo "For example, cp -r figs %(sphinx_rootdir)s, if figures in subdir figs are needed"
+echo
 
 # Filter doconce format to sphinx format and copy to sphinx directory
-doconce format sphinx %(casename).do.txt
+doconce format sphinx %(casename)s.do.txt
 cp %(casename)s.rst %(sphinx_rootdir)s
 
 # Compile sphinx document
-echo cd %(sphinx_rootdir)s
-echo make clean
-echo make html
+cd %(sphinx_rootdir)s
+make clean
+make html
+
 echo
 echo "firefox %(sphinx_rootdir)s/_build/html/index.html"
 """ % vars())
