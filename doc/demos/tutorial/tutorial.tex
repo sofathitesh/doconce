@@ -28,15 +28,15 @@
 
 
 \begin{center}
-{\bf Hans Petter Langtangen${}^{2, 1}$} \\ [0mm]
+{\bf Hans Petter Langtangen${}^{1, 2}$} \\ [0mm]
 \end{center}
 
 \begin{center}
-{\small ${}^1$University of Oslo} \\ [-1.0mm]
+{\small ${}^1$Simula Research Laboratory} \\ [-1.0mm]
 \end{center}
 
 \begin{center}
-{\small ${}^2$Simula Research Laboratory} \\ [-1.0mm]
+{\small ${}^2$University of Oslo} \\ [-1.0mm]
 \end{center}
 
 %\vspace{4mm}
@@ -45,7 +45,7 @@
 
 
 \begin{center}
-May 3, 2011
+Sep 12, 2011
 \end{center}
 
 
@@ -135,7 +135,7 @@ Doconce was particularly written for the following sample applications:
 
   \item Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
-    MS Word documents or in wikis.
+    Sphinx web pages, MS Word documents, or in wikis.
 \end{itemize}
 
 \noindent
@@ -168,20 +168,35 @@ text constructions that allow you to control the formating. For example,
   \item \textbf{words in boldface} are surrounded by underscores, 
 
   \item words from computer code are enclosed in back quotes and 
-    then typeset verbatim,
+    then typeset verbatim (monospace font),
 
-  \item blocks of computer code can easily be included, also from source files,
+  \item section headings are recognied by equality ({\fontsize{10pt}{10pt}\verb!=!}) signs before 
+    and after the text, and the number of {\fontsize{10pt}{10pt}\verb!=!} signs indicates the 
+    level of the section (7 for main section, 5 for subsection,
+    3 for subsubsection),
 
-  \item blocks of {\LaTeX} mathematics can easily be included,
+  \item paragraph headings are recognized by a double underscore
+    before and after the heading,
+
+  \item blocks of computer code can easily be included by placing 
+    {\fontsize{10pt}{10pt}\verb!!bc!} (begin code) and {\fontsize{10pt}{10pt}\verb!!ec!} (end code) commands at separate lines
+    before and after the code block,
+
+  \item blocks of computer code can also be imported from source files,
+
+  \item blocks of {\LaTeX} mathematics can easily be included by placing
+    {\fontsize{10pt}{10pt}\verb!!bt!} (begin TeX) and {\fontsize{10pt}{10pt}\verb!!et!} (end TeX) commands at separate lines
+    before and after the math block,
 
   \item there is support for both {\LaTeX} and text-like inline mathematics,
 
-  \item figures with captions, URLs with links, labels and references
-    are supported,
+  \item tables, figures with captions, URLs with links, index list, 
+    labels and references are supported,
 
-  \item comments can be inserted throughout the text,
+  \item comments can be inserted throughout the text ({\fontsize{10pt}{10pt}\verb!#!} at the beginning
+    of a line),
 
-  \item with a simple preprocessor, which is integrated, one can include
+  \item with a simple preprocessor, Preprocess or Mako, one can include
     other documents (files) and large portions of text can be defined
     in or out of the text,
 

@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: May 3, 2011
+:Date: Sep 12, 2011
 
 .. lines beginning with # are comment lines
 
@@ -953,7 +953,10 @@ in the document.
 .. be used here
 
 
-Finally, we must test the citation command and bibliography by 
+Conversion of BibTeX databases to reStructuredText format can be
+done by the `bibliograph.parsing <http://pypi.python.org/pypi/bibliograph.parsing/>`_ tool.
+
+Finally, we here test the citation command and bibliography by 
 citing a book [Python:Primer:09]_, a paper [Osnes:98]_,
 and both of them simultaneously [Python:Primer:09]_ [Osnes:98]_.
 

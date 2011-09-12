@@ -14,15 +14,15 @@ Automatically generated HTML file from Doconce source
     <TITLE>Doconce: Document Once, Include Anywhere</TITLE>
 <CENTER><H1>Doconce: Document Once, Include Anywhere</H1></CENTER>
 <CENTER>
-<B>Hans Petter Langtangen</B> [2, 1]
+<B>Hans Petter Langtangen</B> [1, 2]
 </CENTER>
 
 <P>
-<CENTER>[1] <B>University of Oslo</B></CENTER>
-<CENTER>[2] <B>Simula Research Laboratory</B></CENTER>
+<CENTER>[1] <B>Simula Research Laboratory</B></CENTER>
+<CENTER>[2] <B>University of Oslo</B></CENTER>
 
 
-<CENTER><H3>May 3, 2011</H3></CENTER>
+<CENTER><H3>Sep 12, 2011</H3></CENTER>
 <P>
 
 <P>
@@ -109,7 +109,7 @@ Doconce was particularly written for the following sample applications:
     web sites, and as LaTeX integrated in, e.g., a thesis.
   <LI> Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
-    MS Word documents or in wikis.
+    Sphinx web pages, MS Word documents, or in wikis.
 </UL>
 
 History: Doconce was developed in 2006 at a time when most popular
@@ -145,14 +145,26 @@ text constructions that allow you to control the formating. For example,
   <LI> <EM>emphasized words</EM> are surrounded by asterisks, 
   <LI> <B>words in boldface</B> are surrounded by underscores, 
   <LI> words from computer code are enclosed in back quotes and 
-    then typeset verbatim,
-  <LI> blocks of computer code can easily be included, also from source files,
-  <LI> blocks of LaTeX mathematics can easily be included,
+    then typeset verbatim (monospace font),
+  <LI> section headings are recognied by equality (<TT>=</TT>) signs before 
+    and after the text, and the number of <TT>=</TT> signs indicates the 
+    level of the section (7 for main section, 5 for subsection,
+    3 for subsubsection),
+  <LI> paragraph headings are recognized by a double underscore
+    before and after the heading,
+  <LI> blocks of computer code can easily be included by placing 
+    <TT>!bc</TT> (begin code) and <TT>!ec</TT> (end code) commands at separate lines
+    before and after the code block,
+  <LI> blocks of computer code can also be imported from source files,
+  <LI> blocks of LaTeX mathematics can easily be included by placing
+    <TT>!bt</TT> (begin TeX) and <TT>!et</TT> (end TeX) commands at separate lines
+    before and after the math block,
   <LI> there is support for both LaTeX and text-like inline mathematics,
-  <LI> figures with captions, URLs with links, labels and references
-    are supported,
-  <LI> comments can be inserted throughout the text,
-  <LI> with a simple preprocessor, which is integrated, one can include
+  <LI> tables, figures with captions, URLs with links, index list, 
+    labels and references are supported,
+  <LI> comments can be inserted throughout the text (<TT>#</TT> at the beginning
+    of a line),
+  <LI> with a simple preprocessor, Preprocess or Mako, one can include
     other documents (files) and large portions of text can be defined
     in or out of the text,
   <LI> with the Mako preprocessor one can even embed Python

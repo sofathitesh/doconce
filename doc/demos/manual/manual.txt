@@ -1,13 +1,13 @@
 Doconce Description
 ===================
 
-Hans Petter Langtangen [2, 1]
+Hans Petter Langtangen [1, 2]
 
-[1] University of Oslo
-[2] Simula Research Laboratory
+[1] Simula Research Laboratory
+[2] University of Oslo
 
 
-Date: May 3, 2011
+Date: Sep 12, 2011
 
 What Is Doconce?
 ================
@@ -893,7 +893,10 @@ typeset as an ordered Doconce list, replacing the BIBFILE: line
 in the document.
 
 
-Finally, we must test the citation command and bibliography by 
+Conversion of BibTeX databases to reStructuredText format can be
+done by the bibliograph.parsing (http://pypi.python.org/pypi/bibliograph.parsing/) tool.
+
+Finally, we here test the citation command and bibliography by 
 citing a book [1], a paper [2],
 and both of them simultaneously [1] [2].
 

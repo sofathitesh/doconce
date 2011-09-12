@@ -2,7 +2,7 @@
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== May 3, 2011 ====
+==== Sep 12, 2011 ====
 
 <wiki:comment> lines beginning with # are comment lines </wiki:comment>
 
@@ -581,7 +581,7 @@ included in the formatted caption).
 
 Figure:  Streamtube visualization of a fluid flow. (fig:viz)
 
-https://doconce.googlecode.com/hg/trunk/doc/manual/figs/streamtubes.png
+https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png
 
 <wiki:comment> 
 Put the figure file figs/streamtubes.png on the web (e.g., as part of the
@@ -818,7 +818,10 @@ in the document.
 <wiki:comment> see ketch/tex2rst for nice bibtex to rst converter which could </wiki:comment>
 <wiki:comment> be used here </wiki:comment>
 
-Finally, we must test the citation command and bibliography by 
+Conversion of BibTeX databases to reStructuredText format can be
+done by the [http://pypi.python.org/pypi/bibliograph.parsing/ bibliograph.parsing] tool.
+
+Finally, we here test the citation command and bibliography by 
 citing a book [1], a paper [2],
 and both of them simultaneously [1] [2].
 

@@ -789,7 +789,10 @@ typeset as an ordered Doconce list, replacing the 'BIBFILE:' line
 in the document.
 
 
-Finally, we must test the citation command and bibliography by 
+Conversion of BibTeX databases to reStructuredText format can be
+done by the "http://pypi.python.org/pypi/bibliograph.parsing/":bibliograph.parsing tool.
+
+Finally, we here test the citation command and bibliography by 
 citing a book [1], a paper [2],
 and both of them simultaneously [1] [2].
 
