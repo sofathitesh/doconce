@@ -47,7 +47,7 @@ doconce format epytext tutorial.do.txt
 # Make PDF of most of the above:
 a2ps_plain='a2ps --left-title='\'''\'' --right-title='\'''\'' --left-footer='\'''\'' --right-footer='\'''\'' --footer='\'''\'''
 $a2ps_plain -1 -o tutorial.do.ps tutorial.do.txt
-ps2pdf tutorial.do.ps
+ps2pdf tutorial.do.ps tutorial.do.pdf
 $a2ps_plain -1 -o tutorial.epytext.ps tutorial.epytext
 ps2pdf tutorial.epytext.ps
 $a2ps_plain -1 -o tutorial.txt.ps tutorial.txt

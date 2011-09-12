@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.8: http://docutils.sourceforge.net/" />
 <title></title>
 <style type="text/css">
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 5951 2009-05-18 18:03:10Z milde $
+:Id: $Id: html4css1.css 6511 2011-01-03 14:49:11Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
@@ -46,6 +46,10 @@ blockquote.epigraph {
 
 dl.docutils dd {
   margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
 
 /* Uncomment (and remove this text!) to get bold-faced definition list terms
 dl.docutils dt {
@@ -157,15 +161,21 @@ h2.subtitle {
 hr.docutils {
   width: 75% }
 
-img.align-left, .figure.align-left{
+img.align-left, .figure.align-left, object.align-left {
   clear: left ;
   float: left ;
   margin-right: 1em }
 
-img.align-right, .figure.align-right {
+img.align-right, .figure.align-right, object.align-right {
   clear: right ;
   float: right ;
   margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .align-left {
   text-align: left }
@@ -179,7 +189,7 @@ img.align-right, .figure.align-right {
 
 /* reset inner alignment in figures */
 div.align-right {
-  text-align: left }
+  text-align: inherit }
 
 /* div.align-center * { */
 /*   text-align: left } */
@@ -317,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">May 3, 2011</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Sep 12, 2011</td>
 </tr>
 </tbody>
 </table>
@@ -1091,7 +1101,9 @@ typeset as an ordered Doconce list, replacing the <tt class="docutils literal">B
 in the document.</p>
 <!-- see ketch/tex2rst for nice bibtex to rst converter which could -->
 <!-- be used here -->
-<p>Finally, we must test the citation command and bibliography by
+<p>Conversion of BibTeX databases to reStructuredText format can be
+done by the <a class="reference external" href="http://pypi.python.org/pypi/bibliograph.parsing/">bibliograph.parsing</a> tool.</p>
+<p>Finally, we here test the citation command and bibliography by
 citing a book <a class="citation-reference" href="#python-primer-09" id="id4">[Python:Primer:09]</a>, a paper <a class="citation-reference" href="#osnes-98" id="id5">[Osnes:98]</a>,
 and both of them simultaneously <a class="citation-reference" href="#python-primer-09" id="id6">[Python:Primer:09]</a> <a class="citation-reference" href="#osnes-98" id="id7">[Osnes:98]</a>.</p>
 <p>(<strong>somereader</strong>: comments, citations, and references in the latex style

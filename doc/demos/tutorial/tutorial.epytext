@@ -70,7 +70,7 @@ Doconce was particularly written for the following sample applications:
     web sites, and as LaTeX integrated in, e.g., a thesis.
   - Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
-    MS Word documents or in wikis.
+    Sphinx web pages, MS Word documents, or in wikis.
 
 History: Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
@@ -99,14 +99,26 @@ text constructions that allow you to control the formating. For example,
   - I{emphasized words} are surrounded by asterisks, 
   - B{words in boldface} are surrounded by underscores, 
   - words from computer code are enclosed in back quotes and 
-    then typeset verbatim,
-  - blocks of computer code can easily be included, also from source files,
-  - blocks of LaTeX mathematics can easily be included,
+    then typeset verbatim (monospace font),
+  - section headings are recognied by equality (C{=}) signs before 
+    and after the text, and the number of C{=} signs indicates the 
+    level of the section (7 for main section, 5 for subsection,
+    3 for subsubsection),
+  - paragraph headings are recognized by a double underscore
+    before and after the heading,
+  - blocks of computer code can easily be included by placing 
+    C{!bc} (begin code) and C{!ec} (end code) commands at separate lines
+    before and after the code block,
+  - blocks of computer code can also be imported from source files,
+  - blocks of LaTeX mathematics can easily be included by placing
+    C{!bt} (begin TeX) and C{!et} (end TeX) commands at separate lines
+    before and after the math block,
   - there is support for both LaTeX and text-like inline mathematics,
-  - figures with captions, URLs with links, labels and references
-    are supported,
-  - comments can be inserted throughout the text,
-  - with a simple preprocessor, which is integrated, one can include
+  - tables, figures with captions, URLs with links, index list, 
+    labels and references are supported,
+  - comments can be inserted throughout the text (C{#} at the beginning
+    of a line),
+  - with a simple preprocessor, Preprocess or Mako, one can include
     other documents (files) and large portions of text can be defined
     in or out of the text,
   - with the Mako preprocessor one can even embed Python

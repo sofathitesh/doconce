@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.8: http://docutils.sourceforge.net/" />
 <title></title>
 <style type="text/css">
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 5951 2009-05-18 18:03:10Z milde $
+:Id: $Id: html4css1.css 6511 2011-01-03 14:49:11Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
@@ -46,6 +46,10 @@ blockquote.epigraph {
 
 dl.docutils dd {
   margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
 
 /* Uncomment (and remove this text!) to get bold-faced definition list terms
 dl.docutils dt {
@@ -157,15 +161,21 @@ h2.subtitle {
 hr.docutils {
   width: 75% }
 
-img.align-left, .figure.align-left{
+img.align-left, .figure.align-left, object.align-left {
   clear: left ;
   float: left ;
   margin-right: 1em }
 
-img.align-right, .figure.align-right {
+img.align-right, .figure.align-right, object.align-right {
   clear: right ;
   float: right ;
   margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .align-left {
   text-align: left }
@@ -179,7 +189,7 @@ img.align-right, .figure.align-right {
 
 /* reset inner alignment in figures */
 div.align-right {
-  text-align: left }
+  text-align: inherit }
 
 /* div.align-center * { */
 /*   text-align: left } */
@@ -318,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">May 3, 2011</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Sep 12, 2011</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -395,7 +405,7 @@ for use with Sphinx, as wiki text when publishing the software at
 web sites, and as LaTeX integrated in, e.g., a thesis.</li>
 <li>Quick memos, which start as plain text in email, then some small
 amount of Doconce tagging is added, before the memos can appear as
-MS Word documents or in wikis.</li>
+Sphinx web pages, MS Word documents, or in wikis.</li>
 </ul>
 </blockquote>
 <p>History: Doconce was developed in 2006 at a time when most popular
@@ -422,14 +432,26 @@ text constructions that allow you to control the formating. For example,</p>
 <li><em>emphasized words</em> are surrounded by asterisks,</li>
 <li><strong>words in boldface</strong> are surrounded by underscores,</li>
 <li>words from computer code are enclosed in back quotes and
-then typeset verbatim,</li>
-<li>blocks of computer code can easily be included, also from source files,</li>
-<li>blocks of LaTeX mathematics can easily be included,</li>
+then typeset verbatim (monospace font),</li>
+<li>section headings are recognied by equality (<tt class="docutils literal">=</tt>) signs before
+and after the text, and the number of <tt class="docutils literal">=</tt> signs indicates the
+level of the section (7 for main section, 5 for subsection,
+3 for subsubsection),</li>
+<li>paragraph headings are recognized by a double underscore
+before and after the heading,</li>
+<li>blocks of computer code can easily be included by placing
+<tt class="docutils literal">!bc</tt> (begin code) and <tt class="docutils literal">!ec</tt> (end code) commands at separate lines
+before and after the code block,</li>
+<li>blocks of computer code can also be imported from source files,</li>
+<li>blocks of LaTeX mathematics can easily be included by placing
+<tt class="docutils literal">!bt</tt> (begin TeX) and <tt class="docutils literal">!et</tt> (end TeX) commands at separate lines
+before and after the math block,</li>
 <li>there is support for both LaTeX and text-like inline mathematics,</li>
-<li>figures with captions, URLs with links, labels and references
-are supported,</li>
-<li>comments can be inserted throughout the text,</li>
-<li>with a simple preprocessor, which is integrated, one can include
+<li>tables, figures with captions, URLs with links, index list,
+labels and references are supported,</li>
+<li>comments can be inserted throughout the text (<tt class="docutils literal">#</tt> at the beginning
+of a line),</li>
+<li>with a simple preprocessor, Preprocess or Mako, one can include
 other documents (files) and large portions of text can be defined
 in or out of the text,</li>
 <li>with the Mako preprocessor one can even embed Python
