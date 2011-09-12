@@ -380,7 +380,12 @@ Indices and tables
 # Purpose: create HTML Sphinx version of %(casename)s.do.txt
 echo Make sure figure files/directories are placed in %(sphinx_rootdir)s
 echo "For example, cp -r figs %(sphinx_rootdir)s, if figures in subdir figs are needed"
+
+# Filter doconce format to sphinx format and copy to sphinx directory
+doconce format sphinx %(casename).do.txt
 cp %(casename)s.rst %(sphinx_rootdir)s
+
+# Compile sphinx document
 echo cd %(sphinx_rootdir)s
 echo make clean
 echo make html
@@ -388,7 +393,8 @@ echo
 echo "firefox %(sphinx_rootdir)s/_build/html/index.html"
 """ % vars())
     f.close()
-    print "'tmp_make_sphinx.sh' contains the steps to compile the sphinx version"
+    print "'tmp_make_sphinx.sh' contains the steps to (re)compile the sphinx version."
+    print "You may want to rename this file for repeated reuse."
 
 def usage_subst():
     print 'Usage: doconce subst [-s -m -x --restore] pattern '\

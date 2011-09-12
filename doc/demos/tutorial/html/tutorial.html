@@ -147,8 +147,9 @@ mathematics and computer code.</p>
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
-limitations of regular expressions, some formatting may face problems
-when transformed to other formats.</p>
+limitations of regular expressions, some formatting of Doconce syntax
+may face problems when transformed to HTML, LaTeX, Sphinx, and similar
+formats.</p>
 </div>
 <div class="section" id="what-does-doconce-look-like">
 <h1>What Does Doconce Look Like?<a class="headerlink" href="#what-does-doconce-look-like" title="Permalink to this headline">¶</a></h1>
@@ -560,10 +561,13 @@ program. Here is a scripted version of the steps with the latter:</p>
 <span class="go">EOF</span>
 </pre></div>
 </div>
-<p>These statements are automated by the command</p>
+<p>These statements as well as points 3-5 can be automated by the command</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; doconce sphinx_dir mydoc.do.txt</span>
 </pre></div>
 </div>
+<p>More precisely, in addition to making the <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt>,
+this command generates a script <tt class="docutils literal"><span class="pre">tmp_make_sphinx.sh</span></tt> which
+can be run to carry out steps 3-5.</p>
 <p><em>Step 3.</em> Move the <tt class="docutils literal"><span class="pre">tutorial.rst</span></tt> file to the Sphinx root directory:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Unix/DOS&gt; mv mydoc.rst sphinx-rootdir</span>
 </pre></div>

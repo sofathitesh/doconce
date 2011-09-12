@@ -99,8 +99,9 @@ Disclaimer: Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
-limitations of regular expressions, some formatting may face problems 
-when transformed to other formats. 
+limitations of regular expressions, some formatting of Doconce syntax
+may face problems when transformed to HTML, LaTeX, Sphinx, and similar
+formats. 
 
 
 
@@ -588,11 +589,14 @@ program. Here is a scripted version of the steps with the latter::
         y
         EOF
 
-These statements are automated by the command::
+These statements as well as points 3-5 can be automated by the command::
 
 
         Unix/DOS> doconce sphinx_dir mydoc.do.txt
 
+More precisely, in addition to making the ``sphinx-rootdir``,
+this command generates a script ``tmp_make_sphinx.sh`` which
+can be run to carry out steps 3-5.
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory::
 
