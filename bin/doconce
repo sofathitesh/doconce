@@ -215,12 +215,12 @@ def _old2new(filename):
     f.close()
 
 def LaTeX_header():
-    from doconce.doconce import INTRO, OUTRO
+    from doconce.doconce import INTRO
     print INTRO['LaTeX']
     
-def LaTeX_footerr():
-    from doconce.doconce import INTRO, OUTRO
-    print INTRO['LaTeX']
+def LaTeX_footer():
+    from doconce.doconce import OUTRO
+    print OUTRO['LaTeX']
 
     
 def remove_inline_comments():
