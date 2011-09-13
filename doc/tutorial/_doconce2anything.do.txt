@@ -192,7 +192,8 @@ Unix/DOS> doconce sphinx_dir mydoc.do.txt
 !ec
 More precisely, in addition to making the `sphinx-rootdir`,
 this command generates a script `tmp_make_sphinx.sh` which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 __Step 3.__ Move the `tutorial.rst` file to the Sphinx root directory:
 !bc sys
