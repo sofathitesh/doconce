@@ -167,6 +167,7 @@ def _walker_include(arg, dir, files):
             _run_preprocess4includes(f, options)
     os.chdir(origdir)
 
+# ----------------------------------------------------------------------
 
 def old2new_format():
     if len(sys.argv) == 1:
@@ -213,6 +214,15 @@ def _old2new(filename):
     f.writelines(lines)
     f.close()
 
+def LaTeX_header():
+    from doconce.doconce import INTRO, OUTRO
+    print INTRO['LaTeX']
+    
+def LaTeX_footerr():
+    from doconce.doconce import INTRO, OUTRO
+    print INTRO['LaTeX']
+
+    
 def remove_inline_comments():
     try:
         filename = sys.argv[1]
@@ -548,7 +558,7 @@ def clean():
             os.remove(f)
     print 'Removed', ', '.join(removed)
         
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace clean help'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace clean help LaTeX_header LaTeX_footer'.split()
 
 def help():
     print """
@@ -573,6 +583,9 @@ doconce insertdocstr rootdir
 
 doconce clean
 (remove all files that the doconce format can regenerate)
+
+doconce LaTeX_header
+doconce LaTeX_footer
 """
 
     
@@ -595,7 +608,7 @@ def main():
             found = True
             eval(command + '()')
     if not found:
-        print 'command', command, 'not legal, must be among'
+        print 'command', command, 'not legal, must be among\n'
         print ', '.join(commands)
 
 main()
