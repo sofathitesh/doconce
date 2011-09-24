@@ -210,7 +210,7 @@ INLINE_TAGS = {
     (inline_tag_begin, inline_tag_end),
 
     'linkURL2':  # "some link": "https://bla-bla"
-    r'"(?P<link>.+?)" ?:\s*"(?P<url>(file:/|https?:)//.+?)"',
+    r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>(file:/|https?:)//.+?)"''',
     #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
 
     'plainURL': 
