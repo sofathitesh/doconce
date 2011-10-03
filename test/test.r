@@ -1853,11 +1853,16 @@ Here is eqnarray::
 
 
 
-
+************** File: tmp_encoding.txt *****************
+utf-8
+iso-8859-1
+utf-8
+utf-8
+iso-8859-1
 
 ************** File: make.sh *****************
 #!/bin/sh -x
-# test multiple authors:
+# Test multiple authors
 doconce format HTML testdoc.do.txt
 doconce format LaTeX testdoc.do.txt
 doconce format plain testdoc.do.txt
@@ -1867,6 +1872,19 @@ mv -f testdoc.rst testdoc.sphinx.rst
 doconce format rst testdoc.do.txt
 doconce format epytext testdoc.do.txt
 doconce format gwiki testdoc.do.txt
+
+# Test encoding
+doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
+cp encoding1.do.txt tmp1.do.txt
+doconce change_encoding utf-8 latin1 tmp1.do.txt
+doconce guess_encoding tmp1.do.txt >> tmp_encodings.txt
+doconce change_encoding latin1 utf-8 tmp1.do.txt
+doconce guess_encoding tmp1.do.txt >> tmp_encodings.txt
+
+doconce guess_encoding encoding2.do.txt >> tmp_encodings.txt
+cp encoding1.do.txt tmp2.do.txt
+doconce change_encoding utf-8 latin1 tmp2.do.txt
+doconce guess_encoding tmp2.do.txt >> tmp_encodings.txt
 
 ************** File: make.sh *****************
 #!/bin/sh -x
