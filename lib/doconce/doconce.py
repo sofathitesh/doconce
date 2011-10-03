@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import re, os, sys, shutil, commands, pprint, time, glob
+import re, os, sys, shutil, commands, pprint, time, glob, codecs
 
 def debugpr(out):
     if debug:
@@ -914,23 +914,6 @@ def subst_away_inline_comments(filestr):
     filestr = re.sub(pattern, '', filestr)
     return filestr
 
-def encoding_guesser(filename):
-    """Try to guess the encoding of a file."""
-    f = open(filename, 'r')
-    text = f.read()
-    f.close()
-    encodings = ['utf-8', 'ascii', 'us-ascii', 'iso-8859-1', 'iso-8859-2',
-                 'iso-8859-3', 'iso-8859-4', 'cp37', 'cp930', 'cp1047',
-                 'utf-16', 'windows-1250', 'windows-1252',]
-    for encoding in encodings:
-        try:
-            #print 'Trying encoding', encoding
-            unicode(text, encoding, "strict")
-        except:
-            pass
-        else:
-            break
-    return encoding
 
 
 def doconce2format(in_filename, format, out_filename):
@@ -949,10 +932,8 @@ def doconce2format(in_filename, format, out_filename):
     # myfile.do.txt: UTF-8 Unicode English text
     # Unix> # convert to latin-1:
     # Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-    if guess_encoding:  # global variable
-        encoding = encoding_guesser(in_filename)
-        print 'Detected encoding as', encoding
-        import codecs
+    if encoding:  # global variable
+        print 'Open file with encoding', encoding
         f = codecs.open(in_filename, 'r', encoding)
     else:
         f = open(in_filename, 'r')
@@ -1083,7 +1064,7 @@ def doconce2format(in_filename, format, out_filename):
             # avoid the need for movie15 package in LaTeX file
             filestr = filestr.replace('define MOVIE', 'undef MOVIE')
      
-    if guess_encoding:
+    if encoding:
         f = codecs.open(out_filename, 'w', encoding)
     else:
         f = open(out_filename, 'w')
@@ -1171,15 +1152,14 @@ def main():
     #   - remove_inline_comments
     #   - oneline (for removal of newlines/linebreaks within paragraphs)
     #   - encoding utf-8 (e.g.)
-    #   - guess_encoding
     #   - preprocessor options (-DVAR etc. for preprocess)
 
-    # guess_encoding and online are inactive (these don't work well yet)
+    # oneline is inactive (doesn't work well yet)
 
-    global debug, _log, oneline_paragraphs, guess_encoding, \
+    global debug, _log, oneline_paragraphs, \
            remove_inline_comments, encoding
     options = ['debug', 'remove_inline_comments', 'encoding=',
-               'guess_encoding', 'oneline_paragraphs',] # 'tmp1']
+               'oneline_paragraphs',] # 'tmp1']
     try:
         format = sys.argv[1]
         filename = sys.argv[2]
@@ -1222,15 +1202,7 @@ def main():
     if '--remove_inline_comments' in sys.argv[1:]:
         remove_inline_comments = True
         sys.argv.remove('--remove_inline_comments')
-        
-    guess_encoding = False
-    if 'guess_encoding' in sys.argv[1:]:
-        sys.argv.remove('guess_encoding')
-        guess_encoding = True
-    if '--guess_encoding' in sys.argv[1:]:
-        guess_encoding = True
-        sys.argv.remove('--guess_encoding')
-        
+                
     encoding = ''
     for arg in sys.argv[1:]:
         if arg.startswith('encoding=') or arg.startswith('--encoding='):
