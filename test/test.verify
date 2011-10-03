@@ -38,13 +38,13 @@ def clean_and_make(append=True):
         where = os.getcwd()
         raise OSError('Could not run %s/make.sh successfully!\nRerun manually (go to %s and run ./make.sh' % (where, where))
 
-# test multiple authors, figure, movie, math, etc:
+# test multiple authors, figure, movie, math, encodings, etc:
 print '...running ./make.sh in test'  # works only under Unix...
 clean_and_make(append=False)
 
 log = open(logfilename, 'a')
 files = '.do.txt', '.html', '.p.tex', '.rst', '.sphinx.rst', '.gwiki', '.st', '.epytext', '.txt'
-files = ['testdoc' + ext for ext in files]
+files = ['testdoc' + ext for ext in files] + ['tmp_encoding.txt']
 for f in files:
     add(f, log)
 add('make.sh', log)
