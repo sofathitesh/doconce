@@ -91,7 +91,7 @@ def sphinx_figure(m):
         # since we just want to remove the whole label as part of
         # the caption (done when handling ref and label)
     else:
-        if caption[-1] == '.':
+        if caption and caption[-1] == '.':
             caption = caption[:-1]          
     
     filename = m.group('filename')
