@@ -43,21 +43,24 @@ def html_movie(m):
     filename = m.group('filename')
     options = m.group('options')
     caption = m.group('caption')
+
+    # Turn options to dictionary
+    options = options.split()
+    kwargs = {}
+    for opt in options:
+        if opt.startswith('width') or opt.startswith('WIDTH'):
+            kwargs['width'] = int(eval(opt.split('=')[1]))
+        if opt.startswith('height') or opt.startswith('HEIGHT'):
+            kwargs['height'] = int(eval(opt.split('=')[1]))
+    
     if '*' in filename:
-        # glob files
+        # Glob files and use DocWriter.html_movie to make a separate
+        # HTML page for viewing the set of files
         plotfiles = glob.glob(filename)
         if not plotfiles:
             print 'No plotfiles on the form', filename
             sys.exit(1)
         plotfiles.sort()
-        # Turn options to dictionary
-        options = options.split()
-        kwargs = {}
-        for opt in options:
-            if opt.startswith('width') or opt.startswith('WIDTH'):
-                kwargs['width'] = int(eval(opt.split('=')[1]))
-            if opt.startswith('height') or opt.startswith('HEIGHT'):
-                kwargs['height'] = int(eval(opt.split('=')[1]))
         basename  = os.path.basename(plotfiles[0])
         stem, ext = os.path.splitext(basename)
         kwargs['casename'] = stem
@@ -70,6 +73,13 @@ def html_movie(m):
         f.close()
         text = """   <P><A HREF="%s">Movie of files <TT>%s</TT></A>\n<EM>%s</EM>""" % \
                (moviehtml, filename, caption)
+    elif 'youtube.com/embed' in filename:
+        # Make HTML for a local YouTube frame
+        width = kwargs.get('width', 425)
+        height = kwargs.get('height', 349)
+        text = """
+<iframe width="%s" height="%s" src="%s" frameborder="0" allowfullscreen></iframe>
+""" % (width, height, filename)
     else:
         text = """
    <EMBED SRC="%s" %s AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>

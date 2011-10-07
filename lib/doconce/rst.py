@@ -48,7 +48,7 @@ def rst_figure(m):
     return result
 
 def rst_movie(m):
-    text = '.. raw:: html\n' + html_movie(m) + '\n\n'
+    text = '.. raw:: html\n' + indent_lines(html_movie(m), 'sphinx') + '\n\n'
     return text
     
 # these global patterns are used in st, epytext, plaintext as well:
