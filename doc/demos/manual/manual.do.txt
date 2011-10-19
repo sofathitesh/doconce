@@ -251,7 +251,7 @@ The result becomes
 The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
-sections, subsections, paragraphs., figures, etc.
+sections, subsections, paragraphs., figures, movies, etc.
 
 idx{`TITLE` keyword} idx{`AUTHOR` keyword} idx{`DATE` keyword}
 
@@ -367,25 +367,50 @@ FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. l
 
 __Movies.__
 Here is an example on the `MOVIE:` keyword for embedding movies. This
-feature works only for the `LaTeX`, `HTML`, `rst`, and `sphinx` formats.
+feature works well for the `LaTeX`, `HTML`, `rst`, and `sphinx` formats.
+Other formats try to generate some HTML file and link to that file
+for showing the movie.
 !bc
 MOVIE: [filename, height=xxx width=yyy] possible caption
 !ec
 
 # LaTeX/PDF format requires movie15 package for displaying movies
 
-MOVIE: [figs/mjolnir.mpeg, width=600, height=470]
+MOVIE: [figs/mjolnir.mpeg, width=600 height=470]
 
-#MOVIE: [figs/wavepacket.gif, width=600, height=470]
+#MOVIE: [figs/wavepacket.gif, width=600 height=470]
 
-#MOVIE: [figs/wavepacket2.mpeg, width=600, height=470]
+#MOVIE: [figs/wavepacket2.mpeg, width=600 height=470]
 
 The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML format will play
-the movie right away, while for all other formats there is no
-movie support. The HTML format can also treat filenames of the form
-`myframes*.png`. In that case, a player for showing the sequence of frames
-is inserted in the HTML file. 
+in order to play movies in PDF via Acroread. The HTML, reST, and
+Sphinx formats will play
+the movie right away by embedding the file in a standard HTML code,
+provided the output format is HTML.
+For all other formats a URL to an HTML file, which can play the code,
+is inserted in the output document.
+
+When movies are embedded in the PDF file via LaTeX and
+the `movie15` package, there is a preprocess variable
+`EXTERNAL_MOVIE_VIEWER` which can be defined to launch an external
+viewer when displaying the PDF file (in Acrobat Reader):
+!bc sys
+Terminal> ptex2tex -DEXTERNAL_MOVIE_VIEWER mydoc
+!ec
+
+The HTML, reST, and Sphinx formats can also treat filenames of the form
+`myframes*.png`. In that case, an HTML file for showing the sequence of frames
+is generated, and a link to this file is inserted in the output document.
+That is, a simple "movie viewer" for the frames is made. 
+
+Many publish their scientific movies on YouTube, and Doconce recognizes
+YouTube URLs as movies. When the output is an HTML file, the movie will
+be embedded, otherwise a URL to the YouTube page is inserted.
+You should equip the `MOVIE:` command with the right width and height
+of embedded YouTube movies (the parameters appear when you request
+the embedded HTML code for the movie on the YouTube page).
+
+
 
 __Computer Code.__
 Another type of special lines starts with `@@@CODE` and enables copying
@@ -828,8 +853,8 @@ in the current format.
 
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
-Two preprocessors are supported: Preprocess 
-(URL:"http://code.google.com/p/preprocess") and Mako
+Two preprocessors are supported: preprocess 
+(URL:"http://code.google.com/p/preprocess") and mako
 (URL:"http://www.makotemplates.org/"). The former allows include and if-else
 statements much like the well-known preprocessor in C and C++ (but it
 does not allow sophisticated macro substitutions). The latter
@@ -839,15 +864,61 @@ through Python code embedded in the Doconce document. An arbitrary set
 of `name=value` command-line arguments (at the end of the command line)
 automatically define Mako variables that are substituted in the document.
 
-Doconce will detect if Preprocess or Mako commands are used and run
+Doconce will detect if preprocess or Mako commands are used and run
 the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
-Preprocess and Mako always have the variable `FORMAT` to be the desired
-output format of Doconce. It is then easy to test on the value of `FORMAT`
-and take different actions for different formats. For example, one may
-create special LaTeX output for figures, say with multiple plots within
-a figure, while other formats may apply a separate figure for each plot.
+The preprocess and mako programs always have the variable `FORMAT`
+defined as the desired output format of Doconce (`HTML`, `LaTeX`,
+`plain`, `rst`, `sphinx`, `epydoc`, `st`).  It is then easy to test on
+the value of `FORMAT` and take different actions for different
+formats. For example, one may create special LaTeX output for figures,
+say with multiple plots within a figure, while other formats may apply
+a separate figure for each plot. Below is an example (see the Doconce
+source code of this document to understand how preprocess is used to
+create the example).
+
+# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated 
+# PostScript files are used.
+
+# #if FORMAT == "LaTeX"
+# Use LaTeX with subfigures (a) and (b)
+\begin{figure}
+label{fig:wavepackets}
+  \begin{center}
+#  #ifdef PNGFIGS
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
+#  #else
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
+#  #endif
+
+#  #ifdef PNGFIGS
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
+#  #else
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
+#  #endif
+  \end{center}
+  \caption{
+  Wavepackets at time (a) 0.1 s and (b) 0.2 s.
+  }
+\end{figure}
+
+# #else
+
+# Use default Doconce figure handling for all other formats
+
+FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
+
+FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
+
+# #endif
+
+Other user-defined variables for the preprocessor can be set at 
+the command line as explained in Section ref{doconce2formats}.
+
+More advanced use of mako can include Python code that may automate
+the writing of parts of the document.
+
 
 
 ===== Missing Features ===== 

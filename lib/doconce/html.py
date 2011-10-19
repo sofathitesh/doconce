@@ -45,13 +45,16 @@ def html_movie(m):
     caption = m.group('caption')
 
     # Turn options to dictionary
-    options = options.split()
+    if ',' in options:
+        options = options.split(',')
+    else:
+        options = options.split()
     kwargs = {}
     for opt in options:
         if opt.startswith('width') or opt.startswith('WIDTH'):
-            kwargs['width'] = int(eval(opt.split('=')[1]))
+            kwargs['width'] = int(opt.split('=')[1])
         if opt.startswith('height') or opt.startswith('HEIGHT'):
-            kwargs['height'] = int(eval(opt.split('=')[1]))
+            kwargs['height'] = int(opt.split('=')[1])
     
     if '*' in filename:
         # Glob files and use DocWriter.html_movie to make a separate
@@ -73,7 +76,9 @@ def html_movie(m):
         f.close()
         text = """   <P><A HREF="%s">Movie of files <TT>%s</TT></A>\n<EM>%s</EM>""" % \
                (moviehtml, filename, caption)
-    elif 'youtube.com/embed' in filename:
+    elif 'youtube.com' in filename:
+        if not 'youtube.com/embed/' in filename:
+            filename = filename.replace('embed/', 'watch?v=')
         # Make HTML for a local YouTube frame
         width = kwargs.get('width', 425)
         height = kwargs.get('height', 349)
@@ -86,7 +91,7 @@ def html_movie(m):
    <P>
    <EM>%s</EM>
    </P>
-""" % (filename, options, caption)
+""" % (filename, ' '.join(options), caption)
     return text
 
 def html_author(authors_and_institutions, auth2index, 

@@ -6,7 +6,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Sep 12, 2011
+:Date: Oct 19, 2011
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -140,7 +140,7 @@ text constructions that allow you to control the formating. For example,
 
   * there is support for both LaTeX and text-like inline mathematics,
 
-  * tables, figures with captions, URLs with links, index list, 
+  * tables, figures, movies with captions, URLs with links, index list, 
     labels and references are supported,
 
   * comments can be inserted throughout the text (``#`` at the beginning
@@ -379,17 +379,24 @@ for various formats of this document).
 From Doconce to Other Formats
 =============================
 
-Transformation of a Doconce document to various other
+Transformation of a Doconce document ``mydoc.do.txt`` to various other
 formats applies the script ``doconce format``::
 
 
-        Unix/DOS> doconce format format mydoc.do.txt
+        Terminal> doconce format format mydoc.do.txt
 
-The ``preprocess`` program is always used to preprocess the file first,
-and options to ``preprocess`` can be added after the filename. For example::
+or just::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+        Terminal> doconce format format mydoc
+
+The ``mako`` or ``preprocess`` programs are always used to preprocess the
+file first, and options to ``mako`` or ``preprocess`` can be added after the
+filename. For example::
+
+
+        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 
 The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
@@ -399,16 +406,17 @@ format specific actions through tests like ``#if FORMAT == "LaTeX"``.
 Inline comments in the text are removed from the output by::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+        Terminal> doconce format LaTeX mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
-by running a helper script in the ``bin`` folder of the Doconce
+by running 
 source code::
 
 
-        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+        Terminal> doconce remove_inline_comments mydoc
 
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 
 HTML
@@ -418,7 +426,7 @@ Making an HTML version of a Doconce file ``mydoc.do.txt``
 is performed by::
 
 
-        Unix/DOS> doconce format HTML mydoc.do.txt
+        Terminal> doconce format HTML mydoc
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
@@ -437,7 +445,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
      ``ptex2tex``::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt
+        Terminal> doconce format LaTeX mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
@@ -448,27 +456,28 @@ so that your commands are defined.
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file::
 
 
-        Unix/DOS> ptex2tex mydoc
+        Terminal> ptex2tex mydoc
 
 or just perform a plain copy::
 
 
-        Unix/DOS> cp mydoc.p.tex mydoc.tex
+        Terminal> cp mydoc.p.tex mydoc.tex
 
-Doconce generates a ``.p.tex`` file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font::
+Doconce generates a ``.p.tex`` file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run::
 
 
-        Unix/DOS> ptex2tex -DHELVETICA mydoc
+        Terminal> ptex2tex -DHELVETICA mydoc
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through::
 
 
-        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
@@ -483,12 +492,12 @@ There are over 30 styles to choose from.
 and create the PDF file::
 
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex mydoc
+        Terminal> latex mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex mydoc
+        Terminal> dvipdf mydoc
 
 If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
 in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
@@ -496,18 +505,18 @@ This package is included by running ``doconce format`` with the
 ``-DMINTED`` option::
 
 
-        Unix/DOS> ptex2tex -DMINTED mydoc
+        Terminal> ptex2tex -DMINTED mydoc
 
 In this case, ``latex`` must be run with the
 ``-shell-escape`` option::
 
 
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex -shell-escape mydoc
+        Terminal> dvipdf mydoc
 
 The ``-shell-escape`` option is required because the ``minted.sty`` style
 file runs the ``pygments`` program to format code, and this program
@@ -522,7 +531,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code::
 
 
-        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+        Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 
 reStructuredText
@@ -533,15 +542,15 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file ``mydoc.rst``::
 
 
-        Unix/DOS> doconce format rst mydoc.do.txt
+        Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats::
 
 
-        Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-        Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-        Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+        Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
 The OpenOffice file ``mydoc.odt`` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -556,7 +565,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 the reStructuredText format::
 
 
-        Unix/DOS> doconce format sphinx mydoc.do.txt
+        Terminal> doconce format sphinx mydoc.do.txt
 
 
 *Step 2.* Create a Sphinx root directory with a ``conf.py`` file, 
@@ -592,16 +601,17 @@ program. Here is a scripted version of the steps with the latter::
 These statements as well as points 3-5 can be automated by the command::
 
 
-        Unix/DOS> doconce sphinx_dir mydoc.do.txt
+        Terminal> doconce sphinx_dir mydoc.do.txt
 
 More precisely, in addition to making the ``sphinx-rootdir``,
 this command generates a script ``tmp_make_sphinx.sh`` which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory::
 
 
-        Unix/DOS> mv mydoc.rst sphinx-rootdir
+        Terminal> mv mydoc.rst sphinx-rootdir
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with ``mydoc.rst`` in the ``sphinx-rootdir``
@@ -631,7 +641,7 @@ Many other formats are also possible.
 *Step 6.* View the result::
 
 
-        Unix/DOS> firefox _build/html/index.html
+        Terminal> firefox _build/html/index.html
 
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -656,7 +666,7 @@ The transformation to this format, called ``gwiki`` to explicitly mark
 it as the Google Code dialect, is done by::
 
 
-        Unix/DOS> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
 the ``mydoc.gwiki`` output file from ``doconce format`` and paste the

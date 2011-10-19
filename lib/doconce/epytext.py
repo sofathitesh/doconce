@@ -1,5 +1,6 @@
 import re
-from common import remove_code_and_tex, insert_code_and_tex, indent_lines
+from common import remove_code_and_tex, insert_code_and_tex, indent_lines, \
+     default_movie
 
 def old_epytext_code(filestr):
     # In rst syntax, code blocks are typeset with :: (verbatim)
@@ -75,6 +76,7 @@ def define(FILENAME_EXTENSION,
         'title':         r'TITLE: \g<subst>',
         'date':          r'DATE: \g<subst>',
         'author':        epytext_author,
+        'movie':         default_movie,
         }
 
     from rst import rst_code, rst_table

@@ -22,7 +22,7 @@ Automatically generated HTML file from Doconce source
 <CENTER>[2] <B>University of Oslo</B></CENTER>
 
 
-<CENTER><H3>Sep 12, 2011</H3></CENTER>
+<CENTER><H3>Oct 19, 2011</H3></CENTER>
 <P>
 
 <P>
@@ -161,7 +161,7 @@ text constructions that allow you to control the formating. For example,
     <TT>!bt</TT> (begin TeX) and <TT>!et</TT> (end TeX) commands at separate lines
     before and after the math block,
   <LI> there is support for both LaTeX and text-like inline mathematics,
-  <LI> tables, figures with captions, URLs with links, index list, 
+  <LI> tables, figures, movies with captions, URLs with links, index list, 
     labels and references are supported,
   <LI> comments can be inserted throughout the text (<TT>#</TT> at the beginning
     of a line),
@@ -413,18 +413,26 @@ for various formats of this document).
 <P>
 
 <P>
-Transformation of a Doconce document to various other
+Transformation of a Doconce document <TT>mydoc.do.txt</TT> to various other
 formats applies the script <TT>doconce format</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format format mydoc.do.txt
+Terminal> doconce format format mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-The <TT>preprocess</TT> program is always used to preprocess the file first,
-and options to <TT>preprocess</TT> can be added after the filename. For example,
+or just
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+Terminal> doconce format format mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+The <TT>mako</TT> or <TT>preprocess</TT> programs are always used to preprocess the
+file first, and options to <TT>mako</TT> or <TT>preprocess</TT> can be added after the
+filename. For example,
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The variable <TT>FORMAT</TT> is always defined as the current format when
@@ -436,18 +444,19 @@ format specific actions through tests like <TT>#if FORMAT == "LaTeX"</TT>.
 Inline comments in the text are removed from the output by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+Terminal> doconce format LaTeX mydoc remove_inline_comments
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 One can also remove such comments from the original Doconce file
-by running a helper script in the <TT>bin</TT> folder of the Doconce
+by running 
 source code:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+Terminal> doconce remove_inline_comments mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 <P>
 
@@ -458,7 +467,7 @@ Making an HTML version of a Doconce file <TT>mydoc.do.txt</TT>
 is performed by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format HTML mydoc.do.txt
+Terminal> doconce format HTML mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The resulting file <TT>mydoc.html</TT> can be loaded into any web browser for viewing.
@@ -476,7 +485,7 @@ Making a LaTeX file <TT>mydoc.tex</TT> from <TT>mydoc.do.txt</TT> is done in two
      <TT>ptex2tex</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format LaTeX mydoc.do.txt
+Terminal> doconce format LaTeX mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 LaTeX-specific commands ("newcommands") in math formulas and similar
@@ -489,30 +498,31 @@ so that your commands are defined.
 <B>Step 2.</B> Run <TT>ptex2tex</TT> (if you have it) to make a standard LaTeX file,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> ptex2tex mydoc
+Terminal> ptex2tex mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 or just perform a plain copy,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> cp mydoc.p.tex mydoc.tex
+Terminal> cp mydoc.p.tex mydoc.tex
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-Doconce generates a <TT>.p.tex</TT> file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font,
+Doconce generates a <TT>.p.tex</TT> file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> ptex2tex -DHELVETICA mydoc
+Terminal> ptex2tex -DHELVETICA mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -530,12 +540,12 @@ There are over 30 styles to choose from.
 and create the PDF file:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> latex mydoc
-Unix/DOS> latex mydoc
-Unix/DOS> makeindex mydoc   # if index
-Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex mydoc
-Unix/DOS> dvipdf mydoc
+Terminal> latex mydoc
+Terminal> latex mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex mydoc
+Terminal> dvipdf mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 If one wishes to use the <TT>Minted_Python</TT>, <TT>Minted_Cpp</TT>, etc., environments
@@ -544,19 +554,19 @@ This package is included by running <TT>doconce format</TT> with the
 <TT>-DMINTED</TT> option:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> ptex2tex -DMINTED mydoc
+Terminal> ptex2tex -DMINTED mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 In this case, <TT>latex</TT> must be run with the
 <TT>-shell-escape</TT> option:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> makeindex mydoc   # if index
-Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> dvipdf mydoc
+Terminal> latex -shell-escape mydoc
+Terminal> latex -shell-escape mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex -shell-escape mydoc
+Terminal> dvipdf mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The <TT>-shell-escape</TT> option is required because the <TT>minted.sty</TT> style
@@ -573,7 +583,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -585,16 +595,16 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file <TT>mydoc.rst</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format rst mydoc.do.txt
+Terminal> doconce format rst mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 We may now produce various other formats:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The OpenOffice file <TT>mydoc.odt</TT> can be loaded into OpenOffice and
@@ -611,7 +621,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 the reStructuredText format:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format sphinx mydoc.do.txt
+Terminal> doconce format sphinx mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -650,18 +660,19 @@ EOF
 These statements as well as points 3-5 can be automated by the command
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce sphinx_dir mydoc.do.txt
+Terminal> doconce sphinx_dir mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 More precisely, in addition to making the <TT>sphinx-rootdir</TT>,
 this command generates a script <TT>tmp_make_sphinx.sh</TT> which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 <P>
 <B>Step 3.</B> Move the <TT>tutorial.rst</TT> file to the Sphinx root directory:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> mv mydoc.rst sphinx-rootdir
+Terminal> mv mydoc.rst sphinx-rootdir
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 If you have figures in your document, the relative paths to those will
@@ -697,7 +708,7 @@ Many other formats are also possible.
 <B>Step 6.</B> View the result:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> firefox _build/html/index.html
+Terminal> firefox _build/html/index.html
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -723,7 +734,7 @@ The transformation to this format, called <TT>gwiki</TT> to explicitly mark
 it as the Google Code dialect, is done by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format gwiki mydoc.do.txt
+Terminal> doconce format gwiki mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 You can then open a new wiki page for your Google Code project, copy

@@ -43,16 +43,27 @@ to Section ref{subsubsec:ex}. idx{`somefunc` function}
 
 ===== Subsection 2 =====
 label{subsec:ex}
+idx{figures}
 
-What about a figure?
-idx{figures are nice}
+Test of figures.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. label{fig:impact}
 
-What about a movie?
-idx{movies are nice}
+idx{movies}
+Test of movies.
 
 MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=700 height=400] Mjolnir tsunami (by Sylfest Glimsdal).
+
+# Empty caption:
+
+MOVIE: [../doc/manual/figs/wavepacket.mpeg, width=700 height=400]
+
+MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).
+
+# Check out the correct with and height of YouTube movies from the
+# embed command that the YouTube page can generate
+
+MOVIE: [http://www.youtube.com/embed/7cC-_-aqx18, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 ===== Table Demo =====
 label{subsec:table}

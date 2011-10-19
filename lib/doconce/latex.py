@@ -74,6 +74,58 @@ def latex_figure(m, includegraphics=True):
 """ % (filename, m.group('caption'), stem)
     return result
 
+def latex_movie(m):
+    from plaintext import default_movie
+    text = default_movie(m)
+
+    # URL to HTML viewer file must have absolute path in \href
+    html_viewer_file_pattern = r'Movie of files `.+` in URL:"(.+)":'
+    m2 = re.search(html_viewer_file_pattern, text)
+    if m2:
+        html_viewer_file = m2.group(1)
+        if os.path.isfile(html_viewer_file):
+            html_viewer_file_abs = os.path.abspath(html_viewer_file)
+            text = text.replace('URL:"%s"' % html_viewer_file,
+                                'URL:"%s"' % html_viewer_file_abs)
+                                
+
+    if ': play URL:' in text:
+        # Drop default_movie, embed in PDF instead using the movie15 package
+        text = r"""
+\\begin{figure}[ht]
+\\begin{center}
+\includemovie[poster,
+label=\g<filename>,
+autoplay,
+%controls,
+%toolbar,
+% #ifdef EXTERNAL_MOVIE_VIEWER
+externalviewer,
+% #endif
+text={\small (Loading \g<filename>)},
+repeat,
+]{0.9\linewidth}{0.9\linewidth}{\g<filename>}    % requires \usepackage{movie15}
+% #ifndef EXTERNAL_MOVIE_VIEWER
+
+\movieref[rate=0.5]{\g<filename>}{Slower}
+\movieref[rate=2]{\g<filename>}{Faster}
+\movieref[default]{\g<filename>}{Normal}
+\movieref[pause]{\g<filename>}{Play/Pause}
+\movieref[stop]{\g<filename>}{Stop}
+
+% #else
+%\href{run:\g<filename>}{\g<filename>}
+% #endif
+
+% alternative: \movie command that comes with beamer itself
+% \movie[options]{\g<filename>}{\g<filename>}
+    
+\end{center}
+\caption{\g<caption>}
+\end{figure}
+"""
+    return text
+
 from common import table_analysis
 
 def latex_table(table):
@@ -298,39 +350,7 @@ def define(FILENAME_EXTENSION,
 % #endif
 """, application='replacement'),
         'figure':        latex_figure,
-        'movie':  r"""
-\\begin{figure}[ht]
-\\begin{center}
-\includemovie[poster,
-label=\g<filename>,
-autoplay,
-%controls,
-%toolbar,
-% #ifdef EXTERNAL_MOVIE_VIEWER
-externalviewer,
-% #endif
-text={\small (Loading \g<filename>)},
-repeat,
-]{0.9\linewidth}{0.9\linewidth}{\g<filename>}    % requires \usepackage{movie15}
-% #ifndef EXTERNAL_MOVIE_VIEWER
-
-\movieref[rate=0.5]{\g<filename>}{Slower}
-\movieref[rate=2]{\g<filename>}{Faster}
-\movieref[default]{\g<filename>}{Normal}
-\movieref[pause]{\g<filename>}{Play/Pause}
-\movieref[stop]{\g<filename>}{Stop}
-
-% #else
-%\href{run:\g<filename>}{\g<filename>}
-% #endif
-
-% alternative: \movie command that comes with beamer itself
-% \movie[options]{\g<filename>}{\g<filename>}
-    
-\end{center}
-\caption{\g<caption>}
-\end{figure}
-""",
+        'movie':         latex_movie,
         'comment':       '%% %s',
         }
     # should be configureable:
@@ -414,13 +434,13 @@ repeat,
                         'newcommands_keep.tex'
     for filename in newcommands_files:
         pfilename = filename[:-4] + '.p.tex'
-        if os.path.isfile(filename):
+        if os.path.isfile(filename) or os.path.isfile(pfilename):
             INTRO['LaTeX'] += r"""\input{%s}
 """ % (filename[:-4])
             #print '... found', filename
-        elif os.path.isfile(pfilename):
-            print '%s exists, but not %s - run ptex2tex first' % \
-            (pfilename, filename)
+        #elif os.path.isfile(pfilename):
+        #    print '%s exists, but not %s - run ptex2tex first' % \
+        #    (pfilename, filename)
         else:
             #print '... did not find', filename
             pass

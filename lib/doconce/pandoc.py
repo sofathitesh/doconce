@@ -7,6 +7,7 @@ for syntax.
 """
 
 import re, sys
+from common import default_movie
 
 def pandoc_author(authors_and_institutions, auth2index,
                  inst2index, index2inst):
@@ -153,6 +154,7 @@ def define(FILENAME_EXTENSION,
         'emphasize': None,
         'bold':      None,
         'figure':    r'![\g<caption>](\g<filename>)',
+        'movie':     default_movie,
         'verbatim':  None,
         'linkURL':   r'\g<begin>\g<link> (\g<url>)\g<end>',
         'linkURL2':  r'[\g<link>](\g<url>)',

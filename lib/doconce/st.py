@@ -1,5 +1,6 @@
 
 from epytext import epytext_author
+from common import default_movie
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -35,6 +36,7 @@ def define(FILENAME_EXTENSION,
         'title':         r'TITLE: \g<subst>',
         'date':          r'DATE: \g<subst>',
         'author':        epytext_author,
+        'movie':         default_movie,
         }
 
     from rst import rst_code, rst_table

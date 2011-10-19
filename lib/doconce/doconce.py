@@ -206,7 +206,7 @@ def syntax_check(filestr, format):
         print matches
         sys.exit(1)
 
-    # Movie without comman between filename and options? Or initial spaces?
+    # Movie without comma between filename and options? Or initial spaces?
     pattern = r'^MOVIE:\s*\[[^,\]]+ +[^\]]*\]'
     cpattern = re.compile(pattern, re.MULTILINE)
     matches = cpattern.findall(filestr)
@@ -850,8 +850,8 @@ def inline_tag_subst(filestr, format):
 
     ordered_tags = (
         'title', 'date',
-        #'figure',
         'movie',
+        #'figure',
         # important to do section, subsection, etc. BEFORE paragraph and bold:
         'section', 'subsection', 'subsubsection',
         'emphasize', 'math2', 'math', 'bold', 'verbatim',
@@ -892,11 +892,17 @@ def inline_tag_subst(filestr, format):
             for i in range(len(lines)):
                 m = re.search(tag_pattern, lines[i])
                 if m:
+                    #if 1:
                     try:
                         replacement_str = replacement(m)
+                    #else:
                     except Exception, e:
                         print 'Problem at line', lines[i], '\n', e
-                        raise Exception(e)
+                        print 'occured while replacing inline tag "%s" (%s) with aid of function %s' % (tag, tag_pattern, replacement.__name__)
+                        #raise Exception(e)
+                        # Raising exception is misleading since the
+                        # error occured in the replacement function
+                        sys.exit(1)  
                     lines[i] = re.sub(tag_pattern, replacement_str, lines[i])
                     occurences += 1
             filestr = '\n'.join(lines)
@@ -1072,28 +1078,36 @@ def doconce2format(in_filename, format, out_filename):
     f.close()
 
 
-def preprocess(filename, format, preprocess_options=''):
+def preprocess(filename, format, preprocessor_options=[]):
     """
-    Run Mako or the preprocess script on filename and return the name
-    of the resulting file. In the call, all sys.argv[3:] arguments
-    are given as preprocess_options. In addition, FORMAT (=format) is
+    Run mako or the preprocess script on filename and return the name
+    of the resulting file. The preprocessor_options list contains
+    the preprocessor options given on the command line.
+    In addition, the preprocessor option FORMAT (=format) is
     always defined.
     """
 
     f = open(filename, 'r'); filestr = f.read(); f.close()
     preprocessor = None
-    if re.search(r'^#\s*#(if|define|include)', filestr, re.MULTILINE):
-        #print 'run Preprocess on', filename, 'to make', resultfile
+
+    # First guess if preprocess or mako is used
+    preprocess_commands = r'^#\s*#(if|define|include)'
+    mako_commands = r'^\s*<?%'
+    if re.search(preprocess_commands, filestr, re.MULTILINE):
+        #print 'run preprocess on', filename, 'to make', resultfile
         preprocessor = 'preprocess'
+        preprocess_options = ' '.join(preprocessor_options)
         resultfile = '__tmp.do.txt'
 
         try:
             import preprocess
         except ImportError:
-            print '%s makes use of Preprocess directives and therefore '\
-                  'requires code.google.com/p/preprocess to be installed. '\
-                  'On Debian systems this is available by installing the '\
-                  'the \'preprocess\' package.' % filename
+            print """\
+%s makes use of preprocess directives and therefore requires
+the preprocess program to be installed (see code.google.com/p/preprocess).
+On Debian systems, preprocess can be installed through the
+preprocess package (sudo apt-get install preprocess).
+""" % filename
             sys.exit(1)
         
         cmd = 'preprocess -DFORMAT=%s %s %s > %s' % \
@@ -1105,9 +1119,9 @@ def preprocess(filename, format, preprocess_options=''):
             print outtext
             sys.exit(1)
 
-    if re.search(r'^\s*<?%', filestr, re.MULTILINE):
-        if preprocessor is not None:
-            print 'Preprocess and Mako preprocessor statements are mixed!'
+    if re.search(mako_commands, filestr, re.MULTILINE):
+        if preprocessor is not None:  # already found preprocess commands?
+            print 'preprocess and mako preprocessor statements are mixed!'
             print 'Use only one of them!'
             sys.exit(1)
         preprocessor = 'mako'
@@ -1116,14 +1130,16 @@ def preprocess(filename, format, preprocess_options=''):
         try:
             import mako
         except ImportError:
-            print '%s makes use of Preprocess directives and therefore '\
-                  'requires www.makotemplates.org to be installed. '\
-                  'On Debian systems this is available by installing the '\
-                  'the \'python-mako\' package.' % filename
+            print """\
+%s makes use of mako directives and therefore requires mako
+to be installed (www.makotemplates.org).
+On Debian systems, mako can easily be installed through the
+python-mako package (sudo apt-get install python-mako).
+""" % filename
             sys.exit(1)
         
-        print 'run Mako preprocessor on', filename, 'to make', resultfile
-        # add a space after \\ at the end of lines (otherwise Mako
+        print 'run mako preprocessor on', filename, 'to make', resultfile
+        # add a space after \\ at the end of lines (otherwise mako
         # eats one of the backslashes in tex blocks)
         f = open(filename, 'r')
         filestr = f.read()
@@ -1136,9 +1152,17 @@ def preprocess(filename, format, preprocess_options=''):
         temp = Template(filename=resultfile)
         f = open(resultfile, 'w')
         kwargs = {'FORMAT': format}
-        kwargs.update(eval('dict(%s)' % ','.join(preprocess_options.split())))
+        for option in preprocessor_options:
+            key, value = option.split('=')
+            # Try eval(value), if it fails, assume string
+            try:
+                kwargs[key] = eval(value)
+            except (NameError, SyntaxError):
+                kwargs[key] = value
         f.write(temp.render(**kwargs))
         f.close()
+        if preprocessor_options:
+            print 'mako variables:', kwargs
 
     if preprocessor is None:
         # no preprocessor syntax detected
@@ -1236,8 +1260,7 @@ def main():
 
     out_filename = basename + FILENAME_EXTENSION[format]
     #print '\n----- doconce format %s %s' % (format, filename)
-    filename_preprocessed = preprocess(filename, format,
-                                       ' '.join(sys.argv[1:]))
+    filename_preprocessed = preprocess(filename, format, sys.argv[1:])
     doconce2format(filename_preprocessed, format, out_filename)
     if filename_preprocessed.startswith('__'):
         os.remove(filename_preprocessed)  # clean up

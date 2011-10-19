@@ -2,15 +2,21 @@
 ======= From Doconce to Other Formats =======
 label{doconce2formats}
 
-Transformation of a Doconce document to various other
+Transformation of a Doconce document `mydoc.do.txt` to various other
 formats applies the script `doconce format`:
 !bc sys
-Unix/DOS> doconce format format mydoc.do.txt
+Terminal> doconce format format mydoc.do.txt
 !ec
-The `preprocess` program is always used to preprocess the file first,
-and options to `preprocess` can be added after the filename. For example,
+or just
 !bc sys
-Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+Terminal> doconce format format mydoc
+!ec
+The `mako` or `preprocess` programs are always used to preprocess the
+file first, and options to `mako` or `preprocess` can be added after the
+filename. For example,
+!bc sys
+Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 !ec
 The variable `FORMAT` is always defined as the current format when
 running `preprocess`. That is, in the last example, `FORMAT` is
@@ -19,15 +25,16 @@ format specific actions through tests like `#if FORMAT == "LaTeX"`.
 
 Inline comments in the text are removed from the output by
 !bc sys
-Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+Terminal> doconce format LaTeX mydoc remove_inline_comments
 !ec
 One can also remove such comments from the original Doconce file
-by running a helper script in the `bin` folder of the Doconce
+by running 
 source code:
 !bc
-Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+Terminal> doconce remove_inline_comments mydoc
 !ec
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 
 ===== HTML =====
@@ -35,7 +42,7 @@ This action is convenient when a Doconce document reaches its final form.
 Making an HTML version of a Doconce file `mydoc.do.txt`
 is performed by
 !bc sys
-Unix/DOS> doconce format HTML mydoc.do.txt
+Terminal> doconce format HTML mydoc
 !ec
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
@@ -49,7 +56,7 @@ Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
 __Step 1.__ Filter the doconce text to a pre-LaTeX form `mydoc.p.tex` for
      `ptex2tex`:
 !bc sys
-Unix/DOS> doconce format LaTeX mydoc.do.txt
+Terminal> doconce format LaTeX mydoc
 !ec
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files `newcommands.tex`, `newcommands_keep.tex`, or
@@ -59,24 +66,25 @@ so that your commands are defined.
 
 __Step 2.__ Run `ptex2tex` (if you have it) to make a standard LaTeX file,
 !bc sys
-Unix/DOS> ptex2tex mydoc
+Terminal> ptex2tex mydoc
 !ec
 or just perform a plain copy,
 !bc sys
-Unix/DOS> cp mydoc.p.tex mydoc.tex
+Terminal> cp mydoc.p.tex mydoc.tex
 !ec
-Doconce generates a `.p.tex` file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font,
+Doconce generates a `.p.tex` file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run
 !bc sys
-Unix/DOS> ptex2tex -DHELVETICA mydoc
+Terminal> ptex2tex -DHELVETICA mydoc
 !ec
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through
 !bc sys
-Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 !ec
 
 The `ptex2tex` tool makes it possible to easily switch between many
@@ -90,29 +98,29 @@ There are over 30 styles to choose from.
 __Step 3.__ Compile `mydoc.tex`
 and create the PDF file:
 !bc sys
-Unix/DOS> latex mydoc
-Unix/DOS> latex mydoc
-Unix/DOS> makeindex mydoc   # if index
-Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex mydoc
-Unix/DOS> dvipdf mydoc
+Terminal> latex mydoc
+Terminal> latex mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex mydoc
+Terminal> dvipdf mydoc
 !ec
 If one wishes to use the `Minted_Python`, `Minted_Cpp`, etc., environments
 in `ptex2tex` for typesetting code, the `minted` LaTeX package is needed.
 This package is included by running `doconce format` with the
 `-DMINTED` option:
 !bc sys
-Unix/DOS> ptex2tex -DMINTED mydoc
+Terminal> ptex2tex -DMINTED mydoc
 !ec
 In this case, `latex` must be run with the
 `-shell-escape` option:
 !bc sys
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> makeindex mydoc   # if index
-Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> dvipdf mydoc
+Terminal> latex -shell-escape mydoc
+Terminal> latex -shell-escape mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex -shell-escape mydoc
+Terminal> dvipdf mydoc
 !ec
 The `-shell-escape` option is required because the `minted.sty` style
 file runs the `pygments` program to format code, and this program
@@ -125,7 +133,7 @@ We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 !bc sys
-Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 !ec
 
 ===== reStructuredText =====
@@ -134,14 +142,14 @@ Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file `mydoc.rst`:
 !bc sys
-Unix/DOS> doconce format rst mydoc.do.txt
+Terminal> doconce format rst mydoc.do.txt
 !ec
 We may now produce various other formats:
 !bc sys
-Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 !ec
 The OpenOffice file `mydoc.odt` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -154,7 +162,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 __Step 1.__ Translate Doconce into the Sphinx dialect of
 the reStructuredText format:
 !bc sys
-Unix/DOS> doconce format sphinx mydoc.do.txt
+Terminal> doconce format sphinx mydoc.do.txt
 !ec
 
 __Step 2.__ Create a Sphinx root directory with a `conf.py` file, 
@@ -188,7 +196,7 @@ EOF
 !ec
 These statements as well as points 3-5 can be automated by the command
 !bc sys
-Unix/DOS> doconce sphinx_dir mydoc.do.txt
+Terminal> doconce sphinx_dir mydoc.do.txt
 !ec
 More precisely, in addition to making the `sphinx-rootdir`,
 this command generates a script `tmp_make_sphinx.sh` which
@@ -197,7 +205,7 @@ sphinx document.
 
 __Step 3.__ Move the `tutorial.rst` file to the Sphinx root directory:
 !bc sys
-Unix/DOS> mv mydoc.rst sphinx-rootdir
+Terminal> mv mydoc.rst sphinx-rootdir
 !ec
 If you have figures in your document, the relative paths to those will
 be invalid when you work with `mydoc.rst` in the `sphinx-rootdir`
@@ -224,7 +232,7 @@ Many other formats are also possible.
 
 __Step 6.__ View the result:
 !bc sys
-Unix/DOS> firefox _build/html/index.html
+Terminal> firefox _build/html/index.html
 !ec
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -244,7 +252,7 @@ one used by http://code.google.com/p/support/wiki/WikiSyntax<Google Code>.
 The transformation to this format, called `gwiki` to explicitly mark
 it as the Google Code dialect, is done by
 !bc sys
-Unix/DOS> doconce format gwiki mydoc.do.txt
+Terminal> doconce format gwiki mydoc.do.txt
 !ec
 You can then open a new wiki page for your Google Code project, copy
 the `mydoc.gwiki` output file from `doconce format` and paste the

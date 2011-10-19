@@ -6,6 +6,7 @@ Here called gwiki to make the dialect clear (g for google).
 
 
 import re, os, commands, sys
+from common import default_movie
 
 def gwiki_code(filestr, format):
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
@@ -179,6 +180,7 @@ def define(FILENAME_EXTENSION,
         'author':        gwiki_author, #r'===== \g<name>, \g<institution> =====',
 #        'figure':        r'<\g<filename>>',
         'figure':        gwiki_figure,
+        'movie':         default_movie,  # will not work for HTML movie player
         'comment':       '<wiki:comment> %s </wiki:comment>',
         }
 
