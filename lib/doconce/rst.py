@@ -48,8 +48,10 @@ def rst_figure(m):
     return result
 
 def rst_movie(m):
-    text = '.. raw:: html\n' + indent_lines(html_movie(m), 'sphinx') + '\n\n'
-    return text
+    html_text = html_movie(m)
+    html_text = indent_lines(html_text, 'sphinx')
+    rst_text = '.. raw:: html\n' + html_text + '\n\n'
+    return rst_text
     
 # these global patterns are used in st, epytext, plaintext as well:
 bc_regex_pattern = r'([a-zA-Z0-9)"`.*_}=-^~])[\n:.?!, ]\s*?^!bc.*?$'

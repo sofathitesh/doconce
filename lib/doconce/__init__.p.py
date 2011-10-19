@@ -4,7 +4,7 @@
 
 '''
 
-__version__ = '0.5'
+__version__ = '0.6'
 version = __version__
 __author__ = 'Hans Petter Langtangen', 'Johannes H. Ring'
 author = __author__

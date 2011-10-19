@@ -1,5 +1,6 @@
 
 import re, sys
+from common import default_movie
 
 def plain_author(authors_and_institutions, auth2index,
                  inst2index, index2inst):
@@ -101,6 +102,7 @@ def define(FILENAME_EXTENSION,
         'emphasize': None,
         'bold':      None,
         'figure':    None,
+        'movie':     default_movie,
         'verbatim':  r'\g<begin>\g<subst>\g<end>',  # no ` chars
         'linkURL':   r'\g<begin>\g<link> (\g<url>)\g<end>',
         'linkURL2':  r'\g<link> (\g<url>)',

@@ -131,7 +131,7 @@ text constructions that allow you to control the formating. For example,
  
   * there is support for both LaTeX and text-like inline mathematics,
 
-  * tables, figures with captions, URLs with links, index list, 
+  * tables, figures, movies with captions, URLs with links, index list, 
     labels and references are supported,
 
   * comments can be inserted throughout the text (`#` at the beginning

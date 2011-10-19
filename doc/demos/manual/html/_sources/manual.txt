@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Sep 12, 2011
+:Date: Oct 19, 2011
 
 .. lines beginning with # are comment lines
 
@@ -169,19 +169,27 @@ of the results.
 From Doconce to Other Formats
 =============================
 
-Transformation of a Doconce document to various other
+Transformation of a Doconce document ``mydoc.do.txt`` to various other
 formats applies the script ``doconce format``:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format format mydoc.do.txt
+        Terminal> doconce format format mydoc.do.txt
 
-The ``preprocess`` program is always used to preprocess the file first,
-and options to ``preprocess`` can be added after the filename. For example,
+or just
 
 .. code-block:: console
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+        Terminal> doconce format format mydoc
+
+The ``mako`` or ``preprocess`` programs are always used to preprocess the
+file first, and options to ``mako`` or ``preprocess`` can be added after the
+filename. For example,
+
+.. code-block:: console
+
+        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 
 The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
@@ -192,18 +200,19 @@ Inline comments in the text are removed from the output by
 
 .. code-block:: console
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+        Terminal> doconce format LaTeX mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
-by running a helper script in the ``bin`` folder of the Doconce
+by running 
 source code:
 
 .. code-block:: py
 
 
-        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+        Terminal> doconce remove_inline_comments mydoc
 
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 
 HTML
@@ -214,7 +223,7 @@ is performed by
 
 .. code-block:: console
 
-        Unix/DOS> doconce format HTML mydoc.do.txt
+        Terminal> doconce format HTML mydoc
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
@@ -234,7 +243,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt
+        Terminal> doconce format LaTeX mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
@@ -246,30 +255,31 @@ so that your commands are defined.
 
 .. code-block:: console
 
-        Unix/DOS> ptex2tex mydoc
+        Terminal> ptex2tex mydoc
 
 or just perform a plain copy,
 
 .. code-block:: console
 
-        Unix/DOS> cp mydoc.p.tex mydoc.tex
+        Terminal> cp mydoc.p.tex mydoc.tex
 
-Doconce generates a ``.p.tex`` file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font,
+Doconce generates a ``.p.tex`` file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run
 
 .. code-block:: console
 
-        Unix/DOS> ptex2tex -DHELVETICA mydoc
+        Terminal> ptex2tex -DHELVETICA mydoc
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through
 
 .. code-block:: console
 
-        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
@@ -285,12 +295,12 @@ and create the PDF file:
 
 .. code-block:: console
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex mydoc
+        Terminal> latex mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex mydoc
+        Terminal> dvipdf mydoc
 
 If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
 in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
@@ -299,19 +309,19 @@ This package is included by running ``doconce format`` with the
 
 .. code-block:: console
 
-        Unix/DOS> ptex2tex -DMINTED mydoc
+        Terminal> ptex2tex -DMINTED mydoc
 
 In this case, ``latex`` must be run with the
 ``-shell-escape`` option:
 
 .. code-block:: console
 
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex -shell-escape mydoc
+        Terminal> dvipdf mydoc
 
 The ``-shell-escape`` option is required because the ``minted.sty`` style
 file runs the ``pygments`` program to format code, and this program
@@ -327,7 +337,7 @@ computer source code:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+        Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 
 reStructuredText
@@ -339,16 +349,16 @@ reStructuredText file ``mydoc.rst``:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format rst mydoc.do.txt
+        Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats:
 
 .. code-block:: console
 
-        Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-        Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-        Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+        Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
 The OpenOffice file ``mydoc.odt`` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -364,7 +374,7 @@ the reStructuredText format:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format sphinx mydoc.do.txt
+        Terminal> doconce format sphinx mydoc.do.txt
 
 
 *Step 2.* Create a Sphinx root directory with a ``conf.py`` file, 
@@ -402,17 +412,18 @@ These statements as well as points 3-5 can be automated by the command
 
 .. code-block:: console
 
-        Unix/DOS> doconce sphinx_dir mydoc.do.txt
+        Terminal> doconce sphinx_dir mydoc.do.txt
 
 More precisely, in addition to making the ``sphinx-rootdir``,
 this command generates a script ``tmp_make_sphinx.sh`` which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory:
 
 .. code-block:: console
 
-        Unix/DOS> mv mydoc.rst sphinx-rootdir
+        Terminal> mv mydoc.rst sphinx-rootdir
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with ``mydoc.rst`` in the ``sphinx-rootdir``
@@ -446,7 +457,7 @@ Many other formats are also possible.
 
 .. code-block:: console
 
-        Unix/DOS> firefox _build/html/index.html
+        Terminal> firefox _build/html/index.html
 
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -472,7 +483,7 @@ it as the Google Code dialect, is done by
 
 .. code-block:: console
 
-        Unix/DOS> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
 the ``mydoc.gwiki`` output file from ``doconce format`` and paste the
@@ -612,7 +623,7 @@ Special Lines
 The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
-sections, subsections, paragraphs., figures, etc.
+sections, subsections, paragraphs., figures, movies, etc.
 
 
 .. index:: TITLE keyword
@@ -762,7 +773,9 @@ included in the formatted caption).
 
 
 *Movies.* Here is an example on the ``MOVIE:`` keyword for embedding movies. This
-feature works only for the ``LaTeX``, ``HTML``, ``rst``, and ``sphinx`` formats.
+feature works well for the ``LaTeX``, ``HTML``, ``rst``, and ``sphinx`` formats.
+Other formats try to generate some HTML file and link to that file
+for showing the movie.
 
 .. code-block:: py
 
@@ -774,27 +787,51 @@ feature works only for the ``LaTeX``, ``HTML``, ``rst``, and ``sphinx`` formats.
 
 
 .. raw:: html
-
-   <EMBED SRC="figs/mjolnir.mpeg"  width=600, height=470 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
-   <P>
-   <EM></EM>
-   </P>
-
-
+        
+           <EMBED SRC="figs/mjolnir.mpeg" ['width=600', 'height=470'] AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+           <P>
+           <EM></EM>
+           </P>
 
 
-.. MOVIE: [figs/wavepacket.gif, width=600, height=470]
+
+.. MOVIE: [figs/wavepacket.gif, width=600 height=470]
 
 
-.. MOVIE: [figs/wavepacket2.mpeg, width=600, height=470]
+.. MOVIE: [figs/wavepacket2.mpeg, width=600 height=470]
 
 
 The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML format will play
-the movie right away, while for all other formats there is no
-movie support. The HTML format can also treat filenames of the form
-``myframes*.png``. In that case, a player for showing the sequence of frames
-is inserted in the HTML file. 
+in order to play movies in PDF via Acroread. The HTML, reST, and
+Sphinx formats will play
+the movie right away by embedding the file in a standard HTML code,
+provided the output format is HTML.
+For all other formats a URL to an HTML file, which can play the code,
+is inserted in the output document.
+
+When movies are embedded in the PDF file via LaTeX and
+the ``movie15`` package, there is a preprocess variable
+``EXTERNAL_MOVIE_VIEWER`` which can be defined to launch an external
+viewer when displaying the PDF file (in Acrobat Reader):
+
+.. code-block:: console
+
+        Terminal> ptex2tex -DEXTERNAL_MOVIE_VIEWER mydoc
+
+
+The HTML, reST, and Sphinx formats can also treat filenames of the form
+``myframes*.png``. In that case, an HTML file for showing the sequence of frames
+is generated, and a link to this file is inserted in the output document.
+That is, a simple "movie viewer" for the frames is made. 
+
+Many publish their scientific movies on YouTube, and Doconce recognizes
+YouTube URLs as movies. When the output is an HTML file, the movie will
+be embedded, otherwise a URL to the YouTube page is inserted.
+You should equip the ``MOVIE:`` command with the right width and height
+of embedded YouTube movies (the parameters appear when you request
+the embedded HTML code for the movie on the YouTube page).
+
+
 
 *Computer Code.* Another type of special lines starts with ``@@@CODE`` and enables copying
 of computer code from a file directly into a verbatim environment, see 
@@ -1389,8 +1426,8 @@ Preprocessing Steps
 
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
-Two preprocessors are supported: Preprocess 
-(`<http://code.google.com/p/preprocess>`_) and Mako
+Two preprocessors are supported: preprocess 
+(`<http://code.google.com/p/preprocess>`_) and mako
 (`<http://www.makotemplates.org/>`_). The former allows include and if-else
 statements much like the well-known preprocessor in C and C++ (but it
 does not allow sophisticated macro substitutions). The latter
@@ -1400,15 +1437,50 @@ through Python code embedded in the Doconce document. An arbitrary set
 of ``name=value`` command-line arguments (at the end of the command line)
 automatically define Mako variables that are substituted in the document.
 
-Doconce will detect if Preprocess or Mako commands are used and run
+Doconce will detect if preprocess or Mako commands are used and run
 the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
-Preprocess and Mako always have the variable ``FORMAT`` to be the desired
-output format of Doconce. It is then easy to test on the value of ``FORMAT``
-and take different actions for different formats. For example, one may
-create special LaTeX output for figures, say with multiple plots within
-a figure, while other formats may apply a separate figure for each plot.
+The preprocess and mako programs always have the variable ``FORMAT``
+defined as the desired output format of Doconce (``HTML``, ``LaTeX``,
+``plain``, ``rst``, ``sphinx``, ``epydoc``, ``st``).  It is then easy to test on
+the value of ``FORMAT`` and take different actions for different
+formats. For example, one may create special LaTeX output for figures,
+say with multiple plots within a figure, while other formats may apply
+a separate figure for each plot. Below is an example (see the Doconce
+source code of this document to understand how preprocess is used to
+create the example).
+
+.. If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
+
+.. PostScript files are used.
+
+
+
+.. Use default Doconce figure handling for all other formats
+
+
+
+.. figure:: figs/wavepacket_0001.png
+   :width: 400
+
+   Wavepacket at time 0.1 s
+
+
+
+.. figure:: figs/wavepacket_0010.png
+   :width: 400
+
+   Wavepacket at time 0.2 s
+
+
+
+Other user-defined variables for the preprocessor can be set at 
+the command line as explained in the section :ref:`doconce2formats`.
+
+More advanced use of mako can include Python code that may automate
+the writing of parts of the document.
+
 
 
 Missing Features

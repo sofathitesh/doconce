@@ -8,7 +8,8 @@ doconce format sphinx testdoc.do.txt
 mv -f testdoc.rst testdoc.sphinx.rst
 doconce format rst testdoc.do.txt
 doconce format epytext testdoc.do.txt
-doconce format gwiki testdoc.do.txt
+# Test mako variables too
+doconce format gwiki testdoc.do.txt remove_inline_comments MYVAR1=3 MYVAR2='a string'
 
 # Test encoding
 doconce guess_encoding encoding1.do.txt > tmp_encodings.txt

@@ -51,8 +51,6 @@ doconce subst '\.png' '' manual.rst.tex   # no extension in graphics file
 latex manual.rst.tex   # pdflatex works too
 latex manual.rst.tex
 dvipdf manual.rst.dvi
-rst2newlatex.py manual.rst > manual.rst_new.tex
-
 
 # plain text:
 $d2f plain manual.do.txt remove_inline_comments 
@@ -62,6 +60,7 @@ $d2f st manual.do.txt
 
 # doconce LaTeX:
 $d2f LaTeX manual.do.txt    # produces ptex2tex: manual.p.tex
+doconce replace 'usepackage{ptex2tex' 'usepackage{ptex2tex,subfigure' manual.p.tex  # need subfigure LaTeX package
 ptex2tex -DMINTED manual    # turn ptex2tex format into plain latex
 rm -f manual.p.tex
 latex -shell-escape manual

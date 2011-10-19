@@ -61,6 +61,69 @@ def ref2equations(filestr):
                      r'Equation (\g<1>)', filestr)
     return filestr
 
+def default_movie(m):
+    """Replace a movie entry by a proper URL with text."""
+    # Note: essentially same code as html_movie
+    import os, glob
+    filename = m.group('filename')
+    options = m.group('options')
+    caption = m.group('caption')
+
+    # Turn options to dictionary
+    if ',' in options:
+        options = options.split(',')
+    else:
+        options = options.split()
+    kwargs = {}
+    for opt in options:
+        if opt.startswith('width') or opt.startswith('WIDTH'):
+            kwargs['width'] = int(opt.split('=')[1])
+        if opt.startswith('height') or opt.startswith('HEIGHT'):
+            kwargs['height'] = int(opt.split('=')[1])
+    
+    if '*' in filename:
+        # Glob files and use DocWriter.html_movie to make a separate
+        # HTML page for viewing the set of files
+        plotfiles = sorted(glob.glob(filename))
+        if not plotfiles:
+            print 'No plotfiles on the form', filename
+            sys.exit(1)
+        basename  = os.path.basename(plotfiles[0])
+        stem, ext = os.path.splitext(basename)
+        kwargs['casename'] = stem
+        import DocWriter
+        header, jscode, form, footer = DocWriter.html_movie(plotfiles, **kwargs)
+        #text = jscode + form  # does not work well with several movies
+        moviehtml = stem + '.html'
+        f = open(moviehtml, 'w')
+        f.write(header + jscode + form + footer)
+        f.close()
+        text = """\n%s (Movie of files `%s` in URL:"%s")\n""" % \
+               (caption, filename, moviehtml)
+    elif 'youtube.com' in filename:
+        # Rename embedded files to ordinary YouTube
+        filename = filename.replace('embed/', 'watch?v=')
+        text = '%s: URL:"%s"' % (caption, filename)
+    else:
+        # Make an HTML file where the movie file can be played
+        # (alternative to launching a player manually)
+        stem  = os.path.splitext(os.path.basename(filename))[0]
+        moviehtml = stem + '.html'
+        f = open(moviehtml, 'w')
+        f.write("""
+<HTML>
+<BODY>
+<TITLE>Embedding movie %s in HTML</TITLE>
+   <EMBED SRC="%s" %s AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+   <P>
+   <EM>%s</EM>
+   </P>
+</BODY>
+</HTML>        
+""" % (filename, filename, ' '.join(options), caption))
+        text = '%s (Movie %s: play URL:"%s")' % (caption, filename, moviehtml)
+    return text
+
 def remove_code_and_tex(filestr):
     """
     Remove verbatim and latex (math) code blocks from the file and
