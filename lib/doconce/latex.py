@@ -337,10 +337,10 @@ def define(FILENAME_EXTENSION,
         'linkURL2':      r'\href{\g<url>}{\g<link>}',
         'plainURL':      r'\href{\g<url>}{\\nolinkurl{\g<url>}}',  # cannot use \code inside \href, use \nolinkurl to handle _ and # etc. (implies verbatim font)
         'inlinecomment': r'\inlinecomment{\g<name>}{\g<comment>}',
-        'section':       '\n\n' + r'\section{\g<subst>}' + '\n',
-        'subsection':    '\n' + r'\subsection{\g<subst>}' + '\n',
+        'section':       '\n\n' + r'\section{\g<subst>}',
+        'subsection':    '\n' + r'\subsection{\g<subst>}',
         #'subsubsection': '\n' + r'\subsubsection{\g<subst>}' + '\n',
-        'subsubsection': r'\paragraph{\g<subst>.}' + '\n',
+        'subsubsection': '\n' + r'\paragraph{\g<subst>.}',
         'paragraph':     r'\paragraph{\g<subst>}' + '\n',
         # recall that this is regex so LaTeX commands must be treated carefully:
         #'title':         r'\\title{\g<subst>}' + '\n', # we don'e use maketitle
