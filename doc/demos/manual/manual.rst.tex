@@ -59,7 +59,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Oct 19, 2011
+Oct 22, 2011
 
 \end{DUfieldlist}
 
@@ -88,7 +88,7 @@ Doconce is two things:
 \item Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text (much like what you would use in an
 email), but the text can be transformed to numerous other formats,
-including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
 Epytext, and also plain text (where non-obvious formatting/tags are
 removed for clear reading in, e.g., emails). From reStructuredText
 you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -128,11 +128,11 @@ with big LaTeX projects (books).
 
 \item Doconce is almost self-explanatory and is a handy starting point
 for generating documents in more complicated markup languages, such
-as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-is just to make the initial versions of a Sphinx or Wiki document.
+as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+is just to make the initial versions of a Sphinx or wiki document.
 
 \item Contrary to the similar Pandoc translator, Doconce integrates with
-Sphinx and Google Wiki. However, if these formats are not of interest,
+Sphinx and Google wiki. However, if these formats are not of interest,
 Pandoc is obviously a superior tool.
 
 \end{itemize}
@@ -934,7 +934,25 @@ The running text goes here.
 
 \emph{A Paragraph.} The running text goes here.
 
-\emph{Figures.} Figures are recognized by the special line syntax:
+
+%___________________________________________________________________________
+
+\section*{\phantomsection%
+  Special Lines%
+  \addcontentsline{toc}{section}{Special Lines}%
+  \label{id3}%
+}
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Figures%
+  \addcontentsline{toc}{subsection}{Figures}%
+  \label{figures}%
+}
+
+Figures are recognized by the special line syntax:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 FIGURE:{[}filename,~height=xxx~width=yyy~scale=zzz{]}~possible~caption
@@ -963,7 +981,16 @@ included in the formatted caption).
 \caption{Streamtube visualization of a fluid flow  (fig:viz)}
 \end{figure}
 
-\emph{Movies.} Here is an example on the \texttt{MOVIE:} keyword for embedding movies. This
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Movies%
+  \addcontentsline{toc}{subsection}{Movies}%
+  \label{movies}%
+}
+
+Here is an example on the \texttt{MOVIE:} keyword for embedding movies. This
 feature works well for the \texttt{LaTeX}, \texttt{HTML}, \texttt{rst}, and \texttt{sphinx} formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie:
@@ -973,14 +1000,17 @@ MOVIE:~{[}filename,~height=xxx~width=yyy{]}~possible~caption
 }
 \end{quote}
 
-% LaTeX/PDF format requires movie15 package for displaying movies
+% LaTeX/PDF format can make use of the movie15 package for displaying movies,
+
+% or just plain \h`run: ...`_{...}
 
 % MOVIE: [figs/wavepacket.gif, width=600 height=470]
 
 % MOVIE: [figs/wavepacket2.mpeg, width=600 height=470]
 
-The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML, reST, and
+The LaTeX format results in a file that can either make use of
+the movie15 package (requires the PDF to be shown in Acrobat Reader)
+or just a plain address to the movie. The HTML, reST, and
 Sphinx formats will play
 the movie right away by embedding the file in a standard HTML code,
 provided the output format is HTML.
@@ -988,12 +1018,13 @@ For all other formats a URL to an HTML file, which can play the code,
 is inserted in the output document.
 
 When movies are embedded in the PDF file via LaTeX and
-the \texttt{movie15} package, there is a preprocess variable
+the \texttt{movie15} package wanted, one has to turn on the preprocessor
+variable \texttt{MOVIE15}. There is an associated variable
 \texttt{EXTERNAL\_MOVIE\_VIEWER} which can be defined to launch an external
 viewer when displaying the PDF file (in Acrobat Reader):
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~ptex2tex~-DEXTERNAL\_MOVIE\_VIEWER~mydoc
+Terminal>~ptex2tex~-DMOVIE15~-DEXTERNAL\_MOVIE\_VIEWER~mydoc
 }
 \end{quote}
 
@@ -1009,7 +1040,16 @@ You should equip the \texttt{MOVIE:} command with the right width and height
 of embedded YouTube movies (the parameters appear when you request
 the embedded HTML code for the movie on the YouTube page).
 
-\emph{Computer Code.} Another type of special lines starts with \texttt{@@@CODE} and enables copying
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Copying Computer Code%
+  \addcontentsline{toc}{subsection}{Copying Computer Code}%
+  \label{copying-computer-code}%
+}
+
+Another type of special lines starts with \texttt{@@@CODE} and enables copying
 of computer code from a file directly into a verbatim environment, see
 the section \hyperref[blocks-of-verbatim-computer-code]{Blocks of Verbatim Computer Code} below.
 
@@ -1019,7 +1059,7 @@ the section \hyperref[blocks-of-verbatim-computer-code]{Blocks of Verbatim Compu
 \subsection*{\phantomsection%
   Inline Tagging%
   \addcontentsline{toc}{subsection}{Inline Tagging}%
-  \label{id3}%
+  \label{id4}%
   \label{inline-tagging}%
 }
 
@@ -1169,7 +1209,7 @@ will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the ``label'' and ``ref'' commands are first translated to the proper
 reStructuredText commands by \texttt{doconce format}. In the HTML and (Google
-Code) Wiki formats, labels become anchors and references become links,
+Code) wiki formats, labels become anchors and references become links,
 and with LaTeX ``label'' and ``ref'' are just equipped with backslashes so
 these commands work as usual in LaTeX.
 
@@ -1184,7 +1224,7 @@ the source of this document illustrates how labels and references
 are handled by the format in question.
 
 Hyperlinks to files or web addresses are handled as explained
-in the section \hyperref[id3]{Inline Tagging}.
+in the section \hyperref[id4]{Inline Tagging}.
 
 
 %___________________________________________________________________________
@@ -1214,7 +1254,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to:
 \end{quote}
 
 Everything related to the index simply becomes invisible in
-plain text, Epytext, StructuredText, HTML, and Wiki formats.
+plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: \texttt{idx} commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
 Index items are naturally placed right after section headings, before the
@@ -1364,7 +1404,18 @@ is built up of pipe symbols and dashes:
 \end{quote}
 
 The pipes and column values do not need to be aligned (but why write
-the Doconce source in an ugly way?).
+the Doconce source in an ugly way?). In the line below the heading,
+one can insert the characters \texttt{c}, \texttt{r}, or \texttt{l} to specify the
+alignment of the columns (centered, right, or left, respectively).
+Similar character can be inserted in the line above the header to
+algn the headings. Pipes \texttt{|} can also be inserted to indicate
+vertical rules in LaTeX tables (they are ignored for other formats).
+Note that not all formats offer alignment of heading or entries
+in tables (reStructuredText and Sphinx are examples). Also note that
+Doconce tables are very simple: neither entries nor
+headings can span several columns or rows. When that functionality
+is needed, one can make use of the preprocessor and if-tests on
+the format and insert format-specific code for tables.
 
 
 %___________________________________________________________________________

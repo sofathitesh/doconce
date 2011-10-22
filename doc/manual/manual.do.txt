@@ -15,7 +15,7 @@ Doconce is two things:
   o Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -47,10 +47,10 @@ Here are some Doconce features:
     with big LaTeX projects (books).
   * Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
   * Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
@@ -546,7 +546,7 @@ will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
 reStructuredText commands by `doconce format`. In the HTML and (Google
-Code) Wiki formats, labels become anchors and references become links,
+Code) wiki formats, labels become anchors and references become links,
 and with LaTeX "label" and "ref" are just equipped with backslashes so
 these commands work as usual in LaTeX.
 
@@ -579,7 +579,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 !ec
 Everything related to the index simply becomes invisible in 
-plain text, Epytext, StructuredText, HTML, and Wiki formats.
+plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: `idx` commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
 Index items are naturally placed right after section headings, before the

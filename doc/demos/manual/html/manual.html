@@ -55,7 +55,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Oct 19, 2011</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Oct 22, 2011</td>
 </tr>
 </tbody>
 </table>
@@ -68,7 +68,7 @@
 <li>Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text (much like what you would use in an
 email), but the text can be transformed to numerous other formats,
-including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
 Epytext, and also plain text (where non-obvious formatting/tags are
 removed for clear reading in, e.g., emails). From reStructuredText
 you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -98,10 +98,10 @@ say in examples, directly from the source code files.</li>
 with big LaTeX projects (books).</li>
 <li>Doconce is almost self-explanatory and is a handy starting point
 for generating documents in more complicated markup languages, such
-as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-is just to make the initial versions of a Sphinx or Wiki document.</li>
+as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+is just to make the initial versions of a Sphinx or wiki document.</li>
 <li>Contrary to the similar Pandoc translator, Doconce integrates with
-Sphinx and Google Wiki. However, if these formats are not of interest,
+Sphinx and Google wiki. However, if these formats are not of interest,
 Pandoc is obviously a superior tool.</li>
 </ul>
 </div></blockquote>
@@ -590,7 +590,14 @@ __A Paragraph.__ The running text goes here.</pre>
 <h3>Example on a Subsubsection Heading<a class="headerlink" href="#example-on-a-subsubsection-heading" title="Permalink to this headline">¶</a></h3>
 <p>The running text goes here.</p>
 <p><em>A Paragraph.</em> The running text goes here.</p>
-<p><em>Figures.</em> Figures are recognized by the special line syntax</p>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h1>Special Lines<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="figures">
+<h2>Figures<a class="headerlink" href="#figures" title="Permalink to this headline">¶</a></h2>
+<p>Figures are recognized by the special line syntax</p>
 <div class="highlight-py"><pre>FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption</pre>
 </div>
 <p>The filename can be without extension, and Doconce will search for an
@@ -611,27 +618,32 @@ included in the formatted caption).</p>
 <img alt="_images/streamtubes.png" src="_images/streamtubes.png" style="width: 400px;" />
 <p class="caption">Streamtube visualization of a fluid flow</p>
 </div>
-<p><em>Movies.</em> Here is an example on the <tt class="docutils literal"><span class="pre">MOVIE:</span></tt> keyword for embedding movies. This
+</div>
+<div class="section" id="movies">
+<h2>Movies<a class="headerlink" href="#movies" title="Permalink to this headline">¶</a></h2>
+<p>Here is an example on the <tt class="docutils literal"><span class="pre">MOVIE:</span></tt> keyword for embedding movies. This
 feature works well for the <tt class="docutils literal"><span class="pre">LaTeX</span></tt>, <tt class="docutils literal"><span class="pre">HTML</span></tt>, <tt class="docutils literal"><span class="pre">rst</span></tt>, and <tt class="docutils literal"><span class="pre">sphinx</span></tt> formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie.</p>
 <div class="highlight-py"><pre>MOVIE: [filename, height=xxx width=yyy] possible caption</pre>
 </div>
-<EMBED SRC="figs/mjolnir.mpeg" ['width=600', 'height=470'] AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+<EMBED SRC="figs/mjolnir.mpeg" width=600 height=470 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
 <P>
 <EM></EM>
-</P><p>The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML, reST, and
+</P><p>The LaTeX format results in a file that can either make use of
+the movie15 package (requires the PDF to be shown in Acrobat Reader)
+or just a plain address to the movie. The HTML, reST, and
 Sphinx formats will play
 the movie right away by embedding the file in a standard HTML code,
 provided the output format is HTML.
 For all other formats a URL to an HTML file, which can play the code,
 is inserted in the output document.</p>
 <p>When movies are embedded in the PDF file via LaTeX and
-the <tt class="docutils literal"><span class="pre">movie15</span></tt> package, there is a preprocess variable
+the <tt class="docutils literal"><span class="pre">movie15</span></tt> package wanted, one has to turn on the preprocessor
+variable <tt class="docutils literal"><span class="pre">MOVIE15</span></tt>. There is an associated variable
 <tt class="docutils literal"><span class="pre">EXTERNAL_MOVIE_VIEWER</span></tt> which can be defined to launch an external
 viewer when displaying the PDF file (in Acrobat Reader):</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; ptex2tex -DEXTERNAL_MOVIE_VIEWER mydoc</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc</span>
 </pre></div>
 </div>
 <p>The HTML, reST, and Sphinx formats can also treat filenames of the form
@@ -644,13 +656,15 @@ be embedded, otherwise a URL to the YouTube page is inserted.
 You should equip the <tt class="docutils literal"><span class="pre">MOVIE:</span></tt> command with the right width and height
 of embedded YouTube movies (the parameters appear when you request
 the embedded HTML code for the movie on the YouTube page).</p>
-<p><em>Computer Code.</em> Another type of special lines starts with <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> and enables copying
+</div>
+<div class="section" id="copying-computer-code">
+<h2>Copying Computer Code<a class="headerlink" href="#copying-computer-code" title="Permalink to this headline">¶</a></h2>
+<p>Another type of special lines starts with <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> and enables copying
 of computer code from a file directly into a verbatim environment, see
 the section <a class="reference internal" href="#sec-verbatim-blocks"><em>Blocks of Verbatim Computer Code</em></a> below.</p>
 </div>
-</div>
 <div class="section" id="inline-tagging">
-<span id="id3"></span><h2>Inline Tagging<a class="headerlink" href="#inline-tagging" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>Inline Tagging<a class="headerlink" href="#inline-tagging" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="index-7"></span><span class="target" id="index-8"></span><span class="target" id="index-9"></span><span class="target" id="index-10"></span><p id="index-11">Doconce supports tags for <em>emphasized phrases</em>, <strong>boldface phrases</strong>,
 and <tt class="docutils literal"><span class="pre">verbatim</span> <span class="pre">text</span></tt> (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as <img class="math" src="_images/math/67368952c3d7b7712f81f70c910a7d2e8c169d2f.png" alt="\nu = \sin(x)"/>.</p>
@@ -748,7 +762,7 @@ will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the &#8220;label&#8221; and &#8220;ref&#8221; commands are first translated to the proper
 reStructuredText commands by <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt>. In the HTML and (Google
-Code) Wiki formats, labels become anchors and references become links,
+Code) wiki formats, labels become anchors and references become links,
 and with LaTeX &#8220;label&#8221; and &#8220;ref&#8221; are just equipped with backslashes so
 these commands work as usual in LaTeX.</p>
 <p>It is, in general, recommended to use labels and references for
@@ -776,7 +790,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to</p>
 <div class="highlight-py"><pre>\index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}</pre>
 </div>
 <p>Everything related to the index simply becomes invisible in
-plain text, Epytext, StructuredText, HTML, and Wiki formats.
+plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: <tt class="docutils literal"><span class="pre">idx</span></tt> commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
 Index items are naturally placed right after section headings, before the
@@ -870,7 +884,18 @@ is a special feature of doconce :-) )</p>
 |--------------------------------|</pre>
 </div>
 <p>The pipes and column values do not need to be aligned (but why write
-the Doconce source in an ugly way?).</p>
+the Doconce source in an ugly way?). In the line below the heading,
+one can insert the characters <tt class="docutils literal"><span class="pre">c</span></tt>, <tt class="docutils literal"><span class="pre">r</span></tt>, or <tt class="docutils literal"><span class="pre">l</span></tt> to specify the
+alignment of the columns (centered, right, or left, respectively).
+Similar character can be inserted in the line above the header to
+algn the headings. Pipes <tt class="docutils literal"><span class="pre">|</span></tt> can also be inserted to indicate
+vertical rules in LaTeX tables (they are ignored for other formats).
+Note that not all formats offer alignment of heading or entries
+in tables (reStructuredText and Sphinx are examples). Also note that
+Doconce tables are very simple: neither entries nor
+headings can span several columns or rows. When that functionality
+is needed, one can make use of the preprocessor and if-tests on
+the format and insert format-specific code for tables.</p>
 </div>
 <div class="section" id="blocks-of-verbatim-computer-code">
 <span id="sec-verbatim-blocks"></span><h2>Blocks of Verbatim Computer Code<a class="headerlink" href="#blocks-of-verbatim-computer-code" title="Permalink to this headline">¶</a></h2>
@@ -1343,7 +1368,7 @@ the iterations.</td>
 <table class="docutils citation" frame="void" id="python-primer-09" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Python:Primer:09]</td><td><em>(<a class="fn-backref" href="#id4">1</a>, <a class="fn-backref" href="#id6">2</a>)</em> H. P. Langtangen.
+<tr><td class="label">[Python:Primer:09]</td><td><em>(<a class="fn-backref" href="#id5">1</a>, <a class="fn-backref" href="#id7">2</a>)</em> H. P. Langtangen.
 <em>A Primer on Scientific Programming with Python</em>.
 Springer, 2009.</td></tr>
 </tbody>
@@ -1351,7 +1376,7 @@ Springer, 2009.</td></tr>
 <table class="docutils citation" frame="void" id="osnes-98" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Osnes:98]</td><td><em>(<a class="fn-backref" href="#id5">1</a>, <a class="fn-backref" href="#id7">2</a>)</em> H. Osnes and H. P. Langtangen.
+<tr><td class="label">[Osnes:98]</td><td><em>(<a class="fn-backref" href="#id6">1</a>, <a class="fn-backref" href="#id8">2</a>)</em> H. Osnes and H. P. Langtangen.
 An efficient probabilistic finite element method for stochastic
 groundwater flow.
 <em>Advances in Water Resources</em>, vol 22, 185-195, 1998.</td></tr>
@@ -1394,6 +1419,12 @@ groundwater flow.
 <li><a class="reference internal" href="#example-on-a-subsubsection-heading">Example on a Subsubsection Heading</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">Special Lines</a><ul>
+<li><a class="reference internal" href="#figures">Figures</a></li>
+<li><a class="reference internal" href="#movies">Movies</a></li>
+<li><a class="reference internal" href="#copying-computer-code">Copying Computer Code</a></li>
 <li><a class="reference internal" href="#inline-tagging">Inline Tagging</a></li>
 <li><a class="reference internal" href="#cross-referencing">Cross-Referencing</a></li>
 <li><a class="reference internal" href="#index-and-bibliography">Index and Bibliography</a></li>

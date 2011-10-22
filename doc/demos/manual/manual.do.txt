@@ -15,7 +15,7 @@ Doconce is two things:
   o Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -47,10 +47,10 @@ Here are some Doconce features:
     with big LaTeX projects (books).
   * Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
   * Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
@@ -332,16 +332,19 @@ The result for the present format looks like this:
 
 The running text goes here. 
 
-      ===== Example on a Subsection Heading ===== 
+===== Example on a Subsection Heading ===== 
 The running text goes here.
 
-          ===Example on a Subsubsection Heading===
+=== Example on a Subsubsection Heading ===
 
 The running text goes here.
 
 __A Paragraph.__ The running text goes here.
 
-__Figures.__
+======= Special Lines =======
+
+===== Figures =====
+
 Figures are recognized by the special line syntax
 !bc
 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
@@ -365,7 +368,8 @@ included in the formatted caption).
 
 FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. label{fig:viz}
 
-__Movies.__
+===== Movies =====
+
 Here is an example on the `MOVIE:` keyword for embedding movies. This
 feature works well for the `LaTeX`, `HTML`, `rst`, and `sphinx` formats.
 Other formats try to generate some HTML file and link to that file
@@ -374,7 +378,8 @@ for showing the movie.
 MOVIE: [filename, height=xxx width=yyy] possible caption
 !ec
 
-# LaTeX/PDF format requires movie15 package for displaying movies
+# LaTeX/PDF format can make use of the movie15 package for displaying movies,
+# or just plain \href{run: ...}{...}
 
 MOVIE: [figs/mjolnir.mpeg, width=600 height=470]
 
@@ -382,8 +387,9 @@ MOVIE: [figs/mjolnir.mpeg, width=600 height=470]
 
 #MOVIE: [figs/wavepacket2.mpeg, width=600 height=470]
 
-The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML, reST, and
+The LaTeX format results in a file that can either make use of
+the movie15 package (requires the PDF to be shown in Acrobat Reader)
+or just a plain address to the movie. The HTML, reST, and
 Sphinx formats will play
 the movie right away by embedding the file in a standard HTML code,
 provided the output format is HTML.
@@ -391,11 +397,12 @@ For all other formats a URL to an HTML file, which can play the code,
 is inserted in the output document.
 
 When movies are embedded in the PDF file via LaTeX and
-the `movie15` package, there is a preprocess variable
+the `movie15` package wanted, one has to turn on the preprocessor
+variable `MOVIE15`. There is an associated variable
 `EXTERNAL_MOVIE_VIEWER` which can be defined to launch an external
 viewer when displaying the PDF file (in Acrobat Reader):
 !bc sys
-Terminal> ptex2tex -DEXTERNAL_MOVIE_VIEWER mydoc
+Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
 !ec
 
 The HTML, reST, and Sphinx formats can also treat filenames of the form
@@ -412,7 +419,8 @@ the embedded HTML code for the movie on the YouTube page).
 
 
 
-__Computer Code.__
+===== Copying Computer Code =====
+
 Another type of special lines starts with `@@@CODE` and enables copying
 of computer code from a file directly into a verbatim environment, see 
 Section ref{sec:verbatim:blocks} below.
@@ -538,7 +546,7 @@ will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
 reStructuredText commands by `doconce format`. In the HTML and (Google
-Code) Wiki formats, labels become anchors and references become links,
+Code) wiki formats, labels become anchors and references become links,
 and with LaTeX "label" and "ref" are just equipped with backslashes so
 these commands work as usual in LaTeX.
 
@@ -571,7 +579,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 !ec
 Everything related to the index simply becomes invisible in 
-plain text, Epytext, StructuredText, HTML, and Wiki formats.
+plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: `idx` commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
 Index items are naturally placed right after section headings, before the
@@ -642,7 +650,7 @@ A table like
 
   |--------------------------------|
   |time  | velocity | acceleration |
-  |--------------------------------|
+  |--r--------r-----------r--------|
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
@@ -659,7 +667,19 @@ is built up of pipe symbols and dashes:
   |--------------------------------|
 !ec
 The pipes and column values do not need to be aligned (but why write
-the Doconce source in an ugly way?).
+the Doconce source in an ugly way?). In the line below the heading,
+one can insert the characters `c`, `r`, or `l` to specify the
+alignment of the columns (centered, right, or left, respectively).
+Similar character can be inserted in the line above the header to
+algn the headings. Pipes `|` can also be inserted to indicate
+vertical rules in LaTeX tables (they are ignored for other formats).
+Note that not all formats offer alignment of heading or entries
+in tables (reStructuredText and Sphinx are examples). Also note that
+Doconce tables are very simple: neither entries nor
+headings can span several columns or rows. When that functionality
+is needed, one can make use of the preprocessor and if-tests on
+the format and insert format-specific code for tables.
+
 
 
 ===== Blocks of Verbatim Computer Code ===== 
