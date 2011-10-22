@@ -412,13 +412,23 @@ def typeset_tables(filestr, format):
     """
     from StringIO import StringIO
     result = StringIO()
-    table = []
+    # table is a dict with keys rows, headings_align, columns_align
+    table = {'rows': []}  # init new table
     inside_table = False
     for line in filestr.splitlines():
-        # horisontal table rule?
         lin = line.lstrip()
+        # horisontal table rule?
         if lin.startswith('|--') and lin.endswith('-|'):
-            table.append(['horizontal rule'])
+            table['rows'].append(['horizontal rule'])
+            # see if there is c-l-r alignments:
+            align = lin[1:-1].replace('-', '') # keep | in align spec.
+            if align:
+                if len(table['rows']) == 0:
+                    # first horizontal rule, align concern headings
+                    table['headings_align'] = align
+                else:
+                    # align concerns column alignment
+                    table['columns_align'] = align
             continue  # continue with next line
         if lin.startswith('|') and not lin.startswith('|--'):  
             # row in table:
@@ -428,13 +438,14 @@ def typeset_tables(filestr, format):
             # remove empty columns and extra white space:
             #columns = [c.strip() for c in columns if c]
             columns = [c.strip() for c in columns if c.strip()]
-            table.append(columns)
+            table['rows'].append(columns)
         else:
             if inside_table:
                 # not a table line anymore, but we were just inside a table
                 # so the table is ended
                 inside_table = False
                 result.write(TABLE[format](table))   # typeset table
+                table = {'rows': []}  # init new table
             else:
                 result.write(line + '\n')
     return result.getvalue()
@@ -853,8 +864,9 @@ def inline_tag_subst(filestr, format):
         'movie',
         #'figure',
         # important to do section, subsection, etc. BEFORE paragraph and bold:
+        'emphasize', 'math2', 'math',
         'section', 'subsection', 'subsubsection',
-        'emphasize', 'math2', 'math', 'bold', 'verbatim',
+        'bold', 'verbatim',
         'inlinecomment',
         'citation',
         'paragraph',  # after bold and emphasize

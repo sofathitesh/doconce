@@ -69,15 +69,20 @@ def gwiki_table(table):
     """Native gwiki table."""
     # add 2 chars for column width since we add boldface _..._
     # in headlines:
-    column_width = [c+2 for c in table_analysis(table)]
+    column_width = [c+2 for c in table_analysis(table['rows'])]
 
+    # Does column and heading alignment matter?
+    # Not according to http://code.google.com/p/support/wiki/WikiSyntax#Tables
+    # but it is possible to use HTML code in gwiki (i.e., html_table)
+    # (think this was tried without success...)
+    
     s = '\n'
-    for i, row in enumerate(table):
+    for i, row in enumerate(table['rows']):
         if row == ['horizontal rule']:
             continue
         if i == 1 and \
-           table[i-1] == ['horizontal rule'] and \
-           table[i+1] == ['horizontal rule']:
+           table['rows'][i-1] == ['horizontal rule'] and \
+           table['rows'][i+1] == ['horizontal rule']:
             headline = True
         else:
             headline = False

@@ -26,7 +26,7 @@ def rst_figure(m):
         caption = '  label'.join(parts)
         caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
     else:
-        if caption[-1] == '.':
+        if caption and caption[-1] == '.':
             caption = caption[:-1]          
 
 
@@ -42,7 +42,7 @@ def rst_figure(m):
         result += '\n'.join(rst_info)
     # remove final period in caption since caption is used as hyperlink
     # text to figures
-    if caption[-1] == '.':
+    if caption and caption[-1] == '.':
         caption = caption[:-1]  
     result += '\n\n   ' + caption + '\n'
     return result
@@ -114,9 +114,15 @@ def rst_code(filestr, format):
 
     
 def rst_table(table):
-    column_width = table_analysis(table)
+    # Note: rst and sphinx do not offer alignment of cell
+    # entries, everything is always left-adjusted (Nov. 2011)
+    column_width = table_analysis(table['rows'])
+    ncolumns = len(column_width)
+    column_spec = table.get('columns_align', 'c'*ncolumns).replace('|', '')
+    heading_spec = table.get('headings_align', 'c'*ncolumns).replace('|', '')
+    a2py = {'r': 'rjust', 'l': 'ljust', 'c': 'center'}
     s = ''  # '\n'
-    for i, row in enumerate(table):
+    for i, row in enumerate(table['rows']):
         #s += '    '  # indentation of tables
         if row == ['horizontal rule']:
             for w in column_width:
@@ -124,17 +130,18 @@ def rst_table(table):
         else:
             # check if this is a headline between two horizontal rules:
             if i == 1 and \
-               table[i-1] == ['horizontal rule'] and \
-               table[i+1] == ['horizontal rule']:
+               table['rows'][i-1] == ['horizontal rule'] and \
+               table['rows'][i+1] == ['horizontal rule']:
                 headline = True
             else:
                 headline = False
 
-            for w, c in zip(column_width, row):
+            for w, c, ha, ca in \
+                    zip(column_width, row, heading_spec, column_spec):
                 if headline:
-                    s += c.center(w) + '  '
+                    s += getattr(c, a2py[ha])(w) + '  '
                 else:
-                    s += c.ljust(w) + '  '
+                    s += getattr(c, a2py[ca])(w) + '  '
         s += '\n'
     s += '\n'
     return s
