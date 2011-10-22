@@ -378,7 +378,8 @@ for showing the movie.
 MOVIE: [filename, height=xxx width=yyy] possible caption
 !ec
 
-# LaTeX/PDF format requires movie15 package for displaying movies
+# LaTeX/PDF format can make use of the movie15 package for displaying movies,
+# or just plain \href{run: ...}{...}
 
 MOVIE: [figs/mjolnir.mpeg, width=600 height=470]
 
@@ -386,8 +387,9 @@ MOVIE: [figs/mjolnir.mpeg, width=600 height=470]
 
 #MOVIE: [figs/wavepacket2.mpeg, width=600 height=470]
 
-The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML, reST, and
+The LaTeX format results in a file that can either make use of
+the movie15 package (requires the PDF to be shown in Acrobat Reader)
+or just a plain address to the movie. The HTML, reST, and
 Sphinx formats will play
 the movie right away by embedding the file in a standard HTML code,
 provided the output format is HTML.
@@ -395,11 +397,12 @@ For all other formats a URL to an HTML file, which can play the code,
 is inserted in the output document.
 
 When movies are embedded in the PDF file via LaTeX and
-the `movie15` package, there is a preprocess variable
+the `movie15` package wanted, one has to turn on the preprocessor
+variable `MOVIE15`. There is an associated variable
 `EXTERNAL_MOVIE_VIEWER` which can be defined to launch an external
 viewer when displaying the PDF file (in Acrobat Reader):
 !bc sys
-Terminal> ptex2tex -DEXTERNAL_MOVIE_VIEWER mydoc
+Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
 !ec
 
 The HTML, reST, and Sphinx formats can also treat filenames of the form
@@ -647,7 +650,7 @@ A table like
 
   |--------------------------------|
   |time  | velocity | acceleration |
-  |--------------------------------|
+  |--r--------r-----------r--------|
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
@@ -664,7 +667,19 @@ is built up of pipe symbols and dashes:
   |--------------------------------|
 !ec
 The pipes and column values do not need to be aligned (but why write
-the Doconce source in an ugly way?).
+the Doconce source in an ugly way?). In the line below the heading,
+one can insert the characters `c`, `r`, or `l` to specify the
+alignment of the columns (centered, right, or left, respectively).
+Similar character can be inserted in the line above the header to
+algn the headings. Pipes `|` can also be inserted to indicate
+vertical rules in LaTeX tables (they are ignored for other formats).
+Note that not all formats offer alignment of heading or entries
+in tables (reStructuredText and Sphinx are examples). Also note that
+Doconce tables are very simple: neither entries nor
+headings can span several columns or rows. When that functionality
+is needed, one can make use of the preprocessor and if-tests on
+the format and insert format-specific code for tables.
+
 
 
 ===== Blocks of Verbatim Computer Code ===== 

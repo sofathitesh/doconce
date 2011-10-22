@@ -16,25 +16,32 @@ def HTML_code(filestr, format):
 from common import table_analysis
 
 def html_table(table):
-    column_width = table_analysis(table)
+    column_width = table_analysis(table['rows'])
+    ncolumns = len(column_width)
+    column_spec = table.get('columns_align', 'c'*ncolumns).replace('|', '')
+    heading_spec = table.get('headings_align', 'c'*ncolumns).replace('|', '')
+    a2html = {'r': 'right', 'l': 'left', 'c': 'center'}
+
     s = '<TABLE border="1">\n'
-    for i, row in enumerate(table):
+    for i, row in enumerate(table['rows']):
         if row == ['horizontal rule']:
             continue
         if i == 1 and \
-           table[i-1] == ['horizontal rule'] and \
-           table[i+1] == ['horizontal rule']:
+           table['rows'][i-1] == ['horizontal rule'] and \
+           table['rows'][i+1] == ['horizontal rule']:
             headline = True
         else:
             headline = False
 
         s += '<TR>'
-        for column, w in zip(row, column_width):
+        for column, w, ha, ca in \
+                zip(row, column_width, heading_spec, column_spec):
             if headline:
-                c = '<B>%s</B>' % column.center(w)
+                s += '<TD align="%s"><B>%s</B></TD> ' % \
+                     (a2html[ha], column.center(w))
             else:
-                c = '   %s    ' % column.ljust(w)
-            s += '<TD>%s</TD> ' % c
+                s += '<TD align="%s">   %s    </TD> ' % \
+                     (a2html[ca], column.ljust(w))
         s += '</TR>\n'
     s += '</TABLE>\n'
     return s
@@ -74,7 +81,8 @@ def html_movie(m):
         f = open(moviehtml, 'w')
         f.write(header + jscode + form + footer)
         f.close()
-        text = """   <P><A HREF="%s">Movie of files <TT>%s</TT></A>\n<EM>%s</EM>""" % \
+        text = """
+<P><A HREF="%s">Movie of files <TT>%s</TT></A>\n<EM>%s</EM></P>""" % \
                (moviehtml, filename, caption)
     elif 'youtube.com' in filename:
         if not 'youtube.com/embed/' in filename:
@@ -87,10 +95,10 @@ def html_movie(m):
 """ % (width, height, filename)
     else:
         text = """
-   <EMBED SRC="%s" %s AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
-   <P>
-   <EM>%s</EM>
-   </P>
+<EMBED SRC="%s" %s AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+<P>
+<EM>%s</EM>
+</P>
 """ % (filename, ' '.join(options), caption)
     return text
 
