@@ -53,22 +53,28 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Oct 19, 2011
+Oct 22, 2011
 %
 \begin{itemize}
 
 \item When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
-(email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML, Markdown,
+(email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
 reStructuredText, Sphinx, XML, etc.  Would it be convenient to
 start with some very simple text-like format that easily converts
-to the formats listed above, and then at some later stage eventually go
-with a particular format?
+to the formats listed above, and then at some later stage
+eventually go with a particular format?
 
-\item Do you find it problematic that you have the same information
-scattered around in different documents in different typesetting
-formats? Would it be a good idea to write things once, in one format,
-stored in one place, and include it anywhere?
+\item Do you need to write documents in varying formats but find it
+difficult to remember all the typesetting details of various
+formats like LaTeX, HTML, Sphinx, and wiki? Would it be convenient
+to generate the typesetting details of a particular format from a
+very simple text-like format with minimal tagging?
+
+\item Do you have the same information scattered around in different
+documents in different typesetting formats? Would it be a good idea
+to write things once, in one format, stored in one place, and
+include it anywhere?
 
 \end{itemize}
 
@@ -98,7 +104,7 @@ Doconce is two things:
 \item Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text (much like what you would use in an
 email), but the text can be transformed to numerous other formats,
-including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
 Epytext, and also plain text (where non-obvious formatting/tags are
 removed for clear reading in, e.g., emails). From reStructuredText
 you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -138,11 +144,11 @@ with big LaTeX projects (books).
 
 \item Doconce is almost self-explanatory and is a handy starting point
 for generating documents in more complicated markup languages, such
-as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-is just to make the initial versions of a Sphinx or Wiki document.
+as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+is just to make the initial versions of a Sphinx or wiki document.
 
 \item Contrary to the similar Pandoc translator, Doconce integrates with
-Sphinx and Google Wiki. However, if these formats are not of interest,
+Sphinx and Google wiki. However, if these formats are not of interest,
 Pandoc is obviously a superior tool.
 
 \end{itemize}
@@ -157,7 +163,7 @@ Doconce was particularly written for the following sample applications:
 
 \item Large books written in LaTeX, but where many pieces (computer demos,
 projects, examples) can be written in Doconce to appear in other
-contexts in other formats, including plain HTML, Sphinx, or MS Word.
+contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
 
 \item Software documentation, primarily Python doc strings, which one wants
 to appear as plain untagged text for viewing in Pydoc, as reStructuredText
@@ -233,8 +239,8 @@ before and after the math block,
 
 \item there is support for both LaTeX and text-like inline mathematics,
 
-\item tables, figures, movies with captions, URLs with links, index list,
-labels and references are supported,
+\item figures and movies with captions, simple tables,
+URLs with links, index list, labels and references are supported,
 
 \item comments can be inserted throughout the text (\texttt{\#} at the beginning
 of a line),
@@ -287,7 +293,7 @@ Tables~are~also~supperted,~e.g.,\\
 ~\\
 ~~|-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-|\\
 ~~|time~~|~velocity~|~acceleration~|\\
-~~|-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-|\\
+~~|-{}-{}-r-{}-{}-{}-{}-{}-{}-r-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-r-{}-{}-{}-{}-{}-{}-{}-|\\
 ~~|~0.0~~|~1.4186~~~|~-5.01~~~~~~~~|\\
 ~~|~2.0~~|~1.376512~|~11.919~~~~~~~|\\
 ~~|~4.0~~|~1.1E+1~~~|~14.717624~~~~|\\

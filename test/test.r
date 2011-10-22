@@ -45,16 +45,27 @@ to Section ref{subsubsec:ex}. idx{`somefunc` function}
 
 ===== Subsection 2 =====
 label{subsec:ex}
+idx{figures}
 
-What about a figure?
-idx{figures are nice}
+Test of figures.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. label{fig:impact}
 
-What about a movie?
-idx{movies are nice}
+idx{movies}
+Test of movies.
 
 MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=700 height=400] Mjolnir tsunami (by Sylfest Glimsdal).
+
+# Empty caption:
+
+MOVIE: [../doc/manual/figs/wavepacket.mpeg, width=700 height=400]
+
+MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).
+
+# Check out the correct with and height of YouTube movies from the
+# embed command that the YouTube page can generate
+
+MOVIE: [http://www.youtube.com/embed/7cC-_-aqx18, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 ===== Table Demo =====
 label{subsec:table}
@@ -72,7 +83,7 @@ label{mytab}
 
   |--------------------------------|
   |time  | velocity | acceleration |
-  |--------------------------------|
+  |--l--------r-----------r--------|
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
@@ -86,12 +97,23 @@ The Doconce source code reads
 !bc cod
   |--------------------------------|
   |time  | velocity | acceleration |
-  |--------------------------------|
+  |--l--------r-----------r--------|
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
 !ec
+
+Here is yet another table to test that we can handle more than
+one table:
+
+  |--l-------l----------l----------|
+  |time  | velocity | acceleration |
+  |--l-------l----------l----------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 1.0  | 1.376512 | 11.919       |
+  | 3.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
 
 ===== URLs ======
 label{subsubsec:ex}
@@ -282,20 +304,45 @@ to the section <A HREF="#subsubsec:ex">URLs</a>.
 <P>
 
 <P>
-What about a figure?
+Test of figures.
 
 <P>
 <IMG SRC="../doc/manual/figs/streamtubes.png" ALIGN="bottom"  width=200> <P><EM> Visualization of flow by streamtubes. <A NAME="fig:impact"></A></EM></P>
 
 <P>
-What about a movie?
+Test of movies.
 
 <P>
 
-   <EMBED SRC="../doc/manual/figs/mjolnir.mpeg"  width=700 height=400 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
-   <P>
-   <EM> Mjolnir tsunami (by Sylfest Glimsdal).</EM>
-   </P>
+<EMBED SRC="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+<P>
+<EM> Mjolnir tsunami (by Sylfest Glimsdal).</EM>
+</P>
+
+
+<P>
+<!-- Empty caption: -->
+
+<P>
+
+<EMBED SRC="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+<P>
+<EM></EM>
+</P>
+
+
+<P>
+
+<P><A HREF="wavepacket_0001.html">Movie of files <TT>../doc/manual/figs/wavepacket_*.png</TT></A>
+<EM> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).</EM></P>
+
+<P>
+<!-- Check out the correct with and height of YouTube movies from the -->
+<!-- embed command that the YouTube page can generate -->
+
+<P>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/7cC-_-aqx18" frameborder="0" allowfullscreen></iframe>
 
 
 <P>
@@ -309,10 +356,10 @@ Let us take this table from the manual:
 
 <P>
 <TABLE border="1">
-<TR><TD><B>    time    </B></TD> <TD><B>  velocity  </B></TD> <TD><B>acceleration</B></TD> </TR>
-<TR><TD>   0.0             </TD> <TD>   1.4186          </TD> <TD>   -5.01           </TD> </TR>
-<TR><TD>   2.0             </TD> <TD>   1.376512        </TD> <TD>   11.919          </TD> </TR>
-<TR><TD>   4.0             </TD> <TD>   1.1E+1          </TD> <TD>   14.717624       </TD> </TR>
+<TR><TD align="center"><B>    time    </B></TD> <TD align="center"><B>  velocity  </B></TD> <TD align="center"><B>acceleration</B></TD> </TR>
+<TR><TD align="left">   0.0             </TD> <TD align="right">   1.4186          </TD> <TD align="right">   -5.01           </TD> </TR>
+<TR><TD align="left">   2.0             </TD> <TD align="right">   1.376512        </TD> <TD align="right">   11.919          </TD> </TR>
+<TR><TD align="left">   4.0             </TD> <TD align="right">   1.1E+1          </TD> <TD align="right">   14.717624       </TD> </TR>
 </TABLE>
 <P>
 
@@ -322,7 +369,7 @@ The Doconce source code reads
 <BLOCKQUOTE><PRE>
   |--------------------------------|
   |time  | velocity | acceleration |
-  |--------------------------------|
+  |--l--------r-----------r--------|
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
@@ -330,6 +377,17 @@ The Doconce source code reads
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
+<P>
+Here is yet another table to test that we can handle more than
+one table:
+
+<P>
+<TABLE border="1">
+<TR><TD align="center"><B>    time    </B></TD> <TD align="center"><B>  velocity  </B></TD> <TD align="center"><B>acceleration</B></TD> </TR>
+<TR><TD align="left">   0.0             </TD> <TD align="left">   1.4186          </TD> <TD align="left">   -5.01           </TD> </TR>
+<TR><TD align="left">   1.0             </TD> <TD align="left">   1.376512        </TD> <TD align="left">   11.919          </TD> </TR>
+<TR><TD align="left">   3.0             </TD> <TD align="left">   1.1E+1          </TD> <TD align="left">   14.717624       </TD> </TR>
+</TABLE>
 <P>
 <H3>URLs <A NAME="subsubsec:ex"></A></H3>
 <P>
@@ -441,11 +499,11 @@ Here is eqnarray:
 %% http://code.google.com/p/doconce/
 %%
 \documentclass{article}
-\usepackage{hyperref,relsize,epsfig,makeidx,amsmath}
+\usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=black,filecolor=blue,urlcolor=blue]{hyperref}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
-% #define MOVIE
-% #ifdef MOVIE
+% #ifdef MOVIE15
 \usepackage{movie15}
 % #endif
 % #ifdef MINTED
@@ -568,26 +626,28 @@ to Section~\ref{subsubsec:ex}. \index{somefunc@{\rm\texttt{somefunc}} function}
 \subsection{Subsection 2}
 
 \label{subsec:ex}
+\index{figures}
 
-What about a figure?
-\index{figures are nice}
+Test of figures.
 
 
 \begin{figure}
-  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/streamtubes.eps}}
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/streamtubes.eps}}  
   \caption{
-   Visualization of flow by streamtubes. \label{fig:impact}
+  Visualization of flow by streamtubes. \label{fig:impact}
   % \label{fig:streamtubes}  % (autogenerated label, not used anymore)
   }
 \end{figure}
 
 
-What about a movie?
-\index{movies are nice}
+\index{movies}
+Test of movies.
 
 
 \begin{figure}[ht]
 \begin{center}
+
+% #ifdef MOVIE15
 \includemovie[poster,
 label=../doc/manual/figs/mjolnir.mpeg,
 autoplay,
@@ -600,23 +660,73 @@ text={\small (Loading ../doc/manual/figs/mjolnir.mpeg)},
 repeat,
 ]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/mjolnir.mpeg}    % requires \usepackage{movie15}
 % #ifndef EXTERNAL_MOVIE_VIEWER
-
 \movieref[rate=0.5]{../doc/manual/figs/mjolnir.mpeg}{Slower}
 \movieref[rate=2]{../doc/manual/figs/mjolnir.mpeg}{Faster}
 \movieref[default]{../doc/manual/figs/mjolnir.mpeg}{Normal}
 \movieref[pause]{../doc/manual/figs/mjolnir.mpeg}{Play/Pause}
 \movieref[stop]{../doc/manual/figs/mjolnir.mpeg}{Stop}
-
 % #else
-%\href{run:../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
+\href{run:../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
 % #endif
 
-% alternative: \movie command that comes with beamer itself
+% #else
+\href{run:../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
+
+% alternative: \movie command that comes with beamer
 % \movie[options]{../doc/manual/figs/mjolnir.mpeg}{../doc/manual/figs/mjolnir.mpeg}
-    
+% #endif
 \end{center}
 \caption{ Mjolnir tsunami (by Sylfest Glimsdal).}
 \end{figure}
+
+
+% Empty caption:
+
+
+\begin{figure}[ht]
+\begin{center}
+
+% #ifdef MOVIE15
+\includemovie[poster,
+label=../doc/manual/figs/wavepacket.mpeg,
+autoplay,
+%controls,
+%toolbar,
+% #ifdef EXTERNAL_MOVIE_VIEWER
+externalviewer,
+% #endif
+text={\small (Loading ../doc/manual/figs/wavepacket.mpeg)},
+repeat,
+]{0.9\linewidth}{0.9\linewidth}{../doc/manual/figs/wavepacket.mpeg}    % requires \usepackage{movie15}
+% #ifndef EXTERNAL_MOVIE_VIEWER
+\movieref[rate=0.5]{../doc/manual/figs/wavepacket.mpeg}{Slower}
+\movieref[rate=2]{../doc/manual/figs/wavepacket.mpeg}{Faster}
+\movieref[default]{../doc/manual/figs/wavepacket.mpeg}{Normal}
+\movieref[pause]{../doc/manual/figs/wavepacket.mpeg}{Play/Pause}
+\movieref[stop]{../doc/manual/figs/wavepacket.mpeg}{Stop}
+% #else
+\href{run:../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
+% #endif
+
+% #else
+\href{run:../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
+
+% alternative: \movie command that comes with beamer
+% \movie[options]{../doc/manual/figs/wavepacket.mpeg}{../doc/manual/figs/wavepacket.mpeg}
+% #endif
+\end{center}
+\caption{}
+\end{figure}
+
+
+
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). (Movie of files \code{../doc/manual/figs/wavepacket_*.png} in \href{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}})
+
+
+% Check out the correct with and height of YouTube movies from the
+% embed command that the YouTube page can generate
+
+ Movies can be uploaded to YouTube and embedded as HTML or as a link.: \href{http://www.youtube.com/watch?v=7cC-_-aqx18}{\nolinkurl{http://www.youtube.com/watch?v=7cC-_-aqx18}}
 
 \subsection{Table Demo}
 
@@ -632,7 +742,7 @@ Table of velocity and acceleration.
 }
 
 
-\begin{quote}\begin{tabular}{ccc}
+\begin{quote}\begin{tabular}{lrr}
 \hline
 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
 \hline
@@ -649,21 +759,37 @@ The Doconce source code reads
 \bcod
   |--------------------------------|
   |time  | velocity | acceleration |
-  |--------------------------------|
+  |--l--------r-----------r--------|
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
 \ecod
 
+Here is yet another table to test that we can handle more than
+one table:
+
+
+\begin{quote}\begin{tabular}{lll}
+\hline
+\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\hline
+0.0          & 1.4186       & -5.01        \\
+1.0          & 1.376512     & 11.919       \\
+3.0          & 1.1E+1       & 14.717624    \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+
 \subsection{URLs}
 
 \label{subsubsec:ex}
 
 Here are some nice URLs, e.g., hpl's home page \href{http://folk.uio.no/hpl}{hpl},
-or the URL if desired, \href{http://folk.uio.no/hpl}{http://folk.uio.no/hpl}.
-Here is a plain file link \href{testdoc.do.txt}{testdoc.do.txt}, or \href{testdoc.do.txt}{testdoc.do.txt},
-or \href{testdoc.do.txt}{testdoc.do.txt} or \href{testdoc.do.txt}{testdoc.do.txt}. Can test spaces
+or the URL if desired, \href{http://folk.uio.no/hpl}{\nolinkurl{http://folk.uio.no/hpl}}.
+Here is a plain file link \href{testdoc.do.txt}{\nolinkurl{testdoc.do.txt}}, or \href{testdoc.do.txt}{\nolinkurl{testdoc.do.txt}},
+or \href{testdoc.do.txt}{\nolinkurl{testdoc.do.txt}} or \href{testdoc.do.txt}{\nolinkurl{testdoc.do.txt}}. Can test spaces
 with the link with word too: \href{http://folk.uio.no/hpl}{hpl} or
 \href{http://folk.uio.no/hpl}{hpl}. The old syntax must also be
 tested: \href{http://folk.uio.no/hpl}{hpl's homepage}. Now also \code{file:///}
@@ -738,7 +864,7 @@ Here is eqnarray:
 {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\ 
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}
-
+!et
 
 \printindex
 
@@ -800,7 +926,7 @@ to the section `URLs`_.
 Subsection 2
 ------------
 
-What about a figure?
+Test of figures.
 
 
 .. _fig:impact:
@@ -811,15 +937,44 @@ What about a figure?
    Visualization of flow by streamtubes  (fig:impact)
 
 
-What about a movie?
+Test of movies.
 
 .. raw:: html
+        
+        <EMBED SRC="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+        <P>
+        <EM> Mjolnir tsunami (by Sylfest Glimsdal).</EM>
+        </P>
 
-   <EMBED SRC="../doc/manual/figs/mjolnir.mpeg"  width=700 height=400 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
-   <P>
-   <EM> Mjolnir tsunami (by Sylfest Glimsdal).</EM>
-   </P>
 
+
+.. Empty caption:
+
+
+.. raw:: html
+        
+        <EMBED SRC="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+        <P>
+        <EM></EM>
+        </P>
+
+
+
+.. raw:: html
+        
+        <P><A HREF="wavepacket_0001.html">Movie of files <TT>../doc/manual/figs/wavepacket_*.png</TT></A>
+        <EM> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).</EM></P>
+
+
+
+.. Check out the correct with and height of YouTube movies from the
+
+.. embed command that the YouTube page can generate
+
+
+.. raw:: html
+        
+        <iframe width="420" height="315" src="http://www.youtube.com/embed/7cC-_-aqx18" frameborder="0" allowfullscreen></iframe>
 
 
 
@@ -834,9 +989,9 @@ Let us take this table from the manual:
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+0.0                 1.4186         -5.01  
+2.0               1.376512        11.919  
+4.0                 1.1E+1     14.717624  
 ============  ============  ============  
 
 
@@ -845,12 +1000,23 @@ The Doconce source code reads::
 
           |--------------------------------|
           |time  | velocity | acceleration |
-          |--------------------------------|
+          |--l--------r-----------r--------|
           | 0.0  | 1.4186   | -5.01        |
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
 
+
+Here is yet another table to test that we can handle more than
+one table:
+
+============  ============  ============  
+    time        velocity    acceleration  
+============  ============  ============  
+0.0           1.4186        -5.01         
+1.0           1.376512      11.919        
+3.0           1.1E+1        14.717624     
+============  ============  ============  
 
 .. _subsubsec:ex:
 
@@ -1010,10 +1176,10 @@ to the section :ref:`subsubsec:ex`.
 Subsection 2
 ------------
 
-What about a figure?
+.. index:: figures
 
-.. index:: figures are nice
 
+Test of figures.
 
 
 .. _fig:impact:
@@ -1024,18 +1190,47 @@ What about a figure?
    Visualization of flow by streamtubes  
 
 
-What about a movie?
 
-.. index:: movies are nice
+.. index:: movies
+
+Test of movies.
+
+.. raw:: html
+        
+        <EMBED SRC="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+        <P>
+        <EM> Mjolnir tsunami (by Sylfest Glimsdal).</EM>
+        </P>
+
+
+
+.. Empty caption:
 
 
 .. raw:: html
+        
+        <EMBED SRC="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+        <P>
+        <EM></EM>
+        </P>
 
-   <EMBED SRC="../doc/manual/figs/mjolnir.mpeg"  width=700 height=400 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
-   <P>
-   <EM> Mjolnir tsunami (by Sylfest Glimsdal).</EM>
-   </P>
 
+
+.. raw:: html
+        
+        <P><A HREF="wavepacket_0001.html">Movie of files <TT>../doc/manual/figs/wavepacket_*.png</TT></A>
+        <EM> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).</EM></P>
+
+
+
+.. Check out the correct with and height of YouTube movies from the
+
+.. embed command that the YouTube page can generate
+
+
+.. raw:: html
+        
+        <iframe width="420" height="315" src="http://www.youtube.com/embed/7cC-_-aqx18" frameborder="0" allowfullscreen></iframe>
 
 
 
@@ -1053,9 +1248,9 @@ Let us take this table from the manual:
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+0.0                 1.4186         -5.01  
+2.0               1.376512        11.919  
+4.0                 1.1E+1     14.717624  
 ============  ============  ============  
 
 
@@ -1065,12 +1260,23 @@ The Doconce source code reads
 
           |--------------------------------|
           |time  | velocity | acceleration |
-          |--------------------------------|
+          |--l--------r-----------r--------|
           | 0.0  | 1.4186   | -5.01        |
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
 
+
+Here is yet another table to test that we can handle more than
+one table:
+
+============  ============  ============  
+    time        velocity    acceleration  
+============  ============  ============  
+0.0           1.4186        -5.01         
+1.0           1.376512      11.919        
+3.0           1.1E+1        14.717624     
+============  ============  ============  
 
 .. _subsubsec:ex:
 
@@ -1224,7 +1430,7 @@ to the section [#URLs].
 
 ==== Subsection 2 ====
 
-What about a figure?
+Test of figures.
 
 
 
@@ -1242,9 +1448,22 @@ googlecode repository) and substitute the line above with the URL.
 
 
 
-What about a movie?
+Test of movies.
 
-MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=700 height=400] Mjolnir tsunami (by Sylfest Glimsdal).
+ Mjolnir tsunami (by Sylfest Glimsdal). (Movie ../doc/manual/figs/mjolnir.mpeg: play mjolnir.html)
+
+<wiki:comment> Empty caption: </wiki:comment>
+
+ (Movie ../doc/manual/figs/wavepacket.mpeg: play wavepacket.html)
+
+
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). (Movie of files `../doc/manual/figs/wavepacket_*.png` in wavepacket_0001.html)
+
+
+<wiki:comment> Check out the correct with and height of YouTube movies from the </wiki:comment>
+<wiki:comment> embed command that the YouTube page can generate </wiki:comment>
+
+MOVIE: Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 ==== Table Demo ====
 
@@ -1263,12 +1482,21 @@ The Doconce source code reads
 {{{
   |--------------------------------|
   |time  | velocity | acceleration |
-  |--------------------------------|
+  |--l--------r-----------r--------|
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
 }}}
+
+Here is yet another table to test that we can handle more than
+one table:
+
+
+ ||      *time*       ||    *velocity*     ||  *acceleration*   ||
+ ||  0.0              ||  1.4186           ||  -5.01            ||
+ ||  1.0              ||  1.376512         ||  11.919           ||
+ ||  3.0              ||  1.1E+1           ||  14.717624        ||
 
 ==== URLs ====
 
@@ -1360,7 +1588,6 @@ Here is eqnarray:
 \end{eqnarray}
 }}}
 
-
 ************** File: testdoc.st *****************
 
 
@@ -1388,13 +1615,23 @@ Subsection 1
 More text, with a reference back to the section "Section 1" and further
 to the section "URLs". 
 Subsection 2
-What about a figure?
+Test of figures.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. {fig:impact}
 
-What about a movie?
+Test of movies.
 
-MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=700 height=400] Mjolnir tsunami (by Sylfest Glimsdal).
+ Mjolnir tsunami (by Sylfest Glimsdal). (Movie ../doc/manual/figs/mjolnir.mpeg: play "mjolnir.html":mjolnir.html)
+
+
+ (Movie ../doc/manual/figs/wavepacket.mpeg: play "wavepacket.html":wavepacket.html)
+
+
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). (Movie of files '../doc/manual/figs/wavepacket_*.png' in "wavepacket_0001.html":wavepacket_0001.html)
+
+
+
+ Movies can be uploaded to YouTube and embedded as HTML or as a link.: "http://www.youtube.com/watch?v=7cC-_-aqx18":http://www.youtube.com/watch?v=7cC-_-aqx18
 Table Demo
 Let us take this table from the manual:
 
@@ -1402,9 +1639,9 @@ Let us take this table from the manual:
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+0.0                 1.4186         -5.01  
+2.0               1.376512        11.919  
+4.0                 1.1E+1     14.717624  
 ============  ============  ============  
 
 
@@ -1413,12 +1650,23 @@ The Doconce source code reads::
 
           |--------------------------------|
           |time  | velocity | acceleration |
-          |--------------------------------|
+          |--l--------r-----------r--------|
           | 0.0  | 1.4186   | -5.01        |
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
 
+
+Here is yet another table to test that we can handle more than
+one table:
+
+============  ============  ============  
+    time        velocity    acceleration  
+============  ============  ============  
+0.0           1.4186        -5.01         
+1.0           1.376512      11.919        
+3.0           1.1E+1        14.717624     
+============  ============  ============  
 URLs
 Here are some nice URLs, e.g., hpl's home page "http://folk.uio.no/hpl":hpl,
 or the URL if desired, "http://folk.uio.no/hpl":http://folk.uio.no/hpl.
@@ -1511,7 +1759,6 @@ Here is eqnarray::
 
 
 
-
 ************** File: testdoc.epytext *****************
 
 
@@ -1549,13 +1796,24 @@ to the section "URLs".
 Subsection 2
 ------------
 
-What about a figure?
+
+Test of figures.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. {fig:impact}
 
-What about a movie?
+Test of movies.
 
-MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=700 height=400] Mjolnir tsunami (by Sylfest Glimsdal).
+ Mjolnir tsunami (by Sylfest Glimsdal). (Movie ../doc/manual/figs/mjolnir.mpeg: play U{mjolnir.html<mjolnir.html>})
+
+
+ (Movie ../doc/manual/figs/wavepacket.mpeg: play U{wavepacket.html<wavepacket.html>})
+
+
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). (Movie of files C{../doc/manual/figs/wavepacket_*.png} in U{wavepacket_0001.html<wavepacket_0001.html>})
+
+
+
+ Movies can be uploaded to YouTube and embedded as HTML or as a link.: U{http://www.youtube.com/watch?v=7cC-_-aqx18<http://www.youtube.com/watch?v=7cC-_-aqx18>}
 
 Table Demo
 ----------
@@ -1566,9 +1824,9 @@ Let us take this table from the manual:
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+0.0                 1.4186         -5.01  
+2.0               1.376512        11.919  
+4.0                 1.1E+1     14.717624  
 ============  ============  ============  
 
 
@@ -1577,12 +1835,23 @@ The Doconce source code reads::
 
           |--------------------------------|
           |time  | velocity | acceleration |
-          |--------------------------------|
+          |--l--------r-----------r--------|
           | 0.0  | 1.4186   | -5.01        |
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
 
+
+Here is yet another table to test that we can handle more than
+one table:
+
+============  ============  ============  
+    time        velocity    acceleration  
+============  ============  ============  
+0.0           1.4186        -5.01         
+1.0           1.376512      11.919        
+3.0           1.1E+1        14.717624     
+============  ============  ============  
 
 URLs
 ----
@@ -1672,7 +1941,6 @@ Here is eqnarray::
 
 
 
-
 ************** File: testdoc.txt *****************
 
 
@@ -1728,13 +1996,24 @@ to the section "URLs".
 Subsection 2
 ------------
 
-What about a figure?
+
+Test of figures.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. {fig:impact}
 
-What about a movie?
+Test of movies.
 
-MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=700 height=400] Mjolnir tsunami (by Sylfest Glimsdal).
+ Mjolnir tsunami (by Sylfest Glimsdal). (Movie ../doc/manual/figs/mjolnir.mpeg: play mjolnir.html)
+
+
+ (Movie ../doc/manual/figs/wavepacket.mpeg: play wavepacket.html)
+
+
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). (Movie of files ../doc/manual/figs/wavepacket_*.png in wavepacket_0001.html)
+
+
+
+ Movies can be uploaded to YouTube and embedded as HTML or as a link.: http://www.youtube.com/watch?v=7cC-_-aqx18
 
 Table Demo
 ----------
@@ -1745,9 +2024,9 @@ Let us take this table from the manual:
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+0.0                 1.4186         -5.01  
+2.0               1.376512        11.919  
+4.0                 1.1E+1     14.717624  
 ============  ============  ============  
 
 
@@ -1756,12 +2035,23 @@ The Doconce source code reads::
 
           |--------------------------------|
           |time  | velocity | acceleration |
-          |--------------------------------|
+          |--l--------r-----------r--------|
           | 0.0  | 1.4186   | -5.01        |
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
           |--------------------------------|
 
+
+Here is yet another table to test that we can handle more than
+one table:
+
+============  ============  ============  
+    time        velocity    acceleration  
+============  ============  ============  
+0.0           1.4186        -5.01         
+1.0           1.376512      11.919        
+3.0           1.1E+1        14.717624     
+============  ============  ============  
 
 URLs
 ----
@@ -1853,13 +2143,9 @@ Here is eqnarray::
 
 
 
-************** File: tmp_encoding.txt *****************
-utf-8
-iso-8859-1
-utf-8
-utf-8
-iso-8859-1
 
+************** File: tmp_encoding.txt *****************
+NOT FOUND!
 ************** File: make.sh *****************
 #!/bin/sh -x
 # Test multiple authors
@@ -1871,7 +2157,8 @@ doconce format sphinx testdoc.do.txt
 mv -f testdoc.rst testdoc.sphinx.rst
 doconce format rst testdoc.do.txt
 doconce format epytext testdoc.do.txt
-doconce format gwiki testdoc.do.txt
+# Test mako variables too
+doconce format gwiki testdoc.do.txt remove_inline_comments MYVAR1=3 MYVAR2='a string'
 
 # Test encoding
 doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
@@ -1885,6 +2172,7 @@ doconce guess_encoding encoding2.do.txt >> tmp_encodings.txt
 cp encoding1.do.txt tmp2.do.txt
 doconce change_encoding utf-8 latin1 tmp2.do.txt
 doconce guess_encoding tmp2.do.txt >> tmp_encodings.txt
+
 
 ************** File: make.sh *****************
 #!/bin/sh -x
@@ -2020,16 +2308,22 @@ DATE: today
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
-   (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML, Markdown,
+   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
    reStructuredText, Sphinx, XML, etc.  Would it be convenient to
    start with some very simple text-like format that easily converts
-   to the formats listed above, and then at some later stage eventually go
-   with a particular format?
+   to the formats listed above, and then at some later stage
+   eventually go with a particular format?
 
- * Do you find it problematic that you have the same information
-   scattered around in different documents in different typesetting
-   formats? Would it be a good idea to write things once, in one format,
-   stored in one place, and include it anywhere?
+ * Do you need to write documents in varying formats but find it
+   difficult to remember all the typesetting details of various
+   formats like LaTeX, HTML, Sphinx, and wiki? Would it be convenient
+   to generate the typesetting details of a particular format from a
+   very simple text-like format with minimal tagging?
+
+ * Do you have the same information scattered around in different
+   documents in different typesetting formats? Would it be a good idea
+   to write things once, in one format, stored in one place, and
+   include it anywhere?
 
 If any of these questions are of interest, you should keep on reading.
 
@@ -2041,7 +2335,7 @@ Doconce is two things:
   o Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -2073,17 +2367,17 @@ Here are some Doconce features:
     with big LaTeX projects (books).
   * Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
   * Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
 
   * Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, or MS Word.
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
 
   * Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
@@ -2146,8 +2440,8 @@ text constructions that allow you to control the formating. For example,
  
   * there is support for both LaTeX and text-like inline mathematics,
 
-  * tables, figures with captions, URLs with links, index list, 
-    labels and references are supported,
+  * figures and movies with captions, simple tables,
+    URLs with links, index list, labels and references are supported,
 
   * comments can be inserted throughout the text (`#` at the beginning
     of a line),
@@ -2195,7 +2489,7 @@ Tables are also supperted, e.g.,
 
   |--------------------------------|
   |time  | velocity | acceleration |
-  |--------------------------------|
+  |---r-------r-----------r--------|
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
@@ -2240,12 +2534,11 @@ Tables are also supperted, e.g.,
 
   |--------------------------------|
   |time  | velocity | acceleration |
-  |--------------------------------|
+  |---r-------r-----------r--------|
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
-
 
 ===== Mathematics and Computer Code =====
 
@@ -2425,7 +2718,7 @@ Automatically generated HTML file from Doconce source
 <CENTER>[2] <B>University of Oslo</B></CENTER>
 
 
-<CENTER><H3>Sep 12, 2011</H3></CENTER>
+<CENTER><H3>Oct 22, 2011</H3></CENTER>
 <P>
 
 <P>
@@ -2433,15 +2726,20 @@ Automatically generated HTML file from Doconce source
 <UL>
  <LI> When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
-   (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML, Markdown,
+   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
    reStructuredText, Sphinx, XML, etc.  Would it be convenient to
    start with some very simple text-like format that easily converts
-   to the formats listed above, and then at some later stage eventually go
-   with a particular format?
- <LI> Do you find it problematic that you have the same information
-   scattered around in different documents in different typesetting
-   formats? Would it be a good idea to write things once, in one format,
-   stored in one place, and include it anywhere?
+   to the formats listed above, and then at some later stage
+   eventually go with a particular format?
+ <LI> Do you need to write documents in varying formats but find it
+   difficult to remember all the typesetting details of various
+   formats like LaTeX, HTML, Sphinx, and wiki? Would it be convenient
+   to generate the typesetting details of a particular format from a
+   very simple text-like format with minimal tagging?
+ <LI> Do you have the same information scattered around in different
+   documents in different typesetting formats? Would it be a good idea
+   to write things once, in one format, stored in one place, and
+   include it anywhere?
 </UL>
 
 If any of these questions are of interest, you should keep on reading.
@@ -2459,7 +2757,7 @@ Doconce is two things:
  <LI> Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -2491,10 +2789,10 @@ Here are some Doconce features:
     with big LaTeX projects (books).
   <LI> Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
   <LI> Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 </UL>
 
@@ -2505,7 +2803,7 @@ Doconce was particularly written for the following sample applications:
 <UL>
   <LI> Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, or MS Word.
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
   <LI> Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
@@ -2564,8 +2862,8 @@ text constructions that allow you to control the formating. For example,
     <TT>!bt</TT> (begin TeX) and <TT>!et</TT> (end TeX) commands at separate lines
     before and after the math block,
   <LI> there is support for both LaTeX and text-like inline mathematics,
-  <LI> tables, figures with captions, URLs with links, index list, 
-    labels and references are supported,
+  <LI> figures and movies with captions, simple tables,
+    URLs with links, index list, labels and references are supported,
   <LI> comments can be inserted throughout the text (<TT>#</TT> at the beginning
     of a line),
   <LI> with a simple preprocessor, Preprocess or Mako, one can include
@@ -2612,7 +2910,7 @@ Tables are also supperted, e.g.,
 
   |--------------------------------|
   |time  | velocity | acceleration |
-  |--------------------------------|
+  |---r-------r-----------r--------|
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
@@ -2671,13 +2969,11 @@ Tables are also supperted, e.g.,
 
 <P>
 <TABLE border="1">
-<TR><TD><B>    time    </B></TD> <TD><B>  velocity  </B></TD> <TD><B>acceleration</B></TD> </TR>
-<TR><TD>   0.0             </TD> <TD>   1.4186          </TD> <TD>   -5.01           </TD> </TR>
-<TR><TD>   2.0             </TD> <TD>   1.376512        </TD> <TD>   11.919          </TD> </TR>
-<TR><TD>   4.0             </TD> <TD>   1.1E+1          </TD> <TD>   14.717624       </TD> </TR>
+<TR><TD align="center"><B>    time    </B></TD> <TD align="center"><B>  velocity  </B></TD> <TD align="center"><B>acceleration</B></TD> </TR>
+<TR><TD align="right">   0.0             </TD> <TD align="right">   1.4186          </TD> <TD align="right">   -5.01           </TD> </TR>
+<TR><TD align="right">   2.0             </TD> <TD align="right">   1.376512        </TD> <TD align="right">   11.919          </TD> </TR>
+<TR><TD align="right">   4.0             </TD> <TD align="right">   1.1E+1          </TD> <TD align="right">   14.717624       </TD> </TR>
 </TABLE>
-<P>
-
 <P>
 <H3>Mathematics and Computer Code</H3>
 <P>
@@ -2816,18 +3112,26 @@ for various formats of this document).
 <P>
 
 <P>
-Transformation of a Doconce document to various other
+Transformation of a Doconce document <TT>mydoc.do.txt</TT> to various other
 formats applies the script <TT>doconce format</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format format mydoc.do.txt
+Terminal> doconce format format mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-The <TT>preprocess</TT> program is always used to preprocess the file first,
-and options to <TT>preprocess</TT> can be added after the filename. For example,
+or just
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+Terminal> doconce format format mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+The <TT>mako</TT> or <TT>preprocess</TT> programs are always used to preprocess the
+file first, and options to <TT>mako</TT> or <TT>preprocess</TT> can be added after the
+filename. For example,
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The variable <TT>FORMAT</TT> is always defined as the current format when
@@ -2839,18 +3143,19 @@ format specific actions through tests like <TT>#if FORMAT == "LaTeX"</TT>.
 Inline comments in the text are removed from the output by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+Terminal> doconce format LaTeX mydoc remove_inline_comments
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 One can also remove such comments from the original Doconce file
-by running a helper script in the <TT>bin</TT> folder of the Doconce
+by running 
 source code:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+Terminal> doconce remove_inline_comments mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 <P>
 
@@ -2861,7 +3166,7 @@ Making an HTML version of a Doconce file <TT>mydoc.do.txt</TT>
 is performed by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format HTML mydoc.do.txt
+Terminal> doconce format HTML mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The resulting file <TT>mydoc.html</TT> can be loaded into any web browser for viewing.
@@ -2879,7 +3184,7 @@ Making a LaTeX file <TT>mydoc.tex</TT> from <TT>mydoc.do.txt</TT> is done in two
      <TT>ptex2tex</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format LaTeX mydoc.do.txt
+Terminal> doconce format LaTeX mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 LaTeX-specific commands ("newcommands") in math formulas and similar
@@ -2892,30 +3197,31 @@ so that your commands are defined.
 <B>Step 2.</B> Run <TT>ptex2tex</TT> (if you have it) to make a standard LaTeX file,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> ptex2tex mydoc
+Terminal> ptex2tex mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 or just perform a plain copy,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> cp mydoc.p.tex mydoc.tex
+Terminal> cp mydoc.p.tex mydoc.tex
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-Doconce generates a <TT>.p.tex</TT> file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font,
+Doconce generates a <TT>.p.tex</TT> file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> ptex2tex -DHELVETICA mydoc
+Terminal> ptex2tex -DHELVETICA mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -2933,12 +3239,12 @@ There are over 30 styles to choose from.
 and create the PDF file:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> latex mydoc
-Unix/DOS> latex mydoc
-Unix/DOS> makeindex mydoc   # if index
-Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex mydoc
-Unix/DOS> dvipdf mydoc
+Terminal> latex mydoc
+Terminal> latex mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex mydoc
+Terminal> dvipdf mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 If one wishes to use the <TT>Minted_Python</TT>, <TT>Minted_Cpp</TT>, etc., environments
@@ -2947,19 +3253,19 @@ This package is included by running <TT>doconce format</TT> with the
 <TT>-DMINTED</TT> option:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> ptex2tex -DMINTED mydoc
+Terminal> ptex2tex -DMINTED mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 In this case, <TT>latex</TT> must be run with the
 <TT>-shell-escape</TT> option:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> makeindex mydoc   # if index
-Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> dvipdf mydoc
+Terminal> latex -shell-escape mydoc
+Terminal> latex -shell-escape mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex -shell-escape mydoc
+Terminal> dvipdf mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The <TT>-shell-escape</TT> option is required because the <TT>minted.sty</TT> style
@@ -2976,7 +3282,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -2988,16 +3294,16 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file <TT>mydoc.rst</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format rst mydoc.do.txt
+Terminal> doconce format rst mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 We may now produce various other formats:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The OpenOffice file <TT>mydoc.odt</TT> can be loaded into OpenOffice and
@@ -3014,7 +3320,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 the reStructuredText format:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format sphinx mydoc.do.txt
+Terminal> doconce format sphinx mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -3053,18 +3359,19 @@ EOF
 These statements as well as points 3-5 can be automated by the command
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce sphinx_dir mydoc.do.txt
+Terminal> doconce sphinx_dir mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 More precisely, in addition to making the <TT>sphinx-rootdir</TT>,
 this command generates a script <TT>tmp_make_sphinx.sh</TT> which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 <P>
 <B>Step 3.</B> Move the <TT>tutorial.rst</TT> file to the Sphinx root directory:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> mv mydoc.rst sphinx-rootdir
+Terminal> mv mydoc.rst sphinx-rootdir
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 If you have figures in your document, the relative paths to those will
@@ -3100,7 +3407,7 @@ Many other formats are also possible.
 <B>Step 6.</B> View the result:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> firefox _build/html/index.html
+Terminal> firefox _build/html/index.html
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -3126,7 +3433,7 @@ The transformation to this format, called <TT>gwiki</TT> to explicitly mark
 it as the Google Code dialect, is done by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format gwiki mydoc.do.txt
+Terminal> doconce format gwiki mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 You can then open a new wiki page for your Google Code project, copy
@@ -3214,20 +3521,26 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Sep 12, 2011
+:Date: Oct 22, 2011
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
-   (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML, Markdown,
+   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
    reStructuredText, Sphinx, XML, etc.  Would it be convenient to
    start with some very simple text-like format that easily converts
-   to the formats listed above, and then at some later stage eventually go
-   with a particular format?
+   to the formats listed above, and then at some later stage
+   eventually go with a particular format?
 
- * Do you find it problematic that you have the same information
-   scattered around in different documents in different typesetting
-   formats? Would it be a good idea to write things once, in one format,
-   stored in one place, and include it anywhere?
+ * Do you need to write documents in varying formats but find it
+   difficult to remember all the typesetting details of various
+   formats like LaTeX, HTML, Sphinx, and wiki? Would it be convenient
+   to generate the typesetting details of a particular format from a
+   very simple text-like format with minimal tagging?
+
+ * Do you have the same information scattered around in different
+   documents in different typesetting formats? Would it be a good idea
+   to write things once, in one format, stored in one place, and
+   include it anywhere?
 
 If any of these questions are of interest, you should keep on reading.
 
@@ -3240,7 +3553,7 @@ Doconce is two things:
  1. Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -3273,18 +3586,18 @@ Here are some Doconce features:
 
   * Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
 
   * Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
 
   * Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, or MS Word.
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
 
   * Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
@@ -3348,8 +3661,8 @@ text constructions that allow you to control the formating. For example,
 
   * there is support for both LaTeX and text-like inline mathematics,
 
-  * tables, figures with captions, URLs with links, index list, 
-    labels and references are supported,
+  * figures and movies with captions, simple tables,
+    URLs with links, index list, labels and references are supported,
 
   * comments can be inserted throughout the text (``#`` at the beginning
     of a line),
@@ -3398,7 +3711,7 @@ Here is an example of some simple text written in the Doconce format::
         
           |--------------------------------|
           |time  | velocity | acceleration |
-          |--------------------------------|
+          |---r-------r-----------r--------|
           | 0.0  | 1.4186   | -5.01        |
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
@@ -3450,11 +3763,10 @@ Tables are also supperted, e.g.,
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+         0.0        1.4186         -5.01  
+         2.0      1.376512        11.919  
+         4.0        1.1E+1     14.717624  
 ============  ============  ============  
-
 
 Mathematics and Computer Code
 -----------------------------
@@ -3587,17 +3899,24 @@ for various formats of this document).
 From Doconce to Other Formats
 =============================
 
-Transformation of a Doconce document to various other
+Transformation of a Doconce document ``mydoc.do.txt`` to various other
 formats applies the script ``doconce format``::
 
 
-        Unix/DOS> doconce format format mydoc.do.txt
+        Terminal> doconce format format mydoc.do.txt
 
-The ``preprocess`` program is always used to preprocess the file first,
-and options to ``preprocess`` can be added after the filename. For example::
+or just::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+        Terminal> doconce format format mydoc
+
+The ``mako`` or ``preprocess`` programs are always used to preprocess the
+file first, and options to ``mako`` or ``preprocess`` can be added after the
+filename. For example::
+
+
+        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 
 The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
@@ -3607,16 +3926,17 @@ format specific actions through tests like ``#if FORMAT == "LaTeX"``.
 Inline comments in the text are removed from the output by::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+        Terminal> doconce format LaTeX mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
-by running a helper script in the ``bin`` folder of the Doconce
+by running 
 source code::
 
 
-        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+        Terminal> doconce remove_inline_comments mydoc
 
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 
 HTML
@@ -3626,7 +3946,7 @@ Making an HTML version of a Doconce file ``mydoc.do.txt``
 is performed by::
 
 
-        Unix/DOS> doconce format HTML mydoc.do.txt
+        Terminal> doconce format HTML mydoc
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
@@ -3645,7 +3965,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
      ``ptex2tex``::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt
+        Terminal> doconce format LaTeX mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
@@ -3656,27 +3976,28 @@ so that your commands are defined.
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file::
 
 
-        Unix/DOS> ptex2tex mydoc
+        Terminal> ptex2tex mydoc
 
 or just perform a plain copy::
 
 
-        Unix/DOS> cp mydoc.p.tex mydoc.tex
+        Terminal> cp mydoc.p.tex mydoc.tex
 
-Doconce generates a ``.p.tex`` file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font::
+Doconce generates a ``.p.tex`` file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run::
 
 
-        Unix/DOS> ptex2tex -DHELVETICA mydoc
+        Terminal> ptex2tex -DHELVETICA mydoc
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through::
 
 
-        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
@@ -3691,12 +4012,12 @@ There are over 30 styles to choose from.
 and create the PDF file::
 
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex mydoc
+        Terminal> latex mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex mydoc
+        Terminal> dvipdf mydoc
 
 If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
 in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
@@ -3704,18 +4025,18 @@ This package is included by running ``doconce format`` with the
 ``-DMINTED`` option::
 
 
-        Unix/DOS> ptex2tex -DMINTED mydoc
+        Terminal> ptex2tex -DMINTED mydoc
 
 In this case, ``latex`` must be run with the
 ``-shell-escape`` option::
 
 
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex -shell-escape mydoc
+        Terminal> dvipdf mydoc
 
 The ``-shell-escape`` option is required because the ``minted.sty`` style
 file runs the ``pygments`` program to format code, and this program
@@ -3730,7 +4051,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code::
 
 
-        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+        Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 
 reStructuredText
@@ -3741,15 +4062,15 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file ``mydoc.rst``::
 
 
-        Unix/DOS> doconce format rst mydoc.do.txt
+        Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats::
 
 
-        Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-        Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-        Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+        Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
 The OpenOffice file ``mydoc.odt`` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -3764,7 +4085,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 the reStructuredText format::
 
 
-        Unix/DOS> doconce format sphinx mydoc.do.txt
+        Terminal> doconce format sphinx mydoc.do.txt
 
 
 *Step 2.* Create a Sphinx root directory with a ``conf.py`` file, 
@@ -3800,16 +4121,17 @@ program. Here is a scripted version of the steps with the latter::
 These statements as well as points 3-5 can be automated by the command::
 
 
-        Unix/DOS> doconce sphinx_dir mydoc.do.txt
+        Terminal> doconce sphinx_dir mydoc.do.txt
 
 More precisely, in addition to making the ``sphinx-rootdir``,
 this command generates a script ``tmp_make_sphinx.sh`` which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory::
 
 
-        Unix/DOS> mv mydoc.rst sphinx-rootdir
+        Terminal> mv mydoc.rst sphinx-rootdir
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with ``mydoc.rst`` in the ``sphinx-rootdir``
@@ -3839,7 +4161,7 @@ Many other formats are also possible.
 *Step 6.* View the result::
 
 
-        Unix/DOS> firefox _build/html/index.html
+        Terminal> firefox _build/html/index.html
 
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -3864,7 +4186,7 @@ The transformation to this format, called ``gwiki`` to explicitly mark
 it as the Google Code dialect, is done by::
 
 
-        Unix/DOS> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
 the ``mydoc.gwiki`` output file from ``doconce format`` and paste the
@@ -3938,20 +4260,26 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Sep 12, 2011
+:Date: Oct 22, 2011
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
-   (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML, Markdown,
+   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
    reStructuredText, Sphinx, XML, etc.  Would it be convenient to
    start with some very simple text-like format that easily converts
-   to the formats listed above, and then at some later stage eventually go
-   with a particular format?
+   to the formats listed above, and then at some later stage
+   eventually go with a particular format?
 
- * Do you find it problematic that you have the same information
-   scattered around in different documents in different typesetting
-   formats? Would it be a good idea to write things once, in one format,
-   stored in one place, and include it anywhere?
+ * Do you need to write documents in varying formats but find it
+   difficult to remember all the typesetting details of various
+   formats like LaTeX, HTML, Sphinx, and wiki? Would it be convenient
+   to generate the typesetting details of a particular format from a
+   very simple text-like format with minimal tagging?
+
+ * Do you have the same information scattered around in different
+   documents in different typesetting formats? Would it be a good idea
+   to write things once, in one format, stored in one place, and
+   include it anywhere?
 
 If any of these questions are of interest, you should keep on reading.
 
@@ -3964,7 +4292,7 @@ Doconce is two things:
  1. Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -3997,18 +4325,18 @@ Here are some Doconce features:
 
   * Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
 
   * Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
 
   * Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, or MS Word.
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
 
   * Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
@@ -4072,8 +4400,8 @@ text constructions that allow you to control the formating. For example,
 
   * there is support for both LaTeX and text-like inline mathematics,
 
-  * tables, figures with captions, URLs with links, index list, 
-    labels and references are supported,
+  * figures and movies with captions, simple tables,
+    URLs with links, index list, labels and references are supported,
 
   * comments can be inserted throughout the text (``#`` at the beginning
     of a line),
@@ -4124,7 +4452,7 @@ Here is an example of some simple text written in the Doconce format:
         
           |--------------------------------|
           |time  | velocity | acceleration |
-          |--------------------------------|
+          |---r-------r-----------r--------|
           | 0.0  | 1.4186   | -5.01        |
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
@@ -4176,11 +4504,10 @@ Tables are also supperted, e.g.,
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+         0.0        1.4186         -5.01  
+         2.0      1.376512        11.919  
+         4.0        1.1E+1     14.717624  
 ============  ============  ============  
-
 
 Mathematics and Computer Code
 -----------------------------
@@ -4320,19 +4647,27 @@ for various formats of this document).
 From Doconce to Other Formats
 =============================
 
-Transformation of a Doconce document to various other
+Transformation of a Doconce document ``mydoc.do.txt`` to various other
 formats applies the script ``doconce format``:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format format mydoc.do.txt
+        Terminal> doconce format format mydoc.do.txt
 
-The ``preprocess`` program is always used to preprocess the file first,
-and options to ``preprocess`` can be added after the filename. For example,
+or just
 
 .. code-block:: console
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+        Terminal> doconce format format mydoc
+
+The ``mako`` or ``preprocess`` programs are always used to preprocess the
+file first, and options to ``mako`` or ``preprocess`` can be added after the
+filename. For example,
+
+.. code-block:: console
+
+        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 
 The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
@@ -4343,18 +4678,19 @@ Inline comments in the text are removed from the output by
 
 .. code-block:: console
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+        Terminal> doconce format LaTeX mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
-by running a helper script in the ``bin`` folder of the Doconce
+by running 
 source code:
 
 .. code-block:: py
 
 
-        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+        Terminal> doconce remove_inline_comments mydoc
 
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 
 HTML
@@ -4365,7 +4701,7 @@ is performed by
 
 .. code-block:: console
 
-        Unix/DOS> doconce format HTML mydoc.do.txt
+        Terminal> doconce format HTML mydoc
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
@@ -4385,7 +4721,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt
+        Terminal> doconce format LaTeX mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
@@ -4397,30 +4733,31 @@ so that your commands are defined.
 
 .. code-block:: console
 
-        Unix/DOS> ptex2tex mydoc
+        Terminal> ptex2tex mydoc
 
 or just perform a plain copy,
 
 .. code-block:: console
 
-        Unix/DOS> cp mydoc.p.tex mydoc.tex
+        Terminal> cp mydoc.p.tex mydoc.tex
 
-Doconce generates a ``.p.tex`` file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font,
+Doconce generates a ``.p.tex`` file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run
 
 .. code-block:: console
 
-        Unix/DOS> ptex2tex -DHELVETICA mydoc
+        Terminal> ptex2tex -DHELVETICA mydoc
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through
 
 .. code-block:: console
 
-        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
@@ -4436,12 +4773,12 @@ and create the PDF file:
 
 .. code-block:: console
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex mydoc
+        Terminal> latex mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex mydoc
+        Terminal> dvipdf mydoc
 
 If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
 in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
@@ -4450,19 +4787,19 @@ This package is included by running ``doconce format`` with the
 
 .. code-block:: console
 
-        Unix/DOS> ptex2tex -DMINTED mydoc
+        Terminal> ptex2tex -DMINTED mydoc
 
 In this case, ``latex`` must be run with the
 ``-shell-escape`` option:
 
 .. code-block:: console
 
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex -shell-escape mydoc
+        Terminal> dvipdf mydoc
 
 The ``-shell-escape`` option is required because the ``minted.sty`` style
 file runs the ``pygments`` program to format code, and this program
@@ -4478,7 +4815,7 @@ computer source code:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+        Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 
 reStructuredText
@@ -4490,16 +4827,16 @@ reStructuredText file ``mydoc.rst``:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format rst mydoc.do.txt
+        Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats:
 
 .. code-block:: console
 
-        Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-        Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-        Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+        Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
 The OpenOffice file ``mydoc.odt`` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -4515,7 +4852,7 @@ the reStructuredText format:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format sphinx mydoc.do.txt
+        Terminal> doconce format sphinx mydoc.do.txt
 
 
 *Step 2.* Create a Sphinx root directory with a ``conf.py`` file, 
@@ -4553,17 +4890,18 @@ These statements as well as points 3-5 can be automated by the command
 
 .. code-block:: console
 
-        Unix/DOS> doconce sphinx_dir mydoc.do.txt
+        Terminal> doconce sphinx_dir mydoc.do.txt
 
 More precisely, in addition to making the ``sphinx-rootdir``,
 this command generates a script ``tmp_make_sphinx.sh`` which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory:
 
 .. code-block:: console
 
-        Unix/DOS> mv mydoc.rst sphinx-rootdir
+        Terminal> mv mydoc.rst sphinx-rootdir
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with ``mydoc.rst`` in the ``sphinx-rootdir``
@@ -4597,7 +4935,7 @@ Many other formats are also possible.
 
 .. code-block:: console
 
-        Unix/DOS> firefox _build/html/index.html
+        Terminal> firefox _build/html/index.html
 
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -4623,7 +4961,7 @@ it as the Google Code dialect, is done by
 
 .. code-block:: console
 
-        Unix/DOS> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
 the ``mydoc.gwiki`` output file from ``doconce format`` and paste the
@@ -4695,10 +5033,11 @@ the Pandoc Haskell program must of course be installed.
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== Sep 12, 2011 ====
+==== Oct 22, 2011 ====
 
- * When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML, Markdown,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage eventually go   with a particular format?
- * Do you find it problematic that you have the same information   scattered around in different documents in different typesetting   formats? Would it be a good idea to write things once, in one format,   stored in one place, and include it anywhere?
+ * When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format?
+ * Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like LaTeX, HTML, Sphinx, and wiki? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging?
+ * Do you have the same information scattered around in different   documents in different typesetting formats? Would it be a good idea   to write things once, in one format, stored in one place, and   include it anywhere?
 
 If any of these questions are of interest, you should keep on reading.
 
@@ -4709,7 +5048,7 @@ If any of these questions are of interest, you should keep on reading.
 Doconce is two things:
 
 
- # Doconce is a very simple and minimally tagged markup language that    looks like ordinary ASCII text (much like what you would use in an    email), but the text can be transformed to numerous other formats,    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,    Epytext, and also plain text (where non-obvious formatting/tags are    removed for clear reading in, e.g., emails). From reStructuredText    you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the    latter to RTF and MS Word.    (An experimental translator to Pandoc is under development, and from    Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF, DocBook XML,    OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and other formats.)
+ # Doconce is a very simple and minimally tagged markup language that    looks like ordinary ASCII text (much like what you would use in an    email), but the text can be transformed to numerous other formats,    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,    Epytext, and also plain text (where non-obvious formatting/tags are    removed for clear reading in, e.g., emails). From reStructuredText    you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the    latter to RTF and MS Word.    (An experimental translator to Pandoc is under development, and from    Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF, DocBook XML,    OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and other formats.)
  # Doconce is a working strategy for never duplicating information.    Text is written in a single place and then transformed to    a number of different destinations of diverse type (software    source code, manuals, tutorials, books, wikis, memos, emails, etc.).    The Doconce markup language support this working strategy.    The slogan is: "Write once, include anywhere".
 
 Here are some Doconce features:
@@ -4719,13 +5058,13 @@ Here are some Doconce features:
   * Doconce can be converted to plain *untagged* text,     often desirable for computer programs and email.
   * Doconce has good support for copying in parts of computer code,    say in examples, directly from the source code files.
   * Doconce has full support for LaTeX math, and integrates very well    with big LaTeX projects (books).
-  * Doconce is almost self-explanatory and is a handy starting point    for generating documents in more complicated markup languages, such    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce    is just to make the initial versions of a Sphinx or Wiki document.
-  * Contrary to the similar Pandoc translator, Doconce integrates with    Sphinx and Google Wiki. However, if these formats are not of interest,    Pandoc is obviously a superior tool.
+  * Doconce is almost self-explanatory and is a handy starting point    for generating documents in more complicated markup languages, such    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce    is just to make the initial versions of a Sphinx or wiki document.
+  * Contrary to the similar Pandoc translator, Doconce integrates with    Sphinx and Google wiki. However, if these formats are not of interest,    Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
 
 
-  * Large books written in LaTeX, but where many pieces (computer demos,    projects, examples) can be written in Doconce to appear in other    contexts in other formats, including plain HTML, Sphinx, or MS Word.
+  * Large books written in LaTeX, but where many pieces (computer demos,    projects, examples) can be written in Doconce to appear in other    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
   * Software documentation, primarily Python doc strings, which one wants    to appear as plain untagged text for viewing in Pydoc, as reStructuredText    for use with Sphinx, as wiki text when publishing the software at    web sites, and as LaTeX integrated in, e.g., a thesis.
   * Quick memos, which start as plain text in email, then some small    amount of Doconce tagging is added, before the memos can appear as    Sphinx web pages, MS Word documents, or in wikis.
 
@@ -4763,7 +5102,7 @@ text constructions that allow you to control the formating. For example,
   * blocks of computer code can also be imported from source files,
   * blocks of LaTeX mathematics can easily be included by placing    `!bt` (begin TeX) and `!et` (end TeX) commands at separate lines    before and after the math block,
   * there is support for both LaTeX and text-like inline mathematics,
-  * tables, figures with captions, URLs with links, index list,     labels and references are supported,
+  * figures and movies with captions, simple tables,    URLs with links, index list, labels and references are supported,
   * comments can be inserted throughout the text (`#` at the beginning    of a line),
   * with a simple preprocessor, Preprocess or Mako, one can include    other documents (files) and large portions of text can be defined    in or out of the text,
   * with the Mako preprocessor one can even embed Python    code and use this to steer generation of Doconce text.
@@ -4804,7 +5143,7 @@ Tables are also supperted, e.g.,
 
   |--------------------------------|
   |time  | velocity | acceleration |
-  |--------------------------------|
+  |---r-------r-----------r--------|
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
@@ -4969,15 +5308,21 @@ for various formats of this document).
 
 == From Doconce to Other Formats ==
 
-Transformation of a Doconce document to various other
+Transformation of a Doconce document `mydoc.do.txt` to various other
 formats applies the script `doconce format`:
 {{{
-Unix/DOS> doconce format format mydoc.do.txt
+Terminal> doconce format format mydoc.do.txt
 }}}
-The `preprocess` program is always used to preprocess the file first,
-and options to `preprocess` can be added after the filename. For example,
+or just
 {{{
-Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+Terminal> doconce format format mydoc
+}}}
+The `mako` or `preprocess` programs are always used to preprocess the
+file first, and options to `mako` or `preprocess` can be added after the
+filename. For example,
+{{{
+Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 }}}
 The variable `FORMAT` is always defined as the current format when
 running `preprocess`. That is, in the last example, `FORMAT` is
@@ -4986,22 +5331,23 @@ format specific actions through tests like `#if FORMAT == "LaTeX"`.
 
 Inline comments in the text are removed from the output by
 {{{
-Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+Terminal> doconce format LaTeX mydoc remove_inline_comments
 }}}
 One can also remove such comments from the original Doconce file
-by running a helper script in the `bin` folder of the Doconce
+by running 
 source code:
 {{{
-Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+Terminal> doconce remove_inline_comments mydoc
 }}}
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 ==== HTML ====
 
 Making an HTML version of a Doconce file `mydoc.do.txt`
 is performed by
 {{{
-Unix/DOS> doconce format HTML mydoc.do.txt
+Terminal> doconce format HTML mydoc
 }}}
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
@@ -5015,7 +5361,7 @@ Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
 *Step 1.* Filter the doconce text to a pre-LaTeX form `mydoc.p.tex` for
      `ptex2tex`:
 {{{
-Unix/DOS> doconce format LaTeX mydoc.do.txt
+Terminal> doconce format LaTeX mydoc
 }}}
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files `newcommands.tex`, `newcommands_keep.tex`, or
@@ -5025,24 +5371,25 @@ so that your commands are defined.
 
 *Step 2.* Run `ptex2tex` (if you have it) to make a standard LaTeX file,
 {{{
-Unix/DOS> ptex2tex mydoc
+Terminal> ptex2tex mydoc
 }}}
 or just perform a plain copy,
 {{{
-Unix/DOS> cp mydoc.p.tex mydoc.tex
+Terminal> cp mydoc.p.tex mydoc.tex
 }}}
-Doconce generates a `.p.tex` file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font,
+Doconce generates a `.p.tex` file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run
 {{{
-Unix/DOS> ptex2tex -DHELVETICA mydoc
+Terminal> ptex2tex -DHELVETICA mydoc
 }}}
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through
 {{{
-Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 }}}
 
 The `ptex2tex` tool makes it possible to easily switch between many
@@ -5056,29 +5403,29 @@ There are over 30 styles to choose from.
 *Step 3.* Compile `mydoc.tex`
 and create the PDF file:
 {{{
-Unix/DOS> latex mydoc
-Unix/DOS> latex mydoc
-Unix/DOS> makeindex mydoc   # if index
-Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex mydoc
-Unix/DOS> dvipdf mydoc
+Terminal> latex mydoc
+Terminal> latex mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex mydoc
+Terminal> dvipdf mydoc
 }}}
 If one wishes to use the `Minted_Python`, `Minted_Cpp`, etc., environments
 in `ptex2tex` for typesetting code, the `minted` LaTeX package is needed.
 This package is included by running `doconce format` with the
 `-DMINTED` option:
 {{{
-Unix/DOS> ptex2tex -DMINTED mydoc
+Terminal> ptex2tex -DMINTED mydoc
 }}}
 In this case, `latex` must be run with the
 `-shell-escape` option:
 {{{
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> makeindex mydoc   # if index
-Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> dvipdf mydoc
+Terminal> latex -shell-escape mydoc
+Terminal> latex -shell-escape mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex -shell-escape mydoc
+Terminal> dvipdf mydoc
 }}}
 The `-shell-escape` option is required because the `minted.sty` style
 file runs the `pygments` program to format code, and this program
@@ -5090,7 +5437,7 @@ We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 {{{
-Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 }}}
 
 ==== reStructuredText ====
@@ -5099,14 +5446,14 @@ Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file `mydoc.rst`:
 {{{
-Unix/DOS> doconce format rst mydoc.do.txt
+Terminal> doconce format rst mydoc.do.txt
 }}}
 We may now produce various other formats:
 {{{
-Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 }}}
 The OpenOffice file `mydoc.odt` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -5119,7 +5466,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 *Step 1.* Translate Doconce into the Sphinx dialect of
 the reStructuredText format:
 {{{
-Unix/DOS> doconce format sphinx mydoc.do.txt
+Terminal> doconce format sphinx mydoc.do.txt
 }}}
 
 *Step 2.* Create a Sphinx root directory with a `conf.py` file, 
@@ -5153,15 +5500,16 @@ EOF
 }}}
 These statements as well as points 3-5 can be automated by the command
 {{{
-Unix/DOS> doconce sphinx_dir mydoc.do.txt
+Terminal> doconce sphinx_dir mydoc.do.txt
 }}}
 More precisely, in addition to making the `sphinx-rootdir`,
 this command generates a script `tmp_make_sphinx.sh` which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 *Step 3.* Move the `tutorial.rst` file to the Sphinx root directory:
 {{{
-Unix/DOS> mv mydoc.rst sphinx-rootdir
+Terminal> mv mydoc.rst sphinx-rootdir
 }}}
 If you have figures in your document, the relative paths to those will
 be invalid when you work with `mydoc.rst` in the `sphinx-rootdir`
@@ -5188,7 +5536,7 @@ Many other formats are also possible.
 
 *Step 6.* View the result:
 {{{
-Unix/DOS> firefox _build/html/index.html
+Terminal> firefox _build/html/index.html
 }}}
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -5207,7 +5555,7 @@ one used by [http://code.google.com/p/support/wiki/WikiSyntax Google Code].
 The transformation to this format, called `gwiki` to explicitly mark
 it as the Google Code dialect, is done by
 {{{
-Unix/DOS> doconce format gwiki mydoc.do.txt
+Terminal> doconce format gwiki mydoc.do.txt
 }}}
 You can then open a new wiki page for your Google Code project, copy
 the `mydoc.gwiki` output file from `doconce format` and paste the
@@ -5267,7 +5615,6 @@ which are easily installed.
 If translation to [http://johnmacfarlane.net/pandoc/ Pandoc] is desired, 
 the Pandoc Haskell program must of course be installed.
 
-
 ************** File: tutorial.st *****************
 TITLE: Doconce: Document Once, Include Anywhere
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
@@ -5275,15 +5622,20 @@ BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)D
 
  - When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
-   (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML, Markdown,
+   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
    reStructuredText, Sphinx, XML, etc.  Would it be convenient to
    start with some very simple text-like format that easily converts
-   to the formats listed above, and then at some later stage eventually go
-   with a particular format?
- - Do you find it problematic that you have the same information
-   scattered around in different documents in different typesetting
-   formats? Would it be a good idea to write things once, in one format,
-   stored in one place, and include it anywhere?
+   to the formats listed above, and then at some later stage
+   eventually go with a particular format?
+ - Do you need to write documents in varying formats but find it
+   difficult to remember all the typesetting details of various
+   formats like LaTeX, HTML, Sphinx, and wiki? Would it be convenient
+   to generate the typesetting details of a particular format from a
+   very simple text-like format with minimal tagging?
+ - Do you have the same information scattered around in different
+   documents in different typesetting formats? Would it be a good idea
+   to write things once, in one format, stored in one place, and
+   include it anywhere?
 
 If any of these questions are of interest, you should keep on reading.
 The Doconce Concept
@@ -5292,7 +5644,7 @@ Doconce is two things:
  1. Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -5320,17 +5672,17 @@ Here are some Doconce features:
     with big LaTeX projects (books).
   - Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
   - Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
 
   - Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, or MS Word.
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
   - Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
@@ -5377,8 +5729,8 @@ text constructions that allow you to control the formating. For example,
     '!bt' (begin TeX) and '!et' (end TeX) commands at separate lines
     before and after the math block,
   - there is support for both LaTeX and text-like inline mathematics,
-  - tables, figures with captions, URLs with links, index list, 
-    labels and references are supported,
+  - figures and movies with captions, simple tables,
+    URLs with links, index list, labels and references are supported,
   - comments can be inserted throughout the text ('#' at the beginning
     of a line),
   - with a simple preprocessor, Preprocess or Mako, one can include
@@ -5424,7 +5776,7 @@ Here is an example of some simple text written in the Doconce format::
         
           |--------------------------------|
           |time  | velocity | acceleration |
-          |--------------------------------|
+          |---r-------r-----------r--------|
           | 0.0  | 1.4186   | -5.01        |
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
@@ -5467,9 +5819,9 @@ Tables are also supperted, e.g.,
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+         0.0        1.4186         -5.01  
+         2.0      1.376512        11.919  
+         4.0        1.1E+1     14.717624  
 ============  ============  ============  
 Mathematics and Computer Code
 Inline mathematics, such as v = sin(x),
@@ -5574,16 +5926,23 @@ syntax we refer to the 'doc/manual/manual.do.txt' file (see the
 "https://doconce.googlecode.com/hg/doc/demos/manual/index.html":demo page
 for various formats of this document).
 From Doconce to Other Formats
-Transformation of a Doconce document to various other
+Transformation of a Doconce document 'mydoc.do.txt' to various other
 formats applies the script 'doconce format':
 !bc   sys
-        Unix/DOS> doconce format format mydoc.do.txt
+        Terminal> doconce format format mydoc.do.txt
 
-The 'preprocess' program is always used to preprocess the file first,
-and options to 'preprocess' can be added after the filename. For example::
+or just::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+        Terminal> doconce format format mydoc
+
+The 'mako' or 'preprocess' programs are always used to preprocess the
+file first, and options to 'mako' or 'preprocess' can be added after the
+filename. For example::
+
+
+        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 
 The variable 'FORMAT' is always defined as the current format when
 running 'preprocess'. That is, in the last example, 'FORMAT' is
@@ -5593,22 +5952,23 @@ format specific actions through tests like '#if FORMAT == "LaTeX"'.
 Inline comments in the text are removed from the output by::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+        Terminal> doconce format LaTeX mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
-by running a helper script in the 'bin' folder of the Doconce
+by running 
 source code::
 
 
-        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+        Terminal> doconce remove_inline_comments mydoc
 
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 HTML
 Making an HTML version of a Doconce file 'mydoc.do.txt'
 is performed by::
 
 
-        Unix/DOS> doconce format HTML mydoc.do.txt
+        Terminal> doconce format HTML mydoc
 
 The resulting file 'mydoc.html' can be loaded into any web browser for viewing.
 LaTeX
@@ -5617,7 +5977,7 @@ Making a LaTeX file 'mydoc.tex' from 'mydoc.do.txt' is done in two steps:
 *Step 1.* Filter the doconce text to a pre-LaTeX form 'mydoc.p.tex' for
      'ptex2tex':
 !bc   sys
-        Unix/DOS> doconce format LaTeX mydoc.do.txt
+        Terminal> doconce format LaTeX mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files 'newcommands.tex', 'newcommands_keep.tex', or
@@ -5628,27 +5988,28 @@ so that your commands are defined.
 *Step 2.* Run 'ptex2tex' (if you have it) to make a standard LaTeX file::
 
 
-        Unix/DOS> ptex2tex mydoc
+        Terminal> ptex2tex mydoc
 
 or just perform a plain copy::
 
 
-        Unix/DOS> cp mydoc.p.tex mydoc.tex
+        Terminal> cp mydoc.p.tex mydoc.tex
 
-Doconce generates a '.p.tex' file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font::
+Doconce generates a '.p.tex' file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run::
 
 
-        Unix/DOS> ptex2tex -DHELVETICA mydoc
+        Terminal> ptex2tex -DHELVETICA mydoc
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through::
 
 
-        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 
 
 The 'ptex2tex' tool makes it possible to easily switch between many
@@ -5663,12 +6024,12 @@ There are over 30 styles to choose from.
 and create the PDF file::
 
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex mydoc
+        Terminal> latex mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex mydoc
+        Terminal> dvipdf mydoc
 
 If one wishes to use the 'Minted_Python', 'Minted_Cpp', etc., environments
 in 'ptex2tex' for typesetting code, the 'minted' LaTeX package is needed.
@@ -5676,18 +6037,18 @@ This package is included by running 'doconce format' with the
 '-DMINTED' option::
 
 
-        Unix/DOS> ptex2tex -DMINTED mydoc
+        Terminal> ptex2tex -DMINTED mydoc
 
 In this case, 'latex' must be run with the
 '-shell-escape' option::
 
 
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex -shell-escape mydoc
+        Terminal> dvipdf mydoc
 
 The '-shell-escape' option is required because the 'minted.sty' style
 file runs the 'pygments' program to format code, and this program
@@ -5698,22 +6059,22 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code::
 
 
-        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+        Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 reStructuredText
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file 'mydoc.rst':
 !bc   sys
-        Unix/DOS> doconce format rst mydoc.do.txt
+        Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats::
 
 
-        Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-        Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-        Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+        Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
 The OpenOffice file 'mydoc.odt' can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -5725,7 +6086,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 the reStructuredText format::
 
 
-        Unix/DOS> doconce format sphinx mydoc.do.txt
+        Terminal> doconce format sphinx mydoc.do.txt
 
 
 *Step 2.* Create a Sphinx root directory with a 'conf.py' file, 
@@ -5761,16 +6122,17 @@ program. Here is a scripted version of the steps with the latter::
 These statements as well as points 3-5 can be automated by the command::
 
 
-        Unix/DOS> doconce sphinx_dir mydoc.do.txt
+        Terminal> doconce sphinx_dir mydoc.do.txt
 
 More precisely, in addition to making the 'sphinx-rootdir',
 this command generates a script 'tmp_make_sphinx.sh' which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 *Step 3.* Move the 'tutorial.rst' file to the Sphinx root directory::
 
 
-        Unix/DOS> mv mydoc.rst sphinx-rootdir
+        Terminal> mv mydoc.rst sphinx-rootdir
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with 'mydoc.rst' in the 'sphinx-rootdir'
@@ -5800,7 +6162,7 @@ Many other formats are also possible.
 *Step 6.* View the result::
 
 
-        Unix/DOS> firefox _build/html/index.html
+        Terminal> firefox _build/html/index.html
 
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -5814,7 +6176,7 @@ The transformation to this format, called 'gwiki' to explicitly mark
 it as the Google Code dialect, is done by::
 
 
-        Unix/DOS> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
 the 'mydoc.gwiki' output file from 'doconce format' and paste the
@@ -5875,15 +6237,20 @@ BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)D
 
  - When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
-   (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML, Markdown,
+   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
    reStructuredText, Sphinx, XML, etc.  Would it be convenient to
    start with some very simple text-like format that easily converts
-   to the formats listed above, and then at some later stage eventually go
-   with a particular format?
- - Do you find it problematic that you have the same information
-   scattered around in different documents in different typesetting
-   formats? Would it be a good idea to write things once, in one format,
-   stored in one place, and include it anywhere?
+   to the formats listed above, and then at some later stage
+   eventually go with a particular format?
+ - Do you need to write documents in varying formats but find it
+   difficult to remember all the typesetting details of various
+   formats like LaTeX, HTML, Sphinx, and wiki? Would it be convenient
+   to generate the typesetting details of a particular format from a
+   very simple text-like format with minimal tagging?
+ - Do you have the same information scattered around in different
+   documents in different typesetting formats? Would it be a good idea
+   to write things once, in one format, stored in one place, and
+   include it anywhere?
 
 If any of these questions are of interest, you should keep on reading.
 
@@ -5896,7 +6263,7 @@ Doconce is two things:
  1. Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -5924,17 +6291,17 @@ Here are some Doconce features:
     with big LaTeX projects (books).
   - Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
   - Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
 
   - Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, or MS Word.
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
   - Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
@@ -5986,8 +6353,8 @@ text constructions that allow you to control the formating. For example,
     C{!bt} (begin TeX) and C{!et} (end TeX) commands at separate lines
     before and after the math block,
   - there is support for both LaTeX and text-like inline mathematics,
-  - tables, figures with captions, URLs with links, index list, 
-    labels and references are supported,
+  - figures and movies with captions, simple tables,
+    URLs with links, index list, labels and references are supported,
   - comments can be inserted throughout the text (C{#} at the beginning
     of a line),
   - with a simple preprocessor, Preprocess or Mako, one can include
@@ -6033,7 +6400,7 @@ Here is an example of some simple text written in the Doconce format::
         
           |--------------------------------|
           |time  | velocity | acceleration |
-          |--------------------------------|
+          |---r-------r-----------r--------|
           | 0.0  | 1.4186   | -5.01        |
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
@@ -6079,11 +6446,10 @@ Tables are also supperted, e.g.,
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+         0.0        1.4186         -5.01  
+         2.0      1.376512        11.919  
+         4.0        1.1E+1     14.717624  
 ============  ============  ============  
-
 
 Mathematics and Computer Code
 -----------------------------
@@ -6203,17 +6569,24 @@ for various formats of this document).
 From Doconce to Other Formats
 =============================
 
-Transformation of a Doconce document to various other
+Transformation of a Doconce document C{mydoc.do.txt} to various other
 formats applies the script C{doconce format}::
 
 
-        Unix/DOS> doconce format format mydoc.do.txt
+        Terminal> doconce format format mydoc.do.txt
 
-The C{preprocess} program is always used to preprocess the file first,
-and options to C{preprocess} can be added after the filename. For example::
+or just::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+        Terminal> doconce format format mydoc
+
+The C{mako} or C{preprocess} programs are always used to preprocess the
+file first, and options to C{mako} or C{preprocess} can be added after the
+filename. For example::
+
+
+        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 
 The variable C{FORMAT} is always defined as the current format when
 running C{preprocess}. That is, in the last example, C{FORMAT} is
@@ -6223,16 +6596,17 @@ format specific actions through tests like C{#if FORMAT == "LaTeX"}.
 Inline comments in the text are removed from the output by::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+        Terminal> doconce format LaTeX mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
-by running a helper script in the C{bin} folder of the Doconce
+by running 
 source code::
 
 
-        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+        Terminal> doconce remove_inline_comments mydoc
 
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 
 HTML
@@ -6242,7 +6616,7 @@ Making an HTML version of a Doconce file C{mydoc.do.txt}
 is performed by::
 
 
-        Unix/DOS> doconce format HTML mydoc.do.txt
+        Terminal> doconce format HTML mydoc
 
 The resulting file C{mydoc.html} can be loaded into any web browser for viewing.
 
@@ -6255,7 +6629,7 @@ I{Step 1.} Filter the doconce text to a pre-LaTeX form C{mydoc.p.tex} for
      C{ptex2tex}::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt
+        Terminal> doconce format LaTeX mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files C{newcommands.tex}, C{newcommands_keep.tex}, or
@@ -6266,27 +6640,28 @@ so that your commands are defined.
 I{Step 2.} Run C{ptex2tex} (if you have it) to make a standard LaTeX file::
 
 
-        Unix/DOS> ptex2tex mydoc
+        Terminal> ptex2tex mydoc
 
 or just perform a plain copy::
 
 
-        Unix/DOS> cp mydoc.p.tex mydoc.tex
+        Terminal> cp mydoc.p.tex mydoc.tex
 
-Doconce generates a C{.p.tex} file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font::
+Doconce generates a C{.p.tex} file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run::
 
 
-        Unix/DOS> ptex2tex -DHELVETICA mydoc
+        Terminal> ptex2tex -DHELVETICA mydoc
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through::
 
 
-        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 
 
 The C{ptex2tex} tool makes it possible to easily switch between many
@@ -6301,12 +6676,12 @@ I{Step 3.} Compile C{mydoc.tex}
 and create the PDF file::
 
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex mydoc
+        Terminal> latex mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex mydoc
+        Terminal> dvipdf mydoc
 
 If one wishes to use the C{Minted_Python}, C{Minted_Cpp}, etc., environments
 in C{ptex2tex} for typesetting code, the C{minted} LaTeX package is needed.
@@ -6314,18 +6689,18 @@ This package is included by running C{doconce format} with the
 C{-DMINTED} option::
 
 
-        Unix/DOS> ptex2tex -DMINTED mydoc
+        Terminal> ptex2tex -DMINTED mydoc
 
 In this case, C{latex} must be run with the
 C{-shell-escape} option::
 
 
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex -shell-escape mydoc
+        Terminal> dvipdf mydoc
 
 The C{-shell-escape} option is required because the C{minted.sty} style
 file runs the C{pygments} program to format code, and this program
@@ -6340,7 +6715,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code::
 
 
-        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+        Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 
 reStructuredText
@@ -6351,15 +6726,15 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file C{mydoc.rst}::
 
 
-        Unix/DOS> doconce format rst mydoc.do.txt
+        Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats::
 
 
-        Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-        Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-        Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+        Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
 The OpenOffice file C{mydoc.odt} can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -6374,7 +6749,7 @@ I{Step 1.} Translate Doconce into the Sphinx dialect of
 the reStructuredText format::
 
 
-        Unix/DOS> doconce format sphinx mydoc.do.txt
+        Terminal> doconce format sphinx mydoc.do.txt
 
 
 I{Step 2.} Create a Sphinx root directory with a C{conf.py} file, 
@@ -6410,16 +6785,17 @@ program. Here is a scripted version of the steps with the latter::
 These statements as well as points 3-5 can be automated by the command::
 
 
-        Unix/DOS> doconce sphinx_dir mydoc.do.txt
+        Terminal> doconce sphinx_dir mydoc.do.txt
 
 More precisely, in addition to making the C{sphinx-rootdir},
 this command generates a script C{tmp_make_sphinx.sh} which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 I{Step 3.} Move the C{tutorial.rst} file to the Sphinx root directory::
 
 
-        Unix/DOS> mv mydoc.rst sphinx-rootdir
+        Terminal> mv mydoc.rst sphinx-rootdir
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with C{mydoc.rst} in the C{sphinx-rootdir}
@@ -6449,7 +6825,7 @@ Many other formats are also possible.
 I{Step 6.} View the result::
 
 
-        Unix/DOS> firefox _build/html/index.html
+        Terminal> firefox _build/html/index.html
 
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -6468,7 +6844,7 @@ The transformation to this format, called C{gwiki} to explicitly mark
 it as the Google Code dialect, is done by::
 
 
-        Unix/DOS> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
 the C{mydoc.gwiki} output file from C{doconce format} and paste the
@@ -6543,20 +6919,26 @@ Hans Petter Langtangen [1, 2]
 [2] University of Oslo
 
 
-Date: Sep 12, 2011
+Date: Oct 22, 2011
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
-   (email-like) text, Wiki, Word/OpenOffice, LaTeX, HTML, Markdown,
+   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
    reStructuredText, Sphinx, XML, etc.  Would it be convenient to
    start with some very simple text-like format that easily converts
-   to the formats listed above, and then at some later stage eventually go
-   with a particular format?
+   to the formats listed above, and then at some later stage
+   eventually go with a particular format?
 
- * Do you find it problematic that you have the same information
-   scattered around in different documents in different typesetting
-   formats? Would it be a good idea to write things once, in one format,
-   stored in one place, and include it anywhere?
+ * Do you need to write documents in varying formats but find it
+   difficult to remember all the typesetting details of various
+   formats like LaTeX, HTML, Sphinx, and wiki? Would it be convenient
+   to generate the typesetting details of a particular format from a
+   very simple text-like format with minimal tagging?
+
+ * Do you have the same information scattered around in different
+   documents in different typesetting formats? Would it be a good idea
+   to write things once, in one format, stored in one place, and
+   include it anywhere?
 
 If any of these questions are of interest, you should keep on reading.
 
@@ -6569,7 +6951,7 @@ Doconce is two things:
  1. Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -6602,18 +6984,18 @@ Here are some Doconce features:
 
   * Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
 
   * Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
 
   * Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, or MS Word.
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
 
   * Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
@@ -6677,8 +7059,8 @@ text constructions that allow you to control the formating. For example,
 
   * there is support for both LaTeX and text-like inline mathematics,
 
-  * tables, figures with captions, URLs with links, index list, 
-    labels and references are supported,
+  * figures and movies with captions, simple tables,
+    URLs with links, index list, labels and references are supported,
 
   * comments can be inserted throughout the text (# at the beginning
     of a line),
@@ -6727,7 +7109,7 @@ Here is an example of some simple text written in the Doconce format::
         
           |--------------------------------|
           |time  | velocity | acceleration |
-          |--------------------------------|
+          |---r-------r-----------r--------|
           | 0.0  | 1.4186   | -5.01        |
           | 2.0  | 1.376512 | 11.919       |
           | 4.0  | 1.1E+1   | 14.717624    |
@@ -6777,11 +7159,10 @@ Tables are also supperted, e.g.,
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+         0.0        1.4186         -5.01  
+         2.0      1.376512        11.919  
+         4.0        1.1E+1     14.717624  
 ============  ============  ============  
-
 
 Mathematics and Computer Code
 -----------------------------
@@ -6898,17 +7279,24 @@ for various formats of this document).
 From Doconce to Other Formats
 =============================
 
-Transformation of a Doconce document to various other
+Transformation of a Doconce document mydoc.do.txt to various other
 formats applies the script doconce format::
 
 
-        Unix/DOS> doconce format format mydoc.do.txt
+        Terminal> doconce format format mydoc.do.txt
 
-The preprocess program is always used to preprocess the file first,
-and options to preprocess can be added after the filename. For example::
+or just::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+        Terminal> doconce format format mydoc
+
+The mako or preprocess programs are always used to preprocess the
+file first, and options to mako or preprocess can be added after the
+filename. For example::
+
+
+        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 
 The variable FORMAT is always defined as the current format when
 running preprocess. That is, in the last example, FORMAT is
@@ -6918,16 +7306,17 @@ format specific actions through tests like #if FORMAT == "LaTeX".
 Inline comments in the text are removed from the output by::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+        Terminal> doconce format LaTeX mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
-by running a helper script in the bin folder of the Doconce
+by running 
 source code::
 
 
-        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+        Terminal> doconce remove_inline_comments mydoc
 
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 
 HTML
@@ -6937,7 +7326,7 @@ Making an HTML version of a Doconce file mydoc.do.txt
 is performed by::
 
 
-        Unix/DOS> doconce format HTML mydoc.do.txt
+        Terminal> doconce format HTML mydoc
 
 The resulting file mydoc.html can be loaded into any web browser for viewing.
 
@@ -6950,7 +7339,7 @@ Making a LaTeX file mydoc.tex from mydoc.do.txt is done in two steps:
      ptex2tex::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt
+        Terminal> doconce format LaTeX mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files newcommands.tex, newcommands_keep.tex, or
@@ -6961,27 +7350,28 @@ so that your commands are defined.
 *Step 2.* Run ptex2tex (if you have it) to make a standard LaTeX file::
 
 
-        Unix/DOS> ptex2tex mydoc
+        Terminal> ptex2tex mydoc
 
 or just perform a plain copy::
 
 
-        Unix/DOS> cp mydoc.p.tex mydoc.tex
+        Terminal> cp mydoc.p.tex mydoc.tex
 
-Doconce generates a .p.tex file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font::
+Doconce generates a .p.tex file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run::
 
 
-        Unix/DOS> ptex2tex -DHELVETICA mydoc
+        Terminal> ptex2tex -DHELVETICA mydoc
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through::
 
 
-        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 
 
 The ptex2tex tool makes it possible to easily switch between many
@@ -6996,12 +7386,12 @@ There are over 30 styles to choose from.
 and create the PDF file::
 
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex mydoc
+        Terminal> latex mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex mydoc
+        Terminal> dvipdf mydoc
 
 If one wishes to use the Minted_Python, Minted_Cpp, etc., environments
 in ptex2tex for typesetting code, the minted LaTeX package is needed.
@@ -7009,18 +7399,18 @@ This package is included by running doconce format with the
 -DMINTED option::
 
 
-        Unix/DOS> ptex2tex -DMINTED mydoc
+        Terminal> ptex2tex -DMINTED mydoc
 
 In this case, latex must be run with the
 -shell-escape option::
 
 
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex -shell-escape mydoc
+        Terminal> dvipdf mydoc
 
 The -shell-escape option is required because the minted.sty style
 file runs the pygments program to format code, and this program
@@ -7035,7 +7425,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code::
 
 
-        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+        Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 
 reStructuredText
@@ -7046,15 +7436,15 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file mydoc.rst::
 
 
-        Unix/DOS> doconce format rst mydoc.do.txt
+        Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats::
 
 
-        Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-        Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-        Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+        Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
 The OpenOffice file mydoc.odt can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -7069,7 +7459,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 the reStructuredText format::
 
 
-        Unix/DOS> doconce format sphinx mydoc.do.txt
+        Terminal> doconce format sphinx mydoc.do.txt
 
 
 *Step 2.* Create a Sphinx root directory with a conf.py file, 
@@ -7105,16 +7495,17 @@ program. Here is a scripted version of the steps with the latter::
 These statements as well as points 3-5 can be automated by the command::
 
 
-        Unix/DOS> doconce sphinx_dir mydoc.do.txt
+        Terminal> doconce sphinx_dir mydoc.do.txt
 
 More precisely, in addition to making the sphinx-rootdir,
 this command generates a script tmp_make_sphinx.sh which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 *Step 3.* Move the tutorial.rst file to the Sphinx root directory::
 
 
-        Unix/DOS> mv mydoc.rst sphinx-rootdir
+        Terminal> mv mydoc.rst sphinx-rootdir
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with mydoc.rst in the sphinx-rootdir
@@ -7144,7 +7535,7 @@ Many other formats are also possible.
 *Step 6.* View the result::
 
 
-        Unix/DOS> firefox _build/html/index.html
+        Terminal> firefox _build/html/index.html
 
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -7163,7 +7554,7 @@ The transformation to this format, called gwiki to explicitly mark
 it as the Google Code dialect, is done by::
 
 
-        Unix/DOS> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
 the mydoc.gwiki output file from doconce format and paste the
@@ -7232,7 +7623,7 @@ the Pandoc Haskell program must of course be installed.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Mon, 12 Sep 2011 (10:42)
+DATE: Sat, 22 Oct 2011 (14:48)
 
 
 
@@ -7336,7 +7727,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Mon, 12 Sep 2011 (10:42)
+DATE: Sat, 22 Oct 2011 (14:48)
 
 
 
@@ -7450,7 +7841,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Mon, 12 Sep 2011 (10:42)</CENTER>
+<CENTER>Sat, 22 Oct 2011 (14:48)</CENTER>
 
 
 
@@ -7581,7 +7972,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Mon, 12 Sep 2011 (10:42)</CENTER>
+<CENTER>Sat, 22 Oct 2011 (14:48)</CENTER>
 
 
 
@@ -7752,8 +8143,6 @@ doconce subst '\.png' '' manual.rst.tex   # no extension in graphics file
 latex manual.rst.tex   # pdflatex works too
 latex manual.rst.tex
 dvipdf manual.rst.dvi
-rst2newlatex.py manual.rst > manual.rst_new.tex
-
 
 # plain text:
 $d2f plain manual.do.txt remove_inline_comments 
@@ -7763,6 +8152,7 @@ $d2f st manual.do.txt
 
 # doconce LaTeX:
 $d2f LaTeX manual.do.txt    # produces ptex2tex: manual.p.tex
+doconce replace 'usepackage{ptex2tex' 'usepackage{ptex2tex,subfigure' manual.p.tex  # need subfigure LaTeX package
 ptex2tex -DMINTED manual    # turn ptex2tex format into plain latex
 rm -f manual.p.tex
 latex -shell-escape manual
@@ -7858,7 +8248,7 @@ Doconce is two things:
   o Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -7890,10 +8280,10 @@ Here are some Doconce features:
     with big LaTeX projects (books).
   * Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
   * Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
@@ -8094,7 +8484,7 @@ The result becomes
 The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
-sections, subsections, paragraphs., figures, etc.
+sections, subsections, paragraphs., figures, movies, etc.
 
 idx{`TITLE` keyword} idx{`AUTHOR` keyword} idx{`DATE` keyword}
 
@@ -8175,16 +8565,19 @@ The result for the present format looks like this:
 
 The running text goes here. 
 
-      ===== Example on a Subsection Heading ===== 
+===== Example on a Subsection Heading ===== 
 The running text goes here.
 
-          ===Example on a Subsubsection Heading===
+=== Example on a Subsubsection Heading ===
 
 The running text goes here.
 
 __A Paragraph.__ The running text goes here.
 
-__Figures.__
+======= Special Lines =======
+
+===== Figures =====
+
 Figures are recognized by the special line syntax
 !bc
 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
@@ -8208,29 +8601,59 @@ included in the formatted caption).
 
 FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. label{fig:viz}
 
-__Movies.__
+===== Movies =====
+
 Here is an example on the `MOVIE:` keyword for embedding movies. This
-feature works only for the `LaTeX`, `HTML`, `rst`, and `sphinx` formats.
+feature works well for the `LaTeX`, `HTML`, `rst`, and `sphinx` formats.
+Other formats try to generate some HTML file and link to that file
+for showing the movie.
 !bc
 MOVIE: [filename, height=xxx width=yyy] possible caption
 !ec
 
-# LaTeX/PDF format requires movie15 package for displaying movies
+# LaTeX/PDF format can make use of the movie15 package for displaying movies,
+# or just plain \href{run: ...}{...}
 
-MOVIE: [figs/mjolnir.mpeg, width=600, height=470]
+MOVIE: [figs/mjolnir.mpeg, width=600 height=470]
 
-#MOVIE: [figs/wavepacket.gif, width=600, height=470]
+#MOVIE: [figs/wavepacket.gif, width=600 height=470]
 
-#MOVIE: [figs/wavepacket2.mpeg, width=600, height=470]
+#MOVIE: [figs/wavepacket2.mpeg, width=600 height=470]
 
-The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML format will play
-the movie right away, while for all other formats there is no
-movie support. The HTML format can also treat filenames of the form
-`myframes*.png`. In that case, a player for showing the sequence of frames
-is inserted in the HTML file. 
+The LaTeX format results in a file that can either make use of
+the movie15 package (requires the PDF to be shown in Acrobat Reader)
+or just a plain address to the movie. The HTML, reST, and
+Sphinx formats will play
+the movie right away by embedding the file in a standard HTML code,
+provided the output format is HTML.
+For all other formats a URL to an HTML file, which can play the code,
+is inserted in the output document.
 
-__Computer Code.__
+When movies are embedded in the PDF file via LaTeX and
+the `movie15` package wanted, one has to turn on the preprocessor
+variable `MOVIE15`. There is an associated variable
+`EXTERNAL_MOVIE_VIEWER` which can be defined to launch an external
+viewer when displaying the PDF file (in Acrobat Reader):
+!bc sys
+Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
+!ec
+
+The HTML, reST, and Sphinx formats can also treat filenames of the form
+`myframes*.png`. In that case, an HTML file for showing the sequence of frames
+is generated, and a link to this file is inserted in the output document.
+That is, a simple "movie viewer" for the frames is made. 
+
+Many publish their scientific movies on YouTube, and Doconce recognizes
+YouTube URLs as movies. When the output is an HTML file, the movie will
+be embedded, otherwise a URL to the YouTube page is inserted.
+You should equip the `MOVIE:` command with the right width and height
+of embedded YouTube movies (the parameters appear when you request
+the embedded HTML code for the movie on the YouTube page).
+
+
+
+===== Copying Computer Code =====
+
 Another type of special lines starts with `@@@CODE` and enables copying
 of computer code from a file directly into a verbatim environment, see 
 Section ref{sec:verbatim:blocks} below.
@@ -8356,7 +8779,7 @@ will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
 reStructuredText commands by `doconce format`. In the HTML and (Google
-Code) Wiki formats, labels become anchors and references become links,
+Code) wiki formats, labels become anchors and references become links,
 and with LaTeX "label" and "ref" are just equipped with backslashes so
 these commands work as usual in LaTeX.
 
@@ -8389,7 +8812,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 !ec
 Everything related to the index simply becomes invisible in 
-plain text, Epytext, StructuredText, HTML, and Wiki formats.
+plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: `idx` commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
 Index items are naturally placed right after section headings, before the
@@ -8460,7 +8883,7 @@ A table like
 
   |--------------------------------|
   |time  | velocity | acceleration |
-  |--------------------------------|
+  |--r--------r-----------r--------|
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
@@ -8477,7 +8900,19 @@ is built up of pipe symbols and dashes:
   |--------------------------------|
 !ec
 The pipes and column values do not need to be aligned (but why write
-the Doconce source in an ugly way?).
+the Doconce source in an ugly way?). In the line below the heading,
+one can insert the characters `c`, `r`, or `l` to specify the
+alignment of the columns (centered, right, or left, respectively).
+Similar character can be inserted in the line above the header to
+algn the headings. Pipes `|` can also be inserted to indicate
+vertical rules in LaTeX tables (they are ignored for other formats).
+Note that not all formats offer alignment of heading or entries
+in tables (reStructuredText and Sphinx are examples). Also note that
+Doconce tables are very simple: neither entries nor
+headings can span several columns or rows. When that functionality
+is needed, one can make use of the preprocessor and if-tests on
+the format and insert format-specific code for tables.
+
 
 
 ===== Blocks of Verbatim Computer Code ===== 
@@ -8671,8 +9106,8 @@ in the current format.
 
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
-Two preprocessors are supported: Preprocess 
-(URL:"http://code.google.com/p/preprocess") and Mako
+Two preprocessors are supported: preprocess 
+(URL:"http://code.google.com/p/preprocess") and mako
 (URL:"http://www.makotemplates.org/"). The former allows include and if-else
 statements much like the well-known preprocessor in C and C++ (but it
 does not allow sophisticated macro substitutions). The latter
@@ -8682,15 +9117,61 @@ through Python code embedded in the Doconce document. An arbitrary set
 of `name=value` command-line arguments (at the end of the command line)
 automatically define Mako variables that are substituted in the document.
 
-Doconce will detect if Preprocess or Mako commands are used and run
+Doconce will detect if preprocess or Mako commands are used and run
 the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
-Preprocess and Mako always have the variable `FORMAT` to be the desired
-output format of Doconce. It is then easy to test on the value of `FORMAT`
-and take different actions for different formats. For example, one may
-create special LaTeX output for figures, say with multiple plots within
-a figure, while other formats may apply a separate figure for each plot.
+The preprocess and mako programs always have the variable `FORMAT`
+defined as the desired output format of Doconce (`HTML`, `LaTeX`,
+`plain`, `rst`, `sphinx`, `epydoc`, `st`).  It is then easy to test on
+the value of `FORMAT` and take different actions for different
+formats. For example, one may create special LaTeX output for figures,
+say with multiple plots within a figure, while other formats may apply
+a separate figure for each plot. Below is an example (see the Doconce
+source code of this document to understand how preprocess is used to
+create the example).
+
+# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated 
+# PostScript files are used.
+
+# #if FORMAT == "LaTeX"
+# Use LaTeX with subfigures (a) and (b)
+\begin{figure}
+label{fig:wavepackets}
+  \begin{center}
+#  #ifdef PNGFIGS
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
+#  #else
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
+#  #endif
+
+#  #ifdef PNGFIGS
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
+#  #else
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
+#  #endif
+  \end{center}
+  \caption{
+  Wavepackets at time (a) 0.1 s and (b) 0.2 s.
+  }
+\end{figure}
+
+# #else
+
+# Use default Doconce figure handling for all other formats
+
+FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
+
+FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
+
+# #endif
+
+Other user-defined variables for the preprocessor can be set at 
+the command line as explained in Section ref{doconce2formats}.
+
+More advanced use of mako can include Python code that may automate
+the writing of parts of the document.
+
 
 
 ===== Missing Features ===== 
@@ -9028,7 +9509,7 @@ Automatically generated HTML file from Doconce source
 <CENTER>[2] <B>University of Oslo</B></CENTER>
 
 
-<CENTER><H3>Sep 12, 2011</H3></CENTER>
+<CENTER><H3>Oct 22, 2011</H3></CENTER>
 <P>
 
 <P>
@@ -9049,7 +9530,7 @@ Doconce is two things:
  <LI> Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -9081,10 +9562,10 @@ Here are some Doconce features:
     with big LaTeX projects (books).
   <LI> Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
   <LI> Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 </UL>
 
@@ -9198,18 +9679,26 @@ of the results.
 <P>
 
 <P>
-Transformation of a Doconce document to various other
+Transformation of a Doconce document <TT>mydoc.do.txt</TT> to various other
 formats applies the script <TT>doconce format</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format format mydoc.do.txt
+Terminal> doconce format format mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-The <TT>preprocess</TT> program is always used to preprocess the file first,
-and options to <TT>preprocess</TT> can be added after the filename. For example,
+or just
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+Terminal> doconce format format mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+The <TT>mako</TT> or <TT>preprocess</TT> programs are always used to preprocess the
+file first, and options to <TT>mako</TT> or <TT>preprocess</TT> can be added after the
+filename. For example,
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The variable <TT>FORMAT</TT> is always defined as the current format when
@@ -9221,18 +9710,19 @@ format specific actions through tests like <TT>#if FORMAT == "LaTeX"</TT>.
 Inline comments in the text are removed from the output by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+Terminal> doconce format LaTeX mydoc remove_inline_comments
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 One can also remove such comments from the original Doconce file
-by running a helper script in the <TT>bin</TT> folder of the Doconce
+by running 
 source code:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+Terminal> doconce remove_inline_comments mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 <P>
 
@@ -9243,7 +9733,7 @@ Making an HTML version of a Doconce file <TT>mydoc.do.txt</TT>
 is performed by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format HTML mydoc.do.txt
+Terminal> doconce format HTML mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The resulting file <TT>mydoc.html</TT> can be loaded into any web browser for viewing.
@@ -9261,7 +9751,7 @@ Making a LaTeX file <TT>mydoc.tex</TT> from <TT>mydoc.do.txt</TT> is done in two
      <TT>ptex2tex</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format LaTeX mydoc.do.txt
+Terminal> doconce format LaTeX mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 LaTeX-specific commands ("newcommands") in math formulas and similar
@@ -9274,30 +9764,31 @@ so that your commands are defined.
 <B>Step 2.</B> Run <TT>ptex2tex</TT> (if you have it) to make a standard LaTeX file,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> ptex2tex mydoc
+Terminal> ptex2tex mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 or just perform a plain copy,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> cp mydoc.p.tex mydoc.tex
+Terminal> cp mydoc.p.tex mydoc.tex
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-Doconce generates a <TT>.p.tex</TT> file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font,
+Doconce generates a <TT>.p.tex</TT> file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> ptex2tex -DHELVETICA mydoc
+Terminal> ptex2tex -DHELVETICA mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -9315,12 +9806,12 @@ There are over 30 styles to choose from.
 and create the PDF file:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> latex mydoc
-Unix/DOS> latex mydoc
-Unix/DOS> makeindex mydoc   # if index
-Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex mydoc
-Unix/DOS> dvipdf mydoc
+Terminal> latex mydoc
+Terminal> latex mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex mydoc
+Terminal> dvipdf mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 If one wishes to use the <TT>Minted_Python</TT>, <TT>Minted_Cpp</TT>, etc., environments
@@ -9329,19 +9820,19 @@ This package is included by running <TT>doconce format</TT> with the
 <TT>-DMINTED</TT> option:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> ptex2tex -DMINTED mydoc
+Terminal> ptex2tex -DMINTED mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 In this case, <TT>latex</TT> must be run with the
 <TT>-shell-escape</TT> option:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> makeindex mydoc   # if index
-Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> dvipdf mydoc
+Terminal> latex -shell-escape mydoc
+Terminal> latex -shell-escape mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex -shell-escape mydoc
+Terminal> dvipdf mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The <TT>-shell-escape</TT> option is required because the <TT>minted.sty</TT> style
@@ -9358,7 +9849,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -9370,16 +9861,16 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file <TT>mydoc.rst</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format rst mydoc.do.txt
+Terminal> doconce format rst mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 We may now produce various other formats:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The OpenOffice file <TT>mydoc.odt</TT> can be loaded into OpenOffice and
@@ -9396,7 +9887,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 the reStructuredText format:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format sphinx mydoc.do.txt
+Terminal> doconce format sphinx mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -9435,18 +9926,19 @@ EOF
 These statements as well as points 3-5 can be automated by the command
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce sphinx_dir mydoc.do.txt
+Terminal> doconce sphinx_dir mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 More precisely, in addition to making the <TT>sphinx-rootdir</TT>,
 this command generates a script <TT>tmp_make_sphinx.sh</TT> which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 <P>
 <B>Step 3.</B> Move the <TT>tutorial.rst</TT> file to the Sphinx root directory:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> mv mydoc.rst sphinx-rootdir
+Terminal> mv mydoc.rst sphinx-rootdir
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 If you have figures in your document, the relative paths to those will
@@ -9482,7 +9974,7 @@ Many other formats are also possible.
 <B>Step 6.</B> View the result:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> firefox _build/html/index.html
+Terminal> firefox _build/html/index.html
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -9508,7 +10000,7 @@ The transformation to this format, called <TT>gwiki</TT> to explicitly mark
 it as the Google Code dialect, is done by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Unix/DOS> doconce format gwiki mydoc.do.txt
+Terminal> doconce format gwiki mydoc.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 You can then open a new wiki page for your Google Code project, copy
@@ -9664,7 +10156,7 @@ The result becomes
 The Doconce markup language has a concept called <EM>special lines</EM>.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
-sections, subsections, paragraphs., figures, etc.
+sections, subsections, paragraphs., figures, movies, etc.
 
 <P>
 
@@ -9773,7 +10265,11 @@ The running text goes here.
 <B>A Paragraph.</B> The running text goes here.
 
 <P>
-<B>Figures.</B> Figures are recognized by the special line syntax
+<H1>Special Lines</H1>
+<P>
+<H3>Figures</H3>
+<P>
+Figures are recognized by the special line syntax
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
@@ -9802,8 +10298,12 @@ included in the formatted caption).
 <IMG SRC="figs/streamtubes.png" ALIGN="bottom"  width=400> <P><EM> Streamtube visualization of a fluid flow. <A NAME="fig:viz"></A></EM></P>
 
 <P>
-<B>Movies.</B> Here is an example on the <TT>MOVIE:</TT> keyword for embedding movies. This
-feature works only for the <TT>LaTeX</TT>, <TT>HTML</TT>, <TT>rst</TT>, and <TT>sphinx</TT> formats.
+<H3>Movies</H3>
+<P>
+Here is an example on the <TT>MOVIE:</TT> keyword for embedding movies. This
+feature works well for the <TT>LaTeX</TT>, <TT>HTML</TT>, <TT>rst</TT>, and <TT>sphinx</TT> formats.
+Other formats try to generate some HTML file and link to that file
+for showing the movie.
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 MOVIE: [filename, height=xxx width=yyy] possible caption
@@ -9811,32 +10311,67 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
 <! -- END VERBATIM BLOCK -->
 
 <P>
-<!-- LaTeX/PDF format requires movie15 package for displaying movies -->
+<!-- LaTeX/PDF format can make use of the movie15 package for displaying movies, -->
+<!-- or just plain \h<A HREF="#run: ...">run: ...</a>{...} -->
 
 <P>
 
-   <EMBED SRC="figs/mjolnir.mpeg"  width=600, height=470 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
-   <P>
-   <EM></EM>
-   </P>
+<EMBED SRC="figs/mjolnir.mpeg" width=600 height=470 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+<P>
+<EM></EM>
+</P>
 
 
 <P>
-<!-- MOVIE: [figs/wavepacket.gif, width=600, height=470] -->
+<!-- MOVIE: [figs/wavepacket.gif, width=600 height=470] -->
 
 <P>
-<!-- MOVIE: [figs/wavepacket2.mpeg, width=600, height=470] -->
+<!-- MOVIE: [figs/wavepacket2.mpeg, width=600 height=470] -->
 
 <P>
-The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML format will play
-the movie right away, while for all other formats there is no
-movie support. The HTML format can also treat filenames of the form
-<TT>myframes*.png</TT>. In that case, a player for showing the sequence of frames
-is inserted in the HTML file. 
+The LaTeX format results in a file that can either make use of
+the movie15 package (requires the PDF to be shown in Acrobat Reader)
+or just a plain address to the movie. The HTML, reST, and
+Sphinx formats will play
+the movie right away by embedding the file in a standard HTML code,
+provided the output format is HTML.
+For all other formats a URL to an HTML file, which can play the code,
+is inserted in the output document.
 
 <P>
-<B>Computer Code.</B> Another type of special lines starts with <TT>@@@CODE</TT> and enables copying
+When movies are embedded in the PDF file via LaTeX and
+the <TT>movie15</TT> package wanted, one has to turn on the preprocessor
+variable <TT>MOVIE15</TT>. There is an associated variable
+<TT>EXTERNAL_MOVIE_VIEWER</TT> which can be defined to launch an external
+viewer when displaying the PDF file (in Acrobat Reader):
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+
+<P>
+The HTML, reST, and Sphinx formats can also treat filenames of the form
+<TT>myframes*.png</TT>. In that case, an HTML file for showing the sequence of frames
+is generated, and a link to this file is inserted in the output document.
+That is, a simple "movie viewer" for the frames is made. 
+
+<P>
+Many publish their scientific movies on YouTube, and Doconce recognizes
+YouTube URLs as movies. When the output is an HTML file, the movie will
+be embedded, otherwise a URL to the YouTube page is inserted.
+You should equip the <TT>MOVIE:</TT> command with the right width and height
+of embedded YouTube movies (the parameters appear when you request
+the embedded HTML code for the movie on the YouTube page).
+
+<P>
+
+<P>
+
+<P>
+<H3>Copying Computer Code</H3>
+<P>
+Another type of special lines starts with <TT>@@@CODE</TT> and enables copying
 of computer code from a file directly into a verbatim environment, see 
 the section <A HREF="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> below.
 
@@ -9988,7 +10523,7 @@ will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
 reStructuredText commands by <TT>doconce format</TT>. In the HTML and (Google
-Code) Wiki formats, labels become anchors and references become links,
+Code) wiki formats, labels become anchors and references become links,
 and with LaTeX "label" and "ref" are just equipped with backslashes so
 these commands work as usual in LaTeX.
 
@@ -10027,7 +10562,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 Everything related to the index simply becomes invisible in 
-plain text, Epytext, StructuredText, HTML, and Wiki formats.
+plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: <TT>idx</TT> commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
 Index items are naturally placed right after section headings, before the
@@ -10112,10 +10647,10 @@ A table like
 
 <P>
 <TABLE border="1">
-<TR><TD><B>    time    </B></TD> <TD><B>  velocity  </B></TD> <TD><B>acceleration</B></TD> </TR>
-<TR><TD>   0.0             </TD> <TD>   1.4186          </TD> <TD>   -5.01           </TD> </TR>
-<TR><TD>   2.0             </TD> <TD>   1.376512        </TD> <TD>   11.919          </TD> </TR>
-<TR><TD>   4.0             </TD> <TD>   1.1E+1          </TD> <TD>   14.717624       </TD> </TR>
+<TR><TD align="center"><B>    time    </B></TD> <TD align="center"><B>  velocity  </B></TD> <TD align="center"><B>acceleration</B></TD> </TR>
+<TR><TD align="right">   0.0             </TD> <TD align="right">   1.4186          </TD> <TD align="right">   -5.01           </TD> </TR>
+<TR><TD align="right">   2.0             </TD> <TD align="right">   1.376512        </TD> <TD align="right">   11.919          </TD> </TR>
+<TR><TD align="right">   4.0             </TD> <TD align="right">   1.1E+1          </TD> <TD align="right">   14.717624       </TD> </TR>
 </TABLE>
 <P>
 is built up of pipe symbols and dashes:
@@ -10131,7 +10666,20 @@ is built up of pipe symbols and dashes:
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The pipes and column values do not need to be aligned (but why write
-the Doconce source in an ugly way?).
+the Doconce source in an ugly way?). In the line below the heading,
+one can insert the characters <TT>c</TT>, <TT>r</TT>, or <TT>l</TT> to specify the
+alignment of the columns (centered, right, or left, respectively).
+Similar character can be inserted in the line above the header to
+algn the headings. Pipes <TT>|</TT> can also be inserted to indicate
+vertical rules in LaTeX tables (they are ignored for other formats).
+Note that not all formats offer alignment of heading or entries
+in tables (reStructuredText and Sphinx are examples). Also note that
+Doconce tables are very simple: neither entries nor
+headings can span several columns or rows. When that functionality
+is needed, one can make use of the preprocessor and if-tests on
+the format and insert format-specific code for tables.
+
+<P>
 
 <P>
 
@@ -10411,8 +10959,8 @@ in the current format.
 <P>
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
-Two preprocessors are supported: Preprocess 
-(<A HREF="http://code.google.com/p/preprocess"><TT>http://code.google.com/p/preprocess</TT></A>) and Mako
+Two preprocessors are supported: preprocess 
+(<A HREF="http://code.google.com/p/preprocess"><TT>http://code.google.com/p/preprocess</TT></A>) and mako
 (<A HREF="http://www.makotemplates.org/"><TT>http://www.makotemplates.org/</TT></A>). The former allows include and if-else
 statements much like the well-known preprocessor in C and C++ (but it
 does not allow sophisticated macro substitutions). The latter
@@ -10423,16 +10971,47 @@ of <TT>name=value</TT> command-line arguments (at the end of the command line)
 automatically define Mako variables that are substituted in the document.
 
 <P>
-Doconce will detect if Preprocess or Mako commands are used and run
+Doconce will detect if preprocess or Mako commands are used and run
 the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
 <P>
-Preprocess and Mako always have the variable <TT>FORMAT</TT> to be the desired
-output format of Doconce. It is then easy to test on the value of <TT>FORMAT</TT>
-and take different actions for different formats. For example, one may
-create special LaTeX output for figures, say with multiple plots within
-a figure, while other formats may apply a separate figure for each plot.
+The preprocess and mako programs always have the variable <TT>FORMAT</TT>
+defined as the desired output format of Doconce (<TT>HTML</TT>, <TT>LaTeX</TT>,
+<TT>plain</TT>, <TT>rst</TT>, <TT>sphinx</TT>, <TT>epydoc</TT>, <TT>st</TT>).  It is then easy to test on
+the value of <TT>FORMAT</TT> and take different actions for different
+formats. For example, one may create special LaTeX output for figures,
+say with multiple plots within a figure, while other formats may apply
+a separate figure for each plot. Below is an example (see the Doconce
+source code of this document to understand how preprocess is used to
+create the example).
+
+<P>
+<!-- If PNGFIGS is defined, PNG files are used, otherwise Encapsulated -->
+<!-- PostScript files are used. -->
+
+<P>
+
+<P>
+<!-- Use default Doconce figure handling for all other formats -->
+
+<P>
+<IMG SRC="figs/wavepacket_0001.png" ALIGN="bottom"  width=400> <P><EM> Wavepacket at time 0.1 s.</EM></P>
+
+<P>
+<IMG SRC="figs/wavepacket_0010.png" ALIGN="bottom"  width=400> <P><EM> Wavepacket at time 0.2 s.</EM></P>
+
+<P>
+
+<P>
+Other user-defined variables for the preprocessor can be set at 
+the command line as explained in the section <A HREF="#doconce2formats">From Doconce to Other Formats</a>.
+
+<P>
+More advanced use of mako can include Python code that may automate
+the writing of parts of the document.
+
+<P>
 
 <P>
 
@@ -10787,7 +11366,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Sep 12, 2011
+:Date: Oct 22, 2011
 
 .. lines beginning with # are comment lines
 
@@ -10803,7 +11382,7 @@ Doconce is two things:
  1. Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -10836,11 +11415,11 @@ Here are some Doconce features:
 
   * Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
 
   * Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
@@ -10941,17 +11520,24 @@ of the results.
 From Doconce to Other Formats
 =============================
 
-Transformation of a Doconce document to various other
+Transformation of a Doconce document ``mydoc.do.txt`` to various other
 formats applies the script ``doconce format``::
 
 
-        Unix/DOS> doconce format format mydoc.do.txt
+        Terminal> doconce format format mydoc.do.txt
 
-The ``preprocess`` program is always used to preprocess the file first,
-and options to ``preprocess`` can be added after the filename. For example::
+or just::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+        Terminal> doconce format format mydoc
+
+The ``mako`` or ``preprocess`` programs are always used to preprocess the
+file first, and options to ``mako`` or ``preprocess`` can be added after the
+filename. For example::
+
+
+        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 
 The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
@@ -10961,16 +11547,17 @@ format specific actions through tests like ``#if FORMAT == "LaTeX"``.
 Inline comments in the text are removed from the output by::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+        Terminal> doconce format LaTeX mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
-by running a helper script in the ``bin`` folder of the Doconce
+by running 
 source code::
 
 
-        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+        Terminal> doconce remove_inline_comments mydoc
 
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 
 HTML
@@ -10980,7 +11567,7 @@ Making an HTML version of a Doconce file ``mydoc.do.txt``
 is performed by::
 
 
-        Unix/DOS> doconce format HTML mydoc.do.txt
+        Terminal> doconce format HTML mydoc
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
@@ -10999,7 +11586,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
      ``ptex2tex``::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt
+        Terminal> doconce format LaTeX mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
@@ -11010,27 +11597,28 @@ so that your commands are defined.
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file::
 
 
-        Unix/DOS> ptex2tex mydoc
+        Terminal> ptex2tex mydoc
 
 or just perform a plain copy::
 
 
-        Unix/DOS> cp mydoc.p.tex mydoc.tex
+        Terminal> cp mydoc.p.tex mydoc.tex
 
-Doconce generates a ``.p.tex`` file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font::
+Doconce generates a ``.p.tex`` file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run::
 
 
-        Unix/DOS> ptex2tex -DHELVETICA mydoc
+        Terminal> ptex2tex -DHELVETICA mydoc
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through::
 
 
-        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
@@ -11045,12 +11633,12 @@ There are over 30 styles to choose from.
 and create the PDF file::
 
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex mydoc
+        Terminal> latex mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex mydoc
+        Terminal> dvipdf mydoc
 
 If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
 in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
@@ -11058,18 +11646,18 @@ This package is included by running ``doconce format`` with the
 ``-DMINTED`` option::
 
 
-        Unix/DOS> ptex2tex -DMINTED mydoc
+        Terminal> ptex2tex -DMINTED mydoc
 
 In this case, ``latex`` must be run with the
 ``-shell-escape`` option::
 
 
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex -shell-escape mydoc
+        Terminal> dvipdf mydoc
 
 The ``-shell-escape`` option is required because the ``minted.sty`` style
 file runs the ``pygments`` program to format code, and this program
@@ -11084,7 +11672,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code::
 
 
-        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+        Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 
 reStructuredText
@@ -11095,15 +11683,15 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file ``mydoc.rst``::
 
 
-        Unix/DOS> doconce format rst mydoc.do.txt
+        Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats::
 
 
-        Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-        Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-        Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+        Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
 The OpenOffice file ``mydoc.odt`` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -11118,7 +11706,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 the reStructuredText format::
 
 
-        Unix/DOS> doconce format sphinx mydoc.do.txt
+        Terminal> doconce format sphinx mydoc.do.txt
 
 
 *Step 2.* Create a Sphinx root directory with a ``conf.py`` file, 
@@ -11154,16 +11742,17 @@ program. Here is a scripted version of the steps with the latter::
 These statements as well as points 3-5 can be automated by the command::
 
 
-        Unix/DOS> doconce sphinx_dir mydoc.do.txt
+        Terminal> doconce sphinx_dir mydoc.do.txt
 
 More precisely, in addition to making the ``sphinx-rootdir``,
 this command generates a script ``tmp_make_sphinx.sh`` which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory::
 
 
-        Unix/DOS> mv mydoc.rst sphinx-rootdir
+        Terminal> mv mydoc.rst sphinx-rootdir
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with ``mydoc.rst`` in the ``sphinx-rootdir``
@@ -11193,7 +11782,7 @@ Many other formats are also possible.
 *Step 6.* View the result::
 
 
-        Unix/DOS> firefox _build/html/index.html
+        Terminal> firefox _build/html/index.html
 
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -11218,7 +11807,7 @@ The transformation to this format, called ``gwiki`` to explicitly mark
 it as the Google Code dialect, is done by::
 
 
-        Unix/DOS> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
 the ``mydoc.gwiki`` output file from ``doconce format`` and paste the
@@ -11349,7 +11938,7 @@ Special Lines
 The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
-sections, subsections, paragraphs., figures, etc.
+sections, subsections, paragraphs., figures, movies, etc.
 
 
 *Heading with Title and Author(s).* Lines starting with ``TITLE:``, ``AUTHOR:``, and ``DATE:`` are optional and used
@@ -11445,7 +12034,13 @@ The running text goes here.
 
 *A Paragraph.* The running text goes here.
 
-*Figures.* Figures are recognized by the special line syntax::
+Special Lines
+=============
+
+Figures
+-------
+
+Figures are recognized by the special line syntax::
 
 
         FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
@@ -11476,40 +12071,75 @@ included in the formatted caption).
    Streamtube visualization of a fluid flow  (fig:viz)
 
 
-*Movies.* Here is an example on the ``MOVIE:`` keyword for embedding movies. This
-feature works only for the ``LaTeX``, ``HTML``, ``rst``, and ``sphinx`` formats::
+Movies
+------
+
+Here is an example on the ``MOVIE:`` keyword for embedding movies. This
+feature works well for the ``LaTeX``, ``HTML``, ``rst``, and ``sphinx`` formats.
+Other formats try to generate some HTML file and link to that file
+for showing the movie::
 
 
         MOVIE: [filename, height=xxx width=yyy] possible caption
 
 
-.. LaTeX/PDF format requires movie15 package for displaying movies
+.. LaTeX/PDF format can make use of the movie15 package for displaying movies,
+
+.. or just plain \h`run: ...`_{...}
 
 
 .. raw:: html
-
-   <EMBED SRC="figs/mjolnir.mpeg"  width=600, height=470 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
-   <P>
-   <EM></EM>
-   </P>
-
-
+        
+        <EMBED SRC="figs/mjolnir.mpeg" width=600 height=470 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+        <P>
+        <EM></EM>
+        </P>
 
 
-.. MOVIE: [figs/wavepacket.gif, width=600, height=470]
+
+.. MOVIE: [figs/wavepacket.gif, width=600 height=470]
 
 
-.. MOVIE: [figs/wavepacket2.mpeg, width=600, height=470]
+.. MOVIE: [figs/wavepacket2.mpeg, width=600 height=470]
 
 
-The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML format will play
-the movie right away, while for all other formats there is no
-movie support. The HTML format can also treat filenames of the form
-``myframes*.png``. In that case, a player for showing the sequence of frames
-is inserted in the HTML file. 
+The LaTeX format results in a file that can either make use of
+the movie15 package (requires the PDF to be shown in Acrobat Reader)
+or just a plain address to the movie. The HTML, reST, and
+Sphinx formats will play
+the movie right away by embedding the file in a standard HTML code,
+provided the output format is HTML.
+For all other formats a URL to an HTML file, which can play the code,
+is inserted in the output document.
 
-*Computer Code.* Another type of special lines starts with ``@@@CODE`` and enables copying
+When movies are embedded in the PDF file via LaTeX and
+the ``movie15`` package wanted, one has to turn on the preprocessor
+variable ``MOVIE15``. There is an associated variable
+``EXTERNAL_MOVIE_VIEWER`` which can be defined to launch an external
+viewer when displaying the PDF file (in Acrobat Reader)::
+
+
+        Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
+
+
+The HTML, reST, and Sphinx formats can also treat filenames of the form
+``myframes*.png``. In that case, an HTML file for showing the sequence of frames
+is generated, and a link to this file is inserted in the output document.
+That is, a simple "movie viewer" for the frames is made. 
+
+Many publish their scientific movies on YouTube, and Doconce recognizes
+YouTube URLs as movies. When the output is an HTML file, the movie will
+be embedded, otherwise a URL to the YouTube page is inserted.
+You should equip the ``MOVIE:`` command with the right width and height
+of embedded YouTube movies (the parameters appear when you request
+the embedded HTML code for the movie on the YouTube page).
+
+
+
+Copying Computer Code
+---------------------
+
+Another type of special lines starts with ``@@@CODE`` and enables copying
 of computer code from a file directly into a verbatim environment, see 
 the section `Blocks of Verbatim Computer Code`_ below.
 
@@ -11643,7 +12273,7 @@ will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
 reStructuredText commands by ``doconce format``. In the HTML and (Google
-Code) Wiki formats, labels become anchors and references become links,
+Code) wiki formats, labels become anchors and references become links,
 and with LaTeX "label" and "ref" are just equipped with backslashes so
 these commands work as usual in LaTeX.
 
@@ -11678,7 +12308,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to::
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
 Everything related to the index simply becomes invisible in 
-plain text, Epytext, StructuredText, HTML, and Wiki formats.
+plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: ``idx`` commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
 Index items are naturally placed right after section headings, before the
@@ -11756,9 +12386,9 @@ A table like
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+         0.0        1.4186         -5.01  
+         2.0      1.376512        11.919  
+         4.0        1.1E+1     14.717624  
 ============  ============  ============  
 
 is built up of pipe symbols and dashes::
@@ -11773,7 +12403,19 @@ is built up of pipe symbols and dashes::
           |--------------------------------|
 
 The pipes and column values do not need to be aligned (but why write
-the Doconce source in an ugly way?).
+the Doconce source in an ugly way?). In the line below the heading,
+one can insert the characters ``c``, ``r``, or ``l`` to specify the
+alignment of the columns (centered, right, or left, respectively).
+Similar character can be inserted in the line above the header to
+algn the headings. Pipes ``|`` can also be inserted to indicate
+vertical rules in LaTeX tables (they are ignored for other formats).
+Note that not all formats offer alignment of heading or entries
+in tables (reStructuredText and Sphinx are examples). Also note that
+Doconce tables are very simple: neither entries nor
+headings can span several columns or rows. When that functionality
+is needed, one can make use of the preprocessor and if-tests on
+the format and insert format-specific code for tables.
+
 
 
 .. _sec:verbatim:blocks:
@@ -12024,8 +12666,8 @@ Preprocessing Steps
 
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
-Two preprocessors are supported: Preprocess 
-(`<http://code.google.com/p/preprocess>`_) and Mako
+Two preprocessors are supported: preprocess 
+(`<http://code.google.com/p/preprocess>`_) and mako
 (`<http://www.makotemplates.org/>`_). The former allows include and if-else
 statements much like the well-known preprocessor in C and C++ (but it
 does not allow sophisticated macro substitutions). The latter
@@ -12035,15 +12677,50 @@ through Python code embedded in the Doconce document. An arbitrary set
 of ``name=value`` command-line arguments (at the end of the command line)
 automatically define Mako variables that are substituted in the document.
 
-Doconce will detect if Preprocess or Mako commands are used and run
+Doconce will detect if preprocess or Mako commands are used and run
 the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
-Preprocess and Mako always have the variable ``FORMAT`` to be the desired
-output format of Doconce. It is then easy to test on the value of ``FORMAT``
-and take different actions for different formats. For example, one may
-create special LaTeX output for figures, say with multiple plots within
-a figure, while other formats may apply a separate figure for each plot.
+The preprocess and mako programs always have the variable ``FORMAT``
+defined as the desired output format of Doconce (``HTML``, ``LaTeX``,
+``plain``, ``rst``, ``sphinx``, ``epydoc``, ``st``).  It is then easy to test on
+the value of ``FORMAT`` and take different actions for different
+formats. For example, one may create special LaTeX output for figures,
+say with multiple plots within a figure, while other formats may apply
+a separate figure for each plot. Below is an example (see the Doconce
+source code of this document to understand how preprocess is used to
+create the example).
+
+.. If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
+
+.. PostScript files are used.
+
+
+
+.. Use default Doconce figure handling for all other formats
+
+
+
+.. figure:: figs/wavepacket_0001.png
+   :width: 400
+
+   Wavepacket at time 0.1 s
+
+
+
+.. figure:: figs/wavepacket_0010.png
+   :width: 400
+
+   Wavepacket at time 0.2 s
+
+
+
+Other user-defined variables for the preprocessor can be set at 
+the command line as explained in the section `From Doconce to Other Formats`_.
+
+More advanced use of mako can include Python code that may automate
+the writing of parts of the document.
+
 
 
 Missing Features
@@ -12341,7 +13018,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Sep 12, 2011
+:Date: Oct 22, 2011
 
 .. lines beginning with # are comment lines
 
@@ -12361,7 +13038,7 @@ Doconce is two things:
  1. Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -12394,11 +13071,11 @@ Here are some Doconce features:
 
   * Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
 
   * Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
@@ -12504,19 +13181,27 @@ of the results.
 From Doconce to Other Formats
 =============================
 
-Transformation of a Doconce document to various other
+Transformation of a Doconce document ``mydoc.do.txt`` to various other
 formats applies the script ``doconce format``:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format format mydoc.do.txt
+        Terminal> doconce format format mydoc.do.txt
 
-The ``preprocess`` program is always used to preprocess the file first,
-and options to ``preprocess`` can be added after the filename. For example,
+or just
 
 .. code-block:: console
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+        Terminal> doconce format format mydoc
+
+The ``mako`` or ``preprocess`` programs are always used to preprocess the
+file first, and options to ``mako`` or ``preprocess`` can be added after the
+filename. For example,
+
+.. code-block:: console
+
+        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 
 The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
@@ -12527,18 +13212,19 @@ Inline comments in the text are removed from the output by
 
 .. code-block:: console
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+        Terminal> doconce format LaTeX mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
-by running a helper script in the ``bin`` folder of the Doconce
+by running 
 source code:
 
 .. code-block:: py
 
 
-        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+        Terminal> doconce remove_inline_comments mydoc
 
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 
 HTML
@@ -12549,7 +13235,7 @@ is performed by
 
 .. code-block:: console
 
-        Unix/DOS> doconce format HTML mydoc.do.txt
+        Terminal> doconce format HTML mydoc
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
@@ -12569,7 +13255,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt
+        Terminal> doconce format LaTeX mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
@@ -12581,30 +13267,31 @@ so that your commands are defined.
 
 .. code-block:: console
 
-        Unix/DOS> ptex2tex mydoc
+        Terminal> ptex2tex mydoc
 
 or just perform a plain copy,
 
 .. code-block:: console
 
-        Unix/DOS> cp mydoc.p.tex mydoc.tex
+        Terminal> cp mydoc.p.tex mydoc.tex
 
-Doconce generates a ``.p.tex`` file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font,
+Doconce generates a ``.p.tex`` file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run
 
 .. code-block:: console
 
-        Unix/DOS> ptex2tex -DHELVETICA mydoc
+        Terminal> ptex2tex -DHELVETICA mydoc
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through
 
 .. code-block:: console
 
-        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
@@ -12620,12 +13307,12 @@ and create the PDF file:
 
 .. code-block:: console
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex mydoc
+        Terminal> latex mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex mydoc
+        Terminal> dvipdf mydoc
 
 If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc., environments
 in ``ptex2tex`` for typesetting code, the ``minted`` LaTeX package is needed.
@@ -12634,19 +13321,19 @@ This package is included by running ``doconce format`` with the
 
 .. code-block:: console
 
-        Unix/DOS> ptex2tex -DMINTED mydoc
+        Terminal> ptex2tex -DMINTED mydoc
 
 In this case, ``latex`` must be run with the
 ``-shell-escape`` option:
 
 .. code-block:: console
 
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex -shell-escape mydoc
+        Terminal> dvipdf mydoc
 
 The ``-shell-escape`` option is required because the ``minted.sty`` style
 file runs the ``pygments`` program to format code, and this program
@@ -12662,7 +13349,7 @@ computer source code:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+        Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 
 reStructuredText
@@ -12674,16 +13361,16 @@ reStructuredText file ``mydoc.rst``:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format rst mydoc.do.txt
+        Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats:
 
 .. code-block:: console
 
-        Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-        Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-        Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+        Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
 The OpenOffice file ``mydoc.odt`` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -12699,7 +13386,7 @@ the reStructuredText format:
 
 .. code-block:: console
 
-        Unix/DOS> doconce format sphinx mydoc.do.txt
+        Terminal> doconce format sphinx mydoc.do.txt
 
 
 *Step 2.* Create a Sphinx root directory with a ``conf.py`` file, 
@@ -12737,17 +13424,18 @@ These statements as well as points 3-5 can be automated by the command
 
 .. code-block:: console
 
-        Unix/DOS> doconce sphinx_dir mydoc.do.txt
+        Terminal> doconce sphinx_dir mydoc.do.txt
 
 More precisely, in addition to making the ``sphinx-rootdir``,
 this command generates a script ``tmp_make_sphinx.sh`` which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 *Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory:
 
 .. code-block:: console
 
-        Unix/DOS> mv mydoc.rst sphinx-rootdir
+        Terminal> mv mydoc.rst sphinx-rootdir
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with ``mydoc.rst`` in the ``sphinx-rootdir``
@@ -12781,7 +13469,7 @@ Many other formats are also possible.
 
 .. code-block:: console
 
-        Unix/DOS> firefox _build/html/index.html
+        Terminal> firefox _build/html/index.html
 
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -12807,7 +13495,7 @@ it as the Google Code dialect, is done by
 
 .. code-block:: console
 
-        Unix/DOS> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
 the ``mydoc.gwiki`` output file from ``doconce format`` and paste the
@@ -12947,7 +13635,7 @@ Special Lines
 The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
-sections, subsections, paragraphs., figures, etc.
+sections, subsections, paragraphs., figures, movies, etc.
 
 
 .. index:: TITLE keyword
@@ -13063,7 +13751,13 @@ The running text goes here.
 
 *A Paragraph.* The running text goes here.
 
-*Figures.* Figures are recognized by the special line syntax
+Special Lines
+=============
+
+Figures
+-------
+
+Figures are recognized by the special line syntax
 
 .. code-block:: py
 
@@ -13096,8 +13790,13 @@ included in the formatted caption).
    Streamtube visualization of a fluid flow  
 
 
-*Movies.* Here is an example on the ``MOVIE:`` keyword for embedding movies. This
-feature works only for the ``LaTeX``, ``HTML``, ``rst``, and ``sphinx`` formats.
+Movies
+------
+
+Here is an example on the ``MOVIE:`` keyword for embedding movies. This
+feature works well for the ``LaTeX``, ``HTML``, ``rst``, and ``sphinx`` formats.
+Other formats try to generate some HTML file and link to that file
+for showing the movie.
 
 .. code-block:: py
 
@@ -13105,33 +13804,64 @@ feature works only for the ``LaTeX``, ``HTML``, ``rst``, and ``sphinx`` formats.
         MOVIE: [filename, height=xxx width=yyy] possible caption
 
 
-.. LaTeX/PDF format requires movie15 package for displaying movies
+.. LaTeX/PDF format can make use of the movie15 package for displaying movies,
+
+.. or just plain \h:ref:`run: ...`{...}
 
 
 .. raw:: html
-
-   <EMBED SRC="figs/mjolnir.mpeg"  width=600, height=470 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
-   <P>
-   <EM></EM>
-   </P>
-
-
+        
+        <EMBED SRC="figs/mjolnir.mpeg" width=600 height=470 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
+        <P>
+        <EM></EM>
+        </P>
 
 
-.. MOVIE: [figs/wavepacket.gif, width=600, height=470]
+
+.. MOVIE: [figs/wavepacket.gif, width=600 height=470]
 
 
-.. MOVIE: [figs/wavepacket2.mpeg, width=600, height=470]
+.. MOVIE: [figs/wavepacket2.mpeg, width=600 height=470]
 
 
-The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML format will play
-the movie right away, while for all other formats there is no
-movie support. The HTML format can also treat filenames of the form
-``myframes*.png``. In that case, a player for showing the sequence of frames
-is inserted in the HTML file. 
+The LaTeX format results in a file that can either make use of
+the movie15 package (requires the PDF to be shown in Acrobat Reader)
+or just a plain address to the movie. The HTML, reST, and
+Sphinx formats will play
+the movie right away by embedding the file in a standard HTML code,
+provided the output format is HTML.
+For all other formats a URL to an HTML file, which can play the code,
+is inserted in the output document.
 
-*Computer Code.* Another type of special lines starts with ``@@@CODE`` and enables copying
+When movies are embedded in the PDF file via LaTeX and
+the ``movie15`` package wanted, one has to turn on the preprocessor
+variable ``MOVIE15``. There is an associated variable
+``EXTERNAL_MOVIE_VIEWER`` which can be defined to launch an external
+viewer when displaying the PDF file (in Acrobat Reader):
+
+.. code-block:: console
+
+        Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
+
+
+The HTML, reST, and Sphinx formats can also treat filenames of the form
+``myframes*.png``. In that case, an HTML file for showing the sequence of frames
+is generated, and a link to this file is inserted in the output document.
+That is, a simple "movie viewer" for the frames is made. 
+
+Many publish their scientific movies on YouTube, and Doconce recognizes
+YouTube URLs as movies. When the output is an HTML file, the movie will
+be embedded, otherwise a URL to the YouTube page is inserted.
+You should equip the ``MOVIE:`` command with the right width and height
+of embedded YouTube movies (the parameters appear when you request
+the embedded HTML code for the movie on the YouTube page).
+
+
+
+Copying Computer Code
+---------------------
+
+Another type of special lines starts with ``@@@CODE`` and enables copying
 of computer code from a file directly into a verbatim environment, see 
 the section :ref:`sec:verbatim:blocks` below.
 
@@ -13302,7 +14032,7 @@ will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
 reStructuredText commands by ``doconce format``. In the HTML and (Google
-Code) Wiki formats, labels become anchors and references become links,
+Code) wiki formats, labels become anchors and references become links,
 and with LaTeX "label" and "ref" are just equipped with backslashes so
 these commands work as usual in LaTeX.
 
@@ -13348,7 +14078,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
 Everything related to the index simply becomes invisible in 
-plain text, Epytext, StructuredText, HTML, and Wiki formats.
+plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: ``idx`` commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
 Index items are naturally placed right after section headings, before the
@@ -13432,9 +14162,9 @@ A table like
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+         0.0        1.4186         -5.01  
+         2.0      1.376512        11.919  
+         4.0        1.1E+1     14.717624  
 ============  ============  ============  
 
 is built up of pipe symbols and dashes:
@@ -13451,7 +14181,19 @@ is built up of pipe symbols and dashes:
           |--------------------------------|
 
 The pipes and column values do not need to be aligned (but why write
-the Doconce source in an ugly way?).
+the Doconce source in an ugly way?). In the line below the heading,
+one can insert the characters ``c``, ``r``, or ``l`` to specify the
+alignment of the columns (centered, right, or left, respectively).
+Similar character can be inserted in the line above the header to
+algn the headings. Pipes ``|`` can also be inserted to indicate
+vertical rules in LaTeX tables (they are ignored for other formats).
+Note that not all formats offer alignment of heading or entries
+in tables (reStructuredText and Sphinx are examples). Also note that
+Doconce tables are very simple: neither entries nor
+headings can span several columns or rows. When that functionality
+is needed, one can make use of the preprocessor and if-tests on
+the format and insert format-specific code for tables.
+
 
 
 .. _sec:verbatim:blocks:
@@ -13724,8 +14466,8 @@ Preprocessing Steps
 
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
-Two preprocessors are supported: Preprocess 
-(`<http://code.google.com/p/preprocess>`_) and Mako
+Two preprocessors are supported: preprocess 
+(`<http://code.google.com/p/preprocess>`_) and mako
 (`<http://www.makotemplates.org/>`_). The former allows include and if-else
 statements much like the well-known preprocessor in C and C++ (but it
 does not allow sophisticated macro substitutions). The latter
@@ -13735,15 +14477,50 @@ through Python code embedded in the Doconce document. An arbitrary set
 of ``name=value`` command-line arguments (at the end of the command line)
 automatically define Mako variables that are substituted in the document.
 
-Doconce will detect if Preprocess or Mako commands are used and run
+Doconce will detect if preprocess or Mako commands are used and run
 the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
-Preprocess and Mako always have the variable ``FORMAT`` to be the desired
-output format of Doconce. It is then easy to test on the value of ``FORMAT``
-and take different actions for different formats. For example, one may
-create special LaTeX output for figures, say with multiple plots within
-a figure, while other formats may apply a separate figure for each plot.
+The preprocess and mako programs always have the variable ``FORMAT``
+defined as the desired output format of Doconce (``HTML``, ``LaTeX``,
+``plain``, ``rst``, ``sphinx``, ``epydoc``, ``st``).  It is then easy to test on
+the value of ``FORMAT`` and take different actions for different
+formats. For example, one may create special LaTeX output for figures,
+say with multiple plots within a figure, while other formats may apply
+a separate figure for each plot. Below is an example (see the Doconce
+source code of this document to understand how preprocess is used to
+create the example).
+
+.. If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
+
+.. PostScript files are used.
+
+
+
+.. Use default Doconce figure handling for all other formats
+
+
+
+.. figure:: figs/wavepacket_0001.png
+   :width: 400
+
+   Wavepacket at time 0.1 s
+
+
+
+.. figure:: figs/wavepacket_0010.png
+   :width: 400
+
+   Wavepacket at time 0.2 s
+
+
+
+Other user-defined variables for the preprocessor can be set at 
+the command line as explained in the section :ref:`doconce2formats`.
+
+More advanced use of mako can include Python code that may automate
+the writing of parts of the document.
+
 
 
 Missing Features
@@ -14051,7 +14828,7 @@ and Sphinx just typeset the list as a list with keywords.
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== Sep 12, 2011 ====
+==== Oct 22, 2011 ====
 
 <wiki:comment> lines beginning with # are comment lines </wiki:comment>
 
@@ -14062,7 +14839,7 @@ By *Hans Petter Langtangen*
 Doconce is two things:
 
 
- # Doconce is a very simple and minimally tagged markup language that    looks like ordinary ASCII text (much like what you would use in an    email), but the text can be transformed to numerous other formats,    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,    Epytext, and also plain text (where non-obvious formatting/tags are    removed for clear reading in, e.g., emails). From reStructuredText    you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the    latter to RTF and MS Word.    (An experimental translator to Pandoc is under development, and from    Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF, DocBook XML,    OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and other formats.)
+ # Doconce is a very simple and minimally tagged markup language that    looks like ordinary ASCII text (much like what you would use in an    email), but the text can be transformed to numerous other formats,    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,    Epytext, and also plain text (where non-obvious formatting/tags are    removed for clear reading in, e.g., emails). From reStructuredText    you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the    latter to RTF and MS Word.    (An experimental translator to Pandoc is under development, and from    Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF, DocBook XML,    OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and other formats.)
  # Doconce is a working strategy for never duplicating information.    Text is written in a single place and then transformed to    a number of different destinations of diverse type (software    source code, manuals, tutorials, books, wikis, memos, emails, etc.).    The Doconce markup language support this working strategy.    The slogan is: "Write once, include anywhere".
 
 Here are some Doconce features:
@@ -14072,8 +14849,8 @@ Here are some Doconce features:
   * Doconce can be converted to plain *untagged* text,     often desirable for computer programs and email.
   * Doconce has good support for copying in parts of computer code,    say in examples, directly from the source code files.
   * Doconce has full support for LaTeX math, and integrates very well    with big LaTeX projects (books).
-  * Doconce is almost self-explanatory and is a handy starting point    for generating documents in more complicated markup languages, such    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce    is just to make the initial versions of a Sphinx or Wiki document.
-  * Contrary to the similar Pandoc translator, Doconce integrates with    Sphinx and Google Wiki. However, if these formats are not of interest,    Pandoc is obviously a superior tool.
+  * Doconce is almost self-explanatory and is a handy starting point    for generating documents in more complicated markup languages, such    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce    is just to make the initial versions of a Sphinx or wiki document.
+  * Contrary to the similar Pandoc translator, Doconce integrates with    Sphinx and Google wiki. However, if these formats are not of interest,    Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
 
@@ -14152,15 +14929,21 @@ of the results.
 
 == From Doconce to Other Formats ==
 
-Transformation of a Doconce document to various other
+Transformation of a Doconce document `mydoc.do.txt` to various other
 formats applies the script `doconce format`:
 {{{
-Unix/DOS> doconce format format mydoc.do.txt
+Terminal> doconce format format mydoc.do.txt
 }}}
-The `preprocess` program is always used to preprocess the file first,
-and options to `preprocess` can be added after the filename. For example,
+or just
 {{{
-Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+Terminal> doconce format format mydoc
+}}}
+The `mako` or `preprocess` programs are always used to preprocess the
+file first, and options to `mako` or `preprocess` can be added after the
+filename. For example,
+{{{
+Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 }}}
 The variable `FORMAT` is always defined as the current format when
 running `preprocess`. That is, in the last example, `FORMAT` is
@@ -14169,22 +14952,23 @@ format specific actions through tests like `#if FORMAT == "LaTeX"`.
 
 Inline comments in the text are removed from the output by
 {{{
-Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+Terminal> doconce format LaTeX mydoc remove_inline_comments
 }}}
 One can also remove such comments from the original Doconce file
-by running a helper script in the `bin` folder of the Doconce
+by running 
 source code:
 {{{
-Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+Terminal> doconce remove_inline_comments mydoc
 }}}
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 ==== HTML ====
 
 Making an HTML version of a Doconce file `mydoc.do.txt`
 is performed by
 {{{
-Unix/DOS> doconce format HTML mydoc.do.txt
+Terminal> doconce format HTML mydoc
 }}}
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
@@ -14198,7 +14982,7 @@ Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
 *Step 1.* Filter the doconce text to a pre-LaTeX form `mydoc.p.tex` for
      `ptex2tex`:
 {{{
-Unix/DOS> doconce format LaTeX mydoc.do.txt
+Terminal> doconce format LaTeX mydoc
 }}}
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files `newcommands.tex`, `newcommands_keep.tex`, or
@@ -14208,24 +14992,25 @@ so that your commands are defined.
 
 *Step 2.* Run `ptex2tex` (if you have it) to make a standard LaTeX file,
 {{{
-Unix/DOS> ptex2tex mydoc
+Terminal> ptex2tex mydoc
 }}}
 or just perform a plain copy,
 {{{
-Unix/DOS> cp mydoc.p.tex mydoc.tex
+Terminal> cp mydoc.p.tex mydoc.tex
 }}}
-Doconce generates a `.p.tex` file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font,
+Doconce generates a `.p.tex` file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run
 {{{
-Unix/DOS> ptex2tex -DHELVETICA mydoc
+Terminal> ptex2tex -DHELVETICA mydoc
 }}}
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through
 {{{
-Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 }}}
 
 The `ptex2tex` tool makes it possible to easily switch between many
@@ -14239,29 +15024,29 @@ There are over 30 styles to choose from.
 *Step 3.* Compile `mydoc.tex`
 and create the PDF file:
 {{{
-Unix/DOS> latex mydoc
-Unix/DOS> latex mydoc
-Unix/DOS> makeindex mydoc   # if index
-Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex mydoc
-Unix/DOS> dvipdf mydoc
+Terminal> latex mydoc
+Terminal> latex mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex mydoc
+Terminal> dvipdf mydoc
 }}}
 If one wishes to use the `Minted_Python`, `Minted_Cpp`, etc., environments
 in `ptex2tex` for typesetting code, the `minted` LaTeX package is needed.
 This package is included by running `doconce format` with the
 `-DMINTED` option:
 {{{
-Unix/DOS> ptex2tex -DMINTED mydoc
+Terminal> ptex2tex -DMINTED mydoc
 }}}
 In this case, `latex` must be run with the
 `-shell-escape` option:
 {{{
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> makeindex mydoc   # if index
-Unix/DOS> bibitem mydoc     # if bibliography
-Unix/DOS> latex -shell-escape mydoc
-Unix/DOS> dvipdf mydoc
+Terminal> latex -shell-escape mydoc
+Terminal> latex -shell-escape mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex -shell-escape mydoc
+Terminal> dvipdf mydoc
 }}}
 The `-shell-escape` option is required because the `minted.sty` style
 file runs the `pygments` program to format code, and this program
@@ -14273,7 +15058,7 @@ We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:
 {{{
-Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 }}}
 
 ==== reStructuredText ====
@@ -14282,14 +15067,14 @@ Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file `mydoc.rst`:
 {{{
-Unix/DOS> doconce format rst mydoc.do.txt
+Terminal> doconce format rst mydoc.do.txt
 }}}
 We may now produce various other formats:
 {{{
-Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 }}}
 The OpenOffice file `mydoc.odt` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -14302,7 +15087,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 *Step 1.* Translate Doconce into the Sphinx dialect of
 the reStructuredText format:
 {{{
-Unix/DOS> doconce format sphinx mydoc.do.txt
+Terminal> doconce format sphinx mydoc.do.txt
 }}}
 
 *Step 2.* Create a Sphinx root directory with a `conf.py` file, 
@@ -14336,15 +15121,16 @@ EOF
 }}}
 These statements as well as points 3-5 can be automated by the command
 {{{
-Unix/DOS> doconce sphinx_dir mydoc.do.txt
+Terminal> doconce sphinx_dir mydoc.do.txt
 }}}
 More precisely, in addition to making the `sphinx-rootdir`,
 this command generates a script `tmp_make_sphinx.sh` which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 *Step 3.* Move the `tutorial.rst` file to the Sphinx root directory:
 {{{
-Unix/DOS> mv mydoc.rst sphinx-rootdir
+Terminal> mv mydoc.rst sphinx-rootdir
 }}}
 If you have figures in your document, the relative paths to those will
 be invalid when you work with `mydoc.rst` in the `sphinx-rootdir`
@@ -14371,7 +15157,7 @@ Many other formats are also possible.
 
 *Step 6.* View the result:
 {{{
-Unix/DOS> firefox _build/html/index.html
+Terminal> firefox _build/html/index.html
 }}}
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -14390,7 +15176,7 @@ one used by [http://code.google.com/p/support/wiki/WikiSyntax Google Code].
 The transformation to this format, called `gwiki` to explicitly mark
 it as the Google Code dialect, is done by
 {{{
-Unix/DOS> doconce format gwiki mydoc.do.txt
+Terminal> doconce format gwiki mydoc.do.txt
 }}}
 You can then open a new wiki page for your Google Code project, copy
 the `mydoc.gwiki` output file from `doconce format` and paste the
@@ -14517,7 +15303,7 @@ The result becomes
 The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
-sections, subsections, paragraphs., figures, etc.
+sections, subsections, paragraphs., figures, movies, etc.
 
 
 *Heading with Title and Author(s).* Lines starting with `TITLE:`, `AUTHOR:`, and `DATE:` are optional and used
@@ -14606,7 +15392,13 @@ The running text goes here.
 
 *A Paragraph.* The running text goes here.
 
-*Figures.* Figures are recognized by the special line syntax
+
+
+== Special Lines ==
+
+==== Figures ====
+
+Figures are recognized by the special line syntax
 {{{
 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
 }}}
@@ -14641,30 +15433,58 @@ googlecode repository) and substitute the line above with the URL.
 </wiki:comment>
 ---------------------------------------------------------------
 
+==== Movies ====
 
-
-*Movies.* Here is an example on the `MOVIE:` keyword for embedding movies. This
-feature works only for the `LaTeX`, `HTML`, `rst`, and `sphinx` formats.
+Here is an example on the `MOVIE:` keyword for embedding movies. This
+feature works well for the `LaTeX`, `HTML`, `rst`, and `sphinx` formats.
+Other formats try to generate some HTML file and link to that file
+for showing the movie.
 {{{
 MOVIE: [filename, height=xxx width=yyy] possible caption
 }}}
 
-<wiki:comment> LaTeX/PDF format requires movie15 package for displaying movies </wiki:comment>
+<wiki:comment> LaTeX/PDF format can make use of the movie15 package for displaying movies, </wiki:comment>
+<wiki:comment> or just plain \hrun: ...{...} </wiki:comment>
 
-MOVIE: [figs/mjolnir.mpeg, width=600, height=470]
+ (Movie figs/mjolnir.mpeg: play mjolnir.html)
 
-<wiki:comment> MOVIE: [figs/wavepacket.gif, width=600, height=470] </wiki:comment>
+<wiki:comment> MOVIE: [figs/wavepacket.gif, width=600 height=470] </wiki:comment>
 
-<wiki:comment> MOVIE: [figs/wavepacket2.mpeg, width=600, height=470] </wiki:comment>
+<wiki:comment> MOVIE: [figs/wavepacket2.mpeg, width=600 height=470] </wiki:comment>
 
-The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML format will play
-the movie right away, while for all other formats there is no
-movie support. The HTML format can also treat filenames of the form
-`myframes*.png`. In that case, a player for showing the sequence of frames
-is inserted in the HTML file. 
+The LaTeX format results in a file that can either make use of
+the movie15 package (requires the PDF to be shown in Acrobat Reader)
+or just a plain address to the movie. The HTML, reST, and
+Sphinx formats will play
+the movie right away by embedding the file in a standard HTML code,
+provided the output format is HTML.
+For all other formats a URL to an HTML file, which can play the code,
+is inserted in the output document.
 
-*Computer Code.* Another type of special lines starts with `@@@CODE` and enables copying
+When movies are embedded in the PDF file via LaTeX and
+the `movie15` package wanted, one has to turn on the preprocessor
+variable `MOVIE15`. There is an associated variable
+`EXTERNAL_MOVIE_VIEWER` which can be defined to launch an external
+viewer when displaying the PDF file (in Acrobat Reader):
+{{{
+Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
+}}}
+
+The HTML, reST, and Sphinx formats can also treat filenames of the form
+`myframes*.png`. In that case, an HTML file for showing the sequence of frames
+is generated, and a link to this file is inserted in the output document.
+That is, a simple "movie viewer" for the frames is made. 
+
+Many publish their scientific movies on YouTube, and Doconce recognizes
+YouTube URLs as movies. When the output is an HTML file, the movie will
+be embedded, otherwise a URL to the YouTube page is inserted.
+You should equip the `MOVIE:` command with the right width and height
+of embedded YouTube movies (the parameters appear when you request
+the embedded HTML code for the movie on the YouTube page).
+
+==== Copying Computer Code ====
+
+Another type of special lines starts with `@@@CODE` and enables copying
 of computer code from a file directly into a verbatim environment, see 
 the section [#Blocks_of_Verbatim_Computer_Code] below.
 
@@ -14784,7 +15604,7 @@ will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
 reStructuredText commands by `doconce format`. In the HTML and (Google
-Code) Wiki formats, labels become anchors and references become links,
+Code) wiki formats, labels become anchors and references become links,
 and with LaTeX "label" and "ref" are just equipped with backslashes so
 these commands work as usual in LaTeX.
 
@@ -14816,7 +15636,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 }}}
 Everything related to the index simply becomes invisible in 
-plain text, Epytext, StructuredText, HTML, and Wiki formats.
+plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: `idx` commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
 Index items are naturally placed right after section headings, before the
@@ -14902,7 +15722,18 @@ is built up of pipe symbols and dashes:
   |--------------------------------|
 }}}
 The pipes and column values do not need to be aligned (but why write
-the Doconce source in an ugly way?).
+the Doconce source in an ugly way?). In the line below the heading,
+one can insert the characters `c`, `r`, or `l` to specify the
+alignment of the columns (centered, right, or left, respectively).
+Similar character can be inserted in the line above the header to
+algn the headings. Pipes `|` can also be inserted to indicate
+vertical rules in LaTeX tables (they are ignored for other formats).
+Note that not all formats offer alignment of heading or entries
+in tables (reStructuredText and Sphinx are examples). Also note that
+Doconce tables are very simple: neither entries nor
+headings can span several columns or rows. When that functionality
+is needed, one can make use of the preprocessor and if-tests on
+the format and insert format-specific code for tables.
 
 ==== Blocks of Verbatim Computer Code ====
 
@@ -15132,8 +15963,8 @@ in the current format.
 
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
-Two preprocessors are supported: Preprocess 
-(http://code.google.com/p/preprocess) and Mako
+Two preprocessors are supported: preprocess 
+(http://code.google.com/p/preprocess) and mako
 (http://www.makotemplates.org/). The former allows include and if-else
 statements much like the well-known preprocessor in C and C++ (but it
 does not allow sophisticated macro substitutions). The latter
@@ -15143,15 +15974,64 @@ through Python code embedded in the Doconce document. An arbitrary set
 of `name=value` command-line arguments (at the end of the command line)
 automatically define Mako variables that are substituted in the document.
 
-Doconce will detect if Preprocess or Mako commands are used and run
+Doconce will detect if preprocess or Mako commands are used and run
 the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
-Preprocess and Mako always have the variable `FORMAT` to be the desired
-output format of Doconce. It is then easy to test on the value of `FORMAT`
-and take different actions for different formats. For example, one may
-create special LaTeX output for figures, say with multiple plots within
-a figure, while other formats may apply a separate figure for each plot.
+The preprocess and mako programs always have the variable `FORMAT`
+defined as the desired output format of Doconce (`HTML`, `LaTeX`,
+`plain`, `rst`, `sphinx`, `epydoc`, `st`).  It is then easy to test on
+the value of `FORMAT` and take different actions for different
+formats. For example, one may create special LaTeX output for figures,
+say with multiple plots within a figure, while other formats may apply
+a separate figure for each plot. Below is an example (see the Doconce
+source code of this document to understand how preprocess is used to
+create the example).
+
+<wiki:comment> If PNGFIGS is defined, PNG files are used, otherwise Encapsulated </wiki:comment>
+<wiki:comment> PostScript files are used. </wiki:comment>
+
+
+<wiki:comment> Use default Doconce figure handling for all other formats </wiki:comment>
+
+
+
+---------------------------------------------------------------
+
+Figure:  Wavepacket at time 0.1 s.
+
+(the URL of the image file figs/wavepacket_0001.png must be inserted here)
+
+<wiki:comment> 
+Put the figure file figs/wavepacket_0001.png on the web (e.g., as part of the
+googlecode repository) and substitute the line above with the URL.
+</wiki:comment>
+---------------------------------------------------------------
+
+
+
+
+
+---------------------------------------------------------------
+
+Figure:  Wavepacket at time 0.2 s.
+
+(the URL of the image file figs/wavepacket_0010.png must be inserted here)
+
+<wiki:comment> 
+Put the figure file figs/wavepacket_0010.png on the web (e.g., as part of the
+googlecode repository) and substitute the line above with the URL.
+</wiki:comment>
+---------------------------------------------------------------
+
+
+
+
+Other user-defined variables for the preprocessor can be set at 
+the command line as explained in the section [#From_Doconce_to_Other_Formats].
+
+More advanced use of mako can include Python code that may automate
+the writing of parts of the document.
 
 ==== Missing Features ====
 
@@ -15424,7 +16304,6 @@ and Sphinx just typeset the list as a list with keywords.
   # H. P. Langtangen. *A Primer on Scientific Programming with Python*. Springer, 2009.
   # H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. *Advances in Water Resources*, vol 22, 185-195, 1998.
 
-
 ************** File: manual.st *****************
 TITLE: Doconce Description
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
@@ -15434,7 +16313,7 @@ Doconce is two things:
  1. Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -15462,10 +16341,10 @@ Here are some Doconce features:
     with big LaTeX projects (books).
   - Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
   - Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
@@ -15533,16 +16412,23 @@ lot of formats, with a corresponding
 "https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html":web demo
 of the results.
 From Doconce to Other Formats
-Transformation of a Doconce document to various other
+Transformation of a Doconce document 'mydoc.do.txt' to various other
 formats applies the script 'doconce format':
 !bc   sys
-        Unix/DOS> doconce format format mydoc.do.txt
+        Terminal> doconce format format mydoc.do.txt
 
-The 'preprocess' program is always used to preprocess the file first,
-and options to 'preprocess' can be added after the filename. For example::
+or just::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+        Terminal> doconce format format mydoc
+
+The 'mako' or 'preprocess' programs are always used to preprocess the
+file first, and options to 'mako' or 'preprocess' can be added after the
+filename. For example::
+
+
+        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 
 The variable 'FORMAT' is always defined as the current format when
 running 'preprocess'. That is, in the last example, 'FORMAT' is
@@ -15552,22 +16438,23 @@ format specific actions through tests like '#if FORMAT == "LaTeX"'.
 Inline comments in the text are removed from the output by::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+        Terminal> doconce format LaTeX mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
-by running a helper script in the 'bin' folder of the Doconce
+by running 
 source code::
 
 
-        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+        Terminal> doconce remove_inline_comments mydoc
 
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 HTML
 Making an HTML version of a Doconce file 'mydoc.do.txt'
 is performed by::
 
 
-        Unix/DOS> doconce format HTML mydoc.do.txt
+        Terminal> doconce format HTML mydoc
 
 The resulting file 'mydoc.html' can be loaded into any web browser for viewing.
 LaTeX
@@ -15576,7 +16463,7 @@ Making a LaTeX file 'mydoc.tex' from 'mydoc.do.txt' is done in two steps:
 *Step 1.* Filter the doconce text to a pre-LaTeX form 'mydoc.p.tex' for
      'ptex2tex':
 !bc   sys
-        Unix/DOS> doconce format LaTeX mydoc.do.txt
+        Terminal> doconce format LaTeX mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files 'newcommands.tex', 'newcommands_keep.tex', or
@@ -15587,27 +16474,28 @@ so that your commands are defined.
 *Step 2.* Run 'ptex2tex' (if you have it) to make a standard LaTeX file::
 
 
-        Unix/DOS> ptex2tex mydoc
+        Terminal> ptex2tex mydoc
 
 or just perform a plain copy::
 
 
-        Unix/DOS> cp mydoc.p.tex mydoc.tex
+        Terminal> cp mydoc.p.tex mydoc.tex
 
-Doconce generates a '.p.tex' file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font::
+Doconce generates a '.p.tex' file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run::
 
 
-        Unix/DOS> ptex2tex -DHELVETICA mydoc
+        Terminal> ptex2tex -DHELVETICA mydoc
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through::
 
 
-        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 
 
 The 'ptex2tex' tool makes it possible to easily switch between many
@@ -15622,12 +16510,12 @@ There are over 30 styles to choose from.
 and create the PDF file::
 
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex mydoc
+        Terminal> latex mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex mydoc
+        Terminal> dvipdf mydoc
 
 If one wishes to use the 'Minted_Python', 'Minted_Cpp', etc., environments
 in 'ptex2tex' for typesetting code, the 'minted' LaTeX package is needed.
@@ -15635,18 +16523,18 @@ This package is included by running 'doconce format' with the
 '-DMINTED' option::
 
 
-        Unix/DOS> ptex2tex -DMINTED mydoc
+        Terminal> ptex2tex -DMINTED mydoc
 
 In this case, 'latex' must be run with the
 '-shell-escape' option::
 
 
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex -shell-escape mydoc
+        Terminal> dvipdf mydoc
 
 The '-shell-escape' option is required because the 'minted.sty' style
 file runs the 'pygments' program to format code, and this program
@@ -15657,22 +16545,22 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code::
 
 
-        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+        Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 reStructuredText
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file 'mydoc.rst':
 !bc   sys
-        Unix/DOS> doconce format rst mydoc.do.txt
+        Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats::
 
 
-        Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-        Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-        Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+        Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
 The OpenOffice file 'mydoc.odt' can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -15684,7 +16572,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 the reStructuredText format::
 
 
-        Unix/DOS> doconce format sphinx mydoc.do.txt
+        Terminal> doconce format sphinx mydoc.do.txt
 
 
 *Step 2.* Create a Sphinx root directory with a 'conf.py' file, 
@@ -15720,16 +16608,17 @@ program. Here is a scripted version of the steps with the latter::
 These statements as well as points 3-5 can be automated by the command::
 
 
-        Unix/DOS> doconce sphinx_dir mydoc.do.txt
+        Terminal> doconce sphinx_dir mydoc.do.txt
 
 More precisely, in addition to making the 'sphinx-rootdir',
 this command generates a script 'tmp_make_sphinx.sh' which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 *Step 3.* Move the 'tutorial.rst' file to the Sphinx root directory::
 
 
-        Unix/DOS> mv mydoc.rst sphinx-rootdir
+        Terminal> mv mydoc.rst sphinx-rootdir
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with 'mydoc.rst' in the 'sphinx-rootdir'
@@ -15759,7 +16648,7 @@ Many other formats are also possible.
 *Step 6.* View the result::
 
 
-        Unix/DOS> firefox _build/html/index.html
+        Terminal> firefox _build/html/index.html
 
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -15773,7 +16662,7 @@ The transformation to this format, called 'gwiki' to explicitly mark
 it as the Google Code dialect, is done by::
 
 
-        Unix/DOS> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
 the 'mydoc.gwiki' output file from 'doconce format' and paste the
@@ -15880,7 +16769,7 @@ Special Lines
 The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
-sections, subsections, paragraphs., figures, etc.
+sections, subsections, paragraphs., figures, movies, etc.
 
 
 *Heading with Title and Author(s).* Lines starting with 'TITLE:', 'AUTHOR:', and 'DATE:' are optional and used
@@ -15964,8 +16853,9 @@ Example on a Subsubsection Heading
 The running text goes here.
 
 *A Paragraph.* The running text goes here.
-
-*Figures.* Figures are recognized by the special line syntax::
+Special Lines
+Figures
+Figures are recognized by the special line syntax::
 
 
         FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
@@ -15988,27 +16878,53 @@ part of the caption appearing on the same line as 'FIGURE:' will be
 included in the formatted caption).
 
 FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. {fig:viz}
-
-*Movies.* Here is an example on the 'MOVIE:' keyword for embedding movies. This
-feature works only for the 'LaTeX', 'HTML', 'rst', and 'sphinx' formats::
+Movies
+Here is an example on the 'MOVIE:' keyword for embedding movies. This
+feature works well for the 'LaTeX', 'HTML', 'rst', and 'sphinx' formats.
+Other formats try to generate some HTML file and link to that file
+for showing the movie::
 
 
         MOVIE: [filename, height=xxx width=yyy] possible caption
 
 
 
-MOVIE: [figs/mjolnir.mpeg, width=600, height=470]
+ (Movie figs/mjolnir.mpeg: play "mjolnir.html":mjolnir.html)
 
 
 
-The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML format will play
-the movie right away, while for all other formats there is no
-movie support. The HTML format can also treat filenames of the form
-'myframes*.png'. In that case, a player for showing the sequence of frames
-is inserted in the HTML file. 
+The LaTeX format results in a file that can either make use of
+the movie15 package (requires the PDF to be shown in Acrobat Reader)
+or just a plain address to the movie. The HTML, reST, and
+Sphinx formats will play
+the movie right away by embedding the file in a standard HTML code,
+provided the output format is HTML.
+For all other formats a URL to an HTML file, which can play the code,
+is inserted in the output document.
 
-*Computer Code.* Another type of special lines starts with '@@@CODE' and enables copying
+When movies are embedded in the PDF file via LaTeX and
+the 'movie15' package wanted, one has to turn on the preprocessor
+variable 'MOVIE15'. There is an associated variable
+'EXTERNAL_MOVIE_VIEWER' which can be defined to launch an external
+viewer when displaying the PDF file (in Acrobat Reader)::
+
+
+        Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
+
+
+The HTML, reST, and Sphinx formats can also treat filenames of the form
+'myframes*.png'. In that case, an HTML file for showing the sequence of frames
+is generated, and a link to this file is inserted in the output document.
+That is, a simple "movie viewer" for the frames is made. 
+
+Many publish their scientific movies on YouTube, and Doconce recognizes
+YouTube URLs as movies. When the output is an HTML file, the movie will
+be embedded, otherwise a URL to the YouTube page is inserted.
+You should equip the 'MOVIE:' command with the right width and height
+of embedded YouTube movies (the parameters appear when you request
+the embedded HTML code for the movie on the YouTube page).
+Copying Computer Code
+Another type of special lines starts with '@@@CODE' and enables copying
 of computer code from a file directly into a verbatim environment, see 
 the section "Blocks of Verbatim Computer Code" below.
 Inline Tagging
@@ -16133,7 +17049,7 @@ will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
 reStructuredText commands by 'doconce format'. In the HTML and (Google
-Code) Wiki formats, labels become anchors and references become links,
+Code) wiki formats, labels become anchors and references become links,
 and with LaTeX "label" and "ref" are just equipped with backslashes so
 these commands work as usual in LaTeX.
 
@@ -16165,7 +17081,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to::
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
 Everything related to the index simply becomes invisible in 
-plain text, Epytext, StructuredText, HTML, and Wiki formats.
+plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: 'idx' commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
 Index items are naturally placed right after section headings, before the
@@ -16235,9 +17151,9 @@ A table like
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+         0.0        1.4186         -5.01  
+         2.0      1.376512        11.919  
+         4.0        1.1E+1     14.717624  
 ============  ============  ============  
 
 is built up of pipe symbols and dashes::
@@ -16252,7 +17168,18 @@ is built up of pipe symbols and dashes::
           |--------------------------------|
 
 The pipes and column values do not need to be aligned (but why write
-the Doconce source in an ugly way?).
+the Doconce source in an ugly way?). In the line below the heading,
+one can insert the characters 'c', 'r', or 'l' to specify the
+alignment of the columns (centered, right, or left, respectively).
+Similar character can be inserted in the line above the header to
+algn the headings. Pipes '|' can also be inserted to indicate
+vertical rules in LaTeX tables (they are ignored for other formats).
+Note that not all formats offer alignment of heading or entries
+in tables (reStructuredText and Sphinx are examples). Also note that
+Doconce tables are very simple: neither entries nor
+headings can span several columns or rows. When that functionality
+is needed, one can make use of the preprocessor and if-tests on
+the format and insert format-specific code for tables.
 Blocks of Verbatim Computer Code
 Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" '!bc' keyword and an "end code" '!ec' keyword. Both
@@ -16475,8 +17402,8 @@ in the current format.
 Preprocessing Steps
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
-Two preprocessors are supported: Preprocess 
-("http://code.google.com/p/preprocess":http://code.google.com/p/preprocess) and Mako
+Two preprocessors are supported: preprocess 
+("http://code.google.com/p/preprocess":http://code.google.com/p/preprocess) and mako
 ("http://www.makotemplates.org/":http://www.makotemplates.org/). The former allows include and if-else
 statements much like the well-known preprocessor in C and C++ (but it
 does not allow sophisticated macro substitutions). The latter
@@ -16486,15 +17413,33 @@ through Python code embedded in the Doconce document. An arbitrary set
 of 'name=value' command-line arguments (at the end of the command line)
 automatically define Mako variables that are substituted in the document.
 
-Doconce will detect if Preprocess or Mako commands are used and run
+Doconce will detect if preprocess or Mako commands are used and run
 the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
-Preprocess and Mako always have the variable 'FORMAT' to be the desired
-output format of Doconce. It is then easy to test on the value of 'FORMAT'
-and take different actions for different formats. For example, one may
-create special LaTeX output for figures, say with multiple plots within
-a figure, while other formats may apply a separate figure for each plot.
+The preprocess and mako programs always have the variable 'FORMAT'
+defined as the desired output format of Doconce ('HTML', 'LaTeX',
+'plain', 'rst', 'sphinx', 'epydoc', 'st').  It is then easy to test on
+the value of 'FORMAT' and take different actions for different
+formats. For example, one may create special LaTeX output for figures,
+say with multiple plots within a figure, while other formats may apply
+a separate figure for each plot. Below is an example (see the Doconce
+source code of this document to understand how preprocess is used to
+create the example).
+
+
+
+
+FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
+
+FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
+
+
+Other user-defined variables for the preprocessor can be set at 
+the command line as explained in the section "From Doconce to Other Formats".
+
+More advanced use of mako can include Python code that may automate
+the writing of parts of the document.
 Missing Features
   - Footnotes
 Troubleshooting
@@ -16750,7 +17695,6 @@ and Sphinx just typeset the list as a list with keywords.
 Bibliography
   1. H. P. Langtangen. *A Primer on Scientific Programming with Python*. Springer, 2009.
   2. H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. *Advances in Water Resources*, vol 22, 185-195, 1998.
-
 ************** File: manual.epytext *****************
 TITLE: Doconce Description
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
@@ -16767,7 +17711,7 @@ Doconce is two things:
  1. Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -16795,10 +17739,10 @@ Here are some Doconce features:
     with big LaTeX projects (books).
   - Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
   - Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
@@ -16883,17 +17827,24 @@ of the results.
 From Doconce to Other Formats
 =============================
 
-Transformation of a Doconce document to various other
+Transformation of a Doconce document C{mydoc.do.txt} to various other
 formats applies the script C{doconce format}::
 
 
-        Unix/DOS> doconce format format mydoc.do.txt
+        Terminal> doconce format format mydoc.do.txt
 
-The C{preprocess} program is always used to preprocess the file first,
-and options to C{preprocess} can be added after the filename. For example::
+or just::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+        Terminal> doconce format format mydoc
+
+The C{mako} or C{preprocess} programs are always used to preprocess the
+file first, and options to C{mako} or C{preprocess} can be added after the
+filename. For example::
+
+
+        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 
 The variable C{FORMAT} is always defined as the current format when
 running C{preprocess}. That is, in the last example, C{FORMAT} is
@@ -16903,16 +17854,17 @@ format specific actions through tests like C{#if FORMAT == "LaTeX"}.
 Inline comments in the text are removed from the output by::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+        Terminal> doconce format LaTeX mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
-by running a helper script in the C{bin} folder of the Doconce
+by running 
 source code::
 
 
-        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+        Terminal> doconce remove_inline_comments mydoc
 
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 
 HTML
@@ -16922,7 +17874,7 @@ Making an HTML version of a Doconce file C{mydoc.do.txt}
 is performed by::
 
 
-        Unix/DOS> doconce format HTML mydoc.do.txt
+        Terminal> doconce format HTML mydoc
 
 The resulting file C{mydoc.html} can be loaded into any web browser for viewing.
 
@@ -16935,7 +17887,7 @@ I{Step 1.} Filter the doconce text to a pre-LaTeX form C{mydoc.p.tex} for
      C{ptex2tex}::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt
+        Terminal> doconce format LaTeX mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files C{newcommands.tex}, C{newcommands_keep.tex}, or
@@ -16946,27 +17898,28 @@ so that your commands are defined.
 I{Step 2.} Run C{ptex2tex} (if you have it) to make a standard LaTeX file::
 
 
-        Unix/DOS> ptex2tex mydoc
+        Terminal> ptex2tex mydoc
 
 or just perform a plain copy::
 
 
-        Unix/DOS> cp mydoc.p.tex mydoc.tex
+        Terminal> cp mydoc.p.tex mydoc.tex
 
-Doconce generates a C{.p.tex} file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font::
+Doconce generates a C{.p.tex} file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run::
 
 
-        Unix/DOS> ptex2tex -DHELVETICA mydoc
+        Terminal> ptex2tex -DHELVETICA mydoc
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through::
 
 
-        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 
 
 The C{ptex2tex} tool makes it possible to easily switch between many
@@ -16981,12 +17934,12 @@ I{Step 3.} Compile C{mydoc.tex}
 and create the PDF file::
 
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex mydoc
+        Terminal> latex mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex mydoc
+        Terminal> dvipdf mydoc
 
 If one wishes to use the C{Minted_Python}, C{Minted_Cpp}, etc., environments
 in C{ptex2tex} for typesetting code, the C{minted} LaTeX package is needed.
@@ -16994,18 +17947,18 @@ This package is included by running C{doconce format} with the
 C{-DMINTED} option::
 
 
-        Unix/DOS> ptex2tex -DMINTED mydoc
+        Terminal> ptex2tex -DMINTED mydoc
 
 In this case, C{latex} must be run with the
 C{-shell-escape} option::
 
 
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex -shell-escape mydoc
+        Terminal> dvipdf mydoc
 
 The C{-shell-escape} option is required because the C{minted.sty} style
 file runs the C{pygments} program to format code, and this program
@@ -17020,7 +17973,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code::
 
 
-        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+        Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 
 reStructuredText
@@ -17031,15 +17984,15 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file C{mydoc.rst}::
 
 
-        Unix/DOS> doconce format rst mydoc.do.txt
+        Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats::
 
 
-        Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-        Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-        Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+        Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
 The OpenOffice file C{mydoc.odt} can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -17054,7 +18007,7 @@ I{Step 1.} Translate Doconce into the Sphinx dialect of
 the reStructuredText format::
 
 
-        Unix/DOS> doconce format sphinx mydoc.do.txt
+        Terminal> doconce format sphinx mydoc.do.txt
 
 
 I{Step 2.} Create a Sphinx root directory with a C{conf.py} file, 
@@ -17090,16 +18043,17 @@ program. Here is a scripted version of the steps with the latter::
 These statements as well as points 3-5 can be automated by the command::
 
 
-        Unix/DOS> doconce sphinx_dir mydoc.do.txt
+        Terminal> doconce sphinx_dir mydoc.do.txt
 
 More precisely, in addition to making the C{sphinx-rootdir},
 this command generates a script C{tmp_make_sphinx.sh} which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 I{Step 3.} Move the C{tutorial.rst} file to the Sphinx root directory::
 
 
-        Unix/DOS> mv mydoc.rst sphinx-rootdir
+        Terminal> mv mydoc.rst sphinx-rootdir
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with C{mydoc.rst} in the C{sphinx-rootdir}
@@ -17129,7 +18083,7 @@ Many other formats are also possible.
 I{Step 6.} View the result::
 
 
-        Unix/DOS> firefox _build/html/index.html
+        Terminal> firefox _build/html/index.html
 
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -17148,7 +18102,7 @@ The transformation to this format, called C{gwiki} to explicitly mark
 it as the Google Code dialect, is done by::
 
 
-        Unix/DOS> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
 the C{mydoc.gwiki} output file from C{doconce format} and paste the
@@ -17270,7 +18224,7 @@ Special Lines
 The Doconce markup language has a concept called I{special lines}.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
-sections, subsections, paragraphs., figures, etc.
+sections, subsections, paragraphs., figures, movies, etc.
 
 
 I{Heading with Title and Author(s).} Lines starting with C{TITLE:}, C{AUTHOR:}, and C{DATE:} are optional and used
@@ -17363,7 +18317,13 @@ The running text goes here.
 
 I{A Paragraph.} The running text goes here.
 
-I{Figures.} Figures are recognized by the special line syntax::
+Special Lines
+=============
+
+Figures
+-------
+
+Figures are recognized by the special line syntax::
 
 
         FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
@@ -17387,26 +18347,60 @@ included in the formatted caption).
 
 FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. {fig:viz}
 
-I{Movies.} Here is an example on the C{MOVIE:} keyword for embedding movies. This
-feature works only for the C{LaTeX}, C{HTML}, C{rst}, and C{sphinx} formats::
+Movies
+------
+
+Here is an example on the C{MOVIE:} keyword for embedding movies. This
+feature works well for the C{LaTeX}, C{HTML}, C{rst}, and C{sphinx} formats.
+Other formats try to generate some HTML file and link to that file
+for showing the movie::
 
 
         MOVIE: [filename, height=xxx width=yyy] possible caption
 
 
 
-MOVIE: [figs/mjolnir.mpeg, width=600, height=470]
+ (Movie figs/mjolnir.mpeg: play U{mjolnir.html<mjolnir.html>})
 
 
 
-The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML format will play
-the movie right away, while for all other formats there is no
-movie support. The HTML format can also treat filenames of the form
-C{myframes*.png}. In that case, a player for showing the sequence of frames
-is inserted in the HTML file. 
+The LaTeX format results in a file that can either make use of
+the movie15 package (requires the PDF to be shown in Acrobat Reader)
+or just a plain address to the movie. The HTML, reST, and
+Sphinx formats will play
+the movie right away by embedding the file in a standard HTML code,
+provided the output format is HTML.
+For all other formats a URL to an HTML file, which can play the code,
+is inserted in the output document.
 
-I{Computer Code.} Another type of special lines starts with C{@@@CODE} and enables copying
+When movies are embedded in the PDF file via LaTeX and
+the C{movie15} package wanted, one has to turn on the preprocessor
+variable C{MOVIE15}. There is an associated variable
+C{EXTERNAL_MOVIE_VIEWER} which can be defined to launch an external
+viewer when displaying the PDF file (in Acrobat Reader)::
+
+
+        Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
+
+
+The HTML, reST, and Sphinx formats can also treat filenames of the form
+C{myframes*.png}. In that case, an HTML file for showing the sequence of frames
+is generated, and a link to this file is inserted in the output document.
+That is, a simple "movie viewer" for the frames is made. 
+
+Many publish their scientific movies on YouTube, and Doconce recognizes
+YouTube URLs as movies. When the output is an HTML file, the movie will
+be embedded, otherwise a URL to the YouTube page is inserted.
+You should equip the C{MOVIE:} command with the right width and height
+of embedded YouTube movies (the parameters appear when you request
+the embedded HTML code for the movie on the YouTube page).
+
+
+
+Copying Computer Code
+---------------------
+
+Another type of special lines starts with C{@@@CODE} and enables copying
 of computer code from a file directly into a verbatim environment, see 
 the section "Blocks of Verbatim Computer Code" below.
 
@@ -17539,7 +18533,7 @@ will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
 reStructuredText commands by C{doconce format}. In the HTML and (Google
-Code) Wiki formats, labels become anchors and references become links,
+Code) wiki formats, labels become anchors and references become links,
 and with LaTeX "label" and "ref" are just equipped with backslashes so
 these commands work as usual in LaTeX.
 
@@ -17574,7 +18568,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to::
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
 Everything related to the index simply becomes invisible in 
-plain text, Epytext, StructuredText, HTML, and Wiki formats.
+plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: C{idx} commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
 Index items are naturally placed right after section headings, before the
@@ -17648,9 +18642,9 @@ A table like
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+         0.0        1.4186         -5.01  
+         2.0      1.376512        11.919  
+         4.0        1.1E+1     14.717624  
 ============  ============  ============  
 
 is built up of pipe symbols and dashes::
@@ -17665,7 +18659,19 @@ is built up of pipe symbols and dashes::
           |--------------------------------|
 
 The pipes and column values do not need to be aligned (but why write
-the Doconce source in an ugly way?).
+the Doconce source in an ugly way?). In the line below the heading,
+one can insert the characters C{c}, C{r}, or C{l} to specify the
+alignment of the columns (centered, right, or left, respectively).
+Similar character can be inserted in the line above the header to
+algn the headings. Pipes C{|} can also be inserted to indicate
+vertical rules in LaTeX tables (they are ignored for other formats).
+Note that not all formats offer alignment of heading or entries
+in tables (reStructuredText and Sphinx are examples). Also note that
+Doconce tables are very simple: neither entries nor
+headings can span several columns or rows. When that functionality
+is needed, one can make use of the preprocessor and if-tests on
+the format and insert format-specific code for tables.
+
 
 
 Blocks of Verbatim Computer Code
@@ -17899,8 +18905,8 @@ Preprocessing Steps
 
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
-Two preprocessors are supported: Preprocess 
-(U{http://code.google.com/p/preprocess<http://code.google.com/p/preprocess>}) and Mako
+Two preprocessors are supported: preprocess 
+(U{http://code.google.com/p/preprocess<http://code.google.com/p/preprocess>}) and mako
 (U{http://www.makotemplates.org/<http://www.makotemplates.org/>}). The former allows include and if-else
 statements much like the well-known preprocessor in C and C++ (but it
 does not allow sophisticated macro substitutions). The latter
@@ -17910,15 +18916,34 @@ through Python code embedded in the Doconce document. An arbitrary set
 of C{name=value} command-line arguments (at the end of the command line)
 automatically define Mako variables that are substituted in the document.
 
-Doconce will detect if Preprocess or Mako commands are used and run
+Doconce will detect if preprocess or Mako commands are used and run
 the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
-Preprocess and Mako always have the variable C{FORMAT} to be the desired
-output format of Doconce. It is then easy to test on the value of C{FORMAT}
-and take different actions for different formats. For example, one may
-create special LaTeX output for figures, say with multiple plots within
-a figure, while other formats may apply a separate figure for each plot.
+The preprocess and mako programs always have the variable C{FORMAT}
+defined as the desired output format of Doconce (C{HTML}, C{LaTeX},
+C{plain}, C{rst}, C{sphinx}, C{epydoc}, C{st}).  It is then easy to test on
+the value of C{FORMAT} and take different actions for different
+formats. For example, one may create special LaTeX output for figures,
+say with multiple plots within a figure, while other formats may apply
+a separate figure for each plot. Below is an example (see the Doconce
+source code of this document to understand how preprocess is used to
+create the example).
+
+
+
+
+FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
+
+FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
+
+
+Other user-defined variables for the preprocessor can be set at 
+the command line as explained in the section "From Doconce to Other Formats".
+
+More advanced use of mako can include Python code that may automate
+the writing of parts of the document.
+
 
 
 Missing Features
@@ -18165,7 +19190,7 @@ Hans Petter Langtangen [1, 2]
 [2] University of Oslo
 
 
-Date: Sep 12, 2011
+Date: Oct 22, 2011
 
 What Is Doconce?
 ================
@@ -18176,7 +19201,7 @@ Doconce is two things:
  1. Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
+    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
     removed for clear reading in, e.g., emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
@@ -18209,11 +19234,11 @@ Here are some Doconce features:
 
   * Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
-    as Google Wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or Wiki document.
+    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
 
   * Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google Wiki. However, if these formats are not of interest,
+    Sphinx and Google wiki. However, if these formats are not of interest,
     Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
@@ -18300,17 +19325,24 @@ of the results.
 From Doconce to Other Formats
 =============================
 
-Transformation of a Doconce document to various other
+Transformation of a Doconce document mydoc.do.txt to various other
 formats applies the script doconce format::
 
 
-        Unix/DOS> doconce format format mydoc.do.txt
+        Terminal> doconce format format mydoc.do.txt
 
-The preprocess program is always used to preprocess the file first,
-and options to preprocess can be added after the filename. For example::
+or just::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections
+        Terminal> doconce format format mydoc
+
+The mako or preprocess programs are always used to preprocess the
+file first, and options to mako or preprocess can be added after the
+filename. For example::
+
+
+        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
 
 The variable FORMAT is always defined as the current format when
 running preprocess. That is, in the last example, FORMAT is
@@ -18320,16 +19352,17 @@ format specific actions through tests like #if FORMAT == "LaTeX".
 Inline comments in the text are removed from the output by::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comments
+        Terminal> doconce format LaTeX mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
-by running a helper script in the bin folder of the Doconce
+by running 
 source code::
 
 
-        Unix/DOS> doconce remove_inline_comments mydoc.do.txt
+        Terminal> doconce remove_inline_comments mydoc
 
-This action is convenient when a Doconce document reaches its final form.
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
 
 
 HTML
@@ -18339,7 +19372,7 @@ Making an HTML version of a Doconce file mydoc.do.txt
 is performed by::
 
 
-        Unix/DOS> doconce format HTML mydoc.do.txt
+        Terminal> doconce format HTML mydoc
 
 The resulting file mydoc.html can be loaded into any web browser for viewing.
 
@@ -18352,7 +19385,7 @@ Making a LaTeX file mydoc.tex from mydoc.do.txt is done in two steps:
      ptex2tex::
 
 
-        Unix/DOS> doconce format LaTeX mydoc.do.txt
+        Terminal> doconce format LaTeX mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files newcommands.tex, newcommands_keep.tex, or
@@ -18363,27 +19396,28 @@ so that your commands are defined.
 *Step 2.* Run ptex2tex (if you have it) to make a standard LaTeX file::
 
 
-        Unix/DOS> ptex2tex mydoc
+        Terminal> ptex2tex mydoc
 
 or just perform a plain copy::
 
 
-        Unix/DOS> cp mydoc.p.tex mydoc.tex
+        Terminal> cp mydoc.p.tex mydoc.tex
 
-Doconce generates a .p.tex file with some preprocessor macros.
-For example, to enable font Helvetica instead of the standard
-Computer Modern font::
+Doconce generates a .p.tex file with some preprocessor macros
+that can be used to steer certain properties of the LaTeX document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run::
 
 
-        Unix/DOS> ptex2tex -DHELVETICA mydoc
+        Terminal> ptex2tex -DHELVETICA mydoc
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
-institutions in common. The standard LaTeX "maketitle" heading
+institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through::
 
 
-        Unix/DOS> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
 
 
 The ptex2tex tool makes it possible to easily switch between many
@@ -18398,12 +19432,12 @@ There are over 30 styles to choose from.
 and create the PDF file::
 
 
-        Unix/DOS> latex mydoc
-        Unix/DOS> latex mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex mydoc
+        Terminal> latex mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex mydoc
+        Terminal> dvipdf mydoc
 
 If one wishes to use the Minted_Python, Minted_Cpp, etc., environments
 in ptex2tex for typesetting code, the minted LaTeX package is needed.
@@ -18411,18 +19445,18 @@ This package is included by running doconce format with the
 -DMINTED option::
 
 
-        Unix/DOS> ptex2tex -DMINTED mydoc
+        Terminal> ptex2tex -DMINTED mydoc
 
 In this case, latex must be run with the
 -shell-escape option::
 
 
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> makeindex mydoc   # if index
-        Unix/DOS> bibitem mydoc     # if bibliography
-        Unix/DOS> latex -shell-escape mydoc
-        Unix/DOS> dvipdf mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> latex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> latex -shell-escape mydoc
+        Terminal> dvipdf mydoc
 
 The -shell-escape option is required because the minted.sty style
 file runs the pygments program to format code, and this program
@@ -18437,7 +19471,7 @@ in terminal windows, inclusion in email text, or for insertion in
 computer source code::
 
 
-        Unix/DOS> doconce format plain mydoc.do.txt  # results in mydoc.txt
+        Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 
 reStructuredText
@@ -18448,15 +19482,15 @@ go to other formats. First we filter the Doconce text to a
 reStructuredText file mydoc.rst::
 
 
-        Unix/DOS> doconce format rst mydoc.do.txt
+        Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats::
 
 
-        Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
-        Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML
-        Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+        Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
 The OpenOffice file mydoc.odt can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
@@ -18471,7 +19505,7 @@ Sphinx documents can be created from a Doconce source in a few steps.
 the reStructuredText format::
 
 
-        Unix/DOS> doconce format sphinx mydoc.do.txt
+        Terminal> doconce format sphinx mydoc.do.txt
 
 
 *Step 2.* Create a Sphinx root directory with a conf.py file, 
@@ -18507,16 +19541,17 @@ program. Here is a scripted version of the steps with the latter::
 These statements as well as points 3-5 can be automated by the command::
 
 
-        Unix/DOS> doconce sphinx_dir mydoc.do.txt
+        Terminal> doconce sphinx_dir mydoc.do.txt
 
 More precisely, in addition to making the sphinx-rootdir,
 this command generates a script tmp_make_sphinx.sh which
-can be run to carry out steps 3-5.
+can be run to carry out steps 3-5, and later to remake the
+sphinx document.
 
 *Step 3.* Move the tutorial.rst file to the Sphinx root directory::
 
 
-        Unix/DOS> mv mydoc.rst sphinx-rootdir
+        Terminal> mv mydoc.rst sphinx-rootdir
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with mydoc.rst in the sphinx-rootdir
@@ -18546,7 +19581,7 @@ Many other formats are also possible.
 *Step 6.* View the result::
 
 
-        Unix/DOS> firefox _build/html/index.html
+        Terminal> firefox _build/html/index.html
 
 
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -18565,7 +19600,7 @@ The transformation to this format, called gwiki to explicitly mark
 it as the Google Code dialect, is done by::
 
 
-        Unix/DOS> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format gwiki mydoc.do.txt
 
 You can then open a new wiki page for your Google Code project, copy
 the mydoc.gwiki output file from doconce format and paste the
@@ -18696,7 +19731,7 @@ Special Lines
 The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
-sections, subsections, paragraphs., figures, etc.
+sections, subsections, paragraphs., figures, movies, etc.
 
 
 *Heading with Title and Author(s).* Lines starting with TITLE:, AUTHOR:, and DATE: are optional and used
@@ -18792,7 +19827,13 @@ The running text goes here.
 
 *A Paragraph.* The running text goes here.
 
-*Figures.* Figures are recognized by the special line syntax::
+Special Lines
+=============
+
+Figures
+-------
+
+Figures are recognized by the special line syntax::
 
 
         FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
@@ -18816,26 +19857,60 @@ included in the formatted caption).
 
 FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. {fig:viz}
 
-*Movies.* Here is an example on the MOVIE: keyword for embedding movies. This
-feature works only for the LaTeX, HTML, rst, and sphinx formats::
+Movies
+------
+
+Here is an example on the MOVIE: keyword for embedding movies. This
+feature works well for the LaTeX, HTML, rst, and sphinx formats.
+Other formats try to generate some HTML file and link to that file
+for showing the movie::
 
 
         MOVIE: [filename, height=xxx width=yyy] possible caption
 
 
 
-MOVIE: [figs/mjolnir.mpeg, width=600, height=470]
+ (Movie figs/mjolnir.mpeg: play mjolnir.html)
 
 
 
-The LaTeX format results in a file that requires the movie15 package
-in order to play movies in PDF via Acroread. The HTML format will play
-the movie right away, while for all other formats there is no
-movie support. The HTML format can also treat filenames of the form
-myframes*.png. In that case, a player for showing the sequence of frames
-is inserted in the HTML file. 
+The LaTeX format results in a file that can either make use of
+the movie15 package (requires the PDF to be shown in Acrobat Reader)
+or just a plain address to the movie. The HTML, reST, and
+Sphinx formats will play
+the movie right away by embedding the file in a standard HTML code,
+provided the output format is HTML.
+For all other formats a URL to an HTML file, which can play the code,
+is inserted in the output document.
 
-*Computer Code.* Another type of special lines starts with @@@CODE and enables copying
+When movies are embedded in the PDF file via LaTeX and
+the movie15 package wanted, one has to turn on the preprocessor
+variable MOVIE15. There is an associated variable
+EXTERNAL_MOVIE_VIEWER which can be defined to launch an external
+viewer when displaying the PDF file (in Acrobat Reader)::
+
+
+        Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
+
+
+The HTML, reST, and Sphinx formats can also treat filenames of the form
+myframes*.png. In that case, an HTML file for showing the sequence of frames
+is generated, and a link to this file is inserted in the output document.
+That is, a simple "movie viewer" for the frames is made. 
+
+Many publish their scientific movies on YouTube, and Doconce recognizes
+YouTube URLs as movies. When the output is an HTML file, the movie will
+be embedded, otherwise a URL to the YouTube page is inserted.
+You should equip the MOVIE: command with the right width and height
+of embedded YouTube movies (the parameters appear when you request
+the embedded HTML code for the movie on the YouTube page).
+
+
+
+Copying Computer Code
+---------------------
+
+Another type of special lines starts with @@@CODE and enables copying
 of computer code from a file directly into a verbatim environment, see 
 the section "Blocks of Verbatim Computer Code" below.
 
@@ -18964,7 +20039,7 @@ will become invisible, except those in math environments.  In the
 reStructuredText and Sphinx formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
 reStructuredText commands by doconce format. In the HTML and (Google
-Code) Wiki formats, labels become anchors and references become links,
+Code) wiki formats, labels become anchors and references become links,
 and with LaTeX "label" and "ref" are just equipped with backslashes so
 these commands work as usual in LaTeX.
 
@@ -18999,7 +20074,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to::
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
 Everything related to the index simply becomes invisible in 
-plain text, Epytext, StructuredText, HTML, and Wiki formats.
+plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: idx commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
 Index items are naturally placed right after section headings, before the
@@ -19069,9 +20144,9 @@ A table like
 ============  ============  ============  
     time        velocity    acceleration  
 ============  ============  ============  
-0.0           1.4186        -5.01         
-2.0           1.376512      11.919        
-4.0           1.1E+1        14.717624     
+         0.0        1.4186         -5.01  
+         2.0      1.376512        11.919  
+         4.0        1.1E+1     14.717624  
 ============  ============  ============  
 
 is built up of pipe symbols and dashes::
@@ -19086,7 +20161,19 @@ is built up of pipe symbols and dashes::
           |--------------------------------|
 
 The pipes and column values do not need to be aligned (but why write
-the Doconce source in an ugly way?).
+the Doconce source in an ugly way?). In the line below the heading,
+one can insert the characters c, r, or l to specify the
+alignment of the columns (centered, right, or left, respectively).
+Similar character can be inserted in the line above the header to
+algn the headings. Pipes | can also be inserted to indicate
+vertical rules in LaTeX tables (they are ignored for other formats).
+Note that not all formats offer alignment of heading or entries
+in tables (reStructuredText and Sphinx are examples). Also note that
+Doconce tables are very simple: neither entries nor
+headings can span several columns or rows. When that functionality
+is needed, one can make use of the preprocessor and if-tests on
+the format and insert format-specific code for tables.
+
 
 
 Blocks of Verbatim Computer Code
@@ -19323,8 +20410,8 @@ Preprocessing Steps
 
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
-Two preprocessors are supported: Preprocess 
-(http://code.google.com/p/preprocess) and Mako
+Two preprocessors are supported: preprocess 
+(http://code.google.com/p/preprocess) and mako
 (http://www.makotemplates.org/). The former allows include and if-else
 statements much like the well-known preprocessor in C and C++ (but it
 does not allow sophisticated macro substitutions). The latter
@@ -19334,15 +20421,34 @@ through Python code embedded in the Doconce document. An arbitrary set
 of name=value command-line arguments (at the end of the command line)
 automatically define Mako variables that are substituted in the document.
 
-Doconce will detect if Preprocess or Mako commands are used and run
+Doconce will detect if preprocess or Mako commands are used and run
 the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
-Preprocess and Mako always have the variable FORMAT to be the desired
-output format of Doconce. It is then easy to test on the value of FORMAT
-and take different actions for different formats. For example, one may
-create special LaTeX output for figures, say with multiple plots within
-a figure, while other formats may apply a separate figure for each plot.
+The preprocess and mako programs always have the variable FORMAT
+defined as the desired output format of Doconce (HTML, LaTeX,
+plain, rst, sphinx, epydoc, st).  It is then easy to test on
+the value of FORMAT and take different actions for different
+formats. For example, one may create special LaTeX output for figures,
+say with multiple plots within a figure, while other formats may apply
+a separate figure for each plot. Below is an example (see the Doconce
+source code of this document to understand how preprocess is used to
+create the example).
+
+
+
+
+FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
+
+FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
+
+
+Other user-defined variables for the preprocessor can be set at 
+the command line as explained in the section "From Doconce to Other Formats".
+
+More advanced use of mako can include Python code that may automate
+the writing of parts of the document.
+
 
 
 Missing Features
@@ -19629,23 +20735,24 @@ Bibliography
   2. H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. *Advances in Water Resources*, vol 22, 185-195, 1998.
 ************** File: /home/hpl/vc/doconce/test/test.output *****************
 + doconce format HTML testdoc.do.txt
-run Mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 output in testdoc.html
 + doconce format LaTeX testdoc.do.txt
-run Mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
+latex: /home/hpl/vc/doconce/test/wavepacket_0001.html
 output in testdoc.p.tex
 + doconce format plain testdoc.do.txt
-run Mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 output in testdoc.txt
 + doconce format st testdoc.do.txt
-run Mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 output in testdoc.st
 + doconce format sphinx testdoc.do.txt
-run Mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 
 Warning: the "alignat" environment will give errors in Sphinx:
@@ -19658,15 +20765,16 @@ Warning: the "alignat" environment will give errors in Sphinx:
 output in testdoc.rst
 + mv -f testdoc.rst testdoc.sphinx.rst
 + doconce format rst testdoc.do.txt
-run Mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 output in testdoc.rst
 + doconce format epytext testdoc.do.txt
-run Mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 output in testdoc.epytext
-+ doconce format gwiki testdoc.do.txt
-run Mako preprocessor on testdoc.do.txt to make __tmp.do.txt
++ doconce format gwiki testdoc.do.txt remove_inline_comments MYVAR1=3 MYVAR2=a string
+run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+mako variables: {'MYVAR1': 3, 'MYVAR2': 'a string', 'FORMAT': 'gwiki'}
 translate preprocessed Doconce text in __tmp.do.txt
 
 NOTE: Place ../doc/manual/figs/streamtubes.png at some place on the web and edit the
@@ -19674,7 +20782,17 @@ NOTE: Place ../doc/manual/figs/streamtubes.png at some place on the web and edit
       or use the doconce script:
       doconce gwiki_figsubst.py mydoc.gwiki URL
 
-output in testdoc.gwiki+ ./clean.sh
+output in testdoc.gwiki
++ doconce guess_encoding encoding1.do.txt
++ cp encoding1.do.txt tmp1.do.txt
++ doconce change_encoding utf-8 latin1 tmp1.do.txt
++ doconce guess_encoding tmp1.do.txt
++ doconce change_encoding latin1 utf-8 tmp1.do.txt
++ doconce guess_encoding tmp1.do.txt
++ doconce guess_encoding encoding2.do.txt
++ cp encoding1.do.txt tmp2.do.txt
++ doconce change_encoding utf-8 latin1 tmp2.do.txt
++ doconce guess_encoding tmp2.do.txt+ ./clean.sh
 Removing in /home/hpl/vc/doconce/doc/tutorial:
 + doconce format HTML tutorial.do.txt
 run preprocess -DFORMAT=HTML  tutorial.do.txt > __tmp.do.txt
@@ -19697,8 +20815,23 @@ yphenation, loaded.
 (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texmf-texlive/tex/latex/base/size10.clo))
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def))))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
 (/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
@@ -19722,20 +20855,6 @@ Implicit mode ON; LaTeX internals redefined
 *hyperref using default driver hdvips*
 (/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
 (/usr/share/texmf-texlive/tex/latex/hyperref/pdfmark.def))
-(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty)
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
-(/etc/texmf/tex/latex/config/graphics.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def))))
-(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
 (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
 (/usr/share/texmf-texlive/tex/latex/base/latin1.def))
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
@@ -19765,49 +20884,50 @@ No file tutorial.aux.
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
 
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1]
-Overfull \hbox (8.67865pt too wide) in paragraph at lines 113--117
+Overfull \hbox (8.67865pt too wide) in paragraph at lines 120--124
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
 [2] [3] [4]
 
-LaTeX Warning: Reference `my:first:sec' on page 5 undefined on input line 292.
+LaTeX Warning: Reference `my:first:sec' on page 5 undefined on input line 299.
 
 
-LaTeX Warning: Reference `doconce2formats' on page 5 undefined on input line 29
-7.
+LaTeX Warning: Reference `doconce2formats' on page 5 undefined on input line 30
+4.
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 334.
+(amsmath)                 on input line 341.
 
 [5]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 411--429
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 418--436
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 411--429
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 418--436
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 411--429
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 418--436
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 [6] [7]
 
-LaTeX Warning: Reference `newcommands' on page 8 undefined on input line 514.
+LaTeX Warning: Reference `newcommands' on page 8 undefined on input line 530.
 
 
-Overfull \hbox (55.19026pt too wide) in paragraph at lines 512--517
+Overfull \hbox (55.19026pt too wide) in paragraph at lines 528--533
 \OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
-[8] [9] [10] [11]
-Overfull \hbox (20.44847pt too wide) in paragraph at lines 795--807
+[8] [9] [10] [11] [12]
+Overfull \hbox (20.44847pt too wide) in paragraph at lines 813--825
 \OT1/phv/m/n/10 If you make use of pre-pro-ces-sor di-rec-tives in the Do-conce
- source, ei-ther [][][][]
-[12]
+ source, ei-ther [][][][][][]
 No file tutorial.ind.
 [13] (./tutorial.aux)
 
@@ -19818,7 +20938,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (13 pages, 54708 bytes).
+Output written on tutorial.dvi (13 pages, 56608 bytes).
 Transcript written on tutorial.log.
 + latex tutorial.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -19830,8 +20950,23 @@ yphenation, loaded.
 (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texmf-texlive/tex/latex/base/size10.clo))
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def))))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
 (/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
@@ -19855,20 +20990,6 @@ Implicit mode ON; LaTeX internals redefined
 *hyperref using default driver hdvips*
 (/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
 (/usr/share/texmf-texlive/tex/latex/hyperref/pdfmark.def))
-(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty)
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
-(/etc/texmf/tex/latex/config/graphics.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def))))
-(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
 (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
 (/usr/share/texmf-texlive/tex/latex/base/latin1.def))
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
@@ -19894,42 +21015,43 @@ Writing index file tutorial.idx
 (./tutorial.aux) (/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd)
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./tutorial.out)
-(./tutorial.out) (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1]
-Overfull \hbox (8.67865pt too wide) in paragraph at lines 113--117
+(./tutorial.out) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1]
+Overfull \hbox (8.67865pt too wide) in paragraph at lines 120--124
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
 [2] [3] [4]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 334.
+(amsmath)                 on input line 341.
 
 [5]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 411--429
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 418--436
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 411--429
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 418--436
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 411--429
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 418--436
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 [6] [7]
-Overfull \hbox (55.19026pt too wide) in paragraph at lines 512--517
+Overfull \hbox (55.19026pt too wide) in paragraph at lines 528--533
 \OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
-[8] [9] [10] [11]
-Overfull \hbox (20.44847pt too wide) in paragraph at lines 795--807
+[8] [9] [10] [11] [12]
+Overfull \hbox (20.44847pt too wide) in paragraph at lines 813--825
 \OT1/phv/m/n/10 If you make use of pre-pro-ces-sor di-rec-tives in the Do-conce
- source, ei-ther [][][][]
-[12]
+ source, ei-ther [][][][][][]
 No file tutorial.ind.
 [13] (./tutorial.aux) )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (13 pages, 56832 bytes).
+Output written on tutorial.dvi (13 pages, 58840 bytes).
 Transcript written on tutorial.log.
 + dvipdf tutorial.dvi
 + doconce format sphinx tutorial.do.txt
@@ -19984,7 +21106,8 @@ source files. Use the Makefile to build the docs, like so:
    make builder
 where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
-'tmp_make_sphinx.sh' contains the steps to compile the sphinx version
+'tmp_make_sphinx.sh' contains the steps to (re)compile the sphinx version.
+You may want to rename this file for repeated reuse.
 + cp tutorial.rst tutorial.sphinx.rst
 + mv tutorial.rst sphinx-rootdir
 + cp index-sphinx sphinx-rootdir/index.rst
@@ -20148,35 +21271,36 @@ Chapter 3.
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [7]
 
 LaTeX Warning: Hyper reference `tutorial:my-first-sec' on page 8 undefined on i
-nput line 394.
+nput line 401.
 
 
 LaTeX Warning: Hyper reference `tutorial:doconce2formats' on page 8 undefined o
-n input line 399.
+n input line 406.
 
 [8]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 459.
+(amsmath)                 on input line 466.
 
 [9] [10]
 Chapter 4.
+[11]
 
-LaTeX Warning: Hyper reference `tutorial:newcommands' on page 11 undefined on i
-nput line 612.
+LaTeX Warning: Hyper reference `tutorial:newcommands' on page 12 undefined on i
+nput line 628.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 610--615
+Underfull \hbox (badness 10000) in paragraph at lines 626--631
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 610--615
+Underfull \hbox (badness 5359) in paragraph at lines 626--631
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[11] [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 774--777
+[12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 791--795
 []\T1/ptm/m/n/10 More pre-cisely, in ad-di-tion to mak-ing the \T1/pcr/m/n/10 s
 phinx-rootdir\T1/ptm/m/n/10 , this com-mand gen-er-ates a script
 [14] [15] [16]
@@ -20205,7 +21329,7 @@ etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 xlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/u
 rw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 191021 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 191497 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -20323,21 +21447,21 @@ Chapter 3.
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 459.
+(amsmath)                 on input line 466.
 
 [9] [10]
 Chapter 4.
-
-Underfull \hbox (badness 10000) in paragraph at lines 610--615
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 626--631
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 610--615
+Underfull \hbox (badness 5359) in paragraph at lines 626--631
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[11] [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 774--777
+[12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 791--795
 []\T1/ptm/m/n/10 More pre-cisely, in ad-di-tion to mak-ing the \T1/pcr/m/n/10 s
 phinx-rootdir\T1/ptm/m/n/10 , this com-mand gen-er-ates a script
 [14] [15] [16]
@@ -20356,7 +21480,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 201796 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 202272 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -20474,21 +21598,21 @@ Chapter 3.
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 459.
+(amsmath)                 on input line 466.
 
 [9] [10]
 Chapter 4.
-
-Underfull \hbox (badness 10000) in paragraph at lines 610--615
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 626--631
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 610--615
+Underfull \hbox (badness 5359) in paragraph at lines 626--631
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[11] [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 774--777
+[12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 791--795
 []\T1/ptm/m/n/10 More pre-cisely, in ad-di-tion to mak-ing the \T1/pcr/m/n/10 s
 phinx-rootdir\T1/ptm/m/n/10 , this com-mand gen-er-ates a script
 [14] [15] [16]
@@ -20507,7 +21631,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 201796 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 202272 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -20631,21 +21755,21 @@ Chapter 3.
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 459.
+(amsmath)                 on input line 466.
 
 [9] [10]
 Chapter 4.
-
-Underfull \hbox (badness 10000) in paragraph at lines 610--615
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 626--631
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 610--615
+Underfull \hbox (badness 5359) in paragraph at lines 626--631
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[11] [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 774--777
+[12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 791--795
 []\T1/ptm/m/n/10 More pre-cisely, in ad-di-tion to mak-ing the \T1/pcr/m/n/10 s
 phinx-rootdir\T1/ptm/m/n/10 , this com-mand gen-er-ates a script
 [14] [15] [16]
@@ -20664,7 +21788,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 201796 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 202272 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -20782,21 +21906,21 @@ Chapter 3.
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 459.
+(amsmath)                 on input line 466.
 
 [9] [10]
 Chapter 4.
-
-Underfull \hbox (badness 10000) in paragraph at lines 610--615
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 626--631
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 610--615
+Underfull \hbox (badness 5359) in paragraph at lines 626--631
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[11] [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 774--777
+[12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 791--795
 []\T1/ptm/m/n/10 More pre-cisely, in ad-di-tion to mak-ing the \T1/pcr/m/n/10 s
 phinx-rootdir\T1/ptm/m/n/10 , this com-mand gen-er-ates a script
 [14] [15] [16]
@@ -20815,7 +21939,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 201796 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 202272 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -20894,54 +22018,54 @@ No file tutorial.rst.aux.
 Package hyperref Warning: Rerun to get /PageLabels entry.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd)
-Overfull \hbox (1.15796pt too wide) in paragraph at lines 110--116
+Overfull \hbox (1.15796pt too wide) in paragraph at lines 116--122
 \T1/ptm/m/n/10 etc.). The Do-conce markup lan-guage sup-port this work-ing stra
 t-
-[1] (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [2]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 259--259
+[1] [2] (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd)
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 265--265
 []\T1/pcr/m/n/10 Ordinary text looks like ordinary text, and the tags used for 
  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 260--260
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 266--266
 []\T1/pcr/m/n/10 _boldface_ words, *emphasized* words, and `computer` words loo
 k  
 
-Overfull \hbox (125.00006pt too wide) in paragraph at lines 261--261
+Overfull \hbox (125.00006pt too wide) in paragraph at lines 267--267
 []\T1/pcr/m/n/10 natural in plain text.  Lists are typeset as you would do in a
 n email,  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 267--267
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 273--273
 []\T1/pcr/m/n/10 Lists can also have automatically numbered items instead of bu
 llets,  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 273--273
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 279--279
 []\T1/pcr/m/n/10 URLs with a link word are possible, as in "hpl":"http://folk.u
 io.no/hpl".  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 274--274
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 280--280
 []\T1/pcr/m/n/10 If the word is URL, the URL itself becomes the link name,  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 277--277
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 283--283
 []\T1/pcr/m/n/10 References to sections may use logical names as labels (e.g., 
 a  
-
-Overfull \hbox (125.00006pt too wide) in paragraph at lines 278--278
+[3]
+Overfull \hbox (125.00006pt too wide) in paragraph at lines 284--284
 []\T1/pcr/m/n/10 "label" command right after the section title), as in the refe
 rence to  
-[3]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 281--281
+
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 287--287
 []\T1/pcr/m/n/10 Doconce also allows inline comments such as [hpl: here I will 
 make  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 282--282
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 288--288
 []\T1/pcr/m/n/10 some remarks to the text] for allowing authors to make notes. 
 Inline  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 283--283
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 289--289
 []\T1/pcr/m/n/10 comments can be removed from the output by a command-line argu
 ment  
 
-Overfull \hbox (5.00006pt too wide) in paragraph at lines 284--284
+Overfull \hbox (5.00006pt too wide) in paragraph at lines 290--290
 []\T1/pcr/m/n/10 (see Chapter ref{doconce2formats} for an example).  
 (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omlztmcm.fd)
@@ -20950,94 +22074,95 @@ Overfull \hbox (5.00006pt too wide) in paragraph at lines 284--284
 (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd)
 
 LaTeX Warning: Hyper reference `a-subsection-with-sample-text' on page 4 undefi
-ned on input line 356.
+ned on input line 362.
 
 
-Overfull \hbox (20.8859pt too wide) in paragraph at lines 354--357
+Overfull \hbox (20.8859pt too wide) in paragraph at lines 360--363
 \T1/ptm/m/n/10 right af-ter the sec-tion ti-tle), as in the ref-er-ence to the 
 chap-ter [][][][][][]. 
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 4 undefi
-ned on input line 361.
+ned on input line 367.
 
 
-Overfull \hbox (7.8169pt too wide) in paragraph at lines 358--362
+Overfull \hbox (7.8169pt too wide) in paragraph at lines 364--368
 \T1/ptm/m/n/10 the out-put by a command-line ar-gu-ment (see the chap-ter [][][
 ][][][]
 [4]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 446--446
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 452--452
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
   
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 447--447
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 453--453
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g 
  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 479--482
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 485--488
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=conso
 le 
 
-Overfull \hbox (1.13771pt too wide) in paragraph at lines 484--488
+Overfull \hbox (1.13771pt too wide) in paragraph at lines 490--494
 \T1/ptm/m/n/10 are com-puter lan-guage spe-cific for \T1/pcr/m/n/10 x \T1/ptm/m
 /n/10 in \T1/pcr/m/n/10 f \T1/ptm/m/n/10 (For-tran), \T1/pcr/m/n/10 c \T1/ptm/m
 /n/10 (C), \T1/pcr/m/n/10 cpp \T1/ptm/m/n/10 (C++), and \T1/pcr/m/n/10 py \T1/p
 tm/m/n/10 (Python).
 [5]
-Overfull \hbox (4.24745pt too wide) in paragraph at lines 506--511
+Overfull \hbox (4.24745pt too wide) in paragraph at lines 512--517
 \T1/ptm/m/n/10 on a line start-ing with (an-other) hash sign. Do-conce doc-u-me
 nts have ex-ten-sion \T1/pcr/m/n/10 do.txt\T1/ptm/m/n/10 .
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 577--580
-[]\T1/pcr/m/n/10 Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections 
+Overfull \hbox (179.00006pt too wide) in paragraph at lines 591--592
+\T1/pcr/m/n/10 Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5  
+   # preprocess  
 
-Overfull \hbox (30.7872pt too wide) in paragraph at lines 582--586
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 593--595
+[]\T1/pcr/m/n/10 Terminal> doconce format LaTeX yourdoc extra_sections=True VAR
+1=5  # mako 
+[6]
+Overfull \hbox (30.7872pt too wide) in paragraph at lines 597--601
 []\T1/ptm/m/n/10 The vari-able \T1/pcr/m/n/10 FORMAT \T1/ptm/m/n/10 is al-ways 
 de-fined as the cur-rent for-mat when run-ning \T1/pcr/m/n/10 preprocess\T1/ptm
 /m/n/10 .
-[6]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 589--592
-[]\T1/pcr/m/n/10 Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comm
-ents 
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 598--601
-[]\T1/pcr/m/n/10 Unix/DOS> doconce remove_inline_comments mydoc.do.txt 
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 604--607
+[]\T1/pcr/m/n/10 Terminal> doconce format LaTeX mydoc remove_inline_comments 
 
-Overfull \hbox (11.278pt too wide) in paragraph at lines 641--644
+Overfull \hbox (11.278pt too wide) in paragraph at lines 657--660
 []\T1/pcr/m/n/10 ptex2tex\T1/ptm/m/n/10 : 
 
 LaTeX Warning: Hyper reference `macros-newcommands-cross-references-index-and-b
-ibliography' on page 7 undefined on input line 653.
+ibliography' on page 7 undefined on input line 669.
 
 
-Overfull \hbox (78.51936pt too wide) in paragraph at lines 651--656
+Overfull \hbox (78.51936pt too wide) in paragraph at lines 667--672
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
 
-Overfull \hbox (2.10667pt too wide) in paragraph at lines 651--656
+Overfull \hbox (2.10667pt too wide) in paragraph at lines 667--672
 \T1/ptm/m/n/10 (see the sec-tion [][][][][][]).
 [7]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 751--754
-[]\T1/pcr/m/n/10 Unix/DOS> doconce format plain mydoc.do.txt  # results in mydo
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 768--771
+[]\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 776--777
-\T1/pcr/m/n/10 Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML  
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 793--794
+\T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 778--778
-[]\T1/pcr/m/n/10 Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX  
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 795--795
+[]\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX  
+[8]
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 796--796
+[]\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 779--779
-[]\T1/pcr/m/n/10 Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
-
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 780--782
-[]\T1/pcr/m/n/10 Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-[8] [9]
-Overfull \hbox (31.15843pt too wide) in paragraph at lines 923--927
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 797--799
+[]\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
+[9]
+Overfull \hbox (31.15843pt too wide) in paragraph at lines 941--945
 []\T1/ptm/m/n/10 You can then open a new wiki page for your Google Code project
 , copy the \T1/pcr/m/n/10 mydoc.gwiki
 
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 942--953
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 960--971
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [10] [11] (./tutorial.rst.aux)
@@ -21049,7 +22174,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.rst.dvi (11 pages, 50780 bytes).
+Output written on tutorial.rst.dvi (11 pages, 51684 bytes).
 Transcript written on tutorial.rst.log.
 + dvipdf tutorial.rst.dvi
 + doconce format plain tutorial.do.txt
@@ -21077,22 +22202,22 @@ output in tutorial.epytext
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.epytext.ps tutorial.epytext
 [tutorial.epytext (plain): 12 pages on 12 sheets]
 [Total: 12 pages on 12 sheets] saved into the file `tutorial.epytext.ps'
-[4 lines wrapped]
+[6 lines wrapped]
 + ps2pdf tutorial.epytext.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.txt.ps tutorial.txt
-[tutorial.txt (plain): 12 pages on 12 sheets]
-[Total: 12 pages on 12 sheets] saved into the file `tutorial.txt.ps'
-[3 lines wrapped]
+[tutorial.txt (plain): 13 pages on 13 sheets]
+[Total: 13 pages on 13 sheets] saved into the file `tutorial.txt.ps'
+[5 lines wrapped]
 + ps2pdf tutorial.txt.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.gwiki.ps tutorial.gwiki
 [tutorial.gwiki (plain): 11 pages on 11 sheets]
 [Total: 11 pages on 11 sheets] saved into the file `tutorial.gwiki.ps'
-[61 lines wrapped]
+[63 lines wrapped]
 + ps2pdf tutorial.gwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
 [tutorial.xml (plain): 11 pages on 11 sheets]
 [Total: 11 pages on 11 sheets] saved into the file `tutorial.xml.ps'
-[296 lines wrapped]
+[300 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -21166,7 +22291,8 @@ source files. Use the Makefile to build the docs, like so:
    make builder
 where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
-'tmp_make_sphinx.sh' contains the steps to compile the sphinx version
+'tmp_make_sphinx.sh' contains the steps to (re)compile the sphinx version.
+You may want to rename this file for repeated reuse.
 + cp manual.rst manual.sphinx.rst
 + cp manual.rst sphinx-rootdir
 + cp index-sphinx sphinx-rootdir/index.rst
@@ -21191,9 +22317,11 @@ preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:974: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:974: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1027: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1027: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
 writing additional files... (0 module code pages) genindex search
+copying images... [ 33%] figs/wavepacket_0001.png
+copying images... [ 66%] figs/wavepacket_0010.png
 copying images... [100%] figs/streamtubes.png
 
 copying static files... done
@@ -21216,7 +22344,7 @@ resolving references...
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
 writing... /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.do.txt
 done
-copying images... figs/streamtubes.png
+copying images... figs/wavepacket_0001.png figs/wavepacket_0010.png figs/streamtubes.png
 copying TeX support files... done
 build succeeded, 3 warnings.
 
@@ -21340,92 +22468,103 @@ Chapter 2.
 (/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [5]
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [6]
 Chapter 3.
+[7]
 
-LaTeX Warning: Hyper reference `manual:newcommands' on page 7 undefined on inpu
-t line 338.
+LaTeX Warning: Hyper reference `manual:newcommands' on page 8 undefined on inpu
+t line 347.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--341
+Underfull \hbox (badness 10000) in paragraph at lines 345--350
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 336--341
+Underfull \hbox (badness 5359) in paragraph at lines 345--350
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[7] [8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 500--503
+[8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 510--514
 []\T1/ptm/m/n/10 More pre-cisely, in ad-di-tion to mak-ing the \T1/pcr/m/n/10 s
 phinx-rootdir\T1/ptm/m/n/10 , this com-mand gen-er-ates a script
 [10] [11] [12]
 Chapter 4.
 [13] [14] [15] [16]
 Chapter 5.
-<streamtubes.png, id=126, 583.17876pt x 437.635pt> <use streamtubes.png>
-<use streamtubes.png>
+[17] [18]
+Chapter 6.
+<streamtubes.png, id=137, 583.17876pt x 437.635pt> <use streamtubes.png>
+<use streamtubes.png> [19] [20 <./streamtubes.png>]
 
-LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 17 undefine
-d on input line 860.
+LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 21 undefine
+d on input line 909.
 
-[17] [18 <./streamtubes.png>]
+[21]
 
-LaTeX Warning: Hyper reference `manual:doconce2formats' on page 19 undefined on
- input line 951.
-
-
-LaTeX Warning: Hyper reference `manual:doconce2formats' on page 19 undefined on
- input line 957.
-
-[19]
-
-LaTeX Warning: Hyper reference `manual:fig-viz' on page 20 undefined on input l
-ine 1010.
+LaTeX Warning: Hyper reference `manual:doconce2formats' on page 22 undefined on
+ input line 1000.
 
 
-LaTeX Warning: Hyper reference `manual:mathtext' on page 20 undefined on input 
-line 1012.
+LaTeX Warning: Hyper reference `manual:doconce2formats' on page 22 undefined on
+ input line 1006.
 
 
-LaTeX Warning: Hyper reference `manual:newcommands' on page 20 undefined on inp
-ut line 1012.
+LaTeX Warning: Hyper reference `manual:fig-viz' on page 22 undefined on input l
+ine 1059.
 
 
-LaTeX Warning: Hyper reference `manual:inline-tagging' on page 20 undefined on 
-input line 1019.
-
-[20]
-
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 21 undefined o
-n input line 1105.
+LaTeX Warning: Hyper reference `manual:mathtext' on page 22 undefined on input 
+line 1061.
 
 
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 21 undefined on input 
-line 1105.
+LaTeX Warning: Hyper reference `manual:newcommands' on page 22 undefined on inp
+ut line 1061.
 
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 21 undefined o
-n input line 1106.
+LaTeX Warning: Hyper reference `manual:inline-tagging' on page 22 undefined on 
+input line 1068.
+
+[22]
+
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
+n input line 1154.
 
 
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 21 undefined on input 
-line 1106.
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
+line 1154.
 
-[21] [22] [23]
+
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
+n input line 1155.
+
+
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
+line 1155.
+
+[23] [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1316.
+(amsmath)                 on input line 1376.
 
-[24] [25]
+[26] <wavepacket_0001.png, id=209, 642.4pt x 481.8pt>
+<use wavepacket_0001.png> <use wavepacket_0001.png>
+<wavepacket_0010.png, id=210, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<use wavepacket_0010.png>
 
-LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 26 undefine
-d on input line 1473.
+LaTeX Warning: Hyper reference `manual:doconce2formats' on page 27 undefined on
+ input line 1488.
 
-[26] [27] [28] [29] [30]
-Chapter 6.
-[31] [32]
+[27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./wavepacket_0010.png (PNG co
+py)>]
+
+LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 30 undefine
+d on input line 1555.
+
+[30] [31] [32] [33] [34]
+Chapter 7.
+[35] [36]
 No file DoconceDescription.ind.
-[33] (./DoconceDescription.aux)
+[37] (./DoconceDescription.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -21449,7 +22588,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDescription.pdf (37 pages, 326515 bytes).
+Output written on DoconceDescription.pdf (41 pages, 342298 bytes).
 Transcript written on DoconceDescription.log.
 pdflatex  'DoconceDescription.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -21542,15 +22681,15 @@ Writing index file DoconceDescription.idx
 Underfull \hbox (badness 10000) in paragraph at lines 112--112
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fonts/ma
-p/pdftex/updmap/pdftex.map}] [2] (./DoconceDescription.toc)
-Adding blank page after the table of contents.
-pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
-been already used, duplicate ignored
+p/pdftex/updmap/pdftex.map}] [2] (./DoconceDescription.tocpdfTeX warning (ext4)
+: destination with the same identifier (name{page.i}) has been already used, du
+plicate ignored
 <to be read again> 
                    \relax 
-l.112 \tableofcontents
-                       [1]pdfTeX warning (ext4): destination with the same iden
-tifier (name{page.ii}) has been already used, duplicate ignored
+l.38 ...line {7}Indices and tables}{35}{chapter.7}
+                                                   [1])pdfTeX warning (ext4): d
+estination with the same identifier (name{page.ii}) has been already used, dupl
+icate ignored
 <to be read again> 
                    \relax 
 l.112 \tableofcontents
@@ -21561,52 +22700,58 @@ Chapter 2.
 (/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [5]
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [6]
 Chapter 3.
-
-Underfull \hbox (badness 10000) in paragraph at lines 336--341
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 345--350
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 336--341
+Underfull \hbox (badness 5359) in paragraph at lines 345--350
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[7] [8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 500--503
+[8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 510--514
 []\T1/ptm/m/n/10 More pre-cisely, in ad-di-tion to mak-ing the \T1/pcr/m/n/10 s
 phinx-rootdir\T1/ptm/m/n/10 , this com-mand gen-er-ates a script
 [10] [11] [12]
 Chapter 4.
 [13] [14] [15] [16]
 Chapter 5.
-<streamtubes.png, id=275, 583.17876pt x 437.635pt> <use streamtubes.png>
-<use streamtubes.png> [17] [18 <./streamtubes.png>] [19] [20]
+[17] [18]
+Chapter 6.
+<streamtubes.png, id=304, 583.17876pt x 437.635pt> <use streamtubes.png>
+<use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22]
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 21 undefined o
-n input line 1105.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 21 undefined on input 
-line 1105.
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
+n input line 1154.
 
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 21 undefined o
-n input line 1106.
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
+line 1154.
 
 
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 21 undefined on input 
-line 1106.
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
+n input line 1155.
 
-[21] [22] [23]
+
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
+line 1155.
+
+[23] [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1316.
+(amsmath)                 on input line 1376.
 
-[24] [25] [26] [27] [28] [29] [30]
-Chapter 6.
-[31] [32]
+[26] <wavepacket_0001.png, id=366, 642.4pt x 481.8pt>
+<use wavepacket_0001.png> <use wavepacket_0001.png>
+<wavepacket_0010.png, id=367, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
+avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34]
+Chapter 7.
+[35] [36]
 No file DoconceDescription.ind.
-[33] (./DoconceDescription.aux)
+[37] (./DoconceDescription.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -21627,7 +22772,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDescription.pdf (37 pages, 344777 bytes).
+Output written on DoconceDescription.pdf (41 pages, 362584 bytes).
 Transcript written on DoconceDescription.log.
 pdflatex  'DoconceDescription.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -21720,15 +22865,15 @@ Writing index file DoconceDescription.idx
 Underfull \hbox (badness 10000) in paragraph at lines 112--112
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fonts/ma
-p/pdftex/updmap/pdftex.map}] [2] (./DoconceDescription.toc)
-Adding blank page after the table of contents.
-pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
-been already used, duplicate ignored
+p/pdftex/updmap/pdftex.map}] [2] (./DoconceDescription.tocpdfTeX warning (ext4)
+: destination with the same identifier (name{page.i}) has been already used, du
+plicate ignored
 <to be read again> 
                    \relax 
-l.112 \tableofcontents
-                       [1]pdfTeX warning (ext4): destination with the same iden
-tifier (name{page.ii}) has been already used, duplicate ignored
+l.38 ...line {7}Indices and tables}{35}{chapter.7}
+                                                   [1])pdfTeX warning (ext4): d
+estination with the same identifier (name{page.ii}) has been already used, dupl
+icate ignored
 <to be read again> 
                    \relax 
 l.112 \tableofcontents
@@ -21739,52 +22884,58 @@ Chapter 2.
 (/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [5]
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [6]
 Chapter 3.
-
-Underfull \hbox (badness 10000) in paragraph at lines 336--341
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 345--350
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 336--341
+Underfull \hbox (badness 5359) in paragraph at lines 345--350
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[7] [8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 500--503
+[8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 510--514
 []\T1/ptm/m/n/10 More pre-cisely, in ad-di-tion to mak-ing the \T1/pcr/m/n/10 s
 phinx-rootdir\T1/ptm/m/n/10 , this com-mand gen-er-ates a script
 [10] [11] [12]
 Chapter 4.
 [13] [14] [15] [16]
 Chapter 5.
-<streamtubes.png, id=275, 583.17876pt x 437.635pt> <use streamtubes.png>
-<use streamtubes.png> [17] [18 <./streamtubes.png>] [19] [20]
+[17] [18]
+Chapter 6.
+<streamtubes.png, id=304, 583.17876pt x 437.635pt> <use streamtubes.png>
+<use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22]
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 21 undefined o
-n input line 1105.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 21 undefined on input 
-line 1105.
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
+n input line 1154.
 
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 21 undefined o
-n input line 1106.
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
+line 1154.
 
 
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 21 undefined on input 
-line 1106.
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
+n input line 1155.
 
-[21] [22] [23]
+
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
+line 1155.
+
+[23] [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1316.
+(amsmath)                 on input line 1376.
 
-[24] [25] [26] [27] [28] [29] [30]
-Chapter 6.
-[31] [32]
+[26] <wavepacket_0001.png, id=366, 642.4pt x 481.8pt>
+<use wavepacket_0001.png> <use wavepacket_0001.png>
+<wavepacket_0010.png, id=367, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
+avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34]
+Chapter 7.
+[35] [36]
 No file DoconceDescription.ind.
-[33] (./DoconceDescription.aux)
+[37] (./DoconceDescription.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -21805,7 +22956,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDescription.pdf (37 pages, 344777 bytes).
+Output written on DoconceDescription.pdf (41 pages, 362584 bytes).
 Transcript written on DoconceDescription.log.
 makeindex -s python.ist 'DoconceDescription.idx'
 This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
@@ -21906,15 +23057,15 @@ Writing index file DoconceDescription.idx
 Underfull \hbox (badness 10000) in paragraph at lines 112--112
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fonts/ma
-p/pdftex/updmap/pdftex.map}] [2] (./DoconceDescription.toc)
-Adding blank page after the table of contents.
-pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
-been already used, duplicate ignored
+p/pdftex/updmap/pdftex.map}] [2] (./DoconceDescription.tocpdfTeX warning (ext4)
+: destination with the same identifier (name{page.i}) has been already used, du
+plicate ignored
 <to be read again> 
                    \relax 
-l.112 \tableofcontents
-                       [1]pdfTeX warning (ext4): destination with the same iden
-tifier (name{page.ii}) has been already used, duplicate ignored
+l.38 ...line {7}Indices and tables}{35}{chapter.7}
+                                                   [1])pdfTeX warning (ext4): d
+estination with the same identifier (name{page.ii}) has been already used, dupl
+icate ignored
 <to be read again> 
                    \relax 
 l.112 \tableofcontents
@@ -21925,50 +23076,56 @@ Chapter 2.
 (/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [5]
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [6]
 Chapter 3.
-
-Underfull \hbox (badness 10000) in paragraph at lines 336--341
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 345--350
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 336--341
+Underfull \hbox (badness 5359) in paragraph at lines 345--350
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[7] [8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 500--503
+[8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 510--514
 []\T1/ptm/m/n/10 More pre-cisely, in ad-di-tion to mak-ing the \T1/pcr/m/n/10 s
 phinx-rootdir\T1/ptm/m/n/10 , this com-mand gen-er-ates a script
 [10] [11] [12]
 Chapter 4.
 [13] [14] [15] [16]
 Chapter 5.
-<streamtubes.png, id=275, 583.17876pt x 437.635pt> <use streamtubes.png>
-<use streamtubes.png> [17] [18 <./streamtubes.png>] [19] [20]
+[17] [18]
+Chapter 6.
+<streamtubes.png, id=304, 583.17876pt x 437.635pt> <use streamtubes.png>
+<use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22]
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 21 undefined o
-n input line 1105.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 21 undefined on input 
-line 1105.
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
+n input line 1154.
 
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 21 undefined o
-n input line 1106.
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
+line 1154.
 
 
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 21 undefined on input 
-line 1106.
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
+n input line 1155.
 
-[21] [22] [23]
+
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
+line 1155.
+
+[23] [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1316.
+(amsmath)                 on input line 1376.
 
-[24] [25] [26] [27] [28] [29] [30]
-Chapter 6.
-[31] [32] (./DoconceDescription.ind [33] [34] [35]) (./DoconceDescription.aux)
+[26] <wavepacket_0001.png, id=366, 642.4pt x 481.8pt>
+<use wavepacket_0001.png> <use wavepacket_0001.png>
+<wavepacket_0010.png, id=367, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
+avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34]
+Chapter 7.
+[35] [36] (./DoconceDescription.ind [37] [38] [39]) (./DoconceDescription.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -21990,7 +23147,7 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDescription.pdf (39 pages, 354369 bytes).
+Output written on DoconceDescription.pdf (43 pages, 372381 bytes).
 Transcript written on DoconceDescription.log.
 pdflatex  'DoconceDescription.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -22088,7 +23245,7 @@ p/pdftex/updmap/pdftex.map}] [2] (./DoconceDescription.tocpdfTeX warning (ext4)
 plicate ignored
 <to be read again> 
                    \relax 
-l.36 ...tentsline {chapter}{Index}{35}{section*.8}
+l.38 ...line {7}Indices and tables}{35}{chapter.7}
                                                    [1])pdfTeX warning (ext4): d
 estination with the same identifier (name{page.ii}) has been already used, dupl
 icate ignored
@@ -22102,50 +23259,56 @@ Chapter 2.
 (/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [5]
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [6]
 Chapter 3.
-
-Underfull \hbox (badness 10000) in paragraph at lines 336--341
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 345--350
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 336--341
+Underfull \hbox (badness 5359) in paragraph at lines 345--350
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[7] [8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 500--503
+[8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 510--514
 []\T1/ptm/m/n/10 More pre-cisely, in ad-di-tion to mak-ing the \T1/pcr/m/n/10 s
 phinx-rootdir\T1/ptm/m/n/10 , this com-mand gen-er-ates a script
 [10] [11] [12]
 Chapter 4.
 [13] [14] [15] [16]
 Chapter 5.
-<streamtubes.png, id=280, 583.17876pt x 437.635pt> <use streamtubes.png>
-<use streamtubes.png> [17] [18 <./streamtubes.png>] [19] [20]
+[17] [18]
+Chapter 6.
+<streamtubes.png, id=309, 583.17876pt x 437.635pt> <use streamtubes.png>
+<use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22]
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 21 undefined o
-n input line 1105.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 21 undefined on input 
-line 1105.
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
+n input line 1154.
 
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 21 undefined o
-n input line 1106.
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
+line 1154.
 
 
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 21 undefined on input 
-line 1106.
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
+n input line 1155.
 
-[21] [22] [23]
+
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
+line 1155.
+
+[23] [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1316.
+(amsmath)                 on input line 1376.
 
-[24] [25] [26] [27] [28] [29] [30]
-Chapter 6.
-[31] [32] (./DoconceDescription.ind [33] [34] [35]) (./DoconceDescription.aux)
+[26] <wavepacket_0001.png, id=371, 642.4pt x 481.8pt>
+<use wavepacket_0001.png> <use wavepacket_0001.png>
+<wavepacket_0010.png, id=372, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
+avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34]
+Chapter 7.
+[35] [36] (./DoconceDescription.ind [37] [38] [39]) (./DoconceDescription.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -22167,7 +23330,7 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDescription.pdf (39 pages, 354845 bytes).
+Output written on DoconceDescription.pdf (43 pages, 372800 bytes).
 Transcript written on DoconceDescription.log.
 + cp DoconceDescription.pdf ../../../manual.sphinx.pdf
 + cd ../../..
@@ -22256,289 +23419,309 @@ Overfull \hbox (1.15796pt too wide) in paragraph at lines 100--106
 t-
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd) [1]
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [2]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 266--269
-[]\T1/pcr/m/n/10 Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections 
+Overfull \hbox (179.00006pt too wide) in paragraph at lines 274--275
+\T1/pcr/m/n/10 Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5  
+   # preprocess  
 
-Overfull \hbox (30.7872pt too wide) in paragraph at lines 271--275
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 276--278
+[]\T1/pcr/m/n/10 Terminal> doconce format LaTeX yourdoc extra_sections=True VAR
+1=5  # mako 
+
+Overfull \hbox (30.7872pt too wide) in paragraph at lines 280--284
 []\T1/ptm/m/n/10 The vari-able \T1/pcr/m/n/10 FORMAT \T1/ptm/m/n/10 is al-ways 
 de-fined as the cur-rent for-mat when run-ning \T1/pcr/m/n/10 preprocess\T1/ptm
 /m/n/10 .
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 278--281
-[]\T1/pcr/m/n/10 Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comm
-ents 
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 287--290
+[]\T1/pcr/m/n/10 Terminal> doconce format LaTeX mydoc remove_inline_comments 
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 287--290
-[]\T1/pcr/m/n/10 Unix/DOS> doconce remove_inline_comments mydoc.do.txt 
-
-Overfull \hbox (11.278pt too wide) in paragraph at lines 330--333
+Overfull \hbox (11.278pt too wide) in paragraph at lines 340--343
 []\T1/pcr/m/n/10 ptex2tex\T1/ptm/m/n/10 : 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 3 undefined on inpu
-t line 342.
+t line 352.
 
 
-Overfull \hbox (78.51936pt too wide) in paragraph at lines 340--345
+Overfull \hbox (78.51936pt too wide) in paragraph at lines 350--355
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
 [3]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 440--443
-[]\T1/pcr/m/n/10 Unix/DOS> doconce format plain mydoc.do.txt  # results in mydo
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 451--454
+[]\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
 [4]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 465--466
-\T1/pcr/m/n/10 Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML  
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 476--477
+\T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 467--467
-[]\T1/pcr/m/n/10 Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX  
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 478--478
+[]\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 468--468
-[]\T1/pcr/m/n/10 Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 479--479
+[]\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 469--471
-[]\T1/pcr/m/n/10 Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 480--482
+[]\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
 [5]
-Overfull \hbox (31.15843pt too wide) in paragraph at lines 612--616
+Overfull \hbox (31.15843pt too wide) in paragraph at lines 624--628
 []\T1/ptm/m/n/10 You can then open a new wiki page for your Google Code project
 , copy the \T1/pcr/m/n/10 mydoc.gwiki
 
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 631--642
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 643--654
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [6] [7]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 776--780
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 788--792
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 805--808
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 817--820
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 820--820
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 832--832
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 [8]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 838--838
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 850--850
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 
-Overfull \hbox (5.00006pt too wide) in paragraph at lines 880--880
+Overfull \hbox (5.00006pt too wide) in paragraph at lines 892--892
 []          \T1/pcr/m/n/10 ===Example on a Subsubsection Heading===  
 [9]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 927--930
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 957--960
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
-<figs/streamtubes.eps>
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 957--960
+<figs/streamtubes.eps> [10]
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 998--1001
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
-[10]
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 11 un
-defined on input line 977.
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1026--1029
+[]\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
+
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1031--1035
+[]\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
+of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
+[11]
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1036--1042
+[]\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
+ce rec-og-nizes YouTube
+
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 12 un
+defined on input line 1054.
 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1003--1006
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1052--1055
+\T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
+ the sec-tion [][][][][][]
+
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1080--1083
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1016--1018
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1093--1095
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1037--1040
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1114--1117
 []\T1/pcr/m/n/10 some URL like "MyPlace": "http://my.place.in.space/src" 
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ztmcm.fd)
+[12] (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omlztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omxztmcm.fd)
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd) [11]
+(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd)
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 12 undef
-ined on input line 1077.
-
-
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 12 undef
-ined on input line 1083.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 13 undef
+ined on input line 1154.
 
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1097--1097
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 13 undef
+ined on input line 1160.
+
+
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1174--1174
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1098--1100
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1175--1177
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1123--1125
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1200--1202
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
+[13]
 
-LaTeX Warning: Hyper reference `fig-viz' on page 12 undefined on input line 114
-1.
-
-
-LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 12 u
-ndefined on input line 1143.
+LaTeX Warning: Hyper reference `fig-viz' on page 14 undefined on input line 121
+8.
 
 
-LaTeX Warning: Hyper reference `macros-newcommands' on page 12 undefined on inp
-ut line 1143.
+LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 14 u
+ndefined on input line 1220.
 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1139--1148
+LaTeX Warning: Hyper reference `macros-newcommands' on page 14 undefined on inp
+ut line 1220.
+
+
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1216--1225
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
-[12]
 
-LaTeX Warning: Hyper reference `id3' on page 13 undefined on input line 1150.
+LaTeX Warning: Hyper reference `id4' on page 14 undefined on input line 1227.
 
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1149--1151
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1226--1228
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1174--1177
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1251--1254
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (30.86786pt too wide) in paragraph at lines 1206--1209
+Overfull \hbox (30.86786pt too wide) in paragraph at lines 1283--1286
 []\T1/ptm/m/n/10 if \T1/pcr/m/n/10 Larsen:86 \T1/ptm/m/n/10 has al-ready ap-pea
 red in the 3rd ci-ta-tion in the doc-u-ment and \T1/pcr/m/n/10 Nielsen:99
-
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1222--1222
+[14]
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1299--1299
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
-[13]
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1247--1250
+
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1324--1327
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-[14]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1359--1362
+[15]
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1447--1450
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=conso
 le 
-[15]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1432--1434
-[]\T1/pcr/m/n/10 @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1 
 [16]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1512--1512
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1520--1522
+[]\T1/pcr/m/n/10 @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1 
+[17]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1600--1600
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
   
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1513--1513
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1601--1601
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g 
  
 
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 1557--1560
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 1645--1648
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-[17]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1594--1594
+[18]
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1682--1682
 []\T1/pcr/m/n/10 \Ddt{\vec u} &=& {\mbox{\boldmath $Q$}} \thinspace . \label{my
 :eq2}  
 
-Overfull \hbox (17.90616pt too wide) in paragraph at lines 1610--1622
-\T1/ptm/m/n/10 pro-cess ([][][][][][]) and Mako ([][][][][][]).
-[18]
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 1698--1710
+\T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
+<figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [19] [20]
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 19 un
-defined on input line 1713.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 21 undef
+ined on input line 1740.
+
+[21]
+
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 22 un
+defined on input line 1825.
 
 
-Overfull \hbox (77.5059pt too wide) in paragraph at lines 1713--1719
+Overfull \hbox (77.5059pt too wide) in paragraph at lines 1825--1831
 []\T1/ptm/m/it/10 Verbatim Code Blocks In-side Lists Look Ugly. \T1/ptm/m/n/10 
 Read the the sec-tion [][][][][][]
-[19]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1748--1751
+[22]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1860--1863
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1807--1810
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1919--1922
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[20]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1848--1849
+[23]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1960--1961
 \T1/pcr/m/n/10 FILENAME_EXTENSION['HTML'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1850--1850
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1962--1962
 []\T1/pcr/m/n/10 BLANKLINE['HTML'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 1963--1963
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1854--1854
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1966--1966
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1855--1855
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1967--1967
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1856--1856
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1968--1968
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1857--1857
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1969--1969
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 1862--1862
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 1974--1974
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 1863--1863
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 1975--1975
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 1864--1864
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 1976--1976
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1867--1867
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1979--1979
 []\T1/pcr/m/n/10 # how to replace code and LaTeX blocks by HTML (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 1870--1870
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 1982--1982
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 1872--1872
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 1984--1984
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1875--1875
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1987--1987
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1882--1882
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1994--1994
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1884--1884
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1996--1996
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 1886--1886
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 1998--1998
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
-[21]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1889--1889
+[24]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2001--2001
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1895--1895
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2007--2007
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 1936--1936
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2048--2048
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 1938--1938
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2050--2050
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1939--1939
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2051--2051
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1940--1940
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2052--2052
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 1941--1941
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2053--2053
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[22] [23] (./manual.rst.aux)
+[25] [26] (./manual.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -22547,7 +23730,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (23 pages, 101460 bytes).
+Output written on manual.rst.dvi (26 pages, 108784 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -22621,256 +23804,270 @@ Overfull \hbox (1.15796pt too wide) in paragraph at lines 100--106
 t-
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd) [1]
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [2]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 266--269
-[]\T1/pcr/m/n/10 Unix/DOS> doconce format LaTeX mydoc.do.txt -Dextra_sections 
+Overfull \hbox (179.00006pt too wide) in paragraph at lines 274--275
+\T1/pcr/m/n/10 Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5  
+   # preprocess  
 
-Overfull \hbox (30.7872pt too wide) in paragraph at lines 271--275
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 276--278
+[]\T1/pcr/m/n/10 Terminal> doconce format LaTeX yourdoc extra_sections=True VAR
+1=5  # mako 
+
+Overfull \hbox (30.7872pt too wide) in paragraph at lines 280--284
 []\T1/ptm/m/n/10 The vari-able \T1/pcr/m/n/10 FORMAT \T1/ptm/m/n/10 is al-ways 
 de-fined as the cur-rent for-mat when run-ning \T1/pcr/m/n/10 preprocess\T1/ptm
 /m/n/10 .
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 278--281
-[]\T1/pcr/m/n/10 Unix/DOS> doconce format LaTeX mydoc.do.txt remove_inline_comm
-ents 
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 287--290
+[]\T1/pcr/m/n/10 Terminal> doconce format LaTeX mydoc remove_inline_comments 
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 287--290
-[]\T1/pcr/m/n/10 Unix/DOS> doconce remove_inline_comments mydoc.do.txt 
-
-Overfull \hbox (11.278pt too wide) in paragraph at lines 330--333
+Overfull \hbox (11.278pt too wide) in paragraph at lines 340--343
 []\T1/pcr/m/n/10 ptex2tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (78.51936pt too wide) in paragraph at lines 340--345
+Overfull \hbox (78.51936pt too wide) in paragraph at lines 350--355
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
 [3]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 440--443
-[]\T1/pcr/m/n/10 Unix/DOS> doconce format plain mydoc.do.txt  # results in mydo
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 451--454
+[]\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
 [4]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 465--466
-\T1/pcr/m/n/10 Unix/DOS> rst2html.py  mydoc.rst > mydoc.html # HTML  
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 476--477
+\T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 467--467
-[]\T1/pcr/m/n/10 Unix/DOS> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX  
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 478--478
+[]\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 468--468
-[]\T1/pcr/m/n/10 Unix/DOS> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 479--479
+[]\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 469--471
-[]\T1/pcr/m/n/10 Unix/DOS> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 480--482
+[]\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
 [5]
-Overfull \hbox (31.15843pt too wide) in paragraph at lines 612--616
+Overfull \hbox (31.15843pt too wide) in paragraph at lines 624--628
 []\T1/ptm/m/n/10 You can then open a new wiki page for your Google Code project
 , copy the \T1/pcr/m/n/10 mydoc.gwiki
 
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 631--642
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 643--654
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [6] [7]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 776--780
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 788--792
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 805--808
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 817--820
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 820--820
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 832--832
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 [8]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 838--838
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 850--850
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 
-Overfull \hbox (5.00006pt too wide) in paragraph at lines 880--880
+Overfull \hbox (5.00006pt too wide) in paragraph at lines 892--892
 []          \T1/pcr/m/n/10 ===Example on a Subsubsection Heading===  
 [9]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 927--930
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 957--960
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
-<figs/streamtubes.eps>
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 957--960
+<figs/streamtubes.eps> [10]
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 998--1001
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
-[10]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1003--1006
+
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1026--1029
+[]\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
+
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1031--1035
+[]\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
+of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
+[11]
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1036--1042
+[]\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
+ce rec-og-nizes YouTube
+
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1052--1055
+\T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
+ the sec-tion [][][][][][]
+
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1080--1083
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1016--1018
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1093--1095
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1037--1040
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1114--1117
 []\T1/pcr/m/n/10 some URL like "MyPlace": "http://my.place.in.space/src" 
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ztmcm.fd)
+[12] (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omlztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omxztmcm.fd)
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd) [11]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1097--1097
+(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd)
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1174--1174
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1098--1100
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1175--1177
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1123--1125
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1200--1202
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
-
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1139--1148
+[13]
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1216--1225
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
-[12]
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1149--1151
+
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1226--1228
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1174--1177
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1251--1254
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (30.86786pt too wide) in paragraph at lines 1206--1209
+Overfull \hbox (30.86786pt too wide) in paragraph at lines 1283--1286
 []\T1/ptm/m/n/10 if \T1/pcr/m/n/10 Larsen:86 \T1/ptm/m/n/10 has al-ready ap-pea
 red in the 3rd ci-ta-tion in the doc-u-ment and \T1/pcr/m/n/10 Nielsen:99
-
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1222--1222
+[14]
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1299--1299
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
-[13]
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1247--1250
+
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1324--1327
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-[14]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1359--1362
+[15]
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1447--1450
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=conso
 le 
-[15]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1432--1434
-[]\T1/pcr/m/n/10 @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1 
 [16]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1512--1512
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1520--1522
+[]\T1/pcr/m/n/10 @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1 
+[17]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1600--1600
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
   
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1513--1513
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1601--1601
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g 
  
 
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 1557--1560
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 1645--1648
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-[17]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1594--1594
+[18]
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1682--1682
 []\T1/pcr/m/n/10 \Ddt{\vec u} &=& {\mbox{\boldmath $Q$}} \thinspace . \label{my
 :eq2}  
 
-Overfull \hbox (17.90616pt too wide) in paragraph at lines 1610--1622
-\T1/ptm/m/n/10 pro-cess ([][][][][][]) and Mako ([][][][][][]).
-[18]
-Overfull \hbox (77.5059pt too wide) in paragraph at lines 1713--1719
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 1698--1710
+\T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
+<figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [19] [20] [21]
+Overfull \hbox (77.5059pt too wide) in paragraph at lines 1825--1831
 []\T1/ptm/m/it/10 Verbatim Code Blocks In-side Lists Look Ugly. \T1/ptm/m/n/10 
 Read the the sec-tion [][][][][][]
-[19]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1748--1751
+[22]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1860--1863
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1807--1810
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1919--1922
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[20]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1848--1849
+[23]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1960--1961
 \T1/pcr/m/n/10 FILENAME_EXTENSION['HTML'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1850--1850
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1962--1962
 []\T1/pcr/m/n/10 BLANKLINE['HTML'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 1963--1963
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1854--1854
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1966--1966
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1855--1855
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1967--1967
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1856--1856
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1968--1968
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1857--1857
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1969--1969
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 1862--1862
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 1974--1974
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 1863--1863
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 1975--1975
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 1864--1864
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 1976--1976
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1867--1867
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1979--1979
 []\T1/pcr/m/n/10 # how to replace code and LaTeX blocks by HTML (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 1870--1870
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 1982--1982
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 1872--1872
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 1984--1984
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1875--1875
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1987--1987
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1882--1882
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1994--1994
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1884--1884
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1996--1996
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 1886--1886
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 1998--1998
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
-[21]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1889--1889
+[24]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2001--2001
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1895--1895
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2007--2007
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 1936--1936
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2048--2048
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 1938--1938
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2050--2050
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1939--1939
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2051--2051
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1940--1940
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2052--2052
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 1941--1941
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2053--2053
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[22] [23] (./manual.rst.aux) )
+[25] [26] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (23 pages, 104616 bytes).
+Output written on manual.rst.dvi (26 pages, 112296 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
-+ rst2newlatex.py manual.rst
-./make.sh: 1: rst2newlatex.py: not found
 + doconce format plain manual.do.txt remove_inline_comments
 run preprocess -DFORMAT=plain  manual.do.txt > __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
@@ -22887,6 +24084,8 @@ output in manual.st
 run preprocess -DFORMAT=LaTeX  manual.do.txt > __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 output in manual.p.tex
++ doconce replace usepackage{ptex2tex usepackage{ptex2tex,subfigure manual.p.tex
+replacing usepackage{ptex2tex by usepackage{ptex2tex,subfigure in manual.p.tex
 + ptex2tex -DMINTED manual
 running preprocessor on manual.p.tex...  defines: 'MINTED'  done
 done manual.p.tex -> manual.tex
@@ -22902,8 +24101,23 @@ yphenation, loaded.
 (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texmf-texlive/tex/latex/base/size10.clo))
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def))))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
 (/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
@@ -22927,20 +24141,6 @@ Implicit mode ON; LaTeX internals redefined
 *hyperref using default driver hdvips*
 (/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
 (/usr/share/texmf-texlive/tex/latex/hyperref/pdfmark.def))
-(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty)
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
-(/etc/texmf/tex/latex/config/graphics.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def))))
-(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
 (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
 (/usr/share/texmf-texlive/tex/latex/base/latin1.def))
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
@@ -22961,12 +24161,14 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty)
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty)
 (/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty))
-(/home/hpl/texmf/tex/latex/misc/movie15.sty
-(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
-(/usr/share/texmf-texlive/tex/latex/oberdiek/ifdraft.sty)
-(/usr/share/texmf-texlive/tex/latex/ms/everyshi.sty))
+(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.cfg))
 (/home/hpl/texmf/tex/latex/misc/minted.sty
 (/usr/share/texmf-texlive/tex/latex/float/float.sty)
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
 (/usr/share/texmf-texlive/tex/latex/tools/calc.sty)
 (/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
 (/usr/share/texmf-texlive/tex/generic/oberdiek/catchfile.sty) (./manual.w18))/usr/bin/pygmentize
@@ -22978,103 +24180,106 @@ No file manual.aux.
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
 
-ABD: EveryShipout initializing macros (./manual.pyg) (./newcommands_replace.tex
-) (./newcommands_keep.tex) (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd)
-[1]
+(./manual.pyg) (./newcommands_replace.tex) (./newcommands_keep.tex)
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
 Overfull \hbox (5.27824pt too wide) in paragraph at lines 147--159
 \OT1/cmr/m/n/10 If you make use of pre-pro-ces-sor di-rec-tives in the Do-conce
- source, ei-ther [][][][]
+ source, ei-ther [][][][][][]
 [2] [3]
-Overfull \hbox (3.29488pt too wide) in paragraph at lines 261--265
+Overfull \hbox (3.29488pt too wide) in paragraph at lines 270--274
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 L[]T[]X form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n
 /10 ptex2tex\OT1/cmr/m/n/10 :
 
-LaTeX Warning: Reference `newcommands' on page 4 undefined on input line 270.
+LaTeX Warning: Reference `newcommands' on page 4 undefined on input line 279.
 
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 268--273
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 277--282
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [4] [5] [6] [7] [8] [9] [10] [11] <figs/streamtubes.eps> [12]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 13 undefined on input li
-ne 841.
+ne 871.
 
 
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 849--852
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 879--882
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [13]
 
 LaTeX Warning: Reference `doconce2formats' on page 14 undefined on input line 9
-32.
+62.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 14 undefined on input line 9
-38.
+68.
 
 [14]
 
-LaTeX Warning: Reference `fig:viz' on page 15 undefined on input line 989.
+LaTeX Warning: Reference `fig:viz' on page 15 undefined on input line 1019.
 
 
-LaTeX Warning: Reference `mathtext' on page 15 undefined on input line 991.
+LaTeX Warning: Reference `mathtext' on page 15 undefined on input line 1021.
 
 
-LaTeX Warning: Reference `newcommands' on page 15 undefined on input line 991.
+LaTeX Warning: Reference `newcommands' on page 15 undefined on input line 1021.
 
 
-LaTeX Warning: Reference `my:eq1' on page 15 undefined on input line 993.
+
+LaTeX Warning: Reference `my:eq1' on page 15 undefined on input line 1023.
 
 
-LaTeX Warning: Reference `my:eq2' on page 15 undefined on input line 993.
+LaTeX Warning: Reference `my:eq2' on page 15 undefined on input line 1023.
 
+[15]
 
-LaTeX Warning: Reference `inline:tagging' on page 15 undefined on input line 99
-8.
+LaTeX Warning: Reference `inline:tagging' on page 16 undefined on input line 10
+28.
 
-[15] [16]
-
-LaTeX Warning: Citation `Python:Primer:09' on page 17 undefined on input line 1
-085.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 17 undefined on input line 1085.
-
+[16]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 17 undefined on input line 1
-086.
+115.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 17 undefined on input line 1086.
+LaTeX Warning: Citation `Osnes:98' on page 17 undefined on input line 1115.
 
-[17] (./manual.out.pyg) (./manual.out.pyg) [18]
+
+LaTeX Warning: Citation `Python:Primer:09' on page 17 undefined on input line 1
+116.
+
+
+LaTeX Warning: Citation `Osnes:98' on page 17 undefined on input line 1116.
+
+[17] (./manual.out.pyg) (./manual.out.pyg [18]) [19]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1315.
+(amsmath)                 on input line 1356.
 
-[19]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1353--1355
+
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1394--1396
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[20] [21]
+[20] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [21]
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 22 undefined on input li
-ne 1492.
+LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
+487.
 
-[22] [23] [24] [25]
+[22]
+
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 23 undefined on input li
+ne 1560.
+
+[23] [24] [25] [26]
 No file manual.bbl.
 No file manual.ind.
-
-Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-(movie15)                @@ Rerun to get object references right! @@
-(movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
-
-[26] (./manual.aux)
+[27] (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -23083,7 +24288,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (26 pages, 121372 bytes).
+Output written on manual.dvi (27 pages, 113516 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -23096,8 +24301,23 @@ yphenation, loaded.
 (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texmf-texlive/tex/latex/base/size10.clo))
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def))))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
 (/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
@@ -23121,20 +24341,6 @@ Implicit mode ON; LaTeX internals redefined
 *hyperref using default driver hdvips*
 (/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
 (/usr/share/texmf-texlive/tex/latex/hyperref/pdfmark.def))
-(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty)
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
-(/etc/texmf/tex/latex/config/graphics.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def))))
-(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
 (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
 (/usr/share/texmf-texlive/tex/latex/base/latin1.def))
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
@@ -23155,12 +24361,14 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty)
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty)
 (/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty))
-(/home/hpl/texmf/tex/latex/misc/movie15.sty
-(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
-(/usr/share/texmf-texlive/tex/latex/oberdiek/ifdraft.sty)
-(/usr/share/texmf-texlive/tex/latex/ms/everyshi.sty))
+(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.cfg))
 (/home/hpl/texmf/tex/latex/misc/minted.sty
 (/usr/share/texmf-texlive/tex/latex/float/float.sty)
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
 (/usr/share/texmf-texlive/tex/latex/tools/calc.sty)
 (/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
 (/usr/share/texmf-texlive/tex/generic/oberdiek/catchfile.sty) (./manual.w18))/usr/bin/pygmentize
@@ -23168,67 +24376,64 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 Writing index file manual.idx
 (./manual.aux) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./manual.out)
-(./manual.out) ABD: EveryShipout initializing macros (./manual.pyg)
-(./newcommands_replace.tex) (./newcommands_keep.tex)
+(./manual.out) (./manual.pyg) (./newcommands_replace.tex)
+(./newcommands_keep.tex) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
 Overfull \hbox (5.27824pt too wide) in paragraph at lines 147--159
 \OT1/cmr/m/n/10 If you make use of pre-pro-ces-sor di-rec-tives in the Do-conce
- source, ei-ther [][][][]
+ source, ei-ther [][][][][][]
 [2] [3]
-Overfull \hbox (3.29488pt too wide) in paragraph at lines 261--265
+Overfull \hbox (3.29488pt too wide) in paragraph at lines 270--274
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 L[]T[]X form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n
 /10 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 268--273
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 277--282
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [4] [5] [6] [7] [8] [9] [10] [11] <figs/streamtubes.eps> [12]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 849--852
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 879--882
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [13] [14] [15] [16]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 17 undefined on input line 1
-085.
+115.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 17 undefined on input line 1085.
+LaTeX Warning: Citation `Osnes:98' on page 17 undefined on input line 1115.
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 17 undefined on input line 1
-086.
+116.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 17 undefined on input line 1086.
+LaTeX Warning: Citation `Osnes:98' on page 17 undefined on input line 1116.
 
-[17] (./manual.out.pyg) (./manual.out.pyg) [18]
+[17] (./manual.out.pyg) (./manual.out.pyg [18]) [19]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1315.
+(amsmath)                 on input line 1356.
 
-[19]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1353--1355
+
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1394--1396
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[20] [21] [22] [23] [24] [25]
+[20] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [21] [22] [23]
+[24] [25] [26]
 No file manual.bbl.
 No file manual.ind.
-
-Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-(movie15)                @@ Rerun to get object references right! @@
-(movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
-
-[26] (./manual.aux)
+[27] (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (26 pages, 126672 bytes).
+Output written on manual.dvi (27 pages, 119828 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -23253,8 +24458,23 @@ yphenation, loaded.
 (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texmf-texlive/tex/latex/base/size10.clo))
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def))))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
 (/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
@@ -23278,20 +24498,6 @@ Implicit mode ON; LaTeX internals redefined
 *hyperref using default driver hdvips*
 (/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
 (/usr/share/texmf-texlive/tex/latex/hyperref/pdfmark.def))
-(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty)
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
-(/etc/texmf/tex/latex/config/graphics.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def))))
-(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
 (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
 (/usr/share/texmf-texlive/tex/latex/base/latin1.def))
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
@@ -23312,12 +24518,14 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty)
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty)
 (/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty))
-(/home/hpl/texmf/tex/latex/misc/movie15.sty
-(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
-(/usr/share/texmf-texlive/tex/latex/oberdiek/ifdraft.sty)
-(/usr/share/texmf-texlive/tex/latex/ms/everyshi.sty))
+(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.cfg))
 (/home/hpl/texmf/tex/latex/misc/minted.sty
 (/usr/share/texmf-texlive/tex/latex/float/float.sty)
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
 (/usr/share/texmf-texlive/tex/latex/tools/calc.sty)
 (/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
 (/usr/share/texmf-texlive/tex/generic/oberdiek/catchfile.sty) (./manual.w18))/usr/bin/pygmentize
@@ -23325,54 +24533,55 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 Writing index file manual.idx
 (./manual.aux) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./manual.out)
-(./manual.out) ABD: EveryShipout initializing macros (./manual.pyg)
-(./newcommands_replace.tex) (./newcommands_keep.tex)
+(./manual.out) (./manual.pyg) (./newcommands_replace.tex)
+(./newcommands_keep.tex) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
 Overfull \hbox (5.27824pt too wide) in paragraph at lines 147--159
 \OT1/cmr/m/n/10 If you make use of pre-pro-ces-sor di-rec-tives in the Do-conce
- source, ei-ther [][][][]
+ source, ei-ther [][][][][][]
 [2] [3]
-Overfull \hbox (3.29488pt too wide) in paragraph at lines 261--265
+Overfull \hbox (3.29488pt too wide) in paragraph at lines 270--274
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 L[]T[]X form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n
 /10 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 268--273
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 277--282
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [4] [5] [6] [7] [8] [9] [10] [11] <figs/streamtubes.eps> [12]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 849--852
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 879--882
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [13] [14] [15] [16]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 17 undefined on input line 1
-085.
+115.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 17 undefined on input line 1085.
+LaTeX Warning: Citation `Osnes:98' on page 17 undefined on input line 1115.
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 17 undefined on input line 1
-086.
+116.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 17 undefined on input line 1086.
+LaTeX Warning: Citation `Osnes:98' on page 17 undefined on input line 1116.
 
-[17] (./manual.out.pyg) (./manual.out.pyg) [18]
+[17] (./manual.out.pyg) (./manual.out.pyg [18]) [19]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1315.
+(amsmath)                 on input line 1356.
 
-[19]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1353--1355
+
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1394--1396
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[20] [21] [22] [23] [24] [25] (./manual.bbl) (./manual.ind [26] [27])
-(./manual.aux)
+[20] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [21] [22] [23]
+[24] [25] [26] (./manual.bbl) (./manual.ind [27] [28]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -23381,7 +24590,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (27 pages, 132776 bytes).
+Output written on manual.dvi (28 pages, 126608 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -23394,8 +24603,23 @@ yphenation, loaded.
 (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texmf-texlive/tex/latex/base/size10.clo))
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def))))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
 (/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
@@ -23419,20 +24643,6 @@ Implicit mode ON; LaTeX internals redefined
 *hyperref using default driver hdvips*
 (/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
 (/usr/share/texmf-texlive/tex/latex/hyperref/pdfmark.def))
-(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty)
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
-(/etc/texmf/tex/latex/config/graphics.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def))))
-(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
 (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
 (/usr/share/texmf-texlive/tex/latex/base/latin1.def))
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
@@ -23453,12 +24663,14 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty)
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty)
 (/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty))
-(/home/hpl/texmf/tex/latex/misc/movie15.sty
-(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
-(/usr/share/texmf-texlive/tex/latex/oberdiek/ifdraft.sty)
-(/usr/share/texmf-texlive/tex/latex/ms/everyshi.sty))
+(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.cfg))
 (/home/hpl/texmf/tex/latex/misc/minted.sty
 (/usr/share/texmf-texlive/tex/latex/float/float.sty)
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
 (/usr/share/texmf-texlive/tex/latex/tools/calc.sty)
 (/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
 (/usr/share/texmf-texlive/tex/generic/oberdiek/catchfile.sty) (./manual.w18))/usr/bin/pygmentize
@@ -23466,59 +24678,61 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 Writing index file manual.idx
 (./manual.aux) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./manual.out)
-(./manual.out) ABD: EveryShipout initializing macros (./manual.pyg)
-(./newcommands_replace.tex) (./newcommands_keep.tex)
+(./manual.out) (./manual.pyg) (./newcommands_replace.tex)
+(./newcommands_keep.tex) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
 Overfull \hbox (5.27824pt too wide) in paragraph at lines 147--159
 \OT1/cmr/m/n/10 If you make use of pre-pro-ces-sor di-rec-tives in the Do-conce
- source, ei-ther [][][][]
+ source, ei-ther [][][][][][]
 [2] [3]
-Overfull \hbox (3.29488pt too wide) in paragraph at lines 261--265
+Overfull \hbox (3.29488pt too wide) in paragraph at lines 270--274
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 L[]T[]X form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n
 /10 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 268--273
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 277--282
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [4] [5] [6] [7] [8] [9] [10] [11] <figs/streamtubes.eps> [12]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 849--852
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 879--882
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[13] [14] [15] [16] [17] (./manual.out.pyg) (./manual.out.pyg) [18]
+[13] [14] [15] [16] [17] (./manual.out.pyg) (./manual.out.pyg [18]) [19]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1315.
+(amsmath)                 on input line 1356.
 
-[19]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1353--1355
+
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1394--1396
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[20] [21] [22] [23] [24] [25] (./manual.bbl) (./manual.ind [26] [27])
-(./manual.aux) )
+[20] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [21] [22] [23]
+[24] [25] [26] (./manual.bbl) (./manual.ind [27] [28]) (./manual.aux) )
 (see the transcript file for additional information)
-Output written on manual.dvi (27 pages, 133652 bytes).
+Output written on manual.dvi (28 pages, 127604 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
-Error: /invalidfileaccess in --file--
-Operand stack:
-   --nostringval--   --nostringval--   (figs/mjolnir.mpeg)   (r)
-Execution stack:
-   %interp_exit   .runexec2   --nostringval--   --nostringval--   --nostringval--   2   %stopped_push   --nostringval--   --nostringval--   --nostringval--   false   1   %stopped_push   1910   1   3   %oparray_pop   1909   1   3   %oparray_pop   1893   1   3   %oparray_pop   1787   1   3   %oparray_pop   --nostringval--   %errorexec_pop   .runexec2   --nostringval--   --nostringval--   --nostringval--   2   %stopped_push   --nostringval--
-Dictionary stack:
-   --dict:1159/1684(ro)(G)--   --dict:0/20(G)--   --dict:79/200(L)--   --dict:193/300(L)--   --dict:34/200(L)--
-Current allocation mode is local
-GPL Ghostscript 9.01: Unrecoverable error, exit code 1
-GPL Ghostscript 9.01: ERROR: A pdfmark destination page 13 points beyond the last page 12.
-dvips: Problems with file writing; probably disk full.
 + doconce format gwiki manual.do.txt
 run preprocess -DFORMAT=gwiki  manual.do.txt > __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 
 NOTE: Place figs/streamtubes.png at some place on the web and edit the
+      .gwiki page, either manually (seach for 'Figure: ')
+      or use the doconce script:
+      doconce gwiki_figsubst.py mydoc.gwiki URL
+
+
+NOTE: Place figs/wavepacket_0001.png at some place on the web and edit the
+      .gwiki page, either manually (seach for 'Figure: ')
+      or use the doconce script:
+      doconce gwiki_figsubst.py mydoc.gwiki URL
+
+
+NOTE: Place figs/wavepacket_0010.png at some place on the web and edit the
       .gwiki page, either manually (seach for 'Figure: ')
       or use the doconce script:
       doconce gwiki_figsubst.py mydoc.gwiki URL
