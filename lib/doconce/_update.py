@@ -3,6 +3,9 @@ import os
 # the insertdocstr script is part of the Doconce package
 os.system('python ../../bin/doconce insertdocstr plain . ')
 
+# pack sphinx_themes.zip
+os.system('zip -r shpinx_themes.zip sphinx_themes')
+
 # remove files that are to be regenerated:
 os.chdir(os.path.join(os.pardir, os.pardir))
 thisdir = os.getcwd()

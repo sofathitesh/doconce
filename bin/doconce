@@ -297,10 +297,32 @@ def gwiki_figsubst():
 
 
 def sphinx_dir():
-    try:
-        doconce_file = sys.argv[1]
-    except:
-        print 'must have doconce file as argument'
+    # If there are many files to be translatex to sphinx, there should
+    # be no master file including the others. The "master file" should
+    # just contain title, author, date and perhaps an intro.
+
+    # Grab title, author, version from the command line
+    title = author = None
+    version = '1.0'
+    theme = 'default'
+    doconce_files = []
+    sphinx_rootdir = 'sphinx-rootdir'
+    for arg in sys.argv[1:]:
+        if arg.startswith('title='):
+            title = arg.split('=')[1]
+        elif arg.startswith('author='):
+            author = arg.split('=')[1]
+        elif arg.startswith('version='):
+            author = arg.split('=')[1]
+        elif arg.startswith('dirname='):
+            sphinx_rootdir = arg.split('=')[1]
+        elif arg.startswith('theme='):
+            theme = arg.split('=')[1]
+        else:
+            doconce_files.append(arg)
+
+    if not doconce_files:
+        print 'must have (at least one) doconce file as argument'
         print 'doconce sphinx_dir somefile.do.txt'
         sys.exit(1)
     try:
@@ -309,18 +331,62 @@ def sphinx_dir():
         print 'Unable to import sphinx. Install sphinx from sphinx.pocoo.org.'
         print 'On Debian systems, install the \'python-sphinx\' package.'
         sys.exit(1)
-    if float(sphinx.__version__[:3]) < 1.0:
-        # FIXME: Is >= 1.0 or >= 1.1 required? doconce help says >= 1.1
-        print 'Abort: sphinx version >= 1.0 required'
+    if float(sphinx.__version__[:3]) < 1.1:
+        print 'Abort: sphinx version >= 1.1 required'
         sys.exit(1)
-    casename = doconce_file[:-7]
-    sphinx_rootdir = 'sphinx-rootdir'
-    title = casename # grab real title below, if any
-    f = open(doconce_file, 'r'); fstr = f.read(); f.close()
-    for line in fstr.splitlines():
-        if line.startswith('TITLE:'):
-            title = line[6:].strip()
-            break
+
+
+    # Make sure all files end with .do.txt
+    doconce_files_basename = []
+    for i in range(len(doconce_files)):
+        if doconce_files[i].endswith('.do.txt'):
+            pass
+        else:
+            doconce_files[i] += '.do.txt'
+        doconce_files_basename.append(doconce_files[i][:-7])
+
+    if title is None:
+        for filename in doconce_files:
+            if not os.path.isfile(filename):
+                print filename, 'was not found'
+                continue
+            else:
+                print 'searching for TITLE in', filename
+            f = open(filename, 'r'); fstr = f.read(); f.close()
+            if 'TITLE:' in fstr:
+                for line in fstr.splitlines():
+                    if line.startswith('TITLE:'):
+                        title = line[6:].strip()
+                        print 'Using title "%s" from' % title, filename
+                        break
+    if title is None:
+        print '\nNo TITLE: line found in the files', ', '.join(doconce_files)
+        print 'and no title="..." given on the command line'
+        sys.exit(1)
+
+    if author is None:
+        import doconce
+        for filename in doconce_files:
+            f = open(filename, 'r'); fstr = f.read(); f.close()
+            authors_and_institutions, dummy1, dummy2, dummy3 = \
+                      doconce.doconce.interpret_authors(fstr, 'sphinx')
+            if authors_and_institutions:
+                author = [a for a, i in authors_and_institutions]
+
+                if len(author) == 1:
+                    author = author[0]
+                else:
+                    author = ', '.join(author[:-1] + ' and ' + author[-1])
+                print 'Using author(s) "%s" from', filename
+                break
+
+    if author is None:
+        print '\nNo AUTHOR: line found in the files', ', '.join(doconce_files)
+        print 'and no author="..." given on the command line'
+        sys.exit(1)
+
+    print 'Title:', title
+    print 'Author:', author
 
     f = open('tmp_sphinx_gen.sh', 'w')
     f.write("""\
@@ -333,8 +399,9 @@ sphinx-quickstart <<EOF
 n
 _
 %(title)s
-Author
-1.0
+%(author)s
+%(version)s
+%(version)s
 1.0
 .rst
 index
@@ -357,9 +424,60 @@ EOF
     if failure:
         print 'Could not run script for making sphinx directory'
         sys.exit(1)
-    shutil.copy(doconce_file, os.path.join(sphinx_rootdir, casename + '.rst'))
     os.chdir(sphinx_rootdir)
+
+    # Copy themes
+    import doconce.common
+    install_dir = doconce.common.where()
+    shutil.copy(os.path.join(install_dir, 'sphinx_themes.zip'), os.curdir)
+    failure = os.system('unzip sphinx_themes.zip')
+    if failure:
+        print 'Could not pack out themes'
+        sys.exit(1)
+    os.remove('sphinx_themes.zip')
+    os.rename('sphinx_themes', '_themes')
+    themes = [name[8:] for name in \
+              glob.glob(os.path.join('_themes', '*'))] + ['default']
+    print 'These Sphinx themes were found:', themes
+    f = open('conf.py', 'r');  text = f.read();  f.close()
+    themes_list = ["html_theme = '%s'" % theme] + \
+                  ["#html_theme = '%s'" % theme for theme in themes]
+    text = text.replace("html_theme = 'default'",
+                        '\n'.join(themes_list))
+    text = text.replace("#html_theme_path = []",
+                        "html_theme_path = ['_themes']")
+    f = open('conf.py', 'w');  f.write(text);  f.close()
+    f = open('make-themes.sh', 'w')
+    f.write("""#!/bin/sh
+# Make all themes given on the command line (or if no themes are
+# given, make all themes in _themes/)
+
+if [ $# -gt 0 ]; then
+    themes=$@
+else
+    themes="%s"
+fi
+
+for theme in $themes; do
+    doconce replace "html_theme = '%s'" "html_theme = '$theme'" conf.py
+    make html
+    rm -rf _build/html_$theme
+    cp -r _build/html _build/html_$theme
+    # set back
+    doconce replace "html_theme = '$theme'" "html_theme = '%s'" conf.py
+    echo "$theme is built in _build/html_$theme"
+done
+echo
+echo "Here are the built themes:"
+ls -d _build
+echo "for i in _build/*; do google-chrome $i/index.html; done"
+
+""" % (' '.join(themes), theme, theme))
+    f.close()
+    os.chmod('make-themes.sh', 0755)
+
     f = open('index.rst', 'w')
+    files = '\n   '.join([filename[:-7] for filename in doconce_files])
     f.write("""
 .. Master file automatically created by doconce sphinx_dir
 
@@ -371,7 +489,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   %(casename)s
+   %(files)s
 
 
 Indices and tables
@@ -383,18 +501,30 @@ Indices and tables
 """ % vars())
     f.close()
     os.chdir(os.pardir)
-    f = open('tmp_make_sphinx.sh', 'w')
+    doconce_files_basename_list = ' '.join(doconce_files_basename)
+    f = open('automake-sphinx.sh', 'w')
     f.write("""\
-#!/bin/bash
+#!/bin/bash -x
 # Autogenerated file (by doconce sphinx_dir)
-# Purpose: create HTML Sphinx version of %(casename)s.do.txt
-echo Make sure figure files/directories are placed in %(sphinx_rootdir)s
-echo "For example, cp -r figs %(sphinx_rootdir)s, if figures in subdir figs are needed"
-echo
+# Purpose: create HTML Sphinx version of %(doconce_files_basename_list)s
+
+# Make sure figure files/directories are placed in %(sphinx_rootdir)s
+# This script copies figs/ and figures/ but no other names for figure subdirs
 
 # Filter doconce format to sphinx format and copy to sphinx directory
-doconce format sphinx %(casename)s.do.txt
-cp %(casename)s.rst %(sphinx_rootdir)s
+files="%(doconce_files_basename_list)s"
+for file in $files; do
+  doconce format sphinx $file
+  cp $file.rst %(sphinx_rootdir)s
+done
+
+# Copy figures
+if [ -d figs ]; then
+  cp -r figs %(sphinx_rootdir)s
+fi
+if [ -d figures ]; then
+  cp -r figures %(sphinx_rootdir)s
+fi
 
 # Compile sphinx document
 cd %(sphinx_rootdir)s
@@ -405,8 +535,9 @@ echo
 echo "firefox %(sphinx_rootdir)s/_build/html/index.html"
 """ % vars())
     f.close()
-    print "'tmp_make_sphinx.sh' contains the steps to (re)compile the sphinx version."
-    print "You may want to rename this file for repeated reuse."
+    os.chmod('automake-sphinx.sh', 0755)
+    print "\n'automake-sphinx.sh' contains the steps to (re)compile the sphinx version."
+    print "You may want to edit this file - look at it."
 
 # subst is taken from scitools
 def usage_subst():
@@ -555,10 +686,17 @@ def clean():
         namestem = dof[:-7]
         generated_files = glob.glob(namestem + '.*')
         generated_files.remove(dof)
+        files_to_keep = '.sh',
+        #print 'generated_files:', namestem + '.*', generated_files
+        for ext in files_to_keep:
+            filename = namestem + ext
+            if os.path.isfile(filename):
+                generated_files.remove(filename)
         for f in generated_files:
             removed.append(f)
             os.remove(f)
-    print 'Removed', ', '.join(removed)
+    if removed:
+        print 'Removed', ', '.join(removed)
 
 def usage_guess_encoding():
     print 'Usage: doconce guess_encoding filename'

@@ -6,6 +6,14 @@ here.
 """
 import re
 
+def where():
+    """
+    Return the location where the doconce package is installed.
+    """
+    # Technique: find the directory where this common.py file resides
+    import os
+    return os.path.dirname(__file__)
+
 def indent_lines(text, format, indentation=' '*8):
     """
     Indent each line in the string text, provided in a format for
@@ -20,12 +28,12 @@ def indent_lines(text, format, indentation=' '*8):
         if re.search(r'\\n', text):
             comment_out = True
             text = """\
-            
+
             NOTE: A verbatim block has been removed because
                   it causes problems for Epytext.
 """
             return text
-        
+
     # indent X chars (choose X=6 for sufficient indent in lists)
     text = '\n'.join([indentation + line for line in text.splitlines()])
     return text
@@ -41,7 +49,7 @@ def table_analysis(table):
             for j, column in enumerate(row):
                 column_list[j].append(len(column))
     return [max(c) for c in column_list]
-            
+
 
 def ref2equations(filestr):
     """
@@ -80,7 +88,7 @@ def default_movie(m):
             kwargs['width'] = int(opt.split('=')[1])
         if opt.startswith('height') or opt.startswith('HEIGHT'):
             kwargs['height'] = int(opt.split('=')[1])
-    
+
     if '*' in filename:
         # Glob files and use DocWriter.html_movie to make a separate
         # HTML page for viewing the set of files
@@ -119,7 +127,7 @@ def default_movie(m):
    <EM>%s</EM>
    </P>
 </BODY>
-</HTML>        
+</HTML>
 """ % (filename, filename, ' '.join(options), caption))
         text = '%s (Movie %s: play URL:"%s")' % (caption, filename, moviehtml)
     return text
@@ -136,7 +144,7 @@ def remove_code_and_tex(filestr):
     # copied after #!!CODE_BLOCK).
     # later we replace #!!CODE_BLOCK by !bc and the code block again
     # (similarly for the tex block).
-    
+
     # (recall that !bc can be followed by extra information that we must keep:)
     code = re.compile(r'^!bc(.*?)\n(.*?)^!ec *\n', re.DOTALL|re.MULTILINE)
     code_blocks = [c for opt, c in code.findall(filestr)]
@@ -156,7 +164,7 @@ def remove_code_and_tex(filestr):
     #filestr = CODE.sub('#@@@CODE', filestr)
 
     return filestr, code_blocks, tex_blocks
-        
+
 
 def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
     lines = filestr.splitlines()
@@ -187,9 +195,9 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
         # does not work properly. Instead, we use str.replace
 
         if format == 'LaTeX':  # fix
-            # ref/label is ok outside tex environments (see test in 
-            # cross_referencing), but inside !bt/!et environments the user 
-            # is allowed to have ref and label without backslashes 
+            # ref/label is ok outside tex environments (see test in
+            # cross_referencing), but inside !bt/!et environments the user
+            # is allowed to have ref and label without backslashes
             # and these must be equipped by backslashes in LaTeX format
             filestr = re.sub(r'([^\\])label\{', r'\g<1>\label{', filestr)
             filestr = re.sub(r'([^\\])ref\{', r'\g<1>\\ref{', filestr)
@@ -202,7 +210,7 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
     filestr = '\n'.join(lines)
     return filestr
 
-    
+
 BLANKLINE = {}
 FILENAME_EXTENSION = {}
 LIST = {}
@@ -224,7 +232,7 @@ INDEX_BIB = {}
 INTRO = {}
 OUTRO = {}
 
-        
+
 # regular expressions for inline tags:
 inline_tag_begin = r"""(?P<begin>(^|[(\s]))"""
 inline_tag_end = r"""(?P<end>($|[.,?!;:)\s]))"""
@@ -276,7 +284,7 @@ INLINE_TAGS = {
     r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>(file:/|https?:)//.+?)"''',
     #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
 
-    'plainURL': 
+    'plainURL':
     #r'"URL" ?: ?"(?P<url>.+?)"',
     #r'"?(URL|url)"? ?: ?"(?P<url>.+?)"',
     r'("URL"|"url"|URL|url) ?:\s*"(?P<url>.+?)"',

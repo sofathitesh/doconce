@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 import re, os, sys, shutil, commands, pprint, time, glob, codecs
+try:
+    from collections import OrderedDict   # v2.7 and v3.1
+except ImportError:
+    # use standard arbitrary-ordered dict instead (original order of
+    # citations is then lost)
+    OrderedDict = dict
 
 def debugpr(out):
     if debug:
@@ -723,7 +729,10 @@ def handle_cross_referencing(filestr, format):
     m = re.findall(section_pattern, filestr)
     #import pprint
     #pprint.pprint(m)
-    section_label2title = {}
+    # Make sure sections appear in the right order
+    # (in case rst.ref_and_label_commoncode has to assign numbers
+    # to section titles that are identical)
+    section_label2title = OrderedDict()
     for dummy1, title, dummy2, label in m:
         section_label2title[label] = title.strip()
     #pprint.pprint(section_label2title)
@@ -736,12 +745,6 @@ def handle_cross_referencing(filestr, format):
 def handle_index_and_bib(filestr, format, has_title):
     """Process idx{...} and cite{...} instructions."""
     index = {}  # index[word] = lineno
-    try:
-        from collections import OrderedDict   # v2.7 and v3.1
-    except ImportError:
-        # use standard arbitrary-ordered dict instead (original order of
-        # citations is then lost)
-        OrderedDict = dict
     citations = OrderedDict()  # citations[label] = no_in_list (1,2,3,...)
     line_counter = 0
     cite_counter = 0
@@ -799,7 +802,7 @@ def handle_index_and_bib(filestr, format, has_title):
     filestr = INDEX_BIB[format](filestr, index, citations, bibfile)
     return filestr
 
-def typeset_authors(filestr, format):
+def interpret_authors(filestr, format):
     debugpr('\n*** Dealing with authors and institutions ***')
     # first deal with AUTHOR as there can be several such lines
     author_lines = re.findall(r'^AUTHOR:\s*(?P<author>.+)\s*$', filestr,
@@ -822,12 +825,6 @@ def typeset_authors(filestr, format):
             authors_and_institutions.append((a.strip(), i))
         else:  # just author's name
             authors_and_institutions.append((line.strip(), None))
-    try:
-        from collections import OrderedDict  # v2.7 and v3.1
-    except ImportError:
-        # use standard arbitrary-ordered dict instead (original order of
-        # multiple authors is then lost)
-        OrderedDict = dict
     inst2index = OrderedDict()
     index2inst = {}
     auth2index = OrderedDict()
@@ -848,6 +845,11 @@ def typeset_authors(filestr, format):
     # version < 2.7 warning:
     if len(auth2index) > 1 and OrderedDict is dict:
         print 'Warning: multiple authors\n - correct order of authors requires Python version 2.7 or 3.1 (or higher)'
+    return authors_and_institutions, auth2index, inst2index, index2inst
+
+def typeset_authors(filestr, format):
+    authors_and_institutions, auth2index, inst2index, index2inst = \
+        interpret_authors(filestr, format)
     author_block = INLINE_TAGS_SUBST[format]['author']\
         (authors_and_institutions, auth2index, inst2index, index2inst)
     filestr = filestr.replace('XXXAUTHOR', author_block)
