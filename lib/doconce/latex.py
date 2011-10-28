@@ -266,9 +266,13 @@ def latex_ref_and_label(section_label2title, format, filestr):
     # equations are ok in the doconce markup
 
     # perform a substitution of LaTeX (and ensure \LaTeX is not there):
-    filestr = re.sub(fix_latex_command_regex(r'\LaTeX({})?', application='match'), 'LaTeX', filestr)
-    filestr = re.sub('''([^"'`*_])LaTeX([^"'`*_])''',
+    filestr = re.sub(fix_latex_command_regex(r'\LaTeX({})?',
+                               application='match'), 'LaTeX', filestr)
+    #filestr = re.sub('''([^"'`*_A-Za-z0-9-])LaTeX([^"'`*_A-Za-z0-9-])''',
+    #                 r'\g<1>{\LaTeX}\g<2>', filestr)
+    filestr = re.sub(r'''([^"'`*-])\bLaTeX\b([^"'`*-])''',
                      r'\g<1>{\LaTeX}\g<2>', filestr)
+    # Not good enough for `LaTeX`: filestr = re.sub(r'\bLaTeX\b', r'{\LaTeX}', filestr)
 
     # handle & (Texas A&M -> Texas A{\&}M):
     filestr = re.sub(r'([A-Za-z])\s*&\s*([A-Za-z])', r'\g<1>{\&}\g<2>', filestr)
@@ -364,6 +368,10 @@ def define(FILENAME_EXTENSION,
         # recall that this is regex so LaTeX commands must be treated carefully:
         #'title':         r'\\title{\g<subst>}' + '\n', # we don'e use maketitle
         'title':         fix_latex_command_regex(pattern=r"""
+
+% #ifndef LATEX_HEADING
+% #define LATEX_HEADING
+% #endif
 
 % ----------------- Title -------------------------
 

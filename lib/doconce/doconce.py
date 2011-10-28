@@ -845,10 +845,10 @@ def interpret_authors(filestr, format):
     # version < 2.7 warning:
     if len(auth2index) > 1 and OrderedDict is dict:
         print 'Warning: multiple authors\n - correct order of authors requires Python version 2.7 or 3.1 (or higher)'
-    return authors_and_institutions, auth2index, inst2index, index2inst
+    return authors_and_institutions, auth2index, inst2index, index2inst, filestr
 
 def typeset_authors(filestr, format):
-    authors_and_institutions, auth2index, inst2index, index2inst = \
+    authors_and_institutions, auth2index, inst2index, index2inst, filestr = \
         interpret_authors(filestr, format)
     author_block = INLINE_TAGS_SUBST[format]['author']\
         (authors_and_institutions, auth2index, inst2index, index2inst)
