@@ -110,7 +110,7 @@ def _preprocess_all_files(rootdir, options=''):
                 failure = os.system(cmd)
                 if failure:
                     print 'WARNING: could not run\n  %s' %  cmd
-    
+
     os.path.walk(rootdir, _treat_a_dir, None)
 
 def _run_doconce(filename_doconce, format):
@@ -123,7 +123,7 @@ def _run_doconce(filename_doconce, format):
         # old preprocessed file from aborted doconce execution
         print 'skipped', filename_doconce
         return
-    
+
     global doconce_program # set elsewhere
     cmd = '%s format %s %s' % (doconce_program, format, filename_doconce)
     print 'run', cmd
@@ -146,7 +146,7 @@ def _walker_doconce(arg, dir, files):
         if f[-7:] == '.do.txt':
             _run_doconce(f, format)
     os.chdir(origdir)
-                          
+
 def _run_preprocess4includes(filename_dotp_py, options=''):
     pyfile = filename_dotp_py[:-5] + '.py'
     cmd = 'preprocess %s %s > %s' % (options, filename_dotp_py, pyfile)
@@ -156,7 +156,7 @@ def _run_preprocess4includes(filename_dotp_py, options=''):
     if failure:
         raise OSError, 'Could not run\n%s\nin %s\n%s\n\n\n' % \
               (cmd, os.getcwd(), outtext)
-    
+
 def _walker_include(arg, dir, files):
     options = arg
     # we move to the dir:
@@ -217,12 +217,12 @@ def _old2new(filename):
 def LaTeX_header():
     from doconce.doconce import INTRO
     print INTRO['LaTeX']
-    
+
 def LaTeX_footer():
     from doconce.doconce import OUTRO
     print OUTRO['LaTeX']
 
-    
+
 def remove_inline_comments():
     try:
         filename = sys.argv[1]
@@ -264,7 +264,7 @@ def latin2html():
             f.write(newtext)
             f.close()
         except Exception, e:
-            print e.__class__.__name__, ':', e, 
+            print e.__class__.__name__, ':', e,
 
 def gwiki_figsubst():
     try:
@@ -321,7 +321,7 @@ def sphinx_dir():
         if line.startswith('TITLE:'):
             title = line[6:].strip()
             break
-        
+
     f = open('tmp_sphinx_gen.sh', 'w')
     f.write("""\
 #!/bin/bash
@@ -467,7 +467,7 @@ def _scitools_subst(patterns, replacements, filenames,
         if modified_files[pattern]:
             replacement = replacements[patterns.index(pattern)]
             messages.append('%s replaced by %s in %s' % \
-                                (pattern, replacement, 
+                                (pattern, replacement,
                                  ', '.join(modified_files[pattern])))
 
     return ', '.join(messages) if messages else 'no substitutions'
@@ -629,13 +629,44 @@ def change_encoding():
         _change_encoding_unix(filename, from_encoding, to_encoding)
         # Perhaps better alternative with pure Python:
         #_change_encoding_python(filename, from_encoding, to_encoding)
-        
 
 
+def usage_bbl2rst():
+    print 'Usage: doconce bbl2rst file.bbl'
+
+def bbl2rst():
+    if len(sys.argv) <= 1:
+        usage_bbl2rst()
+        sys.exit(1)
+
+    bblfile = sys.argv[1]
+    text = open(bblfile, 'r').read()
+    pattern = r'\\bibitem\{(.+)\}' + '\n'
+    text = re.sub(pattern, r'.. [\g<1>] ', text)
+    text = text.replace(r'\newblock ', '')
+    text = text.replace('~', ' ')
+    pattern = r'\{\\em (.+?)\}'
+    text = re.sub(pattern, r'*\g<1>*', text)
+    text = text.replace('\\', '')
+    lines = []
+    for line in text.splitlines():
+        line = line.strip()
+        if 'thebibliography' in line:
+            continue
+        elif line[:2] == '..':
+            lines.append(line + '\n')
+        else:
+            lines.append('   ' + line  + '\n')
+
+    outfile = bblfile[:-3] + 'rst'
+    f = open(outfile, 'w')
+    f.writelines(lines)
+    f.close()
+    print 'reStructuredText bibliography in', outfile
 
 # -----------------------------------------------------------------------
 
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace clean help LaTeX_header LaTeX_footer guess_encoding change_encoding'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace clean help LaTeX_header LaTeX_footer guess_encoding change_encoding bbl2rst'.split()
 
 # -----------------------------------------------------------------------
 
@@ -665,10 +696,12 @@ doconce clean
 
 doconce LaTeX_header
 doconce LaTeX_footer
+doconce change_encoding utf-8 latin-1 filename
 doconce guess_encoding filename
+doconce bbl2rst file.bbl
 """
 
-    
+
 def main():
     if len(sys.argv) == 1 or '--help' in sys.argv or '-help' in sys.argv or \
            'help' in sys.argv:
