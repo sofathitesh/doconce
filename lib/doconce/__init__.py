@@ -34,22 +34,22 @@ text constructions that allow you to control the formating. For example,
 
   * bullet lists arise from lines starting with an asterisk,
 
-  * *emphasized words* are surrounded by asterisks, 
+  * *emphasized words* are surrounded by asterisks,
 
-  * _words in boldface_ are surrounded by underscores, 
+  * _words in boldface_ are surrounded by underscores,
 
-  * words from computer code are enclosed in back quotes and 
+  * words from computer code are enclosed in back quotes and
     then typeset verbatim (monospace font),
 
-  * section headings are recognied by equality (=) signs before 
-    and after the text, and the number of = signs indicates the 
+  * section headings are recognied by equality (=) signs before
+    and after the text, and the number of = signs indicates the
     level of the section (7 for main section, 5 for subsection,
     3 for subsubsection),
 
   * paragraph headings are recognized by a double underscore
     before and after the heading,
 
-  * blocks of computer code can easily be included by placing 
+  * blocks of computer code can easily be included by placing
     !bc (begin code) and !ec (end code) commands at separate lines
     before and after the code block,
 
@@ -61,7 +61,7 @@ text constructions that allow you to control the formating. For example,
 
   * there is support for both LaTeX and text-like inline mathematics,
 
-  * tables, figures, movies with captions, URLs with links, index list, 
+  * tables, figures, movies with captions, URLs with links, index list,
     labels and references are supported,
 
   * comments can be inserted throughout the text (# at the beginning
@@ -80,6 +80,8 @@ Documentation of Doconce is found in
     relative to the root of the Doconce source code).
 
   * The more comprehensive documentation in doc/manual/manual.do.txt.
+
+  * There is web access to the tutorial (http://doconce.googlecode.com/hg/doc/demos/tutorial/index.html) and the manual (http://doconce.googlecode.com/hg/doc/demos/manual/index.html)
 
 Both directories contain a make.sh file for creating various formats.
 '''

@@ -6,7 +6,7 @@ DATE: today
 # lines beginning with # are comment lines
 
 
-======= What Is Doconce? ======= 
+======= What Is Doconce? =======
 label{what:is:doconce}
 idx{doconce!short explanation}
 
@@ -23,7 +23,7 @@ Doconce is two things:
     (An experimental translator to Pandoc is under development, and from
     Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF, DocBook XML,
     OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and other formats.)
-    
+
 
   o Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
@@ -31,18 +31,18 @@ Doconce is two things:
     source code, manuals, tutorials, books, wikis, memos, emails, etc.).
     The Doconce markup language support this working strategy.
     The slogan is: "Write once, include anywhere".
-    
+
 
 
 Here are some Doconce features:
 
-  * Doconce markup does include tags, so the format is more tagged than 
-    Markdown and Pandoc, but less than reST, and very much less than 
-    LaTeX and HTML. 
-  * Doconce can be converted to plain *untagged* text, 
+  * Doconce markup does include tags, so the format is more tagged than
+    Markdown, Pandoc, and AsciiDoc, but less than reST, and very much
+    less than LaTeX and HTML.
+  * Doconce can be converted to plain *untagged* text,
     often desirable for computer programs and email.
-  * Doconce has good support for copying in parts of computer code,
-    say in examples, directly from the source code files.
+  * Doconce has good support for copying in parts of computer code
+    directly from the source code files.
   * Doconce has full support for LaTeX math, and integrates very well
     with big LaTeX projects (books).
   * Doconce is almost self-explanatory and is a handy starting point
@@ -51,13 +51,16 @@ Here are some Doconce features:
     is just to make the initial versions of a Sphinx or wiki document.
   * Contrary to the similar Pandoc translator, Doconce integrates with
     Sphinx and Google wiki. However, if these formats are not of interest,
-    Pandoc is obviously a superior tool.
+    Pandoc is a superior tool.
 
 Doconce was particularly written for the following sample applications:
 
   * Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
     contexts in other formats, including plain HTML, Sphinx, or MS Word.
+    With "ptex2tex": "http://code.google.com/p/ptex2tex", Doconce can
+    display computer code in LaTeX in many sophisticated ways (almost
+    50 styles are available).
 
   * Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
@@ -66,7 +69,7 @@ Doconce was particularly written for the following sample applications:
 
   * Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
-    MS Word documents or in wikis.
+    MS Word documents, in wikis, or as Sphinx documents.
 
 History: Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
@@ -80,8 +83,8 @@ Disclaimer: Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
-limitations of regular expressions, some formatting may face problems 
-when transformed to other formats. 
+limitations of regular expressions, some formatting may face problems
+when transformed to other formats.
 
 
 
@@ -98,7 +101,7 @@ requires "docutils": "http://docutils.sourceforge.net".  Making Sphinx
 documents requires of course "Sphinx": "http://sphinx.pocoo.org".
 All of the mentioned potential dependencies are pure Python packages
 which are easily installed.
-If translation to "Pandoc": "http://johnmacfarlane.net/pandoc/" is desired, 
+If translation to "Pandoc": "http://johnmacfarlane.net/pandoc/" is desired,
 the Pandoc Haskell program must of course be installed.
 
 
@@ -112,7 +115,7 @@ the Pandoc Haskell program must of course be installed.
 #
 
 
-===== Demos ===== 
+===== Demos =====
 
 idx{demos}
 
@@ -120,8 +123,8 @@ The current text is generated from a Doconce format stored in the
 !bc sys
 docs/manual/manual.do.txt
 !ec
-file in the Doconce source code tree. We have made a 
-https://doconce.googlecode.com/hg/doc/demos/manual/index.html<demo web page>
+file in the Doconce source code tree. We have made a
+"demo web page": "https://doconce.googlecode.com/hg/doc/demos/manual/index.html"
 where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.
 
@@ -144,12 +147,12 @@ of the results.
 
 
 
-======= The Doconce Markup Language ======= 
+======= The Doconce Markup Language =======
 
 The Doconce format introduces four constructs to markup text:
 lists, special lines, inline tags, and environments.
 
-===== Lists ===== 
+===== Lists =====
 
 An unordered bullet list makes use of the `*` as bullet sign
 and is indented as follows
@@ -191,7 +194,7 @@ automatically puts multiple lines of an item on a single line as
 required :-)
 # #endif
 
-In an ordered list, each item starts with an `o` (as the first letter 
+In an ordered list, each item starts with an `o` (as the first letter
 in "ordered"):
 
 !bc
@@ -223,7 +226,7 @@ resulting in
 for the (g)wiki format.)
 # #endif
 
-Ordered lists cannot have an ordered sublist, i.e., the ordering 
+Ordered lists cannot have an ordered sublist, i.e., the ordering
 applies to the outer list only.
 
 In a description list, each item is recognized by a dash followed
@@ -246,7 +249,7 @@ The result becomes
      if there are multiple lines)
 
 
-===== Special Lines ===== 
+===== Special Lines =====
 
 The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
@@ -260,7 +263,7 @@ Lines starting with `TITLE:`, `AUTHOR:`, and `DATE:` are optional and used
 to identify a title of the document, the authors, and the date. The
 title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
-the syntax 
+the syntax
 !bc
 name at institution1 and institution2 and institution3
 !ec
@@ -286,7 +289,7 @@ format:
 !bc
 Hans Petter Langtangen [1, 2]
 Kaare Dump [3]
-A. Dummy Author 
+A. Dummy Author
 
 [1] Center for Biomedical Computing, Simula Research Laboratory
 [2] Department of Informatics, University of Oslo
@@ -295,7 +298,7 @@ A. Dummy Author
 Similar typesetting is done for LaTeX and HTML formats.
 
 idx{headlines} idx{section headings}
-  
+
 __Section Headings.__
 Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
@@ -305,18 +308,18 @@ or equal signs (=):
    * 7 underscores or equal signs for sections
    * 5 for subsections
    * 3 for subsubsections
-   * 2 underscrores (only! - it looks best) for paragraphs 
+   * 2 underscrores (only! - it looks best) for paragraphs
      (paragraph heading will be inlined)
 
 Headings can be surrounded by blanks if desired.
 
 Here are some examples:
 !bc
-======= Example on a Section Heading ======= 
+======= Example on a Section Heading =======
 
-The running text goes here. 
+The running text goes here.
 
-      ===== Example on a Subsection Heading ===== 
+      ===== Example on a Subsection Heading =====
 The running text goes here.
 
           ===Example on a Subsubsection Heading===
@@ -328,11 +331,11 @@ __A Paragraph.__ The running text goes here.
 
 The result for the present format looks like this:
 
-======= Example on a Section Heading ======= 
+======= Example on a Section Heading =======
 
-The running text goes here. 
+The running text goes here.
 
-===== Example on a Subsection Heading ===== 
+===== Example on a Subsection Heading =====
 The running text goes here.
 
 === Example on a Subsubsection Heading ===
@@ -408,7 +411,7 @@ Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
 The HTML, reST, and Sphinx formats can also treat filenames of the form
 `myframes*.png`. In that case, an HTML file for showing the sequence of frames
 is generated, and a link to this file is inserted in the output document.
-That is, a simple "movie viewer" for the frames is made. 
+That is, a simple "movie viewer" for the frames is made.
 
 Many publish their scientific movies on YouTube, and Doconce recognizes
 YouTube URLs as movies. When the output is an HTML file, the movie will
@@ -422,7 +425,7 @@ the embedded HTML code for the movie on the YouTube page).
 ===== Copying Computer Code =====
 
 Another type of special lines starts with `@@@CODE` and enables copying
-of computer code from a file directly into a verbatim environment, see 
+of computer code from a file directly into a verbatim environment, see
 Section ref{sec:verbatim:blocks} below.
 
 
@@ -495,7 +498,7 @@ Doconce also supports inline comments in the text:
 !bc
 [name: comment]
 !ec
-where `name` is the name of the author of the command, and `comment` is a 
+where `name` is the name of the author of the command, and `comment` is a
 plain text text. [hpl: Note that there must be a space after the colon,
 otherwise the comment is not recognized.]
 The name and comment are visible in the output unless `doconce format`
@@ -517,16 +520,16 @@ commands, which may appear annoying in plain text. Doconce therefore
 supports an extended inline math syntax where the writer can provide
 an alternative syntax suited for formats close to plain ASCII:
 !bc
-Here is an example on a linear system 
-${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
-where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and 
+Here is an example on a linear system
+${\bf A}{\bf x} = {\bf b}$|$Ax=b$,
+where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and
 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
 !ec
 That is, we provide two alternative expressions, both enclosed in
 dollar signs and separated by a pipe symbol, the expression to the
 left is used in LaTeX, while the expression to the right is used for
 all other formats.  The above text is typeset as "Here is an example
-on a linear system ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, where $\bf A$|$A$ 
+on a linear system ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, where $\bf A$|$A$
 is an $n\times n$|$nxn$ matrix, and $\bf x$|$x$ and $\bf b$|$b$
 are vectors of length $n$|$n$."
 
@@ -559,7 +562,7 @@ nice to demonstrate, as well as a reference to equations,
 say (ref{my:eq1})--(ref{my:eq2}). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
-     
+
 Hyperlinks to files or web addresses are handled as explained
 in Section ref{inline:tagging}.
 
@@ -578,7 +581,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 !bc
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 !ec
-Everything related to the index simply becomes invisible in 
+Everything related to the index simply becomes invisible in
 plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: `idx` commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
@@ -613,10 +616,10 @@ in the bibliography. Doconce markup can be used in this text, e.g.,
 !bc
 {
 'Nielsen:99': """
-K. Nielsen. *Some Comments on Markup Languages*. 
+K. Nielsen. *Some Comments on Markup Languages*.
 URL:"http://some.where.net/nielsen/comments", 1999.
 """,
-'Larsen:86': 
+'Larsen:86':
 """
 O. B. Larsen. On Markup and Generality.
 *Personal Press*. 1986.
@@ -636,7 +639,7 @@ in the document.
 Conversion of BibTeX databases to reStructuredText format can be
 done by the "bibliograph.parsing":"http://pypi.python.org/pypi/bibliograph.parsing/" tool.
 
-Finally, we here test the citation command and bibliography by 
+Finally, we here test the citation command and bibliography by
 citing a book cite{Python:Primer:09}, a paper cite{Osnes:98},
 and both of them simultaneously cite{Python:Primer:09,Osnes:98}.
 
@@ -682,7 +685,7 @@ the format and insert format-specific code for tables.
 
 
 
-===== Blocks of Verbatim Computer Code ===== 
+===== Blocks of Verbatim Computer Code =====
 label{sec:verbatim:blocks}
 
 Blocks of computer code, to be typeset verbatim, must appear inside a
@@ -757,7 +760,7 @@ void myfunc(double* x, const double& myarr) {
         myarr[i] = myarr[i] - x[i]*myarr[i-1]
     }
 }
-!ec    
+!ec
 
 Computer code can be copied directly from a file, if desired. The syntax
 is then
@@ -802,7 +805,7 @@ label{mathtext}
 Blocks of mathematical text are like computer code blocks, but
 the opening tag is `!bt` (begin TeX) and the closing tag is
 `!et`. It is important that `!bt` and `!et` appear on the beginning of the
-line and followed by a newline. 
+line and followed by a newline.
 
 Here is the result of a `!bt` - `!et` block:
 !bt
@@ -844,7 +847,7 @@ newcommands in the `newcommands*.tex` files *must* appear on a single
 line (multi-line newcommands are too hard to parse with regular
 expressions).
 
-__Example.__ Suppose we have the following commands in 
+__Example.__ Suppose we have the following commands in
 `newcommand_replace.tex`:
 
 @@@CODE newcommands_replace.tex
@@ -873,7 +876,7 @@ in the current format.
 
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
-Two preprocessors are supported: preprocess 
+Two preprocessors are supported: preprocess
 (URL:"http://code.google.com/p/preprocess") and mako
 (URL:"http://www.makotemplates.org/"). The former allows include and if-else
 statements much like the well-known preprocessor in C and C++ (but it
@@ -898,7 +901,7 @@ a separate figure for each plot. Below is an example (see the Doconce
 source code of this document to understand how preprocess is used to
 create the example).
 
-# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated 
+# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
 # PostScript files are used.
 
 # #if FORMAT == "LaTeX"
@@ -933,7 +936,7 @@ FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
 
 # #endif
 
-Other user-defined variables for the preprocessor can be set at 
+Other user-defined variables for the preprocessor can be set at
 the command line as explained in Section ref{doconce2formats}.
 
 More advanced use of mako can include Python code that may automate
@@ -941,7 +944,7 @@ the writing of parts of the document.
 
 
 
-===== Missing Features ===== 
+===== Missing Features =====
 
   * Footnotes
 
@@ -992,7 +995,7 @@ Make sure the preprocessor instructions, in Preprocess or Mako, have
 correct syntax. Also make sure that you do not mix Preprocess and Mako
 instructions. Doconce will then only run Preprocess.
 
-__The LaTeX File Does Not Compile.__ 
+__The LaTeX File Does Not Compile.__
 If the problem is undefined control sequence involving
 !bc
 \code{...}
@@ -1001,7 +1004,7 @@ the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
-__Verbatim Code Blocks Inside Lists Look Ugly.__ 
+__Verbatim Code Blocks Inside Lists Look Ugly.__
 Read the Section ref{sec:verbatim:blocks} above.  Start the
 `!bc` and `!ec` tags in column 1 of the file, and be careful with
 indenting the surrounding plain text of the list item correctly. If
@@ -1060,7 +1063,7 @@ Ideas" explains how the Doconce text is transformed into a specific
 format, and you need to know these steps to make use of the logfile.
 
 
-===== Header and Footer ===== 
+===== Header and Footer =====
 
 Some formats use a header and footer in the document. LaTeX and
 HTML are two examples of such formats. When the document is to be
@@ -1073,7 +1076,7 @@ has, or has an intention have, a title), the header and footer
 are included, otherwise not.
 
 
-===== Basic Parsing Ideas ===== 
+===== Basic Parsing Ideas =====
 
 # avoid list here since we have code in between (never a good idea)
 
@@ -1117,7 +1120,7 @@ the document to another, more complex format, say reStructuredText or
 LaTeX, and work further on the document in this format.
 
 
-===== A Glimpse of How to Write a New Translator ===== 
+===== A Glimpse of How to Write a New Translator =====
 
 This is the HTML-specific part of the
 source code of the HTML translator:
@@ -1214,7 +1217,7 @@ INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
 
 # #endif
 
-===== Typesetting of Function Arguments, Return Values, and Variables ===== 
+===== Typesetting of Function Arguments, Return Values, and Variables =====
 
 As part of comments (or doc strings) in computer code one often wishes
 to explain what a function takes of arguments and what the return
@@ -1225,7 +1228,7 @@ the doc string*. Note that `argument`, `keyword argument`, `return`,
 `instance variable`, `class variable`, and `module variable` are the
 only legal keywords (descriptions) for the description list in this
 context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
-arguments and variables are nicely formatted. 
+arguments and variables are nicely formatted.
 
 !bc
     - argument x: x value (float),
@@ -1235,11 +1238,11 @@ arguments and variables are nicely formatted.
     - return: the root of the equation (float), if found, otherwise None.
     - instance variable eta: surface elevation (array).
     - class variable items: the total number of MyClass objects (int).
-    - module variable debug: True: debug mode is on; False: no debugging 
+    - module variable debug: True: debug mode is on; False: no debugging
       (bool variable).
 !ec
 
-The result depends on the output format: all formats except Epytext 
+The result depends on the output format: all formats except Epytext
 and Sphinx just typeset the list as a list with keywords.
 
     - module variable x: x value (float),

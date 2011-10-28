@@ -551,7 +551,7 @@ def fix_latex_command_regex(pattern, application='match'):
     >>> re.sub(r'\mbox\{(.+?)\}', r'\fbox{\g<1>}', r'\mbox{not}')
     '\\\x0cbox{not}'
 
-    Here are examples on using this function:
+    Here are examples on using this function::
 
     >>> from doconce.latex import fix_latex_command_regex as fix
     >>> pattern = fix(r'\begin\{equation\}', application='match')
@@ -570,6 +570,7 @@ def fix_latex_command_regex(pattern, application='match'):
     '\\\\mbox\\{(\\\\d+)\\}'
     >>> re.sub(pattern, replacement, r'\mbox{987}')
     '\\mbox{987}'  # no substitution, no match
+
     """
     import string
     problematic_letters = string.ascii_letters if application == 'match' \
