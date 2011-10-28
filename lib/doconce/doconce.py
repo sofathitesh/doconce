@@ -48,50 +48,50 @@ def syntax_check(filestr, format):
         print '\nSyntax error: !bc/!bt/!ec/!et does not start at the beginning of the line'
         print filestr[m.start():m.start()+80]
         sys.exit(1)
-    
+
     pattern = r'[^\n:.?!, ]\s*?^!b[ct]'
     m = re.search(pattern, filestr)
     if m:
         print '\nSyntax error: Line before !bc/!bt blocks ends with wrong character:'
         print filestr[m.start():m.start()+80]
         sys.exit(1)
-    
+
     pattern = r'[^a-zA-Z0-9)"`.*_}][\n:.?!, ]\s*?^!b[ct]'
     m = re.search(pattern, filestr)
     if m:
         print '\nSyntax error: Line before !bc/!bt blocks has wrong character right before the final one (must be in [a-zA-Z0-9)"`.*_}]:'
         print filestr[m.start():m.start()+80]
         sys.exit(1)
-    
+
     matches = re.findall(r'\\cite\{.+?\}', filestr)
     if matches:
-        print r'\nSyntax error: found \cite{...} (should be no backslash!)'
-        print matches
+        print '\nSyntax error: found \\cite{...} (should be no backslash!)'
+        print '\n'.join(matches)
         sys.exit(1)
 
     matches = re.findall(r'\\idx\{.+?\}', filestr)
     if matches:
-        print r'\nSyntax error: found \idx{...} (should be no backslash!)'
-        print matches
+        print '\nSyntax error: found \\idx{...} (should be no backslash!)'
+        print '\n'.join(matches)
         sys.exit(1)
 
     matches = re.findall(r'\\index\{.+?\}', filestr)
     if matches:
-        print r'\nSyntax error: found \index{...} (should be idx{...}!)'
-        print matches
+        print '\nSyntax error: found \\index{...} (should be idx{...}!)'
+        print '\n'.join(matches)
         sys.exit(1)
 
     # outside !bt/!et environments there should only
     # be ref and label *without* the latex-ish backslash
     matches = re.findall(r'\\label\{.+?\}', filestr)
     if matches:
-        print r'\nSyntax error: found \label{...} (should be no backslash!)'
-        print matches
+        print '\nSyntax error: found \\label{...} (should be no backslash!)'
+        print '\n'.join(matches)
         sys.exit(1)
     matches = re.findall(r'\\ref\{.+?\}', filestr)
     if matches:
-        print r'\nSyntax error: found \ref{...} (should be no backslash!)'
-        print matches
+        print '\nSyntax error: found \\ref{...} (should be no backslash!)'
+        print '\n'.join(matches)
         sys.exit(1)
 
     # consistency check between label{} and ref{}:
@@ -107,7 +107,7 @@ def syntax_check(filestr, format):
 
     # Double quotes and not double single quotes in plain text:
     if "``" in filestr:
-        print '''\nSyntax error: Double back-quotes `` found in file - should be "'''
+        print '''Syntax error: Double back-quotes `` found in file - should be "'''
         sys.exit(1)
     if "''" in filestr:
         print '''\nWarning: Double forward-quotes '' found in file - should be " (unless derivatives in math)'''
@@ -176,34 +176,42 @@ def syntax_check(filestr, format):
                         print lines[i+1]
                         sys.exit(1)
             """
+    patterns = r'\\[be]cod', r'\\begin{[Vv]erbatim', r'\\end{[Vv]erbatim', r'\\[be]sys', r'\\[be]py',
+    for pattern in patterns:
+        matches = re.findall(pattern, filestr)
+        if matches:
+            print '\nSyntax error: Wrong syntax (latex)'
+            print '\n'.join(matches)
+            sys.exit(1)
+
     pattern = r'__[A-Za-z0-9,:` ]+__\.'
     matches = re.findall(pattern, filestr)
     if matches:
         print '\nSyntax error: Wrong paragraphs'
-        print matches
+        print '\n'.join(matches)
         sys.exit(1)
-    
+
     pattern = r'[^`]__[A-Za-z0-9,:` ]+[^.]__[^`]'
     # (exclude misunderstood paragraphs like `__call__`)
     matches = re.findall(pattern, filestr)
     if matches:
-        print 'Warning: Missing period after paragraph heading'
-        print matches
-    
+        print 'Warning: Missing period or similar after paragraph heading'
+        print '\n'.join(matches)
+
     pattern = r'idx\{[^}]*?\\_[^}]*?\}'
     matches = re.findall(pattern, filestr)
     if matches:
         print 'Warning: Backslash before underscore(s) in idx'
         print matches
 
-    # Figure without comman between filename and options? Or initial spaces?
+    # Figure without comma between filename and options? Or initial spaces?
     pattern = r'^FIGURE:\s*\[[^,\]]+ +[^\]]*\]'
     cpattern = re.compile(pattern, re.MULTILINE)
     matches = cpattern.findall(filestr)
     if matches:
         print '\nSyntax error in FIGURE specification'\
               '\nmissing comma after filename, before options'
-        print matches
+        print '\n'.join(matches)
         sys.exit(1)
 
     # Movie without comma between filename and options? Or initial spaces?
@@ -213,7 +221,7 @@ def syntax_check(filestr, format):
     if matches:
         print '\nSyntax error in MOVIE specification'\
               '\nmissing comma after filename, before options'
-        print matches
+        print '\n'.join(matches)
         sys.exit(1)
 
     # Keywords at the beginning of the lines:
@@ -225,9 +233,9 @@ def syntax_check(filestr, format):
         if matches:
             print '\nSyntax error in %s specification'\
                   '\ninitial space(s) online before keyword' % kw
-            print matches
+            print '\n'.join(matches)
             sys.exit(1)
-    
+
     # Keywords without colon:
     for kw in keywords:
         pattern = '^' + kw + ' +'
@@ -236,9 +244,15 @@ def syntax_check(filestr, format):
         if matches:
             print '\nSyntax error in %s: specification'\
                   '\nmissing colon after keyword' % kw
-            print matches
+            print '\n'.join(matches)
             sys.exit(1)
-    
+
+    if format == "LaTeX":
+        cpattern = re.compile(r'^DATE:', re.MULTILINE)
+        if not cpattern.search(filestr):
+            print '\nSyntax error: LaTeX requires "DATE:" specification'
+            sys.exit(1)
+
 def make_one_line_paragraphs(filestr, format):
     # THIS FUNCTION DOES NOT WORK WELL - it's difficult to make
     # one-line paragraphs...
@@ -283,7 +297,7 @@ def insert_code_from_file(filestr, format):
             inside_verbatim = False
         if inside_verbatim:
             continue
-            
+
         if line.startswith('@@@CODE'):
             debugpr('Found verbatim copy (line %d): %s' % (i+1, line))
             try:
@@ -301,9 +315,9 @@ def insert_code_from_file(filestr, format):
             if index == -1:
                 # no from/to regex, read the whole file:
                 complete_file = True
-                code = f.read()
+                code = f.read().strip()
                 debugpr('copy the file "%s" into a verbatim block\n' % filename)
-               
+
             else:
                 complete_file = False
                 patterns = line[index+7:]
@@ -339,12 +353,12 @@ def insert_code_from_file(filestr, format):
             else:
                 code = "!bc\n%s\n!ec" % code
             lines[i] = code
-    
+
     filestr = '\n'.join(lines)
     return filestr
 
 
-                
+
 def parse_keyword(keyword, format):
     """
     Parse a keyword for a description list when the keyword may
@@ -407,7 +421,7 @@ def typeset_tables(filestr, format):
     Translate tables with pipes and dashes to a list of
     row-column values. Horizontal rules become a row
     ['horizontal rule'] in the list.
-    The list is easily translated to various output formats 
+    The list is easily translated to various output formats
     by other modules.
     """
     from StringIO import StringIO
@@ -430,7 +444,7 @@ def typeset_tables(filestr, format):
                     # align concerns column alignment
                     table['columns_align'] = align
             continue  # continue with next line
-        if lin.startswith('|') and not lin.startswith('|--'):  
+        if lin.startswith('|') and not lin.startswith('|--'):
             # row in table:
             if not inside_table:
                 inside_table = True
@@ -449,7 +463,7 @@ def typeset_tables(filestr, format):
             else:
                 result.write(line + '\n')
     return result.getvalue()
-            
+
 def typeset_lists(filestr, format, debug_info=[]):
     """
     Go through filestr and parse all lists and typeset them correctly.
@@ -466,10 +480,10 @@ def typeset_lists(filestr, format, debug_info=[]):
     lines = filestr.splitlines()
     lastline = lines[0]
     # for debugging only:
-    _code_block_no = 0; _tex_block_no = 0    
+    _code_block_no = 0; _tex_block_no = 0
 
     for line in lines:
-        
+
         debugpr('\n------------------------\nsource line=[%s]' % line)
         # do a syntax check:
         for tag in INLINE_TAGS_BUGS:
@@ -479,7 +493,7 @@ def typeset_lists(filestr, format, debug_info=[]):
                 if m:
                     print '>>> Syntax ERROR? "%s"\n    %s!' % \
                           (m.group(0), bug[1])
-                
+
         if not line or line.isspace():  # blank line?
             if not lists:
                 result.write(BLANKLINE[format])
@@ -501,7 +515,7 @@ def typeset_lists(filestr, format, debug_info=[]):
                 debugpr('  > Here is a latex block:\n%s\n--------' % \
                       debug_info[1][_tex_block_no])
                 _tex_block_no += 1
-                
+
             else:
                 debugpr('  > This is just a comment line')
                 # the comment can be propagated to some formats
@@ -517,7 +531,7 @@ def typeset_lists(filestr, format, debug_info=[]):
 
             lastline = line
             continue
-            
+
         # structure of a line:
         linescan = re.compile(
             r"(?P<indent> *(?P<listtype>[*o-] )? *)" +
@@ -586,7 +600,7 @@ def typeset_lists(filestr, format, debug_info=[]):
                 if '%d' in itemformat:
                     item = itemformat % enumerate_counter
                 # indent here counts with '3. ':
-                result.write(' '*(indent - 2 - enumerate_counter//10 - 1))  
+                result.write(' '*(indent - 2 - enumerate_counter//10 - 1))
                 result.write(item + ' ')
             elif listtype == 'description':
                 if '%s' in itemformat:
@@ -617,7 +631,7 @@ def typeset_lists(filestr, format, debug_info=[]):
         if keyword:
             text = keyword + text
         debugpr('text=[%s]' % text)
-        
+
         # hack to make wiki have all text in an item on a single line:
         newline = '' if lists and format == 'gwiki' else '\n'  # hack...
         #newline = '\n'
@@ -630,7 +644,7 @@ def typeset_lists(filestr, format, debug_info=[]):
         debugpr('  > This is the end of a %s list' % lists[-1]['listtype'])
         result.write(LIST[format][lists[-1]['listtype']]['end'])
         del lists[-1]
-    
+
     return result.getvalue()
 
 
@@ -638,7 +652,7 @@ def handle_figures(filestr, format):
     if not format in FIGURE_EXT:
         # no special handling of figures:
         return filestr
-    
+
     pattern = INLINE_TAGS['figure']
     c = re.compile(pattern, re.MULTILINE)
 
@@ -692,7 +706,7 @@ def handle_figures(filestr, format):
                     #print '....ok, ', converted_file, 'exists'
                     filestr = filestr.replace(figfile, converted_file)
                     break
-            
+
     # replace FIGURE... by format specific syntax:
     try:
         replacement = INLINE_TAGS_SUBST[format]['figure']
@@ -700,7 +714,7 @@ def handle_figures(filestr, format):
     except KeyError:
         pass
     return filestr
-    
+
 
 def handle_cross_referencing(filestr, format):
     # 1. find all section/chapter titles and corresponding labels
@@ -778,7 +792,7 @@ def handle_index_and_bib(filestr, format, has_title):
                                                  for label in arg.split(',')])
                         filestr = filestr.replace('cite{%s}' % arg,
                                                   replacement)
-                
+
     # version < 2.7 warning:
     if len(citations) > 0 and OrderedDict is dict:
         print 'Warning: citations may appear in random order unless you upgrade to Python version 2.7 or 3.1'
@@ -797,7 +811,7 @@ def typeset_authors(filestr, format):
     filestr = re.sub('(XXXAUTHOR\n)+', 'XXXAUTHOR', filestr)
 
     # (author, (inst1, inst2, ...) or (author, None)
-    authors_and_institutions = []  
+    authors_and_institutions = []
     for line in author_lines:
         if ' at ' in line:
             a, i = line.split(' at ')
@@ -839,9 +853,9 @@ def typeset_authors(filestr, format):
     filestr = filestr.replace('XXXAUTHOR', author_block)
     return filestr
 
-        
+
 def inline_tag_subst(filestr, format):
-    """Deal with all inline tags by substitution.""" 
+    """Deal with all inline tags by substitution."""
     # Note that all tags are *substituted* so that the sequence of
     # operations are not important for the contents of the document - we
     # choose a sequence that is appropriate from a substitution point
@@ -872,7 +886,7 @@ def inline_tag_subst(filestr, format):
         'paragraph',  # after bold and emphasize
         'plainURL',   # before linkURL2 to avoid "URL" as linkename
         'linkURL2',
-        'linkURL', 
+        'linkURL',
         )
     for tag in ordered_tags:
         debugpr('Working with tag "%s"' % tag)
@@ -884,7 +898,7 @@ def inline_tag_subst(filestr, format):
             continue  # just ignore missing tags in current format
         if replacement is None:
             continue  # no substitution
-        
+
         if isinstance(replacement, basestring):
             # first some info for debug output:
             findlist = c.findall(filestr)
@@ -893,7 +907,7 @@ def inline_tag_subst(filestr, format):
             if occurences > 0:
                 debugpr('Found %d occurences of "%s":\n%s' % (occurences, tag, findlist))
                 debugpr('%s is to be replaced using %s' % (tag, replacement))
-            
+
             filestr = c.sub(replacement, filestr)
         elif callable(replacement):
             # treat line by line because replacement string depends
@@ -914,7 +928,7 @@ def inline_tag_subst(filestr, format):
                         #raise Exception(e)
                         # Raising exception is misleading since the
                         # error occured in the replacement function
-                        sys.exit(1)  
+                        sys.exit(1)
                     lines[i] = re.sub(tag_pattern, replacement_str, lines[i])
                     occurences += 1
             filestr = '\n'.join(lines)
@@ -925,7 +939,7 @@ def inline_tag_subst(filestr, format):
             debugpr('\n**** The file after %d "%s" substitutions ***\n%s\n%s\n\n' % \
                   (occurences, tag, filestr, ':'*80))
     return filestr
-        
+
 def subst_away_inline_comments(filestr):
     # inline comments: [hpl: this is a comment]
     pattern = r'\[(?P<name>[A-Za-z0-9_ ,.@]+?):(?P<comment>[^\]]*?)\]\s*'
@@ -972,7 +986,7 @@ def doconce2format(in_filename, format, out_filename):
         has_title = True
     else:
         has_title = False
-        
+
     # 1. step: insert verbatim code from other (source code) files:
     # (if the format is LaTeX, we could let ptex2tex do this, but
     # the CODE start@stop specifications may contain uderscores and
@@ -983,7 +997,7 @@ def doconce2format(in_filename, format, out_filename):
           ('*'*80, filestr))
 
     # 2. step: remove all verbatim and math blocks
-    
+
     filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
 
     # for HTML we should make replacements of < ... > in code_blocks,
@@ -1002,7 +1016,7 @@ def doconce2format(in_filename, format, out_filename):
         for i in range(len(tex_blocks)):
             tex_blocks[i] = re.sub(r'([^\\])label', r'\g<1>\\label',
                                     tex_blocks[i])
-        
+
     debugpr('%s\n**** The file after removal of code/tex blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
     debugpr('%s\n**** The code blocks:\n\n%s\n\n' % \
@@ -1024,7 +1038,7 @@ def doconce2format(in_filename, format, out_filename):
 
     # 4. step: deal with cross referencing (must occur before other format subst)
     filestr = handle_cross_referencing(filestr, format)
-    
+
     debugpr('%s\n**** The file after handling ref and label cross referencing\n\n%s\n\n' % ('*'*80, filestr))
 
     # 5. step: deal with index and bibliography (must be done before lists):
@@ -1047,7 +1061,7 @@ def doconce2format(in_filename, format, out_filename):
     filestr = inline_tag_subst(filestr, format)
 
     debugpr('%s\n**** The file after all inline substitutions:\n\n%s\n\n' % ('*'*80, filestr))
-        
+
     # 9. step: substitute latex-style newcommands in filestr and tex_blocks
     # (not in code_blocks)
     from expand_newcommands import expand_newcommands
@@ -1065,7 +1079,7 @@ def doconce2format(in_filename, format, out_filename):
     # 10. step: insert verbatim and math code blocks again:
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
     filestr += '\n'
-    
+
     # 11. step: substitute code and tex environments:
     filestr = CODE[format](filestr, format)
     debugpr('%s\n**** The file after inserting tex/code blocks:\n\n%s\n\n' % \
@@ -1081,7 +1095,7 @@ def doconce2format(in_filename, format, out_filename):
         if r'\includemovie[' not in filestr:
             # avoid the need for movie15 package in LaTeX file
             filestr = filestr.replace('define MOVIE', 'undef MOVIE')
-     
+
     if encoding:
         f = codecs.open(out_filename, 'w', encoding)
     else:
@@ -1111,6 +1125,18 @@ def preprocess(filename, format, preprocessor_options=[]):
         preprocess_options = ' '.join(preprocessor_options)
         resultfile = '__tmp.do.txt'
 
+        # Syntax check: preprocess directives without leading #?
+        pattern1 = r'^#if.*'; pattern2 = r'^#else'
+        pattern3 = r'^#elif'; pattern4 = r'^#endif'
+        for pattern in pattern1, pattern2, pattern3, pattern4:
+            cpattern = re.compile(pattern, re.MULTILINE)
+            matches = cpattern.findall(filestr)
+            if matches:
+                print '\nSyntax error in preprocess directives: missing # '\
+                      'before directive'
+                print pattern
+                sys.exit(1)
+
         try:
             import preprocess
         except ImportError:
@@ -1121,7 +1147,7 @@ On Debian systems, preprocess can be installed through the
 preprocess package (sudo apt-get install preprocess).
 """ % filename
             sys.exit(1)
-        
+
         cmd = 'preprocess -DFORMAT=%s %s %s > %s' % \
               (format, preprocess_options, filename, resultfile)
         print 'run', cmd
@@ -1149,7 +1175,7 @@ On Debian systems, mako can easily be installed through the
 python-mako package (sudo apt-get install python-mako).
 """ % filename
             sys.exit(1)
-        
+
         print 'run mako preprocessor on', filename, 'to make', resultfile
         # add a space after \\ at the end of lines (otherwise mako
         # eats one of the backslashes in tex blocks)
@@ -1179,7 +1205,7 @@ python-mako package (sudo apt-get install python-mako).
     if preprocessor is None:
         # no preprocessor syntax detected
         resultfile = filename
-    
+
     return resultfile
 
 def main():
@@ -1222,7 +1248,7 @@ def main():
     if '--debug' in sys.argv[1:]:
         debug = True
         sys.argv.remove('--debug')
-        
+
     oneline_paragraphs = False
     if 'oneline_paragraphs' in sys.argv[1:]:
         oneline_paragraphs = True
@@ -1230,7 +1256,7 @@ def main():
     if '--oneline_paragraphs' in sys.argv[1:]:
         oneline_paragraphs = True
         sys.argv.remove('--oneline_paragraphs')
-    
+
     remove_inline_comments = False
     if 'remove_inline_comments' in sys.argv[1:]:
         remove_inline_comments = True
@@ -1238,7 +1264,7 @@ def main():
     if '--remove_inline_comments' in sys.argv[1:]:
         remove_inline_comments = True
         sys.argv.remove('--remove_inline_comments')
-                
+
     encoding = ''
     for arg in sys.argv[1:]:
         if arg.startswith('encoding=') or arg.startswith('--encoding='):
@@ -1246,7 +1272,7 @@ def main():
             break
     if encoding:
         sys.argv.remove(arg)
-        
+
     if debug:
         _log_filename = '_doconce_debugging.log'
         _log = open(_log_filename,'w')
@@ -1258,7 +1284,7 @@ def main():
 
     """)
 
-        
+
     debugpr('\n\n>>>>>>>>>>>>>>>>> %s >>>>>>>>>>>>>>>>>\n\n' % format)
 
     if not os.path.isfile(filename):
@@ -1278,6 +1304,6 @@ def main():
         os.remove(filename_preprocessed)  # clean up
     #print '----- successful run: %s filtered to %s\n' % (filename, out_filename)
     print 'output in', out_filename
-    
+
 if __name__ == '__main__':
     main()
