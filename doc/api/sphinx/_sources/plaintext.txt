@@ -1,6 +1,6 @@
 
 :mod:`doconce.plaintext`
-=======================
+========================
 
 .. automodule:: doconce.plaintext
    :members:

@@ -11,16 +11,19 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
+   init
    doconce
    common
    html
    latex
    rst
    sphinx
-   wiki
+   gwiki
    plaintext
    st
    epytext
+   DocWriter
+   expand_newcommands
 
 Indices and tables
 ==================

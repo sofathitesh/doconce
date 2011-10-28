@@ -1,5 +1,5 @@
 """
-DocWriter is a tool for writing documents in ASCII, HTML, 
+DocWriter is a tool for writing documents in ASCII, HTML,
 LaTeX, Doconce, and other formats based on input from Python
 datastructures.
 
@@ -25,7 +25,7 @@ class _BaseWriter:
         self.filename_extension = filename_extension
         self.format = format
         self._footer_called = False
-        
+
     document = property(fget=lambda self: self.file.getvalue(),
                         doc='Formatted document as a string')
 
@@ -40,7 +40,7 @@ class _BaseWriter:
         if not self._footer_called:
             self.footer()
             self._footer_called = True
-            
+
         f = open(filename + self.filename_extension, 'w')
         f.write(self.document)
         f.close()
@@ -52,16 +52,16 @@ class _BaseWriter:
     def header(self):
         """Header as required by format. Called in constructor."""
         pass
-    
+
     def footer(self):
         """Footer as required by format. Called in write_to_file."""
         pass
-    
+
     def not_impl(self, method):
         raise NotImplementedError, \
               'method "%s" in class "%s" is not implemented' % \
               (method, self.__class__.__name__)
-    
+
     def title(self, title, authors_and_institutions=[], date='today'):
         """
         Provide title and authors.
@@ -80,7 +80,7 @@ class _BaseWriter:
         """Return a string with today's date suitably formatted."""
         import time
         return time.strftime('%a, %d %b %Y (%H:%M)')
-    
+
     def section(self, title, label=None):
         """
         Write a section heading with the given title and an optional
@@ -149,7 +149,7 @@ class _BaseWriter:
             if tag_replacement is not None:
                 text = c.sub(tag_replacement, text)
         return text
-    
+
     def list(self, items, listtype='itemize'):
         """
         Write list or nested lists.
@@ -160,7 +160,7 @@ class _BaseWriter:
         # call _BaseWriter.unfold_list to traverse the list
         # and use self.item_handler to typeset each item
         self.not_impl('list')
-        
+
     def unfold_list(self, items, item_handler, listtype, level=0):
         """
         Traverse a possibly nested list and call item_handler for
@@ -207,7 +207,7 @@ class _BaseWriter:
         @param keyword: the keyword of the item in a 'description' list.
         """
         self.not_impl('item_handler')
-                    
+
     def verbatim(self, code):
         """
         Write verbatim text in fixed-width form
@@ -261,7 +261,7 @@ class _BaseWriter:
         if failure:
             print 'Could not convert;\n  %s' % cmd
         return final
-        
+
     def figure(self, filename, caption, width=None, height=None, label=None):
         """
         Insert a figure into the document.
@@ -324,7 +324,7 @@ INLINE_TAGS = {
     'math':
     r'%s\$(?P<subst>[^ `][^$`]*)\$%s' % \
     (inline_tag_begin, inline_tag_end),
-    
+
     # $latex text$|$pure text alternative$
     'math2':
     r'%s\$(?P<latexmath>[^ `][^$`]*)\$\|\$(?P<puretext>[^ `][^$`]*)\$%s' % \
@@ -334,12 +334,12 @@ INLINE_TAGS = {
     'emphasize':
     r'%s\*(?P<subst>[^ `][^*`]*)\*%s' % \
     (inline_tag_begin, inline_tag_end),
-    
+
     # `verbatim inline text is enclosed in back quotes`
     'verbatim':
     r'%s`(?P<subst>[^ ][^`]*)`%s' % \
     (inline_tag_begin, inline_tag_end),
-    
+
     # _underscore before and after signifies bold_
     'bold':
     r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
@@ -349,7 +349,7 @@ INLINE_TAGS = {
 class Doconce(_BaseWriter):
     def __init__(self):
         _BaseWriter.__init__(self, 'Doconce', '.do.txt')
-    
+
     def title(self, title, authors_and_institutions=[], date='today'):
         s = '\nTITLE: %s\n' % title
         for ai in authors_and_institutions:
@@ -388,7 +388,7 @@ class Doconce(_BaseWriter):
         #text = _BaseWriter.expandtext(self, text,
         #                              INLINE_TAGS, HTML.INLINE_TAGS_SUBST)
         self.file.write(text)
-        
+
     def list(self, items, listtype='itemize'):
         self.unfold_list(items, self.item_handler, listtype)
 
@@ -411,7 +411,7 @@ class Doconce(_BaseWriter):
                 elif listtype == 'description':
                     s += '\n%s%s- %s: %s' % (indent, indent, keyword, item)
         self.file.write(s)
-                    
+
     def verbatim(self, code):
         self.file.write('\n!bc\n' + r'%s' % code + '\n!ec\n')
 
@@ -441,7 +441,7 @@ class Doconce(_BaseWriter):
             s += '   | ' + ' | '.join(row) + ' |\n'
         s += '   |' + '-'*(width-2) + '|\n\n'
         self.file.write(s)
-    
+
     def url(self, url_address, link_text=None):
         if link_text is None:
             link_text = 'link'  # problems with Doconce and empty link text
@@ -466,7 +466,7 @@ class HTML(_BaseWriter):
     table_border = '2'
     table_cellpadding = '5'
     table_cellspacing = '2'
-    
+
     INLINE_TAGS_SUBST = {  # from inline tags to HTML tags
         # keep math as is:
         'math': None,  # indicates no substitution
@@ -475,7 +475,7 @@ class HTML(_BaseWriter):
         'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
         'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
         }
-    
+
     def __init__(self):
         _BaseWriter.__init__(self, 'HTML', '.html')
         self.header()
@@ -487,14 +487,14 @@ class HTML(_BaseWriter):
 <BODY BGCOLOR="white">
 """ % (__name__, self.__class__.__name__)
         self.file.write(s)
-    
+
     def footer(self):
         s = """
 </BODY>
 </HTML>
 """
         self.file.write(s)
-    
+
     def title(self, title, authors_and_institutions=[], date='today'):
         s = """
 <TITLE>%s</TITLE>
@@ -548,7 +548,7 @@ class HTML(_BaseWriter):
         text = _BaseWriter.expandtext(self, text,
                                       INLINE_TAGS, HTML.INLINE_TAGS_SUBST)
         self.file.write(text)
-        
+
     def list(self, items, listtype='itemize'):
         self.unfold_list(items, self.item_handler, listtype)
 
@@ -580,7 +580,7 @@ class HTML(_BaseWriter):
                     s += '%s%s<P><DT>%s</DT><DD>%s</DD>\n' % \
                          (indent, indent, keyword, item)
         self.file.write(s)
-                    
+
     def verbatim(self, code):
         self.file.write('\n<PRE>' + r'%s' % code + '\n</PRE>\n')
 
@@ -608,7 +608,7 @@ class HTML(_BaseWriter):
             s += '</TR>\n'
         s += '</TABLE>\n\n'
         self.file.write(s)
-    
+
     def url(self, url_address, link_text=None):
         if link_text is None:
             link_text = url_address
@@ -644,9 +644,9 @@ class DocWriter:
     methods = 'title', 'section', 'subsection', 'subsubsection', \
               'paragraph', 'paragraph_separator', 'text', 'list', \
               'verbatim', 'math', 'raw', 'url', 'link', \
-              'write_to_file', 'figure', 'table', 
-    
-        
+              'write_to_file', 'figure', 'table',
+
+
     def __init__(self, *formats):
         """
         @param formats: sequence of strings specifying the desired formats.
@@ -664,7 +664,7 @@ class DocWriter:
                   writer.__class__.__name__ + '*'*60
             s += str(writer)
         return s
-            
+
     def dispatcher(self, *args, **kwargs):
         #print 'in dispatcher for', self.method_name, 'with args', args, kwargs
         #self.history = (self.method_name, args, kwargs)
@@ -684,7 +684,7 @@ class DocWriter:
     # can use inspect module to extract doc of all methods and
     # put this doc in __doc__
     '''
-    
+
 # Autogenerate methods in class DocWriter (with right
 # method signature and doc strings stolen from class _BaseWriter (!)):
 
@@ -722,13 +722,15 @@ func_to_method(_%s, DocWriter, '%s')
 
 def html_movie(plotfiles, interval_ms=300, width=800, height=600,
                casename='movie'):
-    """ 
-    Takes a list plotfiles which should be for example of the form:
+    """
+    Takes a list plotfiles which should be for example of the form::
+
         ['frame00.png', 'frame01.png', ... ]
+
     where each string should be the name of an image file and they should be
     in the proper order for viewing as an animation.
 
-    The result is html text strings that incorporate javascript to 
+    The result is html text strings that incorporate javascript to
     loop through the plots one after another.  The html text also features
     buttons for controlling the movie.
     The parameter iterval_ms is the time interval between loading
@@ -743,9 +745,9 @@ def html_movie(plotfiles, interval_ms=300, width=800, height=600,
     viewed in a browser. The images variable in the javascript code
     is unique for each movie, because it is annotated by the casename
     string, so several such javascript sections can be used in the
-    same html file. 
+    same html file.
 
-    This function is based on code written by R.J. LeVeque, based on 
+    This function is based on code written by R.J. LeVeque, based on
     a template from Alan McIntyre.
     """
     import os
@@ -756,7 +758,7 @@ def html_movie(plotfiles, interval_ms=300, width=800, height=600,
     missing_files = [fname for fname in plotfiles if not os.path.isfile(fname)]
     if missing_files:
         raise ValueError('Missing plot files: %s' % str(missing_files)[1:-1])
-        
+
     ext = os.path.splitext(plotfiles[0])[-1]
     if ext == '.png' or ext == '.jpg' or ext == '.jpeg' or ext == 'gif':
         pass
@@ -776,7 +778,7 @@ def html_movie(plotfiles, interval_ms=300, width=800, height=600,
 var num_images_%(casename)s = %(no_images)d;
 var img_width = %(width)d;
 var img_height = %(height)d;
-var interval = %(interval_ms)d;    
+var interval = %(interval_ms)d;
 var images_%(casename)s = new Array();
 
 function preload_images_%(casename)s()
@@ -925,7 +927,7 @@ def _test(d):
     # d is formatclass() or DocWriter(HTML, LaTeX, ...)
     print '\n\n', '*'*70, \
           '\n*** Testing class "%s"\n' % d.__class__.__name__, '*'*70
-    
+
     d.title('My Test of Class %s' % d.__class__.__name__,
             [('Hans Petter Langtangen',
               'Simula Research Laboratory',
@@ -995,7 +997,7 @@ b.item = 0  # create a new attribute
     d.table([['a', 'b'], ['c', 'd'], ['e', 'and a longer text']])
     print d
     d.write_to_file('tmp_%s' % d.__class__.__name__)
-        
+
 if __name__ == '__main__':
     formats = HTML, Doconce
     for format in formats:
