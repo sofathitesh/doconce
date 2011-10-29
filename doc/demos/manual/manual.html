@@ -22,7 +22,7 @@ Automatically generated HTML file from Doconce source
 <CENTER>[2] <B>University of Oslo</B></CENTER>
 
 
-<CENTER><H3>Oct 22, 2011</H3></CENTER>
+<CENTER><H3>Oct 29, 2011</H3></CENTER>
 <P>
 
 <P>
@@ -64,13 +64,13 @@ Here are some Doconce features:
 <P>
 
 <UL>
-  <LI> Doconce markup does include tags, so the format is more tagged than 
-    Markdown and Pandoc, but less than reST, and very much less than 
-    LaTeX and HTML. 
-  <LI> Doconce can be converted to plain <EM>untagged</EM> text, 
+  <LI> Doconce markup does include tags, so the format is more tagged than
+    Markdown, Pandoc, and AsciiDoc, but less than reST, and very much
+    less than LaTeX and HTML.
+  <LI> Doconce can be converted to plain <EM>untagged</EM> text,
     often desirable for computer programs and email.
-  <LI> Doconce has good support for copying in parts of computer code,
-    say in examples, directly from the source code files.
+  <LI> Doconce has good support for copying in parts of computer code
+    directly from the source code files.
   <LI> Doconce has full support for LaTeX math, and integrates very well
     with big LaTeX projects (books).
   <LI> Doconce is almost self-explanatory and is a handy starting point
@@ -79,7 +79,7 @@ Here are some Doconce features:
     is just to make the initial versions of a Sphinx or wiki document.
   <LI> Contrary to the similar Pandoc translator, Doconce integrates with
     Sphinx and Google wiki. However, if these formats are not of interest,
-    Pandoc is obviously a superior tool.
+    Pandoc is a superior tool.
 </UL>
 
 Doconce was particularly written for the following sample applications:
@@ -90,13 +90,16 @@ Doconce was particularly written for the following sample applications:
   <LI> Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
     contexts in other formats, including plain HTML, Sphinx, or MS Word.
+    With <A HREF="http://code.google.com/p/ptex2tex">ptex2tex</A>, Doconce can
+    display computer code in LaTeX in many sophisticated ways (almost
+    50 styles are available).
   <LI> Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
     web sites, and as LaTeX integrated in, e.g., a thesis.
   <LI> Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
-    MS Word documents or in wikis.
+    MS Word documents, in wikis, or as Sphinx documents.
 </UL>
 
 History: Doconce was developed in 2006 at a time when most popular
@@ -112,8 +115,8 @@ Disclaimer: Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
-limitations of regular expressions, some formatting may face problems 
-when transformed to other formats. 
+limitations of regular expressions, some formatting may face problems
+when transformed to other formats.
 
 <P>
 
@@ -132,7 +135,7 @@ requires <A HREF="http://docutils.sourceforge.net">docutils</A>.  Making Sphinx
 documents requires of course <A HREF="http://sphinx.pocoo.org">Sphinx</A>.
 All of the mentioned potential dependencies are pure Python packages
 which are easily installed.
-If translation to <A HREF="http://johnmacfarlane.net/pandoc/">Pandoc</A> is desired, 
+If translation to <A HREF="http://johnmacfarlane.net/pandoc/">Pandoc</A> is desired,
 the Pandoc Haskell program must of course be installed.
 
 <P>
@@ -160,7 +163,7 @@ The current text is generated from a Doconce format stored in the
 docs/manual/manual.do.txt
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-file in the Doconce source code tree. We have made a 
+file in the Doconce source code tree. We have made a
 <A HREF="https://doconce.googlecode.com/hg/doc/demos/manual/index.html">demo web page</A>
 where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.
@@ -227,7 +230,7 @@ Terminal> doconce format LaTeX mydoc remove_inline_comments
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 One can also remove such comments from the original Doconce file
-by running 
+by running
 source code:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
@@ -269,8 +272,8 @@ Terminal> doconce format LaTeX mydoc
 <! -- END VERBATIM BLOCK -->
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files <TT>newcommands.tex</TT>, <TT>newcommands_keep.tex</TT>, or
-<TT>newcommands_replace.tex</TT> (see the section <A HREF="#newcommands">Macros (Newcommands)</a>). 
-If these files are present, they are included in the LaTeX document 
+<TT>newcommands_replace.tex</TT> (see the section <A HREF="#newcommands">Macros (Newcommands)</a>).
+If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
 <P>
@@ -301,16 +304,22 @@ institutions in common. However, the standard LaTeX "maketitle" heading
 is also available through
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
+Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+A separate titlepage can be generate by
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
 <P>
 The <TT>ptex2tex</TT> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents. After any <TT>!bc sys</TT> command in the Doconce source you can
+documents. After any <TT>!bc</TT> command in the Doconce source you can
 insert verbatim block styles as defined in your <TT>.ptex2tex.cfg</TT>
-file, e.g., <TT>!bc sys cod</TT> for a code snippet, where <TT>cod</TT> is set to
+file, e.g., <TT>!bc cod</TT> for a code snippet, where <TT>cod</TT> is set to
 a certain environment in <TT>.ptex2tex.cfg</TT> (e.g., <TT>CodeIntended</TT>).
 There are over 30 styles to choose from.
 
@@ -393,19 +402,77 @@ That is, one can easily go from Doconce to Microsoft Word.
 <P>
 <H3>Sphinx</H3>
 <P>
-Sphinx documents can be created from a Doconce source in a few steps.
+Sphinx documents demand quite some steps in their creation. We have automated
+most of the steps through the <TT>doconce sphinx_dir</TT> command:
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Terminal> doconce sphinx_dir author="authors' names" \
+          title="some title" version=1.0 dirname=sphinxdir \
+          theme=mytheme file1 file2 file3 ...
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+The keywords <TT>author</TT>, <TT>title</TT>, and <TT>version</TT> are used in the headings
+of the Sphinx document. By default, <TT>version</TT> is 1.0 and the script
+will try to deduce authors and title from the doconce files <TT>file1</TT>,
+<TT>file2</TT>, etc. that together represent the whole document. Note that
+none of the individual Doconce files <TT>file1</TT>, <TT>file2</TT>, etc. should
+include the rest as their union makes up the whole document.
+The default value of <TT>dirname</TT> is <TT>sphinx-rootdir</TT>. The <TT>theme</TT>
+keyword is used to set the theme for design of HTML output from
+Sphinx (the default theme is <TT>'default'</TT>).
+
+<P>
+With a single-file document in <TT>mydoc.do.txt</TT> one often just runs
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Terminal> doconce sphinx_dir mydoc
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+and then an appropriate Sphinx directory <TT>sphinx-rootdir</TT> is made with
+relevant files.
+
+<P>
+The <TT>doconce sphinx_dir</TT> command generates a script
+<TT>automake-sphinx.sh</TT> for compiling the Sphinx document into an HTML
+document.  This script copies directories named <TT>figs</TT> or <TT>figures</TT>
+over to the Sphinx directory so that figures are accessible in the
+Sphinx compilation.  If figures or movies are located in other
+directories, <TT>automake-sphinx.sh</TT> must be edited accordingly. One
+can either run <TT>automake-sphinx.sh</TT> or perform the steps in the
+script manually.
+
+<P>
+Doconce comes with a collection of HTML themes for Sphinx documents.
+These are packed out in the Sphinx directory, the <TT>conf.py</TT>
+configuration file for Sphinx is edited accordingly, and a script
+<TT>make-themes.sh</TT> can make HTML documents with one or more themes.
+For example,
+to realize the themes <TT>fenics</TT> and <TT>pyramid</TT>, one writes
+<!-- BEGIN VERBATIM BLOCK   sys-->
+<BLOCKQUOTE><PRE>
+Terminal> ./make-themes.sh fenics pyramid
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+The resulting directories with HTML documents are <TT>_build/html_fenics</TT>
+and <TT>_build/html_pyramid</TT>, respectively. Without arguments,
+<TT>make-themes.sh</TT> makes all available themes (!).
+
+<P>
+If it is not desirable to use the autogenerated scripts explained
+above, here are the complete manual procedure of generating a
+Sphinx document from a file <TT>mydoc.do.txt</TT>.
 
 <P>
 <B>Step 1.</B> Translate Doconce into the Sphinx dialect of
 the reStructuredText format:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> doconce format sphinx mydoc.do.txt
+Terminal> doconce format sphinx mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
 <P>
-<B>Step 2.</B> Create a Sphinx root directory with a <TT>conf.py</TT> file, 
+<B>Step 2.</B> Create a Sphinx root directory with a <TT>conf.py</TT> file,
 either manually or by using the interactive <TT>sphinx-quickstart</TT>
 program. Here is a scripted version of the steps with the latter:
 <!-- BEGIN VERBATIM BLOCK   sys-->
@@ -436,29 +503,18 @@ y
 EOF
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-These statements as well as points 3-5 can be automated by the command
-<!-- BEGIN VERBATIM BLOCK   sys-->
-<BLOCKQUOTE><PRE>
-Terminal> doconce sphinx_dir mydoc.do.txt
-</PRE></BLOCKQUOTE>
-<! -- END VERBATIM BLOCK -->
-More precisely, in addition to making the <TT>sphinx-rootdir</TT>,
-this command generates a script <TT>tmp_make_sphinx.sh</TT> which
-can be run to carry out steps 3-5, and later to remake the
-sphinx document.
 
 <P>
-<B>Step 3.</B> Move the <TT>tutorial.rst</TT> file to the Sphinx root directory:
+<B>Step 3.</B> Copy the <TT>tutorial.rst</TT> file to the Sphinx root directory:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> mv mydoc.rst sphinx-rootdir
+Terminal> cp mydoc.rst sphinx-rootdir
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 If you have figures in your document, the relative paths to those will
 be invalid when you work with <TT>mydoc.rst</TT> in the <TT>sphinx-rootdir</TT>
 directory. Either edit <TT>mydoc.rst</TT> so that figure file paths are correct,
-or simply copy your figure directory to <TT>sphinx-rootdir</TT> (if all figures
-are located in a subdirectory).
+or simply copy your figure directories to <TT>sphinx-rootdir</TT>.
 
 <P>
 <B>Step 4.</B> Edit the generated <TT>index.rst</TT> file so that <TT>mydoc.rst</TT>
@@ -481,7 +537,6 @@ make clean   # remove old versions
 make html
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-Many other formats are also possible.
 
 <P>
 <B>Step 6.</B> View the result:
@@ -496,11 +551,6 @@ Note that verbatim code blocks can be typeset in a variety of ways
 depending the argument that follows <TT>!bc</TT>: <TT>cod</TT> gives Python
 (<TT>code-block:: python</TT> in Sphinx syntax) and <TT>cppcod</TT> gives C++, but
 all such arguments can be customized both for Sphinx and LaTeX output.
-
-<P>
-<!-- Desired extension: sphinx can utilize a "pycod" or "c++cod" -->
-<!-- instruction as currently done in latex for ptex2tex and write -->
-<!-- out the right code block name accordingly. -->
 
 <P>
 
@@ -541,7 +591,7 @@ The solution is to use a text substitution command or code with, e.g., sed,
 perl, python, or scitools subst, to automatically edit the output file
 from Doconce. It is then wise to run Doconce and the editing commands
 from a script to automate all steps in going from Doconce to the final
-format(s). The <TT>make.sh</TT> files in <TT>docs/manual</TT> and <TT>docs/tutorial</TT> 
+format(s). The <TT>make.sh</TT> files in <TT>docs/manual</TT> and <TT>docs/tutorial</TT>
 constitute comprehensive examples on how such scripts can be made.
 
 <P>
@@ -598,7 +648,7 @@ This list gets typeset as
    <LI> item 3
 </UL>
 
-In an ordered list, each item starts with an <TT>o</TT> (as the first letter 
+In an ordered list, each item starts with an <TT>o</TT> (as the first letter
 in "ordered"):
 
 <P>
@@ -633,7 +683,7 @@ resulting in
   <LI> item 3
 </OL>
 
-Ordered lists cannot have an ordered sublist, i.e., the ordering 
+Ordered lists cannot have an ordered sublist, i.e., the ordering
 applies to the outer list only.
 
 <P>
@@ -678,7 +728,7 @@ sections, subsections, paragraphs., figures, movies, etc.
 to identify a title of the document, the authors, and the date. The
 title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
-the syntax 
+the syntax
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
 name at institution1 and institution2 and institution3
@@ -709,7 +759,7 @@ format:
 <BLOCKQUOTE><PRE>
 Hans Petter Langtangen [1, 2]
 Kaare Dump [3]
-A. Dummy Author 
+A. Dummy Author
 
 [1] Center for Biomedical Computing, Simula Research Laboratory
 [2] Department of Informatics, University of Oslo
@@ -732,7 +782,7 @@ or equal signs (=):
    <LI> 7 underscores or equal signs for sections
    <LI> 5 for subsections
    <LI> 3 for subsubsections
-   <LI> 2 underscrores (only! - it looks best) for paragraphs 
+   <LI> 2 underscrores (only! - it looks best) for paragraphs
      (paragraph heading will be inlined)
 </UL>
 
@@ -742,11 +792,11 @@ Headings can be surrounded by blanks if desired.
 Here are some examples:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
-======= Example on a Section Heading ======= 
+======= Example on a Section Heading =======
 
-The running text goes here. 
+The running text goes here.
 
-      ===== Example on a Subsection Heading ===== 
+      ===== Example on a Subsection Heading =====
 The running text goes here.
 
           ===Example on a Subsubsection Heading===
@@ -763,7 +813,7 @@ The result for the present format looks like this:
 <P>
 <H1>Example on a Section Heading</H1>
 <P>
-The running text goes here. 
+The running text goes here.
 
 <P>
 <H3>Example on a Subsection Heading</H3>
@@ -867,7 +917,7 @@ Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
 The HTML, reST, and Sphinx formats can also treat filenames of the form
 <TT>myframes*.png</TT>. In that case, an HTML file for showing the sequence of frames
 is generated, and a link to this file is inserted in the output document.
-That is, a simple "movie viewer" for the frames is made. 
+That is, a simple "movie viewer" for the frames is made.
 
 <P>
 Many publish their scientific movies on YouTube, and Doconce recognizes
@@ -885,7 +935,7 @@ the embedded HTML code for the movie on the YouTube page).
 <H3>Copying Computer Code</H3>
 <P>
 Another type of special lines starts with <TT>@@@CODE</TT> and enables copying
-of computer code from a file directly into a verbatim environment, see 
+of computer code from a file directly into a verbatim environment, see
 the section <A HREF="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> below.
 
 <P>
@@ -980,7 +1030,7 @@ Doconce also supports inline comments in the text:
 [name: comment]
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-where <TT>name</TT> is the name of the author of the command, and <TT>comment</TT> is a 
+where <TT>name</TT> is the name of the author of the command, and <TT>comment</TT> is a
 plain text text. [<B>hpl</B>: <EM>Note that there must be a space after the colon,
 otherwise the comment is not recognized.</EM>]
 The name and comment are visible in the output unless <TT>doconce format</TT>
@@ -1004,9 +1054,9 @@ supports an extended inline math syntax where the writer can provide
 an alternative syntax suited for formats close to plain ASCII:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
-Here is an example on a linear system 
-${\bf A}{\bf x} = {\bf b}$|$Ax=b$, 
-where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and 
+Here is an example on a linear system
+${\bf A}{\bf x} = {\bf b}$|$Ax=b$,
+where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and
 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
@@ -1014,7 +1064,7 @@ That is, we provide two alternative expressions, both enclosed in
 dollar signs and separated by a pipe symbol, the expression to the
 left is used in LaTeX, while the expression to the right is used for
 all other formats.  The above text is typeset as "Here is an example
-on a linear system Ax=b, where A 
+on a linear system Ax=b, where A
 is an nxn matrix, and x and b
 are vectors of length n."
 
@@ -1074,7 +1124,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-Everything related to the index simply becomes invisible in 
+Everything related to the index simply becomes invisible in
 plain text, Epytext, StructuredText, HTML, and wiki formats.
 Note: <TT>idx</TT> commands should be inserted outside paragraphs, not in between
 the text as this may cause some strange behaviour of the formatting.
@@ -1116,10 +1166,10 @@ in the bibliography. Doconce markup can be used in this text, e.g.,
 <BLOCKQUOTE><PRE>
 {
 'Nielsen:99': """
-K. Nielsen. *Some Comments on Markup Languages*. 
+K. Nielsen. *Some Comments on Markup Languages*.
 URL:"http://some.where.net/nielsen/comments", 1999.
 """,
-'Larsen:86': 
+'Larsen:86':
 """
 O. B. Larsen. On Markup and Generality.
 *Personal Press*. 1986.
@@ -1143,7 +1193,7 @@ Conversion of BibTeX databases to reStructuredText format can be
 done by the <A HREF="http://pypi.python.org/pypi/bibliograph.parsing/">bibliograph.parsing</A> tool.
 
 <P>
-Finally, we here test the citation command and bibliography by 
+Finally, we here test the citation command and bibliography by
 citing a book <A HREF="#Python:Primer:09">[1]</A>, a paper <A HREF="#Osnes:98">[2]</A>,
 and both of them simultaneously <A HREF="#Python:Primer:09">[1]</A> <A HREF="#Osnes:98">[2]</A>.
 
@@ -1330,8 +1380,6 @@ C     END1
       program testme
       call test()
       return
-
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -1372,7 +1420,7 @@ environment.)
 Blocks of mathematical text are like computer code blocks, but
 the opening tag is <TT>!bt</TT> (begin TeX) and the closing tag is
 <TT>!et</TT>. It is important that <TT>!bt</TT> and <TT>!et</TT> appear on the beginning of the
-line and followed by a newline. 
+line and followed by a newline.
 
 <P>
 Here is the result of a <TT>!bt</TT> - <TT>!et</TT> block:
@@ -1419,7 +1467,7 @@ line (multi-line newcommands are too hard to parse with regular
 expressions).
 
 <P>
-<B>Example.</B> Suppose we have the following commands in 
+<B>Example.</B> Suppose we have the following commands in
 <TT>newcommand_replace.tex</TT>:
 
 <P>
@@ -1431,7 +1479,6 @@ expressions).
 \newcommand{\uvec}{\vec u}
 \newcommand{\mathbfx}[1]{{\mbox{\boldmath $#1$}}}
 \newcommand{\Q}{\mathbfx{Q}}
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -1444,7 +1491,6 @@ and these in <TT>newcommands_keep.tex</TT>:
 \newcommand{\x}{\mathbfx{x}}
 \newcommand{\normalvec}{\mathbfx{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
-
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
@@ -1472,7 +1518,7 @@ in the current format.
 <P>
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
-Two preprocessors are supported: preprocess 
+Two preprocessors are supported: preprocess
 (<A HREF="http://code.google.com/p/preprocess"><TT>http://code.google.com/p/preprocess</TT></A>) and mako
 (<A HREF="http://www.makotemplates.org/"><TT>http://www.makotemplates.org/</TT></A>). The former allows include and if-else
 statements much like the well-known preprocessor in C and C++ (but it
@@ -1517,7 +1563,7 @@ create the example).
 <P>
 
 <P>
-Other user-defined variables for the preprocessor can be set at 
+Other user-defined variables for the preprocessor can be set at
 the command line as explained in the section <A HREF="#doconce2formats">From Doconce to Other Formats</a>.
 
 <P>
@@ -1819,7 +1865,7 @@ the doc string</EM>. Note that <TT>argument</TT>, <TT>keyword argument</TT>, <TT
 <TT>instance variable</TT>, <TT>class variable</TT>, and <TT>module variable</TT> are the
 only legal keywords (descriptions) for the description list in this
 context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
-arguments and variables are nicely formatted. 
+arguments and variables are nicely formatted.
 
 <P>
 <!-- BEGIN VERBATIM BLOCK  -->
@@ -1831,13 +1877,13 @@ arguments and variables are nicely formatted.
     - return: the root of the equation (float), if found, otherwise None.
     - instance variable eta: surface elevation (array).
     - class variable items: the total number of MyClass objects (int).
-    - module variable debug: True: debug mode is on; False: no debugging 
+    - module variable debug: True: debug mode is on; False: no debugging
       (bool variable).
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 
 <P>
-The result depends on the output format: all formats except Epytext 
+The result depends on the output format: all formats except Epytext
 and Sphinx just typeset the list as a list with keywords.
 
 <P>

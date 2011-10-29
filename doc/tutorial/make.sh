@@ -17,8 +17,6 @@ rm -rf sphinx-rootdir
 doconce sphinx_dir tutorial.do.txt
 cp tutorial.rst tutorial.sphinx.rst
 mv tutorial.rst sphinx-rootdir
-# index-sphinx is a ready-made version of index.rst:
-cp index-sphinx sphinx-rootdir/index.rst   # necessary?
 cd sphinx-rootdir
 make clean
 make html

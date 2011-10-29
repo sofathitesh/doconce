@@ -5,7 +5,7 @@
 
 ./clean.sh
 
-# The following packages must be installed for this script to run: 
+# The following packages must be installed for this script to run:
 # doconce, ptex2tex, docutils, preprocess, sphinx
 
 d2f="doconce format"
@@ -14,11 +14,12 @@ $d2f HTML manual.do.txt
 
 # Sphinx
 $d2f sphinx manual.do.txt
-doconce sphinx_dir manual.do.txt
+rm -rf sphinx-rootdir
+# We have several examples on AUTHOR: so to avoid multiple
+# authors we have to specify
+doconce sphinx_dir author=HPL title='Doconce Manual' version=0.6 manual.do.txt
 cp manual.rst manual.sphinx.rst
 cp manual.rst sphinx-rootdir
-# index-sphinx is a ready-made version of index.rst:
-cp index-sphinx sphinx-rootdir/index.rst
 cp -r figs sphinx-rootdir
 # run sphinx:
 cd sphinx-rootdir
@@ -53,7 +54,7 @@ latex manual.rst.tex
 dvipdf manual.rst.dvi
 
 # plain text:
-$d2f plain manual.do.txt remove_inline_comments 
+$d2f plain manual.do.txt remove_inline_comments
 
 $d2f epytext manual.do.txt
 $d2f st manual.do.txt
@@ -89,7 +90,7 @@ cat > index.html <<EOF
 <TITLE>Demo of Doconce formats</TITLE>
 <H3>Doconce demo</H3>
 
-Doconce is a minimum tagged markup language. The file 
+Doconce is a minimum tagged markup language. The file
 <a href="manual.do.txt">manual.do.txt</a> is the source of
 a Doconce Description, written in the Doconce format.
 Running
@@ -111,17 +112,17 @@ doconce format rst    manual.do.txt  # standard reST
 doconce format sphinx manual.do.txt  # Sphinx extension of reST
 </pre>
 The reST file <a href="manual.rst">manual.rst</a> is a starting point
-for conversion to many other formats: OpenOffice, 
+for conversion to many other formats: OpenOffice,
 <a href="manual.xml">XML</a>, <a href="manual.rst.html">HTML</a>,
-<a href="manual.rst.tex">LaTeX</a>, 
+<a href="manual.rst.tex">LaTeX</a>,
 and from LaTeX to <a href="manual.rst.pdf">PDF</a>.
 The <a href="manual.sphinx.rst">Sphinx</a> dialect of reST
 can be translated to <a href="manual.sphinx.pdf">PDF</a>
 and <a href="html/index.html">HTML</a>.
 <p>
-Doconce can also be converted to 
+Doconce can also be converted to
 <a href="manual.gwiki">a (Google Code) wiki</a>,
-<a href="manual.st">Structured Text</a>, 
+<a href="manual.st">Structured Text</a>,
 <a href="manual.epytext">Epytext</a>,
 and maybe the most important format of all:
 <a href="manual.txt">plain untagged ASCII text</a>.

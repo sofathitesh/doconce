@@ -368,16 +368,19 @@ def sphinx_dir():
         import doconce
         for filename in doconce_files:
             f = open(filename, 'r'); fstr = f.read(); f.close()
+            # The following can be misleading if there are examples on
+            # various AUTHOR: in e.g. vertabim code in the .do.txt file
             authors_and_institutions, dummy1, dummy2, dummy3, dummy4 = \
                       doconce.doconce.interpret_authors(fstr, 'sphinx')
             if authors_and_institutions:
                 author = [a for a, i in authors_and_institutions]
 
+                print 'Author:', author
                 if len(author) == 1:
                     author = author[0]
                 else:
-                    author = ', '.join(author[:-1] + ' and ' + author[-1])
-                print 'Using author(s) "%s" from', filename
+                    author = ', '.join(author[:-1]) + ' and ' + author[-1]
+                print 'Using author(s) "%s" from' % author, filename
                 break
 
     if author is None:
@@ -430,7 +433,7 @@ EOF
     import doconce.common
     install_dir = doconce.common.where()
     shutil.copy(os.path.join(install_dir, 'sphinx_themes.zip'), os.curdir)
-    failure = os.system('unzip sphinx_themes.zip')
+    failure = os.system('unzip sphinx_themes.zip > /dev/null')
     if failure:
         print 'Could not pack out themes'
         sys.exit(1)
