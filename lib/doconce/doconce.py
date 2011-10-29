@@ -256,10 +256,28 @@ def syntax_check(filestr, format):
             sys.exit(1)
 
     if format == "LaTeX":
-        cpattern = re.compile(r'^DATE:', re.MULTILINE)
-        if not cpattern.search(filestr):
-            print '\nSyntax error: LaTeX requires "DATE:" specification'
-            sys.exit(1)
+        # if TITLE is given, AUTHOR and DATE must also be present
+        #md = re.search(r'^DATE:', filestr, flags=re.MULTILINE)
+        #mt = re.search(r'^TITLE:', filestr, flags=re.MULTILINE)
+        #ma = re.search(r'^AUTHOR:', filestr, flags=re.MULTILINE)
+        cdate   = re.compile(r'^DATE:', re.MULTILINE)  # v2.6 way of doing it
+        ctitle  = re.compile(r'^TITLE:', re.MULTILINE)
+        cauthor = re.compile(r'^AUTHOR:', re.MULTILINE)
+        md = cdate.search(filestr)
+        mt = ctitle.search(filestr)
+        ma = cauthor.search(filestr)
+        if md or mt or ma:
+            if not (md and mt and ma):
+                print """
+Syntax error: LaTeX format requires TITLE, AUTHOR and DATE to be
+specified if one of them is present."""
+                if not md:
+                    print 'DATE is missing'
+                if not mt:
+                    print 'TITLE is missing'
+                if not ma:
+                    print 'AUTHOR is missing'
+                sys.exit(1)
 
 def make_one_line_paragraphs(filestr, format):
     # THIS FUNCTION DOES NOT WORK WELL - it's difficult to make
