@@ -517,7 +517,14 @@ Indices and tables
 # Filter doconce format to sphinx format and copy to sphinx directory
 files="%(doconce_files_basename_list)s"
 for file in $files; do
-  doconce format sphinx $file
+  if [ ! -f $file.rst ]; then
+    doconce format sphinx $file
+  fi
+  enc=`doconce guess_encoding $file.rst`
+  if [ $enc = "iso-8859-1" ]; then
+    # sphinx does not like Norwegian characters in iso-8859-1
+    doconce change_encoding iso-8859-1 utf-8 $file.rst
+  fi
   cp $file.rst %(sphinx_rootdir)s
 done
 
@@ -805,9 +812,48 @@ def bbl2rst():
     f.close()
     print 'reStructuredText bibliography in', outfile
 
+
+def usage_split_rst():
+    print 'Usage: doconce split_rst complete_file.rst'
+
+def split_rst():
+    if len(sys.argv) <= 1:
+        usage_split_rst()
+        sys.exit(1)
+
+    complete_file = sys.argv[1]
+    f = open(complete_file, 'r')
+    filestr = f.read()
+    f.close()
+
+    # Determine parts
+    part_pattern = r'\.\.\s*>>+\s*[Pp]art:\s*%s\s*>>+'
+    parts = re.findall(part_pattern % '([^ ]+?)', filestr)
+
+    # Split file
+    for i in range(len(parts)):
+        if i < len(parts)-1:  # not the last part
+            this_part = part_pattern % parts[i]
+            next_part = part_pattern % parts[i+1]
+        else:
+            this_part = part_pattern % parts[i]
+            next_part = '$'  # end of string
+        pattern = '%s(.+?)%s' % (this_part, next_part)
+        cpattern = re.compile(pattern, re.DOTALL)
+        m = cpattern.search(filestr)
+        text = m.group(1)
+        filename = parts[i] + '.rst'
+        f = open(filename, 'w')
+        f.write(text)
+        f.close()
+        #print 'Extracted part', parts[i], 'in', filename
+    print ' '.join(parts)
+
+
+
 # -----------------------------------------------------------------------
 
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace clean help LaTeX_header LaTeX_footer guess_encoding change_encoding bbl2rst'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace clean help LaTeX_header LaTeX_footer guess_encoding change_encoding bbl2rst split_rst'.split()
 
 # -----------------------------------------------------------------------
 
@@ -840,6 +886,7 @@ doconce LaTeX_footer
 doconce change_encoding utf-8 latin-1 filename
 doconce guess_encoding filename
 doconce bbl2rst file.bbl
+doconce split_rst complete_file.rst
 """
 
 
