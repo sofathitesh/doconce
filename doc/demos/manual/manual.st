@@ -713,7 +713,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as::
 
 
-        some URL like "Search Google": "http://google.com"
+        some URL like "Doconce": "http://code.google.com/p/doconce"
 
 which appears as some URL like "http://google.com":Search Google.
 The space after colon is optional.
@@ -723,25 +723,25 @@ setup::
 
         see the "Doconce Manual": "manual.do.txt"
 
-Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes::
+which appears as see the "manual.do.txt":Doconce Manual.
+
+Links to files with other extensions must be realized
+*with the filename as link text*, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes::
 
 
-        URL:"manual.do.txt"
-        "URL": "manual.do.txt"
-        url: "manual.do.txt"
-        "url":"manual.do.txt"
+        URL: "manual.xml"
 
-All these constructions result in the link "manual.do.txt":manual.do.txt.
+resulting in the link "manual.xml":manual.xml.
 
-To make a general URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the URL address enclosed in double
-quotes::
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes::
 
 
-        Click on this link: URL:"http://some.where.net".
+        Click on this link: URL:"http://code.google.com/p/doconce".
 
+resulting in Click on this link: "http://code.google.com/p/doconce":http://code.google.com/p/doconce.
 
 Doconce also supports inline comments in the text::
 

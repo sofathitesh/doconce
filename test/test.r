@@ -7983,7 +7983,7 @@ the Pandoc Haskell program must of course be installed.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 29 Oct 2011 (19:40)
+DATE: Sat, 29 Oct 2011 (22:10)
 
 
 
@@ -8087,7 +8087,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 29 Oct 2011 (19:40)
+DATE: Sat, 29 Oct 2011 (22:10)
 
 
 
@@ -8201,7 +8201,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Sat, 29 Oct 2011 (19:40)</CENTER>
+<CENTER>Sat, 29 Oct 2011 (22:10)</CENTER>
 
 
 
@@ -8332,7 +8332,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Sat, 29 Oct 2011 (19:40)</CENTER>
+<CENTER>Sat, 29 Oct 2011 (22:10)</CENTER>
 
 
 
@@ -9068,7 +9068,7 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 !bc
-some URL like "Search Google": "http://google.com"
+some URL like "Doconce": "http://code.google.com/p/doconce"
 !ec
 which appears as some URL like "Search Google": "http://google.com".
 The space after colon is optional.
@@ -9077,23 +9077,25 @@ setup:
 !bc
 see the "Doconce Manual": "manual.do.txt"
 !ec
-Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes:
-!bc
-URL:"manual.do.txt"
-"URL": "manual.do.txt"
-url: "manual.do.txt"
-"url":"manual.do.txt"
-!ec
-All these constructions result in the link URL: "manual.do.txt".
+which appears as see the "Doconce Manual": "manual.do.txt".
 
-To make a general URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the URL address enclosed in double
-quotes:
+Links to files with other extensions must be realized
+*with the filename as link text*, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes:
 !bc
-Click on this link: URL:"http://some.where.net".
+URL: "manual.xml"
 !ec
+# These work as well: "URL": "manual.xml" url: "manual.xml"
+# "url":"manual.xml"
+resulting in the link URL: "manual.xml".
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+!bc
+Click on this link: URL:"http://code.google.com/p/doconce".
+!ec
+resulting in Click on this link: URL: "http://code.google.com/p/doconce".
 
 Doconce also supports inline comments in the text:
 !bc
@@ -10966,7 +10968,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
-some URL like "Search Google": "http://google.com"
+some URL like "Doconce": "http://code.google.com/p/doconce"
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 which appears as some URL like <A HREF="http://google.com">Search Google</A>.
@@ -10978,28 +10980,31 @@ setup:
 see the "Doconce Manual": "manual.do.txt"
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes:
-<!-- BEGIN VERBATIM BLOCK  -->
-<BLOCKQUOTE><PRE>
-URL:"manual.do.txt"
-"URL": "manual.do.txt"
-url: "manual.do.txt"
-"url":"manual.do.txt"
-</PRE></BLOCKQUOTE>
-<! -- END VERBATIM BLOCK -->
-All these constructions result in the link <A HREF="manual.do.txt"><TT>manual.do.txt</TT></A>.
+which appears as see the <A HREF="manual.do.txt">Doconce Manual</A>.
 
 <P>
-To make a general URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the URL address enclosed in double
-quotes:
+Links to files with other extensions must be realized
+<EM>with the filename as link text</EM>, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
-Click on this link: URL:"http://some.where.net".
+URL: "manual.xml"
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
+<!-- These work as well: <A HREF="manual.xml"><TT>manual.xml</TT></A> <A HREF="manual.xml"><TT>manual.xml</TT></A> -->
+<!-- <A HREF="manual.xml"><TT>manual.xml</TT></A> -->
+resulting in the link <A HREF="manual.xml"><TT>manual.xml</TT></A>.
+
+<P>
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Click on this link: URL:"http://code.google.com/p/doconce".
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+resulting in Click on this link: <A HREF="http://code.google.com/p/doconce"><TT>http://code.google.com/p/doconce</TT></A>.
 
 <P>
 Doconce also supports inline comments in the text:
@@ -12896,7 +12901,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as::
 
 
-        some URL like "Search Google": "http://google.com"
+        some URL like "Doconce": "http://code.google.com/p/doconce"
 
 which appears as some URL like `Search Google <http://google.com>`_.
 The space after colon is optional.
@@ -12906,25 +12911,29 @@ setup::
 
         see the "Doconce Manual": "manual.do.txt"
 
-Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes::
+which appears as see the `Doconce Manual <manual.do.txt>`_.
+
+Links to files with other extensions must be realized
+*with the filename as link text*, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes::
 
 
-        URL:"manual.do.txt"
-        "URL": "manual.do.txt"
-        url: "manual.do.txt"
-        "url":"manual.do.txt"
+        URL: "manual.xml"
 
-All these constructions result in the link `<manual.do.txt>`_.
+.. These work as well: `<manual.xml>`_ `<manual.xml>`_
 
-To make a general URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the URL address enclosed in double
-quotes::
+.. `<manual.xml>`_
+
+resulting in the link `<manual.xml>`_.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes::
 
 
-        Click on this link: URL:"http://some.where.net".
+        Click on this link: URL:"http://code.google.com/p/doconce".
 
+resulting in Click on this link: `<http://code.google.com/p/doconce>`_.
 
 Doconce also supports inline comments in the text::
 
@@ -14801,7 +14810,7 @@ Web addresses with links are typeset as
 .. code-block:: py
 
 
-        some URL like "Search Google": "http://google.com"
+        some URL like "Doconce": "http://code.google.com/p/doconce"
 
 which appears as some URL like `Search Google <http://google.com>`_.
 The space after colon is optional.
@@ -14813,29 +14822,33 @@ setup:
 
         see the "Doconce Manual": "manual.do.txt"
 
-Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes:
+which appears as see the `Doconce Manual <manual.do.txt>`_.
+
+Links to files with other extensions must be realized
+*with the filename as link text*, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes:
 
 .. code-block:: py
 
 
-        URL:"manual.do.txt"
-        "URL": "manual.do.txt"
-        url: "manual.do.txt"
-        "url":"manual.do.txt"
+        URL: "manual.xml"
 
-All these constructions result in the link `<manual.do.txt>`_.
+.. These work as well: `<manual.xml>`_ `<manual.xml>`_
 
-To make a general URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the URL address enclosed in double
-quotes:
+.. `<manual.xml>`_
+
+resulting in the link `<manual.xml>`_.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
 
 .. code-block:: py
 
 
-        Click on this link: URL:"http://some.where.net".
+        Click on this link: URL:"http://code.google.com/p/doconce".
 
+resulting in Click on this link: `<http://code.google.com/p/doconce>`_.
 
 Doconce also supports inline comments in the text:
 
@@ -16562,7 +16575,7 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 {{{
-some URL like "Search Google": "http://google.com"
+some URL like "Doconce": "http://code.google.com/p/doconce"
 }}}
 which appears as some URL like [http://google.com Search Google].
 The space after colon is optional.
@@ -16571,23 +16584,25 @@ setup:
 {{{
 see the "Doconce Manual": "manual.do.txt"
 }}}
-Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes:
-{{{
-URL:"manual.do.txt"
-"URL": "manual.do.txt"
-url: "manual.do.txt"
-"url":"manual.do.txt"
-}}}
-All these constructions result in the link manual.do.txt.
+which appears as see the [manual.do.txt Doconce Manual].
 
-To make a general URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the URL address enclosed in double
-quotes:
+Links to files with other extensions must be realized
+*with the filename as link text*, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes:
 {{{
-Click on this link: URL:"http://some.where.net".
+URL: "manual.xml"
 }}}
+<wiki:comment> These work as well: manual.xml manual.xml </wiki:comment>
+<wiki:comment> manual.xml </wiki:comment>
+resulting in the link manual.xml.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+{{{
+Click on this link: URL:"http://code.google.com/p/doconce".
+}}}
+resulting in Click on this link: http://code.google.com/p/doconce.
 
 Doconce also supports inline comments in the text:
 {{{
@@ -18163,7 +18178,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as::
 
 
-        some URL like "Search Google": "http://google.com"
+        some URL like "Doconce": "http://code.google.com/p/doconce"
 
 which appears as some URL like "http://google.com":Search Google.
 The space after colon is optional.
@@ -18173,25 +18188,25 @@ setup::
 
         see the "Doconce Manual": "manual.do.txt"
 
-Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes::
+which appears as see the "manual.do.txt":Doconce Manual.
+
+Links to files with other extensions must be realized
+*with the filename as link text*, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes::
 
 
-        URL:"manual.do.txt"
-        "URL": "manual.do.txt"
-        url: "manual.do.txt"
-        "url":"manual.do.txt"
+        URL: "manual.xml"
 
-All these constructions result in the link "manual.do.txt":manual.do.txt.
+resulting in the link "manual.xml":manual.xml.
 
-To make a general URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the URL address enclosed in double
-quotes::
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes::
 
 
-        Click on this link: URL:"http://some.where.net".
+        Click on this link: URL:"http://code.google.com/p/doconce".
 
+resulting in Click on this link: "http://code.google.com/p/doconce":http://code.google.com/p/doconce.
 
 Doconce also supports inline comments in the text::
 
@@ -19805,7 +19820,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as::
 
 
-        some URL like "Search Google": "http://google.com"
+        some URL like "Doconce": "http://code.google.com/p/doconce"
 
 which appears as some URL like U{Search Google<http://google.com>}.
 The space after colon is optional.
@@ -19815,25 +19830,25 @@ setup::
 
         see the "Doconce Manual": "manual.do.txt"
 
-Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes::
+which appears as see the U{Doconce Manual<manual.do.txt>}.
+
+Links to files with other extensions must be realized
+I{with the filename as link text}, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes::
 
 
-        URL:"manual.do.txt"
-        "URL": "manual.do.txt"
-        url: "manual.do.txt"
-        "url":"manual.do.txt"
+        URL: "manual.xml"
 
-All these constructions result in the link U{manual.do.txt<manual.do.txt>}.
+resulting in the link U{manual.xml<manual.xml>}.
 
-To make a general URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the URL address enclosed in double
-quotes::
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes::
 
 
-        Click on this link: URL:"http://some.where.net".
+        Click on this link: URL:"http://code.google.com/p/doconce".
 
+resulting in Click on this link: U{http://code.google.com/p/doconce<http://code.google.com/p/doconce>}.
 
 Doconce also supports inline comments in the text::
 
@@ -21485,7 +21500,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as::
 
 
-        some URL like "Search Google": "http://google.com"
+        some URL like "Doconce": "http://code.google.com/p/doconce"
 
 which appears as some URL like Search Google (http://google.com).
 The space after colon is optional.
@@ -21495,25 +21510,25 @@ setup::
 
         see the "Doconce Manual": "manual.do.txt"
 
-Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes::
+which appears as see the Doconce Manual (manual.do.txt).
+
+Links to files with other extensions must be realized
+*with the filename as link text*, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes::
 
 
-        URL:"manual.do.txt"
-        "URL": "manual.do.txt"
-        url: "manual.do.txt"
-        "url":"manual.do.txt"
+        URL: "manual.xml"
 
-All these constructions result in the link manual.do.txt.
+resulting in the link manual.xml.
 
-To make a general URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the URL address enclosed in double
-quotes::
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes::
 
 
-        Click on this link: URL:"http://some.where.net".
+        Click on this link: URL:"http://code.google.com/p/doconce".
 
+resulting in Click on this link: http://code.google.com/p/doconce.
 
 Doconce also supports inline comments in the text::
 
@@ -22780,7 +22795,7 @@ Author: ['Hans Petter Langtangen']
 Using author(s) "Hans Petter Langtangen" from tutorial.do.txt
 Title: Doconce: Document Once, Include Anywhere
 Author: Hans Petter Langtangen
-These Sphinx themes were found: ['slim-agogo', 'default', 'agogo', 'traditional', 'scrolls', 'sphinxdoc', 'classy', 'epub', 'vlinux-theme', 'haiku', 'jal', 'agni', 'basic', 'fenics', 'nature', 'pyramid', 'default']
+These Sphinx themes were found: slim-agogo, default, agogo, traditional, scrolls, sphinxdoc, classy, epub, vlinux-theme, haiku, jal, agni, basic, fenics, nature, pyramid, default
 
 'automake-sphinx.sh' contains the steps to (re)compile the sphinx version.
 You may want to edit this file - look at it.
@@ -23980,7 +23995,7 @@ where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
 Title: Doconce Manual
 Author: 0.6
-These Sphinx themes were found: ['slim-agogo', 'default', 'agogo', 'traditional', 'scrolls', 'sphinxdoc', 'classy', 'epub', 'vlinux-theme', 'haiku', 'jal', 'agni', 'basic', 'fenics', 'nature', 'pyramid', 'default']
+These Sphinx themes were found: slim-agogo, default, agogo, traditional, scrolls, sphinxdoc, classy, epub, vlinux-theme, haiku, jal, agni, basic, fenics, nature, pyramid, default
 
 'automake-sphinx.sh' contains the steps to (re)compile the sphinx version.
 You may want to edit this file - look at it.
@@ -24007,8 +24022,8 @@ preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1081: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1081: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1085: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1085: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
 writing additional files... (0 module code pages) genindex search
 copying images... [ 33%] figs/wavepacket_0001.png
 copying images... [ 66%] figs/wavepacket_0010.png
@@ -24033,10 +24048,11 @@ resolving references...
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
 writing... /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.do.txt
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.xml
 done
 copying images... figs/wavepacket_0001.png figs/wavepacket_0010.png figs/streamtubes.png
 copying TeX support files... done
-build succeeded, 3 warnings.
+build succeeded, 4 warnings.
 
 Build finished; the LaTeX files are in _build/latex.
 Run `make' in that directory to run these through (pdf)latex (use `make latexpdf' here to do that automatically).
@@ -24187,37 +24203,29 @@ d on input line 958.
 [21]
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 22 undefined on
- input line 1058.
+ input line 1059.
 
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 22 undefined on
- input line 1064.
+ input line 1065.
 
 
 LaTeX Warning: Hyper reference `manual:fig-viz' on page 22 undefined on input l
-ine 1117.
+ine 1118.
 
 
 LaTeX Warning: Hyper reference `manual:mathtext' on page 22 undefined on input 
-line 1119.
+line 1120.
 
 
 LaTeX Warning: Hyper reference `manual:newcommands' on page 22 undefined on inp
-ut line 1119.
+ut line 1120.
 
 
 LaTeX Warning: Hyper reference `manual:inline-tagging' on page 22 undefined on 
-input line 1126.
+input line 1127.
 
 [22] [23]
-
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
-n input line 1216.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
-line 1216.
-
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
 n input line 1217.
@@ -24226,25 +24234,33 @@ n input line 1217.
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
 line 1217.
 
+
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
+n input line 1218.
+
+
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
+line 1218.
+
 [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1438.
+(amsmath)                 on input line 1439.
 
-[26] <wavepacket_0001.png, id=210, 642.4pt x 481.8pt>
+[26] <wavepacket_0001.png, id=211, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=211, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=212, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png>
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 27 undefined on
- input line 1550.
+ input line 1551.
 
 [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./wavepacket_0010.png (PNG co
 py)>] [30] [31]
 
 LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 32 undefine
-d on input line 1727.
+d on input line 1728.
 
 [32] [33] [34] [35] [36]
 Chapter 7.
@@ -24274,7 +24290,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (43 pages, 351408 bytes).
+Output written on DoconceManual.pdf (43 pages, 351642 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -24405,29 +24421,29 @@ Chapter 6.
 <use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22] [23]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
-n input line 1216.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
-line 1216.
-
-
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
 n input line 1217.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
 line 1217.
 
+
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
+n input line 1218.
+
+
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
+line 1218.
+
 [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1438.
+(amsmath)                 on input line 1439.
 
-[26] <wavepacket_0001.png, id=372, 642.4pt x 481.8pt>
+[26] <wavepacket_0001.png, id=373, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=373, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=374, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
 avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34] [35] [36]
 Chapter 7.
@@ -24454,7 +24470,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (43 pages, 372286 bytes).
+Output written on DoconceManual.pdf (43 pages, 372522 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -24585,29 +24601,29 @@ Chapter 6.
 <use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22] [23]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
-n input line 1216.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
-line 1216.
-
-
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
 n input line 1217.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
 line 1217.
 
+
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
+n input line 1218.
+
+
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
+line 1218.
+
 [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1438.
+(amsmath)                 on input line 1439.
 
-[26] <wavepacket_0001.png, id=372, 642.4pt x 481.8pt>
+[26] <wavepacket_0001.png, id=373, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=373, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=374, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
 avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34] [35] [36]
 Chapter 7.
@@ -24634,7 +24650,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (43 pages, 372286 bytes).
+Output written on DoconceManual.pdf (43 pages, 372522 bytes).
 Transcript written on DoconceManual.log.
 makeindex -s python.ist 'DoconceManual.idx'
 This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
@@ -24773,29 +24789,29 @@ Chapter 6.
 <use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22] [23]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
-n input line 1216.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
-line 1216.
-
-
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
 n input line 1217.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
 line 1217.
 
+
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
+n input line 1218.
+
+
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
+line 1218.
+
 [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1438.
+(amsmath)                 on input line 1439.
 
-[26] <wavepacket_0001.png, id=372, 642.4pt x 481.8pt>
+[26] <wavepacket_0001.png, id=373, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=373, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=374, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
 avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34] [35] [36]
 Chapter 7.
@@ -24821,7 +24837,7 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (45 pages, 381889 bytes).
+Output written on DoconceManual.pdf (45 pages, 382125 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -24952,29 +24968,29 @@ Chapter 6.
 <use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22] [23]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
-n input line 1216.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
-line 1216.
-
-
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
 n input line 1217.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
 line 1217.
 
+
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
+n input line 1218.
+
+
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 24 undefined on input 
+line 1218.
+
 [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1438.
+(amsmath)                 on input line 1439.
 
-[26] <wavepacket_0001.png, id=377, 642.4pt x 481.8pt>
+[26] <wavepacket_0001.png, id=378, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=378, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=379, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
 avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34] [35] [36]
 Chapter 7.
@@ -25000,7 +25016,7 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (45 pages, 382304 bytes).
+Output written on DoconceManual.pdf (45 pages, 382540 bytes).
 Transcript written on DoconceManual.log.
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
 + cd ../../..
@@ -25216,210 +25232,212 @@ Overfull \hbox (47.00006pt too wide) in paragraph at lines 1126--1129
 Overfull \hbox (17.00006pt too wide) in paragraph at lines 1139--1141
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 [12]
-Overfull \hbox (5.00006pt too wide) in paragraph at lines 1160--1163
-[]\T1/pcr/m/n/10 some URL like "Search Google": "http://google.com" 
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1160--1163
+[]\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omlztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omxztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd)
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1196--1199
+[]\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 13 undef
-ined on input line 1210.
+ined on input line 1215.
 
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 13 undef
-ined on input line 1216.
+ined on input line 1221.
 
 [13]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1230--1230
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1235--1235
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1231--1233
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1236--1238
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1256--1258
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1261--1263
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
 
 LaTeX Warning: Hyper reference `fig-viz' on page 14 undefined on input line 127
-4.
+9.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 14 u
-ndefined on input line 1276.
+ndefined on input line 1281.
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 14 undefined on inp
-ut line 1276.
+ut line 1281.
 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1272--1281
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1277--1286
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-LaTeX Warning: Hyper reference `id5' on page 14 undefined on input line 1283.
+LaTeX Warning: Hyper reference `id5' on page 14 undefined on input line 1288.
 
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1282--1284
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1287--1289
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1307--1310
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1312--1315
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 [14]
-Overfull \hbox (30.86786pt too wide) in paragraph at lines 1341--1344
+Overfull \hbox (30.86786pt too wide) in paragraph at lines 1346--1349
 []\T1/ptm/m/n/10 if \T1/pcr/m/n/10 Larsen:86 \T1/ptm/m/n/10 has al-ready ap-pea
 red in the 3rd ci-ta-tion in the doc-u-ment and \T1/pcr/m/n/10 Nielsen:99
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1357--1357
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1362--1362
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1384--1387
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1389--1392
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [15]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1507--1510
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1512--1515
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=conso
 le 
 [16]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1580--1582
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1585--1587
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1 
 [17]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1660--1660
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1665--1665
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
   
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1661--1661
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1666--1666
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g 
  
 [18]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 1705--1708
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 1710--1713
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1742--1742
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1747--1747
 []\T1/pcr/m/n/10 \Ddt{\vec u} &=& {\mbox{\boldmath $Q$}} \thinspace . \label{my
 :eq2}  
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 1758--1770
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 1763--1775
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
 [19] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [20]
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 21 undef
-ined on input line 1800.
+ined on input line 1805.
 
 [21]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1848--1848
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1853--1853
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [22]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1927--1929
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1932--1934
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 [23]
 
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 24 un
-defined on input line 2000.
+defined on input line 2005.
 
 
-Overfull \hbox (77.5059pt too wide) in paragraph at lines 2000--2006
+Overfull \hbox (77.5059pt too wide) in paragraph at lines 2005--2011
 []\T1/ptm/m/it/10 Verbatim Code Blocks In-side Lists Look Ugly. \T1/ptm/m/n/10 
 Read the the sec-tion [][][][][][]
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2035--2038
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2040--2043
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
 [24]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2094--2097
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2099--2102
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2135--2136
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2140--2141
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2137--2137
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2142--2142
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2138--2138
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2143--2143
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 [25]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2141--2141
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2146--2146
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2142--2142
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2147--2147
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2143--2143
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2148--2148
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 2144--2144
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 2149--2149
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 2149--2149
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 2154--2154
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2150--2150
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2155--2155
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2151--2151
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2156--2156
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2154--2154
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2159--2159
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 2157--2157
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 2162--2162
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 2159--2159
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 2164--2164
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2162--2162
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2167--2167
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2169--2169
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2174--2174
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2171--2171
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2176--2176
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2173--2173
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2178--2178
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2176--2176
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2181--2181
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2182--2182
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2187--2187
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 [26]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2223--2223
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2228--2228
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2225--2225
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2230--2230
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2226--2226
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2231--2231
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2227--2227
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2232--2232
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2228--2228
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2233--2233
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 [27] [28] (./manual.rst.aux)
@@ -25431,7 +25449,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (28 pages, 119676 bytes).
+Output written on manual.rst.dvi (28 pages, 120324 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -25624,181 +25642,184 @@ Overfull \hbox (47.00006pt too wide) in paragraph at lines 1126--1129
 Overfull \hbox (17.00006pt too wide) in paragraph at lines 1139--1141
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 [12]
-Overfull \hbox (5.00006pt too wide) in paragraph at lines 1160--1163
-[]\T1/pcr/m/n/10 some URL like "Search Google": "http://google.com" 
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1160--1163
+[]\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omlztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omxztmcm.fd)
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd) [13]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1230--1230
+(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd)
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1196--1199
+[]\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
+[13]
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1235--1235
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1231--1233
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1236--1238
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1256--1258
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1261--1263
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1272--1281
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1277--1286
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1282--1284
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1287--1289
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1307--1310
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1312--1315
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 [14]
-Overfull \hbox (30.86786pt too wide) in paragraph at lines 1341--1344
+Overfull \hbox (30.86786pt too wide) in paragraph at lines 1346--1349
 []\T1/ptm/m/n/10 if \T1/pcr/m/n/10 Larsen:86 \T1/ptm/m/n/10 has al-ready ap-pea
 red in the 3rd ci-ta-tion in the doc-u-ment and \T1/pcr/m/n/10 Nielsen:99
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1357--1357
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1362--1362
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1384--1387
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1389--1392
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [15]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1507--1510
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1512--1515
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=conso
 le 
 [16]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1580--1582
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1585--1587
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1 
 [17]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1660--1660
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1665--1665
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
   
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1661--1661
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1666--1666
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g 
  
 [18]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 1705--1708
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 1710--1713
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1742--1742
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1747--1747
 []\T1/pcr/m/n/10 \Ddt{\vec u} &=& {\mbox{\boldmath $Q$}} \thinspace . \label{my
 :eq2}  
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 1758--1770
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 1763--1775
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
 [19] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [20] [21]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1848--1848
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1853--1853
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [22]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1927--1929
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1932--1934
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 [23]
-Overfull \hbox (77.5059pt too wide) in paragraph at lines 2000--2006
+Overfull \hbox (77.5059pt too wide) in paragraph at lines 2005--2011
 []\T1/ptm/m/it/10 Verbatim Code Blocks In-side Lists Look Ugly. \T1/ptm/m/n/10 
 Read the the sec-tion [][][][][][]
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2035--2038
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2040--2043
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
 [24]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2094--2097
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2099--2102
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2135--2136
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2140--2141
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2137--2137
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2142--2142
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2138--2138
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2143--2143
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 [25]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2141--2141
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2146--2146
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2142--2142
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2147--2147
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2143--2143
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2148--2148
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 2144--2144
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 2149--2149
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 2149--2149
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 2154--2154
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2150--2150
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2155--2155
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2151--2151
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2156--2156
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2154--2154
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2159--2159
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 2157--2157
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 2162--2162
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 2159--2159
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 2164--2164
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2162--2162
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2167--2167
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2169--2169
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2174--2174
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2171--2171
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2176--2176
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2173--2173
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2178--2178
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2176--2176
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2181--2181
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2182--2182
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2187--2187
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 [26]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2223--2223
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2228--2228
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2225--2225
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2230--2230
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2226--2226
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2231--2231
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2227--2227
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2232--2232
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2228--2228
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2233--2233
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 [27] [28] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (28 pages, 123320 bytes).
+Output written on manual.rst.dvi (28 pages, 123968 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt remove_inline_comments
@@ -25954,76 +25975,76 @@ T1/cmtt/m/n/10 verbatim text
 [14]
 
 LaTeX Warning: Reference `doconce2formats' on page 15 undefined on input line 9
-97.
+99.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 15 undefined on input line 1
-003.
+005.
 
 [15]
 
-LaTeX Warning: Reference `fig:viz' on page 16 undefined on input line 1053.
+LaTeX Warning: Reference `fig:viz' on page 16 undefined on input line 1055.
 
 
-LaTeX Warning: Reference `mathtext' on page 16 undefined on input line 1055.
+LaTeX Warning: Reference `mathtext' on page 16 undefined on input line 1057.
 
 
-LaTeX Warning: Reference `newcommands' on page 16 undefined on input line 1055.
+LaTeX Warning: Reference `newcommands' on page 16 undefined on input line 1057.
 
 
 
-LaTeX Warning: Reference `my:eq1' on page 16 undefined on input line 1057.
+LaTeX Warning: Reference `my:eq1' on page 16 undefined on input line 1059.
 
 
-LaTeX Warning: Reference `my:eq2' on page 16 undefined on input line 1057.
+LaTeX Warning: Reference `my:eq2' on page 16 undefined on input line 1059.
 
 
 LaTeX Warning: Reference `inline:tagging' on page 16 undefined on input line 10
-62.
+64.
 
 [16] [17]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-152.
+154.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1152.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1154.
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-153.
+155.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1153.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1155.
 
 [18] (./manual.out.pyg) (./manual.out.pyg) [19] [20]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1388.
+(amsmath)                 on input line 1390.
 
 
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1425--1427
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1427--1429
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [21] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps>
 
 LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-515.
+517.
 
 [22] [23] [24]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1604--1611
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1606--1613
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1604--1611
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1606--1613
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
 [25]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 26 undefined on input li
-ne 1695.
+ne 1697.
 
 [26] [27] [28] [29]
 No file manual.bbl.
@@ -26037,7 +26058,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (30 pages, 126008 bytes).
+Output written on manual.dvi (30 pages, 126660 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -26158,34 +26179,34 @@ T1/cmtt/m/n/10 verbatim text
 [14] [15] [16] [17]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-152.
+154.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1152.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1154.
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-153.
+155.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1153.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1155.
 
 [18] (./manual.out.pyg) (./manual.out.pyg) [19] [20]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1388.
+(amsmath)                 on input line 1390.
 
 
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1425--1427
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1427--1429
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [21] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [22] [23] [24]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1604--1611
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1606--1613
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1604--1611
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1606--1613
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -26198,7 +26219,7 @@ LaTeX Warning: There were undefined references.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (30 pages, 132456 bytes).
+Output written on manual.dvi (30 pages, 133104 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -26331,34 +26352,34 @@ T1/cmtt/m/n/10 verbatim text
 [14] [15] [16] [17]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-152.
+154.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1152.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1154.
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-153.
+155.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1153.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1155.
 
 [18] (./manual.out.pyg) (./manual.out.pyg) [19] [20]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1388.
+(amsmath)                 on input line 1390.
 
 
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1425--1427
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1427--1429
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [21] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [22] [23] [24]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1604--1611
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1606--1613
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1604--1611
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1606--1613
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -26372,7 +26393,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (31 pages, 139236 bytes).
+Output written on manual.dvi (31 pages, 139888 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -26494,25 +26515,25 @@ T1/cmtt/m/n/10 verbatim text
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1388.
+(amsmath)                 on input line 1390.
 
 
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1425--1427
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1427--1429
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [21] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [22] [23] [24]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1604--1611
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1606--1613
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1604--1611
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1606--1613
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
 [25] [26] [27] [28] [29] (./manual.bbl) (./manual.ind [30] [31]) (./manual.aux)
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (31 pages, 140236 bytes).
+Output written on manual.dvi (31 pages, 140884 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt

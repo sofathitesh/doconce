@@ -949,7 +949,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
-some URL like "Search Google": "http://google.com"
+some URL like "Doconce": "http://code.google.com/p/doconce"
 \end{Verbatim}
 \noindent
 which appears as some URL like \href{http://google.com}{Search Google}.
@@ -961,27 +961,29 @@ fontfamily=tt,xleftmargin=7mm]
 see the "Doconce Manual": "manual.do.txt"
 \end{Verbatim}
 \noindent
-Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
-URL:"manual.do.txt"
-"URL": "manual.do.txt"
-url: "manual.do.txt"
-"url":"manual.do.txt"
-\end{Verbatim}
-\noindent
-All these constructions result in the link \href{manual.do.txt}{\nolinkurl{manual.do.txt}}.
+which appears as see the \href{manual.do.txt}{Doconce Manual}.
 
-To make a general URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the URL address enclosed in double
-quotes:
+Links to files with other extensions must be realized
+\emph{with the filename as link text}, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes:
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
-Click on this link: URL:"http://some.where.net".
+URL: "manual.xml"
 \end{Verbatim}
 \noindent
+% These work as well: \href{manual.xml}{\nolinkurl{manual.xml}} \href{manual.xml}{\nolinkurl{manual.xml}}
+% \href{manual.xml}{\nolinkurl{manual.xml}}
+resulting in the link \href{manual.xml}{\nolinkurl{manual.xml}}.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
+Click on this link: URL:"http://code.google.com/p/doconce".
+\end{Verbatim}
+\noindent
+resulting in Click on this link: \href{http://code.google.com/p/doconce}{\nolinkurl{http://code.google.com/p/doconce}}.
 
 Doconce also supports inline comments in the text:
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,

@@ -333,17 +333,14 @@ emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
-very simple formatting usually avoids such problems).</paragraph><paragraph>Web addresses with links are typeset as:</paragraph><literal_block xml:space="preserve">some URL like &quot;Search Google&quot;: &quot;http://google.com&quot;</literal_block><paragraph>which appears as some URL like <reference name="Search Google" refuri="http://google.com">Search Google</reference><target ids="search-google" names="search\ google" refuri="http://google.com"/>.
+very simple formatting usually avoids such problems).</paragraph><paragraph>Web addresses with links are typeset as:</paragraph><literal_block xml:space="preserve">some URL like &quot;Doconce&quot;: &quot;http://code.google.com/p/doconce&quot;</literal_block><paragraph>which appears as some URL like <reference name="Search Google" refuri="http://google.com">Search Google</reference><target ids="search-google" names="search\ google" refuri="http://google.com"/>.
 The space after colon is optional.
 Links to files ending in <literal>.txt</literal>, <literal>.html</literal>, or <literal>.pdf</literal> follows the same
-setup:</paragraph><literal_block xml:space="preserve">see the &quot;Doconce Manual&quot;: &quot;manual.do.txt&quot;</literal_block><paragraph>Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes:</paragraph><literal_block xml:space="preserve">URL:&quot;manual.do.txt&quot;
-&quot;URL&quot;: &quot;manual.do.txt&quot;
-url: &quot;manual.do.txt&quot;
-&quot;url&quot;:&quot;manual.do.txt&quot;</literal_block><paragraph>All these constructions result in the link <reference name="manual.do.txt" refuri="manual.do.txt">manual.do.txt</reference><target ids="manual-do-txt" names="manual.do.txt" refuri="manual.do.txt"/>.</paragraph><paragraph>To make a general URL itself appear as link name, put an &quot;URL&quot;, URL, or
-the lower case version, before the URL address enclosed in double
-quotes:</paragraph><literal_block xml:space="preserve">Click on this link: URL:&quot;http://some.where.net&quot;.</literal_block><paragraph>Doconce also supports inline comments in the text:</paragraph><literal_block xml:space="preserve">[name: comment]</literal_block><paragraph>where <literal>name</literal> is the name of the author of the command, and <literal>comment</literal> is a
+setup:</paragraph><literal_block xml:space="preserve">see the &quot;Doconce Manual&quot;: &quot;manual.do.txt&quot;</literal_block><paragraph>which appears as see the <reference name="Doconce Manual" refuri="manual.do.txt">Doconce Manual</reference><target ids="doconce-manual" names="doconce\ manual" refuri="manual.do.txt"/>.</paragraph><paragraph>Links to files with other extensions must be realized
+<emphasis>with the filename as link text</emphasis>, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes:</paragraph><literal_block xml:space="preserve">URL: &quot;manual.xml&quot;</literal_block><comment xml:space="preserve">These work as well: `&lt;manual.xml&gt;`_ `&lt;manual.xml&gt;`_</comment><comment xml:space="preserve">`&lt;manual.xml&gt;`_</comment><paragraph>resulting in the link <reference name="manual.xml" refuri="manual.xml">manual.xml</reference><target ids="manual-xml" names="manual.xml" refuri="manual.xml"/>.</paragraph><paragraph>To have the URL address itself as link text, put an &quot;URL&quot; or URL
+before the address enclosed in double quotes:</paragraph><literal_block xml:space="preserve">Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.</literal_block><paragraph>resulting in Click on this link: <reference name="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce">http://code.google.com/p/doconce</reference><target ids="http-code-google-com-p-doconce" names="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce"/>.</paragraph><paragraph>Doconce also supports inline comments in the text:</paragraph><literal_block xml:space="preserve">[name: comment]</literal_block><paragraph>where <literal>name</literal> is the name of the author of the command, and <literal>comment</literal> is a
 plain text text. (<strong>hpl</strong>: Note that there must be a space after the colon,
 otherwise the comment is not recognized.)
 The name and comment are visible in the output unless <literal>doconce format</literal>

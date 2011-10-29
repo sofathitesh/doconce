@@ -474,7 +474,7 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 !bc
-some URL like "Search Google": "http://google.com"
+some URL like "Doconce": "http://code.google.com/p/doconce"
 !ec
 which appears as some URL like "Search Google": "http://google.com".
 The space after colon is optional.
@@ -483,23 +483,25 @@ setup:
 !bc
 see the "Doconce Manual": "manual.do.txt"
 !ec
-Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes:
-!bc
-URL:"manual.do.txt"
-"URL": "manual.do.txt"
-url: "manual.do.txt"
-"url":"manual.do.txt"
-!ec
-All these constructions result in the link URL: "manual.do.txt".
+which appears as see the "Doconce Manual": "manual.do.txt".
 
-To make a general URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the URL address enclosed in double
-quotes:
+Links to files with other extensions must be realized
+*with the filename as link text*, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes:
 !bc
-Click on this link: URL:"http://some.where.net".
+URL: "manual.xml"
 !ec
+# These work as well: "URL": "manual.xml" url: "manual.xml"
+# "url":"manual.xml"
+resulting in the link URL: "manual.xml".
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+!bc
+Click on this link: URL:"http://code.google.com/p/doconce".
+!ec
+resulting in Click on this link: URL: "http://code.google.com/p/doconce".
 
 Doconce also supports inline comments in the text:
 !bc
