@@ -374,14 +374,14 @@ FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. l
 ===== Movies =====
 
 Here is an example on the `MOVIE:` keyword for embedding movies. This
-feature works well for the `LaTeX`, `HTML`, `rst`, and `sphinx` formats.
+feature works well for the `latex`, `html`, `rst`, and `sphinx` formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie.
 !bc
 MOVIE: [filename, height=xxx width=yyy] possible caption
 !ec
 
-# LaTeX/PDF format can make use of the movie15 package for displaying movies,
+# latex/PDF format can make use of the movie15 package for displaying movies,
 # or just plain \href{run: ...}{...}
 
 MOVIE: [figs/mjolnir.mpeg, width=600 height=470]
@@ -896,7 +896,7 @@ the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
 The preprocess and mako programs always have the variable `FORMAT`
-defined as the desired output format of Doconce (`HTML`, `LaTeX`,
+defined as the desired output format of Doconce (`html`, `latex`,
 `plain`, `rst`, `sphinx`, `epydoc`, `st`).  It is then easy to test on
 the value of `FORMAT` and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
@@ -908,8 +908,8 @@ create the example).
 # If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
 # PostScript files are used.
 
-# #if FORMAT == "LaTeX"
-# Use LaTeX with subfigures (a) and (b)
+# #if FORMAT == "latex"
+# Use latex with subfigures (a) and (b)
 \begin{figure}
 label{fig:wavepackets}
   \begin{center}
@@ -1010,7 +1010,7 @@ output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
 if a sophisticated table is desired in LaTeX output, test on the
-`FORMAT` variable (`#if FORMAT == "LaTeX"`) in the Doconce code and
+`FORMAT` variable (`#if FORMAT == "latex"`) in the Doconce code and
 insert the table in LaTeX format. The `else` or `elif` branches may
 have the table in other formats or a simplified version in the Doconce
 table format. Similarly, if certain adjustments are needed, like
@@ -1031,7 +1031,7 @@ recognizable comment in the Doconce source, say
 # table of contents
 !ec
 we can use this comment to edit the LaTeX file. First, we run
-Doconce `doconce format LaTeX mydoc` to produce `mydoc.p.tex`. Then
+Doconce `doconce format latex mydoc` to produce `mydoc.p.tex`. Then
 we use the `doconce replace` and `doconce subst` commands to
 replace the comment by the comment plus the table of contents command,
 or just the latter:
@@ -1234,7 +1234,7 @@ LaTeX, and work further on the document in this format.
 
 This is the HTML-specific part of the
 source code of the HTML translator:
-# #if FORMAT == "HTML"
+# #if FORMAT == "html"
 (note that in HTML one of the the less-than and greater-than signs
 in a link come up wrong because of the simple regex that is used
 to substitute these pair of signs by special HTML expressions)
@@ -1243,9 +1243,9 @@ to substitute these pair of signs by special HTML expressions)
 # #if FORMAT != "epytext"
 
 !bc
-FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
-BLANKLINE['HTML'] = '<p>\n'           # blank input line => new paragraph
-INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+FILENAME_EXTENSION['html'] = '.html'  # output file extension
+BLANKLINE['html'] = '<p>\n'           # blank input line => new paragraph
+INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
     # keep math as is:
     'math': None,  # indicates no substitution
     'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
@@ -1261,8 +1261,8 @@ INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
     'author':        r'<center><h3>\g<subst></h3></center>',
     }
 
-# how to replace code and LaTeX blocks by HTML (<pre>) environment:
-def HTML_code(filestr):
+# how to replace code and latex blocks by html (<pre>) environment:
+def html_code(filestr):
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
     filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre>\n', filestr)
     filestr = re.sub(r'!ec\n',
@@ -1271,10 +1271,10 @@ def HTML_code(filestr):
     filestr = c.sub(r'<pre>\n', filestr)
     filestr = re.sub(r'!et\n', r'</pre>\n', filestr)
     return filestr
-CODE['HTML'] = HTML_code
+CODE['html'] = html_code
 
-# how to typeset lists and their items in HTML:
-LIST['HTML'] = {
+# how to typeset lists and their items in html:
+LIST['html'] = {
     'itemize':
     {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
     'enumerate':
@@ -1285,7 +1285,7 @@ LIST['HTML'] = {
 
 # how to type set description lists for function arguments, return
 # values, and module/class variables:
-ARGLIST['HTML'] = {
+ARGLIST['html'] = {
     'parameter': '<b>argument</b>',
     'keyword': '<b>keyword argument</b>',
     'return': '<b>return value(s)</b>',
@@ -1295,12 +1295,12 @@ ARGLIST['HTML'] = {
     }
 
 # document start:
-INTRO['HTML'] = """
+INTRO['html'] = """
 <html>
 <body bgcolor="white">
 """
 # document ending:
-OUTRO['HTML'] = """
+OUTRO['html'] = """
 </body>
 </html>
 """
@@ -1315,7 +1315,7 @@ Eight here we only displacy a smaller snippet that Epytext can
 treat properly:
 
 !bc
-INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+INLINE_TAGS_SUBST['html'] = {         # from inline tags to html tags
     # keep math as is:
     'math': None,  # indicates no substitution
     'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',

@@ -275,20 +275,20 @@ file first, and options to \texttt{mako} or \texttt{preprocess} can be added aft
 filename. For example:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~format~LaTeX~mydoc~-Dextra\_sections~-DVAR1=5~~~~~\#~preprocess\\
-Terminal>~doconce~format~LaTeX~yourdoc~extra\_sections=True~VAR1=5~~\#~mako
+Terminal>~doconce~format~latex~mydoc~-Dextra\_sections~-DVAR1=5~~~~~\#~preprocess\\
+Terminal>~doconce~format~latex~yourdoc~extra\_sections=True~VAR1=5~~\#~mako
 }
 \end{quote}
 
 The variable \texttt{FORMAT} is always defined as the current format when
 running \texttt{preprocess}. That is, in the last example, \texttt{FORMAT} is
-defined as \texttt{LaTeX}. Inside the Doconce document one can then perform
-format specific actions through tests like \texttt{\#if FORMAT == "LaTeX"}.
+defined as \texttt{latex}. Inside the Doconce document one can then perform
+format specific actions through tests like \texttt{\#if FORMAT == "latex"}.
 
 Inline comments in the text are removed from the output by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~format~LaTeX~mydoc~remove\_inline\_comments
+Terminal>~doconce~format~latex~mydoc~remove\_inline\_comments
 }
 \end{quote}
 
@@ -317,7 +317,7 @@ Making an HTML version of a Doconce file \texttt{mydoc.do.txt}
 is performed by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~format~HTML~mydoc
+Terminal>~doconce~format~html~mydoc
 }
 \end{quote}
 
@@ -344,7 +344,7 @@ Making a LaTeX file \texttt{mydoc.tex} from \texttt{mydoc.do.txt} is done in two
 \texttt{ptex2tex}:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~format~LaTeX~mydoc
+Terminal>~doconce~format~latex~mydoc
 }
 \end{quote}
 
@@ -484,8 +484,8 @@ Terminal>~doconce~format~rst~mydoc.do.txt
 We may now produce various other formats:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~rst2html.py~~mydoc.rst~>~mydoc.html~\#~HTML\\
-Terminal>~rst2latex.py~mydoc.rst~>~mydoc.tex~~\#~LaTeX\\
+Terminal>~rst2html.py~~mydoc.rst~>~mydoc.html~\#~html\\
+Terminal>~rst2latex.py~mydoc.rst~>~mydoc.tex~~\#~latex\\
 Terminal>~rst2xml.py~~~mydoc.rst~>~mydoc.xml~~\#~XML\\
 Terminal>~rst2odt.py~~~mydoc.rst~>~mydoc.odt~~\#~OpenOffice
 }
@@ -1037,7 +1037,7 @@ included in the formatted caption).
 }
 
 Here is an example on the \texttt{MOVIE:} keyword for embedding movies. This
-feature works well for the \texttt{LaTeX}, \texttt{HTML}, \texttt{rst}, and \texttt{sphinx} formats.
+feature works well for the \texttt{latex}, \texttt{html}, \texttt{rst}, and \texttt{sphinx} formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie:
 %
@@ -1046,7 +1046,7 @@ MOVIE:~{[}filename,~height=xxx~width=yyy{]}~possible~caption
 }
 \end{quote}
 
-% LaTeX/PDF format can make use of the movie15 package for displaying movies,
+% latex/PDF format can make use of the movie15 package for displaying movies,
 
 % or just plain \h`run: ...`_{...}
 
@@ -1090,9 +1090,9 @@ the embedded HTML code for the movie on the YouTube page).
 %___________________________________________________________________________
 
 \subsection*{\phantomsection%
-  Copying Computer Code%
-  \addcontentsline{toc}{subsection}{Copying Computer Code}%
-  \label{copying-computer-code}%
+  Copying Computer Code from Source Files%
+  \addcontentsline{toc}{subsection}{Copying Computer Code from Source Files}%
+  \label{copying-computer-code-from-source-files}%
 }
 
 Another type of special lines starts with \texttt{@@@CODE} and enables copying
@@ -1299,14 +1299,16 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to:
 }
 \end{quote}
 
-Everything related to the index simply becomes invisible in
-plain text, Epytext, StructuredText, HTML, and wiki formats.
-Note: \texttt{idx} commands should be inserted outside paragraphs, not in between
-the text as this may cause some strange behaviour of the formatting.
-Index items are naturally placed right after section headings, before the
-text begins. Index items related to the heading of a paragraph, however,
-should be placed above the paragraph heading and not in between the
-heading and the text.
+Everything related to the index simply becomes invisible in plain
+text, Epytext, StructuredText, HTML, and wiki formats.  Note: \texttt{idx}
+commands should be inserted outside paragraphs, not in between the
+text as this may cause some strange behaviour of reStructuredText and
+Sphinx formatting.  As a recommended rule, index items are naturally
+placed right after section headings, before the text begins, while
+index items related to a paragraph should be placed above the
+paragraph one a separate line (and not in between the text or between
+the paragraph heading and the text body, although this works fine if
+LaTeX is the output format).
 
 Literature citations also follow a LaTeX-inspired style:
 %
@@ -1359,6 +1361,8 @@ copied into the document at the place where the \texttt{BIBFILE:} keyword
 appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the \texttt{BIBFILE:} line
 in the document.
+
+At present, only one file with bibliographic references can be used.
 
 % see ketch/tex2rst for nice bibtex to rst converter which could
 
@@ -1759,7 +1763,7 @@ the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
 The preprocess and mako programs always have the variable \texttt{FORMAT}
-defined as the desired output format of Doconce (\texttt{HTML}, \texttt{LaTeX},
+defined as the desired output format of Doconce (\texttt{html}, \texttt{latex},
 \texttt{plain}, \texttt{rst}, \texttt{sphinx}, \texttt{epydoc}, \texttt{st}).  It is then easy to test on
 the value of \texttt{FORMAT} and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
@@ -1792,20 +1796,135 @@ the writing of parts of the document.
 %___________________________________________________________________________
 
 \subsection*{\phantomsection%
+  Splitting Documents into Smaller Pieces%
+  \addcontentsline{toc}{subsection}{Splitting Documents into Smaller Pieces}%
+  \label{splitting-documents-into-smaller-pieces}%
+}
+
+Long documents are conveniently split into smaller Doconce files.
+However, there must be a master document including all the pieces,
+otherwise references to sections and the index will not work properly.
+The master document is preferably a file just containing a set of
+preprocessor include statements of the form \texttt{\#include "file.do.txt"}.
+The preprocessor will put together all the pieces so that Doconce
+sees a long file with the complete text.
+
+For reStructuredText and Sphinx documents it is a point to have
+separate \texttt{.rst} files and an index file listing the various \texttt{.rst}
+that build up the document. To generate the various \texttt{.rst} files one
+should not run Doconce on the individual \texttt{.do.txt} files, because then
+references and index entries are not treated correctly. Instead,
+run Doconce on the master file and invoke the script \texttt{doconce split\_rst}
+to split the long, complete \texttt{.rst} into pieces. This process requires
+that each \texttt{\#include "file.do.txt} line in the master file is preceded by a
+``marker line'' having the syntax \texttt{\#>{}>{}>{}>{}>{}> part: file >{}>{}>{}>{}>{}>}, where
+\texttt{file} is the filename without extension. The number of greater than
+signs is not important, but it has to be a comment line and it has
+to contain the keyword \texttt{part:}.
+
+Here is an example. Say the name of the master file is \texttt{master.do.txt}.
+The following Bash script does the job:
+We run:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+doconce~format~sphinx~master\\
+\#~Split~master.rst~into~parts\\
+\#~as~defined~by~\#>{}>{}>{}>{}>~part:~name~>{}>{}>{}>{}>~lines\\
+files=`doconce~split\_rst~master.rst`\\
+~\\
+dir=sphinxm-rootdir\\
+~\\
+if~{[}~!~-d~\$dir~{]};~then\\
+~~doconce~sphinx\_dir~dirname=\$dir~author='me~and~you'~\textbackslash{}\\
+~~~~~~~~~~version=1.0~theme=default~\$files\\
+~~sh~automake-sphinx.sh\\
+else\\
+~~for~file~in~\$files;~do\\
+~~~~cp~\$file.rst~\$dir\\
+~~done\\
+~~cd~\$dir\\
+~~make~html\\
+~~cd~..\\
+fi
+}
+\end{quote}
+
+The autogenerated \texttt{automake-sphinx.sh} file (by \texttt{doconce sphinx\_dir})
+is compatible with a master \texttt{.rst} file split into pieces as long as
+the complete set of pieces in correct order is given to \texttt{doconce sphinx\_dir}.
+This set is the output of \texttt{doconce split\_rst}, which we catch in a
+variable \texttt{files} above.
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
   Missing Features%
   \addcontentsline{toc}{subsection}{Missing Features}%
   \label{missing-features}%
 }
+
+Doconce does not aim to support sophisticated typesetting, simply because
+sophisticated typesetting usually depend quite strongly on the particular
+output format chosen. When a particular feature needed is not supported
+by Doconce, it is recommended to hardcode that feature for a particular
+format and use the if-else construction of the preprocessor. For example,
+if a sophisticated table is desired in LaTeX output, test on the
+\texttt{FORMAT} variable (\texttt{\#if FORMAT == "latex"}) in the Doconce code and
+insert the table in LaTeX format. The \texttt{else} or \texttt{elif} branches may
+have the table in other formats or a simplified version in the Doconce
+table format. Similarly, if certain adjustments are needed, like
+pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
+that this is really LaTeX dependent - pagebreaks are not
+relevant HTML formats).
+
+Instead of inserting special code in the Doconce document, one can
+alternatively script editing of the output from Doconce. That is,
+we develop a Python or Bash script that runs the translation of
+a Doconce document to a ready docoment in another format. Inside this
+script, we may edit and fine-tune the output from Doconce.
+
+As an example, say you want a table of contents in the LaTeX output
+(Doconce does not support table of contents). By inserting a
+recognizable comment in the Doconce source, say:
 %
-\begin{quote}
-%
-\begin{itemize}
-
-\item Footnotes
-
-\end{itemize}
-
+\begin{quote}{\ttfamily \raggedright \noindent
+\#~table~of~contents
+}
 \end{quote}
+
+we can use this comment to edit the LaTeX file. First, we run
+Doconce \texttt{doconce format latex mydoc} to produce \texttt{mydoc.p.tex}. Then
+we use the \texttt{doconce replace} and \texttt{doconce subst} commands to
+replace the comment by the comment plus the table of contents command,
+or just the latter:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~replace~'\%~table~of~contents'\\
+~~~~~~~~~~'\textbackslash{}tableofcontents'~mydoc.p.tex
+}
+\end{quote}
+
+The \texttt{doconce replace from\_text to\_text filename} command performs a
+character-by-character replacement (using the \texttt{replace} method in
+string objects in Python). If we want to preserve the comment and add
+a new line with \texttt{\textbackslash{}tableofcontents}, we should use \texttt{doconce subst},
+which applies regular expressions for substitutions and thereby
+understands the newline character:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~subst~'\%~table~of~contents'~\textbackslash{}\\
+~~~~~~~~~~'\%~table~of~contents\textbackslash{}n\textbackslash{}\textbackslash{}tableofcontents'~mydoc.p.tex
+}
+\end{quote}
+
+Note the double backshlash in front of the \texttt{t} character: without it we
+would get a tab and no backslash.
+The \texttt{doconce subst} is a powerful way to automatically edit the output
+from Doconce and fine-tune a LaTeX document. Use of comment lines to
+identify portions of the file to be edited is a smart idea.
+Alternatively, the relevant LaTeX constructions can be inserted directly
+in the Doconce file using if-else preprocessor directives.
 
 
 %___________________________________________________________________________
@@ -2004,9 +2123,9 @@ This is the HTML-specific part of the
 source code of the HTML translator:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-FILENAME\_EXTENSION{[}'HTML'{]}~=~'.html'~~\#~output~file~extension\\
-BLANKLINE{[}'HTML'{]}~=~'<p>\textbackslash{}n'~~~~~~~~~~~\#~blank~input~line~=>~new~paragraph\\
-INLINE\_TAGS\_SUBST{[}'HTML'{]}~=~\{~~~~~~~~~\#~from~inline~tags~to~HTML~tags\\
+FILENAME\_EXTENSION{[}'html'{]}~=~'.html'~~\#~output~file~extension\\
+BLANKLINE{[}'html'{]}~=~'<p>\textbackslash{}n'~~~~~~~~~~~\#~blank~input~line~=>~new~paragraph\\
+INLINE\_TAGS\_SUBST{[}'html'{]}~=~\{~~~~~~~~~\#~from~inline~tags~to~HTML~tags\\
 ~~~~\#~keep~math~as~is:\\
 ~~~~'math':~None,~~\#~indicates~no~substitution\\
 ~~~~'emphasize':~~~~~r'\textbackslash{}g<begin><em>\textbackslash{}g<subst></em>\textbackslash{}g<end>',\\
@@ -2022,8 +2141,8 @@ INLINE\_TAGS\_SUBST{[}'HTML'{]}~=~\{~~~~~~~~~\#~from~inline~tags~to~HTML~tags\\
 ~~~~'author':~~~~~~~~r'<center><h3>\textbackslash{}g<subst></h3></center>',\\
 ~~~~\}\\
 ~\\
-\#~how~to~replace~code~and~LaTeX~blocks~by~HTML~(<pre>)~environment:\\
-def~HTML\_code(filestr):\\
+\#~how~to~replace~code~and~latex~blocks~by~html~(<pre>)~environment:\\
+def~html\_code(filestr):\\
 ~~~~c~=~re.compile(r'\textasciicircum{}!bc(.*?)\textbackslash{}n',~re.MULTILINE)\\
 ~~~~filestr~=~c.sub(r'<!-{}-~BEGIN~VERBATIM~BLOCK~\textbackslash{}g<1>-{}->\textbackslash{}n<pre>\textbackslash{}n',~filestr)\\
 ~~~~filestr~=~re.sub(r'!ec\textbackslash{}n',\\
@@ -2032,10 +2151,10 @@ def~HTML\_code(filestr):\\
 ~~~~filestr~=~c.sub(r'<pre>\textbackslash{}n',~filestr)\\
 ~~~~filestr~=~re.sub(r'!et\textbackslash{}n',~r'</pre>\textbackslash{}n',~filestr)\\
 ~~~~return~filestr\\
-CODE{[}'HTML'{]}~=~HTML\_code\\
+CODE{[}'html'{]}~=~html\_code\\
 ~\\
-\#~how~to~typeset~lists~and~their~items~in~HTML:\\
-LIST{[}'HTML'{]}~=~\{\\
+\#~how~to~typeset~lists~and~their~items~in~html:\\
+LIST{[}'html'{]}~=~\{\\
 ~~~~'itemize':\\
 ~~~~\{'begin':~'\textbackslash{}n<ul>\textbackslash{}n',~'item':~'<li>',~'end':~'</ul>\textbackslash{}n\textbackslash{}n'\},\\
 ~~~~'enumerate':\\
@@ -2046,7 +2165,7 @@ LIST{[}'HTML'{]}~=~\{\\
 ~\\
 \#~how~to~type~set~description~lists~for~function~arguments,~return\\
 \#~values,~and~module/class~variables:\\
-ARGLIST{[}'HTML'{]}~=~\{\\
+ARGLIST{[}'html'{]}~=~\{\\
 ~~~~'parameter':~'<b>argument</b>',\\
 ~~~~'keyword':~'<b>keyword~argument</b>',\\
 ~~~~'return':~'<b>return~value(s)</b>',\\
@@ -2056,12 +2175,12 @@ ARGLIST{[}'HTML'{]}~=~\{\\
 ~~~~\}\\
 ~\\
 \#~document~start:\\
-INTRO{[}'HTML'{]}~=~"{}"{}"\\
+INTRO{[}'html'{]}~=~"{}"{}"\\
 <html>\\
 <body~bgcolor="white">\\
 "{}"{}"\\
 \#~document~ending:\\
-OUTRO{[}'HTML'{]}~=~"{}"{}"\\
+OUTRO{[}'html'{]}~=~"{}"{}"\\
 </body>\\
 </html>\\
 "{}"{}"

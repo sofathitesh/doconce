@@ -412,19 +412,19 @@ filename. For example,
 
 .. code-block:: console
 
-        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+        Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 
 The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
-defined as ``LaTeX``. Inside the Doconce document one can then perform
-format specific actions through tests like ``#if FORMAT == "LaTeX"``.
+defined as ``latex``. Inside the Doconce document one can then perform
+format specific actions through tests like ``#if FORMAT == "latex"``.
 
 Inline comments in the text are removed from the output by
 
 .. code-block:: console
 
-        Terminal> doconce format LaTeX mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running
@@ -447,7 +447,7 @@ is performed by
 
 .. code-block:: console
 
-        Terminal> doconce format HTML mydoc
+        Terminal> doconce format html mydoc
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
@@ -467,7 +467,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 
 .. code-block:: console
 
-        Terminal> doconce format LaTeX mydoc
+        Terminal> doconce format latex mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
@@ -585,8 +585,8 @@ We may now produce various other formats:
 
 .. code-block:: console
 
-        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
         Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 

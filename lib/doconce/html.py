@@ -1,7 +1,7 @@
 import re, os, glob, sys
 
-# how to replace code and LaTeX blocks by HTML (<pre>) environment:
-def HTML_code(filestr, format):
+# how to replace code and LaTeX blocks by html (<pre>) environment:
+def html_code(filestr, format):
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
     filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<BLOCKQUOTE><PRE>\n',
                     filestr)
@@ -62,10 +62,10 @@ def html_movie(m):
             kwargs['width'] = int(opt.split('=')[1])
         if opt.startswith('height') or opt.startswith('HEIGHT'):
             kwargs['height'] = int(opt.split('=')[1])
-    
+
     if '*' in filename:
         # Glob files and use DocWriter.html_movie to make a separate
-        # HTML page for viewing the set of files
+        # html page for viewing the set of files
         plotfiles = glob.glob(filename)
         if not plotfiles:
             print 'No plotfiles on the form', filename
@@ -87,7 +87,7 @@ def html_movie(m):
     elif 'youtube.com' in filename:
         if not 'youtube.com/embed/' in filename:
             filename = filename.replace('embed/', 'watch?v=')
-        # Make HTML for a local YouTube frame
+        # Make html for a local YouTube frame
         width = kwargs.get('width', 425)
         height = kwargs.get('height', 349)
         text = """
@@ -102,7 +102,7 @@ def html_movie(m):
 """ % (filename, ' '.join(options), caption)
     return text
 
-def html_author(authors_and_institutions, auth2index, 
+def html_author(authors_and_institutions, auth2index,
                 inst2index, index2inst):
     text = ''
     for author in auth2index:
@@ -138,7 +138,7 @@ def html_ref_and_label(section_label2title, format, filestr):
         filestr, n = re.subn(title_pattern,
                      '\g<1> %s <A NAME="%s"></A> \g<2>' % (title, label),
                      filestr)
-        # (a little odd with mix of doconce title syntax and HTML NAME tag...)
+        # (a little odd with mix of doconce title syntax and html NAME tag...)
         if n == 0:
             raise Exception('problem with substituting "%s"' % title)
 
@@ -175,13 +175,13 @@ def bibdict2htmllist(pyfile, citations):
 
 def html_index_bib(filestr, index, citations, bibfile):
     for label in citations:
-        filestr = filestr.replace('cite{%s}' % label, 
+        filestr = filestr.replace('cite{%s}' % label,
                                   '<A HREF="#%s">[%d]</A>' % \
                                   (label, citations[label]))
     if 'py' in bibfile:
         bibtext = bibdict2htmllist(bibfile['py'], citations)
         #filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
-        cpattern = re.compile(r'^BIBFILE:.+$', flags=re.MULTILINE)  
+        cpattern = re.compile(r'^BIBFILE:.+$', flags=re.MULTILINE)
         filestr = cpattern.sub(bibtext, filestr) # v2.6
 
     # could use anchors for idx{...}, but multiple entries of an index
@@ -204,11 +204,11 @@ def define(FILENAME_EXTENSION,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
-    
-    FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
-    BLANKLINE['HTML'] = '\n<P>\n'         # blank input line => new paragraph
 
-    INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+    FILENAME_EXTENSION['html'] = '.html'  # output file extension
+    BLANKLINE['html'] = '\n<P>\n'         # blank input line => new paragraph
+
+    INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
         # keep math as is:
         'math':          r'\g<begin>\g<subst>\g<end>',
         'math2':         r'\g<begin>\g<puretext>\g<end>',
@@ -232,10 +232,10 @@ def define(FILENAME_EXTENSION,
         'comment':       '<!-- %s -->',
         }
 
-    CODE['HTML'] = HTML_code
+    CODE['html'] = html_code
 
-    # how to typeset lists and their items in HTML:
-    LIST['HTML'] = {
+    # how to typeset lists and their items in html:
+    LIST['html'] = {
         'itemize':
         {'begin': '\n<UL>\n', 'item': '<LI>', 'end': '</UL>\n\n'},
 
@@ -250,7 +250,7 @@ def define(FILENAME_EXTENSION,
 
     # how to typeset description lists for function arguments, return
     # values, and module/class variables:
-    ARGLIST['HTML'] = {
+    ARGLIST['html'] = {
         'parameter': '<B>argument</B>',
         'keyword': '<B>keyword argument</B>',
         'return': '<B>return value(s)</B>',
@@ -259,18 +259,18 @@ def define(FILENAME_EXTENSION,
         'module variable': '<B>module variable</B>',
         }
 
-    FIGURE_EXT['HTML'] = ('.png', '.gif', '.jpg', '.jpeg')
-    CROSS_REFS['HTML'] = html_ref_and_label
-    TABLE['HTML'] = html_table
-    INDEX_BIB['HTML'] = html_index_bib
+    FIGURE_EXT['html'] = ('.png', '.gif', '.jpg', '.jpeg')
+    CROSS_REFS['html'] = html_ref_and_label
+    TABLE['html'] = html_table
+    INDEX_BIB['html'] = html_index_bib
 
 
     # document start:
-    INTRO['HTML'] = """\
+    INTRO['html'] = """\
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- 
-Automatically generated HTML file from Doconce source 
-(http://code.google.com/p/doconce/) 
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
 -->
 
 <HTML>
@@ -282,7 +282,7 @@ Automatically generated HTML file from Doconce source
 <BODY BGCOLOR="white">
     """
     # document ending:
-    OUTRO['HTML'] = """
+    OUTRO['html'] = """
 </BODY>
 </HTML>
     """

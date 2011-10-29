@@ -612,20 +612,20 @@ file first, and options to \texttt{mako} or \texttt{preprocess} can be added aft
 filename. For example:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~format~LaTeX~mydoc~-Dextra\_sections~-DVAR1=5~~~~~\#~preprocess\\
-Terminal>~doconce~format~LaTeX~yourdoc~extra\_sections=True~VAR1=5~~\#~mako
+Terminal>~doconce~format~latex~mydoc~-Dextra\_sections~-DVAR1=5~~~~~\#~preprocess\\
+Terminal>~doconce~format~latex~yourdoc~extra\_sections=True~VAR1=5~~\#~mako
 }
 \end{quote}
 
 The variable \texttt{FORMAT} is always defined as the current format when
 running \texttt{preprocess}. That is, in the last example, \texttt{FORMAT} is
-defined as \texttt{LaTeX}. Inside the Doconce document one can then perform
-format specific actions through tests like \texttt{\#if FORMAT == "LaTeX"}.
+defined as \texttt{latex}. Inside the Doconce document one can then perform
+format specific actions through tests like \texttt{\#if FORMAT == "latex"}.
 
 Inline comments in the text are removed from the output by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~format~LaTeX~mydoc~remove\_inline\_comments
+Terminal>~doconce~format~latex~mydoc~remove\_inline\_comments
 }
 \end{quote}
 
@@ -654,7 +654,7 @@ Making an HTML version of a Doconce file \texttt{mydoc.do.txt}
 is performed by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~format~HTML~mydoc
+Terminal>~doconce~format~html~mydoc
 }
 \end{quote}
 
@@ -681,7 +681,7 @@ Making a LaTeX file \texttt{mydoc.tex} from \texttt{mydoc.do.txt} is done in two
 \texttt{ptex2tex}:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~format~LaTeX~mydoc
+Terminal>~doconce~format~latex~mydoc
 }
 \end{quote}
 
@@ -821,8 +821,8 @@ Terminal>~doconce~format~rst~mydoc.do.txt
 We may now produce various other formats:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~rst2html.py~~mydoc.rst~>~mydoc.html~\#~HTML\\
-Terminal>~rst2latex.py~mydoc.rst~>~mydoc.tex~~\#~LaTeX\\
+Terminal>~rst2html.py~~mydoc.rst~>~mydoc.html~\#~html\\
+Terminal>~rst2latex.py~mydoc.rst~>~mydoc.tex~~\#~latex\\
 Terminal>~rst2xml.py~~~mydoc.rst~>~mydoc.xml~~\#~XML\\
 Terminal>~rst2odt.py~~~mydoc.rst~>~mydoc.odt~~\#~OpenOffice
 }

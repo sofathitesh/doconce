@@ -465,16 +465,16 @@ Terminal&gt; doconce format format mydoc
 file first, and options to <tt class="docutils literal">mako</tt> or <tt class="docutils literal">preprocess</tt> can be added after the
 filename. For example:</p>
 <pre class="literal-block">
-Terminal&gt; doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-Terminal&gt; doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+Terminal&gt; doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal&gt; doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 </pre>
 <p>The variable <tt class="docutils literal">FORMAT</tt> is always defined as the current format when
 running <tt class="docutils literal">preprocess</tt>. That is, in the last example, <tt class="docutils literal">FORMAT</tt> is
-defined as <tt class="docutils literal">LaTeX</tt>. Inside the Doconce document one can then perform
-format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;LaTeX&quot;</tt>.</p>
+defined as <tt class="docutils literal">latex</tt>. Inside the Doconce document one can then perform
+format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;latex&quot;</tt>.</p>
 <p>Inline comments in the text are removed from the output by:</p>
 <pre class="literal-block">
-Terminal&gt; doconce format LaTeX mydoc remove_inline_comments
+Terminal&gt; doconce format latex mydoc remove_inline_comments
 </pre>
 <p>One can also remove such comments from the original Doconce file
 by running
@@ -489,7 +489,7 @@ and comments by different authors should be removed.</p>
 <p>Making an HTML version of a Doconce file <tt class="docutils literal">mydoc.do.txt</tt>
 is performed by:</p>
 <pre class="literal-block">
-Terminal&gt; doconce format HTML mydoc
+Terminal&gt; doconce format html mydoc
 </pre>
 <p>The resulting file <tt class="docutils literal">mydoc.html</tt> can be loaded into any web browser for viewing.</p>
 </div>
@@ -503,7 +503,7 @@ Terminal&gt; doconce format HTML mydoc
 <dt><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal">mydoc.p.tex</tt> for</dt>
 <dd><p class="first"><tt class="docutils literal">ptex2tex</tt>:</p>
 <pre class="last literal-block">
-Terminal&gt; doconce format LaTeX mydoc
+Terminal&gt; doconce format latex mydoc
 </pre>
 </dd>
 </dl>
@@ -595,8 +595,8 @@ Terminal&gt; doconce format rst mydoc.do.txt
 </pre>
 <p>We may now produce various other formats:</p>
 <pre class="literal-block">
-Terminal&gt; rst2html.py  mydoc.rst &gt; mydoc.html # HTML
-Terminal&gt; rst2latex.py mydoc.rst &gt; mydoc.tex  # LaTeX
+Terminal&gt; rst2html.py  mydoc.rst &gt; mydoc.html # html
+Terminal&gt; rst2latex.py mydoc.rst &gt; mydoc.tex  # latex
 Terminal&gt; rst2xml.py   mydoc.rst &gt; mydoc.xml  # XML
 Terminal&gt; rst2odt.py   mydoc.rst &gt; mydoc.odt  # OpenOffice
 </pre>
@@ -952,13 +952,13 @@ included in the formatted caption).</p>
 <div class="section" id="movies">
 <h2>Movies</h2>
 <p>Here is an example on the <tt class="docutils literal">MOVIE:</tt> keyword for embedding movies. This
-feature works well for the <tt class="docutils literal">LaTeX</tt>, <tt class="docutils literal">HTML</tt>, <tt class="docutils literal">rst</tt>, and <tt class="docutils literal">sphinx</tt> formats.
+feature works well for the <tt class="docutils literal">latex</tt>, <tt class="docutils literal">html</tt>, <tt class="docutils literal">rst</tt>, and <tt class="docutils literal">sphinx</tt> formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie:</p>
 <pre class="literal-block">
 MOVIE: [filename, height=xxx width=yyy] possible caption
 </pre>
-<!-- LaTeX/PDF format can make use of the movie15 package for displaying movies, -->
+<!-- latex/PDF format can make use of the movie15 package for displaying movies, -->
 <!-- or just plain \h`run: ...`_{...} -->
 <EMBED SRC="figs/mjolnir.mpeg" width=600 height=470 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
 <P>
@@ -992,8 +992,8 @@ You should equip the <tt class="docutils literal">MOVIE:</tt> command with the r
 of embedded YouTube movies (the parameters appear when you request
 the embedded HTML code for the movie on the YouTube page).</p>
 </div>
-<div class="section" id="copying-computer-code">
-<h2>Copying Computer Code</h2>
+<div class="section" id="copying-computer-code-from-source-files">
+<h2>Copying Computer Code from Source Files</h2>
 <p>Another type of special lines starts with <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> and enables copying
 of computer code from a file directly into a verbatim environment, see
 the section <a class="reference internal" href="#blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</a> below.</p>
@@ -1135,14 +1135,16 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to:</p
 <pre class="literal-block">
 \index{verbatim\_text&#64;\texttt{\rm\smaller verbatim\_text and more}}
 </pre>
-<p>Everything related to the index simply becomes invisible in
-plain text, Epytext, StructuredText, HTML, and wiki formats.
-Note: <tt class="docutils literal">idx</tt> commands should be inserted outside paragraphs, not in between
-the text as this may cause some strange behaviour of the formatting.
-Index items are naturally placed right after section headings, before the
-text begins. Index items related to the heading of a paragraph, however,
-should be placed above the paragraph heading and not in between the
-heading and the text.</p>
+<p>Everything related to the index simply becomes invisible in plain
+text, Epytext, StructuredText, HTML, and wiki formats.  Note: <tt class="docutils literal">idx</tt>
+commands should be inserted outside paragraphs, not in between the
+text as this may cause some strange behaviour of reStructuredText and
+Sphinx formatting.  As a recommended rule, index items are naturally
+placed right after section headings, before the text begins, while
+index items related to a paragraph should be placed above the
+paragraph one a separate line (and not in between the text or between
+the paragraph heading and the text body, although this works fine if
+LaTeX is the output format).</p>
 <p>Literature citations also follow a LaTeX-inspired style:</p>
 <pre class="literal-block">
 as found in cite{Larsen:86,Nielsen:99}.
@@ -1184,6 +1186,7 @@ copied into the document at the place where the <tt class="docutils literal">BIB
 appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the <tt class="docutils literal">BIBFILE:</tt> line
 in the document.</p>
+<p>At present, only one file with bibliographic references can be used.</p>
 <!-- see ketch/tex2rst for nice bibtex to rst converter which could -->
 <!-- be used here -->
 <p>Conversion of BibTeX databases to reStructuredText format can be
@@ -1467,7 +1470,7 @@ automatically define Mako variables that are substituted in the document.</p>
 the relevant preprocessor prior to translating the Doconce source to a
 specific format.</p>
 <p>The preprocess and mako programs always have the variable <tt class="docutils literal">FORMAT</tt>
-defined as the desired output format of Doconce (<tt class="docutils literal">HTML</tt>, <tt class="docutils literal">LaTeX</tt>,
+defined as the desired output format of Doconce (<tt class="docutils literal">html</tt>, <tt class="docutils literal">latex</tt>,
 <tt class="docutils literal">plain</tt>, <tt class="docutils literal">rst</tt>, <tt class="docutils literal">sphinx</tt>, <tt class="docutils literal">epydoc</tt>, <tt class="docutils literal">st</tt>).  It is then easy to test on
 the value of <tt class="docutils literal">FORMAT</tt> and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
@@ -1491,13 +1494,109 @@ the command line as explained in the section <a class="reference internal" href=
 <p>More advanced use of mako can include Python code that may automate
 the writing of parts of the document.</p>
 </div>
+<div class="section" id="splitting-documents-into-smaller-pieces">
+<h2>Splitting Documents into Smaller Pieces</h2>
+<p>Long documents are conveniently split into smaller Doconce files.
+However, there must be a master document including all the pieces,
+otherwise references to sections and the index will not work properly.
+The master document is preferably a file just containing a set of
+preprocessor include statements of the form <tt class="docutils literal">#include &quot;file.do.txt&quot;</tt>.
+The preprocessor will put together all the pieces so that Doconce
+sees a long file with the complete text.</p>
+<p>For reStructuredText and Sphinx documents it is a point to have
+separate <tt class="docutils literal">.rst</tt> files and an index file listing the various <tt class="docutils literal">.rst</tt>
+that build up the document. To generate the various <tt class="docutils literal">.rst</tt> files one
+should not run Doconce on the individual <tt class="docutils literal">.do.txt</tt> files, because then
+references and index entries are not treated correctly. Instead,
+run Doconce on the master file and invoke the script <tt class="docutils literal">doconce split_rst</tt>
+to split the long, complete <tt class="docutils literal">.rst</tt> into pieces. This process requires
+that each <tt class="docutils literal">#include &quot;file.do.txt</tt> line in the master file is preceded by a
+&quot;marker line&quot; having the syntax <tt class="docutils literal"><span class="pre">#&gt;&gt;&gt;&gt;&gt;&gt;</span> part: file <span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;</span></tt>, where
+<tt class="docutils literal">file</tt> is the filename without extension. The number of greater than
+signs is not important, but it has to be a comment line and it has
+to contain the keyword <tt class="docutils literal">part:</tt>.</p>
+<p>Here is an example. Say the name of the master file is <tt class="docutils literal">master.do.txt</tt>.
+The following Bash script does the job:
+We run:</p>
+<pre class="literal-block">
+doconce format sphinx master
+# Split master.rst into parts
+# as defined by #&gt;&gt;&gt;&gt;&gt; part: name &gt;&gt;&gt;&gt;&gt; lines
+files=`doconce split_rst master.rst`
+
+dir=sphinxm-rootdir
+
+if [ ! -d $dir ]; then
+  doconce sphinx_dir dirname=$dir author='me and you' \
+          version=1.0 theme=default $files
+  sh automake-sphinx.sh
+else
+  for file in $files; do
+    cp $file.rst $dir
+  done
+  cd $dir
+  make html
+  cd ..
+fi
+</pre>
+<p>The autogenerated <tt class="docutils literal"><span class="pre">automake-sphinx.sh</span></tt> file (by <tt class="docutils literal">doconce sphinx_dir</tt>)
+is compatible with a master <tt class="docutils literal">.rst</tt> file split into pieces as long as
+the complete set of pieces in correct order is given to <tt class="docutils literal">doconce sphinx_dir</tt>.
+This set is the output of <tt class="docutils literal">doconce split_rst</tt>, which we catch in a
+variable <tt class="docutils literal">files</tt> above.</p>
+</div>
 <div class="section" id="missing-features">
 <h2>Missing Features</h2>
-<blockquote>
-<ul class="simple">
-<li>Footnotes</li>
-</ul>
-</blockquote>
+<p>Doconce does not aim to support sophisticated typesetting, simply because
+sophisticated typesetting usually depend quite strongly on the particular
+output format chosen. When a particular feature needed is not supported
+by Doconce, it is recommended to hardcode that feature for a particular
+format and use the if-else construction of the preprocessor. For example,
+if a sophisticated table is desired in LaTeX output, test on the
+<tt class="docutils literal">FORMAT</tt> variable (<tt class="docutils literal">#if FORMAT == &quot;latex&quot;</tt>) in the Doconce code and
+insert the table in LaTeX format. The <tt class="docutils literal">else</tt> or <tt class="docutils literal">elif</tt> branches may
+have the table in other formats or a simplified version in the Doconce
+table format. Similarly, if certain adjustments are needed, like
+pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
+that this is really LaTeX dependent - pagebreaks are not
+relevant HTML formats).</p>
+<p>Instead of inserting special code in the Doconce document, one can
+alternatively script editing of the output from Doconce. That is,
+we develop a Python or Bash script that runs the translation of
+a Doconce document to a ready docoment in another format. Inside this
+script, we may edit and fine-tune the output from Doconce.</p>
+<p>As an example, say you want a table of contents in the LaTeX output
+(Doconce does not support table of contents). By inserting a
+recognizable comment in the Doconce source, say:</p>
+<pre class="literal-block">
+# table of contents
+</pre>
+<p>we can use this comment to edit the LaTeX file. First, we run
+Doconce <tt class="docutils literal">doconce format latex mydoc</tt> to produce <tt class="docutils literal">mydoc.p.tex</tt>. Then
+we use the <tt class="docutils literal">doconce replace</tt> and <tt class="docutils literal">doconce subst</tt> commands to
+replace the comment by the comment plus the table of contents command,
+or just the latter:</p>
+<pre class="literal-block">
+Terminal&gt; doconce replace '% table of contents'
+          '\tableofcontents' mydoc.p.tex
+</pre>
+<p>The <tt class="docutils literal">doconce replace from_text to_text filename</tt> command performs a
+character-by-character replacement (using the <tt class="docutils literal">replace</tt> method in
+string objects in Python). If we want to preserve the comment and add
+a new line with <tt class="docutils literal">\tableofcontents</tt>, we should use <tt class="docutils literal">doconce subst</tt>,
+which applies regular expressions for substitutions and thereby
+understands the newline character:</p>
+<pre class="literal-block">
+Terminal&gt; doconce subst '% table of contents' \
+          '% table of contents\n\\tableofcontents' mydoc.p.tex
+</pre>
+<p>Note the double backshlash in front of the <tt class="docutils literal">t</tt> character: without it we
+would get a tab and no backslash.
+The <tt class="docutils literal">doconce subst</tt> is a powerful way to automatically edit the output
+from Doconce and fine-tune a LaTeX document. Use of comment lines to
+identify portions of the file to be edited is a smart idea.
+Alternatively, the relevant LaTeX constructions can be inserted directly
+in the Doconce file using if-else preprocessor directives.</p>
 </div>
 <div class="section" id="troubleshooting">
 <h2>Troubleshooting</h2>
@@ -1638,9 +1737,9 @@ LaTeX, and work further on the document in this format.</p>
 <p>This is the HTML-specific part of the
 source code of the HTML translator:</p>
 <pre class="literal-block">
-FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
-BLANKLINE['HTML'] = '&lt;p&gt;\n'           # blank input line =&gt; new paragraph
-INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+FILENAME_EXTENSION['html'] = '.html'  # output file extension
+BLANKLINE['html'] = '&lt;p&gt;\n'           # blank input line =&gt; new paragraph
+INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
     # keep math as is:
     'math': None,  # indicates no substitution
     'emphasize':     r'\g&lt;begin&gt;&lt;em&gt;\g&lt;subst&gt;&lt;/em&gt;\g&lt;end&gt;',
@@ -1656,8 +1755,8 @@ INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
     'author':        r'&lt;center&gt;&lt;h3&gt;\g&lt;subst&gt;&lt;/h3&gt;&lt;/center&gt;',
     }
 
-# how to replace code and LaTeX blocks by HTML (&lt;pre&gt;) environment:
-def HTML_code(filestr):
+# how to replace code and latex blocks by html (&lt;pre&gt;) environment:
+def html_code(filestr):
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
     filestr = c.sub(r'&lt;!-- BEGIN VERBATIM BLOCK \g&lt;1&gt;--&gt;\n&lt;pre&gt;\n', filestr)
     filestr = re.sub(r'!ec\n',
@@ -1666,10 +1765,10 @@ def HTML_code(filestr):
     filestr = c.sub(r'&lt;pre&gt;\n', filestr)
     filestr = re.sub(r'!et\n', r'&lt;/pre&gt;\n', filestr)
     return filestr
-CODE['HTML'] = HTML_code
+CODE['html'] = html_code
 
-# how to typeset lists and their items in HTML:
-LIST['HTML'] = {
+# how to typeset lists and their items in html:
+LIST['html'] = {
     'itemize':
     {'begin': '\n&lt;ul&gt;\n', 'item': '&lt;li&gt;', 'end': '&lt;/ul&gt;\n\n'},
     'enumerate':
@@ -1680,7 +1779,7 @@ LIST['HTML'] = {
 
 # how to type set description lists for function arguments, return
 # values, and module/class variables:
-ARGLIST['HTML'] = {
+ARGLIST['html'] = {
     'parameter': '&lt;b&gt;argument&lt;/b&gt;',
     'keyword': '&lt;b&gt;keyword argument&lt;/b&gt;',
     'return': '&lt;b&gt;return value(s)&lt;/b&gt;',
@@ -1690,12 +1789,12 @@ ARGLIST['HTML'] = {
     }
 
 # document start:
-INTRO['HTML'] = &quot;&quot;&quot;
+INTRO['html'] = &quot;&quot;&quot;
 &lt;html&gt;
 &lt;body bgcolor=&quot;white&quot;&gt;
 &quot;&quot;&quot;
 # document ending:
-OUTRO['HTML'] = &quot;&quot;&quot;
+OUTRO['html'] = &quot;&quot;&quot;
 &lt;/body&gt;
 &lt;/html&gt;
 &quot;&quot;&quot;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- 
-Automatically generated HTML file from Doconce source 
-(http://code.google.com/p/doconce/) 
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
 -->
 
 <HTML>
@@ -434,20 +434,20 @@ file first, and options to <TT>mako</TT> or <TT>preprocess</TT> can be added aft
 filename. For example,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The variable <TT>FORMAT</TT> is always defined as the current format when
 running <TT>preprocess</TT>. That is, in the last example, <TT>FORMAT</TT> is
-defined as <TT>LaTeX</TT>. Inside the Doconce document one can then perform
-format specific actions through tests like <TT>#if FORMAT == "LaTeX"</TT>.
+defined as <TT>latex</TT>. Inside the Doconce document one can then perform
+format specific actions through tests like <TT>#if FORMAT == "latex"</TT>.
 
 <P>
 Inline comments in the text are removed from the output by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> doconce format LaTeX mydoc remove_inline_comments
+Terminal> doconce format latex mydoc remove_inline_comments
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 One can also remove such comments from the original Doconce file
@@ -470,7 +470,7 @@ Making an HTML version of a Doconce file <TT>mydoc.do.txt</TT>
 is performed by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> doconce format HTML mydoc
+Terminal> doconce format html mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The resulting file <TT>mydoc.html</TT> can be loaded into any web browser for viewing.
@@ -488,7 +488,7 @@ Making a LaTeX file <TT>mydoc.tex</TT> from <TT>mydoc.do.txt</TT> is done in two
      <TT>ptex2tex</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> doconce format LaTeX mydoc
+Terminal> doconce format latex mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 LaTeX-specific commands ("newcommands") in math formulas and similar
@@ -610,8 +610,8 @@ Terminal> doconce format rst mydoc.do.txt
 We may now produce various other formats:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 </PRE></BLOCKQUOTE>

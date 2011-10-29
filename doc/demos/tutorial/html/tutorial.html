@@ -405,16 +405,16 @@ formats applies the script <tt class="docutils literal"><span class="pre">doconc
 <p>The <tt class="docutils literal"><span class="pre">mako</span></tt> or <tt class="docutils literal"><span class="pre">preprocess</span></tt> programs are always used to preprocess the
 file first, and options to <tt class="docutils literal"><span class="pre">mako</span></tt> or <tt class="docutils literal"><span class="pre">preprocess</span></tt> can be added after the
 filename. For example,</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess</span>
-<span class="go">Terminal&gt; doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess</span>
+<span class="go">Terminal&gt; doconce format latex yourdoc extra_sections=True VAR1=5  # mako</span>
 </pre></div>
 </div>
 <p>The variable <tt class="docutils literal"><span class="pre">FORMAT</span></tt> is always defined as the current format when
 running <tt class="docutils literal"><span class="pre">preprocess</span></tt>. That is, in the last example, <tt class="docutils literal"><span class="pre">FORMAT</span></tt> is
-defined as <tt class="docutils literal"><span class="pre">LaTeX</span></tt>. Inside the Doconce document one can then perform
-format specific actions through tests like <tt class="docutils literal"><span class="pre">#if</span> <span class="pre">FORMAT</span> <span class="pre">==</span> <span class="pre">&quot;LaTeX&quot;</span></tt>.</p>
+defined as <tt class="docutils literal"><span class="pre">latex</span></tt>. Inside the Doconce document one can then perform
+format specific actions through tests like <tt class="docutils literal"><span class="pre">#if</span> <span class="pre">FORMAT</span> <span class="pre">==</span> <span class="pre">&quot;latex&quot;</span></tt>.</p>
 <p>Inline comments in the text are removed from the output by</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format LaTeX mydoc remove_inline_comments</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format latex mydoc remove_inline_comments</span>
 </pre></div>
 </div>
 <p>One can also remove such comments from the original Doconce file
@@ -428,7 +428,7 @@ and comments by different authors should be removed.</p>
 <h2>HTML<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Making an HTML version of a Doconce file <tt class="docutils literal"><span class="pre">mydoc.do.txt</span></tt>
 is performed by</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format HTML mydoc</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format html mydoc</span>
 </pre></div>
 </div>
 <p>The resulting file <tt class="docutils literal"><span class="pre">mydoc.html</span></tt> can be loaded into any web browser for viewing.</p>
@@ -441,7 +441,7 @@ is performed by</p>
 <dt><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal"><span class="pre">mydoc.p.tex</span></tt> for</dt>
 <dd><tt class="docutils literal"><span class="pre">ptex2tex</span></tt>:</dd>
 </dl>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format LaTeX mydoc</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format latex mydoc</span>
 </pre></div>
 </div>
 <p>LaTeX-specific commands (&#8220;newcommands&#8221;) in math formulas and similar
@@ -531,8 +531,8 @@ reStructuredText file <tt class="docutils literal"><span class="pre">mydoc.rst</
 </pre></div>
 </div>
 <p>We may now produce various other formats:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; rst2html.py  mydoc.rst &gt; mydoc.html # HTML</span>
-<span class="go">Terminal&gt; rst2latex.py mydoc.rst &gt; mydoc.tex  # LaTeX</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; rst2html.py  mydoc.rst &gt; mydoc.html # html</span>
+<span class="go">Terminal&gt; rst2latex.py mydoc.rst &gt; mydoc.tex  # latex</span>
 <span class="go">Terminal&gt; rst2xml.py   mydoc.rst &gt; mydoc.xml  # XML</span>
 <span class="go">Terminal&gt; rst2odt.py   mydoc.rst &gt; mydoc.odt  # OpenOffice</span>
 </pre></div>

@@ -341,10 +341,10 @@ def define(FILENAME_EXTENSION,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
 
-    FILENAME_EXTENSION['LaTeX'] = '.p.tex'
-    BLANKLINE['LaTeX'] = '\n'
+    FILENAME_EXTENSION['latex'] = '.p.tex'
+    BLANKLINE['latex'] = '\n'
 
-    INLINE_TAGS_SUBST['LaTeX'] = {
+    INLINE_TAGS_SUBST['latex'] = {
         # Note: re.sub "eats" backslashes: \t and \b will not survive to
         # latex if text goes through re.sub. Then we must write
         # \\b and \\t etc. See the fix_latex_command_regex function below
@@ -365,7 +365,7 @@ def define(FILENAME_EXTENSION,
         #'subsubsection': '\n' + r'\subsubsection{\g<subst>}' + '\n',
         'subsubsection': '\n' + r'\paragraph{\g<subst>.}',
         'paragraph':     r'\paragraph{\g<subst>}' + '\n',
-        # recall that this is regex so LaTeX commands must be treated carefully:
+        # recall that this is regex so latex commands must be treated carefully:
         #'title':         r'\\title{\g<subst>}' + '\n', # we don'e use maketitle
         'title':         fix_latex_command_regex(pattern=r"""
 
@@ -434,7 +434,7 @@ def define(FILENAME_EXTENSION,
 
     ending = '\n'
     ending = '\n\n\\noindent\n'
-    LIST['LaTeX'] = {
+    LIST['latex'] = {
         'itemize':
         {'begin': r'\begin{itemize}' + '\n',
          'item': r'\item', 'end': r'\end{itemize}' + ending},
@@ -450,8 +450,8 @@ def define(FILENAME_EXTENSION,
         'separator': '\n',
         }
 
-    CODE['LaTeX'] = latex_code
-    ARGLIST['LaTeX'] = {
+    CODE['latex'] = latex_code
+    ARGLIST['latex'] = {
     #    'parameter': r'\textbf{argument}',
     #    'keyword': r'\textbf{keyword argument}',
     #    'return': r'\textbf{return value(s)}',
@@ -466,14 +466,14 @@ def define(FILENAME_EXTENSION,
         'module variable': r'module variable',
         }
 
-    FIGURE_EXT['LaTeX'] = ('.eps', '.ps')
+    FIGURE_EXT['latex'] = ('.eps', '.ps')
 
-    CROSS_REFS['LaTeX'] = latex_ref_and_label
+    CROSS_REFS['latex'] = latex_ref_and_label
 
-    TABLE['LaTeX'] = latex_table
-    INDEX_BIB['LaTeX'] = latex_index_bib
+    TABLE['latex'] = latex_table
+    INDEX_BIB['latex'] = latex_index_bib
 
-    INTRO['LaTeX'] = r"""%%
+    INTRO['latex'] = r"""%%
 %% Automatically generated LaTeX file from Doconce source
 %% http://code.google.com/p/doconce/
 %%
@@ -508,7 +508,7 @@ def define(FILENAME_EXTENSION,
     for filename in newcommands_files:
         pfilename = filename[:-4] + '.p.tex'
         if os.path.isfile(filename) or os.path.isfile(pfilename):
-            INTRO['LaTeX'] += r"""\input{%s}
+            INTRO['latex'] += r"""\input{%s}
 """ % (filename[:-4])
             #print '... found', filename
         #elif os.path.isfile(pfilename):
@@ -519,7 +519,7 @@ def define(FILENAME_EXTENSION,
             pass
 
 
-    OUTRO['LaTeX'] = r"""
+    OUTRO['latex'] = r"""
 
 \printindex
 

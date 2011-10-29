@@ -467,19 +467,19 @@ filename. For example,
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 \end{Verbatim}
 The variable {\fontsize{10pt}{10pt}\verb!FORMAT!} is always defined as the current format when
 running {\fontsize{10pt}{10pt}\verb!preprocess!}. That is, in the last example, {\fontsize{10pt}{10pt}\verb!FORMAT!} is
-defined as {\fontsize{10pt}{10pt}\verb!LaTeX!}. Inside the Doconce document one can then perform
-format specific actions through tests like {\fontsize{10pt}{10pt}\verb!#if FORMAT == "LaTeX"!}.
+defined as {\fontsize{10pt}{10pt}\verb!latex!}. Inside the Doconce document one can then perform
+format specific actions through tests like {\fontsize{10pt}{10pt}\verb!#if FORMAT == "latex"!}.
 
 Inline comments in the text are removed from the output by
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Terminal> doconce format LaTeX mydoc remove_inline_comments
+Terminal> doconce format latex mydoc remove_inline_comments
 \end{Verbatim}
 One can also remove such comments from the original Doconce file
 by running
@@ -498,7 +498,7 @@ is performed by
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Terminal> doconce format HTML mydoc
+Terminal> doconce format html mydoc
 \end{Verbatim}
 The resulting file {\fontsize{10pt}{10pt}\verb!mydoc.html!} can be loaded into any web browser for viewing.
 
@@ -514,7 +514,7 @@ Filter the doconce text to a pre-LaTeX form {\fontsize{10pt}{10pt}\verb!mydoc.p.
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Terminal> doconce format LaTeX mydoc
+Terminal> doconce format latex mydoc
 \end{Verbatim}
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files {\fontsize{10pt}{10pt}\verb!newcommands.tex!}, {\fontsize{10pt}{10pt}\verb!newcommands_keep.tex!}, or
@@ -629,8 +629,8 @@ We may now produce various other formats:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 \end{Verbatim}

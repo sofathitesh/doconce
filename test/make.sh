@@ -1,7 +1,7 @@
 #!/bin/sh -x
 # Test multiple authors
-doconce format HTML testdoc.do.txt
-doconce format LaTeX testdoc.do.txt
+doconce format html testdoc.do.txt
+doconce format latex testdoc.do.txt
 doconce format plain testdoc.do.txt
 doconce format st testdoc.do.txt
 doconce format sphinx testdoc.do.txt

@@ -688,16 +688,16 @@ Terminal&gt; doconce format format mydoc
 file first, and options to <tt class="docutils literal">mako</tt> or <tt class="docutils literal">preprocess</tt> can be added after the
 filename. For example:</p>
 <pre class="literal-block">
-Terminal&gt; doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-Terminal&gt; doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+Terminal&gt; doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal&gt; doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 </pre>
 <p>The variable <tt class="docutils literal">FORMAT</tt> is always defined as the current format when
 running <tt class="docutils literal">preprocess</tt>. That is, in the last example, <tt class="docutils literal">FORMAT</tt> is
-defined as <tt class="docutils literal">LaTeX</tt>. Inside the Doconce document one can then perform
-format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;LaTeX&quot;</tt>.</p>
+defined as <tt class="docutils literal">latex</tt>. Inside the Doconce document one can then perform
+format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;latex&quot;</tt>.</p>
 <p>Inline comments in the text are removed from the output by:</p>
 <pre class="literal-block">
-Terminal&gt; doconce format LaTeX mydoc remove_inline_comments
+Terminal&gt; doconce format latex mydoc remove_inline_comments
 </pre>
 <p>One can also remove such comments from the original Doconce file
 by running
@@ -712,7 +712,7 @@ and comments by different authors should be removed.</p>
 <p>Making an HTML version of a Doconce file <tt class="docutils literal">mydoc.do.txt</tt>
 is performed by:</p>
 <pre class="literal-block">
-Terminal&gt; doconce format HTML mydoc
+Terminal&gt; doconce format html mydoc
 </pre>
 <p>The resulting file <tt class="docutils literal">mydoc.html</tt> can be loaded into any web browser for viewing.</p>
 </div>
@@ -726,7 +726,7 @@ Terminal&gt; doconce format HTML mydoc
 <dt><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal">mydoc.p.tex</tt> for</dt>
 <dd><p class="first"><tt class="docutils literal">ptex2tex</tt>:</p>
 <pre class="last literal-block">
-Terminal&gt; doconce format LaTeX mydoc
+Terminal&gt; doconce format latex mydoc
 </pre>
 </dd>
 </dl>
@@ -818,8 +818,8 @@ Terminal&gt; doconce format rst mydoc.do.txt
 </pre>
 <p>We may now produce various other formats:</p>
 <pre class="literal-block">
-Terminal&gt; rst2html.py  mydoc.rst &gt; mydoc.html # HTML
-Terminal&gt; rst2latex.py mydoc.rst &gt; mydoc.tex  # LaTeX
+Terminal&gt; rst2html.py  mydoc.rst &gt; mydoc.html # html
+Terminal&gt; rst2latex.py mydoc.rst &gt; mydoc.tex  # latex
 Terminal&gt; rst2xml.py   mydoc.rst &gt; mydoc.xml  # XML
 Terminal&gt; rst2odt.py   mydoc.rst &gt; mydoc.odt  # OpenOffice
 </pre>
