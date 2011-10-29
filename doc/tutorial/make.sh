@@ -13,6 +13,7 @@ dvipdf tutorial.dvi
 
 # Sphinx
 doconce format sphinx tutorial.do.txt
+rm -rf sphinx-rootdir
 doconce sphinx_dir tutorial.do.txt
 cp tutorial.rst tutorial.sphinx.rst
 mv tutorial.rst sphinx-rootdir
@@ -74,7 +75,7 @@ cat > index.html <<EOF
 <TITLE>Demo of Doconce formats</TITLE>
 <H3>Doconce demo</H3>
 
-Doconce is a minimum tagged markup language. The file 
+Doconce is a minimum tagged markup language. The file
 <a href="tutorial.do.txt">tutorial.do.txt</a> is the source of the
 Doconce tutorial, written in the Doconce format.
 Running
@@ -96,17 +97,17 @@ doconce format rst    tutorial.do.txt  # standard reST
 doconce format sphinx tutorial.do.txt  # Sphinx extension of reST
 </pre>
 The reST file <a href="tutorial.rst">tutorial.rst</a> is a starting point
-for conversion to many other formats: OpenOffice, 
+for conversion to many other formats: OpenOffice,
 <a href="tutorial.xml">XML</a>, <a href="tutorial.rst.html">HTML</a>,
-<a href="tutorial.rst.tex">LaTeX</a>, 
+<a href="tutorial.rst.tex">LaTeX</a>,
 and from LaTeX to <a href="tutorial.rst.pdf">PDF</a>.
 The <a href="tutorial.sphinx.rst">Sphinx</a> dialect of reST
 can be translated to <a href="tutorial.sphinx.pdf">PDF</a>
 and <a href="html/index.html">HTML</a>.
 <p>
-Doconce can also be converted to 
+Doconce can also be converted to
 <a href="tutorial.gwiki">a (Google Code) wiki</a>,
-<a href="tutorial.st">Structured Text</a>, 
+<a href="tutorial.st">Structured Text</a>,
 <a href="tutorial.epytext">Epytext</a>,
 and maybe the most important format of all:
 <a href="tutorial.txt">plain untagged ASCII text</a>.

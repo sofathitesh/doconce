@@ -13,7 +13,7 @@ DATE: today
 
  * Do you need to write documents in varying formats but find it
    difficult to remember all the typesetting details of various
-   formats like LaTeX, HTML, Sphinx, and wiki? Would it be convenient
+   formats like "LaTeX":"http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf", "HTML":"http://www.htmlcodetutorial.com/", "reStructuredText":"http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html", "Sphinx":"http://sphinx.pocoo.org/contents.html", and "wiki":"http://code.google.com/p/support/wiki/WikiSyntax"? Would it be convenient
    to generate the typesetting details of a particular format from a
    very simple text-like format with minimal tagging?
 
@@ -40,7 +40,7 @@ Doconce is two things:
     (An experimental translator to Pandoc is under development, and from
     Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF, DocBook XML,
     OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and other formats.)
-    
+
 
   o Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
@@ -48,15 +48,15 @@ Doconce is two things:
     source code, manuals, tutorials, books, wikis, memos, emails, etc.).
     The Doconce markup language support this working strategy.
     The slogan is: "Write once, include anywhere".
-    
+
 
 
 Here are some Doconce features:
 
-  * Doconce markup does include tags, so the format is more tagged than 
-    Markdown and Pandoc, but less than reST, and very much less than 
-    LaTeX and HTML. 
-  * Doconce can be converted to plain *untagged* text, 
+  * Doconce markup does include tags, so the format is more tagged than
+    Markdown and Pandoc, but less than reST, and very much less than
+    LaTeX and HTML.
+  * Doconce can be converted to plain *untagged* text,
     often desirable for computer programs and email.
   * Doconce has good support for copying in parts of computer code,
     say in examples, directly from the source code files.
@@ -99,7 +99,7 @@ tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
 limitations of regular expressions, some formatting of Doconce syntax
 may face problems when transformed to HTML, LaTeX, Sphinx, and similar
-formats. 
+formats.
 
 
 
@@ -110,22 +110,22 @@ text constructions that allow you to control the formating. For example,
 
   * bullet lists arise from lines starting with an asterisk,
 
-  * *emphasized words* are surrounded by asterisks, 
+  * *emphasized words* are surrounded by asterisks,
 
-  * _words in boldface_ are surrounded by underscores, 
+  * _words in boldface_ are surrounded by underscores,
 
-  * words from computer code are enclosed in back quotes and 
+  * words from computer code are enclosed in back quotes and
     then typeset verbatim (monospace font),
 
-  * section headings are recognied by equality (`=`) signs before 
-    and after the text, and the number of `=` signs indicates the 
+  * section headings are recognied by equality (`=`) signs before
+    and after the text, and the number of `=` signs indicates the
     level of the section (7 for main section, 5 for subsection,
     3 for subsubsection),
 
   * paragraph headings are recognized by a double underscore
     before and after the heading,
 
-  * blocks of computer code can easily be included by placing 
+  * blocks of computer code can easily be included by placing
     `!bc` (begin code) and `!ec` (end code) commands at separate lines
     before and after the code block,
 
@@ -134,7 +134,7 @@ text constructions that allow you to control the formating. For example,
   * blocks of LaTeX mathematics can easily be included by placing
     `!bt` (begin TeX) and `!et` (end TeX) commands at separate lines
     before and after the math block,
- 
+
   * there is support for both LaTeX and text-like inline mathematics,
 
   * figures and movies with captions, simple tables,
@@ -175,12 +175,12 @@ as in "URL":"tutorial.do.txt".
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
-Chapter ref{my:first:sec}. 
+Section ref{my:first:sec}.
 
 Doconce also allows inline comments such as [hpl: here I will make
 some remarks to the text] for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
-(see Chapter ref{doconce2formats} for an example).
+(see Section ref{doconce2formats} for an example).
 
 Tables are also supperted, e.g.,
 
@@ -220,12 +220,12 @@ as in "URL":"tutorial.do.txt".
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
-Chapter ref{my:first:sec}. 
+Section ref{my:first:sec}.
 
 Doconce also allows inline comments such as [hpl: here I will make
 some remarks to the text] for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
-(see Chapter ref{doconce2formats} for an example).
+(see Section ref{doconce2formats} for an example).
 
 Tables are also supperted, e.g.,
 
@@ -252,7 +252,7 @@ The pipe symbol acts as a delimiter between LaTeX code and the plain text
 version of the formula.
 
 Blocks of mathematics are better typeset with raw LaTeX, inside
-`!bt` and `!et` (begin tex / end tex) instructions. 
+`!bt` and `!et` (begin tex / end tex) instructions.
 The result looks like this:
 !bt
 \begin{eqnarray}
@@ -299,7 +299,7 @@ in `f` (Fortran), `c` (C), `cpp` (C++), and `py` (Python).
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!). A complete file is typeset 
+avoiding copying information!). A complete file is typeset
 with `!bc pro`, while a part of a file is copied into a `!bc cod`
 environment. What `pro` and `cod` mean is then defined through
 a `.ptex2tex.cfg` file for LaTeX and a `sphinx code-blocks`
@@ -385,7 +385,7 @@ requires "docutils": "http://docutils.sourceforge.net".  Making Sphinx
 documents requires of course "Sphinx": "http://sphinx.pocoo.org".
 All of the mentioned potential dependencies are pure Python packages
 which are easily installed.
-If translation to "Pandoc": "http://johnmacfarlane.net/pandoc/" is desired, 
+If translation to "Pandoc": "http://johnmacfarlane.net/pandoc/" is desired,
 the Pandoc Haskell program must of course be installed.
 
 
