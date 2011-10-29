@@ -908,6 +908,7 @@ def inline_tag_subst(filestr, format):
         'paragraph',  # after bold and emphasize
         'plainURL',   # before linkURL2 to avoid "URL" as linkename
         'linkURL2',
+        'linkURL3',
         'linkURL',
         )
     for tag in ordered_tags:

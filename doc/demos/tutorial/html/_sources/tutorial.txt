@@ -1,4 +1,4 @@
-.. Automatically generated reST file from Doconce source 
+.. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)
 
 Doconce: Document Once, Include Anywhere

@@ -38,7 +38,7 @@ def gwiki_figure(m):
     caption = m.group('caption')
     # keep label if it's there:
     caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
-        
+
     print """
 NOTE: Place %s at some place on the web and edit the
       .gwiki page, either manually (seach for 'Figure: ')
@@ -54,7 +54,7 @@ Figure: %s
 
 (the URL of the image file %s must be inserted here)
 
-<wiki:comment> 
+<wiki:comment>
 Put the figure file %s on the web (e.g., as part of the
 googlecode repository) and substitute the line above with the URL.
 </wiki:comment>
@@ -75,7 +75,7 @@ def gwiki_table(table):
     # Not according to http://code.google.com/p/support/wiki/WikiSyntax#Tables
     # but it is possible to use HTML code in gwiki (i.e., html_table)
     # (think this was tried without success...)
-    
+
     s = '\n'
     for i, row in enumerate(table['rows']):
         if row == ['horizontal rule']:
@@ -97,7 +97,7 @@ def gwiki_table(table):
     s += '\n\n'
     return s
 
-def gwiki_author(authors_and_institutions, auth2index, 
+def gwiki_author(authors_and_institutions, auth2index,
                  inst2index, index2inst):
     authors = ['_%s_' % author \
                for author, i in authors_and_institutions]
@@ -158,7 +158,7 @@ def define(FILENAME_EXTENSION,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
-    
+
     FILENAME_EXTENSION['gwiki'] = '.gwiki'  # output file extension
     BLANKLINE['gwiki'] = '\n'
 
@@ -172,6 +172,7 @@ def define(FILENAME_EXTENSION,
         'verbatim':      r'\g<begin>`\g<subst>`\g<end>',
         'linkURL':       r'\g<begin>[\g<url> \g<link>]\g<end>',
         'linkURL2':      r'[\g<url> \g<link>]',
+        'linkURL3':      r'[\g<url> \g<link>]',
         'plainURL':      r'\g<url>',
         'section':       '\n\n\n' + r'== \g<subst> ==\n',
         'subsection':    '\n\n' + r'=== \g<subst> ===\n',
@@ -204,7 +205,7 @@ def define(FILENAME_EXTENSION,
     # newline at the end of lists until the next paragraph is hit)
     #LIST['gwiki'] = LIST['HTML']  # does not work well
 
-    
+
     # how to type set description lists for function arguments, return
     # values, and module/class variables:
     ARGLIST['gwiki'] = {

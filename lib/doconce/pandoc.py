@@ -18,22 +18,22 @@ def pandoc_author(authors_and_institutions, auth2index,
 
 def pandoc_code(filestr, format):
     defs = dict(cod='Python', pycod='Python', cppcod='Cpp',
-                fcod='Fortran', ccod='C', 
+                fcod='Fortran', ccod='C',
                 pro='Python', pypro='Python', cpppro='Cpp',
-                fpro='Fortran', cpro='C', 
+                fpro='Fortran', cpro='C',
                 sys='Bash', dat='Python')
         # (the "python" typesetting is neutral if the text
         # does not parse as python)
-    
+
     for key in defs:
         language = defs[key]
         replacement = '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s}' % defs[key]
         #replacement = '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s .numberLines}' % defs[key]
-        #filestr = re.sub(r'^!bc\s+%s\s*\n' % key, 
+        #filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
         #                 replacement, filestr, flags=re.MULTILINE)
         cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
         filestr = cpattern.sub(replacement, filestr)
-                         
+
     # any !bc with/without argument becomes a cod (python) block:
     replacement = '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s}' % defs['cod']
     #filestr = re.sub(r'^!bc.+\n', replacement, filestr, flags=re.MULTILINE)
@@ -82,7 +82,7 @@ def pandoc_ref_and_label(section_label2title, format, filestr):
         if not title:
             title = 'section'
         return title
-            
+
     for label in section_label2title:
         filestr = filestr.replace('ref{%s}' % label,
                   '[%s](#%s)' % (section_label2title[label],
@@ -114,7 +114,7 @@ def pandoc_index_bib(filestr, index, citations, bibfile):
     filestr = filestr.replace('cite{', r'\cite{')
     # The rest here is
     # copied from plaintext.py - no modifications yet for pandoc
-    
+
     if 'py' in bibfile:
         bibtext = bibdict2doconcelist(bibfile['py'], citations)
         #filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
@@ -150,7 +150,7 @@ def define(FILENAME_EXTENSION,
     # replacement patterns for substitutions of inline tags
     INLINE_TAGS_SUBST['pandoc'] = {
         'math':      None,  # indicates no substitution, leave as is
-        'math2':     r'\g<begin>$\g<latexmath>$\g<end>',        
+        'math2':     r'\g<begin>$\g<latexmath>$\g<end>',
         'emphasize': None,
         'bold':      None,
         'figure':    r'![\g<caption>](\g<filename>)',
@@ -158,6 +158,7 @@ def define(FILENAME_EXTENSION,
         'verbatim':  None,
         'linkURL':   r'\g<begin>\g<link> (\g<url>)\g<end>',
         'linkURL2':  r'[\g<link>](\g<url>)',
+        'linkURL3':  r'[\g<link>](\g<url>)',
         'plainURL':  r'<\g<url>>',
         # Reference links are not yet supported
         'title':     r'% \g<subst>n',
