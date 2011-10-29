@@ -175,12 +175,12 @@ as in "URL":"tutorial.do.txt".
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
-Chapter ref{my:first:sec}.
+Section ref{my:first:sec}.
 
 Doconce also allows inline comments such as [hpl: here I will make
 some remarks to the text] for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
-(see Chapter ref{doconce2formats} for an example).
+(see Section ref{doconce2formats} for an example).
 
 Tables are also supperted, e.g.,
 
@@ -220,12 +220,12 @@ as in "URL":"tutorial.do.txt".
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
-Chapter ref{my:first:sec}.
+Section ref{my:first:sec}.
 
 Doconce also allows inline comments such as [hpl: here I will make
 some remarks to the text] for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
-(see Chapter ref{doconce2formats} for an example).
+(see Section ref{doconce2formats} for an example).
 
 Tables are also supperted, e.g.,
 

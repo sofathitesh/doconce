@@ -7,6 +7,8 @@ except ImportError:
     # citations is then lost)
     OrderedDict = dict
 
+global debug
+debug = False  # can be reset in main()
 def debugpr(out):
     if debug:
         #print out
@@ -1220,10 +1222,12 @@ def main():
 
     # oneline is inactive (doesn't work well yet)
 
-    global debug, _log, oneline_paragraphs, \
-           remove_inline_comments, encoding
     options = ['debug', 'remove_inline_comments', 'encoding=',
                'oneline_paragraphs',] # 'tmp1']
+
+    global debug, _log, oneline_paragraphs, \
+           remove_inline_comments, encoding
+
     try:
         format = sys.argv[1]
         filename = sys.argv[2]

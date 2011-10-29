@@ -368,7 +368,7 @@ def sphinx_dir():
         import doconce
         for filename in doconce_files:
             f = open(filename, 'r'); fstr = f.read(); f.close()
-            authors_and_institutions, dummy1, dummy2, dummy3 = \
+            authors_and_institutions, dummy1, dummy2, dummy3, dummy4 = \
                       doconce.doconce.interpret_authors(fstr, 'sphinx')
             if authors_and_institutions:
                 author = [a for a, i in authors_and_institutions]

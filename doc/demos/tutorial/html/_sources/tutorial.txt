@@ -6,7 +6,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Oct 22, 2011
+:Date: Oct 29, 2011
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -18,7 +18,7 @@ Doconce: Document Once, Include Anywhere
 
  * Do you need to write documents in varying formats but find it
    difficult to remember all the typesetting details of various
-   formats like LaTeX, HTML, Sphinx, and wiki? Would it be convenient
+   formats like `LaTeX <http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf>`_, `HTML <http://www.htmlcodetutorial.com/>`_, `reStructuredText <http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html>`_, `Sphinx <http://sphinx.pocoo.org/contents.html>`_, and `wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_? Would it be convenient
    to generate the typesetting details of a particular format from a
    very simple text-like format with minimal tagging?
 
@@ -56,11 +56,11 @@ Doconce is two things:
 
 Here are some Doconce features:
 
-  * Doconce markup does include tags, so the format is more tagged than 
-    Markdown and Pandoc, but less than reST, and very much less than 
-    LaTeX and HTML. 
+  * Doconce markup does include tags, so the format is more tagged than
+    Markdown and Pandoc, but less than reST, and very much less than
+    LaTeX and HTML.
 
-  * Doconce can be converted to plain *untagged* text, 
+  * Doconce can be converted to plain *untagged* text,
     often desirable for computer programs and email.
 
   * Doconce has good support for copying in parts of computer code,
@@ -107,7 +107,7 @@ tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
 limitations of regular expressions, some formatting of Doconce syntax
 may face problems when transformed to HTML, LaTeX, Sphinx, and similar
-formats. 
+formats.
 
 
 
@@ -119,22 +119,22 @@ text constructions that allow you to control the formating. For example,
 
   * bullet lists arise from lines starting with an asterisk,
 
-  * *emphasized words* are surrounded by asterisks, 
+  * *emphasized words* are surrounded by asterisks,
 
-  * **words in boldface** are surrounded by underscores, 
+  * **words in boldface** are surrounded by underscores,
 
-  * words from computer code are enclosed in back quotes and 
+  * words from computer code are enclosed in back quotes and
     then typeset verbatim (monospace font),
 
-  * section headings are recognied by equality (``=``) signs before 
-    and after the text, and the number of ``=`` signs indicates the 
+  * section headings are recognied by equality (``=``) signs before
+    and after the text, and the number of ``=`` signs indicates the
     level of the section (7 for main section, 5 for subsection,
     3 for subsubsection),
 
   * paragraph headings are recognized by a double underscore
     before and after the heading,
 
-  * blocks of computer code can easily be included by placing 
+  * blocks of computer code can easily be included by placing
     ``!bc`` (begin code) and ``!ec`` (end code) commands at separate lines
     before and after the code block,
 
@@ -187,12 +187,12 @@ Here is an example of some simple text written in the Doconce format:
         
         References to sections may use logical names as labels (e.g., a
         "label" command right after the section title), as in the reference to
-        Chapter ref{my:first:sec}. 
+        Section ref{my:first:sec}.
         
         Doconce also allows inline comments such as [hpl: here I will make
         some remarks to the text] for allowing authors to make notes. Inline
         comments can be removed from the output by a command-line argument
-        (see Chapter ref{doconce2formats} for an example).
+        (see Section ref{doconce2formats} for an example).
         
         Tables are also supperted, e.g.,
         
@@ -238,12 +238,12 @@ as in `<tutorial.do.txt>`_.
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
-the chapter :ref:`my:first:sec`. 
+the section :ref:`my:first:sec`.
 
 Doconce also allows inline comments such as (**hpl**: here I will make
 some remarks to the text) for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
-(see the chapter :ref:`doconce2formats` for an example).
+(see the section :ref:`doconce2formats` for an example).
 
 Tables are also supperted, e.g.,
 
@@ -274,7 +274,7 @@ The pipe symbol acts as a delimiter between LaTeX code and the plain text
 version of the formula.
 
 Blocks of mathematics are better typeset with raw LaTeX, inside
-``!bt`` and ``!et`` (begin tex / end tex) instructions. 
+``!bt`` and ``!et`` (begin tex / end tex) instructions.
 The result looks like this:
 
 .. math::
@@ -333,7 +333,7 @@ in ``f`` (Fortran), ``c`` (C), ``cpp`` (C++), and ``py`` (Python).
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!). A complete file is typeset 
+avoiding copying information!). A complete file is typeset
 with ``!bc pro``, while a part of a file is copied into a ``!bc cod``
 environment. What ``pro`` and ``cod`` mean is then defined through
 a ``.ptex2tex.cfg`` file for LaTeX and a ``sphinx code-blocks``
@@ -427,7 +427,7 @@ Inline comments in the text are removed from the output by
         Terminal> doconce format LaTeX mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
-by running 
+by running
 source code:
 
 .. code-block:: py
@@ -471,8 +471,8 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
-``newcommands_replace.tex`` (see the section :ref:`newcommands`). 
-If these files are present, they are included in the LaTeX document 
+``newcommands_replace.tex`` (see the section :ref:`newcommands`).
+If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file,
@@ -503,14 +503,20 @@ is also available through
 
 .. code-block:: console
 
-        Terminal> ptex2tex -DTRAD_LATEX_HEADING mydoc
+        Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc
+
+A separate titlepage can be generate by
+
+.. code-block:: console
+
+        Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc
 
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents. After any ``!bc sys`` command in the Doconce source you can
+documents. After any ``!bc`` command in the Doconce source you can
 insert verbatim block styles as defined in your ``.ptex2tex.cfg``
-file, e.g., ``!bc sys cod`` for a code snippet, where ``cod`` is set to
+file, e.g., ``!bc cod`` for a code snippet, where ``cod`` is set to
 a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
 There are over 30 styles to choose from.
 
@@ -591,17 +597,71 @@ That is, one can easily go from Doconce to Microsoft Word.
 Sphinx
 ------
 
-Sphinx documents can be created from a Doconce source in a few steps.
+Sphinx documents demand quite some steps in their creation. We have automated
+most of the steps through the ``doconce sphinx_dir`` command:
+
+.. code-block:: console
+
+        Terminal> doconce sphinx_dir author="authors' names" \
+                  title="some title" version=1.0 dirname=sphinxdir \
+                  theme=mytheme file1 file2 file3 ...
+
+The keywords ``author``, ``title``, and ``version`` are used in the headings
+of the Sphinx document. By default, ``version`` is 1.0 and the script
+will try to deduce authors and title from the doconce files ``file1``,
+``file2``, etc. that together represent the whole document. Note that
+none of the individual Doconce files ``file1``, ``file2``, etc. should
+include the rest as their union makes up the whole document.
+The default value of ``dirname`` is ``sphinx-rootdir``. The ``theme``
+keyword is used to set the theme for design of HTML output from
+Sphinx (the default theme is ``'default'``).
+
+With a single-file document in ``mydoc.do.txt`` one often just runs
+
+.. code-block:: console
+
+        Terminal> doconce sphinx_dir mydoc
+
+and then an appropriate Sphinx directory ``sphinx-rootdir`` is made with
+relevant files.
+
+The ``doconce sphinx_dir`` command generates a script
+``automake-sphinx.sh`` for compiling the Sphinx document into an HTML
+document.  This script copies directories named ``figs`` or ``figures``
+over to the Sphinx directory so that figures are accessible in the
+Sphinx compilation.  If figures or movies are located in other
+directories, ``automake-sphinx.sh`` must be edited accordingly. One
+can either run ``automake-sphinx.sh`` or perform the steps in the
+script manually.
+
+Doconce comes with a collection of HTML themes for Sphinx documents.
+These are packed out in the Sphinx directory, the ``conf.py``
+configuration file for Sphinx is edited accordingly, and a script
+``make-themes.sh`` can make HTML documents with one or more themes.
+For example,
+to realize the themes ``fenics`` and ``pyramid``, one writes
+
+.. code-block:: console
+
+        Terminal> ./make-themes.sh fenics pyramid
+
+The resulting directories with HTML documents are ``_build/html_fenics``
+and ``_build/html_pyramid``, respectively. Without arguments,
+``make-themes.sh`` makes all available themes (!).
+
+If it is not desirable to use the autogenerated scripts explained
+above, here are the complete manual procedure of generating a
+Sphinx document from a file ``mydoc.do.txt``.
 
 *Step 1.* Translate Doconce into the Sphinx dialect of
 the reStructuredText format:
 
 .. code-block:: console
 
-        Terminal> doconce format sphinx mydoc.do.txt
+        Terminal> doconce format sphinx mydoc
 
 
-*Step 2.* Create a Sphinx root directory with a ``conf.py`` file, 
+*Step 2.* Create a Sphinx root directory with a ``conf.py`` file,
 either manually or by using the interactive ``sphinx-quickstart``
 program. Here is a scripted version of the steps with the latter:
 
@@ -632,28 +692,17 @@ program. Here is a scripted version of the steps with the latter:
         y
         EOF
 
-These statements as well as points 3-5 can be automated by the command
+
+*Step 3.* Copy the ``tutorial.rst`` file to the Sphinx root directory:
 
 .. code-block:: console
 
-        Terminal> doconce sphinx_dir mydoc.do.txt
-
-More precisely, in addition to making the ``sphinx-rootdir``,
-this command generates a script ``tmp_make_sphinx.sh`` which
-can be run to carry out steps 3-5, and later to remake the
-sphinx document.
-
-*Step 3.* Move the ``tutorial.rst`` file to the Sphinx root directory:
-
-.. code-block:: console
-
-        Terminal> mv mydoc.rst sphinx-rootdir
+        Terminal> cp mydoc.rst sphinx-rootdir
 
 If you have figures in your document, the relative paths to those will
 be invalid when you work with ``mydoc.rst`` in the ``sphinx-rootdir``
 directory. Either edit ``mydoc.rst`` so that figure file paths are correct,
-or simply copy your figure directory to ``sphinx-rootdir`` (if all figures
-are located in a subdirectory).
+or simply copy your figure directories to ``sphinx-rootdir``.
 
 *Step 4.* Edit the generated ``index.rst`` file so that ``mydoc.rst``
 is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes
@@ -675,7 +724,6 @@ is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes
         make clean   # remove old versions
         make html
 
-Many other formats are also possible.
 
 *Step 6.* View the result:
 
@@ -688,13 +736,6 @@ Note that verbatim code blocks can be typeset in a variety of ways
 depending the argument that follows ``!bc``: ``cod`` gives Python
 (``code-block:: python`` in Sphinx syntax) and ``cppcod`` gives C++, but
 all such arguments can be customized both for Sphinx and LaTeX output.
-
-.. Desired extension: sphinx can utilize a "pycod" or "c++cod"
-
-.. instruction as currently done in latex for ptex2tex and write
-
-.. out the right code block name accordingly.
-
 
 
 Google Code Wiki
@@ -732,7 +773,7 @@ The solution is to use a text substitution command or code with, e.g., sed,
 perl, python, or scitools subst, to automatically edit the output file
 from Doconce. It is then wise to run Doconce and the editing commands
 from a script to automate all steps in going from Doconce to the final
-format(s). The ``make.sh`` files in ``docs/manual`` and ``docs/tutorial`` 
+format(s). The ``make.sh`` files in ``docs/manual`` and ``docs/tutorial``
 constitute comprehensive examples on how such scripts can be made.
 
 
@@ -772,5 +813,5 @@ requires `docutils <http://docutils.sourceforge.net>`_.  Making Sphinx
 documents requires of course `Sphinx <http://sphinx.pocoo.org>`_.
 All of the mentioned potential dependencies are pure Python packages
 which are easily installed.
-If translation to `Pandoc <http://johnmacfarlane.net/pandoc/>`_ is desired, 
+If translation to `Pandoc <http://johnmacfarlane.net/pandoc/>`_ is desired,
 the Pandoc Haskell program must of course be installed.

@@ -161,7 +161,7 @@ That is, one can easily go from Doconce to Microsoft Word.
 
 ===== Sphinx =====
 
-Sphinx documents demands quite some steps to be created. We have automated
+Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the `doconce sphinx_dir` command:
 !bc sys
 Terminal> doconce sphinx_dir author="authors' names" \
