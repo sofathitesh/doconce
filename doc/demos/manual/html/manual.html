@@ -736,7 +736,7 @@ Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).</p>
 <p>Web addresses with links are typeset as</p>
-<div class="highlight-py"><pre>some URL like "Search Google": "http://google.com"</pre>
+<div class="highlight-py"><pre>some URL like "Doconce": "http://code.google.com/p/doconce"</pre>
 </div>
 <p>which appears as some URL like <a class="reference external" href="http://google.com">Search Google</a>.
 The space after colon is optional.
@@ -744,20 +744,19 @@ Links to files ending in <tt class="docutils literal"><span class="pre">.txt</sp
 setup:</p>
 <div class="highlight-py"><pre>see the "Doconce Manual": "manual.do.txt"</pre>
 </div>
-<p>Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes:</p>
-<div class="highlight-py"><pre>URL:"manual.do.txt"
-"URL": "manual.do.txt"
-url: "manual.do.txt"
-"url":"manual.do.txt"</pre>
+<p>which appears as see the <a class="reference external" href="manual.do.txt">Doconce Manual</a>.</p>
+<p>Links to files with other extensions must be realized
+<em>with the filename as link text</em>, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes:</p>
+<div class="highlight-py"><pre>URL: "manual.xml"</pre>
 </div>
-<p>All these constructions result in the link <a class="reference external" href="manual.do.txt">manual.do.txt</a>.</p>
-<p>To make a general URL itself appear as link name, put an &#8220;URL&#8221;, URL, or
-the lower case version, before the URL address enclosed in double
-quotes:</p>
-<div class="highlight-py"><pre>Click on this link: URL:"http://some.where.net".</pre>
+<p>resulting in the link <a class="reference external" href="manual.xml">manual.xml</a>.</p>
+<p>To have the URL address itself as link text, put an &#8220;URL&#8221; or URL
+before the address enclosed in double quotes:</p>
+<div class="highlight-py"><pre>Click on this link: URL:"http://code.google.com/p/doconce".</pre>
 </div>
+<p>resulting in Click on this link: <a class="reference external" href="http://code.google.com/p/doconce">http://code.google.com/p/doconce</a>.</p>
 <p>Doconce also supports inline comments in the text:</p>
 <div class="highlight-py"><pre>[name: comment]</pre>
 </div>

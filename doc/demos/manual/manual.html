@@ -998,7 +998,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
-some URL like "Search Google": "http://google.com"
+some URL like "Doconce": "http://code.google.com/p/doconce"
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 which appears as some URL like <A HREF="http://google.com">Search Google</A>.
@@ -1010,28 +1010,31 @@ setup:
 see the "Doconce Manual": "manual.do.txt"
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes:
-<!-- BEGIN VERBATIM BLOCK  -->
-<BLOCKQUOTE><PRE>
-URL:"manual.do.txt"
-"URL": "manual.do.txt"
-url: "manual.do.txt"
-"url":"manual.do.txt"
-</PRE></BLOCKQUOTE>
-<! -- END VERBATIM BLOCK -->
-All these constructions result in the link <A HREF="manual.do.txt"><TT>manual.do.txt</TT></A>.
+which appears as see the <A HREF="manual.do.txt">Doconce Manual</A>.
 
 <P>
-To make a general URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the URL address enclosed in double
-quotes:
+Links to files with other extensions must be realized
+<EM>with the filename as link text</EM>, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
-Click on this link: URL:"http://some.where.net".
+URL: "manual.xml"
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
+<!-- These work as well: <A HREF="manual.xml"><TT>manual.xml</TT></A> <A HREF="manual.xml"><TT>manual.xml</TT></A> -->
+<!-- <A HREF="manual.xml"><TT>manual.xml</TT></A> -->
+resulting in the link <A HREF="manual.xml"><TT>manual.xml</TT></A>.
+
+<P>
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Click on this link: URL:"http://code.google.com/p/doconce".
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+resulting in Click on this link: <A HREF="http://code.google.com/p/doconce"><TT>http://code.google.com/p/doconce</TT></A>.
 
 <P>
 Doconce also supports inline comments in the text:

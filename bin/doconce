@@ -441,7 +441,7 @@ EOF
     os.rename('sphinx_themes', '_themes')
     themes = [name[8:] for name in \
               glob.glob(os.path.join('_themes', '*'))] + ['default']
-    print 'These Sphinx themes were found:', themes
+    print 'These Sphinx themes were found:', ', '.join(themes)
     f = open('conf.py', 'r');  text = f.read();  f.close()
     themes_list = ["html_theme = '%s'" % theme] + \
                   ["#html_theme = '%s'" % theme for theme in themes]

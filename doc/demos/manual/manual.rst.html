@@ -1034,7 +1034,7 @@ becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).</p>
 <p>Web addresses with links are typeset as:</p>
 <pre class="literal-block">
-some URL like &quot;Search Google&quot;: &quot;http://google.com&quot;
+some URL like &quot;Doconce&quot;: &quot;http://code.google.com/p/doconce&quot;
 </pre>
 <p>which appears as some URL like <a class="reference external" href="http://google.com">Search Google</a>.
 The space after colon is optional.
@@ -1043,22 +1043,23 @@ setup:</p>
 <pre class="literal-block">
 see the &quot;Doconce Manual&quot;: &quot;manual.do.txt&quot;
 </pre>
-<p>Links to files with other extensions appear with the filename as
-link text, realized by the URL keyword, a colon, and enclosing the
-filename in double quotes:</p>
+<p>which appears as see the <a class="reference external" href="manual.do.txt">Doconce Manual</a>.</p>
+<p>Links to files with other extensions must be realized
+<em>with the filename as link text</em>, written as
+the keyword URL, followed by a colon, and then the filename enclosed
+in double quotes:</p>
 <pre class="literal-block">
-URL:&quot;manual.do.txt&quot;
-&quot;URL&quot;: &quot;manual.do.txt&quot;
-url: &quot;manual.do.txt&quot;
-&quot;url&quot;:&quot;manual.do.txt&quot;
+URL: &quot;manual.xml&quot;
 </pre>
-<p>All these constructions result in the link <a class="reference external" href="manual.do.txt">manual.do.txt</a>.</p>
-<p>To make a general URL itself appear as link name, put an &quot;URL&quot;, URL, or
-the lower case version, before the URL address enclosed in double
-quotes:</p>
+<!-- These work as well: `<manual.xml>`_ `<manual.xml>`_ -->
+<!-- `<manual.xml>`_ -->
+<p>resulting in the link <a class="reference external" href="manual.xml">manual.xml</a>.</p>
+<p>To have the URL address itself as link text, put an &quot;URL&quot; or URL
+before the address enclosed in double quotes:</p>
 <pre class="literal-block">
-Click on this link: URL:&quot;http://some.where.net&quot;.
+Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.
 </pre>
+<p>resulting in Click on this link: <a class="reference external" href="http://code.google.com/p/doconce">http://code.google.com/p/doconce</a>.</p>
 <p>Doconce also supports inline comments in the text:</p>
 <pre class="literal-block">
 [name: comment]
