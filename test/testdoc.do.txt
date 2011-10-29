@@ -7,6 +7,8 @@ TITLE: A Test Document
 AUTHOR: Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
 AUTHOR: Kaare Dump at Segfault Inc, Cyberspace
 AUTHOR: A. Dummy Author
+# LaTeX demands DATE
+DATE: today
 
 The format of this document is
 % if FORMAT == 'HTML':
@@ -134,8 +136,8 @@ is fine to have.
 
 ===== Some LaTeX Constructs =====
 
-Let's check abbr. of some common kind, e.g. the well-known i.e. 
-7-9 as an example. Moreover, Dr. Tang and Prof. Monsen, 
+Let's check abbr. of some common kind, e.g. the well-known i.e.
+7-9 as an example. Moreover, Dr. Tang and Prof. Monsen,
 or maybe also prof. Ting,
 will go to the Dept. of Science to test how Mr. Hansen is doing together
 with Ms. Larsen. A sentence containing "refines lines" could easily
@@ -174,7 +176,7 @@ Or with multline?
 !bt
 \begin{multline}
 a = b = q + \\
-  f + \nabla\cdot\nabla u 
+  f + \nabla\cdot\nabla u
 label{multiline:eq1}
 \end{multline}
 !et
