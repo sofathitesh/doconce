@@ -9,8 +9,8 @@
 # doconce, ptex2tex, docutils, preprocess, sphinx
 
 d2f="doconce format"
-# doconce HTML format:
-$d2f HTML manual.do.txt
+# doconce html format:
+$d2f html manual.do.txt
 
 # Sphinx
 $d2f sphinx manual.do.txt
@@ -26,7 +26,7 @@ cd sphinx-rootdir
 make clean
 make html
 make latex
-doconce subst '\.\*' '.pdf' _build/latex/DoconceDescription.tex  # .* doesn't work
+doconce subst '\.\*' '.pdf' _build/latex/DoconceManual.tex  # .* doesn't work
 ln -s `pwd`/../figs _build/latex/figs
 cd _build/latex
 make clean
@@ -34,7 +34,7 @@ make clean
 make all-pdf <<EOF
 r
 EOF
-cp DoconceDescription.pdf ../../../manual.sphinx.pdf
+cp DoconceManual.pdf ../../../manual.sphinx.pdf
 cd ../../..
 
 
@@ -59,9 +59,9 @@ $d2f plain manual.do.txt remove_inline_comments
 $d2f epytext manual.do.txt
 $d2f st manual.do.txt
 
-# doconce LaTeX:
-$d2f LaTeX manual.do.txt    # produces ptex2tex: manual.p.tex
-doconce replace 'usepackage{ptex2tex' 'usepackage{ptex2tex,subfigure' manual.p.tex  # need subfigure LaTeX package
+# doconce latex:
+$d2f latex manual.do.txt    # produces ptex2tex: manual.p.tex
+doconce replace 'usepackage{ptex2tex' 'usepackage{ptex2tex,subfigure' manual.p.tex  # need subfigure latex package
 ptex2tex -DMINTED manual    # turn ptex2tex format into plain latex
 rm -f manual.p.tex
 latex -shell-escape manual
@@ -95,12 +95,12 @@ Doconce is a minimum tagged markup language. The file
 a Doconce Description, written in the Doconce format.
 Running
 <pre>
-doconce format HTML manual.do.txt
+doconce format html manual.do.txt
 </pre>
 produces the HTML file <a href="manual.html">manual.html</a>.
 Going from Doconce to LaTeX is done by
 <pre>
-doconce format LaTeX manual.do.txt
+doconce format latex manual.do.txt
 </pre>
 resulting in the file <a href="manual.tex">manual.tex</a>, which can
 be compiled to a PDF file <a href="manual.pdf">manual.pdf</a>

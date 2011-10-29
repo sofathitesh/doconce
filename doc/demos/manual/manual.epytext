@@ -148,18 +148,18 @@ file first, and options to C{mako} or C{preprocess} can be added after the
 filename. For example::
 
 
-        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+        Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 
 The variable C{FORMAT} is always defined as the current format when
 running C{preprocess}. That is, in the last example, C{FORMAT} is
-defined as C{LaTeX}. Inside the Doconce document one can then perform
-format specific actions through tests like C{#if FORMAT == "LaTeX"}.
+defined as C{latex}. Inside the Doconce document one can then perform
+format specific actions through tests like C{#if FORMAT == "latex"}.
 
 Inline comments in the text are removed from the output by::
 
 
-        Terminal> doconce format LaTeX mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running
@@ -179,7 +179,7 @@ Making an HTML version of a Doconce file C{mydoc.do.txt}
 is performed by::
 
 
-        Terminal> doconce format HTML mydoc
+        Terminal> doconce format html mydoc
 
 The resulting file C{mydoc.html} can be loaded into any web browser for viewing.
 
@@ -192,7 +192,7 @@ I{Step 1.} Filter the doconce text to a pre-LaTeX form C{mydoc.p.tex} for
      C{ptex2tex}::
 
 
-        Terminal> doconce format LaTeX mydoc
+        Terminal> doconce format latex mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files C{newcommands.tex}, C{newcommands_keep.tex}, or
@@ -299,8 +299,8 @@ reStructuredText file C{mydoc.rst}::
 We may now produce various other formats::
 
 
-        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
         Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
@@ -700,7 +700,7 @@ Movies
 ------
 
 Here is an example on the C{MOVIE:} keyword for embedding movies. This
-feature works well for the C{LaTeX}, C{HTML}, C{rst}, and C{sphinx} formats.
+feature works well for the C{latex}, C{html}, C{rst}, and C{sphinx} formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie::
 
@@ -746,8 +746,8 @@ the embedded HTML code for the movie on the YouTube page).
 
 
 
-Copying Computer Code
----------------------
+Copying Computer Code from Source Files
+---------------------------------------
 
 Another type of special lines starts with C{@@@CODE} and enables copying
 of computer code from a file directly into a verbatim environment, see
@@ -916,14 +916,16 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to::
 
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
-Everything related to the index simply becomes invisible in
-plain text, Epytext, StructuredText, HTML, and wiki formats.
-Note: C{idx} commands should be inserted outside paragraphs, not in between
-the text as this may cause some strange behaviour of the formatting.
-Index items are naturally placed right after section headings, before the
-text begins. Index items related to the heading of a paragraph, however,
-should be placed above the paragraph heading and not in between the
-heading and the text.
+Everything related to the index simply becomes invisible in plain
+text, Epytext, StructuredText, HTML, and wiki formats.  Note: C{idx}
+commands should be inserted outside paragraphs, not in between the
+text as this may cause some strange behaviour of reStructuredText and
+Sphinx formatting.  As a recommended rule, index items are naturally
+placed right after section headings, before the text begins, while
+index items related to a paragraph should be placed above the
+paragraph one a separate line (and not in between the text or between
+the paragraph heading and the text body, although this works fine if
+LaTeX is the output format).
 
 Literature citations also follow a LaTeX-inspired style::
 
@@ -970,6 +972,8 @@ copied into the document at the place where the C{BIBFILE:} keyword
 appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the C{BIBFILE:} line
 in the document.
+
+At present, only one file with bibliographic references can be used.
 
 
 Conversion of BibTeX databases to reStructuredText format can be
@@ -1268,7 +1272,7 @@ the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
 The preprocess and mako programs always have the variable C{FORMAT}
-defined as the desired output format of Doconce (C{HTML}, C{LaTeX},
+defined as the desired output format of Doconce (C{html}, C{latex},
 C{plain}, C{rst}, C{sphinx}, C{epydoc}, C{st}).  It is then easy to test on
 the value of C{FORMAT} and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
@@ -1293,10 +1297,123 @@ the writing of parts of the document.
 
 
 
+Splitting Documents into Smaller Pieces
+---------------------------------------
+
+Long documents are conveniently split into smaller Doconce files.
+However, there must be a master document including all the pieces,
+otherwise references to sections and the index will not work properly.
+The master document is preferably a file just containing a set of
+preprocessor include statements of the form C{#include "file.do.txt"}.
+The preprocessor will put together all the pieces so that Doconce
+sees a long file with the complete text.
+
+For reStructuredText and Sphinx documents it is a point to have
+separate C{.rst} files and an index file listing the various C{.rst}
+that build up the document. To generate the various C{.rst} files one
+should not run Doconce on the individual C{.do.txt} files, because then
+references and index entries are not treated correctly. Instead,
+run Doconce on the master file and invoke the script C{doconce split_rst}
+to split the long, complete C{.rst} into pieces. This process requires
+that each C{#include "file.do.txt} line in the master file is preceded by a
+"marker line" having the syntax C{#>>>>>> part: file >>>>>>}, where
+C{file} is the filename without extension. The number of greater than
+signs is not important, but it has to be a comment line and it has
+to contain the keyword C{part:}.
+
+Here is an example. Say the name of the master file is C{master.do.txt}.
+The following Bash script does the job:
+We run::
+
+
+        doconce format sphinx master
+        # Split master.rst into parts
+        # as defined by #>>>>> part: name >>>>> lines
+        files=`doconce split_rst master.rst`
+        
+        dir=sphinxm-rootdir
+        
+        if [ ! -d $dir ]; then
+          doconce sphinx_dir dirname=$dir author='me and you' \
+                  version=1.0 theme=default $files
+          sh automake-sphinx.sh
+        else
+          for file in $files; do
+            cp $file.rst $dir
+          done
+          cd $dir
+          make html
+          cd ..
+        fi
+
+The autogenerated C{automake-sphinx.sh} file (by C{doconce sphinx_dir})
+is compatible with a master C{.rst} file split into pieces as long as
+the complete set of pieces in correct order is given to C{doconce sphinx_dir}.
+This set is the output of C{doconce split_rst}, which we catch in a
+variable C{files} above.
+
+
 Missing Features
 ----------------
 
-  - Footnotes
+Doconce does not aim to support sophisticated typesetting, simply because
+sophisticated typesetting usually depend quite strongly on the particular
+output format chosen. When a particular feature needed is not supported
+by Doconce, it is recommended to hardcode that feature for a particular
+format and use the if-else construction of the preprocessor. For example,
+if a sophisticated table is desired in LaTeX output, test on the
+C{FORMAT} variable (C{#if FORMAT == "latex"}) in the Doconce code and
+insert the table in LaTeX format. The C{else} or C{elif} branches may
+have the table in other formats or a simplified version in the Doconce
+table format. Similarly, if certain adjustments are needed, like
+pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
+that this is really LaTeX dependent - pagebreaks are not
+relevant HTML formats).
+
+Instead of inserting special code in the Doconce document, one can
+alternatively script editing of the output from Doconce. That is,
+we develop a Python or Bash script that runs the translation of
+a Doconce document to a ready docoment in another format. Inside this
+script, we may edit and fine-tune the output from Doconce.
+
+As an example, say you want a table of contents in the LaTeX output
+(Doconce does not support table of contents). By inserting a
+recognizable comment in the Doconce source, say::
+
+
+        # table of contents
+
+we can use this comment to edit the LaTeX file. First, we run
+Doconce C{doconce format latex mydoc} to produce C{mydoc.p.tex}. Then
+we use the C{doconce replace} and C{doconce subst} commands to
+replace the comment by the comment plus the table of contents command,
+or just the latter::
+
+
+        Terminal> doconce replace '% table of contents'
+                  '\tableofcontents' mydoc.p.tex
+
+The C{doconce replace from_text to_text filename} command performs a
+character-by-character replacement (using the C{replace} method in
+string objects in Python). If we want to preserve the comment and add
+a new line with C{\tableofcontents}, we should use C{doconce subst},
+which applies regular expressions for substitutions and thereby
+understands the newline character::
+
+
+
+            NOTE: A verbatim block has been removed because
+                  it causes problems for Epytext.
+
+
+Note the double backshlash in front of the C{t} character: without it we
+would get a tab and no backslash.
+The C{doconce subst} is a powerful way to automatically edit the output
+from Doconce and fine-tune a LaTeX document. Use of comment lines to
+identify portions of the file to be edited is a smart idea.
+Alternatively, the relevant LaTeX constructions can be inserted directly
+in the Doconce file using if-else preprocessor directives.
+
 
 Troubleshooting
 ---------------
@@ -1475,7 +1592,7 @@ Eight here we only displacy a smaller snippet that Epytext can
 treat properly::
 
 
-        INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+        INLINE_TAGS_SUBST['html'] = {         # from inline tags to html tags
             # keep math as is:
             'math': None,  # indicates no substitution
             'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',

@@ -36,7 +36,7 @@ for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki, pandoc:
                   OUTRO)
 
 def supported_format_names():
-    return 'HTML', 'LaTeX', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'pandoc'
+    return 'html', 'latex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'pandoc'
 
 #----------------------------------------------------------------------------
 # Translators: (no, do not include! use import! - as shown above)
@@ -255,7 +255,7 @@ def syntax_check(filestr, format):
             print '\n'.join(matches)
             sys.exit(1)
 
-    if format == "LaTeX":
+    if format == "latex":
         # if TITLE is given, AUTHOR and DATE must also be present
         #md = re.search(r'^DATE:', filestr, flags=re.MULTILINE)
         #mt = re.search(r'^TITLE:', filestr, flags=re.MULTILINE)
@@ -269,7 +269,7 @@ def syntax_check(filestr, format):
         if md or mt or ma:
             if not (md and mt and ma):
                 print """
-Syntax error: LaTeX format requires TITLE, AUTHOR and DATE to be
+Syntax error: latex format requires TITLE, AUTHOR and DATE to be
 specified if one of them is present."""
                 if not md:
                     print 'DATE is missing'
@@ -370,7 +370,7 @@ def insert_code_from_file(filestr, format):
                         codelines.append(codeline)
                 code = ''.join(codelines)
 
-            if format == 'LaTeX' or format == 'sphinx':
+            if format == 'latex' or format == 'sphinx':
                 # insert a cod or pro directive for ptex2tex:
                 if complete_file:
                     code = "!bc pro\n%s\n!ec" % code
@@ -545,7 +545,7 @@ def typeset_lists(filestr, format, debug_info=[]):
             else:
                 debugpr('  > This is just a comment line')
                 # the comment can be propagated to some formats
-                # (rst, LaTeX, HTML):
+                # (rst, latex, html):
                 line = line[1:]  # strip off initial #
                 if 'comment' in INLINE_TAGS_SUBST[format]:
                     comment_action = INLINE_TAGS_SUBST[format]['comment']
@@ -808,8 +808,8 @@ def handle_index_and_bib(filestr, format, has_title):
                         cite_counter += 1  # new citation label
                         citations[label] = cite_counter
                 # replace cite{label1,label2,...} by individual cite{label1}
-                # cite{label2}, etc. if not LaTeX format:
-                if format != 'LaTeX':
+                # cite{label2}, etc. if not latex format:
+                if format != 'latex':
                     for arg in cite_args:
                         replacement = ' '.join(['cite{%s}' % label.strip() \
                                                  for label in arg.split(',')])
@@ -973,7 +973,7 @@ def subst_away_inline_comments(filestr):
 def doconce2format(in_filename, format, out_filename):
     """
     Perform the transformation of a doconce file, stored in in_filename,
-    to a given format (HTML, LaTeX, etc.), written to out_filename.
+    to a given format (html, latex, etc.), written to out_filename.
     This is the "main" function in the module.
     """
     if in_filename.startswith('__'):
@@ -1010,10 +1010,10 @@ def doconce2format(in_filename, format, out_filename):
         has_title = False
 
     # 1. step: insert verbatim code from other (source code) files:
-    # (if the format is LaTeX, we could let ptex2tex do this, but
+    # (if the format is latex, we could let ptex2tex do this, but
     # the CODE start@stop specifications may contain uderscores and
     # asterix, which will be replaced later and hence destroyed)
-    #if format != 'LaTeX':
+    #if format != 'latex':
     filestr = insert_code_from_file(filestr, format)
     debugpr('%s\n**** The file after inserting @@@CODE (from file):\n\n%s\n\n' % \
           ('*'*80, filestr))
@@ -1022,18 +1022,18 @@ def doconce2format(in_filename, format, out_filename):
 
     filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
 
-    # for HTML we should make replacements of < ... > in code_blocks,
+    # for html we should make replacements of < ... > in code_blocks,
     # and handle latin-1 characters
-    if format == 'HTML':  # fix
+    if format == 'html':  # fix
         from urllib import quote
         for i in range(len(code_blocks)):
             code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
                                     '&lt;\g<2>&gt;', code_blocks[i])
         # This special character transformation is easier done
-        # with encoding="utf-8" in the first line in the HTML file:
+        # with encoding="utf-8" in the first line in the html file:
         # (but we do it explicitly to make it robust)
         filestr = html.latin2html(filestr)
-    elif format == 'LaTeX':  # fix
+    elif format == 'latex':  # fix
         # labels inside tex envirs must have backslash \label:
         for i in range(len(tex_blocks)):
             tex_blocks[i] = re.sub(r'([^\\])label', r'\g<1>\\label',
@@ -1087,7 +1087,7 @@ def doconce2format(in_filename, format, out_filename):
     # 9. step: substitute latex-style newcommands in filestr and tex_blocks
     # (not in code_blocks)
     from expand_newcommands import expand_newcommands
-    if format != 'LaTeX' and format != 'pandoc':
+    if format != 'latex' and format != 'pandoc':
         newcommand_files = ['newcommands_replace.tex']
         if format == 'sphinx':  # replace all newcommands in sphinx
             newcommand_files.extend(['newcommands.tex', 'newcommands_keep.tex'])
@@ -1113,9 +1113,9 @@ def doconce2format(in_filename, format, out_filename):
         if format in OUTRO:
             filestr = filestr + OUTRO[format]
 
-    if format == 'LaTeX':
+    if format == 'latex':
         if r'\includemovie[' not in filestr:
-            # avoid the need for movie15 package in LaTeX file
+            # avoid the need for movie15 package in latex file
             filestr = filestr.replace('define MOVIE', 'undef MOVIE')
 
     if encoding:

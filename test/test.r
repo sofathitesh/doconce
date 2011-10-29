@@ -9,13 +9,13 @@ TITLE: A Test Document
 AUTHOR: Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
 AUTHOR: Kaare Dump at Segfault Inc, Cyberspace
 AUTHOR: A. Dummy Author
-# LaTeX demands DATE
+# latex demands DATE
 DATE: today
 
 The format of this document is
 % if FORMAT == 'HTML':
 plain, homemade HTML.
-  % elif FORMAT == 'LaTeX':
+  % elif FORMAT == 'latex':
 plan, homemade LaTeX.
   %else:
 ${FORMAT}
@@ -75,7 +75,7 @@ label{subsec:table}
 Let us take this table from the manual:
 idx{some `class X` which is convenient}
 
-% if FORMAT == "LaTeX":
+% if FORMAT == "latex":
 \begin{table}
 \caption{
 Table of velocity and acceleration.
@@ -91,7 +91,7 @@ label{mytab}
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
 
-% if FORMAT == "LaTeX":
+% if FORMAT == "latex":
 \end{table}
 % endif
 
@@ -134,7 +134,7 @@ is fine to have.
 # note that when there is no http: or file:, it can be a file link
 # if the link name is URL, url, "URL", or "url".
 
-% if FORMAT == "LaTeX":
+% if FORMAT == "latex":
 
 ===== Some LaTeX Constructs =====
 
@@ -224,9 +224,9 @@ Here is eqnarray:
 
 ************** File: testdoc.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- 
-Automatically generated HTML file from Doconce source 
-(http://code.google.com/p/doconce/) 
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
 -->
 
 <HTML>
@@ -260,11 +260,11 @@ Automatically generated HTML file from Doconce source
 <CENTER>[3] <B>Segfault Inc, Cyberspace</B></CENTER>
 
 
-<!-- LaTeX demands DATE -->
+<!-- latex demands DATE -->
 <CENTER><H3>Oct 29, 2011</H3></CENTER>
 <P>
 The format of this document is
-plain, homemade HTML.
+html
 
 <P>
 
@@ -596,7 +596,7 @@ Here is eqnarray:
 \vspace{4mm}
 
 % #endif
-% {\LaTeX} demands DATE
+% latex demands DATE
 
 
 % ----------------- Date -------------------------
@@ -923,7 +923,7 @@ A Test Document
 
 :Author: Hans Petter Langtangen, Kaare Dump, A. Dummy Author
 
-.. LaTeX demands DATE
+.. latex demands DATE
 
 :Date: Oct 29, 2011
 
@@ -1173,7 +1173,7 @@ A Test Document
 
 :Author: Hans Petter Langtangen, Kaare Dump, A. Dummy Author
 
-.. LaTeX demands DATE
+.. latex demands DATE
 
 :Date: Oct 29, 2011
 
@@ -1445,7 +1445,7 @@ Here is eqnarray:
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*, *Kaare Dump*, and *A. Dummy Author*
 
-<wiki:comment> LaTeX demands DATE </wiki:comment>
+<wiki:comment> latex demands DATE </wiki:comment>
 
 ==== Oct 29, 2011 ====
 
@@ -2204,8 +2204,8 @@ NOT FOUND!
 ************** File: make.sh *****************
 #!/bin/sh -x
 # Test multiple authors
-doconce format HTML testdoc.do.txt
-doconce format LaTeX testdoc.do.txt
+doconce format html testdoc.do.txt
+doconce format latex testdoc.do.txt
 doconce format plain testdoc.do.txt
 doconce format st testdoc.do.txt
 doconce format sphinx testdoc.do.txt
@@ -2233,11 +2233,11 @@ doconce guess_encoding tmp2.do.txt >> tmp_encodings.txt
 #!/bin/sh -x
 ./clean.sh
 
-# HTML
-doconce format HTML tutorial.do.txt
+# html
+doconce format html tutorial.do.txt
 
-# LaTeX
-doconce format LaTeX tutorial.do.txt
+# latex
+doconce format latex tutorial.do.txt
 ptex2tex -DHELVETICA tutorial
 latex tutorial.tex  # no -shell-escape since no -DMINTED to ptex2tex
 latex tutorial.tex
@@ -2310,12 +2310,12 @@ Doconce is a minimum tagged markup language. The file
 Doconce tutorial, written in the Doconce format.
 Running
 <pre>
-doconce format HTML tutorial.do.txt
+doconce format html tutorial.do.txt
 </pre>
 produces the HTML file <a href="tutorial.html">tutorial.html</a>.
 Going from Doconce to LaTeX is done by
 <pre>
-doconce format LaTeX tutorial.do.txt
+doconce format latex tutorial.do.txt
 </pre>
 resulting in the file <a href="tutorial.tex">tutorial.tex</a>, which can
 be compiled to a PDF file <a href="tutorial.pdf">tutorial.pdf</a>
@@ -2749,9 +2749,9 @@ the Pandoc Haskell program must of course be installed.
 
 ************** File: tutorial.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- 
-Automatically generated HTML file from Doconce source 
-(http://code.google.com/p/doconce/) 
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
 -->
 
 <HTML>
@@ -3184,20 +3184,20 @@ file first, and options to <TT>mako</TT> or <TT>preprocess</TT> can be added aft
 filename. For example,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The variable <TT>FORMAT</TT> is always defined as the current format when
 running <TT>preprocess</TT>. That is, in the last example, <TT>FORMAT</TT> is
-defined as <TT>LaTeX</TT>. Inside the Doconce document one can then perform
-format specific actions through tests like <TT>#if FORMAT == "LaTeX"</TT>.
+defined as <TT>latex</TT>. Inside the Doconce document one can then perform
+format specific actions through tests like <TT>#if FORMAT == "latex"</TT>.
 
 <P>
 Inline comments in the text are removed from the output by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> doconce format LaTeX mydoc remove_inline_comments
+Terminal> doconce format latex mydoc remove_inline_comments
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 One can also remove such comments from the original Doconce file
@@ -3220,7 +3220,7 @@ Making an HTML version of a Doconce file <TT>mydoc.do.txt</TT>
 is performed by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> doconce format HTML mydoc
+Terminal> doconce format html mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The resulting file <TT>mydoc.html</TT> can be loaded into any web browser for viewing.
@@ -3238,7 +3238,7 @@ Making a LaTeX file <TT>mydoc.tex</TT> from <TT>mydoc.do.txt</TT> is done in two
      <TT>ptex2tex</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> doconce format LaTeX mydoc
+Terminal> doconce format latex mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 LaTeX-specific commands ("newcommands") in math formulas and similar
@@ -3360,8 +3360,8 @@ Terminal> doconce format rst mydoc.do.txt
 We may now produce various other formats:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 </PRE></BLOCKQUOTE>
@@ -4016,18 +4016,18 @@ file first, and options to ``mako`` or ``preprocess`` can be added after the
 filename. For example::
 
 
-        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+        Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 
 The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
-defined as ``LaTeX``. Inside the Doconce document one can then perform
-format specific actions through tests like ``#if FORMAT == "LaTeX"``.
+defined as ``latex``. Inside the Doconce document one can then perform
+format specific actions through tests like ``#if FORMAT == "latex"``.
 
 Inline comments in the text are removed from the output by::
 
 
-        Terminal> doconce format LaTeX mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running
@@ -4047,7 +4047,7 @@ Making an HTML version of a Doconce file ``mydoc.do.txt``
 is performed by::
 
 
-        Terminal> doconce format HTML mydoc
+        Terminal> doconce format html mydoc
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
@@ -4066,7 +4066,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
      ``ptex2tex``::
 
 
-        Terminal> doconce format LaTeX mydoc
+        Terminal> doconce format latex mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
@@ -4173,8 +4173,8 @@ reStructuredText file ``mydoc.rst``::
 We may now produce various other formats::
 
 
-        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
         Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
@@ -4805,19 +4805,19 @@ filename. For example,
 
 .. code-block:: console
 
-        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+        Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 
 The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
-defined as ``LaTeX``. Inside the Doconce document one can then perform
-format specific actions through tests like ``#if FORMAT == "LaTeX"``.
+defined as ``latex``. Inside the Doconce document one can then perform
+format specific actions through tests like ``#if FORMAT == "latex"``.
 
 Inline comments in the text are removed from the output by
 
 .. code-block:: console
 
-        Terminal> doconce format LaTeX mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running
@@ -4840,7 +4840,7 @@ is performed by
 
 .. code-block:: console
 
-        Terminal> doconce format HTML mydoc
+        Terminal> doconce format html mydoc
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
@@ -4860,7 +4860,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 
 .. code-block:: console
 
-        Terminal> doconce format LaTeX mydoc
+        Terminal> doconce format latex mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
@@ -4978,8 +4978,8 @@ We may now produce various other formats:
 
 .. code-block:: console
 
-        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
         Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
@@ -5501,17 +5501,17 @@ The `mako` or `preprocess` programs are always used to preprocess the
 file first, and options to `mako` or `preprocess` can be added after the
 filename. For example,
 {{{
-Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 }}}
 The variable `FORMAT` is always defined as the current format when
 running `preprocess`. That is, in the last example, `FORMAT` is
-defined as `LaTeX`. Inside the Doconce document one can then perform
-format specific actions through tests like `#if FORMAT == "LaTeX"`.
+defined as `latex`. Inside the Doconce document one can then perform
+format specific actions through tests like `#if FORMAT == "latex"`.
 
 Inline comments in the text are removed from the output by
 {{{
-Terminal> doconce format LaTeX mydoc remove_inline_comments
+Terminal> doconce format latex mydoc remove_inline_comments
 }}}
 One can also remove such comments from the original Doconce file
 by running
@@ -5527,7 +5527,7 @@ and comments by different authors should be removed.
 Making an HTML version of a Doconce file `mydoc.do.txt`
 is performed by
 {{{
-Terminal> doconce format HTML mydoc
+Terminal> doconce format html mydoc
 }}}
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
@@ -5541,7 +5541,7 @@ Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
 *Step 1.* Filter the doconce text to a pre-LaTeX form `mydoc.p.tex` for
      `ptex2tex`:
 {{{
-Terminal> doconce format LaTeX mydoc
+Terminal> doconce format latex mydoc
 }}}
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files `newcommands.tex`, `newcommands_keep.tex`, or
@@ -5634,8 +5634,8 @@ Terminal> doconce format rst mydoc.do.txt
 }}}
 We may now produce various other formats:
 {{{
-Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 }}}
@@ -6159,18 +6159,18 @@ file first, and options to 'mako' or 'preprocess' can be added after the
 filename. For example::
 
 
-        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+        Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 
 The variable 'FORMAT' is always defined as the current format when
 running 'preprocess'. That is, in the last example, 'FORMAT' is
-defined as 'LaTeX'. Inside the Doconce document one can then perform
-format specific actions through tests like '#if FORMAT == "LaTeX"'.
+defined as 'latex'. Inside the Doconce document one can then perform
+format specific actions through tests like '#if FORMAT == "latex"'.
 
 Inline comments in the text are removed from the output by::
 
 
-        Terminal> doconce format LaTeX mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running
@@ -6186,7 +6186,7 @@ Making an HTML version of a Doconce file 'mydoc.do.txt'
 is performed by::
 
 
-        Terminal> doconce format HTML mydoc
+        Terminal> doconce format html mydoc
 
 The resulting file 'mydoc.html' can be loaded into any web browser for viewing.
 LaTeX
@@ -6195,7 +6195,7 @@ Making a LaTeX file 'mydoc.tex' from 'mydoc.do.txt' is done in two steps:
 *Step 1.* Filter the doconce text to a pre-LaTeX form 'mydoc.p.tex' for
      'ptex2tex':
 !bc   sys
-        Terminal> doconce format LaTeX mydoc
+        Terminal> doconce format latex mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files 'newcommands.tex', 'newcommands_keep.tex', or
@@ -6294,8 +6294,8 @@ reStructuredText file 'mydoc.rst':
 We may now produce various other formats::
 
 
-        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
         Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
@@ -6848,18 +6848,18 @@ file first, and options to C{mako} or C{preprocess} can be added after the
 filename. For example::
 
 
-        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+        Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 
 The variable C{FORMAT} is always defined as the current format when
 running C{preprocess}. That is, in the last example, C{FORMAT} is
-defined as C{LaTeX}. Inside the Doconce document one can then perform
-format specific actions through tests like C{#if FORMAT == "LaTeX"}.
+defined as C{latex}. Inside the Doconce document one can then perform
+format specific actions through tests like C{#if FORMAT == "latex"}.
 
 Inline comments in the text are removed from the output by::
 
 
-        Terminal> doconce format LaTeX mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running
@@ -6879,7 +6879,7 @@ Making an HTML version of a Doconce file C{mydoc.do.txt}
 is performed by::
 
 
-        Terminal> doconce format HTML mydoc
+        Terminal> doconce format html mydoc
 
 The resulting file C{mydoc.html} can be loaded into any web browser for viewing.
 
@@ -6892,7 +6892,7 @@ I{Step 1.} Filter the doconce text to a pre-LaTeX form C{mydoc.p.tex} for
      C{ptex2tex}::
 
 
-        Terminal> doconce format LaTeX mydoc
+        Terminal> doconce format latex mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files C{newcommands.tex}, C{newcommands_keep.tex}, or
@@ -6999,8 +6999,8 @@ reStructuredText file C{mydoc.rst}::
 We may now produce various other formats::
 
 
-        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
         Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
@@ -7602,18 +7602,18 @@ file first, and options to mako or preprocess can be added after the
 filename. For example::
 
 
-        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+        Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 
 The variable FORMAT is always defined as the current format when
 running preprocess. That is, in the last example, FORMAT is
-defined as LaTeX. Inside the Doconce document one can then perform
-format specific actions through tests like #if FORMAT == "LaTeX".
+defined as latex. Inside the Doconce document one can then perform
+format specific actions through tests like #if FORMAT == "latex".
 
 Inline comments in the text are removed from the output by::
 
 
-        Terminal> doconce format LaTeX mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running
@@ -7633,7 +7633,7 @@ Making an HTML version of a Doconce file mydoc.do.txt
 is performed by::
 
 
-        Terminal> doconce format HTML mydoc
+        Terminal> doconce format html mydoc
 
 The resulting file mydoc.html can be loaded into any web browser for viewing.
 
@@ -7646,7 +7646,7 @@ Making a LaTeX file mydoc.tex from mydoc.do.txt is done in two steps:
      ptex2tex::
 
 
-        Terminal> doconce format LaTeX mydoc
+        Terminal> doconce format latex mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files newcommands.tex, newcommands_keep.tex, or
@@ -7753,8 +7753,8 @@ reStructuredText file mydoc.rst::
 We may now produce various other formats::
 
 
-        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
         Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
@@ -7974,7 +7974,7 @@ the Pandoc Haskell program must of course be installed.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 29 Oct 2011 (04:10)
+DATE: Sat, 29 Oct 2011 (15:38)
 
 
 
@@ -8078,7 +8078,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 29 Oct 2011 (04:10)
+DATE: Sat, 29 Oct 2011 (15:38)
 
 
 
@@ -8192,7 +8192,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Sat, 29 Oct 2011 (04:10)</CENTER>
+<CENTER>Sat, 29 Oct 2011 (15:38)</CENTER>
 
 
 
@@ -8323,7 +8323,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Sat, 29 Oct 2011 (04:10)</CENTER>
+<CENTER>Sat, 29 Oct 2011 (15:38)</CENTER>
 
 
 
@@ -8452,8 +8452,8 @@ And here is a table:
 # doconce, ptex2tex, docutils, preprocess, sphinx
 
 d2f="doconce format"
-# doconce HTML format:
-$d2f HTML manual.do.txt
+# doconce html format:
+$d2f html manual.do.txt
 
 # Sphinx
 $d2f sphinx manual.do.txt
@@ -8469,7 +8469,7 @@ cd sphinx-rootdir
 make clean
 make html
 make latex
-doconce subst '\.\*' '.pdf' _build/latex/DoconceDescription.tex  # .* doesn't work
+doconce subst '\.\*' '.pdf' _build/latex/DoconceManual.tex  # .* doesn't work
 ln -s `pwd`/../figs _build/latex/figs
 cd _build/latex
 make clean
@@ -8477,7 +8477,7 @@ make clean
 make all-pdf <<EOF
 r
 EOF
-cp DoconceDescription.pdf ../../../manual.sphinx.pdf
+cp DoconceManual.pdf ../../../manual.sphinx.pdf
 cd ../../..
 
 
@@ -8502,9 +8502,9 @@ $d2f plain manual.do.txt remove_inline_comments
 $d2f epytext manual.do.txt
 $d2f st manual.do.txt
 
-# doconce LaTeX:
-$d2f LaTeX manual.do.txt    # produces ptex2tex: manual.p.tex
-doconce replace 'usepackage{ptex2tex' 'usepackage{ptex2tex,subfigure' manual.p.tex  # need subfigure LaTeX package
+# doconce latex:
+$d2f latex manual.do.txt    # produces ptex2tex: manual.p.tex
+doconce replace 'usepackage{ptex2tex' 'usepackage{ptex2tex,subfigure' manual.p.tex  # need subfigure latex package
 ptex2tex -DMINTED manual    # turn ptex2tex format into plain latex
 rm -f manual.p.tex
 latex -shell-escape manual
@@ -8538,12 +8538,12 @@ Doconce is a minimum tagged markup language. The file
 a Doconce Description, written in the Doconce format.
 Running
 <pre>
-doconce format HTML manual.do.txt
+doconce format html manual.do.txt
 </pre>
 produces the HTML file <a href="manual.html">manual.html</a>.
 Going from Doconce to LaTeX is done by
 <pre>
-doconce format LaTeX manual.do.txt
+doconce format latex manual.do.txt
 </pre>
 resulting in the file <a href="manual.tex">manual.tex</a>, which can
 be compiled to a PDF file <a href="manual.pdf">manual.pdf</a>
@@ -8959,14 +8959,14 @@ FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. l
 ===== Movies =====
 
 Here is an example on the `MOVIE:` keyword for embedding movies. This
-feature works well for the `LaTeX`, `HTML`, `rst`, and `sphinx` formats.
+feature works well for the `latex`, `html`, `rst`, and `sphinx` formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie.
 !bc
 MOVIE: [filename, height=xxx width=yyy] possible caption
 !ec
 
-# LaTeX/PDF format can make use of the movie15 package for displaying movies,
+# latex/PDF format can make use of the movie15 package for displaying movies,
 # or just plain \href{run: ...}{...}
 
 MOVIE: [figs/mjolnir.mpeg, width=600 height=470]
@@ -9007,7 +9007,7 @@ the embedded HTML code for the movie on the YouTube page).
 
 
 
-===== Copying Computer Code =====
+===== Copying Computer Code from Source Files =====
 
 Another type of special lines starts with `@@@CODE` and enables copying
 of computer code from a file directly into a verbatim environment, see
@@ -9166,14 +9166,16 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 !bc
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 !ec
-Everything related to the index simply becomes invisible in
-plain text, Epytext, StructuredText, HTML, and wiki formats.
-Note: `idx` commands should be inserted outside paragraphs, not in between
-the text as this may cause some strange behaviour of the formatting.
-Index items are naturally placed right after section headings, before the
-text begins. Index items related to the heading of a paragraph, however,
-should be placed above the paragraph heading and not in between the
-heading and the text.
+Everything related to the index simply becomes invisible in plain
+text, Epytext, StructuredText, HTML, and wiki formats.  Note: `idx`
+commands should be inserted outside paragraphs, not in between the
+text as this may cause some strange behaviour of reStructuredText and
+Sphinx formatting.  As a recommended rule, index items are naturally
+placed right after section headings, before the text begins, while
+index items related to a paragraph should be placed above the
+paragraph one a separate line (and not in between the text or between
+the paragraph heading and the text body, although this works fine if
+LaTeX is the output format).
 
 Literature citations also follow a LaTeX-inspired style:
 !bc
@@ -9217,6 +9219,8 @@ copied into the document at the place where the `BIBFILE:` keyword
 appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the `BIBFILE:` line
 in the document.
+
+At present, only one file with bibliographic references can be used.
 
 # see ketch/tex2rst for nice bibtex to rst converter which could
 # be used here
@@ -9477,7 +9481,7 @@ the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
 The preprocess and mako programs always have the variable `FORMAT`
-defined as the desired output format of Doconce (`HTML`, `LaTeX`,
+defined as the desired output format of Doconce (`html`, `latex`,
 `plain`, `rst`, `sphinx`, `epydoc`, `st`).  It is then easy to test on
 the value of `FORMAT` and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
@@ -9489,8 +9493,8 @@ create the example).
 # If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
 # PostScript files are used.
 
-# #if FORMAT == "LaTeX"
-# Use LaTeX with subfigures (a) and (b)
+# #if FORMAT == "latex"
+# Use latex with subfigures (a) and (b)
 \begin{figure}
 label{fig:wavepackets}
   \begin{center}
@@ -9529,9 +9533,115 @@ the writing of parts of the document.
 
 
 
+===== Splitting Documents into Smaller Pieces =====
+
+Long documents are conveniently split into smaller Doconce files.
+However, there must be a master document including all the pieces,
+otherwise references to sections and the index will not work properly.
+The master document is preferably a file just containing a set of
+preprocessor include statements of the form `#include "file.do.txt"`.
+The preprocessor will put together all the pieces so that Doconce
+sees a long file with the complete text.
+
+For reStructuredText and Sphinx documents it is a point to have
+separate `.rst` files and an index file listing the various `.rst`
+that build up the document. To generate the various `.rst` files one
+should not run Doconce on the individual `.do.txt` files, because then
+references and index entries are not treated correctly. Instead,
+run Doconce on the master file and invoke the script `doconce split_rst`
+to split the long, complete `.rst` into pieces. This process requires
+that each `#include "file.do.txt` line in the master file is preceded by a
+"marker line" having the syntax `#>>>>>> part: file >>>>>>`, where
+`file` is the filename without extension. The number of greater than
+signs is not important, but it has to be a comment line and it has
+to contain the keyword `part:`.
+
+Here is an example. Say the name of the master file is `master.do.txt`.
+The following Bash script does the job:
+We run
+!bc cod
+doconce format sphinx master
+# Split master.rst into parts
+# as defined by #>>>>> part: name >>>>> lines
+files=`doconce split_rst master.rst`
+
+dir=sphinxm-rootdir
+
+if [ ! -d $dir ]; then
+  doconce sphinx_dir dirname=$dir author='me and you' \
+          version=1.0 theme=default $files
+  sh automake-sphinx.sh
+else
+  for file in $files; do
+    cp $file.rst $dir
+  done
+  cd $dir
+  make html
+  cd ..
+fi
+!ec
+The autogenerated `automake-sphinx.sh` file (by `doconce sphinx_dir`)
+is compatible with a master `.rst` file split into pieces as long as
+the complete set of pieces in correct order is given to `doconce sphinx_dir`.
+This set is the output of `doconce split_rst`, which we catch in a
+variable `files` above.
+
+
 ===== Missing Features =====
 
-  * Footnotes
+Doconce does not aim to support sophisticated typesetting, simply because
+sophisticated typesetting usually depend quite strongly on the particular
+output format chosen. When a particular feature needed is not supported
+by Doconce, it is recommended to hardcode that feature for a particular
+format and use the if-else construction of the preprocessor. For example,
+if a sophisticated table is desired in LaTeX output, test on the
+`FORMAT` variable (`#if FORMAT == "latex"`) in the Doconce code and
+insert the table in LaTeX format. The `else` or `elif` branches may
+have the table in other formats or a simplified version in the Doconce
+table format. Similarly, if certain adjustments are needed, like
+pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
+that this is really LaTeX dependent - pagebreaks are not
+relevant HTML formats).
+
+Instead of inserting special code in the Doconce document, one can
+alternatively script editing of the output from Doconce. That is,
+we develop a Python or Bash script that runs the translation of
+a Doconce document to a ready docoment in another format. Inside this
+script, we may edit and fine-tune the output from Doconce.
+
+As an example, say you want a table of contents in the LaTeX output
+(Doconce does not support table of contents). By inserting a
+recognizable comment in the Doconce source, say
+!bc
+# table of contents
+!ec
+we can use this comment to edit the LaTeX file. First, we run
+Doconce `doconce format latex mydoc` to produce `mydoc.p.tex`. Then
+we use the `doconce replace` and `doconce subst` commands to
+replace the comment by the comment plus the table of contents command,
+or just the latter:
+!bc
+Terminal> doconce replace '% table of contents'
+          '\tableofcontents' mydoc.p.tex
+!ec
+The `doconce replace from_text to_text filename` command performs a
+character-by-character replacement (using the `replace` method in
+string objects in Python). If we want to preserve the comment and add
+a new line with `\tableofcontents`, we should use `doconce subst`,
+which applies regular expressions for substitutions and thereby
+understands the newline character:
+!bc
+Terminal> doconce subst '% table of contents' \
+          '% table of contents\n\\tableofcontents' mydoc.p.tex
+!ec
+Note the double backshlash in front of the `t` character: without it we
+would get a tab and no backslash.
+The `doconce subst` is a powerful way to automatically edit the output
+from Doconce and fine-tune a LaTeX document. Use of comment lines to
+identify portions of the file to be edited is a smart idea.
+Alternatively, the relevant LaTeX constructions can be inserted directly
+in the Doconce file using if-else preprocessor directives.
+
 
 ===== Troubleshooting =====
 
@@ -9709,7 +9819,7 @@ LaTeX, and work further on the document in this format.
 
 This is the HTML-specific part of the
 source code of the HTML translator:
-# #if FORMAT == "HTML"
+# #if FORMAT == "html"
 (note that in HTML one of the the less-than and greater-than signs
 in a link come up wrong because of the simple regex that is used
 to substitute these pair of signs by special HTML expressions)
@@ -9718,9 +9828,9 @@ to substitute these pair of signs by special HTML expressions)
 # #if FORMAT != "epytext"
 
 !bc
-FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
-BLANKLINE['HTML'] = '<p>\n'           # blank input line => new paragraph
-INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+FILENAME_EXTENSION['html'] = '.html'  # output file extension
+BLANKLINE['html'] = '<p>\n'           # blank input line => new paragraph
+INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
     # keep math as is:
     'math': None,  # indicates no substitution
     'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
@@ -9736,8 +9846,8 @@ INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
     'author':        r'<center><h3>\g<subst></h3></center>',
     }
 
-# how to replace code and LaTeX blocks by HTML (<pre>) environment:
-def HTML_code(filestr):
+# how to replace code and latex blocks by html (<pre>) environment:
+def html_code(filestr):
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
     filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre>\n', filestr)
     filestr = re.sub(r'!ec\n',
@@ -9746,10 +9856,10 @@ def HTML_code(filestr):
     filestr = c.sub(r'<pre>\n', filestr)
     filestr = re.sub(r'!et\n', r'</pre>\n', filestr)
     return filestr
-CODE['HTML'] = HTML_code
+CODE['html'] = html_code
 
-# how to typeset lists and their items in HTML:
-LIST['HTML'] = {
+# how to typeset lists and their items in html:
+LIST['html'] = {
     'itemize':
     {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
     'enumerate':
@@ -9760,7 +9870,7 @@ LIST['HTML'] = {
 
 # how to type set description lists for function arguments, return
 # values, and module/class variables:
-ARGLIST['HTML'] = {
+ARGLIST['html'] = {
     'parameter': '<b>argument</b>',
     'keyword': '<b>keyword argument</b>',
     'return': '<b>return value(s)</b>',
@@ -9770,12 +9880,12 @@ ARGLIST['HTML'] = {
     }
 
 # document start:
-INTRO['HTML'] = """
+INTRO['html'] = """
 <html>
 <body bgcolor="white">
 """
 # document ending:
-OUTRO['HTML'] = """
+OUTRO['html'] = """
 </body>
 </html>
 """
@@ -9790,7 +9900,7 @@ Eight here we only displacy a smaller snippet that Epytext can
 treat properly:
 
 !bc
-INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+INLINE_TAGS_SUBST['html'] = {         # from inline tags to html tags
     # keep math as is:
     'math': None,  # indicates no substitution
     'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
@@ -9841,9 +9951,9 @@ BIBFILE: manual_bib.bib, manual_bib.rst, manual_bib.py
 
 ************** File: manual.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- 
-Automatically generated HTML file from Doconce source 
-(http://code.google.com/p/doconce/) 
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
 -->
 
 <HTML>
@@ -10055,20 +10165,20 @@ file first, and options to <TT>mako</TT> or <TT>preprocess</TT> can be added aft
 filename. For example,
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The variable <TT>FORMAT</TT> is always defined as the current format when
 running <TT>preprocess</TT>. That is, in the last example, <TT>FORMAT</TT> is
-defined as <TT>LaTeX</TT>. Inside the Doconce document one can then perform
-format specific actions through tests like <TT>#if FORMAT == "LaTeX"</TT>.
+defined as <TT>latex</TT>. Inside the Doconce document one can then perform
+format specific actions through tests like <TT>#if FORMAT == "latex"</TT>.
 
 <P>
 Inline comments in the text are removed from the output by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> doconce format LaTeX mydoc remove_inline_comments
+Terminal> doconce format latex mydoc remove_inline_comments
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 One can also remove such comments from the original Doconce file
@@ -10091,7 +10201,7 @@ Making an HTML version of a Doconce file <TT>mydoc.do.txt</TT>
 is performed by
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> doconce format HTML mydoc
+Terminal> doconce format html mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 The resulting file <TT>mydoc.html</TT> can be loaded into any web browser for viewing.
@@ -10109,7 +10219,7 @@ Making a LaTeX file <TT>mydoc.tex</TT> from <TT>mydoc.do.txt</TT> is done in two
      <TT>ptex2tex</TT>:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> doconce format LaTeX mydoc
+Terminal> doconce format latex mydoc
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 LaTeX-specific commands ("newcommands") in math formulas and similar
@@ -10231,8 +10341,8 @@ Terminal> doconce format rst mydoc.do.txt
 We may now produce various other formats:
 <!-- BEGIN VERBATIM BLOCK   sys-->
 <BLOCKQUOTE><PRE>
-Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 </PRE></BLOCKQUOTE>
@@ -10706,7 +10816,7 @@ included in the formatted caption).
 <H3>Movies</H3>
 <P>
 Here is an example on the <TT>MOVIE:</TT> keyword for embedding movies. This
-feature works well for the <TT>LaTeX</TT>, <TT>HTML</TT>, <TT>rst</TT>, and <TT>sphinx</TT> formats.
+feature works well for the <TT>latex</TT>, <TT>html</TT>, <TT>rst</TT>, and <TT>sphinx</TT> formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie.
 <!-- BEGIN VERBATIM BLOCK  -->
@@ -10716,7 +10826,7 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
 <! -- END VERBATIM BLOCK -->
 
 <P>
-<!-- LaTeX/PDF format can make use of the movie15 package for displaying movies, -->
+<!-- latex/PDF format can make use of the movie15 package for displaying movies, -->
 <!-- or just plain \h<A HREF="#run: ...">run: ...</a>{...} -->
 
 <P>
@@ -10774,7 +10884,7 @@ the embedded HTML code for the movie on the YouTube page).
 <P>
 
 <P>
-<H3>Copying Computer Code</H3>
+<H3>Copying Computer Code from Source Files</H3>
 <P>
 Another type of special lines starts with <TT>@@@CODE</TT> and enables copying
 of computer code from a file directly into a verbatim environment, see
@@ -10966,14 +11076,16 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-Everything related to the index simply becomes invisible in
-plain text, Epytext, StructuredText, HTML, and wiki formats.
-Note: <TT>idx</TT> commands should be inserted outside paragraphs, not in between
-the text as this may cause some strange behaviour of the formatting.
-Index items are naturally placed right after section headings, before the
-text begins. Index items related to the heading of a paragraph, however,
-should be placed above the paragraph heading and not in between the
-heading and the text.
+Everything related to the index simply becomes invisible in plain
+text, Epytext, StructuredText, HTML, and wiki formats.  Note: <TT>idx</TT>
+commands should be inserted outside paragraphs, not in between the
+text as this may cause some strange behaviour of reStructuredText and
+Sphinx formatting.  As a recommended rule, index items are naturally
+placed right after section headings, before the text begins, while
+index items related to a paragraph should be placed above the
+paragraph one a separate line (and not in between the text or between
+the paragraph heading and the text body, although this works fine if
+LaTeX is the output format).
 
 <P>
 Literature citations also follow a LaTeX-inspired style:
@@ -11025,6 +11137,9 @@ copied into the document at the place where the <TT>BIBFILE:</TT> keyword
 appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the <TT>BIBFILE:</TT> line
 in the document.
+
+<P>
+At present, only one file with bibliographic references can be used.
 
 <P>
 <!-- see ketch/tex2rst for nice bibtex to rst converter which could -->
@@ -11378,7 +11493,7 @@ specific format.
 
 <P>
 The preprocess and mako programs always have the variable <TT>FORMAT</TT>
-defined as the desired output format of Doconce (<TT>HTML</TT>, <TT>LaTeX</TT>,
+defined as the desired output format of Doconce (<TT>html</TT>, <TT>latex</TT>,
 <TT>plain</TT>, <TT>rst</TT>, <TT>sphinx</TT>, <TT>epydoc</TT>, <TT>st</TT>).  It is then easy to test on
 the value of <TT>FORMAT</TT> and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
@@ -11417,12 +11532,132 @@ the writing of parts of the document.
 <P>
 
 <P>
-<H3>Missing Features</H3>
+<H3>Splitting Documents into Smaller Pieces</H3>
+<P>
+Long documents are conveniently split into smaller Doconce files.
+However, there must be a master document including all the pieces,
+otherwise references to sections and the index will not work properly.
+The master document is preferably a file just containing a set of
+preprocessor include statements of the form <TT>#include "file.do.txt"</TT>.
+The preprocessor will put together all the pieces so that Doconce
+sees a long file with the complete text.
+
+<P>
+For reStructuredText and Sphinx documents it is a point to have
+separate <TT>.rst</TT> files and an index file listing the various <TT>.rst</TT>
+that build up the document. To generate the various <TT>.rst</TT> files one
+should not run Doconce on the individual <TT>.do.txt</TT> files, because then
+references and index entries are not treated correctly. Instead,
+run Doconce on the master file and invoke the script <TT>doconce split_rst</TT>
+to split the long, complete <TT>.rst</TT> into pieces. This process requires
+that each <TT>#include "file.do.txt</TT> line in the master file is preceded by a
+"marker line" having the syntax <TT>#>>>>>> part: file >>>>>></TT>, where
+<TT>file</TT> is the filename without extension. The number of greater than
+signs is not important, but it has to be a comment line and it has
+to contain the keyword <TT>part:</TT>.
+
+<P>
+Here is an example. Say the name of the master file is <TT>master.do.txt</TT>.
+The following Bash script does the job:
+We run
+<!-- BEGIN VERBATIM BLOCK   cod-->
+<BLOCKQUOTE><PRE>
+doconce format sphinx master
+# Split master.rst into parts
+# as defined by #>>>>> part: name >>>>> lines
+files=`doconce split_rst master.rst`
+
+dir=sphinxm-rootdir
+
+if [ ! -d $dir ]; then
+  doconce sphinx_dir dirname=$dir author='me and you' \
+          version=1.0 theme=default $files
+  sh automake-sphinx.sh
+else
+  for file in $files; do
+    cp $file.rst $dir
+  done
+  cd $dir
+  make html
+  cd ..
+fi
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+The autogenerated <TT>automake-sphinx.sh</TT> file (by <TT>doconce sphinx_dir</TT>)
+is compatible with a master <TT>.rst</TT> file split into pieces as long as
+the complete set of pieces in correct order is given to <TT>doconce sphinx_dir</TT>.
+This set is the output of <TT>doconce split_rst</TT>, which we catch in a
+variable <TT>files</TT> above.
+
 <P>
 
-<UL>
-  <LI> Footnotes
-</UL>
+<P>
+<H3>Missing Features</H3>
+<P>
+Doconce does not aim to support sophisticated typesetting, simply because
+sophisticated typesetting usually depend quite strongly on the particular
+output format chosen. When a particular feature needed is not supported
+by Doconce, it is recommended to hardcode that feature for a particular
+format and use the if-else construction of the preprocessor. For example,
+if a sophisticated table is desired in LaTeX output, test on the
+<TT>FORMAT</TT> variable (<TT>#if FORMAT == "latex"</TT>) in the Doconce code and
+insert the table in LaTeX format. The <TT>else</TT> or <TT>elif</TT> branches may
+have the table in other formats or a simplified version in the Doconce
+table format. Similarly, if certain adjustments are needed, like
+pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
+that this is really LaTeX dependent - pagebreaks are not
+relevant HTML formats).
+
+<P>
+Instead of inserting special code in the Doconce document, one can
+alternatively script editing of the output from Doconce. That is,
+we develop a Python or Bash script that runs the translation of
+a Doconce document to a ready docoment in another format. Inside this
+script, we may edit and fine-tune the output from Doconce.
+
+<P>
+As an example, say you want a table of contents in the LaTeX output
+(Doconce does not support table of contents). By inserting a
+recognizable comment in the Doconce source, say
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+# table of contents
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+we can use this comment to edit the LaTeX file. First, we run
+Doconce <TT>doconce format latex mydoc</TT> to produce <TT>mydoc.p.tex</TT>. Then
+we use the <TT>doconce replace</TT> and <TT>doconce subst</TT> commands to
+replace the comment by the comment plus the table of contents command,
+or just the latter:
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Terminal> doconce replace '% table of contents'
+          '\tableofcontents' mydoc.p.tex
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+The <TT>doconce replace from_text to_text filename</TT> command performs a
+character-by-character replacement (using the <TT>replace</TT> method in
+string objects in Python). If we want to preserve the comment and add
+a new line with <TT>\tableofcontents</TT>, we should use <TT>doconce subst</TT>,
+which applies regular expressions for substitutions and thereby
+understands the newline character:
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Terminal> doconce subst '% table of contents' \
+          '% table of contents\n\\tableofcontents' mydoc.p.tex
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+Note the double backshlash in front of the <TT>t</TT> character: without it we
+would get a tab and no backslash.
+The <TT>doconce subst</TT> is a powerful way to automatically edit the output
+from Doconce and fine-tune a LaTeX document. Use of comment lines to
+identify portions of the file to be edited is a smart idea.
+Alternatively, the relevant LaTeX constructions can be inserted directly
+in the Doconce file using if-else preprocessor directives.
+
+<P>
+
+<P>
 <H3>Troubleshooting</H3>
 <P>
 <B>Disclaimer.</B> Doconce has some support for syntax checking.
@@ -11629,9 +11864,9 @@ to substitute these pair of signs by special HTML expressions)
 <P>
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
-FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
-BLANKLINE['HTML'] = '&lt;p&gt;\n'           # blank input line => new paragraph
-INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+FILENAME_EXTENSION['html'] = '.html'  # output file extension
+BLANKLINE['html'] = '&lt;p&gt;\n'           # blank input line => new paragraph
+INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
     # keep math as is:
     'math': None,  # indicates no substitution
     'emphasize':     r'\g&lt;begin&gt;&lt;em&gt;\g&lt;subst&gt;&lt;/em&gt;\g&lt;end&gt;',
@@ -11647,8 +11882,8 @@ INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
     'author':        r'&lt;center&gt;&lt;h3&gt;\g&lt;subst&gt;&lt;/h3&gt;&lt;/center&gt;',
     }
 
-# how to replace code and LaTeX blocks by HTML (&lt;pre&gt;) environment:
-def HTML_code(filestr):
+# how to replace code and latex blocks by html (&lt;pre&gt;) environment:
+def html_code(filestr):
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
     filestr = c.sub(r'&lt;!-- BEGIN VERBATIM BLOCK \g<1&gt;-->\n&lt;pre&gt;\n', filestr)
     filestr = re.sub(r'!ec\n',
@@ -11657,10 +11892,10 @@ def HTML_code(filestr):
     filestr = c.sub(r'&lt;pre&gt;\n', filestr)
     filestr = re.sub(r'!et\n', r'&lt;/pre&gt;\n', filestr)
     return filestr
-CODE['HTML'] = HTML_code
+CODE['html'] = html_code
 
-# how to typeset lists and their items in HTML:
-LIST['HTML'] = {
+# how to typeset lists and their items in html:
+LIST['html'] = {
     'itemize':
     {'begin': '\n&lt;ul&gt;\n', 'item': '&lt;li&gt;', 'end': '&lt;/ul&gt;\n\n'},
     'enumerate':
@@ -11671,7 +11906,7 @@ LIST['HTML'] = {
 
 # how to type set description lists for function arguments, return
 # values, and module/class variables:
-ARGLIST['HTML'] = {
+ARGLIST['html'] = {
     'parameter': '&lt;b&gt;argument&lt;/b&gt;',
     'keyword': '&lt;b&gt;keyword argument&lt;/b&gt;',
     'return': '&lt;b&gt;return value(s)&lt;/b&gt;',
@@ -11681,12 +11916,12 @@ ARGLIST['HTML'] = {
     }
 
 # document start:
-INTRO['HTML'] = """
+INTRO['html'] = """
 &lt;html&gt;
 &lt;body bgcolor="white"&gt;
 """
 # document ending:
-OUTRO['HTML'] = """
+OUTRO['html'] = """
 &lt;/body&gt;
 &lt;/html&gt;
 """
@@ -11940,18 +12175,18 @@ file first, and options to ``mako`` or ``preprocess`` can be added after the
 filename. For example::
 
 
-        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+        Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 
 The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
-defined as ``LaTeX``. Inside the Doconce document one can then perform
-format specific actions through tests like ``#if FORMAT == "LaTeX"``.
+defined as ``latex``. Inside the Doconce document one can then perform
+format specific actions through tests like ``#if FORMAT == "latex"``.
 
 Inline comments in the text are removed from the output by::
 
 
-        Terminal> doconce format LaTeX mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running
@@ -11971,7 +12206,7 @@ Making an HTML version of a Doconce file ``mydoc.do.txt``
 is performed by::
 
 
-        Terminal> doconce format HTML mydoc
+        Terminal> doconce format html mydoc
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
@@ -11990,7 +12225,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
      ``ptex2tex``::
 
 
-        Terminal> doconce format LaTeX mydoc
+        Terminal> doconce format latex mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
@@ -12097,8 +12332,8 @@ reStructuredText file ``mydoc.rst``::
 We may now produce various other formats::
 
 
-        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
         Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
@@ -12517,7 +12752,7 @@ Movies
 ------
 
 Here is an example on the ``MOVIE:`` keyword for embedding movies. This
-feature works well for the ``LaTeX``, ``HTML``, ``rst``, and ``sphinx`` formats.
+feature works well for the ``latex``, ``html``, ``rst``, and ``sphinx`` formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie::
 
@@ -12525,7 +12760,7 @@ for showing the movie::
         MOVIE: [filename, height=xxx width=yyy] possible caption
 
 
-.. LaTeX/PDF format can make use of the movie15 package for displaying movies,
+.. latex/PDF format can make use of the movie15 package for displaying movies,
 
 .. or just plain \h`run: ...`_{...}
 
@@ -12578,8 +12813,8 @@ the embedded HTML code for the movie on the YouTube page).
 
 
 
-Copying Computer Code
----------------------
+Copying Computer Code from Source Files
+---------------------------------------
 
 Another type of special lines starts with ``@@@CODE`` and enables copying
 of computer code from a file directly into a verbatim environment, see
@@ -12749,14 +12984,16 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to::
 
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
-Everything related to the index simply becomes invisible in
-plain text, Epytext, StructuredText, HTML, and wiki formats.
-Note: ``idx`` commands should be inserted outside paragraphs, not in between
-the text as this may cause some strange behaviour of the formatting.
-Index items are naturally placed right after section headings, before the
-text begins. Index items related to the heading of a paragraph, however,
-should be placed above the paragraph heading and not in between the
-heading and the text.
+Everything related to the index simply becomes invisible in plain
+text, Epytext, StructuredText, HTML, and wiki formats.  Note: ``idx``
+commands should be inserted outside paragraphs, not in between the
+text as this may cause some strange behaviour of reStructuredText and
+Sphinx formatting.  As a recommended rule, index items are naturally
+placed right after section headings, before the text begins, while
+index items related to a paragraph should be placed above the
+paragraph one a separate line (and not in between the text or between
+the paragraph heading and the text body, although this works fine if
+LaTeX is the output format).
 
 Literature citations also follow a LaTeX-inspired style::
 
@@ -12803,6 +13040,8 @@ copied into the document at the place where the ``BIBFILE:`` keyword
 appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the ``BIBFILE:`` line
 in the document.
+
+At present, only one file with bibliographic references can be used.
 
 .. see ketch/tex2rst for nice bibtex to rst converter which could
 
@@ -13120,7 +13359,7 @@ the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
 The preprocess and mako programs always have the variable ``FORMAT``
-defined as the desired output format of Doconce (``HTML``, ``LaTeX``,
+defined as the desired output format of Doconce (``html``, ``latex``,
 ``plain``, ``rst``, ``sphinx``, ``epydoc``, ``st``).  It is then easy to test on
 the value of ``FORMAT`` and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
@@ -13161,10 +13400,121 @@ the writing of parts of the document.
 
 
 
+Splitting Documents into Smaller Pieces
+---------------------------------------
+
+Long documents are conveniently split into smaller Doconce files.
+However, there must be a master document including all the pieces,
+otherwise references to sections and the index will not work properly.
+The master document is preferably a file just containing a set of
+preprocessor include statements of the form ``#include "file.do.txt"``.
+The preprocessor will put together all the pieces so that Doconce
+sees a long file with the complete text.
+
+For reStructuredText and Sphinx documents it is a point to have
+separate ``.rst`` files and an index file listing the various ``.rst``
+that build up the document. To generate the various ``.rst`` files one
+should not run Doconce on the individual ``.do.txt`` files, because then
+references and index entries are not treated correctly. Instead,
+run Doconce on the master file and invoke the script ``doconce split_rst``
+to split the long, complete ``.rst`` into pieces. This process requires
+that each ``#include "file.do.txt`` line in the master file is preceded by a
+"marker line" having the syntax ``#>>>>>> part: file >>>>>>``, where
+``file`` is the filename without extension. The number of greater than
+signs is not important, but it has to be a comment line and it has
+to contain the keyword ``part:``.
+
+Here is an example. Say the name of the master file is ``master.do.txt``.
+The following Bash script does the job:
+We run::
+
+
+        doconce format sphinx master
+        # Split master.rst into parts
+        # as defined by #>>>>> part: name >>>>> lines
+        files=`doconce split_rst master.rst`
+        
+        dir=sphinxm-rootdir
+        
+        if [ ! -d $dir ]; then
+          doconce sphinx_dir dirname=$dir author='me and you' \
+                  version=1.0 theme=default $files
+          sh automake-sphinx.sh
+        else
+          for file in $files; do
+            cp $file.rst $dir
+          done
+          cd $dir
+          make html
+          cd ..
+        fi
+
+The autogenerated ``automake-sphinx.sh`` file (by ``doconce sphinx_dir``)
+is compatible with a master ``.rst`` file split into pieces as long as
+the complete set of pieces in correct order is given to ``doconce sphinx_dir``.
+This set is the output of ``doconce split_rst``, which we catch in a
+variable ``files`` above.
+
+
 Missing Features
 ----------------
 
-  * Footnotes
+Doconce does not aim to support sophisticated typesetting, simply because
+sophisticated typesetting usually depend quite strongly on the particular
+output format chosen. When a particular feature needed is not supported
+by Doconce, it is recommended to hardcode that feature for a particular
+format and use the if-else construction of the preprocessor. For example,
+if a sophisticated table is desired in LaTeX output, test on the
+``FORMAT`` variable (``#if FORMAT == "latex"``) in the Doconce code and
+insert the table in LaTeX format. The ``else`` or ``elif`` branches may
+have the table in other formats or a simplified version in the Doconce
+table format. Similarly, if certain adjustments are needed, like
+pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
+that this is really LaTeX dependent - pagebreaks are not
+relevant HTML formats).
+
+Instead of inserting special code in the Doconce document, one can
+alternatively script editing of the output from Doconce. That is,
+we develop a Python or Bash script that runs the translation of
+a Doconce document to a ready docoment in another format. Inside this
+script, we may edit and fine-tune the output from Doconce.
+
+As an example, say you want a table of contents in the LaTeX output
+(Doconce does not support table of contents). By inserting a
+recognizable comment in the Doconce source, say::
+
+
+        # table of contents
+
+we can use this comment to edit the LaTeX file. First, we run
+Doconce ``doconce format latex mydoc`` to produce ``mydoc.p.tex``. Then
+we use the ``doconce replace`` and ``doconce subst`` commands to
+replace the comment by the comment plus the table of contents command,
+or just the latter::
+
+
+        Terminal> doconce replace '% table of contents'
+                  '\tableofcontents' mydoc.p.tex
+
+The ``doconce replace from_text to_text filename`` command performs a
+character-by-character replacement (using the ``replace`` method in
+string objects in Python). If we want to preserve the comment and add
+a new line with ``\tableofcontents``, we should use ``doconce subst``,
+which applies regular expressions for substitutions and thereby
+understands the newline character::
+
+
+        Terminal> doconce subst '% table of contents' \
+                  '% table of contents\n\\tableofcontents' mydoc.p.tex
+
+Note the double backshlash in front of the ``t`` character: without it we
+would get a tab and no backslash.
+The ``doconce subst`` is a powerful way to automatically edit the output
+from Doconce and fine-tune a LaTeX document. Use of comment lines to
+identify portions of the file to be edited is a smart idea.
+Alternatively, the relevant LaTeX constructions can be inserted directly
+in the Doconce file using if-else preprocessor directives.
+
 
 Troubleshooting
 ---------------
@@ -13338,9 +13688,9 @@ This is the HTML-specific part of the
 source code of the HTML translator::
 
 
-        FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
-        BLANKLINE['HTML'] = '<p>\n'           # blank input line => new paragraph
-        INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+        FILENAME_EXTENSION['html'] = '.html'  # output file extension
+        BLANKLINE['html'] = '<p>\n'           # blank input line => new paragraph
+        INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
             # keep math as is:
             'math': None,  # indicates no substitution
             'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
@@ -13356,8 +13706,8 @@ source code of the HTML translator::
             'author':        r'<center><h3>\g<subst></h3></center>',
             }
         
-        # how to replace code and LaTeX blocks by HTML (<pre>) environment:
-        def HTML_code(filestr):
+        # how to replace code and latex blocks by html (<pre>) environment:
+        def html_code(filestr):
             c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
             filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre>\n', filestr)
             filestr = re.sub(r'!ec\n',
@@ -13366,10 +13716,10 @@ source code of the HTML translator::
             filestr = c.sub(r'<pre>\n', filestr)
             filestr = re.sub(r'!et\n', r'</pre>\n', filestr)
             return filestr
-        CODE['HTML'] = HTML_code
+        CODE['html'] = html_code
         
-        # how to typeset lists and their items in HTML:
-        LIST['HTML'] = {
+        # how to typeset lists and their items in html:
+        LIST['html'] = {
             'itemize':
             {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
             'enumerate':
@@ -13380,7 +13730,7 @@ source code of the HTML translator::
         
         # how to type set description lists for function arguments, return
         # values, and module/class variables:
-        ARGLIST['HTML'] = {
+        ARGLIST['html'] = {
             'parameter': '<b>argument</b>',
             'keyword': '<b>keyword argument</b>',
             'return': '<b>return value(s)</b>',
@@ -13390,12 +13740,12 @@ source code of the HTML translator::
             }
         
         # document start:
-        INTRO['HTML'] = """
+        INTRO['html'] = """
         <html>
         <body bgcolor="white">
         """
         # document ending:
-        OUTRO['HTML'] = """
+        OUTRO['html'] = """
         </body>
         </html>
         """
@@ -13641,19 +13991,19 @@ filename. For example,
 
 .. code-block:: console
 
-        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+        Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 
 The variable ``FORMAT`` is always defined as the current format when
 running ``preprocess``. That is, in the last example, ``FORMAT`` is
-defined as ``LaTeX``. Inside the Doconce document one can then perform
-format specific actions through tests like ``#if FORMAT == "LaTeX"``.
+defined as ``latex``. Inside the Doconce document one can then perform
+format specific actions through tests like ``#if FORMAT == "latex"``.
 
 Inline comments in the text are removed from the output by
 
 .. code-block:: console
 
-        Terminal> doconce format LaTeX mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running
@@ -13676,7 +14026,7 @@ is performed by
 
 .. code-block:: console
 
-        Terminal> doconce format HTML mydoc
+        Terminal> doconce format html mydoc
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
@@ -13696,7 +14046,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 
 .. code-block:: console
 
-        Terminal> doconce format LaTeX mydoc
+        Terminal> doconce format latex mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
@@ -13814,8 +14164,8 @@ We may now produce various other formats:
 
 .. code-block:: console
 
-        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
         Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
@@ -14276,7 +14626,7 @@ Movies
 ------
 
 Here is an example on the ``MOVIE:`` keyword for embedding movies. This
-feature works well for the ``LaTeX``, ``HTML``, ``rst``, and ``sphinx`` formats.
+feature works well for the ``latex``, ``html``, ``rst``, and ``sphinx`` formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie.
 
@@ -14286,7 +14636,7 @@ for showing the movie.
         MOVIE: [filename, height=xxx width=yyy] possible caption
 
 
-.. LaTeX/PDF format can make use of the movie15 package for displaying movies,
+.. latex/PDF format can make use of the movie15 package for displaying movies,
 
 .. or just plain \h:ref:`run: ...`{...}
 
@@ -14340,8 +14690,8 @@ the embedded HTML code for the movie on the YouTube page).
 
 
 
-Copying Computer Code
----------------------
+Copying Computer Code from Source Files
+---------------------------------------
 
 Another type of special lines starts with ``@@@CODE`` and enables copying
 of computer code from a file directly into a verbatim environment, see
@@ -14559,14 +14909,16 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
-Everything related to the index simply becomes invisible in
-plain text, Epytext, StructuredText, HTML, and wiki formats.
-Note: ``idx`` commands should be inserted outside paragraphs, not in between
-the text as this may cause some strange behaviour of the formatting.
-Index items are naturally placed right after section headings, before the
-text begins. Index items related to the heading of a paragraph, however,
-should be placed above the paragraph heading and not in between the
-heading and the text.
+Everything related to the index simply becomes invisible in plain
+text, Epytext, StructuredText, HTML, and wiki formats.  Note: ``idx``
+commands should be inserted outside paragraphs, not in between the
+text as this may cause some strange behaviour of reStructuredText and
+Sphinx formatting.  As a recommended rule, index items are naturally
+placed right after section headings, before the text begins, while
+index items related to a paragraph should be placed above the
+paragraph one a separate line (and not in between the text or between
+the paragraph heading and the text body, although this works fine if
+LaTeX is the output format).
 
 Literature citations also follow a LaTeX-inspired style:
 
@@ -14619,6 +14971,8 @@ copied into the document at the place where the ``BIBFILE:`` keyword
 appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the ``BIBFILE:`` line
 in the document.
+
+At present, only one file with bibliographic references can be used.
 
 .. see ketch/tex2rst for nice bibtex to rst converter which could
 
@@ -14960,7 +15314,7 @@ the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
 The preprocess and mako programs always have the variable ``FORMAT``
-defined as the desired output format of Doconce (``HTML``, ``LaTeX``,
+defined as the desired output format of Doconce (``html``, ``latex``,
 ``plain``, ``rst``, ``sphinx``, ``epydoc``, ``st``).  It is then easy to test on
 the value of ``FORMAT`` and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
@@ -15001,10 +15355,128 @@ the writing of parts of the document.
 
 
 
+Splitting Documents into Smaller Pieces
+---------------------------------------
+
+Long documents are conveniently split into smaller Doconce files.
+However, there must be a master document including all the pieces,
+otherwise references to sections and the index will not work properly.
+The master document is preferably a file just containing a set of
+preprocessor include statements of the form ``#include "file.do.txt"``.
+The preprocessor will put together all the pieces so that Doconce
+sees a long file with the complete text.
+
+For reStructuredText and Sphinx documents it is a point to have
+separate ``.rst`` files and an index file listing the various ``.rst``
+that build up the document. To generate the various ``.rst`` files one
+should not run Doconce on the individual ``.do.txt`` files, because then
+references and index entries are not treated correctly. Instead,
+run Doconce on the master file and invoke the script ``doconce split_rst``
+to split the long, complete ``.rst`` into pieces. This process requires
+that each ``#include "file.do.txt`` line in the master file is preceded by a
+"marker line" having the syntax ``#>>>>>> part: file >>>>>>``, where
+``file`` is the filename without extension. The number of greater than
+signs is not important, but it has to be a comment line and it has
+to contain the keyword ``part:``.
+
+Here is an example. Say the name of the master file is ``master.do.txt``.
+The following Bash script does the job:
+We run
+
+.. code-block:: py
+
+        doconce format sphinx master
+        # Split master.rst into parts
+        # as defined by #>>>>> part: name >>>>> lines
+        files=`doconce split_rst master.rst`
+        
+        dir=sphinxm-rootdir
+        
+        if [ ! -d $dir ]; then
+          doconce sphinx_dir dirname=$dir author='me and you' \
+                  version=1.0 theme=default $files
+          sh automake-sphinx.sh
+        else
+          for file in $files; do
+            cp $file.rst $dir
+          done
+          cd $dir
+          make html
+          cd ..
+        fi
+
+The autogenerated ``automake-sphinx.sh`` file (by ``doconce sphinx_dir``)
+is compatible with a master ``.rst`` file split into pieces as long as
+the complete set of pieces in correct order is given to ``doconce sphinx_dir``.
+This set is the output of ``doconce split_rst``, which we catch in a
+variable ``files`` above.
+
+
 Missing Features
 ----------------
 
-  * Footnotes
+Doconce does not aim to support sophisticated typesetting, simply because
+sophisticated typesetting usually depend quite strongly on the particular
+output format chosen. When a particular feature needed is not supported
+by Doconce, it is recommended to hardcode that feature for a particular
+format and use the if-else construction of the preprocessor. For example,
+if a sophisticated table is desired in LaTeX output, test on the
+``FORMAT`` variable (``#if FORMAT == "latex"``) in the Doconce code and
+insert the table in LaTeX format. The ``else`` or ``elif`` branches may
+have the table in other formats or a simplified version in the Doconce
+table format. Similarly, if certain adjustments are needed, like
+pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
+that this is really LaTeX dependent - pagebreaks are not
+relevant HTML formats).
+
+Instead of inserting special code in the Doconce document, one can
+alternatively script editing of the output from Doconce. That is,
+we develop a Python or Bash script that runs the translation of
+a Doconce document to a ready docoment in another format. Inside this
+script, we may edit and fine-tune the output from Doconce.
+
+As an example, say you want a table of contents in the LaTeX output
+(Doconce does not support table of contents). By inserting a
+recognizable comment in the Doconce source, say
+
+.. code-block:: py
+
+
+        # table of contents
+
+we can use this comment to edit the LaTeX file. First, we run
+Doconce ``doconce format latex mydoc`` to produce ``mydoc.p.tex``. Then
+we use the ``doconce replace`` and ``doconce subst`` commands to
+replace the comment by the comment plus the table of contents command,
+or just the latter:
+
+.. code-block:: py
+
+
+        Terminal> doconce replace '% table of contents'
+                  '\tableofcontents' mydoc.p.tex
+
+The ``doconce replace from_text to_text filename`` command performs a
+character-by-character replacement (using the ``replace`` method in
+string objects in Python). If we want to preserve the comment and add
+a new line with ``\tableofcontents``, we should use ``doconce subst``,
+which applies regular expressions for substitutions and thereby
+understands the newline character:
+
+.. code-block:: py
+
+
+        Terminal> doconce subst '% table of contents' \
+                  '% table of contents\n\\tableofcontents' mydoc.p.tex
+
+Note the double backshlash in front of the ``t`` character: without it we
+would get a tab and no backslash.
+The ``doconce subst`` is a powerful way to automatically edit the output
+from Doconce and fine-tune a LaTeX document. Use of comment lines to
+identify portions of the file to be edited is a smart idea.
+Alternatively, the relevant LaTeX constructions can be inserted directly
+in the Doconce file using if-else preprocessor directives.
+
 
 Troubleshooting
 ---------------
@@ -15189,9 +15661,9 @@ source code of the HTML translator:
 .. code-block:: py
 
 
-        FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
-        BLANKLINE['HTML'] = '<p>\n'           # blank input line => new paragraph
-        INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+        FILENAME_EXTENSION['html'] = '.html'  # output file extension
+        BLANKLINE['html'] = '<p>\n'           # blank input line => new paragraph
+        INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
             # keep math as is:
             'math': None,  # indicates no substitution
             'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
@@ -15207,8 +15679,8 @@ source code of the HTML translator:
             'author':        r'<center><h3>\g<subst></h3></center>',
             }
         
-        # how to replace code and LaTeX blocks by HTML (<pre>) environment:
-        def HTML_code(filestr):
+        # how to replace code and latex blocks by html (<pre>) environment:
+        def html_code(filestr):
             c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
             filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre>\n', filestr)
             filestr = re.sub(r'!ec\n',
@@ -15217,10 +15689,10 @@ source code of the HTML translator:
             filestr = c.sub(r'<pre>\n', filestr)
             filestr = re.sub(r'!et\n', r'</pre>\n', filestr)
             return filestr
-        CODE['HTML'] = HTML_code
+        CODE['html'] = html_code
         
-        # how to typeset lists and their items in HTML:
-        LIST['HTML'] = {
+        # how to typeset lists and their items in html:
+        LIST['html'] = {
             'itemize':
             {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
             'enumerate':
@@ -15231,7 +15703,7 @@ source code of the HTML translator:
         
         # how to type set description lists for function arguments, return
         # values, and module/class variables:
-        ARGLIST['HTML'] = {
+        ARGLIST['html'] = {
             'parameter': '<b>argument</b>',
             'keyword': '<b>keyword argument</b>',
             'return': '<b>return value(s)</b>',
@@ -15241,12 +15713,12 @@ source code of the HTML translator:
             }
         
         # document start:
-        INTRO['HTML'] = """
+        INTRO['html'] = """
         <html>
         <body bgcolor="white">
         """
         # document ending:
-        OUTRO['HTML'] = """
+        OUTRO['html'] = """
         </body>
         </html>
         """
@@ -15420,17 +15892,17 @@ The `mako` or `preprocess` programs are always used to preprocess the
 file first, and options to `mako` or `preprocess` can be added after the
 filename. For example,
 {{{
-Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 }}}
 The variable `FORMAT` is always defined as the current format when
 running `preprocess`. That is, in the last example, `FORMAT` is
-defined as `LaTeX`. Inside the Doconce document one can then perform
-format specific actions through tests like `#if FORMAT == "LaTeX"`.
+defined as `latex`. Inside the Doconce document one can then perform
+format specific actions through tests like `#if FORMAT == "latex"`.
 
 Inline comments in the text are removed from the output by
 {{{
-Terminal> doconce format LaTeX mydoc remove_inline_comments
+Terminal> doconce format latex mydoc remove_inline_comments
 }}}
 One can also remove such comments from the original Doconce file
 by running
@@ -15446,7 +15918,7 @@ and comments by different authors should be removed.
 Making an HTML version of a Doconce file `mydoc.do.txt`
 is performed by
 {{{
-Terminal> doconce format HTML mydoc
+Terminal> doconce format html mydoc
 }}}
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
@@ -15460,7 +15932,7 @@ Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
 *Step 1.* Filter the doconce text to a pre-LaTeX form `mydoc.p.tex` for
      `ptex2tex`:
 {{{
-Terminal> doconce format LaTeX mydoc
+Terminal> doconce format latex mydoc
 }}}
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files `newcommands.tex`, `newcommands_keep.tex`, or
@@ -15553,8 +16025,8 @@ Terminal> doconce format rst mydoc.do.txt
 }}}
 We may now produce various other formats:
 {{{
-Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 }}}
@@ -15952,14 +16424,14 @@ googlecode repository) and substitute the line above with the URL.
 ==== Movies ====
 
 Here is an example on the `MOVIE:` keyword for embedding movies. This
-feature works well for the `LaTeX`, `HTML`, `rst`, and `sphinx` formats.
+feature works well for the `latex`, `html`, `rst`, and `sphinx` formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie.
 {{{
 MOVIE: [filename, height=xxx width=yyy] possible caption
 }}}
 
-<wiki:comment> LaTeX/PDF format can make use of the movie15 package for displaying movies, </wiki:comment>
+<wiki:comment> latex/PDF format can make use of the movie15 package for displaying movies, </wiki:comment>
 <wiki:comment> or just plain \hrun: ...{...} </wiki:comment>
 
  (Movie figs/mjolnir.mpeg: play mjolnir.html)
@@ -15998,7 +16470,7 @@ You should equip the `MOVIE:` command with the right width and height
 of embedded YouTube movies (the parameters appear when you request
 the embedded HTML code for the movie on the YouTube page).
 
-==== Copying Computer Code ====
+==== Copying Computer Code from Source Files ====
 
 Another type of special lines starts with `@@@CODE` and enables copying
 of computer code from a file directly into a verbatim environment, see
@@ -16151,14 +16623,16 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 {{{
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 }}}
-Everything related to the index simply becomes invisible in
-plain text, Epytext, StructuredText, HTML, and wiki formats.
-Note: `idx` commands should be inserted outside paragraphs, not in between
-the text as this may cause some strange behaviour of the formatting.
-Index items are naturally placed right after section headings, before the
-text begins. Index items related to the heading of a paragraph, however,
-should be placed above the paragraph heading and not in between the
-heading and the text.
+Everything related to the index simply becomes invisible in plain
+text, Epytext, StructuredText, HTML, and wiki formats.  Note: `idx`
+commands should be inserted outside paragraphs, not in between the
+text as this may cause some strange behaviour of reStructuredText and
+Sphinx formatting.  As a recommended rule, index items are naturally
+placed right after section headings, before the text begins, while
+index items related to a paragraph should be placed above the
+paragraph one a separate line (and not in between the text or between
+the paragraph heading and the text body, although this works fine if
+LaTeX is the output format).
 
 Literature citations also follow a LaTeX-inspired style:
 {{{
@@ -16202,6 +16676,8 @@ copied into the document at the place where the `BIBFILE:` keyword
 appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the `BIBFILE:` line
 in the document.
+
+At present, only one file with bibliographic references can be used.
 
 <wiki:comment> see ketch/tex2rst for nice bibtex to rst converter which could </wiki:comment>
 <wiki:comment> be used here </wiki:comment>
@@ -16491,7 +16967,7 @@ the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
 The preprocess and mako programs always have the variable `FORMAT`
-defined as the desired output format of Doconce (`HTML`, `LaTeX`,
+defined as the desired output format of Doconce (`html`, `latex`,
 `plain`, `rst`, `sphinx`, `epydoc`, `st`).  It is then easy to test on
 the value of `FORMAT` and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
@@ -16545,9 +17021,113 @@ the command line as explained in the section [#From_Doconce_to_Other_Formats].
 More advanced use of mako can include Python code that may automate
 the writing of parts of the document.
 
+==== Splitting Documents into Smaller Pieces ====
+
+Long documents are conveniently split into smaller Doconce files.
+However, there must be a master document including all the pieces,
+otherwise references to sections and the index will not work properly.
+The master document is preferably a file just containing a set of
+preprocessor include statements of the form `#include "file.do.txt"`.
+The preprocessor will put together all the pieces so that Doconce
+sees a long file with the complete text.
+
+For reStructuredText and Sphinx documents it is a point to have
+separate `.rst` files and an index file listing the various `.rst`
+that build up the document. To generate the various `.rst` files one
+should not run Doconce on the individual `.do.txt` files, because then
+references and index entries are not treated correctly. Instead,
+run Doconce on the master file and invoke the script `doconce split_rst`
+to split the long, complete `.rst` into pieces. This process requires
+that each `#include "file.do.txt` line in the master file is preceded by a
+"marker line" having the syntax `#>>>>>> part: file >>>>>>`, where
+`file` is the filename without extension. The number of greater than
+signs is not important, but it has to be a comment line and it has
+to contain the keyword `part:`.
+
+Here is an example. Say the name of the master file is `master.do.txt`.
+The following Bash script does the job:
+We run
+{{{
+doconce format sphinx master
+# Split master.rst into parts
+# as defined by #>>>>> part: name >>>>> lines
+files=`doconce split_rst master.rst`
+
+dir=sphinxm-rootdir
+
+if [ ! -d $dir ]; then
+  doconce sphinx_dir dirname=$dir author='me and you' \
+          version=1.0 theme=default $files
+  sh automake-sphinx.sh
+else
+  for file in $files; do
+    cp $file.rst $dir
+  done
+  cd $dir
+  make html
+  cd ..
+fi
+}}}
+The autogenerated `automake-sphinx.sh` file (by `doconce sphinx_dir`)
+is compatible with a master `.rst` file split into pieces as long as
+the complete set of pieces in correct order is given to `doconce sphinx_dir`.
+This set is the output of `doconce split_rst`, which we catch in a
+variable `files` above.
+
 ==== Missing Features ====
 
-  * Footnotes
+Doconce does not aim to support sophisticated typesetting, simply because
+sophisticated typesetting usually depend quite strongly on the particular
+output format chosen. When a particular feature needed is not supported
+by Doconce, it is recommended to hardcode that feature for a particular
+format and use the if-else construction of the preprocessor. For example,
+if a sophisticated table is desired in LaTeX output, test on the
+`FORMAT` variable (`#if FORMAT == "latex"`) in the Doconce code and
+insert the table in LaTeX format. The `else` or `elif` branches may
+have the table in other formats or a simplified version in the Doconce
+table format. Similarly, if certain adjustments are needed, like
+pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
+that this is really LaTeX dependent - pagebreaks are not
+relevant HTML formats).
+
+Instead of inserting special code in the Doconce document, one can
+alternatively script editing of the output from Doconce. That is,
+we develop a Python or Bash script that runs the translation of
+a Doconce document to a ready docoment in another format. Inside this
+script, we may edit and fine-tune the output from Doconce.
+
+As an example, say you want a table of contents in the LaTeX output
+(Doconce does not support table of contents). By inserting a
+recognizable comment in the Doconce source, say
+{{{
+# table of contents
+}}}
+we can use this comment to edit the LaTeX file. First, we run
+Doconce `doconce format latex mydoc` to produce `mydoc.p.tex`. Then
+we use the `doconce replace` and `doconce subst` commands to
+replace the comment by the comment plus the table of contents command,
+or just the latter:
+{{{
+Terminal> doconce replace '% table of contents'
+          '\tableofcontents' mydoc.p.tex
+}}}
+The `doconce replace from_text to_text filename` command performs a
+character-by-character replacement (using the `replace` method in
+string objects in Python). If we want to preserve the comment and add
+a new line with `\tableofcontents`, we should use `doconce subst`,
+which applies regular expressions for substitutions and thereby
+understands the newline character:
+{{{
+Terminal> doconce subst '% table of contents' \
+          '% table of contents\n\\tableofcontents' mydoc.p.tex
+}}}
+Note the double backshlash in front of the `t` character: without it we
+would get a tab and no backslash.
+The `doconce subst` is a powerful way to automatically edit the output
+from Doconce and fine-tune a LaTeX document. Use of comment lines to
+identify portions of the file to be edited is a smart idea.
+Alternatively, the relevant LaTeX constructions can be inserted directly
+in the Doconce file using if-else preprocessor directives.
 
 ==== Troubleshooting ====
 
@@ -16712,9 +17292,9 @@ source code of the HTML translator:
 
 
 {{{
-FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
-BLANKLINE['HTML'] = '<p>\n'           # blank input line => new paragraph
-INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+FILENAME_EXTENSION['html'] = '.html'  # output file extension
+BLANKLINE['html'] = '<p>\n'           # blank input line => new paragraph
+INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
     # keep math as is:
     'math': None,  # indicates no substitution
     'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
@@ -16730,8 +17310,8 @@ INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
     'author':        r'<center><h3>\g<subst></h3></center>',
     }
 
-# how to replace code and LaTeX blocks by HTML (<pre>) environment:
-def HTML_code(filestr):
+# how to replace code and latex blocks by html (<pre>) environment:
+def html_code(filestr):
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
     filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre>\n', filestr)
     filestr = re.sub(r'!ec\n',
@@ -16740,10 +17320,10 @@ def HTML_code(filestr):
     filestr = c.sub(r'<pre>\n', filestr)
     filestr = re.sub(r'!et\n', r'</pre>\n', filestr)
     return filestr
-CODE['HTML'] = HTML_code
+CODE['html'] = html_code
 
-# how to typeset lists and their items in HTML:
-LIST['HTML'] = {
+# how to typeset lists and their items in html:
+LIST['html'] = {
     'itemize':
     {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
     'enumerate':
@@ -16754,7 +17334,7 @@ LIST['HTML'] = {
 
 # how to type set description lists for function arguments, return
 # values, and module/class variables:
-ARGLIST['HTML'] = {
+ARGLIST['html'] = {
     'parameter': '<b>argument</b>',
     'keyword': '<b>keyword argument</b>',
     'return': '<b>return value(s)</b>',
@@ -16764,12 +17344,12 @@ ARGLIST['HTML'] = {
     }
 
 # document start:
-INTRO['HTML'] = """
+INTRO['html'] = """
 <html>
 <body bgcolor="white">
 """
 # document ending:
-OUTRO['HTML'] = """
+OUTRO['html'] = """
 </body>
 </html>
 """
@@ -16942,18 +17522,18 @@ file first, and options to 'mako' or 'preprocess' can be added after the
 filename. For example::
 
 
-        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+        Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 
 The variable 'FORMAT' is always defined as the current format when
 running 'preprocess'. That is, in the last example, 'FORMAT' is
-defined as 'LaTeX'. Inside the Doconce document one can then perform
-format specific actions through tests like '#if FORMAT == "LaTeX"'.
+defined as 'latex'. Inside the Doconce document one can then perform
+format specific actions through tests like '#if FORMAT == "latex"'.
 
 Inline comments in the text are removed from the output by::
 
 
-        Terminal> doconce format LaTeX mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running
@@ -16969,7 +17549,7 @@ Making an HTML version of a Doconce file 'mydoc.do.txt'
 is performed by::
 
 
-        Terminal> doconce format HTML mydoc
+        Terminal> doconce format html mydoc
 
 The resulting file 'mydoc.html' can be loaded into any web browser for viewing.
 LaTeX
@@ -16978,7 +17558,7 @@ Making a LaTeX file 'mydoc.tex' from 'mydoc.do.txt' is done in two steps:
 *Step 1.* Filter the doconce text to a pre-LaTeX form 'mydoc.p.tex' for
      'ptex2tex':
 !bc   sys
-        Terminal> doconce format LaTeX mydoc
+        Terminal> doconce format latex mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files 'newcommands.tex', 'newcommands_keep.tex', or
@@ -17077,8 +17657,8 @@ reStructuredText file 'mydoc.rst':
 We may now produce various other formats::
 
 
-        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
         Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
@@ -17440,7 +18020,7 @@ included in the formatted caption).
 FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. {fig:viz}
 Movies
 Here is an example on the 'MOVIE:' keyword for embedding movies. This
-feature works well for the 'LaTeX', 'HTML', 'rst', and 'sphinx' formats.
+feature works well for the 'latex', 'html', 'rst', and 'sphinx' formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie::
 
@@ -17483,7 +18063,7 @@ be embedded, otherwise a URL to the YouTube page is inserted.
 You should equip the 'MOVIE:' command with the right width and height
 of embedded YouTube movies (the parameters appear when you request
 the embedded HTML code for the movie on the YouTube page).
-Copying Computer Code
+Copying Computer Code from Source Files
 Another type of special lines starts with '@@@CODE' and enables copying
 of computer code from a file directly into a verbatim environment, see
 the section "Blocks of Verbatim Computer Code" below.
@@ -17640,14 +18220,16 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to::
 
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
-Everything related to the index simply becomes invisible in
-plain text, Epytext, StructuredText, HTML, and wiki formats.
-Note: 'idx' commands should be inserted outside paragraphs, not in between
-the text as this may cause some strange behaviour of the formatting.
-Index items are naturally placed right after section headings, before the
-text begins. Index items related to the heading of a paragraph, however,
-should be placed above the paragraph heading and not in between the
-heading and the text.
+Everything related to the index simply becomes invisible in plain
+text, Epytext, StructuredText, HTML, and wiki formats.  Note: 'idx'
+commands should be inserted outside paragraphs, not in between the
+text as this may cause some strange behaviour of reStructuredText and
+Sphinx formatting.  As a recommended rule, index items are naturally
+placed right after section headings, before the text begins, while
+index items related to a paragraph should be placed above the
+paragraph one a separate line (and not in between the text or between
+the paragraph heading and the text body, although this works fine if
+LaTeX is the output format).
 
 Literature citations also follow a LaTeX-inspired style::
 
@@ -17694,6 +18276,8 @@ copied into the document at the place where the 'BIBFILE:' keyword
 appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the 'BIBFILE:' line
 in the document.
+
+At present, only one file with bibliographic references can be used.
 
 
 Conversion of BibTeX databases to reStructuredText format can be
@@ -17974,7 +18558,7 @@ the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
 The preprocess and mako programs always have the variable 'FORMAT'
-defined as the desired output format of Doconce ('HTML', 'LaTeX',
+defined as the desired output format of Doconce ('html', 'latex',
 'plain', 'rst', 'sphinx', 'epydoc', 'st').  It is then easy to test on
 the value of 'FORMAT' and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
@@ -17996,8 +18580,114 @@ the command line as explained in the section "From Doconce to Other Formats".
 
 More advanced use of mako can include Python code that may automate
 the writing of parts of the document.
+Splitting Documents into Smaller Pieces
+Long documents are conveniently split into smaller Doconce files.
+However, there must be a master document including all the pieces,
+otherwise references to sections and the index will not work properly.
+The master document is preferably a file just containing a set of
+preprocessor include statements of the form '#include "file.do.txt"'.
+The preprocessor will put together all the pieces so that Doconce
+sees a long file with the complete text.
+
+For reStructuredText and Sphinx documents it is a point to have
+separate '.rst' files and an index file listing the various '.rst'
+that build up the document. To generate the various '.rst' files one
+should not run Doconce on the individual '.do.txt' files, because then
+references and index entries are not treated correctly. Instead,
+run Doconce on the master file and invoke the script 'doconce split_rst'
+to split the long, complete '.rst' into pieces. This process requires
+that each '#include "file.do.txt' line in the master file is preceded by a
+"marker line" having the syntax '#>>>>>> part: file >>>>>>', where
+'file' is the filename without extension. The number of greater than
+signs is not important, but it has to be a comment line and it has
+to contain the keyword 'part:'.
+
+Here is an example. Say the name of the master file is 'master.do.txt'.
+The following Bash script does the job:
+We run::
+
+
+        doconce format sphinx master
+        # Split master.rst into parts
+        # as defined by #>>>>> part: name >>>>> lines
+        files=`doconce split_rst master.rst`
+        
+        dir=sphinxm-rootdir
+        
+        if [ ! -d $dir ]; then
+          doconce sphinx_dir dirname=$dir author='me and you' \
+                  version=1.0 theme=default $files
+          sh automake-sphinx.sh
+        else
+          for file in $files; do
+            cp $file.rst $dir
+          done
+          cd $dir
+          make html
+          cd ..
+        fi
+
+The autogenerated 'automake-sphinx.sh' file (by 'doconce sphinx_dir')
+is compatible with a master '.rst' file split into pieces as long as
+the complete set of pieces in correct order is given to 'doconce sphinx_dir'.
+This set is the output of 'doconce split_rst', which we catch in a
+variable 'files' above.
 Missing Features
-  - Footnotes
+Doconce does not aim to support sophisticated typesetting, simply because
+sophisticated typesetting usually depend quite strongly on the particular
+output format chosen. When a particular feature needed is not supported
+by Doconce, it is recommended to hardcode that feature for a particular
+format and use the if-else construction of the preprocessor. For example,
+if a sophisticated table is desired in LaTeX output, test on the
+'FORMAT' variable ('#if FORMAT == "latex"') in the Doconce code and
+insert the table in LaTeX format. The 'else' or 'elif' branches may
+have the table in other formats or a simplified version in the Doconce
+table format. Similarly, if certain adjustments are needed, like
+pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
+that this is really LaTeX dependent - pagebreaks are not
+relevant HTML formats).
+
+Instead of inserting special code in the Doconce document, one can
+alternatively script editing of the output from Doconce. That is,
+we develop a Python or Bash script that runs the translation of
+a Doconce document to a ready docoment in another format. Inside this
+script, we may edit and fine-tune the output from Doconce.
+
+As an example, say you want a table of contents in the LaTeX output
+(Doconce does not support table of contents). By inserting a
+recognizable comment in the Doconce source, say::
+
+
+        # table of contents
+
+we can use this comment to edit the LaTeX file. First, we run
+Doconce 'doconce format latex mydoc' to produce 'mydoc.p.tex'. Then
+we use the 'doconce replace' and 'doconce subst' commands to
+replace the comment by the comment plus the table of contents command,
+or just the latter::
+
+
+        Terminal> doconce replace '% table of contents'
+                  '\tableofcontents' mydoc.p.tex
+
+The 'doconce replace from_text to_text filename' command performs a
+character-by-character replacement (using the 'replace' method in
+string objects in Python). If we want to preserve the comment and add
+a new line with '\tableofcontents', we should use 'doconce subst',
+which applies regular expressions for substitutions and thereby
+understands the newline character::
+
+
+        Terminal> doconce subst '% table of contents' \
+                  '% table of contents\n\\tableofcontents' mydoc.p.tex
+
+Note the double backshlash in front of the 't' character: without it we
+would get a tab and no backslash.
+The 'doconce subst' is a powerful way to automatically edit the output
+from Doconce and fine-tune a LaTeX document. Use of comment lines to
+identify portions of the file to be edited is a smart idea.
+Alternatively, the relevant LaTeX constructions can be inserted directly
+in the Doconce file using if-else preprocessor directives.
 Troubleshooting
 *Disclaimer.* Doconce has some support for syntax checking.
 If you encounter Python errors while running 'doconce format', the
@@ -18153,9 +18843,9 @@ This is the HTML-specific part of the
 source code of the HTML translator::
 
 
-        FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
-        BLANKLINE['HTML'] = '<p>\n'           # blank input line => new paragraph
-        INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+        FILENAME_EXTENSION['html'] = '.html'  # output file extension
+        BLANKLINE['html'] = '<p>\n'           # blank input line => new paragraph
+        INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
             # keep math as is:
             'math': None,  # indicates no substitution
             'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
@@ -18171,8 +18861,8 @@ source code of the HTML translator::
             'author':        r'<center><h3>\g<subst></h3></center>',
             }
         
-        # how to replace code and LaTeX blocks by HTML (<pre>) environment:
-        def HTML_code(filestr):
+        # how to replace code and latex blocks by html (<pre>) environment:
+        def html_code(filestr):
             c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
             filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre>\n', filestr)
             filestr = re.sub(r'!ec\n',
@@ -18181,10 +18871,10 @@ source code of the HTML translator::
             filestr = c.sub(r'<pre>\n', filestr)
             filestr = re.sub(r'!et\n', r'</pre>\n', filestr)
             return filestr
-        CODE['HTML'] = HTML_code
+        CODE['html'] = html_code
         
-        # how to typeset lists and their items in HTML:
-        LIST['HTML'] = {
+        # how to typeset lists and their items in html:
+        LIST['html'] = {
             'itemize':
             {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
             'enumerate':
@@ -18195,7 +18885,7 @@ source code of the HTML translator::
         
         # how to type set description lists for function arguments, return
         # values, and module/class variables:
-        ARGLIST['HTML'] = {
+        ARGLIST['html'] = {
             'parameter': '<b>argument</b>',
             'keyword': '<b>keyword argument</b>',
             'return': '<b>return value(s)</b>',
@@ -18205,12 +18895,12 @@ source code of the HTML translator::
             }
         
         # document start:
-        INTRO['HTML'] = """
+        INTRO['html'] = """
         <html>
         <body bgcolor="white">
         """
         # document ending:
-        OUTRO['HTML'] = """
+        OUTRO['html'] = """
         </body>
         </html>
         """
@@ -18402,18 +19092,18 @@ file first, and options to C{mako} or C{preprocess} can be added after the
 filename. For example::
 
 
-        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+        Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 
 The variable C{FORMAT} is always defined as the current format when
 running C{preprocess}. That is, in the last example, C{FORMAT} is
-defined as C{LaTeX}. Inside the Doconce document one can then perform
-format specific actions through tests like C{#if FORMAT == "LaTeX"}.
+defined as C{latex}. Inside the Doconce document one can then perform
+format specific actions through tests like C{#if FORMAT == "latex"}.
 
 Inline comments in the text are removed from the output by::
 
 
-        Terminal> doconce format LaTeX mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running
@@ -18433,7 +19123,7 @@ Making an HTML version of a Doconce file C{mydoc.do.txt}
 is performed by::
 
 
-        Terminal> doconce format HTML mydoc
+        Terminal> doconce format html mydoc
 
 The resulting file C{mydoc.html} can be loaded into any web browser for viewing.
 
@@ -18446,7 +19136,7 @@ I{Step 1.} Filter the doconce text to a pre-LaTeX form C{mydoc.p.tex} for
      C{ptex2tex}::
 
 
-        Terminal> doconce format LaTeX mydoc
+        Terminal> doconce format latex mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files C{newcommands.tex}, C{newcommands_keep.tex}, or
@@ -18553,8 +19243,8 @@ reStructuredText file C{mydoc.rst}::
 We may now produce various other formats::
 
 
-        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
         Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
@@ -18954,7 +19644,7 @@ Movies
 ------
 
 Here is an example on the C{MOVIE:} keyword for embedding movies. This
-feature works well for the C{LaTeX}, C{HTML}, C{rst}, and C{sphinx} formats.
+feature works well for the C{latex}, C{html}, C{rst}, and C{sphinx} formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie::
 
@@ -19000,8 +19690,8 @@ the embedded HTML code for the movie on the YouTube page).
 
 
 
-Copying Computer Code
----------------------
+Copying Computer Code from Source Files
+---------------------------------------
 
 Another type of special lines starts with C{@@@CODE} and enables copying
 of computer code from a file directly into a verbatim environment, see
@@ -19170,14 +19860,16 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to::
 
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
-Everything related to the index simply becomes invisible in
-plain text, Epytext, StructuredText, HTML, and wiki formats.
-Note: C{idx} commands should be inserted outside paragraphs, not in between
-the text as this may cause some strange behaviour of the formatting.
-Index items are naturally placed right after section headings, before the
-text begins. Index items related to the heading of a paragraph, however,
-should be placed above the paragraph heading and not in between the
-heading and the text.
+Everything related to the index simply becomes invisible in plain
+text, Epytext, StructuredText, HTML, and wiki formats.  Note: C{idx}
+commands should be inserted outside paragraphs, not in between the
+text as this may cause some strange behaviour of reStructuredText and
+Sphinx formatting.  As a recommended rule, index items are naturally
+placed right after section headings, before the text begins, while
+index items related to a paragraph should be placed above the
+paragraph one a separate line (and not in between the text or between
+the paragraph heading and the text body, although this works fine if
+LaTeX is the output format).
 
 Literature citations also follow a LaTeX-inspired style::
 
@@ -19224,6 +19916,8 @@ copied into the document at the place where the C{BIBFILE:} keyword
 appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the C{BIBFILE:} line
 in the document.
+
+At present, only one file with bibliographic references can be used.
 
 
 Conversion of BibTeX databases to reStructuredText format can be
@@ -19522,7 +20216,7 @@ the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
 The preprocess and mako programs always have the variable C{FORMAT}
-defined as the desired output format of Doconce (C{HTML}, C{LaTeX},
+defined as the desired output format of Doconce (C{html}, C{latex},
 C{plain}, C{rst}, C{sphinx}, C{epydoc}, C{st}).  It is then easy to test on
 the value of C{FORMAT} and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
@@ -19547,10 +20241,123 @@ the writing of parts of the document.
 
 
 
+Splitting Documents into Smaller Pieces
+---------------------------------------
+
+Long documents are conveniently split into smaller Doconce files.
+However, there must be a master document including all the pieces,
+otherwise references to sections and the index will not work properly.
+The master document is preferably a file just containing a set of
+preprocessor include statements of the form C{#include "file.do.txt"}.
+The preprocessor will put together all the pieces so that Doconce
+sees a long file with the complete text.
+
+For reStructuredText and Sphinx documents it is a point to have
+separate C{.rst} files and an index file listing the various C{.rst}
+that build up the document. To generate the various C{.rst} files one
+should not run Doconce on the individual C{.do.txt} files, because then
+references and index entries are not treated correctly. Instead,
+run Doconce on the master file and invoke the script C{doconce split_rst}
+to split the long, complete C{.rst} into pieces. This process requires
+that each C{#include "file.do.txt} line in the master file is preceded by a
+"marker line" having the syntax C{#>>>>>> part: file >>>>>>}, where
+C{file} is the filename without extension. The number of greater than
+signs is not important, but it has to be a comment line and it has
+to contain the keyword C{part:}.
+
+Here is an example. Say the name of the master file is C{master.do.txt}.
+The following Bash script does the job:
+We run::
+
+
+        doconce format sphinx master
+        # Split master.rst into parts
+        # as defined by #>>>>> part: name >>>>> lines
+        files=`doconce split_rst master.rst`
+        
+        dir=sphinxm-rootdir
+        
+        if [ ! -d $dir ]; then
+          doconce sphinx_dir dirname=$dir author='me and you' \
+                  version=1.0 theme=default $files
+          sh automake-sphinx.sh
+        else
+          for file in $files; do
+            cp $file.rst $dir
+          done
+          cd $dir
+          make html
+          cd ..
+        fi
+
+The autogenerated C{automake-sphinx.sh} file (by C{doconce sphinx_dir})
+is compatible with a master C{.rst} file split into pieces as long as
+the complete set of pieces in correct order is given to C{doconce sphinx_dir}.
+This set is the output of C{doconce split_rst}, which we catch in a
+variable C{files} above.
+
+
 Missing Features
 ----------------
 
-  - Footnotes
+Doconce does not aim to support sophisticated typesetting, simply because
+sophisticated typesetting usually depend quite strongly on the particular
+output format chosen. When a particular feature needed is not supported
+by Doconce, it is recommended to hardcode that feature for a particular
+format and use the if-else construction of the preprocessor. For example,
+if a sophisticated table is desired in LaTeX output, test on the
+C{FORMAT} variable (C{#if FORMAT == "latex"}) in the Doconce code and
+insert the table in LaTeX format. The C{else} or C{elif} branches may
+have the table in other formats or a simplified version in the Doconce
+table format. Similarly, if certain adjustments are needed, like
+pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
+that this is really LaTeX dependent - pagebreaks are not
+relevant HTML formats).
+
+Instead of inserting special code in the Doconce document, one can
+alternatively script editing of the output from Doconce. That is,
+we develop a Python or Bash script that runs the translation of
+a Doconce document to a ready docoment in another format. Inside this
+script, we may edit and fine-tune the output from Doconce.
+
+As an example, say you want a table of contents in the LaTeX output
+(Doconce does not support table of contents). By inserting a
+recognizable comment in the Doconce source, say::
+
+
+        # table of contents
+
+we can use this comment to edit the LaTeX file. First, we run
+Doconce C{doconce format latex mydoc} to produce C{mydoc.p.tex}. Then
+we use the C{doconce replace} and C{doconce subst} commands to
+replace the comment by the comment plus the table of contents command,
+or just the latter::
+
+
+        Terminal> doconce replace '% table of contents'
+                  '\tableofcontents' mydoc.p.tex
+
+The C{doconce replace from_text to_text filename} command performs a
+character-by-character replacement (using the C{replace} method in
+string objects in Python). If we want to preserve the comment and add
+a new line with C{\tableofcontents}, we should use C{doconce subst},
+which applies regular expressions for substitutions and thereby
+understands the newline character::
+
+
+
+            NOTE: A verbatim block has been removed because
+                  it causes problems for Epytext.
+
+
+Note the double backshlash in front of the C{t} character: without it we
+would get a tab and no backslash.
+The C{doconce subst} is a powerful way to automatically edit the output
+from Doconce and fine-tune a LaTeX document. Use of comment lines to
+identify portions of the file to be edited is a smart idea.
+Alternatively, the relevant LaTeX constructions can be inserted directly
+in the Doconce file using if-else preprocessor directives.
+
 
 Troubleshooting
 ---------------
@@ -19729,7 +20536,7 @@ Eight here we only displacy a smaller snippet that Epytext can
 treat properly::
 
 
-        INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+        INLINE_TAGS_SUBST['html'] = {         # from inline tags to html tags
             # keep math as is:
             'math': None,  # indicates no substitution
             'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
@@ -19945,18 +20752,18 @@ file first, and options to mako or preprocess can be added after the
 filename. For example::
 
 
-        Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5     # preprocess
-        Terminal> doconce format LaTeX yourdoc extra_sections=True VAR1=5  # mako
+        Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+        Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 
 The variable FORMAT is always defined as the current format when
 running preprocess. That is, in the last example, FORMAT is
-defined as LaTeX. Inside the Doconce document one can then perform
-format specific actions through tests like #if FORMAT == "LaTeX".
+defined as latex. Inside the Doconce document one can then perform
+format specific actions through tests like #if FORMAT == "latex".
 
 Inline comments in the text are removed from the output by::
 
 
-        Terminal> doconce format LaTeX mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc remove_inline_comments
 
 One can also remove such comments from the original Doconce file
 by running
@@ -19976,7 +20783,7 @@ Making an HTML version of a Doconce file mydoc.do.txt
 is performed by::
 
 
-        Terminal> doconce format HTML mydoc
+        Terminal> doconce format html mydoc
 
 The resulting file mydoc.html can be loaded into any web browser for viewing.
 
@@ -19989,7 +20796,7 @@ Making a LaTeX file mydoc.tex from mydoc.do.txt is done in two steps:
      ptex2tex::
 
 
-        Terminal> doconce format LaTeX mydoc
+        Terminal> doconce format latex mydoc
 
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files newcommands.tex, newcommands_keep.tex, or
@@ -20096,8 +20903,8 @@ reStructuredText file mydoc.rst::
 We may now produce various other formats::
 
 
-        Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML
-        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX
+        Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+        Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
         Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
@@ -20509,7 +21316,7 @@ Movies
 ------
 
 Here is an example on the MOVIE: keyword for embedding movies. This
-feature works well for the LaTeX, HTML, rst, and sphinx formats.
+feature works well for the latex, html, rst, and sphinx formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie::
 
@@ -20555,8 +21362,8 @@ the embedded HTML code for the movie on the YouTube page).
 
 
 
-Copying Computer Code
----------------------
+Copying Computer Code from Source Files
+---------------------------------------
 
 Another type of special lines starts with @@@CODE and enables copying
 of computer code from a file directly into a verbatim environment, see
@@ -20721,14 +21528,16 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to::
 
         \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 
-Everything related to the index simply becomes invisible in
-plain text, Epytext, StructuredText, HTML, and wiki formats.
-Note: idx commands should be inserted outside paragraphs, not in between
-the text as this may cause some strange behaviour of the formatting.
-Index items are naturally placed right after section headings, before the
-text begins. Index items related to the heading of a paragraph, however,
-should be placed above the paragraph heading and not in between the
-heading and the text.
+Everything related to the index simply becomes invisible in plain
+text, Epytext, StructuredText, HTML, and wiki formats.  Note: idx
+commands should be inserted outside paragraphs, not in between the
+text as this may cause some strange behaviour of reStructuredText and
+Sphinx formatting.  As a recommended rule, index items are naturally
+placed right after section headings, before the text begins, while
+index items related to a paragraph should be placed above the
+paragraph one a separate line (and not in between the text or between
+the paragraph heading and the text body, although this works fine if
+LaTeX is the output format).
 
 Literature citations also follow a LaTeX-inspired style::
 
@@ -20775,6 +21584,8 @@ copied into the document at the place where the BIBFILE: keyword
 appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the BIBFILE: line
 in the document.
+
+At present, only one file with bibliographic references can be used.
 
 
 Conversion of BibTeX databases to reStructuredText format can be
@@ -21070,7 +21881,7 @@ the relevant preprocessor prior to translating the Doconce source to a
 specific format.
 
 The preprocess and mako programs always have the variable FORMAT
-defined as the desired output format of Doconce (HTML, LaTeX,
+defined as the desired output format of Doconce (html, latex,
 plain, rst, sphinx, epydoc, st).  It is then easy to test on
 the value of FORMAT and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
@@ -21095,10 +21906,121 @@ the writing of parts of the document.
 
 
 
+Splitting Documents into Smaller Pieces
+---------------------------------------
+
+Long documents are conveniently split into smaller Doconce files.
+However, there must be a master document including all the pieces,
+otherwise references to sections and the index will not work properly.
+The master document is preferably a file just containing a set of
+preprocessor include statements of the form #include "file.do.txt".
+The preprocessor will put together all the pieces so that Doconce
+sees a long file with the complete text.
+
+For reStructuredText and Sphinx documents it is a point to have
+separate .rst files and an index file listing the various .rst
+that build up the document. To generate the various .rst files one
+should not run Doconce on the individual .do.txt files, because then
+references and index entries are not treated correctly. Instead,
+run Doconce on the master file and invoke the script doconce split_rst
+to split the long, complete .rst into pieces. This process requires
+that each #include "file.do.txt line in the master file is preceded by a
+"marker line" having the syntax #>>>>>> part: file >>>>>>, where
+file is the filename without extension. The number of greater than
+signs is not important, but it has to be a comment line and it has
+to contain the keyword part:.
+
+Here is an example. Say the name of the master file is master.do.txt.
+The following Bash script does the job:
+We run::
+
+
+        doconce format sphinx master
+        # Split master.rst into parts
+        # as defined by #>>>>> part: name >>>>> lines
+        files=`doconce split_rst master.rst`
+        
+        dir=sphinxm-rootdir
+        
+        if [ ! -d $dir ]; then
+          doconce sphinx_dir dirname=$dir author='me and you' \
+                  version=1.0 theme=default $files
+          sh automake-sphinx.sh
+        else
+          for file in $files; do
+            cp $file.rst $dir
+          done
+          cd $dir
+          make html
+          cd ..
+        fi
+
+The autogenerated automake-sphinx.sh file (by doconce sphinx_dir)
+is compatible with a master .rst file split into pieces as long as
+the complete set of pieces in correct order is given to doconce sphinx_dir.
+This set is the output of doconce split_rst, which we catch in a
+variable files above.
+
+
 Missing Features
 ----------------
 
-  * Footnotes
+Doconce does not aim to support sophisticated typesetting, simply because
+sophisticated typesetting usually depend quite strongly on the particular
+output format chosen. When a particular feature needed is not supported
+by Doconce, it is recommended to hardcode that feature for a particular
+format and use the if-else construction of the preprocessor. For example,
+if a sophisticated table is desired in LaTeX output, test on the
+FORMAT variable (#if FORMAT == "latex") in the Doconce code and
+insert the table in LaTeX format. The else or elif branches may
+have the table in other formats or a simplified version in the Doconce
+table format. Similarly, if certain adjustments are needed, like
+pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
+that this is really LaTeX dependent - pagebreaks are not
+relevant HTML formats).
+
+Instead of inserting special code in the Doconce document, one can
+alternatively script editing of the output from Doconce. That is,
+we develop a Python or Bash script that runs the translation of
+a Doconce document to a ready docoment in another format. Inside this
+script, we may edit and fine-tune the output from Doconce.
+
+As an example, say you want a table of contents in the LaTeX output
+(Doconce does not support table of contents). By inserting a
+recognizable comment in the Doconce source, say::
+
+
+        # table of contents
+
+we can use this comment to edit the LaTeX file. First, we run
+Doconce doconce format latex mydoc to produce mydoc.p.tex. Then
+we use the doconce replace and doconce subst commands to
+replace the comment by the comment plus the table of contents command,
+or just the latter::
+
+
+        Terminal> doconce replace '% table of contents'
+                  '\tableofcontents' mydoc.p.tex
+
+The doconce replace from_text to_text filename command performs a
+character-by-character replacement (using the replace method in
+string objects in Python). If we want to preserve the comment and add
+a new line with \tableofcontents, we should use doconce subst,
+which applies regular expressions for substitutions and thereby
+understands the newline character::
+
+
+        Terminal> doconce subst '% table of contents' \
+                  '% table of contents\n\\tableofcontents' mydoc.p.tex
+
+Note the double backshlash in front of the t character: without it we
+would get a tab and no backslash.
+The doconce subst is a powerful way to automatically edit the output
+from Doconce and fine-tune a LaTeX document. Use of comment lines to
+identify portions of the file to be edited is a smart idea.
+Alternatively, the relevant LaTeX constructions can be inserted directly
+in the Doconce file using if-else preprocessor directives.
+
 
 Troubleshooting
 ---------------
@@ -21270,9 +22192,9 @@ This is the HTML-specific part of the
 source code of the HTML translator::
 
 
-        FILENAME_EXTENSION['HTML'] = '.html'  # output file extension
-        BLANKLINE['HTML'] = '<p>\n'           # blank input line => new paragraph
-        INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HTML tags
+        FILENAME_EXTENSION['html'] = '.html'  # output file extension
+        BLANKLINE['html'] = '<p>\n'           # blank input line => new paragraph
+        INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
             # keep math as is:
             'math': None,  # indicates no substitution
             'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
@@ -21288,8 +22210,8 @@ source code of the HTML translator::
             'author':        r'<center><h3>\g<subst></h3></center>',
             }
         
-        # how to replace code and LaTeX blocks by HTML (<pre>) environment:
-        def HTML_code(filestr):
+        # how to replace code and latex blocks by html (<pre>) environment:
+        def html_code(filestr):
             c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
             filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre>\n', filestr)
             filestr = re.sub(r'!ec\n',
@@ -21298,10 +22220,10 @@ source code of the HTML translator::
             filestr = c.sub(r'<pre>\n', filestr)
             filestr = re.sub(r'!et\n', r'</pre>\n', filestr)
             return filestr
-        CODE['HTML'] = HTML_code
+        CODE['html'] = html_code
         
-        # how to typeset lists and their items in HTML:
-        LIST['HTML'] = {
+        # how to typeset lists and their items in html:
+        LIST['html'] = {
             'itemize':
             {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
             'enumerate':
@@ -21312,7 +22234,7 @@ source code of the HTML translator::
         
         # how to type set description lists for function arguments, return
         # values, and module/class variables:
-        ARGLIST['HTML'] = {
+        ARGLIST['html'] = {
             'parameter': '<b>argument</b>',
             'keyword': '<b>keyword argument</b>',
             'return': '<b>return value(s)</b>',
@@ -21322,12 +22244,12 @@ source code of the HTML translator::
             }
         
         # document start:
-        INTRO['HTML'] = """
+        INTRO['html'] = """
         <html>
         <body bgcolor="white">
         """
         # document ending:
-        OUTRO['HTML'] = """
+        OUTRO['html'] = """
         </body>
         </html>
         """
@@ -21378,11 +22300,11 @@ Bibliography
 
   2. H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. *Advances in Water Resources*, vol 22, 185-195, 1998.
 ************** File: /home/hpl/vc/doconce/test/test.output *****************
-+ doconce format HTML testdoc.do.txt
++ doconce format html testdoc.do.txt
 run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 output in testdoc.html
-+ doconce format LaTeX testdoc.do.txt
++ doconce format latex testdoc.do.txt
 run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 latex: /home/hpl/vc/doconce/test/wavepacket_0001.html
@@ -21438,12 +22360,12 @@ output in testdoc.gwiki
 + doconce change_encoding utf-8 latin1 tmp2.do.txt
 + doconce guess_encoding tmp2.do.txt+ ./clean.sh
 Removing in /home/hpl/vc/doconce/doc/tutorial:
-+ doconce format HTML tutorial.do.txt
-run preprocess -DFORMAT=HTML  tutorial.do.txt > __tmp.do.txt
++ doconce format html tutorial.do.txt
+run preprocess -DFORMAT=html  tutorial.do.txt > __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 output in tutorial.html
-+ doconce format LaTeX tutorial.do.txt
-run preprocess -DFORMAT=LaTeX  tutorial.do.txt > __tmp.do.txt
++ doconce format latex tutorial.do.txt
+run preprocess -DFORMAT=latex  tutorial.do.txt > __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 output in tutorial.p.tex
 + ptex2tex -DHELVETICA tutorial
@@ -21594,7 +22516,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (14 pages, 61488 bytes).
+Output written on tutorial.dvi (14 pages, 61496 bytes).
 Transcript written on tutorial.log.
 + latex tutorial.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -21720,7 +22642,7 @@ Overfull \hbox (20.44847pt too wide) in paragraph at lines 841--853
 No file tutorial.ind.
 [14] (./tutorial.aux) )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (14 pages, 63720 bytes).
+Output written on tutorial.dvi (14 pages, 63728 bytes).
 Transcript written on tutorial.log.
 + dvipdf tutorial.dvi
 + doconce format sphinx tutorial.do.txt
@@ -21777,212 +22699,6 @@ source files. Use the Makefile to build the docs, like so:
    make builder
 where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
-Archive:  sphinx_themes.zip
-   creating: sphinx_themes/
-   creating: sphinx_themes/slim-agogo/
-  inflating: sphinx_themes/slim-agogo/layout.html  
-   creating: sphinx_themes/slim-agogo/static/
- extracting: sphinx_themes/slim-agogo/static/bgtop.png  
-  inflating: sphinx_themes/slim-agogo/static/agogo.css_t  
- extracting: sphinx_themes/slim-agogo/static/bgfooter.png  
-  inflating: sphinx_themes/slim-agogo/theme.conf  
-   creating: sphinx_themes/default/
-  inflating: sphinx_themes/default/layout.html  
-   creating: sphinx_themes/default/static/
-  inflating: sphinx_themes/default/static/default.css_t  
-  inflating: sphinx_themes/default/static/sidebar.js  
-  inflating: sphinx_themes/default/theme.conf  
-   creating: sphinx_themes/agogo/
-  inflating: sphinx_themes/agogo/layout.html  
-   creating: sphinx_themes/agogo/static/
- extracting: sphinx_themes/agogo/static/bgtop.png  
-  inflating: sphinx_themes/agogo/static/agogo.css_t  
- extracting: sphinx_themes/agogo/static/bgfooter.png  
-  inflating: sphinx_themes/agogo/theme.conf  
-   creating: sphinx_themes/traditional/
-   creating: sphinx_themes/traditional/static/
-  inflating: sphinx_themes/traditional/static/traditional.css_t  
- extracting: sphinx_themes/traditional/theme.conf  
-   creating: sphinx_themes/scrolls/
-  inflating: sphinx_themes/scrolls/layout.html  
-   creating: sphinx_themes/scrolls/artwork/
-  inflating: sphinx_themes/scrolls/artwork/logo.svg  
-   creating: sphinx_themes/scrolls/static/
-  inflating: sphinx_themes/scrolls/static/logo.png  
-  inflating: sphinx_themes/scrolls/static/scrolls.css_t  
-  inflating: sphinx_themes/scrolls/static/watermark_blur.png  
-  inflating: sphinx_themes/scrolls/static/metal.png  
-  inflating: sphinx_themes/scrolls/static/theme_extras.js  
-  inflating: sphinx_themes/scrolls/static/darkmetal.png  
-  inflating: sphinx_themes/scrolls/static/print.css  
-  inflating: sphinx_themes/scrolls/static/headerbg.png  
-  inflating: sphinx_themes/scrolls/static/navigation.png  
-  inflating: sphinx_themes/scrolls/static/watermark.png  
-  inflating: sphinx_themes/scrolls/theme.conf  
-   creating: sphinx_themes/sphinxdoc/
-  inflating: sphinx_themes/sphinxdoc/layout.html  
-   creating: sphinx_themes/sphinxdoc/static/
-  inflating: sphinx_themes/sphinxdoc/static/navigation.png  
-  inflating: sphinx_themes/sphinxdoc/static/sphinxdoc.css_t  
-  inflating: sphinx_themes/sphinxdoc/static/contents.png  
-  inflating: sphinx_themes/sphinxdoc/theme.conf  
-   creating: sphinx_themes/classy/
-  inflating: sphinx_themes/classy/layout.html  
-   creating: sphinx_themes/classy/static/
-  inflating: sphinx_themes/classy/static/classy.css_t  
-  inflating: sphinx_themes/classy/theme.conf  
-   creating: sphinx_themes/epub/
-  inflating: sphinx_themes/epub/layout.html  
-   creating: sphinx_themes/epub/static/
-  inflating: sphinx_themes/epub/static/epub.css  
-  inflating: sphinx_themes/epub/theme.conf  
-  inflating: sphinx_themes/epub/epub-cover.html  
-   creating: sphinx_themes/vlinux-theme/
-  inflating: sphinx_themes/vlinux-theme/layout.html  
-   creating: sphinx_themes/vlinux-theme/static/
-  inflating: sphinx_themes/vlinux-theme/static/sphinxdoc.css~  
-  inflating: sphinx_themes/vlinux-theme/static/navigation.png  
-  inflating: sphinx_themes/vlinux-theme/static/sphinxdoc.css  
-  inflating: sphinx_themes/vlinux-theme/static/contents.png  
-  inflating: sphinx_themes/vlinux-theme/theme.conf  
-   creating: sphinx_themes/haiku/
-  inflating: sphinx_themes/haiku/layout.html  
-   creating: sphinx_themes/haiku/static/
-  inflating: sphinx_themes/haiku/static/haiku.css_t  
- extracting: sphinx_themes/haiku/static/alert_warning_32.png  
-  inflating: sphinx_themes/haiku/static/bg-page.png  
- extracting: sphinx_themes/haiku/static/alert_info_32.png  
-  inflating: sphinx_themes/haiku/static/bullet_orange.png  
-  inflating: sphinx_themes/haiku/theme.conf  
-   creating: sphinx_themes/jal/
-  inflating: sphinx_themes/jal/layout.html  
-   creating: sphinx_themes/jal/static/
-  inflating: sphinx_themes/jal/static/navigation.png  
-  inflating: sphinx_themes/jal/static/sphinxdoc.css  
-  inflating: sphinx_themes/jal/static/contents.png  
-  inflating: sphinx_themes/jal/theme.conf  
-   creating: sphinx_themes/agni/
-  inflating: sphinx_themes/agni/layout.html  
-   creating: sphinx_themes/agni/static/
-  inflating: sphinx_themes/agni/static/navigation.png  
-  inflating: sphinx_themes/agni/static/sphinxdoc.css  
-  inflating: sphinx_themes/agni/static/contents.png  
-  inflating: sphinx_themes/agni/theme.conf  
-   creating: sphinx_themes/basic/
-  inflating: sphinx_themes/basic/opensearch.xml  
-  inflating: sphinx_themes/basic/defindex.html  
-  inflating: sphinx_themes/basic/domainindex.html  
-  inflating: sphinx_themes/basic/searchbox.html  
-  inflating: sphinx_themes/basic/layout.html  
-  inflating: sphinx_themes/basic/relations.html  
-   creating: sphinx_themes/basic/static/
-  inflating: sphinx_themes/basic/static/up.png  
-  inflating: sphinx_themes/basic/static/jquery.js  
-  inflating: sphinx_themes/basic/static/websupport.js  
-  inflating: sphinx_themes/basic/static/underscore.js  
-  inflating: sphinx_themes/basic/static/minus.png  
-  inflating: sphinx_themes/basic/static/plus.png  
-  inflating: sphinx_themes/basic/static/down.png  
-  inflating: sphinx_themes/basic/static/down-pressed.png  
-  inflating: sphinx_themes/basic/static/searchtools.js_t  
- extracting: sphinx_themes/basic/static/comment.png  
- extracting: sphinx_themes/basic/static/comment-close.png  
- extracting: sphinx_themes/basic/static/comment-bright.png  
- extracting: sphinx_themes/basic/static/file.png  
-  inflating: sphinx_themes/basic/static/basic.css_t  
-  inflating: sphinx_themes/basic/static/up-pressed.png  
-  inflating: sphinx_themes/basic/static/doctools.js  
-  inflating: sphinx_themes/basic/static/ajax-loader.gif  
-  inflating: sphinx_themes/basic/genindex-split.html  
-  inflating: sphinx_themes/basic/searchresults.html  
-  inflating: sphinx_themes/basic/genindex-single.html  
-  inflating: sphinx_themes/basic/sourcelink.html  
-  inflating: sphinx_themes/basic/localtoc.html  
-  inflating: sphinx_themes/basic/page.html  
-  inflating: sphinx_themes/basic/genindex.html  
-   creating: sphinx_themes/basic/changes/
-  inflating: sphinx_themes/basic/changes/versionchanges.html  
-  inflating: sphinx_themes/basic/changes/frameset.html  
-  inflating: sphinx_themes/basic/changes/rstsource.html  
-  inflating: sphinx_themes/basic/search.html  
-  inflating: sphinx_themes/basic/theme.conf  
-  inflating: sphinx_themes/basic/globaltoc.html  
-   creating: sphinx_themes/fenics/
-  inflating: sphinx_themes/fenics/layout.html  
-   creating: sphinx_themes/fenics/static/
- extracting: sphinx_themes/fenics/static/footerbg.png  
-  inflating: sphinx_themes/fenics/static/epub.css  
-   creating: sphinx_themes/fenics/static/nobile-fontfacekit/
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold_italic-webfont.eot  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold_italic-webfont.woff  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/stylesheet.css  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile-webfont.eot  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold-webfont.svg  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_italic-webfont.eot  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold_italic-webfont.ttf  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/SIL Open Font License 1.1.txt  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_italic-webfont.svg  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_italic-webfont.ttf  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile-webfont.svg  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/demo.html  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold-webfont.woff  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold-webfont.eot  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile-webfont.ttf  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold-webfont.ttf  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold_italic-webfont.svg  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_italic-webfont.woff  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile-webfont.woff  
-  inflating: sphinx_themes/fenics/static/fenics_banner.png  
-  inflating: sphinx_themes/fenics/static/sample-news-image.png  
- extracting: sphinx_themes/fenics/static/fenics-news-icon.png  
- extracting: sphinx_themes/fenics/static/middlebg.png  
- extracting: sphinx_themes/fenics/static/unknown.png  
-  inflating: sphinx_themes/fenics/static/fenics.css_t  
- extracting: sphinx_themes/fenics/static/dolfin.png  
- extracting: sphinx_themes/fenics/static/fenics-web.png  
-  inflating: sphinx_themes/fenics/static/download-button.png  
-  inflating: sphinx_themes/fenics/static/slides.min.jquery.js  
-  inflating: sphinx_themes/fenics/static/ie6.css  
- extracting: sphinx_themes/fenics/static/dialog-seealso.png  
-  inflating: sphinx_themes/fenics/static/transparent.gif  
-  inflating: sphinx_themes/fenics/static/feature-item-1.png  
- extracting: sphinx_themes/fenics/static/dorsal.png  
-  inflating: sphinx_themes/fenics/static/fenics.ico  
- extracting: sphinx_themes/fenics/static/dialog-topic.png  
- extracting: sphinx_themes/fenics/static/headerbg.png  
-   creating: sphinx_themes/fenics/static/neuton-fontfacekit/
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/Apache License Version 2.txt  
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/Neuton-webfont.eot  
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/stylesheet.css  
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/Neuton-webfont.ttf  
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/demo.html  
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/Neuton-webfont.svg  
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/Neuton-webfont.woff  
- extracting: sphinx_themes/fenics/static/dialog-warning.png  
-  inflating: sphinx_themes/fenics/static/featured.css  
- extracting: sphinx_themes/fenics/static/dialog-note.png  
- extracting: sphinx_themes/fenics/static/feed-icon-14x14.gif  
-  inflating: sphinx_themes/fenics/theme.conf  
-  inflating: sphinx_themes/fenics/README  
-   creating: sphinx_themes/nature/
-   creating: sphinx_themes/nature/static/
-  inflating: sphinx_themes/nature/static/nature.css_t  
-  inflating: sphinx_themes/nature/theme.conf  
-   creating: sphinx_themes/pyramid/
-  inflating: sphinx_themes/pyramid/layout.html  
-   creating: sphinx_themes/pyramid/static/
- extracting: sphinx_themes/pyramid/static/footerbg.png  
-  inflating: sphinx_themes/pyramid/static/epub.css  
- extracting: sphinx_themes/pyramid/static/middlebg.png  
-  inflating: sphinx_themes/pyramid/static/pyramid.css_t  
-  inflating: sphinx_themes/pyramid/static/ie6.css  
- extracting: sphinx_themes/pyramid/static/dialog-seealso.png  
-  inflating: sphinx_themes/pyramid/static/transparent.gif  
- extracting: sphinx_themes/pyramid/static/dialog-topic.png  
- extracting: sphinx_themes/pyramid/static/headerbg.png  
- extracting: sphinx_themes/pyramid/static/dialog-warning.png  
- extracting: sphinx_themes/pyramid/static/dialog-note.png  
-  inflating: sphinx_themes/pyramid/theme.conf  
 searching for TITLE in tutorial.do.txt
 Using title "Doconce: Document Once, Include Anywhere" from tutorial.do.txt
 Author: ['Hans Petter Langtangen']
@@ -22210,7 +22926,7 @@ etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 xlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/u
 rw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 194860 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 194855 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -22357,7 +23073,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205635 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205629 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -22504,7 +23220,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205635 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205629 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -22657,7 +23373,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205635 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205629 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -22804,7 +23520,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205635 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205629 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -22981,11 +23697,11 @@ Overfull \hbox (4.24745pt too wide) in paragraph at lines 535--540
 nts have ex-ten-sion \T1/pcr/m/n/10 do.txt\T1/ptm/m/n/10 .
 
 Overfull \hbox (179.00006pt too wide) in paragraph at lines 614--615
-\T1/pcr/m/n/10 Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5  
+\T1/pcr/m/n/10 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5  
    # preprocess  
 [6]
 Overfull \hbox (143.00006pt too wide) in paragraph at lines 616--618
-[]\T1/pcr/m/n/10 Terminal> doconce format LaTeX yourdoc extra_sections=True VAR
+[]\T1/pcr/m/n/10 Terminal> doconce format latex yourdoc extra_sections=True VAR
 1=5  # mako 
 
 Overfull \hbox (30.7872pt too wide) in paragraph at lines 620--624
@@ -22994,7 +23710,7 @@ de-fined as the cur-rent for-mat when run-ning \T1/pcr/m/n/10 preprocess\T1/ptm
 /m/n/10 .
 
 Overfull \hbox (59.00006pt too wide) in paragraph at lines 627--630
-[]\T1/pcr/m/n/10 Terminal> doconce format LaTeX mydoc remove_inline_comments 
+[]\T1/pcr/m/n/10 Terminal> doconce format latex mydoc remove_inline_comments 
 
 Overfull \hbox (11.278pt too wide) in paragraph at lines 680--683
 []\T1/pcr/m/n/10 ptex2tex\T1/ptm/m/n/10 : 
@@ -23022,10 +23738,10 @@ Overfull \hbox (107.00006pt too wide) in paragraph at lines 798--801
 c.txt 
 [8]
 Overfull \hbox (17.00006pt too wide) in paragraph at lines 823--824
-\T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML  
+\T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
 Overfull \hbox (23.00006pt too wide) in paragraph at lines 825--825
-[]\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX  
+[]\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
 Overfull \hbox (11.00006pt too wide) in paragraph at lines 826--826
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
@@ -23068,7 +23784,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.rst.dvi (12 pages, 56968 bytes).
+Output written on tutorial.rst.dvi (12 pages, 56976 bytes).
 Transcript written on tutorial.rst.log.
 + dvipdf tutorial.rst.dvi
 + doconce format plain tutorial.do.txt
@@ -23129,8 +23845,8 @@ Go to the demo directory and load index.html into a web browser.
 + cp -r demo ../demos/tutorial+ ./clean.sh
 Removing in /home/hpl/vc/doconce/doc/manual:
 + d2f=doconce format
-+ doconce format HTML manual.do.txt
-run preprocess -DFORMAT=HTML  manual.do.txt > __tmp.do.txt
++ doconce format html manual.do.txt
+run preprocess -DFORMAT=html  manual.do.txt > __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 output in manual.html
 + doconce format sphinx manual.do.txt
@@ -23187,212 +23903,6 @@ source files. Use the Makefile to build the docs, like so:
    make builder
 where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
-Archive:  sphinx_themes.zip
-   creating: sphinx_themes/
-   creating: sphinx_themes/slim-agogo/
-  inflating: sphinx_themes/slim-agogo/layout.html  
-   creating: sphinx_themes/slim-agogo/static/
- extracting: sphinx_themes/slim-agogo/static/bgtop.png  
-  inflating: sphinx_themes/slim-agogo/static/agogo.css_t  
- extracting: sphinx_themes/slim-agogo/static/bgfooter.png  
-  inflating: sphinx_themes/slim-agogo/theme.conf  
-   creating: sphinx_themes/default/
-  inflating: sphinx_themes/default/layout.html  
-   creating: sphinx_themes/default/static/
-  inflating: sphinx_themes/default/static/default.css_t  
-  inflating: sphinx_themes/default/static/sidebar.js  
-  inflating: sphinx_themes/default/theme.conf  
-   creating: sphinx_themes/agogo/
-  inflating: sphinx_themes/agogo/layout.html  
-   creating: sphinx_themes/agogo/static/
- extracting: sphinx_themes/agogo/static/bgtop.png  
-  inflating: sphinx_themes/agogo/static/agogo.css_t  
- extracting: sphinx_themes/agogo/static/bgfooter.png  
-  inflating: sphinx_themes/agogo/theme.conf  
-   creating: sphinx_themes/traditional/
-   creating: sphinx_themes/traditional/static/
-  inflating: sphinx_themes/traditional/static/traditional.css_t  
- extracting: sphinx_themes/traditional/theme.conf  
-   creating: sphinx_themes/scrolls/
-  inflating: sphinx_themes/scrolls/layout.html  
-   creating: sphinx_themes/scrolls/artwork/
-  inflating: sphinx_themes/scrolls/artwork/logo.svg  
-   creating: sphinx_themes/scrolls/static/
-  inflating: sphinx_themes/scrolls/static/logo.png  
-  inflating: sphinx_themes/scrolls/static/scrolls.css_t  
-  inflating: sphinx_themes/scrolls/static/watermark_blur.png  
-  inflating: sphinx_themes/scrolls/static/metal.png  
-  inflating: sphinx_themes/scrolls/static/theme_extras.js  
-  inflating: sphinx_themes/scrolls/static/darkmetal.png  
-  inflating: sphinx_themes/scrolls/static/print.css  
-  inflating: sphinx_themes/scrolls/static/headerbg.png  
-  inflating: sphinx_themes/scrolls/static/navigation.png  
-  inflating: sphinx_themes/scrolls/static/watermark.png  
-  inflating: sphinx_themes/scrolls/theme.conf  
-   creating: sphinx_themes/sphinxdoc/
-  inflating: sphinx_themes/sphinxdoc/layout.html  
-   creating: sphinx_themes/sphinxdoc/static/
-  inflating: sphinx_themes/sphinxdoc/static/navigation.png  
-  inflating: sphinx_themes/sphinxdoc/static/sphinxdoc.css_t  
-  inflating: sphinx_themes/sphinxdoc/static/contents.png  
-  inflating: sphinx_themes/sphinxdoc/theme.conf  
-   creating: sphinx_themes/classy/
-  inflating: sphinx_themes/classy/layout.html  
-   creating: sphinx_themes/classy/static/
-  inflating: sphinx_themes/classy/static/classy.css_t  
-  inflating: sphinx_themes/classy/theme.conf  
-   creating: sphinx_themes/epub/
-  inflating: sphinx_themes/epub/layout.html  
-   creating: sphinx_themes/epub/static/
-  inflating: sphinx_themes/epub/static/epub.css  
-  inflating: sphinx_themes/epub/theme.conf  
-  inflating: sphinx_themes/epub/epub-cover.html  
-   creating: sphinx_themes/vlinux-theme/
-  inflating: sphinx_themes/vlinux-theme/layout.html  
-   creating: sphinx_themes/vlinux-theme/static/
-  inflating: sphinx_themes/vlinux-theme/static/sphinxdoc.css~  
-  inflating: sphinx_themes/vlinux-theme/static/navigation.png  
-  inflating: sphinx_themes/vlinux-theme/static/sphinxdoc.css  
-  inflating: sphinx_themes/vlinux-theme/static/contents.png  
-  inflating: sphinx_themes/vlinux-theme/theme.conf  
-   creating: sphinx_themes/haiku/
-  inflating: sphinx_themes/haiku/layout.html  
-   creating: sphinx_themes/haiku/static/
-  inflating: sphinx_themes/haiku/static/haiku.css_t  
- extracting: sphinx_themes/haiku/static/alert_warning_32.png  
-  inflating: sphinx_themes/haiku/static/bg-page.png  
- extracting: sphinx_themes/haiku/static/alert_info_32.png  
-  inflating: sphinx_themes/haiku/static/bullet_orange.png  
-  inflating: sphinx_themes/haiku/theme.conf  
-   creating: sphinx_themes/jal/
-  inflating: sphinx_themes/jal/layout.html  
-   creating: sphinx_themes/jal/static/
-  inflating: sphinx_themes/jal/static/navigation.png  
-  inflating: sphinx_themes/jal/static/sphinxdoc.css  
-  inflating: sphinx_themes/jal/static/contents.png  
-  inflating: sphinx_themes/jal/theme.conf  
-   creating: sphinx_themes/agni/
-  inflating: sphinx_themes/agni/layout.html  
-   creating: sphinx_themes/agni/static/
-  inflating: sphinx_themes/agni/static/navigation.png  
-  inflating: sphinx_themes/agni/static/sphinxdoc.css  
-  inflating: sphinx_themes/agni/static/contents.png  
-  inflating: sphinx_themes/agni/theme.conf  
-   creating: sphinx_themes/basic/
-  inflating: sphinx_themes/basic/opensearch.xml  
-  inflating: sphinx_themes/basic/defindex.html  
-  inflating: sphinx_themes/basic/domainindex.html  
-  inflating: sphinx_themes/basic/searchbox.html  
-  inflating: sphinx_themes/basic/layout.html  
-  inflating: sphinx_themes/basic/relations.html  
-   creating: sphinx_themes/basic/static/
-  inflating: sphinx_themes/basic/static/up.png  
-  inflating: sphinx_themes/basic/static/jquery.js  
-  inflating: sphinx_themes/basic/static/websupport.js  
-  inflating: sphinx_themes/basic/static/underscore.js  
-  inflating: sphinx_themes/basic/static/minus.png  
-  inflating: sphinx_themes/basic/static/plus.png  
-  inflating: sphinx_themes/basic/static/down.png  
-  inflating: sphinx_themes/basic/static/down-pressed.png  
-  inflating: sphinx_themes/basic/static/searchtools.js_t  
- extracting: sphinx_themes/basic/static/comment.png  
- extracting: sphinx_themes/basic/static/comment-close.png  
- extracting: sphinx_themes/basic/static/comment-bright.png  
- extracting: sphinx_themes/basic/static/file.png  
-  inflating: sphinx_themes/basic/static/basic.css_t  
-  inflating: sphinx_themes/basic/static/up-pressed.png  
-  inflating: sphinx_themes/basic/static/doctools.js  
-  inflating: sphinx_themes/basic/static/ajax-loader.gif  
-  inflating: sphinx_themes/basic/genindex-split.html  
-  inflating: sphinx_themes/basic/searchresults.html  
-  inflating: sphinx_themes/basic/genindex-single.html  
-  inflating: sphinx_themes/basic/sourcelink.html  
-  inflating: sphinx_themes/basic/localtoc.html  
-  inflating: sphinx_themes/basic/page.html  
-  inflating: sphinx_themes/basic/genindex.html  
-   creating: sphinx_themes/basic/changes/
-  inflating: sphinx_themes/basic/changes/versionchanges.html  
-  inflating: sphinx_themes/basic/changes/frameset.html  
-  inflating: sphinx_themes/basic/changes/rstsource.html  
-  inflating: sphinx_themes/basic/search.html  
-  inflating: sphinx_themes/basic/theme.conf  
-  inflating: sphinx_themes/basic/globaltoc.html  
-   creating: sphinx_themes/fenics/
-  inflating: sphinx_themes/fenics/layout.html  
-   creating: sphinx_themes/fenics/static/
- extracting: sphinx_themes/fenics/static/footerbg.png  
-  inflating: sphinx_themes/fenics/static/epub.css  
-   creating: sphinx_themes/fenics/static/nobile-fontfacekit/
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold_italic-webfont.eot  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold_italic-webfont.woff  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/stylesheet.css  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile-webfont.eot  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold-webfont.svg  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_italic-webfont.eot  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold_italic-webfont.ttf  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/SIL Open Font License 1.1.txt  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_italic-webfont.svg  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_italic-webfont.ttf  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile-webfont.svg  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/demo.html  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold-webfont.woff  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold-webfont.eot  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile-webfont.ttf  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold-webfont.ttf  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_bold_italic-webfont.svg  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile_italic-webfont.woff  
-  inflating: sphinx_themes/fenics/static/nobile-fontfacekit/nobile-webfont.woff  
-  inflating: sphinx_themes/fenics/static/fenics_banner.png  
-  inflating: sphinx_themes/fenics/static/sample-news-image.png  
- extracting: sphinx_themes/fenics/static/fenics-news-icon.png  
- extracting: sphinx_themes/fenics/static/middlebg.png  
- extracting: sphinx_themes/fenics/static/unknown.png  
-  inflating: sphinx_themes/fenics/static/fenics.css_t  
- extracting: sphinx_themes/fenics/static/dolfin.png  
- extracting: sphinx_themes/fenics/static/fenics-web.png  
-  inflating: sphinx_themes/fenics/static/download-button.png  
-  inflating: sphinx_themes/fenics/static/slides.min.jquery.js  
-  inflating: sphinx_themes/fenics/static/ie6.css  
- extracting: sphinx_themes/fenics/static/dialog-seealso.png  
-  inflating: sphinx_themes/fenics/static/transparent.gif  
-  inflating: sphinx_themes/fenics/static/feature-item-1.png  
- extracting: sphinx_themes/fenics/static/dorsal.png  
-  inflating: sphinx_themes/fenics/static/fenics.ico  
- extracting: sphinx_themes/fenics/static/dialog-topic.png  
- extracting: sphinx_themes/fenics/static/headerbg.png  
-   creating: sphinx_themes/fenics/static/neuton-fontfacekit/
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/Apache License Version 2.txt  
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/Neuton-webfont.eot  
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/stylesheet.css  
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/Neuton-webfont.ttf  
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/demo.html  
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/Neuton-webfont.svg  
-  inflating: sphinx_themes/fenics/static/neuton-fontfacekit/Neuton-webfont.woff  
- extracting: sphinx_themes/fenics/static/dialog-warning.png  
-  inflating: sphinx_themes/fenics/static/featured.css  
- extracting: sphinx_themes/fenics/static/dialog-note.png  
- extracting: sphinx_themes/fenics/static/feed-icon-14x14.gif  
-  inflating: sphinx_themes/fenics/theme.conf  
-  inflating: sphinx_themes/fenics/README  
-   creating: sphinx_themes/nature/
-   creating: sphinx_themes/nature/static/
-  inflating: sphinx_themes/nature/static/nature.css_t  
-  inflating: sphinx_themes/nature/theme.conf  
-   creating: sphinx_themes/pyramid/
-  inflating: sphinx_themes/pyramid/layout.html  
-   creating: sphinx_themes/pyramid/static/
- extracting: sphinx_themes/pyramid/static/footerbg.png  
-  inflating: sphinx_themes/pyramid/static/epub.css  
- extracting: sphinx_themes/pyramid/static/middlebg.png  
-  inflating: sphinx_themes/pyramid/static/pyramid.css_t  
-  inflating: sphinx_themes/pyramid/static/ie6.css  
- extracting: sphinx_themes/pyramid/static/dialog-seealso.png  
-  inflating: sphinx_themes/pyramid/static/transparent.gif  
- extracting: sphinx_themes/pyramid/static/dialog-topic.png  
- extracting: sphinx_themes/pyramid/static/headerbg.png  
- extracting: sphinx_themes/pyramid/static/dialog-warning.png  
- extracting: sphinx_themes/pyramid/static/dialog-note.png  
-  inflating: sphinx_themes/pyramid/theme.conf  
 Title: Doconce Manual
 Author: 0.6
 These Sphinx themes were found: ['slim-agogo', 'default', 'agogo', 'traditional', 'scrolls', 'sphinxdoc', 'classy', 'epub', 'vlinux-theme', 'haiku', 'jal', 'agni', 'basic', 'fenics', 'nature', 'pyramid', 'default']
@@ -23455,18 +23965,8 @@ build succeeded, 3 warnings.
 
 Build finished; the LaTeX files are in _build/latex.
 Run `make' in that directory to run these through (pdf)latex (use `make latexpdf' here to do that automatically).
-+ doconce subst \.\* .pdf _build/latex/DoconceDescription.tex
-Traceback (most recent call last):
-  File "/usr/local/bin/doconce", line 866, in <module>
-    main()
-  File "/usr/local/bin/doconce", line 861, in main
-    eval(command + '()')
-  File "<string>", line 1, in <module>
-  File "/usr/local/bin/doconce", line 654, in subst
-    wildcard_notation(args[2:]), pmm)
-  File "/usr/local/bin/doconce", line 582, in _scitools_subst
-    raise IOError('%s is not a file!' % filename)
-IOError: _build/latex/DoconceDescription.tex is not a file!
++ doconce subst \.\* .pdf _build/latex/DoconceManual.tex
+\.\* replaced by .pdf in _build/latex/DoconceManual.tex
 + pwd
 + ln -s /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/../figs _build/latex/figs
 + cd _build/latex
@@ -23637,25 +24137,25 @@ input line 1117.
 [22]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
-n input line 1203.
+n input line 1207.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
-line 1203.
+line 1207.
 
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
-n input line 1204.
+n input line 1208.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
-line 1204.
+line 1208.
 
 [23] [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1425.
+(amsmath)                 on input line 1429.
 
 [26] <wavepacket_0001.png, id=210, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
@@ -23663,15 +24163,15 @@ Package amsmath Warning: Foreign command \over;
 <use wavepacket_0010.png>
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 27 undefined on
- input line 1537.
+ input line 1541.
 
 [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./wavepacket_0010.png (PNG co
-py)>]
+py)>] [30] [31]
 
-LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 30 undefine
-d on input line 1604.
+LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 32 undefine
+d on input line 1718.
 
-[30] [31] [32] [33] [34]
+[32] [33] [34]
 Chapter 7.
 [35] [36]
 No file DoconceManual.ind.
@@ -23699,7 +24199,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (41 pages, 344614 bytes).
+Output written on DoconceManual.pdf (41 pages, 349367 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -23797,7 +24297,7 @@ tination with the same identifier (name{page.i}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.38 ...line {7}Indices and tables}{35}{chapter.7}
+l.39 ...line {7}Indices and tables}{35}{chapter.7}
                                                    [1])pdfTeX warning (ext4): d
 estination with the same identifier (name{page.ii}) has been already used, dupl
 icate ignored
@@ -23826,33 +24326,33 @@ Chapter 4.
 Chapter 5.
 [17] [18]
 Chapter 6.
-<streamtubes.png, id=305, 583.17876pt x 437.635pt> <use streamtubes.png>
+<streamtubes.png, id=310, 583.17876pt x 437.635pt> <use streamtubes.png>
 <use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
-n input line 1203.
+n input line 1207.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
-line 1203.
+line 1207.
 
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
-n input line 1204.
+n input line 1208.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
-line 1204.
+line 1208.
 
 [23] [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1425.
+(amsmath)                 on input line 1429.
 
-[26] <wavepacket_0001.png, id=367, 642.4pt x 481.8pt>
+[26] <wavepacket_0001.png, id=372, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=368, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=373, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
 avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34]
 Chapter 7.
@@ -23879,7 +24379,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (41 pages, 364900 bytes).
+Output written on DoconceManual.pdf (41 pages, 370238 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -23977,7 +24477,7 @@ tination with the same identifier (name{page.i}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.38 ...line {7}Indices and tables}{35}{chapter.7}
+l.39 ...line {7}Indices and tables}{35}{chapter.7}
                                                    [1])pdfTeX warning (ext4): d
 estination with the same identifier (name{page.ii}) has been already used, dupl
 icate ignored
@@ -24006,33 +24506,33 @@ Chapter 4.
 Chapter 5.
 [17] [18]
 Chapter 6.
-<streamtubes.png, id=305, 583.17876pt x 437.635pt> <use streamtubes.png>
+<streamtubes.png, id=310, 583.17876pt x 437.635pt> <use streamtubes.png>
 <use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
-n input line 1203.
+n input line 1207.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
-line 1203.
+line 1207.
 
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
-n input line 1204.
+n input line 1208.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
-line 1204.
+line 1208.
 
 [23] [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1425.
+(amsmath)                 on input line 1429.
 
-[26] <wavepacket_0001.png, id=367, 642.4pt x 481.8pt>
+[26] <wavepacket_0001.png, id=372, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=368, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=373, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
 avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34]
 Chapter 7.
@@ -24059,7 +24559,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (41 pages, 364900 bytes).
+Output written on DoconceManual.pdf (41 pages, 370238 bytes).
 Transcript written on DoconceManual.log.
 makeindex -s python.ist 'DoconceManual.idx'
 This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
@@ -24165,7 +24665,7 @@ tination with the same identifier (name{page.i}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.38 ...line {7}Indices and tables}{35}{chapter.7}
+l.39 ...line {7}Indices and tables}{35}{chapter.7}
                                                    [1])pdfTeX warning (ext4): d
 estination with the same identifier (name{page.ii}) has been already used, dupl
 icate ignored
@@ -24194,33 +24694,33 @@ Chapter 4.
 Chapter 5.
 [17] [18]
 Chapter 6.
-<streamtubes.png, id=305, 583.17876pt x 437.635pt> <use streamtubes.png>
+<streamtubes.png, id=310, 583.17876pt x 437.635pt> <use streamtubes.png>
 <use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
-n input line 1203.
+n input line 1207.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
-line 1203.
+line 1207.
 
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
-n input line 1204.
+n input line 1208.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
-line 1204.
+line 1208.
 
 [23] [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1425.
+(amsmath)                 on input line 1429.
 
-[26] <wavepacket_0001.png, id=367, 642.4pt x 481.8pt>
+[26] <wavepacket_0001.png, id=372, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=368, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=373, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
 avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34]
 Chapter 7.
@@ -24246,7 +24746,7 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (43 pages, 374700 bytes).
+Output written on DoconceManual.pdf (43 pages, 379936 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -24344,7 +24844,7 @@ tination with the same identifier (name{page.i}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.38 ...line {7}Indices and tables}{35}{chapter.7}
+l.39 ...line {7}Indices and tables}{35}{chapter.7}
                                                    [1])pdfTeX warning (ext4): d
 estination with the same identifier (name{page.ii}) has been already used, dupl
 icate ignored
@@ -24373,33 +24873,33 @@ Chapter 4.
 Chapter 5.
 [17] [18]
 Chapter 6.
-<streamtubes.png, id=310, 583.17876pt x 437.635pt> <use streamtubes.png>
+<streamtubes.png, id=315, 583.17876pt x 437.635pt> <use streamtubes.png>
 <use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
-n input line 1203.
+n input line 1207.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
-line 1203.
+line 1207.
 
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 23 undefined o
-n input line 1204.
+n input line 1208.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 23 undefined on input 
-line 1204.
+line 1208.
 
 [23] [24] [25]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1425.
+(amsmath)                 on input line 1429.
 
-[26] <wavepacket_0001.png, id=372, 642.4pt x 481.8pt>
+[26] <wavepacket_0001.png, id=377, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=373, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=378, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
 avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34]
 Chapter 7.
@@ -24425,10 +24925,9 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (43 pages, 375119 bytes).
+Output written on DoconceManual.pdf (43 pages, 380351 bytes).
 Transcript written on DoconceManual.log.
-+ cp DoconceDescription.pdf ../../../manual.sphinx.pdf
-cp: cannot stat `DoconceDescription.pdf': No such file or directory
++ cp DoconceManual.pdf ../../../manual.sphinx.pdf
 + cd ../../..
 + doconce format rst manual.do.txt
 run preprocess -DFORMAT=rst  manual.do.txt > __tmp.do.txt
@@ -24516,11 +25015,11 @@ t-
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd) [1]
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [2]
 Overfull \hbox (179.00006pt too wide) in paragraph at lines 277--278
-\T1/pcr/m/n/10 Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5  
+\T1/pcr/m/n/10 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5  
    # preprocess  
 
 Overfull \hbox (143.00006pt too wide) in paragraph at lines 279--281
-[]\T1/pcr/m/n/10 Terminal> doconce format LaTeX yourdoc extra_sections=True VAR
+[]\T1/pcr/m/n/10 Terminal> doconce format latex yourdoc extra_sections=True VAR
 1=5  # mako 
 
 Overfull \hbox (30.7872pt too wide) in paragraph at lines 283--287
@@ -24529,7 +25028,7 @@ de-fined as the cur-rent for-mat when run-ning \T1/pcr/m/n/10 preprocess\T1/ptm
 /m/n/10 .
 
 Overfull \hbox (59.00006pt too wide) in paragraph at lines 290--293
-[]\T1/pcr/m/n/10 Terminal> doconce format LaTeX mydoc remove_inline_comments 
+[]\T1/pcr/m/n/10 Terminal> doconce format latex mydoc remove_inline_comments 
 
 Overfull \hbox (11.278pt too wide) in paragraph at lines 343--346
 []\T1/pcr/m/n/10 ptex2tex\T1/ptm/m/n/10 : 
@@ -24554,10 +25053,10 @@ Overfull \hbox (107.00006pt too wide) in paragraph at lines 461--464
 c.txt 
 
 Overfull \hbox (17.00006pt too wide) in paragraph at lines 486--487
-\T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML  
+\T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
 Overfull \hbox (23.00006pt too wide) in paragraph at lines 488--488
-[]\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX  
+[]\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
 Overfull \hbox (11.00006pt too wide) in paragraph at lines 489--489
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
@@ -24694,154 +25193,161 @@ Overfull \hbox (107.00006pt too wide) in paragraph at lines 1297--1300
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 [14]
-Overfull \hbox (30.86786pt too wide) in paragraph at lines 1329--1332
+Overfull \hbox (30.86786pt too wide) in paragraph at lines 1331--1334
 []\T1/ptm/m/n/10 if \T1/pcr/m/n/10 Larsen:86 \T1/ptm/m/n/10 has al-ready ap-pea
 red in the 3rd ci-ta-tion in the doc-u-ment and \T1/pcr/m/n/10 Nielsen:99
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1345--1345
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1347--1347
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1370--1373
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1374--1377
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [15]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1493--1496
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1497--1500
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=conso
 le 
 [16]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1566--1568
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1570--1572
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1 
 [17]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1646--1646
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1650--1650
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
   
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1647--1647
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1651--1651
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g 
  
 [18]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 1691--1694
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 1695--1698
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1728--1728
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1732--1732
 []\T1/pcr/m/n/10 \Ddt{\vec u} &=& {\mbox{\boldmath $Q$}} \thinspace . \label{my
 :eq2}  
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 1744--1756
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 1748--1760
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
 [19] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [20]
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 21 undef
-ined on input line 1786.
+ined on input line 1790.
 
 [21]
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1838--1838
+[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
+[22]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1917--1919
+[]          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
+ 
+[23]
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 22 un
-defined on input line 1871.
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 24 un
+defined on input line 1990.
 
 
-Overfull \hbox (77.5059pt too wide) in paragraph at lines 1871--1877
+Overfull \hbox (77.5059pt too wide) in paragraph at lines 1990--1996
 []\T1/ptm/m/it/10 Verbatim Code Blocks In-side Lists Look Ugly. \T1/ptm/m/n/10 
 Read the the sec-tion [][][][][][]
-[22]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1906--1909
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2025--2028
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1965--1968
+[24]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2084--2087
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[23]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2006--2007
-\T1/pcr/m/n/10 FILENAME_EXTENSION['HTML'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2008--2008
-[]\T1/pcr/m/n/10 BLANKLINE['HTML'] = '<p>\n'           # blank input line => ne
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2125--2126
+\T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
+
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2127--2127
+[]\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2009--2009
-[]\T1/pcr/m/n/10 INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HT
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2128--2128
+[]\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
-
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2012--2012
+[25]
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2131--2131
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2013--2013
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2132--2132
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2014--2014
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2133--2133
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 2015--2015
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 2134--2134
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 2020--2020
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 2139--2139
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2021--2021
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2140--2140
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2022--2022
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2141--2141
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2025--2025
-[]\T1/pcr/m/n/10 # how to replace code and LaTeX blocks by HTML (<pre>) environ
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2144--2144
+[]\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 2028--2028
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 2147--2147
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 2030--2030
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 2149--2149
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2033--2033
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2152--2152
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2040--2040
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2159--2159
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2042--2042
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2161--2161
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2044--2044
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2163--2163
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
-[24]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2047--2047
+
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2166--2166
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2053--2053
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2172--2172
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
-
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2094--2094
+[26]
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2213--2213
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2096--2096
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2215--2215
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2097--2097
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2216--2216
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2098--2098
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2217--2217
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2099--2099
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2218--2218
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[25] [26] (./manual.rst.aux)
+[27] [28] (./manual.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -24850,7 +25356,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (26 pages, 111788 bytes).
+Output written on manual.rst.dvi (28 pages, 119440 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -24925,11 +25431,11 @@ t-
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd) [1]
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [2]
 Overfull \hbox (179.00006pt too wide) in paragraph at lines 277--278
-\T1/pcr/m/n/10 Terminal> doconce format LaTeX mydoc -Dextra_sections -DVAR1=5  
+\T1/pcr/m/n/10 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5  
    # preprocess  
 
 Overfull \hbox (143.00006pt too wide) in paragraph at lines 279--281
-[]\T1/pcr/m/n/10 Terminal> doconce format LaTeX yourdoc extra_sections=True VAR
+[]\T1/pcr/m/n/10 Terminal> doconce format latex yourdoc extra_sections=True VAR
 1=5  # mako 
 
 Overfull \hbox (30.7872pt too wide) in paragraph at lines 283--287
@@ -24938,7 +25444,7 @@ de-fined as the cur-rent for-mat when run-ning \T1/pcr/m/n/10 preprocess\T1/ptm
 /m/n/10 .
 
 Overfull \hbox (59.00006pt too wide) in paragraph at lines 290--293
-[]\T1/pcr/m/n/10 Terminal> doconce format LaTeX mydoc remove_inline_comments 
+[]\T1/pcr/m/n/10 Terminal> doconce format latex mydoc remove_inline_comments 
 
 Overfull \hbox (11.278pt too wide) in paragraph at lines 343--346
 []\T1/pcr/m/n/10 ptex2tex\T1/ptm/m/n/10 : 
@@ -24959,10 +25465,10 @@ Overfull \hbox (107.00006pt too wide) in paragraph at lines 461--464
 c.txt 
 
 Overfull \hbox (17.00006pt too wide) in paragraph at lines 486--487
-\T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # HTML  
+\T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
 Overfull \hbox (23.00006pt too wide) in paragraph at lines 488--488
-[]\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # LaTeX  
+[]\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
 Overfull \hbox (11.00006pt too wide) in paragraph at lines 489--489
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
@@ -25071,146 +25577,153 @@ Overfull \hbox (107.00006pt too wide) in paragraph at lines 1297--1300
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 [14]
-Overfull \hbox (30.86786pt too wide) in paragraph at lines 1329--1332
+Overfull \hbox (30.86786pt too wide) in paragraph at lines 1331--1334
 []\T1/ptm/m/n/10 if \T1/pcr/m/n/10 Larsen:86 \T1/ptm/m/n/10 has al-ready ap-pea
 red in the 3rd ci-ta-tion in the doc-u-ment and \T1/pcr/m/n/10 Nielsen:99
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1345--1345
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1347--1347
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1370--1373
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1374--1377
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [15]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1493--1496
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1497--1500
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=conso
 le 
 [16]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1566--1568
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1570--1572
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1 
 [17]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1646--1646
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1650--1650
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
   
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1647--1647
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1651--1651
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g 
  
 [18]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 1691--1694
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 1695--1698
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1728--1728
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1732--1732
 []\T1/pcr/m/n/10 \Ddt{\vec u} &=& {\mbox{\boldmath $Q$}} \thinspace . \label{my
 :eq2}  
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 1744--1756
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 1748--1760
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
 [19] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [20] [21]
-Overfull \hbox (77.5059pt too wide) in paragraph at lines 1871--1877
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1838--1838
+[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
+[22]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1917--1919
+[]          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
+ 
+[23]
+Overfull \hbox (77.5059pt too wide) in paragraph at lines 1990--1996
 []\T1/ptm/m/it/10 Verbatim Code Blocks In-side Lists Look Ugly. \T1/ptm/m/n/10 
 Read the the sec-tion [][][][][][]
-[22]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1906--1909
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2025--2028
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1965--1968
+[24]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2084--2087
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[23]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2006--2007
-\T1/pcr/m/n/10 FILENAME_EXTENSION['HTML'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2008--2008
-[]\T1/pcr/m/n/10 BLANKLINE['HTML'] = '<p>\n'           # blank input line => ne
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2125--2126
+\T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
+
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2127--2127
+[]\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2009--2009
-[]\T1/pcr/m/n/10 INLINE_TAGS_SUBST['HTML'] = {         # from inline tags to HT
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2128--2128
+[]\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
-
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2012--2012
+[25]
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2131--2131
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2013--2013
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2132--2132
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2014--2014
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2133--2133
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 2015--2015
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 2134--2134
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 2020--2020
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 2139--2139
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2021--2021
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2140--2140
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2022--2022
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2141--2141
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2025--2025
-[]\T1/pcr/m/n/10 # how to replace code and LaTeX blocks by HTML (<pre>) environ
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2144--2144
+[]\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 2028--2028
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 2147--2147
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 2030--2030
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 2149--2149
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2033--2033
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2152--2152
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2040--2040
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2159--2159
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2042--2042
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2161--2161
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2044--2044
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2163--2163
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
-[24]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2047--2047
+
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2166--2166
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2053--2053
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2172--2172
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
-
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2094--2094
+[26]
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2213--2213
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2096--2096
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2215--2215
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2097--2097
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2216--2216
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2098--2098
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2217--2217
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2099--2099
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2218--2218
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[25] [26] (./manual.rst.aux) )
+[27] [28] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (26 pages, 115300 bytes).
+Output written on manual.rst.dvi (28 pages, 123084 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt remove_inline_comments
@@ -25225,8 +25738,8 @@ output in manual.epytext
 run preprocess -DFORMAT=st  manual.do.txt > __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 output in manual.st
-+ doconce format LaTeX manual.do.txt
-run preprocess -DFORMAT=LaTeX  manual.do.txt > __tmp.do.txt
++ doconce format latex manual.do.txt
+run preprocess -DFORMAT=latex  manual.do.txt > __tmp.do.txt
 translate preprocessed Doconce text in __tmp.do.txt
 output in manual.p.tex
 + doconce replace usepackage{ptex2tex usepackage{ptex2tex,subfigure manual.p.tex
@@ -25396,42 +25909,51 @@ LaTeX Warning: Reference `inline:tagging' on page 16 undefined on input line 10
 [16] [17]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-139.
+143.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1139.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1143.
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-140.
+144.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1140.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1144.
 
 [18] (./manual.out.pyg) (./manual.out.pyg) [19] [20]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1375.
+(amsmath)                 on input line 1379.
 
 
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1412--1414
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1416--1418
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [21] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps>
 
 LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-502.
+506.
 
 [22] [23] [24]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1595--1602
+\OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
+n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 25 undefined on input li
-ne 1573.
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1595--1602
+\OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
+n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
+/m/n/10 doconce subst
+[25]
 
-[25] [26] [27]
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 26 undefined on input li
+ne 1686.
+
+[26] [27] [28] [29]
 No file manual.bbl.
 No file manual.ind.
-[28] (./manual.aux)
+[30] (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -25440,7 +25962,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (28 pages, 117448 bytes).
+Output written on manual.dvi (30 pages, 125804 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -25561,39 +26083,47 @@ T1/cmtt/m/n/10 verbatim text
 [14] [15] [16] [17]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-139.
+143.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1139.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1143.
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-140.
+144.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1140.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1144.
 
 [18] (./manual.out.pyg) (./manual.out.pyg) [19] [20]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1375.
+(amsmath)                 on input line 1379.
 
 
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1412--1414
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1416--1418
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [21] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [22] [23] [24]
-[25] [26] [27]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1595--1602
+\OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
+n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
+
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1595--1602
+\OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
+n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
+/m/n/10 doconce subst
+[25] [26] [27] [28] [29]
 No file manual.bbl.
 No file manual.ind.
-[28] (./manual.aux)
+[30] (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (28 pages, 123756 bytes).
+Output written on manual.dvi (30 pages, 132252 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -25726,30 +26256,39 @@ T1/cmtt/m/n/10 verbatim text
 [14] [15] [16] [17]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-139.
+143.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1139.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1143.
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-140.
+144.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1140.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1144.
 
 [18] (./manual.out.pyg) (./manual.out.pyg) [19] [20]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1375.
+(amsmath)                 on input line 1379.
 
 
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1412--1414
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1416--1418
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [21] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [22] [23] [24]
-[25] [26] [27] (./manual.bbl [28]) (./manual.ind [29] [30]) (./manual.aux)
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1595--1602
+\OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
+n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
+
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1595--1602
+\OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
+n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
+/m/n/10 doconce subst
+[25] [26] [27] [28] [29] (./manual.bbl) (./manual.ind [30] [31]) (./manual.aux)
+
 
 LaTeX Warning: There were undefined references.
 
@@ -25758,7 +26297,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (30 pages, 131160 bytes).
+Output written on manual.dvi (31 pages, 139032 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -25880,16 +26419,25 @@ T1/cmtt/m/n/10 verbatim text
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1375.
+(amsmath)                 on input line 1379.
 
 
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1412--1414
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1416--1418
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [21] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [22] [23] [24]
-[25] [26] [27] (./manual.bbl [28]) (./manual.ind [29] [30]) (./manual.aux) )
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1595--1602
+\OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
+n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
+
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1595--1602
+\OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
+n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
+/m/n/10 doconce subst
+[25] [26] [27] [28] [29] (./manual.bbl) (./manual.ind [30] [31]) (./manual.aux)
+ )
 (see the transcript file for additional information)
-Output written on manual.dvi (30 pages, 132156 bytes).
+Output written on manual.dvi (31 pages, 140028 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt
@@ -25920,7 +26468,6 @@ output in manual.gwiki
 + rm -rf demo
 + mkdir demo
 + cp -r manual.do.txt manual.html figs manual.tex manual.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.txt manual.epytext manual.st sphinx-rootdir/_build/html demo
-cp: cannot stat `manual.sphinx.pdf': No such file or directory
 + cd demo
 + cat
 + cd ..

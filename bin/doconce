@@ -5,9 +5,9 @@ from commands import getstatusoutput
 def format():
     """
     Run the doconce module on a file (with extension .do.txt) in Doconce format
-    and produce another format (LaTeX, HTML, plain text, reStructuredText, ...).
+    and produce another format (latex, html, plain text, reStructuredText, ...).
 
-    doconce2format HTML mydoc.do.txt
+    doconce2format html mydoc.do.txt
     """
 
     try:
@@ -214,13 +214,13 @@ def _old2new(filename):
     f.writelines(lines)
     f.close()
 
-def LaTeX_header():
+def latex_header():
     from doconce.doconce import INTRO
-    print INTRO['LaTeX']
+    print INTRO['latex']
 
-def LaTeX_footer():
+def latex_footer():
     from doconce.doconce import OUTRO
-    print OUTRO['LaTeX']
+    print OUTRO['latex']
 
 
 def remove_inline_comments():
@@ -853,13 +853,13 @@ def split_rst():
 
 # -----------------------------------------------------------------------
 
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace clean help LaTeX_header LaTeX_footer guess_encoding change_encoding bbl2rst split_rst'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst'.split()
 
 # -----------------------------------------------------------------------
 
 def help():
     print """
-doconce format HTML|LaTeX|rst|sphinx|st|epytext|plain|gwiki|pandoc file.do.txt
+doconce format html|latex|rst|sphinx|st|epytext|plain|gwiki|pandoc file.do.txt
 
 doconce subst [-s -m -x --restore] regex-pattern regex-replacement file1 file2 ...
 (-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier,
@@ -881,8 +881,8 @@ doconce insertdocstr rootdir
 doconce clean
 (remove all files that the doconce format can regenerate)
 
-doconce LaTeX_header
-doconce LaTeX_footer
+doconce latex_header
+doconce latex_footer
 doconce change_encoding utf-8 latin-1 filename
 doconce guess_encoding filename
 doconce bbl2rst file.bbl
@@ -902,6 +902,14 @@ def main():
     del sys.argv[1]
     if command == '2format':
         command = 'format'
+    if command == 'format':
+        # For backward compatibility:
+        if sys.argv[2] == 'LaTeX':
+            sys.argv[2] = 'latex'
+            print 'Warning: Previous format LaTeX now has the name latex'
+        if sys.argv[2] == 'HTML':
+            sys.argv[2] = 'html'
+            print 'Warning: Previous format HTML now has the name html'
 
     found = False
     for registered_command in commands:

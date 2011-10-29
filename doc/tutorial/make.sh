@@ -1,11 +1,11 @@
 #!/bin/sh -x
 ./clean.sh
 
-# HTML
-doconce format HTML tutorial.do.txt
+# html
+doconce format html tutorial.do.txt
 
-# LaTeX
-doconce format LaTeX tutorial.do.txt
+# latex
+doconce format latex tutorial.do.txt
 ptex2tex -DHELVETICA tutorial
 latex tutorial.tex  # no -shell-escape since no -DMINTED to ptex2tex
 latex tutorial.tex
@@ -78,12 +78,12 @@ Doconce is a minimum tagged markup language. The file
 Doconce tutorial, written in the Doconce format.
 Running
 <pre>
-doconce format HTML tutorial.do.txt
+doconce format html tutorial.do.txt
 </pre>
 produces the HTML file <a href="tutorial.html">tutorial.html</a>.
 Going from Doconce to LaTeX is done by
 <pre>
-doconce format LaTeX tutorial.do.txt
+doconce format latex tutorial.do.txt
 </pre>
 resulting in the file <a href="tutorial.tex">tutorial.tex</a>, which can
 be compiled to a PDF file <a href="tutorial.pdf">tutorial.pdf</a>
