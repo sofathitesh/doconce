@@ -121,7 +121,8 @@ label{subsubsec:ex}
 Here are some nice URLs, e.g., hpl's home page "hpl":"http://folk.uio.no/hpl",
 or the URL if desired, "URL": "http://folk.uio.no/hpl".
 Here is a plain file link "URL": "testdoc.do.txt", or "url":"testdoc.do.txt",
-or URL: "testdoc.do.txt" or url : "testdoc.do.txt". Can test spaces
+or URL: "testdoc.do.txt" or url : "testdoc.do.txt" or "a link
+with newline": "testdoc.do.txt". Can test spaces
 with the link with word too: "hpl": "http://folk.uio.no/hpl" or
 "hpl" : "http://folk.uio.no/hpl". The old syntax must also be
 tested: http://folk.uio.no/hpl<hpl's homepage>. Now also `file:///`

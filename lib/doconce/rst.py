@@ -27,7 +27,7 @@ def rst_figure(m):
         caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
     else:
         if caption and caption[-1] == '.':
-            caption = caption[:-1]          
+            caption = caption[:-1]
 
 
     filename = m.group('filename')
@@ -43,7 +43,7 @@ def rst_figure(m):
     # remove final period in caption since caption is used as hyperlink
     # text to figures
     if caption and caption[-1] == '.':
-        caption = caption[:-1]  
+        caption = caption[:-1]
     result += '\n\n   ' + caption + '\n'
     return result
 
@@ -52,7 +52,7 @@ def rst_movie(m):
     html_text = indent_lines(html_text, 'sphinx')
     rst_text = '.. raw:: html\n' + html_text + '\n\n'
     return rst_text
-    
+
 # these global patterns are used in st, epytext, plaintext as well:
 bc_regex_pattern = r'([a-zA-Z0-9)"`.*_}=-^~])[\n:.?!, ]\s*?^!bc.*?$'
 bt_regex_pattern = r'([a-zA-Z0-9)"`.*_}=-^~])[\n:.?!, ]\s*?^!bt.*?$'
@@ -61,7 +61,7 @@ def rst_code(filestr, format):
     # In rst syntax, code blocks are typeset with :: (verbatim)
     # followed by intended blocks. This function indents everything
     # inside code (or TeX) blocks.
-    
+
     # first indent all code/tex blocks:
     filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
 
@@ -109,10 +109,10 @@ def rst_code(filestr, format):
     # these by empty text.
     filestr = filestr.replace('!ec::', '')
     filestr = filestr.replace('!et::', '')
-    
+
     return filestr
 
-    
+
 def rst_table(table):
     # Note: rst and sphinx do not offer alignment of cell
     # entries, everything is always left-adjusted (Nov. 2011)
@@ -145,8 +145,8 @@ def rst_table(table):
         s += '\n'
     s += '\n'
     return s
-    
-def rst_author(authors_and_institutions, auth2index, 
+
+def rst_author(authors_and_institutions, auth2index,
                inst2index, index2inst):
     authors = ', '.join([author for author, i in authors_and_institutions])
     text = ':Author: ' + authors + '\n\n'
@@ -166,7 +166,7 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
     pattern = r'([.?!])\s+the (sections?|captions?)\s+ref'
     replacement = r'\g<1> The \g<2> ref'
     filestr = re.sub(pattern, replacement, filestr)
-    
+
 
     # Deal with the problem of identical titles, which makes problem
     # with non-unique links in reST: add a counter to the title
@@ -188,7 +188,7 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
             counter += 1
     debugtext = '\nProblematic multiple titles:\n%s\nAdjusted titles:\n%s' %\
                 (problematic_titles, adjusted_titles)
-            
+
     # Insert labels before all section headings: (not necessary, but ok)
     for label in section_label2title:
         title = section_label2title[label]
@@ -223,7 +223,7 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
 
     import doconce
     doconce.debugpr(debugtext)
-    
+
     return filestr
 
 
@@ -234,12 +234,12 @@ def rst_ref_and_label(section_label2title, format, filestr):
     for label in section_label2title:
         filestr = filestr.replace('ref{%s}' % label,
                                   '`%s`_' % section_label2title[label])
-    
+
     from common import ref2equations
     filestr = ref2equations(filestr)
     # replace remaining ref{x} as x_
     filestr = re.sub(r'ref\{(.+?)\}', '`\g<1>`_', filestr)
-    
+
     return filestr
 
 def rst_bib(filestr, citations, bibfile):
@@ -275,7 +275,7 @@ def define(FILENAME_EXTENSION,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
-    
+
     FILENAME_EXTENSION['rst'] = '.rst'
     BLANKLINE['rst'] = '\n'
 
@@ -291,6 +291,7 @@ def define(FILENAME_EXTENSION,
         'reference': r'\g<subst>',
         'linkURL':   r'\g<begin>`\g<link> <\g<url>>`_\g<end>',
         'linkURL2':  r'`\g<link> <\g<url>>`_',
+        'linkURL3':  r'`\g<link> <\g<url>>`_',
         #'linkURL':   r'\g<begin>`\g<link>`_\g<end>' + '\n\n.. ' + r'_\g<link>: \g<url>' + '\n\n',  # better (?): make function instead that stacks up the URLs and dumps them at the end; can be used for citations as well
         'plainURL':  r'`<\g<url>>`_',
         'inlinecomment': r'(**\g<name>**: \g<comment>)',
@@ -328,7 +329,7 @@ def define(FILENAME_EXTENSION,
         'description':
         {'begin': '', 'item': '%s', 'end': '\n'},
 
-        'separator': '\n', 
+        'separator': '\n',
         }
     from common import DEFAULT_ARGLIST
     ARGLIST['rst'] = DEFAULT_ARGLIST
@@ -338,7 +339,7 @@ def define(FILENAME_EXTENSION,
 
     TABLE['rst'] = rst_table
     INTRO['rst'] = """\
-.. Automatically generated reST file from Doconce source 
+.. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)
 
 """

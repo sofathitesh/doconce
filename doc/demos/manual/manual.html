@@ -998,12 +998,20 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
-some URL like "MyPlace": "http://my.place.in.space/src"
+some URL like "Search Google": "http://google.com"
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
-which appears as some URL like <A HREF="http://my.place.in.space/src">MyPlace</A>.
+which appears as some URL like <A HREF="http://google.com">Search Google</A>.
 The space after colon is optional.
-Link to a file is done by the URL keyword, a colon, and enclosing the
+Links to files ending in <TT>.txt</TT>, <TT>.html</TT>, or <TT>.pdf</TT> follows the same
+setup:
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+see the "Doconce Manual": "manual.do.txt"
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+Links to files with other extensions appear with the filename as
+link text, realized by the URL keyword, a colon, and enclosing the
 filename in double quotes:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>
@@ -1014,8 +1022,10 @@ url: "manual.do.txt"
 </PRE></BLOCKQUOTE>
 <! -- END VERBATIM BLOCK -->
 All these constructions result in the link <A HREF="manual.do.txt"><TT>manual.do.txt</TT></A>.
-To make the URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the text of the URL enclosed in double
+
+<P>
+To make a general URL itself appear as link name, put an "URL", URL, or
+the lower case version, before the URL address enclosed in double
 quotes:
 <!-- BEGIN VERBATIM BLOCK  -->
 <BLOCKQUOTE><PRE>

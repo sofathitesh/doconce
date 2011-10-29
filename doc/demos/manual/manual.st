@@ -713,11 +713,18 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as::
 
 
-        some URL like "MyPlace": "http://my.place.in.space/src"
+        some URL like "Search Google": "http://google.com"
 
-which appears as some URL like "http://my.place.in.space/src":MyPlace.
+which appears as some URL like "http://google.com":Search Google.
 The space after colon is optional.
-Link to a file is done by the URL keyword, a colon, and enclosing the
+Links to files ending in '.txt', '.html', or '.pdf' follows the same
+setup::
+
+
+        see the "Doconce Manual": "manual.do.txt"
+
+Links to files with other extensions appear with the filename as
+link text, realized by the URL keyword, a colon, and enclosing the
 filename in double quotes::
 
 
@@ -727,8 +734,9 @@ filename in double quotes::
         "url":"manual.do.txt"
 
 All these constructions result in the link "manual.do.txt":manual.do.txt.
-To make the URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the text of the URL enclosed in double
+
+To make a general URL itself appear as link name, put an "URL", URL, or
+the lower case version, before the URL address enclosed in double
 quotes::
 
 

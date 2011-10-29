@@ -275,13 +275,17 @@ INLINE_TAGS = {
     'citation':
     r' cite\{(?P<subst>[^}]+)\}',
 
-    # http://some.where.org/mypage<link text>
+    # http://some.where.org/mypage<link text>  # old outdated syntax
     'linkURL':
     r'%s(?P<url>https?://[^<\n]+)<(?P<link>[^>]+)>%s' % \
     (inline_tag_begin, inline_tag_end),
 
     'linkURL2':  # "some link": "https://bla-bla"
     r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>(file:/|https?:)//.+?)"''',
+    #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
+
+    'linkURL3':  # "some link": "some/local/file/name.html" or .txt/.pdf files
+    r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>([^"]+?\.htm|[^"]+?\.txt|[^"]+?.pdf))"''',
     #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
 
     'plainURL':

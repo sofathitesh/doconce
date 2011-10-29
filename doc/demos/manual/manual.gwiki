@@ -639,7 +639,7 @@ Figure:  Streamtube visualization of a fluid flow. (fig:viz)
 
 https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png
 
-<wiki:comment> 
+<wiki:comment>
 Put the figure file figs/streamtubes.png on the web (e.g., as part of the
 googlecode repository) and substitute the line above with the URL.
 </wiki:comment>
@@ -742,11 +742,17 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 {{{
-some URL like "MyPlace": "http://my.place.in.space/src"
+some URL like "Search Google": "http://google.com"
 }}}
-which appears as some URL like [http://my.place.in.space/src MyPlace].
+which appears as some URL like [http://google.com Search Google].
 The space after colon is optional.
-Link to a file is done by the URL keyword, a colon, and enclosing the
+Links to files ending in `.txt`, `.html`, or `.pdf` follows the same
+setup:
+{{{
+see the "Doconce Manual": "manual.do.txt"
+}}}
+Links to files with other extensions appear with the filename as
+link text, realized by the URL keyword, a colon, and enclosing the
 filename in double quotes:
 {{{
 URL:"manual.do.txt"
@@ -755,8 +761,9 @@ url: "manual.do.txt"
 "url":"manual.do.txt"
 }}}
 All these constructions result in the link manual.do.txt.
-To make the URL itself appear as link name, put an "URL", URL, or
-the lower case version, before the text of the URL enclosed in double
+
+To make a general URL itself appear as link name, put an "URL", URL, or
+the lower case version, before the URL address enclosed in double
 quotes:
 {{{
 Click on this link: URL:"http://some.where.net".
@@ -1214,7 +1221,7 @@ Figure:  Wavepacket at time 0.1 s.
 
 (the URL of the image file figs/wavepacket_0001.png must be inserted here)
 
-<wiki:comment> 
+<wiki:comment>
 Put the figure file figs/wavepacket_0001.png on the web (e.g., as part of the
 googlecode repository) and substitute the line above with the URL.
 </wiki:comment>
@@ -1230,7 +1237,7 @@ Figure:  Wavepacket at time 0.2 s.
 
 (the URL of the image file figs/wavepacket_0010.png must be inserted here)
 
-<wiki:comment> 
+<wiki:comment>
 Put the figure file figs/wavepacket_0010.png on the web (e.g., as part of the
 googlecode repository) and substitute the line above with the URL.
 </wiki:comment>

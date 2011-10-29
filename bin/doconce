@@ -711,20 +711,22 @@ def clean():
 def usage_guess_encoding():
     print 'Usage: doconce guess_encoding filename'
 
-def _encoding_guesser(filename):
+def _encoding_guesser(filename, verbose=False):
     """Try to guess the encoding of a file."""
     f = open(filename, 'r')
     text = f.read()
     f.close()
-    encodings = ['utf-8', 'ascii', 'us-ascii', 'iso-8859-1', 'iso-8859-2',
+    encodings = ['ascii', 'us-ascii', 'iso-8859-1', 'iso-8859-2',
                  'iso-8859-3', 'iso-8859-4', 'cp37', 'cp930', 'cp1047',
-                 'utf-16', 'windows-1250', 'windows-1252',]
+                 'utf-8', 'utf-16', 'windows-1250', 'windows-1252',]
     for encoding in encodings:
         try:
-            #print 'Trying encoding', encoding
+            if verbose:
+                print 'Trying encoding', encoding, 'with unicode(text, encoding)'
             unicode(text, encoding, "strict")
-        except:
-            pass
+        except Exception, e:
+            if verbose:
+                print 'failed:', e
         else:
             break
     return encoding
@@ -734,7 +736,7 @@ def guess_encoding():
         usage_guess_encoding()
         sys.exit(1)
     filename = sys.argv[1]
-    print _encoding_guesser(filename)
+    print _encoding_guesser(filename, verbose=False)
 
 def usage_change_encoding():
     print 'Usage: doconce change_encoding from-encoding to-encoding file1 file2 ...'
@@ -904,12 +906,12 @@ def main():
         command = 'format'
     if command == 'format':
         # For backward compatibility:
-        if sys.argv[2] == 'LaTeX':
-            sys.argv[2] = 'latex'
-            print 'Warning: Previous format LaTeX now has the name latex'
-        if sys.argv[2] == 'HTML':
-            sys.argv[2] = 'html'
-            print 'Warning: Previous format HTML now has the name html'
+        if sys.argv[1] == 'LaTeX':
+            sys.argv[1] = 'latex'
+            print '\nWarning: Previous format LaTeX now has the name latex\n'
+        if sys.argv[1] == 'HTML':
+            sys.argv[1] = 'html'
+            print '\nWarning: Previous format HTML now has the name html\n'
 
     found = False
     for registered_command in commands:

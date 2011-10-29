@@ -8,7 +8,7 @@ def old_epytext_code(filestr):
     # inside code (or TeX) blocks. The code here is similar to
     # rst.rst_code, but a special epytext version was
     # necessary since epytext is fooled by \n in code/tex blocks.
-    
+
     # first indent all code/tex blocks:
     filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
     for i in range(len(code_blocks)):
@@ -28,7 +28,7 @@ def old_epytext_code(filestr):
     filestr = re.sub(r'!et\n', '\n\n', filestr)
     return filestr
 
-def epytext_author(authors_and_institutions, auth2index, 
+def epytext_author(authors_and_institutions, auth2index,
                    inst2index, index2inst):
     text = 'BY: '
     ai = []
@@ -67,6 +67,7 @@ def define(FILENAME_EXTENSION,
         'verbatim':  r'\g<begin>C{\g<subst>}\g<end>',
         'linkURL':   r'\g<begin>U{\g<link><\g<url>>}\g<end>',
         'linkURL2':  r'U{\g<link><\g<url>>}',
+        'linkURL3':  r'U{\g<link><\g<url>>}',
         'plainURL':  r'U{\g<url><\g<url>>}',
         # the replacement string differs, depending on the match object m:
         'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst'))),
@@ -97,7 +98,7 @@ def define(FILENAME_EXTENSION,
         {'begin': '', 'item': '%s', 'end': '\n'},
 
         'separator': '',
-        } 
+        }
     ARGLIST['epytext'] = {
         'parameter': '@param',
         'keyword': '@keyword',

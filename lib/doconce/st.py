@@ -27,6 +27,7 @@ def define(FILENAME_EXTENSION,
         'verbatim':  r"\g<begin>'\g<subst>'\g<end>",
         'linkURL':   r'\g<begin>"\g<url>":\g<link>\g<end>',
         'linkURL2':  r'"\g<url>":\g<link>',
+        'linkURL3':  r'"\g<url>":\g<link>',
         'plainURL':  r'"\g<url>":\g<url>',
         # the replacement string differs, depending on the match object m:
         'section':       r'\g<subst>',
@@ -60,4 +61,4 @@ def define(FILENAME_EXTENSION,
     from plaintext import plain_ref_and_label, plain_index_bib
     CROSS_REFS['st'] = plain_ref_and_label
     INDEX_BIB['st'] = plain_index_bib
-    
+

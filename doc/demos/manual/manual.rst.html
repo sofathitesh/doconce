@@ -1034,11 +1034,17 @@ becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).</p>
 <p>Web addresses with links are typeset as:</p>
 <pre class="literal-block">
-some URL like &quot;MyPlace&quot;: &quot;http://my.place.in.space/src&quot;
+some URL like &quot;Search Google&quot;: &quot;http://google.com&quot;
 </pre>
-<p>which appears as some URL like <a class="reference external" href="http://my.place.in.space/src">MyPlace</a>.
+<p>which appears as some URL like <a class="reference external" href="http://google.com">Search Google</a>.
 The space after colon is optional.
-Link to a file is done by the URL keyword, a colon, and enclosing the
+Links to files ending in <tt class="docutils literal">.txt</tt>, <tt class="docutils literal">.html</tt>, or <tt class="docutils literal">.pdf</tt> follows the same
+setup:</p>
+<pre class="literal-block">
+see the &quot;Doconce Manual&quot;: &quot;manual.do.txt&quot;
+</pre>
+<p>Links to files with other extensions appear with the filename as
+link text, realized by the URL keyword, a colon, and enclosing the
 filename in double quotes:</p>
 <pre class="literal-block">
 URL:&quot;manual.do.txt&quot;
@@ -1046,9 +1052,9 @@ URL:&quot;manual.do.txt&quot;
 url: &quot;manual.do.txt&quot;
 &quot;url&quot;:&quot;manual.do.txt&quot;
 </pre>
-<p>All these constructions result in the link <a class="reference external" href="manual.do.txt">manual.do.txt</a>.
-To make the URL itself appear as link name, put an &quot;URL&quot;, URL, or
-the lower case version, before the text of the URL enclosed in double
+<p>All these constructions result in the link <a class="reference external" href="manual.do.txt">manual.do.txt</a>.</p>
+<p>To make a general URL itself appear as link name, put an &quot;URL&quot;, URL, or
+the lower case version, before the URL address enclosed in double
 quotes:</p>
 <pre class="literal-block">
 Click on this link: URL:&quot;http://some.where.net&quot;.
