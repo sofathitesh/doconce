@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Doconce Description &mdash; Doconce Description 1.0 documentation</title>
+    <title>Doconce Description &mdash; Doconce Manual 1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Doconce Description 1.0 documentation" href="index.html" />
-    <link rel="prev" title="Welcome to a Doconce Description!" href="index.html" /> 
+    <link rel="top" title="Doconce Manual 1.0 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to Doconce Manual!" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,9 +36,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="index.html" title="Welcome to a Doconce Description!"
+          <a href="index.html" title="Welcome to Doconce Manual!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Doconce Description 1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Doconce Manual 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -55,7 +55,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Oct 22, 2011</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Oct 29, 2011</td>
 </tr>
 </tbody>
 </table>
@@ -88,12 +88,12 @@ The slogan is: &#8220;Write once, include anywhere&#8221;.</li>
 <blockquote>
 <div><ul class="simple">
 <li>Doconce markup does include tags, so the format is more tagged than
-Markdown and Pandoc, but less than reST, and very much less than
-LaTeX and HTML.</li>
+Markdown, Pandoc, and AsciiDoc, but less than reST, and very much
+less than LaTeX and HTML.</li>
 <li>Doconce can be converted to plain <em>untagged</em> text,
 often desirable for computer programs and email.</li>
-<li>Doconce has good support for copying in parts of computer code,
-say in examples, directly from the source code files.</li>
+<li>Doconce has good support for copying in parts of computer code
+directly from the source code files.</li>
 <li>Doconce has full support for LaTeX math, and integrates very well
 with big LaTeX projects (books).</li>
 <li>Doconce is almost self-explanatory and is a handy starting point
@@ -102,7 +102,7 @@ as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
 is just to make the initial versions of a Sphinx or wiki document.</li>
 <li>Contrary to the similar Pandoc translator, Doconce integrates with
 Sphinx and Google wiki. However, if these formats are not of interest,
-Pandoc is obviously a superior tool.</li>
+Pandoc is a superior tool.</li>
 </ul>
 </div></blockquote>
 <p>Doconce was particularly written for the following sample applications:</p>
@@ -110,14 +110,17 @@ Pandoc is obviously a superior tool.</li>
 <div><ul class="simple">
 <li>Large books written in LaTeX, but where many pieces (computer demos,
 projects, examples) can be written in Doconce to appear in other
-contexts in other formats, including plain HTML, Sphinx, or MS Word.</li>
+contexts in other formats, including plain HTML, Sphinx, or MS Word.
+With <a class="reference external" href="http://code.google.com/p/ptex2tex">ptex2tex</a>, Doconce can
+display computer code in LaTeX in many sophisticated ways (almost
+50 styles are available).</li>
 <li>Software documentation, primarily Python doc strings, which one wants
 to appear as plain untagged text for viewing in Pydoc, as reStructuredText
 for use with Sphinx, as wiki text when publishing the software at
 web sites, and as LaTeX integrated in, e.g., a thesis.</li>
 <li>Quick memos, which start as plain text in email, then some small
 amount of Doconce tagging is added, before the memos can appear as
-MS Word documents or in wikis.</li>
+MS Word documents, in wikis, or as Sphinx documents.</li>
 </ul>
 </div></blockquote>
 <p>History: Doconce was developed in 2006 at a time when most popular
@@ -248,14 +251,18 @@ Computer Modern font, run</p>
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard LaTeX &#8220;maketitle&#8221; heading
 is also available through</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; ptex2tex -DTRAD_LATEX_HEADING mydoc</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; ptex2tex -DLATEX_HEADING=traditional mydoc</span>
+</pre></div>
+</div>
+<p>A separate titlepage can be generate by</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; ptex2tex -DLATEX_HEADING=titlepage mydoc</span>
 </pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
-documents. After any <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">sys</span></tt> command in the Doconce source you can
+documents. After any <tt class="docutils literal"><span class="pre">!bc</span></tt> command in the Doconce source you can
 insert verbatim block styles as defined in your <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt>
-file, e.g., <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">sys</span> <span class="pre">cod</span></tt> for a code snippet, where <tt class="docutils literal"><span class="pre">cod</span></tt> is set to
+file, e.g., <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">cod</span></tt> for a code snippet, where <tt class="docutils literal"><span class="pre">cod</span></tt> is set to
 a certain environment in <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt> (e.g., <tt class="docutils literal"><span class="pre">CodeIntended</span></tt>).
 There are over 30 styles to choose from.</p>
 <p><em>Step 3.</em> Compile <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt>
@@ -317,12 +324,56 @@ reStructuredText file <tt class="docutils literal"><span class="pre">mydoc.rst</
 saved in, among other things, the RTF format or the Microsoft Word format.
 That is, one can easily go from Doconce to Microsoft Word.</p>
 </div>
-<div class="section" id="id2">
-<h2>Sphinx<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>Sphinx documents can be created from a Doconce source in a few steps.</p>
+<div class="section" id="id3">
+<h2>Sphinx<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Sphinx documents demand quite some steps in their creation. We have automated
+most of the steps through the <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">sphinx_dir</span></tt> command:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce sphinx_dir author=&quot;authors&#39; names&quot; \</span>
+<span class="go">          title=&quot;some title&quot; version=1.0 dirname=sphinxdir \</span>
+<span class="go">          theme=mytheme file1 file2 file3 ...</span>
+</pre></div>
+</div>
+<p>The keywords <tt class="docutils literal"><span class="pre">author</span></tt>, <tt class="docutils literal"><span class="pre">title</span></tt>, and <tt class="docutils literal"><span class="pre">version</span></tt> are used in the headings
+of the Sphinx document. By default, <tt class="docutils literal"><span class="pre">version</span></tt> is 1.0 and the script
+will try to deduce authors and title from the doconce files <tt class="docutils literal"><span class="pre">file1</span></tt>,
+<tt class="docutils literal"><span class="pre">file2</span></tt>, etc. that together represent the whole document. Note that
+none of the individual Doconce files <tt class="docutils literal"><span class="pre">file1</span></tt>, <tt class="docutils literal"><span class="pre">file2</span></tt>, etc. should
+include the rest as their union makes up the whole document.
+The default value of <tt class="docutils literal"><span class="pre">dirname</span></tt> is <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt>. The <tt class="docutils literal"><span class="pre">theme</span></tt>
+keyword is used to set the theme for design of HTML output from
+Sphinx (the default theme is <tt class="docutils literal"><span class="pre">'default'</span></tt>).</p>
+<p>With a single-file document in <tt class="docutils literal"><span class="pre">mydoc.do.txt</span></tt> one often just runs</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce sphinx_dir mydoc</span>
+</pre></div>
+</div>
+<p>and then an appropriate Sphinx directory <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt> is made with
+relevant files.</p>
+<p>The <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">sphinx_dir</span></tt> command generates a script
+<tt class="docutils literal"><span class="pre">automake-sphinx.sh</span></tt> for compiling the Sphinx document into an HTML
+document.  This script copies directories named <tt class="docutils literal"><span class="pre">figs</span></tt> or <tt class="docutils literal"><span class="pre">figures</span></tt>
+over to the Sphinx directory so that figures are accessible in the
+Sphinx compilation.  If figures or movies are located in other
+directories, <tt class="docutils literal"><span class="pre">automake-sphinx.sh</span></tt> must be edited accordingly. One
+can either run <tt class="docutils literal"><span class="pre">automake-sphinx.sh</span></tt> or perform the steps in the
+script manually.</p>
+<p>Doconce comes with a collection of HTML themes for Sphinx documents.
+These are packed out in the Sphinx directory, the <tt class="docutils literal"><span class="pre">conf.py</span></tt>
+configuration file for Sphinx is edited accordingly, and a script
+<tt class="docutils literal"><span class="pre">make-themes.sh</span></tt> can make HTML documents with one or more themes.
+For example,
+to realize the themes <tt class="docutils literal"><span class="pre">fenics</span></tt> and <tt class="docutils literal"><span class="pre">pyramid</span></tt>, one writes</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; ./make-themes.sh fenics pyramid</span>
+</pre></div>
+</div>
+<p>The resulting directories with HTML documents are <tt class="docutils literal"><span class="pre">_build/html_fenics</span></tt>
+and <tt class="docutils literal"><span class="pre">_build/html_pyramid</span></tt>, respectively. Without arguments,
+<tt class="docutils literal"><span class="pre">make-themes.sh</span></tt> makes all available themes (!).</p>
+<p>If it is not desirable to use the autogenerated scripts explained
+above, here are the complete manual procedure of generating a
+Sphinx document from a file <tt class="docutils literal"><span class="pre">mydoc.do.txt</span></tt>.</p>
 <p><em>Step 1.</em> Translate Doconce into the Sphinx dialect of
 the reStructuredText format:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format sphinx mydoc.do.txt</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format sphinx mydoc</span>
 </pre></div>
 </div>
 <p><em>Step 2.</em> Create a Sphinx root directory with a <tt class="docutils literal"><span class="pre">conf.py</span></tt> file,
@@ -354,23 +405,14 @@ program. Here is a scripted version of the steps with the latter:</p>
 <span class="go">EOF</span>
 </pre></div>
 </div>
-<p>These statements as well as points 3-5 can be automated by the command</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce sphinx_dir mydoc.do.txt</span>
-</pre></div>
-</div>
-<p>More precisely, in addition to making the <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt>,
-this command generates a script <tt class="docutils literal"><span class="pre">tmp_make_sphinx.sh</span></tt> which
-can be run to carry out steps 3-5, and later to remake the
-sphinx document.</p>
-<p><em>Step 3.</em> Move the <tt class="docutils literal"><span class="pre">tutorial.rst</span></tt> file to the Sphinx root directory:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; mv mydoc.rst sphinx-rootdir</span>
+<p><em>Step 3.</em> Copy the <tt class="docutils literal"><span class="pre">tutorial.rst</span></tt> file to the Sphinx root directory:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; cp mydoc.rst sphinx-rootdir</span>
 </pre></div>
 </div>
 <p>If you have figures in your document, the relative paths to those will
 be invalid when you work with <tt class="docutils literal"><span class="pre">mydoc.rst</span></tt> in the <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt>
 directory. Either edit <tt class="docutils literal"><span class="pre">mydoc.rst</span></tt> so that figure file paths are correct,
-or simply copy your figure directory to <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt> (if all figures
-are located in a subdirectory).</p>
+or simply copy your figure directories to <tt class="docutils literal"><span class="pre">sphinx-rootdir</span></tt>.</p>
 <p><em>Step 4.</em> Edit the generated <tt class="docutils literal"><span class="pre">index.rst</span></tt> file so that <tt class="docutils literal"><span class="pre">mydoc.rst</span></tt>
 is included, i.e., add <tt class="docutils literal"><span class="pre">mydoc</span></tt> to the <tt class="docutils literal"><span class="pre">toctree</span></tt> section so that it becomes</p>
 <div class="highlight-py"><pre>.. toctree::
@@ -384,7 +426,6 @@ is included, i.e., add <tt class="docutils literal"><span class="pre">mydoc</spa
 <span class="go">make html</span>
 </pre></div>
 </div>
-<p>Many other formats are also possible.</p>
 <p><em>Step 6.</em> View the result:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; firefox _build/html/index.html</span>
 </pre></div>
@@ -593,8 +634,8 @@ __A Paragraph.__ The running text goes here.</pre>
 </div>
 </div>
 </div>
-<div class="section" id="id3">
-<h1>Special Lines<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id4">
+<h1>Special Lines<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="figures">
 <h2>Figures<a class="headerlink" href="#figures" title="Permalink to this headline">¶</a></h2>
 <p>Figures are recognized by the special line syntax</p>
@@ -664,7 +705,7 @@ of computer code from a file directly into a verbatim environment, see
 the section <a class="reference internal" href="#sec-verbatim-blocks"><em>Blocks of Verbatim Computer Code</em></a> below.</p>
 </div>
 <div class="section" id="inline-tagging">
-<span id="id4"></span><h2>Inline Tagging<a class="headerlink" href="#inline-tagging" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>Inline Tagging<a class="headerlink" href="#inline-tagging" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="index-7"></span><span class="target" id="index-8"></span><span class="target" id="index-9"></span><span class="target" id="index-10"></span><p id="index-11">Doconce supports tags for <em>emphasized phrases</em>, <strong>boldface phrases</strong>,
 and <tt class="docutils literal"><span class="pre">verbatim</span> <span class="pre">text</span></tt> (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as <img class="math" src="_images/math/67368952c3d7b7712f81f70c910a7d2e8c169d2f.png" alt="\nu = \sin(x)"/>.</p>
@@ -1368,7 +1409,7 @@ the iterations.</td>
 <table class="docutils citation" frame="void" id="python-primer-09" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Python:Primer:09]</td><td><em>(<a class="fn-backref" href="#id5">1</a>, <a class="fn-backref" href="#id7">2</a>)</em> H. P. Langtangen.
+<tr><td class="label">[Python:Primer:09]</td><td><em>(<a class="fn-backref" href="#id6">1</a>, <a class="fn-backref" href="#id8">2</a>)</em> H. P. Langtangen.
 <em>A Primer on Scientific Programming with Python</em>.
 Springer, 2009.</td></tr>
 </tbody>
@@ -1376,7 +1417,7 @@ Springer, 2009.</td></tr>
 <table class="docutils citation" frame="void" id="osnes-98" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Osnes:98]</td><td><em>(<a class="fn-backref" href="#id6">1</a>, <a class="fn-backref" href="#id8">2</a>)</em> H. Osnes and H. P. Langtangen.
+<tr><td class="label">[Osnes:98]</td><td><em>(<a class="fn-backref" href="#id7">1</a>, <a class="fn-backref" href="#id9">2</a>)</em> H. Osnes and H. P. Langtangen.
 An efficient probabilistic finite element method for stochastic
 groundwater flow.
 <em>Advances in Water Resources</em>, vol 22, 185-195, 1998.</td></tr>
@@ -1404,7 +1445,7 @@ groundwater flow.
 <li><a class="reference internal" href="#latex">LaTeX</a></li>
 <li><a class="reference internal" href="#plain-ascii-text">Plain ASCII Text</a></li>
 <li><a class="reference internal" href="#restructuredtext">reStructuredText</a></li>
-<li><a class="reference internal" href="#id2">Sphinx</a></li>
+<li><a class="reference internal" href="#id3">Sphinx</a></li>
 <li><a class="reference internal" href="#google-code-wiki">Google Code Wiki</a></li>
 <li><a class="reference internal" href="#tweaking-the-doconce-output">Tweaking the Doconce Output</a></li>
 </ul>
@@ -1421,7 +1462,7 @@ groundwater flow.
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id3">Special Lines</a><ul>
+<li><a class="reference internal" href="#id4">Special Lines</a><ul>
 <li><a class="reference internal" href="#figures">Figures</a></li>
 <li><a class="reference internal" href="#movies">Movies</a></li>
 <li><a class="reference internal" href="#copying-computer-code">Copying Computer Code</a></li>
@@ -1445,7 +1486,7 @@ groundwater flow.
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to a Doconce Description!</a></p>
+                        title="previous chapter">Welcome to Doconce Manual!</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/manual.txt"
@@ -1475,13 +1516,13 @@ groundwater flow.
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="index.html" title="Welcome to a Doconce Description!"
+          <a href="index.html" title="Welcome to Doconce Manual!"
              >previous</a> |</li>
-        <li><a href="index.html">Doconce Description 1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Doconce Manual 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2011, Author.
+        &copy; Copyright 2011, 0.6.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1pre.
     </div>
   </body>
