@@ -210,6 +210,30 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
     filestr = '\n'.join(lines)
     return filestr
 
+def exercises(filestr, format):
+    # Exercise: ===== Exercise: title ===== (starts with at least 3 =, max 5)
+    # label{some:label} file=`thisfile.py` solution=somefile.do.txt or `file.py`
+    # maybe Problem instead of Exercise? More general...or choose
+    # ... arbitrary text
+    # until next === (at least 3) or end of file
+    pattern = r'^\s*[_=]{3,5}\s*([Ee]xercise|[Pp]problem):\s*(?P<title>[^ =-].+?)\s*[_=]+\s*(?P<body>.+?)([_=]{3,}|$)'
+    # test first in a special script, importing doconce.exercises and
+    # parsing some test.do.txt, try testdoc.do.txt e.g.
+    re.findall
+    # collect in dict and send to format-specific function?
+    # must be able to number all exercises in a document and insert
+    # number in the section title
+
+    # another idea: id: diffusion1 e.g. in any level (chapter, sec, subsec),
+    # maybe # ID: ... so that doconce sometool could extract IDs and help
+    # getting labels etc consistent with the local ID (yes, use comments
+    # for this)
+
+    # requires re.DOTALL, could have a name=.... and use that for label and file, but check text for _ and numbers
+    # support ID: identifyer among TITLE, AUTHOR, etc, can just be there
+    # could also be a mako thing
+
+
 
 BLANKLINE = {}
 FILENAME_EXTENSION = {}
@@ -315,7 +339,6 @@ INLINE_TAGS = {
     #r'^\s*_{3}(?P<subst>[^ ].*?)_+\s*$',
     #r'^\s*[_=]{3}\s*(?P<subst>[^ ].*?)\s*[_=]+\s*$',
     r'^\s*[_=]{3}\s*(?P<subst>[^ =-].+?)\s*[_=]+\s*$',
-
 
     # __Two underscores for Inline Paragraph Title.__
     'paragraph':

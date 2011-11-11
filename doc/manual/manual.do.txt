@@ -1104,6 +1104,10 @@ code blocks that cause errors when the reST text is transformed to
 other formats. The remedy is to define items for the index outside
 paragraphs.
 
+__Lists in Doconce do not appear in .rst files.__
+Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.
+
 __Error Message "Undefined substitution..." from reST.__
 This may happen if there is much inline math in the text. reST cannot
 understand inline LaTeX commands and interprets them as illegal code.
