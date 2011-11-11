@@ -249,23 +249,22 @@ def latex_author(authors_and_institutions, auth2index,
 def latex_ref_and_label(section_label2title, format, filestr):
     filestr = filestr.replace('label{', r'\label{')
     # add ~\ between chapter/section and the reference
-    pattern = r'(section|chapter)(s?)\s+ref\{'  # no \[A-Za-z] pattern => no fix
-    replacement = fix_latex_command_regex(r'\g<1>\g<2>~\ref{',
-                                          application='replacement')
+    pattern = r'([Ss]ection|[Cc]hapter)(s?)\s+ref\{'  # no \[A-Za-z] pattern => no fix
+    # recall \r is special character so it needs \\r
+    # (could call fix_latex_command_regex for the replacement)
+    replacement = r'\g<1>\g<2>~\\ref{'
     #filestr = re.sub(pattern, replacement, filestr, flags=re.IGNORECASE)
     cpattern = re.compile(pattern, flags=re.IGNORECASE)
     filestr = cpattern.sub(replacement, filestr)
-    # the rest of the ref{}:
-    filestr = re.sub(fix_latex_command_regex(r'\sref\{', application='math'),
-                     fix_latex_command_regex(r'~\ref{',  application='replacement'),
-                     filestr)
-    filestr = re.sub(fix_latex_command_regex(r'\(ref\{', application='math'),
-                     fix_latex_command_regex(r'(\ref{',  application='replacement'),
-                     filestr)
+    # range ref:
+    filestr = re.sub(r'-ref\{', r'-\\ref{', filestr)
+    # the rest of the ' ref{}' (single refs should have ~ in front):
+    filestr = re.sub(r'\sref\{', r'~\\ref{', filestr)
+    filestr = re.sub(r'\(ref\{', r'(\\ref{', filestr)
 
     # equations are ok in the doconce markup
 
-    # perform a substitution of LaTeX (and ensure \LaTeX is not there):
+    # perform a substitution of "LaTeX" (and ensure \LaTeX is not there):
     filestr = re.sub(fix_latex_command_regex(r'\LaTeX({})?',
                                application='match'), 'LaTeX', filestr)
     #filestr = re.sub('''([^"'`*_A-Za-z0-9-])LaTeX([^"'`*_A-Za-z0-9-])''',
