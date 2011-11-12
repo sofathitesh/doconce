@@ -212,7 +212,8 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
 
 def exercises(filestr, format):
     # Exercise: ===== Exercise: title ===== (starts with at least 3 =, max 5)
-    # label{some:label} file=`thisfile.py` solution=somefile.do.txt or `file.py`
+    # label{some:label} file=thisfile.py solution=somefile.do.txt or file.py
+    # hint1: some paragraph..., hint2: ...
     # maybe Problem instead of Exercise? More general...or choose
     # ... arbitrary text
     # until next === (at least 3) or end of file
@@ -224,6 +225,9 @@ def exercises(filestr, format):
     # must be able to number all exercises in a document and insert
     # number in the section title
 
+    # for exer in exercises: subst pattern above with body etc inserted
+    # with a special formatting of the exercise
+
     # another idea: id: diffusion1 e.g. in any level (chapter, sec, subsec),
     # maybe # ID: ... so that doconce sometool could extract IDs and help
     # getting labels etc consistent with the local ID (yes, use comments
@@ -233,6 +237,10 @@ def exercises(filestr, format):
     # support ID: identifyer among TITLE, AUTHOR, etc, can just be there
     # could also be a mako thing
 
+# do the same for abstract:
+# pattern = r"(?P<begin>__Abstract\.__|__Summary\.__)(?P<abstract>.*?)(?P<end>===)"  # re.DOTALL
+# LaTeX: put in {abstract} envir, all others: do nothing, i.e., print the
+# three, done by some common.py thing
 
 
 BLANKLINE = {}
