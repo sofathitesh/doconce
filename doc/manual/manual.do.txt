@@ -1066,10 +1066,22 @@ identify portions of the file to be edited is a smart idea.
 Alternatively, the relevant LaTeX constructions can be inserted directly
 in the Doconce file using if-else preprocessor directives.
 
+===== Header and Footer =====
 
-===== Troubleshooting =====
+Some formats use a header and footer in the document. LaTeX and
+HTML are two examples of such formats. When the document is to be
+included in another document (which is often the case with
+Doconce-based documents), the header and footer are not wanted, while
+these are needed (at least in a LaTeX context) if the document is
+stand-alone. We have introduce the convention that if `TITLE:` or
+`#TITLE:` is found at the beginning of the line (i.e., the document
+has, or has an intention have, a title), the header and footer
+are included, otherwise not.
 
-=== Disclaimer ===
+
+======= Troubleshooting =======
+
+===== Disclaimer =====
 
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running `doconce format`, the reason for the error is
@@ -1085,6 +1097,44 @@ based on regular expressions, which are known to be non-trivial to
 debug years after they are created. The main developer of Doconce has
 hardly any time to work on debugging the code, but the software works
 well for his diverse applications of it.
+
+
+===== General Problems ======
+
+=== Figure captions are incomplete ===
+
+If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as *one line*, at the same line as the FIGURE keyword.
+
+=== Preprocessor directives do not work ===
+
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
+
+=== Problems with boldface and emphasize ===
+
+Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.
+
+=== Strange non-English characters ===
+
+Check the encoding of the `.do.txt` file with the Unix `file` command
+or with
+!bc
+Unix> doconce guess_encoding myfile.do.txt
+!ec
+If the encoding is utf-8, convert to latin-1 using either of
+the Unix commands
+!bc
+Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+!ec
+
+
+===== Problems with Code or Tex Blocks =====
 
 === Code or TeX block errors in reST ===
 
@@ -1108,40 +1158,6 @@ code blocks that cause errors when the reST text is transformed to
 other formats. The remedy is to define items for the index outside
 paragraphs.
 
-=== Lists do not appear in .rst files ===
-
-Check if you have a comment right above the list. That comment
-will include the list if the list is indentend. Remove the comment.
-
-=== Error message "Undefined substitution..." from reST ===
-
-This may happen if there is much inline math in the text. reST cannot
-understand inline LaTeX commands and interprets them as illegal code.
-Just ignore these error messages.
-
-=== Figure captions are incomplete ===
-
-If only the first part of a figure caption in the Doconce file is seen
-in the target output format, the reason is usually that the caption
-occupies multiple lines in the Doconce file. The figure caption must
-be written as *one line*, at the same line as the FIGURE keyword.
-
-=== Preprocessor directives do not work ===
-
-Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.
-
-=== The LaTeX file does not compile ===
-
-If the problem is undefined control sequence involving
-!bc
-\code{...}
-!ec
-the cause is usually a verbatim inline text (in backquotes in the
-Doconce file) spans more than one line. Make sure, in the Doconce source,
-that all inline verbatim text appears on the same line.
-
 === Verbatim code blocks inside lists look ugly ===
 
 Read the Section ref{sec:verbatim:blocks} above.  Start the
@@ -1158,6 +1174,20 @@ previous paragraph. Make sure the `!bt` and `!et` tags are in column 1
 and that the rest of the non-LaTeX surrounding text is correctly indented.
 Using paragraphs instead of list items is a good idea also here.
 
+
+===== Problems with reST Output ======
+
+=== Lists do not appear in .rst files ===
+
+Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.
+
+=== Error message "Undefined substitution..." from reST ===
+
+This may happen if there is much inline math in the text. reST cannot
+understand inline LaTeX commands and interprets them as illegal code.
+Just ignore these error messages.
+
 === Inconsistent headings in reST ===
 
 The `rst2*.py` and Sphinx converters abort if the headers of sections
@@ -1166,6 +1196,20 @@ and a subsubsection must come under a subsection (you cannot have
 a subsubsection directly under a section). Search for `===`,
 count the number of equality signs (or underscores if you use that)
 and make sure they decrease by two every time a lower level is encountered.
+
+===== Problems with LaTeX Output ======
+
+=== The LaTeX file does not compile ===
+
+If the problem is undefined control sequence involving
+!bc
+\code{...}
+!ec
+the cause is usually a verbatim inline text (in backquotes in the
+Doconce file) spans more than one line. Make sure, in the Doconce source,
+that all inline verbatim text appears on the same line.
+
+===== Problems with gwiki Output ======
 
 === Strange nested lists in gwiki ===
 
@@ -1181,26 +1225,7 @@ output looks somewhat ugly. The good thing is that this gwiki source
 is seldom to be looked at - it is the Doconce source that one edits
 further.
 
-=== Problems with boldface and emphasize ===
-
-Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.
-
-=== Strange non-English characters ===
-
-Check the encoding of the `.do.txt` file with the Unix `file` command
-or with
-!bc
-Unix> doconce guess_encoding myfile.do.txt
-!ec
-If the encoding is utf-8, convert to latin-1 using either of
-the Unix commands
-!bc
-Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-!ec
-
-=== Debugging ===
+===== Debugging =====
 
 Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
@@ -1213,20 +1238,8 @@ Ideas" explains how the Doconce text is transformed into a specific
 format, and you need to know these steps to make use of the logfile.
 
 
-===== Header and Footer =====
 
-Some formats use a header and footer in the document. LaTeX and
-HTML are two examples of such formats. When the document is to be
-included in another document (which is often the case with
-Doconce-based documents), the header and footer are not wanted, while
-these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if `TITLE:` or
-`#TITLE:` is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
-
-
-===== Basic Parsing Ideas =====
+======= Basic Parsing Ideas =======
 
 # avoid list here since we have code in between (never a good idea)
 
