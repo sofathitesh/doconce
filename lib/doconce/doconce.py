@@ -837,41 +837,56 @@ def interpret_authors(filestr, format):
     authors_and_institutions = []
     for line in author_lines:
         if ' at ' in line:
+            # author and institution(s) given
             a, i = line.split(' at ')
+            a = a.strip()
             if ' and ' in i:
                 i = [w.strip() for w in i.split(' and ')]
             else:
                 i = (i.strip(),)
-            authors_and_institutions.append((a.strip(), i))
         else:  # just author's name
-            authors_and_institutions.append((line.strip(), None))
+            a = line.strip()
+            i = None
+        if 'mail:' in a:  # email?
+            a, e = re.split(r'[Ee]?mail:\s*', a)
+            a = a.strip()
+            e = e.strip()
+            if not '@' in e:
+                print 'Syntax error: wrong email specification in AUTHOR line: "%s"' % e
+        else:
+            e = None
+        authors_and_institutions.append((a, i, e))
+
     inst2index = OrderedDict()
     index2inst = {}
     auth2index = OrderedDict()
+    auth2email = OrderedDict()
     # get unique institutions:
-    for a, institutions in authors_and_institutions:
+    for a, institutions, e in authors_and_institutions:
         if institutions is not None:
             for i in institutions:
                 inst2index[i] = None
     for index, i in enumerate(inst2index):
         inst2index[i] = index+1
         index2inst[index+1] = i
-    for a, institutions in authors_and_institutions:
+    for a, institutions, e in authors_and_institutions:
         if institutions is not None:
             auth2index[a] = [inst2index[i] for i in institutions]
         else:
             auth2index[a] = ''  # leads to empty address
+        auth2email[a] = e
 
     # version < 2.7 warning:
     if len(auth2index) > 1 and OrderedDict is dict:
         print 'Warning: multiple authors\n - correct order of authors requires Python version 2.7 or 3.1 (or higher)'
-    return authors_and_institutions, auth2index, inst2index, index2inst, filestr
+    return authors_and_institutions, auth2index, inst2index, index2inst, auth2email, filestr
 
 def typeset_authors(filestr, format):
-    authors_and_institutions, auth2index, inst2index, index2inst, filestr = \
-        interpret_authors(filestr, format)
+    authors_and_institutions, auth2index, inst2index, \
+        index2inst, auth2email, filestr = interpret_authors(filestr, format)
     author_block = INLINE_TAGS_SUBST[format]['author']\
-        (authors_and_institutions, auth2index, inst2index, index2inst)
+        (authors_and_institutions, auth2index, inst2index,
+         index2inst, auth2email)
     filestr = filestr.replace('XXXAUTHOR', author_block)
     return filestr
 

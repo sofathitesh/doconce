@@ -103,11 +103,18 @@ def html_movie(m):
     return text
 
 def html_author(authors_and_institutions, auth2index,
-                inst2index, index2inst):
+                inst2index, index2inst, auth2email):
     text = ''
     for author in auth2index:
-        text += '\n<CENTER>\n<B>%s</B> %s\n</CENTER>\n' % \
-            (author, str(auth2index[author]))
+        email = auth2email[author]
+        if email is None:
+            email_text = ''
+        else:
+            name, adr = email.split('@')
+            email_text = ' (<tt>%s</tt> at <tt>%s</tt>)' % (name, adr)
+
+        text += '\n<CENTER>\n<B>%s</B> %s%s\n</CENTER>\n' % \
+            (author, str(auth2index[author]), email_text)
     text += '\n<P>\n'
     for index in index2inst:
         text += '<CENTER>[%d] <B>%s</B></CENTER>\n' % (index, index2inst[index])

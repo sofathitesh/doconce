@@ -147,8 +147,15 @@ def rst_table(table):
     return s
 
 def rst_author(authors_and_institutions, auth2index,
-               inst2index, index2inst):
-    authors = ', '.join([author for author, i in authors_and_institutions])
+               inst2index, index2inst, auth2email):
+    authors = []
+    for author, i, email in authors_and_institutions:
+        if email:
+            email = email.replace('@', ' at ')
+            authors.append(author + ' (%s)' % email)
+        else:
+            authors.append(author)
+
     text = ':Author: ' + authors + '\n\n'
     # we skip institutions in rst
     return text

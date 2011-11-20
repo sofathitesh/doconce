@@ -878,6 +878,48 @@ def usage_split_rst():
     print 'Usage: doconce split_rst complete_file.rst'
 
 def split_rst():
+    """
+    Split a large .rst file into smaller files corresponding
+    to each main section (7= in headings).
+
+    The large complete doconce file typically looks like this::
+
+        #>>>>>>> part: header >>>>>
+        # #include "header.do.txt"
+
+        #>>>>>>> part: fundamentals >>>>>
+        # #include "fundamentals.do.txt"
+
+        #>>>>>>> part: nonlinear >>>>>
+        # #include "nonlinear.do.txt"
+
+        #>>>>>>> part: timedep >>>>>
+        # #include "timedep.do.txt"
+
+    Note that the comment lines ``#>>>...`` *must* appear right above
+    the include directives. The includes are replaced by text, while
+    the ``#>>>...`` are still left as markers in the complete document
+    for the various sections. These markers are used to split the
+    text into parts. For Sphinx to treat section headings right,
+    each part should start with a main section (7=).
+
+    The ``split_rst`` command will in this example take the complete
+    ``.rst`` file and make files ``header.rst``, ``fundamentals.rst``,
+    ``nonlinear.rst``, etc.  The ``doconce sphinx_dir`` command takes
+    all these ``.rst`` files as arguments and creates the
+    corresponding index file etc. The names of the various ``.rst``
+    files are specified in the ``#>>>... Part: ...`` markers. Normally,
+    a part name corresponding to the included filename is used.
+
+    CAVEAT: Nested includes in doconce files and doconce files in subdirs.
+    SOLUTION: Use #>>> Part: mypart >>> for an include mypart/mypart.do.txt.
+    All parts are then in the top directory.
+
+    fig dirs must be copied..., but that can be easily done if the fig
+    dir name is of the right form.  Can also skip all the
+    non-.gif/.jp*g/.png files in fig dirs.
+    """
+
     if len(sys.argv) <= 1:
         usage_split_rst()
         sys.exit(1)
@@ -893,7 +935,7 @@ def split_rst():
 
     # Split file
     for i in range(len(parts)):
-        if i < len(parts)-1:  # not the last part
+        if i < len(parts)-1:  # not the last part?
             this_part = part_pattern % parts[i]
             next_part = part_pattern % parts[i+1]
         else:
@@ -928,7 +970,7 @@ def list_labels():
     second column of improved labels and then make replacements.
     """
     if len(sys.argv) <= 1:
-        usage_split_rst()
+        usage_list_labels()
         sys.exit(1)
     filename = sys.argv[1]
 
@@ -963,11 +1005,98 @@ def list_labels():
             labels.append(label)
 
 
+def usage_analyzer():
+    print 'Usage: doconce analyzer complete_file.do.txt'
+
+def analyzer():
+    """
+    For a doconce file, possibly composed of many other doconce
+    files, in a nested fashion, this function returns a tree
+    data structure with the various parts, included files,
+    involved source code, figures, movies, etc.
+
+    Method:
+    Go through all #include's in a doconce file, find subdirectories
+    used in @@@CODE, FIGURE, and MOVIE commands, and make links
+    in the present directory to these subdirectories such that
+    @@@CODE, FIGURE, and MOVIE works from the present directory.
+    This is very important functionality when a doconce document
+    is made up of many distributed documents, in different
+    directories, included in a (big) document.
+    """
+    # 2DO:
+    # - start with an example (some Cython intro examples? in a tree?)
+    # - make doconce nested_include
+    #   which makes a tree of all the dirs that are involved in a
+    #   complete document
+    # - simply copy all subnits and the complete doc to a new _build dir
+    # - simply copy all figs-*, movies-*, src-* to _build
+    # - compile
+
+    # IDEA: Have a convention of src-poisson, figs-poisson etc
+    # naming and use a simple script here to link from one dir to
+    # all src-* and figs-* movies-* found in a series of dir trees. YES!!
+    # Maybe use code below to issue warnings if FIGURE etc applies other
+    # directories (could extend with eps-*, ps-*, pdf-*, png-*, jpeg-*,
+    # gif-*, flv-*, avi-*, ...) and/or do this also in std doconce
+    # translation (no, simple stand-alone thing must be fine with
+    # figs/, it's the big distributed projects that need this
+    # naming convention).  YES! Should be figs-basename(os.getcwd())
+
+    # Can play with fenics tut: put each section in sep dirs,
+    # stationary/poisson, transient/diffusion etc.,
+    # with local src and figs
+    # Need a script that can pack all local src dirs into a separate tree
+    # for distribution (doconce pack_src): create new tree, walk a set
+    # of trees, for each subdir with name src-*, strip off src-, copy
+    # subdir to right level in new tree
+
+    # Support for latex files too (includegraphics, movie15, psfig,
+    # input, include), starting point is a .tex file with includes/inputs
+
+    if len(sys.argv) <= 1:
+        usage_bbl2rst()
+        sys.exit(1)
+
+    # Must have this in a function since we need to do this recursively
+    filename = sys.argv[1]
+    alltext = open(filename, 'r').read()
+    # preprocess parts and includes[[[
+    part_pattern = r'\.\.\s*>>+\s*[Pp]art:\s*%s\s*>>+'
+    parts = re.findall(part_pattern % '([^ ]+?)', alltext)
+
+    include_files = re.findall(r"""[#%]\s+\#include\s*["']([A-Za-z0-9_-., ~]+?)["']""", alltext)
+    include_files = [filename for dummy, filename in include_files]
+
+    figure = re.compile(r'^FIGURE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]\s*?(?P<caption>.*)$', re.MULTILINE)
+    movie = re.compile(r'^MOVIE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]\s*?(?P<caption>.*)$', re.MULTILINE)
+    code = re.compile(r'^\s*@@@CODE\s+([^ ]+?) ')
+
+    for filename in include_files:
+        f = open(filename, 'r')
+        directory = os.path.dirname(f)
+        fstr = f.read()
+        f.close()
+        # What about figs/myfig/1stver/t.png? Just link to figs...
+        # but it's perhaps ok with links at different levels too?
+        figure_files = [filename for filename, options, captions in \
+                        figure.findall(fstr)]
+        movie_files = [filename for filename, options, captions in \
+                       movie.findall(fstr)]
+        code_files = code.findall(fstr)
+        print figure_files
+        figure_dirs = [os.path.dirname(f) for f in figure_files] # no dir??
+        print figure_dirs
+        dirs = [os.path.join(directory, figure_dir) \
+                for figure_dir in figure_dirs]
+
+
+
 
 
 # -----------------------------------------------------------------------
 
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels make_figure_code_links'.split()
 
 # -----------------------------------------------------------------------
 
@@ -1003,6 +1132,7 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce list_labels doconcefile.do.txt | latexfile.tex
+doconce make_figure_code_links doconcefile.do.txt
 """
 
 
