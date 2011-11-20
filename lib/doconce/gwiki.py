@@ -98,9 +98,17 @@ def gwiki_table(table):
     return s
 
 def gwiki_author(authors_and_institutions, auth2index,
-                 inst2index, index2inst):
-    authors = ['_%s_' % author \
-               for author, i in authors_and_institutions]
+                 inst2index, index2inst, auth2email):
+
+    authors = []
+    for author, i, email in authors_and_institutions:
+        if email is None:
+            email_text = ''
+        else:
+            name, adr = email.split('@')
+            email_text = ' (%s at %s)' % (name, adr)
+        authors.append('_%s_%s' % (author, email_text))
+
     if len(authors) ==  1:
         authors = authors[0]
     elif len(authors) == 2:

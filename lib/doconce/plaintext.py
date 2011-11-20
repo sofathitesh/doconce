@@ -3,10 +3,12 @@ import re, sys
 from common import default_movie
 
 def plain_author(authors_and_institutions, auth2index,
-                 inst2index, index2inst):
+                 inst2index, index2inst, auth2email):
     text = '\n'
     for author in auth2index:
-        text += '%s %s\n' % (author, str(auth2index[author]))
+        email = auth2email[author]
+        email_text = '' if email is None else '(%s)' % email
+        text += ' '.join([author, auth2index[author], email_text]) + '\n'
     text += '\n'
     for index in index2inst:
         text += '[%d] %s\n' % (index, index2inst[index])

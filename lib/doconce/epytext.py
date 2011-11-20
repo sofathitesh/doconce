@@ -29,10 +29,10 @@ def old_epytext_code(filestr):
     return filestr
 
 def epytext_author(authors_and_institutions, auth2index,
-                   inst2index, index2inst):
+                   inst2index, index2inst, auth2email):
     text = 'BY: '
     ai = []
-    for author, institutions in authors_and_institutions:
+    for author, institutions, email in authors_and_institutions:
         if institutions is not None:
             ai.append('%s (%s)' % (author, ', and '.join(institutions)))
         else:
