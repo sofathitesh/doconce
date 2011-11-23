@@ -156,7 +156,7 @@ def rst_author(authors_and_institutions, auth2index,
         else:
             authors.append(author)
 
-    text = ':Author: ' + authors + '\n\n'
+    text = ':Author: ' + ', '.join(authors) + '\n\n'
     # we skip institutions in rst
     return text
 

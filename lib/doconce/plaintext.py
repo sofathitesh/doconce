@@ -8,7 +8,7 @@ def plain_author(authors_and_institutions, auth2index,
     for author in auth2index:
         email = auth2email[author]
         email_text = '' if email is None else '(%s)' % email
-        text += ' '.join([author, auth2index[author], email_text]) + '\n'
+        text += ' '.join([author, str(auth2index[author]), email_text]) + '\n'
     text += '\n'
     for index in index2inst:
         text += '[%d] %s\n' % (index, index2inst[index])
