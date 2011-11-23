@@ -222,3 +222,31 @@ Here is eqnarray:
 !et
 
 
+======= Exercises =======
+
+===== Problem: Flip a Coin =====
+label{demo:ex:1} file=`flip_coin.py`
+
+Make a program that simulates flipping a coin $N$ times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
+
+
+__Hint 1.__ Use `r = random.random()` and define head as `r <= 0.5`.
+
+__Hint 2.__ Draw an integer among $\{1,2\}$ with
+`r = random.randint(1,2)` and define head when `r` is 1.
+
+
+===== Exercise: Compute a Probability =====
+label{demo:ex:2} file=`compute_prob.py`  solution=
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval $[0,1)$?
+To answer this question empirically, let a program
+draw $N$ such random numbers using Python's standard `random` module,
+count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
+compute the probability as $M/N$. Run the program with the four
+values $N=10^i$ for $i=1,2,3,6$.
+
+

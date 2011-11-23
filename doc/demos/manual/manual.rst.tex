@@ -59,7 +59,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Oct 29, 2011
+Nov 23, 2011
 
 \end{DUfieldlist}
 
@@ -1945,120 +1945,6 @@ in the Doconce file using if-else preprocessor directives.
 %___________________________________________________________________________
 
 \subsection*{\phantomsection%
-  Troubleshooting%
-  \addcontentsline{toc}{subsection}{Troubleshooting}%
-  \label{troubleshooting}%
-}
-
-\emph{Disclaimer.} Doconce has some support for syntax checking.
-If you encounter Python errors while running \texttt{doconce format}, the
-reason for the error is most likely a syntax problem in your Doconce
-source file. You have to track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of ``debugging'' Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
-
-\emph{Code or TeX Block Errors in reST.} Sometimes reStructuredText (reST) reports an ``Unexpected indentation''
-at the beginning of a code block. If you see a \texttt{!bc}, which should
-have been removed by \texttt{doconce format}, it is usually an error in the
-Doconce source, or a problem with the rst/sphinx translator.  Check if
-the line before the code block ends in one colon (not two!), a
-question mark, an exclamation mark, a comma, a period, or just a
-newline/space after text. If not, make sure that the ending is among
-the mentioned. Then \texttt{!bc} will most likely be replaced and a double
-colon at the preceding line will appear (which is the right way in
-reST to indicate a verbatim block of text).
-
-\emph{Strange Errors Around Code or TeX Blocks in reST.} If \texttt{idx} commands for defining indices are placed inside paragraphs,
-and especially right before a code block, the reST translator
-(rst and sphinx formats) may get confused and produce strange
-code blocks that cause errors when the reST text is transformed to
-other formats. The remedy is to define items for the index outside
-paragraphs.
-
-\emph{Error Message ``Undefined substitution...'' from reST.} This may happen if there is much inline math in the text. reST cannot
-understand inline LaTeX commands and interprets them as illegal code.
-Just ignore these error messages.
-
-\emph{Preprocessor Directives Do Not Work.} Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.
-
-\emph{The LaTeX File Does Not Compile.} If the problem is undefined control sequence involving:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-\textbackslash{}code\{...\}
-}
-\end{quote}
-
-the cause is usually a verbatim inline text (in backquotes in the
-Doconce file) spans more than one line. Make sure, in the Doconce source,
-that all inline verbatim text appears on the same line.
-
-\emph{Verbatim Code Blocks Inside Lists Look Ugly.} Read the the section \hyperref[blocks-of-verbatim-computer-code]{Blocks of Verbatim Computer Code} above.  Start the
-\texttt{!bc} and \texttt{!ec} tags in column 1 of the file, and be careful with
-indenting the surrounding plain text of the list item correctly. If
-you cannot resolve the problem this way, get rid of the list and use
-paragraph headings instead. In fact, that is what is recommended:
-avoid verbatim code blocks inside lists (it makes life easier).
-
-\emph{LaTeX Code Blocks Inside Lists Look Ugly.} Same solution as for computer code blocks as described in the
-previous paragraph. Make sure the \texttt{!bt} and \texttt{!et} tags are in column 1
-and that the rest of the non-LaTeX surrounding text is correctly indented.
-Using paragraphs instead of list items is a good idea also here.
-
-\emph{Inconsistent Headings in reStructuredText.} The \texttt{rst2*.py} and Sphinx converters abort if the headers of sections
-are not consistent, i.e., a subsection must come under a section,
-and a subsubsection must come under a subsection (you cannot have
-a subsubsection directly under a section). Search for \texttt{===},
-count the number of equality signs (or underscores if you use that)
-and make sure they decrease by two every time a lower level is encountered.
-
-\emph{Strange Nested Lists in gwiki.} Doconce cannot handle nested lists correctly in the gwiki format.
-Use nonnested lists or edit the \texttt{.gwiki} file directly.
-
-\emph{Lists in gwiki Look Ugly in the Sourc.} Because the Google Code wiki format requires all text of a list item to
-be on one line, Doconce simply concatenates lines in that format,
-and because of the indentation in the original Doconce text, the gwiki
-output looks somewhat ugly. The good thing is that this gwiki source
-is seldom to be looked at - it is the Doconce source that one edits
-further.
-
-\emph{Problems with Boldface and Emphasize.} Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.
-
-\emph{Strange Non-English Characters.} Check the encoding of the \texttt{.do.txt} file with the Unix \texttt{file} command.
-If UTF-8, convert to latin-1 using the Unix command:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-Unix>~iconv~-f~utf-8~-t~LATIN1~myfile.do.txt~-{}-output~newfile
-}
-\end{quote}
-
-(Doconce has a feature to detect the encoding, but it is not reliable and
-therefore turned off.)
-
-\emph{Debugging.} Given a problem, extract a small portion of text surrounding the
-problematic area and debug that small piece of text. Doconce does a
-series of transformations of the text. The effect of each of these
-transformation steps are dumped to a logfile, named
-\texttt{\_doconce\_debugging.log}, if the to \texttt{doconce format} after the filename
-is \texttt{debug}. The logfile is inteded for the developers of Doconce, but
-may still give some idea of what is wrong.  The section ``Basic Parsing
-Ideas'' explains how the Doconce text is transformed into a specific
-format, and you need to know these steps to make use of the logfile.
-
-
-%___________________________________________________________________________
-
-\subsection*{\phantomsection%
   Header and Footer%
   \addcontentsline{toc}{subsection}{Header and Footer}%
   \label{header-and-footer}%
@@ -2077,9 +1963,326 @@ are included, otherwise not.
 
 %___________________________________________________________________________
 
+\section*{\phantomsection%
+  Troubleshooting%
+  \addcontentsline{toc}{section}{Troubleshooting}%
+  \label{troubleshooting}%
+}
+
+
+%___________________________________________________________________________
+
 \subsection*{\phantomsection%
+  Disclaimer%
+  \addcontentsline{toc}{subsection}{Disclaimer}%
+  \label{disclaimer}%
+}
+
+Doconce has some support for syntax checking.  If you encounter Python
+errors while running \texttt{doconce format}, the reason for the error is
+most likely a syntax problem in your Doconce source file. You have to
+track down this syntax problem yourself.
+
+However, the problem may well be a bug in Doconce. The Doconce
+software is incomplete, and many special cases of syntax are not yet
+discovered to give problems. Such special cases are also seldom easy to
+fix, so one important way of ``debugging'' Doconce is simply to change
+the formatting so that Doconce treats it properly. Doconce is very much
+based on regular expressions, which are known to be non-trivial to
+debug years after they are created. The main developer of Doconce has
+hardly any time to work on debugging the code, but the software works
+well for his diverse applications of it.
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  General Problems%
+  \addcontentsline{toc}{subsection}{General Problems}%
+  \label{general-problems}%
+}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Figure captions are incomplete%
+  \addcontentsline{toc}{subsubsection}{Figure captions are incomplete}%
+  \label{figure-captions-are-incomplete}%
+}
+
+If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as \emph{one line}, at the same line as the FIGURE keyword.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Preprocessor directives do not work%
+  \addcontentsline{toc}{subsubsection}{Preprocessor directives do not work}%
+  \label{preprocessor-directives-do-not-work}%
+}
+
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Problems with boldface and emphasize%
+  \addcontentsline{toc}{subsubsection}{Problems with boldface and emphasize}%
+  \label{problems-with-boldface-and-emphasize}%
+}
+
+Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Strange non-English characters%
+  \addcontentsline{toc}{subsubsection}{Strange non-English characters}%
+  \label{strange-non-english-characters}%
+}
+
+Check the encoding of the \texttt{.do.txt} file with the Unix \texttt{file} command
+or with:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix>~doconce~guess\_encoding~myfile.do.txt
+}
+\end{quote}
+
+If the encoding is utf-8, convert to latin-1 using either of
+the Unix commands:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Unix>~doconce~change\_encoding~utf-8~LATIN1~myfile.do.txt\\
+Unix>~iconv~-f~utf-8~-t~LATIN1~myfile.do.txt~-{}-output~newfile
+}
+\end{quote}
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Problems with Code or Tex Blocks%
+  \addcontentsline{toc}{subsection}{Problems with Code or Tex Blocks}%
+  \label{problems-with-code-or-tex-blocks}%
+}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Code or TeX block errors in reST%
+  \addcontentsline{toc}{subsubsection}{Code or TeX block errors in reST}%
+  \label{code-or-tex-block-errors-in-rest}%
+}
+
+Sometimes reStructuredText (reST) reports an ``Unexpected indentation''
+at the beginning of a code block. If you see a \texttt{!bc}, which should
+have been removed by \texttt{doconce format}, it is usually an error in the
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then \texttt{!bc} will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
+reST to indicate a verbatim block of text).
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Strange errors around code or TeX blocks in reST%
+  \addcontentsline{toc}{subsubsection}{Strange errors around code or TeX blocks in reST}%
+  \label{strange-errors-around-code-or-tex-blocks-in-rest}%
+}
+
+If \texttt{idx} commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Verbatim code blocks inside lists look ugly%
+  \addcontentsline{toc}{subsubsection}{Verbatim code blocks inside lists look ugly}%
+  \label{verbatim-code-blocks-inside-lists-look-ugly}%
+}
+
+Read the the section \hyperref[blocks-of-verbatim-computer-code]{Blocks of Verbatim Computer Code} above.  Start the
+\texttt{!bc} and \texttt{!ec} tags in column 1 of the file, and be careful with
+indenting the surrounding plain text of the list item correctly. If
+you cannot resolve the problem this way, get rid of the list and use
+paragraph headings instead. In fact, that is what is recommended:
+avoid verbatim code blocks inside lists (it makes life easier).
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  LaTeX code blocks inside lists look ugly%
+  \addcontentsline{toc}{subsubsection}{LaTeX code blocks inside lists look ugly}%
+  \label{latex-code-blocks-inside-lists-look-ugly}%
+}
+
+Same solution as for computer code blocks as described in the
+previous paragraph. Make sure the \texttt{!bt} and \texttt{!et} tags are in column 1
+and that the rest of the non-LaTeX surrounding text is correctly indented.
+Using paragraphs instead of list items is a good idea also here.
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Problems with reST Output%
+  \addcontentsline{toc}{subsection}{Problems with reST Output}%
+  \label{problems-with-rest-output}%
+}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Lists do not appear in .rst files%
+  \addcontentsline{toc}{subsubsection}{Lists do not appear in .rst files}%
+  \label{lists-do-not-appear-in-rst-files}%
+}
+
+Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Error message ``Undefined substitution...'' from reST%
+  \addcontentsline{toc}{subsubsection}{Error message ``Undefined substitution...'' from reST}%
+  \label{error-message-undefined-substitution-from-rest}%
+}
+
+This may happen if there is much inline math in the text. reST cannot
+understand inline LaTeX commands and interprets them as illegal code.
+Just ignore these error messages.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Inconsistent headings in reST%
+  \addcontentsline{toc}{subsubsection}{Inconsistent headings in reST}%
+  \label{inconsistent-headings-in-rest}%
+}
+
+The \texttt{rst2*.py} and Sphinx converters abort if the headers of sections
+are not consistent, i.e., a subsection must come under a section,
+and a subsubsection must come under a subsection (you cannot have
+a subsubsection directly under a section). Search for \texttt{===},
+count the number of equality signs (or underscores if you use that)
+and make sure they decrease by two every time a lower level is encountered.
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Problems with LaTeX Output%
+  \addcontentsline{toc}{subsection}{Problems with LaTeX Output}%
+  \label{problems-with-latex-output}%
+}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  The LaTeX file does not compile%
+  \addcontentsline{toc}{subsubsection}{The LaTeX file does not compile}%
+  \label{the-latex-file-does-not-compile}%
+}
+
+If the problem is undefined control sequence involving:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+\textbackslash{}code\{...\}
+}
+\end{quote}
+
+the cause is usually a verbatim inline text (in backquotes in the
+Doconce file) spans more than one line. Make sure, in the Doconce source,
+that all inline verbatim text appears on the same line.
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Problems with gwiki Output%
+  \addcontentsline{toc}{subsection}{Problems with gwiki Output}%
+  \label{problems-with-gwiki-output}%
+}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Strange nested lists in gwiki%
+  \addcontentsline{toc}{subsubsection}{Strange nested lists in gwiki}%
+  \label{strange-nested-lists-in-gwiki}%
+}
+
+Doconce cannot handle nested lists correctly in the gwiki format.
+Use nonnested lists or edit the \texttt{.gwiki} file directly.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Lists in gwiki look ugly in the gwiki source%
+  \addcontentsline{toc}{subsubsection}{Lists in gwiki look ugly in the gwiki source}%
+  \label{lists-in-gwiki-look-ugly-in-the-gwiki-source}%
+}
+
+Because the Google Code wiki format requires all text of a list item to
+be on one line, Doconce simply concatenates lines in that format,
+and because of the indentation in the original Doconce text, the gwiki
+output looks somewhat ugly. The good thing is that this gwiki source
+is seldom to be looked at - it is the Doconce source that one edits
+further.
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Debugging%
+  \addcontentsline{toc}{subsection}{Debugging}%
+  \label{debugging}%
+}
+
+Given a problem, extract a small portion of text surrounding the
+problematic area and debug that small piece of text. Doconce does a
+series of transformations of the text. The effect of each of these
+transformation steps are dumped to a logfile, named
+\texttt{\_doconce\_debugging.log}, if the to \texttt{doconce format} after the filename
+is \texttt{debug}. The logfile is inteded for the developers of Doconce, but
+may still give some idea of what is wrong.  The section ``Basic Parsing
+Ideas'' explains how the Doconce text is transformed into a specific
+format, and you need to know these steps to make use of the logfile.
+
+
+%___________________________________________________________________________
+
+\section*{\phantomsection%
   Basic Parsing Ideas%
-  \addcontentsline{toc}{subsection}{Basic Parsing Ideas}%
+  \addcontentsline{toc}{section}{Basic Parsing Ideas}%
   \label{basic-parsing-ideas}%
 }
 

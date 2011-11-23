@@ -214,13 +214,18 @@ def exercises(filestr, format):
     # Exercise: ===== Exercise: title ===== (starts with at least 3 =, max 5)
     # label{some:label} file=thisfile.py solution=somefile.do.txt or file.py
     # hint1: some paragraph..., hint2: ...
+
+    # first label{} is the label for the exercise
+
     # maybe Problem instead of Exercise? More general...or choose
     # ... arbitrary text
     # until next === (at least 3) or end of file
     pattern = r'^\s*[_=]{3,5}\s*([Ee]xercise|[Pp]problem):\s*(?P<title>[^ =-].+?)\s*[_=]+\s*(?P<body>.+?)([_=]{3,}|$)'
+    cpattern = re.compile(pattern, re.MULTILINE)
     # test first in a special script, importing doconce.exercises and
     # parsing some test.do.txt, try testdoc.do.txt e.g.
-    re.findall
+    matches = re.findall(filestr)
+    import pprint; pprint.pprint(matches)
     # collect in dict and send to format-specific function?
     # must be able to number all exercises in a document and insert
     # number in the section title

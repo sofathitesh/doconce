@@ -22,7 +22,7 @@ Automatically generated HTML file from Doconce source
 <CENTER>[2] <B>University of Oslo</B></CENTER>
 
 
-<CENTER><H3>Oct 29, 2011</H3></CENTER>
+<CENTER><H3>Nov 23, 2011</H3></CENTER>
 <P>
 
 <P>
@@ -1717,130 +1717,6 @@ Alternatively, the relevant LaTeX constructions can be inserted directly
 in the Doconce file using if-else preprocessor directives.
 
 <P>
-
-<P>
-<H3>Troubleshooting</H3>
-<P>
-<B>Disclaimer.</B> Doconce has some support for syntax checking.
-If you encounter Python errors while running <TT>doconce format</TT>, the
-reason for the error is most likely a syntax problem in your Doconce
-source file. You have to track down this syntax problem yourself.
-
-<P>
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
-
-<P>
-<B>Code or TeX Block Errors in reST.</B> Sometimes reStructuredText (reST) reports an "Unexpected indentation"
-at the beginning of a code block. If you see a <TT>!bc</TT>, which should
-have been removed by <TT>doconce format</TT>, it is usually an error in the
-Doconce source, or a problem with the rst/sphinx translator.  Check if
-the line before the code block ends in one colon (not two!), a
-question mark, an exclamation mark, a comma, a period, or just a
-newline/space after text. If not, make sure that the ending is among
-the mentioned. Then <TT>!bc</TT> will most likely be replaced and a double
-colon at the preceding line will appear (which is the right way in
-reST to indicate a verbatim block of text).
-
-<P>
-<B>Strange Errors Around Code or TeX Blocks in reST.</B> If <TT>idx</TT> commands for defining indices are placed inside paragraphs,
-and especially right before a code block, the reST translator
-(rst and sphinx formats) may get confused and produce strange
-code blocks that cause errors when the reST text is transformed to
-other formats. The remedy is to define items for the index outside
-paragraphs.
-
-<P>
-<B>Error Message "Undefined substitution..." from reST.</B> This may happen if there is much inline math in the text. reST cannot
-understand inline LaTeX commands and interprets them as illegal code.
-Just ignore these error messages.
-
-<P>
-<B>Preprocessor Directives Do Not Work.</B> Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.
-
-<P>
-<B>The LaTeX File Does Not Compile.</B> If the problem is undefined control sequence involving
-<!-- BEGIN VERBATIM BLOCK  -->
-<BLOCKQUOTE><PRE>
-\code{...}
-</PRE></BLOCKQUOTE>
-<! -- END VERBATIM BLOCK -->
-the cause is usually a verbatim inline text (in backquotes in the
-Doconce file) spans more than one line. Make sure, in the Doconce source,
-that all inline verbatim text appears on the same line.
-
-<P>
-<B>Verbatim Code Blocks Inside Lists Look Ugly.</B> Read the the section <A HREF="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> above.  Start the
-<TT>!bc</TT> and <TT>!ec</TT> tags in column 1 of the file, and be careful with
-indenting the surrounding plain text of the list item correctly. If
-you cannot resolve the problem this way, get rid of the list and use
-paragraph headings instead. In fact, that is what is recommended:
-avoid verbatim code blocks inside lists (it makes life easier).
-
-<P>
-<B>LaTeX Code Blocks Inside Lists Look Ugly.</B> Same solution as for computer code blocks as described in the
-previous paragraph. Make sure the <TT>!bt</TT> and <TT>!et</TT> tags are in column 1
-and that the rest of the non-LaTeX surrounding text is correctly indented.
-Using paragraphs instead of list items is a good idea also here.
-
-<P>
-<B>Inconsistent Headings in reStructuredText.</B> The <TT>rst2*.py</TT> and Sphinx converters abort if the headers of sections
-are not consistent, i.e., a subsection must come under a section,
-and a subsubsection must come under a subsection (you cannot have
-a subsubsection directly under a section). Search for <TT>===</TT>,
-count the number of equality signs (or underscores if you use that)
-and make sure they decrease by two every time a lower level is encountered.
-
-<P>
-<B>Strange Nested Lists in gwiki.</B> Doconce cannot handle nested lists correctly in the gwiki format.
-Use nonnested lists or edit the <TT>.gwiki</TT> file directly.
-
-<P>
-<B>Lists in gwiki Look Ugly in the Sourc.</B> Because the Google Code wiki format requires all text of a list item to
-be on one line, Doconce simply concatenates lines in that format,
-and because of the indentation in the original Doconce text, the gwiki
-output looks somewhat ugly. The good thing is that this gwiki source
-is seldom to be looked at - it is the Doconce source that one edits
-further.
-
-<P>
-<B>Problems with Boldface and Emphasize.</B> Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.
-
-<P>
-<B>Strange Non-English Characters.</B> Check the encoding of the <TT>.do.txt</TT> file with the Unix <TT>file</TT> command.
-If UTF-8, convert to latin-1 using the Unix command
-<!-- BEGIN VERBATIM BLOCK  -->
-<BLOCKQUOTE><PRE>
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-</PRE></BLOCKQUOTE>
-<! -- END VERBATIM BLOCK -->
-(Doconce has a feature to detect the encoding, but it is not reliable and
-therefore turned off.)
-
-<P>
-<B>Debugging.</B> Given a problem, extract a small portion of text surrounding the
-problematic area and debug that small piece of text. Doconce does a
-series of transformations of the text. The effect of each of these
-transformation steps are dumped to a logfile, named
-<TT>_doconce_debugging.log</TT>, if the to <TT>doconce format</TT> after the filename
-is <TT>debug</TT>. The logfile is inteded for the developers of Doconce, but
-may still give some idea of what is wrong.  The section "Basic Parsing
-Ideas" explains how the Doconce text is transformed into a specific
-format, and you need to know these steps to make use of the logfile.
-
-<P>
-
-<P>
 <H3>Header and Footer</H3>
 <P>
 Some formats use a header and footer in the document. LaTeX and
@@ -1856,7 +1732,195 @@ are included, otherwise not.
 <P>
 
 <P>
-<H3>Basic Parsing Ideas</H3>
+<H1>Troubleshooting</H1>
+<P>
+<H3>Disclaimer</H3>
+<P>
+Doconce has some support for syntax checking.  If you encounter Python
+errors while running <TT>doconce format</TT>, the reason for the error is
+most likely a syntax problem in your Doconce source file. You have to
+track down this syntax problem yourself.
+
+<P>
+However, the problem may well be a bug in Doconce. The Doconce
+software is incomplete, and many special cases of syntax are not yet
+discovered to give problems. Such special cases are also seldom easy to
+fix, so one important way of "debugging" Doconce is simply to change
+the formatting so that Doconce treats it properly. Doconce is very much
+based on regular expressions, which are known to be non-trivial to
+debug years after they are created. The main developer of Doconce has
+hardly any time to work on debugging the code, but the software works
+well for his diverse applications of it.
+
+<P>
+
+<P>
+<H3>General Problems</H3>
+<P>
+<H4>Figure captions are incomplete</H4>
+<P>
+If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as <EM>one line</EM>, at the same line as the FIGURE keyword.
+
+<P>
+<H4>Preprocessor directives do not work</H4>
+<P>
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
+
+<P>
+<H4>Problems with boldface and emphasize</H4>
+<P>
+Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.
+
+<P>
+<H4>Strange non-English characters</H4>
+<P>
+Check the encoding of the <TT>.do.txt</TT> file with the Unix <TT>file</TT> command
+or with
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Unix> doconce guess_encoding myfile.do.txt
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+If the encoding is utf-8, convert to latin-1 using either of
+the Unix commands
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+
+<P>
+
+<P>
+<H3>Problems with Code or Tex Blocks</H3>
+<P>
+<H4>Code or TeX block errors in reST</H4>
+<P>
+Sometimes reStructuredText (reST) reports an "Unexpected indentation"
+at the beginning of a code block. If you see a <TT>!bc</TT>, which should
+have been removed by <TT>doconce format</TT>, it is usually an error in the
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then <TT>!bc</TT> will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
+reST to indicate a verbatim block of text).
+
+<P>
+<H4>Strange errors around code or TeX blocks in reST</H4>
+<P>
+If <TT>idx</TT> commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+<P>
+<H4>Verbatim code blocks inside lists look ugly</H4>
+<P>
+Read the the section <A HREF="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> above.  Start the
+<TT>!bc</TT> and <TT>!ec</TT> tags in column 1 of the file, and be careful with
+indenting the surrounding plain text of the list item correctly. If
+you cannot resolve the problem this way, get rid of the list and use
+paragraph headings instead. In fact, that is what is recommended:
+avoid verbatim code blocks inside lists (it makes life easier).
+
+<P>
+<H4>LaTeX code blocks inside lists look ugly</H4>
+<P>
+Same solution as for computer code blocks as described in the
+previous paragraph. Make sure the <TT>!bt</TT> and <TT>!et</TT> tags are in column 1
+and that the rest of the non-LaTeX surrounding text is correctly indented.
+Using paragraphs instead of list items is a good idea also here.
+
+<P>
+
+<P>
+<H3>Problems with reST Output</H3>
+<P>
+<H4>Lists do not appear in .rst files</H4>
+<P>
+Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.
+
+<P>
+<H4>Error message "Undefined substitution..." from reST</H4>
+<P>
+This may happen if there is much inline math in the text. reST cannot
+understand inline LaTeX commands and interprets them as illegal code.
+Just ignore these error messages.
+
+<P>
+<H4>Inconsistent headings in reST</H4>
+<P>
+The <TT>rst2*.py</TT> and Sphinx converters abort if the headers of sections
+are not consistent, i.e., a subsection must come under a section,
+and a subsubsection must come under a subsection (you cannot have
+a subsubsection directly under a section). Search for <TT>===</TT>,
+count the number of equality signs (or underscores if you use that)
+and make sure they decrease by two every time a lower level is encountered.
+
+<P>
+<H3>Problems with LaTeX Output</H3>
+<P>
+<H4>The LaTeX file does not compile</H4>
+<P>
+If the problem is undefined control sequence involving
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+\code{...}
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+the cause is usually a verbatim inline text (in backquotes in the
+Doconce file) spans more than one line. Make sure, in the Doconce source,
+that all inline verbatim text appears on the same line.
+
+<P>
+<H3>Problems with gwiki Output</H3>
+<P>
+<H4>Strange nested lists in gwiki</H4>
+<P>
+Doconce cannot handle nested lists correctly in the gwiki format.
+Use nonnested lists or edit the <TT>.gwiki</TT> file directly.
+
+<P>
+<H4>Lists in gwiki look ugly in the gwiki source</H4>
+<P>
+Because the Google Code wiki format requires all text of a list item to
+be on one line, Doconce simply concatenates lines in that format,
+and because of the indentation in the original Doconce text, the gwiki
+output looks somewhat ugly. The good thing is that this gwiki source
+is seldom to be looked at - it is the Doconce source that one edits
+further.
+
+<P>
+<H3>Debugging</H3>
+<P>
+Given a problem, extract a small portion of text surrounding the
+problematic area and debug that small piece of text. Doconce does a
+series of transformations of the text. The effect of each of these
+transformation steps are dumped to a logfile, named
+<TT>_doconce_debugging.log</TT>, if the to <TT>doconce format</TT> after the filename
+is <TT>debug</TT>. The logfile is inteded for the developers of Doconce, but
+may still give some idea of what is wrong.  The section "Basic Parsing
+Ideas" explains how the Doconce text is transformed into a specific
+format, and you need to know these steps to make use of the logfile.
+
+<P>
+
+<P>
+
+<P>
+<H1>Basic Parsing Ideas</H1>
 <P>
 <!-- avoid list here since we have code in between (never a good idea) -->
 

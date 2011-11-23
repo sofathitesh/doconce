@@ -55,7 +55,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Oct 29, 2011</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Nov 23, 2011</td>
 </tr>
 </tbody>
 </table>
@@ -1270,91 +1270,6 @@ identify portions of the file to be edited is a smart idea.
 Alternatively, the relevant LaTeX constructions can be inserted directly
 in the Doconce file using if-else preprocessor directives.</p>
 </div>
-<div class="section" id="troubleshooting">
-<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
-<p><em>Disclaimer.</em> Doconce has some support for syntax checking.
-If you encounter Python errors while running <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt>, the
-reason for the error is most likely a syntax problem in your Doconce
-source file. You have to track down this syntax problem yourself.</p>
-<p>However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of &#8220;debugging&#8221; Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.</p>
-<p><em>Code or TeX Block Errors in reST.</em> Sometimes reStructuredText (reST) reports an &#8220;Unexpected indentation&#8221;
-at the beginning of a code block. If you see a <tt class="docutils literal"><span class="pre">!bc</span></tt>, which should
-have been removed by <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt>, it is usually an error in the
-Doconce source, or a problem with the rst/sphinx translator.  Check if
-the line before the code block ends in one colon (not two!), a
-question mark, an exclamation mark, a comma, a period, or just a
-newline/space after text. If not, make sure that the ending is among
-the mentioned. Then <tt class="docutils literal"><span class="pre">!bc</span></tt> will most likely be replaced and a double
-colon at the preceding line will appear (which is the right way in
-reST to indicate a verbatim block of text).</p>
-<p><em>Strange Errors Around Code or TeX Blocks in reST.</em> If <tt class="docutils literal"><span class="pre">idx</span></tt> commands for defining indices are placed inside paragraphs,
-and especially right before a code block, the reST translator
-(rst and sphinx formats) may get confused and produce strange
-code blocks that cause errors when the reST text is transformed to
-other formats. The remedy is to define items for the index outside
-paragraphs.</p>
-<p><em>Error Message &#8220;Undefined substitution...&#8221; from reST.</em> This may happen if there is much inline math in the text. reST cannot
-understand inline LaTeX commands and interprets them as illegal code.
-Just ignore these error messages.</p>
-<p><em>Preprocessor Directives Do Not Work.</em> Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.</p>
-<p><em>The LaTeX File Does Not Compile.</em> If the problem is undefined control sequence involving</p>
-<div class="highlight-py"><pre>\code{...}</pre>
-</div>
-<p>the cause is usually a verbatim inline text (in backquotes in the
-Doconce file) spans more than one line. Make sure, in the Doconce source,
-that all inline verbatim text appears on the same line.</p>
-<p><em>Verbatim Code Blocks Inside Lists Look Ugly.</em> Read the the section <a class="reference internal" href="#sec-verbatim-blocks"><em>Blocks of Verbatim Computer Code</em></a> above.  Start the
-<tt class="docutils literal"><span class="pre">!bc</span></tt> and <tt class="docutils literal"><span class="pre">!ec</span></tt> tags in column 1 of the file, and be careful with
-indenting the surrounding plain text of the list item correctly. If
-you cannot resolve the problem this way, get rid of the list and use
-paragraph headings instead. In fact, that is what is recommended:
-avoid verbatim code blocks inside lists (it makes life easier).</p>
-<p><em>LaTeX Code Blocks Inside Lists Look Ugly.</em> Same solution as for computer code blocks as described in the
-previous paragraph. Make sure the <tt class="docutils literal"><span class="pre">!bt</span></tt> and <tt class="docutils literal"><span class="pre">!et</span></tt> tags are in column 1
-and that the rest of the non-LaTeX surrounding text is correctly indented.
-Using paragraphs instead of list items is a good idea also here.</p>
-<p><em>Inconsistent Headings in reStructuredText.</em> The <tt class="docutils literal"><span class="pre">rst2*.py</span></tt> and Sphinx converters abort if the headers of sections
-are not consistent, i.e., a subsection must come under a section,
-and a subsubsection must come under a subsection (you cannot have
-a subsubsection directly under a section). Search for <tt class="docutils literal"><span class="pre">===</span></tt>,
-count the number of equality signs (or underscores if you use that)
-and make sure they decrease by two every time a lower level is encountered.</p>
-<p><em>Strange Nested Lists in gwiki.</em> Doconce cannot handle nested lists correctly in the gwiki format.
-Use nonnested lists or edit the <tt class="docutils literal"><span class="pre">.gwiki</span></tt> file directly.</p>
-<p><em>Lists in gwiki Look Ugly in the Sourc.</em> Because the Google Code wiki format requires all text of a list item to
-be on one line, Doconce simply concatenates lines in that format,
-and because of the indentation in the original Doconce text, the gwiki
-output looks somewhat ugly. The good thing is that this gwiki source
-is seldom to be looked at - it is the Doconce source that one edits
-further.</p>
-<p><em>Problems with Boldface and Emphasize.</em> Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.</p>
-<p><em>Strange Non-English Characters.</em> Check the encoding of the <tt class="docutils literal"><span class="pre">.do.txt</span></tt> file with the Unix <tt class="docutils literal"><span class="pre">file</span></tt> command.
-If UTF-8, convert to latin-1 using the Unix command</p>
-<div class="highlight-py"><pre>Unix&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile</pre>
-</div>
-<p>(Doconce has a feature to detect the encoding, but it is not reliable and
-therefore turned off.)</p>
-<p><em>Debugging.</em> Given a problem, extract a small portion of text surrounding the
-problematic area and debug that small piece of text. Doconce does a
-series of transformations of the text. The effect of each of these
-transformation steps are dumped to a logfile, named
-<tt class="docutils literal"><span class="pre">_doconce_debugging.log</span></tt>, if the to <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt> after the filename
-is <tt class="docutils literal"><span class="pre">debug</span></tt>. The logfile is inteded for the developers of Doconce, but
-may still give some idea of what is wrong.  The section &#8220;Basic Parsing
-Ideas&#8221; explains how the Doconce text is transformed into a specific
-format, and you need to know these steps to make use of the logfile.</p>
-</div>
 <div class="section" id="header-and-footer">
 <h2>Header and Footer<a class="headerlink" href="#header-and-footer" title="Permalink to this headline">¶</a></h2>
 <p>Some formats use a header and footer in the document. LaTeX and
@@ -1367,8 +1282,166 @@ stand-alone. We have introduce the convention that if <tt class="docutils litera
 has, or has an intention have, a title), the header and footer
 are included, otherwise not.</p>
 </div>
+</div>
+<div class="section" id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="disclaimer">
+<h2>Disclaimer<a class="headerlink" href="#disclaimer" title="Permalink to this headline">¶</a></h2>
+<p>Doconce has some support for syntax checking.  If you encounter Python
+errors while running <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt>, the reason for the error is
+most likely a syntax problem in your Doconce source file. You have to
+track down this syntax problem yourself.</p>
+<p>However, the problem may well be a bug in Doconce. The Doconce
+software is incomplete, and many special cases of syntax are not yet
+discovered to give problems. Such special cases are also seldom easy to
+fix, so one important way of &#8220;debugging&#8221; Doconce is simply to change
+the formatting so that Doconce treats it properly. Doconce is very much
+based on regular expressions, which are known to be non-trivial to
+debug years after they are created. The main developer of Doconce has
+hardly any time to work on debugging the code, but the software works
+well for his diverse applications of it.</p>
+</div>
+<div class="section" id="general-problems">
+<h2>General Problems<a class="headerlink" href="#general-problems" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="figure-captions-are-incomplete">
+<h3>Figure captions are incomplete<a class="headerlink" href="#figure-captions-are-incomplete" title="Permalink to this headline">¶</a></h3>
+<p>If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as <em>one line</em>, at the same line as the FIGURE keyword.</p>
+</div>
+<div class="section" id="preprocessor-directives-do-not-work">
+<h3>Preprocessor directives do not work<a class="headerlink" href="#preprocessor-directives-do-not-work" title="Permalink to this headline">¶</a></h3>
+<p>Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.</p>
+</div>
+<div class="section" id="problems-with-boldface-and-emphasize">
+<h3>Problems with boldface and emphasize<a class="headerlink" href="#problems-with-boldface-and-emphasize" title="Permalink to this headline">¶</a></h3>
+<p>Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.</p>
+</div>
+<div class="section" id="strange-non-english-characters">
+<h3>Strange non-English characters<a class="headerlink" href="#strange-non-english-characters" title="Permalink to this headline">¶</a></h3>
+<p>Check the encoding of the <tt class="docutils literal"><span class="pre">.do.txt</span></tt> file with the Unix <tt class="docutils literal"><span class="pre">file</span></tt> command
+or with</p>
+<div class="highlight-py"><pre>Unix&gt; doconce guess_encoding myfile.do.txt</pre>
+</div>
+<p>If the encoding is utf-8, convert to latin-1 using either of
+the Unix commands</p>
+<div class="highlight-py"><pre>Unix&gt; doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Unix&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile</pre>
+</div>
+</div>
+</div>
+<div class="section" id="problems-with-code-or-tex-blocks">
+<h2>Problems with Code or Tex Blocks<a class="headerlink" href="#problems-with-code-or-tex-blocks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="code-or-tex-block-errors-in-rest">
+<h3>Code or TeX block errors in reST<a class="headerlink" href="#code-or-tex-block-errors-in-rest" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes reStructuredText (reST) reports an &#8220;Unexpected indentation&#8221;
+at the beginning of a code block. If you see a <tt class="docutils literal"><span class="pre">!bc</span></tt>, which should
+have been removed by <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt>, it is usually an error in the
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then <tt class="docutils literal"><span class="pre">!bc</span></tt> will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
+reST to indicate a verbatim block of text).</p>
+</div>
+<div class="section" id="strange-errors-around-code-or-tex-blocks-in-rest">
+<h3>Strange errors around code or TeX blocks in reST<a class="headerlink" href="#strange-errors-around-code-or-tex-blocks-in-rest" title="Permalink to this headline">¶</a></h3>
+<p>If <tt class="docutils literal"><span class="pre">idx</span></tt> commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.</p>
+</div>
+<div class="section" id="verbatim-code-blocks-inside-lists-look-ugly">
+<h3>Verbatim code blocks inside lists look ugly<a class="headerlink" href="#verbatim-code-blocks-inside-lists-look-ugly" title="Permalink to this headline">¶</a></h3>
+<p>Read the the section <a class="reference internal" href="#sec-verbatim-blocks"><em>Blocks of Verbatim Computer Code</em></a> above.  Start the
+<tt class="docutils literal"><span class="pre">!bc</span></tt> and <tt class="docutils literal"><span class="pre">!ec</span></tt> tags in column 1 of the file, and be careful with
+indenting the surrounding plain text of the list item correctly. If
+you cannot resolve the problem this way, get rid of the list and use
+paragraph headings instead. In fact, that is what is recommended:
+avoid verbatim code blocks inside lists (it makes life easier).</p>
+</div>
+<div class="section" id="latex-code-blocks-inside-lists-look-ugly">
+<h3>LaTeX code blocks inside lists look ugly<a class="headerlink" href="#latex-code-blocks-inside-lists-look-ugly" title="Permalink to this headline">¶</a></h3>
+<p>Same solution as for computer code blocks as described in the
+previous paragraph. Make sure the <tt class="docutils literal"><span class="pre">!bt</span></tt> and <tt class="docutils literal"><span class="pre">!et</span></tt> tags are in column 1
+and that the rest of the non-LaTeX surrounding text is correctly indented.
+Using paragraphs instead of list items is a good idea also here.</p>
+</div>
+</div>
+<div class="section" id="problems-with-rest-output">
+<h2>Problems with reST Output<a class="headerlink" href="#problems-with-rest-output" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="lists-do-not-appear-in-rst-files">
+<h3>Lists do not appear in .rst files<a class="headerlink" href="#lists-do-not-appear-in-rst-files" title="Permalink to this headline">¶</a></h3>
+<p>Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.</p>
+</div>
+<div class="section" id="error-message-undefined-substitution-from-rest">
+<h3>Error message &#8220;Undefined substitution...&#8221; from reST<a class="headerlink" href="#error-message-undefined-substitution-from-rest" title="Permalink to this headline">¶</a></h3>
+<p>This may happen if there is much inline math in the text. reST cannot
+understand inline LaTeX commands and interprets them as illegal code.
+Just ignore these error messages.</p>
+</div>
+<div class="section" id="inconsistent-headings-in-rest">
+<h3>Inconsistent headings in reST<a class="headerlink" href="#inconsistent-headings-in-rest" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">rst2*.py</span></tt> and Sphinx converters abort if the headers of sections
+are not consistent, i.e., a subsection must come under a section,
+and a subsubsection must come under a subsection (you cannot have
+a subsubsection directly under a section). Search for <tt class="docutils literal"><span class="pre">===</span></tt>,
+count the number of equality signs (or underscores if you use that)
+and make sure they decrease by two every time a lower level is encountered.</p>
+</div>
+</div>
+<div class="section" id="problems-with-latex-output">
+<h2>Problems with LaTeX Output<a class="headerlink" href="#problems-with-latex-output" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-latex-file-does-not-compile">
+<h3>The LaTeX file does not compile<a class="headerlink" href="#the-latex-file-does-not-compile" title="Permalink to this headline">¶</a></h3>
+<p>If the problem is undefined control sequence involving</p>
+<div class="highlight-py"><pre>\code{...}</pre>
+</div>
+<p>the cause is usually a verbatim inline text (in backquotes in the
+Doconce file) spans more than one line. Make sure, in the Doconce source,
+that all inline verbatim text appears on the same line.</p>
+</div>
+</div>
+<div class="section" id="problems-with-gwiki-output">
+<h2>Problems with gwiki Output<a class="headerlink" href="#problems-with-gwiki-output" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="strange-nested-lists-in-gwiki">
+<h3>Strange nested lists in gwiki<a class="headerlink" href="#strange-nested-lists-in-gwiki" title="Permalink to this headline">¶</a></h3>
+<p>Doconce cannot handle nested lists correctly in the gwiki format.
+Use nonnested lists or edit the <tt class="docutils literal"><span class="pre">.gwiki</span></tt> file directly.</p>
+</div>
+<div class="section" id="lists-in-gwiki-look-ugly-in-the-gwiki-source">
+<h3>Lists in gwiki look ugly in the gwiki source<a class="headerlink" href="#lists-in-gwiki-look-ugly-in-the-gwiki-source" title="Permalink to this headline">¶</a></h3>
+<p>Because the Google Code wiki format requires all text of a list item to
+be on one line, Doconce simply concatenates lines in that format,
+and because of the indentation in the original Doconce text, the gwiki
+output looks somewhat ugly. The good thing is that this gwiki source
+is seldom to be looked at - it is the Doconce source that one edits
+further.</p>
+</div>
+</div>
+<div class="section" id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<p>Given a problem, extract a small portion of text surrounding the
+problematic area and debug that small piece of text. Doconce does a
+series of transformations of the text. The effect of each of these
+transformation steps are dumped to a logfile, named
+<tt class="docutils literal"><span class="pre">_doconce_debugging.log</span></tt>, if the to <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt> after the filename
+is <tt class="docutils literal"><span class="pre">debug</span></tt>. The logfile is inteded for the developers of Doconce, but
+may still give some idea of what is wrong.  The section &#8220;Basic Parsing
+Ideas&#8221; explains how the Doconce text is transformed into a specific
+format, and you need to know these steps to make use of the logfile.</p>
+</div>
+</div>
 <div class="section" id="basic-parsing-ideas">
-<h2>Basic Parsing Ideas<a class="headerlink" href="#basic-parsing-ideas" title="Permalink to this headline">¶</a></h2>
+<h1>Basic Parsing Ideas<a class="headerlink" href="#basic-parsing-ideas" title="Permalink to this headline">¶</a></h1>
 <p>The (parts of) files with computer code to be directly included in
 the document are first copied into verbatim blocks.</p>
 <p>All verbatim and TeX blocks are removed and stored elsewhere
@@ -1399,7 +1472,6 @@ write out in the new format.  When the Doconce format is not
 sufficient to getting the layout you want, it is suggested to filter
 the document to another, more complex format, say reStructuredText or
 LaTeX, and work further on the document in this format.</p>
-</div>
 <div class="section" id="a-glimpse-of-how-to-write-a-new-translator">
 <h2>A Glimpse of How to Write a New Translator<a class="headerlink" href="#a-glimpse-of-how-to-write-a-new-translator" title="Permalink to this headline">¶</a></h2>
 <p>This is the HTML-specific part of the
@@ -1576,9 +1648,44 @@ groundwater flow.
 <li><a class="reference internal" href="#preprocessing-steps">Preprocessing Steps</a></li>
 <li><a class="reference internal" href="#splitting-documents-into-smaller-pieces">Splitting Documents into Smaller Pieces</a></li>
 <li><a class="reference internal" href="#missing-features">Missing Features</a></li>
-<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
 <li><a class="reference internal" href="#header-and-footer">Header and Footer</a></li>
-<li><a class="reference internal" href="#basic-parsing-ideas">Basic Parsing Ideas</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li><a class="reference internal" href="#disclaimer">Disclaimer</a></li>
+<li><a class="reference internal" href="#general-problems">General Problems</a><ul>
+<li><a class="reference internal" href="#figure-captions-are-incomplete">Figure captions are incomplete</a></li>
+<li><a class="reference internal" href="#preprocessor-directives-do-not-work">Preprocessor directives do not work</a></li>
+<li><a class="reference internal" href="#problems-with-boldface-and-emphasize">Problems with boldface and emphasize</a></li>
+<li><a class="reference internal" href="#strange-non-english-characters">Strange non-English characters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#problems-with-code-or-tex-blocks">Problems with Code or Tex Blocks</a><ul>
+<li><a class="reference internal" href="#code-or-tex-block-errors-in-rest">Code or TeX block errors in reST</a></li>
+<li><a class="reference internal" href="#strange-errors-around-code-or-tex-blocks-in-rest">Strange errors around code or TeX blocks in reST</a></li>
+<li><a class="reference internal" href="#verbatim-code-blocks-inside-lists-look-ugly">Verbatim code blocks inside lists look ugly</a></li>
+<li><a class="reference internal" href="#latex-code-blocks-inside-lists-look-ugly">LaTeX code blocks inside lists look ugly</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#problems-with-rest-output">Problems with reST Output</a><ul>
+<li><a class="reference internal" href="#lists-do-not-appear-in-rst-files">Lists do not appear in .rst files</a></li>
+<li><a class="reference internal" href="#error-message-undefined-substitution-from-rest">Error message &#8220;Undefined substitution...&#8221; from reST</a></li>
+<li><a class="reference internal" href="#inconsistent-headings-in-rest">Inconsistent headings in reST</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#problems-with-latex-output">Problems with LaTeX Output</a><ul>
+<li><a class="reference internal" href="#the-latex-file-does-not-compile">The LaTeX file does not compile</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#problems-with-gwiki-output">Problems with gwiki Output</a><ul>
+<li><a class="reference internal" href="#strange-nested-lists-in-gwiki">Strange nested lists in gwiki</a></li>
+<li><a class="reference internal" href="#lists-in-gwiki-look-ugly-in-the-gwiki-source">Lists in gwiki look ugly in the gwiki source</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#debugging">Debugging</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-parsing-ideas">Basic Parsing Ideas</a><ul>
 <li><a class="reference internal" href="#a-glimpse-of-how-to-write-a-new-translator">A Glimpse of How to Write a New Translator</a></li>
 <li><a class="reference internal" href="#typesetting-of-function-arguments-return-values-and-variables">Typesetting of Function Arguments, Return Values, and Variables</a></li>
 </ul>

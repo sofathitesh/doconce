@@ -6,17 +6,19 @@ The Mako preprocessor is used.
 </%doc>
 
 TITLE: A Test Document
-AUTHOR: Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
+AUTHOR: Hans Petter Langtangen Email: hpl@simula.no at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
 AUTHOR: Kaare Dump at Segfault Inc, Cyberspace
 AUTHOR: A. Dummy Author
+AUTHOR: I. S. Overworked at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and Fourth Inst
+AUTHOR: J. Doe mail: j_doe@cyberspace.com
 # latex demands DATE
 DATE: today
 
 The format of this document is
 % if FORMAT == 'HTML':
-plain, homemade HTML.
+plain, homemade HTML (from Doconce).
   % elif FORMAT == 'latex':
-plan, homemade LaTeX.
+plan, homemade LaTeX (from Doconce).
   %else:
 ${FORMAT}
 % endif
@@ -222,6 +224,34 @@ Here is eqnarray:
 !et
 
 
+======= Exercises =======
+
+===== Problem: Flip a Coin =====
+label{demo:ex:1} file=`flip_coin.py`
+
+Make a program that simulates flipping a coin $N$ times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
+
+
+__Hint 1.__ Use `r = random.random()` and define head as `r <= 0.5`.
+
+__Hint 2.__ Draw an integer among $\{1,2\}$ with
+`r = random.randint(1,2)` and define head when `r` is 1.
+
+
+===== Exercise: Compute a Probability =====
+label{demo:ex:2} file=`compute_prob.py`  solution=
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval $[0,1)$?
+To answer this question empirically, let a program
+draw $N$ such random numbers using Python's standard `random` module,
+count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
+compute the probability as $M/N$. Run the program with the four
+values $N=10^i$ for $i=1,2,3,6$.
+
+
 
 ************** File: testdoc.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
@@ -244,7 +274,7 @@ Automatically generated HTML file from Doconce source
 <TITLE>A Test Document</TITLE>
 <CENTER><H1>A Test Document</H1></CENTER>
 <CENTER>
-<B>Hans Petter Langtangen</B> [1, 2]
+<B>Hans Petter Langtangen</B> [1, 2] (<tt>hpl</tt> at <tt>simula.no</tt>)
 </CENTER>
 
 <CENTER>
@@ -255,14 +285,26 @@ Automatically generated HTML file from Doconce source
 <B>A. Dummy Author</B> 
 </CENTER>
 
+<CENTER>
+<B>I. S. Overworked</B> [4, 5, 6, 7]
+</CENTER>
+
+<CENTER>
+<B>J. Doe</B>  (<tt>j_doe</tt> at <tt>cyberspace.com</tt>)
+</CENTER>
+
 <P>
 <CENTER>[1] <B>Center for Biomedical Computing, Simula Research Laboratory</B></CENTER>
 <CENTER>[2] <B>Department of Informatics, University of Oslo</B></CENTER>
 <CENTER>[3] <B>Segfault Inc, Cyberspace</B></CENTER>
+<CENTER>[4] <B>Inst1</B></CENTER>
+<CENTER>[5] <B>Inst2, Somewhere</B></CENTER>
+<CENTER>[6] <B>Third Inst, Elsewhere</B></CENTER>
+<CENTER>[7] <B>Fourth Inst</B></CENTER>
 
 
 <!-- latex demands DATE -->
-<CENTER><H3>Oct 29, 2011</H3></CENTER>
+<CENTER><H3>Nov 23, 2011</H3></CENTER>
 <P>
 The format of this document is
 html
@@ -495,6 +537,43 @@ Here is eqnarray:
 
 <P>
 
+<P>
+<H1>Exercises</H1>
+<P>
+<H3>Problem: Flip a Coin <A NAME="demo:ex:1"></A></H3>
+ file=`flip_coin.py`
+
+<P>
+Make a program that simulates flipping a coin N times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
+
+<P>
+
+<P>
+<B>Hint 1.</B> Use <TT>r = random.random()</TT> and define head as <TT>r <= 0.5</TT>.
+
+<P>
+<B>Hint 2.</B> Draw an integer among \{1,2\} with
+<TT>r = random.randint(1,2)</TT> and define head when <TT>r</TT> is 1.
+
+<P>
+
+<P>
+<H3>Exercise: Compute a Probability <A NAME="demo:ex:2"></A></H3>
+ file=`compute_prob.py`  solution=
+
+<P>
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval [0,1)?
+To answer this question empirically, let a program
+draw N such random numbers using Python's standard <TT>random</TT> module,
+count how many of them, M, that fall in the interval (0.5,0.6), and
+compute the probability as M/N. Run the program with the four
+values N=10^i for i=1,2,3,6.
+
+<P>
+
 </BODY>
 </HTML>
     
@@ -562,42 +641,78 @@ Here is eqnarray:
 
 % #if LATEX_HEADING == "traditional"
 
-\author{Hans Petter Langtangen\footnote{Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo}
-\and Kaare Dump\footnote{Segfault Inc, Cyberspace}
-\and A. Dummy Author}
+\author{Hans Petter Langtangen\footnote{Email: \texttt{hpl@simula.no}. Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo.}
+\and Kaare Dump\footnote{Segfault Inc, Cyberspace.}
+\and A. Dummy Author
+\and I. S. Overworked\footnote{Inst1; Inst2, Somewhere; Third Inst, Elsewhere; and Fourth Inst.}
+\and J. Doe\footnote{Email: \texttt{j\_doe@cyberspace.com}.}}
 
 % #elif LATEX_HEADING == "titlepage"
 \vspace{1.3cm}
 
-{\Large\textsf{Hans Petter Langtangen${}^{1, 2}$}}\\ [3mm]
+{\Large\textsf{Hans Petter Langtangen${}^{1, 2}$ (\texttt{hpl@simula.no})}}\\ [3mm]
 
 {\Large\textsf{Kaare Dump${}^{3}$}}\\ [3mm]
 
 {\Large\textsf{A. Dummy Author${}^{}$}}\\ [3mm]
+
+{\Large\textsf{I. S. Overworked${}^{4, 5, 6, 7}$}}\\ [3mm]
+
+{\Large\textsf{J. Doe${}^{}$ (\texttt{j\_doe@cyberspace.com})}}\\ [3mm]
 
 \ \\ [2mm]
 
 {\large\textsf{${}^1$Center for Biomedical Computing, Simula Research Laboratory} \\ [1.5mm]}
 {\large\textsf{${}^2$Department of Informatics, University of Oslo} \\ [1.5mm]}
 {\large\textsf{${}^3$Segfault Inc, Cyberspace} \\ [1.5mm]}
+{\large\textsf{${}^4$Inst1} \\ [1.5mm]}
+{\large\textsf{${}^5$Inst2, Somewhere} \\ [1.5mm]}
+{\large\textsf{${}^6$Third Inst, Elsewhere} \\ [1.5mm]}
+{\large\textsf{${}^7$Fourth Inst} \\ [1.5mm]}
 
 % #else
 
 \begin{center}
-{\bf Hans Petter Langtangen${}^{1, 2}$} \\ [0mm]
+{\bf Hans Petter Langtangen${}^{1, 2}$ (\texttt{hpl@simula.no})} \\ [0mm]
 \end{center}
+
 
 \begin{center}
 {\bf Kaare Dump${}^{3}$} \\ [0mm]
 \end{center}
 
+
 \begin{center}
 {\bf A. Dummy Author${}^{}$} \\ [0mm]
 \end{center}
-\centerline{{\small ${}^1$Center for Biomedical Computing, Simula Research Laboratory} \\ [-1.0mm]}\centerline{{\small ${}^2$Department of Informatics, University of Oslo} \\ [-1.0mm]}\centerline{{\small ${}^3$Segfault Inc, Cyberspace} \\ [-1.0mm]}
+
+
+\begin{center}
+{\bf I. S. Overworked${}^{4, 5, 6, 7}$} \\ [0mm]
+\end{center}
+
+
+\begin{center}
+{\bf J. Doe${}^{}$ (\texttt{j\_doe@cyberspace.com})} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\centerline{{\small ${}^1$Center for Biomedical Computing, Simula Research Laboratory}}
+\centerline{{\small ${}^2$Department of Informatics, University of Oslo}}
+\centerline{{\small ${}^3$Segfault Inc, Cyberspace}}
+\centerline{{\small ${}^4$Inst1}}
+\centerline{{\small ${}^5$Inst2, Somewhere}}
+\centerline{{\small ${}^6$Third Inst, Elsewhere}}
+\centerline{{\small ${}^7$Fourth Inst}}
+\end{center}
+
 \vspace{4mm}
 
 % #endif
+
+% ----------------- End of author(s) -------------------------
+
 % latex demands DATE
 
 
@@ -605,13 +720,13 @@ Here is eqnarray:
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Oct 29, 2011}
+\date{Nov 23, 2011}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Oct 29, 2011}}
+{\large\textsf{Nov 23, 2011}}
 
 \end{center}
 \vfill
@@ -620,13 +735,13 @@ Here is eqnarray:
 % #else
 
 \begin{center}
-Oct 29, 2011
+Nov 23, 2011
 \end{center}
 
 % #endif
 
 The format of this document is
-plan, homemade {\LaTeX}.
+plan, homemade {\LaTeX} (from Doconce).
 
 
 \section{Section 1}
@@ -909,7 +1024,35 @@ Here is eqnarray:
 {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\ 
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}
-!et
+
+
+\section{Exercises}
+
+\subsection{Problem: Flip a Coin}
+\label{demo:ex:1} file=`flip_coin.py`
+
+Make a program that simulates flipping a coin $N$ times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
+
+
+\paragraph{Hint 1.}
+Use \code{r = random.random()} and define head as \code{r <= 0.5}.
+
+\paragraph{Hint 2.}
+Draw an integer among $\{1,2\}$ with
+\code{r = random.randint(1,2)} and define head when \code{r} is 1.
+
+\subsection{Exercise: Compute a Probability}
+\label{demo:ex:2} file=`compute_prob.py`  solution=
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval $[0,1)$?
+To answer this question empirically, let a program
+draw $N$ such random numbers using Python's standard \code{random} module,
+count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
+compute the probability as $M/N$. Run the program with the four
+values $N=10^i$ for $i=1,2,3,6$.
 
 \printindex
 
@@ -924,11 +1067,11 @@ Here is eqnarray:
 A Test Document
 ===============
 
-:Author: Hans Petter Langtangen, Kaare Dump, A. Dummy Author
+:Author: Hans Petter Langtangen (hpl at simula.no), Kaare Dump, A. Dummy Author, I. S. Overworked, J. Doe (j_doe at cyberspace.com)
 
 .. latex demands DATE
 
-:Date: Oct 29, 2011
+:Date: Nov 23, 2011
 
 The format of this document is
 rst
@@ -1164,8 +1307,36 @@ Here is eqnarray::
 
 
 
+Exercises
+=========
+
+.. _demo:ex:1:
+
+===== Problem: Flip a Coin ===== file=`flip_coin.py`
+
+Make a program that simulates flipping a coin N times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
 
 
+*Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
+
+*Hint 2.* Draw an integer among \{1,2\} with
+``r = random.randint(1,2)`` and define head when ``r`` is 1.
+
+
+.. _demo:ex:2:
+
+Exercise: Compute a Probability ===== file=`compute_prob.py`  solution
+----------------------------------------------------------------------
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval [0,1)?
+To answer this question empirically, let a program
+draw N such random numbers using Python's standard ``random`` module,
+count how many of them, M, that fall in the interval (0.5,0.6), and
+compute the probability as M/N. Run the program with the four
+values N=10^i for i=1,2,3,6.
 ************** File: testdoc.sphinx.rst *****************
 .. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)
@@ -1175,11 +1346,11 @@ Here is eqnarray::
 A Test Document
 ===============
 
-:Author: Hans Petter Langtangen, Kaare Dump, A. Dummy Author
+:Author: Hans Petter Langtangen (hpl at simula.no), Kaare Dump, A. Dummy Author, I. S. Overworked, J. Doe (j_doe at cyberspace.com)
 
 .. latex demands DATE
 
-:Date: Oct 29, 2011
+:Date: Nov 23, 2011
 
 The format of this document is
 sphinx
@@ -1441,18 +1612,46 @@ Here is eqnarray:
 
 
 
+Exercises
+=========
+
+.. _demo:ex:1:
+
+===== Problem: Flip a Coin ===== file=`flip_coin.py`
+
+Make a program that simulates flipping a coin :math:`N` times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
 
 
+*Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
+
+*Hint 2.* Draw an integer among :math:`\{1,2\}` with
+``r = random.randint(1,2)`` and define head when ``r`` is 1.
+
+
+.. _demo:ex:2:
+
+Exercise: Compute a Probability ===== file=`compute_prob.py`  solution
+----------------------------------------------------------------------
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval :math:`[0,1)`?
+To answer this question empirically, let a program
+draw :math:`N` such random numbers using Python's standard ``random`` module,
+count how many of them, :math:`M`, that fall in the interval :math:`(0.5,0.6)`, and
+compute the probability as :math:`M/N`. Run the program with the four
+values :math:`N=10^i` for :math:`i=1,2,3,6`.
 ************** File: testdoc.gwiki *****************
 
 
 #summary A Test Document
 <wiki:toc max_depth="2" />
-By *Hans Petter Langtangen*, *Kaare Dump*, and *A. Dummy Author*
+By *Hans Petter Langtangen* (hpl at simula.no), *Kaare Dump*, *A. Dummy Author*, *I. S. Overworked*, and *J. Doe* (j_doe at cyberspace.com)
 
 <wiki:comment> latex demands DATE </wiki:comment>
 
-==== Oct 29, 2011 ====
+==== Nov 23, 2011 ====
 
 The format of this document is
 gwiki
@@ -1645,11 +1844,41 @@ Here is eqnarray:
 \end{eqnarray}
 }}}
 
+
+
+== Exercises ==
+
+==== Problem: Flip a Coin ====
+
+ file=`flip_coin.py`
+
+Make a program that simulates flipping a coin `N` times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
+
+
+*Hint 1.* Use `r = random.random()` and define head as `r <= 0.5`.
+
+*Hint 2.* Draw an integer among `\{1,2\}` with
+`r = random.randint(1,2)` and define head when `r` is 1.
+
+==== Exercise: Compute a Probability ====
+
+ file=`compute_prob.py`  solution=
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval `[0,1)`?
+To answer this question empirically, let a program
+draw `N` such random numbers using Python's standard `random` module,
+count how many of them, `M`, that fall in the interval `(0.5,0.6)`, and
+compute the probability as `M/N`. Run the program with the four
+values `N=10^i` for `i=1,2,3,6`.
+
 ************** File: testdoc.st *****************
 
 
 TITLE: A Test Document
-BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo); Kaare Dump (Segfault Inc, Cyberspace); A. Dummy AuthorDATE: today
+BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo); Kaare Dump (Segfault Inc, Cyberspace); A. Dummy Author; I. S. Overworked (Inst1, and Inst2, Somewhere, and Third Inst, Elsewhere, and Fourth Inst); J. DoeDATE: today
 
 The format of this document is
 st
@@ -1811,18 +2040,34 @@ Here is eqnarray::
         {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
         \end{eqnarray}
 
+Exercises
+Problem: Flip a Coin
+ file=`flip_coin.py`
+
+Make a program that simulates flipping a coin N times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
 
 
+*Hint 1.* Use 'r = random.random()' and define head as 'r <= 0.5'.
 
+*Hint 2.* Draw an integer among \{1,2\} with
+'r = random.randint(1,2)' and define head when 'r' is 1.
+Exercise: Compute a Probability
+ file=`compute_prob.py`  solution=
 
-
-
-
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval [0,1)?
+To answer this question empirically, let a program
+draw N such random numbers using Python's standard 'random' module,
+count how many of them, M, that fall in the interval (0.5,0.6), and
+compute the probability as M/N. Run the program with the four
+values N=10^i for i=1,2,3,6.
 ************** File: testdoc.epytext *****************
 
 
 TITLE: A Test Document
-BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo); Kaare Dump (Segfault Inc, Cyberspace); A. Dummy AuthorDATE: today
+BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Laboratory, and Department of Informatics, University of Oslo); Kaare Dump (Segfault Inc, Cyberspace); A. Dummy Author; I. S. Overworked (Inst1, and Inst2, Somewhere, and Third Inst, Elsewhere, and Fourth Inst); J. DoeDATE: today
 
 The format of this document is
 epytext
@@ -2000,24 +2245,57 @@ Here is eqnarray::
 
 
 
+Exercises
+=========
+
+Problem: Flip a Coin
+--------------------
+ file=`flip_coin.py`
+
+Make a program that simulates flipping a coin M{N} times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
 
 
+I{Hint 1.} Use C{r = random.random()} and define head as C{r <= 0.5}.
+
+I{Hint 2.} Draw an integer among M{\{1,2\}} with
+C{r = random.randint(1,2)} and define head when C{r} is 1.
+
+
+Exercise: Compute a Probability
+-------------------------------
+ file=`compute_prob.py`  solution=
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval M{[0,1)}?
+To answer this question empirically, let a program
+draw M{N} such random numbers using Python's standard C{random} module,
+count how many of them, M{M}, that fall in the interval M{(0.5,0.6)}, and
+compute the probability as M{M/N}. Run the program with the four
+values M{N=10^i} for M{i=1,2,3,6}.
 ************** File: testdoc.txt *****************
 
 
 A Test Document
 ===============
 
-Hans Petter Langtangen [1, 2]
-Kaare Dump [3]
-A. Dummy Author 
+Hans Petter Langtangen [1, 2] (hpl@simula.no)
+Kaare Dump [3] 
+A. Dummy Author  
+I. S. Overworked [4, 5, 6, 7] 
+J. Doe  (j_doe@cyberspace.com)
 
 [1] Center for Biomedical Computing, Simula Research Laboratory
 [2] Department of Informatics, University of Oslo
 [3] Segfault Inc, Cyberspace
+[4] Inst1
+[5] Inst2, Somewhere
+[6] Third Inst, Elsewhere
+[7] Fourth Inst
 
 
-Date: Oct 29, 2011
+Date: Nov 23, 2011
 
 The format of this document is
 plain
@@ -2206,8 +2484,35 @@ Here is eqnarray::
 
 
 
+Exercises
+=========
+
+Problem: Flip a Coin
+--------------------
+ file=`flip_coin.py`
+
+Make a program that simulates flipping a coin N times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
 
 
+*Hint 1.* Use r = random.random() and define head as r <= 0.5.
+
+*Hint 2.* Draw an integer among \{1,2\} with
+r = random.randint(1,2) and define head when r is 1.
+
+
+Exercise: Compute a Probability
+-------------------------------
+ file=`compute_prob.py`  solution=
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval [0,1)?
+To answer this question empirically, let a program
+draw N such random numbers using Python's standard random module,
+count how many of them, M, that fall in the interval (0.5,0.6), and
+compute the probability as M/N. Run the program with the four
+values N=10^i for i=1,2,3,6.
 ************** File: tmp_encoding.txt *****************
 NOT FOUND!
 ************** File: make.sh *****************
@@ -2781,7 +3086,7 @@ Automatically generated HTML file from Doconce source
 <CENTER>[2] <B>University of Oslo</B></CENTER>
 
 
-<CENTER><H3>Oct 29, 2011</H3></CENTER>
+<CENTER><H3>Nov 23, 2011</H3></CENTER>
 <P>
 
 <P>
@@ -3631,7 +3936,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Oct 29, 2011
+:Date: Nov 23, 2011
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -4408,7 +4713,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Oct 29, 2011
+:Date: Nov 23, 2011
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -5222,7 +5527,7 @@ the Pandoc Haskell program must of course be installed.
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== Oct 29, 2011 ====
+==== Nov 23, 2011 ====
 
  * When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format?
  * Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging?
@@ -7229,13 +7534,13 @@ the Pandoc Haskell program must of course be installed.
 Doconce: Document Once, Include Anywhere
 ========================================
 
-Hans Petter Langtangen [1, 2]
+Hans Petter Langtangen [1, 2] 
 
 [1] Simula Research Laboratory
 [2] University of Oslo
 
 
-Date: Oct 29, 2011
+Date: Nov 23, 2011
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -7983,7 +8288,7 @@ the Pandoc Haskell program must of course be installed.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 29 Oct 2011 (22:10)
+DATE: Wed, 23 Nov 2011 (00:58)
 
 
 
@@ -8087,7 +8392,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 29 Oct 2011 (22:10)
+DATE: Wed, 23 Nov 2011 (00:58)
 
 
 
@@ -8201,7 +8506,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Sat, 29 Oct 2011 (22:10)</CENTER>
+<CENTER>Wed, 23 Nov 2011 (00:58)</CENTER>
 
 
 
@@ -8332,7 +8637,7 @@ And here is a table:
 <H6>Dept. of Informatics, Univ. of Oslo</H6>
 </CENTER>
 
-<CENTER>Sat, 29 Oct 2011 (22:10)</CENTER>
+<CENTER>Wed, 23 Nov 2011 (00:58)</CENTER>
 
 
 
@@ -9660,122 +9965,6 @@ identify portions of the file to be edited is a smart idea.
 Alternatively, the relevant LaTeX constructions can be inserted directly
 in the Doconce file using if-else preprocessor directives.
 
-
-===== Troubleshooting =====
-
-__Disclaimer.__ Doconce has some support for syntax checking.
-If you encounter Python errors while running `doconce format`, the
-reason for the error is most likely a syntax problem in your Doconce
-source file. You have to track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
-
-__Code or TeX Block Errors in reST.__
-Sometimes reStructuredText (reST) reports an "Unexpected indentation"
-at the beginning of a code block. If you see a `!bc`, which should
-have been removed by `doconce format`, it is usually an error in the
-Doconce source, or a problem with the rst/sphinx translator.  Check if
-the line before the code block ends in one colon (not two!), a
-question mark, an exclamation mark, a comma, a period, or just a
-newline/space after text. If not, make sure that the ending is among
-the mentioned. Then `!bc` will most likely be replaced and a double
-colon at the preceding line will appear (which is the right way in
-reST to indicate a verbatim block of text).
-
-__Strange Errors Around Code or TeX Blocks in reST.__
-If `idx` commands for defining indices are placed inside paragraphs,
-and especially right before a code block, the reST translator
-(rst and sphinx formats) may get confused and produce strange
-code blocks that cause errors when the reST text is transformed to
-other formats. The remedy is to define items for the index outside
-paragraphs.
-
-__Error Message "Undefined substitution..." from reST.__
-This may happen if there is much inline math in the text. reST cannot
-understand inline LaTeX commands and interprets them as illegal code.
-Just ignore these error messages.
-
-__Preprocessor Directives Do Not Work.__
-Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.
-
-__The LaTeX File Does Not Compile.__
-If the problem is undefined control sequence involving
-!bc
-\code{...}
-!ec
-the cause is usually a verbatim inline text (in backquotes in the
-Doconce file) spans more than one line. Make sure, in the Doconce source,
-that all inline verbatim text appears on the same line.
-
-__Verbatim Code Blocks Inside Lists Look Ugly.__
-Read the Section ref{sec:verbatim:blocks} above.  Start the
-`!bc` and `!ec` tags in column 1 of the file, and be careful with
-indenting the surrounding plain text of the list item correctly. If
-you cannot resolve the problem this way, get rid of the list and use
-paragraph headings instead. In fact, that is what is recommended:
-avoid verbatim code blocks inside lists (it makes life easier).
-
-__LaTeX Code Blocks Inside Lists Look Ugly.__
-Same solution as for computer code blocks as described in the
-previous paragraph. Make sure the `!bt` and `!et` tags are in column 1
-and that the rest of the non-LaTeX surrounding text is correctly indented.
-Using paragraphs instead of list items is a good idea also here.
-
-__Inconsistent Headings in reStructuredText.__
-The `rst2*.py` and Sphinx converters abort if the headers of sections
-are not consistent, i.e., a subsection must come under a section,
-and a subsubsection must come under a subsection (you cannot have
-a subsubsection directly under a section). Search for `===`,
-count the number of equality signs (or underscores if you use that)
-and make sure they decrease by two every time a lower level is encountered.
-
-__Strange Nested Lists in gwiki.__
-Doconce cannot handle nested lists correctly in the gwiki format.
-Use nonnested lists or edit the `.gwiki` file directly.
-
-__Lists in gwiki Look Ugly in the Sourc.__
-Because the Google Code wiki format requires all text of a list item to
-be on one line, Doconce simply concatenates lines in that format,
-and because of the indentation in the original Doconce text, the gwiki
-output looks somewhat ugly. The good thing is that this gwiki source
-is seldom to be looked at - it is the Doconce source that one edits
-further.
-
-__Problems with Boldface and Emphasize.__
-Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.
-
-__Strange Non-English Characters.__
-Check the encoding of the `.do.txt` file with the Unix `file` command.
-If UTF-8, convert to latin-1 using the Unix command
-!bc
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-!ec
-(Doconce has a feature to detect the encoding, but it is not reliable and
-therefore turned off.)
-
-__Debugging.__
-Given a problem, extract a small portion of text surrounding the
-problematic area and debug that small piece of text. Doconce does a
-series of transformations of the text. The effect of each of these
-transformation steps are dumped to a logfile, named
-`_doconce_debugging.log`, if the to `doconce format` after the filename
-is `debug`. The logfile is inteded for the developers of Doconce, but
-may still give some idea of what is wrong.  The section "Basic Parsing
-Ideas" explains how the Doconce text is transformed into a specific
-format, and you need to know these steps to make use of the logfile.
-
-
 ===== Header and Footer =====
 
 Some formats use a header and footer in the document. LaTeX and
@@ -9789,7 +9978,167 @@ has, or has an intention have, a title), the header and footer
 are included, otherwise not.
 
 
-===== Basic Parsing Ideas =====
+======= Troubleshooting =======
+
+===== Disclaimer =====
+
+Doconce has some support for syntax checking.  If you encounter Python
+errors while running `doconce format`, the reason for the error is
+most likely a syntax problem in your Doconce source file. You have to
+track down this syntax problem yourself.
+
+However, the problem may well be a bug in Doconce. The Doconce
+software is incomplete, and many special cases of syntax are not yet
+discovered to give problems. Such special cases are also seldom easy to
+fix, so one important way of "debugging" Doconce is simply to change
+the formatting so that Doconce treats it properly. Doconce is very much
+based on regular expressions, which are known to be non-trivial to
+debug years after they are created. The main developer of Doconce has
+hardly any time to work on debugging the code, but the software works
+well for his diverse applications of it.
+
+
+===== General Problems ======
+
+=== Figure captions are incomplete ===
+
+If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as *one line*, at the same line as the FIGURE keyword.
+
+=== Preprocessor directives do not work ===
+
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
+
+=== Problems with boldface and emphasize ===
+
+Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.
+
+=== Strange non-English characters ===
+
+Check the encoding of the `.do.txt` file with the Unix `file` command
+or with
+!bc
+Unix> doconce guess_encoding myfile.do.txt
+!ec
+If the encoding is utf-8, convert to latin-1 using either of
+the Unix commands
+!bc
+Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+!ec
+
+
+===== Problems with Code or Tex Blocks =====
+
+=== Code or TeX block errors in reST ===
+
+Sometimes reStructuredText (reST) reports an "Unexpected indentation"
+at the beginning of a code block. If you see a `!bc`, which should
+have been removed by `doconce format`, it is usually an error in the
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then `!bc` will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
+reST to indicate a verbatim block of text).
+
+=== Strange errors around code or TeX blocks in reST ===
+
+If `idx` commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+=== Verbatim code blocks inside lists look ugly ===
+
+Read the Section ref{sec:verbatim:blocks} above.  Start the
+`!bc` and `!ec` tags in column 1 of the file, and be careful with
+indenting the surrounding plain text of the list item correctly. If
+you cannot resolve the problem this way, get rid of the list and use
+paragraph headings instead. In fact, that is what is recommended:
+avoid verbatim code blocks inside lists (it makes life easier).
+
+=== LaTeX code blocks inside lists look ugly ===
+
+Same solution as for computer code blocks as described in the
+previous paragraph. Make sure the `!bt` and `!et` tags are in column 1
+and that the rest of the non-LaTeX surrounding text is correctly indented.
+Using paragraphs instead of list items is a good idea also here.
+
+
+===== Problems with reST Output ======
+
+=== Lists do not appear in .rst files ===
+
+Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.
+
+=== Error message "Undefined substitution..." from reST ===
+
+This may happen if there is much inline math in the text. reST cannot
+understand inline LaTeX commands and interprets them as illegal code.
+Just ignore these error messages.
+
+=== Inconsistent headings in reST ===
+
+The `rst2*.py` and Sphinx converters abort if the headers of sections
+are not consistent, i.e., a subsection must come under a section,
+and a subsubsection must come under a subsection (you cannot have
+a subsubsection directly under a section). Search for `===`,
+count the number of equality signs (or underscores if you use that)
+and make sure they decrease by two every time a lower level is encountered.
+
+===== Problems with LaTeX Output ======
+
+=== The LaTeX file does not compile ===
+
+If the problem is undefined control sequence involving
+!bc
+\code{...}
+!ec
+the cause is usually a verbatim inline text (in backquotes in the
+Doconce file) spans more than one line. Make sure, in the Doconce source,
+that all inline verbatim text appears on the same line.
+
+===== Problems with gwiki Output ======
+
+=== Strange nested lists in gwiki ===
+
+Doconce cannot handle nested lists correctly in the gwiki format.
+Use nonnested lists or edit the `.gwiki` file directly.
+
+=== Lists in gwiki look ugly in the gwiki source ===
+
+Because the Google Code wiki format requires all text of a list item to
+be on one line, Doconce simply concatenates lines in that format,
+and because of the indentation in the original Doconce text, the gwiki
+output looks somewhat ugly. The good thing is that this gwiki source
+is seldom to be looked at - it is the Doconce source that one edits
+further.
+
+===== Debugging =====
+
+Given a problem, extract a small portion of text surrounding the
+problematic area and debug that small piece of text. Doconce does a
+series of transformations of the text. The effect of each of these
+transformation steps are dumped to a logfile, named
+`_doconce_debugging.log`, if the to `doconce format` after the filename
+is `debug`. The logfile is inteded for the developers of Doconce, but
+may still give some idea of what is wrong.  The section "Basic Parsing
+Ideas" explains how the Doconce text is transformed into a specific
+format, and you need to know these steps to make use of the logfile.
+
+
+
+======= Basic Parsing Ideas =======
 
 # avoid list here since we have code in between (never a good idea)
 
@@ -9992,7 +10341,7 @@ Automatically generated HTML file from Doconce source
 <CENTER>[2] <B>University of Oslo</B></CENTER>
 
 
-<CENTER><H3>Oct 29, 2011</H3></CENTER>
+<CENTER><H3>Nov 23, 2011</H3></CENTER>
 <P>
 
 <P>
@@ -11687,130 +12036,6 @@ Alternatively, the relevant LaTeX constructions can be inserted directly
 in the Doconce file using if-else preprocessor directives.
 
 <P>
-
-<P>
-<H3>Troubleshooting</H3>
-<P>
-<B>Disclaimer.</B> Doconce has some support for syntax checking.
-If you encounter Python errors while running <TT>doconce format</TT>, the
-reason for the error is most likely a syntax problem in your Doconce
-source file. You have to track down this syntax problem yourself.
-
-<P>
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
-
-<P>
-<B>Code or TeX Block Errors in reST.</B> Sometimes reStructuredText (reST) reports an "Unexpected indentation"
-at the beginning of a code block. If you see a <TT>!bc</TT>, which should
-have been removed by <TT>doconce format</TT>, it is usually an error in the
-Doconce source, or a problem with the rst/sphinx translator.  Check if
-the line before the code block ends in one colon (not two!), a
-question mark, an exclamation mark, a comma, a period, or just a
-newline/space after text. If not, make sure that the ending is among
-the mentioned. Then <TT>!bc</TT> will most likely be replaced and a double
-colon at the preceding line will appear (which is the right way in
-reST to indicate a verbatim block of text).
-
-<P>
-<B>Strange Errors Around Code or TeX Blocks in reST.</B> If <TT>idx</TT> commands for defining indices are placed inside paragraphs,
-and especially right before a code block, the reST translator
-(rst and sphinx formats) may get confused and produce strange
-code blocks that cause errors when the reST text is transformed to
-other formats. The remedy is to define items for the index outside
-paragraphs.
-
-<P>
-<B>Error Message "Undefined substitution..." from reST.</B> This may happen if there is much inline math in the text. reST cannot
-understand inline LaTeX commands and interprets them as illegal code.
-Just ignore these error messages.
-
-<P>
-<B>Preprocessor Directives Do Not Work.</B> Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.
-
-<P>
-<B>The LaTeX File Does Not Compile.</B> If the problem is undefined control sequence involving
-<!-- BEGIN VERBATIM BLOCK  -->
-<BLOCKQUOTE><PRE>
-\code{...}
-</PRE></BLOCKQUOTE>
-<! -- END VERBATIM BLOCK -->
-the cause is usually a verbatim inline text (in backquotes in the
-Doconce file) spans more than one line. Make sure, in the Doconce source,
-that all inline verbatim text appears on the same line.
-
-<P>
-<B>Verbatim Code Blocks Inside Lists Look Ugly.</B> Read the the section <A HREF="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> above.  Start the
-<TT>!bc</TT> and <TT>!ec</TT> tags in column 1 of the file, and be careful with
-indenting the surrounding plain text of the list item correctly. If
-you cannot resolve the problem this way, get rid of the list and use
-paragraph headings instead. In fact, that is what is recommended:
-avoid verbatim code blocks inside lists (it makes life easier).
-
-<P>
-<B>LaTeX Code Blocks Inside Lists Look Ugly.</B> Same solution as for computer code blocks as described in the
-previous paragraph. Make sure the <TT>!bt</TT> and <TT>!et</TT> tags are in column 1
-and that the rest of the non-LaTeX surrounding text is correctly indented.
-Using paragraphs instead of list items is a good idea also here.
-
-<P>
-<B>Inconsistent Headings in reStructuredText.</B> The <TT>rst2*.py</TT> and Sphinx converters abort if the headers of sections
-are not consistent, i.e., a subsection must come under a section,
-and a subsubsection must come under a subsection (you cannot have
-a subsubsection directly under a section). Search for <TT>===</TT>,
-count the number of equality signs (or underscores if you use that)
-and make sure they decrease by two every time a lower level is encountered.
-
-<P>
-<B>Strange Nested Lists in gwiki.</B> Doconce cannot handle nested lists correctly in the gwiki format.
-Use nonnested lists or edit the <TT>.gwiki</TT> file directly.
-
-<P>
-<B>Lists in gwiki Look Ugly in the Sourc.</B> Because the Google Code wiki format requires all text of a list item to
-be on one line, Doconce simply concatenates lines in that format,
-and because of the indentation in the original Doconce text, the gwiki
-output looks somewhat ugly. The good thing is that this gwiki source
-is seldom to be looked at - it is the Doconce source that one edits
-further.
-
-<P>
-<B>Problems with Boldface and Emphasize.</B> Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.
-
-<P>
-<B>Strange Non-English Characters.</B> Check the encoding of the <TT>.do.txt</TT> file with the Unix <TT>file</TT> command.
-If UTF-8, convert to latin-1 using the Unix command
-<!-- BEGIN VERBATIM BLOCK  -->
-<BLOCKQUOTE><PRE>
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-</PRE></BLOCKQUOTE>
-<! -- END VERBATIM BLOCK -->
-(Doconce has a feature to detect the encoding, but it is not reliable and
-therefore turned off.)
-
-<P>
-<B>Debugging.</B> Given a problem, extract a small portion of text surrounding the
-problematic area and debug that small piece of text. Doconce does a
-series of transformations of the text. The effect of each of these
-transformation steps are dumped to a logfile, named
-<TT>_doconce_debugging.log</TT>, if the to <TT>doconce format</TT> after the filename
-is <TT>debug</TT>. The logfile is inteded for the developers of Doconce, but
-may still give some idea of what is wrong.  The section "Basic Parsing
-Ideas" explains how the Doconce text is transformed into a specific
-format, and you need to know these steps to make use of the logfile.
-
-<P>
-
-<P>
 <H3>Header and Footer</H3>
 <P>
 Some formats use a header and footer in the document. LaTeX and
@@ -11826,7 +12051,195 @@ are included, otherwise not.
 <P>
 
 <P>
-<H3>Basic Parsing Ideas</H3>
+<H1>Troubleshooting</H1>
+<P>
+<H3>Disclaimer</H3>
+<P>
+Doconce has some support for syntax checking.  If you encounter Python
+errors while running <TT>doconce format</TT>, the reason for the error is
+most likely a syntax problem in your Doconce source file. You have to
+track down this syntax problem yourself.
+
+<P>
+However, the problem may well be a bug in Doconce. The Doconce
+software is incomplete, and many special cases of syntax are not yet
+discovered to give problems. Such special cases are also seldom easy to
+fix, so one important way of "debugging" Doconce is simply to change
+the formatting so that Doconce treats it properly. Doconce is very much
+based on regular expressions, which are known to be non-trivial to
+debug years after they are created. The main developer of Doconce has
+hardly any time to work on debugging the code, but the software works
+well for his diverse applications of it.
+
+<P>
+
+<P>
+<H3>General Problems</H3>
+<P>
+<H4>Figure captions are incomplete</H4>
+<P>
+If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as <EM>one line</EM>, at the same line as the FIGURE keyword.
+
+<P>
+<H4>Preprocessor directives do not work</H4>
+<P>
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
+
+<P>
+<H4>Problems with boldface and emphasize</H4>
+<P>
+Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.
+
+<P>
+<H4>Strange non-English characters</H4>
+<P>
+Check the encoding of the <TT>.do.txt</TT> file with the Unix <TT>file</TT> command
+or with
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Unix> doconce guess_encoding myfile.do.txt
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+If the encoding is utf-8, convert to latin-1 using either of
+the Unix commands
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+
+<P>
+
+<P>
+<H3>Problems with Code or Tex Blocks</H3>
+<P>
+<H4>Code or TeX block errors in reST</H4>
+<P>
+Sometimes reStructuredText (reST) reports an "Unexpected indentation"
+at the beginning of a code block. If you see a <TT>!bc</TT>, which should
+have been removed by <TT>doconce format</TT>, it is usually an error in the
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then <TT>!bc</TT> will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
+reST to indicate a verbatim block of text).
+
+<P>
+<H4>Strange errors around code or TeX blocks in reST</H4>
+<P>
+If <TT>idx</TT> commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+<P>
+<H4>Verbatim code blocks inside lists look ugly</H4>
+<P>
+Read the the section <A HREF="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> above.  Start the
+<TT>!bc</TT> and <TT>!ec</TT> tags in column 1 of the file, and be careful with
+indenting the surrounding plain text of the list item correctly. If
+you cannot resolve the problem this way, get rid of the list and use
+paragraph headings instead. In fact, that is what is recommended:
+avoid verbatim code blocks inside lists (it makes life easier).
+
+<P>
+<H4>LaTeX code blocks inside lists look ugly</H4>
+<P>
+Same solution as for computer code blocks as described in the
+previous paragraph. Make sure the <TT>!bt</TT> and <TT>!et</TT> tags are in column 1
+and that the rest of the non-LaTeX surrounding text is correctly indented.
+Using paragraphs instead of list items is a good idea also here.
+
+<P>
+
+<P>
+<H3>Problems with reST Output</H3>
+<P>
+<H4>Lists do not appear in .rst files</H4>
+<P>
+Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.
+
+<P>
+<H4>Error message "Undefined substitution..." from reST</H4>
+<P>
+This may happen if there is much inline math in the text. reST cannot
+understand inline LaTeX commands and interprets them as illegal code.
+Just ignore these error messages.
+
+<P>
+<H4>Inconsistent headings in reST</H4>
+<P>
+The <TT>rst2*.py</TT> and Sphinx converters abort if the headers of sections
+are not consistent, i.e., a subsection must come under a section,
+and a subsubsection must come under a subsection (you cannot have
+a subsubsection directly under a section). Search for <TT>===</TT>,
+count the number of equality signs (or underscores if you use that)
+and make sure they decrease by two every time a lower level is encountered.
+
+<P>
+<H3>Problems with LaTeX Output</H3>
+<P>
+<H4>The LaTeX file does not compile</H4>
+<P>
+If the problem is undefined control sequence involving
+<!-- BEGIN VERBATIM BLOCK  -->
+<BLOCKQUOTE><PRE>
+\code{...}
+</PRE></BLOCKQUOTE>
+<! -- END VERBATIM BLOCK -->
+the cause is usually a verbatim inline text (in backquotes in the
+Doconce file) spans more than one line. Make sure, in the Doconce source,
+that all inline verbatim text appears on the same line.
+
+<P>
+<H3>Problems with gwiki Output</H3>
+<P>
+<H4>Strange nested lists in gwiki</H4>
+<P>
+Doconce cannot handle nested lists correctly in the gwiki format.
+Use nonnested lists or edit the <TT>.gwiki</TT> file directly.
+
+<P>
+<H4>Lists in gwiki look ugly in the gwiki source</H4>
+<P>
+Because the Google Code wiki format requires all text of a list item to
+be on one line, Doconce simply concatenates lines in that format,
+and because of the indentation in the original Doconce text, the gwiki
+output looks somewhat ugly. The good thing is that this gwiki source
+is seldom to be looked at - it is the Doconce source that one edits
+further.
+
+<P>
+<H3>Debugging</H3>
+<P>
+Given a problem, extract a small portion of text surrounding the
+problematic area and debug that small piece of text. Doconce does a
+series of transformations of the text. The effect of each of these
+transformation steps are dumped to a logfile, named
+<TT>_doconce_debugging.log</TT>, if the to <TT>doconce format</TT> after the filename
+is <TT>debug</TT>. The logfile is inteded for the developers of Doconce, but
+may still give some idea of what is wrong.  The section "Basic Parsing
+Ideas" explains how the Doconce text is transformed into a specific
+format, and you need to know these steps to make use of the logfile.
+
+<P>
+
+<P>
+
+<P>
+<H1>Basic Parsing Ideas</H1>
 <P>
 <!-- avoid list here since we have code in between (never a good idea) -->
 
@@ -12033,7 +12446,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Oct 29, 2011
+:Date: Nov 23, 2011
 
 .. lines beginning with # are comment lines
 
@@ -13558,112 +13971,6 @@ identify portions of the file to be edited is a smart idea.
 Alternatively, the relevant LaTeX constructions can be inserted directly
 in the Doconce file using if-else preprocessor directives.
 
-
-Troubleshooting
----------------
-
-*Disclaimer.* Doconce has some support for syntax checking.
-If you encounter Python errors while running ``doconce format``, the
-reason for the error is most likely a syntax problem in your Doconce
-source file. You have to track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
-
-*Code or TeX Block Errors in reST.* Sometimes reStructuredText (reST) reports an "Unexpected indentation"
-at the beginning of a code block. If you see a ``!bc``, which should
-have been removed by ``doconce format``, it is usually an error in the
-Doconce source, or a problem with the rst/sphinx translator.  Check if
-the line before the code block ends in one colon (not two!), a
-question mark, an exclamation mark, a comma, a period, or just a
-newline/space after text. If not, make sure that the ending is among
-the mentioned. Then ``!bc`` will most likely be replaced and a double
-colon at the preceding line will appear (which is the right way in
-reST to indicate a verbatim block of text).
-
-*Strange Errors Around Code or TeX Blocks in reST.* If ``idx`` commands for defining indices are placed inside paragraphs,
-and especially right before a code block, the reST translator
-(rst and sphinx formats) may get confused and produce strange
-code blocks that cause errors when the reST text is transformed to
-other formats. The remedy is to define items for the index outside
-paragraphs.
-
-*Error Message "Undefined substitution..." from reST.* This may happen if there is much inline math in the text. reST cannot
-understand inline LaTeX commands and interprets them as illegal code.
-Just ignore these error messages.
-
-*Preprocessor Directives Do Not Work.* Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.
-
-*The LaTeX File Does Not Compile.* If the problem is undefined control sequence involving::
-
-
-        \code{...}
-
-the cause is usually a verbatim inline text (in backquotes in the
-Doconce file) spans more than one line. Make sure, in the Doconce source,
-that all inline verbatim text appears on the same line.
-
-*Verbatim Code Blocks Inside Lists Look Ugly.* Read the the section `Blocks of Verbatim Computer Code`_ above.  Start the
-``!bc`` and ``!ec`` tags in column 1 of the file, and be careful with
-indenting the surrounding plain text of the list item correctly. If
-you cannot resolve the problem this way, get rid of the list and use
-paragraph headings instead. In fact, that is what is recommended:
-avoid verbatim code blocks inside lists (it makes life easier).
-
-*LaTeX Code Blocks Inside Lists Look Ugly.* Same solution as for computer code blocks as described in the
-previous paragraph. Make sure the ``!bt`` and ``!et`` tags are in column 1
-and that the rest of the non-LaTeX surrounding text is correctly indented.
-Using paragraphs instead of list items is a good idea also here.
-
-*Inconsistent Headings in reStructuredText.* The ``rst2*.py`` and Sphinx converters abort if the headers of sections
-are not consistent, i.e., a subsection must come under a section,
-and a subsubsection must come under a subsection (you cannot have
-a subsubsection directly under a section). Search for ``===``,
-count the number of equality signs (or underscores if you use that)
-and make sure they decrease by two every time a lower level is encountered.
-
-*Strange Nested Lists in gwiki.* Doconce cannot handle nested lists correctly in the gwiki format.
-Use nonnested lists or edit the ``.gwiki`` file directly.
-
-*Lists in gwiki Look Ugly in the Sourc.* Because the Google Code wiki format requires all text of a list item to
-be on one line, Doconce simply concatenates lines in that format,
-and because of the indentation in the original Doconce text, the gwiki
-output looks somewhat ugly. The good thing is that this gwiki source
-is seldom to be looked at - it is the Doconce source that one edits
-further.
-
-*Problems with Boldface and Emphasize.* Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.
-
-*Strange Non-English Characters.* Check the encoding of the ``.do.txt`` file with the Unix ``file`` command.
-If UTF-8, convert to latin-1 using the Unix command::
-
-
-        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-
-(Doconce has a feature to detect the encoding, but it is not reliable and
-therefore turned off.)
-
-*Debugging.* Given a problem, extract a small portion of text surrounding the
-problematic area and debug that small piece of text. Doconce does a
-series of transformations of the text. The effect of each of these
-transformation steps are dumped to a logfile, named
-``_doconce_debugging.log``, if the to ``doconce format`` after the filename
-is ``debug``. The logfile is inteded for the developers of Doconce, but
-may still give some idea of what is wrong.  The section "Basic Parsing
-Ideas" explains how the Doconce text is transformed into a specific
-format, and you need to know these steps to make use of the logfile.
-
-
 Header and Footer
 -----------------
 
@@ -13678,8 +13985,193 @@ has, or has an intention have, a title), the header and footer
 are included, otherwise not.
 
 
+Troubleshooting
+===============
+
+Disclaimer
+----------
+
+Doconce has some support for syntax checking.  If you encounter Python
+errors while running ``doconce format``, the reason for the error is
+most likely a syntax problem in your Doconce source file. You have to
+track down this syntax problem yourself.
+
+However, the problem may well be a bug in Doconce. The Doconce
+software is incomplete, and many special cases of syntax are not yet
+discovered to give problems. Such special cases are also seldom easy to
+fix, so one important way of "debugging" Doconce is simply to change
+the formatting so that Doconce treats it properly. Doconce is very much
+based on regular expressions, which are known to be non-trivial to
+debug years after they are created. The main developer of Doconce has
+hardly any time to work on debugging the code, but the software works
+well for his diverse applications of it.
+
+
+General Problems
+----------------
+
+Figure captions are incomplete
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as *one line*, at the same line as the FIGURE keyword.
+
+Preprocessor directives do not work
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
+
+Problems with boldface and emphasize
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.
+
+Strange non-English characters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Check the encoding of the ``.do.txt`` file with the Unix ``file`` command
+or with::
+
+
+        Unix> doconce guess_encoding myfile.do.txt
+
+If the encoding is utf-8, convert to latin-1 using either of
+the Unix commands::
+
+
+        Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+
+
+
+Problems with Code or Tex Blocks
+--------------------------------
+
+Code or TeX block errors in reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sometimes reStructuredText (reST) reports an "Unexpected indentation"
+at the beginning of a code block. If you see a ``!bc``, which should
+have been removed by ``doconce format``, it is usually an error in the
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then ``!bc`` will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
+reST to indicate a verbatim block of text).
+
+Strange errors around code or TeX blocks in reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If ``idx`` commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+Verbatim code blocks inside lists look ugly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Read the the section `Blocks of Verbatim Computer Code`_ above.  Start the
+``!bc`` and ``!ec`` tags in column 1 of the file, and be careful with
+indenting the surrounding plain text of the list item correctly. If
+you cannot resolve the problem this way, get rid of the list and use
+paragraph headings instead. In fact, that is what is recommended:
+avoid verbatim code blocks inside lists (it makes life easier).
+
+LaTeX code blocks inside lists look ugly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Same solution as for computer code blocks as described in the
+previous paragraph. Make sure the ``!bt`` and ``!et`` tags are in column 1
+and that the rest of the non-LaTeX surrounding text is correctly indented.
+Using paragraphs instead of list items is a good idea also here.
+
+
+Problems with reST Output
+-------------------------
+
+Lists do not appear in .rst files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.
+
+Error message "Undefined substitution..." from reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This may happen if there is much inline math in the text. reST cannot
+understand inline LaTeX commands and interprets them as illegal code.
+Just ignore these error messages.
+
+Inconsistent headings in reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``rst2*.py`` and Sphinx converters abort if the headers of sections
+are not consistent, i.e., a subsection must come under a section,
+and a subsubsection must come under a subsection (you cannot have
+a subsubsection directly under a section). Search for ``===``,
+count the number of equality signs (or underscores if you use that)
+and make sure they decrease by two every time a lower level is encountered.
+
+Problems with LaTeX Output
+--------------------------
+
+The LaTeX file does not compile
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the problem is undefined control sequence involving::
+
+
+        \code{...}
+
+the cause is usually a verbatim inline text (in backquotes in the
+Doconce file) spans more than one line. Make sure, in the Doconce source,
+that all inline verbatim text appears on the same line.
+
+Problems with gwiki Output
+--------------------------
+
+Strange nested lists in gwiki
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Doconce cannot handle nested lists correctly in the gwiki format.
+Use nonnested lists or edit the ``.gwiki`` file directly.
+
+Lists in gwiki look ugly in the gwiki source
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Because the Google Code wiki format requires all text of a list item to
+be on one line, Doconce simply concatenates lines in that format,
+and because of the indentation in the original Doconce text, the gwiki
+output looks somewhat ugly. The good thing is that this gwiki source
+is seldom to be looked at - it is the Doconce source that one edits
+further.
+
+Debugging
+---------
+
+Given a problem, extract a small portion of text surrounding the
+problematic area and debug that small piece of text. Doconce does a
+series of transformations of the text. The effect of each of these
+transformation steps are dumped to a logfile, named
+``_doconce_debugging.log``, if the to ``doconce format`` after the filename
+is ``debug``. The logfile is inteded for the developers of Doconce, but
+may still give some idea of what is wrong.  The section "Basic Parsing
+Ideas" explains how the Doconce text is transformed into a specific
+format, and you need to know these steps to make use of the logfile.
+
+
+
 Basic Parsing Ideas
--------------------
+===================
 
 .. avoid list here since we have code in between (never a good idea)
 
@@ -13849,7 +14341,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Oct 29, 2011
+:Date: Nov 23, 2011
 
 .. lines beginning with # are comment lines
 
@@ -15534,116 +16026,6 @@ identify portions of the file to be edited is a smart idea.
 Alternatively, the relevant LaTeX constructions can be inserted directly
 in the Doconce file using if-else preprocessor directives.
 
-
-Troubleshooting
----------------
-
-*Disclaimer.* Doconce has some support for syntax checking.
-If you encounter Python errors while running ``doconce format``, the
-reason for the error is most likely a syntax problem in your Doconce
-source file. You have to track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
-
-*Code or TeX Block Errors in reST.* Sometimes reStructuredText (reST) reports an "Unexpected indentation"
-at the beginning of a code block. If you see a ``!bc``, which should
-have been removed by ``doconce format``, it is usually an error in the
-Doconce source, or a problem with the rst/sphinx translator.  Check if
-the line before the code block ends in one colon (not two!), a
-question mark, an exclamation mark, a comma, a period, or just a
-newline/space after text. If not, make sure that the ending is among
-the mentioned. Then ``!bc`` will most likely be replaced and a double
-colon at the preceding line will appear (which is the right way in
-reST to indicate a verbatim block of text).
-
-*Strange Errors Around Code or TeX Blocks in reST.* If ``idx`` commands for defining indices are placed inside paragraphs,
-and especially right before a code block, the reST translator
-(rst and sphinx formats) may get confused and produce strange
-code blocks that cause errors when the reST text is transformed to
-other formats. The remedy is to define items for the index outside
-paragraphs.
-
-*Error Message "Undefined substitution..." from reST.* This may happen if there is much inline math in the text. reST cannot
-understand inline LaTeX commands and interprets them as illegal code.
-Just ignore these error messages.
-
-*Preprocessor Directives Do Not Work.* Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.
-
-*The LaTeX File Does Not Compile.* If the problem is undefined control sequence involving
-
-.. code-block:: py
-
-
-        \code{...}
-
-the cause is usually a verbatim inline text (in backquotes in the
-Doconce file) spans more than one line. Make sure, in the Doconce source,
-that all inline verbatim text appears on the same line.
-
-*Verbatim Code Blocks Inside Lists Look Ugly.* Read the the section :ref:`sec:verbatim:blocks` above.  Start the
-``!bc`` and ``!ec`` tags in column 1 of the file, and be careful with
-indenting the surrounding plain text of the list item correctly. If
-you cannot resolve the problem this way, get rid of the list and use
-paragraph headings instead. In fact, that is what is recommended:
-avoid verbatim code blocks inside lists (it makes life easier).
-
-*LaTeX Code Blocks Inside Lists Look Ugly.* Same solution as for computer code blocks as described in the
-previous paragraph. Make sure the ``!bt`` and ``!et`` tags are in column 1
-and that the rest of the non-LaTeX surrounding text is correctly indented.
-Using paragraphs instead of list items is a good idea also here.
-
-*Inconsistent Headings in reStructuredText.* The ``rst2*.py`` and Sphinx converters abort if the headers of sections
-are not consistent, i.e., a subsection must come under a section,
-and a subsubsection must come under a subsection (you cannot have
-a subsubsection directly under a section). Search for ``===``,
-count the number of equality signs (or underscores if you use that)
-and make sure they decrease by two every time a lower level is encountered.
-
-*Strange Nested Lists in gwiki.* Doconce cannot handle nested lists correctly in the gwiki format.
-Use nonnested lists or edit the ``.gwiki`` file directly.
-
-*Lists in gwiki Look Ugly in the Sourc.* Because the Google Code wiki format requires all text of a list item to
-be on one line, Doconce simply concatenates lines in that format,
-and because of the indentation in the original Doconce text, the gwiki
-output looks somewhat ugly. The good thing is that this gwiki source
-is seldom to be looked at - it is the Doconce source that one edits
-further.
-
-*Problems with Boldface and Emphasize.* Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.
-
-*Strange Non-English Characters.* Check the encoding of the ``.do.txt`` file with the Unix ``file`` command.
-If UTF-8, convert to latin-1 using the Unix command
-
-.. code-block:: py
-
-
-        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-
-(Doconce has a feature to detect the encoding, but it is not reliable and
-therefore turned off.)
-
-*Debugging.* Given a problem, extract a small portion of text surrounding the
-problematic area and debug that small piece of text. Doconce does a
-series of transformations of the text. The effect of each of these
-transformation steps are dumped to a logfile, named
-``_doconce_debugging.log``, if the to ``doconce format`` after the filename
-is ``debug``. The logfile is inteded for the developers of Doconce, but
-may still give some idea of what is wrong.  The section "Basic Parsing
-Ideas" explains how the Doconce text is transformed into a specific
-format, and you need to know these steps to make use of the logfile.
-
-
 Header and Footer
 -----------------
 
@@ -15658,8 +16040,199 @@ has, or has an intention have, a title), the header and footer
 are included, otherwise not.
 
 
+Troubleshooting
+===============
+
+Disclaimer
+----------
+
+Doconce has some support for syntax checking.  If you encounter Python
+errors while running ``doconce format``, the reason for the error is
+most likely a syntax problem in your Doconce source file. You have to
+track down this syntax problem yourself.
+
+However, the problem may well be a bug in Doconce. The Doconce
+software is incomplete, and many special cases of syntax are not yet
+discovered to give problems. Such special cases are also seldom easy to
+fix, so one important way of "debugging" Doconce is simply to change
+the formatting so that Doconce treats it properly. Doconce is very much
+based on regular expressions, which are known to be non-trivial to
+debug years after they are created. The main developer of Doconce has
+hardly any time to work on debugging the code, but the software works
+well for his diverse applications of it.
+
+
+General Problems
+----------------
+
+Figure captions are incomplete
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as *one line*, at the same line as the FIGURE keyword.
+
+Preprocessor directives do not work
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
+
+Problems with boldface and emphasize
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.
+
+Strange non-English characters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Check the encoding of the ``.do.txt`` file with the Unix ``file`` command
+or with
+
+.. code-block:: py
+
+
+        Unix> doconce guess_encoding myfile.do.txt
+
+If the encoding is utf-8, convert to latin-1 using either of
+the Unix commands
+
+.. code-block:: py
+
+
+        Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+
+
+
+Problems with Code or Tex Blocks
+--------------------------------
+
+Code or TeX block errors in reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sometimes reStructuredText (reST) reports an "Unexpected indentation"
+at the beginning of a code block. If you see a ``!bc``, which should
+have been removed by ``doconce format``, it is usually an error in the
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then ``!bc`` will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
+reST to indicate a verbatim block of text).
+
+Strange errors around code or TeX blocks in reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If ``idx`` commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+Verbatim code blocks inside lists look ugly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Read the the section :ref:`sec:verbatim:blocks` above.  Start the
+``!bc`` and ``!ec`` tags in column 1 of the file, and be careful with
+indenting the surrounding plain text of the list item correctly. If
+you cannot resolve the problem this way, get rid of the list and use
+paragraph headings instead. In fact, that is what is recommended:
+avoid verbatim code blocks inside lists (it makes life easier).
+
+LaTeX code blocks inside lists look ugly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Same solution as for computer code blocks as described in the
+previous paragraph. Make sure the ``!bt`` and ``!et`` tags are in column 1
+and that the rest of the non-LaTeX surrounding text is correctly indented.
+Using paragraphs instead of list items is a good idea also here.
+
+
+Problems with reST Output
+-------------------------
+
+Lists do not appear in .rst files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.
+
+Error message "Undefined substitution..." from reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This may happen if there is much inline math in the text. reST cannot
+understand inline LaTeX commands and interprets them as illegal code.
+Just ignore these error messages.
+
+Inconsistent headings in reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``rst2*.py`` and Sphinx converters abort if the headers of sections
+are not consistent, i.e., a subsection must come under a section,
+and a subsubsection must come under a subsection (you cannot have
+a subsubsection directly under a section). Search for ``===``,
+count the number of equality signs (or underscores if you use that)
+and make sure they decrease by two every time a lower level is encountered.
+
+Problems with LaTeX Output
+--------------------------
+
+The LaTeX file does not compile
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the problem is undefined control sequence involving
+
+.. code-block:: py
+
+
+        \code{...}
+
+the cause is usually a verbatim inline text (in backquotes in the
+Doconce file) spans more than one line. Make sure, in the Doconce source,
+that all inline verbatim text appears on the same line.
+
+Problems with gwiki Output
+--------------------------
+
+Strange nested lists in gwiki
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Doconce cannot handle nested lists correctly in the gwiki format.
+Use nonnested lists or edit the ``.gwiki`` file directly.
+
+Lists in gwiki look ugly in the gwiki source
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Because the Google Code wiki format requires all text of a list item to
+be on one line, Doconce simply concatenates lines in that format,
+and because of the indentation in the original Doconce text, the gwiki
+output looks somewhat ugly. The good thing is that this gwiki source
+is seldom to be looked at - it is the Doconce source that one edits
+further.
+
+Debugging
+---------
+
+Given a problem, extract a small portion of text surrounding the
+problematic area and debug that small piece of text. Doconce does a
+series of transformations of the text. The effect of each of these
+transformation steps are dumped to a logfile, named
+``_doconce_debugging.log``, if the to ``doconce format`` after the filename
+is ``debug``. The logfile is inteded for the developers of Doconce, but
+may still give some idea of what is wrong.  The section "Basic Parsing
+Ideas" explains how the Doconce text is transformed into a specific
+format, and you need to know these steps to make use of the logfile.
+
+
+
 Basic Parsing Ideas
--------------------
+===================
 
 .. avoid list here since we have code in between (never a good idea)
 
@@ -15835,7 +16408,7 @@ and Sphinx just typeset the list as a list with keywords.
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== Oct 29, 2011 ====
+==== Nov 23, 2011 ====
 
 <wiki:comment> lines beginning with # are comment lines </wiki:comment>
 
@@ -17195,107 +17768,6 @@ identify portions of the file to be edited is a smart idea.
 Alternatively, the relevant LaTeX constructions can be inserted directly
 in the Doconce file using if-else preprocessor directives.
 
-==== Troubleshooting ====
-
-*Disclaimer.* Doconce has some support for syntax checking.
-If you encounter Python errors while running `doconce format`, the
-reason for the error is most likely a syntax problem in your Doconce
-source file. You have to track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
-
-*Code or TeX Block Errors in reST.* Sometimes reStructuredText (reST) reports an "Unexpected indentation"
-at the beginning of a code block. If you see a `!bc`, which should
-have been removed by `doconce format`, it is usually an error in the
-Doconce source, or a problem with the rst/sphinx translator.  Check if
-the line before the code block ends in one colon (not two!), a
-question mark, an exclamation mark, a comma, a period, or just a
-newline/space after text. If not, make sure that the ending is among
-the mentioned. Then `!bc` will most likely be replaced and a double
-colon at the preceding line will appear (which is the right way in
-reST to indicate a verbatim block of text).
-
-*Strange Errors Around Code or TeX Blocks in reST.* If `idx` commands for defining indices are placed inside paragraphs,
-and especially right before a code block, the reST translator
-(rst and sphinx formats) may get confused and produce strange
-code blocks that cause errors when the reST text is transformed to
-other formats. The remedy is to define items for the index outside
-paragraphs.
-
-*Error Message "Undefined substitution..." from reST.* This may happen if there is much inline math in the text. reST cannot
-understand inline LaTeX commands and interprets them as illegal code.
-Just ignore these error messages.
-
-*Preprocessor Directives Do Not Work.* Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.
-
-*The LaTeX File Does Not Compile.* If the problem is undefined control sequence involving
-{{{
-\code{...}
-}}}
-the cause is usually a verbatim inline text (in backquotes in the
-Doconce file) spans more than one line. Make sure, in the Doconce source,
-that all inline verbatim text appears on the same line.
-
-*Verbatim Code Blocks Inside Lists Look Ugly.* Read the the section [#Blocks_of_Verbatim_Computer_Code] above.  Start the
-`!bc` and `!ec` tags in column 1 of the file, and be careful with
-indenting the surrounding plain text of the list item correctly. If
-you cannot resolve the problem this way, get rid of the list and use
-paragraph headings instead. In fact, that is what is recommended:
-avoid verbatim code blocks inside lists (it makes life easier).
-
-*LaTeX Code Blocks Inside Lists Look Ugly.* Same solution as for computer code blocks as described in the
-previous paragraph. Make sure the `!bt` and `!et` tags are in column 1
-and that the rest of the non-LaTeX surrounding text is correctly indented.
-Using paragraphs instead of list items is a good idea also here.
-
-*Inconsistent Headings in reStructuredText.* The `rst2*.py` and Sphinx converters abort if the headers of sections
-are not consistent, i.e., a subsection must come under a section,
-and a subsubsection must come under a subsection (you cannot have
-a subsubsection directly under a section). Search for `===`,
-count the number of equality signs (or underscores if you use that)
-and make sure they decrease by two every time a lower level is encountered.
-
-*Strange Nested Lists in gwiki.* Doconce cannot handle nested lists correctly in the gwiki format.
-Use nonnested lists or edit the `.gwiki` file directly.
-
-*Lists in gwiki Look Ugly in the Sourc.* Because the Google Code wiki format requires all text of a list item to
-be on one line, Doconce simply concatenates lines in that format,
-and because of the indentation in the original Doconce text, the gwiki
-output looks somewhat ugly. The good thing is that this gwiki source
-is seldom to be looked at - it is the Doconce source that one edits
-further.
-
-*Problems with Boldface and Emphasize.* Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.
-
-*Strange Non-English Characters.* Check the encoding of the `.do.txt` file with the Unix `file` command.
-If UTF-8, convert to latin-1 using the Unix command
-{{{
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-}}}
-(Doconce has a feature to detect the encoding, but it is not reliable and
-therefore turned off.)
-
-*Debugging.* Given a problem, extract a small portion of text surrounding the
-problematic area and debug that small piece of text. Doconce does a
-series of transformations of the text. The effect of each of these
-transformation steps are dumped to a logfile, named
-`_doconce_debugging.log`, if the to `doconce format` after the filename
-is `debug`. The logfile is inteded for the developers of Doconce, but
-may still give some idea of what is wrong.  The section "Basic Parsing
-Ideas" explains how the Doconce text is transformed into a specific
-format, and you need to know these steps to make use of the logfile.
-
 ==== Header and Footer ====
 
 Some formats use a header and footer in the document. LaTeX and
@@ -17308,7 +17780,166 @@ stand-alone. We have introduce the convention that if `TITLE:` or
 has, or has an intention have, a title), the header and footer
 are included, otherwise not.
 
-==== Basic Parsing Ideas ====
+
+
+== Troubleshooting ==
+
+==== Disclaimer ====
+
+Doconce has some support for syntax checking.  If you encounter Python
+errors while running `doconce format`, the reason for the error is
+most likely a syntax problem in your Doconce source file. You have to
+track down this syntax problem yourself.
+
+However, the problem may well be a bug in Doconce. The Doconce
+software is incomplete, and many special cases of syntax are not yet
+discovered to give problems. Such special cases are also seldom easy to
+fix, so one important way of "debugging" Doconce is simply to change
+the formatting so that Doconce treats it properly. Doconce is very much
+based on regular expressions, which are known to be non-trivial to
+debug years after they are created. The main developer of Doconce has
+hardly any time to work on debugging the code, but the software works
+well for his diverse applications of it.
+
+==== General Problems ====
+
+==== Figure captions are incomplete ====
+
+If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as *one line*, at the same line as the FIGURE keyword.
+
+==== Preprocessor directives do not work ====
+
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
+
+==== Problems with boldface and emphasize ====
+
+Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.
+
+==== Strange non-English characters ====
+
+Check the encoding of the `.do.txt` file with the Unix `file` command
+or with
+{{{
+Unix> doconce guess_encoding myfile.do.txt
+}}}
+If the encoding is utf-8, convert to latin-1 using either of
+the Unix commands
+{{{
+Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+}}}
+
+==== Problems with Code or Tex Blocks ====
+
+==== Code or TeX block errors in reST ====
+
+Sometimes reStructuredText (reST) reports an "Unexpected indentation"
+at the beginning of a code block. If you see a `!bc`, which should
+have been removed by `doconce format`, it is usually an error in the
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then `!bc` will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
+reST to indicate a verbatim block of text).
+
+==== Strange errors around code or TeX blocks in reST ====
+
+If `idx` commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+==== Verbatim code blocks inside lists look ugly ====
+
+Read the the section [#Blocks_of_Verbatim_Computer_Code] above.  Start the
+`!bc` and `!ec` tags in column 1 of the file, and be careful with
+indenting the surrounding plain text of the list item correctly. If
+you cannot resolve the problem this way, get rid of the list and use
+paragraph headings instead. In fact, that is what is recommended:
+avoid verbatim code blocks inside lists (it makes life easier).
+
+==== LaTeX code blocks inside lists look ugly ====
+
+Same solution as for computer code blocks as described in the
+previous paragraph. Make sure the `!bt` and `!et` tags are in column 1
+and that the rest of the non-LaTeX surrounding text is correctly indented.
+Using paragraphs instead of list items is a good idea also here.
+
+==== Problems with reST Output ====
+
+==== Lists do not appear in .rst files ====
+
+Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.
+
+==== Error message "Undefined substitution..." from reST ====
+
+This may happen if there is much inline math in the text. reST cannot
+understand inline LaTeX commands and interprets them as illegal code.
+Just ignore these error messages.
+
+==== Inconsistent headings in reST ====
+
+The `rst2*.py` and Sphinx converters abort if the headers of sections
+are not consistent, i.e., a subsection must come under a section,
+and a subsubsection must come under a subsection (you cannot have
+a subsubsection directly under a section). Search for `===`,
+count the number of equality signs (or underscores if you use that)
+and make sure they decrease by two every time a lower level is encountered.
+
+==== Problems with LaTeX Output ====
+
+==== The LaTeX file does not compile ====
+
+If the problem is undefined control sequence involving
+{{{
+\code{...}
+}}}
+the cause is usually a verbatim inline text (in backquotes in the
+Doconce file) spans more than one line. Make sure, in the Doconce source,
+that all inline verbatim text appears on the same line.
+
+==== Problems with gwiki Output ====
+
+==== Strange nested lists in gwiki ====
+
+Doconce cannot handle nested lists correctly in the gwiki format.
+Use nonnested lists or edit the `.gwiki` file directly.
+
+==== Lists in gwiki look ugly in the gwiki source ====
+
+Because the Google Code wiki format requires all text of a list item to
+be on one line, Doconce simply concatenates lines in that format,
+and because of the indentation in the original Doconce text, the gwiki
+output looks somewhat ugly. The good thing is that this gwiki source
+is seldom to be looked at - it is the Doconce source that one edits
+further.
+
+==== Debugging ====
+
+Given a problem, extract a small portion of text surrounding the
+problematic area and debug that small piece of text. Doconce does a
+series of transformations of the text. The effect of each of these
+transformation steps are dumped to a logfile, named
+`_doconce_debugging.log`, if the to `doconce format` after the filename
+is `debug`. The logfile is inteded for the developers of Doconce, but
+may still give some idea of what is wrong.  The section "Basic Parsing
+Ideas" explains how the Doconce text is transformed into a specific
+format, and you need to know these steps to make use of the logfile.
+
+
+
+== Basic Parsing Ideas ==
 
 <wiki:comment> avoid list here since we have code in between (never a good idea) </wiki:comment>
 
@@ -18762,107 +19393,6 @@ from Doconce and fine-tune a LaTeX document. Use of comment lines to
 identify portions of the file to be edited is a smart idea.
 Alternatively, the relevant LaTeX constructions can be inserted directly
 in the Doconce file using if-else preprocessor directives.
-Troubleshooting
-*Disclaimer.* Doconce has some support for syntax checking.
-If you encounter Python errors while running 'doconce format', the
-reason for the error is most likely a syntax problem in your Doconce
-source file. You have to track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
-
-*Code or TeX Block Errors in reST.* Sometimes reStructuredText (reST) reports an "Unexpected indentation"
-at the beginning of a code block. If you see a '!bc', which should
-have been removed by 'doconce format', it is usually an error in the
-Doconce source, or a problem with the rst/sphinx translator.  Check if
-the line before the code block ends in one colon (not two!), a
-question mark, an exclamation mark, a comma, a period, or just a
-newline/space after text. If not, make sure that the ending is among
-the mentioned. Then '!bc' will most likely be replaced and a double
-colon at the preceding line will appear (which is the right way in
-reST to indicate a verbatim block of text).
-
-*Strange Errors Around Code or TeX Blocks in reST.* If 'idx' commands for defining indices are placed inside paragraphs,
-and especially right before a code block, the reST translator
-(rst and sphinx formats) may get confused and produce strange
-code blocks that cause errors when the reST text is transformed to
-other formats. The remedy is to define items for the index outside
-paragraphs.
-
-*Error Message "Undefined substitution..." from reST.* This may happen if there is much inline math in the text. reST cannot
-understand inline LaTeX commands and interprets them as illegal code.
-Just ignore these error messages.
-
-*Preprocessor Directives Do Not Work.* Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.
-
-*The LaTeX File Does Not Compile.* If the problem is undefined control sequence involving::
-
-
-        \code{...}
-
-the cause is usually a verbatim inline text (in backquotes in the
-Doconce file) spans more than one line. Make sure, in the Doconce source,
-that all inline verbatim text appears on the same line.
-
-*Verbatim Code Blocks Inside Lists Look Ugly.* Read the the section "Blocks of Verbatim Computer Code" above.  Start the
-'!bc' and '!ec' tags in column 1 of the file, and be careful with
-indenting the surrounding plain text of the list item correctly. If
-you cannot resolve the problem this way, get rid of the list and use
-paragraph headings instead. In fact, that is what is recommended:
-avoid verbatim code blocks inside lists (it makes life easier).
-
-*LaTeX Code Blocks Inside Lists Look Ugly.* Same solution as for computer code blocks as described in the
-previous paragraph. Make sure the '!bt' and '!et' tags are in column 1
-and that the rest of the non-LaTeX surrounding text is correctly indented.
-Using paragraphs instead of list items is a good idea also here.
-
-*Inconsistent Headings in reStructuredText.* The 'rst2*.py' and Sphinx converters abort if the headers of sections
-are not consistent, i.e., a subsection must come under a section,
-and a subsubsection must come under a subsection (you cannot have
-a subsubsection directly under a section). Search for '===',
-count the number of equality signs (or underscores if you use that)
-and make sure they decrease by two every time a lower level is encountered.
-
-*Strange Nested Lists in gwiki.* Doconce cannot handle nested lists correctly in the gwiki format.
-Use nonnested lists or edit the '.gwiki' file directly.
-
-*Lists in gwiki Look Ugly in the Sourc.* Because the Google Code wiki format requires all text of a list item to
-be on one line, Doconce simply concatenates lines in that format,
-and because of the indentation in the original Doconce text, the gwiki
-output looks somewhat ugly. The good thing is that this gwiki source
-is seldom to be looked at - it is the Doconce source that one edits
-further.
-
-*Problems with Boldface and Emphasize.* Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.
-
-*Strange Non-English Characters.* Check the encoding of the '.do.txt' file with the Unix 'file' command.
-If UTF-8, convert to latin-1 using the Unix command::
-
-
-        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-
-(Doconce has a feature to detect the encoding, but it is not reliable and
-therefore turned off.)
-
-*Debugging.* Given a problem, extract a small portion of text surrounding the
-problematic area and debug that small piece of text. Doconce does a
-series of transformations of the text. The effect of each of these
-transformation steps are dumped to a logfile, named
-'_doconce_debugging.log', if the to 'doconce format' after the filename
-is 'debug'. The logfile is inteded for the developers of Doconce, but
-may still give some idea of what is wrong.  The section "Basic Parsing
-Ideas" explains how the Doconce text is transformed into a specific
-format, and you need to know these steps to make use of the logfile.
 Header and Footer
 Some formats use a header and footer in the document. LaTeX and
 HTML are two examples of such formats. When the document is to be
@@ -18873,6 +19403,126 @@ stand-alone. We have introduce the convention that if 'TITLE:' or
 '#TITLE:' is found at the beginning of the line (i.e., the document
 has, or has an intention have, a title), the header and footer
 are included, otherwise not.
+Troubleshooting
+Disclaimer
+Doconce has some support for syntax checking.  If you encounter Python
+errors while running 'doconce format', the reason for the error is
+most likely a syntax problem in your Doconce source file. You have to
+track down this syntax problem yourself.
+
+However, the problem may well be a bug in Doconce. The Doconce
+software is incomplete, and many special cases of syntax are not yet
+discovered to give problems. Such special cases are also seldom easy to
+fix, so one important way of "debugging" Doconce is simply to change
+the formatting so that Doconce treats it properly. Doconce is very much
+based on regular expressions, which are known to be non-trivial to
+debug years after they are created. The main developer of Doconce has
+hardly any time to work on debugging the code, but the software works
+well for his diverse applications of it.
+General Problems
+Figure captions are incomplete
+If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as *one line*, at the same line as the FIGURE keyword.
+Preprocessor directives do not work
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
+Problems with boldface and emphasize
+Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.
+Strange non-English characters
+Check the encoding of the '.do.txt' file with the Unix 'file' command
+or with::
+
+
+        Unix> doconce guess_encoding myfile.do.txt
+
+If the encoding is utf-8, convert to latin-1 using either of
+the Unix commands::
+
+
+        Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+
+Problems with Code or Tex Blocks
+Code or TeX block errors in reST
+Sometimes reStructuredText (reST) reports an "Unexpected indentation"
+at the beginning of a code block. If you see a '!bc', which should
+have been removed by 'doconce format', it is usually an error in the
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then '!bc' will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
+reST to indicate a verbatim block of text).
+Strange errors around code or TeX blocks in reST
+If 'idx' commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+Verbatim code blocks inside lists look ugly
+Read the the section "Blocks of Verbatim Computer Code" above.  Start the
+'!bc' and '!ec' tags in column 1 of the file, and be careful with
+indenting the surrounding plain text of the list item correctly. If
+you cannot resolve the problem this way, get rid of the list and use
+paragraph headings instead. In fact, that is what is recommended:
+avoid verbatim code blocks inside lists (it makes life easier).
+LaTeX code blocks inside lists look ugly
+Same solution as for computer code blocks as described in the
+previous paragraph. Make sure the '!bt' and '!et' tags are in column 1
+and that the rest of the non-LaTeX surrounding text is correctly indented.
+Using paragraphs instead of list items is a good idea also here.
+Problems with reST Output
+Lists do not appear in .rst files
+Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.
+Error message "Undefined substitution..." from reST
+This may happen if there is much inline math in the text. reST cannot
+understand inline LaTeX commands and interprets them as illegal code.
+Just ignore these error messages.
+Inconsistent headings in reST
+The 'rst2*.py' and Sphinx converters abort if the headers of sections
+are not consistent, i.e., a subsection must come under a section,
+and a subsubsection must come under a subsection (you cannot have
+a subsubsection directly under a section). Search for '===',
+count the number of equality signs (or underscores if you use that)
+and make sure they decrease by two every time a lower level is encountered.
+Problems with LaTeX Output
+The LaTeX file does not compile
+If the problem is undefined control sequence involving::
+
+
+        \code{...}
+
+the cause is usually a verbatim inline text (in backquotes in the
+Doconce file) spans more than one line. Make sure, in the Doconce source,
+that all inline verbatim text appears on the same line.
+Problems with gwiki Output
+Strange nested lists in gwiki
+Doconce cannot handle nested lists correctly in the gwiki format.
+Use nonnested lists or edit the '.gwiki' file directly.
+Lists in gwiki look ugly in the gwiki source
+Because the Google Code wiki format requires all text of a list item to
+be on one line, Doconce simply concatenates lines in that format,
+and because of the indentation in the original Doconce text, the gwiki
+output looks somewhat ugly. The good thing is that this gwiki source
+is seldom to be looked at - it is the Doconce source that one edits
+further.
+Debugging
+Given a problem, extract a small portion of text surrounding the
+problematic area and debug that small piece of text. Doconce does a
+series of transformations of the text. The effect of each of these
+transformation steps are dumped to a logfile, named
+'_doconce_debugging.log', if the to 'doconce format' after the filename
+is 'debug'. The logfile is inteded for the developers of Doconce, but
+may still give some idea of what is wrong.  The section "Basic Parsing
+Ideas" explains how the Doconce text is transformed into a specific
+format, and you need to know these steps to make use of the logfile.
 Basic Parsing Ideas
 The (parts of) files with computer code to be directly included in
 the document are first copied into verbatim blocks.
@@ -20440,112 +21090,6 @@ identify portions of the file to be edited is a smart idea.
 Alternatively, the relevant LaTeX constructions can be inserted directly
 in the Doconce file using if-else preprocessor directives.
 
-
-Troubleshooting
----------------
-
-I{Disclaimer.} Doconce has some support for syntax checking.
-If you encounter Python errors while running C{doconce format}, the
-reason for the error is most likely a syntax problem in your Doconce
-source file. You have to track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
-
-I{Code or TeX Block Errors in reST.} Sometimes reStructuredText (reST) reports an "Unexpected indentation"
-at the beginning of a code block. If you see a C{!bc}, which should
-have been removed by C{doconce format}, it is usually an error in the
-Doconce source, or a problem with the rst/sphinx translator.  Check if
-the line before the code block ends in one colon (not two!), a
-question mark, an exclamation mark, a comma, a period, or just a
-newline/space after text. If not, make sure that the ending is among
-the mentioned. Then C{!bc} will most likely be replaced and a double
-colon at the preceding line will appear (which is the right way in
-reST to indicate a verbatim block of text).
-
-I{Strange Errors Around Code or TeX Blocks in reST.} If C{idx} commands for defining indices are placed inside paragraphs,
-and especially right before a code block, the reST translator
-(rst and sphinx formats) may get confused and produce strange
-code blocks that cause errors when the reST text is transformed to
-other formats. The remedy is to define items for the index outside
-paragraphs.
-
-I{Error Message "Undefined substitution..." from reST.} This may happen if there is much inline math in the text. reST cannot
-understand inline LaTeX commands and interprets them as illegal code.
-Just ignore these error messages.
-
-I{Preprocessor Directives Do Not Work.} Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.
-
-I{The LaTeX File Does Not Compile.} If the problem is undefined control sequence involving::
-
-
-        \code{...}
-
-the cause is usually a verbatim inline text (in backquotes in the
-Doconce file) spans more than one line. Make sure, in the Doconce source,
-that all inline verbatim text appears on the same line.
-
-I{Verbatim Code Blocks Inside Lists Look Ugly.} Read the the section "Blocks of Verbatim Computer Code" above.  Start the
-C{!bc} and C{!ec} tags in column 1 of the file, and be careful with
-indenting the surrounding plain text of the list item correctly. If
-you cannot resolve the problem this way, get rid of the list and use
-paragraph headings instead. In fact, that is what is recommended:
-avoid verbatim code blocks inside lists (it makes life easier).
-
-I{LaTeX Code Blocks Inside Lists Look Ugly.} Same solution as for computer code blocks as described in the
-previous paragraph. Make sure the C{!bt} and C{!et} tags are in column 1
-and that the rest of the non-LaTeX surrounding text is correctly indented.
-Using paragraphs instead of list items is a good idea also here.
-
-I{Inconsistent Headings in reStructuredText.} The C{rst2*.py} and Sphinx converters abort if the headers of sections
-are not consistent, i.e., a subsection must come under a section,
-and a subsubsection must come under a subsection (you cannot have
-a subsubsection directly under a section). Search for C{===},
-count the number of equality signs (or underscores if you use that)
-and make sure they decrease by two every time a lower level is encountered.
-
-I{Strange Nested Lists in gwiki.} Doconce cannot handle nested lists correctly in the gwiki format.
-Use nonnested lists or edit the C{.gwiki} file directly.
-
-I{Lists in gwiki Look Ugly in the Sourc.} Because the Google Code wiki format requires all text of a list item to
-be on one line, Doconce simply concatenates lines in that format,
-and because of the indentation in the original Doconce text, the gwiki
-output looks somewhat ugly. The good thing is that this gwiki source
-is seldom to be looked at - it is the Doconce source that one edits
-further.
-
-I{Problems with Boldface and Emphasize.} Two boldface or emphasize expressions after each other are not rendered
-correctly. Merge them into one common expression.
-
-I{Strange Non-English Characters.} Check the encoding of the C{.do.txt} file with the Unix C{file} command.
-If UTF-8, convert to latin-1 using the Unix command::
-
-
-        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-
-(Doconce has a feature to detect the encoding, but it is not reliable and
-therefore turned off.)
-
-I{Debugging.} Given a problem, extract a small portion of text surrounding the
-problematic area and debug that small piece of text. Doconce does a
-series of transformations of the text. The effect of each of these
-transformation steps are dumped to a logfile, named
-C{_doconce_debugging.log}, if the to C{doconce format} after the filename
-is C{debug}. The logfile is inteded for the developers of Doconce, but
-may still give some idea of what is wrong.  The section "Basic Parsing
-Ideas" explains how the Doconce text is transformed into a specific
-format, and you need to know these steps to make use of the logfile.
-
-
 Header and Footer
 -----------------
 
@@ -20560,8 +21104,193 @@ has, or has an intention have, a title), the header and footer
 are included, otherwise not.
 
 
+Troubleshooting
+===============
+
+Disclaimer
+----------
+
+Doconce has some support for syntax checking.  If you encounter Python
+errors while running C{doconce format}, the reason for the error is
+most likely a syntax problem in your Doconce source file. You have to
+track down this syntax problem yourself.
+
+However, the problem may well be a bug in Doconce. The Doconce
+software is incomplete, and many special cases of syntax are not yet
+discovered to give problems. Such special cases are also seldom easy to
+fix, so one important way of "debugging" Doconce is simply to change
+the formatting so that Doconce treats it properly. Doconce is very much
+based on regular expressions, which are known to be non-trivial to
+debug years after they are created. The main developer of Doconce has
+hardly any time to work on debugging the code, but the software works
+well for his diverse applications of it.
+
+
+General Problems
+----------------
+
+Figure captions are incomplete
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as I{one line}, at the same line as the FIGURE keyword.
+
+Preprocessor directives do not work
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
+
+Problems with boldface and emphasize
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.
+
+Strange non-English characters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Check the encoding of the C{.do.txt} file with the Unix C{file} command
+or with::
+
+
+        Unix> doconce guess_encoding myfile.do.txt
+
+If the encoding is utf-8, convert to latin-1 using either of
+the Unix commands::
+
+
+        Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+
+
+
+Problems with Code or Tex Blocks
+--------------------------------
+
+Code or TeX block errors in reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sometimes reStructuredText (reST) reports an "Unexpected indentation"
+at the beginning of a code block. If you see a C{!bc}, which should
+have been removed by C{doconce format}, it is usually an error in the
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then C{!bc} will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
+reST to indicate a verbatim block of text).
+
+Strange errors around code or TeX blocks in reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If C{idx} commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+Verbatim code blocks inside lists look ugly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Read the the section "Blocks of Verbatim Computer Code" above.  Start the
+C{!bc} and C{!ec} tags in column 1 of the file, and be careful with
+indenting the surrounding plain text of the list item correctly. If
+you cannot resolve the problem this way, get rid of the list and use
+paragraph headings instead. In fact, that is what is recommended:
+avoid verbatim code blocks inside lists (it makes life easier).
+
+LaTeX code blocks inside lists look ugly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Same solution as for computer code blocks as described in the
+previous paragraph. Make sure the C{!bt} and C{!et} tags are in column 1
+and that the rest of the non-LaTeX surrounding text is correctly indented.
+Using paragraphs instead of list items is a good idea also here.
+
+
+Problems with reST Output
+-------------------------
+
+Lists do not appear in .rst files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Check if you have a comment right above the list. That comment
+will include the list if the list is indentend. Remove the comment.
+
+Error message "Undefined substitution..." from reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This may happen if there is much inline math in the text. reST cannot
+understand inline LaTeX commands and interprets them as illegal code.
+Just ignore these error messages.
+
+Inconsistent headings in reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The C{rst2*.py} and Sphinx converters abort if the headers of sections
+are not consistent, i.e., a subsection must come under a section,
+and a subsubsection must come under a subsection (you cannot have
+a subsubsection directly under a section). Search for C{===},
+count the number of equality signs (or underscores if you use that)
+and make sure they decrease by two every time a lower level is encountered.
+
+Problems with LaTeX Output
+--------------------------
+
+The LaTeX file does not compile
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the problem is undefined control sequence involving::
+
+
+        \code{...}
+
+the cause is usually a verbatim inline text (in backquotes in the
+Doconce file) spans more than one line. Make sure, in the Doconce source,
+that all inline verbatim text appears on the same line.
+
+Problems with gwiki Output
+--------------------------
+
+Strange nested lists in gwiki
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Doconce cannot handle nested lists correctly in the gwiki format.
+Use nonnested lists or edit the C{.gwiki} file directly.
+
+Lists in gwiki look ugly in the gwiki source
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Because the Google Code wiki format requires all text of a list item to
+be on one line, Doconce simply concatenates lines in that format,
+and because of the indentation in the original Doconce text, the gwiki
+output looks somewhat ugly. The good thing is that this gwiki source
+is seldom to be looked at - it is the Doconce source that one edits
+further.
+
+Debugging
+---------
+
+Given a problem, extract a small portion of text surrounding the
+problematic area and debug that small piece of text. Doconce does a
+series of transformations of the text. The effect of each of these
+transformation steps are dumped to a logfile, named
+C{_doconce_debugging.log}, if the to C{doconce format} after the filename
+is C{debug}. The logfile is inteded for the developers of Doconce, but
+may still give some idea of what is wrong.  The section "Basic Parsing
+Ideas" explains how the Doconce text is transformed into a specific
+format, and you need to know these steps to make use of the logfile.
+
+
+
 Basic Parsing Ideas
--------------------
+===================
 
 
 The (parts of) files with computer code to be directly included in
@@ -20674,13 +21403,13 @@ Bibliography
 Doconce Description
 ===================
 
-Hans Petter Langtangen [1, 2]
+Hans Petter Langtangen [1, 2] 
 
 [1] Simula Research Laboratory
 [2] University of Oslo
 
 
-Date: Oct 29, 2011
+Date: Nov 23, 2011
 
 What Is Doconce?
 ================
@@ -22111,112 +22840,6 @@ identify portions of the file to be edited is a smart idea.
 Alternatively, the relevant LaTeX constructions can be inserted directly
 in the Doconce file using if-else preprocessor directives.
 
-
-Troubleshooting
----------------
-
-*Disclaimer.* Doconce has some support for syntax checking.
-If you encounter Python errors while running doconce format, the
-reason for the error is most likely a syntax problem in your Doconce
-source file. You have to track down this syntax problem yourself.
-
-However, the problem may well be a bug in Doconce. The Doconce
-software is incomplete, and many special cases of syntax are not yet
-discovered to give problems. Such special cases are also seldom easy to
-fix, so one important way of "debugging" Doconce is simply to change
-the formatting so that Doconce treats it properly. Doconce is very much
-based on regular expressions, which are known to be non-trivial to
-debug years after they are created. The main developer of Doconce has
-hardly any time to work on debugging the code, but the software works
-well for his diverse applications of it.
-
-*Code or TeX Block Errors in reST.* Sometimes reStructuredText (reST) reports an "Unexpected indentation"
-at the beginning of a code block. If you see a !bc, which should
-have been removed by doconce format, it is usually an error in the
-Doconce source, or a problem with the rst/sphinx translator.  Check if
-the line before the code block ends in one colon (not two!), a
-question mark, an exclamation mark, a comma, a period, or just a
-newline/space after text. If not, make sure that the ending is among
-the mentioned. Then !bc will most likely be replaced and a double
-colon at the preceding line will appear (which is the right way in
-reST to indicate a verbatim block of text).
-
-*Strange Errors Around Code or TeX Blocks in reST.* If idx commands for defining indices are placed inside paragraphs,
-and especially right before a code block, the reST translator
-(rst and sphinx formats) may get confused and produce strange
-code blocks that cause errors when the reST text is transformed to
-other formats. The remedy is to define items for the index outside
-paragraphs.
-
-*Error Message "Undefined substitution..." from reST.* This may happen if there is much inline math in the text. reST cannot
-understand inline LaTeX commands and interprets them as illegal code.
-Just ignore these error messages.
-
-*Preprocessor Directives Do Not Work.* Make sure the preprocessor instructions, in Preprocess or Mako, have
-correct syntax. Also make sure that you do not mix Preprocess and Mako
-instructions. Doconce will then only run Preprocess.
-
-*The LaTeX File Does Not Compile.* If the problem is undefined control sequence involving::
-
-
-        \code{...}
-
-the cause is usually a verbatim inline text (in backquotes in the
-Doconce file) spans more than one line. Make sure, in the Doconce source,
-that all inline verbatim text appears on the same line.
-
-*Verbatim Code Blocks Inside Lists Look Ugly.* Read the the section "Blocks of Verbatim Computer Code" above.  Start the::
-
-
-        indenting the surrounding plain text of the list item correctly. If
-        you cannot resolve the problem this way, get rid of the list and use
-        paragraph headings instead. In fact, that is what is recommended:
-        avoid verbatim code blocks inside lists (it makes life easier).
-        
-        *LaTeX Code Blocks Inside Lists Look Ugly.* Same solution as for computer code blocks as described in the
-        previous paragraph. Make sure the !bt and !et tags are in column 1
-        and that the rest of the non-LaTeX surrounding text is correctly indented.
-        Using paragraphs instead of list items is a good idea also here.
-        
-        *Inconsistent Headings in reStructuredText.* The rst2*.py and Sphinx converters abort if the headers of sections
-        are not consistent, i.e., a subsection must come under a section,
-        and a subsubsection must come under a subsection (you cannot have
-        a subsubsection directly under a section). Search for ===,
-        count the number of equality signs (or underscores if you use that)
-        and make sure they decrease by two every time a lower level is encountered.
-        
-        *Strange Nested Lists in gwiki.* Doconce cannot handle nested lists correctly in the gwiki format.
-        Use nonnested lists or edit the .gwiki file directly.
-        
-        *Lists in gwiki Look Ugly in the Sourc.* Because the Google Code wiki format requires all text of a list item to
-        be on one line, Doconce simply concatenates lines in that format,
-        and because of the indentation in the original Doconce text, the gwiki
-        output looks somewhat ugly. The good thing is that this gwiki source
-        is seldom to be looked at - it is the Doconce source that one edits
-        further.
-        
-        *Problems with Boldface and Emphasize.* Two boldface or emphasize expressions after each other are not rendered
-        correctly. Merge them into one common expression.
-        
-        *Strange Non-English Characters.* Check the encoding of the .do.txt file with the Unix file command.
-        If UTF-8, convert to latin-1 using the Unix command
-        !bc 
-        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-
-(Doconce has a feature to detect the encoding, but it is not reliable and
-therefore turned off.)
-
-*Debugging.* Given a problem, extract a small portion of text surrounding the
-problematic area and debug that small piece of text. Doconce does a
-series of transformations of the text. The effect of each of these
-transformation steps are dumped to a logfile, named
-_doconce_debugging.log, if the to doconce format after the filename
-is debug. The logfile is inteded for the developers of Doconce, but
-may still give some idea of what is wrong.  The section "Basic Parsing
-Ideas" explains how the Doconce text is transformed into a specific
-format, and you need to know these steps to make use of the logfile.
-
-
 Header and Footer
 -----------------
 
@@ -22231,8 +22854,193 @@ has, or has an intention have, a title), the header and footer
 are included, otherwise not.
 
 
+Troubleshooting
+===============
+
+Disclaimer
+----------
+
+Doconce has some support for syntax checking.  If you encounter Python
+errors while running doconce format, the reason for the error is
+most likely a syntax problem in your Doconce source file. You have to
+track down this syntax problem yourself.
+
+However, the problem may well be a bug in Doconce. The Doconce
+software is incomplete, and many special cases of syntax are not yet
+discovered to give problems. Such special cases are also seldom easy to
+fix, so one important way of "debugging" Doconce is simply to change
+the formatting so that Doconce treats it properly. Doconce is very much
+based on regular expressions, which are known to be non-trivial to
+debug years after they are created. The main developer of Doconce has
+hardly any time to work on debugging the code, but the software works
+well for his diverse applications of it.
+
+
+General Problems
+----------------
+
+Figure captions are incomplete
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If only the first part of a figure caption in the Doconce file is seen
+in the target output format, the reason is usually that the caption
+occupies multiple lines in the Doconce file. The figure caption must
+be written as *one line*, at the same line as the FIGURE keyword.
+
+Preprocessor directives do not work
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure the preprocessor instructions, in Preprocess or Mako, have
+correct syntax. Also make sure that you do not mix Preprocess and Mako
+instructions. Doconce will then only run Preprocess.
+
+Problems with boldface and emphasize
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Two boldface or emphasize expressions after each other are not rendered
+correctly. Merge them into one common expression.
+
+Strange non-English characters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Check the encoding of the .do.txt file with the Unix file command
+or with::
+
+
+        Unix> doconce guess_encoding myfile.do.txt
+
+If the encoding is utf-8, convert to latin-1 using either of
+the Unix commands::
+
+
+        Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+
+
+
+Problems with Code or Tex Blocks
+--------------------------------
+
+Code or TeX block errors in reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sometimes reStructuredText (reST) reports an "Unexpected indentation"
+at the beginning of a code block. If you see a !bc, which should
+have been removed by doconce format, it is usually an error in the
+Doconce source, or a problem with the rst/sphinx translator.  Check if
+the line before the code block ends in one colon (not two!), a
+question mark, an exclamation mark, a comma, a period, or just a
+newline/space after text. If not, make sure that the ending is among
+the mentioned. Then !bc will most likely be replaced and a double
+colon at the preceding line will appear (which is the right way in
+reST to indicate a verbatim block of text).
+
+Strange errors around code or TeX blocks in reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If idx commands for defining indices are placed inside paragraphs,
+and especially right before a code block, the reST translator
+(rst and sphinx formats) may get confused and produce strange
+code blocks that cause errors when the reST text is transformed to
+other formats. The remedy is to define items for the index outside
+paragraphs.
+
+Verbatim code blocks inside lists look ugly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Read the the section "Blocks of Verbatim Computer Code" above.  Start the::
+
+
+        indenting the surrounding plain text of the list item correctly. If
+        you cannot resolve the problem this way, get rid of the list and use
+        paragraph headings instead. In fact, that is what is recommended:
+        avoid verbatim code blocks inside lists (it makes life easier).
+        
+        LaTeX code blocks inside lists look ugly
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        Same solution as for computer code blocks as described in the
+        previous paragraph. Make sure the !bt and !et tags are in column 1
+        and that the rest of the non-LaTeX surrounding text is correctly indented.
+        Using paragraphs instead of list items is a good idea also here.
+        
+        
+        Problems with reST Output
+        -------------------------
+        
+        Lists do not appear in .rst files
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        Check if you have a comment right above the list. That comment
+        will include the list if the list is indentend. Remove the comment.
+        
+        Error message "Undefined substitution..." from reST
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        This may happen if there is much inline math in the text. reST cannot
+        understand inline LaTeX commands and interprets them as illegal code.
+        Just ignore these error messages.
+        
+        Inconsistent headings in reST
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        The rst2*.py and Sphinx converters abort if the headers of sections
+        are not consistent, i.e., a subsection must come under a section,
+        and a subsubsection must come under a subsection (you cannot have
+        a subsubsection directly under a section). Search for ===,
+        count the number of equality signs (or underscores if you use that)
+        and make sure they decrease by two every time a lower level is encountered.
+        
+        Problems with LaTeX Output
+        --------------------------
+        
+        The LaTeX file does not compile
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        If the problem is undefined control sequence involving
+        !bc 
+        \code{...}
+
+the cause is usually a verbatim inline text (in backquotes in the
+Doconce file) spans more than one line. Make sure, in the Doconce source,
+that all inline verbatim text appears on the same line.
+
+Problems with gwiki Output
+--------------------------
+
+Strange nested lists in gwiki
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Doconce cannot handle nested lists correctly in the gwiki format.
+Use nonnested lists or edit the .gwiki file directly.
+
+Lists in gwiki look ugly in the gwiki source
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Because the Google Code wiki format requires all text of a list item to
+be on one line, Doconce simply concatenates lines in that format,
+and because of the indentation in the original Doconce text, the gwiki
+output looks somewhat ugly. The good thing is that this gwiki source
+is seldom to be looked at - it is the Doconce source that one edits
+further.
+
+Debugging
+---------
+
+Given a problem, extract a small portion of text surrounding the
+problematic area and debug that small piece of text. Doconce does a
+series of transformations of the text. The effect of each of these
+transformation steps are dumped to a logfile, named
+_doconce_debugging.log, if the to doconce format after the filename
+is debug. The logfile is inteded for the developers of Doconce, but
+may still give some idea of what is wrong.  The section "Basic Parsing
+Ideas" explains how the Doconce text is transformed into a specific
+format, and you need to know these steps to make use of the logfile.
+
+
+
 Basic Parsing Ideas
--------------------
+===================
 
 
 The (parts of) files with computer code to be directly included in
@@ -22392,23 +23200,27 @@ Bibliography
 ************** File: /home/hpl/vc/doconce/test/test.output *****************
 + doconce format html testdoc.do.txt
 run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+mako kwargs {'FORMAT': 'html'}
 translate preprocessed Doconce text in __tmp.do.txt
 output in testdoc.html
 + doconce format latex testdoc.do.txt
 run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+mako kwargs {'FORMAT': 'latex'}
 translate preprocessed Doconce text in __tmp.do.txt
-latex: /home/hpl/vc/doconce/test/wavepacket_0001.html
 output in testdoc.p.tex
 + doconce format plain testdoc.do.txt
 run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+mako kwargs {'FORMAT': 'plain'}
 translate preprocessed Doconce text in __tmp.do.txt
 output in testdoc.txt
 + doconce format st testdoc.do.txt
 run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+mako kwargs {'FORMAT': 'st'}
 translate preprocessed Doconce text in __tmp.do.txt
 output in testdoc.st
 + doconce format sphinx testdoc.do.txt
 run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+mako kwargs {'FORMAT': 'sphinx'}
 translate preprocessed Doconce text in __tmp.do.txt
 
 Warning: the "alignat" environment will give errors in Sphinx:
@@ -22422,14 +23234,17 @@ output in testdoc.rst
 + mv -f testdoc.rst testdoc.sphinx.rst
 + doconce format rst testdoc.do.txt
 run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+mako kwargs {'FORMAT': 'rst'}
 translate preprocessed Doconce text in __tmp.do.txt
 output in testdoc.rst
 + doconce format epytext testdoc.do.txt
 run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+mako kwargs {'FORMAT': 'epytext'}
 translate preprocessed Doconce text in __tmp.do.txt
 output in testdoc.epytext
 + doconce format gwiki testdoc.do.txt remove_inline_comments MYVAR1=3 MYVAR2=a string
 run mako preprocessor on testdoc.do.txt to make __tmp.do.txt
+mako kwargs {'MYVAR1': 3, 'MYVAR2': 'a string', 'FORMAT': 'gwiki'}
 mako variables: {'MYVAR1': 3, 'MYVAR2': 'a string', 'FORMAT': 'gwiki'}
 translate preprocessed Doconce text in __tmp.do.txt
 
@@ -22543,57 +23358,57 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1]
-Overfull \hbox (8.67865pt too wide) in paragraph at lines 118--122
+Overfull \hbox (8.67865pt too wide) in paragraph at lines 127--131
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
 [2] [3] [4]
 
-LaTeX Warning: Reference `my:first:sec' on page 5 undefined on input line 295.
+LaTeX Warning: Reference `my:first:sec' on page 5 undefined on input line 304.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 5 undefined on input line 30
-0.
+9.
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 336.
+(amsmath)                 on input line 345.
 
 [5]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 412--430
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 421--439
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 412--430
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 421--439
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 412--430
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 421--439
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 [6] [7]
-Overfull \hbox (1.85565pt too wide) in paragraph at lines 512--516
+Overfull \hbox (1.85565pt too wide) in paragraph at lines 521--525
  \OT1/phv/b/n/10 Step 1.[] \OT1/phv/m/n/10 Fil-ter the do-conce text to a pre-L
 aTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/phv/m/n/10 for []\OT1/cmtt/m/n/10
  ptex2tex\OT1/phv/m/n/10 :
 
-LaTeX Warning: Reference `newcommands' on page 8 undefined on input line 521.
+LaTeX Warning: Reference `newcommands' on page 8 undefined on input line 530.
 
 
-Overfull \hbox (55.19026pt too wide) in paragraph at lines 519--524
+Overfull \hbox (55.19026pt too wide) in paragraph at lines 528--533
 \OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [8] [9] [10]
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 670--678
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 679--687
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 690--693
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 699--702
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [11] [12] [13]
-Overfull \hbox (20.44847pt too wide) in paragraph at lines 841--853
+Overfull \hbox (20.44847pt too wide) in paragraph at lines 850--862
 \OT1/phv/m/n/10 If you make use of pre-pro-ces-sor di-rec-tives in the Do-conce
  source, ei-ther [][][][][][]
 No file tutorial.ind.
@@ -22606,7 +23421,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (14 pages, 61496 bytes).
+Output written on tutorial.dvi (14 pages, 61540 bytes).
 Transcript written on tutorial.log.
 + latex tutorial.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -22686,53 +23501,53 @@ Writing index file tutorial.idx
 (./tutorial.out) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1]
-Overfull \hbox (8.67865pt too wide) in paragraph at lines 118--122
+Overfull \hbox (8.67865pt too wide) in paragraph at lines 127--131
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
 [2] [3] [4]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 336.
+(amsmath)                 on input line 345.
 
 [5]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 412--430
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 421--439
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 412--430
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 421--439
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 412--430
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 421--439
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 [6] [7]
-Overfull \hbox (1.85565pt too wide) in paragraph at lines 512--516
+Overfull \hbox (1.85565pt too wide) in paragraph at lines 521--525
  \OT1/phv/b/n/10 Step 1.[] \OT1/phv/m/n/10 Fil-ter the do-conce text to a pre-L
 aTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/phv/m/n/10 for []\OT1/cmtt/m/n/10
  ptex2tex\OT1/phv/m/n/10 :
 
-Overfull \hbox (55.19026pt too wide) in paragraph at lines 519--524
+Overfull \hbox (55.19026pt too wide) in paragraph at lines 528--533
 \OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [8] [9] [10]
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 670--678
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 679--687
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 690--693
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 699--702
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [11] [12] [13]
-Overfull \hbox (20.44847pt too wide) in paragraph at lines 841--853
+Overfull \hbox (20.44847pt too wide) in paragraph at lines 850--862
 \OT1/phv/m/n/10 If you make use of pre-pro-ces-sor di-rec-tives in the Do-conce
  source, ei-ther [][][][][][]
 No file tutorial.ind.
 [14] (./tutorial.aux) )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (14 pages, 63728 bytes).
+Output written on tutorial.dvi (14 pages, 63776 bytes).
 Transcript written on tutorial.log.
 + dvipdf tutorial.dvi
 + doconce format sphinx tutorial.do.txt
@@ -22795,7 +23610,7 @@ Author: ['Hans Petter Langtangen']
 Using author(s) "Hans Petter Langtangen" from tutorial.do.txt
 Title: Doconce: Document Once, Include Anywhere
 Author: Hans Petter Langtangen
-These Sphinx themes were found: slim-agogo, default, agogo, traditional, scrolls, sphinxdoc, classy, epub, vlinux-theme, haiku, jal, agni, basic, fenics, nature, pyramid, default
+These Sphinx themes were found: slim-agogo, default, agogo, traditional, scrolls, sphinxdoc, classy, epub, fenics_minimal, vlinux-theme, haiku, jal, agni, basic, fenics, nature, pyramid, default
 
 'automake-sphinx.sh' contains the steps to (re)compile the sphinx version.
 You may want to edit this file - look at it.
@@ -23016,7 +23831,7 @@ etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 xlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/u
 rw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 194855 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 194863 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -23163,7 +23978,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205629 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205637 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -23310,7 +24125,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205629 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205637 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -23463,7 +24278,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205629 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205637 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -23610,7 +24425,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205629 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (21 pages, 205637 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -23874,7 +24689,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.rst.dvi (12 pages, 56976 bytes).
+Output written on tutorial.rst.dvi (12 pages, 56980 bytes).
 Transcript written on tutorial.rst.log.
 + dvipdf tutorial.rst.dvi
 + doconce format plain tutorial.do.txt
@@ -23995,7 +24810,7 @@ where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
 Title: Doconce Manual
 Author: 0.6
-These Sphinx themes were found: slim-agogo, default, agogo, traditional, scrolls, sphinxdoc, classy, epub, vlinux-theme, haiku, jal, agni, basic, fenics, nature, pyramid, default
+These Sphinx themes were found: slim-agogo, default, agogo, traditional, scrolls, sphinxdoc, classy, epub, fenics_minimal, vlinux-theme, haiku, jal, agni, basic, fenics, nature, pyramid, default
 
 'automake-sphinx.sh' contains the steps to (re)compile the sphinx version.
 You may want to edit this file - look at it.
@@ -24257,16 +25072,20 @@ LaTeX Warning: Hyper reference `manual:doconce2formats' on page 27 undefined on
  input line 1551.
 
 [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./wavepacket_0010.png (PNG co
-py)>] [30] [31]
-
-LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 32 undefine
-d on input line 1728.
-
-[32] [33] [34] [35] [36]
+py)>] [30] [31] [32]
 Chapter 7.
-[37] [38]
+[33]
+
+LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 34 undefine
+d on input line 1780.
+
+[34] [35] [36]
+Chapter 8.
+[37] [38] [39] [40]
+Chapter 9.
+[41] [42]
 No file DoconceManual.ind.
-[39] (./DoconceManual.aux)
+[43] (./DoconceManual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -24290,7 +25109,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (43 pages, 351642 bytes).
+Output written on DoconceManual.pdf (47 pages, 357783 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -24388,7 +25207,7 @@ tination with the same identifier (name{page.i}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.39 ...line {7}Indices and tables}{37}{chapter.7}
+l.42 ... with Code or Tex Blocks}{34}{section.7.3}
                                                    [1])pdfTeX warning (ext4): d
 estination with the same identifier (name{page.ii}) has been already used, dupl
 icate ignored
@@ -24417,7 +25236,7 @@ Chapter 4.
 Chapter 5.
 [17] [18]
 Chapter 6.
-<streamtubes.png, id=310, 583.17876pt x 437.635pt> <use streamtubes.png>
+<streamtubes.png, id=345, 583.17876pt x 437.635pt> <use streamtubes.png>
 <use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22] [23]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
@@ -24441,15 +25260,19 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 1439.
 
-[26] <wavepacket_0001.png, id=373, 642.4pt x 481.8pt>
+[26] <wavepacket_0001.png, id=408, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=374, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=409, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
-avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34] [35] [36]
+avepacket_0010.png (PNG copy)>] [30] [31] [32]
 Chapter 7.
-[37] [38]
+[33] [34] [35] [36]
+Chapter 8.
+[37] [38] [39] [40]
+Chapter 9.
+[41] [42]
 No file DoconceManual.ind.
-[39] (./DoconceManual.aux)
+[43] (./DoconceManual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -24470,7 +25293,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (43 pages, 372522 bytes).
+Output written on DoconceManual.pdf (47 pages, 382103 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -24568,7 +25391,7 @@ tination with the same identifier (name{page.i}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.39 ...line {7}Indices and tables}{37}{chapter.7}
+l.42 ... with Code or Tex Blocks}{34}{section.7.3}
                                                    [1])pdfTeX warning (ext4): d
 estination with the same identifier (name{page.ii}) has been already used, dupl
 icate ignored
@@ -24597,7 +25420,7 @@ Chapter 4.
 Chapter 5.
 [17] [18]
 Chapter 6.
-<streamtubes.png, id=310, 583.17876pt x 437.635pt> <use streamtubes.png>
+<streamtubes.png, id=345, 583.17876pt x 437.635pt> <use streamtubes.png>
 <use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22] [23]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
@@ -24621,15 +25444,19 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 1439.
 
-[26] <wavepacket_0001.png, id=373, 642.4pt x 481.8pt>
+[26] <wavepacket_0001.png, id=408, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=374, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=409, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
-avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34] [35] [36]
+avepacket_0010.png (PNG copy)>] [30] [31] [32]
 Chapter 7.
-[37] [38]
+[33] [34] [35] [36]
+Chapter 8.
+[37] [38] [39] [40]
+Chapter 9.
+[41] [42]
 No file DoconceManual.ind.
-[39] (./DoconceManual.aux)
+[43] (./DoconceManual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -24650,7 +25477,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (43 pages, 372522 bytes).
+Output written on DoconceManual.pdf (47 pages, 382103 bytes).
 Transcript written on DoconceManual.log.
 makeindex -s python.ist 'DoconceManual.idx'
 This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
@@ -24756,7 +25583,7 @@ tination with the same identifier (name{page.i}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.39 ...line {7}Indices and tables}{37}{chapter.7}
+l.42 ... with Code or Tex Blocks}{34}{section.7.3}
                                                    [1])pdfTeX warning (ext4): d
 estination with the same identifier (name{page.ii}) has been already used, dupl
 icate ignored
@@ -24785,7 +25612,7 @@ Chapter 4.
 Chapter 5.
 [17] [18]
 Chapter 6.
-<streamtubes.png, id=310, 583.17876pt x 437.635pt> <use streamtubes.png>
+<streamtubes.png, id=345, 583.17876pt x 437.635pt> <use streamtubes.png>
 <use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22] [23]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
@@ -24809,13 +25636,17 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 1439.
 
-[26] <wavepacket_0001.png, id=373, 642.4pt x 481.8pt>
+[26] <wavepacket_0001.png, id=408, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=374, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=409, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
-avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34] [35] [36]
+avepacket_0010.png (PNG copy)>] [30] [31] [32]
 Chapter 7.
-[37] [38] (./DoconceManual.ind [39] [40] [41]) (./DoconceManual.aux)
+[33] [34] [35] [36]
+Chapter 8.
+[37] [38] [39] [40]
+Chapter 9.
+[41] [42] (./DoconceManual.ind [43] [44] [45]) (./DoconceManual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -24837,7 +25668,7 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (45 pages, 382125 bytes).
+Output written on DoconceManual.pdf (49 pages, 391910 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -24935,7 +25766,7 @@ tination with the same identifier (name{page.i}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.39 ...line {7}Indices and tables}{37}{chapter.7}
+l.42 ... with Code or Tex Blocks}{34}{section.7.3}
                                                    [1])pdfTeX warning (ext4): d
 estination with the same identifier (name{page.ii}) has been already used, dupl
 icate ignored
@@ -24964,7 +25795,7 @@ Chapter 4.
 Chapter 5.
 [17] [18]
 Chapter 6.
-<streamtubes.png, id=315, 583.17876pt x 437.635pt> <use streamtubes.png>
+<streamtubes.png, id=350, 583.17876pt x 437.635pt> <use streamtubes.png>
 <use streamtubes.png> [19] [20 <./streamtubes.png>] [21] [22] [23]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 24 undefined o
@@ -24988,13 +25819,17 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 1439.
 
-[26] <wavepacket_0001.png, id=378, 642.4pt x 481.8pt>
+[26] <wavepacket_0001.png, id=413, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=379, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=414, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png> [27] [28 <./wavepacket_0001.png (PNG copy)>] [29 <./w
-avepacket_0010.png (PNG copy)>] [30] [31] [32] [33] [34] [35] [36]
+avepacket_0010.png (PNG copy)>] [30] [31] [32]
 Chapter 7.
-[37] [38] (./DoconceManual.ind [39] [40] [41]) (./DoconceManual.aux)
+[33] [34] [35] [36]
+Chapter 8.
+[37] [38] [39] [40]
+Chapter 9.
+[41] [42] (./DoconceManual.ind [43] [44] [45]) (./DoconceManual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -25016,7 +25851,7 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (45 pages, 382540 bytes).
+Output written on DoconceManual.pdf (49 pages, 392322 bytes).
 Transcript written on DoconceManual.log.
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
 + cd ../../..
@@ -25335,112 +26170,110 @@ Overfull \hbox (77.00006pt too wide) in paragraph at lines 1932--1934
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 [23]
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2064--2065
+\T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 24 un
-defined on input line 2005.
-
-
-Overfull \hbox (77.5059pt too wide) in paragraph at lines 2005--2011
-[]\T1/ptm/m/it/10 Verbatim Code Blocks In-side Lists Look Ugly. \T1/ptm/m/n/10 
-Read the the sec-tion [][][][][][]
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2040--2043
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2066--2068
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[24]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2099--2102
+
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 24 un
+defined on input line 2124.
+
+[24] [25]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2302--2305
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2140--2141
+[26]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2343--2344
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2142--2142
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2345--2345
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2143--2143
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2346--2346
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
-[25]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2146--2146
+
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2349--2349
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2147--2147
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2350--2350
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2148--2148
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2351--2351
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 2149--2149
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 2352--2352
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 2154--2154
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 2357--2357
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2155--2155
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2358--2358
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2156--2156
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2359--2359
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2159--2159
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2362--2362
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 2162--2162
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 2365--2365
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 2164--2164
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 2367--2367
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2167--2167
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2370--2370
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2174--2174
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2377--2377
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2176--2176
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2379--2379
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2178--2178
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2381--2381
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2181--2181
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2384--2384
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2187--2187
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2390--2390
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
-[26]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2228--2228
+[27]
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2431--2431
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2230--2230
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2433--2433
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2231--2231
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2434--2434
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2232--2232
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2435--2435
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2233--2233
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2436--2436
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[27] [28] (./manual.rst.aux)
+[28] [29] (./manual.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -25449,7 +26282,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (28 pages, 120324 bytes).
+Output written on manual.rst.dvi (29 pages, 126880 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -25717,109 +26550,108 @@ Overfull \hbox (77.00006pt too wide) in paragraph at lines 1932--1934
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 [23]
-Overfull \hbox (77.5059pt too wide) in paragraph at lines 2005--2011
-[]\T1/ptm/m/it/10 Verbatim Code Blocks In-side Lists Look Ugly. \T1/ptm/m/n/10 
-Read the the sec-tion [][][][][][]
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2064--2065
+\T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2040--2043
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2066--2068
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[24]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2099--2102
+[24] [25]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2302--2305
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2140--2141
+[26]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2343--2344
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2142--2142
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2345--2345
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2143--2143
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2346--2346
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
-[25]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2146--2146
+
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2349--2349
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2147--2147
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2350--2350
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2148--2148
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2351--2351
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 2149--2149
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 2352--2352
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 2154--2154
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 2357--2357
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2155--2155
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2358--2358
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2156--2156
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2359--2359
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2159--2159
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2362--2362
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 2162--2162
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 2365--2365
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 2164--2164
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 2367--2367
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2167--2167
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2370--2370
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2174--2174
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2377--2377
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2176--2176
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2379--2379
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2178--2178
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2381--2381
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2181--2181
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2384--2384
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2187--2187
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2390--2390
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
-[26]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2228--2228
+[27]
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2431--2431
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2230--2230
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2433--2433
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2231--2231
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2434--2434
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2232--2232
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2435--2435
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2233--2233
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2436--2436
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[27] [28] (./manual.rst.aux) )
+[28] [29] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (28 pages, 123968 bytes).
+Output written on manual.rst.dvi (29 pages, 132784 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt remove_inline_comments
@@ -25938,118 +26770,118 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (5.27824pt too wide) in paragraph at lines 147--159
+Overfull \hbox (5.27824pt too wide) in paragraph at lines 156--168
 \OT1/cmr/m/n/10 If you make use of pre-pro-ces-sor di-rec-tives in the Do-conce
  source, ei-ther [][][][][][]
 [2] [3]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 266--270
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 275--279
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-LaTeX Warning: Reference `newcommands' on page 4 undefined on input line 275.
+LaTeX Warning: Reference `newcommands' on page 4 undefined on input line 284.
 
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 273--278
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 282--287
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [4] [5] [6]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 424--432
+Overfull \hbox (1.943pt too wide) in paragraph at lines 433--441
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 444--447
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 453--456
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [7] [8] [9] [10] [11] [12] <figs/streamtubes.eps> [13]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 14 undefined on input li
-ne 898.
+ne 907.
 
 
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 905--908
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 914--917
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [14]
 
-LaTeX Warning: Reference `doconce2formats' on page 15 undefined on input line 9
-99.
+LaTeX Warning: Reference `doconce2formats' on page 15 undefined on input line 1
+008.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 15 undefined on input line 1
-005.
+014.
 
 [15]
 
-LaTeX Warning: Reference `fig:viz' on page 16 undefined on input line 1055.
+LaTeX Warning: Reference `fig:viz' on page 16 undefined on input line 1064.
 
 
-LaTeX Warning: Reference `mathtext' on page 16 undefined on input line 1057.
+LaTeX Warning: Reference `mathtext' on page 16 undefined on input line 1066.
 
 
-LaTeX Warning: Reference `newcommands' on page 16 undefined on input line 1057.
+LaTeX Warning: Reference `newcommands' on page 16 undefined on input line 1066.
 
 
 
-LaTeX Warning: Reference `my:eq1' on page 16 undefined on input line 1059.
+LaTeX Warning: Reference `my:eq1' on page 16 undefined on input line 1068.
 
 
-LaTeX Warning: Reference `my:eq2' on page 16 undefined on input line 1059.
+LaTeX Warning: Reference `my:eq2' on page 16 undefined on input line 1068.
 
 
 LaTeX Warning: Reference `inline:tagging' on page 16 undefined on input line 10
-64.
+73.
 
 [16] [17]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-154.
+163.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1154.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1163.
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-155.
+164.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1155.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1164.
 
 [18] (./manual.out.pyg) (./manual.out.pyg) [19] [20]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1390.
+(amsmath)                 on input line 1399.
 
 
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1427--1429
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1436--1438
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [21] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps>
 
 LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-517.
+526.
 
 [22] [23] [24]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1606--1613
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1615--1622
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1606--1613
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1615--1622
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[25]
+[25] [26]
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 26 undefined on input li
-ne 1697.
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 27 undefined on input li
+ne 1734.
 
-[26] [27] [28] [29]
+[27] [28] [29]
 No file manual.bbl.
 No file manual.ind.
-[30] (./manual.aux)
+[30] [31] (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -26058,7 +26890,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (30 pages, 126660 bytes).
+Output written on manual.dvi (31 pages, 129272 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -26150,76 +26982,76 @@ Writing index file manual.idx
 (./newcommands_keep.tex) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (5.27824pt too wide) in paragraph at lines 147--159
+Overfull \hbox (5.27824pt too wide) in paragraph at lines 156--168
 \OT1/cmr/m/n/10 If you make use of pre-pro-ces-sor di-rec-tives in the Do-conce
  source, ei-ther [][][][][][]
 [2] [3]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 266--270
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 275--279
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 273--278
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 282--287
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [4] [5] [6]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 424--432
+Overfull \hbox (1.943pt too wide) in paragraph at lines 433--441
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 444--447
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 453--456
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [7] [8] [9] [10] [11] [12] <figs/streamtubes.eps> [13]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 905--908
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 914--917
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [14] [15] [16] [17]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-154.
+163.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1154.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1163.
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-155.
+164.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1155.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1164.
 
 [18] (./manual.out.pyg) (./manual.out.pyg) [19] [20]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1390.
+(amsmath)                 on input line 1399.
 
 
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1427--1429
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1436--1438
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [21] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [22] [23] [24]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1606--1613
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1615--1622
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1606--1613
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1615--1622
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
 [25] [26] [27] [28] [29]
 No file manual.bbl.
 No file manual.ind.
-[30] (./manual.aux)
+[30] [31] (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (30 pages, 133104 bytes).
+Output written on manual.dvi (31 pages, 136392 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -26323,68 +27155,68 @@ Writing index file manual.idx
 (./newcommands_keep.tex) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (5.27824pt too wide) in paragraph at lines 147--159
+Overfull \hbox (5.27824pt too wide) in paragraph at lines 156--168
 \OT1/cmr/m/n/10 If you make use of pre-pro-ces-sor di-rec-tives in the Do-conce
  source, ei-ther [][][][][][]
 [2] [3]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 266--270
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 275--279
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 273--278
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 282--287
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [4] [5] [6]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 424--432
+Overfull \hbox (1.943pt too wide) in paragraph at lines 433--441
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 444--447
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 453--456
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [7] [8] [9] [10] [11] [12] <figs/streamtubes.eps> [13]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 905--908
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 914--917
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [14] [15] [16] [17]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-154.
+163.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1154.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1163.
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 18 undefined on input line 1
-155.
+164.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1155.
+LaTeX Warning: Citation `Osnes:98' on page 18 undefined on input line 1164.
 
 [18] (./manual.out.pyg) (./manual.out.pyg) [19] [20]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1390.
+(amsmath)                 on input line 1399.
 
 
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1427--1429
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1436--1438
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [21] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [22] [23] [24]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1606--1613
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1615--1622
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1606--1613
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1615--1622
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[25] [26] [27] [28] [29] (./manual.bbl) (./manual.ind [30] [31]) (./manual.aux)
-
+[25] [26] [27] [28] [29] (./manual.bbl [30]) (./manual.ind [31] [32])
+(./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -26393,7 +27225,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (31 pages, 139888 bytes).
+Output written on manual.dvi (32 pages, 143184 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -26485,29 +27317,29 @@ Writing index file manual.idx
 (./newcommands_keep.tex) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (5.27824pt too wide) in paragraph at lines 147--159
+Overfull \hbox (5.27824pt too wide) in paragraph at lines 156--168
 \OT1/cmr/m/n/10 If you make use of pre-pro-ces-sor di-rec-tives in the Do-conce
  source, ei-ther [][][][][][]
 [2] [3]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 266--270
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 275--279
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 273--278
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 282--287
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [4] [5] [6]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 424--432
+Overfull \hbox (1.943pt too wide) in paragraph at lines 433--441
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 444--447
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 453--456
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [7] [8] [9] [10] [11] [12] <figs/streamtubes.eps> [13]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 905--908
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 914--917
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
@@ -26515,25 +27347,25 @@ T1/cmtt/m/n/10 verbatim text
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1390.
+(amsmath)                 on input line 1399.
 
 
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1427--1429
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1436--1438
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [21] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [22] [23] [24]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1606--1613
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1615--1622
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1606--1613
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1615--1622
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[25] [26] [27] [28] [29] (./manual.bbl) (./manual.ind [30] [31]) (./manual.aux)
- )
+[25] [26] [27] [28] [29] (./manual.bbl [30]) (./manual.ind [31] [32])
+(./manual.aux) )
 (see the transcript file for additional information)
-Output written on manual.dvi (31 pages, 140884 bytes).
+Output written on manual.dvi (32 pages, 144180 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt

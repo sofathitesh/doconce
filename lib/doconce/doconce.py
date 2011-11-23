@@ -852,7 +852,7 @@ def interpret_authors(filestr, format):
             a = a.strip()
             e = e.strip()
             if not '@' in e:
-                print 'Syntax error: wrong email specification in AUTHOR line: "%s"' % e
+                print 'Syntax error: wrong email specification in AUTHOR line: "%s" (no @)' % e
         else:
             e = None
         authors_and_institutions.append((a, i, e))
@@ -1235,6 +1235,7 @@ python-mako package (sudo apt-get install python-mako).
                 kwargs[key] = eval(value)
             except (NameError, SyntaxError):
                 kwargs[key] = value
+        print 'mako kwargs', kwargs
         f.write(temp.render(**kwargs))
         f.close()
         if preprocessor_options:

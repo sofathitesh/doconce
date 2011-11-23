@@ -370,10 +370,10 @@ def sphinx_dir():
             f = open(filename, 'r'); fstr = f.read(); f.close()
             # The following can be misleading if there are examples on
             # various AUTHOR: in e.g. vertabim code in the .do.txt file
-            authors_and_institutions, dummy1, dummy2, dummy3, dummy4 = \
+            authors_and_institutions, dummy1, dummy2, dummy3, dummy4, dummy5 = \
                       doconce.doconce.interpret_authors(fstr, 'sphinx')
             if authors_and_institutions:
-                author = [a for a, i in authors_and_institutions]
+                author = [a for a, i, e in authors_and_institutions]
 
                 print 'Author:', author
                 if len(author) == 1:
