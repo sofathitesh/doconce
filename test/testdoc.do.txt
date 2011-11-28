@@ -239,7 +239,7 @@ __Hint 2.__ Draw an integer among $\{1,2\}$ with
 
 
 ===== Exercise: Compute a Probability =====
-label{demo:ex:2} file=`compute_prob.py`  solution=
+label{demo:ex:2} file=`compute_prob.py`  solution=/my/home/hpl/sol/file1.txt
 
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?

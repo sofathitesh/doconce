@@ -326,8 +326,9 @@ def insert_code_from_file(filestr, format):
 
         if line.startswith('@@@CODE'):
             debugpr('Found verbatim copy (line %d): %s' % (i+1, line))
+            words = line.split()
             try:
-                filename = line.split()[1]
+                filename = words[1]
             except IndexError:
                 raise SyntaxError, \
                       'Syntax error: missing filename in line\n  %s' % line
@@ -338,20 +339,27 @@ def insert_code_from_file(filestr, format):
                 print e
                 sys.exit(1)
             index = line.find('fromto:')
-            if index == -1:
+            #print index, words
+            if index == -1 and len(words) < 3:
                 # no from/to regex, read the whole file:
+                print 'copying complete file %s' % filename,
                 complete_file = True
                 code = f.read().strip()
                 debugpr('copy the file "%s" into a verbatim block\n' % filename)
 
             else:
                 complete_file = False
-                patterns = line[index+7:]
+                if index >= 0:
+                    patterns = line[index+7:]
+                else:
+                    patterns = ' '.join(words[2:])
                 try:
                     from_, to_ = patterns.split('@')
                 except:
                     raise SyntaxError, \
                     'Syntax error: missing @ in regex in line\n  %s' % line
+                print 'copying from regex "%s" to "%s" in %s' % (from_, to_, filename),
+                # Note that from_ and to_ are regular expressions
                 cfrom = re.compile(from_)
                 cto = re.compile(to_)
                 codelines = []
@@ -369,15 +377,19 @@ def insert_code_from_file(filestr, format):
                               (filename, codeline))
                         codelines.append(codeline)
                 code = ''.join(codelines)
+                code = code.rstrip()  # remove trailing whitespace
 
             if format == 'latex' or format == 'sphinx':
                 # insert a cod or pro directive for ptex2tex:
                 if complete_file:
                     code = "!bc pro\n%s\n!ec" % code
+                    print ' (!bc pro)'
                 else:
                     code = "!bc cod\n%s\n!ec" % code
+                    print ' (!bc cod)'
             else:
                 code = "!bc\n%s\n!ec" % code
+                print
             lines[i] = code
 
     filestr = '\n'.join(lines)

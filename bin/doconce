@@ -276,7 +276,7 @@ def gwiki_figsubst():
         sys.exit(1)
 
     # first grep out all filenames with local path:
-    shutil.copy(gwikifile, gwikifile + 'old~~')
+    shutil.copy(gwikifile, gwikifile + '.old~~')
     f = open(gwikifile, 'r')
     fstr = f.read()
     f.close()
@@ -796,7 +796,7 @@ def usage_change_encoding():
     print 'Example: doconce change_encoding utf-8 latin-1 myfile.do.txt'
 
 def _change_encoding_unix(filename, from_enc, to_enc):
-    backupfile = filename + 'old~~'
+    backupfile = filename + '.old~~'
     if sys.platform == 'linux2':
         cmd = 'iconv -f %s -t %s %s --output %s' % \
               (from_enc, to_enc, backupfile, filename)
