@@ -478,7 +478,8 @@ some URL like "Doconce": "http://code.google.com/p/doconce"
 !ec
 which appears as some URL like "Search Google": "http://google.com".
 The space after colon is optional.
-Links to files ending in `.txt`, `.html`, or `.pdf` follows the same
+Links to files ending in `.txt`, `.html`, `.pdf`, `.py`, `.f`,
+`.c`, `.cpp`, `.cxx`, `.pl`, and `.java` follows the same
 setup:
 !bc
 see the "Doconce Manual": "manual.do.txt"
