@@ -321,8 +321,9 @@ INLINE_TAGS = {
     r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>(file:/|https?:)//.+?)"''',
     #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
 
-    'linkURL3':  # "some link": "some/local/file/name.html" or .txt/.pdf files
-    r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>([^"]+?\.html?|[^"]+?\.txt|[^"]+?.pdf))"''',
+    'linkURL3':  # "some link": "some/local/file/name.html" or .txt/.pdf/.py/.c/.cpp/.cxx/.f/.java/.pl files
+    #r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>([^"]+?\.html?|[^"]+?\.txt|[^"]+?.pdf))"''',
+    r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>([^"]+?\.html?|[^"]+?\.txt|[^"]+?\.pdf|[^"]+?\.f|[^"]+?\.c|[^"]+?\.cpp|[^"]+?\.cxx|[^"]+?\.py|[^"]+?\.java|[^"]+?\.pl))"''',
     #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
 
     'plainURL':
