@@ -3,14 +3,15 @@ import re, os, glob, sys
 # how to replace code and LaTeX blocks by html (<pre>) environment:
 def html_code(filestr, format):
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
-    filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<BLOCKQUOTE><PRE>\n',
+    # Do not use <code> here, it gives an extra line at the top
+    filestr = c.sub(r'<blockquote>    <!-- begin verbatim block \g<1>-->\n<pre>\n',
                     filestr)
     filestr = re.sub(r'!ec\n',
-                     r'</PRE></BLOCKQUOTE>\n<! -- END VERBATIM BLOCK -->\n',
+                     r'</pre>\n</blockquote>   <! -- end verbatim block -->\n',
                      filestr)
     c = re.compile(r'^!bt\n', re.MULTILINE)
-    filestr = c.sub(r'<BLOCKQUOTE><PRE>\n', filestr)
-    filestr = re.sub(r'!et\n', r'</PRE></BLOCKQUOTE>\n', filestr)
+    filestr = c.sub(r'<blockquote><pre>\n', filestr)
+    filestr = re.sub(r'!et\n', r'</pre></blockquote>\n', filestr)
     return filestr
 
 from common import table_analysis
@@ -22,7 +23,7 @@ def html_table(table):
     heading_spec = table.get('headings_align', 'c'*ncolumns).replace('|', '')
     a2html = {'r': 'right', 'l': 'left', 'c': 'center'}
 
-    s = '<TABLE border="1">\n'
+    s = '<table border="1">\n'
     for i, row in enumerate(table['rows']):
         if row == ['horizontal rule']:
             continue
@@ -33,17 +34,17 @@ def html_table(table):
         else:
             headline = False
 
-        s += '<TR>'
+        s += '<tr>'
         for column, w, ha, ca in \
                 zip(row, column_width, heading_spec, column_spec):
             if headline:
-                s += '<TD align="%s"><B>%s</B></TD> ' % \
+                s += '<td align="%s"><b>%s</b></td> ' % \
                      (a2html[ha], column.center(w))
             else:
-                s += '<TD align="%s">   %s    </TD> ' % \
+                s += '<td align="%s">   %s    </td> ' % \
                      (a2html[ca], column.ljust(w))
-        s += '</TR>\n'
-    s += '</TABLE>\n'
+        s += '</tr>\n'
+    s += '</table>\n'
     return s
 
 def html_movie(m):
@@ -82,7 +83,7 @@ def html_movie(m):
         f.write(header + jscode + form + footer)
         f.close()
         text = """
-<P><A HREF="%s">Movie of files <TT>%s</TT></A>\n<EM>%s</EM></P>""" % \
+<p><a href="%s">Movie of files <tt>%s</tt></a>\n<em>%s</em></p>""" % \
                (moviehtml, filename, caption)
     elif 'youtube.com' in filename:
         if not 'youtube.com/embed/' in filename:
@@ -95,10 +96,10 @@ def html_movie(m):
 """ % (width, height, filename)
     else:
         text = """
-<EMBED SRC="%s" %s AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
-<P>
-<EM>%s</EM>
-</P>
+<embed src="%s" %s autoplay="true" loop="true"></embed>
+<p>
+<em>%s</em>
+</p>
 """ % (filename, ' '.join(options), caption)
     return text
 
@@ -113,11 +114,11 @@ def html_author(authors_and_institutions, auth2index,
             name, adr = email.split('@')
             email_text = ' (<tt>%s</tt> at <tt>%s</tt>)' % (name, adr)
 
-        text += '\n<CENTER>\n<B>%s</B> %s%s\n</CENTER>\n' % \
+        text += '\n<center>\n<b>%s</b> %s%s\n</center>\n' % \
             (author, str(auth2index[author]), email_text)
-    text += '\n<P>\n'
+    text += '\n<p>\n'
     for index in index2inst:
-        text += '<CENTER>[%d] <B>%s</B></CENTER>\n' % (index, index2inst[index])
+        text += '<center>[%d] <b>%s</b></center>\n' % (index, index2inst[index])
     text += '\n\n'
     return text
 
@@ -133,17 +134,17 @@ def html_ref_and_label(section_label2title, format, filestr):
     filestr = re.sub(pattern, replacement, filestr)
 
     # turn label{myname} to anchors <A NAME="myname"></a>
-    filestr = re.sub(r'label\{(.+?)\}', r'<A NAME="\g<1>"></A>', filestr)
+    filestr = re.sub(r'label\{(.+?)\}', r'<a name="\g<1>"></A>', filestr)
 
     # make special anchors for all the section titles:
     for label in section_label2title:
         # first remove the anchor with this label as created above:
-        filestr = filestr.replace('<A NAME="%s"></A>' % label, '')
+        filestr = filestr.replace('<a name="%s"></A>' % label, '')
         # make new anchor for this label (put in title):
         title = section_label2title[label]
         title_pattern = r'(_{3,7}|={3,7})\s*%s\s*(_{3,7}|={3,7})' % re.escape(title)  # title may contain ? () etc.
         filestr, n = re.subn(title_pattern,
-                     '\g<1> %s <A NAME="%s"></A> \g<2>' % (title, label),
+                     '\g<1> %s <a name="%s"></A> \g<2>' % (title, label),
                      filestr)
         # (a little odd with mix of doconce title syntax and html NAME tag...)
         if n == 0:
@@ -153,10 +154,10 @@ def html_ref_and_label(section_label2title, format, filestr):
     for label in section_label2title:
         title = section_label2title[label]
         filestr = filestr.replace('ref{%s}' % label,
-                                  '<A HREF="#%s">%s</a>' % (label, title))
+                                  '<a href="#%s">%s</a>' % (label, title))
 
     # replace all other references ref{myname} by <a href="#myname">myname</a>:
-    filestr = re.sub(r'ref\{(.+?)\}', r'<A HREF="#\g<1>">\g<1></a>', filestr)
+    filestr = re.sub(r'ref\{(.+?)\}', r'<a href="#\g<1>">\g<1></a>', filestr)
 
     from common import ref2equations
     filestr = ref2equations(filestr)
@@ -172,18 +173,18 @@ def bibdict2htmllist(pyfile, citations):
     except:
         print 'Error in Python dictionary for bibliography in', pyfile
         sys.exit(1)
-    text = '\n\n<H1>Bibliography</H1>\n\n<OL>\n'
+    text = '\n\n<h1>Bibliography</h1>\n\n<ol>\n'
     for label in citations:
         # remove newlines in reference data:
-        text += '  <P><LI><A NAME="%s"> ' % label + \
+        text += '  <p><li><a name="%s"> ' % label + \
                 ' '.join(bibdict[label].splitlines()) + '\n'
-    text += '</OL>\n\n'
+    text += '</ol>\n\n'
     return text
 
 def html_index_bib(filestr, index, citations, bibfile):
     for label in citations:
         filestr = filestr.replace('cite{%s}' % label,
-                                  '<A HREF="#%s">[%d]</A>' % \
+                                  '<a href="#%s">[%d]</a>' % \
                                   (label, citations[label]))
     if 'py' in bibfile:
         bibtext = bibdict2htmllist(bibfile['py'], citations)
@@ -219,23 +220,27 @@ def define(FILENAME_EXTENSION,
         # keep math as is:
         'math':          r'\g<begin>\g<subst>\g<end>',
         'math2':         r'\g<begin>\g<puretext>\g<end>',
-        'emphasize':     r'\g<begin><EM>\g<subst></EM>\g<end>',
-        'bold':          r'\g<begin><B>\g<subst></B>\g<end>',
-        'verbatim':      r'\g<begin><TT>\g<subst></TT>\g<end>',
+        'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
+        'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
+        'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
         'citation':      '',  # no citations
-        'linkURL':       r'\g<begin><A HREF="\g<url>">\g<link></A>\g<end>',
-        'linkURL2':      r'<A HREF="\g<url>">\g<link></A>',
-        'linkURL3':      r'<A HREF="\g<url>">\g<link></A>',
-        'plainURL':      r'<A HREF="\g<url>"><TT>\g<url></TT></A>',
-        'inlinecomment': r'[<B>\g<name></B>: <EM>\g<comment></EM>]',
-        'section':       r'<H1>\g<subst></H1>',
-        'subsection':    r'<H3>\g<subst></H3>',
-        'subsubsection': r'<H4>\g<subst></H4>',
-        'paragraph':     r'<B>\g<subst></B> ',
-        'title':         r'<TITLE>\g<subst></TITLE>\n<CENTER><H1>\g<subst></H1></CENTER>',
-        'date':          r'<CENTER><H3>\g<subst></H3></CENTER>',
+        'linkURL':       r'\g<begin><a href="\g<url>">\g<link></a>\g<end>',
+        'linkURL2':      r'<a href="\g<url>">\g<link></a>',
+        'linkURL3':      r'<a href="\g<url>">\g<link></a>',
+        'plainURL':      r'<a href="\g<url>"><tt>\g<url></tt></a>',
+        'inlinecomment': r'[<b>\g<name></b>: <em>\g<comment></em>]',
+        'section':       r'<h1>\g<subst></h1>',
+        'subsection':    r'<h3>\g<subst></h3>',
+        'subsubsection': r'<h4>\g<subst></h4>',
+        'paragraph':     r'<b>\g<subst></b> ',
+        'title':         r'<title>\g<subst></title>\n<center><h1>\g<subst></h1></center>',
+        'date':          r'<center><h3>\g<subst></h3></center>',
         'author':        html_author,
-        'figure':        r'<IMG SRC="\g<filename>" ALIGN="bottom" \g<options>> <P><EM>\g<caption></EM></P>',
+        #'figure':        r'<p><em>\g<caption></em></p><img src="\g<filename>" align="bottom" \g<options>>',
+        #'figure':        r'<img src="\g<filename>" align="bottom" \g<options>> <p><em>\g<caption></em></p>',
+        #'figure':        r'<center><img src="\g<filename>" align="bottom" \g<options>> <br><caption><i>\g<caption></i></caption></center>',
+        # caption above figure and a horizontal rule:
+        'figure':        r'<center><hr><caption><i>\g<caption></i></caption><p><img src="\g<filename>" align="bottom" \g<options>></p></center>',
         'movie':         html_movie,
         'comment':       '<!-- %s -->',
         }
@@ -245,13 +250,13 @@ def define(FILENAME_EXTENSION,
     # how to typeset lists and their items in html:
     LIST['html'] = {
         'itemize':
-        {'begin': '\n<UL>\n', 'item': '<LI>', 'end': '</UL>\n\n'},
+        {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
 
         'enumerate':
-        {'begin': '\n<OL>\n', 'item': '<LI>', 'end': '</OL>\n\n'},
+        {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
 
         'description':
-        {'begin': '\n<DL>\n', 'item': '<DT>%s<DD>', 'end': '</DL>\n\n'},
+        {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\n\n'},
 
         'separator': '',  # no need for blank lines between items and before/after
         }
@@ -259,12 +264,12 @@ def define(FILENAME_EXTENSION,
     # how to typeset description lists for function arguments, return
     # values, and module/class variables:
     ARGLIST['html'] = {
-        'parameter': '<B>argument</B>',
-        'keyword': '<B>keyword argument</B>',
-        'return': '<B>return value(s)</B>',
-        'instance variable': '<B>instance variable</B>',
-        'class variable': '<B>class variable</B>',
-        'module variable': '<B>module variable</B>',
+        'parameter': '<b>argument</b>',
+        'keyword': '<b>keyword argument</b>',
+        'return': '<b>return value(s)</b>',
+        'instance variable': '<b>instance variable</b>',
+        'class variable': '<b>class variable</b>',
+        'module variable': '<b>module variable</b>',
         }
 
     FIGURE_EXT['html'] = ('.png', '.gif', '.jpg', '.jpeg')
@@ -281,18 +286,18 @@ Automatically generated HTML file from Doconce source
 (http://code.google.com/p/doconce/)
 -->
 
-<HTML>
-<HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<META name="generator" content="Doconce: http://code.google.com/p/doconce/" />
-</HEAD>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+</head>
 
-<BODY BGCOLOR="white">
+<body bgcolor="white">
     """
     # document ending:
     OUTRO['html'] = """
-</BODY>
-</HTML>
+</body>
+</html>
     """
 
 def latin2html(text):

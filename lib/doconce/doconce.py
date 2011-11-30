@@ -1050,13 +1050,17 @@ def doconce2format(in_filename, format, out_filename):
 
     filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
 
-    # for html we should make replacements of < ... > in code_blocks,
-    # and handle latin-1 characters
+    # for html we should make replacements of < and > in code_blocks,
+    # since these can be interpreted as tags, and we must
+    # handle latin-1 characters
     if format == 'html':  # fix
-        from urllib import quote
         for i in range(len(code_blocks)):
-            code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
-                                    '&lt;\g<2>&gt;', code_blocks[i])
+            # This does not catch things like '<x ...<y>'
+            #code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
+            #                        '&lt;\g<2>&gt;', code_blocks[i])
+            code_blocks[i] = code_blocks[i].replace('<', '&lt;')
+            code_blocks[i] = code_blocks[i].replace('>', '&gt;')
+
         # This special character transformation is easier done
         # with encoding="utf-8" in the first line in the html file:
         # (but we do it explicitly to make it robust)
