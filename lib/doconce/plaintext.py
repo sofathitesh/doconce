@@ -1,6 +1,6 @@
 
 import re, sys
-from common import default_movie
+from common import default_movie, plain_exercise
 
 def plain_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):
@@ -88,6 +88,7 @@ def define(FILENAME_EXTENSION,
            LIST,
            ARGLIST,
            TABLE,
+           EXERCISE,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
@@ -113,10 +114,12 @@ def define(FILENAME_EXTENSION,
         'title':     r'======= \g<subst> =======\n',  # doconce top section, to be substituted later
         'author':    plain_author,
         'date':      '\nDate: ' + r'\g<subst>' + '\n',
+        'chapter':       lambda m: r'\g<subst>\n%s' % ('%'*len(m.group('subst').decode('utf-8'))),
         'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('utf-8'))),
         'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
         'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('utf-8'))),
-        'paragraph':     r'*\g<subst>* '  # extra blank
+        'paragraph':     r'*\g<subst>* ',  # extra blank
+        'abstract':      r'*\g<type>.* \g<text>',
         }
 
     from rst import rst_code
@@ -138,6 +141,7 @@ def define(FILENAME_EXTENSION,
     CROSS_REFS['plain'] = plain_ref_and_label
     from rst import rst_table
     TABLE['plain'] = rst_table
+    EXERCISE['plain'] = plain_exercise
     #TABLE['plain'] = plain_table
     INDEX_BIB['plain'] = plain_index_bib
 

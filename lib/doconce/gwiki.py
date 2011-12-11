@@ -6,7 +6,7 @@ Here called gwiki to make the dialect clear (g for google).
 
 
 import re, os, commands, sys
-from common import default_movie
+from common import default_movie, plain_exercise
 
 def gwiki_code(filestr, format):
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
@@ -160,6 +160,7 @@ def define(FILENAME_EXTENSION,
            LIST,
            ARGLIST,
            TABLE,
+           EXERCISE,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
@@ -228,6 +229,7 @@ def define(FILENAME_EXTENSION,
     FIGURE_EXT['gwiki'] = ('.png', '.gif', '.jpg', '.jpeg')
     CROSS_REFS['gwiki'] = gwiki_ref_and_label
     from plaintext import plain_index_bib
+    EXERCISE['gwiki'] = plain_exercise
     INDEX_BIB['gwiki'] = plain_index_bib
 
     # document start:

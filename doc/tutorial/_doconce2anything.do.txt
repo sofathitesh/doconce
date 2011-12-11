@@ -25,11 +25,10 @@ format specific actions through tests like `#if FORMAT == "latex"`.
 
 Inline comments in the text are removed from the output by
 !bc sys
-Terminal> doconce format latex mydoc remove_inline_comments
+Terminal> doconce format latex mydoc --skip_inline_comments
 !ec
-One can also remove such comments from the original Doconce file
-by running
-source code:
+One can also remove all such comments from the original Doconce
+file by running:
 !bc
 Terminal> doconce remove_inline_comments mydoc
 !ec

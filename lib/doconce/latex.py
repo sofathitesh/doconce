@@ -1,6 +1,7 @@
 # -*- coding: iso-8859-15 -*-
 
 import os, commands, re, sys
+from common import plain_exercise, table_analysis
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
 def latex_code(filestr, format):
@@ -132,28 +133,28 @@ repeat,
 """
     return text
 
-from common import table_analysis
-
 def latex_table(table):
     column_width = table_analysis(table['rows'])
 
     #ncolumns = max(len(row) for row in table['rows'])
     ncolumns = len(column_width)
+    #import pprint; pprint.pprint(table)
     column_spec = table.get('columns_align', 'c'*ncolumns)
-    if len(column_spec.replace('|', '')) != ncolumns:  # (allow | separators)
-        print table['rows']
-        print 'Table has column alignment %s specification, but %d columns' \
+    column_spec = column_spec.replace('|', '')
+    if len(column_spec) != ncolumns:  # (allow | separators)
+        print 'Table has column alignment specification: %s, but %d columns' \
               % (column_spec, ncolumns)
+        print 'Table with rows', table['rows']
         sys.exit(1)
 
     # we do not support | in headings alignments (could be fixed,
     # by making column_spec not a string but a list so the
     # right elements are picked in the zip-based loop)
-    heading_spec = table.get('headings_align', 'c'*ncolumns).replace('|', '')
+    heading_spec = table.get('headings_align', 'c'*ncolumns)#.replace('|', '')
     if len(heading_spec) != ncolumns:
-        print table['rows']
-        print 'Table has headings alignments %s specification, '\
+        print 'Table has headings alignment specification: %s, '\
               'but %d columns' % (heading_spec, ncolumns)
+        print 'Table with rows', table['rows']
         sys.exit(1)
 
     s = '\n' + r'\begin{quote}\begin{tabular}{%s}' % column_spec + '\n'
@@ -371,6 +372,7 @@ def define(FILENAME_EXTENSION,
            LIST,
            ARGLIST,
            TABLE,
+           EXERCISE,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
@@ -398,11 +400,13 @@ def define(FILENAME_EXTENSION,
         'linkURL3':      r'\href{\g<url>}{\g<link>}',
         'plainURL':      r'\href{\g<url>}{\\nolinkurl{\g<url>}}',  # cannot use \code inside \href, use \nolinkurl to handle _ and # etc. (implies verbatim font)
         'inlinecomment': r'\inlinecomment{\g<name>}{\g<comment>}',
-        'section':       '\n\n' + r'\section{\g<subst>}',
-        'subsection':    '\n' + r'\subsection{\g<subst>}',
+        'chapter':       '\n\n' + r'\chapter{\g<subst>}' + '\n',
+        'section':       '\n\n' + r'\section{\g<subst>}' + '\n',
+        'subsection':    '\n' + r'\subsection{\g<subst>}' + '\n',
         #'subsubsection': '\n' + r'\subsubsection{\g<subst>}' + '\n',
         'subsubsection': '\n' + r'\paragraph{\g<subst>.}',
         'paragraph':     r'\paragraph{\g<subst>}' + '\n',
+        'abstract':      r'\\begin{abstract}' + '\n' + r'\g<text>' + '\n' + r'\end{abstract}' + '\n\n',
         # recall that this is regex so latex commands must be treated carefully:
         #'title':         r'\\title{\g<subst>}' + '\n', # we don'e use maketitle
         'title':         fix_latex_command_regex(pattern=r"""
@@ -509,6 +513,7 @@ def define(FILENAME_EXTENSION,
     CROSS_REFS['latex'] = latex_ref_and_label
 
     TABLE['latex'] = latex_table
+    EXERCISE['latex'] = plain_exercise
     INDEX_BIB['latex'] = latex_index_bib
 
     INTRO['latex'] = r"""%%

@@ -4,58 +4,287 @@ DATE: today
 
 # Very preliminary
 
+_WARNING: This quick reference is very incomplete!_
+
+
 ===== Section Types =====
+label{quick:sections}
 
-|----------------c-------------------|------------------c--------------------|
-|      Section type                  |        Syntax                         |
-|----------------l-------------------|------------------l--------------------|
-| chapter                            | Not supported (or title).             |
-| section                            | `======= Heading =======`(7 `=`)      |
-| subsection                         | `===== Heading =====`    (5 `=`)      |
-| subsubsection                      | `=== Heading ===`        (3 `=`)      |
-| paragraph                          | `__Heading.__`          (2 `_`)       |
-|------------------------------------|---------------------------------------|
+|----------------c--------|------------------c--------------------|
+|      Section type       |        Syntax                         |
+|----------------l--------|------------------l--------------------|
+| chapter                 | `========= Heading ========` (9 `=`)  |
+| section                 | `======= Heading =======`    (7 `=`)  |
+| subsection              | `===== Heading =====`        (5 `=`)  |
+| subsubsection           | `=== Heading ===`            (3 `=`)  |
+| paragraph               | `__Heading.__`               (2 `_`)  |
+| abstract                | `__Abstract.__` Running text...       |
+|-----------------------------------------------------------------|
 
-===== Figure and Movie =====
+Note that abstracts are recognized by starting with `__Abstract.__` at
+the beginning of a line and ending with three or more `=` signs of the
+next heading.
+
+===== Inline Formatting =====
+
+Words surrounded by `*` are emphasized: `*emphasized words*` becomes
+*emphasized words*. Similarly, an underscore surrounds words that
+appear in boldface: `_boldface_` become _boldface_.
+
+===== Comments =====
+
+Lines starting with `#` are treated as comments in the document,
+not to be displayed in the output document. Such comment lines
+should not appear before LaTeX math blocks, verbatim code blocks,
+or lists if the formats `rst` and `sphinx` are desired.
+
+Inline comments or notes to authors, in the text,
+are often useful and enabled by the syntax
 !bc
-FIGURE: [relative/path/to/figurefile width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+[name: running text]
+!ec
+where `name` is the name or ID of an author or reader making the comment,
+and `running text` is the comment. There must be a space after the colon.
+Running
+!bc sys
+doconce format html mydoc.do.txt --skip_inline_comments
+!ec
+removes all such inline comments from the output. This feature makes it easy
+to turn on and off notes to authors.
 
-MOVIE: [relative/path/to/moviefile width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+All comments can also be physically
+removed from the Doconce source if desired:
+!bc sys
+doconce remove_inline_comments mydoc.do.txt
 !ec
 
-# support and conversion of formats...
+
+===== Verbatim/Computer Code =====
+
+Inline verbatim code is typeset within single backquotes, as in
+!bc
+Some sentence with `words in verbatim style`.
+!ec
+resulting in Some sentence with `words in verbatim style`.
+
+Multi-line blocks of verbatim text, typically computer code, is typeset
+in between `!bc xxx` and `!ec` directives (which must appear on the
+beginning of the line). A specification `xxx` indicates what verbatim
+formatting style that is to be used. Typical values for `xxx` are
+nothing, `cod` for a code snippet, `pro` for a complete program,
+`sys` for a terminal session, `dat` for a data file (or output from a
+program),
+`Xpro` or `Xcod` for a program or code snipped, respectively,
+in programming `X`, where `X` may be `py` for Python,
+`cy` for Cython, `sh` for Bash or other Unix shells,
+`f` for Fortran, `c` for C, `cpp` for C++, `m` for MATLAB,
+`pl` for Perl. For output in `latex` one can let `xxx` reflect any
+defined verbatim environment in the `ptex2tex` configuration file
+(`.ptex2tex.cfg`). For `sphinx` output one can insert a comment
+!bc
+# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+!ec
+that maps environments (`xxx`) onto valid language types for
+Pygments (which is what `sphinx` applies to typeset computer code).
+
+The `xxx` specifier has only effect for `latex` and
+`sphinx` output. All other formats use a fixed monospace font for all
+kinds of verbatim output.
+
+Computer code can also be copied from a file:
+!bc
+ @@@CODE doconce_program.sh
+ @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
+!ec
+The `@@@CODE` identifier must appear at the beginning of the line.
+The first line copies the complete file `doconce_program.sh` and puts the
+contents inside `!bc shpro` and `!ec` directives. In general,
+for a filename extension `.X`, the environment becomes
+`!bc Xpro`. The second line copies
+text from `doconce_program.sh` from the line containing the *regular
+expression* `doconce clean` and up to, *but not including* the line
+with *the regular expression* `^doconce split_rst`. The copied text appears
+within `!bc shcod` and `!ec` directives. Also here, the filename
+extension (`.X`) determines the environment (`!bc Xcod`).
+
+Important warnings:
+
+ * A code block must come after some plain sentence (at least for successful
+   output in reStructredText), not directly after a section/paragraph heading
+   or a table.
+ * Verbatim code blocks inside lists can be ugly typeset in some
+   output formats. A more robust approach is to replace the list by
+   paragraphs with headings.
+
+===== LaTeX Mathematics =====
+
+Doconce supports inline mathematics and blocks of mathematics, using
+standard LaTeX syntax. The output formats `sphinx` and `latex` work with
+this syntax while all other formats will just display the raw LaTeX code.
+
+Inline expressions are written in the standard
+LaTeX way with the mathematics surrounded by dollar signs, as in
+$Ax=b$. To help increase readability in other formats than `sphinx`
+and `latex`, inline mathematics may have a more human
+readable companion expression. The syntax is like
+!bc
+$\sin(\norm{\bf u})$|$sin(||u||)$
+!ec
+That is, the LaTeX expression appears to the left of a vertical bar (pipe
+symbol) and the more readable expression appears to the right. Both
+expressions are surrounded by dollar signs. Plain text formats and HTML
+will applied the expression to the right.
+
+Blocks of LaTeX mathematics are written within
+`!bt`
+and
+`!et` ("begin/end TeX") directives, just like computer code.
+For example,
+!bc
+!bt
+\begin{align*}
+\nabla\cdot u &= 0,\\
+\nabla\times u & 0.
+\end{align*}
+!et
+!ec
+will appear as
+!bt
+\begin{align*}
+\nabla\cdot u &= 0,\\
+\nabla\times u & 0.
+\end{align*}
+!et
+
+Any LaTeX syntax is accepted, but if output in the `sphinx` format
+is important, one must know that `sphinx` does not support many
+LaTeX constructs. For output both in `latex` and `sphinx` formats we
+recommend the following:
+
+  * Use only the equation environments `\[`, `\]`,
+    `equation`, `equation*`, `align`, and `align*`.
+  * Labels in multiple equation environments such as `align` are
+    not (yet) handled by `sphinx`, so avoid inserting labels and referring
+    to equation labels in `align` environments. Actually, `align*`
+    is the preferred environment for multiple equations. Writing with
+    also `sphinx` output in mind results in a slightly adjusted type
+    of LaTeX writing.
+  * LaTeX supports lots of fancy formatting, for example, multiple
+    plots in the same figure, footnotes, margin notes, etc.
+    Allowing other output formats, such as `sphinx`, makes it necessary
+    to only utilze very standard LaTeX and avoid, for instance, more than
+    one plot per figure. However, one can use preprocessor if-tests on
+    the format (typically `# #ifdef format == "latex"`) to
+    include special code for `latex` output and more straightforward
+    typesetting for other formats. In this way, one can also allow
+    advanced LaTeX features and fine tuning of resulting PDF document.
+
+
+__LaTeX Newcommands.__
+Text...
+
+
+===== Figures and Movies =====
+
+Figures and movies have almost equal syntax:
+!bc
+FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+
+MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+!ec
+Note the mandatory comma after the figure/movie file.
+
+The figure file can be listed without extension. Doconce will then find
+the version of the file with the most appropriate extension for the chosen
+output format. If not suitable version is found, Doconce will convert
+another format to the desired one.
+
+Movie files can either be a video or a wildcard expression for a
+series of frames. In the latter case, a simple device in an HTML page
+will display the individual frame files as a movie.
+
+===== Tables =====
+
+The table in Section ref{quick:sections} was written with this
+syntax:
+!bc
+|----------------c--------|------------------c--------------------|
+|      Section type       |        Syntax                         |
+|----------------l--------|------------------l--------------------|
+| chapter                 | `========= Heading ========` (9 `=`)  |
+| section                 | `======= Heading =======`    (7 `=`)  |
+| subsection              | `===== Heading =====`        (5 `=`)  |
+| subsubsection           | `=== Heading ===`            (3 `=`)  |
+| paragraph               | `__Heading.__`               (2 `_`)  |
+|-----------------------------------------------------------------|
+!ec
+
+Note that
+
+ * Each line begins and ends with a vertical bar (pipe symbol).
+ * Column data are separated by a vertical bar (pipe symbol).
+ * There may be horizontal rules, i.e., lines with dashes for
+   indicating the heading and the end of the table, and these may
+   contain characters 'c', 'l', or 'r' for how to align headings or
+   columns. The first horizontal rule may indicate how to align
+   headings (center, left, right), and the horizontal rule after the
+   heading line may indicate how to align the data in the columns
+   (center, left, right).
+ * If the horizontal rules are without alignment information there should
+   be no vertical bar (pipe symbol) between the columns. Otherwise, such
+   a bar indicates a vertical bar between columns in LaTeX.
+ * Many output formats are so primitive that heading and column alignment
+   have no effect.
+
 
 ===== Capabilities of the "doconce" Program =====
 
-!bc sys
-doconce format html|latex|rst|sphinx|st|epytext|plain|gwiki|pandoc file.do.txt
+The `doconce` program can be used for a number of purposes besides
+transforming a `.do.txt` file to some format. Here is the
+list of capabilities:
 
-doconce subst [-s -m -x --restore] regex-pattern regex-replacement file1 file2 ...
-(-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier,
- -x is the re.VERBOSE modifier, --restore copies backup files back again)
+@@@CODE doconce_program.sh
 
-doconce replace from-text to-text file1 file2 ...
-doconce replace_from_file file-with-from-to file1 file2 ...
+===== Exercises =====
 
-doconce gwiki_figsubst file.gwiki URL-of-fig-dir
+Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
+as ordinary sections and referred to by their section labels.
+The typical sketch of an exercise, problem, or project sections
+looks as follows:
+!bc
+===== Problem: Derive the Formula for the Area of an Ellipse =====
+label{problem:ellipsearea1}
+file=ellipse_area.pdf
+solution=ellipse_area1_sol.pdf
 
-doconce remove_inline_comments file.do.txt
+Derive an expression for the area of an ellipse by integrating
+the area under a curve that defines half of the allipse.
+Show each step in the mathematical derivation.
 
-doconce sphinx_dir author='Me and you' title='Quick title' version=0.1 dirname=sphinx-rootdir theme=default file1 file2 file3
-(requires sphinx version >= 1.1)
+__Hint 1.__ Wikipedia has the formula for the curve.
 
-doconce latin2html file.html
-
-doconce insertdocstr rootdir
-
-doconce clean
-(remove all files that the doconce format can regenerate)
-
-doconce latex_header
-doconce latex_footer
-doconce change_encoding utf-8 latin-1 filename
-doconce guess_encoding filename
-doconce bbl2rst file.bbl
-doconce split_rst complete_file.rst
-doconce list_labels doconcefile.do.txt | latexfile.tex
+__Hint 2.__ `wolframalpha.com` can perhaps compute the integral.
 !ec
+An exercise, problem, or project has certain elements:
+
+  * A headline at the level of a subsection or subsubsection,
+    containing one of the words "Exercise:", "Problem:", or
+    "Project:", followed by a title. (Required.)
+  * A standard label for referring to the exercise. (Optional.)
+  * A name for the file with the result/answer (`file=filename`). (Optional.)
+  * A name for the solution file (`solution=filename`), where the file
+    name may be a URL. (Optional.)
+  * The running text of the exercise. (Required.)
+  * A sequence of hints, indicated as paragraphs. There can be a
+    single hint, without any number, or several numbered hints.
+    (Optional.)
+
+===== Labels, Index, and Citations =====
+
+===== Preprocessing =====
+
+Doconce documents may utilize a preprocessor, either `preprocess` or
+`mako`. The former is a C-style preprocessor that allows if-tests
+and including other files (but not macros with arguments).
+The `mako` preprocessor is much more advanced - it is actually a full
+programming language, very similar to Python.

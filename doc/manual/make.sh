@@ -54,7 +54,7 @@ latex manual.rst.tex
 dvipdf manual.rst.dvi
 
 # plain text:
-$d2f plain manual.do.txt remove_inline_comments
+$d2f plain manual.do.txt --skip_inline_comments
 
 $d2f epytext manual.do.txt
 $d2f st manual.do.txt

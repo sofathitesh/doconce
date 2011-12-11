@@ -4,7 +4,7 @@ Doconce format to other formats.  Some convenience functions used in
 translation modules (latex.py, html.py, etc.) are also included in
 here.
 """
-import re
+import re, sys
 
 def where():
     """
@@ -147,21 +147,44 @@ def remove_code_and_tex(filestr):
 
     # (recall that !bc can be followed by extra information that we must keep:)
     code = re.compile(r'^!bc(.*?)\n(.*?)^!ec *\n', re.DOTALL|re.MULTILINE)
+
+    # Note: final \n is required and may be missing if there is a block
+    # at the end of the file, so let us ensure that a blank final
+    # line is appended to the text:
+    if filestr[-1] != '\n':
+        filestr = filestr + '\n'
+
     code_blocks = [c for opt, c in code.findall(filestr)]
 
-    tex = re.compile(r'^!bt\n(.*?)!et *\n', re.DOTALL|re.MULTILINE)
+    tex = re.compile(r'^!bt\n(.*?)^!et *\n', re.DOTALL|re.MULTILINE)
     tex_blocks = tex.findall(filestr)
 
-    # remove blocks and substitute by a one-line sign:
+    # Record for consistency check
+    nbc = len(re.compile(r'^!bc', re.MULTILINE).findall(filestr))
+    nec = len(re.compile(r'^!ec', re.MULTILINE).findall(filestr))
+    nbt = len(re.compile(r'^!bt', re.MULTILINE).findall(filestr))
+    net = len(re.compile(r'^!et', re.MULTILINE).findall(filestr))
+    #nbc2 = sum(1 for line in filestr.splitlines() if line.startswith('!bc'))
+    if nbc != nec:
+        print '%d !bc do not match %d !ec directives' % (nbc, nec)
+        sys.exit(1)
+    if nbt != net:
+        print '%d !bt do not match %d !et directives' % (nbt, net)
+        sys.exit(1)
+    if nbc != len(code_blocks):
+        print '%d !bc and %d extracted code blocks - BUG!!!' % \
+              (nbc, len(code_blocks))
+    if nbt != len(tex_blocks):
+        print '%d !bt and %d extracted tex blocks - BUG!!!' % \
+              (nbt, len(tex_blocks))
+
+    # Remove blocks and substitute by a one-line sign
     filestr = code.sub('#!!CODE_BLOCK \g<1>\n', filestr)
     filestr = tex.sub('#!!TEX_BLOCK\n', filestr)
 
-    # could leave @@@CODE blocks to LaTeX, but then these lines must be
+    # could leave @@@CODE blocks to ptex2tex, but then these lines must be
     # removed since they may contain underscores and asterix and hence
     # be destroyed by substutitions of inline tags
-    #CODE = re.compile(r'^@@@CODE .+$', re.MULTILINE)
-    #CODE_lines = [c for opt, c in CODE.findall(filestr)]
-    #filestr = CODE.sub('#@@@CODE', filestr)
 
     return filestr, code_blocks, tex_blocks
 
@@ -210,42 +233,28 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
     filestr = '\n'.join(lines)
     return filestr
 
-def exercises(filestr, format):
-    # Exercise: ===== Exercise: title ===== (starts with at least 3 =, max 5)
-    # label{some:label} file=thisfile.py solution=somefile.do.txt or file.py
-    # hint1: some paragraph..., hint2: ...
+def plain_exercise(exer):
+    s = ''  # result string
+    if not 'heading' in exer:
+        print 'Wrong formatting of exercise, not a 3/5 === type heading'
+        print exer
+        sys.exit(1)
 
-    # first label{} is the label for the exercise
+    #s += exer['heading'] + ' ' + exer['type'] + ' ' + exer['no'] + ': ' + exer['title'] + ' ' + exer['heading'] + '\n'
+    s += exer['heading'] + ' ' + exer['title'] + ' ' + exer['heading'] + '\n'
+    # Write out label - it will be treated right in all formats
+    if 'label' in exer:
+        s += 'label{%s}' % exer['label'] + '\n'
+    s += '\n' + exer['text'] + '\n'
+    for hint_no in sorted(exer['hint']):
+        s += '\n' + exer['hint'][hint_no] + '\n'
+    if 'file' in exer:
+        s += '\n' + '*Filename*: `%s`' % exer['file'] + '\n'
+    if 'solution' in exer:
+        pass
+    # Drop label and solution file
+    return s
 
-    # maybe Problem instead of Exercise? More general...or choose
-    # ... arbitrary text
-    # until next === (at least 3) or end of file
-    pattern = r'^\s*[_=]{3,5}\s*([Ee]xercise|[Pp]problem):\s*(?P<title>[^ =-].+?)\s*[_=]+\s*(?P<body>.+?)([_=]{3,}|$)'
-    cpattern = re.compile(pattern, re.MULTILINE)
-    # test first in a special script, importing doconce.exercises and
-    # parsing some test.do.txt, try testdoc.do.txt e.g.
-    matches = re.findall(filestr)
-    import pprint; pprint.pprint(matches)
-    # collect in dict and send to format-specific function?
-    # must be able to number all exercises in a document and insert
-    # number in the section title
-
-    # for exer in exercises: subst pattern above with body etc inserted
-    # with a special formatting of the exercise
-
-    # another idea: id: diffusion1 e.g. in any level (chapter, sec, subsec),
-    # maybe # ID: ... so that doconce sometool could extract IDs and help
-    # getting labels etc consistent with the local ID (yes, use comments
-    # for this)
-
-    # requires re.DOTALL, could have a name=.... and use that for label and file, but check text for _ and numbers
-    # support ID: identifyer among TITLE, AUTHOR, etc, can just be there
-    # could also be a mako thing
-
-# do the same for abstract:
-# pattern = r"(?P<begin>__Abstract\.__|__Summary\.__)(?P<abstract>.*?)(?P<end>===)"  # re.DOTALL
-# LaTeX: put in {abstract} envir, all others: do nothing, i.e., print the
-# three, done by some common.py thing
 
 
 BLANKLINE = {}
@@ -268,6 +277,7 @@ CROSS_REFS = {}
 INDEX_BIB = {}
 INTRO = {}
 OUTRO = {}
+EXERCISE = {}
 
 
 # regular expressions for inline tags:
@@ -334,21 +344,25 @@ INLINE_TAGS = {
     'inlinecomment':
     r'''\[(?P<name>[A-Za-z0-9_'-]+?):\s+(?P<comment>[^\]]*?)\]''',
 
-    # _______Seven Underscores Before and Any After Section Title_______
-    # or ======= Seven Equality Signs =======
+    'abstract': # __Abstract.__ Any text up to a headline ===
+    r"""^\s*__(?P<type>Abstract|Summary).__\s*(?P<text>.+?)\s*[_=]{3,9}""",
+
+    # ======= Seven Equality Signs for Headline =======
+    # (the old underscores instead of = are still allowed)
     'section':
     #r'^_{7}(?P<subst>[^ ].*)_{7}\s*$',
     # previous: r'^\s*_{7}(?P<subst>[^ ].*?)_+\s*$',
     #r'^\s*[_=]{7}\s*(?P<subst>[^ ].*?)\s*[_=]+\s*$',
     r'^\s*[_=]{7}\s*(?P<subst>[^ =-].+?)\s*[_=]+\s*$',
 
-    # _____Five _ or = for Subsection Title_____
+    'chapter':
+    r'^\s*[_=]{9}\s*(?P<subst>[^ =-].+?)\s*[_=]+\s*$',
+
     'subsection':
     #r'^\s*_{5}(?P<subst>[^ ].*?)_+\s*$',
     #r'^\s*[_=]{5}\s*(?P<subst>[^ ].*?)\s*[_=]+\s*$',
     r'^\s*[_=]{5}\s*(?P<subst>[^ =-].+?)\s*[_=]+\s*$',
 
-    # ___Three _ or = for Subsubsection Title___
     'subsubsection':
     #r'^\s*_{3}(?P<subst>[^ ].*?)_+\s*$',
     #r'^\s*[_=]{3}\s*(?P<subst>[^ ].*?)\s*[_=]+\s*$',

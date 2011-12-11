@@ -82,7 +82,7 @@ replace = [
 replace_wfix = [
     (r'\epsilon', r'\ep', r'\thinspace . '),
     ]
-    
+
 # Pure string replacements:
 for from_, to_ in replace:
     if from_ in filestr:
@@ -105,7 +105,7 @@ for problem in problems:
     p = re.findall(problem, filestr)
     if len(p) > 0:
         print 'PROBLEM:', problem, '\n', p
-    
+
 # \item alone on line: join with next line (indentation is fixed later)
 filestr = re.sub(r'\\item\s+(\w)', r'\item \g<1>', filestr)
 
@@ -165,17 +165,25 @@ for e in math_enders:
     filestr = filestr.replace(e, e + '\n!et')
 
 # ptex2tex code environments:
-code_envirs = 'ccq', 'cod', 'ccl', 'cc', 'sys', 'dsni', 'sni', 'slin', 'ipy', 'py', 'plin', 'ver', 'warn', 'rule', 'summ' # sequence important for replace!
+code_envirs = ['ccq', 'cod', 'ccl', 'cc', 'sys', 'dsni', 'sni', 'slin', 'ipy', 'py', 'plin', 'ver', 'warn', 'rule', 'summ'] # sequence important for replace!
+for language in 'py', 'f', 'c', 'cpp', 'sh', 'pl', 'm':
+    for tp in 'cod', 'pro':
+        code_envirs.append(language + tp)
+
 for e in code_envirs:
     s = r'\b%s' % e
     filestr = filestr.replace(s, '!bc ' + e)
     s = r'\e%s' % e
     filestr = filestr.replace(s, '!ec')
 
+# eqnarray -> align
+filestr = filestr.replace(r'{eqnarray', '{align')
+filestr = re.sub(r'&(\s*)=(\s*)&', '&\g<1>=\g<2>', filestr)
+
 filestr = filestr.replace(r'\label{', 'label{')
 filestr = filestr.replace(r'\ref{', 'ref{')
 filestr = filestr.replace(r'\cite{', 'cite{')
-filestr = filestr.replace(r'~', ' ')
+ofilestr = filestr.replace(r'~', ' ')
 print filestr
 
 # footnotes? cannot be treated - no footnotes in doconce, try to avoid

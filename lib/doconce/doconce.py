@@ -29,6 +29,7 @@ for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki, pandoc:
                   LIST,
                   ARGLIST,
                   TABLE,
+                  EXERCISE,
                   FIGURE_EXT,
                   CROSS_REFS,
                   INDEX_BIB,
@@ -54,20 +55,48 @@ def syntax_check(filestr, format):
     m = pattern.search(filestr)
     if m:
         print '\nSyntax error: !bc/!bt/!ec/!et does not start at the beginning of the line'
-        print filestr[m.start():m.start()+80]
+        print repr(filestr[m.start():m.start()+80])
         sys.exit(1)
 
-    pattern = r'[^\n:.?!, ]\s*?^!b[ct]'
-    m = re.search(pattern, filestr)
+    pattern = re.compile(r'[^\n:.?!,]^(!b[ct]|@@@CODE)', re.MULTILINE)
+    m = pattern.search(filestr)
     if m:
-        print '\nSyntax error: Line before !bc/!bt blocks ends with wrong character:'
-        print filestr[m.start():m.start()+80]
+        print '\nSyntax error: Line before !bc/!bt/@@@CODE block\nends with wrong character (must be among [\\n:.?!, ]):'
+        print repr(filestr[m.start():m.start()+80])
         sys.exit(1)
 
-    pattern = r'[^a-zA-Z0-9)"`.*_}][\n:.?!, ]\s*?^!b[ct]'
-    m = re.search(pattern, filestr)
+    """
+    # This did not catch important situations, new special case below
+    pattern = re.compile(r'[^a-zA-Z0-9)"`.*_}][:.?!,\s]^(!b[ct]|@@@CODE)',
+                         re.MULTILINE)
+    m = pattern.search(filestr)
     if m:
-        print '\nSyntax error: Line before !bc/!bt blocks has wrong character right before the final one (must be in [a-zA-Z0-9)"`.*_}]:'
+        print '\nSyntax error: Line before !bc/!bt/@@@CODE block has wrong\ncharacter right before the final one (must be in [a-zA-Z0-9)"`.*_}]  - a code block\ncannot come right after a section heading, for instance):'
+        print repr(filestr[m.start():m.start()+80])
+        sys.exit(1)
+    """
+    # Code blocks cannot come directly after tables or headings.
+    # Remove idx{} and label{} since these will be move for rst.
+    # Also remove all comments since these are also "invisible"
+    filestr2 = filestr
+    for tag in 'label', 'idx':
+        filestr2 = re.sub('%s\{.+?\}' % tag, '', filestr2)
+    pattern = re.compile(r'^#.*$', re.MULTILINE)
+    filestr2 = pattern.sub('', filestr2)
+    for linetp in '===', r'-\|', '__':  # section, table, paragraph
+        pattern = re.compile(r'%s\s+^(!b[ct]|@@@CODE)' % linetp,
+                             re.MULTILINE)
+        m = pattern.search(filestr2)
+        if m:
+            print '\nSyntax error: Must have a plain sentence before\na code block like !bc/!bt/@@@CODE, not a section/paragraph heading,\ntable, or comment:'
+            print filestr2[m.start():m.start()+80]
+            sys.exit(1)
+
+    # Code/latex blocks cannot have a comment right before them
+    pattern = re.compile(r'^\s*#.*?$\s*^(!b[ct]|@@@CODE|\s*\*)', re.MULTILINE)
+    m = pattern.search(filestr)
+    if m:
+        print '\nSyntax error: Line before list or !bc/!bt/@@@CODE block is a comment line\nwhich will comment out the block in reST format'
         print filestr[m.start():m.start()+80]
         sys.exit(1)
 
@@ -89,8 +118,7 @@ def syntax_check(filestr, format):
         print '\n'.join(matches)
         sys.exit(1)
 
-    # outside !bt/!et environments there should only
-    # be ref and label *without* the latex-ish backslash
+    # There should only be ref and label *without* the latex-ish backslash
     matches = re.findall(r'\\label\{.+?\}', filestr)
     if matches:
         print '\nSyntax error: found \\label{...} (should be no backslash!)'
@@ -137,8 +165,6 @@ def syntax_check(filestr, format):
         'end{multline}',
         'begin{multline*}',
         'end{multline*}',
-        'begin{split}',
-        'end{split}',
         'begin{gather}',
         'end{gather}',
         'begin{gather*}',
@@ -159,14 +185,16 @@ def syntax_check(filestr, format):
     for i in range(len(lines)):
         for c in commands:
             if c[0] == 'b':
-                if c in lines[i] or r'\[' in lines[i]:
+                if (c in lines[i] or r'\[' in lines[i]) and '`' not in lines[i]:
                     # begin math, do we have !bt at the line before?
-                    if not lines[i-1].startswith('!bt'):
-                        print '\nSyntax error: forgot to precede math (%s) by !bt:' % c
-                        print lines[i-1]
-                        print lines[i]
-                        print lines[i+1]
-                        sys.exit(1)
+                    prev_line = i-1
+                    while prev_line >= 0 and lines[prev_line].isspace():
+                        prev_line -= 1
+                    if not lines[prev_line].startswith('!bt'):
+                        print '\nWarning: forgot to precede math (%s) by! bt:' % c
+                        stop_line = i+2 if i+2 <+ len(lines)-1 else len(lines)-1
+                        for k in range(prev_line, stop_line):
+                            print lines[k]
             elif c[0] == 'e':
                 # actually, the end part is never reached, because
                 # if the begin part is missing, program stops, and
@@ -177,18 +205,42 @@ def syntax_check(filestr, format):
             """
                 if c in lines[i] or r'\]' in lines[i]:
                     # end math, do we have !et at the line after?
-                    if not lines[i+1].startswith('!et'):
-                        print '\nSyntax error: forgot to proceed math (%s) by !et:' % c
-                        print lines[i-1]
-                        print lines[i]
-                        print lines[i+1]
-                        sys.exit(1)
+                    ...
             """
+    """
+    # This is better done in sphinx.py, or should we provide warnings
+    # to enforce writers to stay away from a range of latex
+    # constructions even if sphinx.py can substitute them away?
+    """
+    not_for_sphinx = [
+        '{eqnarray}',
+        '{eqnarray*}',
+        '{multline}',
+        '{multline*}',
+        '{gather}',
+        '{gather*}',
+        'beqan',
+        'beqa',
+        ]
+    warning_given = False
+    if format == 'sphinx':
+        for command in not_for_sphinx:
+            if command in filestr:
+                if not warning_given:
+                    print '\nWarning:'
+                print 'Not recommended for sphinx output: math environment %s' % command
+                if not warning_given:
+                    print '(use equation, \[ \], or align/align*)'
+                    warning_given = True
+    """
+    """
+
+
     patterns = r'\\[be]cod', r'\\begin{[Vv]erbatim', r'\\end{[Vv]erbatim', r'\\[be]sys', r'\\[be]py',
     for pattern in patterns:
         matches = re.findall(pattern, filestr)
         if matches:
-            print '\nSyntax error: Wrong syntax (latex)'
+            print '\nSyntax error: Wrong syntax (latex!)'
             print '\n'.join(matches)
             sys.exit(1)
 
@@ -199,8 +251,10 @@ def syntax_check(filestr, format):
         print '\n'.join(matches)
         sys.exit(1)
 
-    pattern = r'[^`]__[A-Za-z0-9,:` ]+[^.]__[^`]'
-    # (exclude misunderstood paragraphs like `__call__`)
+    pattern = r'[^`]__[A-Za-z0-9,: ]+[^.]__[^`]'
+    # (excludes misunderstood paragraphs like `__call__`, dropped `
+    # inside although it can be used for inline verbatime in
+    # paragraph heading)
     matches = re.findall(pattern, filestr)
     if matches:
         print 'Warning: Missing period or similar after paragraph heading'
@@ -333,7 +387,7 @@ def insert_code_from_file(filestr, format):
                 raise SyntaxError, \
                       'Syntax error: missing filename in line\n  %s' % line
             try:
-                f = open(filename, 'r')
+                codefile = open(filename, 'r')
             except IOError, e:
                 print 'Could not open the file %s used in @@@CODE instruction' % filename
                 print e
@@ -344,15 +398,17 @@ def insert_code_from_file(filestr, format):
                 # no from/to regex, read the whole file:
                 print 'copying complete file %s' % filename,
                 complete_file = True
-                code = f.read().strip()
+                code = codefile.read().strip()
                 debugpr('copy the file "%s" into a verbatim block\n' % filename)
 
             else:
                 complete_file = False
                 if index >= 0:
-                    patterns = line[index+7:]
+                    patterns = line[index+7:].strip()
                 else:
-                    patterns = ' '.join(words[2:])
+                    # fromto: was not found, that is okay, use the
+                    # remaining words as patterns
+                    patterns = ' '.join(words[2:]).strip()
                 try:
                     from_, to_ = patterns.split('@')
                 except:
@@ -360,33 +416,46 @@ def insert_code_from_file(filestr, format):
                     'Syntax error: missing @ in regex in line\n  %s' % line
                 print 'copying from regex "%s" to "%s" in %s' % (from_, to_, filename),
                 # Note that from_ and to_ are regular expressions
+                # and to_ might be empty
                 cfrom = re.compile(from_)
                 cto = re.compile(to_)
                 codelines = []
                 copy = False
-                for codeline in f:
+                for codeline in codefile:
                     m = cfrom.search(codeline)
                     if m:
                         copy = True
-                    m = cto.search(codeline)
-                    if m:
-                        copy = False
-                        # now the to line is not included
+                    if to_:
+                        m = cto.search(codeline)
+                        if m:
+                            copy = False
+                            # now the to_ line is not included
                     if copy:
                         debugpr('copy from "%s" the line\n%s' % \
                               (filename, codeline))
                         codelines.append(codeline)
                 code = ''.join(codelines)
-                code = code.rstrip()  # remove trailing whitespace
+                code = code.rstrip() # remove trailing whitespace
+                codefile.close()
 
             if format == 'latex' or format == 'sphinx':
-                # insert a cod or pro directive for ptex2tex:
-                if complete_file:
-                    code = "!bc pro\n%s\n!ec" % code
-                    print ' (!bc pro)'
+                # Insert a cod or pro directive for ptex2tex and sphinx.
+
+                # Determine code environment from filename extension
+                filename_ext = os.path.splitext(filename)[1]
+                if filename_ext == '.cxx' or filename_ext == '.C':
+                    filename_ext = '.cpp'
+                if filename_ext in ('.py', '.f', '.c', '.cpp', '.sh',
+                                    '.m', '.pl', '.cy'):
+                    prefix = filename_ext[1:]
                 else:
-                    code = "!bc cod\n%s\n!ec" % code
-                    print ' (!bc cod)'
+                    prefix = ''
+                if complete_file:
+                    code = "!bc %spro\n%s\n!ec" % (prefix, code)
+                    print ' (!bc %spro)' % prefix
+                else:
+                    code = "!bc %scod\n%s\n!ec" % (prefix, code)
+                    print ' (!bc %scod)' % prefix
             else:
                 code = "!bc\n%s\n!ec" % code
                 print
@@ -395,6 +464,116 @@ def insert_code_from_file(filestr, format):
     filestr = '\n'.join(lines)
     return filestr
 
+
+def exercises(filestr, format):
+    # Exercise: ===== Exercise: title ===== (starts with at least 3 =, max 5)
+    # label{some:label} file=thisfile.py solution=somefile.do.txt or file.py
+    # __Hint 1.__ some paragraph...,
+    # __Hint 2.__ ...
+
+    debugpr('\n\n\n***** Exercises *****\n')
+
+    all_exer = []   # collection of all exercises
+    exer = {}       # data for one exercise
+    inside_exer = False
+    exer_end = False
+    exer_counter = 0
+    lines = filestr.splitlines()
+    newlines = []  # lines in resulting file
+    exer_line_pattern = re.compile(r'^\s*([_=]{3,5})\s*([Ee]xercise|[Pp]roblem|[Pp]roject):\s*(?P<title>[^ =-].+?)\s*[_=]+')
+    label_pattern = re.compile(r'label\{(.+?)\}')
+    file_pattern = re.compile(r'file\s*=\s*([^\s]+)')
+    solution_pattern = re.compile(r'solution\s*=\s*([^\s]+)')
+    for i in range(len(lines)):
+        m = exer_line_pattern.search(lines[i])
+        if m:
+            exer = {}  # data in the exercise
+            exer['title'] = m.group('title')
+            exer['heading'] = m.group(1)
+            exer['type'] = m.group(2)
+            inside_exer = True
+            exer['text'] = []
+            exer['hint'] = {}
+            exer_counter += 1
+            exer['no'] = exer_counter
+            hint_counter = 0
+            inside_hint = False
+            exer_end = False
+            text_line = True
+        elif inside_exer:
+            label_info_line = False
+            m = label_pattern.search(lines[i])
+            if m:
+                exer['label'] = m.group(1)
+                label_info_line = True
+            m = file_pattern.search(lines[i])
+            if m:
+                exer['file'] = m.group(1)
+                label_info_line = True
+            m = solution_pattern.search(lines[i])
+            if m:
+                exer['solution'] = m.group(1)
+                label_info_line = True
+
+            # Hints have to come at the end of the text
+            # All lines are therefore in hints, and only __Hint
+            # marks the beginning of a new hint.
+            if '__Hint' in lines[i]:
+                hint_counter += 1
+                exer['hint'][hint_counter] = []
+                inside_hint = True
+                text_line = False
+            if inside_hint:
+                exer['hint'][hint_counter].append(lines[i])
+
+            if text_line and not label_info_line:
+                exer['text'].append(lines[i])
+        else:  # outside exercise
+            newlines.append(lines[i])
+
+        # End of exercise? Either new (sub)section with at least ===
+        # or end of file
+        if i == len(lines) - 1:  # last line?
+            exer_end = True
+        elif inside_exer and lines[i+1].startswith('==='):
+            exer_end = True
+
+        if exer and exer_end:
+            exer['text'] = '\n'.join(exer['text']).strip()
+            for hint_no in sorted(exer['hint']):
+                exer['hint'][hint_no] = '\n'.join(exer['hint'][hint_no]).strip()
+
+            debugpr(pprint.pformat(exer))
+            formatted_exercise = EXERCISE[format](exer)
+            newlines.append(formatted_exercise)
+            inside_exer = False
+            all_exer.append(exer)
+
+    filestr = '\n'.join(newlines)
+    if all_exer:
+        exer_filename = filename.replace('.do.txt', '')
+        exer_filename = '.%s.exerinfo' % exer_filename
+        f = open(exer_filename, 'w')
+        f.write("""
+# Information about all exercises in the file %s.
+# The information can be loaded into a Python list of dicts
+# by the code (f is an open filehandle to the current file):
+# for i in range(5): f.readline()  # skip these comments
+# exer = eval(f.read())
+""" % filename)
+        f.write(pprint.pformat(all_exer))
+        f.close()
+        print 'Info about %d exercises written to %s' % \
+              (len(all_exer), exer_filename)
+    else:
+        debugpr('No exercises found.\n')
+
+    return filestr
+
+# do the same for abstract:
+# pattern = r"(?P<begin>__Abstract\.__|__Summary\.__)(?P<abstract>.*?)(?P<end>===)"  # re.DOTALL
+# LaTeX: put in {abstract} envir, all others: do nothing, i.e., print the
+# three, done by some common.py thing
 
 
 def parse_keyword(keyword, format):
@@ -475,6 +654,16 @@ def typeset_tables(filestr, format):
             # see if there is c-l-r alignments:
             align = lin[1:-1].replace('-', '') # keep | in align spec.
             if align:
+                if align == '|'*len(align):  # Just '|||'?
+                    print 'Syntax error: horizontal rule in table '\
+                          'contains | between columns - remove these.'
+                    print line
+                    sys.exit(1)
+                for char in align:
+                    if char not in ('|', 'r', 'l', 'c'):
+                        print 'illegal alignment character in table:', char
+                        sys.exit(1)
+
                 if len(table['rows']) == 0:
                     # first horizontal rule, align concern headings
                     table['headings_align'] = align
@@ -694,12 +883,15 @@ def handle_figures(filestr, format):
     pattern = INLINE_TAGS['figure']
     c = re.compile(pattern, re.MULTILINE)
 
-    # first check if the figure files are of right type:
+    # First check if the figure files are of right type, then
+    # call format-specific functions for how to format the figures.
+
     files = [filename for filename, options, caption in c.findall(filestr)]
     if type(FIGURE_EXT[format]) is str:
-        extensions = [FIGURE_EXT[format]]
+        extensions = [FIGURE_EXT[format]]  # wrap in list
     else:
-        extensions = FIGURE_EXT[format]  # is list
+        extensions = FIGURE_EXT[format]
+    import sets; files = sets.Set(files)   # remove multiple occurences
     for figfile in files:
         file_found = False
         if not os.path.isfile(figfile):
@@ -709,6 +901,8 @@ def handle_figures(filestr, format):
                 for ext in extensions:
                     newname = figfile + ext
                     if os.path.isfile(newname):
+                        print 'Figure file %s:\n    can use %s for format %s' % \
+                              (figfile, newname, format)
                         filestr = filestr.replace(figfile, newname)
                         figfile = newname
                         file_found = True
@@ -718,6 +912,7 @@ def handle_figures(filestr, format):
                     candidate_files = glob.glob(figfile + '.*')
                     for newname in candidate_files:
                         if os.path.isfile(newname):
+                            print 'Found', newname
                             filestr = filestr.replace(figfile, newname)
                             figfile = newname
                             file_found = True
@@ -759,7 +954,6 @@ def handle_cross_referencing(filestr, format):
     #section_pattern = r'(_+|=+)([A-Za-z !.,;0-9]+)(_+|=+)\s*label\{(.+?)\}'
     section_pattern = r'(_{3,7}|={3,7})(.+?)(_{3,7}|={3,7})\s*label\{(.+?)\}'
     m = re.findall(section_pattern, filestr)
-    #import pprint
     #pprint.pprint(m)
     # Make sure sections appear in the right order
     # (in case rst.ref_and_label_commoncode has to assign numbers
@@ -925,12 +1119,14 @@ def inline_tag_subst(filestr, format):
     ordered_tags = (
         'title', 'date',
         'movie',
-        #'figure',
+        #'figure',  # done separately
+        'abstract',  # must become before sections since it tests on ===
         # important to do section, subsection, etc. BEFORE paragraph and bold:
         'emphasize', 'math2', 'math',
-        'section', 'subsection', 'subsubsection',
-        'bold', 'verbatim',
+        'chapter', 'section', 'subsection', 'subsubsection',
+        'bold',
         'inlinecomment',
+        'verbatim',
         'citation',
         'paragraph',  # after bold and emphasize
         'plainURL',   # before linkURL2 to avoid "URL" as linkename
@@ -941,7 +1137,11 @@ def inline_tag_subst(filestr, format):
     for tag in ordered_tags:
         debugpr('Working with tag "%s"' % tag)
         tag_pattern = INLINE_TAGS[tag]
-        c = re.compile(tag_pattern, re.MULTILINE)
+        #print 'working with tag "%s" = "%s"' % (tag, tag_pattern)
+        if tag in ('abstract',):
+            c = re.compile(tag_pattern, re.MULTILINE|re.DOTALL)
+        else:
+            c = re.compile(tag_pattern, re.MULTILINE)
         try:
             replacement = INLINE_TAGS_SUBST[format][tag]
         except KeyError:
@@ -1005,11 +1205,14 @@ def doconce2format(in_filename, format, out_filename):
     This is the "main" function in the module.
     """
     if in_filename.startswith('__'):
-        print 'translate preprocessed Doconce text in', in_filename
+        print 'translate preprocessed doconce text in', in_filename
     else:
-        print 'translate Doconce text in', in_filename
+        print 'translate doconce text in', in_filename
 
     # if trouble with encoding:
+    # Unix> doconce guess_encoding myfile.do.txt
+    # Unix> doconce change_encoding utf-8 latin1 myfile.do.txt
+    # or plain Unix:
     # Unix> file myfile.do.txt
     # myfile.do.txt: UTF-8 Unicode English text
     # Unix> # convert to latin-1:
@@ -1022,22 +1225,27 @@ def doconce2format(in_filename, format, out_filename):
     filestr = f.read()
     f.close()
 
-    # hack to fix a bug with !ec/!et at the end of files, which is not
-    # correctly substituted by '' in rst, sphinx, st, epytext, plain
-    # (the fix is to add "enough" blank lines)
-    if format in ('rst', 'sphinx', 'st', 'epytext', 'plain'):
-        filestr = filestr.rstrip()
-        if filestr.endswith('!ec') or filestr.endswith('!et'):
-            filestr += '\n'*10
+    # A special case: `!bc`, `!bt`, `!ec`, and `!et` at the beginning
+    # of a line gives wrong consistency checks for plaintext format,
+    # so we avoid having these at the beginning of a line.
+    if format == 'plain':
+        for directive in 'bc', 'ec', 'bt', 'et':
+            cpattern = re.compile(r'^`!%s' % directive, re.MULTILINE)
+            filestr = cpattern.sub('  `!%s' % directive,
+                                   filestr)  # space avoids beg.of line
+    syntax_check(filestr, format)
 
-    # 0. step: check if ^#?TITLE: is present, and if so, header and footer
+
+    # -----------------------------------------------------------------
+
+    # Step: check if ^#?TITLE: is present, and if so, header and footer
     # are to be included (later below):
     if re.search(r'^#?TITLE:', filestr, re.MULTILINE):
         has_title = True
     else:
         has_title = False
 
-    # 1. step: insert verbatim code from other (source code) files:
+    # Next step: insert verbatim code from other (source code) files:
     # (if the format is latex, we could let ptex2tex do this, but
     # the CODE start@stop specifications may contain uderscores and
     # asterix, which will be replaced later and hence destroyed)
@@ -1046,7 +1254,15 @@ def doconce2format(in_filename, format, out_filename):
     debugpr('%s\n**** The file after inserting @@@CODE (from file):\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    # 2. step: remove all verbatim and math blocks
+    # hack to fix a bug with !ec/!et at the end of files, which is not
+    # correctly substituted by '' in rst, sphinx, st, epytext, plain
+    # (the fix is to add "enough" blank lines)
+    if format in ('rst', 'sphinx', 'st', 'epytext', 'plain'):
+        filestr = filestr.rstrip()
+        if filestr.endswith('!ec') or filestr.endswith('!et'):
+            filestr += '\n'*10
+
+    # Next step: remove all verbatim and math blocks
 
     filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
 
@@ -1079,44 +1295,45 @@ def doconce2format(in_filename, format, out_filename):
           ('*'*80, pprint.pformat(tex_blocks)))
 
     # remove linebreaks within paragraphs:
-    if oneline_paragraphs:
+    if oneline_paragraphs:  # (does not yet work well)
         filestr = make_one_line_paragraphs(filestr, format)
 
-    if remove_inline_comments:
+    if skip_inline_comments:
         filestr = subst_away_inline_comments(filestr)
 
-    syntax_check(filestr, format)
+    # Next step: deal with exercises
+    filestr = exercises(filestr, format)
 
-    # 3. step: deal with figures
+    # Next step: deal with figures
     filestr = handle_figures(filestr, format)
 
-    # 4. step: deal with cross referencing (must occur before other format subst)
+    # Next step: deal with cross referencing (must occur before other format subst)
     filestr = handle_cross_referencing(filestr, format)
 
     debugpr('%s\n**** The file after handling ref and label cross referencing\n\n%s\n\n' % ('*'*80, filestr))
 
-    # 5. step: deal with index and bibliography (must be done before lists):
+    # Next step: deal with index and bibliography (must be done before lists):
     filestr = handle_index_and_bib(filestr, format, has_title)
 
     debugpr('%s\n**** The file after handling index and bibliography\n\n%s\n\n' % ('*'*80, filestr))
 
-    # 6. step: deal with lists
+    # Next step: deal with lists
     filestr = typeset_lists(filestr, format,
                             debug_info=[code_blocks, tex_blocks])
     debugpr('%s\n**** The file after typesetting of list:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    # 7. step: deal with tables
+    # Next step: deal with tables
     filestr = typeset_tables(filestr, format)
     debugpr('%s\n**** The file after typesetting of tables:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
-    # 8. step: do substitutions:
+    # Next step: do substitutions:
     filestr = inline_tag_subst(filestr, format)
 
     debugpr('%s\n**** The file after all inline substitutions:\n\n%s\n\n' % ('*'*80, filestr))
 
-    # 9. step: substitute latex-style newcommands in filestr and tex_blocks
+    # Next step: substitute latex-style newcommands in filestr and tex_blocks
     # (not in code_blocks)
     from expand_newcommands import expand_newcommands
     if format != 'latex' and format != 'pandoc':
@@ -1130,11 +1347,11 @@ def doconce2format(in_filename, format, out_filename):
         for i in range(len(tex_blocks)):
             tex_blocks[i] = expand_newcommands(newcommand_files, tex_blocks[i])
 
-    # 10. step: insert verbatim and math code blocks again:
+    # Next step: insert verbatim and math code blocks again:
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
     filestr += '\n'
 
-    # 11. step: substitute code and tex environments:
+    # Next step: substitute code and tex environments:
     filestr = CODE[format](filestr, format)
     debugpr('%s\n**** The file after inserting tex/code blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
@@ -1245,13 +1462,18 @@ python-mako package (sudo apt-get install python-mako).
         f = open(resultfile, 'w')
         kwargs = {'FORMAT': format}
         for option in preprocessor_options:
-            key, value = option.split('=')
+            try:
+                key, value = option.split('=')
+            except ValueError:
+                print 'command line argument "%s" not recognized' % option
+                sys.exit(1)
             # Try eval(value), if it fails, assume string
             try:
                 kwargs[key] = eval(value)
             except (NameError, SyntaxError):
                 kwargs[key] = value
-        print 'mako kwargs', kwargs
+        debugpr('Keyword arguments to be sent to mako: %s' % \
+                pprint.pformat(kwargs))
         f.write(temp.render(**kwargs))
         f.close()
         if preprocessor_options:
@@ -1266,18 +1488,18 @@ python-mako package (sudo apt-get install python-mako).
 def main():
     # doconce format accepts special command-line arguments:
     #   - debug (for debugging in file _doconce_debugging.log) or
-    #   - remove_inline_comments
+    #   - skip_inline_comments
     #   - oneline (for removal of newlines/linebreaks within paragraphs)
     #   - encoding utf-8 (e.g.)
     #   - preprocessor options (-DVAR etc. for preprocess)
 
     # oneline is inactive (doesn't work well yet)
 
-    options = ['debug', 'remove_inline_comments', 'encoding=',
+    options = ['debug', 'skip_inline_comments', 'encoding=',
                'oneline_paragraphs',] # 'tmp1']
 
     global debug, _log, oneline_paragraphs, \
-           remove_inline_comments, encoding
+           skip_inline_comments, encoding, filename
 
     try:
         format = sys.argv[1]
@@ -1314,13 +1536,13 @@ def main():
         oneline_paragraphs = True
         sys.argv.remove('--oneline_paragraphs')
 
-    remove_inline_comments = False
-    if 'remove_inline_comments' in sys.argv[1:]:
-        remove_inline_comments = True
-        sys.argv.remove('remove_inline_comments')
-    if '--remove_inline_comments' in sys.argv[1:]:
-        remove_inline_comments = True
-        sys.argv.remove('--remove_inline_comments')
+    skip_inline_comments = False
+    if 'skip_inline_comments' in sys.argv[1:]:
+        skip_inline_comments = True
+        sys.argv.remove('skip_inline_comments')
+    if '--skip_inline_comments' in sys.argv[1:]:
+        skip_inline_comments = True
+        sys.argv.remove('--skip_inline_comments')
 
     encoding = ''
     for arg in sys.argv[1:]:
@@ -1335,11 +1557,12 @@ def main():
         _log = open(_log_filename,'w')
         _log.write("""
     This is a log file for the doconce2format script.
-    Debugging is turned on by a 3rd command-line argument 'debug'
-    to doconce2format. Without that command-line argument,
+    Debugging is turned on by a 3rd command-line argument '--debug'
+    to doconce format. Without that command-line argument,
     this file is not produced.
 
     """)
+        print 'debug output in', _log_filename
 
 
     debugpr('\n\n>>>>>>>>>>>>>>>>> %s >>>>>>>>>>>>>>>>>\n\n' % format)

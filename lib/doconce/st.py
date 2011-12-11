@@ -1,6 +1,6 @@
 
 from epytext import epytext_author
-from common import default_movie
+from common import default_movie, plain_exercise, DEFAULT_ARGLIST
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -9,6 +9,7 @@ def define(FILENAME_EXTENSION,
            LIST,
            ARGLIST,
            TABLE,
+           EXERCISE,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
@@ -30,10 +31,12 @@ def define(FILENAME_EXTENSION,
         'linkURL3':  r'"\g<url>":\g<link>',
         'plainURL':  r'"\g<url>":\g<url>',
         # the replacement string differs, depending on the match object m:
+        'chapter':       r'\g<subst>',
         'section':       r'\g<subst>',
         'subsection':    r'\g<subst>',
         'subsubsection': r'\g<subst>',
         'paragraph':     r'*\g<subst>* ',  # extra blank
+        'abstract':      r'*\g<type>.* \g<text>',
         'title':         r'TITLE: \g<subst>',
         'date':          r'DATE: \g<subst>',
         'author':        epytext_author,
@@ -56,9 +59,9 @@ def define(FILENAME_EXTENSION,
 
         'separator': '',
         }
-    from common import DEFAULT_ARGLIST
     ARGLIST['st'] = DEFAULT_ARGLIST
     from plaintext import plain_ref_and_label, plain_index_bib
     CROSS_REFS['st'] = plain_ref_and_label
     INDEX_BIB['st'] = plain_index_bib
+    EXERCISE['st'] = plain_exercise
 

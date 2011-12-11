@@ -7,7 +7,7 @@ for syntax.
 """
 
 import re, sys
-from common import default_movie
+from common import default_movie, plain_exercise
 
 def pandoc_author(authors_and_institutions, auth2index,
                  inst2index, index2inst):
@@ -138,6 +138,7 @@ def define(FILENAME_EXTENSION,
            LIST,
            ARGLIST,
            TABLE,
+           EXERCISE,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
@@ -167,7 +168,8 @@ def define(FILENAME_EXTENSION,
         'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('utf-8'))),
         'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
         'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('utf-8'))),
-        'paragraph':     r'*\g<subst>* '  # extra blank
+        'paragraph':     r'*\g<subst>* ',  # extra blank
+        'abstract':     r'*\g<type>.* \g<text> '
         }
 
     CODE['pandoc'] = pandoc_code
@@ -192,5 +194,6 @@ def define(FILENAME_EXTENSION,
     TABLE['pandoc'] = rst_table
     #TABLE['pandoc'] = pandoc_table
     INDEX_BIB['pandoc'] = pandoc_index_bib
+    EXERCISE['pandoc'] = plain_exercise
 
     # no return, rely on in-place modification of dictionaries
