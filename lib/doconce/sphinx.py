@@ -84,7 +84,7 @@ def sphinx_figure(m):
         # remove . at the end of the caption text
         parts = caption.split('label')
         parts[0] = parts[0].rstrip()
-        if parts[0][-1] == '.':
+        if parts[0] and parts[0][-1] == '.':
             parts[0] = parts[0][:-1]
         caption = '  label'.join(parts)
         # contrary to rst_figure, we do not write label into caption
