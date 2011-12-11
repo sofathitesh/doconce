@@ -1,6 +1,6 @@
-import re, os
+import re, os, sys
 from common import remove_code_and_tex, insert_code_and_tex, indent_lines, \
-    table_analysis
+    table_analysis, plain_exercise
 from html import html_movie
 
 # replacement patterns for substitutions of inline tags
@@ -21,7 +21,7 @@ def rst_figure(m):
         # remove . at the end of the caption text
         parts = caption.split('label')
         parts[0] = parts[0].rstrip()
-        if parts[0][-1] == '.':
+        if parts[0] and parts[0][-1] == '.':
             parts[0] = parts[0][:-1]
         caption = '  label'.join(parts)
         caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
@@ -32,7 +32,9 @@ def rst_figure(m):
 
     filename = m.group('filename')
     if not os.path.isfile(filename):
-        raise IOError('no figure file %s' % filename)
+        #raise IOError('No figure file %s' % filename)
+        print 'No figure file %s' % filename
+        sys.exit(1)
 
     result += '\n.. figure:: ' + filename + '\n'  # utilize flexibility
     opts = m.group('options')
@@ -276,6 +278,7 @@ def define(FILENAME_EXTENSION,
            LIST,
            ARGLIST,
            TABLE,
+           EXERCISE,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
@@ -308,11 +311,13 @@ def define(FILENAME_EXTENSION,
         #'section':    lambda m: r'\g<subst>' + '\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
         # note: r'\g<subst>\n%s' also works fine ?), despite being different...
         # (it just works in substitution...)
+        'chapter':       lambda m: r'\g<subst>' + '\n%s' % ('%'*len(m.group('subst').decode('latin-1'))),
         'section':       lambda m: r'\g<subst>' + '\n%s' % ('='*len(m.group('subst').decode('latin-1'))),
         #'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('latin-1'))),
         'subsection':    lambda m: r'\g<subst>' + '\n%s' % ('-'*len(m.group('subst').decode('latin-1'))),
         'subsubsection': lambda m: r'\g<subst>' + '\n%s' % ('~'*len(m.group('subst').decode('latin-1'))),
         'paragraph':     r'*\g<subst>* ',  # extra blank
+        'abstract':      r'*\g<type>.* \g<text>',
         'title':         r'======= \g<subst> =======' + '\n',  # doconce top section, is later replaced
         'date':          r':Date: \g<subst>' + '\n',
         'author':        rst_author,
@@ -345,6 +350,7 @@ def define(FILENAME_EXTENSION,
     INDEX_BIB['rst'] = rst_index_bib
 
     TABLE['rst'] = rst_table
+    EXERCISE['rst'] = plain_exercise
     INTRO['rst'] = """\
 .. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)

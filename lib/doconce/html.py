@@ -1,4 +1,5 @@
 import re, os, glob, sys
+from common import table_analysis, plain_exercise
 
 # how to replace code and LaTeX blocks by html (<pre>) environment:
 def html_code(filestr, format):
@@ -13,8 +14,6 @@ def html_code(filestr, format):
     filestr = c.sub(r'<blockquote><pre>\n', filestr)
     filestr = re.sub(r'!et\n', r'</pre></blockquote>\n', filestr)
     return filestr
-
-from common import table_analysis
 
 def html_table(table):
     column_width = table_analysis(table['rows'])
@@ -206,6 +205,7 @@ def define(FILENAME_EXTENSION,
            LIST,
            ARGLIST,
            TABLE,
+           EXERCISE,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
@@ -229,10 +229,12 @@ def define(FILENAME_EXTENSION,
         'linkURL3':      r'<a href="\g<url>">\g<link></a>',
         'plainURL':      r'<a href="\g<url>"><tt>\g<url></tt></a>',
         'inlinecomment': r'[<b>\g<name></b>: <em>\g<comment></em>]',
-        'section':       r'<h1>\g<subst></h1>',
+        'chapter':       r'<h1>\g<subst></h1>',
+        'section':       r'<h2>\g<subst></h2>',
         'subsection':    r'<h3>\g<subst></h3>',
         'subsubsection': r'<h4>\g<subst></h4>',
         'paragraph':     r'<b>\g<subst></b> ',
+        'abstract':      r'<b>\g<type>.</b> \g<text>',
         'title':         r'<title>\g<subst></title>\n<center><h1>\g<subst></h1></center>',
         'date':          r'<center><h3>\g<subst></h3></center>',
         'author':        html_author,
@@ -276,7 +278,7 @@ def define(FILENAME_EXTENSION,
     CROSS_REFS['html'] = html_ref_and_label
     TABLE['html'] = html_table
     INDEX_BIB['html'] = html_index_bib
-
+    EXERCISE['html'] = plain_exercise
 
     # document start:
     INTRO['html'] = """\

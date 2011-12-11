@@ -94,3 +94,22 @@ for f in files:
 os.chdir(thisdir)
 add(outputfilename, log)
 log.close()
+
+# test quickref:
+mandir = os.path.join(os.pardir, 'doc', 'quickref')
+print 'cd', mandir
+os.chdir(mandir)
+
+print '...running ./make.sh in doc/quickref'  # works only under Unix...
+clean_and_make()
+
+log = open(logfilename, 'a')
+add('make.sh', log)
+files = '.do.txt', '.html', '.p.tex', '.rst', '.sphinx.rst', '.gwiki', '.st', '.epytext', '.txt',
+files = ['quickref' + ext for ext in files]
+for f in files:
+    add(f, log)
+
+os.chdir(thisdir)
+add(outputfilename, log)
+log.close()

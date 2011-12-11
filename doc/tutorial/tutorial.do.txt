@@ -140,8 +140,14 @@ text constructions that allow you to control the formating. For example,
   * figures and movies with captions, simple tables,
     URLs with links, index list, labels and references are supported,
 
-  * comments can be inserted throughout the text (`#` at the beginning
+  * invisible comments can be inserted throughout the text (`#` at the beginning
     of a line),
+
+  * visible comments can be inserted so that authors and readers can
+    comment upon the text (and at any time turn on/off output of comments),
+
+  * there is special support for advanced exercises features
+    (unfolding of hints, for instance),
 
   * with a simple preprocessor, Preprocess or Mako, one can include
     other documents (files) and large portions of text can be defined
@@ -274,22 +280,26 @@ def myfunc(x):
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 !ec
-It is possible to add a specification of a (ptex2tex-style)
+A code block must come after some plain sentence (at least for successful
+output to `sphinx`, `rst`, and ASCII-close formats),
+not directly after a section/paragraph heading or a table.
+
+It is possible to add a specification of an
 environment for typesetting the verbatim code block, e.g., `!bc xxx`
 where `xxx` is an identifier like `pycod` for code snippet in Python,
 `sys` for terminal session, etc. When Doconce is filtered to LaTeX,
-these identifiers are used as in ptex2tex and defined in a
+these identifiers are used as in `ptex2tex` and defined in a
 configuration file `.ptext2tex.cfg`, while when filtering
 to Sphinx, one can have a comment line in the Doconce file for
 mapping the identifiers to legal language names for Sphinx (which equals
 the legal language names for Pygments):
 !bc
-# sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 !ec
 By default, `pro` and `cod` are `python`, `sys` is `console`,
 while `xpro` and `xcod` are computer language specific for `x`
-in `f` (Fortran), `c` (C), `cpp` (C++), and `py` (Python).
-# `rb` (Ruby), `pl` (Perl), and `sh` (Unix shell).
+in `f` (Fortran), `c` (C), `cpp` (C++), `pl` (Perl), `m` (Matlab),
+`sh` (Unix shells), `cy` (Cython), and `py` (Python).
 
 # (Any sphinx code-block comment, whether inside verbatim code
 # blocks or outside, yields a mapping between bc arguments

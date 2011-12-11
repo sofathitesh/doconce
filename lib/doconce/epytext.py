@@ -1,6 +1,6 @@
 import re
 from common import remove_code_and_tex, insert_code_and_tex, indent_lines, \
-     default_movie
+     default_movie, plain_exercise
 
 def old_epytext_code(filestr):
     # In rst syntax, code blocks are typeset with :: (verbatim)
@@ -48,6 +48,7 @@ def define(FILENAME_EXTENSION,
            LIST,
            ARGLIST,
            TABLE,
+           EXERCISE,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
@@ -70,10 +71,12 @@ def define(FILENAME_EXTENSION,
         'linkURL3':  r'U{\g<link><\g<url>>}',
         'plainURL':  r'U{\g<url><\g<url>>}',
         # the replacement string differs, depending on the match object m:
+        'chapter':       lambda m: r'\g<subst>\n%s' % ('%'*len(m.group('subst'))),
         'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst'))),
         'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst'))),
         'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst'))),
         'paragraph':     r'I{\g<subst>} ',
+        'abstract':      r'I{\g<type>.} \g<text>',
         'title':         r'TITLE: \g<subst>',
         'date':          r'DATE: \g<subst>',
         'author':        epytext_author,
@@ -86,6 +89,7 @@ def define(FILENAME_EXTENSION,
     from plaintext import plain_ref_and_label, plain_index_bib
     CROSS_REFS['epytext'] = plain_ref_and_label
     INDEX_BIB['epytext'] = plain_index_bib
+    EXERCISE['epytext'] = plain_exercise
 
     LIST['epytext'] = {
         'itemize':
