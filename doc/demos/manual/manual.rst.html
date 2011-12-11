@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Nov 23, 2011</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Dec 11, 2011</td>
 </tr>
 </tbody>
 </table>
@@ -342,13 +342,13 @@ ul.auto-toc {
 looks like ordinary ASCII text (much like what you would use in an
 email), but the text can be transformed to numerous other formats,
 including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
-Epytext, and also plain text (where non-obvious formatting/tags are
-removed for clear reading in, e.g., emails). From reStructuredText
-you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
-latter to RTF and MS Word.
-(An experimental translator to Pandoc is under development, and from
-Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF, DocBook XML,
-OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and other formats.)</li>
+Epytext, and also plain text (where non-obvious formatting/tags
+are removed for clear reading in, e.g., emails). From reST you can
+go to XML, HTML, LaTeX, PDF, OpenOffice, and from the latter to
+RTF and MS Word.  (An experimental translator to Pandoc is under
+development, and from Pandoc one can generate Markdown, reST,
+LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU Texinfo, MediaWiki,
+RTF, Groff, and other formats.)</li>
 <li>Doconce is a working strategy for never duplicating information.
 Text is written in a single place and then transformed to
 a number of different destinations of diverse type (software
@@ -388,7 +388,7 @@ With <a class="reference external" href="http://code.google.com/p/ptex2tex">ptex
 display computer code in LaTeX in many sophisticated ways (almost
 50 styles are available).</li>
 <li>Software documentation, primarily Python doc strings, which one wants
-to appear as plain untagged text for viewing in Pydoc, as reStructuredText
+to appear as plain untagged text for viewing in Pydoc, as reST
 for use with Sphinx, as wiki text when publishing the software at
 web sites, and as LaTeX integrated in, e.g., a thesis.</li>
 <li>Quick memos, which start as plain text in email, then some small
@@ -474,11 +474,10 @@ defined as <tt class="docutils literal">latex</tt>. Inside the Doconce document 
 format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;latex&quot;</tt>.</p>
 <p>Inline comments in the text are removed from the output by:</p>
 <pre class="literal-block">
-Terminal&gt; doconce format latex mydoc remove_inline_comments
+Terminal&gt; doconce format latex mydoc --skip_inline_comments
 </pre>
-<p>One can also remove such comments from the original Doconce file
-by running
-source code:</p>
+<p>One can also remove all such comments from the original Doconce
+file by running:</p>
 <pre class="literal-block">
 Terminal&gt; doconce remove_inline_comments mydoc
 </pre>
@@ -863,7 +862,7 @@ AUTHOR: A. Dummy Author
 DATE: November 9, 2016
 </pre>
 <p>Note the how one can specify a single institution, multiple institutions,
-and no institution. In some formats (including reStructuredText and Sphinx)
+and no institution. In some formats (including <tt class="docutils literal">rst</tt> and <tt class="docutils literal">sphinx</tt>)
 only the author names appear. Some formats have
 &quot;intelligence&quot; in listing authors and institutions, e.g., the plain text
 format:</p>
@@ -883,43 +882,43 @@ section levels are recognized by the associated number of underscores
 or equal signs (=):</p>
 <blockquote>
 <ul class="simple">
-<li>7 underscores or equal signs for sections</li>
+<li>9 <tt class="docutils literal">=</tt> characters for chapters</li>
+<li>7 for sections</li>
 <li>5 for subsections</li>
 <li>3 for subsubsections</li>
-<li>2 underscrores (only! - it looks best) for paragraphs
+<li>2 <em>underscrores</em> (only! - it looks best) for paragraphs
 (paragraph heading will be inlined)</li>
 </ul>
 </blockquote>
-<p>Headings can be surrounded by blanks if desired.</p>
+<p>Headings can be surrounded by as many blanks as desired.</p>
+<p>Doconce also supports abstracts. This is typeset as a paragraph, but
+<em>must</em> be followed by a section heading (everything up to the first
+section heading is taken as part of the text of the abstract).</p>
 <p>Here are some examples:</p>
 <pre class="literal-block">
+__Abstract.__ The following text just attempts to exemplify
+various section headings.
+
+========= Example on a Chapter Heading =========
+
+Some text.
+
+
 ======= Example on a Section Heading =======
 
 The running text goes here.
 
-      ===== Example on a Subsection Heading =====
+
+===== Example on a Subsection Heading =====
+
 The running text goes here.
 
-          ===Example on a Subsubsection Heading===
+===Example on a Subsubsection Heading===
 
 The running text goes here.
 
 __A Paragraph.__ The running text goes here.
 </pre>
-<p>The result for the present format looks like this:</p>
-</div>
-</div>
-<div class="section" id="example-on-a-section-heading">
-<h1>Example on a Section Heading</h1>
-<p>The running text goes here.</p>
-<div class="section" id="example-on-a-subsection-heading">
-<h2>Example on a Subsection Heading</h2>
-<p>The running text goes here.</p>
-<div class="section" id="example-on-a-subsubsection-heading">
-<h3>Example on a Subsubsection Heading</h3>
-<p>The running text goes here.</p>
-<p><em>A Paragraph.</em> The running text goes here.</p>
-</div>
 </div>
 </div>
 <div class="section" id="id4">
@@ -960,10 +959,10 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
 </pre>
 <!-- latex/PDF format can make use of the movie15 package for displaying movies, -->
 <!-- or just plain \h`run: ...`_{...} -->
-<EMBED SRC="figs/mjolnir.mpeg" width=600 height=470 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
-<P>
-<EM></EM>
-</P><!-- MOVIE: [figs/wavepacket.gif, width=600 height=470] -->
+<embed src="figs/mjolnir.mpeg" width=600 height=470 autoplay="true" loop="true"></embed>
+<p>
+<em></em>
+</p><!-- MOVIE: [figs/wavepacket.gif, width=600 height=470] -->
 <!-- MOVIE: [figs/wavepacket2.mpeg, width=600 height=470] -->
 <p>The LaTeX format results in a file that can either make use of
 the movie15 package (requires the PDF to be shown in Acrobat Reader)
@@ -1038,7 +1037,8 @@ some URL like &quot;Doconce&quot;: &quot;http://code.google.com/p/doconce&quot;
 </pre>
 <p>which appears as some URL like <a class="reference external" href="http://google.com">Search Google</a>.
 The space after colon is optional.
-Links to files ending in <tt class="docutils literal">.txt</tt>, <tt class="docutils literal">.html</tt>, or <tt class="docutils literal">.pdf</tt> follows the same
+Links to files ending in <tt class="docutils literal">.txt</tt>, <tt class="docutils literal">.html</tt>, <tt class="docutils literal">.pdf</tt>, <tt class="docutils literal">.py</tt>, <tt class="docutils literal">.f</tt>,
+<tt class="docutils literal">.c</tt>, <tt class="docutils literal">.cpp</tt>, <tt class="docutils literal">.cxx</tt>, <tt class="docutils literal">.pl</tt>, and <tt class="docutils literal">.java</tt> follows the same
 setup:</p>
 <pre class="literal-block">
 see the &quot;Doconce Manual&quot;: &quot;manual.do.txt&quot;
@@ -1066,12 +1066,13 @@ Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.
 </pre>
 <p>where <tt class="docutils literal">name</tt> is the name of the author of the command, and <tt class="docutils literal">comment</tt> is a
 plain text text. (<strong>hpl</strong>: Note that there must be a space after the colon,
-otherwise the comment is not recognized.)
+otherwise the comment is not recognized. Inline comments
+can span
+several lines,
+if desired.)
 The name and comment are visible in the output unless <tt class="docutils literal">doconce format</tt>
-is run with a command-line specification of removing such comments
+is run with a command-line argument <tt class="docutils literal"><span class="pre">--skip_inline_comments</span></tt>
 (see the chapter <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a> for an example). Inline comments
-(<strong>hpl</strong>: Here is a specific example on an inline comment. It can
-span several lines.)
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the <tt class="docutils literal">.do.txt</tt> file
@@ -1110,9 +1111,9 @@ LaTeX. When the label is placed after a section or subsection heading,
 the plain text, Epytext, and StructuredText formats will simply
 replace the reference by the title of the (sub)section.  All labels
 will become invisible, except those in math environments.  In the
-reStructuredText and Sphinx formats, the end effect is the same, but
+<tt class="docutils literal">rst</tt> and <tt class="docutils literal">sphinx</tt> formats, the end effect is the same, but
 the &quot;label&quot; and &quot;ref&quot; commands are first translated to the proper
-reStructuredText commands by <tt class="docutils literal">doconce format</tt>. In the HTML and (Google
+reST commands by <tt class="docutils literal">doconce format</tt>. In the HTML and (Google
 Code) wiki formats, labels become anchors and references become links,
 and with LaTeX &quot;label&quot; and &quot;ref&quot; are just equipped with backslashes so
 these commands work as usual in LaTeX.</p>
@@ -1130,8 +1131,8 @@ in the section <a class="reference internal" href="#id5">Inline Tagging</a>.</p>
 </div>
 <div class="section" id="index-and-bibliography">
 <h2>Index and Bibliography</h2>
-<p>An index can be created for the LaTeX and the reStructuredText or
-Sphinx formats by the <tt class="docutils literal">idx</tt> keyword, following a LaTeX-inspired syntax:</p>
+<p>An index can be created for the <tt class="docutils literal">latex</tt>, <tt class="docutils literal">rst</tt>, and <tt class="docutils literal">sphinx</tt> formats
+by the <tt class="docutils literal">idx</tt> keyword, following a LaTeX-inspired syntax:</p>
 <pre class="literal-block">
 idx{some index entry}
 idx{main entry!subentry}
@@ -1145,7 +1146,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to:</p
 <p>Everything related to the index simply becomes invisible in plain
 text, Epytext, StructuredText, HTML, and wiki formats.  Note: <tt class="docutils literal">idx</tt>
 commands should be inserted outside paragraphs, not in between the
-text as this may cause some strange behaviour of reStructuredText and
+text as this may cause some strange behaviour of reST and
 Sphinx formatting.  As a recommended rule, index items are naturally
 placed right after section headings, before the text begins, while
 index items related to a paragraph should be placed above the
@@ -1157,7 +1158,7 @@ LaTeX is the output format).</p>
 as found in cite{Larsen:86,Nielsen:99}.
 </pre>
 <p>Citation labels can be separated by comma. In LaTeX, this is directly
-translated to the corresponding <tt class="docutils literal">cite</tt> command; in reStructuredText
+translated to the corresponding <tt class="docutils literal">cite</tt> command; in reST
 and Sphinx the labels can be clicked, while in all the other text
 formats the labels are consecutively numbered so the above citation
 will typically look like:</p>
@@ -1169,7 +1170,7 @@ and <tt class="docutils literal">Nielsen:99</tt> is a new (the 14th) citation. T
 can be any sequence of characters, except for curly braces and comma.</p>
 <p>The bibliography itself is specified by the special keyword <tt class="docutils literal">BIBFILE:</tt>,
 which is optionally followed by a BibTeX file, having extension <tt class="docutils literal">.bib</tt>,
-a corresponding reStructuredText bibliography, having extension <tt class="docutils literal">.rst</tt>,
+a corresponding reST bibliography, having extension <tt class="docutils literal">.rst</tt>,
 or simply a Python dictionary written in a file with extension <tt class="docutils literal">.py</tt>.
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
@@ -1188,7 +1189,7 @@ O. B. Larsen. On Markup and Generality.
 }
 </pre>
 <p>In the LaTeX format, the <tt class="docutils literal">.bib</tt> file will be used in the standard way,
-in the reStructuredText and Sphinx formats, the <tt class="docutils literal">.rst</tt> file will be
+in the <tt class="docutils literal">rst</tt> and <tt class="docutils literal">sphinx</tt> formats, the <tt class="docutils literal">.rst</tt> file will be
 copied into the document at the place where the <tt class="docutils literal">BIBFILE:</tt> keyword
 appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the <tt class="docutils literal">BIBFILE:</tt> line
@@ -1196,7 +1197,7 @@ in the document.</p>
 <p>At present, only one file with bibliographic references can be used.</p>
 <!-- see ketch/tex2rst for nice bibtex to rst converter which could -->
 <!-- be used here -->
-<p>Conversion of BibTeX databases to reStructuredText format can be
+<p>Conversion of BibTeX databases to reST format can be
 done by the <a class="reference external" href="http://pypi.python.org/pypi/bibliograph.parsing/">bibliograph.parsing</a> tool.</p>
 <p>Finally, we here test the citation command and bibliography by
 citing a book <a class="citation-reference" href="#python-primer-09" id="id6">[Python:Primer:09]</a>, a paper <a class="citation-reference" href="#osnes-98" id="id7">[Osnes:98]</a>,
@@ -1252,31 +1253,86 @@ Similar character can be inserted in the line above the header to
 algn the headings. Pipes <tt class="docutils literal">|</tt> can also be inserted to indicate
 vertical rules in LaTeX tables (they are ignored for other formats).
 Note that not all formats offer alignment of heading or entries
-in tables (reStructuredText and Sphinx are examples). Also note that
+in tables (<tt class="docutils literal">rst</tt> and <tt class="docutils literal">sphinx</tt> are examples). Also note that
 Doconce tables are very simple: neither entries nor
 headings can span several columns or rows. When that functionality
 is needed, one can make use of the preprocessor and if-tests on
 the format and insert format-specific code for tables.</p>
+</div>
+<div class="section" id="exercises-problems-or-projects">
+<h2>Exercises, Problems, or Projects</h2>
+<p>Doconce has special support for three types of &quot;exercises&quot;, named
+<em>exercise</em>, <em>problem</em>, or <em>project</em>.
+These are all typeset as special kind of
+sections. Such sections start with a subsection or subsubsection
+headline, indicated by 3 or 5 <tt class="docutils literal">=</tt> characters, and last up to the
+next headline or the end of the file. The headline itself must
+consists of the word &quot;Exercise&quot;, &quot;Problem&quot;, or &quot;Project&quot;, followed
+by a colon and a title of the exercise, problem, or project.
+The next line(s) may contain a label and specification of the
+name of result file (if the answer to the exercise is to be handed
+it) and a solution file:</p>
+<pre class="literal-block">
+===== Project: Determine the Distance to the Moon =====
+label{proj:moondist} file=earth2moon.pdf
+solution=eart2moon_sol.do.txt
+
+Here goes the running text of the project....
+
+__Hint 1.__ Do not plan a travel to the moon.
+
+__Hint 2.__ Wikipedia is always helpful.
+</pre>
+<p>Doconce will recognize the exercise, problem, or project <em>title</em>,
+the <em>label</em>, the <em>result file</em>, the <em>solution file</em> (if any of
+these three entities is present), the <em>text</em>, and a sequence of
+<em>hints</em>. Tailored formatting of exercises in special output formats
+can make use of this. For example, one can image web formats where
+the hints are displayed one by one when needed and where the result
+file can be uploaded. One can also think of mechanisms for downloading
+the solution file if the result file meets certain criteria.
+Doconce does not yet generate such functionality in any output format,
+but this is an intended future feature to be impelemented.</p>
+<p>Because exercises, problems, and projects are typeset as ordinary
+sections (this is the most general approach that will work for many
+formats), one must refer to an exercise, problem, or project
+by its label, which normally will translate to the section number
+(in LaTeX, for instance) or a link to the title of the section.
+The <em>title</em> is typeset without any leading &quot;Exercise:&quot;, &quot;Problem:&quot;,
+or &quot;Project:&quot; word, so that references like &quot;see Problem ...&quot;
+works well in all formats (&quot;...&quot; will be a number in LaTeX and
+the problem title in most other formats).</p>
+<p>It is recommended to collect all exercises as subsetions (or subsubsections)
+under a section (or subsection) named &quot;Exercises&quot;, &quot;Problems&quot;, or
+&quot;Projects&quot;.</p>
 </div>
 <div class="section" id="blocks-of-verbatim-computer-code">
 <span id="sec-verbatim-blocks"></span><h2>Blocks of Verbatim Computer Code</h2>
 <p>Blocks of computer code, to be typeset verbatim, must appear inside a
 &quot;begin code&quot; <tt class="docutils literal">!bc</tt> keyword and an &quot;end code&quot; <tt class="docutils literal">!ec</tt> keyword. Both
 keywords must be on a single line and <em>start at the beginning of the
-line</em>.  There may be an argument after the <tt class="docutils literal">!bc</tt> tag to specify a
-certain <tt class="docutils literal">ptex2tex</tt> environment (for instance, <tt class="docutils literal">!bc dat</tt> corresponds to
-the data file environment in <tt class="docutils literal">ptex2tex</tt>, and <tt class="docutils literal">!bc cod</tt> is typically
-used for a code snippet, but any argument can be defined). If there is
-no argument, one assumes the ccq environment, which is plain LaTeX
-verbatim in the default <tt class="docutils literal">.ptex2tex.cfg</tt>. However, all these arguments
-can be redefined in the <tt class="docutils literal">.ptex2tex.cfg</tt> file.</p>
-<p>The argument after <tt class="docutils literal">!bc</tt> is also used
-in a Sphinx context. Then argument is mapped onto a valid Pygments
-language for typesetting of the verbatim block by Pygments. This
-mapping takes place in an optional comment to be inserted in the Doconce
-source file, e.g.:</p>
+line</em>.  Before such a code block there must be a plain sentence
+(at least if successful transformation to reST and
+ASCII-type formats is desired). For example, a code block cannot come
+directly after a section/paragraph heading or a table.</p>
+<p>There may be an argument after the <tt class="docutils literal">!bc</tt> tag to specify a
+certain environment (for <tt class="docutils literal">ptex2tex</tt> or Sphinx) for typesetting
+the verbatim code. For instance, <tt class="docutils literal">!bc dat</tt> corresponds to
+the data file environment and <tt class="docutils literal">!bc cod</tt> is typically
+used for a code snippet. There are some predefined environments
+explained below. If there is
+no argument specifying the environment, one assumes some plain
+verbatim typesetting (for <tt class="docutils literal">ptex2tex</tt> this means the <tt class="docutils literal">ccq</tt> environment,
+which is defined in the config file <tt class="docutils literal">.ptex2tex.cfg</tt>,
+while for Sphinx it defaults to the <tt class="docutils literal">python</tt> environment).</p>
+<p>Since the config file for <tt class="docutils literal">ptex2tex</tt> can define what some environment
+maps onto with respect to typesetting, a similar possibility is
+supported for Sphinx as well.  The argument after <tt class="docutils literal">!bc</tt> is in case of
+Sphinx output mapped onto a valid Pygments language for typesetting of
+the verbatim block by Pygments. This mapping takes place in an
+optional comment to be inserted in the Doconce source file, e.g.:</p>
 <pre class="literal-block">
-# sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 </pre>
 <p>Here, three arguments are defined: <tt class="docutils literal">pycod</tt> for Python code,
 <tt class="docutils literal">cod</tt> also for Python code, <tt class="docutils literal">cppcod</tt> for C++ code, and <tt class="docutils literal">sys</tt>
@@ -1287,7 +1343,8 @@ context).</p>
 <p>By default, <tt class="docutils literal">pro</tt> is used for complete programs in Python, <tt class="docutils literal">cod</tt>
 is for a code snippet in Python, while <tt class="docutils literal">xcod</tt> and <tt class="docutils literal">xpro</tt> implies
 computer language specific typesetting where <tt class="docutils literal">x</tt> can be
-<tt class="docutils literal">f</tt> for Fortran, <tt class="docutils literal">c</tt> for C, <tt class="docutils literal">cpp</tt> for C++, and <tt class="docutils literal">py</tt> for Python.
+<tt class="docutils literal">f</tt> for Fortran, <tt class="docutils literal">c</tt> for C, <tt class="docutils literal">cpp</tt> for C++, <tt class="docutils literal">sh</tt> for Unix shells,
+<tt class="docutils literal">pl</tt> for Perl, <tt class="docutils literal">m</tt> for Matlab, <tt class="docutils literal">cy</tt> for Cython, and <tt class="docutils literal">py</tt> for Python.
 The argument <tt class="docutils literal">sys</tt> means by default <tt class="docutils literal">console</tt> for Sphinx and
 <tt class="docutils literal">CodeTerminal</tt> (ptex2tex environent) for LaTeX. All these definitions
 of the arguments after <tt class="docutils literal">!bc</tt> can be redefined in the <tt class="docutils literal">.ptex2tex.cfg</tt>
@@ -1335,10 +1392,14 @@ is then:</p>
 &#64;&#64;&#64;CODE myfile.f fromto:subroutine\s+test&#64;^C\s{5}END1
 </pre>
 <p>The first line implies that all lines in the file <tt class="docutils literal">myfile.f</tt> are
-copied into a verbatim block, typset in a <tt class="docutils literal">!bc pro</tt> environment.  The
-second line has a <cite>fromto:' directive, which implies copying code
-between two lines in the code, typset within a !`bc cod</cite>
-environment. (The <tt class="docutils literal">pro</tt> and <tt class="docutils literal">cod</tt> arguments are only used for LaTeX
+copied into a verbatim block, typset in a <tt class="docutils literal">!bc Xpro</tt> environment, where
+<tt class="docutils literal">X</tt> is the extension of the filename, here <tt class="docutils literal">f</tt> (i.e., the environment
+becomes <tt class="docutils literal">!bc fpro</tt> and will typically lead to some Fortran-style
+formatting in Linux and Sphinx).  The
+second line has a <tt class="docutils literal">fromto:</tt> directive, which implies copying code
+between two lines in the code, typset within a !`bc Xcod`
+environment (again, <tt class="docutils literal">X</tt> is the filename extension, implying the
+type of file). Note that the <tt class="docutils literal">pro</tt> and <tt class="docutils literal">cod</tt> arguments are only used for LaTeX
 and Sphinx output, all other formats will have the code typeset within
 a plain <tt class="docutils literal">!bc</tt> environment.) Two regular expressions, separated by the
 <tt class="docutils literal">&#64;</tt> sign, define the &quot;from&quot; and &quot;to&quot; lines.  The &quot;from&quot; line is
@@ -1381,8 +1442,9 @@ return
 syntax is slightly different from that used in <tt class="docutils literal">ptex2tex</tt>. When
 transforming Doconce to LaTeX, one first transforms the document to a
 <tt class="docutils literal">.p.tex</tt> file to be treated by <tt class="docutils literal">ptex2tex</tt>. However, the <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> line
-is interpreted by Doconce and replaced by a <em>pro</em> or <em>cod</em> <tt class="docutils literal">ptex2tex</tt>
-environment.)</p>
+is interpreted by Doconce and replaced by the mentioned
+pro or cod environment which are defined in the <tt class="docutils literal">ptex2tex</tt> configuration
+file.)</p>
 </div>
 <div class="section" id="latex-blocks-of-mathematical-text">
 <span id="mathtext"></span><h2>LaTeX Blocks of Mathematical Text</h2>
@@ -1393,7 +1455,7 @@ line and followed by a newline.</p>
 <p>Here is the result of a <tt class="docutils literal">!bt</tt> - <tt class="docutils literal">!et</tt> block:</p>
 <pre class="literal-block">
 \begin{eqnarray}
-{\partial u\over\partial t} &amp;=&amp; \nabla^2 u + f,\label{myeq1}\\
+{\partial u\over\partial t} &amp;=&amp; \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &amp;=&amp; \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}
 </pre>
@@ -1446,15 +1508,15 @@ expressions).</p>
 <p>The LaTeX block:</p>
 <pre class="literal-block">
 \beqa
-\x\cdot\normalvec &amp;=&amp; 0,\label{my:eq1}\\
-\Ddt{\uvec} &amp;=&amp; \Q \ep\label{my:eq2}
+\x\cdot\normalvec &amp;=&amp; 0, label{my:eq1}\\
+\Ddt{\uvec} &amp;=&amp; \Q \ep   label{my:eq2}
 \eeqa
 </pre>
 <p>will then be rendered to:</p>
 <pre class="literal-block">
 \begin{eqnarray}
-\x\cdot\normalvec &amp;=&amp; 0,\label{my:eq1}\\
-\Ddt{\vec u} &amp;=&amp; {\mbox{\boldmath $Q$}} \thinspace . \label{my:eq2}
+\x\cdot\normalvec &amp;=&amp; 0, label{my:eq1}\\
+\Ddt{\vec u} &amp;=&amp; {\mbox{\boldmath $Q$}} \thinspace .    label{my:eq2}
 \end{eqnarray}
 </pre>
 <p>in the current format.</p>
@@ -1510,7 +1572,7 @@ The master document is preferably a file just containing a set of
 preprocessor include statements of the form <tt class="docutils literal">#include &quot;file.do.txt&quot;</tt>.
 The preprocessor will put together all the pieces so that Doconce
 sees a long file with the complete text.</p>
-<p>For reStructuredText and Sphinx documents it is a point to have
+<p>For reST and Sphinx documents it is a point to have
 separate <tt class="docutils literal">.rst</tt> files and an index file listing the various <tt class="docutils literal">.rst</tt>
 that build up the document. To generate the various <tt class="docutils literal">.rst</tt> files one
 should not run Doconce on the individual <tt class="docutils literal">.do.txt</tt> files, because then
@@ -1617,6 +1679,28 @@ stand-alone. We have introduce the convention that if <tt class="docutils litera
 has, or has an intention have, a title), the header and footer
 are included, otherwise not.</p>
 </div>
+<div class="section" id="emacs-doconce-formatter">
+<h2>Emacs Doconce Formatter</h2>
+<p>The file <tt class="docutils literal"><span class="pre">misc/.doconce-mode.el</span></tt> in the Doconce source distribution
+gives a &quot;Doconce Editing Mode&quot; in Emacs. The file is a rough edit of
+the reST Editing Mode for Emacs. Some Doconce features are recognized,
+but far from all, and sometimes portions of Doconce text just appear
+as ordinary text.</p>
+<p>Here is how to get the Doconce Editing Mode in Emacs.</p>
+<p><em>Step 1.</em> Download the Doconce tarball from <tt class="docutils literal">code.google.com/p/doconce</tt>,
+pack it out and go to the root directory.</p>
+<p><em>Step 2.</em> Copy the <tt class="docutils literal"><span class="pre">doconce-mode.el</span></tt> file to the home directory:</p>
+<pre class="literal-block">
+cp misc/.doconce-mode.el $HOME
+</pre>
+<p><em>Step 3.</em> Add these lines to <tt class="docutils literal"><span class="pre">$HOME/.emacs</span></tt>:</p>
+<pre class="literal-block">
+(load-file &quot;~/hg/.doconce-mode.el&quot;)
+(setq auto-mode-alist(cons '(&quot;\\.do\\.txt$&quot; . doconce-mode) auto-mode-alist))
+</pre>
+<p>Emacs will now recognize files with extension <tt class="docutils literal">.do.txt</tt> and enter
+the Doconce Editing Mode.</p>
+</div>
 </div>
 <div class="section" id="troubleshooting">
 <h1>Troubleshooting</h1>
@@ -1670,21 +1754,36 @@ Unix&gt; doconce change_encoding utf-8 LATIN1 myfile.do.txt
 Unix&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 </pre>
 </div>
+<div class="section" id="inline-verbatim-text-is-not-formatted-correctly">
+<h3>Inline verbatim text is not formatted correctly</h3>
+<p>Make sure there is whitespace surrounding the text in backquotes.</p>
+</div>
+<div class="section" id="too-short-underlining-of-rest-headlines">
+<h3>Too short underlining of reST headlines</h3>
+<p>This may happen if there is a paragraph heading without
+proceeding text before some section heading.</p>
+</div>
 </div>
 <div class="section" id="problems-with-code-or-tex-blocks">
-<h2>Problems with Code or Tex Blocks</h2>
-<div class="section" id="code-or-tex-block-errors-in-rest">
-<h3>Code or TeX block errors in reST</h3>
-<p>Sometimes reStructuredText (reST) reports an &quot;Unexpected indentation&quot;
-at the beginning of a code block. If you see a <tt class="docutils literal">!bc</tt>, which should
-have been removed by <tt class="docutils literal">doconce format</tt>, it is usually an error in the
-Doconce source, or a problem with the rst/sphinx translator.  Check if
-the line before the code block ends in one colon (not two!), a
-question mark, an exclamation mark, a comma, a period, or just a
-newline/space after text. If not, make sure that the ending is among
-the mentioned. Then <tt class="docutils literal">!bc</tt> will most likely be replaced and a double
-colon at the preceding line will appear (which is the right way in
-reST to indicate a verbatim block of text).</p>
+<h2>Problems with code or Tex Blocks</h2>
+<div class="section" id="code-or-math-block-errors-in-rest">
+<h3>Code or math block errors in reST</h3>
+<p>First note that a code or math block must come after some plain
+sentence (at least for successful output in reST), not directly
+after a section/paragraph heading, table, comment, figure, or
+movie, because the code or math block is indented and then become
+parts of such constructions. Either the block becomes invisible or
+error messages are issued.</p>
+<p>Sometimes reST reports an &quot;Unexpected indentation&quot; at the beginning of
+a code block. If you see a <tt class="docutils literal">!bc</tt>, which should have been removed when
+running <tt class="docutils literal">doconce format sphinx</tt>, it is usually an error in the Doconce
+source, or a problem with the rst/sphinx translator.  Check if the
+line before the code block ends in one colon (not two!), a question
+mark, an exclamation mark, a comma, a period, or just a newline/space
+after text. If not, make sure that the ending is among the
+mentioned. Then <tt class="docutils literal">!bc</tt> will most likely be replaced and a double colon
+at the preceding line will appear (which is the right way in reST to
+indicate a verbatim block of text).</p>
 </div>
 <div class="section" id="strange-errors-around-code-or-tex-blocks-in-rest">
 <h3>Strange errors around code or TeX blocks in reST</h3>
@@ -1694,6 +1793,18 @@ and especially right before a code block, the reST translator
 code blocks that cause errors when the reST text is transformed to
 other formats. The remedy is to define items for the index outside
 paragraphs.</p>
+</div>
+<div class="section" id="something-is-wrong-with-a-verbatim-code-block">
+<h3>Something is wrong with a verbatim code block</h3>
+<p>Check first that there is a &quot;normal&quot; sentence right before
+the block (this is important for reST and similar
+&quot;ASCII-close&quot; formats).</p>
+</div>
+<div class="section" id="code-tex-block-is-not-shown-in-rest-format">
+<h3>Code/TeX block is not shown in reST format</h3>
+<p>A comment right before a code or tex block will treat the whole
+block also as a comment. It is important that there is normal
+running text right before <tt class="docutils literal">!bt</tt> and <tt class="docutils literal">!bc</tt> environments.</p>
 </div>
 <div class="section" id="verbatim-code-blocks-inside-lists-look-ugly">
 <h3>Verbatim code blocks inside lists look ugly</h3>
@@ -1807,10 +1918,10 @@ be untouched and are therefore left out of the previous parsing).</p>
 <p>It is important to keep the Doconce format and parsing simple.  When a
 new format is needed and this format is not obtained by a simple edit
 of the definition of existing formats, it might be better to convert
-the document to reStructuredText and then to XML, parse the XML and
+the document to reST and then to XML, parse the XML and
 write out in the new format.  When the Doconce format is not
 sufficient to getting the layout you want, it is suggested to filter
-the document to another, more complex format, say reStructuredText or
+the document to another, more complex format, say reST or
 LaTeX, and work further on the document in this format.</p>
 <div class="section" id="a-glimpse-of-how-to-write-a-new-translator">
 <h2>A Glimpse of How to Write a New Translator</h2>

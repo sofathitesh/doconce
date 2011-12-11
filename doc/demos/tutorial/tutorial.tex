@@ -54,7 +54,7 @@
 
 
 \begin{center}
-Nov 23, 2011
+Dec 11, 2011
 \end{center}
 
 
@@ -84,6 +84,7 @@ If any of these questions are of interest, you should keep on reading.
 
 
 \section{The Doconce Concept}
+
 Doconce is two things:
 
 \begin{enumerate}
@@ -171,50 +172,61 @@ formats.
 
 
 \section{What Does Doconce Look Like?}
+
 Doconce text looks like ordinary text, but there are some almost invisible
-text constructions that allow you to control the formating. For example,
+text constructions that allow you to control the formating. Here are
+som examples.
 
 \begin{itemize}
-  \item bullet lists arise from lines starting with an asterisk,
+  \item Bullet lists arise from lines starting with an asterisk.
 
-  \item \emph{emphasized words} are surrounded by asterisks,
+  \item \emph{Emphasized words} are surrounded by asterisks.
 
-  \item \textbf{words in boldface} are surrounded by underscores,
+  \item \textbf{Words in boldface} are surrounded by underscores.
 
-  \item words from computer code are enclosed in back quotes and
-    then typeset verbatim (monospace font),
+  \item Words from computer code are enclosed in back quotes and
+    then typeset {\fontsize{10pt}{10pt}\verb!verbatim (in a monospace font)!}.
 
-  \item section headings are recognied by equality ({\fontsize{10pt}{10pt}\verb!=!}) signs before
-    and after the text, and the number of {\fontsize{10pt}{10pt}\verb!=!} signs indicates the
-    level of the section (7 for main section, 5 for subsection,
-    3 for subsubsection),
+  \item Section headings are recognied by equality ({\fontsize{10pt}{10pt}\verb!=!}) signs before
+    and after the title, and the number of {\fontsize{10pt}{10pt}\verb!=!} signs indicates the
+    level of the section: 7 for main section, 5 for subsection, and
+    3 for subsubsection.
 
-  \item paragraph headings are recognized by a double underscore
-    before and after the heading,
+  \item Paragraph headings are recognized by a double underscore
+    before and after the heading.
 
-  \item blocks of computer code can easily be included by placing
+  \item The abstract of a document starts with \emph{Abstract} as paragraph
+    heading, and all text up to the next heading makes up the abstract,
+
+  \item Blocks of computer code can easily be included by placing
     {\fontsize{10pt}{10pt}\verb!!bc!} (begin code) and {\fontsize{10pt}{10pt}\verb!!ec!} (end code) commands at separate lines
-    before and after the code block,
+    before and after the code block.
 
-  \item blocks of computer code can also be imported from source files,
+  \item Blocks of computer code can also be imported from source files.
 
-  \item blocks of {\LaTeX} mathematics can easily be included by placing
+  \item Blocks of {\LaTeX} mathematics can easily be included by placing
     {\fontsize{10pt}{10pt}\verb!!bt!} (begin TeX) and {\fontsize{10pt}{10pt}\verb!!et!} (end TeX) commands at separate lines
-    before and after the math block,
+    before and after the math block.
 
-  \item there is support for both {\LaTeX} and text-like inline mathematics,
+  \item There is support for both {\LaTeX} and text-like inline mathematics.
 
-  \item figures and movies with captions, simple tables,
-    URLs with links, index list, labels and references are supported,
+  \item Figures and movies with captions, simple tables,
+    URLs with links, index list, labels and references are supported.
 
-  \item comments can be inserted throughout the text ({\fontsize{10pt}{10pt}\verb!#!} at the beginning
-    of a line),
+  \item Invisible comments in the output format can be inserted throughout
+    the text ({\fontsize{10pt}{10pt}\verb!#!} at the beginning of a line).
 
-  \item with a simple preprocessor, Preprocess or Mako, one can include
+  \item Visible comments can be inserted so that authors and readers can
+    comment upon the text (and at any time turn on/off output of such
+    comments).
+
+  \item There is special support for advanced exercises features.
+
+  \item With a simple preprocessor, Preprocess or Mako, one can include
     other documents (files) and large portions of text can be defined
-    in or out of the text,
+    in or out of the text.
 
-  \item with the Mako preprocessor one can even embed Python
+  \item With the Mako preprocessor one can even embed Python
     code and use this to steer generation of Doconce text.
 \end{itemize}
 
@@ -268,6 +280,7 @@ Tables are also supperted, e.g.,
 The Doconce text above results in the following little document:
 
 \subsection{A Subsection with Sample Text}
+
 \label{my:first:sec}
 
 Ordinary text looks like ordinary text, and the tags used for
@@ -324,6 +337,7 @@ Tables are also supperted, e.g.,
 \noindent
 
 \subsection{Mathematics and Computer Code}
+
 Inline mathematics, such as $\nu = \sin(x)$,
 allows the formula to be specified both as {\LaTeX} and as plain text.
 This results in a professional {\LaTeX} typesetting, but in other formats
@@ -376,24 +390,28 @@ I = integrate.trapezoidal(myfunc, 0, pi, 100)
 \end{Verbatim}
 \end{shadedquoteBlue}
 \noindent
-It is possible to add a specification of a (ptex2tex-style)
+A code block must come after some plain sentence (at least for successful
+output to {\fontsize{10pt}{10pt}\verb!sphinx!}, {\fontsize{10pt}{10pt}\verb!rst!}, and ASCII-close formats),
+not directly after a section/paragraph heading or a table.
+
+It is possible to add a specification of an
 environment for typesetting the verbatim code block, e.g., {\fontsize{10pt}{10pt}\verb!!bc xxx!}
 where {\fontsize{10pt}{10pt}\verb!xxx!} is an identifier like {\fontsize{10pt}{10pt}\verb!pycod!} for code snippet in Python,
 {\fontsize{10pt}{10pt}\verb!sys!} for terminal session, etc. When Doconce is filtered to {\LaTeX},
-these identifiers are used as in ptex2tex and defined in a
+these identifiers are used as in {\fontsize{10pt}{10pt}\verb!ptex2tex!} and defined in a
 configuration file {\fontsize{10pt}{10pt}\verb!.ptext2tex.cfg!}, while when filtering
 to Sphinx, one can have a comment line in the Doconce file for
 mapping the identifiers to legal language names for Sphinx (which equals
 the legal language names for Pygments):
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
-# sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 \end{Verbatim}
 \noindent
 By default, {\fontsize{10pt}{10pt}\verb!pro!} and {\fontsize{10pt}{10pt}\verb!cod!} are {\fontsize{10pt}{10pt}\verb!python!}, {\fontsize{10pt}{10pt}\verb!sys!} is {\fontsize{10pt}{10pt}\verb!console!},
 while {\fontsize{10pt}{10pt}\verb!xpro!} and {\fontsize{10pt}{10pt}\verb!xcod!} are computer language specific for {\fontsize{10pt}{10pt}\verb!x!}
-in {\fontsize{10pt}{10pt}\verb!f!} (Fortran), {\fontsize{10pt}{10pt}\verb!c!} (C), {\fontsize{10pt}{10pt}\verb!cpp!} (C++), and {\fontsize{10pt}{10pt}\verb!py!} (Python).
-% {\fontsize{10pt}{10pt}\verb!rb!} (Ruby), {\fontsize{10pt}{10pt}\verb!pl!} (Perl), and {\fontsize{10pt}{10pt}\verb!sh!} (Unix shell).
+in {\fontsize{10pt}{10pt}\verb!f!} (Fortran), {\fontsize{10pt}{10pt}\verb!c!} (C), {\fontsize{10pt}{10pt}\verb!cpp!} (C++), {\fontsize{10pt}{10pt}\verb!pl!} (Perl), {\fontsize{10pt}{10pt}\verb!m!} (Matlab),
+{\fontsize{10pt}{10pt}\verb!sh!} (Unix shells), {\fontsize{10pt}{10pt}\verb!cy!} (Cython), and {\fontsize{10pt}{10pt}\verb!py!} (Python).
 
 % (Any sphinx code-block comment, whether inside verbatim code
 % blocks or outside, yields a mapping between bc arguments
@@ -416,6 +434,7 @@ trailing {\fontsize{10pt}{10pt}\verb!.txt!} denotes a text document so that edit
 right writing enviroment for plain text.
 
 \subsection{Macros (Newcommands), Cross-References, Index, and Bibliography}
+
 \label{newcommands}
 
 Doconce supports a type of macros via a LaTeX-style \emph{newcommand}
@@ -455,6 +474,7 @@ for various formats of this document).
 
 
 \section{From Doconce to Other Formats}
+
 \label{doconce2formats}
 
 Transformation of a Doconce document {\fontsize{10pt}{10pt}\verb!mydoc.do.txt!} to various other
@@ -488,11 +508,10 @@ Inline comments in the text are removed from the output by
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Terminal> doconce format latex mydoc remove_inline_comments
+Terminal> doconce format latex mydoc --skip_inline_comments
 \end{Verbatim}
-One can also remove such comments from the original Doconce file
-by running
-source code:
+One can also remove all such comments from the original Doconce
+file by running:
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
 Terminal> doconce remove_inline_comments mydoc
@@ -502,6 +521,7 @@ This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
 
 \subsection{HTML}
+
 Making an HTML version of a Doconce file {\fontsize{10pt}{10pt}\verb!mydoc.do.txt!}
 is performed by
 \vspace{4pt}
@@ -512,6 +532,7 @@ Terminal> doconce format html mydoc
 The resulting file {\fontsize{10pt}{10pt}\verb!mydoc.html!} can be loaded into any web browser for viewing.
 
 \subsection{{\LaTeX}}
+
 Making a {\LaTeX} file {\fontsize{10pt}{10pt}\verb!mydoc.tex!} from {\fontsize{10pt}{10pt}\verb!mydoc.do.txt!} is done in two steps:
 % Note: putting code blocks inside a list is not successful in many
 % formats - the text may be messed up. A better choice is a paragraph
@@ -616,6 +637,7 @@ file runs the {\fontsize{10pt}{10pt}\verb!pygments!} program to format code, and
 cannot be run from {\fontsize{10pt}{10pt}\verb!latex!} without the {\fontsize{10pt}{10pt}\verb!-shell-escape!} option.
 
 \subsection{Plain ASCII Text}
+
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:
@@ -626,6 +648,7 @@ Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 \end{Verbatim}
 
 \subsection{reStructuredText}
+
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file {\fontsize{10pt}{10pt}\verb!mydoc.rst!}:
@@ -648,6 +671,7 @@ saved in, among other things, the RTF format or the Microsoft Word format.
 That is, one can easily go from Doconce to Microsoft Word.
 
 \subsection{Sphinx}
+
 Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the {\fontsize{10pt}{10pt}\verb!doconce sphinx_dir!} command:
 \vspace{4pt}
@@ -794,6 +818,7 @@ depending the argument that follows {\fontsize{10pt}{10pt}\verb!!bc!}: {\fontsiz
 all such arguments can be customized both for Sphinx and {\LaTeX} output.
 
 \subsection{Google Code Wiki}
+
 There are several different wiki dialects, but Doconce only support the
 one used by \href{http://code.google.com/p/support/wiki/WikiSyntax}{Google Code}.
 The transformation to this format, called {\fontsize{10pt}{10pt}\verb!gwiki!} to explicitly mark
@@ -814,6 +839,7 @@ in the file for doing this. Usually, one performs this substitution
 automatically (see next section).
 
 \subsection{Tweaking the Doconce Output}
+
 Occasionally, one would like to tweak the output in a certain format
 from Doconce. One example is figure filenames when transforming
 Doconce to reStructuredText. Since Doconce does not know if the
@@ -827,6 +853,7 @@ format(s). The {\fontsize{10pt}{10pt}\verb!make.sh!} files in {\fontsize{10pt}{1
 constitute comprehensive examples on how such scripts can be made.
 
 \subsection{Demos}
+
 The current text is generated from a Doconce format stored in the file
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
@@ -847,6 +874,7 @@ translates the more comprehensive documentation, {\fontsize{10pt}{10pt}\verb!man
 various formats. The {\fontsize{10pt}{10pt}\verb!make.sh!} script runs a set of translations.
 
 \subsection{Dependencies}
+
 If you make use of preprocessor directives in the Doconce source,
 either \href{http://code.google.com/p/preprocess}{Preprocess} or \href{http://www.makotemplates.org}{Mako} must be installed.  To make {\LaTeX}
 documents (without going through the reStructuredText format) you also

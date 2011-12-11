@@ -41,6 +41,7 @@ Figure with no comma between filename and options:
 
 FIGURE: [../doc/manual/figs/streamtubes width=800]
 
+More text...
 # Comment before math
 !bt
 \begin{align}

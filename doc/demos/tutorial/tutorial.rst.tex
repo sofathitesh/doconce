@@ -76,7 +76,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Nov 23, 2011
+Dec 11, 2011
 %
 \begin{itemize}
 
@@ -227,52 +227,62 @@ formats.
 }
 
 Doconce text looks like ordinary text, but there are some almost invisible
-text constructions that allow you to control the formating. For example,
+text constructions that allow you to control the formating. Here are
+som examples.
 %
 \begin{quote}
 %
 \begin{itemize}
 
-\item bullet lists arise from lines starting with an asterisk,
+\item Bullet lists arise from lines starting with an asterisk.
 
-\item \emph{emphasized words} are surrounded by asterisks,
+\item \emph{Emphasized words} are surrounded by asterisks.
 
-\item \textbf{words in boldface} are surrounded by underscores,
+\item \textbf{Words in boldface} are surrounded by underscores.
 
-\item words from computer code are enclosed in back quotes and
-then typeset verbatim (monospace font),
+\item Words from computer code are enclosed in back quotes and
+then typeset \texttt{verbatim (in a monospace font)}.
 
-\item section headings are recognied by equality (\texttt{=}) signs before
-and after the text, and the number of \texttt{=} signs indicates the
-level of the section (7 for main section, 5 for subsection,
-3 for subsubsection),
+\item Section headings are recognied by equality (\texttt{=}) signs before
+and after the title, and the number of \texttt{=} signs indicates the
+level of the section: 7 for main section, 5 for subsection, and
+3 for subsubsection.
 
-\item paragraph headings are recognized by a double underscore
-before and after the heading,
+\item Paragraph headings are recognized by a double underscore
+before and after the heading.
 
-\item blocks of computer code can easily be included by placing
+\item The abstract of a document starts with \emph{Abstract} as paragraph
+heading, and all text up to the next heading makes up the abstract,
+
+\item Blocks of computer code can easily be included by placing
 \texttt{!bc} (begin code) and \texttt{!ec} (end code) commands at separate lines
-before and after the code block,
+before and after the code block.
 
-\item blocks of computer code can also be imported from source files,
+\item Blocks of computer code can also be imported from source files.
 
-\item blocks of LaTeX mathematics can easily be included by placing
+\item Blocks of LaTeX mathematics can easily be included by placing
 \texttt{!bt} (begin TeX) and \texttt{!et} (end TeX) commands at separate lines
-before and after the math block,
+before and after the math block.
 
-\item there is support for both LaTeX and text-like inline mathematics,
+\item There is support for both LaTeX and text-like inline mathematics.
 
-\item figures and movies with captions, simple tables,
-URLs with links, index list, labels and references are supported,
+\item Figures and movies with captions, simple tables,
+URLs with links, index list, labels and references are supported.
 
-\item comments can be inserted throughout the text (\texttt{\#} at the beginning
-of a line),
+\item Invisible comments in the output format can be inserted throughout
+the text (\texttt{\#} at the beginning of a line).
 
-\item with a simple preprocessor, Preprocess or Mako, one can include
+\item Visible comments can be inserted so that authors and readers can
+comment upon the text (and at any time turn on/off output of such
+comments).
+
+\item There is special support for advanced exercises features.
+
+\item With a simple preprocessor, Preprocess or Mako, one can include
 other documents (files) and large portions of text can be defined
-in or out of the text,
+in or out of the text.
 
-\item with the Mako preprocessor one can even embed Python
+\item With the Mako preprocessor one can even embed Python
 code and use this to steer generation of Doconce text.
 
 \end{itemize}
@@ -495,25 +505,29 @@ I~=~integrate.trapezoidal(myfunc,~0,~pi,~100)
 }
 \end{quote}
 
-It is possible to add a specification of a (ptex2tex-style)
+A code block must come after some plain sentence (at least for successful
+output to \texttt{sphinx}, \texttt{rst}, and ASCII-close formats),
+not directly after a section/paragraph heading or a table.
+
+It is possible to add a specification of an
 environment for typesetting the verbatim code block, e.g., \texttt{!bc xxx}
 where \texttt{xxx} is an identifier like \texttt{pycod} for code snippet in Python,
 \texttt{sys} for terminal session, etc. When Doconce is filtered to LaTeX,
-these identifiers are used as in ptex2tex and defined in a
+these identifiers are used as in \texttt{ptex2tex} and defined in a
 configuration file \texttt{.ptext2tex.cfg}, while when filtering
 to Sphinx, one can have a comment line in the Doconce file for
 mapping the identifiers to legal language names for Sphinx (which equals
 the legal language names for Pygments):
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-\#~sphinx~code-blocks:~pycod=python~cod=py~cppcod=c++~sys=console
+\#~sphinx~code-blocks:~pycod=python~cod=fortran~cppcod=c++~sys=console
 }
 \end{quote}
 
 By default, \texttt{pro} and \texttt{cod} are \texttt{python}, \texttt{sys} is \texttt{console},
 while \texttt{xpro} and \texttt{xcod} are computer language specific for \texttt{x}
-in \texttt{f} (Fortran), \texttt{c} (C), \texttt{cpp} (C++), and \texttt{py} (Python).
-.. \texttt{rb} (Ruby), \texttt{pl} (Perl), and \texttt{sh} (Unix shell).
+in \texttt{f} (Fortran), \texttt{c} (C), \texttt{cpp} (C++), \texttt{pl} (Perl), \texttt{m} (Matlab),
+\texttt{sh} (Unix shells), \texttt{cy} (Cython), and \texttt{py} (Python).
 
 % (Any sphinx code-block comment, whether inside verbatim code
 
@@ -625,13 +639,12 @@ format specific actions through tests like \texttt{\#if FORMAT == "latex"}.
 Inline comments in the text are removed from the output by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~format~latex~mydoc~remove\_inline\_comments
+Terminal>~doconce~format~latex~mydoc~-{}-skip\_inline\_comments
 }
 \end{quote}
 
-One can also remove such comments from the original Doconce file
-by running
-source code:
+One can also remove all such comments from the original Doconce
+file by running:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Terminal>~doconce~remove\_inline\_comments~mydoc
@@ -1077,7 +1090,7 @@ various formats. The \texttt{make.sh} script runs a set of translations.
 \DUtitle[system-message]{system-message}
 
 
-{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~385
+{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~398
 
 \hyperlink{id5}{
 Duplicate explicit target name: ``sphinx''.

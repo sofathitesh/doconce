@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Nov 23, 2011
+:Date: Dec 11, 2011
 
 .. lines beginning with # are comment lines
 
@@ -23,13 +23,13 @@ Doconce is two things:
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
     including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
-    Epytext, and also plain text (where non-obvious formatting/tags are
-    removed for clear reading in, e.g., emails). From reStructuredText
-    you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
-    latter to RTF and MS Word.
-    (An experimental translator to Pandoc is under development, and from
-    Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF, DocBook XML,
-    OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and other formats.)
+    Epytext, and also plain text (where non-obvious formatting/tags
+    are removed for clear reading in, e.g., emails). From reST you can
+    go to XML, HTML, LaTeX, PDF, OpenOffice, and from the latter to
+    RTF and MS Word.  (An experimental translator to Pandoc is under
+    development, and from Pandoc one can generate Markdown, reST,
+    LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU Texinfo, MediaWiki,
+    RTF, Groff, and other formats.)
 
  2. Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
@@ -72,7 +72,7 @@ Doconce was particularly written for the following sample applications:
     50 styles are available).
 
   * Software documentation, primarily Python doc strings, which one wants
-    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
+    to appear as plain untagged text for viewing in Pydoc, as reST
     for use with Sphinx, as wiki text when publishing the software at
     web sites, and as LaTeX integrated in, e.g., a thesis.
 
@@ -190,11 +190,10 @@ format specific actions through tests like ``#if FORMAT == "latex"``.
 Inline comments in the text are removed from the output by::
 
 
-        Terminal> doconce format latex mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc --skip_inline_comments
 
-One can also remove such comments from the original Doconce file
-by running
-source code::
+One can also remove all such comments from the original Doconce
+file by running::
 
 
         Terminal> doconce remove_inline_comments mydoc
@@ -647,7 +646,7 @@ line.  Here is an example::
         DATE: November 9, 2016
 
 Note the how one can specify a single institution, multiple institutions,
-and no institution. In some formats (including reStructuredText and Sphinx)
+and no institution. In some formats (including ``rst`` and ``sphinx``)
 only the author names appear. Some formats have
 "intelligence" in listing authors and institutions, e.g., the plain text
 format::
@@ -669,51 +668,50 @@ underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
 or equal signs (=):
 
-   * 7 underscores or equal signs for sections
+   * 9 ``=`` characters for chapters
+
+   * 7 for sections
 
    * 5 for subsections
 
    * 3 for subsubsections
 
-   * 2 underscrores (only! - it looks best) for paragraphs
+   * 2 *underscrores* (only! - it looks best) for paragraphs
      (paragraph heading will be inlined)
 
-Headings can be surrounded by blanks if desired.
+Headings can be surrounded by as many blanks as desired.
+
+Doconce also supports abstracts. This is typeset as a paragraph, but
+*must* be followed by a section heading (everything up to the first
+section heading is taken as part of the text of the abstract).
+
 
 Here are some examples::
 
 
+        __Abstract.__ The following text just attempts to exemplify
+        various section headings.
+        
+        ========= Example on a Chapter Heading =========
+        
+        Some text.
+        
+        
         ======= Example on a Section Heading =======
         
         The running text goes here.
         
-              ===== Example on a Subsection Heading =====
+        
+        ===== Example on a Subsection Heading =====
+        
         The running text goes here.
         
-                  ===Example on a Subsubsection Heading===
+        ===Example on a Subsubsection Heading===
         
         The running text goes here.
         
         __A Paragraph.__ The running text goes here.
 
-
-The result for the present format looks like this:
-
-Example on a Section Heading
-============================
-
-The running text goes here.
-
-Example on a Subsection Heading
--------------------------------
-The running text goes here.
-
-Example on a Subsubsection Heading
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The running text goes here.
-
-*A Paragraph.* The running text goes here.
 
 Special Lines
 =============
@@ -771,10 +769,10 @@ for showing the movie::
 
 .. raw:: html
         
-        <EMBED SRC="figs/mjolnir.mpeg" width=600 height=470 AUTOPLAY="TRUE" LOOP="TRUE"></EMBED>
-        <P>
-        <EM></EM>
-        </P>
+        <embed src="figs/mjolnir.mpeg" width=600 height=470 autoplay="true" loop="true"></embed>
+        <p>
+        <em></em>
+        </p>
 
 
 
@@ -878,7 +876,8 @@ Web addresses with links are typeset as::
 
 which appears as some URL like `Search Google <http://google.com>`_.
 The space after colon is optional.
-Links to files ending in ``.txt``, ``.html``, or ``.pdf`` follows the same
+Links to files ending in ``.txt``, ``.html``, ``.pdf``, ``.py``, ``.f``,
+``.c``, ``.cpp``, ``.cxx``, ``.pl``, and ``.java`` follows the same
 setup::
 
 
@@ -915,12 +914,13 @@ Doconce also supports inline comments in the text::
 
 where ``name`` is the name of the author of the command, and ``comment`` is a
 plain text text. (**hpl**: Note that there must be a space after the colon,
-otherwise the comment is not recognized.)
+otherwise the comment is not recognized. Inline comments
+can span
+several lines,
+if desired.)
 The name and comment are visible in the output unless ``doconce format``
-is run with a command-line specification of removing such comments
+is run with a command-line argument ``--skip_inline_comments``
 (see the chapter `From Doconce to Other Formats`_ for an example). Inline comments
-(**hpl**: Here is a specific example on an inline comment. It can
-span several lines.)
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the ``.do.txt`` file
@@ -963,9 +963,9 @@ LaTeX. When the label is placed after a section or subsection heading,
 the plain text, Epytext, and StructuredText formats will simply
 replace the reference by the title of the (sub)section.  All labels
 will become invisible, except those in math environments.  In the
-reStructuredText and Sphinx formats, the end effect is the same, but
+``rst`` and ``sphinx`` formats, the end effect is the same, but
 the "label" and "ref" commands are first translated to the proper
-reStructuredText commands by ``doconce format``. In the HTML and (Google
+reST commands by ``doconce format``. In the HTML and (Google
 Code) wiki formats, labels become anchors and references become links,
 and with LaTeX "label" and "ref" are just equipped with backslashes so
 these commands work as usual in LaTeX.
@@ -986,8 +986,8 @@ in the section `Inline Tagging`_.
 Index and Bibliography
 ----------------------
 
-An index can be created for the LaTeX and the reStructuredText or
-Sphinx formats by the ``idx`` keyword, following a LaTeX-inspired syntax::
+An index can be created for the ``latex``, ``rst``, and ``sphinx`` formats
+by the ``idx`` keyword, following a LaTeX-inspired syntax::
 
 
         idx{some index entry}
@@ -1003,7 +1003,7 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to::
 Everything related to the index simply becomes invisible in plain
 text, Epytext, StructuredText, HTML, and wiki formats.  Note: ``idx``
 commands should be inserted outside paragraphs, not in between the
-text as this may cause some strange behaviour of reStructuredText and
+text as this may cause some strange behaviour of reST and
 Sphinx formatting.  As a recommended rule, index items are naturally
 placed right after section headings, before the text begins, while
 index items related to a paragraph should be placed above the
@@ -1017,7 +1017,7 @@ Literature citations also follow a LaTeX-inspired style::
         as found in cite{Larsen:86,Nielsen:99}.
 
 Citation labels can be separated by comma. In LaTeX, this is directly
-translated to the corresponding ``cite`` command; in reStructuredText
+translated to the corresponding ``cite`` command; in reST
 and Sphinx the labels can be clicked, while in all the other text
 formats the labels are consecutively numbered so the above citation
 will typically look like::
@@ -1031,7 +1031,7 @@ can be any sequence of characters, except for curly braces and comma.
 
 The bibliography itself is specified by the special keyword ``BIBFILE:``,
 which is optionally followed by a BibTeX file, having extension ``.bib``,
-a corresponding reStructuredText bibliography, having extension ``.rst``,
+a corresponding reST bibliography, having extension ``.rst``,
 or simply a Python dictionary written in a file with extension ``.py``.
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
@@ -1051,7 +1051,7 @@ in the bibliography. Doconce markup can be used in this text, e.g.::
         }
 
 In the LaTeX format, the ``.bib`` file will be used in the standard way,
-in the reStructuredText and Sphinx formats, the ``.rst`` file will be
+in the ``rst`` and ``sphinx`` formats, the ``.rst`` file will be
 copied into the document at the place where the ``BIBFILE:`` keyword
 appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the ``BIBFILE:`` line
@@ -1064,7 +1064,7 @@ At present, only one file with bibliographic references can be used.
 .. be used here
 
 
-Conversion of BibTeX databases to reStructuredText format can be
+Conversion of BibTeX databases to reST format can be
 done by the `bibliograph.parsing <http://pypi.python.org/pypi/bibliograph.parsing/>`_ tool.
 
 Finally, we here test the citation command and bibliography by
@@ -1107,12 +1107,64 @@ Similar character can be inserted in the line above the header to
 algn the headings. Pipes ``|`` can also be inserted to indicate
 vertical rules in LaTeX tables (they are ignored for other formats).
 Note that not all formats offer alignment of heading or entries
-in tables (reStructuredText and Sphinx are examples). Also note that
+in tables (``rst`` and ``sphinx`` are examples). Also note that
 Doconce tables are very simple: neither entries nor
 headings can span several columns or rows. When that functionality
 is needed, one can make use of the preprocessor and if-tests on
 the format and insert format-specific code for tables.
 
+
+
+Exercises, Problems, or Projects
+--------------------------------
+
+Doconce has special support for three types of "exercises", named
+*exercise*, *problem*, or *project*.
+These are all typeset as special kind of
+sections. Such sections start with a subsection or subsubsection
+headline, indicated by 3 or 5 ``=`` characters, and last up to the
+next headline or the end of the file. The headline itself must
+consists of the word "Exercise", "Problem", or "Project", followed
+by a colon and a title of the exercise, problem, or project.
+The next line(s) may contain a label and specification of the
+name of result file (if the answer to the exercise is to be handed
+it) and a solution file::
+
+
+        ===== Project: Determine the Distance to the Moon =====
+        label{proj:moondist} file=earth2moon.pdf
+        solution=eart2moon_sol.do.txt
+        
+        Here goes the running text of the project....
+        
+        __Hint 1.__ Do not plan a travel to the moon.
+        
+        __Hint 2.__ Wikipedia is always helpful.
+
+Doconce will recognize the exercise, problem, or project *title*,
+the *label*, the *result file*, the *solution file* (if any of
+these three entities is present), the *text*, and a sequence of
+*hints*. Tailored formatting of exercises in special output formats
+can make use of this. For example, one can image web formats where
+the hints are displayed one by one when needed and where the result
+file can be uploaded. One can also think of mechanisms for downloading
+the solution file if the result file meets certain criteria.
+Doconce does not yet generate such functionality in any output format,
+but this is an intended future feature to be impelemented.
+
+Because exercises, problems, and projects are typeset as ordinary
+sections (this is the most general approach that will work for many
+formats), one must refer to an exercise, problem, or project
+by its label, which normally will translate to the section number
+(in LaTeX, for instance) or a link to the title of the section.
+The *title* is typeset without any leading "Exercise:", "Problem:",
+or "Project:" word, so that references like "see Problem ..."
+works well in all formats ("..." will be a number in LaTeX and
+the problem title in most other formats).
+
+It is recommended to collect all exercises as subsetions (or subsubsections)
+under a section (or subsection) named "Exercises", "Problems", or
+"Projects".
 
 
 .. _sec:verbatim:blocks:
@@ -1123,22 +1175,31 @@ Blocks of Verbatim Computer Code
 Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" ``!bc`` keyword and an "end code" ``!ec`` keyword. Both
 keywords must be on a single line and *start at the beginning of the
-line*.  There may be an argument after the ``!bc`` tag to specify a
-certain ``ptex2tex`` environment (for instance, ``!bc dat`` corresponds to
-the data file environment in ``ptex2tex``, and ``!bc cod`` is typically
-used for a code snippet, but any argument can be defined). If there is
-no argument, one assumes the ccq environment, which is plain LaTeX
-verbatim in the default ``.ptex2tex.cfg``. However, all these arguments
-can be redefined in the ``.ptex2tex.cfg`` file.
+line*.  Before such a code block there must be a plain sentence
+(at least if successful transformation to reST and
+ASCII-type formats is desired). For example, a code block cannot come
+directly after a section/paragraph heading or a table.
 
-The argument after ``!bc`` is also used
-in a Sphinx context. Then argument is mapped onto a valid Pygments
-language for typesetting of the verbatim block by Pygments. This
-mapping takes place in an optional comment to be inserted in the Doconce
-source file, e.g.::
+There may be an argument after the ``!bc`` tag to specify a
+certain environment (for ``ptex2tex`` or Sphinx) for typesetting
+the verbatim code. For instance, ``!bc dat`` corresponds to
+the data file environment and ``!bc cod`` is typically
+used for a code snippet. There are some predefined environments
+explained below. If there is
+no argument specifying the environment, one assumes some plain
+verbatim typesetting (for ``ptex2tex`` this means the ``ccq`` environment,
+which is defined in the config file ``.ptex2tex.cfg``,
+while for Sphinx it defaults to the ``python`` environment).
+
+Since the config file for ``ptex2tex`` can define what some environment
+maps onto with respect to typesetting, a similar possibility is
+supported for Sphinx as well.  The argument after ``!bc`` is in case of
+Sphinx output mapped onto a valid Pygments language for typesetting of
+the verbatim block by Pygments. This mapping takes place in an
+optional comment to be inserted in the Doconce source file, e.g.::
 
 
-        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+        # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 
 Here, three arguments are defined: ``pycod`` for Python code,
 ``cod`` also for Python code, ``cppcod`` for C++ code, and ``sys``
@@ -1150,7 +1211,8 @@ context).
 By default, ``pro`` is used for complete programs in Python, ``cod``
 is for a code snippet in Python, while ``xcod`` and ``xpro`` implies
 computer language specific typesetting where ``x`` can be
-``f`` for Fortran, ``c`` for C, ``cpp`` for C++, and ``py`` for Python.
+``f`` for Fortran, ``c`` for C, ``cpp`` for C++, ``sh`` for Unix shells,
+``pl`` for Perl, ``m`` for Matlab, ``cy`` for Cython, and ``py`` for Python.
 The argument ``sys`` means by default ``console`` for Sphinx and
 ``CodeTerminal`` (ptex2tex environent) for LaTeX. All these definitions
 of the arguments after ``!bc`` can be redefined in the ``.ptex2tex.cfg``
@@ -1209,10 +1271,14 @@ is then::
          @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
 
 The first line implies that all lines in the file ``myfile.f`` are
-copied into a verbatim block, typset in a ``!bc pro`` environment.  The
-second line has a `fromto:' directive, which implies copying code
-between two lines in the code, typset within a !`bc cod`
-environment. (The ``pro`` and ``cod`` arguments are only used for LaTeX
+copied into a verbatim block, typset in a ``!bc Xpro`` environment, where
+``X`` is the extension of the filename, here ``f`` (i.e., the environment
+becomes ``!bc fpro`` and will typically lead to some Fortran-style
+formatting in Linux and Sphinx).  The
+second line has a ``fromto:`` directive, which implies copying code
+between two lines in the code, typset within a !`bc Xcod`
+environment (again, ``X`` is the filename extension, implying the
+type of file). Note that the ``pro`` and ``cod`` arguments are only used for LaTeX
 and Sphinx output, all other formats will have the code typeset within
 a plain ``!bc`` environment.) Two regular expressions, separated by the
 ``@`` sign, define the "from" and "to" lines.  The "from" line is
@@ -1254,15 +1320,15 @@ directive above::
                  r = r + i
               end do
               return
-        
 
 
 (Remark for those familiar with ``ptex2tex``: The from-to
 syntax is slightly different from that used in ``ptex2tex``. When
 transforming Doconce to LaTeX, one first transforms the document to a
 ``.p.tex`` file to be treated by ``ptex2tex``. However, the ``@@@CODE`` line
-is interpreted by Doconce and replaced by a *pro* or *cod* ``ptex2tex``
-environment.)
+is interpreted by Doconce and replaced by the mentioned
+pro or cod environment which are defined in the ``ptex2tex`` configuration
+file.)
 
 
 .. _mathtext:
@@ -1278,7 +1344,7 @@ line and followed by a newline.
 Here is the result of a ``!bt`` - ``!et`` block::
 
         \begin{eqnarray}
-        {\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
+        {\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
         {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
         \end{eqnarray}
 
@@ -1341,15 +1407,15 @@ The LaTeX block::
 
 
         \beqa
-        \x\cdot\normalvec &=& 0,\label{my:eq1}\\
-        \Ddt{\uvec} &=& \Q \ep\label{my:eq2}
+        \x\cdot\normalvec &=& 0, label{my:eq1}\\
+        \Ddt{\uvec} &=& \Q \ep   label{my:eq2}
         \eeqa
 
 will then be rendered to::
 
         \begin{eqnarray}
-        \x\cdot\normalvec &=& 0,\label{my:eq1}\\
-        \Ddt{\vec u} &=& {\mbox{\boldmath $Q$}} \thinspace . \label{my:eq2}
+        \x\cdot\normalvec &=& 0, label{my:eq1}\\
+        \Ddt{\vec u} &=& {\mbox{\boldmath $Q$}} \thinspace .    label{my:eq2}
         \end{eqnarray}
 
 in the current format.
@@ -1427,7 +1493,7 @@ preprocessor include statements of the form ``#include "file.do.txt"``.
 The preprocessor will put together all the pieces so that Doconce
 sees a long file with the complete text.
 
-For reStructuredText and Sphinx documents it is a point to have
+For reST and Sphinx documents it is a point to have
 separate ``.rst`` files and an index file listing the various ``.rst``
 that build up the document. To generate the various ``.rst`` files one
 should not run Doconce on the individual ``.do.txt`` files, because then
@@ -1545,6 +1611,36 @@ has, or has an intention have, a title), the header and footer
 are included, otherwise not.
 
 
+Emacs Doconce Formatter
+-----------------------
+
+The file ``misc/.doconce-mode.el`` in the Doconce source distribution
+gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
+the reST Editing Mode for Emacs. Some Doconce features are recognized,
+but far from all, and sometimes portions of Doconce text just appear
+as ordinary text.
+
+Here is how to get the Doconce Editing Mode in Emacs.
+
+*Step 1.* Download the Doconce tarball from ``code.google.com/p/doconce``,
+pack it out and go to the root directory.
+
+*Step 2.* Copy the ``doconce-mode.el`` file to the home directory::
+
+
+        cp misc/.doconce-mode.el $HOME
+
+
+*Step 3.* Add these lines to ``$HOME/.emacs``::
+
+
+        (load-file "~/hg/.doconce-mode.el")
+        (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
+
+Emacs will now recognize files with extension ``.do.txt`` and enter
+the Doconce Editing Mode.
+
+
 Troubleshooting
 ===============
 
@@ -1608,23 +1704,41 @@ the Unix commands::
         Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 
 
+Inline verbatim text is not formatted correctly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Problems with Code or Tex Blocks
+Make sure there is whitespace surrounding the text in backquotes.
+
+Too short underlining of reST headlines
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This may happen if there is a paragraph heading without
+proceeding text before some section heading.
+
+
+Problems with code or Tex Blocks
 --------------------------------
 
-Code or TeX block errors in reST
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Code or math block errors in reST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Sometimes reStructuredText (reST) reports an "Unexpected indentation"
-at the beginning of a code block. If you see a ``!bc``, which should
-have been removed by ``doconce format``, it is usually an error in the
-Doconce source, or a problem with the rst/sphinx translator.  Check if
-the line before the code block ends in one colon (not two!), a
-question mark, an exclamation mark, a comma, a period, or just a
-newline/space after text. If not, make sure that the ending is among
-the mentioned. Then ``!bc`` will most likely be replaced and a double
-colon at the preceding line will appear (which is the right way in
-reST to indicate a verbatim block of text).
+First note that a code or math block must come after some plain
+sentence (at least for successful output in reST), not directly
+after a section/paragraph heading, table, comment, figure, or
+movie, because the code or math block is indented and then become
+parts of such constructions. Either the block becomes invisible or
+error messages are issued.
+
+Sometimes reST reports an "Unexpected indentation" at the beginning of
+a code block. If you see a ``!bc``, which should have been removed when
+running ``doconce format sphinx``, it is usually an error in the Doconce
+source, or a problem with the rst/sphinx translator.  Check if the
+line before the code block ends in one colon (not two!), a question
+mark, an exclamation mark, a comma, a period, or just a newline/space
+after text. If not, make sure that the ending is among the
+mentioned. Then ``!bc`` will most likely be replaced and a double colon
+at the preceding line will appear (which is the right way in reST to
+indicate a verbatim block of text).
 
 Strange errors around code or TeX blocks in reST
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1635,6 +1749,20 @@ and especially right before a code block, the reST translator
 code blocks that cause errors when the reST text is transformed to
 other formats. The remedy is to define items for the index outside
 paragraphs.
+
+Something is wrong with a verbatim code block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Check first that there is a "normal" sentence right before
+the block (this is important for reST and similar
+"ASCII-close" formats).
+
+Code/TeX block is not shown in reST format
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A comment right before a code or tex block will treat the whole
+block also as a comment. It is important that there is normal
+running text right before ``!bt`` and ``!bc`` environments.
 
 Verbatim code blocks inside lists look ugly
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1769,10 +1897,10 @@ be untouched and are therefore left out of the previous parsing).
 It is important to keep the Doconce format and parsing simple.  When a
 new format is needed and this format is not obtained by a simple edit
 of the definition of existing formats, it might be better to convert
-the document to reStructuredText and then to XML, parse the XML and
+the document to reST and then to XML, parse the XML and
 write out in the new format.  When the Doconce format is not
 sufficient to getting the layout you want, it is suggested to filter
-the document to another, more complex format, say reStructuredText or
+the document to another, more complex format, say reST or
 LaTeX, and work further on the document in this format.
 
 

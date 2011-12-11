@@ -56,7 +56,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Nov 23, 2011</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Dec 11, 2011</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -159,36 +159,43 @@ formats.</p>
 <div class="section" id="what-does-doconce-look-like">
 <h1>What Does Doconce Look Like?<a class="headerlink" href="#what-does-doconce-look-like" title="Permalink to this headline">¶</a></h1>
 <p>Doconce text looks like ordinary text, but there are some almost invisible
-text constructions that allow you to control the formating. For example,</p>
+text constructions that allow you to control the formating. Here are
+som examples.</p>
 <blockquote>
 <div><ul class="simple">
-<li>bullet lists arise from lines starting with an asterisk,</li>
-<li><em>emphasized words</em> are surrounded by asterisks,</li>
-<li><strong>words in boldface</strong> are surrounded by underscores,</li>
-<li>words from computer code are enclosed in back quotes and
-then typeset verbatim (monospace font),</li>
-<li>section headings are recognied by equality (<tt class="docutils literal"><span class="pre">=</span></tt>) signs before
-and after the text, and the number of <tt class="docutils literal"><span class="pre">=</span></tt> signs indicates the
-level of the section (7 for main section, 5 for subsection,
-3 for subsubsection),</li>
-<li>paragraph headings are recognized by a double underscore
-before and after the heading,</li>
-<li>blocks of computer code can easily be included by placing
+<li>Bullet lists arise from lines starting with an asterisk.</li>
+<li><em>Emphasized words</em> are surrounded by asterisks.</li>
+<li><strong>Words in boldface</strong> are surrounded by underscores.</li>
+<li>Words from computer code are enclosed in back quotes and
+then typeset <tt class="docutils literal"><span class="pre">verbatim</span> <span class="pre">(in</span> <span class="pre">a</span> <span class="pre">monospace</span> <span class="pre">font)</span></tt>.</li>
+<li>Section headings are recognied by equality (<tt class="docutils literal"><span class="pre">=</span></tt>) signs before
+and after the title, and the number of <tt class="docutils literal"><span class="pre">=</span></tt> signs indicates the
+level of the section: 7 for main section, 5 for subsection, and
+3 for subsubsection.</li>
+<li>Paragraph headings are recognized by a double underscore
+before and after the heading.</li>
+<li>The abstract of a document starts with <em>Abstract</em> as paragraph
+heading, and all text up to the next heading makes up the abstract,</li>
+<li>Blocks of computer code can easily be included by placing
 <tt class="docutils literal"><span class="pre">!bc</span></tt> (begin code) and <tt class="docutils literal"><span class="pre">!ec</span></tt> (end code) commands at separate lines
-before and after the code block,</li>
-<li>blocks of computer code can also be imported from source files,</li>
-<li>blocks of LaTeX mathematics can easily be included by placing
+before and after the code block.</li>
+<li>Blocks of computer code can also be imported from source files.</li>
+<li>Blocks of LaTeX mathematics can easily be included by placing
 <tt class="docutils literal"><span class="pre">!bt</span></tt> (begin TeX) and <tt class="docutils literal"><span class="pre">!et</span></tt> (end TeX) commands at separate lines
-before and after the math block,</li>
-<li>there is support for both LaTeX and text-like inline mathematics,</li>
-<li>figures and movies with captions, simple tables,
-URLs with links, index list, labels and references are supported,</li>
-<li>comments can be inserted throughout the text (<tt class="docutils literal"><span class="pre">#</span></tt> at the beginning
-of a line),</li>
-<li>with a simple preprocessor, Preprocess or Mako, one can include
+before and after the math block.</li>
+<li>There is support for both LaTeX and text-like inline mathematics.</li>
+<li>Figures and movies with captions, simple tables,
+URLs with links, index list, labels and references are supported.</li>
+<li>Invisible comments in the output format can be inserted throughout
+the text (<tt class="docutils literal"><span class="pre">#</span></tt> at the beginning of a line).</li>
+<li>Visible comments can be inserted so that authors and readers can
+comment upon the text (and at any time turn on/off output of such
+comments).</li>
+<li>There is special support for advanced exercises features.</li>
+<li>With a simple preprocessor, Preprocess or Mako, one can include
 other documents (files) and large portions of text can be defined
-in or out of the text,</li>
-<li>with the Mako preprocessor one can even embed Python
+in or out of the text.</li>
+<li>With the Mako preprocessor one can even embed Python
 code and use this to steer generation of Doconce text.</li>
 </ul>
 </div></blockquote>
@@ -319,30 +326,32 @@ LaTeX syntax appears in all other formats (but can still be useful
 for those who can read LaTeX syntax).</p>
 <p>You can have blocks of computer code, starting and ending with
 <tt class="docutils literal"><span class="pre">!bc</span></tt> and <tt class="docutils literal"><span class="pre">!ec</span></tt> instructions, respectively. Such blocks look like</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">pi</span>
-<span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-fortran"><pre>from math import sin, pi
+def myfunc(x):
+    return sin(pi*x)
 
-<span class="kn">import</span> <span class="nn">integrate</span>
-<span class="n">I</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">trapezoidal</span><span class="p">(</span><span class="n">myfunc</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-</pre></div>
+import integrate
+I = integrate.trapezoidal(myfunc, 0, pi, 100)</pre>
 </div>
-<p>It is possible to add a specification of a (ptex2tex-style)
+<p>A code block must come after some plain sentence (at least for successful
+output to <tt class="docutils literal"><span class="pre">sphinx</span></tt>, <tt class="docutils literal"><span class="pre">rst</span></tt>, and ASCII-close formats),
+not directly after a section/paragraph heading or a table.</p>
+<p>It is possible to add a specification of an
 environment for typesetting the verbatim code block, e.g., <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">xxx</span></tt>
 where <tt class="docutils literal"><span class="pre">xxx</span></tt> is an identifier like <tt class="docutils literal"><span class="pre">pycod</span></tt> for code snippet in Python,
 <tt class="docutils literal"><span class="pre">sys</span></tt> for terminal session, etc. When Doconce is filtered to LaTeX,
-these identifiers are used as in ptex2tex and defined in a
+these identifiers are used as in <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> and defined in a
 configuration file <tt class="docutils literal"><span class="pre">.ptext2tex.cfg</span></tt>, while when filtering
 to Sphinx, one can have a comment line in the Doconce file for
 mapping the identifiers to legal language names for Sphinx (which equals
 the legal language names for Pygments):</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="c"># sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console</span>
+<div class="highlight-py"><div class="highlight"><pre><span class="c"># sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console</span>
 </pre></div>
 </div>
 <p>By default, <tt class="docutils literal"><span class="pre">pro</span></tt> and <tt class="docutils literal"><span class="pre">cod</span></tt> are <tt class="docutils literal"><span class="pre">python</span></tt>, <tt class="docutils literal"><span class="pre">sys</span></tt> is <tt class="docutils literal"><span class="pre">console</span></tt>,
 while <tt class="docutils literal"><span class="pre">xpro</span></tt> and <tt class="docutils literal"><span class="pre">xcod</span></tt> are computer language specific for <tt class="docutils literal"><span class="pre">x</span></tt>
-in <tt class="docutils literal"><span class="pre">f</span></tt> (Fortran), <tt class="docutils literal"><span class="pre">c</span></tt> (C), <tt class="docutils literal"><span class="pre">cpp</span></tt> (C++), and <tt class="docutils literal"><span class="pre">py</span></tt> (Python).
-.. <tt class="docutils literal"><span class="pre">rb</span></tt> (Ruby), <tt class="docutils literal"><span class="pre">pl</span></tt> (Perl), and <tt class="docutils literal"><span class="pre">sh</span></tt> (Unix shell).</p>
+in <tt class="docutils literal"><span class="pre">f</span></tt> (Fortran), <tt class="docutils literal"><span class="pre">c</span></tt> (C), <tt class="docutils literal"><span class="pre">cpp</span></tt> (C++), <tt class="docutils literal"><span class="pre">pl</span></tt> (Perl), <tt class="docutils literal"><span class="pre">m</span></tt> (Matlab),
+<tt class="docutils literal"><span class="pre">sh</span></tt> (Unix shells), <tt class="docutils literal"><span class="pre">cy</span></tt> (Cython), and <tt class="docutils literal"><span class="pre">py</span></tt> (Python).</p>
 <p>One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
@@ -414,12 +423,11 @@ running <tt class="docutils literal"><span class="pre">preprocess</span></tt>. T
 defined as <tt class="docutils literal"><span class="pre">latex</span></tt>. Inside the Doconce document one can then perform
 format specific actions through tests like <tt class="docutils literal"><span class="pre">#if</span> <span class="pre">FORMAT</span> <span class="pre">==</span> <span class="pre">&quot;latex&quot;</span></tt>.</p>
 <p>Inline comments in the text are removed from the output by</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format latex mydoc remove_inline_comments</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format latex mydoc --skip_inline_comments</span>
 </pre></div>
 </div>
-<p>One can also remove such comments from the original Doconce file
-by running
-source code:</p>
+<p>One can also remove all such comments from the original Doconce
+file by running:</p>
 <div class="highlight-py"><pre>Terminal&gt; doconce remove_inline_comments mydoc</pre>
 </div>
 <p>This action is convenient when a Doconce document reaches its final form
