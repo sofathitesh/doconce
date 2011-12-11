@@ -29,10 +29,10 @@ def add(filename, logfile):
         logfile.write(fstr)
 
 def clean_and_make(append=True):
-    failure = os.system('./clean.sh > /dev/null')
+    failure = os.system('sh -x clean.sh > /dev/null')
     if failure:
         raise OSError('Could not run clean.sh successfully')
-    failure, output = commands.getstatusoutput('./make.sh')
+    failure, output = commands.getstatusoutput('sh -x make.sh')
     f = open(outputfilename, 'a');  f.write(output);  f.close()
     if failure:
         where = os.getcwd()

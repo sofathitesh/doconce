@@ -891,7 +891,7 @@ line and followed by a newline.
 Here is the result of a `!bt` - `!et` block:
 !bt
 \begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\
+{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}
 !et
@@ -940,15 +940,15 @@ and these in `newcommands_keep.tex`:
 The LaTeX block
 !bc
 \beqa
-\x\cdot\normalvec &=& 0,\label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep\label{my:eq2}
+\x\cdot\normalvec &=& 0, label{my:eq1}\\
+\Ddt{\uvec} &=& \Q \ep   label{my:eq2}
 \eeqa
 !ec
 will then be rendered to
 !bt
 \beqa
-\x\cdot\normalvec &=& 0,\label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep\label{my:eq2}
+\x\cdot\normalvec &=& 0, label{my:eq1}\\
+\Ddt{\uvec} &=& \Q \ep   label{my:eq2}
 \eeqa
 !et
 in the current format.
@@ -1240,7 +1240,14 @@ proceeding text before some section heading.
 
 ===== Problems with code or Tex Blocks =====
 
-=== Code or TeX block errors in reST ===
+=== Code or math block errors in reST ===
+
+First note that a code or math block must come after some plain
+sentence (at least for successful output in reST), not directly
+after a section/paragraph heading, table, comment, figure, or
+movie, because the code or math block is indented and then become
+parts of such constructions. Either the block becomes invisible or
+error messages are issued.
 
 Sometimes reST reports an "Unexpected indentation" at the beginning of
 a code block. If you see a `!bc`, which should have been removed when

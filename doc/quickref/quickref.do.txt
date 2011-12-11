@@ -110,8 +110,8 @@ extension (`.X`) determines the environment (`!bc Xcod`).
 Important warnings:
 
  * A code block must come after some plain sentence (at least for successful
-   output in reStructredText), not directly after a section/paragraph heading
-   or a table.
+   output in reStructredText), not directly after a section/paragraph heading,
+   table, comment, figure, or movie.
  * Verbatim code blocks inside lists can be ugly typeset in some
    output formats. A more robust approach is to replace the list by
    paragraphs with headings.

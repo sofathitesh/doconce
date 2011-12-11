@@ -328,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Nov 23, 2011</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Dec 11, 2011</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -431,36 +431,43 @@ formats.</p>
 <div class="section" id="what-does-doconce-look-like">
 <h1>What Does Doconce Look Like?</h1>
 <p>Doconce text looks like ordinary text, but there are some almost invisible
-text constructions that allow you to control the formating. For example,</p>
+text constructions that allow you to control the formating. Here are
+som examples.</p>
 <blockquote>
 <ul class="simple">
-<li>bullet lists arise from lines starting with an asterisk,</li>
-<li><em>emphasized words</em> are surrounded by asterisks,</li>
-<li><strong>words in boldface</strong> are surrounded by underscores,</li>
-<li>words from computer code are enclosed in back quotes and
-then typeset verbatim (monospace font),</li>
-<li>section headings are recognied by equality (<tt class="docutils literal">=</tt>) signs before
-and after the text, and the number of <tt class="docutils literal">=</tt> signs indicates the
-level of the section (7 for main section, 5 for subsection,
-3 for subsubsection),</li>
-<li>paragraph headings are recognized by a double underscore
-before and after the heading,</li>
-<li>blocks of computer code can easily be included by placing
+<li>Bullet lists arise from lines starting with an asterisk.</li>
+<li><em>Emphasized words</em> are surrounded by asterisks.</li>
+<li><strong>Words in boldface</strong> are surrounded by underscores.</li>
+<li>Words from computer code are enclosed in back quotes and
+then typeset <tt class="docutils literal">verbatim (in a monospace font)</tt>.</li>
+<li>Section headings are recognied by equality (<tt class="docutils literal">=</tt>) signs before
+and after the title, and the number of <tt class="docutils literal">=</tt> signs indicates the
+level of the section: 7 for main section, 5 for subsection, and
+3 for subsubsection.</li>
+<li>Paragraph headings are recognized by a double underscore
+before and after the heading.</li>
+<li>The abstract of a document starts with <em>Abstract</em> as paragraph
+heading, and all text up to the next heading makes up the abstract,</li>
+<li>Blocks of computer code can easily be included by placing
 <tt class="docutils literal">!bc</tt> (begin code) and <tt class="docutils literal">!ec</tt> (end code) commands at separate lines
-before and after the code block,</li>
-<li>blocks of computer code can also be imported from source files,</li>
-<li>blocks of LaTeX mathematics can easily be included by placing
+before and after the code block.</li>
+<li>Blocks of computer code can also be imported from source files.</li>
+<li>Blocks of LaTeX mathematics can easily be included by placing
 <tt class="docutils literal">!bt</tt> (begin TeX) and <tt class="docutils literal">!et</tt> (end TeX) commands at separate lines
-before and after the math block,</li>
-<li>there is support for both LaTeX and text-like inline mathematics,</li>
-<li>figures and movies with captions, simple tables,
-URLs with links, index list, labels and references are supported,</li>
-<li>comments can be inserted throughout the text (<tt class="docutils literal">#</tt> at the beginning
-of a line),</li>
-<li>with a simple preprocessor, Preprocess or Mako, one can include
+before and after the math block.</li>
+<li>There is support for both LaTeX and text-like inline mathematics.</li>
+<li>Figures and movies with captions, simple tables,
+URLs with links, index list, labels and references are supported.</li>
+<li>Invisible comments in the output format can be inserted throughout
+the text (<tt class="docutils literal">#</tt> at the beginning of a line).</li>
+<li>Visible comments can be inserted so that authors and readers can
+comment upon the text (and at any time turn on/off output of such
+comments).</li>
+<li>There is special support for advanced exercises features.</li>
+<li>With a simple preprocessor, Preprocess or Mako, one can include
 other documents (files) and large portions of text can be defined
-in or out of the text,</li>
-<li>with the Mako preprocessor one can even embed Python
+in or out of the text.</li>
+<li>With the Mako preprocessor one can even embed Python
 code and use this to steer generation of Doconce text.</li>
 </ul>
 </blockquote>
@@ -604,22 +611,25 @@ def myfunc(x):
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 </pre>
-<p>It is possible to add a specification of a (ptex2tex-style)
+<p>A code block must come after some plain sentence (at least for successful
+output to <tt class="docutils literal">sphinx</tt>, <tt class="docutils literal">rst</tt>, and ASCII-close formats),
+not directly after a section/paragraph heading or a table.</p>
+<p>It is possible to add a specification of an
 environment for typesetting the verbatim code block, e.g., <tt class="docutils literal">!bc xxx</tt>
 where <tt class="docutils literal">xxx</tt> is an identifier like <tt class="docutils literal">pycod</tt> for code snippet in Python,
 <tt class="docutils literal">sys</tt> for terminal session, etc. When Doconce is filtered to LaTeX,
-these identifiers are used as in ptex2tex and defined in a
+these identifiers are used as in <tt class="docutils literal">ptex2tex</tt> and defined in a
 configuration file <tt class="docutils literal">.ptext2tex.cfg</tt>, while when filtering
 to Sphinx, one can have a comment line in the Doconce file for
 mapping the identifiers to legal language names for Sphinx (which equals
 the legal language names for Pygments):</p>
 <pre class="literal-block">
-# sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 </pre>
 <p>By default, <tt class="docutils literal">pro</tt> and <tt class="docutils literal">cod</tt> are <tt class="docutils literal">python</tt>, <tt class="docutils literal">sys</tt> is <tt class="docutils literal">console</tt>,
 while <tt class="docutils literal">xpro</tt> and <tt class="docutils literal">xcod</tt> are computer language specific for <tt class="docutils literal">x</tt>
-in <tt class="docutils literal">f</tt> (Fortran), <tt class="docutils literal">c</tt> (C), <tt class="docutils literal">cpp</tt> (C++), and <tt class="docutils literal">py</tt> (Python).
-.. <tt class="docutils literal">rb</tt> (Ruby), <tt class="docutils literal">pl</tt> (Perl), and <tt class="docutils literal">sh</tt> (Unix shell).</p>
+in <tt class="docutils literal">f</tt> (Fortran), <tt class="docutils literal">c</tt> (C), <tt class="docutils literal">cpp</tt> (C++), <tt class="docutils literal">pl</tt> (Perl), <tt class="docutils literal">m</tt> (Matlab),
+<tt class="docutils literal">sh</tt> (Unix shells), <tt class="docutils literal">cy</tt> (Cython), and <tt class="docutils literal">py</tt> (Python).</p>
 <!-- (Any sphinx code-block comment, whether inside verbatim code -->
 <!-- blocks or outside, yields a mapping between bc arguments -->
 <!-- and computer languages. In case of muliple definitions, the -->
@@ -697,11 +707,10 @@ defined as <tt class="docutils literal">latex</tt>. Inside the Doconce document 
 format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;latex&quot;</tt>.</p>
 <p>Inline comments in the text are removed from the output by:</p>
 <pre class="literal-block">
-Terminal&gt; doconce format latex mydoc remove_inline_comments
+Terminal&gt; doconce format latex mydoc --skip_inline_comments
 </pre>
-<p>One can also remove such comments from the original Doconce file
-by running
-source code:</p>
+<p>One can also remove all such comments from the original Doconce
+file by running:</p>
 <pre class="literal-block">
 Terminal&gt; doconce remove_inline_comments mydoc
 </pre>
@@ -992,7 +1001,7 @@ various formats. The <tt class="docutils literal">make.sh</tt> script runs a set
 <div class="section" id="dependencies">
 <h2>Dependencies</h2>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 385); <em><a href="#id5">backlink</a></em></p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 398); <em><a href="#id5">backlink</a></em></p>
 Duplicate explicit target name: &quot;sphinx&quot;.</div>
 <p>If you make use of preprocessor directives in the Doconce source,
 either <a class="reference external" href="http://code.google.com/p/preprocess">Preprocess</a> or <a class="reference external" href="http://www.makotemplates.org">Mako</a> must be installed.  To make LaTeX

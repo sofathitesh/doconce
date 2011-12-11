@@ -6,7 +6,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Nov 23, 2011
+:Date: Dec 11, 2011
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -115,48 +115,58 @@ What Does Doconce Look Like?
 ============================
 
 Doconce text looks like ordinary text, but there are some almost invisible
-text constructions that allow you to control the formating. For example,
+text constructions that allow you to control the formating. Here are
+som examples.
 
-  * bullet lists arise from lines starting with an asterisk,
+  * Bullet lists arise from lines starting with an asterisk.
 
-  * *emphasized words* are surrounded by asterisks,
+  * *Emphasized words* are surrounded by asterisks.
 
-  * **words in boldface** are surrounded by underscores,
+  * **Words in boldface** are surrounded by underscores.
 
-  * words from computer code are enclosed in back quotes and
-    then typeset verbatim (monospace font),
+  * Words from computer code are enclosed in back quotes and
+    then typeset ``verbatim (in a monospace font)``.
 
-  * section headings are recognied by equality (``=``) signs before
-    and after the text, and the number of ``=`` signs indicates the
-    level of the section (7 for main section, 5 for subsection,
-    3 for subsubsection),
+  * Section headings are recognied by equality (``=``) signs before
+    and after the title, and the number of ``=`` signs indicates the
+    level of the section: 7 for main section, 5 for subsection, and
+    3 for subsubsection.
 
-  * paragraph headings are recognized by a double underscore
-    before and after the heading,
+  * Paragraph headings are recognized by a double underscore
+    before and after the heading.
 
-  * blocks of computer code can easily be included by placing
+  * The abstract of a document starts with *Abstract* as paragraph
+    heading, and all text up to the next heading makes up the abstract,
+
+  * Blocks of computer code can easily be included by placing
     ``!bc`` (begin code) and ``!ec`` (end code) commands at separate lines
-    before and after the code block,
+    before and after the code block.
 
-  * blocks of computer code can also be imported from source files,
+  * Blocks of computer code can also be imported from source files.
 
-  * blocks of LaTeX mathematics can easily be included by placing
+  * Blocks of LaTeX mathematics can easily be included by placing
     ``!bt`` (begin TeX) and ``!et`` (end TeX) commands at separate lines
-    before and after the math block,
+    before and after the math block.
 
-  * there is support for both LaTeX and text-like inline mathematics,
+  * There is support for both LaTeX and text-like inline mathematics.
 
-  * figures and movies with captions, simple tables,
-    URLs with links, index list, labels and references are supported,
+  * Figures and movies with captions, simple tables,
+    URLs with links, index list, labels and references are supported.
 
-  * comments can be inserted throughout the text (``#`` at the beginning
-    of a line),
+  * Invisible comments in the output format can be inserted throughout
+    the text (``#`` at the beginning of a line).
 
-  * with a simple preprocessor, Preprocess or Mako, one can include
+  * Visible comments can be inserted so that authors and readers can
+    comment upon the text (and at any time turn on/off output of such
+    comments).
+
+  * There is special support for advanced exercises features.
+
+  * With a simple preprocessor, Preprocess or Mako, one can include
     other documents (files) and large portions of text can be defined
-    in or out of the text,
+    in or out of the text.
 
-  * with the Mako preprocessor one can even embed Python
+  * With the Mako preprocessor one can even embed Python
     code and use this to steer generation of Doconce text.
 
 Here is an example of some simple text written in the Doconce format::
@@ -293,24 +303,27 @@ You can have blocks of computer code, starting and ending with
         import integrate
         I = integrate.trapezoidal(myfunc, 0, pi, 100)
 
-It is possible to add a specification of a (ptex2tex-style)
+A code block must come after some plain sentence (at least for successful
+output to ``sphinx``, ``rst``, and ASCII-close formats),
+not directly after a section/paragraph heading or a table.
+
+It is possible to add a specification of an
 environment for typesetting the verbatim code block, e.g., ``!bc xxx``
 where ``xxx`` is an identifier like ``pycod`` for code snippet in Python,
 ``sys`` for terminal session, etc. When Doconce is filtered to LaTeX,
-these identifiers are used as in ptex2tex and defined in a
+these identifiers are used as in ``ptex2tex`` and defined in a
 configuration file ``.ptext2tex.cfg``, while when filtering
 to Sphinx, one can have a comment line in the Doconce file for
 mapping the identifiers to legal language names for Sphinx (which equals
 the legal language names for Pygments)::
 
 
-        # sphinx code-blocks: pycod=python cod=py cppcod=c++ sys=console
+        # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 
 By default, ``pro`` and ``cod`` are ``python``, ``sys`` is ``console``,
 while ``xpro`` and ``xcod`` are computer language specific for ``x``
-in ``f`` (Fortran), ``c`` (C), ``cpp`` (C++), and ``py`` (Python).
-.. ``rb`` (Ruby), ``pl`` (Perl), and ``sh`` (Unix shell).
-
+in ``f`` (Fortran), ``c`` (C), ``cpp`` (C++), ``pl`` (Perl), ``m`` (Matlab),
+``sh`` (Unix shells), ``cy`` (Cython), and ``py`` (Python).
 
 .. (Any sphinx code-block comment, whether inside verbatim code
 
@@ -411,11 +424,10 @@ format specific actions through tests like ``#if FORMAT == "latex"``.
 Inline comments in the text are removed from the output by::
 
 
-        Terminal> doconce format latex mydoc remove_inline_comments
+        Terminal> doconce format latex mydoc --skip_inline_comments
 
-One can also remove such comments from the original Doconce file
-by running
-source code::
+One can also remove all such comments from the original Doconce
+file by running::
 
 
         Terminal> doconce remove_inline_comments mydoc

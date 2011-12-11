@@ -65,16 +65,6 @@ def syntax_check(filestr, format):
         print repr(filestr[m.start():m.start()+80])
         sys.exit(1)
 
-    """
-    # This did not catch important situations, new special case below
-    pattern = re.compile(r'[^a-zA-Z0-9)"`.*_}][:.?!,\s]^(!b[ct]|@@@CODE)',
-                         re.MULTILINE)
-    m = pattern.search(filestr)
-    if m:
-        print '\nSyntax error: Line before !bc/!bt/@@@CODE block has wrong\ncharacter right before the final one (must be in [a-zA-Z0-9)"`.*_}]  - a code block\ncannot come right after a section heading, for instance):'
-        print repr(filestr[m.start():m.start()+80])
-        sys.exit(1)
-    """
     # Code blocks cannot come directly after tables or headings.
     # Remove idx{} and label{} since these will be move for rst.
     # Also remove all comments since these are also "invisible"
@@ -92,43 +82,49 @@ def syntax_check(filestr, format):
             print filestr2[m.start():m.start()+80]
             sys.exit(1)
 
-    # Code/latex blocks cannot have a comment right before them
-    pattern = re.compile(r'^\s*#.*?$\s*^(!b[ct]|@@@CODE|\s*\*)', re.MULTILINE)
-    m = pattern.search(filestr)
-    if m:
-        print '\nSyntax error: Line before list or !bc/!bt/@@@CODE block is a comment line\nwhich will comment out the block in reST format'
-        print filestr[m.start():m.start()+80]
-        sys.exit(1)
+    # Code/latex blocks cannot have a comment, table, figure, etc.
+    # right before them
+    constructions = {'comment': r'^\s*#.*?$',
+                     'table': r'-\|\s*$',
+                     'figure': r'^\s*FIGURE.+$',
+                     'movie': r'^\s*MOVIE.+$',
+                     }
+    for construction in constructions:
+        pattern = re.compile(r'%s\s*^(!b[ct]|@@@CODE|\s*\*)' % \
+                             constructions[construction],
+                             re.MULTILINE)
+        m = pattern.search(filestr)
+        if m:
+            print '\nSyntax error: Line before list or !bc/!bt/@@@CODE block is a %s line\nwhich will "swallow" the block in reST format' % construction
+            print filestr[m.start():m.start()+80]
+            sys.exit(1)
 
     matches = re.findall(r'\\cite\{.+?\}', filestr)
     if matches:
-        print '\nSyntax error: found \\cite{...} (should be no backslash!)'
+        print '\nWarning: found \\cite{...} (cite{...} has no backslash)'
         print '\n'.join(matches)
-        sys.exit(1)
 
     matches = re.findall(r'\\idx\{.+?\}', filestr)
     if matches:
-        print '\nSyntax error: found \\idx{...} (should be no backslash!)'
+        print '\nWarning: found \\idx{...} (indx{...} has no backslash)'
         print '\n'.join(matches)
         sys.exit(1)
 
     matches = re.findall(r'\\index\{.+?\}', filestr)
     if matches:
-        print '\nSyntax error: found \\index{...} (should be idx{...}!)'
+        print '\nWarning: found \\index{...} (index is written idx{...})'
         print '\n'.join(matches)
-        sys.exit(1)
 
     # There should only be ref and label *without* the latex-ish backslash
     matches = re.findall(r'\\label\{.+?\}', filestr)
     if matches:
-        print '\nSyntax error: found \\label{...} (should be no backslash!)'
+        print '\nWarning: found \\label{...} (label{...} has no backslash)'
         print '\n'.join(matches)
-        sys.exit(1)
+
     matches = re.findall(r'\\ref\{.+?\}', filestr)
     if matches:
-        print '\nSyntax error: found \\ref{...} (should be no backslash!)'
+        print '\nWarning: found \\ref{...} (ref{...} has no backslash)'
         print '\n'.join(matches)
-        sys.exit(1)
 
     # consistency check between label{} and ref{}:
     # (does not work well without labels from the !bt environments)
@@ -191,10 +187,12 @@ def syntax_check(filestr, format):
                     while prev_line >= 0 and lines[prev_line].isspace():
                         prev_line -= 1
                     if not lines[prev_line].startswith('!bt'):
-                        print '\nWarning: forgot to precede math (%s) by! bt:' % c
-                        stop_line = i+2 if i+2 <+ len(lines)-1 else len(lines)-1
-                        for k in range(prev_line, stop_line):
-                            print lines[k]
+                        # Must have !bt unless !bc block
+                        if not lines[prev_line].startswith('!bc'):
+                            print '\nWarning: forgot to precede math (%s) by! bt:' % c
+                            stop_line = i+2 if i+2 <+ len(lines)-1 else len(lines)-1
+                            for k in range(prev_line, stop_line):
+                                print lines[k]
             elif c[0] == 'e':
                 # actually, the end part is never reached, because
                 # if the begin part is missing, program stops, and
