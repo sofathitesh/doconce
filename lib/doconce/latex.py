@@ -187,9 +187,7 @@ def latex_author(authors_and_institutions, auth2index,
     text = r"""
 
 % ----------------- Author(s) -------------------------
-
 % #if LATEX_HEADING == "traditional"
-
 \author{"""
 
     # Traditional latex heading
@@ -275,11 +273,7 @@ def latex_author(authors_and_institutions, auth2index,
                 (index, index2inst[index]) + '\n'
 
     text += r"""\end{center}
-
-\vspace{4mm}
-
 % #endif
-
 % ----------------- End of author(s) -------------------------
 
 """
@@ -416,7 +410,6 @@ def define(FILENAME_EXTENSION,
 % #endif
 
 % ----------------- Title -------------------------
-
 % #if LATEX_HEADING == "traditional"
 
 \title{\g<subst>}
