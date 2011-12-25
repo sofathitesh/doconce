@@ -857,7 +857,7 @@ def html_movie_embed(moviefile, width=400, height=400):
 <embed src="%(moviefile)s"
 width="%(width)s"
 height="%(height)s"
-autoplay="true"
+autoplay="false"
 loop="true">
 </embed>
 """ % vars()
@@ -912,10 +912,10 @@ def html_movie_embed_qt(moviefile, width=400, height=400):
 codebase="http://www.apple.com/qtactivex/qtplugin.cab"
 width="%(width)s" height="%(height)s" >
 <param name="src" value="%(moviefile)s" >
-<param name="autoplay" value="true" >
+<param name="autoplay" value="false" >
 <embed src="%(moviefile)s"
 pluginspage="http://www.apple.com/quicktime/download"
-width="%(width)s" height="%(height)s" autoplay="true">
+width="%(width)s" height="%(height)s" autoplay="false">
 </embed>
 </object>
 """ % vars()

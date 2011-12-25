@@ -95,7 +95,7 @@ def html_movie(m):
 """ % (width, height, filename)
     else:
         text = """
-<embed src="%s" %s autoplay="true" loop="true"></embed>
+<embed src="%s" %s autoplay="false" loop="true"></embed>
 <p>
 <em>%s</em>
 </p>
