@@ -321,20 +321,20 @@ def sphinx_code(filestr, format):
     m = re.search(r'#\s*[Ss]phinx\s+code-blocks?:(.+?)\n', filestr)
     if m:
         defs_line = m.group(1)
-        # turn defs into a dictionary definition:
-        defs = {}
+        # turn specifications into a dictionary:
+        envir2lang = {}
         for definition in defs_line.split():
             key, value = definition.split('=')
-            defs[key] = value
+            envir2lang[key] = value
     else:
         # default mappings:
-        defs = dict(cod='python', pycod='python', cycod='cython',
-                    fcod='fortran', ccod='c', cppcod='c++',
-                    mcod='matlab', plcod='perl', shcod='bash',
-                    pro='python', pypro='python', cypro='cython',
-                    fpro='fortran', cpro='c', cpppro='c++',
-                    mpro='matlab', plpro='perl', shpro='bash',
-                    sys='console', dat='python')
+        envir2lang = dict(cod='python', pycod='python', cycod='cython',
+                          fcod='fortran', ccod='c', cppcod='c++',
+                          mcod='matlab', plcod='perl', shcod='bash',
+                          pro='python', pypro='python', cypro='cython',
+                          fpro='fortran', cpro='c', cpppro='c++',
+                          mpro='matlab', plpro='perl', shpro='bash',
+                          sys='console', dat='python')
         # (the "python" typesetting is neutral if the text
         # does not parse as python)
 
@@ -416,17 +416,18 @@ def sphinx_code(filestr, format):
 
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
 
-    for key in defs:
-        language = defs[key]
+    for key in envir2lang:
+        language = envir2lang[key]
         if not language in legal_pygments_languages:
             raise TypeError('%s is not a legal Pygments language '\
                             '(lexer) in line with:\n  %s' % \
                                 (language, defs_line))
         #filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
-        #                 '\n.. code-block:: %s\n\n' % defs[key], filestr,
+        #                 '\n.. code-block:: %s\n\n' % envir2lang[key], filestr,
         #                 flags=re.MULTILINE)
         cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
-        filestr = cpattern.sub('\n.. code-block:: %s\n\n' % defs[key], filestr)
+        filestr = cpattern.sub('\n.. code-block:: %s\n\n' % \
+                               envir2lang[key], filestr)
 
     # any !bc with/without argument becomes a py (python) block:
     #filestr = re.sub(r'^!bc.+\n', '\n.. code-block:: py\n\n', filestr,

@@ -1317,7 +1317,7 @@ def main():
             eval(command + '()')
     if not found:
         if command in ('html', 'latex', 'sphinx', 'rst', 'plain', 'gwiki', \
-           'epydoc', 'pandoc'):
+           'mwiki', 'epydoc', 'pandoc'):
             print 'command', command, 'is not a legal command for doconce, did you mean'
             print 'doconce format %s %s?' % (command, ' '.join(sys.argv[1:]))
         else:

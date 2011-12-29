@@ -1,23 +1,48 @@
 """
-Google Code Wiki translator.
-Syntax defined by http://code.google.com/p/support/wiki/WikiSyntax
-Here called gwiki to make the dialect clear (g for google).
+MediaWiki translator, aimed at Wikipedia/WikiBooks type of web pages.
+Syntax defined by http://en.wikipedia.org/wiki/Help:Wiki_markup
+and http://en.wikipedia.org/wiki/Help:Displaying_a_formula.
+The prefix m in the name mwiki distinguishes this translator from
+gwiki (googlecode wiki).
+
+Not yet implemented:
+mwiki_ref_and_label (just using code from gwiki)
+
+Just using plan ASCII solutions for index_bib (requires some work to
+port to MediaWiki, but is straightforward - use rst as template) and
+exercise (probably ok with the plain solution).
 """
 
 
 import re, os, commands, sys
 from common import default_movie, plain_exercise
 
-def gwiki_code(filestr, format):
-    c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
-    filestr = c.sub(r'{{{\n', filestr)
-    filestr = re.sub(r'!ec\n', r'}}}\n', filestr)
+def mwiki_code(filestr, format):
+    # Supported programming languages:
+    # http://www.mediawiki.org/wiki/Extension:SyntaxHighlight_GeSHi#Supported_languages
+    envir2lang = dict(cod='python', pycod='python', cycod='python',
+                      fcod='fortran', ccod='c', cppcod='cpp',
+                      mcod='matlab', plcod='perl', shcod='bash',
+                      pro='python', pypro='python', cypro='python',
+                      fpro='fortran', cpro='c', cpppro='cpp',
+                      mpro='matlab', plpro='perl', shpro='bash',
+                      sys='bash', dat='python')
+
+    for key in envir2lang:
+        language = envir2lang[key]
+        cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
+        filestr = cpattern.sub('<syntaxhighlight lang="%s">\n' % \
+                               envir2lang[key], filestr)
+    c = re.compile(r'^!bc.+$\n', re.MULTILINE)
+    filestr = c.sub('<code>\n', filestr)
+    filestr = re.sub(r'!ec\n', '</code>\n', filestr)
     c = re.compile(r'^!bt\n', re.MULTILINE)
-    filestr = c.sub(r'{{{\n', filestr)
-    filestr = re.sub(r'!et\n', r'}}}\n', filestr)
+    filestr = c.sub('<math>\n', filestr)
+    filestr = re.sub(r'!et\n', '</math>\n', filestr)
     return filestr
 
-def gwiki_figure(m):
+
+def mwiki_figure(m):
     filename = m.group('filename')
     if not os.path.isfile(filename):
         raise IOError('no figure file %s' % filename)
@@ -40,64 +65,19 @@ def gwiki_figure(m):
     caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
 
     print """
-NOTE: Place %s at some place on the web and edit the
-      .gwiki page, either manually (seach for 'Figure: ')
-      or use the doconce script:
-      doconce gwiki_figsubst.py mydoc.gwiki URL
+NOTE: Upload image file %s to the Wiki* site
+      (see http://en.wikipedia.org/wiki/Special:Upload for Wikipedia)
 """ % filename
 
     result = r"""
-
----------------------------------------------------------------
-
-Figure: %s
-
-(the URL of the image file %s must be inserted here)
-
-<wiki:comment>
-Put the figure file %s on the web (e.g., as part of the
-googlecode repository) and substitute the line above with the URL.
-</wiki:comment>
----------------------------------------------------------------
-
-""" % (caption, filename, filename)
+[[File:%s|frame|alt=%s|%s]]
+""" % (filename, filename, caption)
     return result
 
 from common import table_analysis
 
-def gwiki_table(table):
-    """Native gwiki table."""
-    # add 2 chars for column width since we add boldface _..._
-    # in headlines:
-    column_width = [c+2 for c in table_analysis(table['rows'])]
 
-    # Does column and heading alignment matter?
-    # Not according to http://code.google.com/p/support/wiki/WikiSyntax#Tables
-    # but it is possible to use HTML code in gwiki (i.e., html_table)
-    # (think this was tried without success...)
-
-    s = '\n'
-    for i, row in enumerate(table['rows']):
-        if row == ['horizontal rule']:
-            continue
-        if i == 1 and \
-           table['rows'][i-1] == ['horizontal rule'] and \
-           table['rows'][i+1] == ['horizontal rule']:
-            headline = True
-        else:
-            headline = False
-
-        for column, w in zip(row, column_width):
-            if headline:
-                c = ' %s ' % (('_'+ column + '_').center(w))
-            else:
-                c = ' %s ' % column.ljust(w)
-            s += ' || %s ' % c
-        s += ' ||\n'
-    s += '\n\n'
-    return s
-
-def gwiki_author(authors_and_institutions, auth2index,
+def mwiki_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):
 
     authors = []
@@ -120,10 +100,10 @@ def gwiki_author(authors_and_institutions, auth2index,
         # no authors:
         return ''
     text = '\n\nBy ' + authors + '\n\n'
-    # we skip institutions in gwiki
+    # we skip institutions in mwiki
     return text
 
-def gwiki_ref_and_label(section_label2title, format, filestr):
+def mwiki_ref_and_label(section_label2title, format, filestr):
     # .... see section ref{my:sec} is replaced by
     # see the section "...section heading..."
     pattern = r'[Ss]ection(s?)\s+ref\{'
@@ -168,57 +148,51 @@ def define(FILENAME_EXTENSION,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
 
-    FILENAME_EXTENSION['gwiki'] = '.gwiki'  # output file extension
-    BLANKLINE['gwiki'] = '\n'
+    FILENAME_EXTENSION['mwiki'] = '.mwiki'  # output file extension
+    BLANKLINE['mwiki'] = '\n'
 
     # replacement patterns for substitutions of inline tags
-    INLINE_TAGS_SUBST['gwiki'] = {
-        # use verbatim mode for math:
-        'math':          r'\g<begin>`\g<subst>`\g<end>',
-        'math2':         r'\g<begin>`\g<puretext>`\g<end>',
-        'emphasize':     r'\g<begin>_\g<subst>_\g<end>',
-        'bold':          r'\g<begin>*\g<subst>*\g<end>',
-        'verbatim':      r'\g<begin>`\g<subst>`\g<end>',
+    INLINE_TAGS_SUBST['mwiki'] = {
+        'math':          r'\g<begin><math>\g<subst></math>\g<end>',
+        'math2':         r'\g<begin><math>\g<puretext></math>\g<end>',
+        'emphasize':     r"\g<begin>''\g<subst>''\g<end>",
+        'bold':          r"\g<begin>'''\g<subst>'''\g<end>",
+        'verbatim':      r'\g<begin><code>\g<subst></code>\g<end>',
         'linkURL':       r'\g<begin>[\g<url> \g<link>]\g<end>',
         'linkURL2':      r'[\g<url> \g<link>]',
         'linkURL3':      r'[\g<url> \g<link>]',
         'plainURL':      r'\g<url>',
-        'chapter':       '\n\n\n' + r'= \g<subst> =\n',
+        'chapter':       '\n\n\n' + r"""== '''\g<subst>''' ==\n""",
         'section':       '\n\n\n' + r'== \g<subst> ==\n',
         'subsection':    '\n\n' + r'=== \g<subst> ===\n',
         'subsubsection': '\n' + r'==== \g<subst> ====\n',
-#        'section':       r'++++ \g<subst> ++++',
-#        'subsection':    r'++++++ \g<subst> ++++++',
-#        'subsubsection': r'++++++++ \g<subst> ++++++++',
-        'paragraph':     r'*\g<subst>* ',
-        'title':         r'#summary \g<subst>\n<wiki:toc max_depth="2" />',
+        'paragraph':     r"''\g<subst>'' ",
+        'title':         r'#TITLE (actually governed by the filename): \g<subst>\n',
         'date':          r'===== \g<subst> =====',
-        'author':        gwiki_author, #r'===== \g<name>, \g<institution> =====',
+        'author':        mwiki_author, #r'===== \g<name>, \g<institution> =====',
 #        'figure':        r'<\g<filename>>',
-        'figure':        gwiki_figure,
+        'figure':        mwiki_figure,
         'movie':         default_movie,  # will not work for HTML movie player
-        'comment':       '<wiki:comment> %s </wiki:comment>',
+        'comment':       '<!--> %s -->',
         }
 
-    CODE['gwiki'] = gwiki_code
+    CODE['mwiki'] = mwiki_code
     from html import html_table
-    #TABLE['gwiki'] = html_table
-    TABLE['gwiki'] = gwiki_table
+    TABLE['mwiki'] = html_table
 
     # native list:
-    LIST['gwiki'] = {
+    LIST['mwiki'] = {
         'itemize':     {'begin': '\n', 'item': '*', 'end': '\n\n'},
         'enumerate':   {'begin': '\n', 'item': '#', 'end': '\n\n'},
         'description': {'begin': '\n', 'item': '* %s ', 'end': '\n\n'},
-        'separator': '\n'}
-    # (the \n\n for end is a hack because doconce.py avoids writing
-    # newline at the end of lists until the next paragraph is hit)
-    #LIST['gwiki'] = LIST['HTML']  # does not work well
+        'separator': '\n'}  # problem: requires ** and ## at level 2 etc.
+    # Try this!
+    LIST['mwiki'] = LIST['HTML']
 
 
-    # how to type set description lists for function arguments, return
+    # how to typeset description lists for function arguments, return
     # values, and module/class variables:
-    ARGLIST['gwiki'] = {
+    ARGLIST['mwiki'] = {
         'parameter': '*argument*',
         'keyword': '*keyword argument*',
         'return': '*return value(s)*',
@@ -227,12 +201,12 @@ def define(FILENAME_EXTENSION,
         'module variable': '*module variable*',
         }
 
-    FIGURE_EXT['gwiki'] = ('.png', '.gif', '.jpg', '.jpeg')
-    CROSS_REFS['gwiki'] = gwiki_ref_and_label
+    FIGURE_EXT['mwiki'] = ('.png', '.gif', '.jpg', '.jpeg')
+    CROSS_REFS['mwiki'] = mwiki_ref_and_label
     from plaintext import plain_index_bib
-    EXERCISE['gwiki'] = plain_exercise
-    INDEX_BIB['gwiki'] = plain_index_bib
+    EXERCISE['mwiki'] = plain_exercise
+    INDEX_BIB['mwiki'] = plain_index_bib
 
     # document start:
-    INTRO['gwiki'] = ''
-    #INTRO['gwiki'] = '#summary YourOneLineSummary\n<wiki:toc max_depth="1" />\n'
+    INTRO['mwiki'] = ''
+

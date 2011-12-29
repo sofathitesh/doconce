@@ -19,8 +19,8 @@ def debugpr(out):
 
 
 from common import *
-import html, latex, rst, sphinx, st, epytext, plaintext, gwiki, pandoc
-for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki, pandoc:
+import html, latex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, pandoc
+for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, pandoc:
     #print 'calling define function in', module.__name__
     module.define(FILENAME_EXTENSION,
                   BLANKLINE,
@@ -37,7 +37,7 @@ for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki, pandoc:
                   OUTRO)
 
 def supported_format_names():
-    return 'html', 'latex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'pandoc'
+    return 'html', 'latex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'mwiki', 'pandoc'
 
 #----------------------------------------------------------------------------
 # Translators: (no, do not include! use import! - as shown above)
@@ -858,7 +858,8 @@ def typeset_lists(filestr, format, debug_info=[]):
         debugpr('text=[%s]' % text)
 
         # hack to make wiki have all text in an item on a single line:
-        newline = '' if lists and format == 'gwiki' else '\n'  # hack...
+        newline = '' if lists and (format == 'gwiki' or format == 'mwiki') \
+                  else '\n'  # hack...
         #newline = '\n'
         result.write(text + newline)
         lastindent = indent
