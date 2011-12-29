@@ -216,7 +216,7 @@ def define(FILENAME_EXTENSION,
     #LIST['gwiki'] = LIST['HTML']  # does not work well
 
 
-    # how to type set description lists for function arguments, return
+    # how to typeset description lists for function arguments, return
     # values, and module/class variables:
     ARGLIST['gwiki'] = {
         'parameter': '*argument*',
