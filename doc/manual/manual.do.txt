@@ -606,7 +606,7 @@ LaTeX is the output format).
 
 Literature citations also follow a LaTeX-inspired style:
 !bc
-as found in cite{Larsen:86,Nielsen:99}.
+as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}.
 !ec
 Citation labels can be separated by comma. In LaTeX, this is directly
 translated to the corresponding `cite` command; in reST
@@ -616,8 +616,8 @@ will typically look like
 !bc
 as found in [3][14]
 !ec
-if `Larsen:86` has already appeared in the 3rd citation in the document
-and `Nielsen:99` is a new (the 14th) citation. The citation labels
+if `Larsen_1986` has already appeared in the 3rd citation in the document
+and `Nielsen_Kjeldstrup_1999` is a new (the 14th) citation. The citation labels
 can be any sequence of characters, except for curly braces and comma.
 
 The bibliography itself is specified by the special keyword `BIBFILE:`,
@@ -629,11 +629,11 @@ keys, with corresponding values as the full reference text for an item
 in the bibliography. Doconce markup can be used in this text, e.g.,
 !bc
 {
-'Nielsen:99': """
-K. Nielsen. *Some Comments on Markup Languages*.
+'Nielsen_Kjeldstrup_1999': """
+K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languages*.
 URL:"http://some.where.net/nielsen/comments", 1999.
 """,
-'Larsen:86':
+'Larsen_1986':
 """
 O. B. Larsen. On Markup and Generality.
 *Personal Press*. 1986.

@@ -7,6 +7,23 @@ DATE: today
 _WARNING: This quick reference is very incomplete!_
 
 
+===== Supported Formats =====
+
+Doconce currently translates files to the following formats:
+
+ * LaTeX (format `latex`)
+ * HTML (format `html`)
+ * reStructuredText (format `rst`)
+ * StructuredText (format `st`)
+ * plain (untagged) ASCII (format `plain`)
+ * Sphinx (format `sphinx`)
+ * Googlecode wiki (format `gwiki`)
+ * MediaWiki, a la Wikipedia and Wikibooks (format `mwiki`, experimental)
+ * Epydoc (format `epydoc`)
+ * Pandoc (format `pandoc`, very experimental)
+
+The best supported formats are `latex`, `sphinx`, `html`, and `plain`.
+
 ===== Section Types =====
 label{quick:sections}
 
@@ -236,6 +253,42 @@ Note that
  * Many output formats are so primitive that heading and column alignment
    have no effect.
 
+===== Labels, References, Citations, and Index =====
+
+The notion of labels, references, citations, and an index is adopted
+from LaTeX with a very similar syntax. As in LaTeX, a label can be
+inserted anywhere, using the syntax `label{name}` (no backslash
+preceding the label keyword!). It is common practice to choose `name`
+as some hierarchical name, say `a:b:c`, where `a` and `b` indicate
+some abbreviations for a section and/or subsection for the topic and
+`c` is some name for the particular unit that has a label.
+
+A reference to `label{name}` is written as `ref{name}` (no backslash
+before `ref`!).
+
+Citations are written as `cite{name}` where `name` is a logical name
+of the reference (again, LaTeX writers must not insert a backslash).
+Bibliography citations often have `name` on the form
+`Author1_Author2_YYYY`, `Author_YYYY`, or `Author1_etal_YYYY`, where
+`YYYY` is the year of the publication.
+
+The bibliography is specified by a line `BIBFILE: name_bib.bib,
+name_bib.rst, name_bib.py`, where `name` is the logical name of the
+document (the doconce file will then normally have the name
+`name.do.txt`), and the various files reflect different formattings of
+the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
+bibliography, and '.py' a Python list of dictionaries for specifying
+the entries in the bibliography. The bibliography (as read from file)
+is inserted where the `BIBFILE` keyword appears.
+
+Doconce supports creating an index of keywords. A certain keyword
+is registered for the index by a syntax like `index{name}` (no
+backslash!). It is recommended to place `index{name}` outside
+running text, i.e., after (sub)section titles and in the space between
+paragraphs. Index specifications placed right before paragraphs also
+gives the doconce source code an indication of the content in the
+forthcoming text. The index is only produced for the `latex`, `rst`, and
+`sphinx` formats.
 
 ===== Capabilities of the "doconce" Program =====
 
