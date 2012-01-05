@@ -316,7 +316,8 @@ Show each step in the mathematical derivation.
 
 __Hint 1.__ Wikipedia has the formula for the curve.
 
-__Hint 2.__ `wolframalpha.com` can perhaps compute the integral.
+__Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+compute the integral.
 !ec
 An exercise, problem, or project has certain elements:
 

@@ -358,6 +358,28 @@ def latex_index_bib(filestr, index, citations, bibfile):
     return filestr
 
 
+def latex_exercise(exer):
+    s = ''  # result string
+    if not 'heading' in exer:
+        print 'Wrong formatting of exercise, not a 3/5 === type heading'
+        print exer
+        sys.exit(1)
+
+    # Reuse plan_exercise (std doconce formatting) where possible
+    # and just make a few adjustments
+
+    s += exer['heading'] + ' ' + exer['title'] + ' ' + exer['heading'] + '\n'
+    if 'label' in exer:
+        s += 'label{%s}' % exer['label'] + '\n'
+    s += '\n' + exer['text'] + '\n'
+    for hint_no in sorted(exer['hint']):
+        s += '\n' + exer['hint'][hint_no] + '\n'
+    if 'file' in exer:
+        s += '\n' + r'\noindent' + '\nFilename: ' + r'\code{%s}' % exer['file'] + '\n'
+    if 'solution' in exer:
+        pass
+    return s
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -506,14 +528,20 @@ def define(FILENAME_EXTENSION,
     CROSS_REFS['latex'] = latex_ref_and_label
 
     TABLE['latex'] = latex_table
-    EXERCISE['latex'] = plain_exercise
+    EXERCISE['latex'] = latex_exercise
     INDEX_BIB['latex'] = latex_index_bib
 
     INTRO['latex'] = r"""%%
 %% Automatically generated LaTeX file from Doconce source
 %% http://code.google.com/p/doconce/
 %%
+
+% #ifdef BOOK
+\documentclass{book}
+% #else
 \documentclass{article}
+% #endif
+
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=black,filecolor=blue,urlcolor=blue]{hyperref}
 \usepackage[latin1]{inputenc}
