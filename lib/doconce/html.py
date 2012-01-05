@@ -15,6 +15,18 @@ def html_code(filestr, format):
     filestr = re.sub(r'!et\n', r'</pre></blockquote>\n', filestr)
     return filestr
 
+def html_figure(m):
+    caption = m.group('caption').strip()
+    filename = m.group('filename').strip()
+    opts = m.group('options').strip()
+    if caption:
+       # Caption above figure and a horizontal rule (fine for anchoring):
+       return '<center><hr>\n<caption><i>%s</i></caption>\n<p><img src="%s" align="bottom" %s></p>\n</center>' % (caption, filename, opts)
+    else:
+       # Just insert image file
+       return '<center><p><img src="%s" align="bottom" %s></p></center>' % \
+              (filename, opts)
+
 def html_table(table):
     column_width = table_analysis(table['rows'])
     ncolumns = len(column_width)
@@ -241,8 +253,7 @@ def define(FILENAME_EXTENSION,
         #'figure':        r'<p><em>\g<caption></em></p><img src="\g<filename>" align="bottom" \g<options>>',
         #'figure':        r'<img src="\g<filename>" align="bottom" \g<options>> <p><em>\g<caption></em></p>',
         #'figure':        r'<center><img src="\g<filename>" align="bottom" \g<options>> <br><caption><i>\g<caption></i></caption></center>',
-        # caption above figure and a horizontal rule:
-        'figure':        r'<center><hr><caption><i>\g<caption></i></caption><p><img src="\g<filename>" align="bottom" \g<options>></p></center>',
+        'figure':        html_figure,
         'movie':         html_movie,
         'comment':       '<!-- %s -->',
         }

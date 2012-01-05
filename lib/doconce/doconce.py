@@ -86,8 +86,8 @@ def syntax_check(filestr, format):
     # right before them
     constructions = {'comment': r'^\s*#.*?$',
                      'table': r'-\|\s*$',
-                     'figure': r'^\s*FIGURE.+$',
-                     'movie': r'^\s*MOVIE.+$',
+                     'figure': r'^\s*FIGURE:.+$',
+                     'movie': r'^\s*MOVIE:.+$',
                      }
     for construction in constructions:
         pattern = re.compile(r'%s\s*^(!b[ct]|@@@CODE|\s*\*)' % \
@@ -95,7 +95,8 @@ def syntax_check(filestr, format):
                              re.MULTILINE)
         m = pattern.search(filestr)
         if m:
-            print '\nSyntax error: Line before list or !bc/!bt/@@@CODE block is a %s line\nwhich will "swallow" the block in reST format' % construction
+            #and (format == 'rst' or format == 'sphinx'):
+            print '\nSyntax error: Line before list or !bc/!bt/@@@CODE block is a %s line\nwhich will "swallow" the block in reST format.\nInsert some ekstra line (text) to separate the two elements.' % construction
             print filestr[m.start():m.start()+80]
             sys.exit(1)
 
@@ -189,7 +190,7 @@ def syntax_check(filestr, format):
                     if not lines[prev_line].startswith('!bt'):
                         # Must have !bt unless !bc block
                         if not lines[prev_line].startswith('!bc'):
-                            print '\nWarning: forgot to precede math (%s) by! bt:' % c
+                            print '\nWarning: forgot to precede math (%s) by !bt:' % c
                             stop_line = i+2 if i+2 <+ len(lines)-1 else len(lines)-1
                             for k in range(prev_line, stop_line):
                                 print lines[k]
@@ -469,7 +470,7 @@ def exercises(filestr, format):
     # __Hint 1.__ some paragraph...,
     # __Hint 2.__ ...
 
-    debugpr('\n\n\n***** Exercises *****\n')
+    debugpr('\n\n\n***** Exercises *****\n %s' % filestr)
 
     all_exer = []   # collection of all exercises
     exer = {}       # data for one exercise
@@ -513,9 +514,8 @@ def exercises(filestr, format):
                 exer['solution'] = m.group(1)
                 label_info_line = True
 
-            # Hints have to come at the end of the text
-            # All lines are therefore in hints, and only __Hint
-            # marks the beginning of a new hint.
+            # Hints have to come at the end of the text.
+            # Only __Hint marks the beginning of a new hint.
             if '__Hint' in lines[i]:
                 hint_counter += 1
                 exer['hint'][hint_counter] = []
@@ -538,14 +538,16 @@ def exercises(filestr, format):
 
         if exer and exer_end:
             exer['text'] = '\n'.join(exer['text']).strip()
-            for hint_no in sorted(exer['hint']):
+            for hint_no in exer['hint']:
                 exer['hint'][hint_no] = '\n'.join(exer['hint'][hint_no]).strip()
 
             debugpr(pprint.pformat(exer))
             formatted_exercise = EXERCISE[format](exer)
             newlines.append(formatted_exercise)
-            inside_exer = False
             all_exer.append(exer)
+            inside_exer = False
+            exer_end = False
+            exer = {}
 
     filestr = '\n'.join(newlines)
     if all_exer:
@@ -556,8 +558,10 @@ def exercises(filestr, format):
 # Information about all exercises in the file %s.
 # The information can be loaded into a Python list of dicts
 # by the code (f is an open filehandle to the current file):
-# for i in range(5): f.readline()  # skip these comments
+#
+# for i in range(7): f.readline()  # skip comments in the top
 # exer = eval(f.read())
+#
 """ % filename)
         f.write(pprint.pformat(all_exer))
         f.close()
@@ -708,7 +712,6 @@ def typeset_lists(filestr, format, debug_info=[]):
     _code_block_no = 0; _tex_block_no = 0
 
     for line in lines:
-
         debugpr('\n------------------------\nsource line=[%s]' % line)
         # do a syntax check:
         for tag in INLINE_TAGS_BUGS:
@@ -718,6 +721,7 @@ def typeset_lists(filestr, format, debug_info=[]):
                 if m:
                     print '>>> Syntax ERROR? "%s"\n    %s!' % \
                           (m.group(0), bug[1])
+                    print '    In line\n', line
 
         if not line or line.isspace():  # blank line?
             if not lists:

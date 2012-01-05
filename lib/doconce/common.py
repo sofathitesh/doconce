@@ -165,11 +165,29 @@ def remove_code_and_tex(filestr):
     nbt = len(re.compile(r'^!bt', re.MULTILINE).findall(filestr))
     net = len(re.compile(r'^!et', re.MULTILINE).findall(filestr))
     #nbc2 = sum(1 for line in filestr.splitlines() if line.startswith('!bc'))
+    def find2(filestr, begin_pattern, end_pattern):
+        lines = filestr.splitlines()
+        begin_ends = []
+        for i, line in enumerate(lines):
+            if line.startswith(begin_pattern):
+                begin_ends.append((begin_pattern, i))
+            if line.startswith(end_pattern):
+                begin_ends.append((end_pattern, i))
+        for k in range(1, len(begin_ends)):
+            pattern, i = begin_ends[k]
+            if pattern == begin_ends[k-1][0]:
+                print '\n\nTwo', pattern, 'after each other!\n'
+                for j in range(begin_ends[k-1][1], begin_ends[k][1]+1):
+                    print lines[j]
+                sys.exit(1)
+
     if nbc != nec:
         print '%d !bc do not match %d !ec directives' % (nbc, nec)
+        find2(filestr, '!bc', '!ec')
         sys.exit(1)
     if nbt != net:
         print '%d !bt do not match %d !et directives' % (nbt, net)
+        find2(filestr, '!bt', '!et')
         sys.exit(1)
     if nbc != len(code_blocks):
         print '%d !bc and %d extracted code blocks - BUG!!!' % \
@@ -252,7 +270,6 @@ def plain_exercise(exer):
         s += '\n' + '*Filename*: `%s`' % exer['file'] + '\n'
     if 'solution' in exer:
         pass
-    # Drop label and solution file
     return s
 
 

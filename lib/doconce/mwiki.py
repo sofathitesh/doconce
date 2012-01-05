@@ -187,7 +187,7 @@ def define(FILENAME_EXTENSION,
         'description': {'begin': '\n', 'item': '* %s ', 'end': '\n\n'},
         'separator': '\n'}  # problem: requires ** and ## at level 2 etc.
     # Try this!
-    LIST['mwiki'] = LIST['HTML']
+    LIST['mwiki'] = LIST['html']
 
 
     # how to typeset description lists for function arguments, return
