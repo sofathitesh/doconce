@@ -29,9 +29,11 @@ def add(filename, logfile):
         logfile.write(fstr)
 
 def clean_and_make(append=True):
+    print '\n\nCleaning....................................'
     failure = os.system('sh -x clean.sh > /dev/null')
     if failure:
         raise OSError('Could not run clean.sh successfully')
+    print '\n\nRunning make.sh...............................\nin', os.getcwd()
     failure, output = commands.getstatusoutput('sh -x make.sh')
     f = open(outputfilename, 'a');  f.write(output);  f.close()
     if failure:
@@ -81,7 +83,6 @@ mandir = os.path.join(os.pardir, 'doc', 'manual')
 print 'cd', mandir
 os.chdir(mandir)
 
-print '...running ./make.sh in doc/manual'  # works only under Unix...
 clean_and_make()
 
 log = open(logfilename, 'a')
@@ -96,11 +97,10 @@ add(outputfilename, log)
 log.close()
 
 # test quickref:
-mandir = os.path.join(os.pardir, 'doc', 'quickref')
-print 'cd', mandir
-os.chdir(mandir)
+quickdir = os.path.join(os.pardir, 'doc', 'quickref')
+print 'cd', quickdir
+os.chdir(quickdir)
 
-print '...running ./make.sh in doc/quickref'  # works only under Unix...
 clean_and_make()
 
 log = open(logfilename, 'a')

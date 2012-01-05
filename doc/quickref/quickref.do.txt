@@ -257,16 +257,27 @@ Note that
 
 The notion of labels, references, citations, and an index is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
-inserted anywhere, using the syntax `label{name}` (no backslash
-preceding the label keyword!). It is common practice to choose `name`
+inserted anywhere, using the syntax
+!bc
+label{name}
+!ec
+with no backslash
+preceding the label keyword! It is common practice to choose `name`
 as some hierarchical name, say `a:b:c`, where `a` and `b` indicate
 some abbreviations for a section and/or subsection for the topic and
 `c` is some name for the particular unit that has a label.
 
-A reference to `label{name}` is written as `ref{name}` (no backslash
-before `ref`!).
+A reference to the label `name` is written as
+!bc
+ref{name}
+!ec
+again with no backslash before `ref`.
 
-Citations are written as `cite{name}` where `name` is a logical name
+Citations are written as
+!bc
+cite{name}
+!ec
+where `name` is a logical name
 of the reference (again, LaTeX writers must not insert a backslash).
 Bibliography citations often have `name` on the form
 `Author1_Author2_YYYY`, `Author_YYYY`, or `Author1_etal_YYYY`, where
@@ -282,8 +293,12 @@ the entries in the bibliography. The bibliography (as read from file)
 is inserted where the `BIBFILE` keyword appears.
 
 Doconce supports creating an index of keywords. A certain keyword
-is registered for the index by a syntax like `index{name}` (no
-backslash!). It is recommended to place `index{name}` outside
+is registered for the index by a syntax like (no
+backslash!)
+!bc
+index{name}
+!ec
+It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
 gives the doconce source code an indication of the content in the
