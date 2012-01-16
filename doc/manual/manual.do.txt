@@ -1317,6 +1317,16 @@ the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
+=== Errors in figure captions ===
+
+Such errors typically arise from unbalanced curly braces, or dollar signs
+around math, and similar LaTeX syntax errors.
+
+(Note that verbatim font is likely to cause trouble inside figure captions,
+but Doconce will automatically replace verbatim text in backquotes by
+a proper `texttt` command (since verbatim font constructions does not work
+inside figure captions) and precede underscores by backslash.)
+
 === Chapters are ignored ===
 
 The default LaTeX style is "article". If you chapters in the Doconce file,
