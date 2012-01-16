@@ -58,6 +58,19 @@ def latex_figure(m, includegraphics=True):
     else:
         includeline = r'\centerline{\psfig{figure=%s,width=\linewidth}}' % filename
     caption = m.group('caption').strip()
+    # `verbatim text` in backquotes does not work so we need to substitute
+    # by \texttt{}, and underscores need a backslash
+    verbatim_text = re.findall(r'(`[^`]+?`)', caption)
+    verbatim_text_new = []
+    for words in verbatim_text:
+        new_words = words
+        if '_' in new_words:
+            new_words = new_words.replace('_', r'\_')
+        # Replace backquotes by \texttt{}
+        new_words = r'\texttt{' + new_words[1:-1] + '}'
+        verbatim_text_new.append(new_words)
+    for from_, to_ in zip(verbatim_text, verbatim_text_new):
+        caption = caption.replace(from_, to_)
     if caption:
         result = r"""
 \begin{figure}
