@@ -88,22 +88,7 @@ when transformed to other formats.
 
 
 
-===== Dependencies =====
-
-If you make use of preprocessor directives in the Doconce source,
-either "Preprocess": "http://code.google.com/p/preprocess" or "Mako":
-"http://www.makotemplates.org" must be installed.  To make LaTeX
-documents (without going through the reStructuredText format) you also
-need "ptex2tex": "http://code.google.com/p/ptex2tex" and some style
-files that `ptex2tex` potentially makes use of.  Going from
-reStructuredText to formats such as XML, OpenOffice, HTML, and LaTeX
-requires "docutils": "http://docutils.sourceforge.net".  Making Sphinx
-documents requires of course "Sphinx": "http://sphinx.pocoo.org".
-All of the mentioned potential dependencies are pure Python packages
-which are easily installed.
-If translation to "Pandoc": "http://johnmacfarlane.net/pandoc/" is desired,
-the Pandoc Haskell program must of course be installed.
-
+# #include "_install.do.txt"
 
 #
 # some comment lines that do not affect any formatting
