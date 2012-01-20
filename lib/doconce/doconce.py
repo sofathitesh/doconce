@@ -939,7 +939,9 @@ def handle_figures(filestr, format):
                             file_found = True
                             break
         if not os.path.isfile(figfile):
-            raise ValueError('file %s does not exist' % figfile)
+            #raise ValueError('file %s does not exist' % figfile)
+            print 'Figure file %s does not exist' % figfile
+            sys.exit(1)
 
         basepath, ext = os.path.splitext(figfile)
         if not ext in extensions:
