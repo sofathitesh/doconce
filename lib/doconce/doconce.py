@@ -391,7 +391,15 @@ def insert_code_from_file(filestr, format):
                 print 'Could not open the file %s used in @@@CODE instruction' % filename
                 print e
                 sys.exit(1)
-            index = line.find('fromto:')
+
+            m = re.search(r'from-?to:', line)
+            if m:
+                index = m.start()
+                fromto = m.group()
+            else:
+                index = -1  # no from-to or fromto
+                fromto = 'fromto:'  # default
+
             #print index, words
             if index == -1 and len(words) < 3:
                 # no from/to regex, read the whole file:
@@ -403,7 +411,7 @@ def insert_code_from_file(filestr, format):
             else:
                 complete_file = False
                 if index >= 0:
-                    patterns = line[index+7:].strip()
+                    patterns = line[index+len(fromto):].strip()
                 else:
                     # fromto: was not found, that is okay, use the
                     # remaining words as patterns
@@ -418,11 +426,17 @@ def insert_code_from_file(filestr, format):
                 # and to_ might be empty
                 cfrom = re.compile(from_)
                 cto = re.compile(to_)
+
+                # Task: copy from the line with from_ if fromto is 'fromto:',
+                # or copy from the line after the with from_ if fromto
+                # is 'from-to:', and copy all lines up to, but not including,
+                # the line matching to_
+
                 codelines = []
                 copy = False
                 for codeline in codefile:
                     m = cfrom.search(codeline)
-                    if m:
+                    if m and fromto == 'fromto:':
                         copy = True
                     if to_:
                         m = cto.search(codeline)
@@ -433,6 +447,10 @@ def insert_code_from_file(filestr, format):
                         debugpr('copy from "%s" the line\n%s' % \
                               (filename, codeline))
                         codelines.append(codeline)
+
+                    if m and fromto == 'from-to:':
+                        copy = True  # start copy from next codeline
+
                 code = ''.join(codelines)
                 code = code.rstrip() # remove trailing whitespace
                 codefile.close()
