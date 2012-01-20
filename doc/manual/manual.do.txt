@@ -774,16 +774,18 @@ in `.ptex2tex.cfg` for how to typeset the blocks in LaTeX using
 various verbatim styles (Pygments can also be used in a LaTeX
 context).
 
-By default, `pro` is used for complete programs in Python, `cod`
-is for a code snippet in Python, while `xcod` and `xpro` implies
-computer language specific typesetting where `x` can be
-`f` for Fortran, `c` for C, `cpp` for C++, `sh` for Unix shells,
-`pl` for Perl, `m` for Matlab, `cy` for Cython, and `py` for Python.
-The argument `sys` means by default `console` for Sphinx and
-`CodeTerminal` (ptex2tex environent) for LaTeX. All these definitions
-of the arguments after `!bc` can be redefined in the `.ptex2tex.cfg`
-configuration file for ptex2tex/LaTeX and in the `sphinx code-blocks`
-comments for Sphinx. Support for other languages is easily added.
+By default, `pro` is used for complete programs in Python, `cod` is
+for a code snippet in Python, while `xcod` and `xpro` implies computer
+language specific typesetting where `x` can be `f` for Fortran, `c`
+for C, `cpp` for C++, `sh` for Unix shells, `pl` for Perl, `m` for
+Matlab, `cy` for Cython, and `py` for Python.  The argument `sys`
+means by default `console` for Sphinx and `CodeTerminal` (ptex2tex
+environent) for LaTeX. Other specifications are `dat` for a data file
+or print out, and `ipy` for interactive Python sessions.  All these
+definitions of the arguments after `!bc` can be redefined in the
+`.ptex2tex.cfg` configuration file for ptex2tex/LaTeX and in the
+`sphinx code-blocks` comments for Sphinx. Support for other languages
+is easily added.
 
 # (Any sphinx code-block comment, whether inside verbatim code
 # blocks or outside, yields a mapping between bc arguments

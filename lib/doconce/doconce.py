@@ -250,11 +250,8 @@ def syntax_check(filestr, format):
         print '\n'.join(matches)
         sys.exit(1)
 
-    pattern = r'[^`]__[A-Za-z0-9,: ]+[^.]__[^`]'
-    # (excludes misunderstood paragraphs like `__call__`, dropped `
-    # inside although it can be used for inline verbatime in
-    # paragraph heading)
-    matches = re.findall(pattern, filestr)
+    pattern = re.compile(r'^__[A-Za-z0-9,: ]+?__', re.MULTILINE)
+    matches = pattern.findall(filestr)
     if matches:
         print 'Warning: Missing period or similar after paragraph heading'
         print '\n'.join(matches)
