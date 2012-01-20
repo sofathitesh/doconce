@@ -565,7 +565,7 @@ echo "firefox %(sphinx_rootdir)s/_build/html/index.html"
     print "\n'automake-sphinx.sh' contains the steps to (re)compile the sphinx version."
     print "You may want to edit this file - look at it."
 
-def getfix_localURLs(filename):
+def dofix_localURLs(filename):
     if os.path.splitext(filename)[1] != '.rst':
         print 'Wrong filename extension in "%s" - must be a .rst file' \
               % filename
@@ -594,6 +594,11 @@ def getfix_localURLs(filename):
                 print 'fixing link to %s as link to %s' % \
                       (link, newlink)
                 shutil.copy(link, newlink)
+    os.rename(filename, filename + 'old~~')
+    f = open(filename, 'w')
+    f.write(text)
+    f.close()
+
 
 
 
@@ -608,9 +613,8 @@ def sphinxfix_localURLs():
     for filename in sys.argv[1:]:
         if os.path.dirname(filename) != '':
             print 'doconce sphinxfix_localURLs must be run from the same directory as %s is located in' % filename
-        getfix_localURLs(filename)
-
-
+        dofix_localURLs(filename)
+        print "\ncopy _static/* to the sphinx directory's _static directory"
 
 
 # subst is taken from scitools
