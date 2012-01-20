@@ -344,7 +344,7 @@ def sphinx_code(filestr, format):
     # and after)
     cpattern = re.compile(r'^!bc +ipy *\n(.*?)^!ec *\n',
                           re.DOTALL|re.MULTILINE)
-    filestr = cpattern.sub('\n\g<1>\n\n', filestr)
+    filestr = cpattern.sub('\n\g<1>\n', filestr)
 
     # First indent all code/tex blocks by 1) extracting all blocks,
     # 2) intending each block, and 3) inserting the blocks.

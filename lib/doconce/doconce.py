@@ -1528,7 +1528,7 @@ def main():
     except IndexError:
         print 'Usage: %s format filename [%s] [preprocessor options]\n' \
               % (sys.argv[0], ' | '.join(options))
-        if os.path.isfile(sys.argv[1]):
+        if len(sys.argv) == 1:
             print 'Missing format specification!'
         print 'formats:', str(supported_format_names())[1:-1]
         print '\n-DFORMAT=format is always defined when running preprocess'
