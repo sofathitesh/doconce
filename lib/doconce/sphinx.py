@@ -331,12 +331,20 @@ def sphinx_code(filestr, format):
         envir2lang = dict(cod='python', pycod='python', cycod='cython',
                           fcod='fortran', ccod='c', cppcod='c++',
                           mcod='matlab', plcod='perl', shcod='bash',
+                          rst='rst', ipy='python',
                           pro='python', pypro='python', cypro='cython',
                           fpro='fortran', cpro='c', cpppro='c++',
                           mpro='matlab', plpro='perl', shpro='bash',
                           sys='console', dat='python')
         # (the "python" typesetting is neutral if the text
         # does not parse as python)
+
+    # Remove all !bc ipy since interactive sessions are automatically
+    # handled by sphinx without indentation (just a blank line before
+    # and after)
+    cpattern = re.compile(r'^!bc +ipy *\n(.*?)^!ec *\n',
+                          re.DOTALL|re.MULTILINE)
+    filestr = cpattern.sub('\n\g<1>\n\n', filestr)
 
     # First indent all code/tex blocks by 1) extracting all blocks,
     # 2) intending each block, and 3) inserting the blocks.
@@ -410,12 +418,13 @@ def sphinx_code(filestr, format):
         if '{alignat' in tex_blocks[i]:
             print '\nWarning: the "alignat" environment will give errors in Sphinx:\n\n', tex_blocks[i], '\n'
 
-    # replace all references to equations that have labels in math environments:
+    # Replace all references to equations that have labels in math environments:
     for label in math_labels:
         filestr = filestr.replace('(:ref:`%s`)' % label, ':eq:`%s`' % label)
 
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
 
+    # Make correct code-block:: language constructions
     for key in envir2lang:
         language = envir2lang[key]
         if not language in legal_pygments_languages:
