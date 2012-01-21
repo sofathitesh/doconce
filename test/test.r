@@ -32,6 +32,8 @@ numerous constructions, also special and less common cases.
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
 
+======= Section 0 =======
+
 ======= Section 1 =======
 label{sec1}
 
@@ -280,6 +282,7 @@ The formula for a circle is given by
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\
 y &= y_0 + R\sin 2\pi t,
+\end{align}
 !et
 where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
@@ -365,8 +368,10 @@ numerous constructions, also special and less common cases.
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
 
-<P> Section 1 <a name="sec1"></A> =======
-
+<P>
+<h2>Section 0</h2>
+<P>
+<h2>Section 1 <a name="sec1"></A></h2>
 <P>
 
 <P>
@@ -694,6 +699,7 @@ The formula for a circle is given by
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\ 
 y &= y_0 + R\sin 2\pi t,
+\end{align}
 </pre></blockquote>
 where R is the radius of the circle, (x_0,y_0) is the
 center point, and t is a parameter in the unit interval [0,1].
@@ -885,6 +891,8 @@ Jan 21, 2012
 
 The format of this document is
 plan, homemade {\LaTeX} (from Doconce).
+
+
 \begin{abstract}
 This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
@@ -894,7 +902,12 @@ And exactly for test purposes we have an extra line here, which
 is part of the abstract.
 \end{abstract}
 
- Section 1 =======
+
+\section{Section 0}
+
+
+\section{Section 1}
+
 \label{sec1}
 
 Just a little bit of text
@@ -1269,6 +1282,7 @@ The formula for a circle is given by
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\ 
 y &= y_0 + R\sin 2\pi t,
+\end{align}
 where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ is a point on the circle.
@@ -1314,6 +1328,7 @@ A Test Document
 
 The format of this document is
 rst
+
 *Abstract.* This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
@@ -1321,7 +1336,14 @@ numerous constructions, also special and less common cases.
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
 
-.. _sec1: Section 1 =======
+
+Section 0
+=========
+
+.. _sec1:
+
+Section 1
+=========
 
 Just a little bit of text
 and then a list:
@@ -1640,6 +1662,7 @@ The formula for a circle is given by::
         \begin{align}
         x &= x_0 + R\cos 2\pi t,\\ 
         y &= y_0 + R\sin 2\pi t,
+        \end{align}
 
 where R is the radius of the circle, (x_0,y_0) is the
 center point, and t is a parameter in the unit interval [0,1].
@@ -1676,6 +1699,7 @@ A Test Document
 
 The format of this document is
 sphinx
+
 *Abstract.* This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
@@ -1683,7 +1707,14 @@ numerous constructions, also special and less common cases.
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
 
-.. _sec1: Section 1 =======
+
+Section 0
+=========
+
+.. _sec1:
+
+Section 1
+=========
 
 Just a little bit of text
 and then a list:
@@ -2032,6 +2063,7 @@ The formula for a circle is given by
         
         x &= x_0 + R\cos 2\pi t,\\ 
         y &= y_0 + R\sin 2\pi t,
+        
 
 where :math:`R` is the radius of the circle, :math:`(x_0,y_0)` is the
 center point, and :math:`t` is a parameter in the unit interval :math:`[0,1]`.
@@ -2065,13 +2097,16 @@ By *Hans Petter Langtangen* (hpl at simula.no), *Kaare Dump*, *A. Dummy Author*,
 The format of this document is
 gwiki
 
-
 *Abstract.* This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
 
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
+
+
+
+== Section 0 ==
 
 
 
@@ -2342,6 +2377,7 @@ The formula for a circle is given by
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\ 
 y &= y_0 + R\sin 2\pi t,
+\end{align}
 }}}
 where `R` is the radius of the circle, `(x_0,y_0)` is the
 center point, and `t` is a parameter in the unit interval `[0,1]`.
@@ -2374,8 +2410,8 @@ It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
 
 And exactly for test purposes we have an extra line here, which
-is part of the abstract. Section 1 =======
-
+is part of the abstract.
+Section 0Section 1
 Just a little bit of text
 and then a list:
 
@@ -2608,6 +2644,7 @@ The formula for a circle is given by::
         \begin{align}
         x &= x_0 + R\cos 2\pi t,\\ 
         y &= y_0 + R\sin 2\pi t,
+        \end{align}
 
 where R is the radius of the circle, (x_0,y_0) is the
 center point, and t is a parameter in the unit interval [0,1].
@@ -2633,12 +2670,20 @@ BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Lab
 
 The format of this document is
 epytext
+
 I{Abstract.} This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
 
 And exactly for test purposes we have an extra line here, which
-is part of the abstract. Section 1 =======
+is part of the abstract.
+
+
+Section 0
+=========
+
+Section 1
+=========
 
 Just a little bit of text
 and then a list:
@@ -2895,6 +2940,7 @@ The formula for a circle is given by::
         \begin{align}
         x &= x_0 + R\cos 2\pi t,\\ 
         y &= y_0 + R\sin 2\pi t,
+        \end{align}
 
 where M{R} is the radius of the circle, M{(x_0,y_0)} is the
 center point, and M{t} is a parameter in the unit interval M{[0,1]}.
@@ -2937,12 +2983,19 @@ Date: Jan 21, 2012
 
 The format of this document is
 plain
+
 *Abstract.* This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
 
 And exactly for test purposes we have an extra line here, which
-is part of the abstract. Section 1 =======
+is part of the abstract.
+
+Section 0
+=========
+
+Section 1
+=========
 
 Just a little bit of text
 and then a list:
@@ -3210,6 +3263,7 @@ The formula for a circle is given by::
         \begin{align}
         x &= x_0 + R\cos 2\pi t,\\ 
         y &= y_0 + R\sin 2\pi t,
+        \end{align}
 
 where R is the radius of the circle, (x_0,y_0) is the
 center point, and t is a parameter in the unit interval [0,1].
@@ -10064,7 +10118,7 @@ run regularly.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 21 Jan 2012 (11:58)
+DATE: Sat, 21 Jan 2012 (13:10)
 
 
 
@@ -10168,7 +10222,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 21 Jan 2012 (11:58)
+DATE: Sat, 21 Jan 2012 (13:10)
 
 
 
@@ -10282,7 +10336,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 21 Jan 2012 (11:58)</center>
+<center>Sat, 21 Jan 2012 (13:10)</center>
 
 
 
@@ -10413,7 +10467,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 21 Jan 2012 (11:58)</center>
+<center>Sat, 21 Jan 2012 (13:10)</center>
 
 
 
