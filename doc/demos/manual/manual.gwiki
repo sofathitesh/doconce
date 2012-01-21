@@ -367,9 +367,8 @@ and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by `latex` as
 output and to a wide extent supported by the `sphinx` output format.
 
-<wiki:comment> One possible way from Doconce to MS Word goes via `latex`, then </wiki:comment>
-<wiki:comment> `texmacs` (export as HTML), then saving with epiphany, and finally </wiki:comment>
-<wiki:comment> from OpenOffice to MS Word doc format. </wiki:comment>
+<wiki:comment> One possible way from Doconce to MS Word goes via `latex` and then </wiki:comment>
+<wiki:comment> `texmacs`. This didn't work well for math and figures. </wiki:comment>
 
 ==== Sphinx ====
 
@@ -1227,6 +1226,8 @@ void myfunc(double* x, const double& myarr) {
 }
 }}}
 
+<wiki:comment> When showing copy from file in !bc envir, intent a character - otherwise </wiki:comment>
+<wiki:comment> ptex2tex is confused and starts copying... </wiki:comment>
 Computer code can be copied directly from a file, if desired. The syntax
 is then
 {{{

@@ -108,21 +108,30 @@ The `xxx` specifier has only effect for `latex` and
 `sphinx` output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
+# When showing copy from file in !bc envir, intent a character - otherwise
+# ptex2tex is confused and starts copying...
 Computer code can also be copied from a file:
 !bc
  @@@CODE doconce_program.sh
  @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
+ @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
 !ec
-The `@@@CODE` identifier must appear at the beginning of the line.
-The first line copies the complete file `doconce_program.sh` and puts the
-contents inside `!bc shpro` and `!ec` directives. In general,
-for a filename extension `.X`, the environment becomes
-`!bc Xpro`. The second line copies
-text from `doconce_program.sh` from the line containing the *regular
-expression* `doconce clean` and up to, *but not including* the line
-with *the regular expression* `^doconce split_rst`. The copied text appears
-within `!bc shcod` and `!ec` directives. Also here, the filename
-extension (`.X`) determines the environment (`!bc Xcod`).
+The `@@@CODE` identifier must appear at the very beginning of the line.
+The first specification copies the complete file `doconce_program.sh`.
+The second specification copies from the first line matching the *regular
+expression* `doconce clean` up to, but not including the line
+matching the *regular expression* `^doconce split_rst`.
+The third specification behaves as the second, but the line matching
+the first regular expression is not copied (aimed at copying
+text between begin-end comment pair in the file).
+
+The copied line from file are in this example put inside `!bc shpro`
+and `!ec` directives, if a complete file is copied, while the
+directives become `!bc shcod` and `!ec` when a code snippet is copied
+from file. In general, for a filename extension `.X`, the environment
+becomes `!bc Xpro` or `!bc Xcod` for a complete program or snippet,
+respectively. The enivorments (`Xcod` and `Xpro`) are only active
+for `latex` and `sphinx` outout.
 
 Important warnings:
 
@@ -198,7 +207,7 @@ recommend the following:
 
 
 __LaTeX Newcommands.__
-Text...
+Text missing...
 
 
 ===== Figures and Movies =====

@@ -4514,9 +4514,8 @@ and LaTeX mathematics to reST and further to OpenOffice and the
 output and to a wide extent supported by the <tt>sphinx</tt> output format.
 
 <P>
-<!-- One possible way from Doconce to MS Word goes via <tt>latex</tt>, then -->
-<!-- <tt>texmacs</tt> (export as HTML), then saving with epiphany, and finally -->
-<!-- from OpenOffice to MS Word doc format. -->
+<!-- One possible way from Doconce to MS Word goes via <tt>latex</tt> and then -->
+<!-- <tt>texmacs</tt>. This didn't work well for math and figures. -->
 
 <P>
 <h3>Sphinx</h3>
@@ -5492,11 +5491,9 @@ and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by ``latex`` as
 output and to a wide extent supported by the ``sphinx`` output format.
 
-.. One possible way from Doconce to MS Word goes via ``latex``, then
+.. One possible way from Doconce to MS Word goes via ``latex`` and then
 
-.. ``texmacs`` (export as HTML), then saving with epiphany, and finally
-
-.. from OpenOffice to MS Word doc format.
+.. ``texmacs``. This didn't work well for math and figures.
 
 
 Sphinx
@@ -6449,11 +6446,9 @@ and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by ``latex`` as
 output and to a wide extent supported by the ``sphinx`` output format.
 
-.. One possible way from Doconce to MS Word goes via ``latex``, then
+.. One possible way from Doconce to MS Word goes via ``latex`` and then
 
-.. ``texmacs`` (export as HTML), then saving with epiphany, and finally
-
-.. from OpenOffice to MS Word doc format.
+.. ``texmacs``. This didn't work well for math and figures.
 
 
 Sphinx
@@ -7257,9 +7252,8 @@ and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by `latex` as
 output and to a wide extent supported by the `sphinx` output format.
 
-<wiki:comment> One possible way from Doconce to MS Word goes via `latex`, then </wiki:comment>
-<wiki:comment> `texmacs` (export as HTML), then saving with epiphany, and finally </wiki:comment>
-<wiki:comment> from OpenOffice to MS Word doc format. </wiki:comment>
+<wiki:comment> One possible way from Doconce to MS Word goes via `latex` and then </wiki:comment>
+<wiki:comment> `texmacs`. This didn't work well for math and figures. </wiki:comment>
 
 ==== Sphinx ====
 
@@ -10118,7 +10112,7 @@ run regularly.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 21 Jan 2012 (13:10)
+DATE: Sat, 21 Jan 2012 (13:36)
 
 
 
@@ -10222,7 +10216,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 21 Jan 2012 (13:10)
+DATE: Sat, 21 Jan 2012 (13:36)
 
 
 
@@ -10336,7 +10330,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 21 Jan 2012 (13:10)</center>
+<center>Sat, 21 Jan 2012 (13:36)</center>
 
 
 
@@ -10467,7 +10461,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 21 Jan 2012 (13:10)</center>
+<center>Sat, 21 Jan 2012 (13:36)</center>
 
 
 
@@ -11566,6 +11560,8 @@ void myfunc(double* x, const double& myarr) {
 }
 !ec
 
+# When showing copy from file in !bc envir, intent a character - otherwise
+# ptex2tex is confused and starts copying...
 Computer code can be copied directly from a file, if desired. The syntax
 is then
 !bc
@@ -11605,7 +11601,7 @@ Note that the "to" line is not copied into the Doconce file, but the
 `from-to` ("from with minus"). This allows for copying very similar
 code segments throughout a file, while still distinguishing between them.
 Copying the second set of parameters from the text
-!bc
+!bc cod
 # --- Start Example 1 ---
 c = -1
 A = 2
@@ -12883,9 +12879,8 @@ and LaTeX mathematics to reST and further to OpenOffice and the
 output and to a wide extent supported by the <tt>sphinx</tt> output format.
 
 <P>
-<!-- One possible way from Doconce to MS Word goes via <tt>latex</tt>, then -->
-<!-- <tt>texmacs</tt> (export as HTML), then saving with epiphany, and finally -->
-<!-- from OpenOffice to MS Word doc format. -->
+<!-- One possible way from Doconce to MS Word goes via <tt>latex</tt> and then -->
+<!-- <tt>texmacs</tt>. This didn't work well for math and figures. -->
 
 <P>
 <h3>Sphinx</h3>
@@ -13934,6 +13929,8 @@ void myfunc(double* x, const double& myarr) {
 </blockquote>   <! -- end verbatim block -->
 
 <P>
+<!-- When showing copy from file in !bc envir, intent a character - otherwise -->
+<!-- ptex2tex is confused and starts copying... -->
 Computer code can be copied directly from a file, if desired. The syntax
 is then
 <blockquote>    <!-- begin verbatim block  -->
@@ -14009,7 +14006,7 @@ Note that the "to" line is not copied into the Doconce file, but the
 <tt>from-to</tt> ("from with minus"). This allows for copying very similar
 code segments throughout a file, while still distinguishing between them.
 Copying the second set of parameters from the text
-<blockquote>    <!-- begin verbatim block  -->
+<blockquote>    <!-- begin verbatim block   cod-->
 <pre>
 # --- Start Example 1 ---
 c = -1
@@ -15324,11 +15321,9 @@ and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by ``latex`` as
 output and to a wide extent supported by the ``sphinx`` output format.
 
-.. One possible way from Doconce to MS Word goes via ``latex``, then
+.. One possible way from Doconce to MS Word goes via ``latex`` and then
 
-.. ``texmacs`` (export as HTML), then saving with epiphany, and finally
-
-.. from OpenOffice to MS Word doc format.
+.. ``texmacs``. This didn't work well for math and figures.
 
 
 Sphinx
@@ -16279,6 +16274,10 @@ And here is a C++ code snippet (``cppcod`` style)::
             }
         }
 
+
+.. When showing copy from file in !bc envir, intent a character - otherwise
+
+.. ptex2tex is confused and starts copying...
 
 Computer code can be copied directly from a file, if desired. The syntax
 is then::
@@ -17622,11 +17621,9 @@ and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by ``latex`` as
 output and to a wide extent supported by the ``sphinx`` output format.
 
-.. One possible way from Doconce to MS Word goes via ``latex``, then
+.. One possible way from Doconce to MS Word goes via ``latex`` and then
 
-.. ``texmacs`` (export as HTML), then saving with epiphany, and finally
-
-.. from OpenOffice to MS Word doc format.
+.. ``texmacs``. This didn't work well for math and figures.
 
 
 Sphinx
@@ -18687,6 +18684,10 @@ And here is a C++ code snippet (``cppcod`` style):
         }
 
 
+.. When showing copy from file in !bc envir, intent a character - otherwise
+
+.. ptex2tex is confused and starts copying...
+
 Computer code can be copied directly from a file, if desired. The syntax
 is then
 
@@ -18761,8 +18762,7 @@ Note that the "to" line is not copied into the Doconce file, but the
 code segments throughout a file, while still distinguishing between them.
 Copying the second set of parameters from the text
 
-.. code-block:: py
-
+.. code-block:: fortran
 
         # --- Start Example 1 ---
         c = -1
@@ -19936,9 +19936,8 @@ and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by `latex` as
 output and to a wide extent supported by the `sphinx` output format.
 
-<wiki:comment> One possible way from Doconce to MS Word goes via `latex`, then </wiki:comment>
-<wiki:comment> `texmacs` (export as HTML), then saving with epiphany, and finally </wiki:comment>
-<wiki:comment> from OpenOffice to MS Word doc format. </wiki:comment>
+<wiki:comment> One possible way from Doconce to MS Word goes via `latex` and then </wiki:comment>
+<wiki:comment> `texmacs`. This didn't work well for math and figures. </wiki:comment>
 
 ==== Sphinx ====
 
@@ -20796,6 +20795,8 @@ void myfunc(double* x, const double& myarr) {
 }
 }}}
 
+<wiki:comment> When showing copy from file in !bc envir, intent a character - otherwise </wiki:comment>
+<wiki:comment> ptex2tex is confused and starts copying... </wiki:comment>
 Computer code can be copied directly from a file, if desired. The syntax
 is then
 {{{
@@ -27983,18 +27984,18 @@ Overfull \hbox (55.19026pt too wide) in paragraph at lines 547--552
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [8] [9] [10]
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 730--738
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 729--737
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 [11]
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 750--753
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 749--752
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [12] [13]
-Overfull \hbox (21.15628pt too wide) in paragraph at lines 911--915
+Overfull \hbox (21.15628pt too wide) in paragraph at lines 910--914
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [14] [15]
-Overfull \hbox (22.94165pt too wide) in paragraph at lines 1026--1036
+Overfull \hbox (22.94165pt too wide) in paragraph at lines 1025--1035
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
 OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
 hv/m/n/10 .
@@ -28117,18 +28118,18 @@ Overfull \hbox (55.19026pt too wide) in paragraph at lines 547--552
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [8] [9] [10]
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 730--738
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 729--737
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 [11]
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 750--753
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 749--752
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [12] [13]
-Overfull \hbox (21.15628pt too wide) in paragraph at lines 911--915
+Overfull \hbox (21.15628pt too wide) in paragraph at lines 910--914
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [14] [15]
-Overfull \hbox (22.94165pt too wide) in paragraph at lines 1026--1036
+Overfull \hbox (22.94165pt too wide) in paragraph at lines 1025--1035
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
 OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
 hv/m/n/10 .
@@ -29240,55 +29241,55 @@ Overfull \hbox (11.00006pt too wide) in paragraph at lines 841--841
 Overfull \hbox (53.00006pt too wide) in paragraph at lines 842--844
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 892--893
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 890--891
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 894--894
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 892--892
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
 [9]
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 919--927
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 917--925
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.sh
 
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 940--943
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 938--941
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 944--947
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 942--945
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [10]
-Overfull \hbox (31.15843pt too wide) in paragraph at lines 1058--1062
+Overfull \hbox (31.15843pt too wide) in paragraph at lines 1056--1060
 []\T1/ptm/m/n/10 You can then open a new wiki page for your Google Code project
 , copy the \T1/pcr/m/n/10 mydoc.gwiki
 [11]
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1077--1088
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1075--1086
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1132--1132
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1130--1130
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1142--1143
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1140--1141
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
 [12]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1175--1176
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1173--1174
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1180--1180
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1178--1178
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 
-Overfull \hbox (185.00006pt too wide) in paragraph at lines 1202--1203
+Overfull \hbox (185.00006pt too wide) in paragraph at lines 1200--1201
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
 s/trunk/docutils  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1212--1215
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1210--1213
 []\T1/pcr/m/n/10 sudo apt-get install unovonv libreoffice libreoffice-dmaths 
 [13]
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 1241--1242
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 1239--1240
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
 [14] (./tutorial.rst.aux)
@@ -29343,7 +29344,7 @@ output in tutorial.epytext
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
 [tutorial.xml (plain): 14 pages on 14 sheets]
 [Total: 14 pages on 14 sheets] saved into the file `tutorial.xml.ps'
-[383 lines wrapped]
+[382 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -29471,8 +29472,8 @@ preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1258: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1258: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1256: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1256: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
 writing additional files... (0 module code pages) genindex search
 copying images... [ 33%] figs/wavepacket_0001.png
 copying images... [ 66%] figs/wavepacket_0010.png
@@ -29741,7 +29742,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (49 pages, 373064 bytes).
+Output written on DoconceManual.pdf (49 pages, 372290 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -29923,7 +29924,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (49 pages, 397107 bytes).
+Output written on DoconceManual.pdf (49 pages, 396333 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -30105,7 +30106,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (49 pages, 397107 bytes).
+Output written on DoconceManual.pdf (49 pages, 396333 bytes).
 Transcript written on DoconceManual.log.
 makeindex -s python.ist 'DoconceManual.idx'
 This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
@@ -30294,7 +30295,7 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (51 pages, 406689 bytes).
+Output written on DoconceManual.pdf (51 pages, 405915 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -30475,7 +30476,7 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (51 pages, 407103 bytes).
+Output written on DoconceManual.pdf (51 pages, 406329 bytes).
 Transcript written on DoconceManual.log.
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
 + cd ../../..
@@ -30652,302 +30653,302 @@ Overfull \hbox (11.00006pt too wide) in paragraph at lines 605--605
 Overfull \hbox (53.00006pt too wide) in paragraph at lines 606--608
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
 [6]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 656--657
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 654--655
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 658--658
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 656--656
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
 
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 683--691
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 681--689
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.sh
 
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 704--707
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 702--705
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 [7]
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 708--711
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 706--709
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [8]
-Overfull \hbox (31.15843pt too wide) in paragraph at lines 822--826
+Overfull \hbox (31.15843pt too wide) in paragraph at lines 820--824
 []\T1/ptm/m/n/10 You can then open a new wiki page for your Google Code project
 , copy the \T1/pcr/m/n/10 mydoc.gwiki
 
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 841--852
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 839--850
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [9] [10]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 986--990
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 984--988
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1015--1018
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1013--1016
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1030--1030
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1028--1028
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1048--1048
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1046--1046
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 [11]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1088--1089
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1086--1087
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1134--1137
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1132--1135
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
 [12] <figs/streamtubes.eps>
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1175--1178
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1173--1176
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 [13]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1203--1206
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1201--1204
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1208--1212
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1206--1210
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1213--1219
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1211--1217
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 14 un
-defined on input line 1231.
+defined on input line 1229.
 
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1229--1232
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1227--1230
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1257--1260
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1255--1258
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1270--1272
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1268--1270
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1291--1294
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1289--1292
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 [14]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1348--1351
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1346--1349
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 15 undef
-ined on input line 1370.
+ined on input line 1368.
 
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 15 undef
-ined on input line 1374.
+ined on input line 1372.
 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1362--1375
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1360--1373
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1388--1388
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1386--1386
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1389--1391
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1387--1389
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 [15]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1414--1416
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1412--1414
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
 
 LaTeX Warning: Hyper reference `fig-viz' on page 16 undefined on input line 143
-2.
+0.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 16 u
-ndefined on input line 1434.
+ndefined on input line 1432.
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 16 undefined on inp
-ut line 1434.
+ut line 1432.
 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1430--1439
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1428--1437
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-LaTeX Warning: Hyper reference `id5' on page 16 undefined on input line 1441.
+LaTeX Warning: Hyper reference `id5' on page 16 undefined on input line 1439.
 
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1440--1442
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1438--1440
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1465--1468
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1463--1466
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1483--1486
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1481--1484
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 [16]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1514--1514
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1512--1512
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1515--1515
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1513--1513
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 1539--1541
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 1537--1539
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1542--1545
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1540--1543
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [17]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1659--1660
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1657--1658
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 [18]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 1733--1736
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 1731--1734
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
 [19]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1809--1811
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1811--1813
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
 [20] [21]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1927--1927
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1929--1929
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
   
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1928--1928
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1930--1930
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g 
  
 
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 1972--1975
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 1974--1977
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 [22]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2009--2009
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2011--2011
 []\T1/pcr/m/n/10 \Ddt{\vec u} &=& {\mbox{\boldmath $Q$}} \thinspace .    label{
 my:eq2}  
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2025--2037
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2027--2039
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
 <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [23] [24]
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 25 undef
-ined on input line 2067.
+ined on input line 2069.
 
 [25]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2115--2115
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2117--2117
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [26]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2194--2196
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2196--2198
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2256--2258
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2258--2260
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
 [27]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2364--2365
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2366--2367
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2366--2368
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2368--2370
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
 [28]
 
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 29 un
-defined on input line 2480.
+defined on input line 2482.
 
 [29] [30] [31]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2726--2729
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2728--2731
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2767--2768
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2769--2770
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2769--2769
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2771--2771
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2770--2770
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2772--2772
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2773--2773
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2775--2775
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2774--2774
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2776--2776
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2775--2775
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2777--2777
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 2776--2776
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 2778--2778
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 2781--2781
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 2783--2783
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2782--2782
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2784--2784
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2783--2783
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2785--2785
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2786--2786
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2788--2788
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 2789--2789
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 2791--2791
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 [32]
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 2791--2791
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 2793--2793
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2794--2794
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2796--2796
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2801--2801
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2803--2803
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2803--2803
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2805--2805
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2805--2805
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2807--2807
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2808--2808
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2810--2810
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2814--2814
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2816--2816
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 [33]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2855--2855
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2857--2857
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2857--2857
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2859--2859
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2858--2858
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2860--2860
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2859--2859
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2861--2861
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2860--2860
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2862--2862
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 [34] [35] (./manual.rst.aux)
@@ -31108,265 +31109,265 @@ Overfull \hbox (11.00006pt too wide) in paragraph at lines 605--605
 Overfull \hbox (53.00006pt too wide) in paragraph at lines 606--608
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
 [6]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 656--657
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 654--655
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 658--658
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 656--656
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
 
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 683--691
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 681--689
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.sh
 
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 704--707
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 702--705
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 [7]
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 708--711
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 706--709
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [8]
-Overfull \hbox (31.15843pt too wide) in paragraph at lines 822--826
+Overfull \hbox (31.15843pt too wide) in paragraph at lines 820--824
 []\T1/ptm/m/n/10 You can then open a new wiki page for your Google Code project
 , copy the \T1/pcr/m/n/10 mydoc.gwiki
 
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 841--852
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 839--850
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [9] [10]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 986--990
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 984--988
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1015--1018
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1013--1016
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1030--1030
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1028--1028
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1048--1048
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1046--1046
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 [11]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1088--1089
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1086--1087
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1134--1137
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1132--1135
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
 [12] <figs/streamtubes.eps>
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1175--1178
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1173--1176
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 [13]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1203--1206
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1201--1204
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1208--1212
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1206--1210
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1213--1219
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1211--1217
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1229--1232
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1227--1230
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1257--1260
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1255--1258
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1270--1272
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1268--1270
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1291--1294
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1289--1292
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 [14]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1348--1351
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1346--1349
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1362--1375
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1360--1373
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1388--1388
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1386--1386
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1389--1391
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1387--1389
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 [15]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1414--1416
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1412--1414
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1430--1439
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1428--1437
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1440--1442
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1438--1440
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1465--1468
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1463--1466
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1483--1486
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1481--1484
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 [16]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1514--1514
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1512--1512
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1515--1515
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1513--1513
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 1539--1541
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 1537--1539
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1542--1545
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1540--1543
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [17]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1659--1660
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1657--1658
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 [18]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 1733--1736
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 1731--1734
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
 [19]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1809--1811
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1811--1813
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
 [20] [21]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1927--1927
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1929--1929
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
   
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1928--1928
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1930--1930
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g 
  
 
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 1972--1975
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 1974--1977
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 [22]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2009--2009
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2011--2011
 []\T1/pcr/m/n/10 \Ddt{\vec u} &=& {\mbox{\boldmath $Q$}} \thinspace .    label{
 my:eq2}  
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2025--2037
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2027--2039
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
 <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [23] [24] [25]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2115--2115
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2117--2117
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [26]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2194--2196
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2196--2198
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2256--2258
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2258--2260
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
 [27]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2364--2365
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2366--2367
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2366--2368
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2368--2370
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
 [28] [29] [30] [31]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2726--2729
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2728--2731
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2767--2768
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2769--2770
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2769--2769
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2771--2771
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2770--2770
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2772--2772
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2773--2773
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2775--2775
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2774--2774
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2776--2776
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2775--2775
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2777--2777
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 2776--2776
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 2778--2778
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 2781--2781
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 2783--2783
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2782--2782
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2784--2784
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2783--2783
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2785--2785
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2786--2786
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2788--2788
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 2789--2789
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 2791--2791
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 [32]
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 2791--2791
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 2793--2793
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2794--2794
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2796--2796
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2801--2801
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2803--2803
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2803--2803
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2805--2805
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2805--2805
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2807--2807
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2808--2808
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2810--2810
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2814--2814
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2816--2816
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 [33]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2855--2855
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2857--2857
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2857--2857
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2859--2859
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2858--2858
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2860--2860
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2859--2859
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2861--2861
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2860--2860
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2862--2862
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 [34] [35] (./manual.rst.aux) )
@@ -31537,57 +31538,64 @@ Overfull \hbox (53.0808pt too wide) in paragraph at lines 398--403
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [6] [7] [8]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 581--589
+Overfull \hbox (1.943pt too wide) in paragraph at lines 580--588
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 [9]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 601--604
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 600--603
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [10] [11] [12] [13] [14] <figs/streamtubes.eps> [15] [16]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 17 undefined on input li
-ne 1071.
+ne 1070.
 
 
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1079--1082
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1078--1081
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [17]
 
 LaTeX Warning: Reference `doconce2formats' on page 18 undefined on input line 1
-188.
+187.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 18 undefined on input line 1
-192.
+191.
 
 [18]
 
-LaTeX Warning: Reference `fig:viz' on page 19 undefined on input line 1243.
+LaTeX Warning: Reference `fig:viz' on page 19 undefined on input line 1242.
 
 
-LaTeX Warning: Reference `mathtext' on page 19 undefined on input line 1245.
+LaTeX Warning: Reference `mathtext' on page 19 undefined on input line 1244.
 
 
-LaTeX Warning: Reference `newcommands' on page 19 undefined on input line 1245.
+LaTeX Warning: Reference `newcommands' on page 19 undefined on input line 1244.
 
 
 
-LaTeX Warning: Reference `my:eq1' on page 19 undefined on input line 1247.
+LaTeX Warning: Reference `my:eq1' on page 19 undefined on input line 1246.
 
 
-LaTeX Warning: Reference `my:eq2' on page 19 undefined on input line 1247.
+LaTeX Warning: Reference `my:eq2' on page 19 undefined on input line 1246.
 
 
 LaTeX Warning: Reference `inline:tagging' on page 19 undefined on input line 12
-52.
+51.
 
 [19]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1339--1341
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1338--1340
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
+
+LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
+342.
+
+
+LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1342.
+
 
 LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
 343.
@@ -31595,42 +31603,35 @@ LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1343.
 
-
-LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
-344.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1344.
-
 [20] [21] (./manual.out.pyg [22]) (./manual.out.pyg) (./manual.out.pyg [23])
-(./manual.out.pyg)
+(./manual.out.pyg) [24]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1648.
+(amsmath)                 on input line 1664.
 
-[24]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1686--1688
+
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1702--1704
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [25] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps>
 
 LaTeX Warning: Reference `doconce2formats' on page 26 undefined on input line 1
-790.
+806.
 
 [26] [27] [28]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
 [29] [30] [31]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 32 undefined on input li
-ne 2072.
+ne 2075.
 
 [32] [33] [34] [35]
 No file manual.bbl.
@@ -31644,7 +31645,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (36 pages, 153484 bytes).
+Output written on manual.dvi (36 pages, 153640 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -31750,22 +31751,29 @@ Overfull \hbox (53.0808pt too wide) in paragraph at lines 398--403
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [6] [7] [8]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 581--589
+Overfull \hbox (1.943pt too wide) in paragraph at lines 580--588
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 [9]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 601--604
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 600--603
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [10] [11] [12] [13] [14] <figs/streamtubes.eps> [15] [16]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1079--1082
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1078--1081
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [17] [18] [19]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1339--1341
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1338--1340
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
+
+LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
+342.
+
+
+LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1342.
+
 
 LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
 343.
@@ -31773,30 +31781,23 @@ LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1343.
 
-
-LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
-344.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1344.
-
 [20] [21] (./manual.out.pyg [22]) (./manual.out.pyg) (./manual.out.pyg [23])
-(./manual.out.pyg)
+(./manual.out.pyg) [24]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1648.
+(amsmath)                 on input line 1664.
 
-[24]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1686--1688
+
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1702--1704
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [25] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [26] [27] [28]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -31809,7 +31810,7 @@ LaTeX Warning: There were undefined references.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (36 pages, 160616 bytes).
+Output written on manual.dvi (36 pages, 160772 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -31927,22 +31928,29 @@ Overfull \hbox (53.0808pt too wide) in paragraph at lines 398--403
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [6] [7] [8]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 581--589
+Overfull \hbox (1.943pt too wide) in paragraph at lines 580--588
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 [9]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 601--604
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 600--603
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [10] [11] [12] [13] [14] <figs/streamtubes.eps> [15] [16]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1079--1082
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1078--1081
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [17] [18] [19]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1339--1341
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1338--1340
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
+
+LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
+342.
+
+
+LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1342.
+
 
 LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
 343.
@@ -31950,30 +31958,23 @@ LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1343.
 
-
-LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
-344.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1344.
-
 [20] [21] (./manual.out.pyg [22]) (./manual.out.pyg) (./manual.out.pyg [23])
-(./manual.out.pyg)
+(./manual.out.pyg) [24]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1648.
+(amsmath)                 on input line 1664.
 
-[24]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1686--1688
+
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1702--1704
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [25] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [26] [27] [28]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -31987,7 +31988,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (37 pages, 167400 bytes).
+Output written on manual.dvi (37 pages, 167556 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -32093,46 +32094,46 @@ Overfull \hbox (53.0808pt too wide) in paragraph at lines 398--403
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [6] [7] [8]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 581--589
+Overfull \hbox (1.943pt too wide) in paragraph at lines 580--588
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 [9]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 601--604
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 600--603
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [10] [11] [12] [13] [14] <figs/streamtubes.eps> [15] [16]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1079--1082
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1078--1081
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [17] [18] [19]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1339--1341
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1338--1340
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
 [20] [21] (./manual.out.pyg [22]) (./manual.out.pyg) (./manual.out.pyg [23])
-(./manual.out.pyg)
+(./manual.out.pyg) [24]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1648.
+(amsmath)                 on input line 1664.
 
-[24]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1686--1688
+
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1702--1704
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [25] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [26] [27] [28]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
 [29] [30] [31] [32] [33] [34] [35] (./manual.bbl) (./manual.ind [36] [37])
 (./manual.aux) )
 (see the transcript file for additional information)
-Output written on manual.dvi (37 pages, 168396 bytes).
+Output written on manual.dvi (37 pages, 168552 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt
@@ -32386,21 +32387,30 @@ The `xxx` specifier has only effect for `latex` and
 `sphinx` output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
+# When showing copy from file in !bc envir, intent a character - otherwise
+# ptex2tex is confused and starts copying...
 Computer code can also be copied from a file:
 !bc
  @@@CODE doconce_program.sh
  @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
+ @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
 !ec
-The `@@@CODE` identifier must appear at the beginning of the line.
-The first line copies the complete file `doconce_program.sh` and puts the
-contents inside `!bc shpro` and `!ec` directives. In general,
-for a filename extension `.X`, the environment becomes
-`!bc Xpro`. The second line copies
-text from `doconce_program.sh` from the line containing the *regular
-expression* `doconce clean` and up to, *but not including* the line
-with *the regular expression* `^doconce split_rst`. The copied text appears
-within `!bc shcod` and `!ec` directives. Also here, the filename
-extension (`.X`) determines the environment (`!bc Xcod`).
+The `@@@CODE` identifier must appear at the very beginning of the line.
+The first specification copies the complete file `doconce_program.sh`.
+The second specification copies from the first line matching the *regular
+expression* `doconce clean` up to, but not including the line
+matching the *regular expression* `^doconce split_rst`.
+The third specification behaves as the second, but the line matching
+the first regular expression is not copied (aimed at copying
+text between begin-end comment pair in the file).
+
+The copied line from file are in this example put inside `!bc shpro`
+and `!ec` directives, if a complete file is copied, while the
+directives become `!bc shcod` and `!ec` when a code snippet is copied
+from file. In general, for a filename extension `.X`, the environment
+becomes `!bc Xpro` or `!bc Xcod` for a complete program or snippet,
+respectively. The enivorments (`Xcod` and `Xpro`) are only active
+for `latex` and `sphinx` outout.
 
 Important warnings:
 
@@ -32476,7 +32486,7 @@ recommend the following:
 
 
 __LaTeX Newcommands.__
-Text...
+Text missing...
 
 
 ===== Figures and Movies =====
@@ -32796,23 +32806,33 @@ The <tt>xxx</tt> specifier has only effect for <tt>latex</tt> and
 kinds of verbatim output.
 
 <P>
+<!-- When showing copy from file in !bc envir, intent a character - otherwise -->
+<!-- ptex2tex is confused and starts copying... -->
 Computer code can also be copied from a file:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
  @@@CODE doconce_program.sh
  @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
+ @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
 </pre>
 </blockquote>   <! -- end verbatim block -->
-The <tt>@@@CODE</tt> identifier must appear at the beginning of the line.
-The first line copies the complete file <tt>doconce_program.sh</tt> and puts the
-contents inside <tt>!bc shpro</tt> and <tt>!ec</tt> directives. In general,
-for a filename extension <tt>.X</tt>, the environment becomes
-<tt>!bc Xpro</tt>. The second line copies
-text from <tt>doconce_program.sh</tt> from the line containing the <em>regular
-expression</em> <tt>doconce clean</tt> and up to, <em>but not including</em> the line
-with <em>the regular expression</em> <tt>^doconce split_rst</tt>. The copied text appears
-within <tt>!bc shcod</tt> and <tt>!ec</tt> directives. Also here, the filename
-extension (<tt>.X</tt>) determines the environment (<tt>!bc Xcod</tt>).
+The <tt>@@@CODE</tt> identifier must appear at the very beginning of the line.
+The first specification copies the complete file <tt>doconce_program.sh</tt>.
+The second specification copies from the first line matching the <em>regular
+expression</em> <tt>doconce clean</tt> up to, but not including the line
+matching the <em>regular expression</em> <tt>^doconce split_rst</tt>.
+The third specification behaves as the second, but the line matching
+the first regular expression is not copied (aimed at copying
+text between begin-end comment pair in the file).
+
+<P>
+The copied line from file are in this example put inside <tt>!bc shpro</tt>
+and <tt>!ec</tt> directives, if a complete file is copied, while the
+directives become <tt>!bc shcod</tt> and <tt>!ec</tt> when a code snippet is copied
+from file. In general, for a filename extension <tt>.X</tt>, the environment
+becomes <tt>!bc Xpro</tt> or <tt>!bc Xcod</tt> for a complete program or snippet,
+respectively. The enivorments (<tt>Xcod</tt> and <tt>Xpro</tt>) are only active
+for <tt>latex</tt> and <tt>sphinx</tt> outout.
 
 <P>
 Important warnings:
@@ -32901,7 +32921,7 @@ recommend the following:
     advanced LaTeX features and fine tuning of resulting PDF document.
 </ul>
 
-<b>LaTeX Newcommands.</b> Text...
+<b>LaTeX Newcommands.</b> Text missing...
 
 <P>
 
@@ -33368,21 +33388,30 @@ The \code{xxx} specifier has only effect for \code{latex} and
 \code{sphinx} output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
+% When showing copy from file in !bc envir, intent a character - otherwise
+% ptex2tex is confused and starts copying...
 Computer code can also be copied from a file:
 \bccq
  @@@CODE doconce_program.sh
  @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
+ @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
 \eccq
-The \code{@@@CODE} identifier must appear at the beginning of the line.
-The first line copies the complete file \code{doconce_program.sh} and puts the
-contents inside \code{!bc shpro} and \code{!ec} directives. In general,
-for a filename extension \code{.X}, the environment becomes
-\code{!bc Xpro}. The second line copies
-text from \code{doconce_program.sh} from the line containing the \emph{regular
-expression} \code{doconce clean} and up to, \emph{but not including} the line
-with \emph{the regular expression} \code{^doconce split_rst}. The copied text appears
-within \code{!bc shcod} and \code{!ec} directives. Also here, the filename
-extension (\code{.X}) determines the environment (\code{!bc Xcod}).
+The \code{@@@CODE} identifier must appear at the very beginning of the line.
+The first specification copies the complete file \code{doconce_program.sh}.
+The second specification copies from the first line matching the \emph{regular
+expression} \code{doconce clean} up to, but not including the line
+matching the \emph{regular expression} \code{^doconce split_rst}.
+The third specification behaves as the second, but the line matching
+the first regular expression is not copied (aimed at copying
+text between begin-end comment pair in the file).
+
+The copied line from file are in this example put inside \code{!bc shpro}
+and \code{!ec} directives, if a complete file is copied, while the
+directives become \code{!bc shcod} and \code{!ec} when a code snippet is copied
+from file. In general, for a filename extension \code{.X}, the environment
+becomes \code{!bc Xpro} or \code{!bc Xcod} for a complete program or snippet,
+respectively. The enivorments (\code{Xcod} and \code{Xpro}) are only active
+for \code{latex} and \code{sphinx} outout.
 
 Important warnings:
 
@@ -33463,7 +33492,7 @@ recommend the following:
 
 \noindent
 \paragraph{LaTeX Newcommands.}
-Text...
+Text missing...
 
 \subsection{Figures and Movies}
 
@@ -33812,22 +33841,33 @@ The ``xxx`` specifier has only effect for ``latex`` and
 ``sphinx`` output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
+.. When showing copy from file in !bc envir, intent a character - otherwise
+
+.. ptex2tex is confused and starts copying...
+
 Computer code can also be copied from a file::
 
 
          @@@CODE doconce_program.sh
          @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
+         @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
 
-The ``@@@CODE`` identifier must appear at the beginning of the line.
-The first line copies the complete file ``doconce_program.sh`` and puts the
-contents inside ``!bc shpro`` and ``!ec`` directives. In general,
-for a filename extension ``.X``, the environment becomes
-``!bc Xpro``. The second line copies
-text from ``doconce_program.sh`` from the line containing the *regular
-expression* ``doconce clean`` and up to, *but not including* the line
-with *the regular expression* ``^doconce split_rst``. The copied text appears
-within ``!bc shcod`` and ``!ec`` directives. Also here, the filename
-extension (``.X``) determines the environment (``!bc Xcod``).
+The ``@@@CODE`` identifier must appear at the very beginning of the line.
+The first specification copies the complete file ``doconce_program.sh``.
+The second specification copies from the first line matching the *regular
+expression* ``doconce clean`` up to, but not including the line
+matching the *regular expression* ``^doconce split_rst``.
+The third specification behaves as the second, but the line matching
+the first regular expression is not copied (aimed at copying
+text between begin-end comment pair in the file).
+
+The copied line from file are in this example put inside ``!bc shpro``
+and ``!ec`` directives, if a complete file is copied, while the
+directives become ``!bc shcod`` and ``!ec`` when a code snippet is copied
+from file. In general, for a filename extension ``.X``, the environment
+becomes ``!bc Xpro`` or ``!bc Xcod`` for a complete program or snippet,
+respectively. The enivorments (``Xcod`` and ``Xpro``) are only active
+for ``latex`` and ``sphinx`` outout.
 
 Important warnings:
 
@@ -33908,7 +33948,7 @@ recommend the following:
     typesetting for other formats. In this way, one can also allow
     advanced LaTeX features and fine tuning of resulting PDF document.
 
-*LaTeX Newcommands.* Text...
+*LaTeX Newcommands.* Text missing...
 
 
 Figures and Movies
@@ -34232,21 +34272,30 @@ The `xxx` specifier has only effect for `latex` and
 `sphinx` output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
+<wiki:comment> When showing copy from file in !bc envir, intent a character - otherwise </wiki:comment>
+<wiki:comment> ptex2tex is confused and starts copying... </wiki:comment>
 Computer code can also be copied from a file:
 {{{
  @@@CODE doconce_program.sh
  @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
+ @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
 }}}
-The `@@@CODE` identifier must appear at the beginning of the line.
-The first line copies the complete file `doconce_program.sh` and puts the
-contents inside `!bc shpro` and `!ec` directives. In general,
-for a filename extension `.X`, the environment becomes
-`!bc Xpro`. The second line copies
-text from `doconce_program.sh` from the line containing the *regular
-expression* `doconce clean` and up to, *but not including* the line
-with *the regular expression* `^doconce split_rst`. The copied text appears
-within `!bc shcod` and `!ec` directives. Also here, the filename
-extension (`.X`) determines the environment (`!bc Xcod`).
+The `@@@CODE` identifier must appear at the very beginning of the line.
+The first specification copies the complete file `doconce_program.sh`.
+The second specification copies from the first line matching the *regular
+expression* `doconce clean` up to, but not including the line
+matching the *regular expression* `^doconce split_rst`.
+The third specification behaves as the second, but the line matching
+the first regular expression is not copied (aimed at copying
+text between begin-end comment pair in the file).
+
+The copied line from file are in this example put inside `!bc shpro`
+and `!ec` directives, if a complete file is copied, while the
+directives become `!bc shcod` and `!ec` when a code snippet is copied
+from file. In general, for a filename extension `.X`, the environment
+becomes `!bc Xpro` or `!bc Xcod` for a complete program or snippet,
+respectively. The enivorments (`Xcod` and `Xpro`) are only active
+for `latex` and `sphinx` outout.
 
 Important warnings:
 
@@ -34304,7 +34353,7 @@ recommend the following:
   * Labels in multiple equation environments such as `align` are    not (yet) handled by `sphinx`, so avoid inserting labels and referring    to equation labels in `align` environments. Actually, `align*`    is the preferred environment for multiple equations. Writing with    also `sphinx` output in mind results in a slightly adjusted type    of LaTeX writing.
   * LaTeX supports lots of fancy formatting, for example, multiple    plots in the same figure, footnotes, margin notes, etc.    Allowing other output formats, such as `sphinx`, makes it necessary    to only utilze very standard LaTeX and avoid, for instance, more than    one plot per figure. However, one can use preprocessor if-tests on    the format (typically `# #ifdef format == "latex"`) to    include special code for `latex` output and more straightforward    typesetting for other formats. In this way, one can also allow    advanced LaTeX features and fine tuning of resulting PDF document.
 
-*LaTeX Newcommands.* Text...
+*LaTeX Newcommands.* Text missing...
 
 ==== Figures and Movies ====
 
@@ -34588,17 +34637,24 @@ Computer code can also be copied from a file::
 
          @@@CODE doconce_program.sh
          @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
+         @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
 
-The '@@@CODE' identifier must appear at the beginning of the line.
-The first line copies the complete file 'doconce_program.sh' and puts the
-contents inside '!bc shpro' and '!ec' directives. In general,
-for a filename extension '.X', the environment becomes
-'!bc Xpro'. The second line copies
-text from 'doconce_program.sh' from the line containing the *regular
-expression* 'doconce clean' and up to, *but not including* the line
-with *the regular expression* '^doconce split_rst'. The copied text appears
-within '!bc shcod' and '!ec' directives. Also here, the filename
-extension ('.X') determines the environment ('!bc Xcod').
+The '@@@CODE' identifier must appear at the very beginning of the line.
+The first specification copies the complete file 'doconce_program.sh'.
+The second specification copies from the first line matching the *regular
+expression* 'doconce clean' up to, but not including the line
+matching the *regular expression* '^doconce split_rst'.
+The third specification behaves as the second, but the line matching
+the first regular expression is not copied (aimed at copying
+text between begin-end comment pair in the file).
+
+The copied line from file are in this example put inside '!bc shpro'
+and '!ec' directives, if a complete file is copied, while the
+directives become '!bc shcod' and '!ec' when a code snippet is copied
+from file. In general, for a filename extension '.X', the environment
+becomes '!bc Xpro' or '!bc Xcod' for a complete program or snippet,
+respectively. The enivorments ('Xcod' and 'Xpro') are only active
+for 'latex' and 'sphinx' outout.
 
 Important warnings:
 
@@ -34673,7 +34729,7 @@ recommend the following:
     typesetting for other formats. In this way, one can also allow
     advanced LaTeX features and fine tuning of resulting PDF document.
 
-*LaTeX Newcommands.* Text...
+*LaTeX Newcommands.* Text missing...
 Figures and Movies
 Figures and movies have almost equal syntax::
 
@@ -34978,17 +35034,24 @@ Computer code can also be copied from a file::
 
          @@@CODE doconce_program.sh
          @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
+         @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
 
-The C{@@@CODE} identifier must appear at the beginning of the line.
-The first line copies the complete file C{doconce_program.sh} and puts the
-contents inside C{!bc shpro} and C{!ec} directives. In general,
-for a filename extension C{.X}, the environment becomes
-C{!bc Xpro}. The second line copies
-text from C{doconce_program.sh} from the line containing the I{regular
-expression} C{doconce clean} and up to, I{but not including} the line
-with I{the regular expression} C{^doconce split_rst}. The copied text appears
-within C{!bc shcod} and C{!ec} directives. Also here, the filename
-extension (C{.X}) determines the environment (C{!bc Xcod}).
+The C{@@@CODE} identifier must appear at the very beginning of the line.
+The first specification copies the complete file C{doconce_program.sh}.
+The second specification copies from the first line matching the I{regular
+expression} C{doconce clean} up to, but not including the line
+matching the I{regular expression} C{^doconce split_rst}.
+The third specification behaves as the second, but the line matching
+the first regular expression is not copied (aimed at copying
+text between begin-end comment pair in the file).
+
+The copied line from file are in this example put inside C{!bc shpro}
+and C{!ec} directives, if a complete file is copied, while the
+directives become C{!bc shcod} and C{!ec} when a code snippet is copied
+from file. In general, for a filename extension C{.X}, the environment
+becomes C{!bc Xpro} or C{!bc Xcod} for a complete program or snippet,
+respectively. The enivorments (C{Xcod} and C{Xpro}) are only active
+for C{latex} and C{sphinx} outout.
 
 Important warnings:
 
@@ -35066,7 +35129,7 @@ recommend the following:
     typesetting for other formats. In this way, one can also allow
     advanced LaTeX features and fine tuning of resulting PDF document.
 
-I{LaTeX Newcommands.} Text...
+I{LaTeX Newcommands.} Text missing...
 
 
 Figures and Movies
@@ -35409,17 +35472,24 @@ Computer code can also be copied from a file::
 
          @@@CODE doconce_program.sh
          @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
+         @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
 
-The @@@CODE identifier must appear at the beginning of the line.
-The first line copies the complete file doconce_program.sh and puts the
-contents inside !bc shpro and !ec directives. In general,
-for a filename extension .X, the environment becomes
-  !bc Xpro. The second line copies
-text from doconce_program.sh from the line containing the *regular
-expression* doconce clean and up to, *but not including* the line
-with *the regular expression* ^doconce split_rst. The copied text appears
-within !bc shcod and !ec directives. Also here, the filename
-extension (.X) determines the environment (!bc Xcod).
+The @@@CODE identifier must appear at the very beginning of the line.
+The first specification copies the complete file doconce_program.sh.
+The second specification copies from the first line matching the *regular
+expression* doconce clean up to, but not including the line
+matching the *regular expression* ^doconce split_rst.
+The third specification behaves as the second, but the line matching
+the first regular expression is not copied (aimed at copying
+text between begin-end comment pair in the file).
+
+The copied line from file are in this example put inside !bc shpro
+and !ec directives, if a complete file is copied, while the
+directives become !bc shcod and !ec when a code snippet is copied
+from file. In general, for a filename extension .X, the environment
+becomes !bc Xpro or !bc Xcod for a complete program or snippet,
+respectively. The enivorments (Xcod and Xpro) are only active
+for latex and sphinx outout.
 
 Important warnings:
 
@@ -35500,7 +35570,7 @@ recommend the following:
     typesetting for other formats. In this way, one can also allow
     advanced LaTeX features and fine tuning of resulting PDF document.
 
-*LaTeX Newcommands.* Text...
+*LaTeX Newcommands.* Text missing...
 
 
 Figures and Movies
@@ -36058,18 +36128,18 @@ Overfull \hbox (55.19026pt too wide) in paragraph at lines 547--552
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [8] [9] [10]
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 730--738
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 729--737
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 [11]
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 750--753
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 749--752
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [12] [13]
-Overfull \hbox (21.15628pt too wide) in paragraph at lines 911--915
+Overfull \hbox (21.15628pt too wide) in paragraph at lines 910--914
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [14] [15]
-Overfull \hbox (22.94165pt too wide) in paragraph at lines 1026--1036
+Overfull \hbox (22.94165pt too wide) in paragraph at lines 1025--1035
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
 OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
 hv/m/n/10 .
@@ -36192,18 +36262,18 @@ Overfull \hbox (55.19026pt too wide) in paragraph at lines 547--552
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [8] [9] [10]
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 730--738
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 729--737
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 [11]
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 750--753
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 749--752
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [12] [13]
-Overfull \hbox (21.15628pt too wide) in paragraph at lines 911--915
+Overfull \hbox (21.15628pt too wide) in paragraph at lines 910--914
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [14] [15]
-Overfull \hbox (22.94165pt too wide) in paragraph at lines 1026--1036
+Overfull \hbox (22.94165pt too wide) in paragraph at lines 1025--1035
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
 OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
 hv/m/n/10 .
@@ -37315,55 +37385,55 @@ Overfull \hbox (11.00006pt too wide) in paragraph at lines 841--841
 Overfull \hbox (53.00006pt too wide) in paragraph at lines 842--844
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 892--893
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 890--891
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 894--894
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 892--892
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
 [9]
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 919--927
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 917--925
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.sh
 
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 940--943
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 938--941
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 944--947
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 942--945
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [10]
-Overfull \hbox (31.15843pt too wide) in paragraph at lines 1058--1062
+Overfull \hbox (31.15843pt too wide) in paragraph at lines 1056--1060
 []\T1/ptm/m/n/10 You can then open a new wiki page for your Google Code project
 , copy the \T1/pcr/m/n/10 mydoc.gwiki
 [11]
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1077--1088
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1075--1086
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1132--1132
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1130--1130
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1142--1143
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1140--1141
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
 [12]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1175--1176
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1173--1174
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1180--1180
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1178--1178
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 
-Overfull \hbox (185.00006pt too wide) in paragraph at lines 1202--1203
+Overfull \hbox (185.00006pt too wide) in paragraph at lines 1200--1201
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
 s/trunk/docutils  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1212--1215
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1210--1213
 []\T1/pcr/m/n/10 sudo apt-get install unovonv libreoffice libreoffice-dmaths 
 [13]
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 1241--1242
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 1239--1240
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
 [14] (./tutorial.rst.aux)
@@ -37418,7 +37488,7 @@ output in tutorial.epytext
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
 [tutorial.xml (plain): 14 pages on 14 sheets]
 [Total: 14 pages on 14 sheets] saved into the file `tutorial.xml.ps'
-[383 lines wrapped]
+[382 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -37546,8 +37616,8 @@ preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1258: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1258: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1256: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1256: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
 writing additional files... (0 module code pages) genindex search
 copying images... [ 33%] figs/wavepacket_0001.png
 copying images... [ 66%] figs/wavepacket_0010.png
@@ -37816,7 +37886,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (49 pages, 373064 bytes).
+Output written on DoconceManual.pdf (49 pages, 372290 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -37998,7 +38068,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (49 pages, 397107 bytes).
+Output written on DoconceManual.pdf (49 pages, 396333 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -38180,7 +38250,7 @@ ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 live/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (49 pages, 397107 bytes).
+Output written on DoconceManual.pdf (49 pages, 396333 bytes).
 Transcript written on DoconceManual.log.
 makeindex -s python.ist 'DoconceManual.idx'
 This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
@@ -38369,7 +38439,7 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (51 pages, 406689 bytes).
+Output written on DoconceManual.pdf (51 pages, 405915 bytes).
 Transcript written on DoconceManual.log.
 pdflatex  'DoconceManual.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -38550,7 +38620,7 @@ live/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (51 pages, 407103 bytes).
+Output written on DoconceManual.pdf (51 pages, 406329 bytes).
 Transcript written on DoconceManual.log.
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
 + cd ../../..
@@ -38727,302 +38797,302 @@ Overfull \hbox (11.00006pt too wide) in paragraph at lines 605--605
 Overfull \hbox (53.00006pt too wide) in paragraph at lines 606--608
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
 [6]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 656--657
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 654--655
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 658--658
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 656--656
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
 
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 683--691
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 681--689
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.sh
 
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 704--707
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 702--705
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 [7]
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 708--711
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 706--709
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [8]
-Overfull \hbox (31.15843pt too wide) in paragraph at lines 822--826
+Overfull \hbox (31.15843pt too wide) in paragraph at lines 820--824
 []\T1/ptm/m/n/10 You can then open a new wiki page for your Google Code project
 , copy the \T1/pcr/m/n/10 mydoc.gwiki
 
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 841--852
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 839--850
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [9] [10]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 986--990
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 984--988
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1015--1018
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1013--1016
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1030--1030
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1028--1028
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1048--1048
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1046--1046
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 [11]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1088--1089
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1086--1087
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1134--1137
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1132--1135
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
 [12] <figs/streamtubes.eps>
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1175--1178
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1173--1176
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 [13]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1203--1206
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1201--1204
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1208--1212
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1206--1210
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1213--1219
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1211--1217
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 14 un
-defined on input line 1231.
+defined on input line 1229.
 
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1229--1232
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1227--1230
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1257--1260
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1255--1258
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1270--1272
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1268--1270
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1291--1294
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1289--1292
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 [14]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1348--1351
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1346--1349
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 15 undef
-ined on input line 1370.
+ined on input line 1368.
 
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 15 undef
-ined on input line 1374.
+ined on input line 1372.
 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1362--1375
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1360--1373
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1388--1388
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1386--1386
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1389--1391
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1387--1389
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 [15]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1414--1416
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1412--1414
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
 
 LaTeX Warning: Hyper reference `fig-viz' on page 16 undefined on input line 143
-2.
+0.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 16 u
-ndefined on input line 1434.
+ndefined on input line 1432.
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 16 undefined on inp
-ut line 1434.
+ut line 1432.
 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1430--1439
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1428--1437
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-LaTeX Warning: Hyper reference `id5' on page 16 undefined on input line 1441.
+LaTeX Warning: Hyper reference `id5' on page 16 undefined on input line 1439.
 
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1440--1442
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1438--1440
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1465--1468
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1463--1466
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1483--1486
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1481--1484
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 [16]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1514--1514
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1512--1512
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1515--1515
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1513--1513
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 1539--1541
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 1537--1539
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1542--1545
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1540--1543
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [17]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1659--1660
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1657--1658
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 [18]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 1733--1736
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 1731--1734
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
 [19]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1809--1811
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1811--1813
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
 [20] [21]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1927--1927
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1929--1929
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
   
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1928--1928
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1930--1930
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g 
  
 
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 1972--1975
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 1974--1977
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 [22]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2009--2009
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2011--2011
 []\T1/pcr/m/n/10 \Ddt{\vec u} &=& {\mbox{\boldmath $Q$}} \thinspace .    label{
 my:eq2}  
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2025--2037
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2027--2039
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
 <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [23] [24]
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 25 undef
-ined on input line 2067.
+ined on input line 2069.
 
 [25]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2115--2115
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2117--2117
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [26]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2194--2196
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2196--2198
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2256--2258
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2258--2260
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
 [27]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2364--2365
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2366--2367
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2366--2368
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2368--2370
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
 [28]
 
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 29 un
-defined on input line 2480.
+defined on input line 2482.
 
 [29] [30] [31]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2726--2729
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2728--2731
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2767--2768
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2769--2770
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2769--2769
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2771--2771
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2770--2770
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2772--2772
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2773--2773
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2775--2775
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2774--2774
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2776--2776
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2775--2775
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2777--2777
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 2776--2776
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 2778--2778
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 2781--2781
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 2783--2783
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2782--2782
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2784--2784
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2783--2783
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2785--2785
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2786--2786
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2788--2788
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 2789--2789
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 2791--2791
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 [32]
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 2791--2791
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 2793--2793
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2794--2794
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2796--2796
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2801--2801
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2803--2803
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2803--2803
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2805--2805
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2805--2805
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2807--2807
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2808--2808
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2810--2810
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2814--2814
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2816--2816
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 [33]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2855--2855
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2857--2857
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2857--2857
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2859--2859
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2858--2858
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2860--2860
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2859--2859
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2861--2861
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2860--2860
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2862--2862
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 [34] [35] (./manual.rst.aux)
@@ -39183,265 +39253,265 @@ Overfull \hbox (11.00006pt too wide) in paragraph at lines 605--605
 Overfull \hbox (53.00006pt too wide) in paragraph at lines 606--608
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
 [6]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 656--657
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 654--655
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 658--658
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 656--656
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
 
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 683--691
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 681--689
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.sh
 
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 704--707
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 702--705
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 [7]
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 708--711
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 706--709
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [8]
-Overfull \hbox (31.15843pt too wide) in paragraph at lines 822--826
+Overfull \hbox (31.15843pt too wide) in paragraph at lines 820--824
 []\T1/ptm/m/n/10 You can then open a new wiki page for your Google Code project
 , copy the \T1/pcr/m/n/10 mydoc.gwiki
 
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 841--852
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 839--850
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [9] [10]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 986--990
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 984--988
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1015--1018
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1013--1016
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1030--1030
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1028--1028
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1048--1048
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1046--1046
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 [11]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1088--1089
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1086--1087
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1134--1137
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1132--1135
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
 [12] <figs/streamtubes.eps>
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1175--1178
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1173--1176
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 [13]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1203--1206
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1201--1204
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1208--1212
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1206--1210
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1213--1219
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1211--1217
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1229--1232
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1227--1230
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1257--1260
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1255--1258
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1270--1272
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1268--1270
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1291--1294
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1289--1292
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 [14]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1348--1351
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1346--1349
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1362--1375
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1360--1373
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1388--1388
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1386--1386
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1389--1391
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1387--1389
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 [15]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1414--1416
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1412--1414
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1430--1439
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1428--1437
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1440--1442
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1438--1440
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1465--1468
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1463--1466
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1483--1486
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1481--1484
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 [16]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1514--1514
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1512--1512
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1515--1515
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1513--1513
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 1539--1541
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 1537--1539
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1542--1545
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1540--1543
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [17]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1659--1660
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1657--1658
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 [18]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 1733--1736
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 1731--1734
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
 [19]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1809--1811
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1811--1813
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
 [20] [21]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1927--1927
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1929--1929
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
   
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1928--1928
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1930--1930
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g 
  
 
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 1972--1975
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 1974--1977
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 [22]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2009--2009
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2011--2011
 []\T1/pcr/m/n/10 \Ddt{\vec u} &=& {\mbox{\boldmath $Q$}} \thinspace .    label{
 my:eq2}  
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2025--2037
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2027--2039
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
 <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [23] [24] [25]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2115--2115
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2117--2117
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [26]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2194--2196
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2196--2198
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2256--2258
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2258--2260
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
 [27]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2364--2365
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2366--2367
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2366--2368
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2368--2370
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
 [28] [29] [30] [31]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2726--2729
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2728--2731
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2767--2768
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2769--2770
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 2769--2769
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 2771--2771
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2770--2770
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2772--2772
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2773--2773
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2775--2775
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2774--2774
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2776--2776
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2775--2775
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2777--2777
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 2776--2776
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 2778--2778
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 2781--2781
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 2783--2783
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2782--2782
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2784--2784
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2783--2783
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2785--2785
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2786--2786
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2788--2788
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 2789--2789
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 2791--2791
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 [32]
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 2791--2791
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 2793--2793
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2794--2794
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2796--2796
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2801--2801
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2803--2803
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2803--2803
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2805--2805
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2805--2805
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2807--2807
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2808--2808
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2810--2810
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 2814--2814
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2816--2816
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 [33]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2855--2855
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2857--2857
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2857--2857
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2859--2859
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2858--2858
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2860--2860
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2859--2859
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2861--2861
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 2860--2860
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2862--2862
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 [34] [35] (./manual.rst.aux) )
@@ -39612,57 +39682,64 @@ Overfull \hbox (53.0808pt too wide) in paragraph at lines 398--403
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [6] [7] [8]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 581--589
+Overfull \hbox (1.943pt too wide) in paragraph at lines 580--588
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 [9]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 601--604
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 600--603
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [10] [11] [12] [13] [14] <figs/streamtubes.eps> [15] [16]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 17 undefined on input li
-ne 1071.
+ne 1070.
 
 
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1079--1082
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1078--1081
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [17]
 
 LaTeX Warning: Reference `doconce2formats' on page 18 undefined on input line 1
-188.
+187.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 18 undefined on input line 1
-192.
+191.
 
 [18]
 
-LaTeX Warning: Reference `fig:viz' on page 19 undefined on input line 1243.
+LaTeX Warning: Reference `fig:viz' on page 19 undefined on input line 1242.
 
 
-LaTeX Warning: Reference `mathtext' on page 19 undefined on input line 1245.
+LaTeX Warning: Reference `mathtext' on page 19 undefined on input line 1244.
 
 
-LaTeX Warning: Reference `newcommands' on page 19 undefined on input line 1245.
+LaTeX Warning: Reference `newcommands' on page 19 undefined on input line 1244.
 
 
 
-LaTeX Warning: Reference `my:eq1' on page 19 undefined on input line 1247.
+LaTeX Warning: Reference `my:eq1' on page 19 undefined on input line 1246.
 
 
-LaTeX Warning: Reference `my:eq2' on page 19 undefined on input line 1247.
+LaTeX Warning: Reference `my:eq2' on page 19 undefined on input line 1246.
 
 
 LaTeX Warning: Reference `inline:tagging' on page 19 undefined on input line 12
-52.
+51.
 
 [19]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1339--1341
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1338--1340
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
+
+LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
+342.
+
+
+LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1342.
+
 
 LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
 343.
@@ -39670,42 +39747,35 @@ LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1343.
 
-
-LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
-344.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1344.
-
 [20] [21] (./manual.out.pyg [22]) (./manual.out.pyg) (./manual.out.pyg [23])
-(./manual.out.pyg)
+(./manual.out.pyg) [24]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1648.
+(amsmath)                 on input line 1664.
 
-[24]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1686--1688
+
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1702--1704
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [25] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps>
 
 LaTeX Warning: Reference `doconce2formats' on page 26 undefined on input line 1
-790.
+806.
 
 [26] [27] [28]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
 [29] [30] [31]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 32 undefined on input li
-ne 2072.
+ne 2075.
 
 [32] [33] [34] [35]
 No file manual.bbl.
@@ -39719,7 +39789,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (36 pages, 153484 bytes).
+Output written on manual.dvi (36 pages, 153640 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -39825,22 +39895,29 @@ Overfull \hbox (53.0808pt too wide) in paragraph at lines 398--403
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [6] [7] [8]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 581--589
+Overfull \hbox (1.943pt too wide) in paragraph at lines 580--588
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 [9]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 601--604
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 600--603
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [10] [11] [12] [13] [14] <figs/streamtubes.eps> [15] [16]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1079--1082
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1078--1081
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [17] [18] [19]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1339--1341
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1338--1340
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
+
+LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
+342.
+
+
+LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1342.
+
 
 LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
 343.
@@ -39848,30 +39925,23 @@ LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1343.
 
-
-LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
-344.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1344.
-
 [20] [21] (./manual.out.pyg [22]) (./manual.out.pyg) (./manual.out.pyg [23])
-(./manual.out.pyg)
+(./manual.out.pyg) [24]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1648.
+(amsmath)                 on input line 1664.
 
-[24]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1686--1688
+
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1702--1704
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [25] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [26] [27] [28]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -39884,7 +39954,7 @@ LaTeX Warning: There were undefined references.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (36 pages, 160616 bytes).
+Output written on manual.dvi (36 pages, 160772 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -40002,22 +40072,29 @@ Overfull \hbox (53.0808pt too wide) in paragraph at lines 398--403
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [6] [7] [8]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 581--589
+Overfull \hbox (1.943pt too wide) in paragraph at lines 580--588
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 [9]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 601--604
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 600--603
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [10] [11] [12] [13] [14] <figs/streamtubes.eps> [15] [16]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1079--1082
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1078--1081
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [17] [18] [19]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1339--1341
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1338--1340
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
+
+LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
+342.
+
+
+LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1342.
+
 
 LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
 343.
@@ -40025,30 +40102,23 @@ LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1343.
 
-
-LaTeX Warning: Citation `Python:Primer:09' on page 20 undefined on input line 1
-344.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 20 undefined on input line 1344.
-
 [20] [21] (./manual.out.pyg [22]) (./manual.out.pyg) (./manual.out.pyg [23])
-(./manual.out.pyg)
+(./manual.out.pyg) [24]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1648.
+(amsmath)                 on input line 1664.
 
-[24]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1686--1688
+
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1702--1704
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [25] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [26] [27] [28]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -40062,7 +40132,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (37 pages, 167400 bytes).
+Output written on manual.dvi (37 pages, 167556 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -40168,46 +40238,46 @@ Overfull \hbox (53.0808pt too wide) in paragraph at lines 398--403
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [6] [7] [8]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 581--589
+Overfull \hbox (1.943pt too wide) in paragraph at lines 580--588
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.sh
 [9]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 601--604
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 600--603
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [10] [11] [12] [13] [14] <figs/streamtubes.eps> [15] [16]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1079--1082
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1078--1081
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [17] [18] [19]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1339--1341
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1338--1340
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
 [20] [21] (./manual.out.pyg [22]) (./manual.out.pyg) (./manual.out.pyg [23])
-(./manual.out.pyg)
+(./manual.out.pyg) [24]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1648.
+(amsmath)                 on input line 1664.
 
-[24]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1686--1688
+
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 1702--1704
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
 [25] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [26] [27] [28]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 1894--1901
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 1897--1904
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
 [29] [30] [31] [32] [33] [34] [35] (./manual.bbl) (./manual.ind [36] [37])
 (./manual.aux) )
 (see the transcript file for additional information)
-Output written on manual.dvi (37 pages, 168396 bytes).
+Output written on manual.dvi (37 pages, 168552 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt
@@ -40355,29 +40425,35 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (./quickref.pyg) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1] [2]
-Overfull \hbox (1.58644pt too wide) in paragraph at lines 195--206
-\OT1/phv/m/n/10 ment be-comes []bc Xpro!. The sec-ond line copies text from []\
-OT1/cmtt/m/n/10 doconce_program.sh
+Overfull \hbox (4.40137pt too wide) in paragraph at lines 198--207
+\OT1/phv/m/n/10 fi-ca-tion copies from the first line match-ing the \OT1/phv/m/
+sl/10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 doconce clean
+
+Overfull \hbox (27.8928pt too wide) in paragraph at lines 198--207
+\OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
+/10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 ^doconce split_rst\OT1/phv/m/n/10
+ .
 [3]
-Overfull \hbox (12.54659pt too wide) in paragraph at lines 277--286
+Overfull \hbox (12.54659pt too wide) in paragraph at lines 286--295
 \OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally []\OT1/cmt
 t/m/n/10 # #ifdef format == "latex"\OT1/phv/m/n/10 )
+[4]
 
-LaTeX Warning: Reference `quick:sections' on page 4 undefined on input line 315
+LaTeX Warning: Reference `quick:sections' on page 5 undefined on input line 324
 .
 
-[4]
-Overfull \hbox (60.6356pt too wide) in paragraph at lines 385--391
+[5]
+Overfull \hbox (60.6356pt too wide) in paragraph at lines 394--400
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
 \OT1/cmtt/m/n/10 name \OT1/phv/m/n/10 on the form []\OT1/cmtt/m/n/10 Author1_Au
 thor2_YYYY\OT1/phv/m/n/10 ,
-[5]
-Overfull \hbox (82.96643pt too wide) in paragraph at lines 392--399
+
+Overfull \hbox (82.96643pt too wide) in paragraph at lines 401--408
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib,name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
-(./quickref.out.pyg [6])
+(./quickref.out.pyg [6]) [7]
 No file quickref.ind.
-[7] (./quickref.aux)
+[8] (./quickref.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -40386,7 +40462,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (7 pages, 30884 bytes).
+Output written on quickref.dvi (8 pages, 32080 bytes).
 Transcript written on quickref.log.
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -40472,27 +40548,32 @@ Writing index file quickref.idx
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1] [2]
-Overfull \hbox (1.58644pt too wide) in paragraph at lines 195--206
-\OT1/phv/m/n/10 ment be-comes []bc Xpro!. The sec-ond line copies text from []\
-OT1/cmtt/m/n/10 doconce_program.sh
+Overfull \hbox (4.40137pt too wide) in paragraph at lines 198--207
+\OT1/phv/m/n/10 fi-ca-tion copies from the first line match-ing the \OT1/phv/m/
+sl/10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 doconce clean
+
+Overfull \hbox (27.8928pt too wide) in paragraph at lines 198--207
+\OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
+/10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 ^doconce split_rst\OT1/phv/m/n/10
+ .
 [3]
-Overfull \hbox (12.54659pt too wide) in paragraph at lines 277--286
+Overfull \hbox (12.54659pt too wide) in paragraph at lines 286--295
 \OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally []\OT1/cmt
 t/m/n/10 # #ifdef format == "latex"\OT1/phv/m/n/10 )
-[4]
-Overfull \hbox (60.6356pt too wide) in paragraph at lines 385--391
+[4] [5]
+Overfull \hbox (60.6356pt too wide) in paragraph at lines 394--400
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
 \OT1/cmtt/m/n/10 name \OT1/phv/m/n/10 on the form []\OT1/cmtt/m/n/10 Author1_Au
 thor2_YYYY\OT1/phv/m/n/10 ,
-[5]
-Overfull \hbox (82.96643pt too wide) in paragraph at lines 392--399
+
+Overfull \hbox (82.96643pt too wide) in paragraph at lines 401--408
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib,name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
-(./quickref.out.pyg [6])
+(./quickref.out.pyg [6]) [7]
 No file quickref.ind.
-[7] (./quickref.aux) )
+[8] (./quickref.aux) )
 (see the transcript file for additional information)
-Output written on quickref.dvi (7 pages, 32416 bytes).
+Output written on quickref.dvi (8 pages, 33612 bytes).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref
@@ -40721,123 +40802,131 @@ Overfull \hbox (119.00006pt too wide) in paragraph at lines 271--274
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
 [2]
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 287--289
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 291--291
 []\T1/pcr/m/n/10 @@@CODE doconce_program.sh  fromto: doconce clean@^doconce spl
-it_rst 
+it_rst  
 
-Overfull \hbox (8.347pt too wide) in paragraph at lines 308--311
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 292--294
+[]\T1/pcr/m/n/10 @@@CODE doconce_program.sh  from-to: doconce clean@^doconce sp
+lit_rst 
+
+Overfull \hbox (6.12766pt too wide) in paragraph at lines 296--304
+\T1/ptm/m/n/10 to, but not in-clud-ing the line match-ing the \T1/ptm/m/it/10 r
+eg-u-lar ex-pres-sion \T1/pcr/m/n/10 ^doconce split_rst\T1/ptm/m/n/10 .
+
+Overfull \hbox (8.347pt too wide) in paragraph at lines 319--322
 \T1/ptm/m/n/10 cess-ful out-put in re-Struc-tred-Text), not di-rectly af-ter a 
 sec-tion/paragraph
 [3]
-Overfull \hbox (12.58893pt too wide) in paragraph at lines 383--385
+Overfull \hbox (12.58893pt too wide) in paragraph at lines 394--396
 []\T1/ptm/m/n/10 Use only the equa-tion en-vi-ron-ments \T1/pcr/m/n/10 \[\T1/pt
 m/m/n/10 , \T1/pcr/m/n/10 \]\T1/ptm/m/n/10 , \T1/pcr/m/n/10 equation\T1/ptm/m/n
 /10 , \T1/pcr/m/n/10 equation*\T1/ptm/m/n/10 ,
 
-Overfull \hbox (449.00006pt too wide) in paragraph at lines 420--421
+Overfull \hbox (449.00006pt too wide) in paragraph at lines 431--432
 \T1/pcr/m/n/10 FIGURE: [relative/path/to/figurefile, width=500] Here goes the c
 aption which must be on a single line. label{some:fig:label}  
 
-Overfull \hbox (437.00006pt too wide) in paragraph at lines 423--425
+Overfull \hbox (437.00006pt too wide) in paragraph at lines 434--436
 []\T1/pcr/m/n/10 MOVIE: [relative/path/to/moviefile, width=500] Here goes the c
 aption which must be on a single line. label{some:fig:label} 
 
 LaTeX Warning: Hyper reference `section-types' on page 4 undefined on input lin
-e 447.
+e 458.
 
-
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 450--451
+[4]
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 461--462
 \T1/pcr/m/n/10 |----------------c--------|------------------c------------------
 --|  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 452--452
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 463--463
 []\T1/pcr/m/n/10 |      Section type       |        Syntax                     
     |  
-[4]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 453--453
+
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 464--464
 []\T1/pcr/m/n/10 |----------------l--------|------------------l----------------
 ----|  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 454--454
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 465--465
 []\T1/pcr/m/n/10 | chapter                 | `========= Heading ========` (9 `=
 `)  |  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 455--455
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 466--466
 []\T1/pcr/m/n/10 | section                 | `======= Heading =======`    (7 `=
 `)  |  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 456--456
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 467--467
 []\T1/pcr/m/n/10 | subsection              | `===== Heading =====`        (5 `=
 `)  |  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 457--457
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 468--468
 []\T1/pcr/m/n/10 | subsubsection           | `=== Heading ===`            (3 `=
 `)  |  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 458--458
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 469--469
 []\T1/pcr/m/n/10 | paragraph               | `__Heading.__`               (2 `_
 `)  |  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 459--461
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 470--472
 []\T1/pcr/m/n/10 |-------------------------------------------------------------
 ----| 
 
-Overfull \hbox (54.34767pt too wide) in paragraph at lines 532--537
+Overfull \hbox (54.34767pt too wide) in paragraph at lines 543--548
 \T1/ptm/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have \T1
 /pcr/m/n/10 name \T1/ptm/m/n/10 on the form \T1/pcr/m/n/10 Author1_Author2_YYYY
 \T1/ptm/m/n/10 ,
-
-Overfull \hbox (37.56873pt too wide) in paragraph at lines 538--546
+[5]
+Overfull \hbox (37.56873pt too wide) in paragraph at lines 549--557
 []\T1/ptm/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/pcr/m/n/10 B
 IBFILE: name_bib.bib, name_bib.rst,
-[5]
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 576--577
+
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 587--588
 \T1/pcr/m/n/10 doconce format html|latex|rst|sphinx|st|epytext|plain|gwiki|pand
 oc file.do.txt  
 
-Overfull \hbox (197.00006pt too wide) in paragraph at lines 579--579
+Overfull \hbox (197.00006pt too wide) in paragraph at lines 590--590
 []\T1/pcr/m/n/10 doconce subst [-s -m -x --restore] regex-pattern regex-replace
 ment file1 file2 ...  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 580--580
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 591--591
 []\T1/pcr/m/n/10 (-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier
 ,  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 581--581
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 592--592
 [] \T1/pcr/m/n/10 -x is the re.VERBOSE modifier, --restore copies backup files 
 back again)  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 584--584
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 595--595
 []\T1/pcr/m/n/10 doconce replace_from_file file-with-from-to file1 file2 ...  
 
-Overfull \hbox (455.00006pt too wide) in paragraph at lines 590--590
+Overfull \hbox (455.00006pt too wide) in paragraph at lines 601--601
 []\T1/pcr/m/n/10 doconce sphinx_dir author='Me and you' title='Quick title' ver
 sion=0.1 dirname=sphinx-rootdir theme=default file1 file2 file3  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 598--598
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 609--609
 []\T1/pcr/m/n/10 (remove all files that the doconce format can regenerate)  
 [6]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 606--608
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 617--619
 []\T1/pcr/m/n/10 doconce list_labels doconcefile.do.txt | latexfile.tex 
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 624--625
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 635--636
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 630--630
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 641--641
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 631--631
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 642--642
 []\T1/pcr/m/n/10 the area under a curve that defines half of the allipse.  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 634--634
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 645--645
 []\T1/pcr/m/n/10 __Hint 1.__ Wikipedia has the formula for the curve.  
 
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 636--636
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 647--647
 []\T1/pcr/m/n/10 __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perh
 aps  
-[7] (./quickref.rst.aux)
+[7] [8] (./quickref.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -40846,7 +40935,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (7 pages, 30824 bytes).
+Output written on quickref.rst.dvi (8 pages, 31940 bytes).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -40928,121 +41017,129 @@ Overfull \hbox (119.00006pt too wide) in paragraph at lines 271--274
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
 [2]
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 287--289
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 291--291
 []\T1/pcr/m/n/10 @@@CODE doconce_program.sh  fromto: doconce clean@^doconce spl
-it_rst 
+it_rst  
 
-Overfull \hbox (8.347pt too wide) in paragraph at lines 308--311
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 292--294
+[]\T1/pcr/m/n/10 @@@CODE doconce_program.sh  from-to: doconce clean@^doconce sp
+lit_rst 
+
+Overfull \hbox (6.12766pt too wide) in paragraph at lines 296--304
+\T1/ptm/m/n/10 to, but not in-clud-ing the line match-ing the \T1/ptm/m/it/10 r
+eg-u-lar ex-pres-sion \T1/pcr/m/n/10 ^doconce split_rst\T1/ptm/m/n/10 .
+
+Overfull \hbox (8.347pt too wide) in paragraph at lines 319--322
 \T1/ptm/m/n/10 cess-ful out-put in re-Struc-tred-Text), not di-rectly af-ter a 
 sec-tion/paragraph
 [3]
-Overfull \hbox (12.58893pt too wide) in paragraph at lines 383--385
+Overfull \hbox (12.58893pt too wide) in paragraph at lines 394--396
 []\T1/ptm/m/n/10 Use only the equa-tion en-vi-ron-ments \T1/pcr/m/n/10 \[\T1/pt
 m/m/n/10 , \T1/pcr/m/n/10 \]\T1/ptm/m/n/10 , \T1/pcr/m/n/10 equation\T1/ptm/m/n
 /10 , \T1/pcr/m/n/10 equation*\T1/ptm/m/n/10 ,
 
-Overfull \hbox (449.00006pt too wide) in paragraph at lines 420--421
+Overfull \hbox (449.00006pt too wide) in paragraph at lines 431--432
 \T1/pcr/m/n/10 FIGURE: [relative/path/to/figurefile, width=500] Here goes the c
 aption which must be on a single line. label{some:fig:label}  
 
-Overfull \hbox (437.00006pt too wide) in paragraph at lines 423--425
+Overfull \hbox (437.00006pt too wide) in paragraph at lines 434--436
 []\T1/pcr/m/n/10 MOVIE: [relative/path/to/moviefile, width=500] Here goes the c
 aption which must be on a single line. label{some:fig:label} 
-
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 450--451
+[4]
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 461--462
 \T1/pcr/m/n/10 |----------------c--------|------------------c------------------
 --|  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 452--452
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 463--463
 []\T1/pcr/m/n/10 |      Section type       |        Syntax                     
     |  
-[4]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 453--453
+
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 464--464
 []\T1/pcr/m/n/10 |----------------l--------|------------------l----------------
 ----|  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 454--454
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 465--465
 []\T1/pcr/m/n/10 | chapter                 | `========= Heading ========` (9 `=
 `)  |  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 455--455
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 466--466
 []\T1/pcr/m/n/10 | section                 | `======= Heading =======`    (7 `=
 `)  |  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 456--456
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 467--467
 []\T1/pcr/m/n/10 | subsection              | `===== Heading =====`        (5 `=
 `)  |  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 457--457
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 468--468
 []\T1/pcr/m/n/10 | subsubsection           | `=== Heading ===`            (3 `=
 `)  |  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 458--458
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 469--469
 []\T1/pcr/m/n/10 | paragraph               | `__Heading.__`               (2 `_
 `)  |  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 459--461
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 470--472
 []\T1/pcr/m/n/10 |-------------------------------------------------------------
 ----| 
 
-Overfull \hbox (54.34767pt too wide) in paragraph at lines 532--537
+Overfull \hbox (54.34767pt too wide) in paragraph at lines 543--548
 \T1/ptm/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have \T1
 /pcr/m/n/10 name \T1/ptm/m/n/10 on the form \T1/pcr/m/n/10 Author1_Author2_YYYY
 \T1/ptm/m/n/10 ,
-
-Overfull \hbox (37.56873pt too wide) in paragraph at lines 538--546
+[5]
+Overfull \hbox (37.56873pt too wide) in paragraph at lines 549--557
 []\T1/ptm/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/pcr/m/n/10 B
 IBFILE: name_bib.bib, name_bib.rst,
-[5]
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 576--577
+
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 587--588
 \T1/pcr/m/n/10 doconce format html|latex|rst|sphinx|st|epytext|plain|gwiki|pand
 oc file.do.txt  
 
-Overfull \hbox (197.00006pt too wide) in paragraph at lines 579--579
+Overfull \hbox (197.00006pt too wide) in paragraph at lines 590--590
 []\T1/pcr/m/n/10 doconce subst [-s -m -x --restore] regex-pattern regex-replace
 ment file1 file2 ...  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 580--580
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 591--591
 []\T1/pcr/m/n/10 (-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier
 ,  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 581--581
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 592--592
 [] \T1/pcr/m/n/10 -x is the re.VERBOSE modifier, --restore copies backup files 
 back again)  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 584--584
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 595--595
 []\T1/pcr/m/n/10 doconce replace_from_file file-with-from-to file1 file2 ...  
 
-Overfull \hbox (455.00006pt too wide) in paragraph at lines 590--590
+Overfull \hbox (455.00006pt too wide) in paragraph at lines 601--601
 []\T1/pcr/m/n/10 doconce sphinx_dir author='Me and you' title='Quick title' ver
 sion=0.1 dirname=sphinx-rootdir theme=default file1 file2 file3  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 598--598
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 609--609
 []\T1/pcr/m/n/10 (remove all files that the doconce format can regenerate)  
 [6]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 606--608
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 617--619
 []\T1/pcr/m/n/10 doconce list_labels doconcefile.do.txt | latexfile.tex 
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 624--625
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 635--636
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 630--630
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 641--641
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 631--631
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 642--642
 []\T1/pcr/m/n/10 the area under a curve that defines half of the allipse.  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 634--634
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 645--645
 []\T1/pcr/m/n/10 __Hint 1.__ Wikipedia has the formula for the curve.  
 
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 636--636
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 647--647
 []\T1/pcr/m/n/10 __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perh
 aps  
-[7] (./quickref.rst.aux) )
+[7] [8] (./quickref.rst.aux) )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (7 pages, 32060 bytes).
+Output written on quickref.rst.dvi (8 pages, 33180 bytes).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref

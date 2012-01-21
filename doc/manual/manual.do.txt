@@ -837,6 +837,8 @@ void myfunc(double* x, const double& myarr) {
 }
 !ec
 
+# When showing copy from file in !bc envir, intent a character - otherwise
+# ptex2tex is confused and starts copying...
 Computer code can be copied directly from a file, if desired. The syntax
 is then
 !bc
@@ -876,7 +878,7 @@ Note that the "to" line is not copied into the Doconce file, but the
 `from-to` ("from with minus"). This allows for copying very similar
 code segments throughout a file, while still distinguishing between them.
 Copying the second set of parameters from the text
-!bc
+!bc cod
 # --- Start Example 1 ---
 c = -1
 A = 2
