@@ -22,7 +22,7 @@ Automatically generated HTML file from Doconce source
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Jan 5, 2012</h3></center>
+<center><h3>Jan 21, 2012</h3></center>
 <P>
 
 <P>
@@ -46,11 +46,13 @@ Doconce is two things:
     including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags
     are removed for clear reading in, e.g., emails). From reST you can
-    go to XML, HTML, LaTeX, PDF, OpenOffice, and from the latter to
-    RTF and MS Word.  (An experimental translator to Pandoc is under
-    development, and from Pandoc one can generate Markdown, reST,
-    LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU Texinfo, MediaWiki,
-    RTF, Groff, and other formats.)
+    (via <tt>rst2*</tt> programs) go to XML, HTML, LaTeX, PDF, OpenOffice,
+    and from the latter (via <tt>unoconv</tt>) to RTF, numerous MS Word
+    formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
+    XHTML. (An experimental translator to Pandoc is under development,
+    and from Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF,
+    DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
+    other formats.)
  <li> Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
     a number of different destinations of diverse type (software
@@ -123,20 +125,139 @@ when transformed to other formats.
 <P>
 
 <P>
-<h3>Dependencies</h3>
+<h3>Dependencies and Installation</h3>
 <P>
-If you make use of preprocessor directives in the Doconce source,
-either <a href="http://code.google.com/p/preprocess">Preprocess</a> or <a href="http://www.makotemplates.org">Mako</a> must be installed.  To make LaTeX
-documents (without going through the reStructuredText format) you also
-need <a href="http://code.google.com/p/ptex2tex">ptex2tex</a> and some style
-files that <tt>ptex2tex</tt> potentially makes use of.  Going from
-reStructuredText to formats such as XML, OpenOffice, HTML, and LaTeX
-requires <a href="http://docutils.sourceforge.net">docutils</a>.  Making Sphinx
-documents requires of course <a href="http://sphinx.pocoo.org">Sphinx</a>.
-All of the mentioned potential dependencies are pure Python packages
-which are easily installed.
-If translation to <a href="http://johnmacfarlane.net/pandoc/">Pandoc</a> is desired,
-the Pandoc Haskell program must of course be installed.
+Doconce itself is pure Python code hosted at <a href="http://code.google.com/p/doconce"><tt>http://code.google.com/p/doconce</tt></a>.  Its installation from the
+Mercurial (<tt>hg</tt>) source follows the standard procedure:
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+# Doconce
+hg clone https://doconce.googlecode.com/hg/ doconce
+cd doconce
+sudo python setup.py install
+cd ..
+</pre>
+</blockquote>   <! -- end verbatim block -->
+
+<P>
+If you make use of the <a href="http://code.google.com/p/preprocess">Preprocess</a>
+preprocessor, this program must be installed:
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+svn checkout http://preprocess.googlecode.com/svn/trunk/ preprocess
+cd preprocess
+cd doconce
+sudo python setup.py install
+cd ..
+</pre>
+</blockquote>   <! -- end verbatim block -->
+A much more advanced alternative to Preprocess is
+<a href="http://www.makotemplates.org">Mako</a>. Its installation is most
+conveniently done by <tt>pip</tt>,
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+pip install Mako
+</pre>
+</blockquote>   <! -- end verbatim block -->
+This command requires <tt>pip</tt> to be installed. On Debian Linux systems,
+such as Ubuntu, the installation is simply done by
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+sudo apt-get install python-pip
+</pre>
+</blockquote>   <! -- end verbatim block -->
+Alternatively, one can install from the <tt>pip</tt> <a href="http://pypi.python.org/pypi/pip">source code</a>.
+
+<P>
+To make LaTeX
+documents (without going through the reStructuredText format) you
+need <a href="http://code.google.com/p/ptex2tex">ptex2tex</a>, which is
+installed by
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
+cd ptex2tex
+sudo python setup.py install
+cd latex
+sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
+cd ../..
+</pre>
+</blockquote>   <! -- end verbatim block -->
+As seen, <tt>cp2texmf.sh</tt> copies some special stylefiles that
+that <tt>ptex2tex</tt> potentially makes use of. Some more standard stylefiles
+are also needed. These are installed by
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+sudo apt-get install texlive-latex-extra
+</pre>
+</blockquote>   <! -- end verbatim block -->
+on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
+the necessary stylefiles (if not, they can be found by googling and installed
+manually in the <tt>~/texmf/tex/latex/misc</tt> directory).
+
+<P>
+For <tt>rst</tt> output and further transformation to LaTeX, HTML, XML,
+OpenOffice, and so on, one needs <a href="http://docutils.sourceforge.net">docutils</a>.
+The installation can be done by
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
+cd docutils
+sudo python setup.py install
+cd ..
+</pre>
+</blockquote>   <! -- end verbatim block -->
+To use the OpenOffice suite you will typically on Debian systems install
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+sudo apt-get install unovonv libreoffice libreoffice-dmaths
+</pre>
+</blockquote>   <! -- end verbatim block -->
+
+<P>
+Output to <tt>sphinx</tt> requires of course <a href="http://sphinx.pocoo.org">Sphinx</a>,
+installed by
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+hg clone https://bitbucket.org/birkenfeld/sphinx
+cd sphinx
+sudo python setup.py install
+cd ..
+</pre>
+</blockquote>   <! -- end verbatim block -->
+
+<P>
+When the output format is <tt>epydoc</tt> one needs that program too, installed
+by
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc
+cd epydoc
+sudo make install
+cd ..
+</pre>
+</blockquote>   <! -- end verbatim block -->
+
+<P>
+Finally, translation to <tt>pandoc</tt> requires the
+<a href="http://johnmacfarlane.net/pandoc/">Pandoc</a> program to be installed.
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+sudo apt-get install pandoc
+</pre>
+</blockquote>   <! -- end verbatim block -->
+
+<P>
+<b>Remark.</b> Several of the packages above installed from source code
+are also available in Debian-based system through the
+<tt>apt-get install</tt> command. However, we recommend installation directly
+from the version control system repository as there might be important
+updates and bug fixes. For <tt>svn</tt> directories, go to the directory,
+run <tt>svn update</tt>, and then <tt>sudo python setup.py install</tt>. For
+Mercurial (<tt>hg</tt>) directories, go to the directory, run
+<tt>hg pull; hg update</tt>, and then <tt>sudo python setup.py install</tt>.
+Doconce itself is frequently updated so these commands should be
+run regularly.
 
 <P>
 
@@ -394,9 +515,40 @@ Terminal&gt; rst2xml.py   mydoc.rst &gt; mydoc.xml  # XML
 Terminal&gt; rst2odt.py   mydoc.rst &gt; mydoc.odt  # OpenOffice
 </pre>
 </blockquote>   <! -- end verbatim block -->
+
+<P>
 The OpenOffice file <tt>mydoc.odt</tt> can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
-That is, one can easily go from Doconce to Microsoft Word.
+However, it is more convenient to use the program <tt>unovonv</tt>
+to convert between the many formats OpenOffice supports <em>on the command line</em>.
+Run
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; unoconv --show
+</pre>
+</blockquote>   <! -- end verbatim block -->
+to see all the formats that are supported.
+For example, the following commands take
+<tt>mydoc.odt</tt> to Microsoft Office Open XML format,
+classic MS Word format, and PDF:
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; unoconv -f ooxml mydoc.odt
+Terminal&gt; unoconv -f doc mydoc.odt
+Terminal&gt; unoconv -f pdf mydoc.odt
+</pre>
+</blockquote>   <! -- end verbatim block -->
+
+<P>
+<b>Remark about Mathematical Typesetting.</b> At the time of this writing, there is no easy way to go from Doconce
+and LaTeX mathematics to reST and further to OpenOffice and the
+"MS Word world". Mathematics is only fully supported by <tt>latex</tt> as
+output and to a wide extent supported by the <tt>sphinx</tt> output format.
+
+<P>
+<!-- One possible way from Doconce to MS Word goes via <tt>latex</tt>, then -->
+<!-- <tt>texmacs</tt> (export as HTML), then saving with epiphany, and finally -->
+<!-- from OpenOffice to MS Word doc format. -->
 
 <P>
 <h3>Sphinx</h3>
@@ -536,6 +688,13 @@ make clean   # remove old versions
 make html
 </pre>
 </blockquote>   <! -- end verbatim block -->
+
+<P>
+Sphinx can generate a range of different formats:
+standalone HTML, HTML in separate directories with <tt>index.html</tt> files,
+a large single HTML file, JSON files, various help files (the qthelp, HTML,
+and Devhelp projects), epub, LaTeX, PDF (via LaTeX), pure text, man pages,
+and Texinfo files.
 
 <P>
 <b>Step 6.</b> View the result:
@@ -1008,7 +1167,7 @@ Links to files ending in <tt>.txt</tt>, <tt>.html</tt>, <tt>.pdf</tt>, <tt>.py</
 setup:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
-see the "Doconce Manual": "manual.do.txt"
+see the "Doconce Manual": "manual.do.txt".
 </pre>
 </blockquote>   <! -- end verbatim block -->
 which appears as see the <a href="manual.do.txt">Doconce Manual</a>.
@@ -1020,12 +1179,24 @@ the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
-URL: "manual.xml"
+URL: "manual.html"
 </pre>
 </blockquote>   <! -- end verbatim block -->
-<!-- These work as well: <a href="manual.xml"><tt>manual.xml</tt></a> <a href="manual.xml"><tt>manual.xml</tt></a> -->
-<!-- <a href="manual.xml"><tt>manual.xml</tt></a> -->
-resulting in the link <a href="manual.xml"><tt>manual.xml</tt></a>.
+resulting in the link <a href="manual.html"><tt>manual.html</tt></a>.
+
+<P>
+<!-- This is now automatically carried out by the autogenerated -->
+<!-- script for sphinx: -->
+<!-- For such local links to -->
+<!-- work with the <tt>sphinx</tt> format, the <tt>.rst</tt> file needs a fix, carried -->
+<!-- out by -->
+<!-- !bc sys -->
+<!-- doconce sphinxfix_localURLs mydoc.rst -->
+<!-- !ec -->
+<!-- (The files, such as <tt>manual.html</tt>, are then copied to a subdirectory -->
+<!-- <tt>_static</tt>, which must be manually copied to the Sphinx directory's -->
+<!-- <tt>_static</tt> directory - links in the <tt>.rst</tt> files are automatically -->
+<!-- adjusted.) -->
 
 <P>
 To have the URL address itself as link text, put an "URL" or URL
@@ -1367,16 +1538,18 @@ various verbatim styles (Pygments can also be used in a LaTeX
 context).
 
 <P>
-By default, <tt>pro</tt> is used for complete programs in Python, <tt>cod</tt>
-is for a code snippet in Python, while <tt>xcod</tt> and <tt>xpro</tt> implies
-computer language specific typesetting where <tt>x</tt> can be
-<tt>f</tt> for Fortran, <tt>c</tt> for C, <tt>cpp</tt> for C++, <tt>sh</tt> for Unix shells,
-<tt>pl</tt> for Perl, <tt>m</tt> for Matlab, <tt>cy</tt> for Cython, and <tt>py</tt> for Python.
-The argument <tt>sys</tt> means by default <tt>console</tt> for Sphinx and
-<tt>CodeTerminal</tt> (ptex2tex environent) for LaTeX. All these definitions
-of the arguments after <tt>!bc</tt> can be redefined in the <tt>.ptex2tex.cfg</tt>
-configuration file for ptex2tex/LaTeX and in the <tt>sphinx code-blocks</tt>
-comments for Sphinx. Support for other languages is easily added.
+By default, <tt>pro</tt> is used for complete programs in Python, <tt>cod</tt> is
+for a code snippet in Python, while <tt>xcod</tt> and <tt>xpro</tt> implies computer
+language specific typesetting where <tt>x</tt> can be <tt>f</tt> for Fortran, <tt>c</tt>
+for C, <tt>cpp</tt> for C++, <tt>sh</tt> for Unix shells, <tt>pl</tt> for Perl, <tt>m</tt> for
+Matlab, <tt>cy</tt> for Cython, and <tt>py</tt> for Python.  The argument <tt>sys</tt>
+means by default <tt>console</tt> for Sphinx and <tt>CodeTerminal</tt> (ptex2tex
+environent) for LaTeX. Other specifications are <tt>dat</tt> for a data file
+or print out, and <tt>ipy</tt> for interactive Python sessions.  All these
+definitions of the arguments after <tt>!bc</tt> can be redefined in the
+<tt>.ptex2tex.cfg</tt> configuration file for ptex2tex/LaTeX and in the
+<tt>sphinx code-blocks</tt> comments for Sphinx. Support for other languages
+is easily added.
 
 <P>
 <!-- (Any sphinx code-block comment, whether inside verbatim code -->
@@ -1429,7 +1602,7 @@ is then
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
  @@@CODE myfile.f
- @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
+ @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1
 </pre>
 </blockquote>   <! -- end verbatim block -->
 The first line implies that all lines in the file <tt>myfile.f</tt> are
@@ -1491,6 +1664,38 @@ directive above:
       return
 </pre>
 </blockquote>   <! -- end verbatim block -->
+
+<P>
+Note that the "to" line is not copied into the Doconce file, but the
+"from" line is. Sometimes it is convenient to also neglect the
+"from" line, a feature that is allowed by replacing <tt>fromto:</tt> by
+<tt>from-to</tt> ("from with minus"). This allows for copying very similar
+code segments throughout a file, while still distinguishing between them.
+Copying the second set of parameters from the text
+<blockquote>    <!-- begin verbatim block  -->
+<pre>
+# --- Start Example 1 ---
+c = -1
+A = 2
+p0 = 4
+simulate_and_plot(c, A, p0)
+# --- End Example 1 ---
+
+# --- Start Example 2 ---
+c = -1
+A = 1
+p0 = 0
+simulate_and_plot(c, A, p0)
+# --- End Example 2 ---
+</pre>
+</blockquote>   <! -- end verbatim block -->
+is easy with
+<blockquote>    <!-- begin verbatim block  -->
+<pre>
+from-to: Start Example 2@End Example 2
+</pre>
+</blockquote>   <! -- end verbatim block -->
+With only <tt>fromto:</tt> this would be impossible.
 
 <P>
 (Remark for those familiar with <tt>ptex2tex</tt>: The from-to
@@ -2032,6 +2237,18 @@ If the problem is undefined control sequence involving
 the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
+
+<P>
+<h4>Errors in figure captions</h4>
+<P>
+Such errors typically arise from unbalanced curly braces, or dollar signs
+around math, and similar LaTeX syntax errors.
+
+<P>
+(Note that verbatim font is likely to cause trouble inside figure captions,
+but Doconce will automatically replace verbatim text in backquotes by
+a proper <tt>texttt</tt> command (since verbatim font constructions does not work
+inside figure captions) and precede underscores by backslash.)
 
 <P>
 <h4>Chapters are ignored</h4>

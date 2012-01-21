@@ -265,7 +265,7 @@ def rst_index_bib(filestr, index, citations, bibfile):
     filestr = rst_bib(filestr, citations, bibfile)
 
     # reStructuredText does not have index/glossary
-    filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)
+    filestr = re.sub(r'idx\{.+?\}\n?', '', filestr)
 
     return filestr
 
@@ -311,15 +311,15 @@ def define(FILENAME_EXTENSION,
         #'section':    lambda m: r'\g<subst>' + '\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
         # note: r'\g<subst>\n%s' also works fine ?), despite being different...
         # (it just works in substitution...)
-        'chapter':       lambda m: r'\g<subst>' + '\n%s' % ('%'*len(m.group('subst').decode('latin-1'))),
-        'section':       lambda m: r'\g<subst>' + '\n%s' % ('='*len(m.group('subst').decode('latin-1'))),
+        'chapter':       lambda m: r'\g<subst>\n%s' % ('%'*len(m.group('subst').decode('latin-1'))),
+        'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('latin-1'))),
         #'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('latin-1'))),
-        'subsection':    lambda m: r'\g<subst>' + '\n%s' % ('-'*len(m.group('subst').decode('latin-1'))),
-        'subsubsection': lambda m: r'\g<subst>' + '\n%s' % ('~'*len(m.group('subst').decode('latin-1'))),
+        'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('latin-1'))),
+        'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('latin-1'))),
         'paragraph':     r'*\g<subst>* ',  # extra blank
-        'abstract':      r'*\g<type>.* \g<text>',
-        'title':         r'======= \g<subst> =======' + '\n',  # doconce top section, is later replaced
-        'date':          r':Date: \g<subst>' + '\n',
+        'abstract':      r'\n*\g<type>.* \g<text>\n\g<rest>',
+        'title':         r'======= \g<subst> =======\n',  # doconce top section, is later replaced
+        'date':          r':Date: \g<subst>\n',
         'author':        rst_author,
         'figure':        rst_figure,
         'movie':         rst_movie,

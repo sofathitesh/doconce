@@ -362,7 +362,7 @@ INLINE_TAGS = {
     r'''\[(?P<name>[A-Za-z0-9_'-]+?):\s+(?P<comment>[^\]]*?)\]''',
 
     'abstract': # __Abstract.__ Any text up to a headline ===
-    r"""^\s*__(?P<type>Abstract|Summary).__\s*(?P<text>.+?)\s*[_=]{3,9}""",
+    r"""^\s*__(?P<type>Abstract|Summary).__\s*(?P<text>.+?)(?P<rest>\s*[_=]{3,9})""",
 
     # ======= Seven Equality Signs for Headline =======
     # (the old underscores instead of = are still allowed)

@@ -30,6 +30,8 @@ numerous constructions, also special and less common cases.
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
 
+======= Section 0 =======
+
 ======= Section 1 =======
 label{sec1}
 
@@ -52,6 +54,14 @@ and then a list:
 
 More text, with a reference back to Section ref{sec1} and further
 to Section ref{subsubsec:ex}. idx{`somefunc` function}
+
+Let's do some copying from files too. First from subroutine up to the very end,
+
+@@@CODE ../doc/manual/__testcode.f fromto: subroutine@
+and then just the subroutine,
+@@@CODE ../doc/manual/__testcode.f from-to:a comment@^C\s+END1
+and finally the complete file:
+@@@CODE ../doc/manual/__testcode.f
 
 ===== Subsection 2 =====
 label{subsec:ex}
@@ -270,6 +280,7 @@ The formula for a circle is given by
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\
 y &= y_0 + R\sin 2\pi t,
+\end{align}
 !et
 where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.

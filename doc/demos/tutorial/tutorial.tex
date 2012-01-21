@@ -50,7 +50,7 @@
 
 
 \begin{center}
-Jan 5, 2012
+Jan 21, 2012
 \end{center}
 
 
@@ -88,13 +88,15 @@ Doconce is two things:
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
     including HTML, wiki, {\LaTeX}, PDF, reStructuredText (reST), Sphinx,
-    Epytext, and also plain text (where non-obvious formatting/tags are
-    removed for clear reading in, e.g., emails). From reStructuredText
-    you can go to XML, HTML, {\LaTeX}, PDF, OpenOffice, and from the
-    latter to RTF and MS Word.
-    (An experimental translator to Pandoc is under development, and from
-    Pandoc one can generate Markdown, reST, {\LaTeX}, HTML, PDF, DocBook XML,
-    OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and other formats.)
+    Epytext, and also plain text (where non-obvious formatting/tags
+    are removed for clear reading in, e.g., emails). From reST you can
+    (via {\fontsize{10pt}{10pt}\verb!rst2*!} programs) go to XML, HTML, {\LaTeX}, PDF, OpenOffice,
+    and from the latter (via {\fontsize{10pt}{10pt}\verb!unoconv!}) to RTF, numerous MS Word
+    formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
+    XHTML. (An experimental translator to Pandoc is under development,
+    and from Pandoc one can generate Markdown, reST, {\LaTeX}, HTML, PDF,
+    DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
+    other formats.)
 
  \item Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
@@ -662,9 +664,38 @@ Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 \end{Verbatim}
+
 The OpenOffice file {\fontsize{10pt}{10pt}\verb!mydoc.odt!} can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
-That is, one can easily go from Doconce to Microsoft Word.
+However, it is more convenient to use the program {\fontsize{10pt}{10pt}\verb!unovonv!}
+to convert between the many formats OpenOffice supports \emph{on the command line}.
+Run
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> unoconv --show
+\end{Verbatim}
+to see all the formats that are supported.
+For example, the following commands take
+{\fontsize{10pt}{10pt}\verb!mydoc.odt!} to Microsoft Office Open XML format,
+classic MS Word format, and PDF:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> unoconv -f ooxml mydoc.odt
+Terminal> unoconv -f doc mydoc.odt
+Terminal> unoconv -f pdf mydoc.odt
+\end{Verbatim}
+
+\paragraph{Remark about Mathematical Typesetting.}
+At the time of this writing, there is no easy way to go from Doconce
+and {\LaTeX} mathematics to reST and further to OpenOffice and the
+"MS Word world". Mathematics is only fully supported by {\fontsize{10pt}{10pt}\verb!latex!} as
+output and to a wide extent supported by the {\fontsize{10pt}{10pt}\verb!sphinx!} output format.
+
+% One possible way from Doconce to MS Word goes via {\fontsize{10pt}{10pt}\verb!latex!}, then
+% {\fontsize{10pt}{10pt}\verb!texmacs!} (export as HTML), then saving with epiphany, and finally
+% from OpenOffice to MS Word doc format.
 
 \subsection{Sphinx}
 
@@ -800,6 +831,12 @@ make clean   # remove old versions
 make html
 \end{Verbatim}
 
+Sphinx can generate a range of different formats:
+standalone HTML, HTML in separate directories with {\fontsize{10pt}{10pt}\verb!index.html!} files,
+a large single HTML file, JSON files, various help files (the qthelp, HTML,
+and Devhelp projects), epub, {\LaTeX}, PDF (via {\LaTeX}), pure text, man pages,
+and Texinfo files.
+
 \paragraph{Step 6.}
 View the result:
 \vspace{4pt}
@@ -869,20 +906,133 @@ There is another demo in the {\fontsize{10pt}{10pt}\verb!docs/manual!} directory
 translates the more comprehensive documentation, {\fontsize{10pt}{10pt}\verb!manual.do.txt!}, to
 various formats. The {\fontsize{10pt}{10pt}\verb!make.sh!} script runs a set of translations.
 
-\subsection{Dependencies}
+\subsection{Dependencies and Installation}
 
-If you make use of preprocessor directives in the Doconce source,
-either \href{http://code.google.com/p/preprocess}{Preprocess} or \href{http://www.makotemplates.org}{Mako} must be installed.  To make {\LaTeX}
-documents (without going through the reStructuredText format) you also
-need \href{http://code.google.com/p/ptex2tex}{ptex2tex} and some style
-files that {\fontsize{10pt}{10pt}\verb!ptex2tex!} potentially makes use of.  Going from
-reStructuredText to formats such as XML, OpenOffice, HTML, and {\LaTeX}
-requires \href{http://docutils.sourceforge.net}{docutils}.  Making Sphinx
-documents requires of course \href{http://sphinx.pocoo.org}{Sphinx}.
-All of the mentioned potential dependencies are pure Python packages
-which are easily installed.
-If translation to \href{http://johnmacfarlane.net/pandoc/}{Pandoc} is desired,
-the Pandoc Haskell program must of course be installed.
+Doconce itself is pure Python code hosted at \href{http://code.google.com/p/doconce}{\nolinkurl{http://code.google.com/p/doconce}}.  Its installation from the
+Mercurial ({\fontsize{10pt}{10pt}\verb!hg!}) source follows the standard procedure:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+# Doconce
+hg clone https://doconce.googlecode.com/hg/ doconce
+cd doconce
+sudo python setup.py install
+cd ..
+\end{Verbatim}
+
+If you make use of the \href{http://code.google.com/p/preprocess}{Preprocess}
+preprocessor, this program must be installed:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+svn checkout http://preprocess.googlecode.com/svn/trunk/ preprocess
+cd preprocess
+cd doconce
+sudo python setup.py install
+cd ..
+\end{Verbatim}
+A much more advanced alternative to Preprocess is
+\href{http://www.makotemplates.org}{Mako}. Its installation is most
+conveniently done by {\fontsize{10pt}{10pt}\verb!pip!},
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+pip install Mako
+\end{Verbatim}
+This command requires {\fontsize{10pt}{10pt}\verb!pip!} to be installed. On Debian Linux systems,
+such as Ubuntu, the installation is simply done by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+sudo apt-get install python-pip
+\end{Verbatim}
+Alternatively, one can install from the {\fontsize{10pt}{10pt}\verb!pip!} \href{http://pypi.python.org/pypi/pip}{source code}.
+
+To make {\LaTeX}
+documents (without going through the reStructuredText format) you
+need \href{http://code.google.com/p/ptex2tex}{ptex2tex}, which is
+installed by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
+cd ptex2tex
+sudo python setup.py install
+cd latex
+sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
+cd ../..
+\end{Verbatim}
+As seen, {\fontsize{10pt}{10pt}\verb!cp2texmf.sh!} copies some special stylefiles that
+that {\fontsize{10pt}{10pt}\verb!ptex2tex!} potentially makes use of. Some more standard stylefiles
+are also needed. These are installed by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+sudo apt-get install texlive-latex-extra
+\end{Verbatim}
+on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
+the necessary stylefiles (if not, they can be found by googling and installed
+manually in the {\fontsize{10pt}{10pt}\verb!~/texmf/tex/latex/misc!} directory).
+
+For {\fontsize{10pt}{10pt}\verb!rst!} output and further transformation to {\LaTeX}, HTML, XML,
+OpenOffice, and so on, one needs \href{http://docutils.sourceforge.net}{docutils}.
+The installation can be done by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
+cd docutils
+sudo python setup.py install
+cd ..
+\end{Verbatim}
+To use the OpenOffice suite you will typically on Debian systems install
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+sudo apt-get install unovonv libreoffice libreoffice-dmaths
+\end{Verbatim}
+
+Output to {\fontsize{10pt}{10pt}\verb!sphinx!} requires of course \href{http://sphinx.pocoo.org}{Sphinx},
+installed by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+hg clone https://bitbucket.org/birkenfeld/sphinx
+cd sphinx
+sudo python setup.py install
+cd ..
+\end{Verbatim}
+
+When the output format is {\fontsize{10pt}{10pt}\verb!epydoc!} one needs that program too, installed
+by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc
+cd epydoc
+sudo make install
+cd ..
+\end{Verbatim}
+
+Finally, translation to {\fontsize{10pt}{10pt}\verb!pandoc!} requires the
+\href{http://johnmacfarlane.net/pandoc/}{Pandoc} program to be installed.
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+sudo apt-get install pandoc
+\end{Verbatim}
+
+\paragraph{Remark.}
+Several of the packages above installed from source code
+are also available in Debian-based system through the
+{\fontsize{10pt}{10pt}\verb!apt-get install!} command. However, we recommend installation directly
+from the version control system repository as there might be important
+updates and bug fixes. For {\fontsize{10pt}{10pt}\verb!svn!} directories, go to the directory,
+run {\fontsize{10pt}{10pt}\verb!svn update!}, and then {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}. For
+Mercurial ({\fontsize{10pt}{10pt}\verb!hg!}) directories, go to the directory, run
+{\fontsize{10pt}{10pt}\verb!hg pull; hg update!}, and then {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}.
+Doconce itself is frequently updated so these commands should be
+run regularly.
 
 \printindex
 

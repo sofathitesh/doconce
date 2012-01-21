@@ -72,7 +72,7 @@ def plain_index_bib(filestr, index, citations, bibfile):
         filestr = cpattern.sub(bibtext, filestr)
 
     # remove all index entries:
-    filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)
+    filestr = re.sub(r'idx\{.+?\}\n?', '', filestr)
     # no index since line numbers from the .do.txt (in index dict)
     # never correspond to the output format file
     #filestr += '\n\n======= Index =======\n\n'
@@ -113,13 +113,13 @@ def define(FILENAME_EXTENSION,
         'plainURL':  r'\g<url>',
         'title':     r'======= \g<subst> =======\n',  # doconce top section, to be substituted later
         'author':    plain_author,
-        'date':      '\nDate: ' + r'\g<subst>' + '\n',
+        'date':      r'\nDate: \g<subst>\n',
         'chapter':       lambda m: r'\g<subst>\n%s' % ('%'*len(m.group('subst').decode('utf-8'))),
         'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('utf-8'))),
         'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
         'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('utf-8'))),
         'paragraph':     r'*\g<subst>* ',  # extra blank
-        'abstract':      r'*\g<type>.* \g<text>',
+        'abstract':      r'\n*\g<type>.* \g<text>\g<rest>',
         }
 
     from rst import rst_code

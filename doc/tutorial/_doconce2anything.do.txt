@@ -154,9 +154,34 @@ Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 !ec
+
 The OpenOffice file `mydoc.odt` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
-That is, one can easily go from Doconce to Microsoft Word.
+However, it is more convenient to use the program `unovonv`
+to convert between the many formats OpenOffice supports *on the command line*.
+Run
+!bc sys
+Terminal> unoconv --show
+!ec
+to see all the formats that are supported.
+For example, the following commands take
+`mydoc.odt` to Microsoft Office Open XML format,
+classic MS Word format, and PDF:
+!bc sys
+Terminal> unoconv -f ooxml mydoc.odt
+Terminal> unoconv -f doc mydoc.odt
+Terminal> unoconv -f pdf mydoc.odt
+!ec
+
+__Remark about Mathematical Typesetting.__
+At the time of this writing, there is no easy way to go from Doconce
+and LaTeX mathematics to reST and further to OpenOffice and the
+"MS Word world". Mathematics is only fully supported by `latex` as
+output and to a wide extent supported by the `sphinx` output format.
+
+#One possible way from Doconce to MS Word goes via `latex`, then
+# `texmacs` (export as HTML), then saving with epiphany, and finally
+# from OpenOffice to MS Word doc format.
 
 ===== Sphinx =====
 
@@ -270,6 +295,12 @@ __Step 5.__ Generate, for instance, an HTML version of the Sphinx source:
 make clean   # remove old versions
 make html
 !ec
+
+Sphinx can generate a range of different formats:
+standalone HTML, HTML in separate directories with `index.html` files,
+a large single HTML file, JSON files, various help files (the qthelp, HTML,
+and Devhelp projects), epub, LaTeX, PDF (via LaTeX), pure text, man pages,
+and Texinfo files.
 
 __Step 6.__ View the result:
 !bc sys

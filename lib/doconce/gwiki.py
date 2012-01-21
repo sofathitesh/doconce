@@ -198,6 +198,7 @@ def define(FILENAME_EXTENSION,
         'figure':        gwiki_figure,
         'movie':         default_movie,  # will not work for HTML movie player
         'comment':       '<wiki:comment> %s </wiki:comment>',
+        'abstract':      r'\n*\g<type>.* \g<text>\g<rest>',
         }
 
     CODE['gwiki'] = gwiki_code

@@ -36,7 +36,7 @@ def define(FILENAME_EXTENSION,
         'subsection':    r'\g<subst>',
         'subsubsection': r'\g<subst>',
         'paragraph':     r'*\g<subst>* ',  # extra blank
-        'abstract':      r'*\g<type>.* \g<text>',
+        'abstract':      r'*\g<type>.* \g<text>\n\g<rest>',
         'title':         r'TITLE: \g<subst>',
         'date':          r'DATE: \g<subst>',
         'author':        epytext_author,

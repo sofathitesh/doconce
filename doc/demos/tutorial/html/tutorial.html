@@ -56,7 +56,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jan 5, 2012</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jan 21, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -90,13 +90,15 @@ include it anywhere?</li>
 looks like ordinary ASCII text (much like what you would use in an
 email), but the text can be transformed to numerous other formats,
 including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
-Epytext, and also plain text (where non-obvious formatting/tags are
-removed for clear reading in, e.g., emails). From reStructuredText
-you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
-latter to RTF and MS Word.
-(An experimental translator to Pandoc is under development, and from
-Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF, DocBook XML,
-OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and other formats.)</li>
+Epytext, and also plain text (where non-obvious formatting/tags
+are removed for clear reading in, e.g., emails). From reST you can
+(via <tt class="docutils literal"><span class="pre">rst2*</span></tt> programs) go to XML, HTML, LaTeX, PDF, OpenOffice,
+and from the latter (via <tt class="docutils literal"><span class="pre">unoconv</span></tt>) to RTF, numerous MS Word
+formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
+XHTML. (An experimental translator to Pandoc is under development,
+and from Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF,
+DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
+other formats.)</li>
 <li>Doconce is a working strategy for never duplicating information.
 Text is written in a single place and then transformed to
 a number of different destinations of diverse type (software
@@ -547,7 +549,25 @@ reStructuredText file <tt class="docutils literal"><span class="pre">mydoc.rst</
 </div>
 <p>The OpenOffice file <tt class="docutils literal"><span class="pre">mydoc.odt</span></tt> can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
-That is, one can easily go from Doconce to Microsoft Word.</p>
+However, it is more convenient to use the program <tt class="docutils literal"><span class="pre">unovonv</span></tt>
+to convert between the many formats OpenOffice supports <em>on the command line</em>.
+Run</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; unoconv --show</span>
+</pre></div>
+</div>
+<p>to see all the formats that are supported.
+For example, the following commands take
+<tt class="docutils literal"><span class="pre">mydoc.odt</span></tt> to Microsoft Office Open XML format,
+classic MS Word format, and PDF:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; unoconv -f ooxml mydoc.odt</span>
+<span class="go">Terminal&gt; unoconv -f doc mydoc.odt</span>
+<span class="go">Terminal&gt; unoconv -f pdf mydoc.odt</span>
+</pre></div>
+</div>
+<p><em>Remark about Mathematical Typesetting.</em> At the time of this writing, there is no easy way to go from Doconce
+and LaTeX mathematics to reST and further to OpenOffice and the
+&#8220;MS Word world&#8221;. Mathematics is only fully supported by <tt class="docutils literal"><span class="pre">latex</span></tt> as
+output and to a wide extent supported by the <tt class="docutils literal"><span class="pre">sphinx</span></tt> output format.</p>
 </div>
 <div class="section" id="id4">
 <h2>Sphinx<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
@@ -651,6 +671,11 @@ is included, i.e., add <tt class="docutils literal"><span class="pre">mydoc</spa
 <span class="go">make html</span>
 </pre></div>
 </div>
+<p>Sphinx can generate a range of different formats:
+standalone HTML, HTML in separate directories with <tt class="docutils literal"><span class="pre">index.html</span></tt> files,
+a large single HTML file, JSON files, various help files (the qthelp, HTML,
+and Devhelp projects), epub, LaTeX, PDF (via LaTeX), pure text, man pages,
+and Texinfo files.</p>
 <p><em>Step 6.</em> View the result:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; firefox _build/html/index.html</span>
 </pre></div>
@@ -710,20 +735,103 @@ is a sample of how this tutorial looks in different formats.</p>
 translates the more comprehensive documentation, <tt class="docutils literal"><span class="pre">manual.do.txt</span></tt>, to
 various formats. The <tt class="docutils literal"><span class="pre">make.sh</span></tt> script runs a set of translations.</p>
 </div>
-<div class="section" id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
-<p>If you make use of preprocessor directives in the Doconce source,
-either <a class="reference external" href="http://code.google.com/p/preprocess">Preprocess</a> or <a class="reference external" href="http://www.makotemplates.org">Mako</a> must be installed.  To make LaTeX
-documents (without going through the reStructuredText format) you also
-need <a class="reference external" href="http://code.google.com/p/ptex2tex">ptex2tex</a> and some style
-files that <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> potentially makes use of.  Going from
-reStructuredText to formats such as XML, OpenOffice, HTML, and LaTeX
-requires <a class="reference external" href="http://docutils.sourceforge.net">docutils</a>.  Making Sphinx
-documents requires of course <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a>.
-All of the mentioned potential dependencies are pure Python packages
-which are easily installed.
-If translation to <a class="reference external" href="http://johnmacfarlane.net/pandoc/">Pandoc</a> is desired,
-the Pandoc Haskell program must of course be installed.</p>
+<div class="section" id="dependencies-and-installation">
+<h2>Dependencies and Installation<a class="headerlink" href="#dependencies-and-installation" title="Permalink to this headline">¶</a></h2>
+<p>Doconce itself is pure Python code hosted at <a class="reference external" href="http://code.google.com/p/doconce">http://code.google.com/p/doconce</a>.  Its installation from the
+Mercurial (<tt class="docutils literal"><span class="pre">hg</span></tt>) source follows the standard procedure:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> Doconce
+<span class="go">hg clone https://doconce.googlecode.com/hg/ doconce</span>
+<span class="go">cd doconce</span>
+<span class="go">sudo python setup.py install</span>
+<span class="go">cd ..</span>
+</pre></div>
+</div>
+<p>If you make use of the <a class="reference external" href="http://code.google.com/p/preprocess">Preprocess</a>
+preprocessor, this program must be installed:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">svn checkout http://preprocess.googlecode.com/svn/trunk/ preprocess</span>
+<span class="go">cd preprocess</span>
+<span class="go">cd doconce</span>
+<span class="go">sudo python setup.py install</span>
+<span class="go">cd ..</span>
+</pre></div>
+</div>
+<p>A much more advanced alternative to Preprocess is
+<a class="reference external" href="http://www.makotemplates.org">Mako</a>. Its installation is most
+conveniently done by <tt class="docutils literal"><span class="pre">pip</span></tt>,</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">pip install Mako</span>
+</pre></div>
+</div>
+<p>This command requires <tt class="docutils literal"><span class="pre">pip</span></tt> to be installed. On Debian Linux systems,
+such as Ubuntu, the installation is simply done by</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install python-pip</span>
+</pre></div>
+</div>
+<p>Alternatively, one can install from the <tt class="docutils literal"><span class="pre">pip</span></tt> <a class="reference external" href="http://pypi.python.org/pypi/pip">source code</a>.</p>
+<p>To make LaTeX
+documents (without going through the reStructuredText format) you
+need <a class="reference external" href="http://code.google.com/p/ptex2tex">ptex2tex</a>, which is
+installed by</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex</span>
+<span class="go">cd ptex2tex</span>
+<span class="go">sudo python setup.py install</span>
+<span class="go">cd latex</span>
+<span class="go">sh cp2texmf.sh  # copy stylefiles to ~/texmf directory</span>
+<span class="go">cd ../..</span>
+</pre></div>
+</div>
+<p>As seen, <tt class="docutils literal"><span class="pre">cp2texmf.sh</span></tt> copies some special stylefiles that
+that <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> potentially makes use of. Some more standard stylefiles
+are also needed. These are installed by</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install texlive-latex-extra</span>
+</pre></div>
+</div>
+<p>on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
+the necessary stylefiles (if not, they can be found by googling and installed
+manually in the <tt class="docutils literal"><span class="pre">~/texmf/tex/latex/misc</span></tt> directory).</p>
+<p>For <tt class="docutils literal"><span class="pre">rst</span></tt> output and further transformation to LaTeX, HTML, XML,
+OpenOffice, and so on, one needs <a class="reference external" href="http://docutils.sourceforge.net">docutils</a>.
+The installation can be done by</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils</span>
+<span class="go">cd docutils</span>
+<span class="go">sudo python setup.py install</span>
+<span class="go">cd ..</span>
+</pre></div>
+</div>
+<p>To use the OpenOffice suite you will typically on Debian systems install</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install unovonv libreoffice libreoffice-dmaths</span>
+</pre></div>
+</div>
+<p>Output to <tt class="docutils literal"><span class="pre">sphinx</span></tt> requires of course <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a>,
+installed by</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">hg clone https://bitbucket.org/birkenfeld/sphinx</span>
+<span class="go">cd sphinx</span>
+<span class="go">sudo python setup.py install</span>
+<span class="go">cd ..</span>
+</pre></div>
+</div>
+<p>When the output format is <tt class="docutils literal"><span class="pre">epydoc</span></tt> one needs that program too, installed
+by</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc</span>
+<span class="go">cd epydoc</span>
+<span class="go">sudo make install</span>
+<span class="go">cd ..</span>
+</pre></div>
+</div>
+<p>Finally, translation to <tt class="docutils literal"><span class="pre">pandoc</span></tt> requires the
+<a class="reference external" href="http://johnmacfarlane.net/pandoc/">Pandoc</a> program to be installed.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install pandoc</span>
+</pre></div>
+</div>
+<p><em>Remark.</em> Several of the packages above installed from source code
+are also available in Debian-based system through the
+<tt class="docutils literal"><span class="pre">apt-get</span> <span class="pre">install</span></tt> command. However, we recommend installation directly
+from the version control system repository as there might be important
+updates and bug fixes. For <tt class="docutils literal"><span class="pre">svn</span></tt> directories, go to the directory,
+run <tt class="docutils literal"><span class="pre">svn</span> <span class="pre">update</span></tt>, and then <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt>. For
+Mercurial (<tt class="docutils literal"><span class="pre">hg</span></tt>) directories, go to the directory, run
+<tt class="docutils literal"><span class="pre">hg</span> <span class="pre">pull;</span> <span class="pre">hg</span> <span class="pre">update</span></tt>, and then <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt>.
+Doconce itself is frequently updated so these commands should be
+run regularly.</p>
 </div>
 </div>
 
@@ -752,7 +860,7 @@ the Pandoc Haskell program must of course be installed.</p>
 <li><a class="reference internal" href="#google-code-wiki">Google Code Wiki</a></li>
 <li><a class="reference internal" href="#tweaking-the-doconce-output">Tweaking the Doconce Output</a></li>
 <li><a class="reference internal" href="#demos">Demos</a></li>
-<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#dependencies-and-installation">Dependencies and Installation</a></li>
 </ul>
 </li>
 </ul>
