@@ -205,7 +205,7 @@ def html_index_bib(filestr, index, citations, bibfile):
 
     # could use anchors for idx{...}, but multiple entries of an index
     # would lead to multiple anchors, so remove them all:
-    filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)
+    filestr = re.sub(r'idx\{.+?\}\n?', '', filestr)
 
     return filestr
 
@@ -246,7 +246,7 @@ def define(FILENAME_EXTENSION,
         'subsection':    r'<h3>\g<subst></h3>',
         'subsubsection': r'<h4>\g<subst></h4>',
         'paragraph':     r'<b>\g<subst></b> ',
-        'abstract':      r'<b>\g<type>.</b> \g<text>',
+        'abstract':      r'<b>\g<type>.</b> \g<text>\n\g<rest>',
         'title':         r'<title>\g<subst></title>\n<center><h1>\g<subst></h1></center>',
         'date':          r'<center><h3>\g<subst></h3></center>',
         'author':        html_author,

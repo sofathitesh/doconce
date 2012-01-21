@@ -191,8 +191,7 @@ def latex_table(table):
 
             s += ' & '.join(row) + ' \\\\\n'
 
-    s += r'\end{tabular}\end{quote}' + \
-        '\n\n' + r'\noindent' + '\n'
+    s += r'\end{tabular}\end{quote}' + '\n\n' + r'\noindent' + '\n'
     return s
 
 def latex_author(authors_and_institutions, auth2index,
@@ -280,7 +279,7 @@ def latex_author(authors_and_institutions, auth2index,
 
 """ % (author, str(auth2index[author])[1:-1], email_text)
 
-    text += r'\begin{center}' + '\n% List of all institutions:\n'
+    text += r'\begin{center}' + '\n' + '% List of all institutions:\n'
     for index in index2inst:
         text += r"""\centerline{{\small ${}^%d$%s}}""" % \
                 (index, index2inst[index]) + '\n'
@@ -429,13 +428,14 @@ def define(FILENAME_EXTENSION,
         'linkURL3':      r'\href{\g<url>}{\g<link>}',
         'plainURL':      r'\href{\g<url>}{\\nolinkurl{\g<url>}}',  # cannot use \code inside \href, use \nolinkurl to handle _ and # etc. (implies verbatim font)
         'inlinecomment': r'\inlinecomment{\g<name>}{\g<comment>}',
-        'chapter':       '\n\n' + r'\chapter{\g<subst>}' + '\n',
-        'section':       '\n\n' + r'\section{\g<subst>}' + '\n',
-        'subsection':    '\n' + r'\subsection{\g<subst>}' + '\n',
+        'chapter':       r'\n\n\chapter{\g<subst>}\n',
+        'section':       r'\n\n\section{\g<subst>}\n',
+        'subsection':    r'\n\subsection{\g<subst>}\n',
         #'subsubsection': '\n' + r'\subsubsection{\g<subst>}' + '\n',
-        'subsubsection': '\n' + r'\paragraph{\g<subst>.}',
-        'paragraph':     r'\paragraph{\g<subst>}' + '\n',
-        'abstract':      r'\\begin{abstract}' + '\n' + r'\g<text>' + '\n' + r'\end{abstract}' + '\n\n',
+        'subsubsection': r'\n\paragraph{\g<subst>.}',
+        'paragraph':     r'\paragraph{\g<subst>}\n',
+        #'abstract':      '\n\n' + r'\\begin{abstract}' + '\n' + r'\g<text>' + '\n' + r'\end{abstract}' + '\n\n' + r'\g<rest>',
+        'abstract':      r'\n\n\\begin{abstract}\n\g<text>\n\end{abstract}\n\n\g<rest>',
         # recall that this is regex so latex commands must be treated carefully:
         #'title':         r'\\title{\g<subst>}' + '\n', # we don'e use maketitle
         'title':         fix_latex_command_regex(pattern=r"""

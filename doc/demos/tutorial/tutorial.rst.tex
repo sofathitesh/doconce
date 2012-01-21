@@ -76,7 +76,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jan 5, 2012
+Jan 21, 2012
 %
 \begin{itemize}
 
@@ -128,13 +128,15 @@ Doconce is two things:
 looks like ordinary ASCII text (much like what you would use in an
 email), but the text can be transformed to numerous other formats,
 including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
-Epytext, and also plain text (where non-obvious formatting/tags are
-removed for clear reading in, e.g., emails). From reStructuredText
-you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
-latter to RTF and MS Word.
-(An experimental translator to Pandoc is under development, and from
-Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF, DocBook XML,
-OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and other formats.)
+Epytext, and also plain text (where non-obvious formatting/tags
+are removed for clear reading in, e.g., emails). From reST you can
+(via \texttt{rst2*} programs) go to XML, HTML, LaTeX, PDF, OpenOffice,
+and from the latter (via \texttt{unoconv}) to RTF, numerous MS Word
+formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
+XHTML. (An experimental translator to Pandoc is under development,
+and from Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF,
+DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
+other formats.)
 
 \item Doconce is a working strategy for never duplicating information.
 Text is written in a single place and then transformed to
@@ -843,7 +845,37 @@ Terminal>~rst2odt.py~~~mydoc.rst~>~mydoc.odt~~\#~OpenOffice
 
 The OpenOffice file \texttt{mydoc.odt} can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
-That is, one can easily go from Doconce to Microsoft Word.
+However, it is more convenient to use the program \texttt{unovonv}
+to convert between the many formats OpenOffice supports \emph{on the command line}.
+Run:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~unoconv~-{}-show
+}
+\end{quote}
+
+to see all the formats that are supported.
+For example, the following commands take
+\texttt{mydoc.odt} to Microsoft Office Open XML format,
+classic MS Word format, and PDF:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~unoconv~-f~ooxml~mydoc.odt\\
+Terminal>~unoconv~-f~doc~mydoc.odt\\
+Terminal>~unoconv~-f~pdf~mydoc.odt
+}
+\end{quote}
+
+\emph{Remark about Mathematical Typesetting.} At the time of this writing, there is no easy way to go from Doconce
+and LaTeX mathematics to reST and further to OpenOffice and the
+``MS Word world''. Mathematics is only fully supported by \texttt{latex} as
+output and to a wide extent supported by the \texttt{sphinx} output format.
+
+% One possible way from Doconce to MS Word goes via ``latex``, then
+
+% ``texmacs`` (export as HTML), then saving with epiphany, and finally
+
+% from OpenOffice to MS Word doc format.
 
 
 %___________________________________________________________________________
@@ -986,6 +1018,12 @@ make~html
 }
 \end{quote}
 
+Sphinx can generate a range of different formats:
+standalone HTML, HTML in separate directories with \texttt{index.html} files,
+a large single HTML file, JSON files, various help files (the qthelp, HTML,
+and Devhelp projects), epub, LaTeX, PDF (via LaTeX), pure text, man pages,
+and Texinfo files.
+
 \emph{Step 6.} View the result:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
@@ -1081,32 +1119,150 @@ various formats. The \texttt{make.sh} script runs a set of translations.
 %___________________________________________________________________________
 
 \subsection*{\phantomsection%
-  Dependencies%
-  \addcontentsline{toc}{subsection}{Dependencies}%
-  \label{dependencies}%
+  Dependencies and Installation%
+  \addcontentsline{toc}{subsection}{Dependencies and Installation}%
+  \label{dependencies-and-installation}%
 }
+
+Doconce itself is pure Python code hosted at \url{http://code.google.com/p/doconce}.  Its installation from the
+Mercurial (\texttt{hg}) source follows the standard procedure:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+\#~Doconce\\
+hg~clone~https://doconce.googlecode.com/hg/~doconce\\
+cd~doconce\\
+sudo~python~setup.py~install\\
+cd~..
+}
+\end{quote}
+
+If you make use of the \href{http://code.google.com/p/preprocess}{Preprocess}
+preprocessor, this program must be installed:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+svn~checkout~http://preprocess.googlecode.com/svn/trunk/~preprocess\\
+cd~preprocess\\
+cd~doconce\\
+sudo~python~setup.py~install\\
+cd~..
+}
+\end{quote}
+
+A much more advanced alternative to Preprocess is
+\href{http://www.makotemplates.org}{Mako}. Its installation is most
+conveniently done by \texttt{pip}:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+pip~install~Mako
+}
+\end{quote}
+
+This command requires \texttt{pip} to be installed. On Debian Linux systems,
+such as Ubuntu, the installation is simply done by:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~apt-get~install~python-pip
+}
+\end{quote}
+
+Alternatively, one can install from the \texttt{pip} \href{http://pypi.python.org/pypi/pip}{source code}.
+
+To make LaTeX
+documents (without going through the reStructuredText format) you
+need \href{http://code.google.com/p/ptex2tex}{ptex2tex}, which is
+installed by:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+svn~checkout~http://ptex2tex.googlecode.com/svn/trunk/~ptex2tex\\
+cd~ptex2tex\\
+sudo~python~setup.py~install\\
+cd~latex\\
+sh~cp2texmf.sh~~\#~copy~stylefiles~to~\textasciitilde{}/texmf~directory\\
+cd~../..
+}
+\end{quote}
+
+As seen, \texttt{cp2texmf.sh} copies some special stylefiles that
+that \texttt{ptex2tex} potentially makes use of. Some more standard stylefiles
+are also needed. These are installed by:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~apt-get~install~texlive-latex-extra
+}
+\end{quote}
+
+on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
+the necessary stylefiles (if not, they can be found by googling and installed
+manually in the \texttt{\textasciitilde{}/texmf/tex/latex/misc} directory).
+
+For \texttt{rst} output and further transformation to LaTeX, HTML, XML,
+OpenOffice, and so on, one needs \href{http://docutils.sourceforge.net}{docutils}.
+The installation can be done by:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+svn~checkout~http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils\\
+cd~docutils\\
+sudo~python~setup.py~install\\
+cd~..
+}
+\end{quote}
+
+To use the OpenOffice suite you will typically on Debian systems install:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~apt-get~install~unovonv~libreoffice~libreoffice-dmaths
+}
+\end{quote}
 
 \DUadmonition[system-message]{
 \DUtitle[system-message]{system-message}
 
 
-{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~398
+{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~400
 
 \hyperlink{id5}{
 Duplicate explicit target name: ``sphinx''.
 }}
 
-If you make use of preprocessor directives in the Doconce source,
-either \href{http://code.google.com/p/preprocess}{Preprocess} or \href{http://www.makotemplates.org}{Mako} must be installed.  To make LaTeX
-documents (without going through the reStructuredText format) you also
-need \href{http://code.google.com/p/ptex2tex}{ptex2tex} and some style
-files that \texttt{ptex2tex} potentially makes use of.  Going from
-reStructuredText to formats such as XML, OpenOffice, HTML, and LaTeX
-requires \href{http://docutils.sourceforge.net}{docutils}.  Making Sphinx
-documents requires of course \href{http://sphinx.pocoo.org}{Sphinx}.
-All of the mentioned potential dependencies are pure Python packages
-which are easily installed.
-If translation to \href{http://johnmacfarlane.net/pandoc/}{Pandoc} is desired,
-the Pandoc Haskell program must of course be installed.
+Output to \texttt{sphinx} requires of course \href{http://sphinx.pocoo.org}{Sphinx},
+installed by:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+hg~clone~https://bitbucket.org/birkenfeld/sphinx\\
+cd~sphinx\\
+sudo~python~setup.py~install\\
+cd~..
+}
+\end{quote}
+
+When the output format is \texttt{epydoc} one needs that program too, installed
+by:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+svn~co~https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc~epydoc\\
+cd~epydoc\\
+sudo~make~install\\
+cd~..
+}
+\end{quote}
+
+Finally, translation to \texttt{pandoc} requires the
+\href{http://johnmacfarlane.net/pandoc/}{Pandoc} program to be installed:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~apt-get~install~pandoc
+}
+\end{quote}
+
+\emph{Remark.} Several of the packages above installed from source code
+are also available in Debian-based system through the
+\texttt{apt-get install} command. However, we recommend installation directly
+from the version control system repository as there might be important
+updates and bug fixes. For \texttt{svn} directories, go to the directory,
+run \texttt{svn update}, and then \texttt{sudo python setup.py install}. For
+Mercurial (\texttt{hg}) directories, go to the directory, run
+\texttt{hg pull; hg update}, and then \texttt{sudo python setup.py install}.
+Doconce itself is frequently updated so these commands should be
+run regularly.
 
 \end{document}

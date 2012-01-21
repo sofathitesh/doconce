@@ -363,7 +363,6 @@ def insert_code_from_file(filestr, format):
     inside_verbatim = False
     for i in range(len(lines)):
         line = lines[i]
-        debugpr('Read ' + line)
         line = line.lstrip()
 
         # detect if we are inside verbatim blocks:
@@ -375,7 +374,7 @@ def insert_code_from_file(filestr, format):
             continue
 
         if line.startswith('@@@CODE'):
-            debugpr('Found verbatim copy (line %d): %s' % (i+1, line))
+            debugpr('\nFound verbatim copy (line %d):\n%s\n' % (i+1, line))
             words = line.split()
             try:
                 filename = words[1]
@@ -389,6 +388,16 @@ def insert_code_from_file(filestr, format):
                 print e
                 sys.exit(1)
 
+            # Determine code environment from filename extension
+            filename_ext = os.path.splitext(filename)[1]
+            if filename_ext == '.cxx' or filename_ext == '.C':
+                filename_ext = '.cpp'
+            if filename_ext in ('.py', '.f', '.c', '.cpp', '.sh',
+                                '.m', '.pl', '.cy'):
+                code_envir = filename_ext[1:]
+            else:
+                code_envir = ''
+
             m = re.search(r'from-?to:', line)
             if m:
                 index = m.start()
@@ -400,10 +409,10 @@ def insert_code_from_file(filestr, format):
             #print index, words
             if index == -1 and len(words) < 3:
                 # no from/to regex, read the whole file:
-                print 'copying complete file %s' % filename,
+                print 'copy complete file %s' % filename,
                 complete_file = True
                 code = codefile.read().strip()
-                debugpr('copy the file "%s" into a verbatim block\n' % filename)
+                debugpr('copy the whole file "%s" into a verbatim block\n' % filename)
 
             else:
                 complete_file = False
@@ -418,7 +427,10 @@ def insert_code_from_file(filestr, format):
                 except:
                     raise SyntaxError, \
                     'Syntax error: missing @ in regex in line\n  %s' % line
-                print 'copying from regex "%s" to "%s" in %s' % (from_, to_, filename),
+
+                print 'copy %s regex "%s" until "%s" in %s' % \
+                      ('after' if fromto == 'from-to:' else 'from',
+                       from_, to_, filename),
                 # Note that from_ and to_ are regular expressions
                 # and to_ might be empty
                 cfrom = re.compile(from_)
@@ -432,44 +444,42 @@ def insert_code_from_file(filestr, format):
                 codelines = []
                 copy = False
                 for codeline in codefile:
-                    m = cfrom.search(codeline)
-                    if m and fromto == 'fromto:':
+                    mf = cfrom.search(codeline)
+                    if mf and fromto == 'fromto:':
                         copy = True
+                        debugpr('hit (fromto:) start "%s" (as "%s") in the line\n%s\ncode environment: %s' % (from_, codeline[mf.start():mf.end()], codeline, code_envir if code_envir else 'none'))
+
                     if to_:
-                        m = cto.search(codeline)
-                        if m:
+                        mt = cto.search(codeline)
+                        if mt:
                             copy = False
                             # now the to_ line is not included
+                            debugpr('hit end "%s" (as "%s") in the line\n%s' % \
+                                    (to_, codeline[mt.start():mt.end()],
+                                     codeline))
                     if copy:
-                        debugpr('copy from "%s" the line\n%s' % \
-                              (filename, codeline))
+                        debugpr('copy: %s' % codeline.rstrip())
                         codelines.append(codeline)
 
-                    if m and fromto == 'from-to:':
+                    if mf and fromto == 'from-to:':
                         copy = True  # start copy from next codeline
+                        debugpr('hit (from-to:) start "%s" (as "%s") in the line\n%s\ncode environment: %s' % (from_, codeline[mf.start():mf.end()], codeline, code_envir if code_envir else 'none'))
 
                 code = ''.join(codelines)
                 code = code.rstrip() # remove trailing whitespace
-                codefile.close()
+                if code == '' or code.isspace():
+                    print '....no match for regex! Abort.'
+                    sys.exit(1)
+            codefile.close()
 
             if format == 'latex' or format == 'sphinx':
                 # Insert a cod or pro directive for ptex2tex and sphinx.
-
-                # Determine code environment from filename extension
-                filename_ext = os.path.splitext(filename)[1]
-                if filename_ext == '.cxx' or filename_ext == '.C':
-                    filename_ext = '.cpp'
-                if filename_ext in ('.py', '.f', '.c', '.cpp', '.sh',
-                                    '.m', '.pl', '.cy'):
-                    prefix = filename_ext[1:]
-                else:
-                    prefix = ''
                 if complete_file:
-                    code = "!bc %spro\n%s\n!ec" % (prefix, code)
-                    print ' (!bc %spro)' % prefix
+                    code = "!bc %spro\n%s\n!ec" % (code_envir, code)
+                    print ' (%spro)' % code_envir
                 else:
-                    code = "!bc %scod\n%s\n!ec" % (prefix, code)
-                    print ' (!bc %scod)' % prefix
+                    code = "!bc %scod\n%s\n!ec" % (code_envir, code)
+                    print ' (%scod)' % code_envir
             else:
                 code = "!bc\n%s\n!ec" % code
                 print
@@ -485,7 +495,7 @@ def exercises(filestr, format):
     # __Hint 1.__ some paragraph...,
     # __Hint 2.__ ...
 
-    debugpr('\n\n\n***** Exercises *****\n %s' % filestr)
+    debugpr('\n\n\n***** Exercises *****\nLooking for exercises in the whole file:\n%s\n..............\n' % filestr)
 
     all_exer = []   # collection of all exercises
     exer = {}       # data for one exercise
@@ -586,11 +596,6 @@ def exercises(filestr, format):
         debugpr('No exercises found.\n')
 
     return filestr
-
-# do the same for abstract:
-# pattern = r"(?P<begin>__Abstract\.__|__Summary\.__)(?P<abstract>.*?)(?P<end>===)"  # re.DOTALL
-# LaTeX: put in {abstract} envir, all others: do nothing, i.e., print the
-# three, done by some common.py thing
 
 
 def parse_keyword(keyword, format):
@@ -1155,7 +1160,7 @@ def inline_tag_subst(filestr, format):
         'linkURL',
         )
     for tag in ordered_tags:
-        debugpr('Working with tag "%s"' % tag)
+        debugpr('\n*************** Working with tag "%s"' % tag)
         tag_pattern = INLINE_TAGS[tag]
         #print 'working with tag "%s" = "%s"' % (tag, tag_pattern)
         if tag in ('abstract',):
@@ -1175,8 +1180,11 @@ def inline_tag_subst(filestr, format):
             occurences = len(findlist)
             findlist = pprint.pformat(findlist)
             if occurences > 0:
-                debugpr('Found %d occurences of "%s":\n%s' % (occurences, tag, findlist))
+                debugpr('Found %d occurences of "%s":\nfindall list: %s' % (occurences, tag, findlist))
                 debugpr('%s is to be replaced using %s' % (tag, replacement))
+                m = c.search(filestr)
+                if m:
+                    debugpr('First occurence: "%s"\ngroups: %s\nnamed groups: %s' % (m.group(0), m.groups(), m.groupdict()))
 
             filestr = c.sub(replacement, filestr)
         elif callable(replacement):
@@ -1207,7 +1215,7 @@ def inline_tag_subst(filestr, format):
             raise ValueError, 'replacement is of type %s' % type(replacement)
         if occurences > 0:
             debugpr('\n**** The file after %d "%s" substitutions ***\n%s\n%s\n\n' % \
-                  (occurences, tag, filestr, ':'*80))
+                  (occurences, tag, filestr, '-'*80))
     return filestr
 
 def subst_away_inline_comments(filestr):

@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Jan 5, 2012
+:Date: Jan 21, 2012
 
 .. lines beginning with # are comment lines
 
@@ -25,11 +25,13 @@ Doconce is two things:
     including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags
     are removed for clear reading in, e.g., emails). From reST you can
-    go to XML, HTML, LaTeX, PDF, OpenOffice, and from the latter to
-    RTF and MS Word.  (An experimental translator to Pandoc is under
-    development, and from Pandoc one can generate Markdown, reST,
-    LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU Texinfo, MediaWiki,
-    RTF, Groff, and other formats.)
+    (via ``rst2*`` programs) go to XML, HTML, LaTeX, PDF, OpenOffice,
+    and from the latter (via ``unoconv``) to RTF, numerous MS Word
+    formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
+    XHTML. (An experimental translator to Pandoc is under development,
+    and from Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF,
+    DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
+    other formats.)
 
  2. Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
@@ -97,21 +99,122 @@ when transformed to other formats.
 
 
 
-Dependencies
-------------
+Dependencies and Installation
+-----------------------------
 
-If you make use of preprocessor directives in the Doconce source,
-either `Preprocess <http://code.google.com/p/preprocess>`_ or `Mako <http://www.makotemplates.org>`_ must be installed.  To make LaTeX
-documents (without going through the reStructuredText format) you also
-need `ptex2tex <http://code.google.com/p/ptex2tex>`_ and some style
-files that ``ptex2tex`` potentially makes use of.  Going from
-reStructuredText to formats such as XML, OpenOffice, HTML, and LaTeX
-requires `docutils <http://docutils.sourceforge.net>`_.  Making Sphinx
-documents requires of course `Sphinx <http://sphinx.pocoo.org>`_.
-All of the mentioned potential dependencies are pure Python packages
-which are easily installed.
-If translation to `Pandoc <http://johnmacfarlane.net/pandoc/>`_ is desired,
-the Pandoc Haskell program must of course be installed.
+Doconce itself is pure Python code hosted at `<http://code.google.com/p/doconce>`_.  Its installation from the
+Mercurial (``hg``) source follows the standard procedure::
+
+
+        # Doconce
+        hg clone https://doconce.googlecode.com/hg/ doconce
+        cd doconce
+        sudo python setup.py install
+        cd ..
+
+
+If you make use of the `Preprocess <http://code.google.com/p/preprocess>`_
+preprocessor, this program must be installed::
+
+
+        svn checkout http://preprocess.googlecode.com/svn/trunk/ preprocess
+        cd preprocess
+        cd doconce
+        sudo python setup.py install
+        cd ..
+
+A much more advanced alternative to Preprocess is
+`Mako <http://www.makotemplates.org>`_. Its installation is most
+conveniently done by ``pip``::
+
+
+        pip install Mako
+
+This command requires ``pip`` to be installed. On Debian Linux systems,
+such as Ubuntu, the installation is simply done by::
+
+
+        sudo apt-get install python-pip
+
+Alternatively, one can install from the ``pip`` `source code <http://pypi.python.org/pypi/pip>`_.
+
+To make LaTeX
+documents (without going through the reStructuredText format) you
+need `ptex2tex <http://code.google.com/p/ptex2tex>`_, which is
+installed by::
+
+
+        svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
+        cd ptex2tex
+        sudo python setup.py install
+        cd latex
+        sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
+        cd ../..
+
+As seen, ``cp2texmf.sh`` copies some special stylefiles that
+that ``ptex2tex`` potentially makes use of. Some more standard stylefiles
+are also needed. These are installed by::
+
+
+        sudo apt-get install texlive-latex-extra
+
+on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
+the necessary stylefiles (if not, they can be found by googling and installed
+manually in the ``~/texmf/tex/latex/misc`` directory).
+
+For ``rst`` output and further transformation to LaTeX, HTML, XML,
+OpenOffice, and so on, one needs `docutils <http://docutils.sourceforge.net>`_.
+The installation can be done by::
+
+
+        svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
+        cd docutils
+        sudo python setup.py install
+        cd ..
+
+To use the OpenOffice suite you will typically on Debian systems install::
+
+
+        sudo apt-get install unovonv libreoffice libreoffice-dmaths
+
+
+Output to ``sphinx`` requires of course `Sphinx <http://sphinx.pocoo.org>`_,
+installed by::
+
+
+        hg clone https://bitbucket.org/birkenfeld/sphinx
+        cd sphinx
+        sudo python setup.py install
+        cd ..
+
+
+When the output format is ``epydoc`` one needs that program too, installed
+by::
+
+
+        svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc
+        cd epydoc
+        sudo make install
+        cd ..
+
+
+Finally, translation to ``pandoc`` requires the
+`Pandoc <http://johnmacfarlane.net/pandoc/>`_ program to be installed::
+
+
+        sudo apt-get install pandoc
+
+
+*Remark.* Several of the packages above installed from source code
+are also available in Debian-based system through the
+``apt-get install`` command. However, we recommend installation directly
+from the version control system repository as there might be important
+updates and bug fixes. For ``svn`` directories, go to the directory,
+run ``svn update``, and then ``sudo python setup.py install``. For
+Mercurial (``hg``) directories, go to the directory, run
+``hg pull; hg update``, and then ``sudo python setup.py install``.
+Doconce itself is frequently updated so these commands should be
+run regularly.
 
 
 
@@ -340,9 +443,38 @@ We may now produce various other formats::
         Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
         Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 
+
 The OpenOffice file ``mydoc.odt`` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
-That is, one can easily go from Doconce to Microsoft Word.
+However, it is more convenient to use the program ``unovonv``
+to convert between the many formats OpenOffice supports *on the command line*.
+Run::
+
+
+        Terminal> unoconv --show
+
+to see all the formats that are supported.
+For example, the following commands take
+``mydoc.odt`` to Microsoft Office Open XML format,
+classic MS Word format, and PDF::
+
+
+        Terminal> unoconv -f ooxml mydoc.odt
+        Terminal> unoconv -f doc mydoc.odt
+        Terminal> unoconv -f pdf mydoc.odt
+
+
+*Remark about Mathematical Typesetting.* At the time of this writing, there is no easy way to go from Doconce
+and LaTeX mathematics to reST and further to OpenOffice and the
+"MS Word world". Mathematics is only fully supported by ``latex`` as
+output and to a wide extent supported by the ``sphinx`` output format.
+
+.. One possible way from Doconce to MS Word goes via ``latex``, then
+
+.. ``texmacs`` (export as HTML), then saving with epiphany, and finally
+
+.. from OpenOffice to MS Word doc format.
+
 
 Sphinx
 ------
@@ -465,6 +597,12 @@ is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes::
         make clean   # remove old versions
         make html
 
+
+Sphinx can generate a range of different formats:
+standalone HTML, HTML in separate directories with ``index.html`` files,
+a large single HTML file, JSON files, various help files (the qthelp, HTML,
+and Devhelp projects), epub, LaTeX, PDF (via LaTeX), pure text, man pages,
+and Texinfo files.
 
 *Step 6.* View the result::
 
@@ -881,7 +1019,7 @@ Links to files ending in ``.txt``, ``.html``, ``.pdf``, ``.py``, ``.f``,
 setup::
 
 
-        see the "Doconce Manual": "manual.do.txt"
+        see the "Doconce Manual": "manual.do.txt".
 
 which appears as see the `Doconce Manual <manual.do.txt>`_.
 
@@ -891,13 +1029,35 @@ the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes::
 
 
-        URL: "manual.xml"
+        URL: "manual.html"
 
-.. These work as well: `<manual.xml>`_ `<manual.xml>`_
+resulting in the link `<manual.html>`_.
 
-.. `<manual.xml>`_
+.. This is now automatically carried out by the autogenerated
 
-resulting in the link `<manual.xml>`_.
+.. script for sphinx:
+
+.. For such local links to
+
+.. work with the ``sphinx`` format, the ``.rst`` file needs a fix, carried
+
+.. out by
+
+.. !bc sys
+
+.. doconce sphinxfix_localURLs mydoc.rst
+
+.. 
+
+
+.. (The files, such as ``manual.html``, are then copied to a subdirectory
+
+.. ``_static``, which must be manually copied to the Sphinx directory's
+
+.. ``_static`` directory - links in the ``.rst`` files are automatically
+
+.. adjusted.)
+
 
 To have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes::
@@ -1208,16 +1368,18 @@ in ``.ptex2tex.cfg`` for how to typeset the blocks in LaTeX using
 various verbatim styles (Pygments can also be used in a LaTeX
 context).
 
-By default, ``pro`` is used for complete programs in Python, ``cod``
-is for a code snippet in Python, while ``xcod`` and ``xpro`` implies
-computer language specific typesetting where ``x`` can be
-``f`` for Fortran, ``c`` for C, ``cpp`` for C++, ``sh`` for Unix shells,
-``pl`` for Perl, ``m`` for Matlab, ``cy`` for Cython, and ``py`` for Python.
-The argument ``sys`` means by default ``console`` for Sphinx and
-``CodeTerminal`` (ptex2tex environent) for LaTeX. All these definitions
-of the arguments after ``!bc`` can be redefined in the ``.ptex2tex.cfg``
-configuration file for ptex2tex/LaTeX and in the ``sphinx code-blocks``
-comments for Sphinx. Support for other languages is easily added.
+By default, ``pro`` is used for complete programs in Python, ``cod`` is
+for a code snippet in Python, while ``xcod`` and ``xpro`` implies computer
+language specific typesetting where ``x`` can be ``f`` for Fortran, ``c``
+for C, ``cpp`` for C++, ``sh`` for Unix shells, ``pl`` for Perl, ``m`` for
+Matlab, ``cy`` for Cython, and ``py`` for Python.  The argument ``sys``
+means by default ``console`` for Sphinx and ``CodeTerminal`` (ptex2tex
+environent) for LaTeX. Other specifications are ``dat`` for a data file
+or print out, and ``ipy`` for interactive Python sessions.  All these
+definitions of the arguments after ``!bc`` can be redefined in the
+``.ptex2tex.cfg`` configuration file for ptex2tex/LaTeX and in the
+``sphinx code-blocks`` comments for Sphinx. Support for other languages
+is easily added.
 
 .. (Any sphinx code-block comment, whether inside verbatim code
 
@@ -1268,7 +1430,7 @@ is then::
 
 
          @@@CODE myfile.f
-         @@@CODE myfile.f fromto:subroutine\s+test@^C\s{5}END1
+         @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1
 
 The first line implies that all lines in the file ``myfile.f`` are
 copied into a verbatim block, typset in a ``!bc Xpro`` environment, where
@@ -1321,6 +1483,35 @@ directive above::
               end do
               return
 
+
+Note that the "to" line is not copied into the Doconce file, but the
+"from" line is. Sometimes it is convenient to also neglect the
+"from" line, a feature that is allowed by replacing ``fromto:`` by
+``from-to`` ("from with minus"). This allows for copying very similar
+code segments throughout a file, while still distinguishing between them.
+Copying the second set of parameters from the text::
+
+
+        # --- Start Example 1 ---
+        c = -1
+        A = 2
+        p0 = 4
+        simulate_and_plot(c, A, p0)
+        # --- End Example 1 ---
+        
+        # --- Start Example 2 ---
+        c = -1
+        A = 1
+        p0 = 0
+        simulate_and_plot(c, A, p0)
+        # --- End Example 2 ---
+
+is easy with::
+
+
+        from-to: Start Example 2@End Example 2
+
+With only ``fromto:`` this would be impossible.
 
 (Remark for those familiar with ``ptex2tex``: The from-to
 syntax is slightly different from that used in ``ptex2tex``. When
@@ -1823,6 +2014,17 @@ If the problem is undefined control sequence involving::
 the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
+
+Errors in figure captions
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Such errors typically arise from unbalanced curly braces, or dollar signs
+around math, and similar LaTeX syntax errors.
+
+(Note that verbatim font is likely to cause trouble inside figure captions,
+but Doconce will automatically replace verbatim text in backquotes by
+a proper ``texttt`` command (since verbatim font constructions does not work
+inside figure captions) and precede underscores by backslash.)
 
 Chapters are ignored
 ~~~~~~~~~~~~~~~~~~~~
