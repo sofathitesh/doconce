@@ -179,9 +179,8 @@ and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by `latex` as
 output and to a wide extent supported by the `sphinx` output format.
 
-#One possible way from Doconce to MS Word goes via `latex`, then
-# `texmacs` (export as HTML), then saving with epiphany, and finally
-# from OpenOffice to MS Word doc format.
+#One possible way from Doconce to MS Word goes via `latex` and then
+# `texmacs`. This didn't work well for math and figures.
 
 ===== Sphinx =====
 

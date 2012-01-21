@@ -705,9 +705,8 @@ Terminal&gt; unoconv -f pdf mydoc.odt
 and LaTeX mathematics to reST and further to OpenOffice and the
 &quot;MS Word world&quot;. Mathematics is only fully supported by <tt class="docutils literal">latex</tt> as
 output and to a wide extent supported by the <tt class="docutils literal">sphinx</tt> output format.</p>
-<!-- One possible way from Doconce to MS Word goes via ``latex``, then -->
-<!-- ``texmacs`` (export as HTML), then saving with epiphany, and finally -->
-<!-- from OpenOffice to MS Word doc format. -->
+<!-- One possible way from Doconce to MS Word goes via ``latex`` and then -->
+<!-- ``texmacs``. This didn't work well for math and figures. -->
 </div>
 <div class="section" id="id3">
 <h2>Sphinx</h2>
@@ -1508,6 +1507,8 @@ void myfunc(double* x, const double&amp; myarr) {
     }
 }
 </pre>
+<!-- When showing copy from file in !bc envir, intent a character - otherwise -->
+<!-- ptex2tex is confused and starts copying... -->
 <p>Computer code can be copied directly from a file, if desired. The syntax
 is then:</p>
 <pre class="literal-block">

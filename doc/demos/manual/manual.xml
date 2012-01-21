@@ -169,7 +169,7 @@ Terminal&gt; unoconv -f doc mydoc.odt
 Terminal&gt; unoconv -f pdf mydoc.odt</literal_block><paragraph><emphasis>Remark about Mathematical Typesetting.</emphasis> At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 &quot;MS Word world&quot;. Mathematics is only fully supported by <literal>latex</literal> as
-output and to a wide extent supported by the <literal>sphinx</literal> output format.</paragraph><comment xml:space="preserve">One possible way from Doconce to MS Word goes via ``latex``, then</comment><comment xml:space="preserve">``texmacs`` (export as HTML), then saving with epiphany, and finally</comment><comment xml:space="preserve">from OpenOffice to MS Word doc format.</comment></section><section dupnames="sphinx" ids="id3"><title>Sphinx</title><paragraph>Sphinx documents demand quite some steps in their creation. We have automated
+output and to a wide extent supported by the <literal>sphinx</literal> output format.</paragraph><comment xml:space="preserve">One possible way from Doconce to MS Word goes via ``latex`` and then</comment><comment xml:space="preserve">``texmacs``. This didn't work well for math and figures.</comment></section><section dupnames="sphinx" ids="id3"><title>Sphinx</title><paragraph>Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <literal>doconce sphinx_dir</literal> command:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce sphinx_dir author=&quot;authors' names&quot; \
           title=&quot;some title&quot; version=1.0 dirname=sphinxdir \
           theme=mytheme file1 file2 file3 ...</literal_block><paragraph>The keywords <literal>author</literal>, <literal>title</literal>, and <literal>version</literal> are used in the headings
@@ -610,7 +610,7 @@ INLINE_TAGS = {
     for (int i = 1; i &lt; myarr.size(); i++) {
         myarr[i] = myarr[i] - x[i]*myarr[i-1]
     }
-}</literal_block><paragraph>Computer code can be copied directly from a file, if desired. The syntax
+}</literal_block><comment xml:space="preserve">When showing copy from file in !bc envir, intent a character - otherwise</comment><comment xml:space="preserve">ptex2tex is confused and starts copying...</comment><paragraph>Computer code can be copied directly from a file, if desired. The syntax
 is then:</paragraph><literal_block xml:space="preserve">@@@CODE myfile.f
 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1</literal_block><paragraph>The first line implies that all lines in the file <literal>myfile.f</literal> are
 copied into a verbatim block, typset in a <literal>!bc Xpro</literal> environment, where

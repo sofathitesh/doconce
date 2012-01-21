@@ -469,11 +469,9 @@ and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by ``latex`` as
 output and to a wide extent supported by the ``sphinx`` output format.
 
-.. One possible way from Doconce to MS Word goes via ``latex``, then
+.. One possible way from Doconce to MS Word goes via ``latex`` and then
 
-.. ``texmacs`` (export as HTML), then saving with epiphany, and finally
-
-.. from OpenOffice to MS Word doc format.
+.. ``texmacs``. This didn't work well for math and figures.
 
 
 Sphinx
@@ -1424,6 +1422,10 @@ And here is a C++ code snippet (``cppcod`` style)::
             }
         }
 
+
+.. When showing copy from file in !bc envir, intent a character - otherwise
+
+.. ptex2tex is confused and starts copying...
 
 Computer code can be copied directly from a file, if desired. The syntax
 is then::

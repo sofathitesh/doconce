@@ -544,9 +544,8 @@ and {\LaTeX} mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by {\fontsize{10pt}{10pt}\verb!latex!} as
 output and to a wide extent supported by the {\fontsize{10pt}{10pt}\verb!sphinx!} output format.
 
-% One possible way from Doconce to MS Word goes via {\fontsize{10pt}{10pt}\verb!latex!}, then
-% {\fontsize{10pt}{10pt}\verb!texmacs!} (export as HTML), then saving with epiphany, and finally
-% from OpenOffice to MS Word doc format.
+% One possible way from Doconce to MS Word goes via {\fontsize{10pt}{10pt}\verb!latex!} and then
+% {\fontsize{10pt}{10pt}\verb!texmacs!}. This didn't work well for math and figures.
 
 \subsection{Sphinx}
 
@@ -1533,6 +1532,8 @@ void myfunc(double* x, const double& myarr) {
 \end{minted}
 \noindent
 
+% When showing copy from file in !bc envir, intent a character - otherwise
+% ptex2tex is confused and starts copying...
 Computer code can be copied directly from a file, if desired. The syntax
 is then
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
@@ -1601,8 +1602,22 @@ Note that the "to" line is not copied into the Doconce file, but the
 {\fontsize{10pt}{10pt}\verb!from-to!} ("from with minus"). This allows for copying very similar
 code segments throughout a file, while still distinguishing between them.
 Copying the second set of parameters from the text
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\providecommand{\shadedskip}{}
+\definecolor{shadecolor}{rgb}{0.87843, 0.95686, 1.0}
+\renewenvironment{shadedskip}{
+\def\FrameCommand{\colorbox{shadecolor}}\FrameRule0.6pt
+\MakeFramed {\FrameRestore}\vskip3mm}{\vskip0mm\endMakeFramed}
+\providecommand{\shadedquoteBlue}{}
+\renewenvironment{shadedquoteBlue}[1][]{
+\bgroup\rmfamily
+\fboxsep=0mm\relax
+\begin{shadedskip}
+\list{}{\parsep=-2mm\parskip=0mm\topsep=0pt\leftmargin=2mm
+\rightmargin=2\leftmargin\leftmargin=4pt\relax}
+\item\relax}
+{\endlist\end{shadedskip}\egroup}\begin{shadedquoteBlue}
+\fontsize{9pt}{9pt}
+\begin{Verbatim}
 # --- Start Example 1 ---
 c = -1
 A = 2
@@ -1617,6 +1632,7 @@ p0 = 0
 simulate_and_plot(c, A, p0)
 # --- End Example 2 ---
 \end{Verbatim}
+\end{shadedquoteBlue}
 \noindent
 is easy with
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
@@ -1818,20 +1834,7 @@ to contain the keyword {\fontsize{10pt}{10pt}\verb!part:!}.
 Here is an example. Say the name of the master file is {\fontsize{10pt}{10pt}\verb!master.do.txt!}.
 The following Bash script does the job:
 We run
-\providecommand{\shadedskip}{}
-\definecolor{shadecolor}{rgb}{0.87843, 0.95686, 1.0}
-\renewenvironment{shadedskip}{
-\def\FrameCommand{\colorbox{shadecolor}}\FrameRule0.6pt
-\MakeFramed {\FrameRestore}\vskip3mm}{\vskip0mm\endMakeFramed}
-\providecommand{\shadedquoteBlue}{}
-\renewenvironment{shadedquoteBlue}[1][]{
-\bgroup\rmfamily
-\fboxsep=0mm\relax
-\begin{shadedskip}
-\list{}{\parsep=-2mm\parskip=0mm\topsep=0pt\leftmargin=2mm
-\rightmargin=2\leftmargin\leftmargin=4pt\relax}
-\item\relax}
-{\endlist\end{shadedskip}\egroup}\begin{shadedquoteBlue}
+\begin{shadedquoteBlue}
 \fontsize{9pt}{9pt}
 \begin{Verbatim}
 doconce format sphinx master

@@ -1233,20 +1233,19 @@ return</pre>
 <tt class="docutils literal"><span class="pre">from-to</span></tt> (&#8220;from with minus&#8221;). This allows for copying very similar
 code segments throughout a file, while still distinguishing between them.
 Copying the second set of parameters from the text</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="c"># --- Start Example 1 ---</span>
-<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">A</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">p0</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">simulate_and_plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span>
-<span class="c"># --- End Example 1 ---</span>
+<div class="highlight-fortran"><pre># --- Start Example 1 ---
+c = -1
+A = 2
+p0 = 4
+simulate_and_plot(c, A, p0)
+# --- End Example 1 ---
 
-<span class="c"># --- Start Example 2 ---</span>
-<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">A</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">p0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">simulate_and_plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span>
-<span class="c"># --- End Example 2 ---</span>
-</pre></div>
+# --- Start Example 2 ---
+c = -1
+A = 1
+p0 = 0
+simulate_and_plot(c, A, p0)
+# --- End Example 2 ---</pre>
 </div>
 <p>is easy with</p>
 <div class="highlight-py"><pre>from-to: Start Example 2@End Example 2</pre>

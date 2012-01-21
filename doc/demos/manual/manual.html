@@ -546,9 +546,8 @@ and LaTeX mathematics to reST and further to OpenOffice and the
 output and to a wide extent supported by the <tt>sphinx</tt> output format.
 
 <P>
-<!-- One possible way from Doconce to MS Word goes via <tt>latex</tt>, then -->
-<!-- <tt>texmacs</tt> (export as HTML), then saving with epiphany, and finally -->
-<!-- from OpenOffice to MS Word doc format. -->
+<!-- One possible way from Doconce to MS Word goes via <tt>latex</tt> and then -->
+<!-- <tt>texmacs</tt>. This didn't work well for math and figures. -->
 
 <P>
 <h3>Sphinx</h3>
@@ -1597,6 +1596,8 @@ void myfunc(double* x, const double& myarr) {
 </blockquote>   <! -- end verbatim block -->
 
 <P>
+<!-- When showing copy from file in !bc envir, intent a character - otherwise -->
+<!-- ptex2tex is confused and starts copying... -->
 Computer code can be copied directly from a file, if desired. The syntax
 is then
 <blockquote>    <!-- begin verbatim block  -->
@@ -1672,7 +1673,7 @@ Note that the "to" line is not copied into the Doconce file, but the
 <tt>from-to</tt> ("from with minus"). This allows for copying very similar
 code segments throughout a file, while still distinguishing between them.
 Copying the second set of parameters from the text
-<blockquote>    <!-- begin verbatim block  -->
+<blockquote>    <!-- begin verbatim block   cod-->
 <pre>
 # --- Start Example 1 ---
 c = -1
