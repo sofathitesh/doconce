@@ -464,6 +464,7 @@ EOF
     themes = [name[8:] for name in \
               glob.glob(os.path.join('_themes', '*'))] + ['default']
     print 'These Sphinx themes were found:', ', '.join(themes)
+
     f = open('conf.py', 'r');  text = f.read();  f.close()
     themes_list = ["html_theme = '%s'" % theme] + \
                   ["#html_theme = '%s'" % theme for theme in themes]
@@ -471,7 +472,23 @@ EOF
                         '\n'.join(themes_list))
     text = text.replace("#html_theme_path = []",
                         "html_theme_path = ['_themes']")
+    extensions = """\
+extensions = [
+          #'sphinx.ext.pngmath',
+          'sphinx.ext.mathjax',
+          #'matplotlib.sphinxext.mathmpl',
+          'matplotlib.sphinxext.only_directives',
+          'matplotlib.sphinxext.plot_directive',
+          'matplotlib.sphinxext.ipython_directive',
+          'sphinx.ext.autodoc',
+          'sphinx.ext.doctest',
+          'sphinx.ext.viewcode',
+          'matplotlib.sphinxext.ipython_console_highlighting',
+          'sphinx.ext.inheritance_diagram']
+"""
+    text = re.sub(r'extensions = .*\]', extensions, text)
     f = open('conf.py', 'w');  f.write(text);  f.close()
+
     f = open('make-themes.sh', 'w')
     f.write("""#!/bin/sh
 # Make all themes given on the command line (or if no themes are

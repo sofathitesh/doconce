@@ -177,10 +177,16 @@ __Remark about Mathematical Typesetting.__
 At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by `latex` as
-output and to a wide extent supported by the `sphinx` output format.
+output and to a wide extent also supported by the `sphinx` output format.
+Some links for going from LaTeX to Word are listed below.
+
+ * URL:"http://ubuntuforums.org/showthread.php?t=1033441"
+ * URL:"http://tug.org/utilities/texconv/textopc.html"
+ * URL:"http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"
 
 #One possible way from Doconce to MS Word goes via `latex` and then
 # `texmacs`. This didn't work well for math and figures.
+
 
 ===== Sphinx =====
 
