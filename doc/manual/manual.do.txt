@@ -1253,8 +1253,16 @@ If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
 !bc
 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+
 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 !ec
+
+=== Wrong Norwegian charcters ===
+
+When Doconce documents have characters not in the standard ASCII set,
+the format of the file must be LATIN1 and not UTF-8. See
+the section "Strange non-English characters" above for how to
+run `doconce change_encoding` to change the encoding of the Doconce file.
 
 === Inline verbatim text is not formatted correctly ===
 
