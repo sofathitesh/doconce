@@ -894,7 +894,7 @@ def guess_encoding():
 
 def usage_change_encoding():
     print 'Usage: doconce change_encoding from-encoding to-encoding file1 file2 ...'
-    print 'Example: doconce change_encoding utf-8 latin-1 myfile.do.txt'
+    print 'Example: doconce change_encoding utf-8 latin1 myfile.do.txt'
 
 def _change_encoding_unix(filename, from_enc, to_enc):
     backupfile = filename + '.old~~'
@@ -1311,7 +1311,7 @@ doconce clean
 
 doconce latex_header
 doconce latex_footer
-doconce change_encoding utf-8 latin-1 filename
+doconce change_encoding utf-8 latin1 filename
 doconce guess_encoding filename
 doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst

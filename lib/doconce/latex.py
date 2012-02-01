@@ -334,7 +334,7 @@ def latex_ref_and_label(section_label2title, format, filestr):
     prefix = r'Prof\.', r'Profs\.', r'prof\.', r'profs\.', r'Dr\.', \
              r'assoc\.', r'Assoc.', r'Assist.', r'Mr\.', r'Ms\.', 'Mss\.', \
              r'Fig\.', r'Tab\.', r'Univ\.', r'Dept\.', r'abbr\.', r'cf\.', \
-             r'e\.g\.', r'E\.g\.', r'i\.e\.',
+             r'e\.g\.', r'E\.g\.', r'i\.e\.', r'Approx\.', r'approx\.'
     # avoid r'assist\.' - matches too much
     for p in prefix:
         filestr = re.sub(r'(%s) +([\\A-Za-z0-9])' % p, r'\g<1>~\g<2>',
