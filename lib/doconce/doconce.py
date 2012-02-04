@@ -234,7 +234,10 @@ def syntax_check(filestr, format):
     """
     """
 
-
+    # Cannot check on these since doconce documents about ptex2tex and
+    # latex writings may contain these expressions in inline verbatim or
+    # block verbatim
+    """
     patterns = r'\\[be]cod', r'\\begin{[Vv]erbatim', r'\\end{[Vv]erbatim', r'\\[be]sys', r'\\[be]py',
     for pattern in patterns:
         matches = re.findall(pattern, filestr)
@@ -242,6 +245,7 @@ def syntax_check(filestr, format):
             print '\nSyntax error: Wrong syntax (latex!)'
             print '\n'.join(matches)
             sys.exit(1)
+    """
 
     pattern = r'__[A-Za-z0-9,:` ]+__\.'
     matches = re.findall(pattern, filestr)
