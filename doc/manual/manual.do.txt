@@ -1368,6 +1368,24 @@ the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
+=== Inline verbatim gives error  ===
+
+Check if the inline verbatim contains typical LaTeX commands, e.g.,
+!bc
+some text with `\usepackage{mypack}` is difficult because
+ptex2tex will replace this by \code{\usepackage{mypack}} and
+then replace this by 
+{\fontsize{10pt}{10pt}\verb!\usepackage{mypack!}}
+which is wrong because ptex2tex applies regex that don't 
+capture the second }
+!ec
+The remedy is to place verbatim LaTeX commands in verbatim 
+blocks - that is safe.
+
+# Could have doconce configure file where inline verbatim is
+# configured to be \fontsize... directly, not via ptex2tex \code{}.
+
+
 === Errors in figure captions ===
 
 Such errors typically arise from unbalanced curly braces, or dollar signs
