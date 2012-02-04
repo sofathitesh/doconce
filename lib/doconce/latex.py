@@ -422,6 +422,10 @@ def define(FILENAME_EXTENSION,
         'emphasize':     r'\g<begin>\emph{\g<subst>}\g<end>',
         'bold':          r'\g<begin>\\textbf{\g<subst>}\g<end>',  # (re.sub swallows a \)
         'verbatim':      r'\g<begin>\code{\g<subst>}\g<end>',
+        # The following verbatim is better if fixed fontsize is ok, since
+        # \code{\latexcommand{arg1}} style formatting does not work well
+        # with ptex2tex (the regex will not include the proper second }
+        #'verbatim':      r'\g<begin>{\footnotesize{10pt}{10pt}\verb!\g<subst>!\g<end>',
         'citation':      r'~\\cite{\g<subst>}',
         'linkURL':       r'\g<begin>\href{\g<url>}{\g<link>}\g<end>',
         'linkURL2':      r'\href{\g<url>}{\g<link>}',
