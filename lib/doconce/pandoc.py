@@ -95,7 +95,7 @@ def pandoc_ref_and_label(section_label2title, format, filestr):
 
 def bibdict2doconcelist(pyfile, citations):
     """Transform dict with bibliography to a doconce ordered list."""
-    # Copy from plaintext.py - no modifications yet for pandoc
+    # XXX This is a copy from plaintext.py - no modifications yet for pandoc
     f = open(pyfile, 'r')
     bibstr = f.read()
     try:
@@ -112,7 +112,7 @@ def bibdict2doconcelist(pyfile, citations):
 
 def pandoc_index_bib(filestr, index, citations, bibfile):
     filestr = filestr.replace('cite{', r'\cite{')
-    # The rest here is
+    # XXX The rest here is
     # copied from plaintext.py - no modifications yet for pandoc
 
     if 'py' in bibfile:
@@ -189,7 +189,7 @@ def define(FILENAME_EXTENSION,
         }
     CROSS_REFS['pandoc'] = pandoc_ref_and_label
 
-    # Uncertain whether rst_table is suited for pandoc!!
+    # XXX Uncertain whether rst_table is suited for pandoc!!
     from rst import rst_table
     TABLE['pandoc'] = rst_table
     #TABLE['pandoc'] = pandoc_table
