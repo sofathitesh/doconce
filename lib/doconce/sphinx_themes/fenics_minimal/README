@@ -1,3 +1,2 @@
-This is the Sphinx theme for the FEniCS web page located at
-http://www.fenicsproject.org. It was originally based on the
-pylons theme.
+This is a Sphinx theme with the FEniCS logo, but with no links
+to FEniCS we pages. It was originally based on the pylons theme.
