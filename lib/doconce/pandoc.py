@@ -93,42 +93,21 @@ def pandoc_ref_and_label(section_label2title, format, filestr):
 
     return filestr
 
-def bibdict2doconcelist(pyfile, citations):
-    """Transform dict with bibliography to a doconce ordered list."""
-    # Copy from plaintext.py - no modifications yet for pandoc
-    f = open(pyfile, 'r')
-    bibstr = f.read()
-    try:
-        bibdict = eval(bibstr)
-    except:
-        print 'Error in Python dictionary for bibliography in', pyfile
-        sys.exit(1)
-    text = '\n\n======= Bibliography =======\n\n'
-    for label in citations:
-        # remove newlines in reference data:
-        text += '  o ' + ' '.join(bibdict[label].splitlines()) + '\n'
-    text += '\n\n'
-    return text
 
 def pandoc_index_bib(filestr, index, citations, bibfile):
-    filestr = filestr.replace('cite{', r'\cite{')
-    # The rest here is
-    # copied from plaintext.py - no modifications yet for pandoc
+    # pandoc citations are of the form
+    # bla-bla, see [@Smith04, ch. 1; @Langtangen_2008]
+    # Method: cite{..} -> [...], doconce.py has already fixed @ and ;
+    filestr = re.sub(r'cite\{(.+?)\}', r'[\g<1>]', filestr)
 
-    if 'py' in bibfile:
-        bibtext = bibdict2doconcelist(bibfile['py'], citations)
-        #filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
-        cpattern = re.compile(r'^BIBFILE:.+$', flags=re.MULTILINE)
-        filestr = cpattern.sub(bibtext, filestr)
+    #filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
+    cpattern = re.compile(r'^BIBFILE:.+$', flags=re.MULTILINE)
+    filestr = cpattern.sub('# References', filestr)
 
-    # remove all index entries:
+    # pandoc does not support index entries,
+    # remove all index entries
+    
     filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)
-    # no index since line numbers from the .do.txt (in index dict)
-    # never correspond to the output format file
-    #filestr += '\n\n======= Index =======\n\n'
-    #for word in index:
-    #    filestr + = '%s, line %s\n' % (word, ', '.join(index[word]))
-
     return filestr
 
 def define(FILENAME_EXTENSION,
@@ -190,7 +169,7 @@ def define(FILENAME_EXTENSION,
     CROSS_REFS['pandoc'] = pandoc_ref_and_label
 
     # Uncertain whether rst_table is suited for pandoc!!
-    from rst import rst_table
+    from rst import rst_table            
     TABLE['pandoc'] = rst_table
     #TABLE['pandoc'] = pandoc_table
     INDEX_BIB['pandoc'] = pandoc_index_bib

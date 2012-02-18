@@ -1042,16 +1042,23 @@ def handle_index_and_bib(filestr, format, has_title):
                     if not label in citations:
                         cite_counter += 1  # new citation label
                         citations[label] = cite_counter
-                # replace cite{label1,label2,...} by individual cite{label1}
-                # cite{label2}, etc. if not latex format:
-                if format != 'latex':
+                # Replace cite{label1,label2,...} by individual cite{label1}
+                # cite{label2}, etc. if not latex or pandoc format
+                if format != 'latex' and format != 'pandoc':
                     for arg in cite_args:
                         replacement = ' '.join(['cite{%s}' % label.strip() \
                                                  for label in arg.split(',')])
                         filestr = filestr.replace('cite{%s}' % arg,
                                                   replacement)
+                elif format == 'pandoc':
+                    # prefix labels with @ and substitute , by ;
+                    for arg in cite_args:
+                        replacement = ';'.join(
+                            ['@' + label for label in arg.split(',')])
+                        filestr = filestr.replace('cite{%s}' % arg,
+                                                  replacement)
 
-    # version < 2.7 warning:
+    # version < 2.7 warning
     if len(citations) > 0 and OrderedDict is dict:
         print 'Warning: citations may appear in random order unless you upgrade to Python version 2.7 or 3.1'
     filestr = INDEX_BIB[format](filestr, index, citations, bibfile)
