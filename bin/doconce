@@ -487,6 +487,12 @@ extensions = [
           'sphinx.ext.inheritance_diagram']
 """
     text = re.sub(r'extensions = .*\]', extensions, text)
+    text = text.replace('#html_theme_options = {}', """\
+# See http://sphinx.pocoo.org/theming.html for options
+#html_theme_options = {
+#  'rightsidebar': 'true',
+#}
+""")
     f = open('conf.py', 'w');  f.write(text);  f.close()
 
     f = open('make-themes.sh', 'w')

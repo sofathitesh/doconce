@@ -138,12 +138,26 @@ def syntax_check(filestr, format):
                 (ref, ref)
     """
 
-    # Double quotes and not double single quotes in plain text:
-    if "``" in filestr:
-        print '''Syntax error: Double back-quotes `` found in file - should be "'''
-        sys.exit(1)
-    if "''" in filestr:
-        print '''\nWarning: Double forward-quotes '' found in file - should be " (unless derivatives in math)'''
+    # Double quotes and not double single quotes in *plain text*:
+    inside_code = False
+    inside_math = False
+    for line in filestr.splitlines():
+        if line.startswith('!bc'):
+            inside_code = True
+        if line.startswith('!bt'):
+            inside_math = True
+        if line.startswith('!ec'):
+            inside_code = False
+        if line.startswith('!et'):
+            inside_math = False
+
+        if not inside_code:
+            if "``" in line:
+                print '''\nSyntax error: Double back-quotes `` found in file - should be "'''
+                sys.exit(1)
+        if not inside_math:
+            if "''" in line:
+                print '''\nWarning: Double forward-quotes '' found in file - should be "\n(unless derivatives in math)'''
 
     commands = [
         'begin{equation}',
