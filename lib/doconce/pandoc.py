@@ -1,6 +1,7 @@
 """
-Warning: This is just a sketch of a possible
-translator from doconce to pandoc. Not tested!
+Warning: This translater should be complete
+(no "reference links", though), but it is
+not tested.
 
 See http://johnmacfarlane.net/pandoc/README.html
 for syntax.
@@ -8,6 +9,7 @@ for syntax.
 
 import re, sys
 from common import default_movie, plain_exercise
+from html import html_movie
 
 def pandoc_author(authors_and_institutions, auth2index,
                  inst2index, index2inst):
@@ -41,10 +43,54 @@ def pandoc_code(filestr, format):
     filestr = cpattern.sub(replacement, filestr)
 
     filestr = re.sub(r'!ec *\n', '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', filestr)
+    # pandoc supports plain LaTeX, just remove !bt and !et
     filestr = re.sub(r'!bt *\n', '\n\n', filestr)
     filestr = re.sub(r'!et *\n', '\n\n', filestr)
 
     return filestr
+
+def pandoc_table(table):
+    # Slight modification of rst_table
+    # Here is the pandoc table format
+    """
+    Simple tables look like this:
+
+      Right     Left     Center     Default
+    -------     ------ ----------   -------
+         12     12        12            12
+        123     123       123          123
+          1     1          1             1
+    """
+    column_width = table_analysis(table['rows'])
+    ncolumns = len(column_width)
+    column_spec = table.get('columns_align', 'c'*ncolumns).replace('|', '')
+    heading_spec = table.get('headings_align', 'c'*ncolumns).replace('|', '')
+    a2py = {'r': 'rjust', 'l': 'ljust', 'c': 'center'}
+    s = ''  # '\n'
+    for i, row in enumerate(table['rows']):
+        #s += '    '  # indentation of tables
+        if row == ['horizontal rule'] and i > 0 and i < len(table['rows'])-1:
+            # No horizontal rule at the top and bottom, just after heading
+            for w in column_width:
+                s += '-'*w + '  '
+        else:
+            # check if this is a headline between two horizontal rules:
+            if i == 1 and \
+               table['rows'][i-1] == ['horizontal rule'] and \
+               table['rows'][i+1] == ['horizontal rule']:
+                headline = True
+            else:
+                headline = False
+
+            for w, c, ha, ca in \
+                    zip(column_width, row, heading_spec, column_spec):
+                if headline:
+                    s += getattr(c, a2py[ha])(w) + '  '
+                else:
+                    s += getattr(c, a2py[ca])(w) + '  '
+        s += '\n'
+    s += '\n'
+    return s
 
 def pandoc_ref_and_label(section_label2title, format, filestr):
     # .... see section ref{my:sec} is replaced by
@@ -134,13 +180,14 @@ def define(FILENAME_EXTENSION,
         'emphasize': None,
         'bold':      None,
         'figure':    r'![\g<caption>](\g<filename>)',
-        'movie':     default_movie,
+        #'movie':     default_movie,
+        'movie':     html_movie,
         'verbatim':  None,
         'linkURL':   r'\g<begin>\g<link> (\g<url>)\g<end>',
         'linkURL2':  r'[\g<link>](\g<url>)',
         'linkURL3':  r'[\g<link>](\g<url>)',
         'plainURL':  r'<\g<url>>',
-        # Reference links are not yet supported
+        # "Reference links" in pandoc are not yet supported
         'title':     r'% \g<subst>n',
         'author':    pandoc_author,
         'date':      '% ' + r'\g<subst>' + '\n',
@@ -168,10 +215,7 @@ def define(FILENAME_EXTENSION,
         }
     CROSS_REFS['pandoc'] = pandoc_ref_and_label
 
-    # Uncertain whether rst_table is suited for pandoc!!
-    from rst import rst_table            
-    TABLE['pandoc'] = rst_table
-    #TABLE['pandoc'] = pandoc_table
+    TABLE['pandoc'] = pandoc_table
     INDEX_BIB['pandoc'] = pandoc_index_bib
     EXERCISE['pandoc'] = plain_exercise
 

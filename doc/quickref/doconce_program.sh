@@ -1,6 +1,7 @@
 doconce format html|latex|rst|sphinx|st|epytext|plain|gwiki|pandoc file.do.txt
 
-doconce subst [-s -m -x --restore] regex-pattern regex-replacement file1 file2 ...
+doconce subst [-s -m -x --restore] \  
+        regex-pattern regex-replacement file1 file2 ...
 (-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier,
  -x is the re.VERBOSE modifier, --restore copies backup files back again)
 
@@ -11,7 +12,9 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 
 doconce remove_inline_comments file.do.txt
 
-doconce sphinx_dir author='Me and you' title='Quick title' version=0.1 dirname=sphinx-rootdir theme=default file1 file2 file3
+doconce sphinx_dir author='Me and you' \  
+        title='Quick title' version=0.1 \  
+        dirname=sphinx-rootdir theme=default file1 file2 file3
 (requires sphinx version >= 1.1)
 
 doconce latin2html file.html
