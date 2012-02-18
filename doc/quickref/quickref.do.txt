@@ -282,7 +282,7 @@ ref{name}
 !ec
 again with no backslash before `ref`.
 
-Citations are written as
+Single citations are written as
 !bc
 cite{name}
 !ec
@@ -291,6 +291,11 @@ of the reference (again, LaTeX writers must not insert a backslash).
 Bibliography citations often have `name` on the form
 `Author1_Author2_YYYY`, `Author_YYYY`, or `Author1_etal_YYYY`, where
 `YYYY` is the year of the publication.
+Multiple citations at once is possible by separating the logical names
+by comma:
+!bc
+cite{name1,name2,name3}
+!ec
 
 The bibliography is specified by a line `BIBFILE: name_bib.bib,
 name_bib.rst, name_bib.py`, where `name` is the logical name of the
