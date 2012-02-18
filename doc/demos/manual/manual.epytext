@@ -32,12 +32,12 @@ Doconce is two things:
 Here are some Doconce features:
 
   - Doconce markup does include tags, so the format is more tagged than
-    Markdown, Pandoc, and AsciiDoc, but less than reST, and very much
-    less than LaTeX and HTML.
+    Markdown and Pandoc, but less than reST, and very much less than
+    LaTeX and HTML.
   - Doconce can be converted to plain I{untagged} text,
     often desirable for computer programs and email.
-  - Doconce has good support for copying in parts of computer code
-    directly from the source code files.
+  - Doconce has good support for copying in parts of computer code,
+    say in examples, directly from the source code files.
   - Doconce has full support for LaTeX math, and integrates very well
     with big LaTeX projects (books).
   - Doconce is almost self-explanatory and is a handy starting point
@@ -46,23 +46,20 @@ Here are some Doconce features:
     is just to make the initial versions of a Sphinx or wiki document.
   - Contrary to the similar Pandoc translator, Doconce integrates with
     Sphinx and Google wiki. However, if these formats are not of interest,
-    Pandoc is a superior tool.
+    Pandoc is obviously a superior tool.
 
 Doconce was particularly written for the following sample applications:
 
   - Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, or MS Word.
-    With U{ptex2tex<http://code.google.com/p/ptex2tex>}, Doconce can
-    display computer code in LaTeX in many sophisticated ways (almost
-    50 styles are available).
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
   - Software documentation, primarily Python doc strings, which one wants
-    to appear as plain untagged text for viewing in Pydoc, as reST
+    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
     web sites, and as LaTeX integrated in, e.g., a thesis.
   - Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
-    MS Word documents, in wikis, or as Sphinx documents.
+    Sphinx web pages, MS Word documents, or in wikis.
 
 History: Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
@@ -76,8 +73,9 @@ Disclaimer: Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
-limitations of regular expressions, some formatting may face problems
-when transformed to other formats.
+limitations of regular expressions, some formatting of Doconce syntax
+may face problems when transformed to HTML, LaTeX, Sphinx, and similar
+formats.
 
 
 
@@ -316,11 +314,14 @@ The name of the output file is C{mydoc.pnd}.
 From this format one can go to numerous other formats::
 
 
-        Terminal> pandoc -t markdown  -o mydoc.txt mydoc.pnd
-        Terminal> pandoc -t mediawiki -o mydoc.mwk mydoc.pnd
+        Terminal> pandoc -R -t markdown  -o mydoc.txt mydoc.pnd
+        Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.pnd
 
 Pandoc supports C{latex}, C{html}, C{odt} (OpenOffice), C{docx} (Microsoft
-Word), C{rtf}, C{texinfo}, to mention some.
+Word), C{rtf}, C{texinfo}, to mention some. The C{-R} option makes
+Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
+See the U{Pandoc documentation<http://johnmacfarlane.net/pandoc/README.html>}
+for the many features of the C{pandoc} program.
 
 LaTeX
 -----
@@ -505,12 +506,30 @@ relevant files.
 
 The C{doconce sphinx_dir} command generates a script
 C{automake-sphinx.sh} for compiling the Sphinx document into an HTML
-document.  This script copies directories named C{figs} or C{figures}
+document.  One can either run C{automake-sphinx.sh} or perform the
+steps in the script manually, possibly with necessary modifications.
+You should at least read the script prior to executing it to have
+some idea of what is done.
+
+Te C{doconce sphinx_dir} script copies directories named C{figs} or C{figures}
 over to the Sphinx directory so that figures are accessible in the
 Sphinx compilation.  If figures or movies are located in other
-directories, C{automake-sphinx.sh} must be edited accordingly. One
-can either run C{automake-sphinx.sh} or perform the steps in the
-script manually.
+directories, C{automake-sphinx.sh} must be edited accordingly.
+Links to local files (not C{http:} or C{file:} URLs) must be placed
+in the C{_static} subdirectory of the Sphinx directory. The
+utility C{doconce sphinxfix_localURLs} is run to check for local
+links: for each such link, say C{dir1/dir2/myfile.txt} it replaces
+the link by C{_static/myfile.txt} and copies C{dir1/dir2/myfile.txt}
+to a local C{_static} directory (in the same directory as the
+script is run). The user must copy all C{_static/*} files to the
+C{_static} subdirectory of the Sphinx directory. Links to local
+HTML files (say another Sphinx document) may present a problem if they link
+to other files: all necessary files must be correctly copied to
+the C{_static} subdirectory of the Sphinx directory.
+It may be wise to place relevant files in a C{_static} directory
+and link to these directly from the Doconce document - then links
+to not need to be modified when creating  a Sphinx version of
+the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the C{conf.py}
@@ -527,11 +546,10 @@ and C{_build/html_pyramid}, respectively. Without arguments,
 C{make-themes.sh} makes all available themes (!).
 
 If it is not desirable to use the autogenerated scripts explained
-above, here are the complete manual procedure of generating a
+above, here is the complete manual procedure of generating a
 Sphinx document from a file C{mydoc.do.txt}.
 
-I{Step 1.} Translate Doconce into the Sphinx dialect of
-the reStructuredText format::
+I{Step 1.} Translate Doconce into the Sphinx format::
 
 
         Terminal> doconce format sphinx mydoc
@@ -568,7 +586,7 @@ program. Here is a scripted version of the steps with the latter::
         EOF
 
 
-I{Step 3.} Copy the C{tutorial.rst} file to the Sphinx root directory::
+I{Step 3.} Copy the C{mydoc.rst} file to the Sphinx root directory::
 
 
         Terminal> cp mydoc.rst sphinx-rootdir
@@ -577,6 +595,8 @@ If you have figures in your document, the relative paths to those will
 be invalid when you work with C{mydoc.rst} in the C{sphinx-rootdir}
 directory. Either edit C{mydoc.rst} so that figure file paths are correct,
 or simply copy your figure directories to C{sphinx-rootdir}.
+Links to local files in C{mydoc.rst} must be modified to links to
+files in the C{_static} directory, see comment above.
 
 I{Step 4.} Edit the generated C{index.rst} file so that C{mydoc.rst}
 is included, i.e., add C{mydoc} to the C{toctree} section so that it becomes::
@@ -1936,12 +1956,12 @@ Check if the inline verbatim contains typical LaTeX commands, e.g.::
 
         some text with `\usepackage{mypack}` is difficult because
         ptex2tex will replace this by \code{\usepackage{mypack}} and
-        then replace this by 
+        then replace this by
         {\fontsize{10pt}{10pt}\verb!\usepackage{mypack!}}
-        which is wrong because ptex2tex applies regex that don't 
+        which is wrong because ptex2tex applies regex that don't
         capture the second }
 
-The remedy is to place verbatim LaTeX commands in verbatim 
+The remedy is to place verbatim LaTeX commands in verbatim
 blocks - that is safe.
 
 

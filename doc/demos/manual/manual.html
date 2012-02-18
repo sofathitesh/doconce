@@ -66,12 +66,12 @@ Here are some Doconce features:
 
 <ul>
   <li> Doconce markup does include tags, so the format is more tagged than
-    Markdown, Pandoc, and AsciiDoc, but less than reST, and very much
-    less than LaTeX and HTML.
+    Markdown and Pandoc, but less than reST, and very much less than
+    LaTeX and HTML.
   <li> Doconce can be converted to plain <em>untagged</em> text,
     often desirable for computer programs and email.
-  <li> Doconce has good support for copying in parts of computer code
-    directly from the source code files.
+  <li> Doconce has good support for copying in parts of computer code,
+    say in examples, directly from the source code files.
   <li> Doconce has full support for LaTeX math, and integrates very well
     with big LaTeX projects (books).
   <li> Doconce is almost self-explanatory and is a handy starting point
@@ -80,7 +80,7 @@ Here are some Doconce features:
     is just to make the initial versions of a Sphinx or wiki document.
   <li> Contrary to the similar Pandoc translator, Doconce integrates with
     Sphinx and Google wiki. However, if these formats are not of interest,
-    Pandoc is a superior tool.
+    Pandoc is obviously a superior tool.
 </ul>
 
 Doconce was particularly written for the following sample applications:
@@ -90,17 +90,14 @@ Doconce was particularly written for the following sample applications:
 <ul>
   <li> Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, or MS Word.
-    With <a href="http://code.google.com/p/ptex2tex">ptex2tex</a>, Doconce can
-    display computer code in LaTeX in many sophisticated ways (almost
-    50 styles are available).
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
   <li> Software documentation, primarily Python doc strings, which one wants
-    to appear as plain untagged text for viewing in Pydoc, as reST
+    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
     web sites, and as LaTeX integrated in, e.g., a thesis.
   <li> Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
-    MS Word documents, in wikis, or as Sphinx documents.
+    Sphinx web pages, MS Word documents, or in wikis.
 </ul>
 
 History: Doconce was developed in 2006 at a time when most popular
@@ -116,8 +113,9 @@ Disclaimer: Doconce is a simple tool, largely based on interpreting
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
-limitations of regular expressions, some formatting may face problems
-when transformed to other formats.
+limitations of regular expressions, some formatting of Doconce syntax
+may face problems when transformed to HTML, LaTeX, Sphinx, and similar
+formats.
 
 <P>
 
@@ -410,12 +408,15 @@ The name of the output file is <tt>mydoc.pnd</tt>.
 From this format one can go to numerous other formats:
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
-Terminal&gt; pandoc -t markdown  -o mydoc.txt mydoc.pnd
-Terminal&gt; pandoc -t mediawiki -o mydoc.mwk mydoc.pnd
+Terminal&gt; pandoc -R -t markdown  -o mydoc.txt mydoc.pnd
+Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.pnd
 </pre>
 </blockquote>   <! -- end verbatim block -->
 Pandoc supports <tt>latex</tt>, <tt>html</tt>, <tt>odt</tt> (OpenOffice), <tt>docx</tt> (Microsoft
-Word), <tt>rtf</tt>, <tt>texinfo</tt>, to mention some.
+Word), <tt>rtf</tt>, <tt>texinfo</tt>, to mention some. The <tt>-R</tt> option makes
+Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
+See the <a href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</a>
+for the many features of the <tt>pandoc</tt> program.
 
 <P>
 <h3>LaTeX</h3>
@@ -632,12 +633,31 @@ relevant files.
 <P>
 The <tt>doconce sphinx_dir</tt> command generates a script
 <tt>automake-sphinx.sh</tt> for compiling the Sphinx document into an HTML
-document.  This script copies directories named <tt>figs</tt> or <tt>figures</tt>
+document.  One can either run <tt>automake-sphinx.sh</tt> or perform the
+steps in the script manually, possibly with necessary modifications.
+You should at least read the script prior to executing it to have
+some idea of what is done.
+
+<P>
+Te <tt>doconce sphinx_dir</tt> script copies directories named <tt>figs</tt> or <tt>figures</tt>
 over to the Sphinx directory so that figures are accessible in the
 Sphinx compilation.  If figures or movies are located in other
-directories, <tt>automake-sphinx.sh</tt> must be edited accordingly. One
-can either run <tt>automake-sphinx.sh</tt> or perform the steps in the
-script manually.
+directories, <tt>automake-sphinx.sh</tt> must be edited accordingly.
+Links to local files (not <tt>http:</tt> or <tt>file:</tt> URLs) must be placed
+in the <tt>_static</tt> subdirectory of the Sphinx directory. The
+utility <tt>doconce sphinxfix_localURLs</tt> is run to check for local
+links: for each such link, say <tt>dir1/dir2/myfile.txt</tt> it replaces
+the link by <tt>_static/myfile.txt</tt> and copies <tt>dir1/dir2/myfile.txt</tt>
+to a local <tt>_static</tt> directory (in the same directory as the
+script is run). The user must copy all <tt>_static/*</tt> files to the
+<tt>_static</tt> subdirectory of the Sphinx directory. Links to local
+HTML files (say another Sphinx document) may present a problem if they link
+to other files: all necessary files must be correctly copied to
+the <tt>_static</tt> subdirectory of the Sphinx directory.
+It may be wise to place relevant files in a <tt>_static</tt> directory
+and link to these directly from the Doconce document - then links
+to not need to be modified when creating  a Sphinx version of
+the document.
 
 <P>
 Doconce comes with a collection of HTML themes for Sphinx documents.
@@ -657,12 +677,11 @@ and <tt>_build/html_pyramid</tt>, respectively. Without arguments,
 
 <P>
 If it is not desirable to use the autogenerated scripts explained
-above, here are the complete manual procedure of generating a
+above, here is the complete manual procedure of generating a
 Sphinx document from a file <tt>mydoc.do.txt</tt>.
 
 <P>
-<b>Step 1.</b> Translate Doconce into the Sphinx dialect of
-the reStructuredText format:
+<b>Step 1.</b> Translate Doconce into the Sphinx format:
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
 Terminal&gt; doconce format sphinx mydoc
@@ -703,7 +722,7 @@ EOF
 </blockquote>   <! -- end verbatim block -->
 
 <P>
-<b>Step 3.</b> Copy the <tt>tutorial.rst</tt> file to the Sphinx root directory:
+<b>Step 3.</b> Copy the <tt>mydoc.rst</tt> file to the Sphinx root directory:
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
 Terminal&gt; cp mydoc.rst sphinx-rootdir
@@ -713,6 +732,8 @@ If you have figures in your document, the relative paths to those will
 be invalid when you work with <tt>mydoc.rst</tt> in the <tt>sphinx-rootdir</tt>
 directory. Either edit <tt>mydoc.rst</tt> so that figure file paths are correct,
 or simply copy your figure directories to <tt>sphinx-rootdir</tt>.
+Links to local files in <tt>mydoc.rst</tt> must be modified to links to
+files in the <tt>_static</tt> directory, see comment above.
 
 <P>
 <b>Step 4.</b> Edit the generated <tt>index.rst</tt> file so that <tt>mydoc.rst</tt>
@@ -2304,13 +2325,13 @@ Check if the inline verbatim contains typical LaTeX commands, e.g.,
 <pre>
 some text with `\usepackage{mypack}` is difficult because
 ptex2tex will replace this by \code{\usepackage{mypack}} and
-then replace this by 
+then replace this by
 {\fontsize{10pt}{10pt}\verb!\usepackage{mypack!}}
-which is wrong because ptex2tex applies regex that don't 
+which is wrong because ptex2tex applies regex that don't
 capture the second }
 </pre>
 </blockquote>   <! -- end verbatim block -->
-The remedy is to place verbatim LaTeX commands in verbatim 
+The remedy is to place verbatim LaTeX commands in verbatim
 blocks - that is safe.
 
 <P>

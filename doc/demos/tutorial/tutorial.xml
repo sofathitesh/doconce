@@ -211,9 +211,12 @@ format specific actions through tests like <literal>#if FORMAT == &quot;latex&qu
 file by running:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce remove_inline_comments mydoc</literal_block><paragraph>This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.</paragraph><section dupnames="html" ids="id1"><title>HTML</title><paragraph>Making an HTML version of a Doconce file <literal>mydoc.do.txt</literal>
 is performed by:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format html mydoc</literal_block><paragraph>The resulting file <literal>mydoc.html</literal> can be loaded into any web browser for viewing.</paragraph></section><section dupnames="pandoc" ids="pandoc"><title>Pandoc</title><paragraph>Output in the versatile Pandoc format results from:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format pandoc mydoc</literal_block><paragraph>The name of the output file is <literal>mydoc.pnd</literal>.
-From this format one can go to numerous other formats:</paragraph><literal_block xml:space="preserve">Terminal&gt; pandoc -t markdown  -o mydoc.txt mydoc.pnd
-Terminal&gt; pandoc -t mediawiki -o mydoc.mwk mydoc.pnd</literal_block><paragraph>Pandoc supports <literal>latex</literal>, <literal>html</literal>, <literal>odt</literal> (OpenOffice), <literal>docx</literal> (Microsoft
-Word), <literal>rtf</literal>, <literal>texinfo</literal>, to mention some.</paragraph></section><section dupnames="latex" ids="id2"><title>LaTeX</title><paragraph>Making a LaTeX file <literal>mydoc.tex</literal> from <literal>mydoc.do.txt</literal> is done in two steps:
+From this format one can go to numerous other formats:</paragraph><literal_block xml:space="preserve">Terminal&gt; pandoc -R -t markdown  -o mydoc.txt mydoc.pnd
+Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.pnd</literal_block><paragraph>Pandoc supports <literal>latex</literal>, <literal>html</literal>, <literal>odt</literal> (OpenOffice), <literal>docx</literal> (Microsoft
+Word), <literal>rtf</literal>, <literal>texinfo</literal>, to mention some. The <literal>-R</literal> option makes
+Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
+See the <reference name="Pandoc documentation" refuri="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</reference><target ids="pandoc-documentation" names="pandoc\ documentation" refuri="http://johnmacfarlane.net/pandoc/README.html"/>
+for the many features of the <literal>pandoc</literal> program.</paragraph></section><section dupnames="latex" ids="id2"><title>LaTeX</title><paragraph>Making a LaTeX file <literal>mydoc.tex</literal> from <literal>mydoc.do.txt</literal> is done in two steps:
 .. Note: putting code blocks inside a list is not successful in many</paragraph><comment xml:space="preserve">formats - the text may be messed up. A better choice is a paragraph</comment><comment xml:space="preserve">environment, as used here.</comment><definition_list><definition_list_item><term><emphasis>Step 1.</emphasis> Filter the doconce text to a pre-LaTeX form <literal>mydoc.p.tex</literal> for</term><definition><paragraph><literal>ptex2tex</literal>:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format latex mydoc</literal_block></definition></definition_list_item></definition_list><paragraph>LaTeX-specific commands (&quot;newcommands&quot;) in math formulas and similar
 can be placed in files <literal>newcommands.tex</literal>, <literal>newcommands_keep.tex</literal>, or
 <literal>newcommands_replace.tex</literal> (see the section <reference name="Macros (Newcommands), Cross-References, Index, and Bibliography" refid="macros-newcommands-cross-references-index-and-bibliography">Macros (Newcommands), Cross-References, Index, and Bibliography</reference>).
@@ -267,7 +270,7 @@ Terminal&gt; unoconv -f pdf mydoc.odt</literal_block><paragraph><emphasis>Remark
 and LaTeX mathematics to reST and further to OpenOffice and the
 &quot;MS Word world&quot;. Mathematics is only fully supported by <literal>latex</literal> as
 output and to a wide extent also supported by the <literal>sphinx</literal> output format.
-Some links for going from LaTeX to Word are listed below.</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph><reference name="http://ubuntuforums.org/showthread.php?t=1033441" refuri="http://ubuntuforums.org/showthread.php?t=1033441">http://ubuntuforums.org/showthread.php?t=1033441</reference><target ids="http-ubuntuforums-org-showthread-php-t-1033441" names="http://ubuntuforums.org/showthread.php?t=1033441" refuri="http://ubuntuforums.org/showthread.php?t=1033441"/></paragraph></list_item><list_item><paragraph><reference name="http://tug.org/utilities/texconv/textopc.html" refuri="http://tug.org/utilities/texconv/textopc.html">http://tug.org/utilities/texconv/textopc.html</reference><target ids="http-tug-org-utilities-texconv-textopc-html" names="http://tug.org/utilities/texconv/textopc.html" refuri="http://tug.org/utilities/texconv/textopc.html"/></paragraph></list_item><list_item><paragraph><reference name="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html" refuri="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html">http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</reference><target ids="http-nileshbansal-blogspot-com-2007-12-latex-to-openofficeword-html" names="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html" refuri="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"/></paragraph></list_item></bullet_list></block_quote><system_message level="2" line="628" source="tutorial.rst" type="WARNING"><paragraph>Block quote ends without a blank line; unexpected unindent.</paragraph></system_message><comment xml:space="preserve">One possible way from Doconce to MS Word goes via ``latex`` and then</comment><comment xml:space="preserve">``texmacs``. This didn't work well for math and figures.</comment></section><section dupnames="sphinx" ids="id4"><title>Sphinx</title><paragraph>Sphinx documents demand quite some steps in their creation. We have automated
+Some links for going from LaTeX to Word are listed below.</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph><reference name="http://ubuntuforums.org/showthread.php?t=1033441" refuri="http://ubuntuforums.org/showthread.php?t=1033441">http://ubuntuforums.org/showthread.php?t=1033441</reference><target ids="http-ubuntuforums-org-showthread-php-t-1033441" names="http://ubuntuforums.org/showthread.php?t=1033441" refuri="http://ubuntuforums.org/showthread.php?t=1033441"/></paragraph></list_item><list_item><paragraph><reference name="http://tug.org/utilities/texconv/textopc.html" refuri="http://tug.org/utilities/texconv/textopc.html">http://tug.org/utilities/texconv/textopc.html</reference><target ids="http-tug-org-utilities-texconv-textopc-html" names="http://tug.org/utilities/texconv/textopc.html" refuri="http://tug.org/utilities/texconv/textopc.html"/></paragraph></list_item><list_item><paragraph><reference name="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html" refuri="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html">http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</reference><target ids="http-nileshbansal-blogspot-com-2007-12-latex-to-openofficeword-html" names="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html" refuri="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"/></paragraph></list_item></bullet_list></block_quote><system_message level="2" line="631" source="tutorial.rst" type="WARNING"><paragraph>Block quote ends without a blank line; unexpected unindent.</paragraph></system_message><comment xml:space="preserve">One possible way from Doconce to MS Word goes via ``latex`` and then</comment><comment xml:space="preserve">``texmacs``. This didn't work well for math and figures.</comment></section><section dupnames="sphinx" ids="id4"><title>Sphinx</title><paragraph>Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <literal>doconce sphinx_dir</literal> command:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce sphinx_dir author=&quot;authors' names&quot; \
           title=&quot;some title&quot; version=1.0 dirname=sphinxdir \
           theme=mytheme file1 file2 file3 ...</literal_block><paragraph>The keywords <literal>author</literal>, <literal>title</literal>, and <literal>version</literal> are used in the headings
@@ -281,12 +284,28 @@ keyword is used to set the theme for design of HTML output from
 Sphinx (the default theme is <literal>'default'</literal>).</paragraph><paragraph>With a single-file document in <literal>mydoc.do.txt</literal> one often just runs:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce sphinx_dir mydoc</literal_block><paragraph>and then an appropriate Sphinx directory <literal>sphinx-rootdir</literal> is made with
 relevant files.</paragraph><paragraph>The <literal>doconce sphinx_dir</literal> command generates a script
 <literal>automake-sphinx.sh</literal> for compiling the Sphinx document into an HTML
-document.  This script copies directories named <literal>figs</literal> or <literal>figures</literal>
+document.  One can either run <literal>automake-sphinx.sh</literal> or perform the
+steps in the script manually, possibly with necessary modifications.
+You should at least read the script prior to executing it to have
+some idea of what is done.</paragraph><paragraph>Te <literal>doconce sphinx_dir</literal> script copies directories named <literal>figs</literal> or <literal>figures</literal>
 over to the Sphinx directory so that figures are accessible in the
 Sphinx compilation.  If figures or movies are located in other
-directories, <literal>automake-sphinx.sh</literal> must be edited accordingly. One
-can either run <literal>automake-sphinx.sh</literal> or perform the steps in the
-script manually.</paragraph><paragraph>Doconce comes with a collection of HTML themes for Sphinx documents.
+directories, <literal>automake-sphinx.sh</literal> must be edited accordingly.
+Links to local files (not <literal>http:</literal> or <literal>file:</literal> URLs) must be placed
+in the <literal>_static</literal> subdirectory of the Sphinx directory. The
+utility <literal>doconce sphinxfix_localURLs</literal> is run to check for local
+links: for each such link, say <literal>dir1/dir2/myfile.txt</literal> it replaces
+the link by <literal>_static/myfile.txt</literal> and copies <literal>dir1/dir2/myfile.txt</literal>
+to a local <literal>_static</literal> directory (in the same directory as the
+script is run). The user must copy all <literal>_static/*</literal> files to the
+<literal>_static</literal> subdirectory of the Sphinx directory. Links to local
+HTML files (say another Sphinx document) may present a problem if they link
+to other files: all necessary files must be correctly copied to
+the <literal>_static</literal> subdirectory of the Sphinx directory.
+It may be wise to place relevant files in a <literal>_static</literal> directory
+and link to these directly from the Doconce document - then links
+to not need to be modified when creating  a Sphinx version of
+the document.</paragraph><paragraph>Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the <literal>conf.py</literal>
 configuration file for Sphinx is edited accordingly, and a script
 <literal>make-themes.sh</literal> can make HTML documents with one or more themes.
@@ -294,9 +313,8 @@ For example,
 to realize the themes <literal>fenics</literal> and <literal>pyramid</literal>, one writes:</paragraph><literal_block xml:space="preserve">Terminal&gt; ./make-themes.sh fenics pyramid</literal_block><paragraph>The resulting directories with HTML documents are <literal>_build/html_fenics</literal>
 and <literal>_build/html_pyramid</literal>, respectively. Without arguments,
 <literal>make-themes.sh</literal> makes all available themes (!).</paragraph><paragraph>If it is not desirable to use the autogenerated scripts explained
-above, here are the complete manual procedure of generating a
-Sphinx document from a file <literal>mydoc.do.txt</literal>.</paragraph><paragraph><emphasis>Step 1.</emphasis> Translate Doconce into the Sphinx dialect of
-the reStructuredText format:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format sphinx mydoc</literal_block><paragraph><emphasis>Step 2.</emphasis> Create a Sphinx root directory with a <literal>conf.py</literal> file,
+above, here is the complete manual procedure of generating a
+Sphinx document from a file <literal>mydoc.do.txt</literal>.</paragraph><paragraph><emphasis>Step 1.</emphasis> Translate Doconce into the Sphinx format:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format sphinx mydoc</literal_block><paragraph><emphasis>Step 2.</emphasis> Create a Sphinx root directory with a <literal>conf.py</literal> file,
 either manually or by using the interactive <literal>sphinx-quickstart</literal>
 program. Here is a scripted version of the steps with the latter:</paragraph><literal_block xml:space="preserve">mkdir sphinx-rootdir
 sphinx-quickstart &lt;&lt;EOF
@@ -321,10 +339,12 @@ n
 y
 y
 y
-EOF</literal_block><paragraph><emphasis>Step 3.</emphasis> Copy the <literal>tutorial.rst</literal> file to the Sphinx root directory:</paragraph><literal_block xml:space="preserve">Terminal&gt; cp mydoc.rst sphinx-rootdir</literal_block><paragraph>If you have figures in your document, the relative paths to those will
+EOF</literal_block><paragraph><emphasis>Step 3.</emphasis> Copy the <literal>mydoc.rst</literal> file to the Sphinx root directory:</paragraph><literal_block xml:space="preserve">Terminal&gt; cp mydoc.rst sphinx-rootdir</literal_block><paragraph>If you have figures in your document, the relative paths to those will
 be invalid when you work with <literal>mydoc.rst</literal> in the <literal>sphinx-rootdir</literal>
 directory. Either edit <literal>mydoc.rst</literal> so that figure file paths are correct,
-or simply copy your figure directories to <literal>sphinx-rootdir</literal>.</paragraph><paragraph><emphasis>Step 4.</emphasis> Edit the generated <literal>index.rst</literal> file so that <literal>mydoc.rst</literal>
+or simply copy your figure directories to <literal>sphinx-rootdir</literal>.
+Links to local files in <literal>mydoc.rst</literal> must be modified to links to
+files in the <literal>_static</literal> directory, see comment above.</paragraph><paragraph><emphasis>Step 4.</emphasis> Edit the generated <literal>index.rst</literal> file so that <literal>mydoc.rst</literal>
 is included, i.e., add <literal>mydoc</literal> to the <literal>toctree</literal> section so that it becomes:</paragraph><literal_block xml:space="preserve">.. toctree::
    :maxdepth: 2
 
