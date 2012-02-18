@@ -558,15 +558,13 @@ Indices and tables
 
 # Filter doconce format to sphinx format and copy to sphinx directory
 files="%(doconce_files_basename_list)s"
-rm -rf _static
 for file in $files; do
-  if [ ! -f $file.rst ]; then
-    doconce format sphinx $file
-    doconce sphinxfix_localURLs $file
-  fi
+  doconce format sphinx $file
+  doconce sphinxfix_localURLs $file.rst
+
   enc=`doconce guess_encoding $file.rst`
   if [ $enc = "iso-8859-1" ]; then
-    # sphinx does not like Norwegian characters in iso-8859-1
+    # sphinx does not like non-English characters in iso-8859-1
     doconce change_encoding iso-8859-1 utf-8 $file.rst
   fi
   cp $file.rst %(sphinx_rootdir)s
@@ -580,24 +578,35 @@ fi
 done
 
 if [ -d _static ]; then
-  # Copy files fixed by doconce sphinxfix_localURLs
-  cp _static/* %(sphinx_rootdir)s/_static/
+  # _static is made if there are local URLs in a file
+  # Copy files whose linkes were fixed by doconce sphinxfix_localURLs
+  cp -r _static/* %(sphinx_rootdir)s/_static/
+  /bin/ls _static/*.html &> /dev/null
+  if [ $? -eq 0 ]; then
+      htmlfiles=`/bin/ls _static/*.html`
+      echo "
+There are HTML files in _static:
+$htmlfiles
+These may link to other files and thus require copying
+of more files to %(sphinx-rootdir)s/_static!
+"
+  fi
+else
+  # Compile web version of the sphinx document
+  cd %(sphinx_rootdir)s
+  make clean
+  make html
+  echo
+  echo "google-chrome %(sphinx_rootdir)s/_build/html/index.html"
 fi
 
-# Compile web version of the sphinx document
-cd %(sphinx_rootdir)s
-make clean
-make html
-
-echo
-echo "google-chrome %(sphinx_rootdir)s/_build/html/index.html"
 """ % vars())
     f.close()
     os.chmod('automake-sphinx.sh', 0755)
     print "\n'automake-sphinx.sh' contains the steps to (re)compile the sphinx version."
-    print "You may want to edit this file - look at it."
+    print "You may want to edit this file - look at it, or run the steps manually."
 
-def dofix_localURLs(filename):
+def dofix_localURLs(filename, exclude_adr):
     if os.path.splitext(filename)[1] != '.rst':
         print 'Wrong filename extension in "%s" - must be a .rst file' \
               % filename
@@ -620,14 +629,23 @@ def dofix_localURLs(filename):
     link_pattern = r'<(.*?)>`_'
     links = re.findall(link_pattern, text)
     for link in links:
-        if not (link.startswith('http') or link.startswith('file:/')):
+        if link in exclude_adr:
+            print 'not modifying', link
+            if link.endswith('htm') or link.endswith('html'):
+                print 'Note: %s\n      is an HTML file that may link to other files.\n      This may require copying many files!' % link
+            continue
+        if not (link.startswith('http') or link.startswith('file:/') or \
+            link.startswith('_static')):
             if os.path.isfile(link):
                 newlink = os.path.join('_static', os.path.basename(link))
                 text = text.replace('<%s>' % link, '<%s>' % newlink)
                 print 'fixing link to %s as link to %s' % \
                       (link, newlink)
+                print '       copying %s to _static' % os.path.basename(link)
                 shutil.copy(link, newlink)
                 changed = True
+                if link.endswith('htm') or link.endswith('html'):
+                    print 'Note: %s\n      is an HTML file that may link to other files.\n      This may require copying many files!' % link
     if changed:
         os.rename(filename, filename + 'old~~')
         f = open(filename, 'w')
@@ -638,18 +656,50 @@ def dofix_localURLs(filename):
 
 
 def usage_sphinxfix_localURLs():
-    print 'Usage: doconce sphinxfix_localURLs file1.rst file2.rst ...'
+    print """\
+Usage: doconce sphinxfix_localURLs file1.rst file2.rst ... -not adr1 adr2 ...
+
+Each link to a local file, e.g., "link": "src/dir1/myfile.txt",
+is replaced by a link to the file placed in _static:
+"link": "_static/myfile.txt". The file myfile.txt is copied
+from src/dir1 to _static. The user must later copy all _static/*
+files to the _static subdirectory in the sphinx directory.
+Note that local links to files in _static are not modified.
+
+The modification of links is not always wanted. The -not adr1 adr2 makes
+it possible to exclude modification of a set of addresses adr1, adr2, ...
+
+Example: doconce sphinxfix_localURLs file1.rst file2.rst \
+         -not src/dir1/mymod1.py src/dir2/index.html
+
+The old files are available as file1.rst.old~~, file2.rst.old~~ etc.
+
+Note that local links to HTML files which are linked to other local HTML
+documents (say a Sphinx document) demand all relevant files to be
+copied to _static. In such cases it is best to physically place
+the HTML documents in _static and let the Doconce document link
+directly to _static.
+"""
 
 def sphinxfix_localURLs():
     if len(sys.argv) < 2:
         usagefix_localURLs()
         sys.exit(1)
 
+    # Find addresses to exclude
+    idx = -1  # index in sys.argv for the -not option
+    for i, arg in enumerate(sys.argv[1:]):
+        if arg.endswith('-not'):
+            idx = i+1
+    exclude_adr = sys.argv[idx+1:] if idx > 0 else []
+    if idx > 0:
+       del sys.argv[idx:]
+
     for filename in sys.argv[1:]:
         if os.path.dirname(filename) != '':
             print 'doconce sphinxfix_localURLs must be run from the same directory as %s is located in' % filename
-        dofix_localURLs(filename)
-        print "\ncopy _static/* to the sphinx directory's _static directory"
+        dofix_localURLs(filename, exclude_adr)
+        print "\nYou must copy _static/* to the sphinx directory's _static directory"
 
 
 # subst is taken from scitools

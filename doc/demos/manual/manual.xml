@@ -19,26 +19,23 @@ a number of different destinations of diverse type (software
 source code, manuals, tutorials, books, wikis, memos, emails, etc.).
 The Doconce markup language support this working strategy.
 The slogan is: &quot;Write once, include anywhere&quot;.</paragraph></list_item></enumerated_list></block_quote><paragraph>Here are some Doconce features:</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph>Doconce markup does include tags, so the format is more tagged than
-Markdown, Pandoc, and AsciiDoc, but less than reST, and very much
-less than LaTeX and HTML.</paragraph></list_item><list_item><paragraph>Doconce can be converted to plain <emphasis>untagged</emphasis> text,
-often desirable for computer programs and email.</paragraph></list_item><list_item><paragraph>Doconce has good support for copying in parts of computer code
-directly from the source code files.</paragraph></list_item><list_item><paragraph>Doconce has full support for LaTeX math, and integrates very well
+Markdown and Pandoc, but less than reST, and very much less than
+LaTeX and HTML.</paragraph></list_item><list_item><paragraph>Doconce can be converted to plain <emphasis>untagged</emphasis> text,
+often desirable for computer programs and email.</paragraph></list_item><list_item><paragraph>Doconce has good support for copying in parts of computer code,
+say in examples, directly from the source code files.</paragraph></list_item><list_item><paragraph>Doconce has full support for LaTeX math, and integrates very well
 with big LaTeX projects (books).</paragraph></list_item><list_item><paragraph>Doconce is almost self-explanatory and is a handy starting point
 for generating documents in more complicated markup languages, such
 as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
 is just to make the initial versions of a Sphinx or wiki document.</paragraph></list_item><list_item><paragraph>Contrary to the similar Pandoc translator, Doconce integrates with
 Sphinx and Google wiki. However, if these formats are not of interest,
-Pandoc is a superior tool.</paragraph></list_item></bullet_list></block_quote><paragraph>Doconce was particularly written for the following sample applications:</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph>Large books written in LaTeX, but where many pieces (computer demos,
+Pandoc is obviously a superior tool.</paragraph></list_item></bullet_list></block_quote><paragraph>Doconce was particularly written for the following sample applications:</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph>Large books written in LaTeX, but where many pieces (computer demos,
 projects, examples) can be written in Doconce to appear in other
-contexts in other formats, including plain HTML, Sphinx, or MS Word.
-With <reference name="ptex2tex" refuri="http://code.google.com/p/ptex2tex">ptex2tex</reference><target ids="ptex2tex" names="ptex2tex" refuri="http://code.google.com/p/ptex2tex"/>, Doconce can
-display computer code in LaTeX in many sophisticated ways (almost
-50 styles are available).</paragraph></list_item><list_item><paragraph>Software documentation, primarily Python doc strings, which one wants
-to appear as plain untagged text for viewing in Pydoc, as reST
+contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.</paragraph></list_item><list_item><paragraph>Software documentation, primarily Python doc strings, which one wants
+to appear as plain untagged text for viewing in Pydoc, as reStructuredText
 for use with Sphinx, as wiki text when publishing the software at
 web sites, and as LaTeX integrated in, e.g., a thesis.</paragraph></list_item><list_item><paragraph>Quick memos, which start as plain text in email, then some small
 amount of Doconce tagging is added, before the memos can appear as
-MS Word documents, in wikis, or as Sphinx documents.</paragraph></list_item></bullet_list></block_quote><paragraph>History: Doconce was developed in 2006 at a time when most popular
+Sphinx web pages, MS Word documents, or in wikis.</paragraph></list_item></bullet_list></block_quote><paragraph>History: Doconce was developed in 2006 at a time when most popular
 markup languages used quite some tagging.  Later, almost untagged
 markup languages like Markdown and Pandoc became popular. Doconce is
 not a replacement of Pandoc, which is a considerably more
@@ -48,8 +45,9 @@ mathematics and computer code.</paragraph><paragraph>Disclaimer: Doconce is a si
 and handling text through regular expressions. The possibility for
 tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
-limitations of regular expressions, some formatting may face problems
-when transformed to other formats.</paragraph><section ids="dependencies-and-installation" names="dependencies\ and\ installation"><title>Dependencies and Installation</title><paragraph>Doconce itself is pure Python code hosted at <reference name="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce">http://code.google.com/p/doconce</reference><target ids="http-code-google-com-p-doconce" names="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce"/>.  Its installation from the
+limitations of regular expressions, some formatting of Doconce syntax
+may face problems when transformed to HTML, LaTeX, Sphinx, and similar
+formats.</paragraph><section ids="dependencies-and-installation" names="dependencies\ and\ installation"><title>Dependencies and Installation</title><paragraph>Doconce itself is pure Python code hosted at <reference name="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce">http://code.google.com/p/doconce</reference><target ids="http-code-google-com-p-doconce" names="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce"/>.  Its installation from the
 Mercurial (<literal>hg</literal>) source follows the standard procedure:</paragraph><literal_block xml:space="preserve"># Doconce
 hg clone https://doconce.googlecode.com/hg/ doconce
 cd doconce
@@ -64,7 +62,7 @@ cd ..</literal_block><paragraph>A much more advanced alternative to Preprocess i
 conveniently done by <literal>pip</literal>:</paragraph><literal_block xml:space="preserve">pip install Mako</literal_block><paragraph>This command requires <literal>pip</literal> to be installed. On Debian Linux systems,
 such as Ubuntu, the installation is simply done by:</paragraph><literal_block xml:space="preserve">sudo apt-get install python-pip</literal_block><paragraph>Alternatively, one can install from the <literal>pip</literal> <reference name="source code" refuri="http://pypi.python.org/pypi/pip">source code</reference><target ids="source-code" names="source\ code" refuri="http://pypi.python.org/pypi/pip"/>.</paragraph><paragraph>To make LaTeX
 documents (without going through the reStructuredText format) you
-need <reference name="ptex2tex" refuri="http://code.google.com/p/ptex2tex">ptex2tex</reference><target dupnames="ptex2tex" ids="id2" refuri="http://code.google.com/p/ptex2tex"/>, which is
+need <reference name="ptex2tex" refuri="http://code.google.com/p/ptex2tex">ptex2tex</reference><target ids="ptex2tex" names="ptex2tex" refuri="http://code.google.com/p/ptex2tex"/>, which is
 installed by:</paragraph><literal_block xml:space="preserve">svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
 sudo python setup.py install
@@ -125,10 +123,13 @@ defined as <literal>latex</literal>. Inside the Doconce document one can then pe
 format specific actions through tests like <literal>#if FORMAT == &quot;latex&quot;</literal>.</paragraph><paragraph>Inline comments in the text are removed from the output by:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format latex mydoc --skip_inline_comments</literal_block><paragraph>One can also remove all such comments from the original Doconce
 file by running:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce remove_inline_comments mydoc</literal_block><paragraph>This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.</paragraph><section ids="html" names="html"><title>HTML</title><paragraph>Making an HTML version of a Doconce file <literal>mydoc.do.txt</literal>
-is performed by:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format html mydoc</literal_block><paragraph>The resulting file <literal>mydoc.html</literal> can be loaded into any web browser for viewing.</paragraph></section><section dupnames="pandoc" ids="id3"><title>Pandoc</title><paragraph>Output in the versatile Pandoc format results from:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format pandoc mydoc</literal_block><paragraph>The name of the output file is <literal>mydoc.pnd</literal>.
-From this format one can go to numerous other formats:</paragraph><literal_block xml:space="preserve">Terminal&gt; pandoc -t markdown  -o mydoc.txt mydoc.pnd
-Terminal&gt; pandoc -t mediawiki -o mydoc.mwk mydoc.pnd</literal_block><paragraph>Pandoc supports <literal>latex</literal>, <literal>html</literal>, <literal>odt</literal> (OpenOffice), <literal>docx</literal> (Microsoft
-Word), <literal>rtf</literal>, <literal>texinfo</literal>, to mention some.</paragraph></section><section ids="latex" names="latex"><title>LaTeX</title><paragraph>Making a LaTeX file <literal>mydoc.tex</literal> from <literal>mydoc.do.txt</literal> is done in two steps:
+is performed by:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format html mydoc</literal_block><paragraph>The resulting file <literal>mydoc.html</literal> can be loaded into any web browser for viewing.</paragraph></section><section dupnames="pandoc" ids="id2"><title>Pandoc</title><paragraph>Output in the versatile Pandoc format results from:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format pandoc mydoc</literal_block><paragraph>The name of the output file is <literal>mydoc.pnd</literal>.
+From this format one can go to numerous other formats:</paragraph><literal_block xml:space="preserve">Terminal&gt; pandoc -R -t markdown  -o mydoc.txt mydoc.pnd
+Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.pnd</literal_block><paragraph>Pandoc supports <literal>latex</literal>, <literal>html</literal>, <literal>odt</literal> (OpenOffice), <literal>docx</literal> (Microsoft
+Word), <literal>rtf</literal>, <literal>texinfo</literal>, to mention some. The <literal>-R</literal> option makes
+Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
+See the <reference name="Pandoc documentation" refuri="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</reference><target ids="pandoc-documentation" names="pandoc\ documentation" refuri="http://johnmacfarlane.net/pandoc/README.html"/>
+for the many features of the <literal>pandoc</literal> program.</paragraph></section><section ids="latex" names="latex"><title>LaTeX</title><paragraph>Making a LaTeX file <literal>mydoc.tex</literal> from <literal>mydoc.do.txt</literal> is done in two steps:
 .. Note: putting code blocks inside a list is not successful in many</paragraph><comment xml:space="preserve">formats - the text may be messed up. A better choice is a paragraph</comment><comment xml:space="preserve">environment, as used here.</comment><definition_list><definition_list_item><term><emphasis>Step 1.</emphasis> Filter the doconce text to a pre-LaTeX form <literal>mydoc.p.tex</literal> for</term><definition><paragraph><literal>ptex2tex</literal>:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format latex mydoc</literal_block></definition></definition_list_item></definition_list><paragraph>LaTeX-specific commands (&quot;newcommands&quot;) in math formulas and similar
 can be placed in files <literal>newcommands.tex</literal>, <literal>newcommands_keep.tex</literal>, or
 <literal>newcommands_replace.tex</literal> (see the section <reference name="Macros (Newcommands)" refid="macros-newcommands">Macros (Newcommands)</reference>).
@@ -182,7 +183,7 @@ Terminal&gt; unoconv -f pdf mydoc.odt</literal_block><paragraph><emphasis>Remark
 and LaTeX mathematics to reST and further to OpenOffice and the
 &quot;MS Word world&quot;. Mathematics is only fully supported by <literal>latex</literal> as
 output and to a wide extent also supported by the <literal>sphinx</literal> output format.
-Some links for going from LaTeX to Word are listed below.</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph><reference name="http://ubuntuforums.org/showthread.php?t=1033441" refuri="http://ubuntuforums.org/showthread.php?t=1033441">http://ubuntuforums.org/showthread.php?t=1033441</reference><target ids="http-ubuntuforums-org-showthread-php-t-1033441" names="http://ubuntuforums.org/showthread.php?t=1033441" refuri="http://ubuntuforums.org/showthread.php?t=1033441"/></paragraph></list_item><list_item><paragraph><reference name="http://tug.org/utilities/texconv/textopc.html" refuri="http://tug.org/utilities/texconv/textopc.html">http://tug.org/utilities/texconv/textopc.html</reference><target ids="http-tug-org-utilities-texconv-textopc-html" names="http://tug.org/utilities/texconv/textopc.html" refuri="http://tug.org/utilities/texconv/textopc.html"/></paragraph></list_item><list_item><paragraph><reference name="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html" refuri="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html">http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</reference><target ids="http-nileshbansal-blogspot-com-2007-12-latex-to-openofficeword-html" names="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html" refuri="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"/></paragraph></list_item></bullet_list></block_quote><system_message level="2" line="515" source="manual.rst" type="WARNING"><paragraph>Block quote ends without a blank line; unexpected unindent.</paragraph></system_message><comment xml:space="preserve">One possible way from Doconce to MS Word goes via ``latex`` and then</comment><comment xml:space="preserve">``texmacs``. This didn't work well for math and figures.</comment></section><section dupnames="sphinx" ids="id4"><title>Sphinx</title><paragraph>Sphinx documents demand quite some steps in their creation. We have automated
+Some links for going from LaTeX to Word are listed below.</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph><reference name="http://ubuntuforums.org/showthread.php?t=1033441" refuri="http://ubuntuforums.org/showthread.php?t=1033441">http://ubuntuforums.org/showthread.php?t=1033441</reference><target ids="http-ubuntuforums-org-showthread-php-t-1033441" names="http://ubuntuforums.org/showthread.php?t=1033441" refuri="http://ubuntuforums.org/showthread.php?t=1033441"/></paragraph></list_item><list_item><paragraph><reference name="http://tug.org/utilities/texconv/textopc.html" refuri="http://tug.org/utilities/texconv/textopc.html">http://tug.org/utilities/texconv/textopc.html</reference><target ids="http-tug-org-utilities-texconv-textopc-html" names="http://tug.org/utilities/texconv/textopc.html" refuri="http://tug.org/utilities/texconv/textopc.html"/></paragraph></list_item><list_item><paragraph><reference name="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html" refuri="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html">http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</reference><target ids="http-nileshbansal-blogspot-com-2007-12-latex-to-openofficeword-html" names="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html" refuri="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"/></paragraph></list_item></bullet_list></block_quote><system_message level="2" line="516" source="manual.rst" type="WARNING"><paragraph>Block quote ends without a blank line; unexpected unindent.</paragraph></system_message><comment xml:space="preserve">One possible way from Doconce to MS Word goes via ``latex`` and then</comment><comment xml:space="preserve">``texmacs``. This didn't work well for math and figures.</comment></section><section dupnames="sphinx" ids="id3"><title>Sphinx</title><paragraph>Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <literal>doconce sphinx_dir</literal> command:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce sphinx_dir author=&quot;authors' names&quot; \
           title=&quot;some title&quot; version=1.0 dirname=sphinxdir \
           theme=mytheme file1 file2 file3 ...</literal_block><paragraph>The keywords <literal>author</literal>, <literal>title</literal>, and <literal>version</literal> are used in the headings
@@ -196,12 +197,28 @@ keyword is used to set the theme for design of HTML output from
 Sphinx (the default theme is <literal>'default'</literal>).</paragraph><paragraph>With a single-file document in <literal>mydoc.do.txt</literal> one often just runs:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce sphinx_dir mydoc</literal_block><paragraph>and then an appropriate Sphinx directory <literal>sphinx-rootdir</literal> is made with
 relevant files.</paragraph><paragraph>The <literal>doconce sphinx_dir</literal> command generates a script
 <literal>automake-sphinx.sh</literal> for compiling the Sphinx document into an HTML
-document.  This script copies directories named <literal>figs</literal> or <literal>figures</literal>
+document.  One can either run <literal>automake-sphinx.sh</literal> or perform the
+steps in the script manually, possibly with necessary modifications.
+You should at least read the script prior to executing it to have
+some idea of what is done.</paragraph><paragraph>Te <literal>doconce sphinx_dir</literal> script copies directories named <literal>figs</literal> or <literal>figures</literal>
 over to the Sphinx directory so that figures are accessible in the
 Sphinx compilation.  If figures or movies are located in other
-directories, <literal>automake-sphinx.sh</literal> must be edited accordingly. One
-can either run <literal>automake-sphinx.sh</literal> or perform the steps in the
-script manually.</paragraph><paragraph>Doconce comes with a collection of HTML themes for Sphinx documents.
+directories, <literal>automake-sphinx.sh</literal> must be edited accordingly.
+Links to local files (not <literal>http:</literal> or <literal>file:</literal> URLs) must be placed
+in the <literal>_static</literal> subdirectory of the Sphinx directory. The
+utility <literal>doconce sphinxfix_localURLs</literal> is run to check for local
+links: for each such link, say <literal>dir1/dir2/myfile.txt</literal> it replaces
+the link by <literal>_static/myfile.txt</literal> and copies <literal>dir1/dir2/myfile.txt</literal>
+to a local <literal>_static</literal> directory (in the same directory as the
+script is run). The user must copy all <literal>_static/*</literal> files to the
+<literal>_static</literal> subdirectory of the Sphinx directory. Links to local
+HTML files (say another Sphinx document) may present a problem if they link
+to other files: all necessary files must be correctly copied to
+the <literal>_static</literal> subdirectory of the Sphinx directory.
+It may be wise to place relevant files in a <literal>_static</literal> directory
+and link to these directly from the Doconce document - then links
+to not need to be modified when creating  a Sphinx version of
+the document.</paragraph><paragraph>Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the <literal>conf.py</literal>
 configuration file for Sphinx is edited accordingly, and a script
 <literal>make-themes.sh</literal> can make HTML documents with one or more themes.
@@ -209,9 +226,8 @@ For example,
 to realize the themes <literal>fenics</literal> and <literal>pyramid</literal>, one writes:</paragraph><literal_block xml:space="preserve">Terminal&gt; ./make-themes.sh fenics pyramid</literal_block><paragraph>The resulting directories with HTML documents are <literal>_build/html_fenics</literal>
 and <literal>_build/html_pyramid</literal>, respectively. Without arguments,
 <literal>make-themes.sh</literal> makes all available themes (!).</paragraph><paragraph>If it is not desirable to use the autogenerated scripts explained
-above, here are the complete manual procedure of generating a
-Sphinx document from a file <literal>mydoc.do.txt</literal>.</paragraph><paragraph><emphasis>Step 1.</emphasis> Translate Doconce into the Sphinx dialect of
-the reStructuredText format:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format sphinx mydoc</literal_block><paragraph><emphasis>Step 2.</emphasis> Create a Sphinx root directory with a <literal>conf.py</literal> file,
+above, here is the complete manual procedure of generating a
+Sphinx document from a file <literal>mydoc.do.txt</literal>.</paragraph><paragraph><emphasis>Step 1.</emphasis> Translate Doconce into the Sphinx format:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format sphinx mydoc</literal_block><paragraph><emphasis>Step 2.</emphasis> Create a Sphinx root directory with a <literal>conf.py</literal> file,
 either manually or by using the interactive <literal>sphinx-quickstart</literal>
 program. Here is a scripted version of the steps with the latter:</paragraph><literal_block xml:space="preserve">mkdir sphinx-rootdir
 sphinx-quickstart &lt;&lt;EOF
@@ -236,10 +252,12 @@ n
 y
 y
 y
-EOF</literal_block><paragraph><emphasis>Step 3.</emphasis> Copy the <literal>tutorial.rst</literal> file to the Sphinx root directory:</paragraph><literal_block xml:space="preserve">Terminal&gt; cp mydoc.rst sphinx-rootdir</literal_block><paragraph>If you have figures in your document, the relative paths to those will
+EOF</literal_block><paragraph><emphasis>Step 3.</emphasis> Copy the <literal>mydoc.rst</literal> file to the Sphinx root directory:</paragraph><literal_block xml:space="preserve">Terminal&gt; cp mydoc.rst sphinx-rootdir</literal_block><paragraph>If you have figures in your document, the relative paths to those will
 be invalid when you work with <literal>mydoc.rst</literal> in the <literal>sphinx-rootdir</literal>
 directory. Either edit <literal>mydoc.rst</literal> so that figure file paths are correct,
-or simply copy your figure directories to <literal>sphinx-rootdir</literal>.</paragraph><paragraph><emphasis>Step 4.</emphasis> Edit the generated <literal>index.rst</literal> file so that <literal>mydoc.rst</literal>
+or simply copy your figure directories to <literal>sphinx-rootdir</literal>.
+Links to local files in <literal>mydoc.rst</literal> must be modified to links to
+files in the <literal>_static</literal> directory, see comment above.</paragraph><paragraph><emphasis>Step 4.</emphasis> Edit the generated <literal>index.rst</literal> file so that <literal>mydoc.rst</literal>
 is included, i.e., add <literal>mydoc</literal> to the <literal>toctree</literal> section so that it becomes:</paragraph><literal_block xml:space="preserve">.. toctree::
    :maxdepth: 2
 
@@ -357,7 +375,7 @@ The running text goes here.
 
 The running text goes here.
 
-__A Paragraph.__ The running text goes here.</literal_block></section></section><section dupnames="special\ lines" ids="id5"><title>Special Lines</title><section ids="figures" names="figures"><title>Figures</title><paragraph>Figures are recognized by the special line syntax:</paragraph><literal_block xml:space="preserve">FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption</literal_block><paragraph>The filename can be without extension, and Doconce will search for an
+__A Paragraph.__ The running text goes here.</literal_block></section></section><section dupnames="special\ lines" ids="id4"><title>Special Lines</title><section ids="figures" names="figures"><title>Figures</title><paragraph>Figures are recognized by the special line syntax:</paragraph><literal_block xml:space="preserve">FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption</literal_block><paragraph>The filename can be without extension, and Doconce will search for an
 appropriate file with the right extension. If the extension is wrong,
 say <literal>.eps</literal> when requesting an HTML format, Doconce tries to find another
 file, and if not, the given file is converted to a proper format
@@ -395,7 +413,7 @@ You should equip the <literal>MOVIE:</literal> command with the right width and 
 of embedded YouTube movies (the parameters appear when you request
 the embedded HTML code for the movie on the YouTube page).</paragraph></section><section ids="copying-computer-code-from-source-files" names="copying\ computer\ code\ from\ source\ files"><title>Copying Computer Code from Source Files</title><paragraph>Another type of special lines starts with <literal>@@@CODE</literal> and enables copying
 of computer code from a file directly into a verbatim environment, see
-the section <reference name="Blocks of Verbatim Computer Code" refid="blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</reference> below.</paragraph><target refid="inline-tagging"/></section><section ids="id6 inline-tagging" names="inline\ tagging inline:tagging"><title>Inline Tagging</title><paragraph>Doconce supports tags for <emphasis>emphasized phrases</emphasis>, <strong>boldface phrases</strong>,
+the section <reference name="Blocks of Verbatim Computer Code" refid="blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</reference> below.</paragraph><target refid="inline-tagging"/></section><section ids="id5 inline-tagging" names="inline\ tagging inline:tagging"><title>Inline Tagging</title><paragraph>Doconce supports tags for <emphasis>emphasized phrases</emphasis>, <strong>boldface phrases</strong>,
 and <literal>verbatim text</literal> (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as v = sin(x).</paragraph><paragraph>Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in:</paragraph><literal_block xml:space="preserve">*emphasized words*</literal_block><paragraph>Boldface font is recognized by an underscore instead of an asterisk:</paragraph><literal_block xml:space="preserve">_several words in boldface_ followed by *ephasized text*.</literal_block><paragraph>The line above gets typeset as
@@ -418,7 +436,7 @@ setup:</paragraph><literal_block xml:space="preserve">see the &quot;Doconce Manu
 <emphasis>with the filename as link text</emphasis>, written as
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:</paragraph><literal_block xml:space="preserve">URL: &quot;manual.html&quot;</literal_block><paragraph>resulting in the link <reference name="manual.html" refuri="manual.html">manual.html</reference><target ids="manual-html" names="manual.html" refuri="manual.html"/>.</paragraph><comment xml:space="preserve">This is now automatically carried out by the autogenerated</comment><comment xml:space="preserve">script for sphinx:</comment><comment xml:space="preserve">For such local links to</comment><comment xml:space="preserve">work with the ``sphinx`` format, the ``.rst`` file needs a fix, carried</comment><comment xml:space="preserve">out by</comment><comment xml:space="preserve">!bc sys</comment><comment xml:space="preserve">doconce sphinxfix_localURLs mydoc.rst</comment><comment xml:space="preserve"/><comment xml:space="preserve">(The files, such as ``manual.html``, are then copied to a subdirectory</comment><comment xml:space="preserve">``_static``, which must be manually copied to the Sphinx directory's</comment><comment xml:space="preserve">``_static`` directory - links in the ``.rst`` files are automatically</comment><comment xml:space="preserve">adjusted.)</comment><paragraph>To have the URL address itself as link text, put an &quot;URL&quot; or URL
-before the address enclosed in double quotes:</paragraph><literal_block xml:space="preserve">Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.</literal_block><paragraph>resulting in Click on this link: <reference name="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce">http://code.google.com/p/doconce</reference><target dupnames="http://code.google.com/p/doconce" ids="id7" refuri="http://code.google.com/p/doconce"/>.</paragraph><paragraph>Doconce also supports inline comments in the text:</paragraph><literal_block xml:space="preserve">[name: comment]</literal_block><paragraph>where <literal>name</literal> is the name of the author of the command, and <literal>comment</literal> is a
+before the address enclosed in double quotes:</paragraph><literal_block xml:space="preserve">Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.</literal_block><paragraph>resulting in Click on this link: <reference name="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce">http://code.google.com/p/doconce</reference><target dupnames="http://code.google.com/p/doconce" ids="id6" refuri="http://code.google.com/p/doconce"/>.</paragraph><paragraph>Doconce also supports inline comments in the text:</paragraph><literal_block xml:space="preserve">[name: comment]</literal_block><paragraph>where <literal>name</literal> is the name of the author of the command, and <literal>comment</literal> is a
 plain text text. (<strong>hpl</strong>: Note that there must be a space after the colon,
 otherwise the comment is not recognized. Inline comments
 can span
@@ -466,7 +484,7 @@ nice to demonstrate, as well as a reference to equations,
 say Equation (my:eq1)--Equation (my:eq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.</paragraph><paragraph>Hyperlinks to files or web addresses are handled as explained
-in the section <reference name="Inline Tagging" refid="id6">Inline Tagging</reference>.</paragraph></section><section ids="index-and-bibliography" names="index\ and\ bibliography"><title>Index and Bibliography</title><paragraph>An index can be created for the <literal>latex</literal>, <literal>rst</literal>, and <literal>sphinx</literal> formats
+in the section <reference name="Inline Tagging" refid="id5">Inline Tagging</reference>.</paragraph></section><section ids="index-and-bibliography" names="index\ and\ bibliography"><title>Index and Bibliography</title><paragraph>An index can be created for the <literal>latex</literal>, <literal>rst</literal>, and <literal>sphinx</literal> formats
 by the <literal>idx</literal> keyword, following a LaTeX-inspired syntax:</paragraph><literal_block xml:space="preserve">idx{some index entry}
 idx{main entry!subentry}
 idx{`verbatim_text` and more}</literal_block><paragraph>The exclamation mark divides a main entry and a subentry. Backquotes
@@ -508,8 +526,8 @@ appears, while all other formats will make use of the Python dictionary
 typeset as an ordered Doconce list, replacing the <literal>BIBFILE:</literal> line
 in the document.</paragraph><paragraph>At present, only one file with bibliographic references can be used.</paragraph><comment xml:space="preserve">see ketch/tex2rst for nice bibtex to rst converter which could</comment><comment xml:space="preserve">be used here</comment><paragraph>Conversion of BibTeX databases to reST format can be
 done by the <reference name="bibliograph.parsing" refuri="http://pypi.python.org/pypi/bibliograph.parsing/">bibliograph.parsing</reference><target ids="bibliograph-parsing" names="bibliograph.parsing" refuri="http://pypi.python.org/pypi/bibliograph.parsing/"/> tool.</paragraph><paragraph>Finally, we here test the citation command and bibliography by
-citing a book <citation_reference ids="id8" refid="python-primer-09">Python:Primer:09</citation_reference>, a paper <citation_reference ids="id9" refid="osnes-98">Osnes:98</citation_reference>,
-and both of them simultaneously <citation_reference ids="id10" refid="python-primer-09">Python:Primer:09</citation_reference> <citation_reference ids="id11" refid="osnes-98">Osnes:98</citation_reference>.</paragraph><paragraph>(<strong>somereader</strong>: comments, citations, and references in the latex style
+citing a book <citation_reference ids="id7" refid="python-primer-09">Python:Primer:09</citation_reference>, a paper <citation_reference ids="id8" refid="osnes-98">Osnes:98</citation_reference>,
+and both of them simultaneously <citation_reference ids="id9" refid="python-primer-09">Python:Primer:09</citation_reference> <citation_reference ids="id10" refid="osnes-98">Osnes:98</citation_reference>.</paragraph><paragraph>(<strong>somereader</strong>: comments, citations, and references in the latex style
 is a special feature of doconce :-) )</paragraph></section><section ids="tables" names="tables"><title>Tables</title><paragraph>A table like</paragraph><table><tgroup cols="3"><colspec colwidth="12"/><colspec colwidth="12"/><colspec colwidth="12"/><thead><row><entry><paragraph>time</paragraph></entry><entry><paragraph>velocity</paragraph></entry><entry><paragraph>acceleration</paragraph></entry></row></thead><tbody><row><entry><paragraph>0.0</paragraph></entry><entry><paragraph>1.4186</paragraph></entry><entry><paragraph>-5.01</paragraph></entry></row><row><entry><paragraph>2.0</paragraph></entry><entry><paragraph>1.376512</paragraph></entry><entry><paragraph>11.919</paragraph></entry></row><row><entry><paragraph>4.0</paragraph></entry><entry><paragraph>1.1E+1</paragraph></entry><entry><paragraph>14.717624</paragraph></entry></row></tbody></tgroup></table><paragraph>is built up of pipe symbols and dashes:</paragraph><literal_block xml:space="preserve">|--------------------------------|
 |time  | velocity | acceleration |
 |--------------------------------|
@@ -1055,9 +1073,9 @@ arguments and variables are nicely formatted:</paragraph><literal_block xml:spac
   (bool variable).</literal_block><paragraph>The result depends on the output format: all formats except Epytext
 and Sphinx just typeset the list as a list with keywords.</paragraph><block_quote><definition_list><definition_list_item><term>module variable x:</term><definition><paragraph>x value (float),
 which must be a positive number.</paragraph></definition></definition_list_item><definition_list_item><term>module variable tolerance:</term><definition><paragraph>tolerance (float) for stopping
-the iterations.</paragraph></definition></definition_list_item></definition_list></block_quote><citation backrefs="id8 id10" ids="python-primer-09" names="python:primer:09"><label>Python:Primer:09</label><paragraph>H. P. Langtangen.
+the iterations.</paragraph></definition></definition_list_item></definition_list></block_quote><citation backrefs="id7 id9" ids="python-primer-09" names="python:primer:09"><label>Python:Primer:09</label><paragraph>H. P. Langtangen.
 <emphasis>A Primer on Scientific Programming with Python</emphasis>.
-Springer, 2009.</paragraph></citation><citation backrefs="id9 id11" ids="osnes-98" names="osnes:98"><label>Osnes:98</label><paragraph>H. Osnes and H. P. Langtangen.
+Springer, 2009.</paragraph></citation><citation backrefs="id8 id10" ids="osnes-98" names="osnes:98"><label>Osnes:98</label><paragraph>H. Osnes and H. P. Langtangen.
 An efficient probabilistic finite element method for stochastic
 groundwater flow.
 <emphasis>Advances in Water Resources</emphasis>, vol 22, 185-195, 1998.</paragraph></citation></section></section></document>
