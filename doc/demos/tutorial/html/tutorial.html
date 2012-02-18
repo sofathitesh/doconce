@@ -25,6 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Doconce: Document Once, Include Anywhere 1.0 documentation" href="index.html" />
     <link rel="prev" title="Welcome to Doconce: Document Once, Include Anywhere!" href="index.html" /> 
   </head>
@@ -56,7 +57,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jan 21, 2012</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Feb 18, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -89,16 +90,15 @@ include it anywhere?</li>
 <li>Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text (much like what you would use in an
 email), but the text can be transformed to numerous other formats,
-including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
-Epytext, and also plain text (where non-obvious formatting/tags
-are removed for clear reading in, e.g., emails). From reST you can
-(via <tt class="docutils literal"><span class="pre">rst2*</span></tt> programs) go to XML, HTML, LaTeX, PDF, OpenOffice,
-and from the latter (via <tt class="docutils literal"><span class="pre">unoconv</span></tt>) to RTF, numerous MS Word
-formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
-XHTML. (An experimental translator to Pandoc is under development,
-and from Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF,
-DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
-other formats.)</li>
+including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
+(reST), Sphinx, Epytext, and also plain text (where non-obvious
+formatting/tags are removed for clear reading in, e.g.,
+emails). From reST you can (via <tt class="docutils literal"><span class="pre">rst2*</span></tt> programs) go to XML, HTML,
+LaTeX, PDF, OpenOffice, and from the latter (via <tt class="docutils literal"><span class="pre">unoconv</span></tt>) to
+RTF, numerous MS Word formats (including MS Office Open XML),
+DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
+Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
+Texinfo, MediaWiki, RTF, Groff, and other formats.</li>
 <li>Doconce is a working strategy for never duplicating information.
 Text is written in a single place and then transformed to
 a number of different destinations of diverse type (software
@@ -307,11 +307,11 @@ comments can be removed from the output by a command-line argument
 </div>
 <div class="section" id="mathematics-and-computer-code">
 <h2>Mathematics and Computer Code<a class="headerlink" href="#mathematics-and-computer-code" title="Permalink to this headline">¶</a></h2>
-<p>Inline mathematics, such as <img class="math" src="_images/math/67368952c3d7b7712f81f70c910a7d2e8c169d2f.png" alt="\nu = \sin(x)"/>,
+<p>Inline mathematics, such as <span class="math">\(\nu = \sin(x)\)</span>,
 allows the formula to be specified both as LaTeX and as plain text.
 This results in a professional LaTeX typesetting, but in other formats
 the text version normally looks better than raw LaTeX mathematics with
-backslashes. An inline formula like <img class="math" src="_images/math/67368952c3d7b7712f81f70c910a7d2e8c169d2f.png" alt="\nu = \sin(x)"/> is
+backslashes. An inline formula like <span class="math">\(\nu = \sin(x)\)</span> is
 typeset as</p>
 <div class="highlight-py"><pre>$\nu = \sin(x)$|$v = sin(x)$</pre>
 </div>
@@ -321,9 +321,9 @@ version of the formula.</p>
 <tt class="docutils literal"><span class="pre">!bt</span></tt> and <tt class="docutils literal"><span class="pre">!et</span></tt> (begin tex / end tex) instructions.
 The result looks like this:</p>
 <div class="math" id="equation-myeq1">
-<p><span class="eqno">(1)</span><img src="_images/math/0a1f9aabc11902208928bdbfe2f0b3deedaa2d8e.png" alt="{\partial u\over\partial t}  &amp;=  \nabla^2 u + f, \\
-     {\partial v\over\partial t}  &amp;=  \nabla\cdot(q(u)\nabla v) + g"/></p>
-</div><p>Of course, such blocks only looks nice in LaTeX. The raw
+<span class="eqno">(1)</span>\[\begin{split}     {\partial u\over\partial t}  &amp;=  \nabla^2 u + f, \\
+     {\partial v\over\partial t}  &amp;=  \nabla\cdot(q(u)\nabla v) + g\end{split}\]</div>
+<p>Of course, such blocks only looks nice in LaTeX. The raw
 LaTeX syntax appears in all other formats (but can still be useful
 for those who can read LaTeX syntax).</p>
 <p>You can have blocks of computer code, starting and ending with
@@ -442,6 +442,21 @@ is performed by</p>
 </pre></div>
 </div>
 <p>The resulting file <tt class="docutils literal"><span class="pre">mydoc.html</span></tt> can be loaded into any web browser for viewing.</p>
+</div>
+<div class="section" id="pandoc">
+<h2>Pandoc<a class="headerlink" href="#pandoc" title="Permalink to this headline">¶</a></h2>
+<p>Output in the versatile Pandoc format results from</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format pandoc mydoc</span>
+</pre></div>
+</div>
+<p>The name of the output file is <tt class="docutils literal"><span class="pre">mydoc.pnd</span></tt>.
+From this format one can go to numerous other formats:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; pandoc -t markdown  -o mydoc.txt mydoc.pnd</span>
+<span class="go">Terminal&gt; pandoc -t mediawiki -o mydoc.mwk mydoc.pnd</span>
+</pre></div>
+</div>
+<p>Pandoc supports <tt class="docutils literal"><span class="pre">latex</span></tt>, <tt class="docutils literal"><span class="pre">html</span></tt>, <tt class="docutils literal"><span class="pre">odt</span></tt> (OpenOffice), <tt class="docutils literal"><span class="pre">docx</span></tt> (Microsoft
+Word), <tt class="docutils literal"><span class="pre">rtf</span></tt>, <tt class="docutils literal"><span class="pre">texinfo</span></tt>, to mention some.</p>
 </div>
 <div class="section" id="id2">
 <h2>LaTeX<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -567,7 +582,15 @@ classic MS Word format, and PDF:</p>
 <p><em>Remark about Mathematical Typesetting.</em> At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 &#8220;MS Word world&#8221;. Mathematics is only fully supported by <tt class="docutils literal"><span class="pre">latex</span></tt> as
-output and to a wide extent supported by the <tt class="docutils literal"><span class="pre">sphinx</span></tt> output format.</p>
+output and to a wide extent also supported by the <tt class="docutils literal"><span class="pre">sphinx</span></tt> output format.
+Some links for going from LaTeX to Word are listed below.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://ubuntuforums.org/showthread.php?t=1033441">http://ubuntuforums.org/showthread.php?t=1033441</a></li>
+<li><a class="reference external" href="http://tug.org/utilities/texconv/textopc.html">http://tug.org/utilities/texconv/textopc.html</a></li>
+<li><a class="reference external" href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html">http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</a></li>
+</ul>
+</div></blockquote>
 </div>
 <div class="section" id="id4">
 <h2>Sphinx<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
@@ -788,6 +811,16 @@ are also needed. These are installed by</p>
 <p>on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the <tt class="docutils literal"><span class="pre">~/texmf/tex/latex/misc</span></tt> directory).</p>
+<p>The <em>minted</em> LaTeX style is offered by <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> and popular among
+users. This style requires the package <a class="reference external" href="http://pygments.org">Pygments</a>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments</span>
+<span class="go">cd pygments</span>
+<span class="go">sudo python setup.py install</span>
+</pre></div>
+</div>
+<p>If you use the minted style, you have to enable it by running
+<tt class="docutils literal"><span class="pre">ptex2tex</span> <span class="pre">-DMINTED</span></tt> and then <tt class="docutils literal"><span class="pre">latex</span> <span class="pre">-shell-escape</span></tt>, see
+the the section <a class="reference internal" href="#doconce2formats"><em>From Doconce to Other Formats</em></a>.</p>
 <p>For <tt class="docutils literal"><span class="pre">rst</span></tt> output and further transformation to LaTeX, HTML, XML,
 OpenOffice, and so on, one needs <a class="reference external" href="http://docutils.sourceforge.net">docutils</a>.
 The installation can be done by</p>
@@ -801,6 +834,11 @@ The installation can be done by</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install unovonv libreoffice libreoffice-dmaths</span>
 </pre></div>
 </div>
+<p>There is a possibility to create PDF files from reST documents
+using ReportLab instead of LaTeX. The enabling software is
+<a class="reference external" href="http://code.google.com/p/rst2pdf">rst2pdf</a>. Either download the tarball
+or clone the svn repository, go to the <tt class="docutils literal"><span class="pre">rst2pdf</span></tt> directory and
+run <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt>.</p>
 <p>Output to <tt class="docutils literal"><span class="pre">sphinx</span></tt> requires of course <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a>,
 installed by</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">hg clone https://bitbucket.org/birkenfeld/sphinx</span>
@@ -818,7 +856,8 @@ by</p>
 </pre></div>
 </div>
 <p>Finally, translation to <tt class="docutils literal"><span class="pre">pandoc</span></tt> requires the
-<a class="reference external" href="http://johnmacfarlane.net/pandoc/">Pandoc</a> program to be installed.</p>
+<a class="reference external" href="http://johnmacfarlane.net/pandoc/">Pandoc</a> program
+(written in Haskell) to be installed.</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install pandoc</span>
 </pre></div>
 </div>
@@ -853,6 +892,7 @@ run regularly.</p>
 </li>
 <li><a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a><ul>
 <li><a class="reference internal" href="#id1">HTML</a></li>
+<li><a class="reference internal" href="#pandoc">Pandoc</a></li>
 <li><a class="reference internal" href="#id2">LaTeX</a></li>
 <li><a class="reference internal" href="#plain-ascii-text">Plain ASCII Text</a></li>
 <li><a class="reference internal" href="#id3">reStructuredText</a></li>
@@ -904,7 +944,7 @@ run regularly.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2012, Hans Petter Langtangen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1pre.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>

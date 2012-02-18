@@ -30,16 +30,15 @@ Doconce is two things:
  1. Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
-    Epytext, and also plain text (where non-obvious formatting/tags
-    are removed for clear reading in, e.g., emails). From reST you can
-    (via C{rst2*} programs) go to XML, HTML, LaTeX, PDF, OpenOffice,
-    and from the latter (via C{unoconv}) to RTF, numerous MS Word
-    formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
-    XHTML. (An experimental translator to Pandoc is under development,
-    and from Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF,
-    DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
-    other formats.)
+    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
+    (reST), Sphinx, Epytext, and also plain text (where non-obvious
+    formatting/tags are removed for clear reading in, e.g.,
+    emails). From reST you can (via C{rst2*} programs) go to XML, HTML,
+    LaTeX, PDF, OpenOffice, and from the latter (via C{unoconv}) to
+    RTF, numerous MS Word formats (including MS Office Open XML),
+    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
+    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
+    Texinfo, MediaWiki, RTF, Groff, and other formats.
  2. Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
     a number of different destinations of diverse type (software
@@ -400,6 +399,24 @@ is performed by::
 
 The resulting file C{mydoc.html} can be loaded into any web browser for viewing.
 
+Pandoc
+------
+
+Output in the versatile Pandoc format results from::
+
+
+        Terminal> doconce format pandoc mydoc
+
+The name of the output file is C{mydoc.pnd}.
+From this format one can go to numerous other formats::
+
+
+        Terminal> pandoc -t markdown  -o mydoc.txt mydoc.pnd
+        Terminal> pandoc -t mediawiki -o mydoc.mwk mydoc.pnd
+
+Pandoc supports C{latex}, C{html}, C{odt} (OpenOffice), C{docx} (Microsoft
+Word), C{rtf}, C{texinfo}, to mention some.
+
 LaTeX
 -----
 
@@ -545,8 +562,12 @@ classic MS Word format, and PDF::
 I{Remark about Mathematical Typesetting.} At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by C{latex} as
-output and to a wide extent supported by the C{sphinx} output format.
+output and to a wide extent also supported by the C{sphinx} output format.
+Some links for going from LaTeX to Word are listed below.
 
+ - U{http://ubuntuforums.org/showthread.php?t=1033441<http://ubuntuforums.org/showthread.php?t=1033441>}
+ - U{http://tug.org/utilities/texconv/textopc.html<http://tug.org/utilities/texconv/textopc.html>}
+ - U{http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html<http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html>}
 
 Sphinx
 ------
@@ -810,6 +831,18 @@ on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the C{~/texmf/tex/latex/misc} directory).
 
+The I{minted} LaTeX style is offered by C{ptex2tex} and popular among
+users. This style requires the package U{Pygments<http://pygments.org>}::
+
+
+        hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
+        cd pygments
+        sudo python setup.py install
+
+If you use the minted style, you have to enable it by running
+C{ptex2tex -DMINTED} and then C{latex -shell-escape}, see
+the the section "From Doconce to Other Formats".
+
 For C{rst} output and further transformation to LaTeX, HTML, XML,
 OpenOffice, and so on, one needs U{docutils<http://docutils.sourceforge.net>}.
 The installation can be done by::
@@ -824,6 +857,13 @@ To use the OpenOffice suite you will typically on Debian systems install::
 
 
         sudo apt-get install unovonv libreoffice libreoffice-dmaths
+
+
+There is a possibility to create PDF files from reST documents
+using ReportLab instead of LaTeX. The enabling software is
+U{rst2pdf<http://code.google.com/p/rst2pdf>}. Either download the tarball
+or clone the svn repository, go to the C{rst2pdf} directory and
+run C{sudo python setup.py install}.
 
 
 Output to C{sphinx} requires of course U{Sphinx<http://sphinx.pocoo.org>},
@@ -847,7 +887,8 @@ by::
 
 
 Finally, translation to C{pandoc} requires the
-U{Pandoc<http://johnmacfarlane.net/pandoc/>} program to be installed::
+U{Pandoc<http://johnmacfarlane.net/pandoc/>} program
+(written in Haskell) to be installed::
 
 
         sudo apt-get install pandoc

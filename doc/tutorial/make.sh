@@ -42,6 +42,7 @@ doconce format plain tutorial.do.txt
 doconce format gwiki tutorial.do.txt
 doconce format st tutorial.do.txt
 doconce format epytext tutorial.do.txt
+doconce format pandoc tutorial.do.txt
 
 # Make PDF of most of the above:
 a2ps_plain='a2ps --left-title='\'''\'' --right-title='\'''\'' --left-footer='\'''\'' --right-footer='\'''\'' --footer='\'''\'''
@@ -53,6 +54,8 @@ $a2ps_plain -1 -o tutorial.txt.ps tutorial.txt
 ps2pdf tutorial.txt.ps
 $a2ps_plain -1 -o tutorial.gwiki.ps tutorial.gwiki
 ps2pdf tutorial.gwiki.ps
+$a2ps_plain -1 -o tutorial.pnd.ps tutorial.pnd
+ps2pdf tutorial.pnd.ps
 $a2ps_plain -1 -o tutorial.xml.ps tutorial.xml
 ps2pdf tutorial.xml.ps
 
@@ -61,11 +64,11 @@ rm -f *.ps
 #wkhtmltopdf tutorial.rst.html tutorial.rst.html.pdf
 #wkhtmltopdf tutorial.html tutorial.html.pdf
 
-pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.sphinx.pdf tutorial.xml.pdf  cat output collection_of_results.pdf
+pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.pnd.pdf tutorial.sphinx.pdf tutorial.xml.pdf  cat output collection_of_results.pdf
 
 rm -rf demo
 mkdir demo
-cp -r tutorial.do.txt tutorial.html tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.gwiki tutorial.txt tutorial.epytext tutorial.st collection_of_results.pdf sphinx-rootdir/_build/html demo
+cp -r tutorial.do.txt tutorial.html tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.gwiki tutorial.txt tutorial.epytext tutorial.st tutorial.pnd collection_of_results.pdf sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -104,7 +107,8 @@ can be translated to <a href="tutorial.sphinx.pdf">PDF</a>
 and <a href="html/index.html">HTML</a>.
 <p>
 Doconce can also be converted to
-<a href="tutorial.gwiki">a (Google Code) wiki</a>,
+<a href="tutorial.gwiki">(Google Code) wiki</a>,
+<a href="tutorial.pnd">Pandoc</a>,
 <a href="tutorial.st">Structured Text</a>,
 <a href="tutorial.epytext">Epytext</a>,
 and maybe the most important format of all:

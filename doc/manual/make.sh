@@ -58,6 +58,7 @@ $d2f plain manual.do.txt --skip_inline_comments
 
 $d2f epytext manual.do.txt
 $d2f st manual.do.txt
+$d2f pandoc manual.do.txt
 
 # doconce latex:
 $d2f latex manual.do.txt    # produces ptex2tex: manual.p.tex
@@ -82,7 +83,7 @@ rm -f *.ps
 
 rm -rf demo
 mkdir demo
-cp -r manual.do.txt manual.html figs manual.tex manual.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.txt manual.epytext manual.st sphinx-rootdir/_build/html demo
+cp -r manual.do.txt manual.html figs manual.tex manual.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.txt manual.epytext manual.st manual.pnd sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -121,7 +122,8 @@ can be translated to <a href="manual.sphinx.pdf">PDF</a>
 and <a href="html/index.html">HTML</a>.
 <p>
 Doconce can also be converted to
-<a href="manual.gwiki">a (Google Code) wiki</a>,
+<a href="manual.gwiki">(Google Code) wiki</a>,
+<a href="manual.pnd">Pandoc</a>,
 <a href="manual.st">Structured Text</a>,
 <a href="manual.epytext">Epytext</a>,
 and maybe the most important format of all:

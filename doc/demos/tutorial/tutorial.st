@@ -20,22 +20,23 @@ BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)D
    include it anywhere?
 
 If any of these questions are of interest, you should keep on reading.
+
 The Doconce Concept
+
 Doconce is two things:
 
  1. Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
-    Epytext, and also plain text (where non-obvious formatting/tags
-    are removed for clear reading in, e.g., emails). From reST you can
-    (via 'rst2*' programs) go to XML, HTML, LaTeX, PDF, OpenOffice,
-    and from the latter (via 'unoconv') to RTF, numerous MS Word
-    formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
-    XHTML. (An experimental translator to Pandoc is under development,
-    and from Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF,
-    DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
-    other formats.)
+    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
+    (reST), Sphinx, Epytext, and also plain text (where non-obvious
+    formatting/tags are removed for clear reading in, e.g.,
+    emails). From reST you can (via 'rst2*' programs) go to XML, HTML,
+    LaTeX, PDF, OpenOffice, and from the latter (via 'unoconv') to
+    RTF, numerous MS Word formats (including MS Office Open XML),
+    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
+    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
+    Texinfo, MediaWiki, RTF, Groff, and other formats.
  2. Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
     a number of different destinations of diverse type (software
@@ -90,7 +91,9 @@ all sorts of sophisticated markup languages. Moreover, because of
 limitations of regular expressions, some formatting of Doconce syntax
 may face problems when transformed to HTML, LaTeX, Sphinx, and similar
 formats.
+
 What Does Doconce Look Like?
+
 Doconce text looks like ordinary text, but there are some almost invisible
 text constructions that allow you to control the formating. Here are
 som examples.
@@ -176,7 +179,9 @@ Here is an example of some simple text written in the Doconce format::
         # lines beginning with # are comment lines
 
 The Doconce text above results in the following little document:
+
 A Subsection with Sample Text
+
 Ordinary text looks like ordinary text, and the tags used for
 **boldface** words, *emphasized* words, and 'computer' words look
 natural in plain text.  Lists are typeset as you would do in an email,
@@ -214,7 +219,9 @@ Tables are also supperted, e.g.,
          2.0      1.376512        11.919  
          4.0        1.1E+1     14.717624  
 ============  ============  ============  
+
 Mathematics and Computer Code
+
 Inline mathematics, such as v = sin(x),
 allows the formula to be specified both as LaTeX and as plain text.
 This results in a professional LaTeX typesetting, but in other formats
@@ -289,7 +296,9 @@ on a line starting with (another) hash sign.  Doconce documents have
 extension 'do.txt'. The 'do' part stands for doconce, while the
 trailing '.txt' denotes a text document so that editors gives you the
 right writing enviroment for plain text.
+
 Macros (Newcommands), Cross-References, Index, and Bibliography
+
 Doconce supports a type of macros via a LaTeX-style *newcommand*
 construction.  The newcommands defined in a file with name
 'newcommand_replace.tex' are expanded when Doconce is filtered to
@@ -321,7 +330,9 @@ projects (manuals, books). For further details on functionality and
 syntax we refer to the 'doc/manual/manual.do.txt' file (see the
 "https://doconce.googlecode.com/hg/doc/demos/manual/index.html":demo page
 for various formats of this document).
+
 From Doconce to Other Formats
+
 Transformation of a Doconce document 'mydoc.do.txt' to various other
 formats applies the script 'doconce format':
 !bc   sys
@@ -358,7 +369,9 @@ file by running::
 
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
+
 HTML
+
 Making an HTML version of a Doconce file 'mydoc.do.txt'
 is performed by::
 
@@ -366,7 +379,26 @@ is performed by::
         Terminal> doconce format html mydoc
 
 The resulting file 'mydoc.html' can be loaded into any web browser for viewing.
+
+Pandoc
+
+Output in the versatile Pandoc format results from::
+
+
+        Terminal> doconce format pandoc mydoc
+
+The name of the output file is 'mydoc.pnd'.
+From this format one can go to numerous other formats::
+
+
+        Terminal> pandoc -t markdown  -o mydoc.txt mydoc.pnd
+        Terminal> pandoc -t mediawiki -o mydoc.mwk mydoc.pnd
+
+Pandoc supports 'latex', 'html', 'odt' (OpenOffice), 'docx' (Microsoft
+Word), 'rtf', 'texinfo', to mention some.
+
 LaTeX
+
 Making a LaTeX file 'mydoc.tex' from 'mydoc.do.txt' is done in two steps:
 
 *Step 1.* Filter the doconce text to a pre-LaTeX form 'mydoc.p.tex' for
@@ -453,7 +485,9 @@ In this case, 'latex' must be run with the
 The '-shell-escape' option is required because the 'minted.sty' style
 file runs the 'pygments' program to format code, and this program
 cannot be run from 'latex' without the '-shell-escape' option.
+
 Plain ASCII Text
+
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code::
@@ -461,7 +495,9 @@ computer source code::
 
         Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 
+
 reStructuredText
+
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file 'mydoc.rst':
@@ -500,8 +536,15 @@ classic MS Word format, and PDF::
 *Remark about Mathematical Typesetting.* At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by 'latex' as
-output and to a wide extent supported by the 'sphinx' output format.
+output and to a wide extent also supported by the 'sphinx' output format.
+Some links for going from LaTeX to Word are listed below.
+
+ - "http://ubuntuforums.org/showthread.php?t=1033441":http://ubuntuforums.org/showthread.php?t=1033441
+ - "http://tug.org/utilities/texconv/textopc.html":http://tug.org/utilities/texconv/textopc.html
+ - "http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html":http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html
+
 Sphinx
+
 Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the 'doconce sphinx_dir' command::
 
@@ -637,7 +680,9 @@ Note that verbatim code blocks can be typeset in a variety of ways
 depending the argument that follows '!bc': 'cod' gives Python
 ('code-block:: python' in Sphinx syntax) and 'cppcod' gives C++, but
 all such arguments can be customized both for Sphinx and LaTeX output.
+
 Google Code Wiki
+
 There are several different wiki dialects, but Doconce only support the
 one used by "http://code.google.com/p/support/wiki/WikiSyntax":Google Code.
 The transformation to this format, called 'gwiki' to explicitly mark
@@ -655,7 +700,9 @@ When the Doconce file contains figures, each figure filename must be
 replaced by a URL where the figure is available. There are instructions
 in the file for doing this. Usually, one performs this substitution
 automatically (see next section).
+
 Tweaking the Doconce Output
+
 Occasionally, one would like to tweak the output in a certain format
 from Doconce. One example is figure filenames when transforming
 Doconce to reStructuredText. Since Doconce does not know if the
@@ -667,7 +714,9 @@ from Doconce. It is then wise to run Doconce and the editing commands
 from a script to automate all steps in going from Doconce to the final
 format(s). The 'make.sh' files in 'docs/manual' and 'docs/tutorial'
 constitute comprehensive examples on how such scripts can be made.
+
 Demos
+
 The current text is generated from a Doconce format stored in the file::
 
 
@@ -685,7 +734,9 @@ is a sample of how this tutorial looks in different formats.
 There is another demo in the 'docs/manual' directory which
 translates the more comprehensive documentation, 'manual.do.txt', to
 various formats. The 'make.sh' script runs a set of translations.
+
 Dependencies and Installation
+
 Doconce itself is pure Python code hosted at "http://code.google.com/p/doconce":http://code.google.com/p/doconce.  Its installation from the
 Mercurial ('hg') source follows the standard procedure::
 
@@ -745,6 +796,18 @@ on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the '~/texmf/tex/latex/misc' directory).
 
+The *minted* LaTeX style is offered by 'ptex2tex' and popular among
+users. This style requires the package "http://pygments.org":Pygments::
+
+
+        hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
+        cd pygments
+        sudo python setup.py install
+
+If you use the minted style, you have to enable it by running
+'ptex2tex -DMINTED' and then 'latex -shell-escape', see
+the the section "From Doconce to Other Formats".
+
 For 'rst' output and further transformation to LaTeX, HTML, XML,
 OpenOffice, and so on, one needs "http://docutils.sourceforge.net":docutils.
 The installation can be done by::
@@ -759,6 +822,13 @@ To use the OpenOffice suite you will typically on Debian systems install::
 
 
         sudo apt-get install unovonv libreoffice libreoffice-dmaths
+
+
+There is a possibility to create PDF files from reST documents
+using ReportLab instead of LaTeX. The enabling software is
+"http://code.google.com/p/rst2pdf":rst2pdf. Either download the tarball
+or clone the svn repository, go to the 'rst2pdf' directory and
+run 'sudo python setup.py install'.
 
 
 Output to 'sphinx' requires of course "http://sphinx.pocoo.org":Sphinx,
@@ -782,7 +852,8 @@ by::
 
 
 Finally, translation to 'pandoc' requires the
-"http://johnmacfarlane.net/pandoc/":Pandoc program to be installed::
+"http://johnmacfarlane.net/pandoc/":Pandoc program
+(written in Haskell) to be installed::
 
 
         sudo apt-get install pandoc

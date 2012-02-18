@@ -25,6 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Doconce Manual 1.0 documentation" href="index.html" />
     <link rel="prev" title="Welcome to Doconce Manual!" href="index.html" /> 
   </head>
@@ -55,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jan 21, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Feb 18, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -68,16 +69,15 @@
 <li>Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text (much like what you would use in an
 email), but the text can be transformed to numerous other formats,
-including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
-Epytext, and also plain text (where non-obvious formatting/tags
-are removed for clear reading in, e.g., emails). From reST you can
-(via <tt class="docutils literal"><span class="pre">rst2*</span></tt> programs) go to XML, HTML, LaTeX, PDF, OpenOffice,
-and from the latter (via <tt class="docutils literal"><span class="pre">unoconv</span></tt>) to RTF, numerous MS Word
-formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
-XHTML. (An experimental translator to Pandoc is under development,
-and from Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF,
-DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
-other formats.)</li>
+including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
+(reST), Sphinx, Epytext, and also plain text (where non-obvious
+formatting/tags are removed for clear reading in, e.g.,
+emails). From reST you can (via <tt class="docutils literal"><span class="pre">rst2*</span></tt> programs) go to XML, HTML,
+LaTeX, PDF, OpenOffice, and from the latter (via <tt class="docutils literal"><span class="pre">unoconv</span></tt>) to
+RTF, numerous MS Word formats (including MS Office Open XML),
+DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
+Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
+Texinfo, MediaWiki, RTF, Groff, and other formats.</li>
 <li>Doconce is a working strategy for never duplicating information.
 Text is written in a single place and then transformed to
 a number of different destinations of diverse type (software
@@ -191,6 +191,16 @@ are also needed. These are installed by</p>
 <p>on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the <tt class="docutils literal"><span class="pre">~/texmf/tex/latex/misc</span></tt> directory).</p>
+<p>The <em>minted</em> LaTeX style is offered by <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> and popular among
+users. This style requires the package <a class="reference external" href="http://pygments.org">Pygments</a>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments</span>
+<span class="go">cd pygments</span>
+<span class="go">sudo python setup.py install</span>
+</pre></div>
+</div>
+<p>If you use the minted style, you have to enable it by running
+<tt class="docutils literal"><span class="pre">ptex2tex</span> <span class="pre">-DMINTED</span></tt> and then <tt class="docutils literal"><span class="pre">latex</span> <span class="pre">-shell-escape</span></tt>, see
+the the section <a class="reference internal" href="#doconce2formats"><em>From Doconce to Other Formats</em></a>.</p>
 <p>For <tt class="docutils literal"><span class="pre">rst</span></tt> output and further transformation to LaTeX, HTML, XML,
 OpenOffice, and so on, one needs <a class="reference external" href="http://docutils.sourceforge.net">docutils</a>.
 The installation can be done by</p>
@@ -204,6 +214,11 @@ The installation can be done by</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install unovonv libreoffice libreoffice-dmaths</span>
 </pre></div>
 </div>
+<p>There is a possibility to create PDF files from reST documents
+using ReportLab instead of LaTeX. The enabling software is
+<a class="reference external" href="http://code.google.com/p/rst2pdf">rst2pdf</a>. Either download the tarball
+or clone the svn repository, go to the <tt class="docutils literal"><span class="pre">rst2pdf</span></tt> directory and
+run <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt>.</p>
 <p>Output to <tt class="docutils literal"><span class="pre">sphinx</span></tt> requires of course <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a>,
 installed by</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">hg clone https://bitbucket.org/birkenfeld/sphinx</span>
@@ -221,7 +236,8 @@ by</p>
 </pre></div>
 </div>
 <p>Finally, translation to <tt class="docutils literal"><span class="pre">pandoc</span></tt> requires the
-<a class="reference external" href="http://johnmacfarlane.net/pandoc/">Pandoc</a> program to be installed.</p>
+<a class="reference external" href="http://johnmacfarlane.net/pandoc/">Pandoc</a> program
+(written in Haskell) to be installed.</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install pandoc</span>
 </pre></div>
 </div>
@@ -299,6 +315,21 @@ is performed by</p>
 </pre></div>
 </div>
 <p>The resulting file <tt class="docutils literal"><span class="pre">mydoc.html</span></tt> can be loaded into any web browser for viewing.</p>
+</div>
+<div class="section" id="id3">
+<h2>Pandoc<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Output in the versatile Pandoc format results from</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format pandoc mydoc</span>
+</pre></div>
+</div>
+<p>The name of the output file is <tt class="docutils literal"><span class="pre">mydoc.pnd</span></tt>.
+From this format one can go to numerous other formats:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; pandoc -t markdown  -o mydoc.txt mydoc.pnd</span>
+<span class="go">Terminal&gt; pandoc -t mediawiki -o mydoc.mwk mydoc.pnd</span>
+</pre></div>
+</div>
+<p>Pandoc supports <tt class="docutils literal"><span class="pre">latex</span></tt>, <tt class="docutils literal"><span class="pre">html</span></tt>, <tt class="docutils literal"><span class="pre">odt</span></tt> (OpenOffice), <tt class="docutils literal"><span class="pre">docx</span></tt> (Microsoft
+Word), <tt class="docutils literal"><span class="pre">rtf</span></tt>, <tt class="docutils literal"><span class="pre">texinfo</span></tt>, to mention some.</p>
 </div>
 <div class="section" id="latex">
 <h2>LaTeX<a class="headerlink" href="#latex" title="Permalink to this headline">¶</a></h2>
@@ -424,10 +455,18 @@ classic MS Word format, and PDF:</p>
 <p><em>Remark about Mathematical Typesetting.</em> At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 &#8220;MS Word world&#8221;. Mathematics is only fully supported by <tt class="docutils literal"><span class="pre">latex</span></tt> as
-output and to a wide extent supported by the <tt class="docutils literal"><span class="pre">sphinx</span></tt> output format.</p>
+output and to a wide extent also supported by the <tt class="docutils literal"><span class="pre">sphinx</span></tt> output format.
+Some links for going from LaTeX to Word are listed below.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://ubuntuforums.org/showthread.php?t=1033441">http://ubuntuforums.org/showthread.php?t=1033441</a></li>
+<li><a class="reference external" href="http://tug.org/utilities/texconv/textopc.html">http://tug.org/utilities/texconv/textopc.html</a></li>
+<li><a class="reference external" href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html">http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</a></li>
+</ul>
+</div></blockquote>
 </div>
-<div class="section" id="id3">
-<h2>Sphinx<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>Sphinx<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">sphinx_dir</span></tt> command:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce sphinx_dir author=&quot;authors&#39; names&quot; \</span>
@@ -741,8 +780,8 @@ __A Paragraph.__ The running text goes here.</pre>
 </div>
 </div>
 </div>
-<div class="section" id="id4">
-<h1>Special Lines<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id5">
+<h1>Special Lines<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="figures">
 <h2>Figures<a class="headerlink" href="#figures" title="Permalink to this headline">¶</a></h2>
 <p>Figures are recognized by the special line syntax</p>
@@ -812,10 +851,10 @@ of computer code from a file directly into a verbatim environment, see
 the section <a class="reference internal" href="#sec-verbatim-blocks"><em>Blocks of Verbatim Computer Code</em></a> below.</p>
 </div>
 <div class="section" id="inline-tagging">
-<span id="id5"></span><h2>Inline Tagging<a class="headerlink" href="#inline-tagging" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2>Inline Tagging<a class="headerlink" href="#inline-tagging" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="index-7"></span><span class="target" id="index-8"></span><span class="target" id="index-9"></span><span class="target" id="index-10"></span><p id="index-11">Doconce supports tags for <em>emphasized phrases</em>, <strong>boldface phrases</strong>,
 and <tt class="docutils literal"><span class="pre">verbatim</span> <span class="pre">text</span></tt> (also called type writer text, for inline code)
-plus LaTeX/TeX inline mathematics, such as <img class="math" src="_images/math/67368952c3d7b7712f81f70c910a7d2e8c169d2f.png" alt="\nu = \sin(x)"/>.</p>
+plus LaTeX/TeX inline mathematics, such as <span class="math">\(\nu = \sin(x)\)</span>.</p>
 <p>Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in</p>
 <div class="highlight-py"><pre>*emphasized words*</pre>
@@ -898,9 +937,9 @@ $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.</pre>
 dollar signs and separated by a pipe symbol, the expression to the
 left is used in LaTeX, while the expression to the right is used for
 all other formats.  The above text is typeset as &#8220;Here is an example
-on a linear system <img class="math" src="_images/math/3b74cee07dd8161675981a041440f903e6857165.png" alt="{\bf A}{\bf x} = {\bf b}"/>, where <img class="math" src="_images/math/c8d06bc6c8cdf894e04e23bbdbe62ebbca401eac.png" alt="\bf A"/>
-is an <img class="math" src="_images/math/93f761f7fc79f2bec21a2f31c896840d6f36cdc0.png" alt="n\times n"/> matrix, and <img class="math" src="_images/math/ee960160313d521992d2c83debab9669f8e73da4.png" alt="\bf x"/> and <img class="math" src="_images/math/dca7964ef6c15c3376e23f75633b18cf20feca5f.png" alt="\bf b"/>
-are vectors of length <img class="math" src="_images/math/174fadd07fd54c9afe288e96558c92e0c1da733a.png" alt="n"/>.&#8221;</p>
+on a linear system <span class="math">\({\bf A}{\bf x} = {\bf b}\)</span>, where <span class="math">\(\bf A\)</span>
+is an <span class="math">\(n\times n\)</span> matrix, and <span class="math">\(\bf x\)</span> and <span class="math">\(\bf b\)</span>
+are vectors of length <span class="math">\(n\)</span>.&#8221;</p>
 </div>
 <div class="section" id="cross-referencing">
 <h2>Cross-Referencing<a class="headerlink" href="#cross-referencing" title="Permalink to this headline">¶</a></h2>
@@ -1267,9 +1306,9 @@ the opening tag is <tt class="docutils literal"><span class="pre">!bt</span></tt
 line and followed by a newline.</p>
 <p>Here is the result of a <tt class="docutils literal"><span class="pre">!bt</span></tt> - <tt class="docutils literal"><span class="pre">!et</span></tt> block:</p>
 <div class="math" id="equation-myeq1">
-<p><span class="eqno">(1)</span><img src="_images/math/0a1f9aabc11902208928bdbfe2f0b3deedaa2d8e.png" alt="{\partial u\over\partial t}  &amp;=  \nabla^2 u + f, \\
-     {\partial v\over\partial t}  &amp;=  \nabla\cdot(q(u)\nabla v) + g"/></p>
-</div><p>This text looks ugly in all Doconce supported formats, except from
+<span class="eqno">(1)</span>\[\begin{split}     {\partial u\over\partial t}  &amp;=  \nabla^2 u + f, \\
+     {\partial v\over\partial t}  &amp;=  \nabla\cdot(q(u)\nabla v) + g\end{split}\]</div>
+<p>This text looks ugly in all Doconce supported formats, except from
 LaTeX and Sphinx.  If HTML is desired, the best is to filter the Doconce text
 first to LaTeX and then use the widely available tex4ht tool to
 convert the dvi file to HTML, or one could just link a PDF file (made
@@ -1321,9 +1360,9 @@ expressions).</p>
 </div>
 <p>will then be rendered to</p>
 <div class="math">
-<p><img src="_images/math/1ad899821902f133c8f0da5a7639e9925dbb73de.png" alt="{\mbox{\boldmath $x$}}\cdot{\mbox{\boldmath $n$}}  &amp;=  0, \\
-\frac{D\vec u}{dt}  &amp;=  {\mbox{\boldmath $Q$}} \thinspace ."/></p>
-</div><p>in the current format.</p>
+\[\begin{split}{\mbox{\boldmath $x$}}\cdot{\mbox{\boldmath $n$}}  &amp;=  0, \\
+\frac{D\vec u}{dt}  &amp;=  {\mbox{\boldmath $Q$}} \thinspace .\end{split}\]</div>
+<p>in the current format.</p>
 </div>
 <div class="section" id="preprocessing-steps">
 <h2>Preprocessing Steps<a class="headerlink" href="#preprocessing-steps" title="Permalink to this headline">¶</a></h2>
@@ -1545,8 +1584,16 @@ or with</p>
 <p>If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands</p>
 <div class="highlight-py"><pre>Unix&gt; doconce change_encoding utf-8 LATIN1 myfile.do.txt
+
 Unix&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile</pre>
 </div>
+</div>
+<div class="section" id="wrong-norwegian-charcters">
+<h3>Wrong Norwegian charcters<a class="headerlink" href="#wrong-norwegian-charcters" title="Permalink to this headline">¶</a></h3>
+<p>When Doconce documents have characters not in the standard ASCII set,
+the format of the file must be LATIN1 and not UTF-8. See
+the section &#8220;Strange non-English characters&#8221; above for how to
+run <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">change_encoding</span></tt> to change the encoding of the Doconce file.</p>
 </div>
 <div class="section" id="inline-verbatim-text-is-not-formatted-correctly">
 <h3>Inline verbatim text is not formatted correctly<a class="headerlink" href="#inline-verbatim-text-is-not-formatted-correctly" title="Permalink to this headline">¶</a></h3>
@@ -1650,6 +1697,19 @@ and make sure they decrease by two every time a lower level is encountered.</p>
 <p>the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.</p>
+</div>
+<div class="section" id="inline-verbatim-gives-error">
+<h3>Inline verbatim gives error<a class="headerlink" href="#inline-verbatim-gives-error" title="Permalink to this headline">¶</a></h3>
+<p>Check if the inline verbatim contains typical LaTeX commands, e.g.,</p>
+<div class="highlight-py"><pre>some text with `\usepackage{mypack}` is difficult because
+ptex2tex will replace this by \code{\usepackage{mypack}} and
+then replace this by
+{\fontsize{10pt}{10pt}\verb!\usepackage{mypack!}}
+which is wrong because ptex2tex applies regex that don't
+capture the second }</pre>
+</div>
+<p>The remedy is to place verbatim LaTeX commands in verbatim
+blocks - that is safe.</p>
 </div>
 <div class="section" id="errors-in-figure-captions">
 <h3>Errors in figure captions<a class="headerlink" href="#errors-in-figure-captions" title="Permalink to this headline">¶</a></h3>
@@ -1862,7 +1922,7 @@ the iterations.</td>
 <table class="docutils citation" frame="void" id="python-primer-09" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Python:Primer:09]</td><td><em>(<a class="fn-backref" href="#id7">1</a>, <a class="fn-backref" href="#id9">2</a>)</em> H. P. Langtangen.
+<tr><td class="label">[Python:Primer:09]</td><td><em>(<a class="fn-backref" href="#id8">1</a>, <a class="fn-backref" href="#id10">2</a>)</em> H. P. Langtangen.
 <em>A Primer on Scientific Programming with Python</em>.
 Springer, 2009.</td></tr>
 </tbody>
@@ -1870,7 +1930,7 @@ Springer, 2009.</td></tr>
 <table class="docutils citation" frame="void" id="osnes-98" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Osnes:98]</td><td><em>(<a class="fn-backref" href="#id8">1</a>, <a class="fn-backref" href="#id10">2</a>)</em> H. Osnes and H. P. Langtangen.
+<tr><td class="label">[Osnes:98]</td><td><em>(<a class="fn-backref" href="#id9">1</a>, <a class="fn-backref" href="#id11">2</a>)</em> H. Osnes and H. P. Langtangen.
 An efficient probabilistic finite element method for stochastic
 groundwater flow.
 <em>Advances in Water Resources</em>, vol 22, 185-195, 1998.</td></tr>
@@ -1895,10 +1955,11 @@ groundwater flow.
 </li>
 <li><a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a><ul>
 <li><a class="reference internal" href="#html">HTML</a></li>
+<li><a class="reference internal" href="#id3">Pandoc</a></li>
 <li><a class="reference internal" href="#latex">LaTeX</a></li>
 <li><a class="reference internal" href="#plain-ascii-text">Plain ASCII Text</a></li>
 <li><a class="reference internal" href="#restructuredtext">reStructuredText</a></li>
-<li><a class="reference internal" href="#id3">Sphinx</a></li>
+<li><a class="reference internal" href="#id4">Sphinx</a></li>
 <li><a class="reference internal" href="#google-code-wiki">Google Code Wiki</a></li>
 <li><a class="reference internal" href="#tweaking-the-doconce-output">Tweaking the Doconce Output</a></li>
 </ul>
@@ -1908,7 +1969,7 @@ groundwater flow.
 <li><a class="reference internal" href="#special-lines">Special Lines</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id4">Special Lines</a><ul>
+<li><a class="reference internal" href="#id5">Special Lines</a><ul>
 <li><a class="reference internal" href="#figures">Figures</a></li>
 <li><a class="reference internal" href="#movies">Movies</a></li>
 <li><a class="reference internal" href="#copying-computer-code-from-source-files">Copying Computer Code from Source Files</a></li>
@@ -1934,6 +1995,7 @@ groundwater flow.
 <li><a class="reference internal" href="#preprocessor-directives-do-not-work">Preprocessor directives do not work</a></li>
 <li><a class="reference internal" href="#problems-with-boldface-and-emphasize">Problems with boldface and emphasize</a></li>
 <li><a class="reference internal" href="#strange-non-english-characters">Strange non-English characters</a></li>
+<li><a class="reference internal" href="#wrong-norwegian-charcters">Wrong Norwegian charcters</a></li>
 <li><a class="reference internal" href="#inline-verbatim-text-is-not-formatted-correctly">Inline verbatim text is not formatted correctly</a></li>
 <li><a class="reference internal" href="#too-short-underlining-of-rest-headlines">Too short underlining of reST headlines</a></li>
 </ul>
@@ -1955,6 +2017,7 @@ groundwater flow.
 </li>
 <li><a class="reference internal" href="#problems-with-latex-output">Problems with LaTeX Output</a><ul>
 <li><a class="reference internal" href="#the-latex-file-does-not-compile">The LaTeX file does not compile</a></li>
+<li><a class="reference internal" href="#inline-verbatim-gives-error">Inline verbatim gives error</a></li>
 <li><a class="reference internal" href="#errors-in-figure-captions">Errors in figure captions</a></li>
 <li><a class="reference internal" href="#chapters-are-ignored">Chapters are ignored</a></li>
 <li><a class="reference internal" href="#i-want-to-tune-the-top-of-the-latex-file">I want to tune the top of the LaTeX file</a></li>
@@ -2014,7 +2077,7 @@ groundwater flow.
     </div>
     <div class="footer">
         &copy; Copyright 2012, 0.6.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1pre.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>

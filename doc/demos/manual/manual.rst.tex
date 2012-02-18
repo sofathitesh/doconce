@@ -5,6 +5,7 @@
 \usepackage{ifthen}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{color}
 \usepackage{float} % float configuration
 \floatplacement{figure}{H} % place figures here definitely
 \usepackage{graphicx}
@@ -22,12 +23,34 @@
 
 %%% Fallback definitions for Docutils-specific commands
 
+% admonition (specially marked topic)
+\providecommand{\DUadmonition}[2][class-arg]{%
+  % try \DUadmonition#1{#2}:
+  \ifcsname DUadmonition#1\endcsname%
+    \csname DUadmonition#1\endcsname{#2}%
+  \else
+    \begin{center}
+      \fbox{\parbox{0.9\textwidth}{#2}}
+    \end{center}
+  \fi
+}
+
 % fieldlist environment
 \ifthenelse{\isundefined{\DUfieldlist}}{
   \newenvironment{DUfieldlist}%
     {\quote\description}
     {\enddescription\endquote}
 }{}
+
+% title for topics, admonitions and sidebar
+\providecommand*{\DUtitle}[2][class-arg]{%
+  % call \DUtitle#1{#2} if it exists:
+  \ifcsname DUtitle#1\endcsname%
+    \csname DUtitle#1\endcsname{#2}%
+  \else
+    \smallskip\noindent\textbf{#2}\smallskip%
+  \fi
+}
 
 % hyperlinks:
 \ifthenelse{\isundefined{\hypersetup}}{
@@ -56,7 +79,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jan 21, 2012
+Feb 18, 2012
 
 \end{DUfieldlist}
 
@@ -85,16 +108,15 @@ Doconce is two things:
 \item Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text (much like what you would use in an
 email), but the text can be transformed to numerous other formats,
-including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
-Epytext, and also plain text (where non-obvious formatting/tags
-are removed for clear reading in, e.g., emails). From reST you can
-(via \texttt{rst2*} programs) go to XML, HTML, LaTeX, PDF, OpenOffice,
-and from the latter (via \texttt{unoconv}) to RTF, numerous MS Word
-formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
-XHTML. (An experimental translator to Pandoc is under development,
-and from Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF,
-DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
-other formats.)
+including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
+(reST), Sphinx, Epytext, and also plain text (where non-obvious
+formatting/tags are removed for clear reading in, e.g.,
+emails). From reST you can (via \texttt{rst2*} programs) go to XML, HTML,
+LaTeX, PDF, OpenOffice, and from the latter (via \texttt{unoconv}) to
+RTF, numerous MS Word formats (including MS Office Open XML),
+DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
+Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
+Texinfo, MediaWiki, RTF, Groff, and other formats.
 
 \item Doconce is a working strategy for never duplicating information.
 Text is written in a single place and then transformed to
@@ -259,6 +281,20 @@ on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the \texttt{\textasciitilde{}/texmf/tex/latex/misc} directory).
 
+The \emph{minted} LaTeX style is offered by \texttt{ptex2tex} and popular among
+users. This style requires the package \href{http://pygments.org}{Pygments}:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+hg~clone~ssh://hg@bitbucket.org/birkenfeld/pygments-main~pygments\\
+cd~pygments\\
+sudo~python~setup.py~install
+}
+\end{quote}
+
+If you use the minted style, you have to enable it by running
+\texttt{ptex2tex -DMINTED} and then \texttt{latex -shell-escape}, see
+the the section \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats}.
+
 For \texttt{rst} output and further transformation to LaTeX, HTML, XML,
 OpenOffice, and so on, one needs \href{http://docutils.sourceforge.net}{docutils}.
 The installation can be done by:
@@ -277,6 +313,12 @@ To use the OpenOffice suite you will typically on Debian systems install:
 sudo~apt-get~install~unovonv~libreoffice~libreoffice-dmaths
 }
 \end{quote}
+
+There is a possibility to create PDF files from reST documents
+using ReportLab instead of LaTeX. The enabling software is
+\href{http://code.google.com/p/rst2pdf}{rst2pdf}. Either download the tarball
+or clone the svn repository, go to the \texttt{rst2pdf} directory and
+run \texttt{sudo python setup.py install}.
 
 Output to \texttt{sphinx} requires of course \href{http://sphinx.pocoo.org}{Sphinx},
 installed by:
@@ -301,7 +343,8 @@ cd~..
 \end{quote}
 
 Finally, translation to \texttt{pandoc} requires the
-\href{http://johnmacfarlane.net/pandoc/}{Pandoc} program to be installed:
+\href{http://johnmacfarlane.net/pandoc/}{Pandoc} program
+(written in Haskell) to be installed:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 sudo~apt-get~install~pandoc
@@ -438,6 +481,34 @@ Terminal>~doconce~format~html~mydoc
 \end{quote}
 
 The resulting file \texttt{mydoc.html} can be loaded into any web browser for viewing.
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Pandoc%
+  \addcontentsline{toc}{subsection}{Pandoc}%
+  \label{id3}%
+}
+
+Output in the versatile Pandoc format results from:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~format~pandoc~mydoc
+}
+\end{quote}
+
+The name of the output file is \texttt{mydoc.pnd}.
+From this format one can go to numerous other formats:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~pandoc~-t~markdown~~-o~mydoc.txt~mydoc.pnd\\
+Terminal>~pandoc~-t~mediawiki~-o~mydoc.mwk~mydoc.pnd
+}
+\end{quote}
+
+Pandoc supports \texttt{latex}, \texttt{html}, \texttt{odt} (OpenOffice), \texttt{docx} (Microsoft
+Word), \texttt{rtf}, \texttt{texinfo}, to mention some.
 
 
 %___________________________________________________________________________
@@ -633,7 +704,31 @@ Terminal>~unoconv~-f~pdf~mydoc.odt
 \emph{Remark about Mathematical Typesetting.} At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 ``MS Word world''. Mathematics is only fully supported by \texttt{latex} as
-output and to a wide extent supported by the \texttt{sphinx} output format.
+output and to a wide extent also supported by the \texttt{sphinx} output format.
+Some links for going from LaTeX to Word are listed below.
+%
+\begin{quote}
+%
+\begin{itemize}
+
+\item \url{http://ubuntuforums.org/showthread.php?t=1033441}
+
+\item \url{http://tug.org/utilities/texconv/textopc.html}
+
+\item \url{http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html}
+
+\end{itemize}
+
+\end{quote}
+
+\DUadmonition[system-message]{
+\DUtitle[system-message]{system-message}
+
+
+{\color{red}WARNING/2} in \texttt{manual.rst}, line~515
+
+Block quote ends without a blank line; unexpected unindent.
+backrefs: }
 
 % One possible way from Doconce to MS Word goes via ``latex`` and then
 
@@ -645,7 +740,7 @@ output and to a wide extent supported by the \texttt{sphinx} output format.
 \subsection*{\phantomsection%
   Sphinx%
   \addcontentsline{toc}{subsection}{Sphinx}%
-  \label{id3}%
+  \label{id4}%
 }
 
 Sphinx documents demand quite some steps in their creation. We have automated
@@ -1115,7 +1210,7 @@ The~running~text~goes~here.\\
 \section*{\phantomsection%
   Special Lines%
   \addcontentsline{toc}{section}{Special Lines}%
-  \label{id4}%
+  \label{id5}%
 }
 
 
@@ -1234,7 +1329,7 @@ the section \hyperref[blocks-of-verbatim-computer-code]{Blocks of Verbatim Compu
 \subsection*{\phantomsection%
   Inline Tagging%
   \addcontentsline{toc}{subsection}{Inline Tagging}%
-  \label{id5}%
+  \label{id6}%
   \label{inline-tagging}%
 }
 
@@ -1436,7 +1531,7 @@ the source of this document illustrates how labels and references
 are handled by the format in question.
 
 Hyperlinks to files or web addresses are handled as explained
-in the section \hyperref[id5]{Inline Tagging}.
+in the section \hyperref[id6]{Inline Tagging}.
 
 
 %___________________________________________________________________________
@@ -2365,9 +2460,24 @@ the Unix commands:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Unix>~doconce~change\_encoding~utf-8~LATIN1~myfile.do.txt\\
+~\\
 Unix>~iconv~-f~utf-8~-t~LATIN1~myfile.do.txt~-{}-output~newfile
 }
 \end{quote}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Wrong Norwegian charcters%
+  \addcontentsline{toc}{subsubsection}{Wrong Norwegian charcters}%
+  \label{wrong-norwegian-charcters}%
+}
+
+When Doconce documents have characters not in the standard ASCII set,
+the format of the file must be LATIN1 and not UTF-8. See
+the section ``Strange non-English characters'' above for how to
+run \texttt{doconce change\_encoding} to change the encoding of the Doconce file.
 
 
 %___________________________________________________________________________
@@ -2578,6 +2688,34 @@ If the problem is undefined control sequence involving:
 the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Inline verbatim gives error%
+  \addcontentsline{toc}{subsubsection}{Inline verbatim gives error}%
+  \label{inline-verbatim-gives-error}%
+}
+
+Check if the inline verbatim contains typical LaTeX commands, e.g.:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+some~text~with~`\textbackslash{}usepackage\{mypack\}`~is~difficult~because\\
+ptex2tex~will~replace~this~by~\textbackslash{}code\{\textbackslash{}usepackage\{mypack\}\}~and\\
+then~replace~this~by\\
+\{\textbackslash{}fontsize\{10pt\}\{10pt\}\textbackslash{}verb!\textbackslash{}usepackage\{mypack!\}\}\\
+which~is~wrong~because~ptex2tex~applies~regex~that~don't\\
+capture~the~second~\}
+}
+\end{quote}
+
+The remedy is to place verbatim LaTeX commands in verbatim
+blocks - that is safe.
+
+% Could have doconce configure file where inline verbatim is
+
+% configured to be \fontsize... directly, not via ptex2tex \code{}.
 
 
 %___________________________________________________________________________

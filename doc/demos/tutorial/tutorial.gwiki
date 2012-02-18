@@ -2,7 +2,7 @@
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== Jan 21, 2012 ====
+==== Feb 18, 2012 ====
 
  * When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format?
  * Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging?
@@ -17,7 +17,7 @@ If any of these questions are of interest, you should keep on reading.
 Doconce is two things:
 
 
- # Doconce is a very simple and minimally tagged markup language that    looks like ordinary ASCII text (much like what you would use in an    email), but the text can be transformed to numerous other formats,    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,    Epytext, and also plain text (where non-obvious formatting/tags    are removed for clear reading in, e.g., emails). From reST you can    (via `rst2*` programs) go to XML, HTML, LaTeX, PDF, OpenOffice,    and from the latter (via `unoconv`) to RTF, numerous MS Word    formats (including MS Office Open XML), DocBook, PDF, MediaWiki,    XHTML. (An experimental translator to Pandoc is under development,    and from Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF,    DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and    other formats.)
+ # Doconce is a very simple and minimally tagged markup language that    looks like ordinary ASCII text (much like what you would use in an    email), but the text can be transformed to numerous other formats,    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText    (reST), Sphinx, Epytext, and also plain text (where non-obvious    formatting/tags are removed for clear reading in, e.g.,    emails). From reST you can (via `rst2*` programs) go to XML, HTML,    LaTeX, PDF, OpenOffice, and from the latter (via `unoconv`) to    RTF, numerous MS Word formats (including MS Office Open XML),    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU    Texinfo, MediaWiki, RTF, Groff, and other formats.
  # Doconce is a working strategy for never duplicating information.    Text is written in a single place and then transformed to    a number of different destinations of diverse type (software    source code, manuals, tutorials, books, wikis, memos, emails, etc.).    The Doconce markup language support this working strategy.    The slogan is: "Write once, include anywhere".
 
 Here are some Doconce features:
@@ -327,6 +327,21 @@ Terminal> doconce format html mydoc
 }}}
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
+==== Pandoc ====
+
+Output in the versatile Pandoc format results from
+{{{
+Terminal> doconce format pandoc mydoc
+}}}
+The name of the output file is `mydoc.pnd`.
+From this format one can go to numerous other formats:
+{{{
+Terminal> pandoc -t markdown  -o mydoc.txt mydoc.pnd
+Terminal> pandoc -t mediawiki -o mydoc.mwk mydoc.pnd
+}}}
+Pandoc supports `latex`, `html`, `odt` (OpenOffice), `docx` (Microsoft
+Word), `rtf`, `texinfo`, to mention some.
+
 ==== LaTeX ====
 
 Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
@@ -457,9 +472,13 @@ Terminal> unoconv -f pdf mydoc.odt
 *Remark about Mathematical Typesetting.* At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by `latex` as
-output and to a wide extent supported by the `sphinx` output format.
+output and to a wide extent also supported by the `sphinx` output format.
+Some links for going from LaTeX to Word are listed below.
 
-<wiki:comment> One possible way from Doconce to MS Word goes via `latex` and then </wiki:comment>
+
+ * http://ubuntuforums.org/showthread.php?t=1033441
+ * http://tug.org/utilities/texconv/textopc.html
+ * [http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html wiki:comment] One possible way from Doconce to MS Word goes via `latex` and then </wiki:comment>
 <wiki:comment> `texmacs`. This didn't work well for math and figures. </wiki:comment>
 
 ==== Sphinx ====
@@ -699,6 +718,17 @@ on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the `~/texmf/tex/latex/misc` directory).
 
+The *minted* LaTeX style is offered by `ptex2tex` and popular among
+users. This style requires the package [http://pygments.org Pygments]:
+{{{
+hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
+cd pygments
+sudo python setup.py install
+}}}
+If you use the minted style, you have to enable it by running
+`ptex2tex -DMINTED` and then `latex -shell-escape`, see
+the the section [#From_Doconce_to_Other_Formats].
+
 For `rst` output and further transformation to LaTeX, HTML, XML,
 OpenOffice, and so on, one needs [http://docutils.sourceforge.net docutils].
 The installation can be done by
@@ -712,6 +742,13 @@ To use the OpenOffice suite you will typically on Debian systems install
 {{{
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
 }}}
+
+There is a possibility to create PDF files from reST documents
+using ReportLab instead of LaTeX. The enabling software is
+[http://code.google.com/p/rst2pdf rst2pdf]. Either download the tarball
+or clone the svn repository, go to the `rst2pdf` directory and
+run `sudo python setup.py install`.
+
 
 Output to `sphinx` requires of course [http://sphinx.pocoo.org Sphinx],
 installed by
@@ -732,7 +769,8 @@ cd ..
 }}}
 
 Finally, translation to `pandoc` requires the
-[http://johnmacfarlane.net/pandoc/ Pandoc] program to be installed.
+[http://johnmacfarlane.net/pandoc/ Pandoc] program
+(written in Haskell) to be installed.
 {{{
 sudo apt-get install pandoc
 }}}

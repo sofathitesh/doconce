@@ -45,6 +45,21 @@ Terminal> doconce format html mydoc
 !ec
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
+===== Pandoc =====
+
+Output in the versatile Pandoc format results from
+!bc sys
+Terminal> doconce format pandoc mydoc
+!ec
+The name of the output file is `mydoc.pnd`.
+From this format one can go to numerous other formats:
+!bc sys
+Terminal> pandoc -t markdown  -o mydoc.txt mydoc.pnd
+Terminal> pandoc -t mediawiki -o mydoc.mwk mydoc.pnd
+!ec
+Pandoc supports `latex`, `html`, `odt` (OpenOffice), `docx` (Microsoft
+Word), `rtf`, `texinfo`, to mention some.
+
 ===== LaTeX =====
 
 Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
