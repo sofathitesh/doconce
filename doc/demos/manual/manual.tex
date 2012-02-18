@@ -50,7 +50,7 @@
 
 
 \begin{center}
-Jan 21, 2012
+Feb 18, 2012
 \end{center}
 
 
@@ -68,16 +68,15 @@ Doconce is two things:
  \item Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, wiki, {\LaTeX}, PDF, reStructuredText (reST), Sphinx,
-    Epytext, and also plain text (where non-obvious formatting/tags
-    are removed for clear reading in, e.g., emails). From reST you can
-    (via {\fontsize{10pt}{10pt}\verb!rst2*!} programs) go to XML, HTML, {\LaTeX}, PDF, OpenOffice,
-    and from the latter (via {\fontsize{10pt}{10pt}\verb!unoconv!}) to RTF, numerous MS Word
-    formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
-    XHTML. (An experimental translator to Pandoc is under development,
-    and from Pandoc one can generate Markdown, reST, {\LaTeX}, HTML, PDF,
-    DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
-    other formats.)
+    including HTML, Pandoc, Google wiki, {\LaTeX}, PDF, reStructuredText
+    (reST), Sphinx, Epytext, and also plain text (where non-obvious
+    formatting/tags are removed for clear reading in, e.g.,
+    emails). From reST you can (via {\fontsize{10pt}{10pt}\verb!rst2*!} programs) go to XML, HTML,
+    {\LaTeX}, PDF, OpenOffice, and from the latter (via {\fontsize{10pt}{10pt}\verb!unoconv!}) to
+    RTF, numerous MS Word formats (including MS Office Open XML),
+    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
+    Markdown, reST, {\LaTeX}, HTML, PDF, DocBook XML, OpenOffice, GNU
+    Texinfo, MediaWiki, RTF, Groff, and other formats.
 
  \item Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
@@ -219,6 +218,19 @@ on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the {\fontsize{10pt}{10pt}\verb!~/texmf/tex/latex/misc!} directory).
 
+The \emph{minted} {\LaTeX} style is offered by {\fontsize{10pt}{10pt}\verb!ptex2tex!} and popular among
+users. This style requires the package \href{http://pygments.org}{Pygments}:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
+cd pygments
+sudo python setup.py install
+\end{Verbatim}
+If you use the minted style, you have to enable it by running
+{\fontsize{10pt}{10pt}\verb!ptex2tex -DMINTED!} and then {\fontsize{10pt}{10pt}\verb!latex -shell-escape!}, see
+the Section~\ref{doconce2formats}.
+
 For {\fontsize{10pt}{10pt}\verb!rst!} output and further transformation to {\LaTeX}, HTML, XML,
 OpenOffice, and so on, one needs \href{http://docutils.sourceforge.net}{docutils}.
 The installation can be done by
@@ -236,6 +248,13 @@ To use the OpenOffice suite you will typically on Debian systems install
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
 \end{Verbatim}
+
+There is a possibility to create PDF files from reST documents
+using ReportLab instead of {\LaTeX}. The enabling software is
+\href{http://code.google.com/p/rst2pdf}{rst2pdf}. Either download the tarball
+or clone the svn repository, go to the {\fontsize{10pt}{10pt}\verb!rst2pdf!} directory and
+run {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}.
+
 
 Output to {\fontsize{10pt}{10pt}\verb!sphinx!} requires of course \href{http://sphinx.pocoo.org}{Sphinx},
 installed by
@@ -260,7 +279,8 @@ cd ..
 \end{Verbatim}
 
 Finally, translation to {\fontsize{10pt}{10pt}\verb!pandoc!} requires the
-\href{http://johnmacfarlane.net/pandoc/}{Pandoc} program to be installed.
+\href{http://johnmacfarlane.net/pandoc/}{Pandoc} program
+(written in Haskell) to be installed.
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
@@ -379,6 +399,25 @@ labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Terminal> doconce format html mydoc
 \end{Verbatim}
 The resulting file {\fontsize{10pt}{10pt}\verb!mydoc.html!} can be loaded into any web browser for viewing.
+
+\subsection{Pandoc}
+
+Output in the versatile Pandoc format results from
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format pandoc mydoc
+\end{Verbatim}
+The name of the output file is {\fontsize{10pt}{10pt}\verb!mydoc.pnd!}.
+From this format one can go to numerous other formats:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> pandoc -t markdown  -o mydoc.txt mydoc.pnd
+Terminal> pandoc -t mediawiki -o mydoc.mwk mydoc.pnd
+\end{Verbatim}
+Pandoc supports {\fontsize{10pt}{10pt}\verb!latex!}, {\fontsize{10pt}{10pt}\verb!html!}, {\fontsize{10pt}{10pt}\verb!odt!} (OpenOffice), {\fontsize{10pt}{10pt}\verb!docx!} (Microsoft
+Word), {\fontsize{10pt}{10pt}\verb!rtf!}, {\fontsize{10pt}{10pt}\verb!texinfo!}, to mention some.
 
 \subsection{{\LaTeX}}
 
@@ -542,10 +581,20 @@ Terminal> unoconv -f pdf mydoc.odt
 At the time of this writing, there is no easy way to go from Doconce
 and {\LaTeX} mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by {\fontsize{10pt}{10pt}\verb!latex!} as
-output and to a wide extent supported by the {\fontsize{10pt}{10pt}\verb!sphinx!} output format.
+output and to a wide extent also supported by the {\fontsize{10pt}{10pt}\verb!sphinx!} output format.
+Some links for going from {\LaTeX} to Word are listed below.
 
+\begin{itemize}
+ \item \href{http://ubuntuforums.org/showthread.php?t=1033441}{\nolinkurl{http://ubuntuforums.org/showthread.php?t=1033441}}
+
+ \item \href{http://tug.org/utilities/texconv/textopc.html}{\nolinkurl{http://tug.org/utilities/texconv/textopc.html}}
+
+ \item \href{http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html}{\nolinkurl{http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html}}
 % One possible way from Doconce to MS Word goes via {\fontsize{10pt}{10pt}\verb!latex!} and then
 % {\fontsize{10pt}{10pt}\verb!texmacs!}. This didn't work well for math and figures.
+\end{itemize}
+
+\noindent
 
 \subsection{Sphinx}
 
@@ -2021,9 +2070,16 @@ the Unix commands
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+
 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 \end{Verbatim}
 \noindent
+
+\paragraph{Wrong Norwegian charcters.}
+When Doconce documents have characters not in the standard ASCII set,
+the format of the file must be LATIN1 and not UTF-8. See
+the section "Strange non-English characters" above for how to
+run {\fontsize{10pt}{10pt}\verb!doconce change_encoding!} to change the encoding of the Doconce file.
 
 \paragraph{Inline verbatim text is not formatted correctly.}
 Make sure there is whitespace surrounding the text in backquotes.
@@ -2116,6 +2172,24 @@ fontfamily=tt,xleftmargin=7mm]
 the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
+
+\paragraph{Inline verbatim gives error.}
+Check if the inline verbatim contains typical {\LaTeX} commands, e.g.,
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
+some text with `\usepackage{mypack}` is difficult because
+ptex2tex will replace this by {\fontsize{10pt}{10pt}\verb!\usepackage{mypack!}} and
+then replace this by 
+{\fontsize{10pt}{10pt}\verb!\usepackage{mypack!}}
+which is wrong because ptex2tex applies regex that don't 
+capture the second }
+\end{Verbatim}
+\noindent
+The remedy is to place verbatim {\LaTeX} commands in verbatim 
+blocks - that is safe.
+
+% Could have doconce configure file where inline verbatim is
+% configured to be \fontsize... directly, not via ptex2tex {\fontsize{10pt}{10pt}\verb!!}.
 
 \paragraph{Errors in figure captions.}
 Such errors typically arise from unbalanced curly braces, or dollar signs

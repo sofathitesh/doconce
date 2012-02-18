@@ -22,7 +22,7 @@ Automatically generated HTML file from Doconce source
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Jan 21, 2012</h3></center>
+<center><h3>Feb 18, 2012</h3></center>
 <P>
 
 <P>
@@ -43,16 +43,15 @@ Doconce is two things:
  <li> Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
-    Epytext, and also plain text (where non-obvious formatting/tags
-    are removed for clear reading in, e.g., emails). From reST you can
-    (via <tt>rst2*</tt> programs) go to XML, HTML, LaTeX, PDF, OpenOffice,
-    and from the latter (via <tt>unoconv</tt>) to RTF, numerous MS Word
-    formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
-    XHTML. (An experimental translator to Pandoc is under development,
-    and from Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF,
-    DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
-    other formats.)
+    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
+    (reST), Sphinx, Epytext, and also plain text (where non-obvious
+    formatting/tags are removed for clear reading in, e.g.,
+    emails). From reST you can (via <tt>rst2*</tt> programs) go to XML, HTML,
+    LaTeX, PDF, OpenOffice, and from the latter (via <tt>unoconv</tt>) to
+    RTF, numerous MS Word formats (including MS Office Open XML),
+    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
+    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
+    Texinfo, MediaWiki, RTF, Groff, and other formats.
  <li> Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
     a number of different destinations of diverse type (software
@@ -196,6 +195,20 @@ the necessary stylefiles (if not, they can be found by googling and installed
 manually in the <tt>~/texmf/tex/latex/misc</tt> directory).
 
 <P>
+The <em>minted</em> LaTeX style is offered by <tt>ptex2tex</tt> and popular among
+users. This style requires the package <a href="http://pygments.org">Pygments</a>:
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
+cd pygments
+sudo python setup.py install
+</pre>
+</blockquote>   <! -- end verbatim block -->
+If you use the minted style, you have to enable it by running
+<tt>ptex2tex -DMINTED</tt> and then <tt>latex -shell-escape</tt>, see
+the the section <a href="#doconce2formats">From Doconce to Other Formats</a>.
+
+<P>
 For <tt>rst</tt> output and further transformation to LaTeX, HTML, XML,
 OpenOffice, and so on, one needs <a href="http://docutils.sourceforge.net">docutils</a>.
 The installation can be done by
@@ -213,6 +226,15 @@ To use the OpenOffice suite you will typically on Debian systems install
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
 </pre>
 </blockquote>   <! -- end verbatim block -->
+
+<P>
+There is a possibility to create PDF files from reST documents
+using ReportLab instead of LaTeX. The enabling software is
+<a href="http://code.google.com/p/rst2pdf">rst2pdf</a>. Either download the tarball
+or clone the svn repository, go to the <tt>rst2pdf</tt> directory and
+run <tt>sudo python setup.py install</tt>.
+
+<P>
 
 <P>
 Output to <tt>sphinx</tt> requires of course <a href="http://sphinx.pocoo.org">Sphinx</a>,
@@ -240,7 +262,8 @@ cd ..
 
 <P>
 Finally, translation to <tt>pandoc</tt> requires the
-<a href="http://johnmacfarlane.net/pandoc/">Pandoc</a> program to be installed.
+<a href="http://johnmacfarlane.net/pandoc/">Pandoc</a> program
+(written in Haskell) to be installed.
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
 sudo apt-get install pandoc
@@ -373,6 +396,26 @@ Terminal&gt; doconce format html mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
 The resulting file <tt>mydoc.html</tt> can be loaded into any web browser for viewing.
+
+<P>
+<h3>Pandoc</h3>
+<P>
+Output in the versatile Pandoc format results from
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; doconce format pandoc mydoc
+</pre>
+</blockquote>   <! -- end verbatim block -->
+The name of the output file is <tt>mydoc.pnd</tt>.
+From this format one can go to numerous other formats:
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; pandoc -t markdown  -o mydoc.txt mydoc.pnd
+Terminal&gt; pandoc -t mediawiki -o mydoc.mwk mydoc.pnd
+</pre>
+</blockquote>   <! -- end verbatim block -->
+Pandoc supports <tt>latex</tt>, <tt>html</tt>, <tt>odt</tt> (OpenOffice), <tt>docx</tt> (Microsoft
+Word), <tt>rtf</tt>, <tt>texinfo</tt>, to mention some.
 
 <P>
 <h3>LaTeX</h3>
@@ -543,13 +586,18 @@ Terminal&gt; unoconv -f pdf mydoc.odt
 <b>Remark about Mathematical Typesetting.</b> At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 "MS Word world". Mathematics is only fully supported by <tt>latex</tt> as
-output and to a wide extent supported by the <tt>sphinx</tt> output format.
+output and to a wide extent also supported by the <tt>sphinx</tt> output format.
+Some links for going from LaTeX to Word are listed below.
 
 <P>
+
+<ul>
+ <li> <a href="http://ubuntuforums.org/showthread.php?t=1033441"><tt>http://ubuntuforums.org/showthread.php?t=1033441</tt></a>
+ <li> <a href="http://tug.org/utilities/texconv/textopc.html"><tt>http://tug.org/utilities/texconv/textopc.html</tt></a>
+ <li> <a href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"><tt>http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</tt></a>
 <!-- One possible way from Doconce to MS Word goes via <tt>latex</tt> and then -->
 <!-- <tt>texmacs</tt>. This didn't work well for math and figures. -->
-
-<P>
+</ul>
 <h3>Sphinx</h3>
 <P>
 Sphinx documents demand quite some steps in their creation. We have automated
@@ -2114,9 +2162,18 @@ the Unix commands
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 Unix&gt; doconce change_encoding utf-8 LATIN1 myfile.do.txt
+
 Unix&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 </pre>
 </blockquote>   <! -- end verbatim block -->
+
+<P>
+<h4>Wrong Norwegian charcters</h4>
+<P>
+When Doconce documents have characters not in the standard ASCII set,
+the format of the file must be LATIN1 and not UTF-8. See
+the section "Strange non-English characters" above for how to
+run <tt>doconce change_encoding</tt> to change the encoding of the Doconce file.
 
 <P>
 <h4>Inline verbatim text is not formatted correctly</h4>
@@ -2238,6 +2295,29 @@ If the problem is undefined control sequence involving
 the cause is usually a verbatim inline text (in backquotes in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
+
+<P>
+<h4>Inline verbatim gives error</h4>
+<P>
+Check if the inline verbatim contains typical LaTeX commands, e.g.,
+<blockquote>    <!-- begin verbatim block  -->
+<pre>
+some text with `\usepackage{mypack}` is difficult because
+ptex2tex will replace this by \code{\usepackage{mypack}} and
+then replace this by 
+{\fontsize{10pt}{10pt}\verb!\usepackage{mypack!}}
+which is wrong because ptex2tex applies regex that don't 
+capture the second }
+</pre>
+</blockquote>   <! -- end verbatim block -->
+The remedy is to place verbatim LaTeX commands in verbatim 
+blocks - that is safe.
+
+<P>
+<!-- Could have doconce configure file where inline verbatim is -->
+<!-- configured to be \fontsize... directly, not via ptex2tex \code{}. -->
+
+<P>
 
 <P>
 <h4>Errors in figure captions</h4>

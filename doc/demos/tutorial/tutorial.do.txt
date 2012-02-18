@@ -32,16 +32,15 @@ Doconce is two things:
   o Doconce is a very simple and minimally tagged markup language that
     looks like ordinary ASCII text (much like what you would use in an
     email), but the text can be transformed to numerous other formats,
-    including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
-    Epytext, and also plain text (where non-obvious formatting/tags
-    are removed for clear reading in, e.g., emails). From reST you can
-    (via `rst2*` programs) go to XML, HTML, LaTeX, PDF, OpenOffice,
-    and from the latter (via `unoconv`) to RTF, numerous MS Word
-    formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
-    XHTML. (An experimental translator to Pandoc is under development,
-    and from Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF,
-    DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
-    other formats.)
+    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
+    (reST), Sphinx, Epytext, and also plain text (where non-obvious
+    formatting/tags are removed for clear reading in, e.g.,
+    emails). From reST you can (via `rst2*` programs) go to XML, HTML,
+    LaTeX, PDF, OpenOffice, and from the latter (via `unoconv`) to
+    RTF, numerous MS Word formats (including MS Office Open XML),
+    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
+    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
+    Texinfo, MediaWiki, RTF, Groff, and other formats.
 
   o Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to

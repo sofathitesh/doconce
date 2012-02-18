@@ -328,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jan 21, 2012</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Feb 18, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -361,16 +361,15 @@ include it anywhere?</li>
 <li>Doconce is a very simple and minimally tagged markup language that
 looks like ordinary ASCII text (much like what you would use in an
 email), but the text can be transformed to numerous other formats,
-including HTML, wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
-Epytext, and also plain text (where non-obvious formatting/tags
-are removed for clear reading in, e.g., emails). From reST you can
-(via <tt class="docutils literal">rst2*</tt> programs) go to XML, HTML, LaTeX, PDF, OpenOffice,
-and from the latter (via <tt class="docutils literal">unoconv</tt>) to RTF, numerous MS Word
-formats (including MS Office Open XML), DocBook, PDF, MediaWiki,
-XHTML. (An experimental translator to Pandoc is under development,
-and from Pandoc one can generate Markdown, reST, LaTeX, HTML, PDF,
-DocBook XML, OpenOffice, GNU Texinfo, MediaWiki, RTF, Groff, and
-other formats.)</li>
+including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
+(reST), Sphinx, Epytext, and also plain text (where non-obvious
+formatting/tags are removed for clear reading in, e.g.,
+emails). From reST you can (via <tt class="docutils literal">rst2*</tt> programs) go to XML, HTML,
+LaTeX, PDF, OpenOffice, and from the latter (via <tt class="docutils literal">unoconv</tt>) to
+RTF, numerous MS Word formats (including MS Office Open XML),
+DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
+Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
+Texinfo, MediaWiki, RTF, Groff, and other formats.</li>
 <li>Doconce is a working strategy for never duplicating information.
 Text is written in a single place and then transformed to
 a number of different destinations of diverse type (software
@@ -727,6 +726,21 @@ Terminal&gt; doconce format html mydoc
 </pre>
 <p>The resulting file <tt class="docutils literal">mydoc.html</tt> can be loaded into any web browser for viewing.</p>
 </div>
+<div class="section" id="pandoc">
+<h2>Pandoc</h2>
+<p>Output in the versatile Pandoc format results from:</p>
+<pre class="literal-block">
+Terminal&gt; doconce format pandoc mydoc
+</pre>
+<p>The name of the output file is <tt class="docutils literal">mydoc.pnd</tt>.
+From this format one can go to numerous other formats:</p>
+<pre class="literal-block">
+Terminal&gt; pandoc -t markdown  -o mydoc.txt mydoc.pnd
+Terminal&gt; pandoc -t mediawiki -o mydoc.mwk mydoc.pnd
+</pre>
+<p>Pandoc supports <tt class="docutils literal">latex</tt>, <tt class="docutils literal">html</tt>, <tt class="docutils literal">odt</tt> (OpenOffice), <tt class="docutils literal">docx</tt> (Microsoft
+Word), <tt class="docutils literal">rtf</tt>, <tt class="docutils literal">texinfo</tt>, to mention some.</p>
+</div>
 <div class="section" id="id2">
 <h2>LaTeX</h2>
 <p>Making a LaTeX file <tt class="docutils literal">mydoc.tex</tt> from <tt class="docutils literal">mydoc.do.txt</tt> is done in two steps:
@@ -854,7 +868,18 @@ Terminal&gt; unoconv -f pdf mydoc.odt
 <p><em>Remark about Mathematical Typesetting.</em> At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
 &quot;MS Word world&quot;. Mathematics is only fully supported by <tt class="docutils literal">latex</tt> as
-output and to a wide extent supported by the <tt class="docutils literal">sphinx</tt> output format.</p>
+output and to a wide extent also supported by the <tt class="docutils literal">sphinx</tt> output format.
+Some links for going from LaTeX to Word are listed below.</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://ubuntuforums.org/showthread.php?t=1033441">http://ubuntuforums.org/showthread.php?t=1033441</a></li>
+<li><a class="reference external" href="http://tug.org/utilities/texconv/textopc.html">http://tug.org/utilities/texconv/textopc.html</a></li>
+<li><a class="reference external" href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html">http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</a></li>
+</ul>
+</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 628)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
 <!-- One possible way from Doconce to MS Word goes via ``latex`` and then -->
 <!-- ``texmacs``. This didn't work well for math and figures. -->
 </div>
@@ -1078,6 +1103,16 @@ sudo apt-get install texlive-latex-extra
 <p>on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the <tt class="docutils literal">~/texmf/tex/latex/misc</tt> directory).</p>
+<p>The <em>minted</em> LaTeX style is offered by <tt class="docutils literal">ptex2tex</tt> and popular among
+users. This style requires the package <a class="reference external" href="http://pygments.org">Pygments</a>:</p>
+<pre class="literal-block">
+hg clone ssh://hg&#64;bitbucket.org/birkenfeld/pygments-main pygments
+cd pygments
+sudo python setup.py install
+</pre>
+<p>If you use the minted style, you have to enable it by running
+<tt class="docutils literal">ptex2tex <span class="pre">-DMINTED</span></tt> and then <tt class="docutils literal">latex <span class="pre">-shell-escape</span></tt>, see
+the the section <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a>.</p>
 <p>For <tt class="docutils literal">rst</tt> output and further transformation to LaTeX, HTML, XML,
 OpenOffice, and so on, one needs <a class="reference external" href="http://docutils.sourceforge.net">docutils</a>.
 The installation can be done by:</p>
@@ -1091,8 +1126,13 @@ cd ..
 <pre class="literal-block">
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
 </pre>
+<p>There is a possibility to create PDF files from reST documents
+using ReportLab instead of LaTeX. The enabling software is
+<a class="reference external" href="http://code.google.com/p/rst2pdf">rst2pdf</a>. Either download the tarball
+or clone the svn repository, go to the <tt class="docutils literal">rst2pdf</tt> directory and
+run <tt class="docutils literal">sudo python setup.py install</tt>.</p>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 400); <em><a href="#id5">backlink</a></em></p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 399); <em><a href="#id5">backlink</a></em></p>
 Duplicate explicit target name: &quot;sphinx&quot;.</div>
 <p>Output to <tt class="docutils literal">sphinx</tt> requires of course <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a>,
 installed by:</p>
@@ -1111,7 +1151,8 @@ sudo make install
 cd ..
 </pre>
 <p>Finally, translation to <tt class="docutils literal">pandoc</tt> requires the
-<a class="reference external" href="http://johnmacfarlane.net/pandoc/">Pandoc</a> program to be installed:</p>
+<a class="reference external" href="http://johnmacfarlane.net/pandoc/">Pandoc</a> program
+(written in Haskell) to be installed:</p>
 <pre class="literal-block">
 sudo apt-get install pandoc
 </pre>

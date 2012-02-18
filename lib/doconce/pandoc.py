@@ -8,15 +8,20 @@ for syntax.
 """
 
 import re, sys
-from common import default_movie, plain_exercise
+from common import default_movie, plain_exercise, table_analysis
 from html import html_movie
 
 def pandoc_author(authors_and_institutions, auth2index,
-                 inst2index, index2inst):
+                 inst2index, index2inst, auth2email):
     # List authors on multiple lines
-    authors = ';  \n'.join([author + ' and '.join(i)
-                            for author, i in authors_and_institutions])
-    return '% ' + authors
+    authors = []
+    for author, i, e in authors_and_institutions:
+        if i is None:
+            authors.append(author)
+        else:
+            authors.append(author + ' at ' + ' and '.join(i))
+    authors = '% ' + ';  '.join(authors) + '\n'
+    return authors
 
 def pandoc_code(filestr, format):
     defs = dict(cod='Python', pycod='Python', cppcod='Cpp',
@@ -27,22 +32,26 @@ def pandoc_code(filestr, format):
         # (the "python" typesetting is neutral if the text
         # does not parse as python)
 
+    # Code blocks apply the ~~~~~ delimiter, with blank lines before
+    # and after (alternative: indent code 4 spaces - not preferred)
     for key in defs:
         language = defs[key]
-        replacement = '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s}' % defs[key]
-        #replacement = '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s .numberLines}' % defs[key]
+        replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s}\n' % defs[key]
+        #replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s ,numberLines}\n' % defs[key]  # enable line numbering
         #filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
         #                 replacement, filestr, flags=re.MULTILINE)
         cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
         filestr = cpattern.sub(replacement, filestr)
 
     # any !bc with/without argument becomes a cod (python) block:
-    replacement = '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s}' % defs['cod']
+    #replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s}' % defs['cod']
+    # or no, we then just skip any specification
+    replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
     #filestr = re.sub(r'^!bc.+\n', replacement, filestr, flags=re.MULTILINE)
     cpattern = re.compile(r'^!bc.+$', flags=re.MULTILINE)
     filestr = cpattern.sub(replacement, filestr)
 
-    filestr = re.sub(r'!ec *\n', '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', filestr)
+    filestr = re.sub(r'!ec *\n', '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n', filestr)
     # pandoc supports plain LaTeX, just remove !bt and !et
     filestr = re.sub(r'!bt *\n', '\n\n', filestr)
     filestr = re.sub(r'!et *\n', '\n\n', filestr)
@@ -86,7 +95,7 @@ def pandoc_table(table):
                     zip(column_width, row, heading_spec, column_spec):
                 if headline:
                     s += getattr(c, a2py[ha])(w) + '  '
-                else:
+                elif row != ['horizontal rule']:
                     s += getattr(c, a2py[ca])(w) + '  '
         s += '\n'
     s += '\n'
@@ -152,7 +161,7 @@ def pandoc_index_bib(filestr, index, citations, bibfile):
 
     # pandoc does not support index entries,
     # remove all index entries
-    
+
     filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)
     return filestr
 
@@ -171,7 +180,7 @@ def define(FILENAME_EXTENSION,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
 
-    FILENAME_EXTENSION['pandoc'] = '.txt'
+    FILENAME_EXTENSION['pandoc'] = '.pnd'
     BLANKLINE['pandoc'] = '\n'
     # replacement patterns for substitutions of inline tags
     INLINE_TAGS_SUBST['pandoc'] = {
@@ -188,9 +197,9 @@ def define(FILENAME_EXTENSION,
         'linkURL3':  r'[\g<link>](\g<url>)',
         'plainURL':  r'<\g<url>>',
         # "Reference links" in pandoc are not yet supported
-        'title':     r'% \g<subst>n',
+        'title':     r'% \g<subst>',
         'author':    pandoc_author,
-        'date':      '% ' + r'\g<subst>' + '\n',
+        'date':      '% \g<subst>\n',
         'section':       lambda m: r'\g<subst>\n%s' % ('='*len(m.group('subst').decode('utf-8'))),
         'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
         'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('utf-8'))),
