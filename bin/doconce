@@ -987,13 +987,14 @@ def clean():
     is also removed, as well as ``*~`` and ``tmp*`` files.
     """
     if os.path.isdir('Trash'):
+        print
         shutil.rmtree('Trash')
-    removed = []
+    removed = 'Removing Trash directory'
     doconce_files = glob.glob('*.do.txt')
     for dof in doconce_files:
         namestem = dof[:-7]
         generated_files = glob.glob(namestem + '.*')
-        extensions_to_keep = '.sh', 'do.txt'
+        extensions_to_keep = '.sh', '.do.txt'
         #print 'generated_files:', namestem + '.*', generated_files
         for ext in extensions_to_keep:
             filename = namestem + ext
@@ -1009,7 +1010,10 @@ def clean():
         print 'Remove:', ' '.join(removed), '(-> Trash)'
         os.mkdir('Trash')
         for f in removed:
-            shutil.move(f, 'Trash')
+            try:
+                shutil.move(f, 'Trash')
+            except shutil.Error:
+                print 'Failed to move', f, '- run doconce clean once more'
             if os.path.isdir(f):
                 shutil.rmtree(f)
 

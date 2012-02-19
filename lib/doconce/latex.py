@@ -560,7 +560,6 @@ def define(FILENAME_EXTENSION,
 % #endif
 
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
-\usepackage[colorlinks=true,linkcolor=blue,citecolor=black,filecolor=blue,urlcolor=blue]{hyperref}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
 % #ifdef MOVIE15
@@ -575,6 +574,14 @@ def define(FILENAME_EXTENSION,
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
 % #endif
+
+\usepackage[%
+colorlinks=true,
+linkcolor=blue,
+citecolor=black,
+filecolor=blue,
+urlcolor=blue]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
