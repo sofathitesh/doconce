@@ -389,12 +389,26 @@ some URL like "Doconce": "http://code.google.com/p/doconce"
 which appears as some URL like "Search Google": "http://google.com".
 The space after colon is optional.
 Links to files ending in `.txt`, `.html`, `.pdf`, `.py`, `.f`,
+`.f77`, `.f90`, `.f95`, `.sh`, `.csh`, `.ksh`, `.zsh`,
 `.c`, `.cpp`, `.cxx`, `.pl`, and `.java` follows the same
 setup:
 !bc
 see the "Doconce Manual": "manual.do.txt".
 !ec
 which appears as see the "Doconce Manual": "manual.do.txt".
+If you want to view such source code files *in the browser*,
+rather than dowloading the file, we recommend to transform
+the source code file to HTML format by running
+`pygmentize`, e.g.,
+!bc sys
+Terminal> pygmentize -l bash -f html -O full,style=emacs \
+          -o _static/make.sh.html subdir/make.sh
+!ec
+Then you can link to `_static/make.sh.html` instead of
+`subdir/make.sh`. Or you can do both versions:
+!bc
+See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
+!ec
 
 Links to files with other extensions must be realized
 *with the filename as link text*, written as
@@ -1165,6 +1179,26 @@ instructions. Doconce will then only run Preprocess.
 Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
 
+=== Links to local directories do not work ===
+
+Links of the type
+!bc
+see the "examples directory": "src/examples"
+!ec
+do not work well. You need to link to a specific HTML file:
+!bc
+see the "examples directory": "src/examples/index.html"
+!ec
+
+=== Links are not typeset correctly ===
+
+Not all formats will allow formatting of the links, e.g.,
+!bc
+see the "`examples` directory": "src/examples/index.html"
+!ec
+will not come out right in the reST/Sphinx formats.
+
+
 === Strange non-English characters ===
 
 Check the encoding of the `.do.txt` file with the Unix `file` command
@@ -1257,7 +1291,7 @@ and that the rest of the non-LaTeX surrounding text is correctly indented.
 Using paragraphs instead of list items is a good idea also here.
 
 
-===== Problems with reST Output ======
+===== Problems with reST/Sphinx Output ======
 
 === Lists do not appear in .rst files ===
 

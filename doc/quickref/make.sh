@@ -14,7 +14,7 @@ dvipdf quickref.dvi
 doconce format sphinx quickref
 rm -rf sphinx-rootdir
 doconce sphinx_dir author='HPL' version=0.7 quickref
-sh automake-sphinx.sh
+python automake-sphinx.py
 
 # reStructuredText:
 doconce format rst quickref
