@@ -125,3 +125,5 @@ echo "Go to the demo directory and load index.html into a web browser."
 cd ..
 rm -rf ../demos/tutorial
 cp -r demo ../demos/tutorial
+# update wiki too
+cp tutorial.gwiki ../../../doconce.wiki/Tutorial.wiki

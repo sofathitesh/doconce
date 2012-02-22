@@ -202,8 +202,6 @@ Some links for going from LaTeX to Word are listed below.
  * URL:"http://tug.org/utilities/texconv/textopc.html"
  * URL:"http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"
 
-#One possible way from Doconce to MS Word goes via `latex` and then
-# `texmacs`. This didn't work well for math and figures.
 
 
 ===== Sphinx =====

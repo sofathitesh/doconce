@@ -92,3 +92,5 @@ echo "Go to the demo directory and load index.html into a web browser."
 cd ..
 rm -rf ../demos/quickref
 cp -r demo ../demos/quickref
+# update wiki too
+cp quickref.gwiki ../../../doconce.wiki/Quickref.wiki
