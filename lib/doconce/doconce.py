@@ -19,8 +19,8 @@ def debugpr(out):
 
 
 from common import *
-import html, latex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, pandoc
-for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, pandoc:
+import html, latex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc
+for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc:
     #print 'calling define function in', module.__name__
     module.define(FILENAME_EXTENSION,
                   BLANKLINE,
@@ -37,7 +37,7 @@ for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, pa
                   OUTRO)
 
 def supported_format_names():
-    return 'html', 'latex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'mwiki', 'pandoc'
+    return 'html', 'latex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'mwiki', 'cwiki', 'pandoc'
 
 #----------------------------------------------------------------------------
 # Translators: (no, do not include! use import! - as shown above)
@@ -860,6 +860,8 @@ def typeset_lists(filestr, format, debug_info=[]):
 
             # first write the list item identifier:
             itemformat = LIST[format][listtype]['item']
+            if format == 'cwiki' or format == 'mwiki':
+                itemformat = itemformat*len(lists)  # *, **, #, ## etc. for sublists
             item = itemformat
             if listtype == 'enumerate':
                 debugpr('  > This is an item in an enumerate list')
@@ -900,7 +902,7 @@ def typeset_lists(filestr, format, debug_info=[]):
         debugpr('text=[%s]' % text)
 
         # hack to make wiki have all text in an item on a single line:
-        newline = '' if lists and (format == 'gwiki' or format == 'mwiki') \
+        newline = '' if lists and (format == 'gwiki' or format == 'mwiki' or format == 'cwiki') \
                   else '\n'  # hack...
         #newline = '\n'
         result.write(text + newline)
