@@ -135,8 +135,7 @@ EOF
 cd ..
 rm -rf ../demos/manual
 cp -r demo ../demos/manual
+# update wiki too
+cp manual.gwiki ../../../doconce.wiki/Description.wiki
 echo
 echo "Go to the demo directory and load index.html into a web browser."
-
-
-

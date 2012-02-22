@@ -37,7 +37,7 @@ def mwiki_code(filestr, format):
     filestr = c.sub('<code>\n', filestr)
     filestr = re.sub(r'!ec\n', '</code>\n', filestr)
     c = re.compile(r'^!bt\n', re.MULTILINE)
-    filestr = c.sub('<math>\n', filestr)
+    filestr = c.sub(':<math>\n', filestr)
     filestr = re.sub(r'!et\n', '</math>\n', filestr)
     return filestr
 
@@ -154,7 +154,7 @@ def define(FILENAME_EXTENSION,
     # replacement patterns for substitutions of inline tags
     INLINE_TAGS_SUBST['mwiki'] = {
         'math':          r'\g<begin><math>\g<subst></math>\g<end>',
-        'math2':         r'\g<begin><math>\g<puretext></math>\g<end>',
+        'math2':         r'\g<begin><math>\g<latexmath></math>\g<end>',
         'emphasize':     r"\g<begin>''\g<subst>''\g<end>",
         'bold':          r"\g<begin>'''\g<subst>'''\g<end>",
         'verbatim':      r'\g<begin><code>\g<subst></code>\g<end>',

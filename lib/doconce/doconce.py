@@ -1251,7 +1251,7 @@ def subst_away_inline_comments(filestr):
 
 
 
-def doconce2format(in_filename, format, out_filename):
+def file2file(in_filename, format, out_filename):
     """
     Perform the transformation of a doconce file, stored in in_filename,
     to a given format (html, latex, etc.), written to out_filename.
@@ -1278,6 +1278,45 @@ def doconce2format(in_filename, format, out_filename):
     filestr = f.read()
     f.close()
 
+    if in_filename.endswith('.py') or in_filename.endswith('.py.do.txt'):
+        filestr = doconce2format4docstrings(filestr, format)
+    else:
+        filestr = doconce2format(filestr, format)
+
+    if encoding:
+        f = codecs.open(out_filename, 'w', encoding)
+    else:
+        f = open(out_filename, 'w')
+    f.write(filestr)
+    f.close()
+
+
+def doconce2format4docstrings(filestr, format):
+    """Run doconce2format on all doc strings in a Python file."""
+
+    c1 = re.compile(r'^\s*(class|def)\s+[A-Za-z0-9_]+:\s+(""".+""")',
+                    re.DOTALL|re.MULTILINE)
+    c2 = re.compile(r"^\s*(class|def)\s+[A-Za-z0-9_]+:\s+('''.+''')",
+                    re.DOTALL|re.MULTILINE)
+    doc_strings = [doc_string for dummy, doc_string in c1.findall(filestr)] + \
+                  [doc_string for dummy, doc_string in c2.findall(filestr)]
+    lines = filestr.splitlines()
+    for i, line in enumerate(lines):
+        if not line.lstrip().startswith('#'):
+            break
+    filestr2 = '\n'.join(lines[i:])
+    c3 = re.compile(r'^\s*""".+"""', re.DOTALL) # ^ is the very start
+    c4 = re.compile(r"^\s*'''.+'''", re.DOTALL) # ^ is the very start
+    doc_strings = c3.findall(filestr2) + c4.findall(filestr2) + doc_strings
+
+    pprint.pprint(doc_strings)
+    for doc_string in doc_strings:
+        new_doc_string = doconce2format(filestr, format)
+        filestr = filestr.replace(doc_string, new_doc_string)
+
+    return filestr
+
+def doconce2format(filestr, format):
     # A special case: `!bc`, `!bt`, `!ec`, and `!et` at the beginning
     # of a line gives wrong consistency checks for plaintext format,
     # so we avoid having these at the beginning of a line.
@@ -1420,12 +1459,7 @@ def doconce2format(in_filename, format, out_filename):
             # avoid the need for movie15 package in latex file
             filestr = filestr.replace('define MOVIE', 'undef MOVIE')
 
-    if encoding:
-        f = codecs.open(out_filename, 'w', encoding)
-    else:
-        f = open(out_filename, 'w')
-    f.write(filestr)
-    f.close()
+    return filestr
 
 
 def preprocess(filename, format, preprocessor_options=[]):
@@ -1609,7 +1643,7 @@ def main():
         _log_filename = '_doconce_debugging.log'
         _log = open(_log_filename,'w')
         _log.write("""
-    This is a log file for the doconce2format script.
+    This is a log file for the doconce script.
     Debugging is turned on by a 3rd command-line argument '--debug'
     to doconce format. Without that command-line argument,
     this file is not produced.
@@ -1632,7 +1666,7 @@ def main():
     out_filename = basename + FILENAME_EXTENSION[format]
     #print '\n----- doconce format %s %s' % (format, filename)
     filename_preprocessed = preprocess(filename, format, sys.argv[1:])
-    doconce2format(filename_preprocessed, format, out_filename)
+    file2file(filename_preprocessed, format, out_filename)
     if filename_preprocessed.startswith('__'):
         os.remove(filename_preprocessed)  # clean up
     #print '----- successful run: %s filtered to %s\n' % (filename, out_filename)
