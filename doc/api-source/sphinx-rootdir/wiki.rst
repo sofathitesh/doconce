@@ -1,6 +1,6 @@
 
 :mod:`doconce.wiki`
-=======================
+===================
 
 .. automodule:: doconce.wiki
    :members:
