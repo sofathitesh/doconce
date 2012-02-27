@@ -29,13 +29,15 @@ dvipdf quickref.rst.dvi
 # Other formats:
 doconce format plain quickref
 doconce format gwiki quickref
+doconce format mwiki quickref
+doconce format cwiki quickref
 doconce format st quickref
 doconce format epytext quickref
 doconce format pandoc quickref
 
 rm -rf demo
 mkdir demo
-cp -r quickref.do.txt quickref.html quickref.tex quickref.pdf quickref.rst quickref.xml quickref.rst.html quickref.rst.tex quickref.rst.pdf quickref.gwiki quickref.txt quickref.epytext quickref.st quickref.pnd sphinx-rootdir/_build/html demo
+cp -r quickref.do.txt quickref.html quickref.p.tex quickref.tex quickref.pdf quickref.rst quickref.xml quickref.rst.html quickref.rst.tex quickref.rst.pdf quickref.gwiki quickref.mwiki quickref.cwiki quickref.txt quickref.epytext quickref.st quickref.pnd sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -74,7 +76,9 @@ can be translated to <a href="quickref.sphinx.pdf">PDF</a>
 and <a href="html/index.html">HTML</a>.
 <p>
 Doconce can also be converted to
-<a href="quickref.gwiki">(Google Code) wiki</a>,
+<a href="quickref.gwiki">Googlecode wiki</a>,
+<a href="quickref.mwiki">MediaWiki</a>,
+<a href="quickref.cwiki">Creole wiki</a>,
 <a href="quickref.pnd">a Pandoc</a>,
 <a href="quickref.st">Structured Text</a>,
 <a href="quickref.epytext">Epytext</a>,

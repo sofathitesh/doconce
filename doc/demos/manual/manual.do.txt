@@ -146,7 +146,8 @@ by a keyword followed by a colon:
 
    - keyword2: explanation
      of keyword2 (remember to indent properly
-     if there are multiple lines)
+     if there are multiple
+     lines)
 !ec
 
 The result becomes
@@ -155,7 +156,8 @@ The result becomes
 
    - keyword2: explanation
      of keyword2 (remember to indent properly
-     if there are multiple lines)
+     if there are multiple
+     lines)
 
 
 ===== Special Lines =====
@@ -180,13 +182,17 @@ The `at` with surrounding spaces
 is essential for adding information about institution(s)
 to the author name, and the `and` with surrounding spaces is
 essential as delimiter between different institutions.
+An email address can optionally be included, using the syntax
+!bc
+name Email: somename@site.net at institution1 and institution2
+!ec
 Multiple authors require multiple `AUTHOR:` lines. All information
 associated with `TITLE:` and `AUTHOR:` keywords must appear on a single
 line.  Here is an example:
 !bc
 TITLE: On an Ultimate Markup Language
 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
-AUTHOR: Kaare Dump at Segfault, Cyberspace Inc.
+AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: November 9, 2016
 !ec
@@ -197,7 +203,7 @@ only the author names appear. Some formats have
 format:
 !bc
 Hans Petter Langtangen [1, 2]
-Kaare Dump [3]
+Kaare Dump  (dump@cyb.space.com) [3]
 A. Dummy Author
 
 [1] Center for Biomedical Computing, Simula Research Laboratory
@@ -389,12 +395,26 @@ some URL like "Doconce": "http://code.google.com/p/doconce"
 which appears as some URL like "Search Google": "http://google.com".
 The space after colon is optional.
 Links to files ending in `.txt`, `.html`, `.pdf`, `.py`, `.f`,
+`.f77`, `.f90`, `.f95`, `.sh`, `.csh`, `.ksh`, `.zsh`,
 `.c`, `.cpp`, `.cxx`, `.pl`, and `.java` follows the same
 setup:
 !bc
 see the "Doconce Manual": "manual.do.txt".
 !ec
 which appears as see the "Doconce Manual": "manual.do.txt".
+If you want to view such source code files *in the browser*,
+rather than dowloading the file, we recommend to transform
+the source code file to HTML format by running
+`pygmentize`, e.g.,
+!bc sys
+Terminal> pygmentize -l bash -f html -O full,style=emacs \
+          -o _static/make.sh.html subdir/make.sh
+!ec
+Then you can link to `_static/make.sh.html` instead of
+`subdir/make.sh`. Or you can do both versions:
+!bc
+See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
+!ec
 
 Links to files with other extensions must be realized
 *with the filename as link text*, written as
@@ -1165,6 +1185,26 @@ instructions. Doconce will then only run Preprocess.
 Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
 
+=== Links to local directories do not work ===
+
+Links of the type
+!bc
+see the "examples directory": "src/examples"
+!ec
+do not work well. You need to link to a specific HTML file:
+!bc
+see the "examples directory": "src/examples/index.html"
+!ec
+
+=== Links are not typeset correctly ===
+
+Not all formats will allow formatting of the links, e.g.,
+!bc
+see the "`examples` directory": "src/examples/index.html"
+!ec
+will not come out right in the reST/Sphinx formats.
+
+
 === Strange non-English characters ===
 
 Check the encoding of the `.do.txt` file with the Unix `file` command
@@ -1257,7 +1297,7 @@ and that the rest of the non-LaTeX surrounding text is correctly indented.
 Using paragraphs instead of list items is a good idea also here.
 
 
-===== Problems with reST Output ======
+===== Problems with reST/Sphinx Output ======
 
 === Lists do not appear in .rst files ===
 
