@@ -2,19 +2,19 @@
 ./clean.sh
 
 # html
-doconce format html tutorial.do.txt
+doconce format html tutorial
 
 # latex
-doconce format latex tutorial.do.txt
+doconce format latex tutorial
 ptex2tex -DHELVETICA tutorial
 latex tutorial.tex  # no -shell-escape since no -DMINTED to ptex2tex
 latex tutorial.tex
 dvipdf tutorial.dvi
 
 # Sphinx
-doconce format sphinx tutorial.do.txt
+doconce format sphinx tutorial
 rm -rf sphinx-rootdir
-doconce sphinx_dir tutorial.do.txt
+doconce sphinx_dir tutorial
 cp tutorial.rst tutorial.sphinx.rst
 mv tutorial.rst sphinx-rootdir
 cd sphinx-rootdir
@@ -29,7 +29,7 @@ cd ../../..
 #firefox sphinx-rootdir/_build/html/index.html
 
 # reStructuredText:
-doconce format rst tutorial.do.txt
+doconce format rst tutorial
 rst2xml.py tutorial.rst > tutorial.xml
 rst2odt.py tutorial.rst > tutorial.odt
 rst2html.py tutorial.rst > tutorial.rst.html
@@ -40,6 +40,8 @@ dvipdf tutorial.rst.dvi
 # Other formats:
 doconce format plain tutorial.do.txt
 doconce format gwiki tutorial.do.txt
+doconce format cwiki tutorial.do.txt
+doconce format mwiki tutorial.do.txt
 doconce format st tutorial.do.txt
 doconce format epytext tutorial.do.txt
 doconce format pandoc tutorial.do.txt
@@ -54,6 +56,10 @@ $a2ps_plain -1 -o tutorial.txt.ps tutorial.txt
 ps2pdf tutorial.txt.ps
 $a2ps_plain -1 -o tutorial.gwiki.ps tutorial.gwiki
 ps2pdf tutorial.gwiki.ps
+$a2ps_plain -1 -o tutorial.cwiki.ps tutorial.cwiki
+ps2pdf tutorial.cwiki.ps
+$a2ps_plain -1 -o tutorial.mwiki.ps tutorial.mwiki
+ps2pdf tutorial.mwiki.ps
 $a2ps_plain -1 -o tutorial.pnd.ps tutorial.pnd
 ps2pdf tutorial.pnd.ps
 $a2ps_plain -1 -o tutorial.xml.ps tutorial.xml
@@ -68,7 +74,7 @@ pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial
 
 rm -rf demo
 mkdir demo
-cp -r tutorial.do.txt tutorial.html tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.gwiki tutorial.txt tutorial.epytext tutorial.st tutorial.pnd collection_of_results.pdf sphinx-rootdir/_build/html demo
+cp -r tutorial.do.txt tutorial.html tutorial.p.tex tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.gwiki tutorial.mwiki tutorial. cwiki tutorial.txt tutorial.epytext tutorial.st tutorial.pnd collection_of_results.pdf sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -107,7 +113,9 @@ can be translated to <a href="tutorial.sphinx.pdf">PDF</a>
 and <a href="html/index.html">HTML</a>.
 <p>
 Doconce can also be converted to
-<a href="tutorial.gwiki">(Google Code) wiki</a>,
+<a href="tutorial.gwiki">Googlecode wiki</a>,
+<a href="tutorial.cwiki">Creole wiki</a>,
+<a href="tutorial.mwiki">MediaWiki wiki</a>,
 <a href="tutorial.pnd">Pandoc</a>,
 <a href="tutorial.st">Structured Text</a>,
 <a href="tutorial.epytext">Epytext</a>,

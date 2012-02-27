@@ -18,11 +18,40 @@ Doconce currently translates files to the following formats:
  * plain (untagged) ASCII (format `plain`)
  * Sphinx (format `sphinx`)
  * Googlecode wiki (format `gwiki`)
- * MediaWiki, a la Wikipedia and Wikibooks (format `mwiki`, experimental)
+ * MediaWiki, a la Wikipedia and Wikibooks (format `mwiki`)
+ * Creoloe wiki (format `cwiki`)
  * Epydoc (format `epydoc`)
  * Pandoc (format `pandoc`, very experimental)
 
 The best supported formats are `latex`, `sphinx`, `html`, and `plain`.
+
+===== Title, Authors, and Date =====
+
+A typical example of giving a title, a set of authors, and a date
+reads
+!bc
+TITLE: On an Ultimate Markup Language
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
+AUTHOR: A. Dummy Author
+DATE: today
+!ec
+The title must appear on a single line.
+The author syntax is
+!bc
+name Email: somename@adr.net at institution1 and institution2
+!ec
+where the email is optional, the "at" keyword is required if one or
+more institutions are to be specified, and the "and" keyword
+separates the institutions. Each author specification must appear
+on a single line.
+When more than one author belong to the
+same institution, make sure that the institution is specified in an identical
+way for each author.
+
+The date can be set as any text different from `today` if not the
+current date is wanted, e.g., `Feb 22, 2016`.
+
 
 ===== Section Types =====
 label{quick:sections}
@@ -47,6 +76,74 @@ next heading.
 Words surrounded by `*` are emphasized: `*emphasized words*` becomes
 *emphasized words*. Similarly, an underscore surrounds words that
 appear in boldface: `_boldface_` become _boldface_.
+
+===== Lists =====
+
+There are three types of lists: *bullet lists*, where each item starts
+with `*`, *enumeration lists*, where each item starts with `o`,
+and *description* lists, where each item starts with `-` followed
+by a keyword and a colon.
+!bc
+Here is a bullet list:
+
+ * item1
+ * item2
+  * subitem1 of item2
+  * subitem2 of item2
+ * item3
+
+Note that sublists are indented.
+Here is an enumeration list:
+
+ o item1
+ o item2
+   may appear on
+   multiple lines
+  o subitem1 of item2
+  o subitem2 of item2
+ o item3
+
+And finally a description list:
+
+ - keyword1: followed by
+   some text
+   over multiple
+   lines
+ - keyword2:
+   followed by text on the next line
+ - keyword3: and its description may fit on one line
+!ec
+The code above follows.
+
+Here is a bullet list:
+
+ * item1
+ * item2
+  * subitem1 of item2
+  * subitem2 of item2
+ * item3
+
+Note that sublists are indented.
+Here is an enumeration list:
+
+ o item1
+ o item2
+   may appear on
+   multiple lines
+  o subitem1 of item2
+  o subitem2 of item2
+ o item3
+
+And finally a description list:
+
+ - keyword1: followed by
+   some text
+   over multiple
+   lines
+ - keyword2:
+   followed by text on the next line
+ - keyword3: and its description may fit on one line
+
 
 ===== Comments =====
 

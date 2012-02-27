@@ -1324,21 +1324,25 @@ A list with
 """)
     f.close()
 
-def usage_compose():
-    print 'Usage: doconce compose name master.do.txt'
 
-def compose():
-    # Make a composition of teamods
-    # How should we do this?
-    # First just make a master.do.txt document including paths to
-    # the modules?
-    # Then run analyzer to copy all figs-* and src-* files
-    if len(sys.argv) < 3:
-        usage_compose()
+def usage_assemble():
+    print 'Usage: doconce assemble master.do.txt'
+
+def assemble():
+    # Assume some master.do.txt including other .do.txt recursively.
+    # search for all @@@CODE, FIGURE, MOVIE and archive in list/dict.
+    # search for all #include ".+\.do\.txt", call recursively
+    # for each of these with dirname and dotxtname as arguments.
+    # Build local links to all src- and figs- directories, make
+    # sure all teamod names are unique too.
+
+    # analyzer: old comments on how to implement this. Try the
+    # description above first.
+    if len(sys.argv) < 2:
+        usage_assemble()
         sys.exit(1)
 
-    name = sys.argv[1]
-    master = sys.argv[2:]
+    master = sys.argv[2]
 
     # Run analyzer...
 
@@ -1473,7 +1477,7 @@ doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
-doconce compose name master.do.txt
+doconce assemble name master.do.txt
 """
 
 

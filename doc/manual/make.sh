@@ -64,7 +64,6 @@ $d2f pandoc manual.do.txt
 $d2f latex manual.do.txt    # produces ptex2tex: manual.p.tex
 doconce replace 'usepackage{ptex2tex' 'usepackage{ptex2tex,subfigure' manual.p.tex  # need subfigure latex package
 ptex2tex -DMINTED manual    # turn ptex2tex format into plain latex
-rm -f manual.p.tex
 latex -shell-escape manual
 latex -shell-escape manual
 bibtex manual
@@ -79,11 +78,14 @@ $d2f gwiki manual.do.txt
 # fix figure in wiki: (can also by done by doconce gwiki_figsubst)
 doconce subst "\(the URL of the image file figs/streamtubes.png must be inserted here\)" "https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png" manual.gwiki
 
+$d2f cwiki manual.do.txt
+$d2f mwiki manual.do.txt
+
 rm -f *.ps
 
 rm -rf demo
 mkdir demo
-cp -r manual.do.txt manual.html figs manual.tex manual.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.txt manual.epytext manual.st manual.pnd sphinx-rootdir/_build/html demo
+cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.pnd sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -122,7 +124,9 @@ can be translated to <a href="manual.sphinx.pdf">PDF</a>
 and <a href="html/index.html">HTML</a>.
 <p>
 Doconce can also be converted to
-<a href="manual.gwiki">(Google Code) wiki</a>,
+<a href="manual.gwiki">Googlecode wiki</a>,
+<a href="manual.cwiki">Creole wiki</a>,
+<a href="manual.mwiki">MediaWiki</a>,
 <a href="manual.pnd">Pandoc</a>,
 <a href="manual.st">Structured Text</a>,
 <a href="manual.epytext">Epytext</a>,

@@ -146,7 +146,8 @@ by a keyword followed by a colon:
 
    - keyword2: explanation
      of keyword2 (remember to indent properly
-     if there are multiple lines)
+     if there are multiple
+     lines)
 !ec
 
 The result becomes
@@ -155,7 +156,8 @@ The result becomes
 
    - keyword2: explanation
      of keyword2 (remember to indent properly
-     if there are multiple lines)
+     if there are multiple
+     lines)
 
 
 ===== Special Lines =====
@@ -180,24 +182,28 @@ The `at` with surrounding spaces
 is essential for adding information about institution(s)
 to the author name, and the `and` with surrounding spaces is
 essential as delimiter between different institutions.
+An email address can optionally be included, using the syntax
+!bc
+name Email: somename@site.net at institution1 and institution2
+!ec
 Multiple authors require multiple `AUTHOR:` lines. All information
 associated with `TITLE:` and `AUTHOR:` keywords must appear on a single
 line.  Here is an example:
 !bc
 TITLE: On an Ultimate Markup Language
 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
-AUTHOR: Kaare Dump at Segfault, Cyberspace Inc.
+AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: November 9, 2016
 !ec
-Note the how one can specify a single institution, multiple institutions,
+Note how one can specify a single institution, multiple institutions,
 and no institution. In some formats (including `rst` and `sphinx`)
 only the author names appear. Some formats have
 "intelligence" in listing authors and institutions, e.g., the plain text
 format:
 !bc
 Hans Petter Langtangen [1, 2]
-Kaare Dump [3]
+Kaare Dump  (dump@cyb.space.com) [3]
 A. Dummy Author
 
 [1] Center for Biomedical Computing, Simula Research Laboratory
@@ -205,6 +211,8 @@ A. Dummy Author
 [3] Segfault, Cyberspace Inc.
 !ec
 Similar typesetting is done for LaTeX and HTML formats.
+
+The current date can be specified as `today`.
 
 idx{headlines} idx{section headings}
 

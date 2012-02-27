@@ -77,7 +77,7 @@ def syntax_check(filestr, format):
         pattern = re.compile(r'%s\s+^(!b[ct]|@@@CODE)' % linetp,
                              re.MULTILINE)
         m = pattern.search(filestr2)
-        if m:
+        if m and format in ('rst', 'plain', 'epytext', 'st'):
             print '\nSyntax error: Must have a plain sentence before\na code block like !bc/!bt/@@@CODE, not a section/paragraph heading,\ntable, or comment:'
             print filestr2[m.start():m.start()+80]
             sys.exit(1)
@@ -802,7 +802,8 @@ def typeset_lists(filestr, format, debug_info=[]):
         # structure of a line:
         linescan = re.compile(
             r"(?P<indent> *(?P<listtype>[*o-] )? *)" +
-            r"(?P<keyword>[^:]+?:)?(?P<text>.*)\s?")
+            r"(?P<keyword>.+?:\s+)?(?P<text>.*)\s?")
+            #r"(?P<keyword>[^:]+?:)?(?P<text>.*)\s?")
 
         m = linescan.match(line)
         indent = len(m.group('indent'))
@@ -812,7 +813,7 @@ def typeset_lists(filestr, format, debug_info=[]):
             listtype = LIST_SYMBOL[listtype]
         keyword = m.group('keyword')
         text = m.group('text')
-        debugpr('  > indent=%d (previous indent=%d)' % (indent, lastindent))
+        debugpr('  > indent=%d (previous indent=%d), keyword=[%s], text=[%s]' % (indent, lastindent, keyword, text))
 
         # new (sub)section makes end of any indent (we could demand
         # (sub)sections to start in column 1, but we have later relaxed
@@ -873,24 +874,40 @@ def typeset_lists(filestr, format, debug_info=[]):
                 result.write(item + ' ')
             elif listtype == 'description':
                 if '%s' in itemformat:
+                    if not keyword:
+                        # empty keyword, the regex has a bad problem: when only
+                        # keyword on the line, keyword is None and text
+                        # is keyword - make a fix here
+                        if text[-1] == ':':
+                            keyword = text
+                            text = ''
                     if keyword:
                         keyword = parse_keyword(keyword, format) + ':'
                         item = itemformat % keyword + ' '
                         debugpr('  > This is an item in a description list '\
-                              'with keyword "%s"' % keyword)
+                              'with parsed keyword=[%s]' % keyword)
                         keyword = '' # to avoid adding keyword up in
                         # below (ugly hack, but easy linescan parsing...)
-                result.write(' '*(indent-2))  # indent here counts with '* '
+                    else:
+                        debugpr('  > This is an item in a description list, but empty keyword, serious error....')
+                result.write(' '*(indent-2))  # indent here counts with '- '
                 result.write(item)
-                if not (text.isspace() or not text):
-                    result.write('\n' + ' '*(indent-1))
+                if not (text.isspace() or text == ''):
+                    #result.write('\n' + ' '*(indent-1))
+                    # Need special treatment if type specifications in
+                    # descrption lists for sphinx API doc
+                    if format == 'sphinx' and text.lstrip().startswith('type:'):
+                        text = text.lstrip()[5:].lstrip()
+                        # no newline for type info
+                    else:
+                        result.write('\n' + ' '*(indent))
             else:
                 debugpr('  > This is an item in a bullet list')
                 result.write(' '*(indent-2))  # indent here counts with '* '
                 result.write(item + ' ')
 
         else:
-            debugpr('  > This line is not part of a list environment...')
+            debugpr('  > This line is some ordinary line, no special list syntax involved')
             # should check emph, verbatim, etc., syntax check and common errors
             result.write(' '*indent)      # ordinary line
 
@@ -1251,6 +1268,16 @@ def subst_away_inline_comments(filestr):
     filestr = re.sub(pattern, '', filestr)
     return filestr
 
+def subst_class_func_mod(filestr, format):
+    if format == 'sphinx' or format == 'rst':
+        return filestr
+
+    # Replace :mod:`~my.pack.mod` by `my.pack.mod`
+    tp = 'class', 'func', 'mod'
+    for t in tp:
+        filestr = re.sub(r':%s:`~?([A-Za-z0-9_.]+?)`' % t,
+                         r'`\g<1>`', filestr)
+    return filestr
 
 
 def file2file(in_filename, format, out_filename):
@@ -1296,9 +1323,9 @@ def file2file(in_filename, format, out_filename):
 def doconce2format4docstrings(filestr, format):
     """Run doconce2format on all doc strings in a Python file."""
 
-    c1 = re.compile(r'^\s*(class|def)\s+[A-Za-z0-9_]+:\s+(""".+""")',
+    c1 = re.compile(r'^\s*(class|def)\s+[A-Za-z0-9_,() =]+:\s+(""".+?""")',
                     re.DOTALL|re.MULTILINE)
-    c2 = re.compile(r"^\s*(class|def)\s+[A-Za-z0-9_]+:\s+('''.+''')",
+    c2 = re.compile(r"^\s*(class|def)\s+[A-Za-z0-9_,() =]+:\s+('''.+?''')",
                     re.DOTALL|re.MULTILINE)
     doc_strings = [doc_string for dummy, doc_string in c1.findall(filestr)] + \
                   [doc_string for dummy, doc_string in c2.findall(filestr)]
@@ -1307,13 +1334,40 @@ def doconce2format4docstrings(filestr, format):
         if not line.lstrip().startswith('#'):
             break
     filestr2 = '\n'.join(lines[i:])
-    c3 = re.compile(r'^\s*""".+"""', re.DOTALL) # ^ is the very start
-    c4 = re.compile(r"^\s*'''.+'''", re.DOTALL) # ^ is the very start
+    c3 = re.compile(r'^\s*""".+?"""', re.DOTALL) # ^ is the very start
+    c4 = re.compile(r"^\s*'''.+?'''", re.DOTALL) # ^ is the very start
     doc_strings = c3.findall(filestr2) + c4.findall(filestr2) + doc_strings
 
-    pprint.pprint(doc_strings)
+    # Find and remove indentation
+    all = []
     for doc_string in doc_strings:
-        new_doc_string = doconce2format(filestr, format)
+        lines = doc_string.splitlines()
+        if len(lines) > 1:
+            indent = 0
+            line1 = lines[1]
+            while line1[indent] == ' ':
+                indent += 1
+            for i in range(1, len(lines)):
+                lines[i] = lines[i][indent:]
+            all.append(('\n'.join(lines), indent))
+        else:
+            all.append((doc_string, None))
+
+    for doc_string, indent in all:
+        new_doc_string = doconce2format(doc_string, format)
+        if indent is not None:
+            lines = new_doc_string.splitlines()
+            for i in range(1, len(lines)):
+                lines[i] = ' '*indent + lines[i]
+            new_doc_string = '\n'.join(lines)
+            lines = doc_string.splitlines()
+            for i in range(1, len(lines)):
+                if lines[i].isspace() or lines[i] == '':
+                    pass  # don't indent blank lines
+                else:
+                    lines[i] = ' '*indent + lines[i]
+            doc_string = '\n'.join(lines)
+
         filestr = filestr.replace(doc_string, new_doc_string)
 
     return filestr
@@ -1440,6 +1494,10 @@ def doconce2format(filestr, format):
         filestr = expand_newcommands(newcommand_files, filestr)
         for i in range(len(tex_blocks)):
             tex_blocks[i] = expand_newcommands(newcommand_files, tex_blocks[i])
+
+    # Next step: subst :class:`ClassName` by `ClassName` for
+    # non-rst/sphinx formats:
+    filestr = subst_class_func_mod(filestr, format)
 
     # Next step: insert verbatim and math code blocks again:
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
