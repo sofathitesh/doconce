@@ -80,7 +80,8 @@ appear in boldface: `_boldface_` become _boldface_.
 ===== Lists =====
 
 There are three types of lists: *bullet lists*, where each item starts
-with `*`, *enumeration lists*, where each item starts with `o`,
+with `*`, *enumeration lists*, where each item starts with `o` and gets
+consqutive numbers,
 and *description* lists, where each item starts with `-` followed
 by a keyword and a colon.
 !bc
@@ -92,7 +93,7 @@ Here is a bullet list:
   * subitem2 of item2
  * item3
 
-Note that sublists are indented.
+Note that sublists are consistently indented by one or more blanks..
 Here is an enumeration list:
 
  o item1
