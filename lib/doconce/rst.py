@@ -46,7 +46,10 @@ def rst_figure(m):
     # text to figures
     if caption and caption[-1] == '.':
         caption = caption[:-1]
-    result += '\n\n   ' + caption + '\n'
+    if caption:
+        result += '\n\n   *' + caption + '*\n'  # emphasize font in caption
+    else:
+        result += '\n\n'
     return result
 
 def rst_movie(m):

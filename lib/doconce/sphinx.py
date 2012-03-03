@@ -103,7 +103,10 @@ def sphinx_figure(m):
         info = [s.split('=') for s in opts.split()]
         rst_info = ['   :%s: %s' % (option, value)  for option, value in info]
         result += '\n'.join(rst_info)
-    result += '\n\n   *' + caption + '*\n'  # emphasize font in caption
+    if caption:
+        result += '\n\n   *' + caption + '*\n'  # emphasize font in caption
+    else:
+        result += '\n\n'
     #print 'sphinx figure: caption=\n', caption, '\nresult:\n', result
     return result
 
