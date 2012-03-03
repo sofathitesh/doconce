@@ -410,6 +410,8 @@ def insert_code_from_file(filestr, format):
             filename_ext = os.path.splitext(filename)[1]
             if filename_ext == '.cxx' or filename_ext == '.C':
                 filename_ext = '.cpp'
+            if filename_ext == '.pyx':  # Cython code is called cy
+                filename_ext = '.cy'
             if filename_ext in ('.py', '.f', '.c', '.cpp', '.sh',
                                 '.m', '.pl', '.cy'):
                 code_envir = filename_ext[1:]
