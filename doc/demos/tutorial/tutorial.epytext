@@ -477,6 +477,25 @@ file, e.g., C{!bc cod} for a code snippet, where C{cod} is set to
 a certain environment in C{.ptex2tex.cfg} (e.g., C{CodeIntended}).
 There are over 30 styles to choose from.
 
+I{Step 2b (optional).} Edit the C{mydoc.tex} file to your needs.
+For example, you may want to substitute C{section} by C{section*} to
+avoid numbering of sections, you may want to insert linebreaks
+(and perhaps space) in the title, etc. This can be automatically
+edited with the aid of the C{doconce replace} and C{doconce subst}
+commands. The former works with substituting text directly, while the
+latter performs substitutions using regular expressions.
+Here are some examples::
+
+
+        Terminal> doconce replace 'section{' 'section*{' mydoc.tex
+        Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
+                  'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
+
+A lot of tailored fixes to the LaTeX document can be done by
+an appropriate set of text replacements and regular expression
+substitutions. You are anyway encourged to make a script for
+generating PDF from the LaTeX file.
+
 I{Step 3.} Compile C{mydoc.tex}
 and create the PDF file::
 
@@ -488,10 +507,12 @@ and create the PDF file::
         Terminal> latex mydoc
         Terminal> dvipdf mydoc
 
-If one wishes to use the C{Minted_Python}, C{Minted_Cpp}, etc., environments
-in C{ptex2tex} for typesetting code, the C{minted} LaTeX package is needed.
-This package is included by running C{doconce format} with the
-C{-DMINTED} option::
+If one wishes to use the C{Minted_Python}, C{Minted_Cpp}, etc.,
+environments in C{ptex2tex} for typesetting code (specified, e.g., in
+the C{*pro} and C{*cod} environments in C{.ptex2tex.cfg} or
+C{$HOME/.ptex2tex.cfg}), the C{minted} LaTeX package is needed.  This
+package is included by running C{doconce format} with the C{-DMINTED}
+option::
 
 
         Terminal> ptex2tex -DMINTED mydoc
@@ -507,9 +528,24 @@ C{-shell-escape} option::
         Terminal> latex -shell-escape mydoc
         Terminal> dvipdf mydoc
 
-The C{-shell-escape} option is required because the C{minted.sty} style
-file runs the C{pygments} program to format code, and this program
-cannot be run from C{latex} without the C{-shell-escape} option.
+
+
+PDFLaTeX
+--------
+
+Running C{pdflatex} instead of C{latex} follows almost the same steps,
+but the start is::
+
+
+        Terminal> doconce format latex mydoc
+
+Then C{ptex2tex} is run as explained above, and finally::
+
+
+        Terminal> pdflatex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> pdflatex -shell-escape mydoc
 
 
 Plain ASCII Text

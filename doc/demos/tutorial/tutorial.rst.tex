@@ -76,7 +76,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Feb 27, 2012
+Mar 6, 2012
 %
 \begin{itemize}
 
@@ -787,6 +787,27 @@ file, e.g., \texttt{!bc cod} for a code snippet, where \texttt{cod} is set to
 a certain environment in \texttt{.ptex2tex.cfg} (e.g., \texttt{CodeIntended}).
 There are over 30 styles to choose from.
 
+\emph{Step 2b (optional).} Edit the \texttt{mydoc.tex} file to your needs.
+For example, you may want to substitute \texttt{section} by \texttt{section*} to
+avoid numbering of sections, you may want to insert linebreaks
+(and perhaps space) in the title, etc. This can be automatically
+edited with the aid of the \texttt{doconce replace} and \texttt{doconce subst}
+commands. The former works with substituting text directly, while the
+latter performs substitutions using regular expressions.
+Here are some examples:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~replace~'section\{'~'section*\{'~mydoc.tex\\
+Terminal>~doconce~subst~'title\textbackslash{}\{(.+)Using~(.+)\textbackslash{}\}'~\textbackslash{}\\
+~~~~~~~~~~'title\{\textbackslash{}g<1>~\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}~{[}1.5mm{]}~Using~\textbackslash{}g<2>'~mydoc.tex
+}
+\end{quote}
+
+A lot of tailored fixes to the LaTeX document can be done by
+an appropriate set of text replacements and regular expression
+substitutions. You are anyway encourged to make a script for
+generating PDF from the LaTeX file.
+
 \emph{Step 3.} Compile \texttt{mydoc.tex}
 and create the PDF file:
 %
@@ -800,10 +821,12 @@ Terminal>~dvipdf~mydoc
 }
 \end{quote}
 
-If one wishes to use the \texttt{Minted\_Python}, \texttt{Minted\_Cpp}, etc., environments
-in \texttt{ptex2tex} for typesetting code, the \texttt{minted} LaTeX package is needed.
-This package is included by running \texttt{doconce format} with the
-\texttt{-DMINTED} option:
+If one wishes to use the \texttt{Minted\_Python}, \texttt{Minted\_Cpp}, etc.,
+environments in \texttt{ptex2tex} for typesetting code (specified, e.g., in
+the \texttt{*pro} and \texttt{*cod} environments in \texttt{.ptex2tex.cfg} or
+\texttt{\$HOME/.ptex2tex.cfg}), the \texttt{minted} LaTeX package is needed.  This
+package is included by running \texttt{doconce format} with the \texttt{-DMINTED}
+option:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Terminal>~ptex2tex~-DMINTED~mydoc
@@ -823,9 +846,32 @@ Terminal>~dvipdf~mydoc
 }
 \end{quote}
 
-The \texttt{-shell-escape} option is required because the \texttt{minted.sty} style
-file runs the \texttt{pygments} program to format code, and this program
-cannot be run from \texttt{latex} without the \texttt{-shell-escape} option.
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  PDFLaTeX%
+  \addcontentsline{toc}{subsection}{PDFLaTeX}%
+  \label{pdflatex}%
+}
+
+Running \texttt{pdflatex} instead of \texttt{latex} follows almost the same steps,
+but the start is:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~format~latex~mydoc
+}
+\end{quote}
+
+Then \texttt{ptex2tex} is run as explained above, and finally:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~pdflatex~-shell-escape~mydoc\\
+Terminal>~makeindex~mydoc~~~\#~if~index\\
+Terminal>~bibitem~mydoc~~~~~\#~if~bibliography\\
+Terminal>~pdflatex~-shell-escape~mydoc
+}
+\end{quote}
 
 
 %___________________________________________________________________________

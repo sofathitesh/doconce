@@ -56,7 +56,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Feb 27, 2012
+Mar 6, 2012
 
 \end{DUfieldlist}
 
@@ -570,6 +570,27 @@ file, e.g., \texttt{!bc cod} for a code snippet, where \texttt{cod} is set to
 a certain environment in \texttt{.ptex2tex.cfg} (e.g., \texttt{CodeIntended}).
 There are over 30 styles to choose from.
 
+\emph{Step 2b (optional).} Edit the \texttt{mydoc.tex} file to your needs.
+For example, you may want to substitute \texttt{section} by \texttt{section*} to
+avoid numbering of sections, you may want to insert linebreaks
+(and perhaps space) in the title, etc. This can be automatically
+edited with the aid of the \texttt{doconce replace} and \texttt{doconce subst}
+commands. The former works with substituting text directly, while the
+latter performs substitutions using regular expressions.
+Here are some examples:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~replace~'section\{'~'section*\{'~mydoc.tex\\
+Terminal>~doconce~subst~'title\textbackslash{}\{(.+)Using~(.+)\textbackslash{}\}'~\textbackslash{}\\
+~~~~~~~~~~'title\{\textbackslash{}g<1>~\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}~{[}1.5mm{]}~Using~\textbackslash{}g<2>'~mydoc.tex
+}
+\end{quote}
+
+A lot of tailored fixes to the LaTeX document can be done by
+an appropriate set of text replacements and regular expression
+substitutions. You are anyway encourged to make a script for
+generating PDF from the LaTeX file.
+
 \emph{Step 3.} Compile \texttt{mydoc.tex}
 and create the PDF file:
 %
@@ -583,10 +604,12 @@ Terminal>~dvipdf~mydoc
 }
 \end{quote}
 
-If one wishes to use the \texttt{Minted\_Python}, \texttt{Minted\_Cpp}, etc., environments
-in \texttt{ptex2tex} for typesetting code, the \texttt{minted} LaTeX package is needed.
-This package is included by running \texttt{doconce format} with the
-\texttt{-DMINTED} option:
+If one wishes to use the \texttt{Minted\_Python}, \texttt{Minted\_Cpp}, etc.,
+environments in \texttt{ptex2tex} for typesetting code (specified, e.g., in
+the \texttt{*pro} and \texttt{*cod} environments in \texttt{.ptex2tex.cfg} or
+\texttt{\$HOME/.ptex2tex.cfg}), the \texttt{minted} LaTeX package is needed.  This
+package is included by running \texttt{doconce format} with the \texttt{-DMINTED}
+option:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Terminal>~ptex2tex~-DMINTED~mydoc
@@ -606,9 +629,32 @@ Terminal>~dvipdf~mydoc
 }
 \end{quote}
 
-The \texttt{-shell-escape} option is required because the \texttt{minted.sty} style
-file runs the \texttt{pygments} program to format code, and this program
-cannot be run from \texttt{latex} without the \texttt{-shell-escape} option.
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  PDFLaTeX%
+  \addcontentsline{toc}{subsection}{PDFLaTeX}%
+  \label{pdflatex}%
+}
+
+Running \texttt{pdflatex} instead of \texttt{latex} follows almost the same steps,
+but the start is:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~format~latex~mydoc
+}
+\end{quote}
+
+Then \texttt{ptex2tex} is run as explained above, and finally:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~pdflatex~-shell-escape~mydoc\\
+Terminal>~makeindex~mydoc~~~\#~if~index\\
+Terminal>~bibitem~mydoc~~~~~\#~if~bibliography\\
+Terminal>~pdflatex~-shell-escape~mydoc
+}
+\end{quote}
 
 
 %___________________________________________________________________________
@@ -1126,7 +1172,7 @@ DATE:~November~9,~2016
 }
 \end{quote}
 
-Note the how one can specify a single institution, multiple institutions,
+Note how one can specify a single institution, multiple institutions,
 and no institution. In some formats (including \texttt{rst} and \texttt{sphinx})
 only the author names appear. Some formats have
 ``intelligence'' in listing authors and institutions, e.g., the plain text
@@ -1144,6 +1190,8 @@ A.~Dummy~Author\\
 \end{quote}
 
 Similar typesetting is done for LaTeX and HTML formats.
+
+The current date can be specified as \texttt{today}.
 
 \emph{Section Headings.} Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
@@ -1247,7 +1295,7 @@ included in the formatted caption).
 \begin{figure}
 \phantomsection\label{fig-viz}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=400bp]{figs/streamtubes}}
-\caption{Streamtube visualization of a fluid flow  (fig:viz)}
+\caption{\emph{Streamtube visualization of a fluid flow  (fig:viz)}}
 \end{figure}
 
 
@@ -2170,11 +2218,11 @@ create the example).
 % Use default Doconce figure handling for all other formats
 \begin{figure}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=400bp]{figs/wavepacket_0001}}
-\caption{Wavepacket at time 0.1 s}
+\caption{\emph{Wavepacket at time 0.1 s}}
 \end{figure}
 \begin{figure}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=400bp]{figs/wavepacket_0010}}
-\caption{Wavepacket at time 0.2 s}
+\caption{\emph{Wavepacket at time 0.2 s}}
 \end{figure}
 
 Other user-defined variables for the preprocessor can be set at
@@ -2726,6 +2774,26 @@ and make sure they decrease by two every time a lower level is encountered.
   \addcontentsline{toc}{subsection}{Problems with LaTeX Output}%
   \label{problems-with-latex-output}%
 }
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Error when running latex: You must 'pygmentize' installed%
+  \addcontentsline{toc}{subsubsection}{Error when running latex: You must 'pygmentize' installed}%
+  \label{error-when-running-latex-you-must-pygmentize-installed}%
+}
+
+This points to the used of the Minted style for typesetting verbatim
+code. You need to run:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~latex~-shell-escape~file
+}
+\end{quote}
+
+if you have run \texttt{ptex2tex} with the \texttt{-DMINTED} option and turned on
+the use of the Minted style (and therefore \texttt{pygmentize} program).
 
 
 %___________________________________________________________________________

@@ -2,6 +2,8 @@
 # Test multiple authors
 doconce format html testdoc.do.txt
 doconce format latex testdoc.do.txt
+doconce format pdflatex testdoc.do.txt
+ptex2tex -DMINTED testdoc
 doconce format plain testdoc.do.txt
 doconce format st testdoc.do.txt
 doconce format sphinx testdoc.do.txt

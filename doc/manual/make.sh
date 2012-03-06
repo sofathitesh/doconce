@@ -60,6 +60,17 @@ $d2f epytext manual.do.txt
 $d2f st manual.do.txt
 $d2f pandoc manual.do.txt
 
+# doconce pdflatex:
+$d2f pdflatex manual.do.txt
+doconce replace 'usepackage{ptex2tex' 'usepackage{ptex2tex,subfigure' manual.p.tex  # need subfigure latex package
+ptex2tex -DMINTED manual    # turn ptex2tex format into plain latex
+pdflatex -shell-escape manual
+bibtex manual
+makeindex manual
+pdflatex -shell-escape manual
+pdflatex -shell-escape manual
+cp manual.pdf manual_pdflatex.pdf
+
 # doconce latex:
 $d2f latex manual.do.txt    # produces ptex2tex: manual.p.tex
 doconce replace 'usepackage{ptex2tex' 'usepackage{ptex2tex,subfigure' manual.p.tex  # need subfigure latex package
@@ -85,7 +96,7 @@ rm -f *.ps
 
 rm -rf demo
 mkdir demo
-cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.pnd sphinx-rootdir/_build/html demo
+cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.pnd sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF

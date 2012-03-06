@@ -489,7 +489,7 @@ def insert_code_from_file(filestr, format):
                     sys.exit(1)
             codefile.close()
 
-            if format == 'latex' or format == 'sphinx':
+            if format == 'latex' or format == 'pdflatex' or format == 'sphinx':
                 # Insert a cod or pro directive for ptex2tex and sphinx.
                 if complete_file:
                     code = "!bc %spro\n%s\n!ec" % (code_envir, code)
@@ -1076,7 +1076,8 @@ def handle_index_and_bib(filestr, format, has_title):
                         citations[label] = cite_counter
                 # Replace cite{label1,label2,...} by individual cite{label1}
                 # cite{label2}, etc. if not latex or pandoc format
-                if format != 'latex' and format != 'pandoc':
+                if format != 'latex' and format != 'pdflatex' and \
+                       format != 'pandoc':
                     for arg in cite_args:
                         replacement = ' '.join(['cite{%s}' % label.strip() \
                                                  for label in arg.split(',')])
@@ -1427,7 +1428,7 @@ def doconce2format(filestr, format):
         # with encoding="utf-8" in the first line in the html file:
         # (but we do it explicitly to make it robust)
         filestr = html.latin2html(filestr)
-    elif format == 'latex':  # fix
+    elif format == 'latex' or format == 'pdflatex':  # fix
         # labels inside tex envirs must have backslash \label:
         for i in range(len(tex_blocks)):
             tex_blocks[i] = re.sub(r'([^\\])label', r'\g<1>\\label',
@@ -1482,7 +1483,7 @@ def doconce2format(filestr, format):
     # Next step: substitute latex-style newcommands in filestr and tex_blocks
     # (not in code_blocks)
     from expand_newcommands import expand_newcommands
-    if format != 'latex' and format != 'pandoc':
+    if format != 'latex' and format != 'pdflatex' and format != 'pandoc':
         newcommand_files = ['newcommands_replace.tex']
         if format == 'sphinx':  # replace all newcommands in sphinx
             newcommand_files.extend(['newcommands.tex', 'newcommands_keep.tex'])
@@ -1512,7 +1513,7 @@ def doconce2format(filestr, format):
         if format in OUTRO:
             filestr = filestr + OUTRO[format]
 
-    if format == 'latex':
+    if format == 'latex' or format == 'pdflatex':
         if r'\includemovie[' not in filestr:
             # avoid the need for movie15 package in latex file
             filestr = filestr.replace('define MOVIE', 'undef MOVIE')

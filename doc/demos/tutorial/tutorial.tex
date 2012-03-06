@@ -34,8 +34,10 @@ urlcolor=blue]{hyperref}
 % ----------------- Title -------------------------
 
 \begin{center}
-{\LARGE\bf Doconce: Document Once, Include Anywhere}
+{\LARGE\bf Doconce: Document Once, Include \\ [1.5mm] Anywhere}
 \end{center}
+
+
 
 
 % ----------------- Author(s) -------------------------
@@ -57,7 +59,7 @@ urlcolor=blue]{hyperref}
 
 
 \begin{center}
-Feb 27, 2012
+Mar 6, 2012
 \end{center}
 
 
@@ -624,6 +626,27 @@ file, e.g., {\fontsize{10pt}{10pt}\verb!!bc cod!} for a code snippet, where {\fo
 a certain environment in {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!} (e.g., {\fontsize{10pt}{10pt}\verb!CodeIntended!}).
 There are over 30 styles to choose from.
 
+\paragraph{Step 2b (optional).}
+Edit the {\fontsize{10pt}{10pt}\verb!mydoc.tex!} file to your needs.
+For example, you may want to substitute {\fontsize{10pt}{10pt}\verb!section!} by {\fontsize{10pt}{10pt}\verb!section*!} to
+avoid numbering of sections, you may want to insert linebreaks
+(and perhaps space) in the title, etc. This can be automatically
+edited with the aid of the {\fontsize{10pt}{10pt}\verb!doconce replace!} and {\fontsize{10pt}{10pt}\verb!doconce subst!}
+commands. The former works with substituting text directly, while the
+latter performs substitutions using regular expressions.
+Here are some examples:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce replace 'section{' 'section*{' mydoc.tex
+Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
+          'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
+\end{Verbatim}
+A lot of tailored fixes to the {\LaTeX} document can be done by
+an appropriate set of text replacements and regular expression
+substitutions. You are anyway encourged to make a script for
+generating PDF from the {\LaTeX} file.
+
 \paragraph{Step 3.}
 Compile {\fontsize{10pt}{10pt}\verb!mydoc.tex!}
 and create the PDF file:
@@ -637,10 +660,12 @@ Terminal> bibitem mydoc     # if bibliography
 Terminal> latex mydoc
 Terminal> dvipdf mydoc
 \end{Verbatim}
-If one wishes to use the {\fontsize{10pt}{10pt}\verb!Minted_Python!}, {\fontsize{10pt}{10pt}\verb!Minted_Cpp!}, etc., environments
-in {\fontsize{10pt}{10pt}\verb!ptex2tex!} for typesetting code, the {\fontsize{10pt}{10pt}\verb!minted!} {\LaTeX} package is needed.
-This package is included by running {\fontsize{10pt}{10pt}\verb!doconce format!} with the
-{\fontsize{10pt}{10pt}\verb!-DMINTED!} option:
+If one wishes to use the {\fontsize{10pt}{10pt}\verb!Minted_Python!}, {\fontsize{10pt}{10pt}\verb!Minted_Cpp!}, etc.,
+environments in {\fontsize{10pt}{10pt}\verb!ptex2tex!} for typesetting code (specified, e.g., in
+the {\fontsize{10pt}{10pt}\verb!*pro!} and {\fontsize{10pt}{10pt}\verb!*cod!} environments in {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!} or
+{\fontsize{10pt}{10pt}\verb!$HOME/.ptex2tex.cfg!}), the {\fontsize{10pt}{10pt}\verb!minted!} {\LaTeX} package is needed.  This
+package is included by running {\fontsize{10pt}{10pt}\verb!doconce format!} with the {\fontsize{10pt}{10pt}\verb!-DMINTED!}
+option:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
@@ -658,9 +683,25 @@ Terminal> bibitem mydoc     # if bibliography
 Terminal> latex -shell-escape mydoc
 Terminal> dvipdf mydoc
 \end{Verbatim}
-The {\fontsize{10pt}{10pt}\verb!-shell-escape!} option is required because the {\fontsize{10pt}{10pt}\verb!minted.sty!} style
-file runs the {\fontsize{10pt}{10pt}\verb!pygments!} program to format code, and this program
-cannot be run from {\fontsize{10pt}{10pt}\verb!latex!} without the {\fontsize{10pt}{10pt}\verb!-shell-escape!} option.
+
+\subsection{PDFLaTeX}
+
+Running {\fontsize{10pt}{10pt}\verb!pdflatex!} instead of {\fontsize{10pt}{10pt}\verb!latex!} follows almost the same steps,
+but the start is
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format latex mydoc
+\end{Verbatim}
+Then {\fontsize{10pt}{10pt}\verb!ptex2tex!} is run as explained above, and finally
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> pdflatex -shell-escape mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> pdflatex -shell-escape mydoc
+\end{Verbatim}
 
 \subsection{Plain ASCII Text}
 
