@@ -194,6 +194,41 @@ def latex_table(table):
     s += r'\end{tabular}\end{quote}' + '\n\n' + r'\noindent' + '\n'
     return s
 
+def latex_title(m):
+    title = m.group('subst')
+    # Make appropriate linebreaks for the default typesetting
+    import textwrap
+    default_title = r' \\\\ [1.5mm] '.join(textwrap.wrap(title, width=38))
+
+    text = fix_latex_command_regex(pattern=r"""
+
+%% #ifndef LATEX_HEADING
+%% #define LATEX_HEADING
+%% #endif
+
+%% ----------------- Title -------------------------
+%% #if LATEX_HEADING == "traditional"
+
+\title{%s}
+
+%% #elif LATEX_HEADING == "titlepage"
+
+\thispagestyle{empty}
+\hbox{\ \ }
+\vfill
+\begin{center}
+{\huge{\bfseries{%s}}}
+
+%% #else
+
+\begin{center}
+{\LARGE\bf %s}
+\end{center}
+
+%% #endif
+""" % (title, title, default_title), application='replacement')
+    return text
+
 def latex_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):
     text = r"""
@@ -442,33 +477,7 @@ def define(FILENAME_EXTENSION,
         'abstract':      r'\n\n\\begin{abstract}\n\g<text>\n\end{abstract}\n\n\g<rest>',
         # recall that this is regex so latex commands must be treated carefully:
         #'title':         r'\\title{\g<subst>}' + '\n', # we don'e use maketitle
-        'title':         fix_latex_command_regex(pattern=r"""
-
-% #ifndef LATEX_HEADING
-% #define LATEX_HEADING
-% #endif
-
-% ----------------- Title -------------------------
-% #if LATEX_HEADING == "traditional"
-
-\title{\g<subst>}
-
-% #elif LATEX_HEADING == "titlepage"
-
-\thispagestyle{empty}
-\hbox{\ \ }
-\vfill
-\begin{center}
-{\huge{\bfseries{\g<subst>}}}
-
-% #else
-
-\begin{center}
-{\LARGE\bf \g<subst>}
-\end{center}
-
-% #endif
-""", application='replacement'),
+        'title':         latex_title,
         'author':        latex_author,
         #'date':          r'\\date{\g<subst>}' ' \n\\maketitle\n\n',
         'date':          fix_latex_command_regex(pattern=r"""

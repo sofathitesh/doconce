@@ -116,6 +116,24 @@ file, e.g., `!bc cod` for a code snippet, where `cod` is set to
 a certain environment in `.ptex2tex.cfg` (e.g., `CodeIntended`).
 There are over 30 styles to choose from.
 
+__Step 2b (optional).__ Edit the `mydoc.tex` file to your needs.
+For example, you may want to substitute `section` by `section*` to
+avoid numbering of sections, you may want to insert linebreaks
+(and perhaps space) in the title, etc. This can be automatically
+edited with the aid of the `doconce replace` and `doconce subst`
+commands. The former works with substituting text directly, while the
+latter performs substitutions using regular expressions.
+Here are some examples:
+!bc sys
+Terminal> doconce replace 'section{' 'section*{' mydoc.tex
+Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
+          'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
+!ec
+A lot of tailored fixes to the LaTeX document can be done by
+an appropriate set of text replacements and regular expression
+substitutions. You are anyway encourged to make a script for
+generating PDF from the LaTeX file.
+
 __Step 3.__ Compile `mydoc.tex`
 and create the PDF file:
 !bc sys
@@ -126,10 +144,12 @@ Terminal> bibitem mydoc     # if bibliography
 Terminal> latex mydoc
 Terminal> dvipdf mydoc
 !ec
-If one wishes to use the `Minted_Python`, `Minted_Cpp`, etc., environments
-in `ptex2tex` for typesetting code, the `minted` LaTeX package is needed.
-This package is included by running `doconce format` with the
-`-DMINTED` option:
+If one wishes to use the `Minted_Python`, `Minted_Cpp`, etc.,
+environments in `ptex2tex` for typesetting code (specified, e.g., in
+the `*pro` and `*cod` environments in `.ptex2tex.cfg` or
+`$HOME/.ptex2tex.cfg`), the `minted` LaTeX package is needed.  This
+package is included by running `doconce format` with the `-DMINTED`
+option:
 !bc sys
 Terminal> ptex2tex -DMINTED mydoc
 !ec
@@ -143,12 +163,6 @@ Terminal> bibitem mydoc     # if bibliography
 Terminal> latex -shell-escape mydoc
 Terminal> dvipdf mydoc
 !ec
-The `-shell-escape` option is required because the `minted.sty` style
-file runs the `pygments` program to format code, and this program
-cannot be run from `latex` without the `-shell-escape` option.
-The `-shell-escape` option can be ignored if not the minted style is
-used for verbatim code (check out `*pro` and `*cod` in `.ptex2tex.cfg`
-or `$HOME/.ptex2tex.cfg`).
 
 
 ===== PDFLaTeX =====
