@@ -235,7 +235,7 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
         # filestr = re.sub(r'#!!TEX_BLOCK', '!bt\n%s!et' % tex, filestr, 1)
         # does not work properly. Instead, we use str.replace
 
-        if format == 'LaTeX':  # fix
+        if format == 'latex' or format == 'pdflatex':  # fix
             # ref/label is ok outside tex environments (see test in
             # cross_referencing), but inside !bt/!et environments the user
             # is allowed to have ref and label without backslashes

@@ -357,6 +357,25 @@ file, e.g., '!bc cod' for a code snippet, where 'cod' is set to
 a certain environment in '.ptex2tex.cfg' (e.g., 'CodeIntended').
 There are over 30 styles to choose from.
 
+*Step 2b (optional).* Edit the 'mydoc.tex' file to your needs.
+For example, you may want to substitute 'section' by 'section*' to
+avoid numbering of sections, you may want to insert linebreaks
+(and perhaps space) in the title, etc. This can be automatically
+edited with the aid of the 'doconce replace' and 'doconce subst'
+commands. The former works with substituting text directly, while the
+latter performs substitutions using regular expressions.
+Here are some examples::
+
+
+        Terminal> doconce replace 'section{' 'section*{' mydoc.tex
+        Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
+                  'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
+
+A lot of tailored fixes to the LaTeX document can be done by
+an appropriate set of text replacements and regular expression
+substitutions. You are anyway encourged to make a script for
+generating PDF from the LaTeX file.
+
 *Step 3.* Compile 'mydoc.tex'
 and create the PDF file::
 
@@ -368,10 +387,12 @@ and create the PDF file::
         Terminal> latex mydoc
         Terminal> dvipdf mydoc
 
-If one wishes to use the 'Minted_Python', 'Minted_Cpp', etc., environments
-in 'ptex2tex' for typesetting code, the 'minted' LaTeX package is needed.
-This package is included by running 'doconce format' with the
-'-DMINTED' option::
+If one wishes to use the 'Minted_Python', 'Minted_Cpp', etc.,
+environments in 'ptex2tex' for typesetting code (specified, e.g., in
+the '*pro' and '*cod' environments in '.ptex2tex.cfg' or
+'$HOME/.ptex2tex.cfg'), the 'minted' LaTeX package is needed.  This
+package is included by running 'doconce format' with the '-DMINTED'
+option::
 
 
         Terminal> ptex2tex -DMINTED mydoc
@@ -387,9 +408,23 @@ In this case, 'latex' must be run with the
         Terminal> latex -shell-escape mydoc
         Terminal> dvipdf mydoc
 
-The '-shell-escape' option is required because the 'minted.sty' style
-file runs the 'pygments' program to format code, and this program
-cannot be run from 'latex' without the '-shell-escape' option.
+
+PDFLaTeX
+
+Running 'pdflatex' instead of 'latex' follows almost the same steps,
+but the start is::
+
+
+        Terminal> doconce format latex mydoc
+
+Then 'ptex2tex' is run as explained above, and finally::
+
+
+        Terminal> pdflatex -shell-escape mydoc
+        Terminal> makeindex mydoc   # if index
+        Terminal> bibitem mydoc     # if bibliography
+        Terminal> pdflatex -shell-escape mydoc
+
 
 Plain ASCII Text
 
@@ -768,7 +803,7 @@ line.  Here is an example::
         AUTHOR: A. Dummy Author
         DATE: November 9, 2016
 
-Note the how one can specify a single institution, multiple institutions,
+Note how one can specify a single institution, multiple institutions,
 and no institution. In some formats (including 'rst' and 'sphinx')
 only the author names appear. Some formats have
 "intelligence" in listing authors and institutions, e.g., the plain text
@@ -784,6 +819,8 @@ format::
         [3] Segfault, Cyberspace Inc.
 
 Similar typesetting is done for LaTeX and HTML formats.
+
+The current date can be specified as 'today'.
 
 
 *Section Headings.* Section headings are recognized by being surrounded by equal signs (=) or
@@ -1890,6 +1927,17 @@ count the number of equality signs (or underscores if you use that)
 and make sure they decrease by two every time a lower level is encountered.
 
 Problems with LaTeX Output
+
+Error when running latex: You must 'pygmentize' installed
+
+This points to the used of the Minted style for typesetting verbatim
+code. You need to run::
+
+
+        Terminal> latex -shell-escape file
+
+if you have run 'ptex2tex' with the '-DMINTED' option and turned on
+the use of the Minted style (and therefore 'pygmentize' program).
 
 The LaTeX file does not compile
 

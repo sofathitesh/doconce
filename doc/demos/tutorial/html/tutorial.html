@@ -57,7 +57,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Feb 27, 2012</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Mar 6, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -510,6 +510,23 @@ insert verbatim block styles as defined in your <tt class="docutils literal"><sp
 file, e.g., <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">cod</span></tt> for a code snippet, where <tt class="docutils literal"><span class="pre">cod</span></tt> is set to
 a certain environment in <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt> (e.g., <tt class="docutils literal"><span class="pre">CodeIntended</span></tt>).
 There are over 30 styles to choose from.</p>
+<p><em>Step 2b (optional).</em> Edit the <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt> file to your needs.
+For example, you may want to substitute <tt class="docutils literal"><span class="pre">section</span></tt> by <tt class="docutils literal"><span class="pre">section*</span></tt> to
+avoid numbering of sections, you may want to insert linebreaks
+(and perhaps space) in the title, etc. This can be automatically
+edited with the aid of the <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">replace</span></tt> and <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">subst</span></tt>
+commands. The former works with substituting text directly, while the
+latter performs substitutions using regular expressions.
+Here are some examples:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce replace &#39;section{&#39; &#39;section*{&#39; mydoc.tex</span>
+<span class="go">Terminal&gt; doconce subst &#39;title\{(.+)Using (.+)\}&#39; \</span>
+<span class="go">          &#39;title{\g&lt;1&gt; \\\\ [1.5mm] Using \g&lt;2&gt;&#39; mydoc.tex</span>
+</pre></div>
+</div>
+<p>A lot of tailored fixes to the LaTeX document can be done by
+an appropriate set of text replacements and regular expression
+substitutions. You are anyway encourged to make a script for
+generating PDF from the LaTeX file.</p>
 <p><em>Step 3.</em> Compile <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt>
 and create the PDF file:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; latex mydoc</span>
@@ -520,10 +537,12 @@ and create the PDF file:</p>
 <span class="go">Terminal&gt; dvipdf mydoc</span>
 </pre></div>
 </div>
-<p>If one wishes to use the <tt class="docutils literal"><span class="pre">Minted_Python</span></tt>, <tt class="docutils literal"><span class="pre">Minted_Cpp</span></tt>, etc., environments
-in <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> for typesetting code, the <tt class="docutils literal"><span class="pre">minted</span></tt> LaTeX package is needed.
-This package is included by running <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt> with the
-<tt class="docutils literal"><span class="pre">-DMINTED</span></tt> option:</p>
+<p>If one wishes to use the <tt class="docutils literal"><span class="pre">Minted_Python</span></tt>, <tt class="docutils literal"><span class="pre">Minted_Cpp</span></tt>, etc.,
+environments in <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> for typesetting code (specified, e.g., in
+the <tt class="docutils literal"><span class="pre">*pro</span></tt> and <tt class="docutils literal"><span class="pre">*cod</span></tt> environments in <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt> or
+<tt class="docutils literal"><span class="pre">$HOME/.ptex2tex.cfg</span></tt>), the <tt class="docutils literal"><span class="pre">minted</span></tt> LaTeX package is needed.  This
+package is included by running <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt> with the <tt class="docutils literal"><span class="pre">-DMINTED</span></tt>
+option:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; ptex2tex -DMINTED mydoc</span>
 </pre></div>
 </div>
@@ -537,9 +556,21 @@ This package is included by running <tt class="docutils literal"><span class="pr
 <span class="go">Terminal&gt; dvipdf mydoc</span>
 </pre></div>
 </div>
-<p>The <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option is required because the <tt class="docutils literal"><span class="pre">minted.sty</span></tt> style
-file runs the <tt class="docutils literal"><span class="pre">pygments</span></tt> program to format code, and this program
-cannot be run from <tt class="docutils literal"><span class="pre">latex</span></tt> without the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option.</p>
+</div>
+<div class="section" id="pdflatex">
+<h2>PDFLaTeX<a class="headerlink" href="#pdflatex" title="Permalink to this headline">¶</a></h2>
+<p>Running <tt class="docutils literal"><span class="pre">pdflatex</span></tt> instead of <tt class="docutils literal"><span class="pre">latex</span></tt> follows almost the same steps,
+but the start is</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format latex mydoc</span>
+</pre></div>
+</div>
+<p>Then <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> is run as explained above, and finally</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; pdflatex -shell-escape mydoc</span>
+<span class="go">Terminal&gt; makeindex mydoc   # if index</span>
+<span class="go">Terminal&gt; bibitem mydoc     # if bibliography</span>
+<span class="go">Terminal&gt; pdflatex -shell-escape mydoc</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="plain-ascii-text">
 <h2>Plain ASCII Text<a class="headerlink" href="#plain-ascii-text" title="Permalink to this headline">¶</a></h2>
@@ -920,6 +951,7 @@ run regularly.</p>
 <li><a class="reference internal" href="#id1">HTML</a></li>
 <li><a class="reference internal" href="#pandoc">Pandoc</a></li>
 <li><a class="reference internal" href="#id2">LaTeX</a></li>
+<li><a class="reference internal" href="#pdflatex">PDFLaTeX</a></li>
 <li><a class="reference internal" href="#plain-ascii-text">Plain ASCII Text</a></li>
 <li><a class="reference internal" href="#id3">reStructuredText</a></li>
 <li><a class="reference internal" href="#id4">Sphinx</a></li>

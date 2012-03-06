@@ -22,7 +22,7 @@ Automatically generated HTML file from Doconce source
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Feb 27, 2012</h3></center>
+<center><h3>Mar 6, 2012</h3></center>
 <P>
 
 <P>
@@ -488,6 +488,27 @@ a certain environment in <tt>.ptex2tex.cfg</tt> (e.g., <tt>CodeIntended</tt>).
 There are over 30 styles to choose from.
 
 <P>
+<b>Step 2b (optional).</b> Edit the <tt>mydoc.tex</tt> file to your needs.
+For example, you may want to substitute <tt>section</tt> by <tt>section*</tt> to
+avoid numbering of sections, you may want to insert linebreaks
+(and perhaps space) in the title, etc. This can be automatically
+edited with the aid of the <tt>doconce replace</tt> and <tt>doconce subst</tt>
+commands. The former works with substituting text directly, while the
+latter performs substitutions using regular expressions.
+Here are some examples:
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; doconce replace 'section{' 'section*{' mydoc.tex
+Terminal&gt; doconce subst 'title\{(.+)Using (.+)\}' \
+          'title{\g&lt;1&gt; \\\\ [1.5mm] Using \g&lt;2&gt;' mydoc.tex
+</pre>
+</blockquote>   <! -- end verbatim block -->
+A lot of tailored fixes to the LaTeX document can be done by
+an appropriate set of text replacements and regular expression
+substitutions. You are anyway encourged to make a script for
+generating PDF from the LaTeX file.
+
+<P>
 <b>Step 3.</b> Compile <tt>mydoc.tex</tt>
 and create the PDF file:
 <blockquote>    <!-- begin verbatim block   sys-->
@@ -500,10 +521,12 @@ Terminal&gt; latex mydoc
 Terminal&gt; dvipdf mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
-If one wishes to use the <tt>Minted_Python</tt>, <tt>Minted_Cpp</tt>, etc., environments
-in <tt>ptex2tex</tt> for typesetting code, the <tt>minted</tt> LaTeX package is needed.
-This package is included by running <tt>doconce format</tt> with the
-<tt>-DMINTED</tt> option:
+If one wishes to use the <tt>Minted_Python</tt>, <tt>Minted_Cpp</tt>, etc.,
+environments in <tt>ptex2tex</tt> for typesetting code (specified, e.g., in
+the <tt>*pro</tt> and <tt>*cod</tt> environments in <tt>.ptex2tex.cfg</tt> or
+<tt>$HOME/.ptex2tex.cfg</tt>), the <tt>minted</tt> LaTeX package is needed.  This
+package is included by running <tt>doconce format</tt> with the <tt>-DMINTED</tt>
+option:
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
 Terminal&gt; ptex2tex -DMINTED mydoc
@@ -521,11 +544,28 @@ Terminal&gt; latex -shell-escape mydoc
 Terminal&gt; dvipdf mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
-The <tt>-shell-escape</tt> option is required because the <tt>minted.sty</tt> style
-file runs the <tt>pygments</tt> program to format code, and this program
-cannot be run from <tt>latex</tt> without the <tt>-shell-escape</tt> option.
 
 <P>
+
+<P>
+<h3>PDFLaTeX</h3>
+<P>
+Running <tt>pdflatex</tt> instead of <tt>latex</tt> follows almost the same steps,
+but the start is
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; doconce format latex mydoc
+</pre>
+</blockquote>   <! -- end verbatim block -->
+Then <tt>ptex2tex</tt> is run as explained above, and finally
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; pdflatex -shell-escape mydoc
+Terminal&gt; makeindex mydoc   # if index
+Terminal&gt; bibitem mydoc     # if bibliography
+Terminal&gt; pdflatex -shell-escape mydoc
+</pre>
+</blockquote>   <! -- end verbatim block -->
 
 <P>
 <h3>Plain ASCII Text</h3>
@@ -989,7 +1029,7 @@ AUTHOR: A. Dummy Author
 DATE: November 9, 2016
 </pre>
 </blockquote>   <! -- end verbatim block -->
-Note the how one can specify a single institution, multiple institutions,
+Note how one can specify a single institution, multiple institutions,
 and no institution. In some formats (including <tt>rst</tt> and <tt>sphinx</tt>)
 only the author names appear. Some formats have
 "intelligence" in listing authors and institutions, e.g., the plain text
@@ -1006,6 +1046,9 @@ A. Dummy Author
 </pre>
 </blockquote>   <! -- end verbatim block -->
 Similar typesetting is done for LaTeX and HTML formats.
+
+<P>
+The current date can be specified as <tt>today</tt>.
 
 <P>
 
@@ -2363,6 +2406,19 @@ and make sure they decrease by two every time a lower level is encountered.
 
 <P>
 <h3>Problems with LaTeX Output</h3>
+<P>
+<h4>Error when running latex: You must 'pygmentize' installed</h4>
+<P>
+This points to the used of the Minted style for typesetting verbatim
+code. You need to run
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; latex -shell-escape file
+</pre>
+</blockquote>   <! -- end verbatim block -->
+if you have run <tt>ptex2tex</tt> with the <tt>-DMINTED</tt> option and turned on
+the use of the Minted style (and therefore <tt>pygmentize</tt> program).
+
 <P>
 <h4>The LaTeX file does not compile</h4>
 <P>

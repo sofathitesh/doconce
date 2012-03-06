@@ -328,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Feb 27, 2012</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Mar 6, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -796,6 +796,23 @@ insert verbatim block styles as defined in your <tt class="docutils literal">.pt
 file, e.g., <tt class="docutils literal">!bc cod</tt> for a code snippet, where <tt class="docutils literal">cod</tt> is set to
 a certain environment in <tt class="docutils literal">.ptex2tex.cfg</tt> (e.g., <tt class="docutils literal">CodeIntended</tt>).
 There are over 30 styles to choose from.</p>
+<p><em>Step 2b (optional).</em> Edit the <tt class="docutils literal">mydoc.tex</tt> file to your needs.
+For example, you may want to substitute <tt class="docutils literal">section</tt> by <tt class="docutils literal">section*</tt> to
+avoid numbering of sections, you may want to insert linebreaks
+(and perhaps space) in the title, etc. This can be automatically
+edited with the aid of the <tt class="docutils literal">doconce replace</tt> and <tt class="docutils literal">doconce subst</tt>
+commands. The former works with substituting text directly, while the
+latter performs substitutions using regular expressions.
+Here are some examples:</p>
+<pre class="literal-block">
+Terminal&gt; doconce replace 'section{' 'section*{' mydoc.tex
+Terminal&gt; doconce subst 'title\{(.+)Using (.+)\}' \
+          'title{\g&lt;1&gt; \\\\ [1.5mm] Using \g&lt;2&gt;' mydoc.tex
+</pre>
+<p>A lot of tailored fixes to the LaTeX document can be done by
+an appropriate set of text replacements and regular expression
+substitutions. You are anyway encourged to make a script for
+generating PDF from the LaTeX file.</p>
 <p><em>Step 3.</em> Compile <tt class="docutils literal">mydoc.tex</tt>
 and create the PDF file:</p>
 <pre class="literal-block">
@@ -806,10 +823,12 @@ Terminal&gt; bibitem mydoc     # if bibliography
 Terminal&gt; latex mydoc
 Terminal&gt; dvipdf mydoc
 </pre>
-<p>If one wishes to use the <tt class="docutils literal">Minted_Python</tt>, <tt class="docutils literal">Minted_Cpp</tt>, etc., environments
-in <tt class="docutils literal">ptex2tex</tt> for typesetting code, the <tt class="docutils literal">minted</tt> LaTeX package is needed.
-This package is included by running <tt class="docutils literal">doconce format</tt> with the
-<tt class="docutils literal"><span class="pre">-DMINTED</span></tt> option:</p>
+<p>If one wishes to use the <tt class="docutils literal">Minted_Python</tt>, <tt class="docutils literal">Minted_Cpp</tt>, etc.,
+environments in <tt class="docutils literal">ptex2tex</tt> for typesetting code (specified, e.g., in
+the <tt class="docutils literal">*pro</tt> and <tt class="docutils literal">*cod</tt> environments in <tt class="docutils literal">.ptex2tex.cfg</tt> or
+<tt class="docutils literal"><span class="pre">$HOME/.ptex2tex.cfg</span></tt>), the <tt class="docutils literal">minted</tt> LaTeX package is needed.  This
+package is included by running <tt class="docutils literal">doconce format</tt> with the <tt class="docutils literal"><span class="pre">-DMINTED</span></tt>
+option:</p>
 <pre class="literal-block">
 Terminal&gt; ptex2tex -DMINTED mydoc
 </pre>
@@ -823,9 +842,21 @@ Terminal&gt; bibitem mydoc     # if bibliography
 Terminal&gt; latex -shell-escape mydoc
 Terminal&gt; dvipdf mydoc
 </pre>
-<p>The <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option is required because the <tt class="docutils literal">minted.sty</tt> style
-file runs the <tt class="docutils literal">pygments</tt> program to format code, and this program
-cannot be run from <tt class="docutils literal">latex</tt> without the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option.</p>
+</div>
+<div class="section" id="pdflatex">
+<h2>PDFLaTeX</h2>
+<p>Running <tt class="docutils literal">pdflatex</tt> instead of <tt class="docutils literal">latex</tt> follows almost the same steps,
+but the start is:</p>
+<pre class="literal-block">
+Terminal&gt; doconce format latex mydoc
+</pre>
+<p>Then <tt class="docutils literal">ptex2tex</tt> is run as explained above, and finally:</p>
+<pre class="literal-block">
+Terminal&gt; pdflatex -shell-escape mydoc
+Terminal&gt; makeindex mydoc   # if index
+Terminal&gt; bibitem mydoc     # if bibliography
+Terminal&gt; pdflatex -shell-escape mydoc
+</pre>
 </div>
 <div class="section" id="plain-ascii-text">
 <h2>Plain ASCII Text</h2>
