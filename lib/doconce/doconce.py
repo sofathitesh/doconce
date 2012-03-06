@@ -19,8 +19,8 @@ def debugpr(out):
 
 
 from common import *
-import html, latex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc
-for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc:
+import html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc
+for module in html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc:
     #print 'calling define function in', module.__name__
     module.define(FILENAME_EXTENSION,
                   BLANKLINE,
@@ -37,15 +37,12 @@ for module in html, latex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cw
                   OUTRO)
 
 def supported_format_names():
-    return 'html', 'latex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'mwiki', 'cwiki', 'pandoc'
+    return 'html', 'latex', 'pdflatex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'mwiki', 'cwiki', 'pandoc'
 
 #----------------------------------------------------------------------------
-# Translators: (no, do not include! use import! - as shown above)
+# Translators: (do not include, use import as shown above)
 # include "common.py"
 # include "html.py"
-# include "rst.py"
-# include "st.py"
-# include "plaintext.py"
 # include "latex.py"
 #----------------------------------------------------------------------------
 

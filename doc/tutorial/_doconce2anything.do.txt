@@ -146,7 +146,25 @@ Terminal> dvipdf mydoc
 The `-shell-escape` option is required because the `minted.sty` style
 file runs the `pygments` program to format code, and this program
 cannot be run from `latex` without the `-shell-escape` option.
+The `-shell-escape` option can be ignored if not the minted style is
+used for verbatim code (check out `*pro` and `*cod` in `.ptex2tex.cfg`
+or `$HOME/.ptex2tex.cfg`).
 
+
+===== PDFLaTeX =====
+
+Running `pdflatex` instead of `latex` follows almost the same steps,
+but the start is
+!bc sys
+Terminal> doconce format latex mydoc
+!ec
+Then `ptex2tex` is run as explained above, and finally
+!bc sys
+Terminal> pdflatex -shell-escape mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> pdflatex -shell-escape mydoc
+!ec
 
 ===== Plain ASCII Text =====
 
