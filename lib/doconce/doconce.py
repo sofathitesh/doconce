@@ -1239,12 +1239,11 @@ def inline_tag_subst(filestr, format):
             for i in range(len(lines)):
                 m = re.search(tag_pattern, lines[i])
                 if m:
-                    #if 1:
                     try:
                         replacement_str = replacement(m)
-                    #else:
                     except Exception, e:
-                        print 'Problem at line', lines[i], '\n', e
+                        print 'Problem at line\n   ', lines[i], \
+                              '\nException:\n', e
                         print 'occured while replacing inline tag "%s" (%s) with aid of function %s' % (tag, tag_pattern, replacement.__name__)
                         #raise Exception(e)
                         # Raising exception is misleading since the
