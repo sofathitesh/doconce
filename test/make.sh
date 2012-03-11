@@ -16,6 +16,11 @@ doconce format cwiki testdoc.do.txt
 # Test mako variables too
 doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string'
 
+# Test grab
+doconce grab --from- '={9}' --to 'subroutine@' testdoc.do.txt > testdoc.tmp
+doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' testdoc.do.txt >> testdoc.tmp
+doconce grab --from- '\*\s+\$.+normally' testdoc.do.txt >> testdoc.tmp
+
 # Test encoding
 doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
 cp encoding1.do.txt tmp1.do.txt
