@@ -148,12 +148,20 @@ And finally a description list:
 
 ===== Comments =====
 
-Lines starting with `#` are treated as comments in the document,
-not to be displayed in the output document. Such comment lines
+Lines starting with `#` are treated as comments in the document
+and translated to the proper syntax for comments in
+the output document. Such comment lines
 should not appear before LaTeX math blocks, verbatim code blocks,
 or lists if the formats `rst` and `sphinx` are desired.
 
-Inline comments or notes to authors, in the text,
+When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file. Mako comments are recognized
+by lines starting with two hashes `##` or by blocks of text
+inside the comment directives `%<doc>` (beginning) and `<%doc/>` (end).
+
+Inline comments, in the text, that are meant as messages or notes to readers
+(authors in particular)
 are often useful and enabled by the syntax
 !bc
 [name: running text]
@@ -165,14 +173,15 @@ Running
 doconce format html mydoc.do.txt --skip_inline_comments
 !ec
 removes all such inline comments from the output. This feature makes it easy
-to turn on and off notes to authors.
+to turn on and off notes to readers and is frequently used while writing
+a document.
 
-All comments can also be physically
+All inline comments to readers can also be physically
 removed from the Doconce source if desired:
 !bc sys
 doconce remove_inline_comments mydoc.do.txt
 !ec
-
+This action is appropriate when all issues with such comments are resolved.
 
 ===== Verbatim/Computer Code =====
 

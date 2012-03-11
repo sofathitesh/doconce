@@ -16,7 +16,9 @@ The format of this document is
 % if FORMAT == 'HTML':
 plain, homemade HTML (from Doconce).
   % elif FORMAT == 'latex':
-plan, homemade LaTeX (from Doconce).
+plain, homemade LaTeX (from Doconce).
+  % elif FORMAT == 'pdflatex':
+plain, homemade pdfLaTeX (from Doconce).
   %else:
 ${FORMAT}
 % endif

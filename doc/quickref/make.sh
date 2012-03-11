@@ -1,6 +1,9 @@
 #!/bin/sh -x
 sh ./clean.sh
 
+# Make latest bin/doconce doc
+doconce > doconce_program.sh
+
 doconce format html quickref
 
 # latex (shpro because of @@@CODE copy, need minted style)
