@@ -773,7 +773,9 @@ for C, `cpp` for C++, `sh` for Unix shells, `pl` for Perl, `m` for
 Matlab, `cy` for Cython, and `py` for Python.  The argument `sys`
 means by default `console` for Sphinx and `CodeTerminal` (ptex2tex
 environent) for LaTeX. Other specifications are `dat` for a data file
-or print out, and `ipy` for interactive Python sessions.  All these
+or print out, and `ipy` for interactive Python sessions (the latter
+does not introduce any environment  in `sphinx` output, as interactive
+sessions are automatically recognized and handled).  All these
 definitions of the arguments after `!bc` can be redefined in the
 `.ptex2tex.cfg` configuration file for ptex2tex/LaTeX and in the
 `sphinx code-blocks` comments for Sphinx. Support for other languages
@@ -1355,6 +1357,13 @@ and a subsubsection must come under a subsection (you cannot have
 a subsubsection directly under a section). Search for `===`,
 count the number of equality signs (or underscores if you use that)
 and make sure they decrease by two every time a lower level is encountered.
+
+=== No code environment appears before "bc ipy" blocks ===
+
+The `!bc ipy` directive behaves this way for `sphinx` output because
+interactive sessions are automatically handled. If this is not
+appropriate, shift to `!bc cod` or another specification of the
+verbatim environment.
 
 ===== Problems with LaTeX Output ======
 

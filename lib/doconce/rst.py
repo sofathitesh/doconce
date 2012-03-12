@@ -47,7 +47,7 @@ def rst_figure(m):
     if caption and caption[-1] == '.':
         caption = caption[:-1]
     if caption:
-        result += '\n\n   *' + caption + '*\n'  # emphasize font in caption
+        result += '\n\n   *' + caption.strip() + '*\n'  # emphasize font in caption
     else:
         result += '\n\n'
     return result
