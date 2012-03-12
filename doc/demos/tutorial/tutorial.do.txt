@@ -71,7 +71,7 @@ som examples.
     URLs with links, index list, labels and references are supported.
 
   * Invisible comments in the output format can be inserted throughout
-    the text (`#` at the beginning of a line).
+    the text.
 
   * Visible comments can be inserted so that authors and readers can
     comment upon the text (and at any time turn on/off output of such

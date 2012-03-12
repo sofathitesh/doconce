@@ -1133,6 +1133,39 @@ on a linear system M{Ax=b}, where M{A}
 is an M{nxn} matrix, and M{x} and M{b}
 are vectors of length M{n}."
 
+Comments
+--------
+
+Comments intended to be visible in the output document and read by
+readers are known as I{inline comments} in Doconce and described
+in the section "Inline Tagging".
+
+Here we address comments in the Doconce source file that are not
+intended to be visible in the output document. Basic comment
+lines start with the hash C{#}::
+
+
+        #
+        # Here are some comment lines that do not affect any formatting.
+        # These lines are converted to comments in the output format.
+        #
+
+Such comment lines may have some side effects in the C{rst} and C{sphinx}
+formats because following lines are taken as part of the comment if
+there is not a blank line after the comment.
+
+The Mako preprocessor supports comments that are filtered out I{before}
+Doconce starts translating the document. Such comments are very valuable
+as they will never interfere with the output format and they are only
+present in the Doconce source. Mako has two types of comments:
+lines starting with a double hash C{##} and lines enclosed by
+the C{<%doc>} (beginning) and C{<%doc/>} (closing) tags.
+
+If you need a lot of comments in the Doconce file, consider using
+Mako comments instead of the single hash, unless you want to
+comments to be in the source code of the output document.
+
+
 Cross-Referencing
 -----------------
 

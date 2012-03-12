@@ -1113,7 +1113,11 @@ def interpret_authors(filestr, format):
     for line in author_lines:
         if ' at ' in line:
             # author and institution(s) given
-            a, i = line.split(' at ')
+            try:
+                a, i = line.split(' at ')
+            except ValueError:
+                print 'Wrong syntax of author(s) and institution(s): too many "at":\n', line, '\nauthor at inst1, adr1 and inst2, adr2a, adr2b and inst3, adr3'
+                sys.exit(1)
             a = a.strip()
             if ' and ' in i:
                 i = [w.strip() for w in i.split(' and ')]

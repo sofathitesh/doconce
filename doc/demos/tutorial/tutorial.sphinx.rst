@@ -6,7 +6,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Mar 6, 2012
+:Date: Mar 11, 2012
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -155,7 +155,7 @@ som examples.
     URLs with links, index list, labels and references are supported.
 
   * Invisible comments in the output format can be inserted throughout
-    the text (``#`` at the beginning of a line).
+    the text.
 
   * Visible comments can be inserted so that authors and readers can
     comment upon the text (and at any time turn on/off output of such

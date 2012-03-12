@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Mar 6, 2012</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Mar 11, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -521,8 +521,15 @@ Mercurial (<tt class="docutils literal">hg</tt>) directories, go to the director
 <tt class="docutils literal">hg pull; hg update</tt>, and then <tt class="docutils literal">sudo python setup.py install</tt>.
 Doconce itself is frequently updated so these commands should be
 run regularly.</p>
-<!-- some comment lines that do not affect any formatting -->
-<!-- these lines are simply removed -->
+<!-- Here are some comment lines that do not affect any formatting -->
+<!-- these lines are converted to comments in the output format. -->
+<!-- This may have some side effects, especially in rst and sphinx -->
+<!-- where lines following the comment may be taken as part of -->
+<!-- the comment if there are no blank lines after the comment. -->
+<!-- One can use ## and the mako preprocessor to remove comments -->
+<!-- *before* doconce sees the text. That can be useful when -->
+<!-- doconce comments interferes with formatting. -->
+<!-- The mako tool also supports <%doc> .. </%doc> -->
 </div>
 <div class="section" id="demos">
 <h2>Demos</h2>
@@ -1330,6 +1337,33 @@ all other formats.  The above text is typeset as &quot;Here is an example
 on a linear system Ax=b, where A
 is an nxn matrix, and x and b
 are vectors of length n.&quot;</p>
+</div>
+<div class="section" id="comments">
+<h2>Comments</h2>
+<p>Comments intended to be visible in the output document and read by
+readers are known as <em>inline comments</em> in Doconce and described
+in the section <a class="reference internal" href="#id5">Inline Tagging</a>.</p>
+<p>Here we address comments in the Doconce source file that are not
+intended to be visible in the output document. Basic comment
+lines start with the hash <tt class="docutils literal">#</tt>:</p>
+<pre class="literal-block">
+#
+# Here are some comment lines that do not affect any formatting.
+# These lines are converted to comments in the output format.
+#
+</pre>
+<p>Such comment lines may have some side effects in the <tt class="docutils literal">rst</tt> and <tt class="docutils literal">sphinx</tt>
+formats because following lines are taken as part of the comment if
+there is not a blank line after the comment.</p>
+<p>The Mako preprocessor supports comments that are filtered out <em>before</em>
+Doconce starts translating the document. Such comments are very valuable
+as they will never interfere with the output format and they are only
+present in the Doconce source. Mako has two types of comments:
+lines starting with a double hash <tt class="docutils literal">##</tt> and lines enclosed by
+the <tt class="docutils literal">&lt;%doc&gt;</tt> (beginning) and <tt class="docutils literal">&lt;%doc/&gt;</tt> (closing) tags.</p>
+<p>If you need a lot of comments in the Doconce file, consider using
+Mako comments instead of the single hash, unless you want to
+comments to be in the source code of the output document.</p>
 </div>
 <div class="section" id="cross-referencing">
 <h2>Cross-Referencing</h2>
