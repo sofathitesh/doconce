@@ -86,10 +86,11 @@ def sphinx_figure(m):
         parts[0] = parts[0].rstrip()
         if parts[0] and parts[0][-1] == '.':
             parts[0] = parts[0][:-1]
-        caption = '  label'.join(parts)
+        #caption = '  label'.join(parts)
+        caption = parts[0]
         # contrary to rst_figure, we do not write label into caption
         # since we just want to remove the whole label as part of
-        # the caption (done when handling ref and label)
+        # the caption (otherwise done when handling ref and label)
     else:
         if caption and caption[-1] == '.':
             caption = caption[:-1]
@@ -104,7 +105,8 @@ def sphinx_figure(m):
         rst_info = ['   :%s: %s' % (option, value)  for option, value in info]
         result += '\n'.join(rst_info)
     if caption:
-        result += '\n\n   *' + caption + '*\n'  # emphasize font in caption
+        #print 'caption=[%s]' % caption.strip()
+        result += '\n\n   *' + caption.strip() + '*\n'  # emphasize font in caption
     else:
         result += '\n\n'
     #print 'sphinx figure: caption=\n', caption, '\nresult:\n', result
