@@ -86,6 +86,8 @@ def sphinx_figure(m):
         parts[0] = parts[0].rstrip()
         if parts[0] and parts[0][-1] == '.':
             parts[0] = parts[0][:-1]
+        # insert emphasize marks
+        parts[0] = '*' + parts[0].strip() + '*'
         #caption = '  label'.join(parts)
         caption = parts[0]
         # contrary to rst_figure, we do not write label into caption
@@ -105,8 +107,7 @@ def sphinx_figure(m):
         rst_info = ['   :%s: %s' % (option, value)  for option, value in info]
         result += '\n'.join(rst_info)
     if caption:
-        #print 'caption=[%s]' % caption.strip()
-        result += '\n\n   *' + caption.strip() + '*\n'  # emphasize font in caption
+        result += '\n\n   ' + caption + '\n'
     else:
         result += '\n\n'
     #print 'sphinx figure: caption=\n', caption, '\nresult:\n', result

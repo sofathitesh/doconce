@@ -23,6 +23,8 @@ def rst_figure(m):
         parts[0] = parts[0].rstrip()
         if parts[0] and parts[0][-1] == '.':
             parts[0] = parts[0][:-1]
+        # insert emphasize marks
+        parts[0] = '*' + parts[0].strip() + '*'
         caption = '  label'.join(parts)
         caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
     else:
@@ -47,7 +49,7 @@ def rst_figure(m):
     if caption and caption[-1] == '.':
         caption = caption[:-1]
     if caption:
-        result += '\n\n   *' + caption.strip() + '*\n'  # emphasize font in caption
+        result += '\n\n   ' + caption + '\n'
     else:
         result += '\n\n'
     return result
