@@ -56,7 +56,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Mar 6, 2012
+Mar 11, 2012
 
 \end{DUfieldlist}
 
@@ -337,9 +337,23 @@ Mercurial (\texttt{hg}) directories, go to the directory, run
 Doconce itself is frequently updated so these commands should be
 run regularly.
 
-% some comment lines that do not affect any formatting
+% Here are some comment lines that do not affect any formatting
 
-% these lines are simply removed
+% these lines are converted to comments in the output format.
+
+% This may have some side effects, especially in rst and sphinx
+
+% where lines following the comment may be taken as part of
+
+% the comment if there are no blank lines after the comment.
+
+% One can use ## and the mako preprocessor to remove comments
+
+% *before* doconce sees the text. That can be useful when
+
+% doconce comments interferes with formatting.
+
+% The mako tool also supports <%doc> .. </%doc>
 
 
 %___________________________________________________________________________
@@ -1556,6 +1570,46 @@ all other formats.  The above text is typeset as ``Here is an example
 on a linear system Ax=b, where A
 is an nxn matrix, and x and b
 are vectors of length n.''
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Comments%
+  \addcontentsline{toc}{subsection}{Comments}%
+  \label{comments}%
+}
+
+Comments intended to be visible in the output document and read by
+readers are known as \emph{inline comments} in Doconce and described
+in the section \hyperref[id5]{Inline Tagging}.
+
+Here we address comments in the Doconce source file that are not
+intended to be visible in the output document. Basic comment
+lines start with the hash \texttt{\#}:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+\#\\
+\#~Here~are~some~comment~lines~that~do~not~affect~any~formatting.\\
+\#~These~lines~are~converted~to~comments~in~the~output~format.\\
+\#
+}
+\end{quote}
+
+Such comment lines may have some side effects in the \texttt{rst} and \texttt{sphinx}
+formats because following lines are taken as part of the comment if
+there is not a blank line after the comment.
+
+The Mako preprocessor supports comments that are filtered out \emph{before}
+Doconce starts translating the document. Such comments are very valuable
+as they will never interfere with the output format and they are only
+present in the Doconce source. Mako has two types of comments:
+lines starting with a double hash \texttt{\#\#} and lines enclosed by
+the \texttt{<\%doc>} (beginning) and \texttt{<\%doc/>} (closing) tags.
+
+If you need a lot of comments in the Doconce file, consider using
+Mako comments instead of the single hash, unless you want to
+comments to be in the source code of the output document.
 
 
 %___________________________________________________________________________

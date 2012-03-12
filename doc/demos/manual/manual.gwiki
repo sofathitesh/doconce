@@ -2,7 +2,7 @@
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== Mar 6, 2012 ====
+==== Mar 11, 2012 ====
 
 <wiki:comment> lines beginning with # are comment lines </wiki:comment>
 
@@ -175,12 +175,16 @@ run regularly.
 
 
 <wiki:comment>  </wiki:comment>
-<wiki:comment> some comment lines that do not affect any formatting </wiki:comment>
-<wiki:comment> these lines are simply removed </wiki:comment>
+<wiki:comment> Here are some comment lines that do not affect any formatting </wiki:comment>
+<wiki:comment> these lines are converted to comments in the output format. </wiki:comment>
+<wiki:comment> This may have some side effects, especially in rst and sphinx </wiki:comment>
+<wiki:comment> where lines following the comment may be taken as part of </wiki:comment>
+<wiki:comment> the comment if there are no blank lines after the comment. </wiki:comment>
 <wiki:comment>  </wiki:comment>
-<wiki:comment>  </wiki:comment>
-<wiki:comment>  </wiki:comment>
-<wiki:comment>  </wiki:comment>
+<wiki:comment> One can use ## and the mako preprocessor to remove comments </wiki:comment>
+<wiki:comment> *before* doconce sees the text. That can be useful when </wiki:comment>
+<wiki:comment> doconce comments interferes with formatting. </wiki:comment>
+<wiki:comment> The mako tool also supports <%doc> .. </%doc> </wiki:comment>
 <wiki:comment>  </wiki:comment>
 
 ==== Demos ====
@@ -1057,6 +1061,36 @@ all other formats.  The above text is typeset as "Here is an example
 on a linear system `Ax=b`, where `A`
 is an `nxn` matrix, and `x` and `b`
 are vectors of length `n`."
+
+==== Comments ====
+
+Comments intended to be visible in the output document and read by
+readers are known as *inline comments* in Doconce and described
+in the section [#Inline_Tagging].
+
+Here we address comments in the Doconce source file that are not
+intended to be visible in the output document. Basic comment
+lines start with the hash `#`:
+{{{
+#
+# Here are some comment lines that do not affect any formatting.
+# These lines are converted to comments in the output format.
+#
+}}}
+Such comment lines may have some side effects in the `rst` and `sphinx`
+formats because following lines are taken as part of the comment if
+there is not a blank line after the comment.
+
+The Mako preprocessor supports comments that are filtered out *before*
+Doconce starts translating the document. Such comments are very valuable
+as they will never interfere with the output format and they are only
+present in the Doconce source. Mako has two types of comments:
+lines starting with a double hash `##` and lines enclosed by
+the `<%doc>` (beginning) and `<%doc/>` (closing) tags.
+
+If you need a lot of comments in the Doconce file, consider using
+Mako comments instead of the single hash, unless you want to
+comments to be in the source code of the output document.
 
 ==== Cross-Referencing ====
 

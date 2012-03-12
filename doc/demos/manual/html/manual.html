@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 6, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 11, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -1016,6 +1016,33 @@ all other formats.  The above text is typeset as &#8220;Here is an example
 on a linear system <span class="math">\({\bf A}{\bf x} = {\bf b}\)</span>, where <span class="math">\(\bf A\)</span>
 is an <span class="math">\(n\times n\)</span> matrix, and <span class="math">\(\bf x\)</span> and <span class="math">\(\bf b\)</span>
 are vectors of length <span class="math">\(n\)</span>.&#8221;</p>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<p>Comments intended to be visible in the output document and read by
+readers are known as <em>inline comments</em> in Doconce and described
+in the section <a class="reference internal" href="#inline-tagging"><em>Inline Tagging</em></a>.</p>
+<p>Here we address comments in the Doconce source file that are not
+intended to be visible in the output document. Basic comment
+lines start with the hash <tt class="docutils literal"><span class="pre">#</span></tt>:</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="c">#</span>
+<span class="c"># Here are some comment lines that do not affect any formatting.</span>
+<span class="c"># These lines are converted to comments in the output format.</span>
+<span class="c">#</span>
+</pre></div>
+</div>
+<p>Such comment lines may have some side effects in the <tt class="docutils literal"><span class="pre">rst</span></tt> and <tt class="docutils literal"><span class="pre">sphinx</span></tt>
+formats because following lines are taken as part of the comment if
+there is not a blank line after the comment.</p>
+<p>The Mako preprocessor supports comments that are filtered out <em>before</em>
+Doconce starts translating the document. Such comments are very valuable
+as they will never interfere with the output format and they are only
+present in the Doconce source. Mako has two types of comments:
+lines starting with a double hash <tt class="docutils literal"><span class="pre">##</span></tt> and lines enclosed by
+the <tt class="docutils literal"><span class="pre">&lt;%doc&gt;</span></tt> (beginning) and <tt class="docutils literal"><span class="pre">&lt;%doc/&gt;</span></tt> (closing) tags.</p>
+<p>If you need a lot of comments in the Doconce file, consider using
+Mako comments instead of the single hash, unless you want to
+comments to be in the source code of the output document.</p>
 </div>
 <div class="section" id="cross-referencing">
 <h2>Cross-Referencing<a class="headerlink" href="#cross-referencing" title="Permalink to this headline">¶</a></h2>
@@ -2076,6 +2103,7 @@ groundwater flow.
 <li><a class="reference internal" href="#movies">Movies</a></li>
 <li><a class="reference internal" href="#copying-computer-code-from-source-files">Copying Computer Code from Source Files</a></li>
 <li><a class="reference internal" href="#inline-tagging">Inline Tagging</a></li>
+<li><a class="reference internal" href="#comments">Comments</a></li>
 <li><a class="reference internal" href="#cross-referencing">Cross-Referencing</a></li>
 <li><a class="reference internal" href="#index-and-bibliography">Index and Bibliography</a></li>
 <li><a class="reference internal" href="#tables">Tables</a></li>
