@@ -351,7 +351,8 @@ def latex_ref_and_label(section_label2title, format, filestr):
     #                 r'\g<1>{\LaTeX}\g<2>', filestr)
     filestr = re.sub(r'''([^"'`*-])\bLaTeX\b([^"'`*-])''',
                      r'\g<1>{\LaTeX}\g<2>', filestr)
-    # Not good enough for `LaTeX`: filestr = re.sub(r'\bLaTeX\b', r'{\LaTeX}', filestr)
+    # This one is not good enough for verbatim `LaTeX`:
+    #filestr = re.sub(r'\bLaTeX\b', r'{\LaTeX}', filestr)
 
     # handle & (Texas A&M -> Texas A{\&}M):
     filestr = re.sub(r'([A-Za-z])\s*&\s*([A-Za-z])', r'\g<1>{\&}\g<2>', filestr)
@@ -360,10 +361,14 @@ def latex_ref_and_label(section_label2title, format, filestr):
     chars = {'æ': r'{\ae}', 'ø': r'{\o}', 'å': r'{\aa}',
              'Æ': r'{\AE}', 'Ø': r'{\O}', 'Å': r'{\AA}',
              }
+    # Not implemented
     #for c in chars:
     #    filestr, n = re.subn(c, chars[c], filestr)
     #    print '%d subst of %s' % (n, c)
     #    #filestr = filestr.replace(c, chars[c])
+
+    # Handle 50% and similar
+    filestr = re.sub(r'([0-9]{1,3})%', r'\g<1>\%', filestr)
 
     # fix periods followed by too long space:
     prefix = r'Prof\.', r'Profs\.', r'prof\.', r'profs\.', r'Dr\.', \

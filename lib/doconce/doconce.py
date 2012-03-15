@@ -458,34 +458,53 @@ def insert_code_from_file(filestr, format):
                 # is 'from-to:', and copy all lines up to, but not including,
                 # the line matching to_
 
+                from_found = False
+                to_found = False
                 codelines = []
                 copy = False
                 for codeline in codefile:
                     mf = cfrom.search(codeline)
-                    if mf and fromto == 'fromto:':
+                    if mf and fromto == 'fromto:' and not to_found:
+                        # The test on not to_found ensures that
+                        # we cannot get a second match for from_
+                        # (which copies to the end if there are no
+                        # following matches for to_!)
                         copy = True
+                        from_found = True
                         debugpr('hit (fromto:) start "%s" (as "%s") in the line\n%s\ncode environment: %s' % (from_, codeline[mf.start():mf.end()], codeline, code_envir if code_envir else 'none'))
 
                     if to_:
                         mt = cto.search(codeline)
                         if mt:
                             copy = False
+                            to_found = True
                             # now the to_ line is not included
                             debugpr('hit end "%s" (as "%s") in the line\n%s' % \
                                     (to_, codeline[mt.start():mt.end()],
                                      codeline))
                     if copy:
                         debugpr('copy: %s' % codeline.rstrip())
+                        if codeline[-2:] == '\\\n':
+                            # Insert extra space to preserve
+                            # continuation line
+                            codeline = codeline[:-2] + '\\ \n'
                         codelines.append(codeline)
 
-                    if mf and fromto == 'from-to:':
+                    if mf and fromto == 'from-to:' and not to_found:
                         copy = True  # start copy from next codeline
+                        from_found = True
                         debugpr('hit (from-to:) start "%s" (as "%s") in the line\n%s\ncode environment: %s' % (from_, codeline[mf.start():mf.end()], codeline, code_envir if code_envir else 'none'))
 
                 code = ''.join(codelines)
                 code = code.rstrip() # remove trailing whitespace
                 if code == '' or code.isspace():
-                    print '....no match for regex! Abort.'
+                    if not from_found:
+                        print 'Could not find regex "%s".' % from_,
+                    if not to_found:
+                        print 'Could not find regex "%s".' % to_,
+                    if from_found and to_found:
+                        print 'From and to regex match at the same line - empty text.',
+                    print 'Abort!'
                     sys.exit(1)
             codefile.close()
 
@@ -1624,7 +1643,13 @@ python-mako package (sudo apt-get install python-mako).
                 kwargs[key] = value
         debugpr('Keyword arguments to be sent to mako: %s' % \
                 pprint.pformat(kwargs))
-        f.write(temp.render(**kwargs))
+        try:
+            f.write(temp.render(**kwargs))
+        except TypeError, e:
+            if "'Undefined' object is not callable" in str(e):
+                calls = '\n'.join(re.findall(r'(\$\{[A-Za-z0-9_ ]+?\()[^}]+?\}', filestr))
+                raise TypeError('${func(...)} calls undefined function "func",\ncheck all ${...} occurences in the file for possible typos:\n%s' % calls)
+
         f.close()
         if preprocessor_options:
             print 'mako variables:', kwargs
