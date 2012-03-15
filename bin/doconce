@@ -1048,7 +1048,14 @@ def clean():
     if os.path.isdir('Trash'):
         print
         shutil.rmtree('Trash')
-    removed = 'Removing Trash directory'
+        print 'Removing Trash directory'
+    removed = []
+    debug_log = '_doconce_debugging.log'
+    if os.path.isfile(debug_log):
+        removed.append(debug_log)
+    prepro_file = '__tmp.do.txt'
+    if os.path.isfile(prepro_file):
+        removed.append(prepro_file)
     doconce_files = glob.glob('*.do.txt')
     for dof in doconce_files:
         namestem = dof[:-7]

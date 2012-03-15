@@ -154,7 +154,8 @@ def syntax_check(filestr, format):
                 sys.exit(1)
         if not inside_math:
             if "''" in line:
-                print '''\nWarning: Double forward-quotes '' found in file - should be "\n(unless derivatives in math)'''
+                #print '''\nWarning: Double forward-quotes '' found in file - should be "\n(unless derivatives in math)'''
+                pass
 
     commands = [
         'begin{equation}',
@@ -1563,7 +1564,13 @@ def preprocess(filename, format, preprocessor_options=[]):
     if re.search(preprocess_commands, filestr, re.MULTILINE):
         #print 'run preprocess on', filename, 'to make', resultfile
         preprocessor = 'preprocess'
-        preprocess_options = ' '.join(preprocessor_options)
+        # Add -D to name=value options (mako style parameters)
+        preprocess_options = preprocessor_options[:]  # copy
+        for i in range(len(preprocess_options)):
+            if preprocess_options[i][:2] != '-U' and \
+               preprocess_options[i][:2] != '-D':
+                preprocess_options[i] = '-D' + preprocess_options[i]
+        preprocess_options = ' '.join(preprocess_options)
         resultfile = '__tmp.do.txt'
 
         # Syntax check: preprocess directives without leading #?
@@ -1597,12 +1604,14 @@ preprocess package (sudo apt-get install preprocess).
             print 'Could not run preprocessor:\n%s' % cmd
             print outtext
             sys.exit(1)
+        # Make filestr the result of preprocess in case mako shall be run
+        f = open(resultfile, 'r'); filestr = f.read(); f.close()
+
 
     if re.search(mako_commands, filestr, re.MULTILINE):
         if preprocessor is not None:  # already found preprocess commands?
-            print 'preprocess and mako preprocessor statements are mixed!'
-            print 'Use only one of them!'
-            sys.exit(1)
+            # The output is in resultfile, preprocess is run on that
+            filename = resultfile
         preprocessor = 'mako'
         resultfile = '__tmp.do.txt'
 
@@ -1617,13 +1626,15 @@ python-mako package (sudo apt-get install python-mako).
 """ % filename
             sys.exit(1)
 
-        print 'run mako preprocessor on', filename, 'to make', resultfile
+        print 'run mako on', filename, 'to make', resultfile
         # add a space after \\ at the end of lines (otherwise mako
         # eats one of the backslashes in tex blocks)
+        # same for a single \ before newline
         f = open(filename, 'r')
         filestr = f.read()
         f.close()
         filestr = filestr.replace('\\\\\n', '\\\\ \n')
+        filestr = filestr.replace('\\\n', '\\ \n')
         f = open(resultfile, 'w')
         f.write(filestr)
         f.close()
@@ -1765,7 +1776,7 @@ def main():
     #print '\n----- doconce format %s %s' % (format, filename)
     filename_preprocessed = preprocess(filename, format, sys.argv[1:])
     file2file(filename_preprocessed, format, out_filename)
-    if filename_preprocessed.startswith('__'):
+    if filename_preprocessed.startswith('__') and not debug:
         os.remove(filename_preprocessed)  # clean up
     #print '----- successful run: %s filtered to %s\n' % (filename, out_filename)
     print 'output in', out_filename
