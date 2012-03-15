@@ -1007,21 +1007,31 @@ def grab():
         to_included = True
         to_text = '@\n\n@'  # impossible text (has newlines)
 
+    from_found = False
+    to_found = False
     copy = False
     lines = []  # grabbed lines
     for line in open(filename, 'r'):
         m_from = re.search(from_text, line)
         m_to = re.search(to_text, line)
-        if m_from:
+        if m_from and not to_found:
             copy = True
+            from_found = True
             if from_included:
                 lines.append(line)
         elif m_to:
             copy = False
+            to_found = True
             if to_included:
                 lines.append(line)
         elif copy:
             lines.append(line)
+    if not from_found:
+        print 'Could not find match for from regex "%s"' % from_text
+        sys.exit(1)
+    if not to_found:
+        print 'Could not find match for to   regex "%s"' % to_text
+        sys.exit(1)
     print ''.join(lines).rstrip()
 
 
