@@ -464,7 +464,7 @@ def insert_code_from_file(filestr, format):
                 copy = False
                 for codeline in codefile:
                     mf = cfrom.search(codeline)
-                    if mf and fromto == 'fromto:' and not to_found:
+                    if mf and fromto == 'fromto:' and not from_found:
                         # The test on not to_found ensures that
                         # we cannot get a second match for from_
                         # (which copies to the end if there are no
@@ -490,7 +490,7 @@ def insert_code_from_file(filestr, format):
                             codeline = codeline[:-2] + '\\ \n'
                         codelines.append(codeline)
 
-                    if mf and fromto == 'from-to:' and not to_found:
+                    if mf and fromto == 'from-to:' and not from_found:
                         copy = True  # start copy from next codeline
                         from_found = True
                         debugpr('hit (from-to:) start "%s" (as "%s") in the line\n%s\ncode environment: %s' % (from_, codeline[mf.start():mf.end()], codeline, code_envir if code_envir else 'none'))
@@ -508,8 +508,9 @@ def insert_code_from_file(filestr, format):
                     sys.exit(1)
             codefile.close()
 
-            if format == 'latex' or format == 'pdflatex' or format == 'sphinx':
+            #if format == 'latex' or format == 'pdflatex' or format == 'sphinx':
                 # Insert a cod or pro directive for ptex2tex and sphinx.
+            if True:
                 if complete_file:
                     code = "!bc %spro\n%s\n!ec" % (code_envir, code)
                     print ' (%spro)' % code_envir
@@ -1626,8 +1627,11 @@ python-mako package (sudo apt-get install python-mako).
         f = open(resultfile, 'w')
         f.write(filestr)
         f.close()
+
         from mako.template import Template
-        temp = Template(filename=resultfile)
+        from mako.lookup import TemplateLookup
+        lookup = TemplateLookup(directories=[os.curdir])
+        temp = Template(filename=resultfile, lookup=lookup)
         f = open(resultfile, 'w')
         kwargs = {'FORMAT': format}
         for option in preprocessor_options:
@@ -1648,7 +1652,13 @@ python-mako package (sudo apt-get install python-mako).
         except TypeError, e:
             if "'Undefined' object is not callable" in str(e):
                 calls = '\n'.join(re.findall(r'(\$\{[A-Za-z0-9_ ]+?\()[^}]+?\}', filestr))
-                raise TypeError('${func(...)} calls undefined function "func",\ncheck all ${...} occurences in the file for possible typos:\n%s' % calls)
+                print '${func(...)} calls undefined function "func",\ncheck all ${...} calls in the file(s) for possible typos and lack of namespace includes!\n%s' % calls
+                sys.exit(1)
+        except NameError, e:
+            if "Undefined" in str(e):
+                variables = '\n'.join(re.findall(r'\$\{[A-Za-z0-9_]+?\}', filestr))
+                print 'One or more ${var} variables are undefined, check all!\n%s' % variables
+                sys.exit(1)
 
         f.close()
         if preprocessor_options:

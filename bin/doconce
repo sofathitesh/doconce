@@ -1014,7 +1014,7 @@ def grab():
     for line in open(filename, 'r'):
         m_from = re.search(from_text, line)
         m_to = re.search(to_text, line)
-        if m_from and not to_found:
+        if m_from and not from_found:
             copy = True
             from_found = True
             if from_included:
