@@ -446,7 +446,7 @@ def insert_code_from_file(filestr, format):
                     raise SyntaxError, \
                     'Syntax error: missing @ in regex in line\n  %s' % line
 
-                print 'copy %s regex "%s" until "%s" in %s' % \
+                print 'copy %s regex "%s" until "%s"\n     file: %s,' % \
                       ('after' if fromto == 'from-to:' else 'from',
                        from_, to_, filename),
                 # Note that from_ and to_ are regular expressions
@@ -459,11 +459,14 @@ def insert_code_from_file(filestr, format):
                 # is 'from-to:', and copy all lines up to, but not including,
                 # the line matching to_
 
+                codefile_lines = codefile.readlines()
                 from_found = False
                 to_found = False
+                from_line = -1
+                to_line = len(codefile_lines)
                 codelines = []
                 copy = False
-                for codeline in codefile:
+                for line_no, codeline in enumerate(codefile_lines):
                     mf = cfrom.search(codeline)
                     if mf and fromto == 'fromto:' and not from_found:
                         # The test on not to_found ensures that
@@ -472,17 +475,17 @@ def insert_code_from_file(filestr, format):
                         # following matches for to_!)
                         copy = True
                         from_found = True
-                        debugpr('hit (fromto:) start "%s" (as "%s") in the line\n%s\ncode environment: %s' % (from_, codeline[mf.start():mf.end()], codeline, code_envir if code_envir else 'none'))
+                        from_line = line_no+1
+                        debugpr('hit (fromto:) start "%s" (as "%s") in line no. %d\n%s\ncode environment: %s' % (from_, codeline[mf.start():mf.end()], line_no+1, codeline, code_envir if code_envir else 'none'))
 
                     if to_:
                         mt = cto.search(codeline)
                         if mt:
                             copy = False
                             to_found = True
+                            to_line = line_no+1
                             # now the to_ line is not included
-                            debugpr('hit end "%s" (as "%s") in the line\n%s' % \
-                                    (to_, codeline[mt.start():mt.end()],
-                                     codeline))
+                            debugpr('hit end "%s" (as "%s") in line no. %d\n%s' %  (to_, codeline[mt.start():mt.end()], line_no+1, codeline))
                     if copy:
                         debugpr('copy: %s' % codeline.rstrip())
                         if codeline[-2:] == '\\\n':
@@ -494,7 +497,8 @@ def insert_code_from_file(filestr, format):
                     if mf and fromto == 'from-to:' and not from_found:
                         copy = True  # start copy from next codeline
                         from_found = True
-                        debugpr('hit (from-to:) start "%s" (as "%s") in the line\n%s\ncode environment: %s' % (from_, codeline[mf.start():mf.end()], codeline, code_envir if code_envir else 'none'))
+                        from_line = line_no+2
+                        debugpr('hit (from-to:) start "%s" (as "%s") in line no. %d\n%s\ncode environment: %s' % (from_, codeline[mf.start():mf.end()], line_no+1, codeline, code_envir if code_envir else 'none'))
 
                 code = ''.join(codelines)
                 code = code.rstrip() # remove trailing whitespace
@@ -504,20 +508,21 @@ def insert_code_from_file(filestr, format):
                     if not to_found:
                         print 'Could not find regex "%s".' % to_,
                     if from_found and to_found:
-                        print 'From and to regex match at the same line - empty text.',
+                        print '"From" and "to" regex match at the same line - empty text.',
                     print 'Abort!'
                     sys.exit(1)
             codefile.close()
+            print ' lines %d-%d' % (from_line, to_line),
 
             #if format == 'latex' or format == 'pdflatex' or format == 'sphinx':
                 # Insert a cod or pro directive for ptex2tex and sphinx.
             if True:
                 if complete_file:
                     code = "!bc %spro\n%s\n!ec" % (code_envir, code)
-                    print ' (%spro)' % code_envir
+                    print ' (format: %spro)' % code_envir
                 else:
                     code = "!bc %scod\n%s\n!ec" % (code_envir, code)
-                    print ' (%scod)' % code_envir
+                    print ' (format: %scod)' % code_envir
             else:
                 code = "!bc\n%s\n!ec" % code
                 print
