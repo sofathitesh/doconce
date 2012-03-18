@@ -1078,8 +1078,11 @@ def clean():
         for f in removed:
             try:
                 shutil.move(f, 'Trash')
-            except shutil.Error:
-                print 'Failed to move', f, '- run doconce clean once more'
+            except shutil.Error, e:
+                if 'already exists' in str(e):
+                    pass
+                else:
+                    print 'Move problems with', f, e
             if os.path.isdir(f):
                 shutil.rmtree(f)
 

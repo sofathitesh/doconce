@@ -24,40 +24,41 @@ f.close()
 # it is to quote the backslash correctly for matching, substitution
 # and output strings when using re.sub for latex text!
 subst = dict(
-author=(re.compile(r'\\author\{(?P<subst>.+)\}'), r'# AUTHOR: \g<subst>'),
-title=(re.compile(r'\\title\{(?P<subst>.+)\}'), r'# TITLE: \g<subst>'),
-section=(re.compile(r'\\section\{(?P<subst>.+)\}'), r'======= \g<subst> ======='),
-subsection=(re.compile(r'\\subsection\{(?P<subst>.+)\}'), r'===== \g<subst> ====='),
-subsubsection=(re.compile(r'\\subsubsection\{(?P<subst>.+)\}'), r'=== \g<subst> ==='),
-paragraph=(re.compile(r'\\paragraph\{(?P<subst>.+?)\}'), r'__\g<subst>__'),
-para=(re.compile(r'\\para\{(?P<subst>.+?)\}'), r'__\g<subst>__'),
-emph=(re.compile(r'\\emph\{(?P<subst>.+?)\}'), r'*\g<subst>*'),
-code=(re.compile(r'\\code\{(?P<subst>[^}]+)\}'), r'`\g<subst>`'),
-emp=(re.compile(r'\\emp\{(?P<subst>[^}]+)\}'), r'`\g<subst>`'),
-codett=(re.compile(r'\\codett\{(?P<subst>[^}]+)\}'), r'`\g<subst>`'),
-refeq=(re.compile(r'\\refeq\{(?P<subst>.+?)\}'), r'(ref{\g<subst>})'),
-eqref=(re.compile(r'\\eqref\{(?P<subst>.+?)\}'), r'(ref{\g<subst>})'),
-label_space=(re.compile(r'(\S)\\label\{'), r'\g<1> \\label{'),
-idx_space=(re.compile(r'(\S)\\idx(.?)\{'), r'\g<1> \\idx\g<2>{'),
-index_space=(re.compile(r'(\S)\\index\{'), r'\g<1> \\index{'),
-label=(re.compile(r'\\label\{(?P<subst>.+?)\}'), r'label{\g<subst>}'),
-idx=(re.compile(r'\\idx\{(?P<subst>.+?)\}'), r'idx{`\g<subst>`}'),
-idxf=(re.compile(r'\\idxf\{(?P<subst>.+?)\}'), r'idx{`\g<subst>` function}'),
-idxs=(re.compile(r'\\idxs\{(?P<subst>.+?)\}'), r'idx{`\g<subst>` script}'),
-idxp=(re.compile(r'\\idxp\{(?P<subst>.+?)\}'), r'idx{`\g<subst>` program}'),
-idxc=(re.compile(r'\\idxc\{(?P<subst>.+?)\}'), r'idx{`\g<subst>` class}'),
-idxm=(re.compile(r'\\idxm\{(?P<subst>.+?)\}'), r'idx{`\g<subst>` module}'),
-idxfn=(re.compile(r'\\idxfn\{(?P<subst>.+?)\}'), r'idx{`\g<subst>` (FEniCS)}'),
-index=(re.compile(r'\\index\{(?P<subst>.+?)\}'), r'idx{\g<subst>}'),
+author=(r'\\author\{(?P<subst>.+)\}', r'# AUTHOR: \g<subst>'),
+title=(r'\\title\{(?P<subst>.+)\}', r'# TITLE: \g<subst>'),
+section=(r'\\section\{(?P<subst>.+)\}', r'======= \g<subst> ======='),
+subsection=(r'\\subsection\{(?P<subst>.+)\}', r'===== \g<subst> ====='),
+subsubsection=(r'\\subsubsection\{(?P<subst>.+)\}', r'=== \g<subst> ==='),
+paragraph=(r'\\paragraph\{(?P<subst>.+?)\}', r'__\g<subst>__'),
+para=(r'\\para\{(?P<subst>.+?)\}', r'__\g<subst>__'),
+emph=(r'\\emph\{(?P<subst>.+?)\}', r'*\g<subst>*'),
+code=(r'\\code\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
+emp=(r'\\emp\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
+codett=(r'\\codett\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
+refeq=(r'\\refeq\{(?P<subst>.+?)\}', r'(ref{\g<subst>})'),
+eqref=(r'\\eqref\{(?P<subst>.+?)\}', r'(ref{\g<subst>})'),
+label_space=(r'(\S)\\label\{', r'\g<1> \\label{'),
+idx_space=(r'(\S)\\idx(.?)\{', r'\g<1> \\idx\g<2>{'),
+index_space=(r'(\S)\\index\{', r'\g<1> \\index{'),
+label=(r'\\label\{(?P<subst>.+?)\}', r'label{\g<subst>}'),
+idx=(r'\\idx\{(?P<subst>.+?)\}', r'idx{`\g<subst>`}'),
+idxf=(r'\\idxf\{(?P<subst>.+?)\}', r'idx{`\g<subst>` function}'),
+idxs=(r'\\idxs\{(?P<subst>.+?)\}', r'idx{`\g<subst>` script}'),
+idxp=(r'\\idxp\{(?P<subst>.+?)\}', r'idx{`\g<subst>` program}'),
+idxc=(r'\\idxc\{(?P<subst>.+?)\}', r'idx{`\g<subst>` class}'),
+idxm=(r'\\idxm\{(?P<subst>.+?)\}', r'idx{`\g<subst>` module}'),
+idxfn=(r'\\idxfn\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (FEniCS)}'),
+index=(r'\\index\{(?P<subst>.+?)\}', r'idx{\g<subst>}'),
 )
 
 for item in subst:
-    cpattern, replacement = subst[item]
+    pattern, replacement = subst[item]
+    cpattern = re.compile(pattern)
     if cpattern.search(filestr):
-        print 'substituting', item, 'to', replacement
+        print 'substituting', item, subst[item][0]
         filestr = cpattern.sub(replacement, filestr)
     else:
-        print 'no occurence of', item
+        print 'no occurence of', item, subst[item][0]
 
 replace = [
     # make sure \beqan comes before \beqa and \beq in replacements...
@@ -77,6 +78,18 @@ replace = [
     (r'\refeq', r'\eqref'),
     ("''", '"'),
     ("``", '"'),
+    ("Chapter~", "Chapter "),
+    ("Section~", "Section "),
+    ("Figure~", "Figure "),
+    ("Table~", "Table "),
+    ("Chapters~", "Chapters "),
+    ("Sections~", "Sections "),
+    ("Figures~", "Figures "),
+    ("Tables~", "Tables "),
+    ("Chap.~", "Chap. "),
+    ("Sec.~", "Sec. "),
+    ("Fig.~", "Fig. "),
+    ("Tab.~", "Tab. "),
     ]
 
 replace_wfix = [
@@ -86,14 +99,21 @@ replace_wfix = [
 # Pure string replacements:
 for from_, to_ in replace:
     if from_ in filestr:
-        filestr = filestr.replace(from_, to_)
-        print '   ....replacing', from_
+        if filestr != filestr.replace(from_, to_):
+            filestr = filestr.replace(from_, to_)
+            print '   ....replacing', from_
 for trouble, from_, to_ in replace_wfix:
     if from_ in filestr:
         filestr = filestr.replace(trouble, 'XXXXXXY')
         filestr = filestr.replace(from_, to_)
         filestr = filestr.replace('XXXXXXY', trouble)
         print '   ....replacing', from_
+
+if '{eqnarray' in filestr:
+    print '\nyou must change begin/end{eqnarray manually to begin/end{align\n'
+
+if '{figure}' in filestr:
+    print '\nyou must change figures manually\n'
 
 # problems:
 problems = [
@@ -184,6 +204,7 @@ filestr = filestr.replace(r'\label{', 'label{')
 filestr = filestr.replace(r'\ref{', 'ref{')
 filestr = filestr.replace(r'\cite{', 'cite{')
 ofilestr = filestr.replace(r'~', ' ')
+print '\n\n----------------------------------------------------------------\n'
 print filestr
 
 # footnotes? cannot be treated - no footnotes in doconce, try to avoid
