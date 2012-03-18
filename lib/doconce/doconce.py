@@ -509,7 +509,7 @@ def insert_code_from_file(filestr, format):
                         print 'Could not find regex "%s".' % to_,
                     if from_found and to_found:
                         print '"From" and "to" regex match at the same line - empty text.',
-                    print 'Abort!'
+                    print '\nAbort!'
                     sys.exit(1)
             codefile.close()
             print ' lines %d-%d' % (from_line, to_line),
