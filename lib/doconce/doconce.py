@@ -259,7 +259,7 @@ def syntax_check(filestr, format):
             sys.exit(1)
     """
 
-    pattern = r'__[A-Za-z0-9,:` ]+__\.'
+    pattern = r'__[A-Z][A-Za-z0-9,:` ]+__\.'
     matches = re.findall(pattern, filestr)
     if matches:
         print '\nSyntax error: Wrong paragraphs'
