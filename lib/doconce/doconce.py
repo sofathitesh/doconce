@@ -511,8 +511,8 @@ def insert_code_from_file(filestr, format):
                         print '"From" and "to" regex match at the same line - empty text.',
                     print '\nAbort!'
                     sys.exit(1)
+                print ' lines %d-%d' % (from_line, to_line),
             codefile.close()
-            print ' lines %d-%d' % (from_line, to_line),
 
             #if format == 'latex' or format == 'pdflatex' or format == 'sphinx':
                 # Insert a cod or pro directive for ptex2tex and sphinx.
