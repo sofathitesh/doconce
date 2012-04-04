@@ -561,6 +561,7 @@ def exercises(filestr, format):
             inside_exer = True
             exer['text'] = []
             exer['hint'] = {}
+            exer['comments'] = []
             exer_counter += 1
             exer['no'] = exer_counter
             hint_counter = 0
@@ -590,10 +591,16 @@ def exercises(filestr, format):
                 inside_hint = True
                 text_line = False
             if inside_hint:
-                exer['hint'][hint_counter].append(lines[i])
+                if lines[i].startswith('#'):
+                    exer['comments'].append(lines[i])
+                else:
+                    exer['hint'][hint_counter].append(lines[i])
 
             if text_line and not label_info_line:
-                exer['text'].append(lines[i])
+                if lines[i].startswith('#'):
+                    exer['comments'].append(lines[i])
+                else:
+                    exer['text'].append(lines[i])
         else:  # outside exercise
             newlines.append(lines[i])
 
@@ -608,6 +615,7 @@ def exercises(filestr, format):
             exer['text'] = '\n'.join(exer['text']).strip()
             for hint_no in exer['hint']:
                 exer['hint'][hint_no] = '\n'.join(exer['hint'][hint_no]).strip()
+            exer['comments'] = '\n'.join(exer['comments']).strip()
 
             debugpr(pprint.pformat(exer))
             formatted_exercise = EXERCISE[format](exer)
@@ -1668,7 +1676,7 @@ python-mako package (sudo apt-get install python-mako).
         except TypeError, e:
             if "'Undefined' object is not callable" in str(e):
                 calls = '\n'.join(re.findall(r'(\$\{[A-Za-z0-9_ ]+?\()[^}]+?\}', filestr))
-                print '${func(...)} calls undefined function "func",\ncheck all ${...} calls in the file(s) for possible typos and lack of namespace includes!\n%s' % calls
+                print '${func(...)} calls undefined function "func",\ncheck all ${...} calls in the file(s) for possible typos and lack of includes!\n%s' % calls
                 sys.exit(1)
         except NameError, e:
             if "Undefined" in str(e):

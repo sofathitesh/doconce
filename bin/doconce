@@ -643,24 +643,17 @@ for figdir in figdirs:
         print 'copying', figdir, 'to', sphinx_rootdir
         shutil.copytree(figdir, destdir)
 
-# Copy linked local files, placed in _static*, to %(sphinx_rootdir)s/_statc
+# Copy linked local files, placed in _static*, to %(sphinx_rootdir)s/_static
 staticdirs = glob.glob('_static*')
 for staticdir in staticdirs:
     # Copy files whose linkes were fixed by doconce sphinxfix_localURLs
+    # or files stored explicitly in staticdir by the user
     system('cp -r %%s/* %(sphinx_rootdir)s/_static/' %% staticdir)
     # (Note: must do cp -r since shutil.copy/copytree cannot copy a la cp -r)
-    htmlfiles = glob.glob(os.path.join(staticdir, '*.html')) + glob.glob(os.path.join(staticdir, '*.htm'))
-    #if htmlfiles:
-    if 0:
-        print """
-There are HTML files in _static:
-%%s
-These may link to other files and thus require copying
-of more files to %(sphinx_rootdir)s/_static!
-It may be simpler to move the relevant files to _static
-and link directly from doconce to _static.
-""" %% htmlfiles
-        sys.exit(0)  # postpone running sphinx
+
+# Note that HTML files in staticdirs may contain links to local HTML
+# files that must also be copied (sphinxfix_localURLs can only detect
+# the first link).
 
 # Compile web version of the sphinx document
 os.chdir(sphinx_rootdir)
@@ -1050,12 +1043,12 @@ def clean():
         shutil.rmtree('Trash')
         print 'Removing Trash directory'
     removed = []
-    debug_log = '_doconce_debugging.log'
-    if os.path.isfile(debug_log):
-        removed.append(debug_log)
-    prepro_file = '__tmp.do.txt'
-    if os.path.isfile(prepro_file):
-        removed.append(prepro_file)
+
+    trash_files = '_doconce_debugging.log', '__tmp.do.txt', 'texput.log'
+    for trash_file in trash_files:
+        if os.path.isfile(trash_file):
+            removed.append(trash_file)
+
     doconce_files = glob.glob('*.do.txt')
     for dof in doconce_files:
         namestem = dof[:-7]

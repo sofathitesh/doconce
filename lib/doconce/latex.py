@@ -411,6 +411,8 @@ def latex_index_bib(filestr, index, citations, bibfile):
 
 
 def latex_exercise(exer):
+    import pprint; pprint.pprint(exer) #[[[
+
     s = ''  # result string
     if not 'heading' in exer:
         print 'Wrong formatting of exercise, not a 3/5 === type heading'
@@ -425,9 +427,14 @@ def latex_exercise(exer):
         s += 'label{%s}' % exer['label'] + '\n'
     s += '\n' + exer['text'] + '\n'
     for hint_no in sorted(exer['hint']):
-        s += '\n' + exer['hint'][hint_no] + '\n'
+        s += exer['hint'][hint_no]
+        #s += '\n' + exer['hint'][hint_no] + '\n'
     if 'file' in exer:
-        s += '\n' + r'\noindent' + '\nFilename: ' + r'\code{%s}' % exer['file'] + '\n'
+        #s += '\n' + r'\noindent' + '\nFilename: ' + r'\code{%s}' % exer['file'] + '\n'
+        s += ' Filename: ' + r'\code{%s}' % exer['file'] + '\n'
+    if 'comments' in exer:
+        s += '\n' + exer['comments']
+    print repr(exer) #[[[
     if 'solution' in exer:
         pass
     return s
