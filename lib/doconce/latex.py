@@ -425,11 +425,11 @@ def latex_exercise(exer):
         s += 'label{%s}' % exer['label'] + '\n'
     s += '\n' + exer['text'] + '\n'
     for hint_no in sorted(exer['hint']):
-        s += exer['hint'][hint_no]
+        s += exer['hint'][hint_no] + '\n'
         #s += '\n' + exer['hint'][hint_no] + '\n'
     if 'file' in exer:
         #s += '\n' + r'\noindent' + '\nFilename: ' + r'\code{%s}' % exer['file'] + '\n'
-        s += ' Filename: ' + r'\code{%s}' % exer['file'] + '\n'
+        s += 'Filename: ' + r'\code{%s}' % exer['file'] + '.\n'
     if 'comments' in exer:
         s += '\n' + exer['comments']
     if 'solution' in exer:
