@@ -1206,6 +1206,15 @@ well for his diverse applications of it.
 
 ===== General Problems ======
 
+=== Something goes wrong in the preprocessing step ===
+
+Doconce automatically removes the file `__tmp.do.txt`, which is the
+resulting of the preprocessing stge and the file to examine if
+something goes wrong in this stage (i.e., when `mako` and/or
+`preprocess` is run). Add the `--debug` flag at the end of the
+`doconce` command to (both make a debug file and) avoid that
+`__tmp.do.txt` is deleted.
+
 === Figure captions are incomplete ===
 
 If only the first part of a figure caption in the Doconce file is seen
@@ -1243,6 +1252,9 @@ see the "`examples` directory": "src/examples/index.html"
 !ec
 will not come out right in the reST/Sphinx formats.
 
+=== Inline verbatim code is not detected ===
+
+Make sure there is a space before the first backquote.
 
 === Strange non-English characters ===
 
@@ -1348,6 +1360,12 @@ will include the list if the list is indentend. Remove the comment.
 This may happen if there is much inline math in the text. reST cannot
 understand inline LaTeX commands and interprets them as illegal code.
 Just ignore these error messages.
+
+=== Warning about duplicate link names ===
+
+Link names should be unique, but if (e.g.) "file" is used as link text
+several places in a reST file, the links still work. The warning can
+therefore be ignorned.
 
 === Inconsistent headings in reST ===
 

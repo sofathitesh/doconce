@@ -267,9 +267,12 @@ def plain_exercise(exer):
     for hint_no in sorted(exer['hint']):
         s += '\n' + exer['hint'][hint_no] + '\n'
     if 'file' in exer:
-        s += '\n' + '*Filename*: `%s`' % exer['file'] + '\n'
+        s += '*Filename*: `%s`' % exer['file'] + '\n'
+        #s += '\n' + '*Filename*: `%s`' % exer['file'] + '\n'
     if 'solution' in exer:
         pass
+    if 'comments' in exer:
+        s += '\n' + exer['comments']
     return s
 
 
