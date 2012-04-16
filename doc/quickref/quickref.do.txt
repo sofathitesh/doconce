@@ -252,13 +252,14 @@ Important warnings:
 ===== LaTeX Mathematics =====
 
 Doconce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats `sphinx` and `latex` work with
-this syntax while all other formats will just display the raw LaTeX code.
+standard LaTeX syntax. The output formats `sphinx`, `latex`, and `pdflatex`
+work with this syntax while all other formats will just display the
+raw LaTeX code.
 
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
-$Ax=b$. To help increase readability in other formats than `sphinx`
-and `latex`, inline mathematics may have a more human
+$Ax=b$. To help increase readability in other formats than `sphinx`,
+`latex`, and `pdflatex`, inline mathematics may have a more human
 readable companion expression. The syntax is like
 !bc
 $\sin(\norm{\bf u})$|$sin(||u||)$
@@ -288,6 +289,11 @@ will appear as
 \nabla\times u & 0.
 \end{align*}
 !et
+
+One can use `#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")` to let
+the preprocessor choose a block of mathematics in LaTeX format
+or (`#else`) a modified form more suited for plain text and wiki
+formats without support for mathematics.
 
 Any LaTeX syntax is accepted, but if output in the `sphinx` format
 is important, one must know that `sphinx` does not support many
