@@ -753,6 +753,8 @@ def typeset_tables(filestr, format):
             #columns = [c.strip() for c in columns if c]
             columns = [c.strip() for c in columns if c.strip()]
             table['rows'].append(columns)
+        elif lin.startswith('#') and inside_table:
+            continue  # just skip commented table lines
         else:
             if inside_table:
                 # not a table line anymore, but we were just inside a table

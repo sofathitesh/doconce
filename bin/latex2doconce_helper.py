@@ -8,8 +8,8 @@ print """
 What is not handled:
 
   - footnotes
-  - figures
-  - tables
+  - tables (can be nice to have pure latex (#ifdef) and doconce version)
+  - idx{} inside paragraphs
 
 Such elements must be manually edited.
 """
@@ -32,6 +32,8 @@ subsubsection=(r'\\subsubsection\{(?P<subst>.+)\}', r'=== \g<subst> ==='),
 paragraph=(r'\\paragraph\{(?P<subst>.+?)\}', r'__\g<subst>__'),
 para=(r'\\para\{(?P<subst>.+?)\}', r'__\g<subst>__'),
 emph=(r'\\emph\{(?P<subst>.+?)\}', r'*\g<subst>*'),
+em=(r'\{\\em\s+(?P<subst>.+?)\}', r'*\g<subst>*'),
+bf=(r'\{\\bf\s+(?P<subst>.+?)\}', r'_\g<subst>_'),
 code=(r'\\code\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
 emp=(r'\\emp\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
 codett=(r'\\codett\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
@@ -47,6 +49,8 @@ idxs=(r'\\idxs\{(?P<subst>.+?)\}', r'idx{`\g<subst>` script}'),
 idxp=(r'\\idxp\{(?P<subst>.+?)\}', r'idx{`\g<subst>` program}'),
 idxc=(r'\\idxc\{(?P<subst>.+?)\}', r'idx{`\g<subst>` class}'),
 idxm=(r'\\idxm\{(?P<subst>.+?)\}', r'idx{`\g<subst>` module}'),
+idxnumpy=(r'\\idxnumpy\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (from `numpy`)}'),
+idxst=(r'\\idxst\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (from `scitools`)}'),
 idxfn=(r'\\idxfn\{(?P<subst>.+?)\}', r'idx{`\g<subst>` (FEniCS)}'),
 index=(r'\\index\{(?P<subst>.+?)\}', r'idx{\g<subst>}'),
 )
@@ -108,12 +112,6 @@ for trouble, from_, to_ in replace_wfix:
         filestr = filestr.replace(from_, to_)
         filestr = filestr.replace('XXXXXXY', trouble)
         print '   ....replacing', from_
-
-if '{eqnarray' in filestr:
-    print '\nyou must change begin/end{eqnarray manually to begin/end{align\n'
-
-if '{figure}' in filestr:
-    print '\nyou must change figures manually\n'
 
 # problems:
 problems = [
@@ -200,10 +198,34 @@ for e in code_envirs:
 filestr = filestr.replace(r'{eqnarray', '{align')
 filestr = re.sub(r'&(\s*)=(\s*)&', '&\g<1>=\g<2>', filestr)
 
-filestr = filestr.replace(r'\label{', 'label{')
+# exercises of the following particular format
+pattern = re.compile(r'\\begin\{exercise\}\s*\label\{(.*?)\}\s*\\exerentry\{(.*?)\}\s*$\s*(.+?)\\hfill\s*\$\\diamond\$\s*\\end\{exercise\}', re.DOTALL|re.MULTILINE)
+filestr = pattern.sub(r'===== \g<2> =====\n\label{\g<1>}\nfile=\n\n\g<3>\n', filestr)
+
+# figures: psfig
+pattern = re.compile(r'\\begin{figure}.*?\psfig\{.*?=([^,]+).*?\caption\{(.*?)\}\s*\\end{figure}', re.DOTALL)
+filestr = pattern.sub(r'FIGURE: [\g<1>, width=400] {{{{\g<2>}}}}', filestr)
+captions = re.findall(r'\{\{\{\{(.*?)\}\}\}\}', filestr, flags=re.DOTALL)
+for caption in captions:
+    orig_caption = caption
+    # Add label to end of caption
+    pattern = r'(label\{.*?\})'
+    m = re.search(pattern, caption)
+    if m:
+        label = m.group(1)
+        caption = caption.replace(label, '')
+        caption = caption + ' ' + label
+    # Make one line
+    caption = ' '.join(caption.splitlines())
+    filestr = filestr.replace('{{{{%s}}}}' % orig_caption, caption)
+
+#filestr = filestr.replace(r'\label{', 'label{')  # done above
 filestr = filestr.replace(r'\ref{', 'ref{')
 filestr = filestr.replace(r'\cite{', 'cite{')
-ofilestr = filestr.replace(r'~', ' ')
+filestr = filestr.replace(r'\_', '_')
+filestr = filestr.replace(r' -- ', ' - ')
+filestr = filestr.replace(r'}--ref', '}-ref')
+filestr = filestr.replace(r'~', ' ')
 print '\n\n----------------------------------------------------------------\n'
 print filestr
 
