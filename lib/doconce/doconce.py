@@ -1238,7 +1238,9 @@ def inline_tag_subst(filestr, format):
         'verbatim',
         'citation',
         'paragraph',  # after bold and emphasize
-        'plainURL',   # before linkURL2 to avoid "URL" as linkename
+        'plainURL',   # before linkURL2 to avoid "URL" as link name
+        'linkURL2v',
+        'linkURL3v',
         'linkURL2',
         'linkURL3',
         'linkURL',

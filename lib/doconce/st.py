@@ -29,6 +29,8 @@ def define(FILENAME_EXTENSION,
         'linkURL':   r'\g<begin>"\g<url>":\g<link>\g<end>',
         'linkURL2':  r'"\g<url>":\g<link>',
         'linkURL3':  r'"\g<url>":\g<link>',
+        'linkURL2v': r"""\g<url>:'\g<link>'""",
+        'linkURL3v': r"""\g<url>:'\g<link>'""",
         'plainURL':  r'"\g<url>":\g<url>',
         # the replacement string differs, depending on the match object m:
         'chapter':       r'\n\g<subst>\n',

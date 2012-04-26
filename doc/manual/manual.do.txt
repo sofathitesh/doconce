@@ -1257,11 +1257,18 @@ see the "examples directory": "src/examples/index.html"
 
 === Links are not typeset correctly ===
 
-Not all formats will allow formatting of the links, e.g.,
+Not all formats will allow formatting of the links. Verbatim words
+in links are allowed if the whole link is typeset in verbatim:
+!bc
+see the directory "`examples`": "src/examples/index.html".
+!ec
+However, the following will not be typeset correctly:
 !bc
 see the "`examples` directory": "src/examples/index.html"
 !ec
-will not come out right in the reST/Sphinx formats.
+The backquotes must be removed, or the text can be reformulated as
+in the line above it.
+
 
 === Inline verbatim code is not detected ===
 

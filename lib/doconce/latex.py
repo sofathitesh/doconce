@@ -474,6 +474,8 @@ def define(FILENAME_EXTENSION,
         'linkURL':       r'\g<begin>\href{\g<url>}{\g<link>}\g<end>',
         'linkURL2':      r'\href{{\g<url>}}{\g<link>}',
         'linkURL3':      r'\href{{\g<url>}}{\g<link>}',
+        'linkURL2v':     r'\href{{\g<url>}}{\\nolinkurl{\g<link>}}',
+        'linkURL3v':     r'\href{{\g<url>}}{\\nolinkurl{\g<link>}}',
         'plainURL':      r'\href{{\g<url>}}{\\nolinkurl{\g<url>}}',  # cannot use \code inside \href, use \nolinkurl to handle _ and # etc. (implies verbatim font)
         'inlinecomment': r'\inlinecomment{\g<name>}{\g<comment>}',
         'chapter':       r'\n\n\chapter{\g<subst>}\n',

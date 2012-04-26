@@ -306,6 +306,7 @@ inline_tag_end = r"""(?P<end>($|[.,?!;:)\s]))"""
 # alternatives using positive lookbehind and lookahead (not tested!):
 inline_tag_before = r"""(?<=^(|[(\s])))"""
 inline_tag_after = r"""(?=($|[.,?!;:)\s]))"""
+_linked_files = '''\s*"(?P<url>([^"]+?\.html?|[^"]+?\.txt|[^"]+?\.pdf|[^"]+?\.f|[^"]+?\.c|[^"]+?\.cpp|[^"]+?\.cxx|[^"]+?\.py|[^"]+?\.java|[^"]+?\.pl|[^"]+?\.sh|[^"]+?\.csh|[^"]+?\.zsh|[^"]+?\.ksh|[^"]+?\.tar\.gz|[^"]+?\.tar|[^"]+?\.f77|[^"]+?\.f90|[^"]+?\.f95))"'''
 
 INLINE_TAGS = {
     # math: text inside $ signs, as in $a = b$, with space before the
@@ -351,10 +352,15 @@ INLINE_TAGS = {
     r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>(file:/|https?:)//.+?)"''',
     #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
 
+    'linkURL2v':  # "`filelink`": "https://bla-bla"
+    r'''"`(?P<link>[^"]+?)`" ?:\s*"(?P<url>(file:/|https?:)//.+?)"''',
+
     'linkURL3':  # "some link": "some/local/file/name.html" or .txt/.pdf/.py/.c/.cpp/.cxx/.f/.java/.pl files
     #r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>([^"]+?\.html?|[^"]+?\.txt|[^"]+?.pdf))"''',
-    r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>([^"]+?\.html?|[^"]+?\.txt|[^"]+?\.pdf|[^"]+?\.f|[^"]+?\.c|[^"]+?\.cpp|[^"]+?\.cxx|[^"]+?\.py|[^"]+?\.java|[^"]+?\.pl|[^"]+?\.sh|[^"]+?\.csh|[^"]+?\.zsh|[^"]+?\.ksh|[^"]+?\.tar\.gz|[^"]+?\.tar|[^"]+?\.f77|[^"]+?\.f90|[^"]+?\.f95))"''',
+    r'''"(?P<link>[^"]+?)" ?:''' + _linked_files,
     #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
+    'linkURL3v':  # "`somefile`": "some/local/file/name.html" or .txt/.pdf/.py/.c/.cpp/.cxx/.f/.java/.pl files
+    r'''"`(?P<link>[^"]+?)`" ?:''' +  _linked_files,
 
     'plainURL':
     #r'"URL" ?: ?"(?P<url>.+?)"',

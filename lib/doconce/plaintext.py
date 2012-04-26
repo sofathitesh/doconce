@@ -110,6 +110,8 @@ def define(FILENAME_EXTENSION,
         'linkURL':   r'\g<begin>\g<link> (\g<url>)\g<end>',
         'linkURL2':  r'\g<link> (\g<url>)',
         'linkURL3':  r'\g<link> (\g<url>)',
+        'linkURL2v': r'\g<link> (\g<url>)',
+        'linkURL3v': r'\g<link> (\g<url>)',
         'plainURL':  r'\g<url>',
         'title':     r'======= \g<subst> =======\n',  # doconce top section, to be substituted later
         'author':    plain_author,
