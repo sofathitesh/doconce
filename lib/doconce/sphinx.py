@@ -141,7 +141,7 @@ def sphinx_code_orig(filestr, format):
                     pro='python', pypro='python', cypro='cython',
                     fpro='fortran', cpro='c', cpppro='c++',
                     mpro='matlab', plpro='perl', shpro='bash',
-                    sys='console', dat='python')
+                    sys='console', dat='python', ipy='python')
         # (the "python" typesetting is neutral if the text
         # does not parse as python)
 
