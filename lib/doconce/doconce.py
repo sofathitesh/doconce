@@ -150,8 +150,7 @@ def syntax_check(filestr, format):
 
         if not inside_code:
             if "``" in line:
-                print '''\nSyntax error: Double back-quotes `` found in file - should be "'''
-                sys.exit(1)
+                print '''\nWarning: Double back-quotes `` found in file - should be "?'''
         if not inside_math:
             if "''" in line:
                 #print '''\nWarning: Double forward-quotes '' found in file - should be "\n(unless derivatives in math)'''
