@@ -79,7 +79,7 @@ def latex_figure(m, includegraphics=True):
   %s
   }
 \end{figure}
-""" % (includeline, caption, stem)
+""" % (includeline, caption)
     else:
         # drop caption
         result = r"""
