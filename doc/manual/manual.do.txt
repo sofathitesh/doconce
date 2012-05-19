@@ -286,12 +286,24 @@ between the sespecifications and that there should be no space
 around the = sign.
 
 Note also that, like for `TITLE:` and `AUTHOR:` lines, all information
-related to a figure line must be written on the same line. Introducing
+related to a figure line *must be written on the same line*. Introducing
 newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as `FIGURE:` will be
 included in the formatted caption).
 
 FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. label{fig:viz}
+
+Combining several image files into one can be done by the
+`convert` and `montage` programs from the ImageMagick suite:
+!bc sys
+montage file1.png file2.png ... file4.png -geometry +2+2  result.png
+montage file1.png file2.png -tile x1 result.png
+montage file1.png file2.png -tile 1x result.png
+
+convert -background white file1.png file2.png +append tmp.png
+!ec
+Use `+append` for stacking left to right, `-append` for top to bottom.
+The positioning of the figures can be controlled by `-gravity`.
 
 ===== Movies =====
 

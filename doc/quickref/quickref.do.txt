@@ -342,6 +342,19 @@ Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
+Combining several image files into one can be done by the
+`convert` and `montage` programs from the ImageMagick suite:
+!bc sys
+montage file1.png file2.png ... file4.png -geometry +2+2  result.png
+montage file1.png file2.png -tile x1 result.png
+montage file1.png file2.png -tile 1x result.png
+
+convert -background white file1.png file2.png +append tmp.png
+!ec
+Use `+append` for stacking left to right, `-append` for top to bottom.
+The positioning of the figures can be controlled by `-gravity`.
+
+
 ===== Tables =====
 
 The table in Section ref{quick:sections} was written with this

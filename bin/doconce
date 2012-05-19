@@ -1,13 +1,13 @@
 #!/usr/bin/env python
-import os, sys, shutil, re, glob
+import os, sys, shutil, re, glob, sets
 from commands import getstatusoutput
 
 def format():
     """
     Run the doconce module on a file (with extension .do.txt) in Doconce format
-    and produce another format (latex, html, plain text, reStructuredText, ...).
+    and produce another format (latex, html, plain text, reStructuredText, ...)::
 
-    doconce2format html mydoc.do.txt
+       doconce format html mydoc.do.txt
     """
 
     try:
@@ -26,6 +26,401 @@ def format():
             sys.exit(1)
 
     doconce.main()
+
+# ----------------------- functions for spell checking ---------------------
+
+_environments = [
+    # Doconce
+    ("!bc",                 "!ec"),  # could have side effect if in text, but that's only in Doconce manuals...
+    ("!bt",                 "!et"),
+    # Mako
+    ("<%doc>",              "</%doc>"),
+    # hpl tex stuff
+    ("\\beq",               "\\eeq"),
+    ("\\beqa",              "\\eeqa"),
+    ("\\beqan",             "\\eeqan"),
+    # Wait until the end with removing comment lines
+    ]
+
+# These are relevant if doconce spellcheck is applied latex or ptex2tex files
+_latex_environments = [
+   ("\\begin{equation}",   "\\end{equation}"),
+    ("\\begin{equation*}",  "\\end{equation*}"),
+    ("\\begin{align}",      "\\end{align}"),
+    ("\\begin{align*}",     "\\end{align*}"),
+    ("\\begin{eqnarray}",   "\\end{eqnarray}"),
+    ("\\begin{eqnarray*}",  "\\end{eqnarray*}"),
+    ("\\begin{figure}[",    "]"),
+    ("\\begin{figure*}[",   "]"),
+    ("\\begin{multline}",   "\\end{multiline}"),
+    # ptex2tex environments
+    ("\\bccq",              "\\eccq"),
+    ("\\bcc",               "\\ecc"),
+    ("\\bcod",              "\\ecod"),
+    ("\\bpro",              "\\epro"),
+    ("\\bpy",               "\\epy"),
+    ("\\brpy",              "\\erpy"),
+    ("\\bipy",              "\\eipy"),
+    ("\\bsys",              "\\esys"),
+    ("\\bdat",              "\\edat"),
+    ("\\bsni",              "\\esni"),
+    ("\\bdsni",             "\\edsni"),
+    ]
+
+_replacements = [
+    # Doconce
+    (r"^#.*$", "", re.MULTILINE),
+    (r"(idx|label|ref)\{.*?\}", ""),
+    (r"={3,}",  ""),
+    (r'`[^ ][^`]*?`', ""),
+    (r"`[A-Za-z0-9_.]+?`", ""),
+    (r"^#.*$",          "", re.MULTILINE),
+    (r'"https?://.*?"', ""),
+    (r'"ftp://.*?"', ""),
+    (r'\[[A-Za-z]+:\s+[^\]]*?\]', ''),  # inline comment
+    (r'^\s*file=[A-Za-z_0-9.]+\s*$', '', re.MULTILINE),
+    (r"^@@@CODE.*$",    "", re.MULTILINE),
+    # Preprocess
+    (r"^#.*ifn?def.*$", "", re.MULTILINE),
+    (r"^#.*else.*$", "", re.MULTILINE),
+    (r"^#.*endif.*$", "", re.MULTILINE),
+    (r"^#include.*$", "", re.MULTILINE),
+    ]
+
+_latex_replacements = [
+    (r"%.*$", "", re.MULTILINE),  # comments
+    (r"\\.*section\{(.+?)\}", "\g<1>"),
+    (r"^\\\[[^@]+\\\]",    ""),  # (@ is "unlikely" character)
+    (r"\\includegraphics.*?(\.pdf|\.png|\.eps|\.ps|\.jpg)", ""),
+    (r"\\(pageref|eqref|ref|label|url|emp)\{.*?\}", ""),
+    (r"\\(emph|texttt)\{(.*?)\}", "\g<2>"),
+    (r"\\footnote\{", " "),  # leaves an extra trailing } (ok)
+    #(r"\\[Vv]erb(.)(.+?)\1", "\g<2>"),
+    (r"\\[Vv]erb(.)(.+?)\1", ""),
+    (r"\\index\{.*?\}", ""),
+    (r"\$[^$]+?\$", ""),
+    (r"([A-Za-z])~", "\g<1> "),
+    (r"``(.+?)''", "\g<1>"),  # very important, otherwise doconce verb eats the text
+    (r' \.', '.'),
+    ('\n\\.', '.\n'),
+    (r':\s*\.', '.'),
+    (r' ,', ','),
+    ('\n\,', ',\n'),
+    (',{2,}', ','),
+    # ptex2tex
+    (r"^@@@DATA.*$",    "", re.MULTILINE),
+    (r"^@@@CMD.*$",    "", re.MULTILINE),
+    # hpl's idx latex commands
+    (r"\\idx\{.*?\}", ""),
+    (r"\\idx(font|f|m|p|st|s|c|e|numpyr|numpy)\{.*?\}", ""),
+    (r"\\codett\{.*?\}", ""),
+    (r"\\code\{.*?\}", ""),
+    ]
+
+_common_typos = [
+    'hiearchy',
+    'hieararchy',
+    'statment',
+    ' imples',
+    'imples ',
+    'execption',
+    'excercise',
+    'exersice',
+    'eletric',
+    'everyting',
+    'progam',
+    'technqiues',
+    'incrased',
+    'similarily',
+    'occurence',
+    'persue',
+    'becase',
+    'frequence',
+    'noticable',
+    'peform',
+    'paramter',
+    'intial',
+    'inital',
+    'condtion',
+    'expontential',
+    'differentation',
+    'recieved',
+    'cateogry',
+    'occured',
+    '!bc pydoc',
+    '!bc pycodc',
+    ]
+
+
+def grep_common_typos(text, filename, common_typos):
+    """Search for common typos and abort program if any is found."""
+    found = False
+    for i, line in enumerate(text.splitlines()):
+        for typo in common_typos:
+            if re.search(typo, line):
+                print '\ntypo "%s" in line %d in file %s:\n' % \
+                      (typo, i+1, filename), line
+                found = True
+    if found:
+        sys.exit(1)
+
+def strip_environments(text, environments):
+    """Remove environments in the ``environments`` list from the text."""
+    for item in environments:
+        if len(item) != 2:
+            raise ValueError(
+                '%s in environments to be stripped is wrong' % (str(item)))
+        begin, end = item
+        if not begin in text:
+            continue
+        parts = text.split(begin)
+        text = parts[0]
+        for part in parts[1:]:
+            subparts = part.split(end)
+            text += end.join(subparts[1:])
+    return text
+
+def do_regex_replacements(text, replacements):
+    """Substitute according to the `replacement` list."""
+    for item in replacements:
+        if len(item) == 2:
+            from_, to_ = item
+            text = re.sub(from_, to_, text)
+        elif len(item) == 3:
+            from_, to_, flags = item
+            text = re.sub(from_, to_, text, flags=flags)
+    return text
+
+def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
+                remove_multiplicity=False, strip_file='.strip'):
+    """
+    Spellcheck `filename` and list misspellings in the file misspellings.txt~.
+    The `dictionaries` list contains filenames for dictionaries to be
+    used with ispell.
+    `newdict` is an optional filename for creating a new, updated
+    dictionary containing all given dictionaries and all misspellings
+    found (assuming they are correct and approved in previous runs).
+    `remove_multiplicity` removes multiple occurrences of the same
+    misspelling in the misspellings.txt~ (output) file.
+    `strip_file` holds the filename of a file with definitions of
+    environments to be stripped off in the source file, replacements
+    to be performed, and a list of typical misspellings that are first
+    check before ispell is run.
+    """
+
+    try:
+        f = open(filename, 'r')
+    except IOError:
+        print '\nThe file %s does not exist!' % filename
+        sys.exit(1)
+
+    text = f.read()
+    f.close()
+
+    if os.path.isfile(strip_file):
+        execfile(strip_file)
+    else:
+        environments = []
+        replacements = []
+        common_typos = []
+    # Add standard definitions (above)
+    environments += _environments
+    replacements += _replacements
+    common_typos += _common_typos
+
+    # Add standard latex definitions when spellchecking latex
+    if os.path.splitext(filename)[1] == '.tex':
+        # Make sure to do latex first (\label{} before label{})
+        environments = _latex_environments + environments
+        replacements = _latex_replacements + replacements
+
+
+    grep_common_typos(text, filename, common_typos)
+
+    text = strip_environments(text, environments)
+    #print 'Text after environment strip:\n', text
+
+    text = do_regex_replacements(text, replacements)
+    #print 'Text after regex replacements:\n', text
+
+    # Write modified text to scratch file and run ispell
+    scratchfile = 'tmp_stripped_text.txt'
+    f = open(scratchfile, 'w')
+    f.write(text)
+    f.close()
+    personal_dictionaries = []
+    p_opt = ''  # personal dictionary specification for ispell
+    for dictionary in dictionaries:
+        if os.path.isfile(dictionary):
+            p_opt += " -p`pwd`/%s" % dictionary
+            f = open(dictionary, 'r')
+            personal_dictionaries += f.readlines()
+            f.close()
+    personal_dictionaries = list(sets.Set(personal_dictionaries))
+    misspellings = 'tmp_misspelled_' + filename + '~'
+    cmd = 'cat %s | ispell -l -t -d american %s > %s' % \
+          (scratchfile, p_opt, misspellings)
+    #print cmd
+    os.system(cmd)
+
+    # Load misspellings, remove duplicates
+    f = open(misspellings, 'r')
+    words = f.readlines()
+    f.close()
+    words2 = list(sets.Set(words))  # remove multiple words
+    if len(words2) > 0:             # do we have misspellings?
+        print '%d misspellings in %s' % (len(words2), filename)
+        if remove_multiplicity:
+            f = open(misspellings, 'w')
+            f.write(words2)
+            f.close()
+    else:
+        os.remove(misspellings)
+
+    # Make convenient updates of personal dictionaries
+    if newdict is not None:
+        accepted_words = words2 + personal_dictionaries
+        if os.path.isfile(newdict):
+            f = open(newdict, 'r')
+            newdict_words = f.readlines()
+            f.close()
+            newdict_add = words2 + newdict_words
+            newdict_add = sorted(list(sets.Set(newdict_add)))
+            union = accepted_words + newdict_words
+            union = sorted(list(sets.Set(union)))
+            #print '%s %d: %d misspellings (%d from personal dicts) -> %d' % (newdict, len(newdict_words), len(words2), len(personal_dictionaries), len(union))
+        else:
+            union = accepted_words
+            newdict_add = words2
+        # union is the potentially new personal dictionary
+        #
+        f = open(newdict, 'w')
+        f.writelines(newdict_add)
+        f.close()
+        f = open('new_dictionary.txt~', 'w')
+        f.writelines(union)
+        f.close()
+        if len(newdict_add) > 0:
+            print '%s: %d, %s: %d items' % (newdict, len(newdict_add), 'new_dictionary.txt~', len(union))
+
+def _spellcheck_all(**kwargs):
+    for filename in glob.glob('tmp_misspelled*~') + glob.glob('misspellings.txt~*'):
+        os.remove(filename)
+    for filename in sys.argv[1:]:
+        _spellcheck(filename, **kwargs)
+    if len(glob.glob('tmp_misspelled*~')) > 0:
+        print '\nFound misspellings!'
+        if len(sys.argv[1:]) == 1:
+            print 'See misspellings.txt~.'
+        else:
+            print 'See tmp_misspelled* for errors in individual files.'
+        print 'When all misspellings are acceptable, cp new_dictionary.txt~ .dict4spell.txt'
+        print 'tmp_stripped_text.txt:', filename, 'with tagging removed (pure running text)'
+        sys.exit(1)
+    else:
+        sys.exit(0)
+
+def usage_spellcheck():
+    print """
+doconce spellcheck -d .dict4spell.txt file1.do.txt file2.do.txt ...
+
+Spellcheck files via ispell, but remove problematic parts from the
+files first.
+
+Output:
+
+misspellings.txt~: dictionary of potentially new accepted words, based on all
+the current misspellings.
+
+new_dictionary.txt~: suggested new dictionary, consisting of the old and
+all new misspellings (if they can be accepted).
+
+tmp_stripped_text.txt: the last file*.do.txt with tagging stripped off
+(can be checked for spelling and grammar mistakes in MS Word, for instance).
+
+Usage
+-----
+
+For a new project, do the points below as the initialization of new accepted
+personal dictionary for this project. Thereafter, the process is
+automated: misspellings.txt~ should be empty if there are no new misspellings.
+tmp_misspelled*~ are made for each file tested with the file's misspelled
+words.
+
+For each file:
+
+  * Run spellcheck.py without a dictionary or with a previous dictionary:
+    doconce spellcheck file or doconce spellcheck -d .dict4spell.txt file
+  * Check misspelled.txt~ for misspelled words. Change wrong words.
+  * Rerun. If all words in misspelled.txt are acceptable,
+    copy new_dictionary.txt to .dict4spell.txt.
+  * Optional: import tmp_stripped_text.txt into MS Word for grammar check.
+  * Remove tmp_* and *~ files
+
+The next time one can run::
+
+  spellcheck.py -d .dict4spell.txt file*
+
+misspellings.txt~ should ideally be empty if there are no (new)
+spelling errors. One can check that the file is empty or check
+the $? variable on Unix since this prorgram exits with 1
+when spelling errors are found in any of the tested files::
+
+  # Run spellcheck
+  doconce spellcheck -d .dict4spell.txt *.do.txt
+  if [ $? -ne 0 ]; then exit; fi
+
+
+How to correct misspellings
+---------------------------
+
+Some misspellings can be hard to find if the word is strange
+(like "emp", for instance). Then invoke ``tmp_stripped_text.txt``,
+which is the stripped version of the text file being spellchecked.
+All references, labels, code segments, etc., are removed in this
+stripped file. Run a standard spell checker on the file (say ispell
+inside Emacs) and you should only be prompted for just the same
+misspellings as listed in ``misspellings.txt~``.
+
+To search for a strange string, say "sec", run
+(search for "sec" not surrounded by letters)::
+
+  egrep '[^A-Za-z]sec[^A-Za-z]' file
+
+A common error in latex is to forget a ``\ref`` or ``\label``
+in front of a label so that the label gets spellchecked.
+This may give rise to strange words flagged as misspelled.
+
+How to control what is stripped
+-------------------------------
+
+The spellcheck function loads a file .strip, if present, with
+possibly three lists:
+
+  * environments, holding begin-end pairs of environments that
+    should be entirely removed from the text.
+  * replacements, holding (from, to) pairs or (from, to, regex-flags)
+    triplets for substituting text.
+  * common_typos, holding typical wrong spellings of words.
+
+execfile is applied to .strip to execute the definition of the lists.
+
+"""
+
+
+def spellcheck():
+    if sys.argv[1] == '-d':
+        dictionary = [sys.argv[2]]
+        del sys.argv[1:3]
+    else:
+        dictionary = []
+
+    if len(sys.argv) < 2:
+        usage_spellcheck()
+        sys.exit(1)
+
+    _spellcheck_all(newdict='misspellings.txt~', remove_multiplicity=False,
+                    dictionaries=dictionary,)
 
 # ----------------------- functions for insertdocstr -----------------------
 
@@ -1501,7 +1896,7 @@ def analyzer():
 
 # -----------------------------------------------------------------------
 
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck'.split()
 
 # -----------------------------------------------------------------------
 
@@ -1546,6 +1941,8 @@ doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 
 doconce grab --from[-] from-text [--to[-] to-text] somefile
+
+doconce spellcheck -d .dict4spell.txt *.do.txt
 
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name

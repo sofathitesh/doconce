@@ -202,6 +202,22 @@ filestr = re.sub(r'&(\s*)=(\s*)&', '&\g<1>=\g<2>', filestr)
 pattern = re.compile(r'\\begin\{exercise\}\s*\label\{(.*?)\}\s*\\exerentry\{(.*?)\}\s*$\s*(.+?)\\hfill\s*\$\\diamond\$\s*\\end\{exercise\}', re.DOTALL|re.MULTILINE)
 filestr = pattern.sub(r'===== \g<2> =====\n\label{\g<1>}\nfile=\n\n\g<3>\n', filestr)
 
+# fix "Name of program file:" construction in exercises
+lines = filestr.splitlines()
+for i in range(len(lines), 0, -1):
+    if 'Name of program file' in lines[i]:
+        m = re.search(r'Name of program file:\s*`([^`]+?)`', lines[i])
+        if m:
+            program_file = m.group(1)
+    if 'file=' in lines[i]:
+        if re.search(r'^file=$', lines[i]):
+            try:
+                lines[i] = 'file=' + program_file
+            except:
+                print 'Found file= without filename, but no "Name of program file" found after this construction'
+                pass
+filestr = '\n'.join(lines)
+
 # figures: psfig
 pattern = re.compile(r'\\begin{figure}.*?\psfig\{.*?=([^,]+).*?\caption\{(.*?)\}\s*\\end{figure}', re.DOTALL)
 filestr = pattern.sub(r'FIGURE: [\g<1>, width=400] {{{{\g<2>}}}}', filestr)
