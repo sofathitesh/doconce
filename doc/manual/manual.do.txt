@@ -954,7 +954,10 @@ use with PowerPoint or OpenOffice documents.
     lines, and uncomment the `'sphinx.ext.pngmath'` package.
     This is the package that generates small PNG pictures
     of the mathematics.
-  o Run `make html` again.
+  o Uncomment the line with `pngmath_dvipng_args =` and
+    set the PNG resolution to `-D 200` when the purpose is to
+    generate mathematics pictures for slides.
+  o Run `make html`.
   o Look at the HTML source file in the `_build/html`
     directory: all mathematics are in `img` tags with `src=`
     pointing to a PNG file and `alt=` pointing to the LaTeX
