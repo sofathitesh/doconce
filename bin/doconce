@@ -256,6 +256,9 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
             f = open(dictionary, 'r')
             personal_dictionaries += f.readlines()
             f.close()
+        else:
+            print 'Dictionary file %s does not exist!' % dictionary
+
     personal_dictionaries = list(sets.Set(personal_dictionaries))
     misspellings = 'tmp_misspelled_' + filename + '~'
     cmd = 'cat %s | ispell -l -t -d american %s > %s' % \
@@ -413,8 +416,10 @@ def spellcheck():
         dictionary = [sys.argv[2]]
         del sys.argv[1:3]
     else:
-        dictionary = []
-
+        if os.path.isfile('.dict4spell.txt'):
+            dictionary = ['.dict4spell.txt']
+        else:
+            dictionary = []
     if len(sys.argv) < 2:
         usage_spellcheck()
         sys.exit(1)

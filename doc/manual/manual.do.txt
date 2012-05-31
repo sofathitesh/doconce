@@ -911,18 +911,18 @@ the opening tag is `!bt` (begin TeX) and the closing tag is
 line and followed by a newline.
 !bc
 !bt
-\begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-\end{eqnarray}
+\begin{align}
+{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+\end{align}
 !et
 !ec
 Here is the result of the above `!bt` - `!et` block:
 !bt
-\begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-\end{eqnarray}
+\begin{align}
+{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+\end{align}
 !et
 
 This text looks ugly in all Doconce supported formats, except from
@@ -937,6 +937,30 @@ mathematics in two versions. After `#if FORMAT in ("latex", "pdflatex",
 "sphinx", "mwiki")` one places LaTeX mathematics, and after `#else` one can
 write inline mathematics in a way that looks nice in plain text and
 wiki formats without support for mathematical typesetting.
+
+
+=== Mathematics for PowerPoint/OpenOffice ===
+
+If you have LaTeX mathematics written in Doconce, it is fairly easy
+to generate PNG images of all mathematical formulas and equations for
+use with PowerPoint or OpenOffice documents.
+
+  o Make a Sphinx version of the Doconce file.
+  o Go to the Sphinx directory and load the `conf.py` file into
+    a browser.
+  o Search for "math" and comment out the
+    `'sphinx.ext.mathjax'` (enabled by default) and
+    `'matplotlib.sphinxext.mathmpl'` (disabled by default)
+    lines, and uncomment the `'sphinx.ext.pngmath'` package.
+    This is the package that generates small PNG pictures
+    of the mathematics.
+  o Run `make html` again.
+  o Look at the HTML source file in the `_build/html`
+    directory: all mathematics are in `img` tags with `src=`
+    pointing to a PNG file and `alt=` pointing to the LaTeX
+    source for the formula in question. This makes it very
+    easy to find the PNG file that corresponding to a particular
+    mathematical expression.
 
 
 ===== Macros (Newcommands) =====
