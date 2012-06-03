@@ -57,7 +57,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Mar 11, 2012</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jun 3, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -765,23 +765,31 @@ depending the argument that follows <tt class="docutils literal"><span class="pr
 (<tt class="docutils literal"><span class="pre">code-block::</span> <span class="pre">python</span></tt> in Sphinx syntax) and <tt class="docutils literal"><span class="pre">cppcod</span></tt> gives C++, but
 all such arguments can be customized both for Sphinx and LaTeX output.</p>
 </div>
-<div class="section" id="google-code-wiki">
-<h2>Google Code Wiki<a class="headerlink" href="#google-code-wiki" title="Permalink to this headline">¶</a></h2>
-<p>There are several different wiki dialects, but Doconce only support the
-one used by <a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Google Code</a>.
-The transformation to this format, called <tt class="docutils literal"><span class="pre">gwiki</span></tt> to explicitly mark
-it as the Google Code dialect, is done by</p>
+<div class="section" id="wiki-formats">
+<h2>Wiki Formats<a class="headerlink" href="#wiki-formats" title="Permalink to this headline">¶</a></h2>
+<p>There are many different wiki formats, but Doconce only supports three:
+<a href="#id7"><span class="problematic" id="id8">`Googlecode wiki &lt;http://code.google.com/p/support/wiki/WikiSyntax&lt;Google Code&gt;&gt;`_</span></a>, , MediaWiki, and Creole Wiki. These formats are called
+<tt class="docutils literal"><span class="pre">gwiki</span></tt>, <tt class="docutils literal"><span class="pre">mwiki</span></tt>, and <tt class="docutils literal"><span class="pre">cwiki</span></tt>, respectively.
+Transformation from Doconce to these formats is done by</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format gwiki mydoc.do.txt</span>
+<span class="go">Terminal&gt; doconce format mwiki mydoc.do.txt</span>
+<span class="go">Terminal&gt; doconce format cwiki mydoc.do.txt</span>
 </pre></div>
 </div>
-<p>You can then open a new wiki page for your Google Code project, copy
-the <tt class="docutils literal"><span class="pre">mydoc.gwiki</span></tt> output file from <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt> and paste the
-file contents into the wiki page. Press <strong>Preview</strong> or <strong>Save Page</strong> to
-see the formatted result.</p>
-<p>When the Doconce file contains figures, each figure filename must be
-replaced by a URL where the figure is available. There are instructions
-in the file for doing this. Usually, one performs this substitution
-automatically (see next section).</p>
+<p>The Googlecode wiki document, <tt class="docutils literal"><span class="pre">mydoc.gwiki</span></tt>, is most conveniently stored
+in a directory which is a clone of the wiki part of the Googlecode project.
+This is far easier than copying and pasting the entire text into the
+wiki editor in a web browser.</p>
+<p>When the Doconce file contains figures, each figure filename must in
+the <tt class="docutils literal"><span class="pre">.gwiki</span></tt> file be replaced by a URL where the figure is
+available. There are instructions in the file for doing this. Usually,
+one performs this substitution automatically (see next section).</p>
+<p>From the MediaWiki format one can go to other formats with aid
+of <a class="reference external" href="http://pediapress.com/code/">mwlib</a>. This means that one can
+easily use Doconce to write <a class="reference external" href="http://en.wikibooks.org">Wikibooks</a>
+and publish these in PDF and MediaWiki format.
+At the same time, the book can also be published as a
+standard LaTeX book or a Sphinx web document.</p>
 </div>
 <div class="section" id="tweaking-the-doconce-output">
 <h2>Tweaking the Doconce Output<a class="headerlink" href="#tweaking-the-doconce-output" title="Permalink to this headline">¶</a></h2>
@@ -955,7 +963,7 @@ run regularly.</p>
 <li><a class="reference internal" href="#plain-ascii-text">Plain ASCII Text</a></li>
 <li><a class="reference internal" href="#id3">reStructuredText</a></li>
 <li><a class="reference internal" href="#id4">Sphinx</a></li>
-<li><a class="reference internal" href="#google-code-wiki">Google Code Wiki</a></li>
+<li><a class="reference internal" href="#wiki-formats">Wiki Formats</a></li>
 <li><a class="reference internal" href="#tweaking-the-doconce-output">Tweaking the Doconce Output</a></li>
 <li><a class="reference internal" href="#demos">Demos</a></li>
 <li><a class="reference internal" href="#dependencies-and-installation">Dependencies and Installation</a></li>

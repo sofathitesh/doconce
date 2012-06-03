@@ -744,25 +744,35 @@ depending the argument that follows '!bc': 'cod' gives Python
 ('code-block:: python' in Sphinx syntax) and 'cppcod' gives C++, but
 all such arguments can be customized both for Sphinx and LaTeX output.
 
-Google Code Wiki
+Wiki Formats
 
-There are several different wiki dialects, but Doconce only support the
-one used by "http://code.google.com/p/support/wiki/WikiSyntax":Google Code.
-The transformation to this format, called 'gwiki' to explicitly mark
-it as the Google Code dialect, is done by::
+There are many different wiki formats, but Doconce only supports three:
+"http://code.google.com/p/support/wiki/WikiSyntax<Google Code>":Googlecode wiki, , MediaWiki, and Creole Wiki. These formats are called
+'gwiki', 'mwiki', and 'cwiki', respectively.
+Transformation from Doconce to these formats is done by::
 
 
         Terminal> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format mwiki mydoc.do.txt
+        Terminal> doconce format cwiki mydoc.do.txt
 
-You can then open a new wiki page for your Google Code project, copy
-the 'mydoc.gwiki' output file from 'doconce format' and paste the
-file contents into the wiki page. Press **Preview** or **Save Page** to
-see the formatted result.
 
-When the Doconce file contains figures, each figure filename must be
-replaced by a URL where the figure is available. There are instructions
-in the file for doing this. Usually, one performs this substitution
-automatically (see next section).
+The Googlecode wiki document, 'mydoc.gwiki', is most conveniently stored
+in a directory which is a clone of the wiki part of the Googlecode project.
+This is far easier than copying and pasting the entire text into the
+wiki editor in a web browser.
+
+When the Doconce file contains figures, each figure filename must in
+the '.gwiki' file be replaced by a URL where the figure is
+available. There are instructions in the file for doing this. Usually,
+one performs this substitution automatically (see next section).
+
+From the MediaWiki format one can go to other formats with aid
+of "http://pediapress.com/code/":mwlib. This means that one can
+easily use Doconce to write "http://en.wikibooks.org":Wikibooks
+and publish these in PDF and MediaWiki format.
+At the same time, the book can also be published as a
+standard LaTeX book or a Sphinx web document.
 
 Tweaking the Doconce Output
 

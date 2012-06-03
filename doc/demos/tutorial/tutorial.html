@@ -22,7 +22,7 @@ Automatically generated HTML file from Doconce source
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Mar 11, 2012</h3></center>
+<center><h3>Jun 3, 2012</h3></center>
 <P>
 
 <P>
@@ -918,27 +918,39 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 <P>
 
 <P>
-<h3>Google Code Wiki</h3>
+<h3>Wiki Formats</h3>
 <P>
-There are several different wiki dialects, but Doconce only support the
-one used by <a href="http://code.google.com/p/support/wiki/WikiSyntax">Google Code</a>.
-The transformation to this format, called <tt>gwiki</tt> to explicitly mark
-it as the Google Code dialect, is done by
+There are many different wiki formats, but Doconce only supports three:
+<a href="http://code.google.com/p/support/wiki/WikiSyntax<Google Code>">Googlecode wiki</a>, , MediaWiki, and Creole Wiki. These formats are called
+<tt>gwiki</tt>, <tt>mwiki</tt>, and <tt>cwiki</tt>, respectively.
+Transformation from Doconce to these formats is done by
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
 Terminal&gt; doconce format gwiki mydoc.do.txt
+Terminal&gt; doconce format mwiki mydoc.do.txt
+Terminal&gt; doconce format cwiki mydoc.do.txt
 </pre>
 </blockquote>   <! -- end verbatim block -->
-You can then open a new wiki page for your Google Code project, copy
-the <tt>mydoc.gwiki</tt> output file from <tt>doconce format</tt> and paste the
-file contents into the wiki page. Press <b>Preview</b> or <b>Save Page</b> to
-see the formatted result.
 
 <P>
-When the Doconce file contains figures, each figure filename must be
-replaced by a URL where the figure is available. There are instructions
-in the file for doing this. Usually, one performs this substitution
-automatically (see next section).
+The Googlecode wiki document, <tt>mydoc.gwiki</tt>, is most conveniently stored
+in a directory which is a clone of the wiki part of the Googlecode project.
+This is far easier than copying and pasting the entire text into the
+wiki editor in a web browser.
+
+<P>
+When the Doconce file contains figures, each figure filename must in
+the <tt>.gwiki</tt> file be replaced by a URL where the figure is
+available. There are instructions in the file for doing this. Usually,
+one performs this substitution automatically (see next section).
+
+<P>
+From the MediaWiki format one can go to other formats with aid
+of <a href="http://pediapress.com/code/">mwlib</a>. This means that one can
+easily use Doconce to write <a href="http://en.wikibooks.org">Wikibooks</a>
+and publish these in PDF and MediaWiki format.
+At the same time, the book can also be published as a
+standard LaTeX book or a Sphinx web document.
 
 <P>
 

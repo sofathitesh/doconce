@@ -676,26 +676,36 @@ depending the argument that follows C{!bc}: C{cod} gives Python
 all such arguments can be customized both for Sphinx and LaTeX output.
 
 
-Google Code Wiki
-----------------
+Wiki Formats
+------------
 
-There are several different wiki dialects, but Doconce only support the
-one used by U{Google Code<http://code.google.com/p/support/wiki/WikiSyntax>}.
-The transformation to this format, called C{gwiki} to explicitly mark
-it as the Google Code dialect, is done by::
+There are many different wiki formats, but Doconce only supports three:
+U{Googlecode wiki<http://code.google.com/p/support/wiki/WikiSyntax<Google Code>>}, , MediaWiki, and Creole Wiki. These formats are called
+C{gwiki}, C{mwiki}, and C{cwiki}, respectively.
+Transformation from Doconce to these formats is done by::
 
 
         Terminal> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format mwiki mydoc.do.txt
+        Terminal> doconce format cwiki mydoc.do.txt
 
-You can then open a new wiki page for your Google Code project, copy
-the C{mydoc.gwiki} output file from C{doconce format} and paste the
-file contents into the wiki page. Press B{Preview} or B{Save Page} to
-see the formatted result.
 
-When the Doconce file contains figures, each figure filename must be
-replaced by a URL where the figure is available. There are instructions
-in the file for doing this. Usually, one performs this substitution
-automatically (see next section).
+The Googlecode wiki document, C{mydoc.gwiki}, is most conveniently stored
+in a directory which is a clone of the wiki part of the Googlecode project.
+This is far easier than copying and pasting the entire text into the
+wiki editor in a web browser.
+
+When the Doconce file contains figures, each figure filename must in
+the C{.gwiki} file be replaced by a URL where the figure is
+available. There are instructions in the file for doing this. Usually,
+one performs this substitution automatically (see next section).
+
+From the MediaWiki format one can go to other formats with aid
+of U{mwlib<http://pediapress.com/code/>}. This means that one can
+easily use Doconce to write U{Wikibooks<http://en.wikibooks.org>}
+and publish these in PDF and MediaWiki format.
+At the same time, the book can also be published as a
+standard LaTeX book or a Sphinx web document.
 
 
 Tweaking the Doconce Output
@@ -930,12 +940,25 @@ between the sespecifications and that there should be no space
 around the = sign.
 
 Note also that, like for C{TITLE:} and C{AUTHOR:} lines, all information
-related to a figure line must be written on the same line. Introducing
+related to a figure line I{must be written on the same line}. Introducing
 newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as C{FIGURE:} will be
 included in the formatted caption).
 
 FIGURE:[figs/streamtubes, width=400] Streamtube visualization of a fluid flow. {fig:viz}
+
+Combining several image files into one can be done by the
+C{convert} and C{montage} programs from the ImageMagick suite::
+
+
+        montage file1.png file2.png ... file4.png -geometry +2+2  result.png
+        montage file1.png file2.png -tile x1 result.png
+        montage file1.png file2.png -tile 1x result.png
+        
+        convert -background white file1.png file2.png +append tmp.png
+
+Use C{+append} for stacking left to right, C{-append} for top to bottom.
+The positioning of the figures can be controlled by C{-gravity}.
 
 Movies
 ------
@@ -1426,7 +1449,9 @@ for C, C{cpp} for C++, C{sh} for Unix shells, C{pl} for Perl, C{m} for
 Matlab, C{cy} for Cython, and C{py} for Python.  The argument C{sys}
 means by default C{console} for Sphinx and C{CodeTerminal} (ptex2tex
 environent) for LaTeX. Other specifications are C{dat} for a data file
-or print out, and C{ipy} for interactive Python sessions.  All these
+or print out, and C{ipy} for interactive Python sessions (the latter
+does not introduce any environment  in C{sphinx} output, as interactive
+sessions are automatically recognized and handled).  All these
 definitions of the arguments after C{!bc} can be redefined in the
 C{.ptex2tex.cfg} configuration file for ptex2tex/LaTeX and in the
 C{sphinx code-blocks} comments for Sphinx. Support for other languages
@@ -1571,9 +1596,15 @@ LaTeX Blocks of Mathematical Text
 Blocks of mathematical text are like computer code blocks, but
 the opening tag is C{!bt} (begin TeX) and the closing tag is
 C{!et}. It is important that C{!bt} and C{!et} appear on the beginning of the
-line and followed by a newline.
+line and followed by a newline::
 
-Here is the result of a C{!bt} - C{!et} block::
+
+
+            NOTE: A verbatim block has been removed because
+                  it causes problems for Epytext.
+
+
+Here is the result of the above C{!bt} - C{!et} block::
 
 
             NOTE: A verbatim block has been removed because
@@ -1582,14 +1613,45 @@ Here is the result of a C{!bt} - C{!et} block::
 
 
 This text looks ugly in all Doconce supported formats, except from
-LaTeX and Sphinx.  If HTML is desired, the best is to filter the Doconce text
-first to LaTeX and then use the widely available tex4ht tool to
-convert the dvi file to HTML, or one could just link a PDF file (made
-from LaTeX) directly from HTML. For other textual formats, it is best
-to avoid blocks of mathematics and instead use inline mathematics
-where it is possible to write expressions both in native LaTeX format
-(so it looks good in LaTeX) and in a pure text format (so it looks
-okay in other formats).
+LaTeX and Sphinx.  If HTML is desired, and Sphinx is not an option,
+one can filter the Doconce text first to LaTeX and then use the tex4ht
+tool to convert the dvi file to HTML, or one could just link a PDF
+file (made from LaTeX) directly from HTML.
+
+If the document targets both LaTeX, Sphinx, and other formats like
+plain text and wiki, one can use the preprocessor to typeset the
+mathematics in two versions. After C{#if FORMAT in ("latex", "pdflatex",
+"sphinx", "mwiki")} one places LaTeX mathematics, and after C{#else} one can
+write inline mathematics in a way that looks nice in plain text and
+wiki formats without support for mathematical typesetting.
+
+
+Mathematics for PowerPoint/OpenOffice
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you have LaTeX mathematics written in Doconce, it is fairly easy
+to generate PNG images of all mathematical formulas and equations for
+use with PowerPoint or OpenOffice documents.
+
+ 1. Make a Sphinx version of the Doconce file.
+ 2. Go to the Sphinx directory and load the C{conf.py} file into
+    a browser.
+ 3. Search for "math" and comment out the
+    C{'sphinx.ext.mathjax'} (enabled by default) and
+    C{'matplotlib.sphinxext.mathmpl'} (disabled by default)
+    lines, and uncomment the C{'sphinx.ext.pngmath'} package.
+    This is the package that generates small PNG pictures
+    of the mathematics.
+ 4. Uncomment the line with C{pngmath_dvipng_args =} and
+    set the PNG resolution to C{-D 200} when the purpose is to
+    generate mathematics pictures for slides.
+ 5. Run C{make html}.
+ 6. Look at the HTML source file in the C{_build/html}
+    directory: all mathematics are in C{img} tags with C{src=}
+    pointing to a PNG file and C{alt=} pointing to the LaTeX
+    source for the formula in question. This makes it very
+    easy to find the PNG file that corresponding to a particular
+    mathematical expression.
 
 Macros (Newcommands)
 --------------------
@@ -1881,6 +1943,16 @@ well for his diverse applications of it.
 General Problems
 ----------------
 
+Something goes wrong in the preprocessing step
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Doconce automatically removes the file C{__tmp.do.txt}, which is the
+resulting of the preprocessing stge and the file to examine if
+something goes wrong in this stage (i.e., when C{mako} and/or
+C{preprocess} is run). Add the C{--debug} flag at the end of the
+C{doconce} command to (both make a debug file and) avoid that
+C{__tmp.do.txt} is deleted.
+
 Figure captions are incomplete
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1919,13 +1991,25 @@ do not work well. You need to link to a specific HTML file::
 Links are not typeset correctly
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Not all formats will allow formatting of the links, e.g.::
+Not all formats will allow formatting of the links. Verbatim words
+in links are allowed if the whole link is typeset in verbatim::
+
+
+        see the directory "`examples`": "src/examples/index.html".
+
+However, the following will not be typeset correctly::
 
 
         see the "`examples` directory": "src/examples/index.html"
 
-will not come out right in the reST/Sphinx formats.
+The backquotes must be removed, or the text can be reformulated as
+in the line above it.
 
+
+Inline verbatim code is not detected
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure there is a space before the first backquote.
 
 Strange non-English characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2048,6 +2132,13 @@ This may happen if there is much inline math in the text. reST cannot
 understand inline LaTeX commands and interprets them as illegal code.
 Just ignore these error messages.
 
+Warning about duplicate link names
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Link names should be unique, but if (e.g.) "file" is used as link text
+several places in a reST file, the links still work. The warning can
+therefore be ignorned.
+
 Inconsistent headings in reST
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2057,6 +2148,14 @@ and a subsubsection must come under a subsection (you cannot have
 a subsubsection directly under a section). Search for C{===},
 count the number of equality signs (or underscores if you use that)
 and make sure they decrease by two every time a lower level is encountered.
+
+No code environment appears before "bc ipy" blocks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The C{!bc ipy} directive behaves this way for C{sphinx} output because
+interactive sessions are automatically handled. If this is not
+appropriate, shift to C{!bc cod} or another specification of the
+verbatim environment.
 
 Problems with LaTeX Output
 --------------------------

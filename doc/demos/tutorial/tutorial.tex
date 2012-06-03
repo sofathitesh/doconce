@@ -59,7 +59,7 @@ urlcolor=blue]{hyperref}
 
 
 \begin{center}
-Mar 11, 2012
+Jun 3, 2012
 \end{center}
 
 
@@ -74,7 +74,7 @@ Mar 11, 2012
 
  \item Do you need to write documents in varying formats but find it
    difficult to remember all the typesetting details of various
-   formats like \href{http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf}{LaTeX}, \href{http://www.htmlcodetutorial.com/}{HTML}, \href{http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html}{reStructuredText}, \href{http://sphinx.pocoo.org/contents.html}{Sphinx}, and \href{http://code.google.com/p/support/wiki/WikiSyntax}{wiki}? Would it be convenient
+   formats like \href{{http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf}}{LaTeX}, \href{{http://www.htmlcodetutorial.com/}}{HTML}, \href{{http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html}}{reStructuredText}, \href{{http://sphinx.pocoo.org/contents.html}}{Sphinx}, and \href{{http://code.google.com/p/support/wiki/WikiSyntax}}{wiki}? Would it be convenient
    to generate the typesetting details of a particular format from a
    very simple text-like format with minimal tagging?
 
@@ -314,9 +314,9 @@ Lists can also have numbered items instead of bullets, just use an {\fontsize{10
 \end{enumerate}
 
 \noindent
-URLs with a link word are possible, as in \href{http://folk.uio.no/hpl}{hpl}.
+URLs with a link word are possible, as in \href{{http://folk.uio.no/hpl}}{hpl}.
 If the word is URL, the URL itself becomes the link name,
-as in \href{tutorial.do.txt}{\nolinkurl{tutorial.do.txt}}.
+as in \href{{tutorial.do.txt}}{\nolinkurl{tutorial.do.txt}}.
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
@@ -472,7 +472,7 @@ citations, and the bibliography closely resembles that of {\LaTeX},
 making it easy for Doconce documents to be integrated in {\LaTeX}
 projects (manuals, books). For further details on functionality and
 syntax we refer to the {\fontsize{10pt}{10pt}\verb!doc/manual/manual.do.txt!} file (see the
-\href{https://doconce.googlecode.com/hg/doc/demos/manual/index.html}{demo page}
+\href{{https://doconce.googlecode.com/hg/doc/demos/manual/index.html}}{demo page}
 for various formats of this document).
 
 
@@ -556,7 +556,7 @@ Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.pnd
 Pandoc supports {\fontsize{10pt}{10pt}\verb!latex!}, {\fontsize{10pt}{10pt}\verb!html!}, {\fontsize{10pt}{10pt}\verb!odt!} (OpenOffice), {\fontsize{10pt}{10pt}\verb!docx!} (Microsoft
 Word), {\fontsize{10pt}{10pt}\verb!rtf!}, {\fontsize{10pt}{10pt}\verb!texinfo!}, to mention some. The {\fontsize{10pt}{10pt}\verb!-R!} option makes
 Pandoc pass raw HTML or {\LaTeX} to the output format instead of ignoring it.
-See the \href{http://johnmacfarlane.net/pandoc/README.html}{Pandoc documentation}
+See the \href{{http://johnmacfarlane.net/pandoc/README.html}}{Pandoc documentation}
 for the many features of the {\fontsize{10pt}{10pt}\verb!pandoc!} program.
 
 \subsection{{\LaTeX}}
@@ -764,11 +764,11 @@ output and to a wide extent also supported by the {\fontsize{10pt}{10pt}\verb!sp
 Some links for going from {\LaTeX} to Word are listed below.
 
 \begin{itemize}
- \item \href{http://ubuntuforums.org/showthread.php?t=1033441}{\nolinkurl{http://ubuntuforums.org/showthread.php?t=1033441}}
+ \item \href{{http://ubuntuforums.org/showthread.php?t=1033441}}{\nolinkurl{http://ubuntuforums.org/showthread.php?t=1033441}}
 
- \item \href{http://tug.org/utilities/texconv/textopc.html}{\nolinkurl{http://tug.org/utilities/texconv/textopc.html}}
+ \item \href{{http://tug.org/utilities/texconv/textopc.html}}{\nolinkurl{http://tug.org/utilities/texconv/textopc.html}}
 
- \item \href{http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html}{\nolinkurl{http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html}}
+ \item \href{{http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html}}{\nolinkurl{http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html}}
 \end{itemize}
 
 \noindent
@@ -951,26 +951,36 @@ depending the argument that follows {\fontsize{10pt}{10pt}\verb!!bc!}: {\fontsiz
 ({\fontsize{10pt}{10pt}\verb!code-block:: python!} in Sphinx syntax) and {\fontsize{10pt}{10pt}\verb!cppcod!} gives C++, but
 all such arguments can be customized both for Sphinx and {\LaTeX} output.
 
-\subsection{Google Code Wiki}
+\subsection{Wiki Formats}
 
-There are several different wiki dialects, but Doconce only support the
-one used by \href{http://code.google.com/p/support/wiki/WikiSyntax}{Google Code}.
-The transformation to this format, called {\fontsize{10pt}{10pt}\verb!gwiki!} to explicitly mark
-it as the Google Code dialect, is done by
+There are many different wiki formats, but Doconce only supports three:
+\href{{http://code.google.com/p/support/wiki/WikiSyntax<Google Code>}}{Googlecode wiki}, , MediaWiki, and Creole Wiki. These formats are called
+{\fontsize{10pt}{10pt}\verb!gwiki!}, {\fontsize{10pt}{10pt}\verb!mwiki!}, and {\fontsize{10pt}{10pt}\verb!cwiki!}, respectively.
+Transformation from Doconce to these formats is done by
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Terminal> doconce format gwiki mydoc.do.txt
+Terminal> doconce format mwiki mydoc.do.txt
+Terminal> doconce format cwiki mydoc.do.txt
 \end{Verbatim}
-You can then open a new wiki page for your Google Code project, copy
-the {\fontsize{10pt}{10pt}\verb!mydoc.gwiki!} output file from {\fontsize{10pt}{10pt}\verb!doconce format!} and paste the
-file contents into the wiki page. Press \textbf{Preview} or \textbf{Save Page} to
-see the formatted result.
 
-When the Doconce file contains figures, each figure filename must be
-replaced by a URL where the figure is available. There are instructions
-in the file for doing this. Usually, one performs this substitution
-automatically (see next section).
+The Googlecode wiki document, {\fontsize{10pt}{10pt}\verb!mydoc.gwiki!}, is most conveniently stored
+in a directory which is a clone of the wiki part of the Googlecode project.
+This is far easier than copying and pasting the entire text into the
+wiki editor in a web browser.
+
+When the Doconce file contains figures, each figure filename must in
+the {\fontsize{10pt}{10pt}\verb!.gwiki!} file be replaced by a URL where the figure is
+available. There are instructions in the file for doing this. Usually,
+one performs this substitution automatically (see next section).
+
+From the MediaWiki format one can go to other formats with aid
+of \href{{http://pediapress.com/code/}}{mwlib}. This means that one can
+easily use Doconce to write \href{{http://en.wikibooks.org}}{Wikibooks}
+and publish these in PDF and MediaWiki format.
+At the same time, the book can also be published as a
+standard {\LaTeX} book or a Sphinx web document.
 
 \subsection{Tweaking the Doconce Output}
 
@@ -1000,7 +1010,7 @@ formats.  The source of this tutorial, {\fontsize{10pt}{10pt}\verb!tutorial.do.t
 starting point.  Running {\fontsize{10pt}{10pt}\verb!make.sh!} and studying the various generated
 files and comparing them with the original {\fontsize{10pt}{10pt}\verb!tutorial.do.txt!} file,
 gives a quick introduction to how Doconce is used in a real case.
-\href{https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html}{Here}
+\href{{https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html}}{Here}
 is a sample of how this tutorial looks in different formats.
 
 There is another demo in the {\fontsize{10pt}{10pt}\verb!docs/manual!} directory which
@@ -1009,7 +1019,7 @@ various formats. The {\fontsize{10pt}{10pt}\verb!make.sh!} script runs a set of 
 
 \subsection{Dependencies and Installation}
 
-Doconce itself is pure Python code hosted at \href{http://code.google.com/p/doconce}{\nolinkurl{http://code.google.com/p/doconce}}.  Its installation from the
+Doconce itself is pure Python code hosted at \href{{http://code.google.com/p/doconce}}{\nolinkurl{http://code.google.com/p/doconce}}.  Its installation from the
 Mercurial ({\fontsize{10pt}{10pt}\verb!hg!}) source follows the standard procedure:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
@@ -1021,7 +1031,7 @@ sudo python setup.py install
 cd ..
 \end{Verbatim}
 
-If you make use of the \href{http://code.google.com/p/preprocess}{Preprocess}
+If you make use of the \href{{http://code.google.com/p/preprocess}}{Preprocess}
 preprocessor, this program must be installed:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
@@ -1033,7 +1043,7 @@ sudo python setup.py install
 cd ..
 \end{Verbatim}
 A much more advanced alternative to Preprocess is
-\href{http://www.makotemplates.org}{Mako}. Its installation is most
+\href{{http://www.makotemplates.org}}{Mako}. Its installation is most
 conveniently done by {\fontsize{10pt}{10pt}\verb!pip!},
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
@@ -1047,11 +1057,11 @@ such as Ubuntu, the installation is simply done by
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 sudo apt-get install python-pip
 \end{Verbatim}
-Alternatively, one can install from the {\fontsize{10pt}{10pt}\verb!pip!} \href{http://pypi.python.org/pypi/pip}{source code}.
+Alternatively, one can install from the {\fontsize{10pt}{10pt}\verb!pip!} \href{{http://pypi.python.org/pypi/pip}}{source code}.
 
 To make {\LaTeX}
 documents (without going through the reStructuredText format) you
-need \href{http://code.google.com/p/ptex2tex}{ptex2tex}, which is
+need \href{{http://code.google.com/p/ptex2tex}}{ptex2tex}, which is
 installed by
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
@@ -1076,7 +1086,7 @@ the necessary stylefiles (if not, they can be found by googling and installed
 manually in the {\fontsize{10pt}{10pt}\verb!~/texmf/tex/latex/misc!} directory).
 
 The \emph{minted} {\LaTeX} style is offered by {\fontsize{10pt}{10pt}\verb!ptex2tex!} and popular among
-users. This style requires the package \href{http://pygments.org}{Pygments}:
+users. This style requires the package \href{{http://pygments.org}}{Pygments}:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
@@ -1089,7 +1099,7 @@ If you use the minted style, you have to enable it by running
 the Section~\ref{doconce2formats}.
 
 For {\fontsize{10pt}{10pt}\verb!rst!} output and further transformation to {\LaTeX}, HTML, XML,
-OpenOffice, and so on, one needs \href{http://docutils.sourceforge.net}{docutils}.
+OpenOffice, and so on, one needs \href{{http://docutils.sourceforge.net}}{docutils}.
 The installation can be done by
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
@@ -1108,12 +1118,12 @@ sudo apt-get install unovonv libreoffice libreoffice-dmaths
 
 There is a possibility to create PDF files from reST documents
 using ReportLab instead of {\LaTeX}. The enabling software is
-\href{http://code.google.com/p/rst2pdf}{rst2pdf}. Either download the tarball
+\href{{http://code.google.com/p/rst2pdf}}{rst2pdf}. Either download the tarball
 or clone the svn repository, go to the {\fontsize{10pt}{10pt}\verb!rst2pdf!} directory and
 run {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}.
 
 
-Output to {\fontsize{10pt}{10pt}\verb!sphinx!} requires of course \href{http://sphinx.pocoo.org}{Sphinx},
+Output to {\fontsize{10pt}{10pt}\verb!sphinx!} requires of course \href{{http://sphinx.pocoo.org}}{Sphinx},
 installed by
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
@@ -1136,7 +1146,7 @@ cd ..
 \end{Verbatim}
 
 Finally, translation to {\fontsize{10pt}{10pt}\verb!pandoc!} requires the
-\href{http://johnmacfarlane.net/pandoc/}{Pandoc} program
+\href{{http://johnmacfarlane.net/pandoc/}}{Pandoc} program
 (written in Haskell) to be installed.
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},

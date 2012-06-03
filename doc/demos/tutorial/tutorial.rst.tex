@@ -76,7 +76,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Mar 11, 2012
+Jun 3, 2012
 %
 \begin{itemize}
 
@@ -1150,30 +1150,40 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 %___________________________________________________________________________
 
 \subsection*{\phantomsection%
-  Google Code Wiki%
-  \addcontentsline{toc}{subsection}{Google Code Wiki}%
-  \label{google-code-wiki}%
+  Wiki Formats%
+  \addcontentsline{toc}{subsection}{Wiki Formats}%
+  \label{wiki-formats}%
 }
 
-There are several different wiki dialects, but Doconce only support the
-one used by \href{http://code.google.com/p/support/wiki/WikiSyntax}{Google Code}.
-The transformation to this format, called \texttt{gwiki} to explicitly mark
-it as the Google Code dialect, is done by:
+There are many different wiki formats, but Doconce only supports three:
+%
+\raisebox{1em}{\hypertarget{id8}{}}\hyperlink{id7}{\textbf{\color{red}`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax<Google Code>>`\_}}, , MediaWiki, and Creole Wiki. These formats are called
+\texttt{gwiki}, \texttt{mwiki}, and \texttt{cwiki}, respectively.
+Transformation from Doconce to these formats is done by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~format~gwiki~mydoc.do.txt
+Terminal>~doconce~format~gwiki~mydoc.do.txt\\
+Terminal>~doconce~format~mwiki~mydoc.do.txt\\
+Terminal>~doconce~format~cwiki~mydoc.do.txt
 }
 \end{quote}
 
-You can then open a new wiki page for your Google Code project, copy
-the \texttt{mydoc.gwiki} output file from \texttt{doconce format} and paste the
-file contents into the wiki page. Press \textbf{Preview} or \textbf{Save Page} to
-see the formatted result.
+The Googlecode wiki document, \texttt{mydoc.gwiki}, is most conveniently stored
+in a directory which is a clone of the wiki part of the Googlecode project.
+This is far easier than copying and pasting the entire text into the
+wiki editor in a web browser.
 
-When the Doconce file contains figures, each figure filename must be
-replaced by a URL where the figure is available. There are instructions
-in the file for doing this. Usually, one performs this substitution
-automatically (see next section).
+When the Doconce file contains figures, each figure filename must in
+the \texttt{.gwiki} file be replaced by a URL where the figure is
+available. There are instructions in the file for doing this. Usually,
+one performs this substitution automatically (see next section).
+
+From the MediaWiki format one can go to other formats with aid
+of \href{http://pediapress.com/code/}{mwlib}. This means that one can
+easily use Doconce to write \href{http://en.wikibooks.org}{Wikibooks}
+and publish these in PDF and MediaWiki format.
+At the same time, the book can also be published as a
+standard LaTeX book or a Sphinx web document.
 
 
 %___________________________________________________________________________
@@ -1395,5 +1405,23 @@ Mercurial (\texttt{hg}) directories, go to the directory, run
 \texttt{hg pull; hg update}, and then \texttt{sudo python setup.py install}.
 Doconce itself is frequently updated so these commands should be
 run regularly.
+
+
+%___________________________________________________________________________
+
+\section*{\phantomsection%
+  \color{red}Docutils System Messages%
+  \addcontentsline{toc}{section}{Docutils System Messages}%
+}
+
+\DUadmonition[system-message]{
+\DUtitle[system-message]{system-message}
+\raisebox{1em}{\hypertarget{id7}{}}
+
+{\color{red}ERROR/3} in \texttt{tutorial.rst}, line~836
+
+\hyperlink{id8}{
+Unknown target name: ``googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>''.
+}}
 
 \end{document}

@@ -538,7 +538,7 @@ def exercises(filestr, format):
     # __Hint 1.__ some paragraph...,
     # __Hint 2.__ ...
 
-    debugpr('\n\n\n***** Exercises *****\nLooking for exercises in the whole file:\n%s\n..............\n' % filestr)
+    debugpr('\n\n\n***** Interpreting exercises *****\n\n')
 
     all_exer = []   # collection of all exercises
     exer = {}       # data for one exercise
