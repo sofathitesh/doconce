@@ -1,5 +1,5 @@
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -38,6 +38,8 @@ doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 
 doconce grab --from[-] from-text [--to[-] to-text] somefile
+
+doconce spellcheck -d .dict4spell.txt *.do.txt
 
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name

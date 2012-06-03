@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Mar 11, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jun 3, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -636,23 +636,31 @@ depending the argument that follows <tt class="docutils literal"><span class="pr
 (<tt class="docutils literal"><span class="pre">code-block::</span> <span class="pre">python</span></tt> in Sphinx syntax) and <tt class="docutils literal"><span class="pre">cppcod</span></tt> gives C++, but
 all such arguments can be customized both for Sphinx and LaTeX output.</p>
 </div>
-<div class="section" id="google-code-wiki">
-<h2>Google Code Wiki<a class="headerlink" href="#google-code-wiki" title="Permalink to this headline">¶</a></h2>
-<p>There are several different wiki dialects, but Doconce only support the
-one used by <a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Google Code</a>.
-The transformation to this format, called <tt class="docutils literal"><span class="pre">gwiki</span></tt> to explicitly mark
-it as the Google Code dialect, is done by</p>
+<div class="section" id="wiki-formats">
+<h2>Wiki Formats<a class="headerlink" href="#wiki-formats" title="Permalink to this headline">¶</a></h2>
+<p>There are many different wiki formats, but Doconce only supports three:
+<a href="#id11"><span class="problematic" id="id12">`Googlecode wiki &lt;http://code.google.com/p/support/wiki/WikiSyntax&lt;Google Code&gt;&gt;`_</span></a>, , MediaWiki, and Creole Wiki. These formats are called
+<tt class="docutils literal"><span class="pre">gwiki</span></tt>, <tt class="docutils literal"><span class="pre">mwiki</span></tt>, and <tt class="docutils literal"><span class="pre">cwiki</span></tt>, respectively.
+Transformation from Doconce to these formats is done by</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format gwiki mydoc.do.txt</span>
+<span class="go">Terminal&gt; doconce format mwiki mydoc.do.txt</span>
+<span class="go">Terminal&gt; doconce format cwiki mydoc.do.txt</span>
 </pre></div>
 </div>
-<p>You can then open a new wiki page for your Google Code project, copy
-the <tt class="docutils literal"><span class="pre">mydoc.gwiki</span></tt> output file from <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt> and paste the
-file contents into the wiki page. Press <strong>Preview</strong> or <strong>Save Page</strong> to
-see the formatted result.</p>
-<p>When the Doconce file contains figures, each figure filename must be
-replaced by a URL where the figure is available. There are instructions
-in the file for doing this. Usually, one performs this substitution
-automatically (see next section).</p>
+<p>The Googlecode wiki document, <tt class="docutils literal"><span class="pre">mydoc.gwiki</span></tt>, is most conveniently stored
+in a directory which is a clone of the wiki part of the Googlecode project.
+This is far easier than copying and pasting the entire text into the
+wiki editor in a web browser.</p>
+<p>When the Doconce file contains figures, each figure filename must in
+the <tt class="docutils literal"><span class="pre">.gwiki</span></tt> file be replaced by a URL where the figure is
+available. There are instructions in the file for doing this. Usually,
+one performs this substitution automatically (see next section).</p>
+<p>From the MediaWiki format one can go to other formats with aid
+of <a class="reference external" href="http://pediapress.com/code/">mwlib</a>. This means that one can
+easily use Doconce to write <a class="reference external" href="http://en.wikibooks.org">Wikibooks</a>
+and publish these in PDF and MediaWiki format.
+At the same time, the book can also be published as a
+standard LaTeX book or a Sphinx web document.</p>
 </div>
 <div class="section" id="tweaking-the-doconce-output">
 <h2>Tweaking the Doconce Output<a class="headerlink" href="#tweaking-the-doconce-output" title="Permalink to this headline">¶</a></h2>
@@ -858,16 +866,25 @@ if desired and may have effect for some formats. Note the comma
 between the sespecifications and that there should be no space
 around the = sign.</p>
 <p>Note also that, like for <tt class="docutils literal"><span class="pre">TITLE:</span></tt> and <tt class="docutils literal"><span class="pre">AUTHOR:</span></tt> lines, all information
-related to a figure line must be written on the same line. Introducing
+related to a figure line <em>must be written on the same line</em>. Introducing
 newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as <tt class="docutils literal"><span class="pre">FIGURE:</span></tt> will be
 included in the formatted caption).</p>
 <div class="figure" id="fig-viz">
 <img alt="_images/streamtubes.png" src="_images/streamtubes.png" style="width: 400px;" />
-<p class="caption"><a href="#id5"><span class="problematic" id="id6">*</span></a>Streamtube visualization of a fluid flow  *</p>
-<div class="legend">
+<p class="caption"><em>Streamtube visualization of a fluid flow</em></p>
 </div>
+<p>Combining several image files into one can be done by the
+<tt class="docutils literal"><span class="pre">convert</span></tt> and <tt class="docutils literal"><span class="pre">montage</span></tt> programs from the ImageMagick suite:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">montage file1.png file2.png ... file4.png -geometry +2+2  result.png</span>
+<span class="go">montage file1.png file2.png -tile x1 result.png</span>
+<span class="go">montage file1.png file2.png -tile 1x result.png</span>
+
+<span class="go">convert -background white file1.png file2.png +append tmp.png</span>
+</pre></div>
 </div>
+<p>Use <tt class="docutils literal"><span class="pre">+append</span></tt> for stacking left to right, <tt class="docutils literal"><span class="pre">-append</span></tt> for top to bottom.
+The positioning of the figures can be controlled by <tt class="docutils literal"><span class="pre">-gravity</span></tt>.</p>
 </div>
 <div class="section" id="movies">
 <h2>Movies<a class="headerlink" href="#movies" title="Permalink to this headline">¶</a></h2>
@@ -914,7 +931,7 @@ of computer code from a file directly into a verbatim environment, see
 the section <a class="reference internal" href="#sec-verbatim-blocks"><em>Blocks of Verbatim Computer Code</em></a> below.</p>
 </div>
 <div class="section" id="inline-tagging">
-<span id="id7"></span><h2>Inline Tagging<a class="headerlink" href="#inline-tagging" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>Inline Tagging<a class="headerlink" href="#inline-tagging" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="index-7"></span><span class="target" id="index-8"></span><span class="target" id="index-9"></span><span class="target" id="index-10"></span><p id="index-11">Doconce supports tags for <em>emphasized phrases</em>, <strong>boldface phrases</strong>,
 and <tt class="docutils literal"><span class="pre">verbatim</span> <span class="pre">text</span></tt> (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as <span class="math">\(\nu = \sin(x)\)</span>.</p>
@@ -1063,7 +1080,7 @@ and with LaTeX &#8220;label&#8221; and &#8220;ref&#8221; are just equipped with 
 these commands work as usual in LaTeX.</p>
 <p>It is, in general, recommended to use labels and references for
 (sub)sections, equations, and figures only.
-By the way, here is an example on referencing Figure <a class="reference internal" href="#fig-viz"><em>*Streamtube visualization of a fluid flow  *</em></a>
+By the way, here is an example on referencing Figure <a class="reference internal" href="#fig-viz"><em>Streamtube visualization of a fluid flow</em></a>
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections <a class="reference internal" href="#mathtext"><em>LaTeX Blocks of Mathematical Text</em></a> and <a class="reference internal" href="#newcommands"><em>Macros (Newcommands)</em></a> are
 nice to demonstrate, as well as a reference to equations,
@@ -1283,7 +1300,9 @@ for C, <tt class="docutils literal"><span class="pre">cpp</span></tt> for C++, <
 Matlab, <tt class="docutils literal"><span class="pre">cy</span></tt> for Cython, and <tt class="docutils literal"><span class="pre">py</span></tt> for Python.  The argument <tt class="docutils literal"><span class="pre">sys</span></tt>
 means by default <tt class="docutils literal"><span class="pre">console</span></tt> for Sphinx and <tt class="docutils literal"><span class="pre">CodeTerminal</span></tt> (ptex2tex
 environent) for LaTeX. Other specifications are <tt class="docutils literal"><span class="pre">dat</span></tt> for a data file
-or print out, and <tt class="docutils literal"><span class="pre">ipy</span></tt> for interactive Python sessions.  All these
+or print out, and <tt class="docutils literal"><span class="pre">ipy</span></tt> for interactive Python sessions (the latter
+does not introduce any environment  in <tt class="docutils literal"><span class="pre">sphinx</span></tt> output, as interactive
+sessions are automatically recognized and handled).  All these
 definitions of the arguments after <tt class="docutils literal"><span class="pre">!bc</span></tt> can be redefined in the
 <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt> configuration file for ptex2tex/LaTeX and in the
 <tt class="docutils literal"><span class="pre">sphinx</span> <span class="pre">code-blocks</span></tt> comments for Sphinx. Support for other languages
@@ -1407,19 +1426,58 @@ file.)</p>
 the opening tag is <tt class="docutils literal"><span class="pre">!bt</span></tt> (begin TeX) and the closing tag is
 <tt class="docutils literal"><span class="pre">!et</span></tt>. It is important that <tt class="docutils literal"><span class="pre">!bt</span></tt> and <tt class="docutils literal"><span class="pre">!et</span></tt> appear on the beginning of the
 line and followed by a newline.</p>
-<p>Here is the result of a <tt class="docutils literal"><span class="pre">!bt</span></tt> - <tt class="docutils literal"><span class="pre">!et</span></tt> block:</p>
+<div class="highlight-py"><div class="highlight"><pre>
+</pre></div>
+</div>
+<div class="math">
+\[\begin{split}\begin{align}
+{\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
+{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g
+\end{align}\end{split}\]</div>
+<p>Here is the result of the above <tt class="docutils literal"><span class="pre">!bt</span></tt> - <tt class="docutils literal"><span class="pre">!et</span></tt> block:</p>
 <div class="math" id="equation-myeq1">
-<span class="eqno">(1)</span>\[\begin{split}     {\partial u\over\partial t}  &amp;=  \nabla^2 u + f, \\
-     {\partial v\over\partial t}  &amp;=  \nabla\cdot(q(u)\nabla v) + g\end{split}\]</div>
+<span class="eqno">(1)</span>\[\begin{split}     {\partial u\over\partial t} &amp;= \nabla^2 u + f, \\
+     {\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g\end{split}\]</div>
 <p>This text looks ugly in all Doconce supported formats, except from
-LaTeX and Sphinx.  If HTML is desired, the best is to filter the Doconce text
-first to LaTeX and then use the widely available tex4ht tool to
-convert the dvi file to HTML, or one could just link a PDF file (made
-from LaTeX) directly from HTML. For other textual formats, it is best
-to avoid blocks of mathematics and instead use inline mathematics
-where it is possible to write expressions both in native LaTeX format
-(so it looks good in LaTeX) and in a pure text format (so it looks
-okay in other formats).</p>
+LaTeX and Sphinx.  If HTML is desired, and Sphinx is not an option,
+one can filter the Doconce text first to LaTeX and then use the tex4ht
+tool to convert the dvi file to HTML, or one could just link a PDF
+file (made from LaTeX) directly from HTML.</p>
+<p>If the document targets both LaTeX, Sphinx, and other formats like
+plain text and wiki, one can use the preprocessor to typeset the
+mathematics in two versions. After <tt class="docutils literal"><span class="pre">#if</span> <span class="pre">FORMAT</span> <span class="pre">in</span> <span class="pre">(&quot;latex&quot;,</span> <span class="pre">&quot;pdflatex&quot;,</span>
+<span class="pre">&quot;sphinx&quot;,</span> <span class="pre">&quot;mwiki&quot;)</span></tt> one places LaTeX mathematics, and after <tt class="docutils literal"><span class="pre">#else</span></tt> one can
+write inline mathematics in a way that looks nice in plain text and
+wiki formats without support for mathematical typesetting.</p>
+<div class="section" id="mathematics-for-powerpoint-openoffice">
+<h3>Mathematics for PowerPoint/OpenOffice<a class="headerlink" href="#mathematics-for-powerpoint-openoffice" title="Permalink to this headline">¶</a></h3>
+<p>If you have LaTeX mathematics written in Doconce, it is fairly easy
+to generate PNG images of all mathematical formulas and equations for
+use with PowerPoint or OpenOffice documents.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Make a Sphinx version of the Doconce file.</li>
+<li>Go to the Sphinx directory and load the <tt class="docutils literal"><span class="pre">conf.py</span></tt> file into
+a browser.</li>
+<li>Search for &#8220;math&#8221; and comment out the
+<tt class="docutils literal"><span class="pre">'sphinx.ext.mathjax'</span></tt> (enabled by default) and
+<tt class="docutils literal"><span class="pre">'matplotlib.sphinxext.mathmpl'</span></tt> (disabled by default)
+lines, and uncomment the <tt class="docutils literal"><span class="pre">'sphinx.ext.pngmath'</span></tt> package.
+This is the package that generates small PNG pictures
+of the mathematics.</li>
+<li>Uncomment the line with <tt class="docutils literal"><span class="pre">pngmath_dvipng_args</span> <span class="pre">=</span></tt> and
+set the PNG resolution to <tt class="docutils literal"><span class="pre">-D</span> <span class="pre">200</span></tt> when the purpose is to
+generate mathematics pictures for slides.</li>
+<li>Run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">html</span></tt>.</li>
+<li>Look at the HTML source file in the <tt class="docutils literal"><span class="pre">_build/html</span></tt>
+directory: all mathematics are in <tt class="docutils literal"><span class="pre">img</span></tt> tags with <tt class="docutils literal"><span class="pre">src=</span></tt>
+pointing to a PNG file and <tt class="docutils literal"><span class="pre">alt=</span></tt> pointing to the LaTeX
+source for the formula in question. This makes it very
+easy to find the PNG file that corresponding to a particular
+mathematical expression.</li>
+</ol>
+</div></blockquote>
+</div>
 </div>
 <div class="section" id="macros-newcommands">
 <span id="newcommands"></span><h2>Macros (Newcommands)<a class="headerlink" href="#macros-newcommands" title="Permalink to this headline">¶</a></h2>
@@ -1461,9 +1519,9 @@ expressions).</p>
 \eeqa</pre>
 </div>
 <p>will then be rendered to</p>
-<div class="math">
-\[\begin{split}\pmb{x}\cdot\pmb{n}  &amp;=  0, \\
-\frac{D\vec u}{dt}  &amp;=  \pmb{Q} \thinspace .\end{split}\]</div>
+<div class="math" id="equation-myeq1">
+<span class="eqno">(2)</span>\[\begin{split}     {\partial u\over\partial t} &amp;= \nabla^2 u + f, \\
+     {\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g\end{split}\]</div>
 <p>in the current format.</p>
 </div>
 <div class="section" id="preprocessing-steps">
@@ -1494,11 +1552,11 @@ source code of this document to understand how preprocess is used to
 create the example).</p>
 <div class="figure">
 <img alt="_images/wavepacket_0001.png" src="_images/wavepacket_0001.png" style="width: 400px;" />
-<p class="caption"><em>Wavepacket at time 0.1 s</em></p>
+<p class="caption">Wavepacket at time 0.1 s</p>
 </div>
 <div class="figure">
 <img alt="_images/wavepacket_0010.png" src="_images/wavepacket_0010.png" style="width: 400px;" />
-<p class="caption"><em>Wavepacket at time 0.2 s</em></p>
+<p class="caption">Wavepacket at time 0.2 s</p>
 </div>
 <p>Other user-defined variables for the preprocessor can be set at
 the command line as explained in the section <a class="reference internal" href="#doconce2formats"><em>From Doconce to Other Formats</em></a>.</p>
@@ -1659,6 +1717,15 @@ well for his diverse applications of it.</p>
 </div>
 <div class="section" id="general-problems">
 <h2>General Problems<a class="headerlink" href="#general-problems" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="something-goes-wrong-in-the-preprocessing-step">
+<h3>Something goes wrong in the preprocessing step<a class="headerlink" href="#something-goes-wrong-in-the-preprocessing-step" title="Permalink to this headline">¶</a></h3>
+<p>Doconce automatically removes the file <tt class="docutils literal"><span class="pre">__tmp.do.txt</span></tt>, which is the
+resulting of the preprocessing stge and the file to examine if
+something goes wrong in this stage (i.e., when <tt class="docutils literal"><span class="pre">mako</span></tt> and/or
+<tt class="docutils literal"><span class="pre">preprocess</span></tt> is run). Add the <tt class="docutils literal"><span class="pre">--debug</span></tt> flag at the end of the
+<tt class="docutils literal"><span class="pre">doconce</span></tt> command to (both make a debug file and) avoid that
+<tt class="docutils literal"><span class="pre">__tmp.do.txt</span></tt> is deleted.</p>
+</div>
 <div class="section" id="figure-captions-are-incomplete">
 <h3>Figure captions are incomplete<a class="headerlink" href="#figure-captions-are-incomplete" title="Permalink to this headline">¶</a></h3>
 <p>If only the first part of a figure caption in the Doconce file is seen
@@ -1688,10 +1755,19 @@ correctly. Merge them into one common expression.</p>
 </div>
 <div class="section" id="links-are-not-typeset-correctly">
 <h3>Links are not typeset correctly<a class="headerlink" href="#links-are-not-typeset-correctly" title="Permalink to this headline">¶</a></h3>
-<p>Not all formats will allow formatting of the links, e.g.,</p>
+<p>Not all formats will allow formatting of the links. Verbatim words
+in links are allowed if the whole link is typeset in verbatim:</p>
+<div class="highlight-py"><pre>see the directory "`examples`": "src/examples/index.html".</pre>
+</div>
+<p>However, the following will not be typeset correctly:</p>
 <div class="highlight-py"><pre>see the "`examples` directory": "src/examples/index.html"</pre>
 </div>
-<p>will not come out right in the reST/Sphinx formats.</p>
+<p>The backquotes must be removed, or the text can be reformulated as
+in the line above it.</p>
+</div>
+<div class="section" id="inline-verbatim-code-is-not-detected">
+<h3>Inline verbatim code is not detected<a class="headerlink" href="#inline-verbatim-code-is-not-detected" title="Permalink to this headline">¶</a></h3>
+<p>Make sure there is a space before the first backquote.</p>
 </div>
 <div class="section" id="strange-non-english-characters">
 <h3>Strange non-English characters<a class="headerlink" href="#strange-non-english-characters" title="Permalink to this headline">¶</a></h3>
@@ -1795,6 +1871,12 @@ will include the list if the list is indentend. Remove the comment.</p>
 understand inline LaTeX commands and interprets them as illegal code.
 Just ignore these error messages.</p>
 </div>
+<div class="section" id="warning-about-duplicate-link-names">
+<h3>Warning about duplicate link names<a class="headerlink" href="#warning-about-duplicate-link-names" title="Permalink to this headline">¶</a></h3>
+<p>Link names should be unique, but if (e.g.) &#8220;file&#8221; is used as link text
+several places in a reST file, the links still work. The warning can
+therefore be ignorned.</p>
+</div>
 <div class="section" id="inconsistent-headings-in-rest">
 <h3>Inconsistent headings in reST<a class="headerlink" href="#inconsistent-headings-in-rest" title="Permalink to this headline">¶</a></h3>
 <p>The <tt class="docutils literal"><span class="pre">rst2*.py</span></tt> and Sphinx converters abort if the headers of sections
@@ -1803,6 +1885,13 @@ and a subsubsection must come under a subsection (you cannot have
 a subsubsection directly under a section). Search for <tt class="docutils literal"><span class="pre">===</span></tt>,
 count the number of equality signs (or underscores if you use that)
 and make sure they decrease by two every time a lower level is encountered.</p>
+</div>
+<div class="section" id="no-code-environment-appears-before-bc-ipy-blocks">
+<h3>No code environment appears before &#8220;bc ipy&#8221; blocks<a class="headerlink" href="#no-code-environment-appears-before-bc-ipy-blocks" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">ipy</span></tt> directive behaves this way for <tt class="docutils literal"><span class="pre">sphinx</span></tt> output because
+interactive sessions are automatically handled. If this is not
+appropriate, shift to <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">cod</span></tt> or another specification of the
+verbatim environment.</p>
 </div>
 </div>
 <div class="section" id="problems-with-latex-output">
@@ -2050,7 +2139,7 @@ the iterations.</td>
 <table class="docutils citation" frame="void" id="python-primer-09" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Python:Primer:09]</td><td><em>(<a class="fn-backref" href="#id9">1</a>, <a class="fn-backref" href="#id11">2</a>)</em> H. P. Langtangen.
+<tr><td class="label">[Python:Primer:09]</td><td><em>(<a class="fn-backref" href="#id7">1</a>, <a class="fn-backref" href="#id9">2</a>)</em> H. P. Langtangen.
 <em>A Primer on Scientific Programming with Python</em>.
 Springer, 2009.</td></tr>
 </tbody>
@@ -2058,7 +2147,7 @@ Springer, 2009.</td></tr>
 <table class="docutils citation" frame="void" id="osnes-98" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Osnes:98]</td><td><em>(<a class="fn-backref" href="#id10">1</a>, <a class="fn-backref" href="#id12">2</a>)</em> H. Osnes and H. P. Langtangen.
+<tr><td class="label">[Osnes:98]</td><td><em>(<a class="fn-backref" href="#id8">1</a>, <a class="fn-backref" href="#id10">2</a>)</em> H. Osnes and H. P. Langtangen.
 An efficient probabilistic finite element method for stochastic
 groundwater flow.
 <em>Advances in Water Resources</em>, vol 22, 185-195, 1998.</td></tr>
@@ -2089,7 +2178,7 @@ groundwater flow.
 <li><a class="reference internal" href="#plain-ascii-text">Plain ASCII Text</a></li>
 <li><a class="reference internal" href="#restructuredtext">reStructuredText</a></li>
 <li><a class="reference internal" href="#id3">Sphinx</a></li>
-<li><a class="reference internal" href="#google-code-wiki">Google Code Wiki</a></li>
+<li><a class="reference internal" href="#wiki-formats">Wiki Formats</a></li>
 <li><a class="reference internal" href="#tweaking-the-doconce-output">Tweaking the Doconce Output</a></li>
 </ul>
 </li>
@@ -2109,7 +2198,10 @@ groundwater flow.
 <li><a class="reference internal" href="#tables">Tables</a></li>
 <li><a class="reference internal" href="#exercises-problems-or-projects">Exercises, Problems, or Projects</a></li>
 <li><a class="reference internal" href="#blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</a></li>
-<li><a class="reference internal" href="#latex-blocks-of-mathematical-text">LaTeX Blocks of Mathematical Text</a></li>
+<li><a class="reference internal" href="#latex-blocks-of-mathematical-text">LaTeX Blocks of Mathematical Text</a><ul>
+<li><a class="reference internal" href="#mathematics-for-powerpoint-openoffice">Mathematics for PowerPoint/OpenOffice</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#macros-newcommands">Macros (Newcommands)</a></li>
 <li><a class="reference internal" href="#preprocessing-steps">Preprocessing Steps</a></li>
 <li><a class="reference internal" href="#splitting-documents-into-smaller-pieces">Splitting Documents into Smaller Pieces</a></li>
@@ -2121,11 +2213,13 @@ groundwater flow.
 <li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
 <li><a class="reference internal" href="#disclaimer">Disclaimer</a></li>
 <li><a class="reference internal" href="#general-problems">General Problems</a><ul>
+<li><a class="reference internal" href="#something-goes-wrong-in-the-preprocessing-step">Something goes wrong in the preprocessing step</a></li>
 <li><a class="reference internal" href="#figure-captions-are-incomplete">Figure captions are incomplete</a></li>
 <li><a class="reference internal" href="#preprocessor-directives-do-not-work">Preprocessor directives do not work</a></li>
 <li><a class="reference internal" href="#problems-with-boldface-and-emphasize">Problems with boldface and emphasize</a></li>
 <li><a class="reference internal" href="#links-to-local-directories-do-not-work">Links to local directories do not work</a></li>
 <li><a class="reference internal" href="#links-are-not-typeset-correctly">Links are not typeset correctly</a></li>
+<li><a class="reference internal" href="#inline-verbatim-code-is-not-detected">Inline verbatim code is not detected</a></li>
 <li><a class="reference internal" href="#strange-non-english-characters">Strange non-English characters</a></li>
 <li><a class="reference internal" href="#wrong-norwegian-charcters">Wrong Norwegian charcters</a></li>
 <li><a class="reference internal" href="#inline-verbatim-text-is-not-formatted-correctly">Inline verbatim text is not formatted correctly</a></li>
@@ -2144,7 +2238,9 @@ groundwater flow.
 <li><a class="reference internal" href="#problems-with-rest-sphinx-output">Problems with reST/Sphinx Output</a><ul>
 <li><a class="reference internal" href="#lists-do-not-appear-in-rst-files">Lists do not appear in .rst files</a></li>
 <li><a class="reference internal" href="#error-message-undefined-substitution-from-rest">Error message &#8220;Undefined substitution...&#8221; from reST</a></li>
+<li><a class="reference internal" href="#warning-about-duplicate-link-names">Warning about duplicate link names</a></li>
 <li><a class="reference internal" href="#inconsistent-headings-in-rest">Inconsistent headings in reST</a></li>
+<li><a class="reference internal" href="#no-code-environment-appears-before-bc-ipy-blocks">No code environment appears before &#8220;bc ipy&#8221; blocks</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#problems-with-latex-output">Problems with LaTeX Output</a><ul>

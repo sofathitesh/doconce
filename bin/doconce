@@ -1395,12 +1395,17 @@ def grab():
         sys.exit(1)
     from_included = sys.argv[1] == '--from'
     from_text = sys.argv[2]
+
+    # Treat --to
+
+    # impossible text (has newlines) that will never be found:
+    impossible_text = '@\n\n@'
     try:
         to_included = sys.argv[3] == '--to'
         to_text = sys.argv[4]
     except IndexError:
         to_included = True
-        to_text = '@\n\n@'  # impossible text (has newlines)
+        to_text = impossible_text
 
     from_found = False
     to_found = False
@@ -1424,7 +1429,7 @@ def grab():
     if not from_found:
         print 'Could not find match for from regex "%s"' % from_text
         sys.exit(1)
-    if not to_found:
+    if not to_found and to_text != impossible_text:
         print 'Could not find match for to   regex "%s"' % to_text
         sys.exit(1)
     print ''.join(lines).rstrip()

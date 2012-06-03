@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Mar 11, 2012
+:Date: Jun 3, 2012
 
 .. lines beginning with # are comment lines
 
@@ -783,27 +783,37 @@ depending the argument that follows ``!bc``: ``cod`` gives Python
 all such arguments can be customized both for Sphinx and LaTeX output.
 
 
-Google Code Wiki
-----------------
+Wiki Formats
+------------
 
-There are several different wiki dialects, but Doconce only support the
-one used by `Google Code <http://code.google.com/p/support/wiki/WikiSyntax>`_.
-The transformation to this format, called ``gwiki`` to explicitly mark
-it as the Google Code dialect, is done by
+There are many different wiki formats, but Doconce only supports three:
+`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax<Google Code>>`_, , MediaWiki, and Creole Wiki. These formats are called
+``gwiki``, ``mwiki``, and ``cwiki``, respectively.
+Transformation from Doconce to these formats is done by
 
 .. code-block:: console
 
         Terminal> doconce format gwiki mydoc.do.txt
+        Terminal> doconce format mwiki mydoc.do.txt
+        Terminal> doconce format cwiki mydoc.do.txt
 
-You can then open a new wiki page for your Google Code project, copy
-the ``mydoc.gwiki`` output file from ``doconce format`` and paste the
-file contents into the wiki page. Press **Preview** or **Save Page** to
-see the formatted result.
 
-When the Doconce file contains figures, each figure filename must be
-replaced by a URL where the figure is available. There are instructions
-in the file for doing this. Usually, one performs this substitution
-automatically (see next section).
+The Googlecode wiki document, ``mydoc.gwiki``, is most conveniently stored
+in a directory which is a clone of the wiki part of the Googlecode project.
+This is far easier than copying and pasting the entire text into the
+wiki editor in a web browser.
+
+When the Doconce file contains figures, each figure filename must in
+the ``.gwiki`` file be replaced by a URL where the figure is
+available. There are instructions in the file for doing this. Usually,
+one performs this substitution automatically (see next section).
+
+From the MediaWiki format one can go to other formats with aid
+of `mwlib <http://pediapress.com/code/>`_. This means that one can
+easily use Doconce to write `Wikibooks <http://en.wikibooks.org>`_
+and publish these in PDF and MediaWiki format.
+At the same time, the book can also be published as a
+standard LaTeX book or a Sphinx web document.
 
 
 Tweaking the Doconce Output
@@ -1084,7 +1094,7 @@ between the sespecifications and that there should be no space
 around the = sign.
 
 Note also that, like for ``TITLE:`` and ``AUTHOR:`` lines, all information
-related to a figure line must be written on the same line. Introducing
+related to a figure line *must be written on the same line*. Introducing
 newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as ``FIGURE:`` will be
 included in the formatted caption).
@@ -1095,8 +1105,22 @@ included in the formatted caption).
 .. figure:: figs/streamtubes.png
    :width: 400
 
-   *Streamtube visualization of a fluid flow  *
+   *Streamtube visualization of a fluid flow*
 
+
+Combining several image files into one can be done by the
+``convert`` and ``montage`` programs from the ImageMagick suite:
+
+.. code-block:: console
+
+        montage file1.png file2.png ... file4.png -geometry +2+2  result.png
+        montage file1.png file2.png -tile x1 result.png
+        montage file1.png file2.png -tile 1x result.png
+        
+        convert -background white file1.png file2.png +append tmp.png
+
+Use ``+append`` for stacking left to right, ``-append`` for top to bottom.
+The positioning of the figures can be controlled by ``-gravity``.
 
 Movies
 ------
@@ -1704,7 +1728,9 @@ for C, ``cpp`` for C++, ``sh`` for Unix shells, ``pl`` for Perl, ``m`` for
 Matlab, ``cy`` for Cython, and ``py`` for Python.  The argument ``sys``
 means by default ``console`` for Sphinx and ``CodeTerminal`` (ptex2tex
 environent) for LaTeX. Other specifications are ``dat`` for a data file
-or print out, and ``ipy`` for interactive Python sessions.  All these
+or print out, and ``ipy`` for interactive Python sessions (the latter
+does not introduce any environment  in ``sphinx`` output, as interactive
+sessions are automatically recognized and handled).  All these
 definitions of the arguments after ``!bc`` can be redefined in the
 ``.ptex2tex.cfg`` configuration file for ptex2tex/LaTeX and in the
 ``sphinx code-blocks`` comments for Sphinx. Support for other languages
@@ -1878,25 +1904,73 @@ the opening tag is ``!bt`` (begin TeX) and the closing tag is
 ``!et``. It is important that ``!bt`` and ``!et`` appear on the beginning of the
 line and followed by a newline.
 
-Here is the result of a ``!bt`` - ``!et`` block:
+.. code-block:: py
+
+
+        
+.. math::
+        \begin{align}
+        {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        \end{align}
+        
+
+
+Here is the result of the above ``!bt`` - ``!et`` block:
 
 .. math::
    :label: myeq1
         
-        {\partial u\over\partial t}  &=  \nabla^2 u + f, \\
-        {\partial v\over\partial t}  &=  \nabla\cdot(q(u)\nabla v) + g
+        {\partial u\over\partial t} &= \nabla^2 u + f, \\
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
         
 
 
 This text looks ugly in all Doconce supported formats, except from
-LaTeX and Sphinx.  If HTML is desired, the best is to filter the Doconce text
-first to LaTeX and then use the widely available tex4ht tool to
-convert the dvi file to HTML, or one could just link a PDF file (made
-from LaTeX) directly from HTML. For other textual formats, it is best
-to avoid blocks of mathematics and instead use inline mathematics
-where it is possible to write expressions both in native LaTeX format
-(so it looks good in LaTeX) and in a pure text format (so it looks
-okay in other formats).
+LaTeX and Sphinx.  If HTML is desired, and Sphinx is not an option,
+one can filter the Doconce text first to LaTeX and then use the tex4ht
+tool to convert the dvi file to HTML, or one could just link a PDF
+file (made from LaTeX) directly from HTML.
+
+If the document targets both LaTeX, Sphinx, and other formats like
+plain text and wiki, one can use the preprocessor to typeset the
+mathematics in two versions. After ``#if FORMAT in ("latex", "pdflatex",
+"sphinx", "mwiki")`` one places LaTeX mathematics, and after ``#else`` one can
+write inline mathematics in a way that looks nice in plain text and
+wiki formats without support for mathematical typesetting.
+
+
+Mathematics for PowerPoint/OpenOffice
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you have LaTeX mathematics written in Doconce, it is fairly easy
+to generate PNG images of all mathematical formulas and equations for
+use with PowerPoint or OpenOffice documents.
+
+ 1. Make a Sphinx version of the Doconce file.
+
+ 2. Go to the Sphinx directory and load the ``conf.py`` file into
+    a browser.
+
+ 3. Search for "math" and comment out the
+    ``'sphinx.ext.mathjax'`` (enabled by default) and
+    ``'matplotlib.sphinxext.mathmpl'`` (disabled by default)
+    lines, and uncomment the ``'sphinx.ext.pngmath'`` package.
+    This is the package that generates small PNG pictures
+    of the mathematics.
+
+ 4. Uncomment the line with ``pngmath_dvipng_args =`` and
+    set the PNG resolution to ``-D 200`` when the purpose is to
+    generate mathematics pictures for slides.
+
+ 5. Run ``make html``.
+
+ 6. Look at the HTML source file in the ``_build/html``
+    directory: all mathematics are in ``img`` tags with ``src=``
+    pointing to a PNG file and ``alt=`` pointing to the LaTeX
+    source for the formula in question. This makes it very
+    easy to find the PNG file that corresponding to a particular
+    mathematical expression.
 
 .. _newcommands:
 
@@ -1960,9 +2034,10 @@ The LaTeX block
 will then be rendered to
 
 .. math::
+   :label: myeq1
         
-        \pmb{x}\cdot\pmb{n}  &=  0, \\
-        \frac{D\vec u}{dt}  &=  \pmb{Q} \thinspace .    
+        {\partial u\over\partial t} &= \nabla^2 u + f, \\
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
         
 
 in the current format.
@@ -2010,14 +2085,14 @@ create the example).
 .. figure:: figs/wavepacket_0001.png
    :width: 400
 
-   *Wavepacket at time 0.1 s*
+   Wavepacket at time 0.1 s
 
 
 
 .. figure:: figs/wavepacket_0010.png
    :width: 400
 
-   *Wavepacket at time 0.2 s*
+   Wavepacket at time 0.2 s
 
 
 
@@ -2224,6 +2299,16 @@ well for his diverse applications of it.
 General Problems
 ----------------
 
+Something goes wrong in the preprocessing step
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Doconce automatically removes the file ``__tmp.do.txt``, which is the
+resulting of the preprocessing stge and the file to examine if
+something goes wrong in this stage (i.e., when ``mako`` and/or
+``preprocess`` is run). Add the ``--debug`` flag at the end of the
+``doconce`` command to (both make a debug file and) avoid that
+``__tmp.do.txt`` is deleted.
+
 Figure captions are incomplete
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2266,15 +2351,29 @@ do not work well. You need to link to a specific HTML file:
 Links are not typeset correctly
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Not all formats will allow formatting of the links, e.g.,
+Not all formats will allow formatting of the links. Verbatim words
+in links are allowed if the whole link is typeset in verbatim:
+
+.. code-block:: py
+
+
+        see the directory "`examples`": "src/examples/index.html".
+
+However, the following will not be typeset correctly:
 
 .. code-block:: py
 
 
         see the "`examples` directory": "src/examples/index.html"
 
-will not come out right in the reST/Sphinx formats.
+The backquotes must be removed, or the text can be reformulated as
+in the line above it.
 
+
+Inline verbatim code is not detected
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure there is a space before the first backquote.
 
 Strange non-English characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2401,6 +2500,13 @@ This may happen if there is much inline math in the text. reST cannot
 understand inline LaTeX commands and interprets them as illegal code.
 Just ignore these error messages.
 
+Warning about duplicate link names
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Link names should be unique, but if (e.g.) "file" is used as link text
+several places in a reST file, the links still work. The warning can
+therefore be ignorned.
+
 Inconsistent headings in reST
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2410,6 +2516,14 @@ and a subsubsection must come under a subsection (you cannot have
 a subsubsection directly under a section). Search for ``===``,
 count the number of equality signs (or underscores if you use that)
 and make sure they decrease by two every time a lower level is encountered.
+
+No code environment appears before "bc ipy" blocks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``!bc ipy`` directive behaves this way for ``sphinx`` output because
+interactive sessions are automatically handled. If this is not
+appropriate, shift to ``!bc cod`` or another specification of the
+verbatim environment.
 
 Problems with LaTeX Output
 --------------------------

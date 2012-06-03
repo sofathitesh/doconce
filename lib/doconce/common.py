@@ -6,6 +6,10 @@ here.
 """
 import re, sys
 
+# Identifiers in the text used to identify code and math blocks
+_CODE_BLOCK = '<<<!!CODE_BLOCK'
+_MATH_BLOCK = '<<<!!MATH_BLOCK'
+
 def where():
     """
     Return the location where the doconce package is installed.
@@ -140,10 +144,10 @@ def remove_code_and_tex(filestr):
     """
     # Method:
     # store code and tex blocks in lists and substitute these blocks
-    # by #!!CODE_BLOCK and #!!TEX_BLOCK ("arguments" to !bc must be
-    # copied after #!!CODE_BLOCK).
-    # later we replace #!!CODE_BLOCK by !bc and the code block again
-    # (similarly for the tex block).
+    # by the contents of _CODE_BLOCK and _MATH_BLOCK (arguments after
+    # !bc must be copied after _CODE_BLOCK).
+    # later we replace _CODE_BLOCK by !bc and !ec and the code block again
+    # (similarly for the tex/math block).
 
     # (recall that !bc can be followed by extra information that we must keep:)
     code = re.compile(r'^!bc(.*?)\n(.*?)^!ec *\n', re.DOTALL|re.MULTILINE)
@@ -197,8 +201,8 @@ def remove_code_and_tex(filestr):
               (nbt, len(tex_blocks))
 
     # Remove blocks and substitute by a one-line sign
-    filestr = code.sub('#!!CODE_BLOCK \g<1>\n', filestr)
-    filestr = tex.sub('#!!TEX_BLOCK\n', filestr)
+    filestr = code.sub('%s \g<1>\n' % _CODE_BLOCK, filestr)
+    filestr = tex.sub('%s\n' % _MATH_BLOCK, filestr)
 
     # could leave @@@CODE blocks to ptex2tex, but then these lines must be
     # removed since they may contain underscores and asterix and hence
@@ -212,14 +216,14 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
     for code in code_blocks:
         # this construction does not handle newlines in regex and
         # similar verbatim environments properly:
-        #filestr = re.sub(r'#!!CODE_BLOCK (.*?)\n',
+        #filestr = re.sub(r'%s (.*?)\n' % _CODE_BLOCK,
         #                 '!bc\g<1>\n%s!ec\n' % code, filestr, 1)
         # use string.replace instead
 
         for i in range(len(lines)):
-            if '#!!CODE_BLOCK' in lines[i]:
+            if _CODE_BLOCK in lines[i]:
                 # use re.sub for the heading when we need a group:
-                lines[i] = re.sub('#!!CODE_BLOCK(.*)',
+                lines[i] = re.sub('%s(.*)' % _CODE_BLOCK,
                                   '!bc\g<1>\n!XX&XX', lines[i])
                 # use string.replace to deal correctly with \n:
                 try:
@@ -232,7 +236,7 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
     for tex in tex_blocks:
         # Also here problems with this: (\nabla becomes \n (newline) and abla)
         # which means that
-        # filestr = re.sub(r'#!!TEX_BLOCK', '!bt\n%s!et' % tex, filestr, 1)
+        # filestr = re.sub(_MATH_BLOCK, '!bt\n%s!et' % tex, filestr, 1)
         # does not work properly. Instead, we use str.replace
 
         if format == 'latex' or format == 'pdflatex':  # fix
@@ -244,8 +248,8 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
             filestr = re.sub(r'([^\\])ref\{', r'\g<1>\\ref{', filestr)
 
         for i in range(len(lines)):
-            if '#!!TEX_BLOCK' in lines[i]:
-                lines[i] = lines[i].replace('#!!TEX_BLOCK',
+            if _MATH_BLOCK in lines[i]:
+                lines[i] = lines[i].replace(_MATH_BLOCK,
                                             '!bt\n%s!et' % tex)
                 break
     filestr = '\n'.join(lines)

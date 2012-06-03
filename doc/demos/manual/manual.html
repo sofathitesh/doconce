@@ -22,7 +22,7 @@ Automatically generated HTML file from Doconce source
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Mar 11, 2012</h3></center>
+<center><h3>Jun 3, 2012</h3></center>
 <P>
 
 <P>
@@ -830,27 +830,39 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 <P>
 
 <P>
-<h3>Google Code Wiki</h3>
+<h3>Wiki Formats</h3>
 <P>
-There are several different wiki dialects, but Doconce only support the
-one used by <a href="http://code.google.com/p/support/wiki/WikiSyntax">Google Code</a>.
-The transformation to this format, called <tt>gwiki</tt> to explicitly mark
-it as the Google Code dialect, is done by
+There are many different wiki formats, but Doconce only supports three:
+<a href="http://code.google.com/p/support/wiki/WikiSyntax<Google Code>">Googlecode wiki</a>, , MediaWiki, and Creole Wiki. These formats are called
+<tt>gwiki</tt>, <tt>mwiki</tt>, and <tt>cwiki</tt>, respectively.
+Transformation from Doconce to these formats is done by
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
 Terminal&gt; doconce format gwiki mydoc.do.txt
+Terminal&gt; doconce format mwiki mydoc.do.txt
+Terminal&gt; doconce format cwiki mydoc.do.txt
 </pre>
 </blockquote>   <! -- end verbatim block -->
-You can then open a new wiki page for your Google Code project, copy
-the <tt>mydoc.gwiki</tt> output file from <tt>doconce format</tt> and paste the
-file contents into the wiki page. Press <b>Preview</b> or <b>Save Page</b> to
-see the formatted result.
 
 <P>
-When the Doconce file contains figures, each figure filename must be
-replaced by a URL where the figure is available. There are instructions
-in the file for doing this. Usually, one performs this substitution
-automatically (see next section).
+The Googlecode wiki document, <tt>mydoc.gwiki</tt>, is most conveniently stored
+in a directory which is a clone of the wiki part of the Googlecode project.
+This is far easier than copying and pasting the entire text into the
+wiki editor in a web browser.
+
+<P>
+When the Doconce file contains figures, each figure filename must in
+the <tt>.gwiki</tt> file be replaced by a URL where the figure is
+available. There are instructions in the file for doing this. Usually,
+one performs this substitution automatically (see next section).
+
+<P>
+From the MediaWiki format one can go to other formats with aid
+of <a href="http://pediapress.com/code/">mwlib</a>. This means that one can
+easily use Doconce to write <a href="http://en.wikibooks.org">Wikibooks</a>
+and publish these in PDF and MediaWiki format.
+At the same time, the book can also be published as a
+standard LaTeX book or a Sphinx web document.
 
 <P>
 
@@ -1136,7 +1148,7 @@ around the = sign.
 
 <P>
 Note also that, like for <tt>TITLE:</tt> and <tt>AUTHOR:</tt> lines, all information
-related to a figure line must be written on the same line. Introducing
+related to a figure line <em>must be written on the same line</em>. Introducing
 newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as <tt>FIGURE:</tt> will be
 included in the formatted caption).
@@ -1146,6 +1158,21 @@ included in the formatted caption).
 <caption><i>Streamtube visualization of a fluid flow. <a name="fig:viz"></A></i></caption>
 <p><img src="figs/streamtubes.png" align="bottom" width=400></p>
 </center>
+
+<P>
+Combining several image files into one can be done by the
+<tt>convert</tt> and <tt>montage</tt> programs from the ImageMagick suite:
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+montage file1.png file2.png ... file4.png -geometry +2+2  result.png
+montage file1.png file2.png -tile x1 result.png
+montage file1.png file2.png -tile 1x result.png
+
+convert -background white file1.png file2.png +append tmp.png
+</pre>
+</blockquote>   <! -- end verbatim block -->
+Use <tt>+append</tt> for stacking left to right, <tt>-append</tt> for top to bottom.
+The positioning of the figures can be controlled by <tt>-gravity</tt>.
 
 <P>
 <h3>Movies</h3>
@@ -1729,7 +1756,9 @@ for C, <tt>cpp</tt> for C++, <tt>sh</tt> for Unix shells, <tt>pl</tt> for Perl, 
 Matlab, <tt>cy</tt> for Cython, and <tt>py</tt> for Python.  The argument <tt>sys</tt>
 means by default <tt>console</tt> for Sphinx and <tt>CodeTerminal</tt> (ptex2tex
 environent) for LaTeX. Other specifications are <tt>dat</tt> for a data file
-or print out, and <tt>ipy</tt> for interactive Python sessions.  All these
+or print out, and <tt>ipy</tt> for interactive Python sessions (the latter
+does not introduce any environment  in <tt>sphinx</tt> output, as interactive
+sessions are automatically recognized and handled).  All these
 definitions of the arguments after <tt>!bc</tt> can be redefined in the
 <tt>.ptex2tex.cfg</tt> configuration file for ptex2tex/LaTeX and in the
 <tt>sphinx code-blocks</tt> comments for Sphinx. Support for other languages
@@ -1813,7 +1842,7 @@ final line with the "to" text is not included in the verbatim block.
 Let us copy a whole file (the first line above):
 
 <P>
-<blockquote>    <!-- begin verbatim block  -->
+<blockquote>    <!-- begin verbatim block   fpro-->
 <pre>
 C     a comment
 
@@ -1838,7 +1867,7 @@ Let us then copy just a piece in the middle as indicated by the <tt>fromto:</tt>
 directive above:
 
 <P>
-<blockquote>    <!-- begin verbatim block  -->
+<blockquote>    <!-- begin verbatim block   fcod-->
 <pre>
       subroutine    test()
       integer i
@@ -1903,28 +1932,71 @@ Blocks of mathematical text are like computer code blocks, but
 the opening tag is <tt>!bt</tt> (begin TeX) and the closing tag is
 <tt>!et</tt>. It is important that <tt>!bt</tt> and <tt>!et</tt> appear on the beginning of the
 line and followed by a newline.
-
-<P>
-Here is the result of a <tt>!bt</tt> - <tt>!et</tt> block:
+<blockquote>    <!-- begin verbatim block  -->
+<pre>
 <blockquote><pre>
-\begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-\end{eqnarray}
+\begin{align}
+{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+\end{align}
+</pre></blockquote>
+</pre>
+</blockquote>   <! -- end verbatim block -->
+Here is the result of the above <tt>!bt</tt> - <tt>!et</tt> block:
+<blockquote><pre>
+\begin{align}
+{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+\end{align}
 </pre></blockquote>
 
 <P>
 This text looks ugly in all Doconce supported formats, except from
-LaTeX and Sphinx.  If HTML is desired, the best is to filter the Doconce text
-first to LaTeX and then use the widely available tex4ht tool to
-convert the dvi file to HTML, or one could just link a PDF file (made
-from LaTeX) directly from HTML. For other textual formats, it is best
-to avoid blocks of mathematics and instead use inline mathematics
-where it is possible to write expressions both in native LaTeX format
-(so it looks good in LaTeX) and in a pure text format (so it looks
-okay in other formats).
+LaTeX and Sphinx.  If HTML is desired, and Sphinx is not an option,
+one can filter the Doconce text first to LaTeX and then use the tex4ht
+tool to convert the dvi file to HTML, or one could just link a PDF
+file (made from LaTeX) directly from HTML.
 
 <P>
+If the document targets both LaTeX, Sphinx, and other formats like
+plain text and wiki, one can use the preprocessor to typeset the
+mathematics in two versions. After <tt>#if FORMAT in ("latex", "pdflatex",
+"sphinx", "mwiki")</tt> one places LaTeX mathematics, and after <tt>#else</tt> one can
+write inline mathematics in a way that looks nice in plain text and
+wiki formats without support for mathematical typesetting.
+
+<P>
+
+<P>
+<h4>Mathematics for PowerPoint/OpenOffice</h4>
+<P>
+If you have LaTeX mathematics written in Doconce, it is fairly easy
+to generate PNG images of all mathematical formulas and equations for
+use with PowerPoint or OpenOffice documents.
+
+<P>
+
+<ol>
+ <li> Make a Sphinx version of the Doconce file.
+ <li> Go to the Sphinx directory and load the <tt>conf.py</tt> file into
+    a browser.
+ <li> Search for "math" and comment out the
+    <tt>'sphinx.ext.mathjax'</tt> (enabled by default) and
+    <tt>'matplotlib.sphinxext.mathmpl'</tt> (disabled by default)
+    lines, and uncomment the <tt>'sphinx.ext.pngmath'</tt> package.
+    This is the package that generates small PNG pictures
+    of the mathematics.
+ <li> Uncomment the line with <tt>pngmath_dvipng_args =</tt> and
+    set the PNG resolution to <tt>-D 200</tt> when the purpose is to
+    generate mathematics pictures for slides.
+ <li> Run <tt>make html</tt>.
+ <li> Look at the HTML source file in the <tt>_build/html</tt>
+    directory: all mathematics are in <tt>img</tt> tags with <tt>src=</tt>
+    pointing to a PNG file and <tt>alt=</tt> pointing to the LaTeX
+    source for the formula in question. This makes it very
+    easy to find the PNG file that corresponding to a particular
+    mathematical expression.
+</ol>
 <h3>Macros (Newcommands) <a name="newcommands"></A></h3>
 <P>
 
@@ -1953,7 +2025,7 @@ expressions).
 <tt>newcommand_replace.tex</tt>:
 
 <P>
-<blockquote>    <!-- begin verbatim block  -->
+<blockquote>    <!-- begin verbatim block   pro-->
 <pre>
 \newcommand{\beqa}{\begin{eqnarray}}
 \newcommand{\eeqa}{\end{eqnarray}}
@@ -1967,7 +2039,7 @@ expressions).
 and these in <tt>newcommands_keep.tex</tt>:
 
 <P>
-<blockquote>    <!-- begin verbatim block  -->
+<blockquote>    <!-- begin verbatim block   pro-->
 <pre>
 \newcommand{\x}{\pmb{x}}
 \newcommand{\normalvec}{\pmb{n}}
@@ -1987,10 +2059,10 @@ The LaTeX block
 </blockquote>   <! -- end verbatim block -->
 will then be rendered to
 <blockquote><pre>
-\begin{eqnarray}
-\x\cdot\normalvec &=& 0, label{my:eq1}\\
-\Ddt{\vec u} &=& \pmb{Q} \thinspace .    label{my:eq2}
-\end{eqnarray}
+\begin{align}
+{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+\end{align}
 </pre></blockquote>
 in the current format.
 
@@ -2263,6 +2335,16 @@ well for his diverse applications of it.
 <P>
 <h3>General Problems</h3>
 <P>
+<h4>Something goes wrong in the preprocessing step</h4>
+<P>
+Doconce automatically removes the file <tt>__tmp.do.txt</tt>, which is the
+resulting of the preprocessing stge and the file to examine if
+something goes wrong in this stage (i.e., when <tt>mako</tt> and/or
+<tt>preprocess</tt> is run). Add the <tt>--debug</tt> flag at the end of the
+<tt>doconce</tt> command to (both make a debug file and) avoid that
+<tt>__tmp.do.txt</tt> is deleted.
+
+<P>
 <h4>Figure captions are incomplete</h4>
 <P>
 If only the first part of a figure caption in the Doconce file is seen
@@ -2302,15 +2384,28 @@ see the "examples directory": "src/examples/index.html"
 <P>
 <h4>Links are not typeset correctly</h4>
 <P>
-Not all formats will allow formatting of the links, e.g.,
+Not all formats will allow formatting of the links. Verbatim words
+in links are allowed if the whole link is typeset in verbatim:
+<blockquote>    <!-- begin verbatim block  -->
+<pre>
+see the directory "`examples`": "src/examples/index.html".
+</pre>
+</blockquote>   <! -- end verbatim block -->
+However, the following will not be typeset correctly:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 see the "`examples` directory": "src/examples/index.html"
 </pre>
 </blockquote>   <! -- end verbatim block -->
-will not come out right in the reST/Sphinx formats.
+The backquotes must be removed, or the text can be reformulated as
+in the line above it.
 
 <P>
+
+<P>
+<h4>Inline verbatim code is not detected</h4>
+<P>
+Make sure there is a space before the first backquote.
 
 <P>
 <h4>Strange non-English characters</h4>
@@ -2437,6 +2532,13 @@ understand inline LaTeX commands and interprets them as illegal code.
 Just ignore these error messages.
 
 <P>
+<h4>Warning about duplicate link names</h4>
+<P>
+Link names should be unique, but if (e.g.) "file" is used as link text
+several places in a reST file, the links still work. The warning can
+therefore be ignorned.
+
+<P>
 <h4>Inconsistent headings in reST</h4>
 <P>
 The <tt>rst2*.py</tt> and Sphinx converters abort if the headers of sections
@@ -2445,6 +2547,14 @@ and a subsubsection must come under a subsection (you cannot have
 a subsubsection directly under a section). Search for <tt>===</tt>,
 count the number of equality signs (or underscores if you use that)
 and make sure they decrease by two every time a lower level is encountered.
+
+<P>
+<h4>No code environment appears before "bc ipy" blocks</h4>
+<P>
+The <tt>!bc ipy</tt> directive behaves this way for <tt>sphinx</tt> output because
+interactive sessions are automatically handled. If this is not
+appropriate, shift to <tt>!bc cod</tt> or another specification of the
+verbatim environment.
 
 <P>
 <h3>Problems with LaTeX Output</h3>

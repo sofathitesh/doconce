@@ -328,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Mar 11, 2012</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jun 3, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -1052,23 +1052,31 @@ depending the argument that follows <tt class="docutils literal">!bc</tt>: <tt c
 (<tt class="docutils literal"><span class="pre">code-block::</span> python</tt> in Sphinx syntax) and <tt class="docutils literal">cppcod</tt> gives C++, but
 all such arguments can be customized both for Sphinx and LaTeX output.</p>
 </div>
-<div class="section" id="google-code-wiki">
-<h2>Google Code Wiki</h2>
-<p>There are several different wiki dialects, but Doconce only support the
-one used by <a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Google Code</a>.
-The transformation to this format, called <tt class="docutils literal">gwiki</tt> to explicitly mark
-it as the Google Code dialect, is done by:</p>
+<div class="section" id="wiki-formats">
+<h2>Wiki Formats</h2>
+<p>There are many different wiki formats, but Doconce only supports three:
+<a href="#id7"><span class="problematic" id="id8">`Googlecode wiki &lt;http://code.google.com/p/support/wiki/WikiSyntax&lt;Google Code&gt;&gt;`_</span></a>, , MediaWiki, and Creole Wiki. These formats are called
+<tt class="docutils literal">gwiki</tt>, <tt class="docutils literal">mwiki</tt>, and <tt class="docutils literal">cwiki</tt>, respectively.
+Transformation from Doconce to these formats is done by:</p>
 <pre class="literal-block">
 Terminal&gt; doconce format gwiki mydoc.do.txt
+Terminal&gt; doconce format mwiki mydoc.do.txt
+Terminal&gt; doconce format cwiki mydoc.do.txt
 </pre>
-<p>You can then open a new wiki page for your Google Code project, copy
-the <tt class="docutils literal">mydoc.gwiki</tt> output file from <tt class="docutils literal">doconce format</tt> and paste the
-file contents into the wiki page. Press <strong>Preview</strong> or <strong>Save Page</strong> to
-see the formatted result.</p>
-<p>When the Doconce file contains figures, each figure filename must be
-replaced by a URL where the figure is available. There are instructions
-in the file for doing this. Usually, one performs this substitution
-automatically (see next section).</p>
+<p>The Googlecode wiki document, <tt class="docutils literal">mydoc.gwiki</tt>, is most conveniently stored
+in a directory which is a clone of the wiki part of the Googlecode project.
+This is far easier than copying and pasting the entire text into the
+wiki editor in a web browser.</p>
+<p>When the Doconce file contains figures, each figure filename must in
+the <tt class="docutils literal">.gwiki</tt> file be replaced by a URL where the figure is
+available. There are instructions in the file for doing this. Usually,
+one performs this substitution automatically (see next section).</p>
+<p>From the MediaWiki format one can go to other formats with aid
+of <a class="reference external" href="http://pediapress.com/code/">mwlib</a>. This means that one can
+easily use Doconce to write <a class="reference external" href="http://en.wikibooks.org">Wikibooks</a>
+and publish these in PDF and MediaWiki format.
+At the same time, the book can also be published as a
+standard LaTeX book or a Sphinx web document.</p>
 </div>
 <div class="section" id="tweaking-the-doconce-output">
 <h2>Tweaking the Doconce Output</h2>
@@ -1219,6 +1227,12 @@ Mercurial (<tt class="docutils literal">hg</tt>) directories, go to the director
 Doconce itself is frequently updated so these commands should be
 run regularly.</p>
 </div>
+</div>
+<div class="system-messages section">
+<h1>Docutils System Messages</h1>
+<div class="system-message" id="id7">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">tutorial.rst</tt>, line 836); <em><a href="#id8">backlink</a></em></p>
+Unknown target name: &quot;googlecode wiki &lt;http://code.google.com/p/support/wiki/wikisyntax&lt;google code&gt;&gt;&quot;.</div>
 </div>
 </div>
 </body>
