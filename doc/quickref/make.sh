@@ -40,7 +40,7 @@ doconce format pandoc quickref
 
 rm -rf demo
 mkdir demo
-cp -r quickref.do.txt quickref.html quickref.p.tex quickref.tex quickref.pdf quickref.rst quickref.xml quickref.rst.html quickref.rst.tex quickref.rst.pdf quickref.gwiki quickref.mwiki quickref.cwiki quickref.txt quickref.epytext quickref.st quickref.pnd sphinx-rootdir/_build/html demo
+cp -r quickref.do.txt quickref.html quickref.p.tex quickref.tex quickref.pdf quickref.rst quickref.xml quickref.rst.html quickref.rst.tex quickref.rst.pdf quickref.gwiki quickref.mwiki quickref.cwiki quickref.txt quickref.epytext quickref.st quickref.mkd sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -82,7 +82,7 @@ Doconce can also be converted to
 <a href="quickref.gwiki">Googlecode wiki</a>,
 <a href="quickref.mwiki">MediaWiki</a>,
 <a href="quickref.cwiki">Creole wiki</a>,
-<a href="quickref.pnd">a Pandoc</a>,
+<a href="quickref.mkd">a Pandoc</a>,
 <a href="quickref.st">Structured Text</a>,
 <a href="quickref.epytext">Epytext</a>,
 and maybe the most important format of all:

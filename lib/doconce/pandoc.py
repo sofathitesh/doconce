@@ -180,7 +180,7 @@ def define(FILENAME_EXTENSION,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
 
-    FILENAME_EXTENSION['pandoc'] = '.pnd'
+    FILENAME_EXTENSION['pandoc'] = '.mkd'
     BLANKLINE['pandoc'] = '\n'
     # replacement patterns for substitutions of inline tags
     INLINE_TAGS_SUBST['pandoc'] = {
