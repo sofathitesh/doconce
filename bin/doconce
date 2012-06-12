@@ -886,7 +886,7 @@ extensions = [
           'matplotlib.sphinxext.ipython_console_highlighting',
           'sphinx.ext.inheritance_diagram']
 
-#pngmath_dvipng_args = ['-D 200', '-bg Transparent', '-gamma 1.5']
+#pngmath_dvipng_args = ['-D 200', '-bg Transparent', '-gamma 1.5']  # large math fonts (200)
 """
     text = re.sub(r'extensions = .*\]', extensions, text)
     text = text.replace('#html_theme_options = {}', """\

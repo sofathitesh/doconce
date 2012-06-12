@@ -183,7 +183,7 @@ for e in math_enders:
     filestr = filestr.replace(e, e + '\n!et')
 
 # ptex2tex code environments:
-code_envirs = ['ccq', 'cod', 'ccl', 'cc', 'sys', 'dsni', 'sni', 'slin', 'ipy', 'py', 'plin', 'ver', 'warn', 'rule', 'summ'] # sequence important for replace!
+code_envirs = ['ccq', 'cod', 'ccl', 'cc', 'sys', 'dsni', 'sni', 'slin', 'ipy', 'rpy', 'py', 'plin', 'ver', 'warn', 'rule', 'summ'] # sequence important for replace!
 for language in 'py', 'f', 'c', 'cpp', 'sh', 'pl', 'm':
     for tp in 'cod', 'pro':
         code_envirs.append(language + tp)
@@ -193,6 +193,8 @@ for e in code_envirs:
     filestr = filestr.replace(s, '!bc ' + e)
     s = r'\e%s' % e
     filestr = filestr.replace(s, '!ec')
+
+filestr = filestr.replace('bc rpy', 'bc sys')
 
 # eqnarray -> align
 filestr = filestr.replace(r'{eqnarray', '{align')
