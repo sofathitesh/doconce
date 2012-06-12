@@ -868,8 +868,20 @@ EOF
     f = open('conf.py', 'r');  text = f.read();  f.close()
     themes_list = ["html_theme = '%s'" % theme] + \
                   ["#html_theme = '%s'" % theme for theme in themes]
+    themes_code = r"""
+if html_theme == 'solarized':
+    if not 'solarized' in additional_themes_installed:
+        raise Exception('html_theme = "solarized", but this theme is not '\
+                        'installed.\n%s' % additional_themes_url['solarized'])
+    pygments_style = 'solarized'
+if html_theme == 'cloud' or html_theme == 'redcloud':
+    if not 'cloud' in additional_themes_installed:
+        raise Exception('html_theme = "cloud", but this theme is not '\
+                        'installed.\n%s' % additional_themes_url['cloud'])
+
+"""
     text = text.replace("html_theme = 'default'",
-                        '\n'.join(themes_list))
+                        '\n'.join(themes_list) + themes_code)
     text = text.replace("#html_theme_path = []",
                         "html_theme_path = ['_themes']")
     extensions = """\
@@ -887,6 +899,23 @@ extensions = [
           'sphinx.ext.inheritance_diagram']
 
 #pngmath_dvipng_args = ['-D 200', '-bg Transparent', '-gamma 1.5']  # large math fonts (200)
+
+# Check which additional themes that are installed
+additional_themes_installed = []
+additional_themes_url = {}
+try:
+    import sphinxjp.themes.solarized
+    extensions += ['sphinxjp.themecore', 'sphinxjp.themes.solarized']
+    additional_themes_installed.append('solarized')
+except ImportError:
+    additional_themes_url['solarized'] = 'https://bitbucket.org/miiton/sphinxjp.themes.solarized'
+
+try:
+    import cloud_sptheme as csp
+    additional_themes_installed.append('cloud')
+except ImportError:
+    additional_themes_url['cloud'] = 'https://bitbucket.org/ecollins/cloud_sptheme'
+
 """
     text = re.sub(r'extensions = .*\]', extensions, text)
     text = text.replace('#html_theme_options = {}', """\
