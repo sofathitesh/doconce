@@ -64,10 +64,11 @@ Here are some Doconce features:
   * Doconce can be converted to plain *untagged* text,
     often desirable for computer programs and email.
 
-  * Doconce has good support for copying in parts of computer code,
-    say in examples, directly from the source code files.
+  * Doconce has good support for copying in parts of computer code
+    directly from the source code files via regular expressions
+    for the start and end lines.
 
-  * Doconce has full support for LaTeX math, and integrates very well
+  * Doconce has full support for LaTeX math and integrates well
     with big LaTeX projects (books).
 
   * Doconce is almost self-explanatory and is a handy starting point
@@ -75,9 +76,12 @@ Here are some Doconce features:
     as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
     is just to make the initial versions of a Sphinx or wiki document.
 
-  * Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google wiki. However, if these formats are not of interest,
-    Pandoc is obviously a superior tool.
+  * Contrary to the similar (and superior) Pandoc translator, Doconce
+    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
+    lots of computer code environments in LaTeX, and a special exercise
+    syntax. Doconce also also runs preprocessors (including Mako)
+    such that the author can mix ordinary text with programming
+    construction for generating parts of the text.
 
 Doconce was particularly written for the following sample applications:
 
@@ -473,19 +477,32 @@ Output in the versatile Pandoc format results from
 
         Terminal> doconce format pandoc mydoc
 
-The name of the output file is ``mydoc.pnd``.
+The name of the output file is ``mydoc.mkd``.
 From this format one can go to numerous other formats:
 
 .. code-block:: console
 
-        Terminal> pandoc -R -t markdown  -o mydoc.txt mydoc.pnd
-        Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.pnd
+        Terminal> pandoc -R -t markdown  -o mydoc.txt mydoc.mkd
+        Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
 
 Pandoc supports ``latex``, ``html``, ``odt`` (OpenOffice), ``docx`` (Microsoft
 Word), ``rtf``, ``texinfo``, to mention some. The ``-R`` option makes
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the `Pandoc documentation <http://johnmacfarlane.net/pandoc/README.html>`_
 for the many features of the ``pandoc`` program.
+
+Here are some useful options for using ``pandoc`` to handle mathematics
+in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively):
+
+.. code-block:: console
+
+        Terminal> pandoc -R --latexmathml -t html -o mydoc.html mydoc.mkd
+        Terminal> pandoc -R --mathml      -t html -o mydoc.html mydoc.mkd
+        Terminal> pandoc -R --jsmath      -t html -o mydoc.html mydoc.mkd
+        Terminal> pandoc -R --mathjax     -t html -o mydoc.html mydoc.mkd
+
+
+
 
 LaTeX
 -----

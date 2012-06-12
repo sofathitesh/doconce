@@ -47,21 +47,35 @@ The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
 ===== Pandoc =====
 
-Output in the versatile Pandoc format results from
+Output in Pandoc's extended Markdown format results from
 !bc sys
 Terminal> doconce format pandoc mydoc
 !ec
-The name of the output file is `mydoc.pnd`.
+The name of the output file is `mydoc.mkd`.
 From this format one can go to numerous other formats:
 !bc sys
-Terminal> pandoc -R -t markdown  -o mydoc.txt mydoc.pnd
-Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.pnd
+Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
 !ec
 Pandoc supports `latex`, `html`, `odt` (OpenOffice), `docx` (Microsoft
 Word), `rtf`, `texinfo`, to mention some. The `-R` option makes
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the "Pandoc documentation": "http://johnmacfarlane.net/pandoc/README.html"
 for the many features of the `pandoc` program.
+
+Pandoc is useful to go from LaTeX mathematics to MS Word.
+However, this should be done via LaTeX, not via Pandoc's extended Markdown
+format. For example,
+!bc sys
+Terminal> doconce format latex mydoc
+Terminal> ptex2tex mydoc
+Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
+!ec
+Quite some `doconce replace` and `doconce subst` edits might be needed
+to successfully have mathematics that is well translated to MS Word.
+Also when going to reStructuredText using Pandoc, it can be advantageous
+to go via LaTeX.
+
 
 ===== LaTeX =====
 

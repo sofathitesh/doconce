@@ -125,10 +125,11 @@ Here are some Doconce features:
   \item Doconce can be converted to plain \emph{untagged} text,
     often desirable for computer programs and email.
 
-  \item Doconce has good support for copying in parts of computer code,
-    say in examples, directly from the source code files.
+  \item Doconce has good support for copying in parts of computer code
+    directly from the source code files via regular expressions
+    for the start and end lines.
 
-  \item Doconce has full support for {\LaTeX} math, and integrates very well
+  \item Doconce has full support for {\LaTeX} math and integrates well
     with big {\LaTeX} projects (books).
 
   \item Doconce is almost self-explanatory and is a handy starting point
@@ -136,9 +137,12 @@ Here are some Doconce features:
     as Google wiki, {\LaTeX}, and Sphinx. A primary application of Doconce
     is just to make the initial versions of a Sphinx or wiki document.
 
-  \item Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google wiki. However, if these formats are not of interest,
-    Pandoc is obviously a superior tool.
+  \item Contrary to the similar (and superior) Pandoc translator, Doconce
+    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
+    lots of computer code environments in {\LaTeX}, and a special exercise
+    syntax. Doconce also also runs preprocessors (including Mako)
+    such that the author can mix ordinary text with programming
+    construction for generating parts of the text.
 \end{itemize}
 
 \noindent
@@ -545,19 +549,30 @@ Output in the versatile Pandoc format results from
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Terminal> doconce format pandoc mydoc
 \end{Verbatim}
-The name of the output file is {\fontsize{10pt}{10pt}\verb!mydoc.pnd!}.
+The name of the output file is {\fontsize{10pt}{10pt}\verb!mydoc.mkd!}.
 From this format one can go to numerous other formats:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Terminal> pandoc -R -t markdown  -o mydoc.txt mydoc.pnd
-Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.pnd
+Terminal> pandoc -R -t markdown  -o mydoc.txt mydoc.mkd
+Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
 \end{Verbatim}
 Pandoc supports {\fontsize{10pt}{10pt}\verb!latex!}, {\fontsize{10pt}{10pt}\verb!html!}, {\fontsize{10pt}{10pt}\verb!odt!} (OpenOffice), {\fontsize{10pt}{10pt}\verb!docx!} (Microsoft
 Word), {\fontsize{10pt}{10pt}\verb!rtf!}, {\fontsize{10pt}{10pt}\verb!texinfo!}, to mention some. The {\fontsize{10pt}{10pt}\verb!-R!} option makes
 Pandoc pass raw HTML or {\LaTeX} to the output format instead of ignoring it.
 See the \href{{http://johnmacfarlane.net/pandoc/README.html}}{Pandoc documentation}
 for the many features of the {\fontsize{10pt}{10pt}\verb!pandoc!} program.
+
+Here are some useful options for using {\fontsize{10pt}{10pt}\verb!pandoc!} to handle mathematics
+in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively):
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> pandoc -R --latexmathml -t html -o mydoc.html mydoc.mkd
+Terminal> pandoc -R --mathml      -t html -o mydoc.html mydoc.mkd
+Terminal> pandoc -R --jsmath      -t html -o mydoc.html mydoc.mkd
+Terminal> pandoc -R --mathjax     -t html -o mydoc.html mydoc.mkd
+\end{Verbatim}
 
 \subsection{{\LaTeX}}
 

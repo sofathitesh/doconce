@@ -386,17 +386,21 @@ Markdown and Pandoc, but less than reST, and very much less than
 LaTeX and HTML.</li>
 <li>Doconce can be converted to plain <em>untagged</em> text,
 often desirable for computer programs and email.</li>
-<li>Doconce has good support for copying in parts of computer code,
-say in examples, directly from the source code files.</li>
-<li>Doconce has full support for LaTeX math, and integrates very well
+<li>Doconce has good support for copying in parts of computer code
+directly from the source code files via regular expressions
+for the start and end lines.</li>
+<li>Doconce has full support for LaTeX math and integrates well
 with big LaTeX projects (books).</li>
 <li>Doconce is almost self-explanatory and is a handy starting point
 for generating documents in more complicated markup languages, such
 as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
 is just to make the initial versions of a Sphinx or wiki document.</li>
-<li>Contrary to the similar Pandoc translator, Doconce integrates with
-Sphinx and Google wiki. However, if these formats are not of interest,
-Pandoc is obviously a superior tool.</li>
+<li>Contrary to the similar (and superior) Pandoc translator, Doconce
+supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
+lots of computer code environments in LaTeX, and a special exercise
+syntax. Doconce also also runs preprocessors (including Mako)
+such that the author can mix ordinary text with programming
+construction for generating parts of the text.</li>
 </ul>
 </blockquote>
 <p>Doconce was particularly written for the following sample applications:</p>
@@ -732,17 +736,25 @@ Terminal&gt; doconce format html mydoc
 <pre class="literal-block">
 Terminal&gt; doconce format pandoc mydoc
 </pre>
-<p>The name of the output file is <tt class="docutils literal">mydoc.pnd</tt>.
+<p>The name of the output file is <tt class="docutils literal">mydoc.mkd</tt>.
 From this format one can go to numerous other formats:</p>
 <pre class="literal-block">
-Terminal&gt; pandoc -R -t markdown  -o mydoc.txt mydoc.pnd
-Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.pnd
+Terminal&gt; pandoc -R -t markdown  -o mydoc.txt mydoc.mkd
+Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
 </pre>
 <p>Pandoc supports <tt class="docutils literal">latex</tt>, <tt class="docutils literal">html</tt>, <tt class="docutils literal">odt</tt> (OpenOffice), <tt class="docutils literal">docx</tt> (Microsoft
 Word), <tt class="docutils literal">rtf</tt>, <tt class="docutils literal">texinfo</tt>, to mention some. The <tt class="docutils literal"><span class="pre">-R</span></tt> option makes
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the <a class="reference external" href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</a>
 for the many features of the <tt class="docutils literal">pandoc</tt> program.</p>
+<p>Here are some useful options for using <tt class="docutils literal">pandoc</tt> to handle mathematics
+in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively):</p>
+<pre class="literal-block">
+Terminal&gt; pandoc -R --latexmathml -t html -o mydoc.html mydoc.mkd
+Terminal&gt; pandoc -R --mathml      -t html -o mydoc.html mydoc.mkd
+Terminal&gt; pandoc -R --jsmath      -t html -o mydoc.html mydoc.mkd
+Terminal&gt; pandoc -R --mathjax     -t html -o mydoc.html mydoc.mkd
+</pre>
 </div>
 <div class="section" id="id2">
 <h2>LaTeX</h2>
@@ -1192,7 +1204,7 @@ using ReportLab instead of LaTeX. The enabling software is
 or clone the svn repository, go to the <tt class="docutils literal">rst2pdf</tt> directory and
 run <tt class="docutils literal">sudo python setup.py install</tt>.</p>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 399); <em><a href="#id5">backlink</a></em></p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 403); <em><a href="#id5">backlink</a></em></p>
 Duplicate explicit target name: &quot;sphinx&quot;.</div>
 <p>Output to <tt class="docutils literal">sphinx</tt> requires of course <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a>,
 installed by:</p>
@@ -1231,7 +1243,7 @@ run regularly.</p>
 <div class="system-messages section">
 <h1>Docutils System Messages</h1>
 <div class="system-message" id="id7">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">tutorial.rst</tt>, line 836); <em><a href="#id8">backlink</a></em></p>
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">tutorial.rst</tt>, line 852); <em><a href="#id8">backlink</a></em></p>
 Unknown target name: &quot;googlecode wiki &lt;http://code.google.com/p/support/wiki/wikisyntax&lt;google code&gt;&gt;&quot;.</div>
 </div>
 </div>

@@ -29,17 +29,21 @@ Here are some Doconce features:
     LaTeX and HTML.
   * Doconce can be converted to plain *untagged* text,
     often desirable for computer programs and email.
-  * Doconce has good support for copying in parts of computer code,
-    say in examples, directly from the source code files.
-  * Doconce has full support for LaTeX math, and integrates very well
+  * Doconce has good support for copying in parts of computer code
+    directly from the source code files via regular expressions
+    for the start and end lines.
+  * Doconce has full support for LaTeX math and integrates well
     with big LaTeX projects (books).
   * Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
     as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
     is just to make the initial versions of a Sphinx or wiki document.
-  * Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google wiki. However, if these formats are not of interest,
-    Pandoc is obviously a superior tool.
+  * Contrary to the similar (and superior) Pandoc translator, Doconce
+    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
+    lots of computer code environments in LaTeX, and a special exercise
+    syntax. Doconce also also runs preprocessors (including Mako)
+    such that the author can mix ordinary text with programming
+    construction for generating parts of the text.
 
 Doconce was particularly written for the following sample applications:
 
