@@ -21,14 +21,18 @@ The Doconce markup language support this working strategy.
 The slogan is: &quot;Write once, include anywhere&quot;.</paragraph></list_item></enumerated_list></block_quote><paragraph>Here are some Doconce features:</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph>Doconce markup does include tags, so the format is more tagged than
 Markdown and Pandoc, but less than reST, and very much less than
 LaTeX and HTML.</paragraph></list_item><list_item><paragraph>Doconce can be converted to plain <emphasis>untagged</emphasis> text,
-often desirable for computer programs and email.</paragraph></list_item><list_item><paragraph>Doconce has good support for copying in parts of computer code,
-say in examples, directly from the source code files.</paragraph></list_item><list_item><paragraph>Doconce has full support for LaTeX math, and integrates very well
+often desirable for computer programs and email.</paragraph></list_item><list_item><paragraph>Doconce has good support for copying in parts of computer code
+directly from the source code files via regular expressions
+for the start and end lines.</paragraph></list_item><list_item><paragraph>Doconce has full support for LaTeX math and integrates well
 with big LaTeX projects (books).</paragraph></list_item><list_item><paragraph>Doconce is almost self-explanatory and is a handy starting point
 for generating documents in more complicated markup languages, such
 as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-is just to make the initial versions of a Sphinx or wiki document.</paragraph></list_item><list_item><paragraph>Contrary to the similar Pandoc translator, Doconce integrates with
-Sphinx and Google wiki. However, if these formats are not of interest,
-Pandoc is obviously a superior tool.</paragraph></list_item></bullet_list></block_quote><paragraph>Doconce was particularly written for the following sample applications:</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph>Large books written in LaTeX, but where many pieces (computer demos,
+is just to make the initial versions of a Sphinx or wiki document.</paragraph></list_item><list_item><paragraph>Contrary to the similar (and superior) Pandoc translator, Doconce
+supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
+lots of computer code environments in LaTeX, and a special exercise
+syntax. Doconce also also runs preprocessors (including Mako)
+such that the author can mix ordinary text with programming
+construction for generating parts of the text.</paragraph></list_item></bullet_list></block_quote><paragraph>Doconce was particularly written for the following sample applications:</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph>Large books written in LaTeX, but where many pieces (computer demos,
 projects, examples) can be written in Doconce to appear in other
 contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.</paragraph></list_item><list_item><paragraph>Software documentation, primarily Python doc strings, which one wants
 to appear as plain untagged text for viewing in Pydoc, as reStructuredText
@@ -123,13 +127,17 @@ defined as <literal>latex</literal>. Inside the Doconce document one can then pe
 format specific actions through tests like <literal>#if FORMAT == &quot;latex&quot;</literal>.</paragraph><paragraph>Inline comments in the text are removed from the output by:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format latex mydoc --skip_inline_comments</literal_block><paragraph>One can also remove all such comments from the original Doconce
 file by running:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce remove_inline_comments mydoc</literal_block><paragraph>This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.</paragraph><section ids="html" names="html"><title>HTML</title><paragraph>Making an HTML version of a Doconce file <literal>mydoc.do.txt</literal>
-is performed by:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format html mydoc</literal_block><paragraph>The resulting file <literal>mydoc.html</literal> can be loaded into any web browser for viewing.</paragraph></section><section dupnames="pandoc" ids="id2"><title>Pandoc</title><paragraph>Output in the versatile Pandoc format results from:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format pandoc mydoc</literal_block><paragraph>The name of the output file is <literal>mydoc.pnd</literal>.
-From this format one can go to numerous other formats:</paragraph><literal_block xml:space="preserve">Terminal&gt; pandoc -R -t markdown  -o mydoc.txt mydoc.pnd
-Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.pnd</literal_block><paragraph>Pandoc supports <literal>latex</literal>, <literal>html</literal>, <literal>odt</literal> (OpenOffice), <literal>docx</literal> (Microsoft
+is performed by:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format html mydoc</literal_block><paragraph>The resulting file <literal>mydoc.html</literal> can be loaded into any web browser for viewing.</paragraph></section><section dupnames="pandoc" ids="id2"><title>Pandoc</title><paragraph>Output in the versatile Pandoc format results from:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format pandoc mydoc</literal_block><paragraph>The name of the output file is <literal>mydoc.mkd</literal>.
+From this format one can go to numerous other formats:</paragraph><literal_block xml:space="preserve">Terminal&gt; pandoc -R -t markdown  -o mydoc.txt mydoc.mkd
+Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd</literal_block><paragraph>Pandoc supports <literal>latex</literal>, <literal>html</literal>, <literal>odt</literal> (OpenOffice), <literal>docx</literal> (Microsoft
 Word), <literal>rtf</literal>, <literal>texinfo</literal>, to mention some. The <literal>-R</literal> option makes
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the <reference name="Pandoc documentation" refuri="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</reference><target ids="pandoc-documentation" names="pandoc\ documentation" refuri="http://johnmacfarlane.net/pandoc/README.html"/>
-for the many features of the <literal>pandoc</literal> program.</paragraph></section><section ids="latex" names="latex"><title>LaTeX</title><paragraph>Making a LaTeX file <literal>mydoc.tex</literal> from <literal>mydoc.do.txt</literal> is done in two steps:
+for the many features of the <literal>pandoc</literal> program.</paragraph><paragraph>Here are some useful options for using <literal>pandoc</literal> to handle mathematics
+in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively):</paragraph><literal_block xml:space="preserve">Terminal&gt; pandoc -R --latexmathml -t html -o mydoc.html mydoc.mkd
+Terminal&gt; pandoc -R --mathml      -t html -o mydoc.html mydoc.mkd
+Terminal&gt; pandoc -R --jsmath      -t html -o mydoc.html mydoc.mkd
+Terminal&gt; pandoc -R --mathjax     -t html -o mydoc.html mydoc.mkd</literal_block></section><section ids="latex" names="latex"><title>LaTeX</title><paragraph>Making a LaTeX file <literal>mydoc.tex</literal> from <literal>mydoc.do.txt</literal> is done in two steps:
 .. Note: putting code blocks inside a list is not successful in many</paragraph><comment xml:space="preserve">formats - the text may be messed up. A better choice is a paragraph</comment><comment xml:space="preserve">environment, as used here.</comment><definition_list><definition_list_item><term><emphasis>Step 1.</emphasis> Filter the doconce text to a pre-LaTeX form <literal>mydoc.p.tex</literal> for</term><definition><paragraph><literal>ptex2tex</literal>:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format latex mydoc</literal_block></definition></definition_list_item></definition_list><paragraph>LaTeX-specific commands (&quot;newcommands&quot;) in math formulas and similar
 can be placed in files <literal>newcommands.tex</literal>, <literal>newcommands_keep.tex</literal>, or
 <literal>newcommands_replace.tex</literal> (see the section <reference name="Macros (Newcommands)" refid="macros-newcommands">Macros (Newcommands)</reference>).
@@ -1171,4 +1179,4 @@ the iterations.</paragraph></definition></definition_list_item></definition_list
 Springer, 2009.</paragraph></citation><citation backrefs="id8 id10" ids="osnes-98" names="osnes:98"><label>Osnes:98</label><paragraph>H. Osnes and H. P. Langtangen.
 An efficient probabilistic finite element method for stochastic
 groundwater flow.
-<emphasis>Advances in Water Resources</emphasis>, vol 22, 185-195, 1998.</paragraph></citation></section></section><section classes="system-messages"><title>Docutils System Messages</title><system_message backrefs="id12" ids="id11" level="3" line="732" source="manual.rst" type="ERROR"><paragraph>Unknown target name: &quot;googlecode wiki &lt;http://code.google.com/p/support/wiki/wikisyntax&lt;google code&gt;&gt;&quot;.</paragraph></system_message></section></document>
+<emphasis>Advances in Water Resources</emphasis>, vol 22, 185-195, 1998.</paragraph></citation></section></section><section classes="system-messages"><title>Docutils System Messages</title><system_message backrefs="id12" ids="id11" level="3" line="748" source="manual.rst" type="ERROR"><paragraph>Unknown target name: &quot;googlecode wiki &lt;http://code.google.com/p/support/wiki/wikisyntax&lt;google code&gt;&gt;&quot;.</paragraph></system_message></section></document>

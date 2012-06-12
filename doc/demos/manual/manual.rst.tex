@@ -141,10 +141,11 @@ LaTeX and HTML.
 \item Doconce can be converted to plain \emph{untagged} text,
 often desirable for computer programs and email.
 
-\item Doconce has good support for copying in parts of computer code,
-say in examples, directly from the source code files.
+\item Doconce has good support for copying in parts of computer code
+directly from the source code files via regular expressions
+for the start and end lines.
 
-\item Doconce has full support for LaTeX math, and integrates very well
+\item Doconce has full support for LaTeX math and integrates well
 with big LaTeX projects (books).
 
 \item Doconce is almost self-explanatory and is a handy starting point
@@ -152,9 +153,12 @@ for generating documents in more complicated markup languages, such
 as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
 is just to make the initial versions of a Sphinx or wiki document.
 
-\item Contrary to the similar Pandoc translator, Doconce integrates with
-Sphinx and Google wiki. However, if these formats are not of interest,
-Pandoc is obviously a superior tool.
+\item Contrary to the similar (and superior) Pandoc translator, Doconce
+supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
+lots of computer code environments in LaTeX, and a special exercise
+syntax. Doconce also also runs preprocessors (including Mako)
+such that the author can mix ordinary text with programming
+construction for generating parts of the text.
 
 \end{itemize}
 
@@ -510,12 +514,12 @@ Terminal>~doconce~format~pandoc~mydoc
 }
 \end{quote}
 
-The name of the output file is \texttt{mydoc.pnd}.
+The name of the output file is \texttt{mydoc.mkd}.
 From this format one can go to numerous other formats:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~pandoc~-R~-t~markdown~~-o~mydoc.txt~mydoc.pnd\\
-Terminal>~pandoc~-R~-t~mediawiki~-o~mydoc.mwk~mydoc.pnd
+Terminal>~pandoc~-R~-t~markdown~~-o~mydoc.txt~mydoc.mkd\\
+Terminal>~pandoc~-R~-t~mediawiki~-o~mydoc.mwk~mydoc.mkd
 }
 \end{quote}
 
@@ -524,6 +528,17 @@ Word), \texttt{rtf}, \texttt{texinfo}, to mention some. The \texttt{-R} option m
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the \href{http://johnmacfarlane.net/pandoc/README.html}{Pandoc documentation}
 for the many features of the \texttt{pandoc} program.
+
+Here are some useful options for using \texttt{pandoc} to handle mathematics
+in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively):
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~pandoc~-R~-{}-latexmathml~-t~html~-o~mydoc.html~mydoc.mkd\\
+Terminal>~pandoc~-R~-{}-mathml~~~~~~-t~html~-o~mydoc.html~mydoc.mkd\\
+Terminal>~pandoc~-R~-{}-jsmath~~~~~~-t~html~-o~mydoc.html~mydoc.mkd\\
+Terminal>~pandoc~-R~-{}-mathjax~~~~~-t~html~-o~mydoc.html~mydoc.mkd
+}
+\end{quote}
 
 
 %___________________________________________________________________________
@@ -3397,7 +3412,7 @@ groundwater flow.
 \DUtitle[system-message]{system-message}
 \raisebox{1em}{\hypertarget{id11}{}}
 
-{\color{red}ERROR/3} in \texttt{manual.rst}, line~732
+{\color{red}ERROR/3} in \texttt{manual.rst}, line~748
 
 \hyperlink{id12}{
 Unknown target name: ``googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>''.

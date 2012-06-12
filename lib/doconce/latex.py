@@ -53,10 +53,19 @@ def latex_figure(m, includegraphics=True):
 
     # note that label{...} are substituted by \label{...} (inline
     # label tag) so we write just label and not \label below:
+
+    frac = 0.9
+    opts = m.group('options')
+    if opts:
+        info = [s.split('=') for s in opts.split()]
+        for option, value in info:
+            if option == 'frac':
+                frac = float(value)
     if includegraphics:
-        includeline = r'\centerline{\includegraphics[width=0.9\linewidth]{%s}}' % filename
+        includeline = r'\centerline{\includegraphics[width=%s\linewidth]{%s}}' % (frac, filename)
     else:
-        includeline = r'\centerline{\psfig{figure=%s,width=\linewidth}}' % filename
+        includeline = r'\centerline{\psfig{figure=%s,width=%s\linewidth}}' % (filename, frac)
+
     caption = m.group('caption').strip()
     # `verbatim text` in backquotes does not work so we need to substitute
     # by \texttt{}, and underscores need a backslash

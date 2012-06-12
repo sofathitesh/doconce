@@ -204,7 +204,7 @@ filestr = pattern.sub(r'===== \g<2> =====\n\label{\g<1>}\nfile=\n\n\g<3>\n', fil
 
 # fix "Name of program file:" construction in exercises
 lines = filestr.splitlines()
-for i in range(len(lines), 0, -1):
+for i in range(len(lines)-1, -1, -1):
     if 'Name of program file' in lines[i]:
         m = re.search(r'Name of program file:\s*`([^`]+?)`', lines[i])
         if m:

@@ -88,17 +88,21 @@ Here are some Doconce features:
     LaTeX and HTML.
   <li> Doconce can be converted to plain <em>untagged</em> text,
     often desirable for computer programs and email.
-  <li> Doconce has good support for copying in parts of computer code,
-    say in examples, directly from the source code files.
-  <li> Doconce has full support for LaTeX math, and integrates very well
+  <li> Doconce has good support for copying in parts of computer code
+    directly from the source code files via regular expressions
+    for the start and end lines.
+  <li> Doconce has full support for LaTeX math and integrates well
     with big LaTeX projects (books).
   <li> Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
     as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
     is just to make the initial versions of a Sphinx or wiki document.
-  <li> Contrary to the similar Pandoc translator, Doconce integrates with
-    Sphinx and Google wiki. However, if these formats are not of interest,
-    Pandoc is obviously a superior tool.
+  <li> Contrary to the similar (and superior) Pandoc translator, Doconce
+    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
+    lots of computer code environments in LaTeX, and a special exercise
+    syntax. Doconce also also runs preprocessors (including Mako)
+    such that the author can mix ordinary text with programming
+    construction for generating parts of the text.
 </ul>
 
 Doconce was particularly written for the following sample applications:
@@ -496,12 +500,12 @@ Output in the versatile Pandoc format results from
 Terminal&gt; doconce format pandoc mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
-The name of the output file is <tt>mydoc.pnd</tt>.
+The name of the output file is <tt>mydoc.mkd</tt>.
 From this format one can go to numerous other formats:
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
-Terminal&gt; pandoc -R -t markdown  -o mydoc.txt mydoc.pnd
-Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.pnd
+Terminal&gt; pandoc -R -t markdown  -o mydoc.txt mydoc.mkd
+Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
 </pre>
 </blockquote>   <! -- end verbatim block -->
 Pandoc supports <tt>latex</tt>, <tt>html</tt>, <tt>odt</tt> (OpenOffice), <tt>docx</tt> (Microsoft
@@ -509,6 +513,22 @@ Word), <tt>rtf</tt>, <tt>texinfo</tt>, to mention some. The <tt>-R</tt> option m
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the <a href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</a>
 for the many features of the <tt>pandoc</tt> program.
+
+<P>
+Here are some useful options for using <tt>pandoc</tt> to handle mathematics
+in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively):
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; pandoc -R --latexmathml -t html -o mydoc.html mydoc.mkd
+Terminal&gt; pandoc -R --mathml      -t html -o mydoc.html mydoc.mkd
+Terminal&gt; pandoc -R --jsmath      -t html -o mydoc.html mydoc.mkd
+Terminal&gt; pandoc -R --mathjax     -t html -o mydoc.html mydoc.mkd
+</pre>
+</blockquote>   <! -- end verbatim block -->
+
+<P>
+
+<P>
 
 <P>
 <h3>LaTeX</h3>

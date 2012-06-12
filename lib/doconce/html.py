@@ -19,6 +19,12 @@ def html_figure(m):
     caption = m.group('caption').strip()
     filename = m.group('filename').strip()
     opts = m.group('options').strip()
+
+    if opts:
+        info = [s.split('=') for s in opts.split()]
+        opts = ['%s=%s' % (option, value)
+                for option, value in info if option not in ['frac']]
+
     if caption:
        # Caption above figure and a horizontal rule (fine for anchoring):
        return '<center><hr>\n<caption><i>%s</i></caption>\n<p><img src="%s" align="bottom" %s></p>\n</center>' % (caption, filename, opts)

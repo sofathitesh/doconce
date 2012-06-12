@@ -93,7 +93,7 @@ def syntax_check(filestr, format):
         m = pattern.search(filestr)
         if m:
             #and (format == 'rst' or format == 'sphinx'):
-            print '\nSyntax error: Line before list or !bc/!bt/@@@CODE block is a %s line\nwhich will "swallow" the block in reST format.\nInsert some ekstra line (text) to separate the two elements.' % construction
+            print '\nSyntax error: Line before list or !bc/!bt/@@@CODE block is a %s line\nwhich will "swallow" the block in reST format.\nInsert some extra line (text) to separate the two elements.' % construction
             print filestr[m.start():m.start()+80]
             sys.exit(1)
 
