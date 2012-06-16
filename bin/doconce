@@ -909,7 +909,6 @@ try:
     additional_themes_installed.append('solarized')
 except ImportError:
     additional_themes_url['solarized'] = 'https://bitbucket.org/miiton/sphinxjp.themes.solarized'
-
 try:
     import cloud_sptheme as csp
     additional_themes_installed.append('cloud')
