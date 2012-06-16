@@ -53,6 +53,7 @@ _latex_environments = [
     ("\\begin{figure}[",    "]"),
     ("\\begin{figure*}[",   "]"),
     ("\\begin{multline}",   "\\end{multiline}"),
+    ("\\begin{tabbing}",   "\\end{tabbing}"),
     # ptex2tex environments
     ("\\bccq",              "\\eccq"),
     ("\\bcc",               "\\ecc"),
@@ -87,6 +88,7 @@ _replacements = [
     (r"^#include.*$", "", re.MULTILINE),
     # Mako
     (r"^% .*$", "", re.MULTILINE),
+    (r"^<%.*$", "", re.MULTILINE),
     ]
 
 _latex_replacements = [
@@ -100,7 +102,7 @@ _latex_replacements = [
     #(r"\\[Vv]erb(.)(.+?)\1", "\g<2>"),
     (r"\\[Vv]erb(.)(.+?)\1", ""),
     (r"\\index\{.*?\}", ""),
-    (r"\$[^$]+?\$", ""),
+    (r"\$.+?\$", ""),  # works line by line (due to .), [^$]+ is dangerous...
     (r"([A-Za-z])~", "\g<1> "),
     (r"``(.+?)''", "\g<1>"),  # very important, otherwise doconce verb eats the text
     (r' \.', '.'),
@@ -166,7 +168,7 @@ def grep_common_typos(text, filename, common_typos):
     if found:
         sys.exit(1)
 
-def strip_environments(text, environments):
+def strip_environments(text, environments, verbose=0):
     """Remove environments in the ``environments`` list from the text."""
     for item in environments:
         if len(item) != 2:
@@ -180,9 +182,14 @@ def strip_environments(text, environments):
         for part in parts[1:]:
             subparts = part.split(end)
             text += end.join(subparts[1:])
+            if verbose > 0:
+                print '\n============ split %s <-> %s\ntext so far:' % (begin, end)
+                print text
+                print '\n============\nSkipped:'
+                print subparts[0]
     return text
 
-def do_regex_replacements(text, replacements):
+def do_regex_replacements(text, replacements, verbose=0):
     """Substitute according to the `replacement` list."""
     for item in replacements:
         if len(item) == 2:
@@ -191,6 +198,10 @@ def do_regex_replacements(text, replacements):
         elif len(item) == 3:
             from_, to_, flags = item
             text = re.sub(from_, to_, text, flags=flags)
+        if verbose > 0:
+            print '=================='
+            print 'regex substitution: %s -> %s\nnew text:' % (from_, to_)
+            print text
     return text
 
 def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
@@ -216,6 +227,8 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
         print '\nThe file %s does not exist!' % filename
         sys.exit(1)
 
+    verbose = 1 if '--debug' in sys.argv else 0
+
     text = f.read()
     f.close()
 
@@ -239,15 +252,16 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
 
     grep_common_typos(text, filename, common_typos)
 
-    text = strip_environments(text, environments)
+    text = strip_environments(text, environments, verbose)
     #print 'Text after environment strip:\n', text
 
-    text = do_regex_replacements(text, replacements)
+    text = do_regex_replacements(text, replacements, verbose)
     #print 'Text after regex replacements:\n', text
 
     # Write modified text to scratch file and run ispell
-    scratchfile = 'tmp_stripped_text.txt'
+    scratchfile = 'tmp_stripped_%s' % filename
     f = open(scratchfile, 'w')
+    text = text.replace('  ', ' ').replace('\n\n', '\n')
     f.write(text)
     f.close()
     personal_dictionaries = []
@@ -320,7 +334,6 @@ def _spellcheck_all(**kwargs):
         else:
             print 'See tmp_misspelled* for errors in individual files.'
         print 'When all misspellings are acceptable, cp new_dictionary.txt~ .dict4spell.txt'
-        print 'tmp_stripped_text.txt:', filename, 'with tagging removed (pure running text)'
         sys.exit(1)
     else:
         sys.exit(0)
@@ -340,8 +353,11 @@ the current misspellings.
 new_dictionary.txt~: suggested new dictionary, consisting of the old and
 all new misspellings (if they can be accepted).
 
-tmp_stripped_text.txt: the last file*.do.txt with tagging stripped off
-(can be checked for spelling and grammar mistakes in MS Word, for instance).
+tmp_stripped_file1.do.txt: the original files are stripped off for
+various constructs that cause trouble in spelling and the stripped
+text is found in files with a filename prefix tmp_stripped_ (this file
+can be checked for spelling and grammar mistakes in MS Word, for
+instance).
 
 Usage
 -----
