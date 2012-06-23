@@ -52,9 +52,27 @@ def pandoc_code(filestr, format):
     filestr = cpattern.sub(replacement, filestr)
 
     filestr = re.sub(r'!ec *\n', '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n', filestr)
-    # pandoc supports plain LaTeX, just remove !bt and !et
-    filestr = re.sub(r'!bt *\n', '\n\n', filestr)
-    filestr = re.sub(r'!et *\n', '\n\n', filestr)
+
+    # Math: give warning if not only single equations
+    pattern = r'!bt.+?\\begin\{(.+?)\}'
+    cpattern = re.compile(pattern, re.DOTALL)
+    math_envirs = cpattern.findall(filestr)
+    for envir in math_envirs:
+        if envir not in ('equation', 'align*'):
+            print 'Warning: latex envir \\begin{%s} does not work well' % envir
+            print '         pandoc extended markdown syntax handles only single equations'
+
+    # pandoc supports LaTeX if embedded in $$
+    filestr = re.sub(r'!bt *\n', '$$\n', filestr)
+    filestr = re.sub(r'!et *\n', '$$\n', filestr)
+
+    filestr = re.sub(r'\$\$\s*\\\[', '$$', filestr)
+    filestr = re.sub(r'\\\]\s*\$\$', '$$', filestr)
+
+    filestr = filestr.replace(' label{', ' \\label{')
+    pattern = r'^label\{'
+    cpattern = re.compile(pattern, re.MULTILINE)
+    filestr = cpattern.sub('\\label{', filestr)
 
     return filestr
 
@@ -210,7 +228,7 @@ def define(FILENAME_EXTENSION,
         'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
         'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('utf-8'))),
         'paragraph':     r'*\g<subst>* ',  # extra blank
-        'abstract':     r'*\g<type>.* \g<text> '
+        'abstract':     r'*\g<type>.* \g<text>\n\n\g<rest>'
         }
 
     CODE['pandoc'] = pandoc_code
