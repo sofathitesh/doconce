@@ -1,0 +1,1186 @@
+%%
+%% Automatically generated LaTeX file from Doconce source
+%% http://code.google.com/p/doconce/
+%%
+
+\documentclass{article}
+
+\usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
+\usepackage[latin1]{inputenc}
+\usepackage{ptex2tex}
+
+% Set helvetica as the default font family:
+\RequirePackage{helvet}
+\renewcommand\familydefault{phv}
+
+\usepackage[%
+colorlinks=true,
+linkcolor=blue,
+citecolor=black,
+filecolor=blue,
+urlcolor=blue]{hyperref}
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
+%\newcommand{\inlinecomment}[2]{}  % turn off inline comments
+
+\makeindex
+
+\begin{document}
+
+
+
+
+% ----------------- Title -------------------------
+
+\begin{center}
+{\LARGE\bf Doconce: Document Once, Include \\ [1.5mm] Anywhere}
+\end{center}
+
+
+
+
+% ----------------- Author(s) -------------------------
+
+\begin{center}
+{\bf Hans Petter Langtangen${}^{1, 2}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\centerline{{\small ${}^1$Simula Research Laboratory}}
+\centerline{{\small ${}^2$University of Oslo}}
+\end{center}
+% ----------------- End of author(s) -------------------------
+
+
+
+% ----------------- Date -------------------------
+
+
+\begin{center}
+Jun 3, 2012
+\end{center}
+
+
+\begin{itemize}
+ \item When writing a note, report, manual, etc., do you find it difficult
+   to choose the typesetting format? That is, to choose between plain
+   (email-like) text, wiki, Word/OpenOffice, {\LaTeX}, HTML,
+   reStructuredText, Sphinx, XML, etc.  Would it be convenient to
+   start with some very simple text-like format that easily converts
+   to the formats listed above, and then at some later stage
+   eventually go with a particular format?
+
+ \item Do you need to write documents in varying formats but find it
+   difficult to remember all the typesetting details of various
+   formats like \href{{http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf}}{LaTeX}, \href{{http://www.htmlcodetutorial.com/}}{HTML}, \href{{http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html}}{reStructuredText}, \href{{http://sphinx.pocoo.org/contents.html}}{Sphinx}, and \href{{http://code.google.com/p/support/wiki/WikiSyntax}}{wiki}? Would it be convenient
+   to generate the typesetting details of a particular format from a
+   very simple text-like format with minimal tagging?
+
+ \item Do you have the same information scattered around in different
+   documents in different typesetting formats? Would it be a good idea
+   to write things once, in one format, stored in one place, and
+   include it anywhere?
+\end{itemize}
+
+\noindent
+If any of these questions are of interest, you should keep on reading.
+
+
+\section{The Doconce Concept}
+
+Doconce is two things:
+
+\begin{enumerate}
+ \item Doconce is a very simple and minimally tagged markup language that
+    looks like ordinary ASCII text (much like what you would use in an
+    email), but the text can be transformed to numerous other formats,
+    including HTML, Pandoc, Google wiki, {\LaTeX}, PDF, reStructuredText
+    (reST), Sphinx, Epytext, and also plain text (where non-obvious
+    formatting/tags are removed for clear reading in, e.g.,
+    emails). From reST you can (via {\fontsize{10pt}{10pt}\verb!rst2*!} programs) go to XML, HTML,
+    {\LaTeX}, PDF, OpenOffice, and from the latter (via {\fontsize{10pt}{10pt}\verb!unoconv!}) to
+    RTF, numerous MS Word formats (including MS Office Open XML),
+    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
+    Markdown, reST, {\LaTeX}, HTML, PDF, DocBook XML, OpenOffice, GNU
+    Texinfo, MediaWiki, RTF, Groff, and other formats.
+
+ \item Doconce is a working strategy for never duplicating information.
+    Text is written in a single place and then transformed to
+    a number of different destinations of diverse type (software
+    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
+    The Doconce markup language support this working strategy.
+    The slogan is: "Write once, include anywhere".
+\end{enumerate}
+
+\noindent
+Here are some Doconce features:
+
+\begin{itemize}
+  \item Doconce markup does include tags, so the format is more tagged than
+    Markdown and Pandoc, but less than reST, and very much less than
+    {\LaTeX} and HTML.
+
+  \item Doconce can be converted to plain \emph{untagged} text,
+    often desirable for computer programs and email.
+
+  \item Doconce has good support for copying in parts of computer code
+    directly from the source code files via regular expressions
+    for the start and end lines.
+
+  \item Doconce has full support for {\LaTeX} math and integrates well
+    with big {\LaTeX} projects (books).
+
+  \item Doconce is almost self-explanatory and is a handy starting point
+    for generating documents in more complicated markup languages, such
+    as Google wiki, {\LaTeX}, and Sphinx. A primary application of Doconce
+    is just to make the initial versions of a Sphinx or wiki document.
+
+  \item Contrary to the similar (and superior) Pandoc translator, Doconce
+    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
+    lots of computer code environments in {\LaTeX}, and a special exercise
+    syntax. Doconce also also runs preprocessors (including Mako)
+    such that the author can mix ordinary text with programming
+    construction for generating parts of the text.
+\end{itemize}
+
+\noindent
+Doconce was particularly written for the following sample applications:
+
+\begin{itemize}
+  \item Large books written in {\LaTeX}, but where many pieces (computer demos,
+    projects, examples) can be written in Doconce to appear in other
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
+
+  \item Software documentation, primarily Python doc strings, which one wants
+    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
+    for use with Sphinx, as wiki text when publishing the software at
+    web sites, and as {\LaTeX} integrated in, e.g., a thesis.
+
+  \item Quick memos, which start as plain text in email, then some small
+    amount of Doconce tagging is added, before the memos can appear as
+    Sphinx web pages, MS Word documents, or in wikis.
+\end{itemize}
+
+\noindent
+History: Doconce was developed in 2006 at a time when most popular
+markup languages used quite some tagging.  Later, almost untagged
+markup languages like Markdown and Pandoc became popular. Doconce is
+not a replacement of Pandoc, which is a considerably more
+sophisticated project. Moreover, Doconce was developed mainly to
+fulfill the needs for a flexible source code base for books with much
+mathematics and computer code.
+
+Disclaimer: Doconce is a simple tool, largely based on interpreting
+and handling text through regular expressions. The possibility for
+tweaking the layout is obviously limited since the text can go to
+all sorts of sophisticated markup languages. Moreover, because of
+limitations of regular expressions, some formatting of Doconce syntax
+may face problems when transformed to HTML, {\LaTeX}, Sphinx, and similar
+formats.
+
+
+\section{What Does Doconce Look Like?}
+
+Doconce text looks like ordinary text, but there are some almost invisible
+text constructions that allow you to control the formating. Here are
+som examples.
+
+\begin{itemize}
+  \item Bullet lists arise from lines starting with an asterisk.
+
+  \item \emph{Emphasized words} are surrounded by asterisks.
+
+  \item \textbf{Words in boldface} are surrounded by underscores.
+
+  \item Words from computer code are enclosed in back quotes and
+    then typeset {\fontsize{10pt}{10pt}\verb!verbatim (in a monospace font)!}.
+
+  \item Section headings are recognied by equality ({\fontsize{10pt}{10pt}\verb!=!}) signs before
+    and after the title, and the number of {\fontsize{10pt}{10pt}\verb!=!} signs indicates the
+    level of the section: 7 for main section, 5 for subsection, and
+    3 for subsubsection.
+
+  \item Paragraph headings are recognized by a double underscore
+    before and after the heading.
+
+  \item The abstract of a document starts with \emph{Abstract} as paragraph
+    heading, and all text up to the next heading makes up the abstract,
+
+  \item Blocks of computer code can easily be included by placing
+    {\fontsize{10pt}{10pt}\verb!!bc!} (begin code) and {\fontsize{10pt}{10pt}\verb!!ec!} (end code) commands at separate lines
+    before and after the code block.
+
+  \item Blocks of computer code can also be imported from source files.
+
+  \item Blocks of {\LaTeX} mathematics can easily be included by placing
+    {\fontsize{10pt}{10pt}\verb!!bt!} (begin TeX) and {\fontsize{10pt}{10pt}\verb!!et!} (end TeX) commands at separate lines
+    before and after the math block.
+
+  \item There is support for both {\LaTeX} and text-like inline mathematics.
+
+  \item Figures and movies with captions, simple tables,
+    URLs with links, index list, labels and references are supported.
+
+  \item Invisible comments in the output format can be inserted throughout
+    the text.
+
+  \item Visible comments can be inserted so that authors and readers can
+    comment upon the text (and at any time turn on/off output of such
+    comments).
+
+  \item There is special support for advanced exercises features.
+
+  \item With a simple preprocessor, Preprocess or Mako, one can include
+    other documents (files) and large portions of text can be defined
+    in or out of the text.
+
+  \item With the Mako preprocessor one can even embed Python
+    code and use this to steer generation of Doconce text.
+\end{itemize}
+
+\noindent
+Here is an example of some simple text written in the Doconce format:
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
+===== A Subsection with Sample Text =====
+label{my:first:sec}
+
+Ordinary text looks like ordinary text, and the tags used for
+_boldface_ words, *emphasized* words, and `computer` words look
+natural in plain text.  Lists are typeset as you would do in an email,
+
+  * item 1
+  * item 2
+  * item 3
+
+Lists can also have automatically numbered items instead of bullets,
+
+  o item 1
+  o item 2
+  o item 3
+
+URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
+If the word is URL, the URL itself becomes the link name,
+as in "URL":"tutorial.do.txt".
+
+References to sections may use logical names as labels (e.g., a
+"label" command right after the section title), as in the reference to
+Section ref{my:first:sec}.
+
+Doconce also allows inline comments such as [hpl: here I will make
+some remarks to the text] for allowing authors to make notes. Inline
+comments can be removed from the output by a command-line argument
+(see Section ref{doconce2formats} for an example).
+
+Tables are also supperted, e.g.,
+
+  |--------------------------------|
+  |time  | velocity | acceleration |
+  |---r-------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+
+# lines beginning with # are comment lines
+\end{Verbatim}
+\noindent
+The Doconce text above results in the following little document:
+
+\subsection{A Subsection with Sample Text}
+
+\label{my:first:sec}
+
+Ordinary text looks like ordinary text, and the tags used for
+\textbf{boldface} words, \emph{emphasized} words, and {\fontsize{10pt}{10pt}\verb!computer!} words look
+natural in plain text.  Lists are typeset as you would do in an email,
+
+\begin{itemize}
+  \item item 1
+
+  \item item 2
+
+  \item item 3
+\end{itemize}
+
+\noindent
+Lists can also have numbered items instead of bullets, just use an {\fontsize{10pt}{10pt}\verb!o!}
+(for ordered) instead of the asterisk:
+
+\begin{enumerate}
+ \item item 1
+
+ \item item 2
+
+ \item item 3
+\end{enumerate}
+
+\noindent
+URLs with a link word are possible, as in \href{{http://folk.uio.no/hpl}}{hpl}.
+If the word is URL, the URL itself becomes the link name,
+as in \href{{tutorial.do.txt}}{\nolinkurl{tutorial.do.txt}}.
+
+References to sections may use logical names as labels (e.g., a
+"label" command right after the section title), as in the reference to
+Section~\ref{my:first:sec}.
+
+Doconce also allows inline comments such as \inlinecomment{hpl}{here I will make
+some remarks to the text} for allowing authors to make notes. Inline
+comments can be removed from the output by a command-line argument
+(see Section~\ref{doconce2formats} for an example).
+
+Tables are also supperted, e.g.,
+
+
+\begin{quote}\begin{tabular}{rrr}
+\hline
+\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\hline
+0.0          & 1.4186       & -5.01        \\
+2.0          & 1.376512     & 11.919       \\
+4.0          & 1.1E+1       & 14.717624    \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+
+\subsection{Mathematics and Computer Code}
+
+Inline mathematics, such as $\nu = \sin(x)$,
+allows the formula to be specified both as {\LaTeX} and as plain text.
+This results in a professional {\LaTeX} typesetting, but in other formats
+the text version normally looks better than raw {\LaTeX} mathematics with
+backslashes. An inline formula like $\nu = \sin(x)$ is
+typeset as
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
+$\nu = \sin(x)$|$v = sin(x)$
+\end{Verbatim}
+\noindent
+The pipe symbol acts as a delimiter between {\LaTeX} code and the plain text
+version of the formula.
+
+Blocks of mathematics are better typeset with raw {\LaTeX}, inside
+{\fontsize{10pt}{10pt}\verb!!bt!} and {\fontsize{10pt}{10pt}\verb!!et!} (begin tex / end tex) instructions.
+The result looks like this:
+\begin{eqnarray}
+{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
+\end{eqnarray}
+Of course, such blocks only looks nice in {\LaTeX}. The raw
+{\LaTeX} syntax appears in all other formats (but can still be useful
+for those who can read {\LaTeX} syntax).
+
+You can have blocks of computer code, starting and ending with
+{\fontsize{10pt}{10pt}\verb!!bc!} and {\fontsize{10pt}{10pt}\verb!!ec!} instructions, respectively. Such blocks look like
+\providecommand{\shadedskip}{}
+\definecolor{shadecolor}{rgb}{0.87843, 0.95686, 1.0}
+\renewenvironment{shadedskip}{
+\def\FrameCommand{\colorbox{shadecolor}}\FrameRule0.6pt
+\MakeFramed {\FrameRestore}\vskip3mm}{\vskip0mm\endMakeFramed}
+\providecommand{\shadedquoteBlue}{}
+\renewenvironment{shadedquoteBlue}[1][]{
+\bgroup\rmfamily
+\fboxsep=0mm\relax
+\begin{shadedskip}
+\list{}{\parsep=-2mm\parskip=0mm\topsep=0pt\leftmargin=2mm
+\rightmargin=2\leftmargin\leftmargin=4pt\relax}
+\item\relax}
+{\endlist\end{shadedskip}\egroup}\begin{shadedquoteBlue}
+\fontsize{9pt}{9pt}
+\begin{Verbatim}
+from math import sin, pi
+def myfunc(x):
+    return sin(pi*x)
+
+import integrate
+I = integrate.trapezoidal(myfunc, 0, pi, 100)
+\end{Verbatim}
+\end{shadedquoteBlue}
+\noindent
+A code block must come after some plain sentence (at least for successful
+output to {\fontsize{10pt}{10pt}\verb!sphinx!}, {\fontsize{10pt}{10pt}\verb!rst!}, and ASCII-close formats),
+not directly after a section/paragraph heading or a table.
+
+It is possible to add a specification of an
+environment for typesetting the verbatim code block, e.g., {\fontsize{10pt}{10pt}\verb!!bc xxx!}
+where {\fontsize{10pt}{10pt}\verb!xxx!} is an identifier like {\fontsize{10pt}{10pt}\verb!pycod!} for code snippet in Python,
+{\fontsize{10pt}{10pt}\verb!sys!} for terminal session, etc. When Doconce is filtered to {\LaTeX},
+these identifiers are used as in {\fontsize{10pt}{10pt}\verb!ptex2tex!} and defined in a
+configuration file {\fontsize{10pt}{10pt}\verb!.ptext2tex.cfg!}, while when filtering
+to Sphinx, one can have a comment line in the Doconce file for
+mapping the identifiers to legal language names for Sphinx (which equals
+the legal language names for Pygments):
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
+# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+\end{Verbatim}
+\noindent
+By default, {\fontsize{10pt}{10pt}\verb!pro!} and {\fontsize{10pt}{10pt}\verb!cod!} are {\fontsize{10pt}{10pt}\verb!python!}, {\fontsize{10pt}{10pt}\verb!sys!} is {\fontsize{10pt}{10pt}\verb!console!},
+while {\fontsize{10pt}{10pt}\verb!xpro!} and {\fontsize{10pt}{10pt}\verb!xcod!} are computer language specific for {\fontsize{10pt}{10pt}\verb!x!}
+in {\fontsize{10pt}{10pt}\verb!f!} (Fortran), {\fontsize{10pt}{10pt}\verb!c!} (C), {\fontsize{10pt}{10pt}\verb!cpp!} (C++), {\fontsize{10pt}{10pt}\verb!pl!} (Perl), {\fontsize{10pt}{10pt}\verb!m!} (Matlab),
+{\fontsize{10pt}{10pt}\verb!sh!} (Unix shells), {\fontsize{10pt}{10pt}\verb!cy!} (Cython), and {\fontsize{10pt}{10pt}\verb!py!} (Python).
+
+% (Any sphinx code-block comment, whether inside verbatim code
+% blocks or outside, yields a mapping between bc arguments
+% and computer languages. In case of muliple definitions, the
+% first one is used.)
+
+One can also copy computer code directly from files, either the
+complete file or specified parts.  Computer code is then never
+duplicated in the documentation (important for the principle of
+avoiding copying information!). A complete file is typeset
+with {\fontsize{10pt}{10pt}\verb!!bc pro!}, while a part of a file is copied into a {\fontsize{10pt}{10pt}\verb!!bc cod!}
+environment. What {\fontsize{10pt}{10pt}\verb!pro!} and {\fontsize{10pt}{10pt}\verb!cod!} mean is then defined through
+a {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!} file for {\LaTeX} and a {\fontsize{10pt}{10pt}\verb!sphinx code-blocks!}
+comment for Sphinx.
+
+Another document can be included by writing {\fontsize{10pt}{10pt}\verb!#include "mynote.do.txt"!}
+on a line starting with (another) hash sign.  Doconce documents have
+extension {\fontsize{10pt}{10pt}\verb!do.txt!}. The {\fontsize{10pt}{10pt}\verb!do!} part stands for doconce, while the
+trailing {\fontsize{10pt}{10pt}\verb!.txt!} denotes a text document so that editors gives you the
+right writing enviroment for plain text.
+
+\subsection{Macros (Newcommands), Cross-References, Index, and Bibliography}
+
+\label{newcommands}
+
+Doconce supports a type of macros via a LaTeX-style \emph{newcommand}
+construction.  The newcommands defined in a file with name
+{\fontsize{10pt}{10pt}\verb!newcommand_replace.tex!} are expanded when Doconce is filtered to
+other formats, except for {\LaTeX} (since {\LaTeX} performs the expansion
+itself).  Newcommands in files with names {\fontsize{10pt}{10pt}\verb!newcommands.tex!} and
+{\fontsize{10pt}{10pt}\verb!newcommands_keep.tex!} are kept unaltered when Doconce text is
+filtered to other formats, except for the Sphinx format. Since Sphinx
+understands {\LaTeX} math, but not newcommands if the Sphinx output is
+HTML, it makes most sense to expand all newcommands.  Normally, a user
+will put all newcommands that appear in math blocks surrounded by
+{\fontsize{10pt}{10pt}\verb!!bt!} and {\fontsize{10pt}{10pt}\verb!!et!} in {\fontsize{10pt}{10pt}\verb!newcommands_keep.tex!} to keep them unchanged, at
+least if they contribute to make the raw {\LaTeX} math text easier to
+read in the formats that cannot render {\LaTeX}.  Newcommands used
+elsewhere throughout the text will usually be placed in
+{\fontsize{10pt}{10pt}\verb!newcommands_replace.tex!} and expanded by Doconce.  The definitions of
+newcommands in the {\fontsize{10pt}{10pt}\verb!newcommands*.tex!} files \emph{must} appear on a single
+line (multi-line newcommands are too hard to parse with regular
+expressions).
+
+Recent versions of Doconce also offer cross referencing, typically one
+can define labels below (sub)sections, in figure captions, or in
+equations, and then refer to these later. Entries in an index can be
+defined and result in an index at the end for the {\LaTeX} and Sphinx
+formats. Citations to literature, with an accompanying bibliography in
+a file, are also supported. The syntax of labels, references,
+citations, and the bibliography closely resembles that of {\LaTeX},
+making it easy for Doconce documents to be integrated in {\LaTeX}
+projects (manuals, books). For further details on functionality and
+syntax we refer to the {\fontsize{10pt}{10pt}\verb!doc/manual/manual.do.txt!} file (see the
+\href{{https://doconce.googlecode.com/hg/doc/demos/manual/index.html}}{demo page}
+for various formats of this document).
+
+
+% Example on including another Doconce file (using preprocess):
+
+
+\section{From Doconce to Other Formats}
+
+\label{doconce2formats}
+
+Transformation of a Doconce document {\fontsize{10pt}{10pt}\verb!mydoc.do.txt!} to various other
+formats applies the script {\fontsize{10pt}{10pt}\verb!doconce format!}:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format format mydoc.do.txt
+\end{Verbatim}
+or just
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format format mydoc
+\end{Verbatim}
+The {\fontsize{10pt}{10pt}\verb!mako!} or {\fontsize{10pt}{10pt}\verb!preprocess!} programs are always used to preprocess the
+file first, and options to {\fontsize{10pt}{10pt}\verb!mako!} or {\fontsize{10pt}{10pt}\verb!preprocess!} can be added after the
+filename. For example,
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
+Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
+\end{Verbatim}
+The variable {\fontsize{10pt}{10pt}\verb!FORMAT!} is always defined as the current format when
+running {\fontsize{10pt}{10pt}\verb!preprocess!}. That is, in the last example, {\fontsize{10pt}{10pt}\verb!FORMAT!} is
+defined as {\fontsize{10pt}{10pt}\verb!latex!}. Inside the Doconce document one can then perform
+format specific actions through tests like {\fontsize{10pt}{10pt}\verb!#if FORMAT == "latex"!}.
+
+Inline comments in the text are removed from the output by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format latex mydoc --skip_inline_comments
+\end{Verbatim}
+One can also remove all such comments from the original Doconce
+file by running:
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
+Terminal> doconce remove_inline_comments mydoc
+\end{Verbatim}
+\noindent
+This action is convenient when a Doconce document reaches its final form
+and comments by different authors should be removed.
+
+\subsection{HTML}
+
+Making an HTML version of a Doconce file {\fontsize{10pt}{10pt}\verb!mydoc.do.txt!}
+is performed by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format html mydoc
+\end{Verbatim}
+The resulting file {\fontsize{10pt}{10pt}\verb!mydoc.html!} can be loaded into any web browser for viewing.
+
+\subsection{Pandoc}
+
+Output in the versatile Pandoc format results from
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format pandoc mydoc
+\end{Verbatim}
+The name of the output file is {\fontsize{10pt}{10pt}\verb!mydoc.mkd!}.
+From this format one can go to numerous other formats:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> pandoc -R -t markdown  -o mydoc.txt mydoc.mkd
+Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
+\end{Verbatim}
+Pandoc supports {\fontsize{10pt}{10pt}\verb!latex!}, {\fontsize{10pt}{10pt}\verb!html!}, {\fontsize{10pt}{10pt}\verb!odt!} (OpenOffice), {\fontsize{10pt}{10pt}\verb!docx!} (Microsoft
+Word), {\fontsize{10pt}{10pt}\verb!rtf!}, {\fontsize{10pt}{10pt}\verb!texinfo!}, to mention some. The {\fontsize{10pt}{10pt}\verb!-R!} option makes
+Pandoc pass raw HTML or {\LaTeX} to the output format instead of ignoring it.
+See the \href{{http://johnmacfarlane.net/pandoc/README.html}}{Pandoc documentation}
+for the many features of the {\fontsize{10pt}{10pt}\verb!pandoc!} program.
+
+Here are some useful options for using {\fontsize{10pt}{10pt}\verb!pandoc!} to handle mathematics
+in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively):
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> pandoc -R --latexmathml -t html -o mydoc.html mydoc.mkd
+Terminal> pandoc -R --mathml      -t html -o mydoc.html mydoc.mkd
+Terminal> pandoc -R --jsmath      -t html -o mydoc.html mydoc.mkd
+Terminal> pandoc -R --mathjax     -t html -o mydoc.html mydoc.mkd
+\end{Verbatim}
+
+\subsection{{\LaTeX}}
+
+Making a {\LaTeX} file {\fontsize{10pt}{10pt}\verb!mydoc.tex!} from {\fontsize{10pt}{10pt}\verb!mydoc.do.txt!} is done in two steps:
+% Note: putting code blocks inside a list is not successful in many
+% formats - the text may be messed up. A better choice is a paragraph
+% environment, as used here.
+
+\paragraph{Step 1.}
+Filter the doconce text to a pre-LaTeX form {\fontsize{10pt}{10pt}\verb!mydoc.p.tex!} for
+     {\fontsize{10pt}{10pt}\verb!ptex2tex!}:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format latex mydoc
+\end{Verbatim}
+LaTeX-specific commands ("newcommands") in math formulas and similar
+can be placed in files {\fontsize{10pt}{10pt}\verb!newcommands.tex!}, {\fontsize{10pt}{10pt}\verb!newcommands_keep.tex!}, or
+{\fontsize{10pt}{10pt}\verb!newcommands_replace.tex!} (see Section~\ref{newcommands}).
+If these files are present, they are included in the {\LaTeX} document
+so that your commands are defined.
+
+\paragraph{Step 2.}
+Run {\fontsize{10pt}{10pt}\verb!ptex2tex!} (if you have it) to make a standard {\LaTeX} file,
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> ptex2tex mydoc
+\end{Verbatim}
+or just perform a plain copy,
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> cp mydoc.p.tex mydoc.tex
+\end{Verbatim}
+Doconce generates a {\fontsize{10pt}{10pt}\verb!.p.tex!} file with some preprocessor macros
+that can be used to steer certain properties of the {\LaTeX} document.
+For example, to turn on the Helvetica font instead of the standard
+Computer Modern font, run
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> ptex2tex -DHELVETICA mydoc
+\end{Verbatim}
+The title, authors, and date are by default typeset in a non-standard
+way to enable a nicer treatment of multiple authors having
+institutions in common. However, the standard {\LaTeX} "maketitle" heading
+is also available through
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc
+\end{Verbatim}
+A separate titlepage can be generate by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc
+\end{Verbatim}
+
+The {\fontsize{10pt}{10pt}\verb!ptex2tex!} tool makes it possible to easily switch between many
+different fancy formattings of computer or verbatim code in {\LaTeX}
+documents. After any {\fontsize{10pt}{10pt}\verb!!bc!} command in the Doconce source you can
+insert verbatim block styles as defined in your {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!}
+file, e.g., {\fontsize{10pt}{10pt}\verb!!bc cod!} for a code snippet, where {\fontsize{10pt}{10pt}\verb!cod!} is set to
+a certain environment in {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!} (e.g., {\fontsize{10pt}{10pt}\verb!CodeIntended!}).
+There are over 30 styles to choose from.
+
+\paragraph{Step 2b (optional).}
+Edit the {\fontsize{10pt}{10pt}\verb!mydoc.tex!} file to your needs.
+For example, you may want to substitute {\fontsize{10pt}{10pt}\verb!section!} by {\fontsize{10pt}{10pt}\verb!section*!} to
+avoid numbering of sections, you may want to insert linebreaks
+(and perhaps space) in the title, etc. This can be automatically
+edited with the aid of the {\fontsize{10pt}{10pt}\verb!doconce replace!} and {\fontsize{10pt}{10pt}\verb!doconce subst!}
+commands. The former works with substituting text directly, while the
+latter performs substitutions using regular expressions.
+Here are some examples:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce replace 'section{' 'section*{' mydoc.tex
+Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
+          'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
+\end{Verbatim}
+A lot of tailored fixes to the {\LaTeX} document can be done by
+an appropriate set of text replacements and regular expression
+substitutions. You are anyway encourged to make a script for
+generating PDF from the {\LaTeX} file.
+
+\paragraph{Step 3.}
+Compile {\fontsize{10pt}{10pt}\verb!mydoc.tex!}
+and create the PDF file:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> latex mydoc
+Terminal> latex mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex mydoc
+Terminal> dvipdf mydoc
+\end{Verbatim}
+If one wishes to use the {\fontsize{10pt}{10pt}\verb!Minted_Python!}, {\fontsize{10pt}{10pt}\verb!Minted_Cpp!}, etc.,
+environments in {\fontsize{10pt}{10pt}\verb!ptex2tex!} for typesetting code (specified, e.g., in
+the {\fontsize{10pt}{10pt}\verb!*pro!} and {\fontsize{10pt}{10pt}\verb!*cod!} environments in {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!} or
+{\fontsize{10pt}{10pt}\verb!$HOME/.ptex2tex.cfg!}), the {\fontsize{10pt}{10pt}\verb!minted!} {\LaTeX} package is needed.  This
+package is included by running {\fontsize{10pt}{10pt}\verb!doconce format!} with the {\fontsize{10pt}{10pt}\verb!-DMINTED!}
+option:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> ptex2tex -DMINTED mydoc
+\end{Verbatim}
+In this case, {\fontsize{10pt}{10pt}\verb!latex!} must be run with the
+{\fontsize{10pt}{10pt}\verb!-shell-escape!} option:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> latex -shell-escape mydoc
+Terminal> latex -shell-escape mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> latex -shell-escape mydoc
+Terminal> dvipdf mydoc
+\end{Verbatim}
+
+\subsection{PDFLaTeX}
+
+Running {\fontsize{10pt}{10pt}\verb!pdflatex!} instead of {\fontsize{10pt}{10pt}\verb!latex!} follows almost the same steps,
+but the start is
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format latex mydoc
+\end{Verbatim}
+Then {\fontsize{10pt}{10pt}\verb!ptex2tex!} is run as explained above, and finally
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> pdflatex -shell-escape mydoc
+Terminal> makeindex mydoc   # if index
+Terminal> bibitem mydoc     # if bibliography
+Terminal> pdflatex -shell-escape mydoc
+\end{Verbatim}
+
+\subsection{Plain ASCII Text}
+
+We can go from Doconce "back to" plain untagged text suitable for viewing
+in terminal windows, inclusion in email text, or for insertion in
+computer source code:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
+\end{Verbatim}
+
+\subsection{reStructuredText}
+
+Going from Doconce to reStructuredText gives a lot of possibilities to
+go to other formats. First we filter the Doconce text to a
+reStructuredText file {\fontsize{10pt}{10pt}\verb!mydoc.rst!}:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format rst mydoc.do.txt
+\end{Verbatim}
+We may now produce various other formats:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> rst2html.py  mydoc.rst > mydoc.html # html
+Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
+Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
+Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
+\end{Verbatim}
+
+The OpenOffice file {\fontsize{10pt}{10pt}\verb!mydoc.odt!} can be loaded into OpenOffice and
+saved in, among other things, the RTF format or the Microsoft Word format.
+However, it is more convenient to use the program {\fontsize{10pt}{10pt}\verb!unovonv!}
+to convert between the many formats OpenOffice supports \emph{on the command line}.
+Run
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> unoconv --show
+\end{Verbatim}
+to see all the formats that are supported.
+For example, the following commands take
+{\fontsize{10pt}{10pt}\verb!mydoc.odt!} to Microsoft Office Open XML format,
+classic MS Word format, and PDF:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> unoconv -f ooxml mydoc.odt
+Terminal> unoconv -f doc mydoc.odt
+Terminal> unoconv -f pdf mydoc.odt
+\end{Verbatim}
+
+\paragraph{Remark about Mathematical Typesetting.}
+At the time of this writing, there is no easy way to go from Doconce
+and {\LaTeX} mathematics to reST and further to OpenOffice and the
+"MS Word world". Mathematics is only fully supported by {\fontsize{10pt}{10pt}\verb!latex!} as
+output and to a wide extent also supported by the {\fontsize{10pt}{10pt}\verb!sphinx!} output format.
+Some links for going from {\LaTeX} to Word are listed below.
+
+\begin{itemize}
+ \item \href{{http://ubuntuforums.org/showthread.php?t=1033441}}{\nolinkurl{http://ubuntuforums.org/showthread.php?t=1033441}}
+
+ \item \href{{http://tug.org/utilities/texconv/textopc.html}}{\nolinkurl{http://tug.org/utilities/texconv/textopc.html}}
+
+ \item \href{{http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html}}{\nolinkurl{http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html}}
+\end{itemize}
+
+\noindent
+
+\subsection{Sphinx}
+
+Sphinx documents demand quite some steps in their creation. We have automated
+most of the steps through the {\fontsize{10pt}{10pt}\verb!doconce sphinx_dir!} command:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce sphinx_dir author="authors' names" \
+          title="some title" version=1.0 dirname=sphinxdir \
+          theme=mytheme file1 file2 file3 ...
+\end{Verbatim}
+The keywords {\fontsize{10pt}{10pt}\verb!author!}, {\fontsize{10pt}{10pt}\verb!title!}, and {\fontsize{10pt}{10pt}\verb!version!} are used in the headings
+of the Sphinx document. By default, {\fontsize{10pt}{10pt}\verb!version!} is 1.0 and the script
+will try to deduce authors and title from the doconce files {\fontsize{10pt}{10pt}\verb!file1!},
+{\fontsize{10pt}{10pt}\verb!file2!}, etc. that together represent the whole document. Note that
+none of the individual Doconce files {\fontsize{10pt}{10pt}\verb!file1!}, {\fontsize{10pt}{10pt}\verb!file2!}, etc. should
+include the rest as their union makes up the whole document.
+The default value of {\fontsize{10pt}{10pt}\verb!dirname!} is {\fontsize{10pt}{10pt}\verb!sphinx-rootdir!}. The {\fontsize{10pt}{10pt}\verb!theme!}
+keyword is used to set the theme for design of HTML output from
+Sphinx (the default theme is {\fontsize{10pt}{10pt}\verb!'default'!}).
+
+With a single-file document in {\fontsize{10pt}{10pt}\verb!mydoc.do.txt!} one often just runs
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce sphinx_dir mydoc
+\end{Verbatim}
+and then an appropriate Sphinx directory {\fontsize{10pt}{10pt}\verb!sphinx-rootdir!} is made with
+relevant files.
+
+The {\fontsize{10pt}{10pt}\verb!doconce sphinx_dir!} command generates a script
+{\fontsize{10pt}{10pt}\verb!automake-sphinx.py!} for compiling the Sphinx document into an HTML
+document.  One can either run {\fontsize{10pt}{10pt}\verb!automake-sphinx.py!} or perform the
+steps in the script manually, possibly with necessary modifications.
+You should at least read the script prior to executing it to have
+some idea of what is done.
+
+Te {\fontsize{10pt}{10pt}\verb!doconce sphinx_dir!} script copies directories named {\fontsize{10pt}{10pt}\verb!figs!} or {\fontsize{10pt}{10pt}\verb!figures!}
+over to the Sphinx directory so that figures are accessible in the
+Sphinx compilation.  If figures or movies are located in other
+directories, {\fontsize{10pt}{10pt}\verb!automake-sphinx.py!} must be edited accordingly.
+Links to local files (not {\fontsize{10pt}{10pt}\verb!http:!} or {\fontsize{10pt}{10pt}\verb!file:!} URLs) must be placed
+in the {\fontsize{10pt}{10pt}\verb!_static!} subdirectory of the Sphinx directory. The
+utility {\fontsize{10pt}{10pt}\verb!doconce sphinxfix_localURLs!} is run to check for local
+links: for each such link, say {\fontsize{10pt}{10pt}\verb!dir1/dir2/myfile.txt!} it replaces
+the link by {\fontsize{10pt}{10pt}\verb!_static/myfile.txt!} and copies {\fontsize{10pt}{10pt}\verb!dir1/dir2/myfile.txt!}
+to a local {\fontsize{10pt}{10pt}\verb!_static!} directory (in the same directory as the
+script is run). The user must copy all {\fontsize{10pt}{10pt}\verb!_static/*!} files to the
+{\fontsize{10pt}{10pt}\verb!_static!} subdirectory of the Sphinx directory. Links to local
+HTML files (say another Sphinx document) may present a problem if they link
+to other files: all necessary files must be correctly copied to
+the {\fontsize{10pt}{10pt}\verb!_static!} subdirectory of the Sphinx directory.
+It may be wise to place relevant files in a {\fontsize{10pt}{10pt}\verb!_static!} directory
+and link to these directly from the Doconce document - then links
+to not need to be modified when creating  a Sphinx version of
+the document.
+
+Doconce comes with a collection of HTML themes for Sphinx documents.
+These are packed out in the Sphinx directory, the {\fontsize{10pt}{10pt}\verb!conf.py!}
+configuration file for Sphinx is edited accordingly, and a script
+{\fontsize{10pt}{10pt}\verb!make-themes.sh!} can make HTML documents with one or more themes.
+For example,
+to realize the themes {\fontsize{10pt}{10pt}\verb!fenics!} and {\fontsize{10pt}{10pt}\verb!pyramid!}, one writes
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> ./make-themes.sh fenics pyramid
+\end{Verbatim}
+The resulting directories with HTML documents are {\fontsize{10pt}{10pt}\verb!_build/html_fenics!}
+and {\fontsize{10pt}{10pt}\verb!_build/html_pyramid!}, respectively. Without arguments,
+{\fontsize{10pt}{10pt}\verb!make-themes.sh!} makes all available themes (!).
+
+If it is not desirable to use the autogenerated scripts explained
+above, here is the complete manual procedure of generating a
+Sphinx document from a file {\fontsize{10pt}{10pt}\verb!mydoc.do.txt!}.
+
+\paragraph{Step 1.}
+Translate Doconce into the Sphinx format:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format sphinx mydoc
+\end{Verbatim}
+
+\paragraph{Step 2.}
+Create a Sphinx root directory
+either manually or by using the interactive {\fontsize{10pt}{10pt}\verb!sphinx-quickstart!}
+program. Here is a scripted version of the steps with the latter:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+mkdir sphinx-rootdir
+sphinx-quickstart <<EOF
+sphinx-rootdir
+n
+_
+Name of My Sphinx Document
+Author
+version
+version
+.rst
+index
+n
+y
+n
+n
+n
+n
+y
+n
+n
+y
+y
+y
+EOF
+\end{Verbatim}
+The autogenerated {\fontsize{10pt}{10pt}\verb!conf.py!} file
+may need some edits if you want to specific layout (Sphinx themes)
+of HTML pages. The {\fontsize{10pt}{10pt}\verb!doconce sphinx_dir!} generator makes an extended {\fontsize{10pt}{10pt}\verb!conv.py!}
+file where, among other things, several useful Sphinx extensions
+are included.
+
+
+\paragraph{Step 3.}
+Copy the {\fontsize{10pt}{10pt}\verb!mydoc.rst!} file to the Sphinx root directory:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> cp mydoc.rst sphinx-rootdir
+\end{Verbatim}
+If you have figures in your document, the relative paths to those will
+be invalid when you work with {\fontsize{10pt}{10pt}\verb!mydoc.rst!} in the {\fontsize{10pt}{10pt}\verb!sphinx-rootdir!}
+directory. Either edit {\fontsize{10pt}{10pt}\verb!mydoc.rst!} so that figure file paths are correct,
+or simply copy your figure directories to {\fontsize{10pt}{10pt}\verb!sphinx-rootdir!}.
+Links to local files in {\fontsize{10pt}{10pt}\verb!mydoc.rst!} must be modified to links to
+files in the {\fontsize{10pt}{10pt}\verb!_static!} directory, see comment above.
+
+\paragraph{Step 4.}
+Edit the generated {\fontsize{10pt}{10pt}\verb!index.rst!} file so that {\fontsize{10pt}{10pt}\verb!mydoc.rst!}
+is included, i.e., add {\fontsize{10pt}{10pt}\verb!mydoc!} to the {\fontsize{10pt}{10pt}\verb!toctree!} section so that it becomes
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
+.. toctree::
+   :maxdepth: 2
+
+   mydoc
+\end{Verbatim}
+\noindent
+(The spaces before {\fontsize{10pt}{10pt}\verb!mydoc!} are important!)
+
+\paragraph{Step 5.}
+Generate, for instance, an HTML version of the Sphinx source:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+make clean   # remove old versions
+make html
+\end{Verbatim}
+
+Sphinx can generate a range of different formats:
+standalone HTML, HTML in separate directories with {\fontsize{10pt}{10pt}\verb!index.html!} files,
+a large single HTML file, JSON files, various help files (the qthelp, HTML,
+and Devhelp projects), epub, {\LaTeX}, PDF (via {\LaTeX}), pure text, man pages,
+and Texinfo files.
+
+\paragraph{Step 6.}
+View the result:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> firefox _build/html/index.html
+\end{Verbatim}
+
+Note that verbatim code blocks can be typeset in a variety of ways
+depending the argument that follows {\fontsize{10pt}{10pt}\verb!!bc!}: {\fontsize{10pt}{10pt}\verb!cod!} gives Python
+({\fontsize{10pt}{10pt}\verb!code-block:: python!} in Sphinx syntax) and {\fontsize{10pt}{10pt}\verb!cppcod!} gives C++, but
+all such arguments can be customized both for Sphinx and {\LaTeX} output.
+
+\subsection{Wiki Formats}
+
+There are many different wiki formats, but Doconce only supports three:
+\href{{http://code.google.com/p/support/wiki/WikiSyntax<Google Code>}}{Googlecode wiki}, , MediaWiki, and Creole Wiki. These formats are called
+{\fontsize{10pt}{10pt}\verb!gwiki!}, {\fontsize{10pt}{10pt}\verb!mwiki!}, and {\fontsize{10pt}{10pt}\verb!cwiki!}, respectively.
+Transformation from Doconce to these formats is done by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format gwiki mydoc.do.txt
+Terminal> doconce format mwiki mydoc.do.txt
+Terminal> doconce format cwiki mydoc.do.txt
+\end{Verbatim}
+
+The Googlecode wiki document, {\fontsize{10pt}{10pt}\verb!mydoc.gwiki!}, is most conveniently stored
+in a directory which is a clone of the wiki part of the Googlecode project.
+This is far easier than copying and pasting the entire text into the
+wiki editor in a web browser.
+
+When the Doconce file contains figures, each figure filename must in
+the {\fontsize{10pt}{10pt}\verb!.gwiki!} file be replaced by a URL where the figure is
+available. There are instructions in the file for doing this. Usually,
+one performs this substitution automatically (see next section).
+
+From the MediaWiki format one can go to other formats with aid
+of \href{{http://pediapress.com/code/}}{mwlib}. This means that one can
+easily use Doconce to write \href{{http://en.wikibooks.org}}{Wikibooks}
+and publish these in PDF and MediaWiki format.
+At the same time, the book can also be published as a
+standard {\LaTeX} book or a Sphinx web document.
+
+\subsection{Tweaking the Doconce Output}
+
+Occasionally, one would like to tweak the output in a certain format
+from Doconce. One example is figure filenames when transforming
+Doconce to reStructuredText. Since Doconce does not know if the
+{\fontsize{10pt}{10pt}\verb!.rst!} file is going to be filtered to {\LaTeX} or HTML, it cannot know
+if {\fontsize{10pt}{10pt}\verb!.eps!} or {\fontsize{10pt}{10pt}\verb!.png!} is the most appropriate image filename.
+The solution is to use a text substitution command or code with, e.g., sed,
+perl, python, or scitools subst, to automatically edit the output file
+from Doconce. It is then wise to run Doconce and the editing commands
+from a script to automate all steps in going from Doconce to the final
+format(s). The {\fontsize{10pt}{10pt}\verb!make.sh!} files in {\fontsize{10pt}{10pt}\verb!docs/manual!} and {\fontsize{10pt}{10pt}\verb!docs/tutorial!}
+constitute comprehensive examples on how such scripts can be made.
+
+\subsection{Demos}
+
+The current text is generated from a Doconce format stored in the file
+\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
+fontfamily=tt,xleftmargin=7mm]
+docs/tutorial/tutorial.do.txt
+\end{Verbatim}
+\noindent
+The file {\fontsize{10pt}{10pt}\verb!make.sh!} in the {\fontsize{10pt}{10pt}\verb!tutorial!} directory of the
+Doconce source code contains a demo of how to produce a variety of
+formats.  The source of this tutorial, {\fontsize{10pt}{10pt}\verb!tutorial.do.txt!} is the
+starting point.  Running {\fontsize{10pt}{10pt}\verb!make.sh!} and studying the various generated
+files and comparing them with the original {\fontsize{10pt}{10pt}\verb!tutorial.do.txt!} file,
+gives a quick introduction to how Doconce is used in a real case.
+\href{{https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html}}{Here}
+is a sample of how this tutorial looks in different formats.
+
+There is another demo in the {\fontsize{10pt}{10pt}\verb!docs/manual!} directory which
+translates the more comprehensive documentation, {\fontsize{10pt}{10pt}\verb!manual.do.txt!}, to
+various formats. The {\fontsize{10pt}{10pt}\verb!make.sh!} script runs a set of translations.
+
+\subsection{Dependencies and Installation}
+
+Doconce itself is pure Python code hosted at \href{{http://code.google.com/p/doconce}}{\nolinkurl{http://code.google.com/p/doconce}}.  Its installation from the
+Mercurial ({\fontsize{10pt}{10pt}\verb!hg!}) source follows the standard procedure:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+# Doconce
+hg clone https://doconce.googlecode.com/hg/ doconce
+cd doconce
+sudo python setup.py install
+cd ..
+\end{Verbatim}
+
+If you make use of the \href{{http://code.google.com/p/preprocess}}{Preprocess}
+preprocessor, this program must be installed:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+svn checkout http://preprocess.googlecode.com/svn/trunk/ preprocess
+cd preprocess
+cd doconce
+sudo python setup.py install
+cd ..
+\end{Verbatim}
+A much more advanced alternative to Preprocess is
+\href{{http://www.makotemplates.org}}{Mako}. Its installation is most
+conveniently done by {\fontsize{10pt}{10pt}\verb!pip!},
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+pip install Mako
+\end{Verbatim}
+This command requires {\fontsize{10pt}{10pt}\verb!pip!} to be installed. On Debian Linux systems,
+such as Ubuntu, the installation is simply done by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+sudo apt-get install python-pip
+\end{Verbatim}
+Alternatively, one can install from the {\fontsize{10pt}{10pt}\verb!pip!} \href{{http://pypi.python.org/pypi/pip}}{source code}.
+
+To make {\LaTeX}
+documents (without going through the reStructuredText format) you
+need \href{{http://code.google.com/p/ptex2tex}}{ptex2tex}, which is
+installed by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
+cd ptex2tex
+sudo python setup.py install
+cd latex
+sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
+cd ../..
+\end{Verbatim}
+As seen, {\fontsize{10pt}{10pt}\verb!cp2texmf.sh!} copies some special stylefiles that
+that {\fontsize{10pt}{10pt}\verb!ptex2tex!} potentially makes use of. Some more standard stylefiles
+are also needed. These are installed by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+sudo apt-get install texlive-latex-extra
+\end{Verbatim}
+on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
+the necessary stylefiles (if not, they can be found by googling and installed
+manually in the {\fontsize{10pt}{10pt}\verb!~/texmf/tex/latex/misc!} directory).
+
+The \emph{minted} {\LaTeX} style is offered by {\fontsize{10pt}{10pt}\verb!ptex2tex!} and popular among
+users. This style requires the package \href{{http://pygments.org}}{Pygments}:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
+cd pygments
+sudo python setup.py install
+\end{Verbatim}
+If you use the minted style, you have to enable it by running
+{\fontsize{10pt}{10pt}\verb!ptex2tex -DMINTED!} and then {\fontsize{10pt}{10pt}\verb!latex -shell-escape!}, see
+the Section~\ref{doconce2formats}.
+
+For {\fontsize{10pt}{10pt}\verb!rst!} output and further transformation to {\LaTeX}, HTML, XML,
+OpenOffice, and so on, one needs \href{{http://docutils.sourceforge.net}}{docutils}.
+The installation can be done by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
+cd docutils
+sudo python setup.py install
+cd ..
+\end{Verbatim}
+To use the OpenOffice suite you will typically on Debian systems install
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+sudo apt-get install unovonv libreoffice libreoffice-dmaths
+\end{Verbatim}
+
+There is a possibility to create PDF files from reST documents
+using ReportLab instead of {\LaTeX}. The enabling software is
+\href{{http://code.google.com/p/rst2pdf}}{rst2pdf}. Either download the tarball
+or clone the svn repository, go to the {\fontsize{10pt}{10pt}\verb!rst2pdf!} directory and
+run {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}.
+
+
+Output to {\fontsize{10pt}{10pt}\verb!sphinx!} requires of course \href{{http://sphinx.pocoo.org}}{Sphinx},
+installed by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+hg clone https://bitbucket.org/birkenfeld/sphinx
+cd sphinx
+sudo python setup.py install
+cd ..
+\end{Verbatim}
+
+When the output format is {\fontsize{10pt}{10pt}\verb!epydoc!} one needs that program too, installed
+by
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc
+cd epydoc
+sudo make install
+cd ..
+\end{Verbatim}
+
+Finally, translation to {\fontsize{10pt}{10pt}\verb!pandoc!} requires the
+\href{{http://johnmacfarlane.net/pandoc/}}{Pandoc} program
+(written in Haskell) to be installed.
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+sudo apt-get install pandoc
+\end{Verbatim}
+
+\paragraph{Remark.}
+Several of the packages above installed from source code
+are also available in Debian-based system through the
+{\fontsize{10pt}{10pt}\verb!apt-get install!} command. However, we recommend installation directly
+from the version control system repository as there might be important
+updates and bug fixes. For {\fontsize{10pt}{10pt}\verb!svn!} directories, go to the directory,
+run {\fontsize{10pt}{10pt}\verb!svn update!}, and then {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}. For
+Mercurial ({\fontsize{10pt}{10pt}\verb!hg!}) directories, go to the directory, run
+{\fontsize{10pt}{10pt}\verb!hg pull; hg update!}, and then {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}.
+Doconce itself is frequently updated so these commands should be
+run regularly.
+
+\printindex
+
+\end{document}
