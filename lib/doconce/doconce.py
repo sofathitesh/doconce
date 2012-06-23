@@ -401,8 +401,18 @@ def insert_code_from_file(filestr, format):
                 codefile = open(filename, 'r')
             except IOError, e:
                 print 'Could not open the file %s used in @@@CODE instruction' % filename
-                print e
-                sys.exit(1)
+                if 'No such file or directory' in str(e):
+                    print '    No such file or directory!'
+                    print '    A dummy file %s is generated...' % filename
+                    dummyfile = open(filename, 'w')
+                    dummyfile.write(
+                        'File %s missing - made this dummy file...\n'
+                        % filename)
+                    dummyfile.close()
+                    codefile = open(filename, 'r')
+                else:
+                    print e
+                    sys.exit(1)
 
             # Determine code environment from filename extension
             filename_ext = os.path.splitext(filename)[1]

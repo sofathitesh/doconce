@@ -717,6 +717,12 @@ def gwiki_figsubst():
 def usage_sphinx_dir():
     print 'Usage: doconce sphinx_dir author=name title="some title" version=0.1 theme=themename dirname=sphinx-rootdir  doconcefile1.do.txt'
     print """
+
+The steps for copying files to sphinx-rootdir and compiling the document
+is done by an automatically generated script:
+
+  python automake-sphinx.py
+
 If there are many files to be translated to sphinx, have a
 master document including the others and with #>>>> part: ...
 syntax, such that doconce split_rst can first be run on the
@@ -731,8 +737,8 @@ Split master.rst into parts as defined by #>>>>> part: name >>>>> lines
 
   files=`doconce split_rst master.rst`
   echo $files
-  doconce sphinx_dir author='HPL' theme=fenics $files
-  sh automake-sphinx.sh
+  doconce sphinx_dir author='HPL' theme=pyramid $files
+  python automake-sphinx.py
 """
 
 def sphinx_dir():
