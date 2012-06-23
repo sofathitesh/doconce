@@ -91,7 +91,7 @@ MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie based o
 # Check out the correct with and height of YouTube movies from the
 # embed command that the YouTube page can generate
 
-MOVIE: [http://www.youtube.com/embed/7cC-_-aqx18, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 ===== Table Demo =====
 label{subsec:table}
@@ -183,7 +183,18 @@ or with number and label, as in (ref{my:eq1}):
 \end{equation}
 !et
 We can refer to this equation by (ref{my:eq1}).
-Or a system of equations with labels,
+
+Here is a system without equation numbers:
+!bt
+\begin{align*}
+a &= q + 4 + 5+ 6 \\
+b &= \nabla^2 u + \nabla^4 x
+\end{align*}
+!et
+
+
+% if FORMAT in ('latex', 'pdflatex', 'sphinx'):
+And here is a system of equations with labels:
 !bt
 \begin{align}
 a &= q + 4 + 5+ 6 label{eq1} \\
@@ -191,13 +202,6 @@ b &= \nabla^2 u + \nabla^4 x label{eq2}
 \end{align}
 !et
 We can refer to (ref{eq1})-(ref{eq2}).
-Or align without eq numbers:
-!bt
-\begin{align*}
-a &= q + 4 + 5+ 6 \\
-b &= \nabla^2 u + \nabla^4 x
-\end{align*}
-!et
 
 Or with multline?
 !bt
@@ -244,7 +248,7 @@ Here is eqnarray:
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}
 !et
-
+% endif
 
 ======= Exercises =======
 
@@ -524,9 +528,7 @@ Test of movies.
 <!-- embed command that the YouTube page can generate -->
 
 <P>
-
-<iframe width="420" height="315" src="http://www.youtube.com/embed/7cC-_-aqx18" frameborder="0" allowfullscreen></iframe>
-
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 <P>
 <h3>Table Demo <a name="subsec:table"></A></h3>
@@ -606,15 +608,9 @@ or with number and label, as in (<a href="#my:eq1">my:eq1</a>):
 \end{equation}
 </pre></blockquote>
 We can refer to this equation by (<a href="#my:eq1">my:eq1</a>).
-Or a system of equations with labels,
-<blockquote><pre>
-\begin{align}
-a &= q + 4 + 5+ 6 label{eq1} \\ 
-b &= \nabla^2 u + \nabla^4 x label{eq2}
-\end{align}
-</pre></blockquote>
-We can refer to (<a href="#eq1">eq1</a>)-(<a href="#eq2">eq2</a>).
-Or align without eq numbers:
+
+<P>
+Here is a system without equation numbers:
 <blockquote><pre>
 \begin{align*}
 a &= q + 4 + 5+ 6 \\ 
@@ -623,54 +619,6 @@ b &= \nabla^2 u + \nabla^4 x
 </pre></blockquote>
 
 <P>
-Or with multline?
-<blockquote><pre>
-\begin{multline}
-a = b = q + \\ 
-  f + \nabla\cdot\nabla u
-label{multiline:eq1}
-\end{multline}
-</pre></blockquote>
-Maybe split is better:
-<blockquote><pre>
-\begin{equation}
-label{split:envir:eq}
-\begin{split}
-a = b = q &+ \\ 
-  & f + \nabla\cdot\nabla u
-\end{split}
-\end{equation}
-</pre></blockquote>
-And we can refer to the last equation by (<a href="#split:envir:eq">split:envir:eq</a>).
-
-<P>
-What about gather?
-<blockquote><pre>
-\begin{gather}
-a = b \\ 
-c = d + 7 + 9
-\end{gather}
-</pre></blockquote>
-
-<P>
-And what about alignat?
-<blockquote><pre>
-\begin{alignat}{2}
-a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 label{eq1a} \\ 
-b &= \nabla^2 u + \nabla^4 x & x\in\Omega label{eq2a}
-\end{alignat}
-</pre></blockquote>
-Let us refer to (<a href="#eq1">eq1</a>)-(<a href="#eq2">eq2</a>) again, and to the
-alignat variant (<a href="#eq1a">eq1a</a>)-(<a href="#eq2a">eq2a</a>), and to (<a href="#my:eq1">my:eq1</a>).
-
-<P>
-Here is eqnarray:
-<blockquote><pre>
-\begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\ 
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-\end{eqnarray}
-</pre></blockquote>
 
 <P>
 
@@ -766,7 +714,8 @@ x_0, y_0, and R quantities.
     
 ************** File: testdoc.p.tex *****************
 %%
-%% Automatically generated LaTeX file from Doconce source
+%% Automatically generated ptex2tex (extended LaTeX) file
+%% from Doconce source
 %% http://code.google.com/p/doconce/
 %%
 
@@ -936,7 +885,7 @@ Jan 32, 2100
 % #endif
 
 The format of this document is
-plain, homemade pdfLaTeX (from Doconce).
+plain, homemade {\LaTeX} (from Doconce).
 
 
 \begin{abstract}
@@ -1056,7 +1005,7 @@ Test of figures.
 
 
 \begin{figure}
-  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/streamtubes.png}}
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/streamtubes.eps}}
   \caption{
   Visualization of flow by streamtubes. \label{fig:impact}
   }
@@ -1149,7 +1098,7 @@ repeat,
 % Check out the correct with and height of YouTube movies from the
 % embed command that the YouTube page can generate
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: \href{{http://www.youtube.com/watch?v=7cC-_-aqx18}}{\nolinkurl{http://www.youtube.com/watch?v=7cC-_-aqx18}}
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 \subsection{Table Demo}
 
@@ -1158,6 +1107,11 @@ repeat,
 Let us take this table from the manual:
 \index{some class X@some {\rm\texttt{class X}} which is convenient}
 
+\begin{table}
+\caption{
+Table of velocity and acceleration.
+\label{mytab}
+}
 
 
 \begin{quote}\begin{tabular}{lrr}
@@ -1171,6 +1125,7 @@ Let us take this table from the manual:
 \end{tabular}\end{quote}
 
 \noindent
+\end{table}
 
 The Doconce source code reads
 \bcod
@@ -1218,6 +1173,15 @@ is fine to have.
 % note that when there is no http: or file:, it can be a file link
 % if the link name is URL, url, "URL", or "url".
 
+\subsection{Some {\LaTeX} Constructs}
+
+Let's check abbr.~of some common kind, e.g.~the well-known i.e.
+7-9 as an example. Moreover, Dr.~Tang and Prof.~Monsen,
+or maybe also prof.~Ting,
+will go to the Dept.~of Science to test how Mr.~Hansen is doing together
+with Ms.~Larsen. A sentence containing "refines lines" could easily
+fool a regex substitution with only i.e.~since the dot matches anything.
+Also, look at Fig.~4 to see how the data compares with Tab.~\ref{mytab}.
 
 Here is an equation without label:
 \[ a = b + c \]
@@ -1226,17 +1190,20 @@ or with number and label, as in (\ref{my:eq1}):
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
 We can refer to this equation by (\ref{my:eq1}).
-Or a system of equations with labels,
+
+Here is a system without equation numbers:
+\begin{align*}
+a &= q + 4 + 5+ 6 \\ 
+b &= \nabla^2 u + \nabla^4 x
+\end{align*}
+
+
+And here is a system of equations with labels:
 \begin{align}
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
 We can refer to (\ref{eq1})-(\ref{eq2}).
-Or align without eq numbers:
-\begin{align*}
-a &= q + 4 + 5+ 6 \\ 
-b &= \nabla^2 u + \nabla^4 x
-\end{align*}
 
 Or with multline?
 \begin{multline}
@@ -1354,16 +1321,16 @@ Filename: \code{circles.pdf}.
 
 ************** File: testdoc.tex *****************
 %%
-%% Automatically generated LaTeX file from Doconce source
+%% Automatically generated ptex2tex (extended LaTeX) file
+%% from Doconce source
 %% http://code.google.com/p/doconce/
 %%
 
-\documentclass{article}
+\documentclass{book}
 
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
-\usepackage{ptex2tex}
-\usepackage{minted}  % requires latex -shell-escape (for Minted_* ptex2tex envirs)
+
 
 
 \usepackage[%
@@ -1445,7 +1412,7 @@ Jan 32, 2100
 
 
 The format of this document is
-plain, homemade pdfLaTeX (from Doconce).
+plain, homemade {\LaTeX} (from Doconce).
 
 
 \begin{abstract}
@@ -1510,7 +1477,9 @@ to Section~\ref{subsubsec:ex}. \index{somefunc@{\rm\texttt{somefunc}} function}
 
 Let's do some copying from files too. First from subroutine up to the very end,
 
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
+\
+\begin{quote}
+\begin{verbatim}
       subroutine    test()
       integer i
       real*8 r
@@ -1524,10 +1493,13 @@ C     END1
       program testme
       call test()
       return
-\end{minted}
-\noindent
+\
+\end{verbatim}
+\end{quote}
 and then just the subroutine,
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
+\
+\begin{quote}
+\begin{verbatim}
 
       subroutine    test()
       integer i
@@ -1537,10 +1509,13 @@ and then just the subroutine,
          r = r + i
       end do
       return
-\end{minted}
-\noindent
+\
+\end{verbatim}
+\end{quote}
 and finally the complete file:
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
+\
+\begin{quote}
+\begin{verbatim}
 C     a comment
 
       subroutine    test()
@@ -1556,8 +1531,9 @@ C     END1
       program testme
       call test()
       return
-\end{minted}
-\noindent
+\
+\end{verbatim}
+\end{quote}
 
 \subsection{Subsection 2}
 
@@ -1568,7 +1544,7 @@ Test of figures.
 
 
 \begin{figure}
-  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/streamtubes.png}}
+  \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/streamtubes.eps}}
   \caption{
   Visualization of flow by streamtubes. \label{fig:impact}
   }
@@ -1613,7 +1589,7 @@ Test of movies.
 % Check out the correct with and height of YouTube movies from the
 % embed command that the YouTube page can generate
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: \href{{http://www.youtube.com/watch?v=7cC-_-aqx18}}{\nolinkurl{http://www.youtube.com/watch?v=7cC-_-aqx18}}
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 \subsection{Table Demo}
 
@@ -1622,6 +1598,11 @@ Test of movies.
 Let us take this table from the manual:
 \index{some class X@some {\rm\texttt{class X}} which is convenient}
 
+\begin{table}
+\caption{
+Table of velocity and acceleration.
+\label{mytab}
+}
 
 
 \begin{quote}\begin{tabular}{lrr}
@@ -1635,24 +1616,12 @@ Let us take this table from the manual:
 \end{tabular}\end{quote}
 
 \noindent
+\end{table}
 
 The Doconce source code reads
-\providecommand{\shadedskip}{}
-\definecolor{shadecolor}{rgb}{0.87843, 0.95686, 1.0}
-\renewenvironment{shadedskip}{
-\def\FrameCommand{\colorbox{shadecolor}}\FrameRule0.6pt
-\MakeFramed {\FrameRestore}\vskip3mm}{\vskip0mm\endMakeFramed}
-\providecommand{\shadedquoteBlue}{}
-\renewenvironment{shadedquoteBlue}[1][]{
-\bgroup\rmfamily
-\fboxsep=0mm\relax
-\begin{shadedskip}
-\list{}{\parsep=-2mm\parskip=0mm\topsep=0pt\leftmargin=2mm
-\rightmargin=2\leftmargin\leftmargin=4pt\relax}
-\item\relax}
-{\endlist\end{shadedskip}\egroup}\begin{shadedquoteBlue}
-\fontsize{9pt}{9pt}
-\begin{Verbatim}
+\
+\begin{quote}
+\begin{verbatim}
   |--------------------------------|
   |time  | velocity | acceleration |
   |--l--------r-----------r--------|
@@ -1660,9 +1629,9 @@ The Doconce source code reads
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
-\end{Verbatim}
-\end{shadedquoteBlue}
-\noindent
+\
+\end{verbatim}
+\end{quote}
 
 Here is yet another table to test that we can handle more than
 one table:
@@ -1699,6 +1668,15 @@ is fine to have.
 % note that when there is no http: or file:, it can be a file link
 % if the link name is URL, url, "URL", or "url".
 
+\subsection{Some {\LaTeX} Constructs}
+
+Let's check abbr.~of some common kind, e.g.~the well-known i.e.
+7-9 as an example. Moreover, Dr.~Tang and Prof.~Monsen,
+or maybe also prof.~Ting,
+will go to the Dept.~of Science to test how Mr.~Hansen is doing together
+with Ms.~Larsen. A sentence containing "refines lines" could easily
+fool a regex substitution with only i.e.~since the dot matches anything.
+Also, look at Fig.~4 to see how the data compares with Tab.~\ref{mytab}.
 
 Here is an equation without label:
 \[ a = b + c \]
@@ -1707,17 +1685,20 @@ or with number and label, as in (\ref{my:eq1}):
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
 We can refer to this equation by (\ref{my:eq1}).
-Or a system of equations with labels,
+
+Here is a system without equation numbers:
+\begin{align*}
+a &= q + 4 + 5+ 6 \\ 
+b &= \nabla^2 u + \nabla^4 x
+\end{align*}
+
+
+And here is a system of equations with labels:
 \begin{align}
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
 We can refer to (\ref{eq1})-(\ref{eq2}).
-Or align without eq numbers:
-\begin{align*}
-a &= q + 4 + 5+ 6 \\ 
-b &= \nabla^2 u + \nabla^4 x
-\end{align*}
 
 Or with multline?
 \begin{multline}
@@ -1797,7 +1778,9 @@ where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ is a point on the circle.
 The formula can be used to generate {\fontsize{10pt}{10pt}\verb!n!} points on a circle:
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\
+\begin{quote}
+\begin{verbatim}
 import numpy as np
 
 def circle(R, x0, y0, n=501):
@@ -1805,8 +1788,9 @@ def circle(R, x0, y0, n=501):
     x = x0 + R*np.cos(2*np.pi*t)
     y = y0 + R*np.sin(2*np.pi*t)
     return x, y
-\end{minted}
-\noindent
+\
+\end{verbatim}
+\end{quote}
 
 
 The goal of this project is to draw $N$ circles with random
@@ -1833,6 +1817,7 @@ Filename: {\fontsize{10pt}{10pt}\verb!circles.pdf!}.
 \printindex
 
 \end{document}
+
 ************** File: testdoc.rst *****************
 .. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)
@@ -2001,11 +1986,7 @@ Test of movies.
 .. embed command that the YouTube page can generate
 
 
-.. raw:: html
-        
-        <iframe width="420" height="315" src="http://www.youtube.com/embed/7cC-_-aqx18" frameborder="0" allowfullscreen></iframe>
-
-
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 .. _subsec:table:
 
@@ -2082,66 +2063,14 @@ or with number and label, as in Equation (my:eq1)::
         \end{equation}
 
 We can refer to this equation by Equation (my:eq1).
-Or a system of equations with labels::
 
-        \begin{align}
-        a &= q + 4 + 5+ 6 label{eq1} \\ 
-        b &= \nabla^2 u + \nabla^4 x label{eq2}
-        \end{align}
-
-We can refer to Equations (eq1)-(eq2).
-Or align without eq numbers::
+Here is a system without equation numbers::
 
         \begin{align*}
         a &= q + 4 + 5+ 6 \\ 
         b &= \nabla^2 u + \nabla^4 x
         \end{align*}
 
-
-Or with multline::
-
-        \begin{multline}
-        a = b = q + \\ 
-          f + \nabla\cdot\nabla u
-        label{multiline:eq1}
-        \end{multline}
-
-Maybe split is better::
-
-        \begin{equation}
-        label{split:envir:eq}
-        \begin{split}
-        a = b = q &+ \\ 
-          & f + \nabla\cdot\nabla u
-        \end{split}
-        \end{equation}
-
-And we can refer to the last equation by Equation (split:envir:eq).
-
-What about gather::
-
-        \begin{gather}
-        a = b \\ 
-        c = d + 7 + 9
-        \end{gather}
-
-
-And what about alignat::
-
-        \begin{alignat}{2}
-        a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 label{eq1a} \\ 
-        b &= \nabla^2 u + \nabla^4 x & x\in\Omega label{eq2a}
-        \end{alignat}
-
-Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
-
-Here is eqnarray::
-
-        \begin{eqnarray}
-        {\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\ 
-        {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-        \end{eqnarray}
 
 
 
@@ -2403,11 +2332,7 @@ Test of movies.
 .. embed command that the YouTube page can generate
 
 
-.. raw:: html
-        
-        <iframe width="420" height="315" src="http://www.youtube.com/embed/7cC-_-aqx18" frameborder="0" allowfullscreen></iframe>
-
-
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 .. _subsec:table:
 
@@ -2491,7 +2416,18 @@ or with number and label, as in :eq:`my:eq1`:
         
 
 We can refer to this equation by :eq:`my:eq1`.
-Or a system of equations with labels,
+
+Here is a system without equation numbers:
+
+.. math::
+        
+        a &= q + 4 + 5+ 6 \\ 
+        b &= \nabla^2 u + \nabla^4 x
+        
+
+
+
+And here is a system of equations with labels:
 
 .. math::
         
@@ -2500,14 +2436,6 @@ Or a system of equations with labels,
         
 
 We can refer to (:ref:`eq1`)-(:ref:`eq2`).
-Or align without eq numbers:
-
-.. math::
-        
-        a &= q + 4 + 5+ 6 \\ 
-        b &= \nabla^2 u + \nabla^4 x
-        
-
 
 Or with multline?
 
@@ -2561,7 +2489,6 @@ Here is eqnarray:
         {\partial u\over\partial t}  &=  \nabla^2 u + f,\\ 
         {\partial v\over\partial t}  &=  \nabla\cdot(q(u)\nabla v) + g
         
-
 
 
 Exercises
@@ -2782,7 +2709,7 @@ Test of movies.
 <wiki:comment> Check out the correct with and height of YouTube movies from the </wiki:comment>
 <wiki:comment> embed command that the YouTube page can generate </wiki:comment>
 
-MOVIE: Movies can be uploaded to YouTube and embedded as HTML or as a link.
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 ==== Table Demo ====
 
@@ -2846,66 +2773,13 @@ or with number and label, as in Equation (my:eq1):
 \end{equation}
 }}}
 We can refer to this equation by Equation (my:eq1).
-Or a system of equations with labels,
-{{{
-\begin{align}
-a &= q + 4 + 5+ 6 label{eq1} \\ 
-b &= \nabla^2 u + \nabla^4 x label{eq2}
-\end{align}
-}}}
-We can refer to Equations (eq1)-(eq2).
-Or align without eq numbers:
+
+Here is a system without equation numbers:
 {{{
 \begin{align*}
 a &= q + 4 + 5+ 6 \\ 
 b &= \nabla^2 u + \nabla^4 x
 \end{align*}
-}}}
-
-Or with multline?
-{{{
-\begin{multline}
-a = b = q + \\ 
-  f + \nabla\cdot\nabla u
-label{multiline:eq1}
-\end{multline}
-}}}
-Maybe split is better:
-{{{
-\begin{equation}
-label{split:envir:eq}
-\begin{split}
-a = b = q &+ \\ 
-  & f + \nabla\cdot\nabla u
-\end{split}
-\end{equation}
-}}}
-And we can refer to the last equation by Equation (split:envir:eq).
-
-What about gather?
-{{{
-\begin{gather}
-a = b \\ 
-c = d + 7 + 9
-\end{gather}
-}}}
-
-And what about alignat?
-{{{
-\begin{alignat}{2}
-a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 label{eq1a} \\ 
-b &= \nabla^2 u + \nabla^4 x & x\in\Omega label{eq2a}
-\end{alignat}
-}}}
-Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
-
-Here is eqnarray:
-{{{
-\begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\ 
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-\end{eqnarray}
 }}}
 
 
@@ -3096,7 +2970,7 @@ Test of movies.
 <!--> Check out the correct with and height of YouTube movies from the -->
 <!--> embed command that the YouTube page can generate -->
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: http://www.youtube.com/watch?v=7cC-_-aqx18
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 ==== Table Demo ====
 
@@ -3160,66 +3034,13 @@ or with number and label, as in Equation (my:eq1):
 \end{equation}
 </math>
 We can refer to this equation by Equation (my:eq1).
-Or a system of equations with labels,
-:<math>
-\begin{align}
-a &= q + 4 + 5+ 6 label{eq1} \\ 
-b &= \nabla^2 u + \nabla^4 x label{eq2}
-\end{align}
-</math>
-We can refer to Equations (eq1)-(eq2).
-Or align without eq numbers:
+
+Here is a system without equation numbers:
 :<math>
 \begin{align*}
 a &= q + 4 + 5+ 6 \\ 
 b &= \nabla^2 u + \nabla^4 x
 \end{align*}
-</math>
-
-Or with multline?
-:<math>
-\begin{multline}
-a = b = q + \\ 
-  f + \nabla\cdot\nabla u
-label{multiline:eq1}
-\end{multline}
-</math>
-Maybe split is better:
-:<math>
-\begin{equation}
-label{split:envir:eq}
-\begin{split}
-a = b = q &+ \\ 
-  & f + \nabla\cdot\nabla u
-\end{split}
-\end{equation}
-</math>
-And we can refer to the last equation by Equation (split:envir:eq).
-
-What about gather?
-:<math>
-\begin{gather}
-a = b \\ 
-c = d + 7 + 9
-\end{gather}
-</math>
-
-And what about alignat?
-:<math>
-\begin{alignat}{2}
-a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 label{eq1a} \\ 
-b &= \nabla^2 u + \nabla^4 x & x\in\Omega label{eq2a}
-\end{alignat}
-</math>
-Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
-
-Here is eqnarray:
-:<math>
-\begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\ 
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-\end{eqnarray}
 </math>
 
 
@@ -3413,7 +3234,7 @@ Test of movies.
 <wiki:comment> Check out the correct with and height of YouTube movies from the </wiki:comment>
 <wiki:comment> embed command that the YouTube page can generate </wiki:comment>
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: [[http://www.youtube.com/watch?v=7cC-_-aqx18]]
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 
 == Table Demo ==
@@ -3479,66 +3300,13 @@ or with number and label, as in Equation (my:eq1):
 \end{equation}
 }}}
 We can refer to this equation by Equation (my:eq1).
-Or a system of equations with labels,
-{{{
-\begin{align}
-a &= q + 4 + 5+ 6 label{eq1} \\ 
-b &= \nabla^2 u + \nabla^4 x label{eq2}
-\end{align}
-}}}
-We can refer to Equations (eq1)-(eq2).
-Or align without eq numbers:
+
+Here is a system without equation numbers:
 {{{
 \begin{align*}
 a &= q + 4 + 5+ 6 \\ 
 b &= \nabla^2 u + \nabla^4 x
 \end{align*}
-}}}
-
-Or with multline?
-{{{
-\begin{multline}
-a = b = q + \\ 
-  f + \nabla\cdot\nabla u
-label{multiline:eq1}
-\end{multline}
-}}}
-Maybe split is better:
-{{{
-\begin{equation}
-label{split:envir:eq}
-\begin{split}
-a = b = q &+ \\ 
-  & f + \nabla\cdot\nabla u
-\end{split}
-\end{equation}
-}}}
-And we can refer to the last equation by Equation (split:envir:eq).
-
-What about gather?
-{{{
-\begin{gather}
-a = b \\ 
-c = d + 7 + 9
-\end{gather}
-}}}
-
-And what about alignat?
-{{{
-\begin{alignat}{2}
-a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 label{eq1a} \\ 
-b &= \nabla^2 u + \nabla^4 x & x\in\Omega label{eq2a}
-\end{alignat}
-}}}
-Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
-
-Here is eqnarray:
-{{{
-\begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\ 
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-\end{eqnarray}
 }}}
 
 
@@ -3719,7 +3487,7 @@ Test of movies.
 
 
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: "http://www.youtube.com/watch?v=7cC-_-aqx18":http://www.youtube.com/watch?v=7cC-_-aqx18
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 Table Demo
 
@@ -3784,66 +3552,13 @@ or with number and label, as in Equation (my:eq1)::
         \end{equation}
 
 We can refer to this equation by Equation (my:eq1).
-Or a system of equations with labels::
 
-        \begin{align}
-        a &= q + 4 + 5+ 6 label{eq1} \\ 
-        b &= \nabla^2 u + \nabla^4 x label{eq2}
-        \end{align}
-
-We can refer to Equations (eq1)-(eq2).
-Or align without eq numbers::
+Here is a system without equation numbers::
 
         \begin{align*}
         a &= q + 4 + 5+ 6 \\ 
         b &= \nabla^2 u + \nabla^4 x
         \end{align*}
-
-
-Or with multline::
-
-        \begin{multline}
-        a = b = q + \\ 
-          f + \nabla\cdot\nabla u
-        label{multiline:eq1}
-        \end{multline}
-
-Maybe split is better::
-
-        \begin{equation}
-        label{split:envir:eq}
-        \begin{split}
-        a = b = q &+ \\ 
-          & f + \nabla\cdot\nabla u
-        \end{split}
-        \end{equation}
-
-And we can refer to the last equation by Equation (split:envir:eq).
-
-What about gather::
-
-        \begin{gather}
-        a = b \\ 
-        c = d + 7 + 9
-        \end{gather}
-
-
-And what about alignat::
-
-        \begin{alignat}{2}
-        a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 label{eq1a} \\ 
-        b &= \nabla^2 u + \nabla^4 x & x\in\Omega label{eq2a}
-        \end{alignat}
-
-Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
-
-Here is eqnarray::
-
-        \begin{eqnarray}
-        {\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\ 
-        {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-        \end{eqnarray}
 
 
 Exercises
@@ -4024,7 +3739,7 @@ Test of movies.
 
 
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: U{http://www.youtube.com/watch?v=7cC-_-aqx18<http://www.youtube.com/watch?v=7cC-_-aqx18>}
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 Table Demo
 ----------
@@ -4092,61 +3807,13 @@ or with number and label, as in Equation (my:eq1)::
 
 
 We can refer to this equation by Equation (my:eq1).
-Or a system of equations with labels::
+
+Here is a system without equation numbers::
 
 
             NOTE: A verbatim block has been removed because
                   it causes problems for Epytext.
 
-
-We can refer to Equations (eq1)-(eq2).
-Or align without eq numbers::
-
-
-            NOTE: A verbatim block has been removed because
-                  it causes problems for Epytext.
-
-
-
-Or with multline::
-
-
-            NOTE: A verbatim block has been removed because
-                  it causes problems for Epytext.
-
-
-Maybe split is better::
-
-
-            NOTE: A verbatim block has been removed because
-                  it causes problems for Epytext.
-
-
-And we can refer to the last equation by Equation (split:envir:eq).
-
-What about gather::
-
-        \begin{gather}
-        a = b \\ 
-        c = d + 7 + 9
-        \end{gather}
-
-
-And what about alignat::
-
-
-            NOTE: A verbatim block has been removed because
-                  it causes problems for Epytext.
-
-
-Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
-
-Here is eqnarray::
-
-
-            NOTE: A verbatim block has been removed because
-                  it causes problems for Epytext.
 
 
 
@@ -4359,7 +4026,7 @@ Test of movies.
 
 
 
- Movies can be uploaded to YouTube and embedded as HTML or as a link.: http://www.youtube.com/watch?v=7cC-_-aqx18
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 Table Demo
 ----------
@@ -4426,66 +4093,14 @@ or with number and label, as in Equation (my:eq1)::
         \end{equation}
 
 We can refer to this equation by Equation (my:eq1).
-Or a system of equations with labels::
 
-        \begin{align}
-        a &= q + 4 + 5+ 6 label{eq1} \\ 
-        b &= \nabla^2 u + \nabla^4 x label{eq2}
-        \end{align}
-
-We can refer to Equations (eq1)-(eq2).
-Or align without eq numbers::
+Here is a system without equation numbers::
 
         \begin{align*}
         a &= q + 4 + 5+ 6 \\ 
         b &= \nabla^2 u + \nabla^4 x
         \end{align*}
 
-
-Or with multline::
-
-        \begin{multline}
-        a = b = q + \\ 
-          f + \nabla\cdot\nabla u
-        label{multiline:eq1}
-        \end{multline}
-
-Maybe split is better::
-
-        \begin{equation}
-        label{split:envir:eq}
-        \begin{split}
-        a = b = q &+ \\ 
-          & f + \nabla\cdot\nabla u
-        \end{split}
-        \end{equation}
-
-And we can refer to the last equation by Equation (split:envir:eq).
-
-What about gather::
-
-        \begin{gather}
-        a = b \\ 
-        c = d + 7 + 9
-        \end{gather}
-
-
-And what about alignat::
-
-        \begin{alignat}{2}
-        a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 label{eq1a} \\ 
-        b &= \nabla^2 u + \nabla^4 x & x\in\Omega label{eq2a}
-        \end{alignat}
-
-Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
-
-Here is eqnarray::
-
-        \begin{eqnarray}
-        {\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\ 
-        {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-        \end{eqnarray}
 
 
 
@@ -4571,7 +4186,12 @@ It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
 
 And exactly for test purposes we have an extra line here, which
-is part of the abstract.  Chapter 1 =========
+is part of the abstract.
+
+
+
+Chapter 1
+%%%%%%%%%
 
 Section 0
 =========
@@ -4692,9 +4312,7 @@ Test of movies.
 <em> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).</em></p>
 
 
-
-<iframe width="420" height="315" src="http://www.youtube.com/embed/7cC-_-aqx18" frameborder="0" allowfullscreen></iframe>
-
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 Table Demo
 ----------
@@ -4752,94 +4370,22 @@ is fine to have.
 
 
 Here is an equation without label:
-
-
-\[ a = b + c \]
-
-
+$$ a = b + c $$
 or with number and label, as in Equation (my:eq1):
-
-
+$$
 \begin{equation}
-{\partial u\over\partial t} = \nabla^2 u label{my:eq1}
+{\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
-
-
+$$
 We can refer to this equation by Equation (my:eq1).
-Or a system of equations with labels,
 
-
-\begin{align}
-a &= q + 4 + 5+ 6 label{eq1} \\ 
-b &= \nabla^2 u + \nabla^4 x label{eq2}
-\end{align}
-
-
-We can refer to Equations (eq1)-(eq2).
-Or align without eq numbers:
-
-
+Here is a system without equation numbers:
+$$
 \begin{align*}
 a &= q + 4 + 5+ 6 \\ 
 b &= \nabla^2 u + \nabla^4 x
 \end{align*}
-
-
-
-Or with multline?
-
-
-\begin{multline}
-a = b = q + \\ 
-  f + \nabla\cdot\nabla u
-label{multiline:eq1}
-\end{multline}
-
-
-Maybe split is better:
-
-
-\begin{equation}
-label{split:envir:eq}
-\begin{split}
-a = b = q &+ \\ 
-  & f + \nabla\cdot\nabla u
-\end{split}
-\end{equation}
-
-
-And we can refer to the last equation by Equation (split:envir:eq).
-
-What about gather?
-
-
-\begin{gather}
-a = b \\ 
-c = d + 7 + 9
-\end{gather}
-
-
-
-And what about alignat?
-
-
-\begin{alignat}{2}
-a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 label{eq1a} \\ 
-b &= \nabla^2 u + \nabla^4 x & x\in\Omega label{eq2a}
-\end{alignat}
-
-
-Let us refer to Equations (eq1)-(eq2) again, and to the
-alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
-
-Here is eqnarray:
-
-
-\begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\ 
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-\end{eqnarray}
-
+$$
 
 
 
@@ -4876,14 +4422,12 @@ Explore Distributions of Random Circles
 ---------------------------------------
 
 The formula for a circle is given by
-
-
+$$
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\ 
 y &= y_0 + R\sin 2\pi t,
 \end{align}
-
-
+$$
 where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ is a point on the circle.
@@ -4963,6 +4507,491 @@ iso-8859-1
 iso-8859-1
 iso-8859-1
 
+************** File: testdoc_pnd_l2h.html *****************
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<p><strong>A Test Document</strong></p>
+<p><strong>Hans Petter Langtangen\({}^{1, 2}\) (<code>hpl@simula.no</code>)</strong></p>
+<p><br />[0mm]</p>
+<p><strong>Kaare Dump\({}^{3}\)</strong></p>
+<p><br />[0mm]</p>
+<p><strong>A. Dummy Author\({}^{}\)</strong></p>
+<p><br />[0mm]</p>
+<p><strong>I. S. Overworked\({}^{4, 5, 6, 7}\)</strong></p>
+<p><br />[0mm]</p>
+<p><strong>J. Doe\({}^{}\) (<code>j_doe@cyberspace.com</code>)</strong></p>
+<p><br />[0mm]</p>
+<p>\({}^1\)Center for Biomedical Computing, Simula Research Laboratory \({}^2\)Department of Informatics, University of Oslo \({}^3\)Segfault Inc, Cyberspace \({}^4\)Inst1 \({}^5\)Inst2, Somewhere \({}^6\)Third Inst, Elsewhere \({}^7\)Fourth Inst</p>
+<p>Jan 32, 2100</p>
+<p>The format of this document is plain, homemade LaTeX (from Doconce).</p>
+<p>This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.</p>
+<p>And exactly for test purposes we have an extra line here, which is part of the abstract.</p>
+<h1 id="chapter-1">Chapter 1</h1>
+<h2 id="section-0">Section 0</h2>
+<h2 id="section-1">Section 1</h2>
+<p>[sec1]</p>
+<p>Just a little bit of text and then a list:</p>
+<ul>
+<li><p>item1</p></li>
+<li><p>item2</p></li>
+<li><p>item3 which continues on the next line to test that feature</p></li>
+<li><p>and a sublist</p>
+<ul>
+<li><p>with indented subitem1</p></li>
+<li><p>and a subitem2</p></li>
+</ul></li>
+<li><p>and perhaps an ordered sublist</p>
+<ol style="list-style-type: decimal">
+<li><p>first item</p></li>
+<li><p>second item, continuing on a new line</p></li>
+</ol></li>
+</ul>
+<h3 id="subsection-1">Subsection 1</h3>
+<p>More text, with a reference back to Section [sec1] and further to Section [subsubsec:ex].</p>
+<p>Let’s do some copying from files too. First from subroutine up to the very end,</p>
+<blockquote>
+<pre><code>      subroutine    test()
+      integer i
+      real*8 r
+      r = 0
+      do i = 1, i
+         r = r + i
+      end do
+      return
+C     END1
+
+      program testme
+      call test()
+      return
+\</code></pre>
+</blockquote>
+<p>and then just the subroutine,</p>
+<blockquote>
+<pre><code>
+      subroutine    test()
+      integer i
+      real*8 r
+      r = 0
+      do i = 1, i
+         r = r + i
+      end do
+      return
+\</code></pre>
+</blockquote>
+<p>and finally the complete file:</p>
+<blockquote>
+<pre><code>C     a comment
+
+      subroutine    test()
+      integer i
+      real*8 r
+      r = 0
+      do i = 1, i
+         r = r + i
+      end do
+      return
+C     END1
+
+      program testme
+      call test()
+      return
+\</code></pre>
+</blockquote>
+<h3 id="subsection-2">Subsection 2</h3>
+<p>[subsec:ex]</p>
+<p>Test of figures.</p>
+<p><embed src="../doc/manual/figs/streamtubes.eps"> Visualization of flow by streamtubes. [fig:impact]</p>
+<p>Test of movies.</p>
+<p>[ht]</p>
+<p><a href="run:../doc/manual/figs/mjolnir.mpeg">../doc/manual/figs/mjolnir.mpeg</a></p>
+<p>Mjolnir tsunami (by Sylfest Glimsdal).</p>
+<p>[ht]</p>
+<p><a href="run:../doc/manual/figs/wavepacket.mpeg">../doc/manual/figs/wavepacket.mpeg</a></p>
+<p>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). (Movie of files 10pt10pt<code>../doc/manual/figs/wavepacket_*.png</code> in <a href="{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}">file:///home/hpl/vc/doconce/test/wavepacket<sub>0</sub>001.html</a>)</p>
+<p>MOVIE: http://www.youtube.com/watch?v=<sub>O</sub>7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.</p>
+<h3 id="table-demo">Table Demo</h3>
+<p>[subsec:table]</p>
+<p>Let us take this table from the manual:</p>
+<p>Table of velocity and acceleration. [mytab]</p>
+<blockquote>
+<table>
+<thead>
+<tr class="header">
+<th align="left">1ctime</th>
+<th align="right">1cvelocity</th>
+<th align="right">1cacceleration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0.0</td>
+<td align="right">1.4186</td>
+<td align="right">-5.01</td>
+</tr>
+<tr class="even">
+<td align="left">2.0</td>
+<td align="right">1.376512</td>
+<td align="right">11.919</td>
+</tr>
+<tr class="odd">
+<td align="left">4.0</td>
+<td align="right">1.1E+1</td>
+<td align="right">14.717624</td>
+</tr>
+</tbody>
+</table>
+<p>The Doconce source code reads</p>
+</blockquote>
+<blockquote>
+<pre><code>  |--------------------------------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+\</code></pre>
+</blockquote>
+<p>Here is yet another table to test that we can handle more than one table:</p>
+<blockquote>
+<table>
+<thead>
+<tr class="header">
+<th align="left">1ctime</th>
+<th align="left">1cvelocity</th>
+<th align="left">1cacceleration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0.0</td>
+<td align="left">1.4186</td>
+<td align="left">-5.01</td>
+</tr>
+<tr class="even">
+<td align="left">1.0</td>
+<td align="left">1.376512</td>
+<td align="left">11.919</td>
+</tr>
+<tr class="odd">
+<td align="left">3.0</td>
+<td align="left">1.1E+1</td>
+<td align="left">14.717624</td>
+</tr>
+</tbody>
+</table>
+<h3>URLs</h3>
+</blockquote>
+<p>[subsubsec:ex]</p>
+<p>Here are some nice URLs, e.g., hpl’s home page <a href="{http://folk.uio.no/hpl}">hpl</a>, or the URL if desired, <a href="{http://folk.uio.no/hpl}">http://folk.uio.no/hpl</a>. Here is a plain file link <a href="{testdoc.do.txt}">testdoc.do.txt</a>, or <a href="{testdoc.do.txt}">testdoc.do.txt</a>, or <a href="{testdoc.do.txt}">testdoc.do.txt</a> or <a href="{testdoc.do.txt}">testdoc.do.txt</a> or <a href="{testdoc.do.txt}">a link with newline</a>. Can test spaces with the link with word too: <a href="{http://folk.uio.no/hpl}">hpl</a> or <a href="{http://folk.uio.no/hpl}">hpl</a>. The old syntax must also be tested: <a href="http://folk.uio.no/hpl">hpl’s homepage</a>. Now also 10pt10pt<code>file:///</code> works: <a href="{file:///home/hpl/vc/doconce/trunk/test/tmp_HTML.html}">link to a file</a> is fine to have.</p>
+<h3 id="some-latex-constructs">Some LaTeX Constructs</h3>
+<p>Let’s check abbr. of some common kind, e.g. the well-known i.e. 7-9 as an example. Moreover, Dr. Tang and Prof. Monsen, or maybe also prof. Ting, will go to the Dept. of Science to test how Mr. Hansen is doing together with Ms. Larsen. A sentence containing &quot;refines lines&quot; could easily fool a regex substitution with only i.e. since the dot matches anything. Also, look at Fig. 4 to see how the data compares with Tab. [mytab].</p>
+<p>Here is an equation without label: \[a = b + c\] or with number and label, as in ([my:eq1]):</p>
+<p>\[{\partial u\over\partial t} = \nabla^2 u \label{my:eq1}\]</p>
+<p>We can refer to this equation by ([my:eq1]).</p>
+<p>Here is a system without equation numbers:</p>
+<p>\[\begin{aligned*}
+a &amp;= q + 4 + 5+ 6 \\ 
+b &amp;= \nabla^2 u + \nabla^4 x\end{aligned*}\]</p>
+<p>And here is a system of equations with labels:</p>
+<p>\[\begin{aligned*}
+a &amp;= q + 4 + 5+ 6 \label{eq1} \\ 
+b &amp;= \nabla^2 u + \nabla^4 x \label{eq2}\end{aligned*}\]</p>
+<p>We can refer to ([eq1])-([eq2]).</p>
+<p>Or with multline?</p>
+<p>a = b = q +<br />f + u [multiline:eq1]</p>
+<p>Maybe split is better:</p>
+<p>\[\label{split:envir:eq}
+\begin{split}
+a = b = q &amp;+ \\ 
+  &amp; f + \nabla\cdot\nabla u
+\end{split}\]</p>
+<p>And we can refer to the last equation by ([split:envir:eq]).</p>
+<p>What about gather?</p>
+<p>\[\begin{gathered}
+a = b \\ 
+c = d + 7 + 9\end{gathered}\]</p>
+<p>And what about alignat?</p>
+<p>\[\begin{aligned*}
+{2}
+a &amp;= q + 4 + 5+ 6\qquad &amp; \mbox{for } q\geq 0 \label{eq1a} \\ 
+b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}\end{aligned*}\]</p>
+<p>Let us refer to ([eq1])-([eq2]) again, and to the alignat variant ([eq1a])-([eq2a]), and to ([my:eq1]).</p>
+<p>Here is eqnarray:</p>
+<p>\[\begin{aligned*}
+{\partial u\over\partial t} &amp;=&amp; \nabla^2 u + f,\label{myeq1}\\ 
+{\partial v\over\partial t} &amp;=&amp; \nabla\cdot(q(u)\nabla v) + g\end{aligned*}\]</p>
+<h2 id="exercises">Exercises</h2>
+<h3 id="flip-a-coin">Flip a Coin</h3>
+<p>[demo:ex:1]</p>
+<p>Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
+<h5 id="hint-1.">Hint 1.</h5>
+<p>Use 10pt10pt<code>r = random.random()</code> and define head as 10pt10pt<code>r &lt;= 0.5</code>.</p>
+<h5 id="hint-2.">Hint 2.</h5>
+<p>Draw an integer among \(\{1,2\}\) with 10pt10pt<code>r = random.randint(1,2)</code> and define head when 10pt10pt<code>r</code> is 1. Filename: 10pt10pt<code>flip_coin.py</code>.</p>
+<h3 id="compute-a-probability">Compute a Probability</h3>
+<p>[demo:ex:2]</p>
+<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \([0,1)\)? To answer this question empirically, let a program draw \(N\) such random numbers using Python’s standard 10pt10pt<code>random</code> module, count how many of them, \(M\), that fall in the interval \((0.5,0.6)\), and compute the probability as \(M/N\). Run the program with the four values \(N=10^i\) for \(i=1,2,3,6\).</p>
+<h3 id="explore-distributions-of-random-circles">Explore Distributions of Random Circles</h3>
+<p>[proj:circle1]</p>
+<p>The formula for a circle is given by</p>
+<p>\[\begin{aligned*}
+x &amp;= x_0 + R\cos 2\pi t,\\ 
+y &amp;= y_0 + R\sin 2\pi t,\end{aligned*}\]</p>
+<p>where \(R\) is the radius of the circle, \((x_0,y_0)\) is the center point, and \(t\) is a parameter in the unit interval \([0,1]\). For any \(t\), \((x,y)\) is a point on the circle. The formula can be used to generate 10pt10pt<code>n</code> points on a circle:</p>
+<blockquote>
+<pre><code>import numpy as np
+
+def circle(R, x0, y0, n=501):
+    t = np.linspace(0, 1, n)
+    x = x0 + R*np.cos(2*np.pi*t)
+    y = y0 + R*np.sin(2*np.pi*t)
+    return x, y
+\</code></pre>
+</blockquote>
+<p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the 10pt10pt<code>circle</code> function above. The following cases should be explored:</p>
+<ul>
+<li><p>\(R\) normally distributed and \((x_0,y_0)\) uniformly distributed</p></li>
+<li><p>\(R\) uniformly distributed and \((x_0,y_0)\) normally distributed</p></li>
+<li><p>\(R\) and \((x_0,y_0)\) normally distributed</p></li>
+</ul>
+<h5 id="hint.">Hint.</h5>
+<p>Use the 10pt10pt<code>numpy.random</code> module to draw the \(x_0\), \(y_0\), and \(R\) quantities. Filename: 10pt10pt<code>circles.pdf</code>.</p>
+</body>
+</html>
+
+************** File: testdoc_pnd_d2h.html *****************
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<p>% A Test Document % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo; Kaare Dump at Segfault Inc, Cyberspace; A. Dummy Author; I. S. Overworked at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and Fourth Inst; J. Doe % Jan 32, 2100</p>
+<p>The format of this document is pandoc <em>Abstract.</em> This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.</p>
+<p>And exactly for test purposes we have an extra line here, which is part of the abstract.</p>
+<p>Chapter 1 %%%%%%%%%</p>
+<h1 id="section-0">Section 0</h1>
+<h1 id="section-1">Section 1</h1>
+<p>Just a little bit of text and then a list:</p>
+<ul>
+<li><p>item1</p></li>
+<li><p>item2</p></li>
+<li><p>item3 which continues on the next line to test that feature</p></li>
+<li><p>and a sublist</p>
+<ul>
+<li><p>with indented subitem1</p></li>
+<li><p>and a subitem2</p></li>
+</ul></li>
+<li><p>and perhaps an ordered sublist</p></li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><p>first item</p></li>
+<li><p>second item, continuing on a new line</p></li>
+</ol>
+<h2 id="subsection-1">Subsection 1</h2>
+<p>More text, with a reference back to the section <a href="#n-1">Section 1</a> and further to the section <a href="#s">URLs</a>. Let's do some copying from files too. First from subroutine up to the very end,</p>
+<pre class="sourceCode Fortran"><code class="sourceCode fortran">      <span class="kw">subroutine</span>    test()
+      <span class="dt">integer</span> i
+      <span class="dt">real*8</span> r
+      r <span class="kw">=</span> <span class="dv">0</span>
+      <span class="kw">do</span> i <span class="kw">=</span> <span class="dv">1</span>, i
+         r <span class="kw">=</span> r <span class="kw">+</span> i
+      <span class="kw">end do</span>
+      <span class="kw">return</span>
+<span class="co">C     END1</span>
+
+      <span class="kw">program</span> testme
+      <span class="kw">call</span> test()
+      <span class="kw">return</span></code></pre>
+<p>and then just the subroutine,</p>
+<pre class="sourceCode Fortran"><code class="sourceCode fortran">      <span class="kw">subroutine</span>    test()
+      <span class="dt">integer</span> i
+      <span class="dt">real*8</span> r
+      r <span class="kw">=</span> <span class="dv">0</span>
+      <span class="kw">do</span> i <span class="kw">=</span> <span class="dv">1</span>, i
+         r <span class="kw">=</span> r <span class="kw">+</span> i
+      <span class="kw">end do</span>
+      <span class="kw">return</span></code></pre>
+<p>and finally the complete file:</p>
+<pre class="sourceCode Fortran"><code class="sourceCode fortran"><span class="co">C     a comment</span>
+
+      <span class="kw">subroutine</span>    test()
+      <span class="dt">integer</span> i
+      <span class="dt">real*8</span> r
+      r <span class="kw">=</span> <span class="dv">0</span>
+      <span class="kw">do</span> i <span class="kw">=</span> <span class="dv">1</span>, i
+         r <span class="kw">=</span> r <span class="kw">+</span> i
+      <span class="kw">end do</span>
+      <span class="kw">return</span>
+<span class="co">C     END1</span>
+
+      <span class="kw">program</span> testme
+      <span class="kw">call</span> test()
+      <span class="kw">return</span></code></pre>
+<h2 id="subsection-2">Subsection 2</h2>
+<p>Test of figures.</p>
+<p>FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. {fig:impact}</p>
+<p>Test of movies.</p>
+<embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
+<p>
+<em> Mjolnir tsunami (by Sylfest Glimsdal).</em>
+</p>
+
+
+
+
+<embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
+<p>
+<em></em>
+</p>
+
+
+
+<p>
+<a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a> <em> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).</em>
+</p>
+
+
+<p>MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.</p>
+<h2 id="table-demo">Table Demo</h2>
+<p>Let us take this table from the manual:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">time</th>
+<th align="center">velocity</th>
+<th align="left">acceleration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.0</td>
+<td align="center">1.4186</td>
+<td align="left">-5.01</td>
+</tr>
+<tr class="even">
+<td align="center">2.0</td>
+<td align="center">1.376512</td>
+<td align="left">11.919</td>
+</tr>
+<tr class="odd">
+<td align="center">4.0</td>
+<td align="center">1.1E+1</td>
+<td align="left">14.717624</td>
+</tr>
+</tbody>
+</table>
+<p>The Doconce source code reads</p>
+<pre class="sourceCode Python"><code class="sourceCode python">  |--------------------------------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | <span class="fl">0.0</span>  | <span class="fl">1.4186</span>   | -<span class="fl">5.01</span>        |
+  | <span class="fl">2.0</span>  | <span class="fl">1.376512</span> | <span class="fl">11.919</span>       |
+  | <span class="fl">4.0</span>  | <span class="fl">1.1E+1</span>   | <span class="fl">14.717624</span>    |
+  |--------------------------------|</code></pre>
+<p>Here is yet another table to test that we can handle more than one table:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">time</th>
+<th align="center">velocity</th>
+<th align="left">acceleration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.0</td>
+<td align="center">1.4186</td>
+<td align="left">-5.01</td>
+</tr>
+<tr class="even">
+<td align="center">1.0</td>
+<td align="center">1.376512</td>
+<td align="left">11.919</td>
+</tr>
+<tr class="odd">
+<td align="center">3.0</td>
+<td align="center">1.1E+1</td>
+<td align="left">14.717624</td>
+</tr>
+</tbody>
+</table>
+<h2 id="urls">URLs</h2>
+<p>Here are some nice URLs, e.g., hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or the URL if desired, <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>. Here is a plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or <testdoc.do.txt> or <testdoc.do.txt> or <a href="testdoc.do.txt">a link with newline</a>. Can test spaces with the link with word too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. The old syntax must also be tested: hpl's homepage (http://folk.uio.no/hpl). Now also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/trunk/test/tmp_HTML.html">link to a file</a> is fine to have.</p>
+<p>Here is an equation without label: \[ a = b + c \] or with number and label, as in Equation (my:eq1): \[
+\begin{equation}
+{\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
+\end{equation}
+\] We can refer to this equation by Equation (my:eq1).</p>
+<p>Here is a system without equation numbers: \[
+\begin{align*}
+a &amp;= q + 4 + 5+ 6 \\ 
+b &amp;= \nabla^2 u + \nabla^4 x
+\end{align*}
+\]</p>
+<h1 id="exercises">Exercises</h1>
+<h2 id="flip-a-coin">Flip a Coin</h2>
+<p>Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
+<p><em>Hint 1.</em> Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
+<p><em>Hint 2.</em> Draw an integer among \(\{1,2\}\) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1. <em>Filename</em>: <code>flip_coin.py</code></p>
+<h2 id="compute-a-probability">Compute a Probability</h2>
+<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \([0,1)\)? To answer this question empirically, let a program draw \(N\) such random numbers using Python's standard <code>random</code> module, count how many of them, \(M\), that fall in the interval \((0.5,0.6)\), and compute the probability as \(M/N\). Run the program with the four values \(N=10^i\) for \(i=1,2,3,6\).</p>
+<h2 id="explore-distributions-of-random-circles">Explore Distributions of Random Circles</h2>
+<p>The formula for a circle is given by \[
+\begin{align}
+x &amp;= x_0 + R\cos 2\pi t,\\ 
+y &amp;= y_0 + R\sin 2\pi t,
+\end{align}
+\] where \(R\) is the radius of the circle, \((x_0,y_0)\) is the center point, and \(t\) is a parameter in the unit interval \([0,1]\). For any \(t\), \((x,y)\) is a point on the circle. The formula can be used to generate <code>n</code> points on a circle:</p>
+<pre class="sourceCode Python"><code class="sourceCode python"><span class="ch">import</span> numpy <span class="ch">as</span> np
+
+<span class="kw">def</span> circle(R, x0, y0, n=<span class="dv">501</span>):
+    t = np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, n)
+    x = x0 + R*np.cos(<span class="dv">2</span>*np.pi*t)
+    y = y0 + R*np.sin(<span class="dv">2</span>*np.pi*t)
+    <span class="kw">return</span> x, y</code></pre>
+<p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the <code>circle</code> function above. The following cases should be explored:</p>
+<ul>
+<li><p>\(R\) normally distributed and \((x_0,y_0)\) uniformly distributed</p></li>
+<li><p>\(R\) uniformly distributed and \((x_0,y_0)\) normally distributed</p></li>
+<li><p>\(R\) and \((x_0,y_0)\) normally distributed</p></li>
+</ul>
+<p><em>Hint.</em> Use the <code>numpy.random</code> module to draw the \(x_0\), \(y_0\), and \(R\) quantities. <em>Filename</em>: <code>circles.pdf</code></p>
+</body>
+</html>
+
 ************** File: make.sh *****************
 #!/bin/sh -x
 # Test multiple authors
@@ -4981,6 +5010,16 @@ doconce format mwiki testdoc.do.txt
 doconce format cwiki testdoc.do.txt
 # Test mako variables too
 doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string'
+
+# Test pandoc
+doconce format latex testdoc.do.txt
+doconce ptex2tex testdoc -DBOOK -DLATEXHEADING=traditional
+#doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
+pandoc -f latex -t markdown -o testdoc.mkd testdoc.tex
+pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.mkd
+
+doconce format pandoc testdoc.do.txt
+pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.mkd
 
 # Test grab
 doconce grab --from- '={9}' --to 'subroutine@' testdoc.do.txt > testdoc.tmp
@@ -5994,21 +6033,40 @@ See the <a href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentat
 for the many features of the <tt>pandoc</tt> program.
 
 <P>
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+<tt>doconce format pandoc</tt> and then translating using <tt>pandoc</tt>, or
+<tt>doconce format latex</tt>, and then going from LaTeX to the desired format
+using <tt>pandoc</tt>.
+Here is an example on the latter strategy:
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
 Terminal&gt; doconce format latex mydoc
-Terminal&gt; ptex2tex mydoc
-Terminal&gt; doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal&gt; doconce ptex2tex mydoc
 Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </pre>
 </blockquote>   <! -- end verbatim block -->
+When we go through <tt>pandoc</tt>, only single equations or <tt>align*</tt>
+environments are well understood.
+
+<P>
 Quite some <tt>doconce replace</tt> and <tt>doconce subst</tt> edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the <tt>.mkd</tt> or <tt>.tex</tt> files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+<P>
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; doconce format pandoc mydoc
+Terminal&gt; pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+</pre>
+</blockquote>   <! -- end verbatim block -->
+The <tt>-s</tt> option adds a proper header and footer to the <tt>mydoc.html</tt> file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 <P>
 
@@ -6041,13 +6099,15 @@ so that your commands are defined.
 Terminal&gt; ptex2tex mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
-or just perform a plain copy,
+In case you do not have <tt>ptex2tex</tt>, you may run a (very) simplified version:
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
-Terminal&gt; cp mydoc.p.tex mydoc.tex
+Terminal&gt; doconce ptex2tex mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
-Doconce generates a <tt>.p.tex</tt> file with some preprocessor macros
+
+<P>
+Note that Doconce generates a <tt>.p.tex</tt> file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -6079,7 +6139,27 @@ documents. After any <tt>!bc</tt> command in the Doconce source you can
 insert verbatim block styles as defined in your <tt>.ptex2tex.cfg</tt>
 file, e.g., <tt>!bc cod</tt> for a code snippet, where <tt>cod</tt> is set to
 a certain environment in <tt>.ptex2tex.cfg</tt> (e.g., <tt>CodeIntended</tt>).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+<P>
+Also the <tt>doconce ptex2tex</tt> command supports preprocessor directives
+for processing the <tt>.p.tex</tt> file. The command allows specifications
+of code environments as well. Here is an example:
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+</pre>
+</blockquote>   <! -- end verbatim block -->
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+<tt>verbatim</tt> above, which implies <tt>\begin{verbatim}</tt> and <tt>\end{verbatim}</tt>).
+The value <tt>minted</tt> can be used for code environments where the
+language is specified, as in <tt>fpro</tt>, where <tt>minted</tt> implies
+<tt>\begin{python}{fortran}</tt>. There is a similar support for <tt>ans</tt>:
+<tt>cppcod=ans</tt> imples <tt>\begin{c++}</tt> and <tt>\end{c++}</tt> using the
+<tt>anslistings</tt> package.
 
 <P>
 <b>Step 2b (optional).</b> Edit the <tt>mydoc.tex</tt> file to your needs.
@@ -6662,7 +6742,8 @@ run regularly.
     
 ************** File: tutorial.p.tex *****************
 %%
-%% Automatically generated LaTeX file from Doconce source
+%% Automatically generated ptex2tex (extended LaTeX) file
+%% from Doconce source
 %% http://code.google.com/p/doconce/
 %%
 
@@ -7246,19 +7327,34 @@ Pandoc pass raw HTML or {\LaTeX} to the output format instead of ignoring it.
 See the \href{{http://johnmacfarlane.net/pandoc/README.html}}{Pandoc documentation}
 for the many features of the \code{pandoc} program.
 
-Pandoc is useful to go from {\LaTeX} mathematics to MS Word.
-However, this should be done via {\LaTeX}, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from {\LaTeX} mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+\code{doconce format pandoc} and then translating using \code{pandoc}, or
+\code{doconce format latex}, and then going from {\LaTeX} to the desired format
+using \code{pandoc}.
+Here is an example on the latter strategy:
 \bsys
 Terminal> doconce format latex mydoc
-Terminal> ptex2tex mydoc
-Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> doconce ptex2tex mydoc
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 \esys
+When we go through \code{pandoc}, only single equations or \code{align*}
+environments are well understood.
+
 Quite some \code{doconce replace} and \code{doconce subst} edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via {\LaTeX}.
+on the \code{.mkd} or \code{.tex} files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via {\LaTeX}.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+\bsys
+Terminal> doconce format pandoc mydoc
+Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+\esys
+The \code{-s} option adds a proper header and footer to the \code{mydoc.html} file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 \subsection{{\LaTeX}}
 
@@ -7284,11 +7380,12 @@ Run \code{ptex2tex} (if you have it) to make a standard {\LaTeX} file,
 \bsys
 Terminal> ptex2tex mydoc
 \esys
-or just perform a plain copy,
+In case you do not have \code{ptex2tex}, you may run a (very) simplified version:
 \bsys
-Terminal> cp mydoc.p.tex mydoc.tex
+Terminal> doconce ptex2tex mydoc
 \esys
-Doconce generates a \code{.p.tex} file with some preprocessor macros
+
+Note that Doconce generates a \code{.p.tex} file with some preprocessor macros
 that can be used to steer certain properties of the {\LaTeX} document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -7313,7 +7410,24 @@ documents. After any \code{!bc} command in the Doconce source you can
 insert verbatim block styles as defined in your \code{.ptex2tex.cfg}
 file, e.g., \code{!bc cod} for a code snippet, where \code{cod} is set to
 a certain environment in \code{.ptex2tex.cfg} (e.g., \code{CodeIntended}).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the \code{doconce ptex2tex} command supports preprocessor directives
+for processing the \code{.p.tex} file. The command allows specifications
+of code environments as well. Here is an example:
+\bsys
+Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+\esys
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+\code{verbatim} above, which implies \code{\begin{verbatim}} and \code{\end{verbatim}}).
+The value \code{minted} can be used for code environments where the
+language is specified, as in \code{fpro}, where \code{minted} implies
+\code{\begin{python}{fortran}}. There is a similar support for \code{ans}:
+\code{cppcod=ans} imples \code{\begin{c++}} and \code{\end{c++}} using the
+\code{anslistings} package.
 
 \paragraph{Step 2b (optional).}
 Edit the \code{mydoc.tex} file to your needs.
@@ -8266,20 +8380,36 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the `Pandoc documentation <http://johnmacfarlane.net/pandoc/README.html>`_
 for the many features of the ``pandoc`` program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example::
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+``doconce format pandoc`` and then translating using ``pandoc``, or
+``doconce format latex``, and then going from LaTeX to the desired format
+using ``pandoc``.
+Here is an example on the latter strategy::
 
 
         Terminal> doconce format latex mydoc
-        Terminal> ptex2tex mydoc
-        Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+        Terminal> doconce ptex2tex mydoc
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
+When we go through ``pandoc``, only single equations or ``align*``
+environments are well understood.
+
 Quite some ``doconce replace`` and ``doconce subst`` edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the ``.mkd`` or ``.tex`` files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax::
+
+
+        Terminal> doconce format pandoc mydoc
+        Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+
+The ``-s`` option adds a proper header and footer to the ``mydoc.html`` file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
 LaTeX
@@ -8310,12 +8440,13 @@ so that your commands are defined.
 
         Terminal> ptex2tex mydoc
 
-or just perform a plain copy::
+In case you do not have ``ptex2tex``, you may run a (very) simplified version::
 
 
-        Terminal> cp mydoc.p.tex mydoc.tex
+        Terminal> doconce ptex2tex mydoc
 
-Doconce generates a ``.p.tex`` file with some preprocessor macros
+
+Note that Doconce generates a ``.p.tex`` file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run::
@@ -8343,7 +8474,25 @@ documents. After any ``!bc`` command in the Doconce source you can
 insert verbatim block styles as defined in your ``.ptex2tex.cfg``
 file, e.g., ``!bc cod`` for a code snippet, where ``cod`` is set to
 a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the ``doconce ptex2tex`` command supports preprocessor directives
+for processing the ``.p.tex`` file. The command allows specifications
+of code environments as well. Here is an example::
+
+
+        Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+                  cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+                  fpro=minted fcod=minted sys=verbatim
+
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+``verbatim`` above, which implies ``\begin{verbatim}`` and ``\end{verbatim}``).
+The value ``minted`` can be used for code environments where the
+language is specified, as in ``fpro``, where ``minted`` implies
+``\begin{python}{fortran}``. There is a similar support for ``ans``:
+``cppcod=ans`` imples ``\begin{c++}`` and ``\end{c++}`` using the
+``anslistings`` package.
 
 *Step 2b (optional).* Edit the ``mydoc.tex`` file to your needs.
 For example, you may want to substitute ``section`` by ``section*`` to
@@ -9341,21 +9490,38 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the `Pandoc documentation <http://johnmacfarlane.net/pandoc/README.html>`_
 for the many features of the ``pandoc`` program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+``doconce format pandoc`` and then translating using ``pandoc``, or
+``doconce format latex``, and then going from LaTeX to the desired format
+using ``pandoc``.
+Here is an example on the latter strategy:
 
 .. code-block:: console
 
         Terminal> doconce format latex mydoc
-        Terminal> ptex2tex mydoc
-        Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+        Terminal> doconce ptex2tex mydoc
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
+When we go through ``pandoc``, only single equations or ``align*``
+environments are well understood.
+
 Quite some ``doconce replace`` and ``doconce subst`` edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the ``.mkd`` or ``.tex`` files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+
+.. code-block:: console
+
+        Terminal> doconce format pandoc mydoc
+        Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+
+The ``-s`` option adds a proper header and footer to the ``mydoc.html`` file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
 LaTeX
@@ -9388,13 +9554,14 @@ so that your commands are defined.
 
         Terminal> ptex2tex mydoc
 
-or just perform a plain copy,
+In case you do not have ``ptex2tex``, you may run a (very) simplified version:
 
 .. code-block:: console
 
-        Terminal> cp mydoc.p.tex mydoc.tex
+        Terminal> doconce ptex2tex mydoc
 
-Doconce generates a ``.p.tex`` file with some preprocessor macros
+
+Note that Doconce generates a ``.p.tex`` file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -9425,7 +9592,26 @@ documents. After any ``!bc`` command in the Doconce source you can
 insert verbatim block styles as defined in your ``.ptex2tex.cfg``
 file, e.g., ``!bc cod`` for a code snippet, where ``cod`` is set to
 a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the ``doconce ptex2tex`` command supports preprocessor directives
+for processing the ``.p.tex`` file. The command allows specifications
+of code environments as well. Here is an example:
+
+.. code-block:: console
+
+        Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+                  cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+                  fpro=minted fcod=minted sys=verbatim
+
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+``verbatim`` above, which implies ``\begin{verbatim}`` and ``\end{verbatim}``).
+The value ``minted`` can be used for code environments where the
+language is specified, as in ``fpro``, where ``minted`` implies
+``\begin{python}{fortran}``. There is a similar support for ``ans``:
+``cppcod=ans`` imples ``\begin{c++}`` and ``\end{c++}`` using the
+``anslistings`` package.
 
 *Step 2b (optional).* Edit the ``mydoc.tex`` file to your needs.
 For example, you may want to substitute ``section`` by ``section*`` to
@@ -10313,19 +10499,34 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the [http://johnmacfarlane.net/pandoc/README.html Pandoc documentation]
 for the many features of the `pandoc` program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+`doconce format pandoc` and then translating using `pandoc`, or
+`doconce format latex`, and then going from LaTeX to the desired format
+using `pandoc`.
+Here is an example on the latter strategy:
 {{{
 Terminal> doconce format latex mydoc
-Terminal> ptex2tex mydoc
-Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> doconce ptex2tex mydoc
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 }}}
+When we go through `pandoc`, only single equations or `align*`
+environments are well understood.
+
 Quite some `doconce replace` and `doconce subst` edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the `.mkd` or `.tex` files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+{{{
+Terminal> doconce format pandoc mydoc
+Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+}}}
+The `-s` option adds a proper header and footer to the `mydoc.html` file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 ==== LaTeX ====
 
@@ -10349,11 +10550,12 @@ so that your commands are defined.
 {{{
 Terminal> ptex2tex mydoc
 }}}
-or just perform a plain copy,
+In case you do not have `ptex2tex`, you may run a (very) simplified version:
 {{{
-Terminal> cp mydoc.p.tex mydoc.tex
+Terminal> doconce ptex2tex mydoc
 }}}
-Doconce generates a `.p.tex` file with some preprocessor macros
+
+Note that Doconce generates a `.p.tex` file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -10378,7 +10580,24 @@ documents. After any `!bc` command in the Doconce source you can
 insert verbatim block styles as defined in your `.ptex2tex.cfg`
 file, e.g., `!bc cod` for a code snippet, where `cod` is set to
 a certain environment in `.ptex2tex.cfg` (e.g., `CodeIntended`).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the `doconce ptex2tex` command supports preprocessor directives
+for processing the `.p.tex` file. The command allows specifications
+of code environments as well. Here is an example:
+{{{
+Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+}}}
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+`verbatim` above, which implies `\begin{verbatim}` and `\end{verbatim}`).
+The value `minted` can be used for code environments where the
+language is specified, as in `fpro`, where `minted` implies
+`\begin{python}{fortran}`. There is a similar support for `ans`:
+`cppcod=ans` imples `\begin{c++}` and `\end{c++}` using the
+`anslistings` package.
 
 *Step 2b (optional).* Edit the `mydoc.tex` file to your needs.
 For example, you may want to substitute `section` by `section*` to
@@ -11162,19 +11381,34 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the [http://johnmacfarlane.net/pandoc/README.html Pandoc documentation]
 for the many features of the <code>pandoc</code> program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+<code>doconce format pandoc</code> and then translating using <code>pandoc</code>, or
+<code>doconce format latex</code>, and then going from LaTeX to the desired format
+using <code>pandoc</code>.
+Here is an example on the latter strategy:
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc
-Terminal> ptex2tex mydoc
-Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> doconce ptex2tex mydoc
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </code>
+When we go through <code>pandoc</code>, only single equations or <code>align*</code>
+environments are well understood.
+
 Quite some <code>doconce replace</code> and <code>doconce subst</code> edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the <code>.mkd</code> or <code>.tex</code> files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+<syntaxhighlight lang="bash">
+Terminal> doconce format pandoc mydoc
+Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+</code>
+The <code>-s</code> option adds a proper header and footer to the <code>mydoc.html</code> file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 ==== LaTeX ====
 
@@ -11198,11 +11432,12 @@ so that your commands are defined.
 <syntaxhighlight lang="bash">
 Terminal> ptex2tex mydoc
 </code>
-or just perform a plain copy,
+In case you do not have <code>ptex2tex</code>, you may run a (very) simplified version:
 <syntaxhighlight lang="bash">
-Terminal> cp mydoc.p.tex mydoc.tex
+Terminal> doconce ptex2tex mydoc
 </code>
-Doconce generates a <code>.p.tex</code> file with some preprocessor macros
+
+Note that Doconce generates a <code>.p.tex</code> file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -11227,7 +11462,24 @@ documents. After any <code>!bc</code> command in the Doconce source you can
 insert verbatim block styles as defined in your <code>.ptex2tex.cfg</code>
 file, e.g., <code>!bc cod</code> for a code snippet, where <code>cod</code> is set to
 a certain environment in <code>.ptex2tex.cfg</code> (e.g., <code>CodeIntended</code>).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the <code>doconce ptex2tex</code> command supports preprocessor directives
+for processing the <code>.p.tex</code> file. The command allows specifications
+of code environments as well. Here is an example:
+<syntaxhighlight lang="bash">
+Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+</code>
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+<code>verbatim</code> above, which implies <code>\begin{verbatim}</code> and <code>\end{verbatim}</code>).
+The value <code>minted</code> can be used for code environments where the
+language is specified, as in <code>fpro</code>, where <code>minted</code> implies
+<code>\begin{python}{fortran}</code>. There is a similar support for <code>ans</code>:
+<code>cppcod=ans</code> imples <code>\begin{c++}</code> and <code>\end{c++}</code> using the
+<code>anslistings</code> package.
 
 ''Step 2b (optional).'' Edit the <code>mydoc.tex</code> file to your needs.
 For example, you may want to substitute <code>section</code> by <code>section*</code> to
@@ -12093,20 +12345,36 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the "http://johnmacfarlane.net/pandoc/README.html":Pandoc documentation
 for the many features of the 'pandoc' program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example::
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+'doconce format pandoc' and then translating using 'pandoc', or
+'doconce format latex', and then going from LaTeX to the desired format
+using 'pandoc'.
+Here is an example on the latter strategy::
 
 
         Terminal> doconce format latex mydoc
-        Terminal> ptex2tex mydoc
-        Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+        Terminal> doconce ptex2tex mydoc
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
+When we go through 'pandoc', only single equations or 'align*'
+environments are well understood.
+
 Quite some 'doconce replace' and 'doconce subst' edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the '.mkd' or '.tex' files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax::
+
+
+        Terminal> doconce format pandoc mydoc
+        Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+
+The '-s' option adds a proper header and footer to the 'mydoc.html' file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 LaTeX
 
@@ -12128,12 +12396,13 @@ so that your commands are defined.
 
         Terminal> ptex2tex mydoc
 
-or just perform a plain copy::
+In case you do not have 'ptex2tex', you may run a (very) simplified version::
 
 
-        Terminal> cp mydoc.p.tex mydoc.tex
+        Terminal> doconce ptex2tex mydoc
 
-Doconce generates a '.p.tex' file with some preprocessor macros
+
+Note that Doconce generates a '.p.tex' file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run::
@@ -12161,7 +12430,25 @@ documents. After any '!bc' command in the Doconce source you can
 insert verbatim block styles as defined in your '.ptex2tex.cfg'
 file, e.g., '!bc cod' for a code snippet, where 'cod' is set to
 a certain environment in '.ptex2tex.cfg' (e.g., 'CodeIntended').
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the 'doconce ptex2tex' command supports preprocessor directives
+for processing the '.p.tex' file. The command allows specifications
+of code environments as well. Here is an example::
+
+
+        Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+                  cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+                  fpro=minted fcod=minted sys=verbatim
+
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+'verbatim' above, which implies '\begin{verbatim}' and '\end{verbatim}').
+The value 'minted' can be used for code environments where the
+language is specified, as in 'fpro', where 'minted' implies
+'\begin{python}{fortran}'. There is a similar support for 'ans':
+'cppcod=ans' imples '\begin{c++}' and '\end{c++}' using the
+'anslistings' package.
 
 *Step 2b (optional).* Edit the 'mydoc.tex' file to your needs.
 For example, you may want to substitute 'section' by 'section*' to
@@ -13076,20 +13363,36 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the U{Pandoc documentation<http://johnmacfarlane.net/pandoc/README.html>}
 for the many features of the C{pandoc} program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example::
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+C{doconce format pandoc} and then translating using C{pandoc}, or
+C{doconce format latex}, and then going from LaTeX to the desired format
+using C{pandoc}.
+Here is an example on the latter strategy::
 
 
         Terminal> doconce format latex mydoc
-        Terminal> ptex2tex mydoc
-        Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+        Terminal> doconce ptex2tex mydoc
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
+When we go through C{pandoc}, only single equations or C{align*}
+environments are well understood.
+
 Quite some C{doconce replace} and C{doconce subst} edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the C{.mkd} or C{.tex} files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax::
+
+
+        Terminal> doconce format pandoc mydoc
+        Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+
+The C{-s} option adds a proper header and footer to the C{mydoc.html} file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
 LaTeX
@@ -13114,12 +13417,13 @@ I{Step 2.} Run C{ptex2tex} (if you have it) to make a standard LaTeX file::
 
         Terminal> ptex2tex mydoc
 
-or just perform a plain copy::
+In case you do not have C{ptex2tex}, you may run a (very) simplified version::
 
 
-        Terminal> cp mydoc.p.tex mydoc.tex
+        Terminal> doconce ptex2tex mydoc
 
-Doconce generates a C{.p.tex} file with some preprocessor macros
+
+Note that Doconce generates a C{.p.tex} file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run::
@@ -13147,7 +13451,25 @@ documents. After any C{!bc} command in the Doconce source you can
 insert verbatim block styles as defined in your C{.ptex2tex.cfg}
 file, e.g., C{!bc cod} for a code snippet, where C{cod} is set to
 a certain environment in C{.ptex2tex.cfg} (e.g., C{CodeIntended}).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the C{doconce ptex2tex} command supports preprocessor directives
+for processing the C{.p.tex} file. The command allows specifications
+of code environments as well. Here is an example::
+
+
+        Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+                  cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+                  fpro=minted fcod=minted sys=verbatim
+
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+C{verbatim} above, which implies C{\begin{verbatim}} and C{\end{verbatim}}).
+The value C{minted} can be used for code environments where the
+language is specified, as in C{fpro}, where C{minted} implies
+C{\begin{python}{fortran}}. There is a similar support for C{ans}:
+C{cppcod=ans} imples C{\begin{c++}} and C{\end{c++}} using the
+C{anslistings} package.
 
 I{Step 2b (optional).} Edit the C{mydoc.tex} file to your needs.
 For example, you may want to substitute C{section} by C{section*} to
@@ -14110,20 +14432,36 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the Pandoc documentation (http://johnmacfarlane.net/pandoc/README.html)
 for the many features of the pandoc program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example::
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+doconce format pandoc and then translating using pandoc, or
+doconce format latex, and then going from LaTeX to the desired format
+using pandoc.
+Here is an example on the latter strategy::
 
 
         Terminal> doconce format latex mydoc
-        Terminal> ptex2tex mydoc
-        Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+        Terminal> doconce ptex2tex mydoc
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
+When we go through pandoc, only single equations or align*
+environments are well understood.
+
 Quite some doconce replace and doconce subst edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the .mkd or .tex files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax::
+
+
+        Terminal> doconce format pandoc mydoc
+        Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+
+The -s option adds a proper header and footer to the mydoc.html file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
 LaTeX
@@ -14148,12 +14486,13 @@ so that your commands are defined.
 
         Terminal> ptex2tex mydoc
 
-or just perform a plain copy::
+In case you do not have ptex2tex, you may run a (very) simplified version::
 
 
-        Terminal> cp mydoc.p.tex mydoc.tex
+        Terminal> doconce ptex2tex mydoc
 
-Doconce generates a .p.tex file with some preprocessor macros
+
+Note that Doconce generates a .p.tex file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run::
@@ -14181,7 +14520,25 @@ documents. After any !bc command in the Doconce source you can
 insert verbatim block styles as defined in your .ptex2tex.cfg
 file, e.g., !bc cod for a code snippet, where cod is set to
 a certain environment in .ptex2tex.cfg (e.g., CodeIntended).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the doconce ptex2tex command supports preprocessor directives
+for processing the .p.tex file. The command allows specifications
+of code environments as well. Here is an example::
+
+
+        Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+                  cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+                  fpro=minted fcod=minted sys=verbatim
+
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+verbatim above, which implies \begin{verbatim} and \end{verbatim}).
+The value minted can be used for code environments where the
+language is specified, as in fpro, where minted implies
+\begin{python}{fortran}. There is a similar support for ans:
+cppcod=ans imples \begin{c++} and \end{c++} using the
+anslistings package.
 
 *Step 2b (optional).* Edit the mydoc.tex file to your needs.
 For example, you may want to substitute section by section* to
@@ -14861,7 +15218,7 @@ Here is an example of some simple text written in the Doconce format:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ===== A Subsection with Sample Text =====
-label{my:first:sec}
+\label{my:first:sec}
 
 Ordinary text looks like ordinary text, and the tags used for
 _boldface_ words, *emphasized* words, and `computer` words look
@@ -14970,14 +15327,12 @@ version of the formula.
 Blocks of mathematics are better typeset with raw LaTeX, inside
 `!bt` and `!et` (begin tex / end tex) instructions.
 The result looks like this:
-
-
+$$
 \begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}
-
-
+$$
 Of course, such blocks only looks nice in LaTeX. The raw
 LaTeX syntax appears in all other formats (but can still be useful
 for those who can read LaTeX syntax).
@@ -15153,21 +15508,38 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the [Pandoc documentation](http://johnmacfarlane.net/pandoc/README.html)
 for the many features of the `pandoc` program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+`doconce format pandoc` and then translating using `pandoc`, or
+`doconce format latex`, and then going from LaTeX to the desired format
+using `pandoc`.
+Here is an example on the latter strategy:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 Terminal> doconce format latex mydoc
-Terminal> ptex2tex mydoc
-Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> doconce ptex2tex mydoc
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+When we go through `pandoc`, only single equations or `align*`
+environments are well understood.
+
 Quite some `doconce replace` and `doconce subst` edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the `.mkd` or `.tex` files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
+Terminal> doconce format pandoc mydoc
+Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The `-s` option adds a proper header and footer to the `mydoc.html` file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
 LaTeX
@@ -15194,13 +15566,14 @@ so that your commands are defined.
 Terminal> ptex2tex mydoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-or just perform a plain copy,
+In case you do not have `ptex2tex`, you may run a (very) simplified version:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
-Terminal> cp mydoc.p.tex mydoc.tex
+Terminal> doconce ptex2tex mydoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Doconce generates a `.p.tex` file with some preprocessor macros
+
+Note that Doconce generates a `.p.tex` file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -15231,7 +15604,26 @@ documents. After any `!bc` command in the Doconce source you can
 insert verbatim block styles as defined in your `.ptex2tex.cfg`
 file, e.g., `!bc cod` for a code snippet, where `cod` is set to
 a certain environment in `.ptex2tex.cfg` (e.g., `CodeIntended`).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the `doconce ptex2tex` command supports preprocessor directives
+for processing the `.p.tex` file. The command allows specifications
+of code environments as well. Here is an example:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
+Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+`verbatim` above, which implies `\begin{verbatim}` and `\end{verbatim}`).
+The value `minted` can be used for code environments where the
+language is specified, as in `fpro`, where `minted` implies
+`\begin{python}{fortran}`. There is a similar support for `ans`:
+`cppcod=ans` imples `\begin{c++}` and `\end{c++}` using the
+`anslistings` package.
 
 *Step 2b (optional).* Edit the `mydoc.tex` file to your needs.
 For example, you may want to substitute `section` by `section*` to
@@ -15917,19 +16309,34 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the "Pandoc documentation": "http://johnmacfarlane.net/pandoc/README.html"
 for the many features of the `pandoc` program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+`doconce format pandoc` and then translating using `pandoc`, or
+`doconce format latex`, and then going from LaTeX to the desired format
+using `pandoc`.
+Here is an example on the latter strategy:
 !bc sys
 Terminal> doconce format latex mydoc
-Terminal> ptex2tex mydoc
-Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> doconce ptex2tex mydoc
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 !ec
+When we go through `pandoc`, only single equations or `align*`
+environments are well understood.
+
 Quite some `doconce replace` and `doconce subst` edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the `.mkd` or `.tex` files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+!bc sys
+Terminal> doconce format pandoc mydoc
+Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+!ec
+The `-s` option adds a proper header and footer to the `mydoc.html` file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
 ===== LaTeX =====
@@ -15954,11 +16361,12 @@ __Step 2.__ Run `ptex2tex` (if you have it) to make a standard LaTeX file,
 !bc sys
 Terminal> ptex2tex mydoc
 !ec
-or just perform a plain copy,
+In case you do not have `ptex2tex`, you may run a (very) simplified version:
 !bc sys
-Terminal> cp mydoc.p.tex mydoc.tex
+Terminal> doconce ptex2tex mydoc
 !ec
-Doconce generates a `.p.tex` file with some preprocessor macros
+
+Note that Doconce generates a `.p.tex` file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -15983,7 +16391,24 @@ documents. After any `!bc` command in the Doconce source you can
 insert verbatim block styles as defined in your `.ptex2tex.cfg`
 file, e.g., `!bc cod` for a code snippet, where `cod` is set to
 a certain environment in `.ptex2tex.cfg` (e.g., `CodeIntended`).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the `doconce ptex2tex` command supports preprocessor directives
+for processing the `.p.tex` file. The command allows specifications
+of code environments as well. Here is an example:
+!bc sys
+Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+!ec
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+`verbatim` above, which implies `\begin{verbatim}` and `\end{verbatim}`).
+The value `minted` can be used for code environments where the
+language is specified, as in `fpro`, where `minted` implies
+`\begin{python}{fortran}`. There is a similar support for `ans`:
+`cppcod=ans` imples `\begin{c++}` and `\end{c++}` using the
+`anslistings` package.
 
 __Step 2b (optional).__ Edit the `mydoc.tex` file to your needs.
 For example, you may want to substitute `section` by `section*` to
@@ -16308,7 +16733,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 23 Jun 2012 (13:54)
+DATE: Sat, 23 Jun 2012 (19:09)
 
 
 
@@ -16412,7 +16837,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 23 Jun 2012 (13:54)
+DATE: Sat, 23 Jun 2012 (19:09)
 
 
 
@@ -16526,7 +16951,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 23 Jun 2012 (13:54)</center>
+<center>Sat, 23 Jun 2012 (19:09)</center>
 
 
 
@@ -16657,7 +17082,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 23 Jun 2012 (13:54)</center>
+<center>Sat, 23 Jun 2012 (19:09)</center>
 
 
 
@@ -19096,21 +19521,40 @@ See the <a href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentat
 for the many features of the <tt>pandoc</tt> program.
 
 <P>
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+<tt>doconce format pandoc</tt> and then translating using <tt>pandoc</tt>, or
+<tt>doconce format latex</tt>, and then going from LaTeX to the desired format
+using <tt>pandoc</tt>.
+Here is an example on the latter strategy:
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
 Terminal&gt; doconce format latex mydoc
-Terminal&gt; ptex2tex mydoc
-Terminal&gt; doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal&gt; doconce ptex2tex mydoc
 Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </pre>
 </blockquote>   <! -- end verbatim block -->
+When we go through <tt>pandoc</tt>, only single equations or <tt>align*</tt>
+environments are well understood.
+
+<P>
 Quite some <tt>doconce replace</tt> and <tt>doconce subst</tt> edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the <tt>.mkd</tt> or <tt>.tex</tt> files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+<P>
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; doconce format pandoc mydoc
+Terminal&gt; pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+</pre>
+</blockquote>   <! -- end verbatim block -->
+The <tt>-s</tt> option adds a proper header and footer to the <tt>mydoc.html</tt> file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 <P>
 
@@ -19143,13 +19587,15 @@ so that your commands are defined.
 Terminal&gt; ptex2tex mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
-or just perform a plain copy,
+In case you do not have <tt>ptex2tex</tt>, you may run a (very) simplified version:
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
-Terminal&gt; cp mydoc.p.tex mydoc.tex
+Terminal&gt; doconce ptex2tex mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
-Doconce generates a <tt>.p.tex</tt> file with some preprocessor macros
+
+<P>
+Note that Doconce generates a <tt>.p.tex</tt> file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -19181,7 +19627,27 @@ documents. After any <tt>!bc</tt> command in the Doconce source you can
 insert verbatim block styles as defined in your <tt>.ptex2tex.cfg</tt>
 file, e.g., <tt>!bc cod</tt> for a code snippet, where <tt>cod</tt> is set to
 a certain environment in <tt>.ptex2tex.cfg</tt> (e.g., <tt>CodeIntended</tt>).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+<P>
+Also the <tt>doconce ptex2tex</tt> command supports preprocessor directives
+for processing the <tt>.p.tex</tt> file. The command allows specifications
+of code environments as well. Here is an example:
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+</pre>
+</blockquote>   <! -- end verbatim block -->
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+<tt>verbatim</tt> above, which implies <tt>\begin{verbatim}</tt> and <tt>\end{verbatim}</tt>).
+The value <tt>minted</tt> can be used for code environments where the
+language is specified, as in <tt>fpro</tt>, where <tt>minted</tt> implies
+<tt>\begin{python}{fortran}</tt>. There is a similar support for <tt>ans</tt>:
+<tt>cppcod=ans</tt> imples <tt>\begin{c++}</tt> and <tt>\end{c++}</tt> using the
+<tt>anslistings</tt> package.
 
 <P>
 <b>Step 2b (optional).</b> Edit the <tt>mydoc.tex</tt> file to your needs.
@@ -21583,7 +22049,8 @@ and Sphinx just typeset the list as a list with keywords.
     
 ************** File: manual.p.tex *****************
 %%
-%% Automatically generated LaTeX file from Doconce source
+%% Automatically generated ptex2tex (extended LaTeX) file
+%% from Doconce source
 %% http://code.google.com/p/doconce/
 %%
 
@@ -22038,19 +22505,34 @@ Pandoc pass raw HTML or {\LaTeX} to the output format instead of ignoring it.
 See the \href{{http://johnmacfarlane.net/pandoc/README.html}}{Pandoc documentation}
 for the many features of the \code{pandoc} program.
 
-Pandoc is useful to go from {\LaTeX} mathematics to MS Word.
-However, this should be done via {\LaTeX}, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from {\LaTeX} mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+\code{doconce format pandoc} and then translating using \code{pandoc}, or
+\code{doconce format latex}, and then going from {\LaTeX} to the desired format
+using \code{pandoc}.
+Here is an example on the latter strategy:
 \bsys
 Terminal> doconce format latex mydoc
-Terminal> ptex2tex mydoc
-Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> doconce ptex2tex mydoc
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 \esys
+When we go through \code{pandoc}, only single equations or \code{align*}
+environments are well understood.
+
 Quite some \code{doconce replace} and \code{doconce subst} edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via {\LaTeX}.
+on the \code{.mkd} or \code{.tex} files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via {\LaTeX}.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+\bsys
+Terminal> doconce format pandoc mydoc
+Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+\esys
+The \code{-s} option adds a proper header and footer to the \code{mydoc.html} file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 \subsection{{\LaTeX}}
 
@@ -22076,11 +22558,12 @@ Run \code{ptex2tex} (if you have it) to make a standard {\LaTeX} file,
 \bsys
 Terminal> ptex2tex mydoc
 \esys
-or just perform a plain copy,
+In case you do not have \code{ptex2tex}, you may run a (very) simplified version:
 \bsys
-Terminal> cp mydoc.p.tex mydoc.tex
+Terminal> doconce ptex2tex mydoc
 \esys
-Doconce generates a \code{.p.tex} file with some preprocessor macros
+
+Note that Doconce generates a \code{.p.tex} file with some preprocessor macros
 that can be used to steer certain properties of the {\LaTeX} document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -22105,7 +22588,24 @@ documents. After any \code{!bc} command in the Doconce source you can
 insert verbatim block styles as defined in your \code{.ptex2tex.cfg}
 file, e.g., \code{!bc cod} for a code snippet, where \code{cod} is set to
 a certain environment in \code{.ptex2tex.cfg} (e.g., \code{CodeIntended}).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the \code{doconce ptex2tex} command supports preprocessor directives
+for processing the \code{.p.tex} file. The command allows specifications
+of code environments as well. Here is an example:
+\bsys
+Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+\esys
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+\code{verbatim} above, which implies \code{\begin{verbatim}} and \code{\end{verbatim}}).
+The value \code{minted} can be used for code environments where the
+language is specified, as in \code{fpro}, where \code{minted} implies
+\code{\begin{python}{fortran}}. There is a similar support for \code{ans}:
+\code{cppcod=ans} imples \code{\begin{c++}} and \code{\end{c++}} using the
+\code{anslistings} package.
 
 \paragraph{Step 2b (optional).}
 Edit the \code{mydoc.tex} file to your needs.
@@ -24504,20 +25004,36 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the `Pandoc documentation <http://johnmacfarlane.net/pandoc/README.html>`_
 for the many features of the ``pandoc`` program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example::
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+``doconce format pandoc`` and then translating using ``pandoc``, or
+``doconce format latex``, and then going from LaTeX to the desired format
+using ``pandoc``.
+Here is an example on the latter strategy::
 
 
         Terminal> doconce format latex mydoc
-        Terminal> ptex2tex mydoc
-        Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+        Terminal> doconce ptex2tex mydoc
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
+When we go through ``pandoc``, only single equations or ``align*``
+environments are well understood.
+
 Quite some ``doconce replace`` and ``doconce subst`` edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the ``.mkd`` or ``.tex`` files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax::
+
+
+        Terminal> doconce format pandoc mydoc
+        Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+
+The ``-s`` option adds a proper header and footer to the ``mydoc.html`` file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
 LaTeX
@@ -24548,12 +25064,13 @@ so that your commands are defined.
 
         Terminal> ptex2tex mydoc
 
-or just perform a plain copy::
+In case you do not have ``ptex2tex``, you may run a (very) simplified version::
 
 
-        Terminal> cp mydoc.p.tex mydoc.tex
+        Terminal> doconce ptex2tex mydoc
 
-Doconce generates a ``.p.tex`` file with some preprocessor macros
+
+Note that Doconce generates a ``.p.tex`` file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run::
@@ -24581,7 +25098,25 @@ documents. After any ``!bc`` command in the Doconce source you can
 insert verbatim block styles as defined in your ``.ptex2tex.cfg``
 file, e.g., ``!bc cod`` for a code snippet, where ``cod`` is set to
 a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the ``doconce ptex2tex`` command supports preprocessor directives
+for processing the ``.p.tex`` file. The command allows specifications
+of code environments as well. Here is an example::
+
+
+        Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+                  cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+                  fpro=minted fcod=minted sys=verbatim
+
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+``verbatim`` above, which implies ``\begin{verbatim}`` and ``\end{verbatim}``).
+The value ``minted`` can be used for code environments where the
+language is specified, as in ``fpro``, where ``minted`` implies
+``\begin{python}{fortran}``. There is a similar support for ``ans``:
+``cppcod=ans`` imples ``\begin{c++}`` and ``\end{c++}`` using the
+``anslistings`` package.
 
 *Step 2b (optional).* Edit the ``mydoc.tex`` file to your needs.
 For example, you may want to substitute ``section`` by ``section*`` to
@@ -27163,21 +27698,38 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the `Pandoc documentation <http://johnmacfarlane.net/pandoc/README.html>`_
 for the many features of the ``pandoc`` program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+``doconce format pandoc`` and then translating using ``pandoc``, or
+``doconce format latex``, and then going from LaTeX to the desired format
+using ``pandoc``.
+Here is an example on the latter strategy:
 
 .. code-block:: console
 
         Terminal> doconce format latex mydoc
-        Terminal> ptex2tex mydoc
-        Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+        Terminal> doconce ptex2tex mydoc
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
+When we go through ``pandoc``, only single equations or ``align*``
+environments are well understood.
+
 Quite some ``doconce replace`` and ``doconce subst`` edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the ``.mkd`` or ``.tex`` files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+
+.. code-block:: console
+
+        Terminal> doconce format pandoc mydoc
+        Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+
+The ``-s`` option adds a proper header and footer to the ``mydoc.html`` file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
 LaTeX
@@ -27210,13 +27762,14 @@ so that your commands are defined.
 
         Terminal> ptex2tex mydoc
 
-or just perform a plain copy,
+In case you do not have ``ptex2tex``, you may run a (very) simplified version:
 
 .. code-block:: console
 
-        Terminal> cp mydoc.p.tex mydoc.tex
+        Terminal> doconce ptex2tex mydoc
 
-Doconce generates a ``.p.tex`` file with some preprocessor macros
+
+Note that Doconce generates a ``.p.tex`` file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -27247,7 +27800,26 @@ documents. After any ``!bc`` command in the Doconce source you can
 insert verbatim block styles as defined in your ``.ptex2tex.cfg``
 file, e.g., ``!bc cod`` for a code snippet, where ``cod`` is set to
 a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the ``doconce ptex2tex`` command supports preprocessor directives
+for processing the ``.p.tex`` file. The command allows specifications
+of code environments as well. Here is an example:
+
+.. code-block:: console
+
+        Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+                  cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+                  fpro=minted fcod=minted sys=verbatim
+
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+``verbatim`` above, which implies ``\begin{verbatim}`` and ``\end{verbatim}``).
+The value ``minted`` can be used for code environments where the
+language is specified, as in ``fpro``, where ``minted`` implies
+``\begin{python}{fortran}``. There is a similar support for ``ans``:
+``cppcod=ans`` imples ``\begin{c++}`` and ``\end{c++}`` using the
+``anslistings`` package.
 
 *Step 2b (optional).* Edit the ``mydoc.tex`` file to your needs.
 For example, you may want to substitute ``section`` by ``section*`` to
@@ -29899,19 +30471,34 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the [http://johnmacfarlane.net/pandoc/README.html Pandoc documentation]
 for the many features of the `pandoc` program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+`doconce format pandoc` and then translating using `pandoc`, or
+`doconce format latex`, and then going from LaTeX to the desired format
+using `pandoc`.
+Here is an example on the latter strategy:
 {{{
 Terminal> doconce format latex mydoc
-Terminal> ptex2tex mydoc
-Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> doconce ptex2tex mydoc
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 }}}
+When we go through `pandoc`, only single equations or `align*`
+environments are well understood.
+
 Quite some `doconce replace` and `doconce subst` edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the `.mkd` or `.tex` files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+{{{
+Terminal> doconce format pandoc mydoc
+Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+}}}
+The `-s` option adds a proper header and footer to the `mydoc.html` file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 ==== LaTeX ====
 
@@ -29935,11 +30522,12 @@ so that your commands are defined.
 {{{
 Terminal> ptex2tex mydoc
 }}}
-or just perform a plain copy,
+In case you do not have `ptex2tex`, you may run a (very) simplified version:
 {{{
-Terminal> cp mydoc.p.tex mydoc.tex
+Terminal> doconce ptex2tex mydoc
 }}}
-Doconce generates a `.p.tex` file with some preprocessor macros
+
+Note that Doconce generates a `.p.tex` file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -29964,7 +30552,24 @@ documents. After any `!bc` command in the Doconce source you can
 insert verbatim block styles as defined in your `.ptex2tex.cfg`
 file, e.g., `!bc cod` for a code snippet, where `cod` is set to
 a certain environment in `.ptex2tex.cfg` (e.g., `CodeIntended`).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the `doconce ptex2tex` command supports preprocessor directives
+for processing the `.p.tex` file. The command allows specifications
+of code environments as well. Here is an example:
+{{{
+Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+}}}
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+`verbatim` above, which implies `\begin{verbatim}` and `\end{verbatim}`).
+The value `minted` can be used for code environments where the
+language is specified, as in `fpro`, where `minted` implies
+`\begin{python}{fortran}`. There is a similar support for `ans`:
+`cppcod=ans` imples `\begin{c++}` and `\end{c++}` using the
+`anslistings` package.
 
 *Step 2b (optional).* Edit the `mydoc.tex` file to your needs.
 For example, you may want to substitute `section` by `section*` to
@@ -32194,19 +32799,34 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the [http://johnmacfarlane.net/pandoc/README.html Pandoc documentation]
 for the many features of the <code>pandoc</code> program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+<code>doconce format pandoc</code> and then translating using <code>pandoc</code>, or
+<code>doconce format latex</code>, and then going from LaTeX to the desired format
+using <code>pandoc</code>.
+Here is an example on the latter strategy:
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc
-Terminal> ptex2tex mydoc
-Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> doconce ptex2tex mydoc
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </code>
+When we go through <code>pandoc</code>, only single equations or <code>align*</code>
+environments are well understood.
+
 Quite some <code>doconce replace</code> and <code>doconce subst</code> edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the <code>.mkd</code> or <code>.tex</code> files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+<syntaxhighlight lang="bash">
+Terminal> doconce format pandoc mydoc
+Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+</code>
+The <code>-s</code> option adds a proper header and footer to the <code>mydoc.html</code> file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 ==== LaTeX ====
 
@@ -32230,11 +32850,12 @@ so that your commands are defined.
 <syntaxhighlight lang="bash">
 Terminal> ptex2tex mydoc
 </code>
-or just perform a plain copy,
+In case you do not have <code>ptex2tex</code>, you may run a (very) simplified version:
 <syntaxhighlight lang="bash">
-Terminal> cp mydoc.p.tex mydoc.tex
+Terminal> doconce ptex2tex mydoc
 </code>
-Doconce generates a <code>.p.tex</code> file with some preprocessor macros
+
+Note that Doconce generates a <code>.p.tex</code> file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -32259,7 +32880,24 @@ documents. After any <code>!bc</code> command in the Doconce source you can
 insert verbatim block styles as defined in your <code>.ptex2tex.cfg</code>
 file, e.g., <code>!bc cod</code> for a code snippet, where <code>cod</code> is set to
 a certain environment in <code>.ptex2tex.cfg</code> (e.g., <code>CodeIntended</code>).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the <code>doconce ptex2tex</code> command supports preprocessor directives
+for processing the <code>.p.tex</code> file. The command allows specifications
+of code environments as well. Here is an example:
+<syntaxhighlight lang="bash">
+Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+</code>
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+<code>verbatim</code> above, which implies <code>\begin{verbatim}</code> and <code>\end{verbatim}</code>).
+The value <code>minted</code> can be used for code environments where the
+language is specified, as in <code>fpro</code>, where <code>minted</code> implies
+<code>\begin{python}{fortran}</code>. There is a similar support for <code>ans</code>:
+<code>cppcod=ans</code> imples <code>\begin{c++}</code> and <code>\end{c++}</code> using the
+<code>anslistings</code> package.
 
 ''Step 2b (optional).'' Edit the <code>mydoc.tex</code> file to your needs.
 For example, you may want to substitute <code>section</code> by <code>section*</code> to
@@ -34441,19 +35079,34 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the [[http://johnmacfarlane.net/pandoc/README.html|Pandoc documentation]]
 for the many features of the {{{pandoc}}} program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+{{{doconce format pandoc}}} and then translating using {{{pandoc}}}, or
+{{{doconce format latex}}}, and then going from LaTeX to the desired format
+using {{{pandoc}}}.
+Here is an example on the latter strategy:
 {{{
 Terminal> doconce format latex mydoc
-Terminal> ptex2tex mydoc
-Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> doconce ptex2tex mydoc
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 }}}
+When we go through {{{pandoc}}}, only single equations or {{{align*}}}
+environments are well understood.
+
 Quite some {{{doconce replace}}} and {{{doconce subst}}} edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the {{{.mkd}}} or {{{.tex}}} files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+{{{
+Terminal> doconce format pandoc mydoc
+Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+}}}
+The {{{-s}}} option adds a proper header and footer to the {{{mydoc.html}}} file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
 == LaTeX ==
@@ -34478,11 +35131,12 @@ so that your commands are defined.
 {{{
 Terminal> ptex2tex mydoc
 }}}
-or just perform a plain copy,
+In case you do not have {{{ptex2tex}}}, you may run a (very) simplified version:
 {{{
-Terminal> cp mydoc.p.tex mydoc.tex
+Terminal> doconce ptex2tex mydoc
 }}}
-Doconce generates a {{{.p.tex}}} file with some preprocessor macros
+
+Note that Doconce generates a {{{.p.tex}}} file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -34507,7 +35161,24 @@ documents. After any {{{!bc}}} command in the Doconce source you can
 insert verbatim block styles as defined in your {{{.ptex2tex.cfg}}}
 file, e.g., {{{!bc cod}}} for a code snippet, where {{{cod}}} is set to
 a certain environment in {{{.ptex2tex.cfg}}} (e.g., {{{CodeIntended}}}).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the {{{doconce ptex2tex}}} command supports preprocessor directives
+for processing the {{{.p.tex}}} file. The command allows specifications
+of code environments as well. Here is an example:
+{{{
+Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+}}}
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+{{{verbatim}}} above, which implies {{{\begin{verbatim}}}} and {{{\end{verbatim}}}}).
+The value {{{minted}}} can be used for code environments where the
+language is specified, as in {{{fpro}}}, where {{{minted}}} implies
+{{{\begin{python}{fortran}}}}. There is a similar support for {{{ans}}}:
+{{{cppcod=ans}}} imples {{{\begin{c++}}}} and {{{\end{c++}}}} using the
+{{{anslistings}}} package.
 
 //Step 2b (optional).// Edit the {{{mydoc.tex}}} file to your needs.
 For example, you may want to substitute {{{section}}} by {{{section*}}} to
@@ -36755,20 +37426,36 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the "http://johnmacfarlane.net/pandoc/README.html":Pandoc documentation
 for the many features of the 'pandoc' program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example::
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+'doconce format pandoc' and then translating using 'pandoc', or
+'doconce format latex', and then going from LaTeX to the desired format
+using 'pandoc'.
+Here is an example on the latter strategy::
 
 
         Terminal> doconce format latex mydoc
-        Terminal> ptex2tex mydoc
-        Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+        Terminal> doconce ptex2tex mydoc
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
+When we go through 'pandoc', only single equations or 'align*'
+environments are well understood.
+
 Quite some 'doconce replace' and 'doconce subst' edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the '.mkd' or '.tex' files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax::
+
+
+        Terminal> doconce format pandoc mydoc
+        Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+
+The '-s' option adds a proper header and footer to the 'mydoc.html' file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 LaTeX
 
@@ -36790,12 +37477,13 @@ so that your commands are defined.
 
         Terminal> ptex2tex mydoc
 
-or just perform a plain copy::
+In case you do not have 'ptex2tex', you may run a (very) simplified version::
 
 
-        Terminal> cp mydoc.p.tex mydoc.tex
+        Terminal> doconce ptex2tex mydoc
 
-Doconce generates a '.p.tex' file with some preprocessor macros
+
+Note that Doconce generates a '.p.tex' file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run::
@@ -36823,7 +37511,25 @@ documents. After any '!bc' command in the Doconce source you can
 insert verbatim block styles as defined in your '.ptex2tex.cfg'
 file, e.g., '!bc cod' for a code snippet, where 'cod' is set to
 a certain environment in '.ptex2tex.cfg' (e.g., 'CodeIntended').
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the 'doconce ptex2tex' command supports preprocessor directives
+for processing the '.p.tex' file. The command allows specifications
+of code environments as well. Here is an example::
+
+
+        Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+                  cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+                  fpro=minted fcod=minted sys=verbatim
+
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+'verbatim' above, which implies '\begin{verbatim}' and '\end{verbatim}').
+The value 'minted' can be used for code environments where the
+language is specified, as in 'fpro', where 'minted' implies
+'\begin{python}{fortran}'. There is a similar support for 'ans':
+'cppcod=ans' imples '\begin{c++}' and '\end{c++}' using the
+'anslistings' package.
 
 *Step 2b (optional).* Edit the 'mydoc.tex' file to your needs.
 For example, you may want to substitute 'section' by 'section*' to
@@ -39110,20 +39816,36 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the U{Pandoc documentation<http://johnmacfarlane.net/pandoc/README.html>}
 for the many features of the C{pandoc} program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example::
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+C{doconce format pandoc} and then translating using C{pandoc}, or
+C{doconce format latex}, and then going from LaTeX to the desired format
+using C{pandoc}.
+Here is an example on the latter strategy::
 
 
         Terminal> doconce format latex mydoc
-        Terminal> ptex2tex mydoc
-        Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+        Terminal> doconce ptex2tex mydoc
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
+When we go through C{pandoc}, only single equations or C{align*}
+environments are well understood.
+
 Quite some C{doconce replace} and C{doconce subst} edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the C{.mkd} or C{.tex} files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax::
+
+
+        Terminal> doconce format pandoc mydoc
+        Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+
+The C{-s} option adds a proper header and footer to the C{mydoc.html} file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
 LaTeX
@@ -39148,12 +39870,13 @@ I{Step 2.} Run C{ptex2tex} (if you have it) to make a standard LaTeX file::
 
         Terminal> ptex2tex mydoc
 
-or just perform a plain copy::
+In case you do not have C{ptex2tex}, you may run a (very) simplified version::
 
 
-        Terminal> cp mydoc.p.tex mydoc.tex
+        Terminal> doconce ptex2tex mydoc
 
-Doconce generates a C{.p.tex} file with some preprocessor macros
+
+Note that Doconce generates a C{.p.tex} file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run::
@@ -39181,7 +39904,25 @@ documents. After any C{!bc} command in the Doconce source you can
 insert verbatim block styles as defined in your C{.ptex2tex.cfg}
 file, e.g., C{!bc cod} for a code snippet, where C{cod} is set to
 a certain environment in C{.ptex2tex.cfg} (e.g., C{CodeIntended}).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the C{doconce ptex2tex} command supports preprocessor directives
+for processing the C{.p.tex} file. The command allows specifications
+of code environments as well. Here is an example::
+
+
+        Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+                  cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+                  fpro=minted fcod=minted sys=verbatim
+
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+C{verbatim} above, which implies C{\begin{verbatim}} and C{\end{verbatim}}).
+The value C{minted} can be used for code environments where the
+language is specified, as in C{fpro}, where C{minted} implies
+C{\begin{python}{fortran}}. There is a similar support for C{ans}:
+C{cppcod=ans} imples C{\begin{c++}} and C{\end{c++}} using the
+C{anslistings} package.
 
 I{Step 2b (optional).} Edit the C{mydoc.tex} file to your needs.
 For example, you may want to substitute C{section} by C{section*} to
@@ -41540,20 +42281,36 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the Pandoc documentation (http://johnmacfarlane.net/pandoc/README.html)
 for the many features of the pandoc program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example::
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+doconce format pandoc and then translating using pandoc, or
+doconce format latex, and then going from LaTeX to the desired format
+using pandoc.
+Here is an example on the latter strategy::
 
 
         Terminal> doconce format latex mydoc
-        Terminal> ptex2tex mydoc
-        Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+        Terminal> doconce ptex2tex mydoc
         Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
+When we go through pandoc, only single equations or align*
+environments are well understood.
+
 Quite some doconce replace and doconce subst edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the .mkd or .tex files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax::
+
+
+        Terminal> doconce format pandoc mydoc
+        Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+
+The -s option adds a proper header and footer to the mydoc.html file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
 LaTeX
@@ -41578,12 +42335,13 @@ so that your commands are defined.
 
         Terminal> ptex2tex mydoc
 
-or just perform a plain copy::
+In case you do not have ptex2tex, you may run a (very) simplified version::
 
 
-        Terminal> cp mydoc.p.tex mydoc.tex
+        Terminal> doconce ptex2tex mydoc
 
-Doconce generates a .p.tex file with some preprocessor macros
+
+Note that Doconce generates a .p.tex file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run::
@@ -41611,7 +42369,25 @@ documents. After any !bc command in the Doconce source you can
 insert verbatim block styles as defined in your .ptex2tex.cfg
 file, e.g., !bc cod for a code snippet, where cod is set to
 a certain environment in .ptex2tex.cfg (e.g., CodeIntended).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the doconce ptex2tex command supports preprocessor directives
+for processing the .p.tex file. The command allows specifications
+of code environments as well. Here is an example::
+
+
+        Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+                  cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+                  fpro=minted fcod=minted sys=verbatim
+
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+verbatim above, which implies \begin{verbatim} and \end{verbatim}).
+The value minted can be used for code environments where the
+language is specified, as in fpro, where minted implies
+\begin{python}{fortran}. There is a similar support for ans:
+cppcod=ans imples \begin{c++} and \end{c++} using the
+anslistings package.
 
 *Step 2b (optional).* Edit the mydoc.tex file to your needs.
 For example, you may want to substitute section by section* to
@@ -44045,21 +44821,38 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the [Pandoc documentation](http://johnmacfarlane.net/pandoc/README.html)
 for the many features of the `pandoc` program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+`doconce format pandoc` and then translating using `pandoc`, or
+`doconce format latex`, and then going from LaTeX to the desired format
+using `pandoc`.
+Here is an example on the latter strategy:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 Terminal> doconce format latex mydoc
-Terminal> ptex2tex mydoc
-Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> doconce ptex2tex mydoc
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+When we go through `pandoc`, only single equations or `align*`
+environments are well understood.
+
 Quite some `doconce replace` and `doconce subst` edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the `.mkd` or `.tex` files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
+Terminal> doconce format pandoc mydoc
+Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The `-s` option adds a proper header and footer to the `mydoc.html` file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
 LaTeX
@@ -44086,13 +44879,14 @@ so that your commands are defined.
 Terminal> ptex2tex mydoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-or just perform a plain copy,
+In case you do not have `ptex2tex`, you may run a (very) simplified version:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
-Terminal> cp mydoc.p.tex mydoc.tex
+Terminal> doconce ptex2tex mydoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Doconce generates a `.p.tex` file with some preprocessor macros
+
+Note that Doconce generates a `.p.tex` file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -44123,7 +44917,26 @@ documents. After any `!bc` command in the Doconce source you can
 insert verbatim block styles as defined in your `.ptex2tex.cfg`
 file, e.g., `!bc cod` for a code snippet, where `cod` is set to
 a certain environment in `.ptex2tex.cfg` (e.g., `CodeIntended`).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the `doconce ptex2tex` command supports preprocessor directives
+for processing the `.p.tex` file. The command allows specifications
+of code environments as well. Here is an example:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
+Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+`verbatim` above, which implies `\begin{verbatim}` and `\end{verbatim}`).
+The value `minted` can be used for code environments where the
+language is specified, as in `fpro`, where `minted` implies
+`\begin{python}{fortran}`. There is a similar support for `ans`:
+`cppcod=ans` imples `\begin{c++}` and `\end{c++}` using the
+`anslistings` package.
 
 *Step 2b (optional).* Edit the `mydoc.tex` file to your needs.
 For example, you may want to substitute `section` by `section*` to
@@ -45010,7 +45823,7 @@ Cross-Referencing
 References and labels are supported. The syntax is simple:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-label{section:verbatim}   # defines a label
+\label{section:verbatim}   # defines a label
 For more information we refer to Section ref{section:verbatim}.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -45190,7 +46003,7 @@ it) and a solution file:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ===== Project: Determine the Distance to the Moon =====
-label{proj:moondist} file=earth2moon.pdf
+\label{proj:moondist} file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
 
 Here goes the running text of the project....
@@ -45432,25 +46245,21 @@ the opening tag is `!bt` (begin TeX) and the closing tag is
 line and followed by a newline.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
+$$
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
-
-
+$$
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the result of the above `!bt` - `!et` block:
-
-
+$$
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
-
-
+$$
 
 This text looks ugly in all Doconce supported formats, except from
 LaTeX and Sphinx.  If HTML is desired, and Sphinx is not an option,
@@ -45547,20 +46356,18 @@ The LaTeX block
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \beqa
-\x\cdot\normalvec &=& 0, label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep   label{my:eq2}
+\x\cdot\normalvec &=& 0, \label{my:eq1}\\
+\Ddt{\uvec} &=& \Q \ep   \label{my:eq2}
 \eeqa
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 will then be rendered to
-
-
+$$
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
-
-
+$$
 in the current format.
 
 Preprocessing Steps
@@ -46441,66 +47248,66 @@ run regularly.
 
 ************** File: /home/hpl/vc/doconce/test/test.output *****************
 + doconce format html testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 output in testdoc.html
 + doconce format latex testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
 output in testdoc.p.tex
 + doconce format pdflatex testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format pdflatex
 output in testdoc.p.tex
 + ptex2tex -DMINTED testdoc
 running preprocessor on testdoc.p.tex...  defines: 'MINTED'  done
 done testdoc.p.tex -> testdoc.tex
 + doconce format plain testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
+found info about 3 exercises, written to .testdoc.exerinfo
 output in testdoc.txt
 + doconce format st testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
+found info about 3 exercises, written to .testdoc.exerinfo
 output in testdoc.st
 + doconce format sphinx testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning:
@@ -46508,13 +47315,13 @@ Not recommended for sphinx output: math environment {eqnarray}
 (use equation, \[ \], or align/align*)
 Not recommended for sphinx output: math environment {multline}
 Not recommended for sphinx output: math environment {gather}
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format sphinx
 
 Warning: the "alignat" environment will give errors in Sphinx:
@@ -46527,47 +47334,49 @@ Warning: the "alignat" environment will give errors in Sphinx:
 output in testdoc.rst
 + mv -f testdoc.rst testdoc.sphinx.rst
 + doconce format rst testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 output in testdoc.rst
 + doconce format epytext testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
+found info about 3 exercises, written to .testdoc.exerinfo
 output in testdoc.epytext
 + doconce format pandoc testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
+found info about 3 exercises, written to .testdoc.exerinfo
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
 output in testdoc.mkd
 + doconce format mwiki testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format mwiki
 
 NOTE: Upload image file ../doc/manual/figs/streamtubes.png to the Wiki* site
@@ -46575,28 +47384,28 @@ NOTE: Upload image file ../doc/manual/figs/streamtubes.png to the Wiki* site
 
 output in testdoc.mwiki
 + doconce format cwiki testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format cwiki
 output in testdoc.cwiki
 + doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 mako variables: {'MYVAR1': 3, 'MYVAR2': 'a string', 'FORMAT': 'gwiki'}
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format gwiki
 
 NOTE: Place ../doc/manual/figs/streamtubes.png at some place on the web and edit the
@@ -46605,6 +47414,34 @@ NOTE: Place ../doc/manual/figs/streamtubes.png at some place on the web and edit
       doconce gwiki_figsubst.py mydoc.gwiki URL
 
 output in testdoc.gwiki
++ doconce format latex testdoc.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
+translate preprocessed doconce text in __tmp.do.txt
+copying from regex "subroutine" until ""
+     file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
+copying after regex "a comment" until "^C\s+END1"
+     file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
+copy complete file ../doc/manual/__testcode.f  (format: fpro)
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
+    can use ../doc/manual/figs/streamtubes.eps for format latex
+output in testdoc.p.tex
++ doconce ptex2tex testdoc -DBOOK -DLATEXHEADING=traditional
++ pandoc -f latex -t markdown -o testdoc.mkd testdoc.tex
++ pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.mkd
++ doconce format pandoc testdoc.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
+translate preprocessed doconce text in __tmp.do.txt
+copying from regex "subroutine" until ""
+     file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
+copying after regex "a comment" until "^C\s+END1"
+     file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
+copy complete file ../doc/manual/__testcode.f  (format: fpro)
+found info about 3 exercises, written to .testdoc.exerinfo
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
+output in testdoc.mkd
++ pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.mkd
 + doconce grab --from- ={9} --to subroutine@ testdoc.do.txt
 + doconce grab --from Compute a Probability --to- drawing uniformly testdoc.do.txt
 + doconce grab --from- \*\s+\$.+normally testdoc.do.txt
@@ -46720,16 +47557,16 @@ Normal text.
 replacing # Comment before list by  in tmp2.do.txt
 + doconce format rst tmp2
 translate doconce text in tmp2.do.txt
-Figure file ../doc/manual/figs/streamtubes:
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 output in tmp2.rst+ ./clean.sh
 Removing in /home/hpl/vc/doconce/doc/tutorial:
 + doconce format html tutorial
-run preprocess -DFORMAT=html  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=html  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.html
 + doconce format latex tutorial
-run preprocess -DFORMAT=latex  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=latex  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.p.tex
 + ptex2tex -DHELVETICA tutorial
@@ -46814,89 +47651,93 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1]
-Overfull \hbox (8.67865pt too wide) in paragraph at lines 135--139
+Overfull \hbox (8.67865pt too wide) in paragraph at lines 136--140
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
 [2] [3] [4]
 
-LaTeX Warning: Reference `my:first:sec' on page 5 undefined on input line 327.
+LaTeX Warning: Reference `my:first:sec' on page 5 undefined on input line 328.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 5 undefined on input line 33
-2.
+3.
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 369.
+(amsmath)                 on input line 370.
 
 [5]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 450--468
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 451--469
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 450--468
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 451--469
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 450--468
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 451--469
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[6] [7] [8]
-Overfull \hbox (1.85565pt too wide) in paragraph at lines 589--593
+[6] [7]
+Overfull \hbox (79.3756pt too wide) in paragraph at lines 566--574
+\OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
+ doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
+[8]
+Overfull \hbox (1.85565pt too wide) in paragraph at lines 607--611
  \OT1/phv/b/n/10 Step 1.[] \OT1/phv/m/n/10 Fil-ter the do-conce text to a pre-L
 aTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/phv/m/n/10 for []\OT1/cmtt/m/n/10
  ptex2tex\OT1/phv/m/n/10 :
 
-LaTeX Warning: Reference `newcommands' on page 9 undefined on input line 598.
+LaTeX Warning: Reference `newcommands' on page 9 undefined on input line 616.
 
 
-Overfull \hbox (55.19026pt too wide) in paragraph at lines 596--601
+Overfull \hbox (55.19026pt too wide) in paragraph at lines 614--619
 \OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [9] [10] [11] [12]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 790--791
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 828--829
 [][][][][][][] 
-
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 825--831
+[13]
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 863--869
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (0.74806pt too wide) in paragraph at lines 832--851
+Overfull \hbox (0.74806pt too wide) in paragraph at lines 870--889
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
-[13]
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 863--866
+
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 901--904
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [14] [15]
-Overfull \hbox (44.67775pt too wide) in paragraph at lines 975--981
+Overfull \hbox (44.67775pt too wide) in paragraph at lines 1013--1019
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [16]
-Overfull \hbox (21.15628pt too wide) in paragraph at lines 1041--1045
+Overfull \hbox (21.15628pt too wide) in paragraph at lines 1079--1083
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-[17]
+[17] [18]
 
-LaTeX Warning: Reference `doconce2formats' on page 18 undefined on input line 1
-118.
+LaTeX Warning: Reference `doconce2formats' on page 19 undefined on input line 1
+156.
 
 
-Overfull \hbox (0.80836pt too wide) in paragraph at lines 1116--1119
+Overfull \hbox (0.80836pt too wide) in paragraph at lines 1154--1157
 \OT1/phv/m/n/10 If you use the minted style, you have to en-able it by run-ning
  []\OT1/cmtt/m/n/10 ptex2tex -DMINTED
-[18]
-Overfull \hbox (5.04823pt too wide) in paragraph at lines 1167--1172
+
+Overfull \hbox (5.04823pt too wide) in paragraph at lines 1205--1210
 []\OT1/phv/m/n/10 Finally, trans-la-tion to []\OT1/cmtt/m/n/10 pandoc \OT1/phv/
 m/n/10 re-quires the [][][][][][] pro-gram (writ-ten in Haskell)
-
-Overfull \hbox (22.94165pt too wide) in paragraph at lines 1177--1187
+[19]
+Overfull \hbox (22.94165pt too wide) in paragraph at lines 1215--1225
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
 OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
 hv/m/n/10 .
 No file tutorial.ind.
-[19] (./tutorial.aux)
+[20] (./tutorial.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -46905,7 +47746,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (19 pages, 84308 bytes).
+Output written on tutorial.dvi (20 pages, 87424 bytes).
 Transcript written on tutorial.log.
 + latex tutorial.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -46982,80 +47823,84 @@ Writing index file tutorial.idx
 (./tutorial.out) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1]
-Overfull \hbox (8.67865pt too wide) in paragraph at lines 135--139
+Overfull \hbox (8.67865pt too wide) in paragraph at lines 136--140
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
 [2] [3] [4]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 369.
+(amsmath)                 on input line 370.
 
 [5]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 450--468
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 451--469
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 450--468
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 451--469
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 450--468
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 451--469
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[6] [7] [8]
-Overfull \hbox (1.85565pt too wide) in paragraph at lines 589--593
+[6] [7]
+Overfull \hbox (79.3756pt too wide) in paragraph at lines 566--574
+\OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
+ doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
+[8]
+Overfull \hbox (1.85565pt too wide) in paragraph at lines 607--611
  \OT1/phv/b/n/10 Step 1.[] \OT1/phv/m/n/10 Fil-ter the do-conce text to a pre-L
 aTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/phv/m/n/10 for []\OT1/cmtt/m/n/10
  ptex2tex\OT1/phv/m/n/10 :
 
-Overfull \hbox (55.19026pt too wide) in paragraph at lines 596--601
+Overfull \hbox (55.19026pt too wide) in paragraph at lines 614--619
 \OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [9] [10] [11] [12]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 790--791
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 828--829
 [][][][][][][] 
-
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 825--831
+[13]
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 863--869
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (0.74806pt too wide) in paragraph at lines 832--851
+Overfull \hbox (0.74806pt too wide) in paragraph at lines 870--889
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
-[13]
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 863--866
+
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 901--904
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [14] [15]
-Overfull \hbox (44.67775pt too wide) in paragraph at lines 975--981
+Overfull \hbox (44.67775pt too wide) in paragraph at lines 1013--1019
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [16]
-Overfull \hbox (21.15628pt too wide) in paragraph at lines 1041--1045
+Overfull \hbox (21.15628pt too wide) in paragraph at lines 1079--1083
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-[17]
-Overfull \hbox (0.80836pt too wide) in paragraph at lines 1116--1119
+[17] [18]
+Overfull \hbox (0.80836pt too wide) in paragraph at lines 1154--1157
 \OT1/phv/m/n/10 If you use the minted style, you have to en-able it by run-ning
  []\OT1/cmtt/m/n/10 ptex2tex -DMINTED
-[18]
-Overfull \hbox (5.04823pt too wide) in paragraph at lines 1167--1172
+
+Overfull \hbox (5.04823pt too wide) in paragraph at lines 1205--1210
 []\OT1/phv/m/n/10 Finally, trans-la-tion to []\OT1/cmtt/m/n/10 pandoc \OT1/phv/
 m/n/10 re-quires the [][][][][][] pro-gram (writ-ten in Haskell)
-
-Overfull \hbox (22.94165pt too wide) in paragraph at lines 1177--1187
+[19]
+Overfull \hbox (22.94165pt too wide) in paragraph at lines 1215--1225
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
 OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
 hv/m/n/10 .
 No file tutorial.ind.
-[19] (./tutorial.aux) )
+[20] (./tutorial.aux) )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (19 pages, 86980 bytes).
+Output written on tutorial.dvi (20 pages, 90096 bytes).
 Transcript written on tutorial.log.
 + dvipdf tutorial.dvi
 + doconce format sphinx tutorial
-run preprocess -DFORMAT=sphinx  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=sphinx  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning:
@@ -47148,7 +47993,7 @@ reading sources... [ 50%] index
 reading sources... [100%] tutorial
 
 /home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:412: WARNING: Duplicate explicit target name: "sphinx".
-/home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:901: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+/home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:938: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -47314,27 +48159,27 @@ Chapter 4.
 [11]
 
 LaTeX Warning: Hyper reference `tutorial:newcommands' on page 12 undefined on i
-nput line 688.
+nput line 705.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 686--691
+Underfull \hbox (badness 10000) in paragraph at lines 703--708
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 686--691
+Underfull \hbox (badness 5359) in paragraph at lines 703--708
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[12] [13] [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1051--1055
+[12] [13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
-[16] [17]
+[17] [18]
 
-LaTeX Warning: Hyper reference `tutorial:doconce2formats' on page 18 undefined 
-on input line 1195.
+LaTeX Warning: Hyper reference `tutorial:doconce2formats' on page 19 undefined 
+on input line 1231.
 
-[18] [19] [20]
+[19] [20]
 Chapter 5.
 No file DoconceDocumentOnceIncludeAnywhere.ind.
 [21] (./DoconceDocumentOnceIncludeAnywhere.aux)
@@ -47360,7 +48205,7 @@ etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 xlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/u
 rw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 210832 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 212490 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -47484,19 +48329,19 @@ Package amsmath Warning: Foreign command \over;
 [9] [10]
 Chapter 4.
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 686--691
+Underfull \hbox (badness 10000) in paragraph at lines 703--708
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 686--691
+Underfull \hbox (badness 5359) in paragraph at lines 703--708
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[12] [13] [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1051--1055
+[12] [13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
-[16] [17] [18] [19] [20]
+[17] [18] [19] [20]
 Chapter 5.
 No file DoconceDocumentOnceIncludeAnywhere.ind.
 [21] (./DoconceDocumentOnceIncludeAnywhere.aux) )
@@ -47512,7 +48357,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 221943 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -47636,19 +48481,19 @@ Package amsmath Warning: Foreign command \over;
 [9] [10]
 Chapter 4.
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 686--691
+Underfull \hbox (badness 10000) in paragraph at lines 703--708
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 686--691
+Underfull \hbox (badness 5359) in paragraph at lines 703--708
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[12] [13] [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1051--1055
+[12] [13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
-[16] [17] [18] [19] [20]
+[17] [18] [19] [20]
 Chapter 5.
 No file DoconceDocumentOnceIncludeAnywhere.ind.
 [21] (./DoconceDocumentOnceIncludeAnywhere.aux) )
@@ -47664,7 +48509,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 221943 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -47794,19 +48639,19 @@ Package amsmath Warning: Foreign command \over;
 [9] [10]
 Chapter 4.
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 686--691
+Underfull \hbox (badness 10000) in paragraph at lines 703--708
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 686--691
+Underfull \hbox (badness 5359) in paragraph at lines 703--708
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[12] [13] [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1051--1055
+[12] [13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
-[16] [17] [18] [19] [20]
+[17] [18] [19] [20]
 Chapter 5.
 (./DoconceDocumentOnceIncludeAnywhere.ind) [21]
 (./DoconceDocumentOnceIncludeAnywhere.aux) )
@@ -47822,7 +48667,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 221943 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -47946,19 +48791,19 @@ Package amsmath Warning: Foreign command \over;
 [9] [10]
 Chapter 4.
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 686--691
+Underfull \hbox (badness 10000) in paragraph at lines 703--708
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 686--691
+Underfull \hbox (badness 5359) in paragraph at lines 703--708
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[12] [13] [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1051--1055
+[12] [13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
-[16] [17] [18] [19] [20]
+[17] [18] [19] [20]
 Chapter 5.
 (./DoconceDocumentOnceIncludeAnywhere.ind) [21]
 (./DoconceDocumentOnceIncludeAnywhere.aux) )
@@ -47974,26 +48819,26 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 221943 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
 + cd ../../..
 + doconce format rst tutorial
-run preprocess -DFORMAT=rst  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=rst  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.rst
 + rst2xml.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
-tutorial.rst:855: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+tutorial.rst:890: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2odt.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
 + rst2html.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
-tutorial.rst:855: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+tutorial.rst:890: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2latex.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
-tutorial.rst:855: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+tutorial.rst:890: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + latex tutorial.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
 entering extended mode
@@ -48166,136 +49011,154 @@ Overfull \hbox (59.00006pt too wide) in paragraph at lines 646--649
 
 Overfull \hbox (35.00006pt too wide) in paragraph at lines 700--703
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd 
-[7]
-Overfull \hbox (125.00006pt too wide) in paragraph at lines 718--718
-[]\T1/pcr/m/n/10 Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid 
-ams math  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 719--721
+Overfull \hbox (11.29898pt too wide) in paragraph at lines 711--718
+\T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
+cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
+m/n/10 ,
+[7]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 721--723
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
-Overfull \hbox (11.278pt too wide) in paragraph at lines 745--748
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 739--741
+[]\T1/pcr/m/n/10 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd 
+
+
+Overfull \hbox (11.278pt too wide) in paragraph at lines 763--766
 []\T1/pcr/m/n/10 ptex2tex\T1/ptm/m/n/10 : 
 
 LaTeX Warning: Hyper reference `macros-newcommands-cross-references-index-and-b
-ibliography' on page 8 undefined on input line 757.
+ibliography' on page 8 undefined on input line 775.
 
 
-Overfull \hbox (78.51936pt too wide) in paragraph at lines 755--760
+Overfull \hbox (78.51936pt too wide) in paragraph at lines 773--778
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
 
-Overfull \hbox (2.10667pt too wide) in paragraph at lines 755--760
+Overfull \hbox (2.10667pt too wide) in paragraph at lines 773--778
 \T1/ptm/m/n/10 (see the sec-tion [][][][][][]).
-
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 790--793
+[8]
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 808--811
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc 
 
-Overfull \hbox (5.00006pt too wide) in paragraph at lines 797--800
+Overfull \hbox (5.00006pt too wide) in paragraph at lines 815--818
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc 
-[8]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 819--820
+
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 832--833
+\T1/pcr/m/n/10 Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED 
+\  
+
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 834--834
+[]          \T1/pcr/m/n/10 cycod=\begin{quote}\begin{python};\end{python}\end{q
+uote} \  
+
+Overfull \hbox (18.03822pt too wide) in paragraph at lines 839--847
+\T1/ptm/m/n/10 plies \T1/pcr/m/n/10 \begin{python}{fortran}\T1/ptm/m/n/10 . The
+re is a sim-i-lar sup-port for \T1/pcr/m/n/10 ans\T1/ptm/m/n/10 : \T1/pcr/m/n/1
+0 cppcod=ans
+
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 857--858
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 821--821
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 859--859
 []\T1/pcr/m/n/10 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 822--824
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 860--862
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
 
-Overfull \hbox (0.57846pt too wide) in paragraph at lines 844--851
+Overfull \hbox (0.57846pt too wide) in paragraph at lines 882--889
 \T1/ptm/m/n/10 needed. This pack-age is in-cluded by run-ning \T1/pcr/m/n/10 do
 conce format \T1/ptm/m/n/10 with the \T1/pcr/m/n/10 -DMINTED
 [9]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 909--912
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 947--950
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 934--935
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 972--973
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 936--936
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 974--974
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 937--937
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 975--975
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 938--940
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 976--978
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-
-Overfull \hbox (13.07689pt too wide) in paragraph at lines 979--980
-[][][][][][][] 
 [10]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 997--998
+Overfull \hbox (13.07689pt too wide) in paragraph at lines 1017--1018
+[][][][][][][] 
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1035--1036
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 999--999
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 1037--1037
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
 
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 1024--1030
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 1062--1068
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
-
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 1063--1066
+[11]
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 1101--1104
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 1067--1070
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 1105--1108
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[11] [12]
-Overfull \hbox (314.9936pt too wide) in paragraph at lines 1178--1184
+[12]
+Overfull \hbox (314.9936pt too wide) in paragraph at lines 1216--1222
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][][],
-
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1217--1228
+[13]
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1255--1266
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[13]
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1272--1272
+
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1310--1310
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1282--1283
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1320--1321
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
-
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1315--1316
+[14]
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1353--1354
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
-[14]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1320--1320
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1358--1358
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 1341--1342
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 1379--1380
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 15 undef
-ined on input line 1350.
+ined on input line 1388.
 
 
-Overfull \hbox (7.2784pt too wide) in paragraph at lines 1348--1351
+Overfull \hbox (7.2784pt too wide) in paragraph at lines 1386--1389
 []\T1/ptm/m/n/10 If you use the minted style, you have to en-able it by run-nin
 g \T1/pcr/m/n/10 ptex2tex -DMINTED
 
-Overfull \hbox (15.00778pt too wide) in paragraph at lines 1348--1351
+Overfull \hbox (15.00778pt too wide) in paragraph at lines 1386--1389
 \T1/ptm/m/n/10 and then \T1/pcr/m/n/10 latex -shell-escape\T1/ptm/m/n/10 , see 
 the the sec-tion [][][][][][]. 
 
-Overfull \hbox (185.00006pt too wide) in paragraph at lines 1356--1357
+Overfull \hbox (185.00006pt too wide) in paragraph at lines 1394--1395
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
 s/trunk/docutils  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1366--1369
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1404--1407
 []\T1/pcr/m/n/10 sudo apt-get install unovonv libreoffice libreoffice-dmaths 
-
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 1401--1402
+[15]
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 1439--1440
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
-[15]
-Overfull \hbox (134.56776pt too wide) in paragraph at lines 1445--1445
+
+Overfull \hbox (134.56776pt too wide) in paragraph at lines 1483--1483
 [][][][][][] 
 [16] (./tutorial.rst.aux)
 
@@ -48306,36 +49169,40 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.rst.dvi (16 pages, 77460 bytes).
+Output written on tutorial.rst.dvi (16 pages, 79660 bytes).
 Transcript written on tutorial.rst.log.
 + dvipdf tutorial.rst.dvi
 + doconce format plain tutorial.do.txt
-run preprocess -DFORMAT=plain  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=plain  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.txt
 + doconce format gwiki tutorial.do.txt
-run preprocess -DFORMAT=gwiki  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=gwiki  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.gwiki
 + doconce format cwiki tutorial.do.txt
-run preprocess -DFORMAT=cwiki  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=cwiki  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.cwiki
 + doconce format mwiki tutorial.do.txt
-run preprocess -DFORMAT=mwiki  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=mwiki  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.mwiki
 + doconce format st tutorial.do.txt
-run preprocess -DFORMAT=st  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=st  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.st
 + doconce format epytext tutorial.do.txt
-run preprocess -DFORMAT=epytext  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=epytext  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.epytext
 + doconce format pandoc tutorial.do.txt
-run preprocess -DFORMAT=pandoc  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=pandoc  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
+Warning: latex envir \begin{eqnarray} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{quote} does not work well
+         pandoc extended markdown syntax handles only single equations
 output in tutorial.mkd
 + a2ps_plain=a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer=''
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.do.ps tutorial.do.txt
@@ -48349,34 +49216,34 @@ output in tutorial.mkd
 [18 lines wrapped]
 + ps2pdf tutorial.epytext.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.txt.ps tutorial.txt
-[tutorial.txt (plain): 18 pages on 18 sheets]
-[Total: 18 pages on 18 sheets] saved into the file `tutorial.txt.ps'
+[tutorial.txt (plain): 19 pages on 19 sheets]
+[Total: 19 pages on 19 sheets] saved into the file `tutorial.txt.ps'
 [14 lines wrapped]
 + ps2pdf tutorial.txt.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.gwiki.ps tutorial.gwiki
-[tutorial.gwiki (plain): 16 pages on 16 sheets]
-[Total: 16 pages on 16 sheets] saved into the file `tutorial.gwiki.ps'
+[tutorial.gwiki (plain): 17 pages on 17 sheets]
+[Total: 17 pages on 17 sheets] saved into the file `tutorial.gwiki.ps'
 [72 lines wrapped]
 + ps2pdf tutorial.gwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.cwiki.ps tutorial.cwiki
 [tutorial.cwiki (plain): 17 pages on 17 sheets]
 [Total: 17 pages on 17 sheets] saved into the file `tutorial.cwiki.ps'
-[81 lines wrapped]
+[83 lines wrapped]
 + ps2pdf tutorial.cwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mwiki.ps tutorial.mwiki
-[tutorial.mwiki (plain): 17 pages on 17 sheets]
-[Total: 17 pages on 17 sheets] saved into the file `tutorial.mwiki.ps'
-[150 lines wrapped]
+[tutorial.mwiki (plain): 18 pages on 18 sheets]
+[Total: 18 pages on 18 sheets] saved into the file `tutorial.mwiki.ps'
+[161 lines wrapped]
 + ps2pdf tutorial.mwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mkd.ps tutorial.mkd
-[tutorial.mkd (plain): 19 pages on 19 sheets]
-[Total: 19 pages on 19 sheets] saved into the file `tutorial.mkd.ps'
+[tutorial.mkd (plain): 20 pages on 20 sheets]
+[Total: 20 pages on 20 sheets] saved into the file `tutorial.mkd.ps'
 [9 lines wrapped]
 + ps2pdf tutorial.mkd.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
-[tutorial.xml (plain): 16 pages on 16 sheets]
-[Total: 16 pages on 16 sheets] saved into the file `tutorial.xml.ps'
-[452 lines wrapped]
+[tutorial.xml (plain): 17 pages on 17 sheets]
+[Total: 17 pages on 17 sheets] saved into the file `tutorial.xml.ps'
+[468 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.mkd.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.mkd.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -48398,21 +49265,21 @@ Go to the demo directory and load index.html into a web browser.
 Removing in /home/hpl/vc/doconce/doc/manual:
 + d2f=doconce format
 + doconce format html manual.do.txt
-run preprocess -DFORMAT=html  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=html  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format html
 output in manual.html
 + doconce format sphinx manual.do.txt
-run preprocess -DFORMAT=sphinx  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=sphinx  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
@@ -48422,11 +49289,11 @@ Warning:
 Not recommended for sphinx output: math environment beqa
 (use equation, \[ \], or align/align*)
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format sphinx
 output in manual.rst
 + rm -rf sphinx-rootdir
@@ -48511,8 +49378,8 @@ updating environment: 2 added, 0 changed, 0 removed
 reading sources... [ 50%] index
 reading sources... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1093: SEVERE: Duplicate ID: "equation-myeq1".
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:809: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1130: SEVERE: Duplicate ID: "equation-myeq1".
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:846: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -48520,8 +49387,8 @@ preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1483: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1483: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1520: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1520: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
 writing additional files... (0 module code pages) genindex search
 copying images... [ 33%] figs/wavepacket_0001.png
 copying images... [ 66%] figs/wavepacket_0010.png
@@ -48682,22 +49549,22 @@ Chapter 3.
 [9]
 
 LaTeX Warning: Hyper reference `manual:newcommands' on page 10 undefined on inp
-ut line 518.
+ut line 535.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 516--521
+Underfull \hbox (badness 10000) in paragraph at lines 533--538
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 516--521
+Underfull \hbox (badness 5359) in paragraph at lines 533--538
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[10] [11] [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 881--885
+[10] [11] [12] [13] [14]
+Underfull \hbox (badness 10000) in paragraph at lines 917--921
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
-[14] [15] [16]
+[15] [16]
 Chapter 4.
 [17] [18] [19] [20]
 Chapter 5.
@@ -48705,54 +49572,54 @@ Chapter 5.
 <use streamtubes.png> [21] [22 <./streamtubes.png>]
 
 LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 23 undefine
-d on input line 1259.
+d on input line 1295.
 
 [23]
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 24 undefined on
- input line 1381.
+ input line 1417.
 
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 24 undefined on
- input line 1385.
+ input line 1421.
 
 
 LaTeX Warning: Hyper reference `manual:inline-tagging' on page 24 undefined on 
-input line 1416.
+input line 1452.
 
 [24]
 
 LaTeX Warning: Hyper reference `manual:fig-viz' on page 25 undefined on input l
-ine 1471.
+ine 1507.
 
 
 LaTeX Warning: Hyper reference `manual:mathtext' on page 25 undefined on input 
-line 1473.
+line 1509.
 
 
 LaTeX Warning: Hyper reference `manual:newcommands' on page 25 undefined on inp
-ut line 1473.
+ut line 1509.
 
 
 LaTeX Warning: Hyper reference `manual:inline-tagging' on page 25 undefined on 
-input line 1480.
+input line 1516.
 
 [25]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 26 undefined o
-n input line 1570.
+n input line 1606.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 26 undefined on input 
-line 1570.
+line 1606.
 
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 26 undefined o
-n input line 1571.
+n input line 1607.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 26 undefined on input 
-line 1571.
+line 1607.
 
 [26] [27] [28] [29]
 ! FancyVerb Error:
@@ -48762,30 +49629,30 @@ line 1571.
 \space \space #1
 }
                                                   
-l.1891 \end{Verbatim}
+l.1927 \end{Verbatim}
                      
 ? OK, entering \nonstopmode...
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1897.
+(amsmath)                 on input line 1933.
 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.1897 \end{gather}
+l.1933 \end{gather}
                    
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.1897 \end{gather}
+l.1933 \end{gather}
                    
 [30]
-Underfull \hbox (badness 10000) in paragraph at lines 1931--1937
+Underfull \hbox (badness 10000) in paragraph at lines 1967--1973
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax' \T1/ptm/m/n/10 (en-abled by de-fault)
 
-Underfull \hbox (badness 10000) in paragraph at lines 1931--1937
+Underfull \hbox (badness 10000) in paragraph at lines 1967--1973
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 'matplotlib.sphinxext.mathmpl' \T1/ptm/m/n/10
  (dis-abled by de-fault) lines, and un-com-ment the
 [31] <wavepacket_0001.png, id=253, 642.4pt x 481.8pt>
@@ -48794,7 +49661,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1931--1937
 <use wavepacket_0010.png>
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 32 undefined on
- input line 2056.
+ input line 2092.
 
 [32] [33 <./wavepacket_0001.png (PNG copy)>] [34 <./wavepacket_0010.png (PNG co
 py)>] [35] [36]
@@ -48802,7 +49669,7 @@ Chapter 6.
 [37] [38]
 
 LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 39 undefine
-d on input line 2412.
+d on input line 2448.
 
 [39] [40] [41] [42]
 Chapter 7.
@@ -48833,31 +49700,31 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
 mr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (53 pages, 389590 bytes).
+Output written on DoconceManual.pdf (53 pages, 391065 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
 + cd ../../..
 + doconce format rst manual.do.txt
-run preprocess -DFORMAT=rst  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=rst  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format rst
 output in manual.rst
 + rst2html.py manual.rst
-manual.rst:751: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+manual.rst:786: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2xml.py manual.rst
-manual.rst:751: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+manual.rst:786: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2latex.py manual.rst
-manual.rst:751: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+manual.rst:786: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + doconce subst \.png  manual.rst.tex
 \.png replaced by  in manual.rst.tex
 + latex manual.rst.tex
@@ -49000,449 +49867,468 @@ Overfull \hbox (59.00006pt too wide) in paragraph at lines 466--469
 Overfull \hbox (35.00006pt too wide) in paragraph at lines 520--523
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd 
 
-Overfull \hbox (125.00006pt too wide) in paragraph at lines 538--538
-[]\T1/pcr/m/n/10 Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid 
-ams math  
+Overfull \hbox (11.29898pt too wide) in paragraph at lines 531--538
+\T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
+cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
+m/n/10 ,
 [5]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 539--541
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 541--543
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
-Overfull \hbox (11.278pt too wide) in paragraph at lines 565--568
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 559--561
+[]\T1/pcr/m/n/10 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd 
+
+
+Overfull \hbox (11.278pt too wide) in paragraph at lines 583--586
 []\T1/pcr/m/n/10 ptex2tex\T1/ptm/m/n/10 : 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 6 undefined on inpu
-t line 577.
+t line 595.
 
 
-Overfull \hbox (78.51936pt too wide) in paragraph at lines 575--580
+Overfull \hbox (78.51936pt too wide) in paragraph at lines 593--598
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 610--613
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 628--631
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc 
-
-Overfull \hbox (5.00006pt too wide) in paragraph at lines 617--620
+[6]
+Overfull \hbox (5.00006pt too wide) in paragraph at lines 635--638
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 639--640
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 652--653
+\T1/pcr/m/n/10 Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED 
+\  
+
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 654--654
+[]          \T1/pcr/m/n/10 cycod=\begin{quote}\begin{python};\end{python}\end{q
+uote} \  
+
+Overfull \hbox (18.03822pt too wide) in paragraph at lines 659--667
+\T1/ptm/m/n/10 plies \T1/pcr/m/n/10 \begin{python}{fortran}\T1/ptm/m/n/10 . The
+re is a sim-i-lar sup-port for \T1/pcr/m/n/10 ans\T1/ptm/m/n/10 : \T1/pcr/m/n/1
+0 cppcod=ans
+
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 677--678
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
-[6]
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 641--641
+
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 679--679
 []\T1/pcr/m/n/10 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 642--644
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 680--682
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
 
-Overfull \hbox (0.57846pt too wide) in paragraph at lines 664--671
+Overfull \hbox (0.57846pt too wide) in paragraph at lines 702--709
 \T1/ptm/m/n/10 needed. This pack-age is in-cluded by run-ning \T1/pcr/m/n/10 do
 conce format \T1/ptm/m/n/10 with the \T1/pcr/m/n/10 -DMINTED
-
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 729--732
+[7]
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 767--770
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
-[7]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 754--755
+
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 792--793
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 756--756
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 794--794
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 757--757
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 795--795
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 758--760
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 796--798
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-
-Overfull \hbox (13.07689pt too wide) in paragraph at lines 799--800
+[8]
+Overfull \hbox (13.07689pt too wide) in paragraph at lines 837--838
 [][][][][][][] 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 817--818
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 855--856
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 819--819
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 857--857
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
-[8]
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 844--850
+
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 882--888
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
-
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 883--886
+[9]
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 921--924
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 887--890
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 925--928
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[9] [10]
-Overfull \hbox (314.9936pt too wide) in paragraph at lines 998--1004
+[10]
+Overfull \hbox (314.9936pt too wide) in paragraph at lines 1036--1042
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][][],
-
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1037--1048
+[11]
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1075--1086
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[11] [12]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 1183--1188
+[12]
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 1221--1226
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1213--1216
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1251--1254
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
-
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1224--1227
+[13]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1262--1265
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1235--1235
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1273--1273
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1236--1236
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1274--1274
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1253--1253
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1291--1291
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
-[13]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1295--1296
-\T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1341--1344
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1333--1334
+\T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
+[14]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1379--1382
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
-[14] <figs/streamtubes.eps>
-Overfull \hbox (2.15817pt too wide) in paragraph at lines 1368--1371
+<figs/streamtubes.eps> [15]
+Overfull \hbox (2.15817pt too wide) in paragraph at lines 1406--1409
 []\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
 1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1371--1372
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1409--1410
 \T1/pcr/m/n/10 montage file1 file2 ... file4 -geometry +2+2  result  
-[15]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1397--1400
-[]\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1425--1428
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1435--1438
+[]\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
+[16]
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1463--1466
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1430--1434
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1468--1472
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1435--1441
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1473--1479
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 16 un
-defined on input line 1453.
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 17 un
+defined on input line 1491.
 
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1451--1454
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1489--1492
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1479--1482
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1517--1520
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
-[16]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1492--1494
-[]\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1513--1516
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1530--1532
+[]\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
+[17]
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1551--1554
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1536--1537
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1574--1575
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
-Overfull \hbox (1.1292pt too wide) in paragraph at lines 1542--1545
+Overfull \hbox (1.1292pt too wide) in paragraph at lines 1580--1583
 []\T1/ptm/m/n/10 Then you can link to \T1/pcr/m/n/10 _static/make.sh.html \T1/p
 tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1545--1548
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1583--1586
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1589--1592
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1627--1630
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 17 undef
-ined on input line 1611.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 18 undef
+ined on input line 1649.
 
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 17 undef
-ined on input line 1615.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 18 undef
+ined on input line 1653.
 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1603--1616
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1641--1654
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
-[17]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1629--1629
+[18]
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1667--1667
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1630--1632
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1668--1670
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-LaTeX Warning: Hyper reference `id5' on page 18 undefined on input line 1653.
+LaTeX Warning: Hyper reference `id5' on page 19 undefined on input line 1691.
 
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1661--1661
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1699--1699
 []\T1/pcr/m/n/10 # Here are some comment lines that do not affect any formattin
 g.  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1662--1662
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1700--1700
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
-[18]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1695--1697
+
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1733--1735
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
+[19]
 
-LaTeX Warning: Hyper reference `fig-viz' on page 19 undefined on input line 171
-3.
-
-
-LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 19 u
-ndefined on input line 1715.
+LaTeX Warning: Hyper reference `fig-viz' on page 20 undefined on input line 175
+1.
 
 
-LaTeX Warning: Hyper reference `macros-newcommands' on page 19 undefined on inp
-ut line 1715.
+LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 20 u
+ndefined on input line 1753.
 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1711--1720
+LaTeX Warning: Hyper reference `macros-newcommands' on page 20 undefined on inp
+ut line 1753.
+
+
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1749--1758
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-LaTeX Warning: Hyper reference `id5' on page 19 undefined on input line 1722.
+LaTeX Warning: Hyper reference `id5' on page 20 undefined on input line 1760.
 
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1721--1723
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1759--1761
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1746--1749
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1784--1787
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1764--1767
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1802--1805
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
-[19]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1795--1795
+[20]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1833--1833
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1796--1796
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1834--1834
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 1820--1822
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 1858--1860
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1823--1826
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1861--1864
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-[20]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1940--1941
-\T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 [21]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2014--2017
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1978--1979
+\T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
+[22]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2052--2055
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[22]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2096--2098
+[23]
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2134--2136
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[23] [24]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2213--2213
+[24]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2251--2251
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2214--2214
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2252--2252
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2223--2223
+[25]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2261--2261
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2224--2224
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2262--2262
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (22.2296pt too wide) in paragraph at lines 2235--2241
+Overfull \hbox (22.2296pt too wide) in paragraph at lines 2273--2279
 \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki") \T1/ptm/m
 /n/10 one places
 
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2268--2274
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2306--2312
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2268--2274
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2306--2312
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2268--2274
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2306--2312
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[25]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2320--2323
+[26]
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2358--2361
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2355--2355
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2393--2393
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2356--2356
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2394--2394
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2372--2384
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2410--2422
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[26] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [27]
+[27] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [28]
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 28 undef
-ined on input line 2414.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 29 undef
+ined on input line 2452.
 
-[28]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2462--2462
-[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [29]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2541--2543
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2500--2500
+[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
+[30]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2579--2581
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2603--2605
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2641--2643
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[30]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2725--2728
-[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 [31]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 2742--2745
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2763--2766
+[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
+[32]
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 2780--2783
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2749--2752
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2787--2790
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2788--2789
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2826--2827
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2791--2793
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2829--2831
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[32]
+[33]
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 33 un
-defined on input line 2932.
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 34 un
+defined on input line 2970.
 
-[33] [34]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3090--3091
+[34] [35]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3128--3129
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3092--3092
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3130--3130
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3095--3095
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3133--3133
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[35]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3253--3256
+[36]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3291--3294
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[36]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3294--3295
+[37]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3332--3333
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3296--3296
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3334--3334
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3297--3297
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3335--3335
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3300--3300
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3338--3338
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3301--3301
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3339--3339
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3302--3302
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3340--3340
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3303--3303
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3341--3341
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 3308--3308
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 3346--3346
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3309--3309
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3347--3347
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3310--3310
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3348--3348
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 3313--3313
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 3351--3351
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 3316--3316
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 3354--3354
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 3318--3318
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 3356--3356
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3321--3321
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3359--3359
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3328--3328
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3366--3366
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3330--3330
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3368--3368
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3332--3332
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3370--3370
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3335--3335
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3373--3373
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
-[37]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3341--3341
+[38]
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3379--3379
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3382--3382
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3420--3420
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3384--3384
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3422--3422
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3385--3385
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3423--3423
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3386--3386
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3424--3424
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3387--3387
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3425--3425
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 
-Overfull \hbox (134.56776pt too wide) in paragraph at lines 3437--3437
+Overfull \hbox (134.56776pt too wide) in paragraph at lines 3475--3475
 [][][][][][] 
-[38] [39] [40] (./manual.rst.aux)
+[39] [40] [41] (./manual.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -49451,7 +50337,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (40 pages, 175116 bytes).
+Output written on manual.rst.dvi (41 pages, 177960 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -49585,469 +50471,495 @@ Overfull \hbox (59.00006pt too wide) in paragraph at lines 466--469
 Overfull \hbox (35.00006pt too wide) in paragraph at lines 520--523
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd 
 
-Overfull \hbox (125.00006pt too wide) in paragraph at lines 538--538
-[]\T1/pcr/m/n/10 Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid 
-ams math  
+Overfull \hbox (11.29898pt too wide) in paragraph at lines 531--538
+\T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
+cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
+m/n/10 ,
 [5]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 539--541
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 541--543
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
-Overfull \hbox (11.278pt too wide) in paragraph at lines 565--568
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 559--561
+[]\T1/pcr/m/n/10 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd 
+
+
+Overfull \hbox (11.278pt too wide) in paragraph at lines 583--586
 []\T1/pcr/m/n/10 ptex2tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (78.51936pt too wide) in paragraph at lines 575--580
+Overfull \hbox (78.51936pt too wide) in paragraph at lines 593--598
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 610--613
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 628--631
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc 
-
-Overfull \hbox (5.00006pt too wide) in paragraph at lines 617--620
+[6]
+Overfull \hbox (5.00006pt too wide) in paragraph at lines 635--638
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 639--640
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 652--653
+\T1/pcr/m/n/10 Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED 
+\  
+
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 654--654
+[]          \T1/pcr/m/n/10 cycod=\begin{quote}\begin{python};\end{python}\end{q
+uote} \  
+
+Overfull \hbox (18.03822pt too wide) in paragraph at lines 659--667
+\T1/ptm/m/n/10 plies \T1/pcr/m/n/10 \begin{python}{fortran}\T1/ptm/m/n/10 . The
+re is a sim-i-lar sup-port for \T1/pcr/m/n/10 ans\T1/ptm/m/n/10 : \T1/pcr/m/n/1
+0 cppcod=ans
+
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 677--678
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
-[6]
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 641--641
+
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 679--679
 []\T1/pcr/m/n/10 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 642--644
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 680--682
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
 
-Overfull \hbox (0.57846pt too wide) in paragraph at lines 664--671
+Overfull \hbox (0.57846pt too wide) in paragraph at lines 702--709
 \T1/ptm/m/n/10 needed. This pack-age is in-cluded by run-ning \T1/pcr/m/n/10 do
 conce format \T1/ptm/m/n/10 with the \T1/pcr/m/n/10 -DMINTED
-
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 729--732
+[7]
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 767--770
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
-[7]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 754--755
+
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 792--793
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 756--756
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 794--794
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 757--757
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 795--795
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 758--760
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 796--798
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-
-Overfull \hbox (13.07689pt too wide) in paragraph at lines 799--800
+[8]
+Overfull \hbox (13.07689pt too wide) in paragraph at lines 837--838
 [][][][][][][] 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 817--818
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 855--856
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 819--819
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 857--857
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
-[8]
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 844--850
+
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 882--888
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
-
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 883--886
+[9]
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 921--924
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 887--890
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 925--928
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[9] [10]
-Overfull \hbox (314.9936pt too wide) in paragraph at lines 998--1004
+[10]
+Overfull \hbox (314.9936pt too wide) in paragraph at lines 1036--1042
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][][],
-
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1037--1048
+[11]
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1075--1086
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[11] [12]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 1183--1188
+[12]
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 1221--1226
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1213--1216
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1251--1254
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
-
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1224--1227
+[13]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1262--1265
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1235--1235
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1273--1273
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1236--1236
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1274--1274
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1253--1253
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1291--1291
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
-[13]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1295--1296
-\T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1341--1344
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1333--1334
+\T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
+[14]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1379--1382
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
-[14] <figs/streamtubes.eps>
-Overfull \hbox (2.15817pt too wide) in paragraph at lines 1368--1371
+<figs/streamtubes.eps> [15]
+Overfull \hbox (2.15817pt too wide) in paragraph at lines 1406--1409
 []\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
 1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1371--1372
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1409--1410
 \T1/pcr/m/n/10 montage file1 file2 ... file4 -geometry +2+2  result  
-[15]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1397--1400
-[]\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1425--1428
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1435--1438
+[]\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
+[16]
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1463--1466
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1430--1434
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1468--1472
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1435--1441
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1473--1479
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1451--1454
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1489--1492
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1479--1482
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1517--1520
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
-[16]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1492--1494
-[]\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1513--1516
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1530--1532
+[]\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
+[17]
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1551--1554
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1536--1537
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1574--1575
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
-Overfull \hbox (1.1292pt too wide) in paragraph at lines 1542--1545
+Overfull \hbox (1.1292pt too wide) in paragraph at lines 1580--1583
 []\T1/ptm/m/n/10 Then you can link to \T1/pcr/m/n/10 _static/make.sh.html \T1/p
 tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1545--1548
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1583--1586
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1589--1592
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1627--1630
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1603--1616
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1641--1654
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
-[17]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1629--1629
+[18]
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1667--1667
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1630--1632
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1668--1670
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1661--1661
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1699--1699
 []\T1/pcr/m/n/10 # Here are some comment lines that do not affect any formattin
 g.  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1662--1662
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1700--1700
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
-[18]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1695--1697
+
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1733--1735
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
-
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1711--1720
+[19]
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1749--1758
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1721--1723
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1759--1761
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1746--1749
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1784--1787
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1764--1767
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1802--1805
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
-[19]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1795--1795
+[20]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1833--1833
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1796--1796
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1834--1834
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 1820--1822
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 1858--1860
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1823--1826
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1861--1864
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-[20]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1940--1941
-\T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 [21]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2014--2017
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1978--1979
+\T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
+[22]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2052--2055
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[22]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2096--2098
+[23]
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2134--2136
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[23] [24]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2213--2213
+[24]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2251--2251
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2214--2214
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2252--2252
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2223--2223
+[25]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2261--2261
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2224--2224
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2262--2262
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (22.2296pt too wide) in paragraph at lines 2235--2241
+Overfull \hbox (22.2296pt too wide) in paragraph at lines 2273--2279
 \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki") \T1/ptm/m
 /n/10 one places
 
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2268--2274
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2306--2312
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2268--2274
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2306--2312
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2268--2274
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2306--2312
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[25]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2320--2323
+[26]
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2358--2361
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2355--2355
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2393--2393
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2356--2356
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2394--2394
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2372--2384
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2410--2422
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[26] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [27] [28]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2462--2462
+[27] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [28] [29]
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2500--2500
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[29]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2541--2543
+[30]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2579--2581
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2603--2605
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2641--2643
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[30]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2725--2728
-[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 [31]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 2742--2745
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2763--2766
+[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
+[32]
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 2780--2783
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2749--2752
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2787--2790
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2788--2789
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2826--2827
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2791--2793
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2829--2831
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[32] [33] [34]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3090--3091
+[33] [34] [35]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3128--3129
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3092--3092
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3130--3130
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3095--3095
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3133--3133
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[35]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3253--3256
+[36]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3291--3294
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[36]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3294--3295
+[37]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3332--3333
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3296--3296
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3334--3334
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3297--3297
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3335--3335
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3300--3300
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3338--3338
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3301--3301
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3339--3339
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3302--3302
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3340--3340
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3303--3303
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3341--3341
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 3308--3308
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 3346--3346
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3309--3309
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3347--3347
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3310--3310
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3348--3348
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 3313--3313
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 3351--3351
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 3316--3316
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 3354--3354
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 3318--3318
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 3356--3356
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3321--3321
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3359--3359
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3328--3328
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3366--3366
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3330--3330
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3368--3368
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3332--3332
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3370--3370
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3335--3335
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3373--3373
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
-[37]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3341--3341
+[38]
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3379--3379
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3382--3382
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3420--3420
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3384--3384
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3422--3422
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3385--3385
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3423--3423
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3386--3386
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3424--3424
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3387--3387
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3425--3425
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 
-Overfull \hbox (134.56776pt too wide) in paragraph at lines 3437--3437
+Overfull \hbox (134.56776pt too wide) in paragraph at lines 3475--3475
 [][][][][][] 
-[38] [39] [40] (./manual.rst.aux) )
+[39] [40] [41] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (40 pages, 183372 bytes).
+Output written on manual.rst.dvi (41 pages, 186216 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments
-run preprocess -DFORMAT=plain  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=plain  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 output in manual.txt
 + doconce format epytext manual.do.txt
-run preprocess -DFORMAT=epytext  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=epytext  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 output in manual.epytext
 + doconce format st manual.do.txt
-run preprocess -DFORMAT=st  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=st  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 output in manual.st
 + doconce format pandoc manual.do.txt
-run preprocess -DFORMAT=pandoc  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=pandoc  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{eqnarray} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
 output in manual.mkd
 + doconce format pdflatex manual.do.txt
-run preprocess -DFORMAT=pdflatex  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=pdflatex  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format pdflatex
 output in manual.p.tex
 + doconce replace usepackage{ptex2tex usepackage{ptex2tex,subfigure manual.p.tex
@@ -50146,139 +51058,144 @@ No file manual.aux.
 /pdftex/updmap/pdftex.map}] [2] [3]
 
 LaTeX Warning: Reference `doconce2formats' on page 4 undefined on input line 24
-3.
+4.
 
 [4]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [5] [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
+
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-LaTeX Warning: Reference `newcommands' on page 7 undefined on input line 472.
+LaTeX Warning: Reference `newcommands' on page 7 undefined on input line 490.
 
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (22.24706pt too wide) in paragraph at lines 664--665
+Overfull \hbox (22.24706pt too wide) in paragraph at lines 702--703
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
-
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (1.04228pt too wide) in paragraph at lines 849--855
+Overfull \hbox (1.04228pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
 [14] [15] [16] [17] <figs/streamtubes.png, id=145, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [18 <./figs/streamtubes.png>]
+<use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 19 undefined on input li
-ne 1248.
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 20 undefined on input li
+ne 1286.
 
-[19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[20]
+[20] [21]
 
-LaTeX Warning: Reference `doconce2formats' on page 21 undefined on input line 1
-383.
-
-
-LaTeX Warning: Reference `doconce2formats' on page 21 undefined on input line 1
-387.
+LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
+421.
 
 
-LaTeX Warning: Reference `inline:tagging' on page 21 undefined on input line 14
-17.
-
-[21]
-
-LaTeX Warning: Reference `fig:viz' on page 22 undefined on input line 1470.
-
-
-LaTeX Warning: Reference `mathtext' on page 22 undefined on input line 1472.
-
-
-LaTeX Warning: Reference `newcommands' on page 22 undefined on input line 1472.
-
-
-
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
-
-
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
+425.
 
 
 LaTeX Warning: Reference `inline:tagging' on page 22 undefined on input line 14
-79.
+55.
 
-[22] [23]
+[22]
+
+LaTeX Warning: Reference `fig:viz' on page 23 undefined on input line 1508.
+
+
+LaTeX Warning: Reference `mathtext' on page 23 undefined on input line 1510.
+
+
+LaTeX Warning: Reference `newcommands' on page 23 undefined on input line 1510.
+
+
+
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+
+
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+
+
+LaTeX Warning: Reference `inline:tagging' on page 23 undefined on input line 15
+17.
+
+[23]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-570.
+608.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1570.
+LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1608.
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-571.
+609.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1571.
+LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1609.
 
-[24] [25] (./manual.out.pyg) (./manual.out.pyg) [26] (./manual.out.pyg)
-(./manual.out.pyg) [27]
+[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+(./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.png, id=241, 642.4pt x 481.8pt>
+[30] <figs/wavepacket_0001.png, id=238, 642.4pt x 481.8pt>
 <use figs/wavepacket_0001.png>
-<figs/wavepacket_0010.png, id=242, 642.4pt x 481.8pt>
+<figs/wavepacket_0010.png, id=239, 642.4pt x 481.8pt>
 <use figs/wavepacket_0010.png>
 
 LaTeX Warning: Reference `doconce2formats' on page 31 undefined on input line 2
-086.
+124.
 
-[31 <./figs/wavepacket_0001.png (PNG copy)>] [32 <./figs/wavepacket_0010.png (P
-NG copy)>]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2177--2184
+[31] [32 <./figs/wavepacket_0001.png (PNG copy)> <./figs/wavepacket_0010.png (P
+NG copy)>] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2215--2222
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2177--2184
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2215--2222
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36]
+[34] [35] [36] [37]
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 37 undefined on input li
-ne 2409.
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 38 undefined on input li
+ne 2447.
 
-[37] [38] [39] [40] [41]
+[38] [39] [40] [41] [42]
 No file manual.bbl.
 No file manual.ind.
-[42] (./manual.aux)
+[43] (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -50301,7 +51218,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (42 pages, 414791 bytes).
+Output written on manual.pdf (43 pages, 417425 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -50407,89 +51324,94 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1{/var/lib/texmf/fonts/map
 /pdftex/updmap/pdftex.map}] [2] [3] [4]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [5] [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
+
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (22.24706pt too wide) in paragraph at lines 664--665
+Overfull \hbox (22.24706pt too wide) in paragraph at lines 702--703
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
-
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (1.04228pt too wide) in paragraph at lines 849--855
+Overfull \hbox (1.04228pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
 [14] [15] [16] [17] <figs/streamtubes.png, id=311, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [18 <./figs/streamtubes.png>] [19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+<use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[20] [21]
+[20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
-
-
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
-
-[22] [23]
-
-LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-570.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1570.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
 
+[23]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-571.
+608.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1571.
+LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1608.
 
-[24] [25] (./manual.out.pyg) (./manual.out.pyg) [26] (./manual.out.pyg)
-(./manual.out.pyg) [27]
+
+LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
+609.
+
+
+LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1609.
+
+[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+(./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.png, id=401, 642.4pt x 481.8pt>
+[30] <figs/wavepacket_0001.png, id=399, 642.4pt x 481.8pt>
 <use figs/wavepacket_0001.png>
-<figs/wavepacket_0010.png, id=402, 642.4pt x 481.8pt>
-<use figs/wavepacket_0010.png> [31 <./figs/wavepacket_0001.png (PNG copy)>]
-[32 <./figs/wavepacket_0010.png (PNG copy)>]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2177--2184
+<figs/wavepacket_0010.png, id=400, 642.4pt x 481.8pt>
+<use figs/wavepacket_0010.png> [31] [32 <./figs/wavepacket_0001.png (PNG copy)>
+ <./figs/wavepacket_0010.png (PNG copy)>] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2215--2222
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2177--2184
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2215--2222
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36] [37] [38] [39] [40] [41] (./manual.bbl) (./manual.ind
-[42] [43]) (./manual.aux)
+[34] [35] [36] [37] [38] [39] [40] [41] [42] (./manual.bbl) (./manual.ind
+[43] [44]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -50512,7 +51434,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (43 pages, 434900 bytes).
+Output written on manual.pdf (44 pages, 437413 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -50606,74 +51528,79 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1{/var/lib/texmf/fonts/map
 /pdftex/updmap/pdftex.map}] [2] [3] [4]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [5] [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
+
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (22.24706pt too wide) in paragraph at lines 664--665
+Overfull \hbox (22.24706pt too wide) in paragraph at lines 702--703
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
-
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (1.04228pt too wide) in paragraph at lines 849--855
+Overfull \hbox (1.04228pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
 [14] [15] [16] [17] <figs/streamtubes.png, id=311, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [18 <./figs/streamtubes.png>] [19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+<use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[20] [21]
+[20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
 
 
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
 
-[22] [23] [24] [25] (./manual.out.pyg) (./manual.out.pyg) [26]
-(./manual.out.pyg) (./manual.out.pyg) [27]
+[23] [24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27]
+(./manual.out.pyg) (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.png, id=407, 642.4pt x 481.8pt>
+[30] <figs/wavepacket_0001.png, id=405, 642.4pt x 481.8pt>
 <use figs/wavepacket_0001.png>
-<figs/wavepacket_0010.png, id=408, 642.4pt x 481.8pt>
-<use figs/wavepacket_0010.png> [31 <./figs/wavepacket_0001.png (PNG copy)>]
-[32 <./figs/wavepacket_0010.png (PNG copy)>]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2177--2184
+<figs/wavepacket_0010.png, id=406, 642.4pt x 481.8pt>
+<use figs/wavepacket_0010.png> [31] [32 <./figs/wavepacket_0001.png (PNG copy)>
+ <./figs/wavepacket_0010.png (PNG copy)>] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2215--2222
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2177--2184
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2215--2222
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36] [37] [38] [39] [40] [41] (./manual.bbl) (./manual.ind
-[42] [43]) (./manual.aux)
+[34] [35] [36] [37] [38] [39] [40] [41] [42] (./manual.bbl) (./manual.ind
+[43] [44]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -50696,21 +51623,21 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (43 pages, 435616 bytes).
+Output written on manual.pdf (44 pages, 438130 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt
-run preprocess -DFORMAT=latex  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=latex  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.eps for format latex
 output in manual.p.tex
 + doconce replace usepackage{ptex2tex usepackage{ptex2tex,subfigure manual.p.tex
@@ -50813,79 +51740,84 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 166--170
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 433--438
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
+
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
-[7] [8] [9]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 664--665
+[7] [8] [9] [10]
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
 [][][][][][][] 
-[10]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
-[12]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 849--855
+[12] [13]
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[13] [14] [15] [16] [17] <figs/streamtubes.eps> [18]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+[14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[19] [20] [21]
+[20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
 
 
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
 
-[22] [23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1566--1568
+[23]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] (./manual.out.pyg) (./manual.out.pyg) [26] (./manual.out.pyg)
-(./manual.out.pyg) [27]
+[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+(./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2169--2176
+[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2169--2176
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36] [37] [38] [39] [40] [41] (./manual.bbl) (./manual.ind
-[42] [43]) (./manual.aux)
+[34] [35] [36] [37] [38] [39] [40] [41] [42] (./manual.bbl) (./manual.ind
+[43] [44]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -50894,7 +51826,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (43 pages, 195200 bytes).
+Output written on manual.dvi (44 pages, 198480 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -50987,79 +51919,84 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 166--170
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 433--438
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
+
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
-[7] [8] [9]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 664--665
+[7] [8] [9] [10]
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
 [][][][][][][] 
-[10]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
-[12]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 849--855
+[12] [13]
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[13] [14] [15] [16] [17] <figs/streamtubes.eps> [18]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+[14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[19] [20] [21]
+[20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
 
 
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
 
-[22] [23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1566--1568
+[23]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] (./manual.out.pyg) (./manual.out.pyg) [26] (./manual.out.pyg)
-(./manual.out.pyg) [27]
+[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+(./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2169--2176
+[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2169--2176
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36] [37] [38] [39] [40] [41] (./manual.bbl) (./manual.ind
-[42] [43]) (./manual.aux)
+[34] [35] [36] [37] [38] [39] [40] [41] [42] (./manual.bbl) (./manual.ind
+[43] [44]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -51068,7 +52005,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (43 pages, 195200 bytes).
+Output written on manual.dvi (44 pages, 198480 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -51173,79 +52110,84 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 166--170
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 433--438
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
+
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
-[7] [8] [9]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 664--665
+[7] [8] [9] [10]
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
 [][][][][][][] 
-[10]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
-[12]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 849--855
+[12] [13]
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[13] [14] [15] [16] [17] <figs/streamtubes.eps> [18]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+[14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[19] [20] [21]
+[20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
 
 
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
 
-[22] [23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1566--1568
+[23]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] (./manual.out.pyg) (./manual.out.pyg) [26] (./manual.out.pyg)
-(./manual.out.pyg) [27]
+[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+(./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2169--2176
+[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2169--2176
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36] [37] [38] [39] [40] [41] (./manual.bbl) (./manual.ind
-[42] [43]) (./manual.aux)
+[34] [35] [36] [37] [38] [39] [40] [41] [42] (./manual.bbl) (./manual.ind
+[43] [44]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -51254,7 +52196,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (43 pages, 195200 bytes).
+Output written on manual.dvi (44 pages, 198480 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -51347,79 +52289,84 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 166--170
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 433--438
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
+
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
-[7] [8] [9]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 664--665
+[7] [8] [9] [10]
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
 [][][][][][][] 
-[10]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
-[12]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 849--855
+[12] [13]
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[13] [14] [15] [16] [17] <figs/streamtubes.eps> [18]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+[14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[19] [20] [21]
+[20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
 
 
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
 
-[22] [23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1566--1568
+[23]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] (./manual.out.pyg) (./manual.out.pyg) [26] (./manual.out.pyg)
-(./manual.out.pyg) [27]
+[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+(./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2169--2176
+[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2169--2176
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36] [37] [38] [39] [40] [41] (./manual.bbl) (./manual.ind
-[42] [43]) (./manual.aux)
+[34] [35] [36] [37] [38] [39] [40] [41] [42] (./manual.bbl) (./manual.ind
+[43] [44]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -51428,21 +52375,21 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (43 pages, 195200 bytes).
+Output written on manual.dvi (44 pages, 198480 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt
-run preprocess -DFORMAT=gwiki  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=gwiki  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format gwiki
 
 NOTE: Place figs/streamtubes.png at some place on the web and edit the
@@ -51466,31 +52413,31 @@ output in manual.gwiki
 + doconce subst \(the URL of the image file figs/streamtubes.png must be inserted here\) https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png manual.gwiki
 \(the URL of the image file figs/streamtubes.png must be inserted here\) replaced by https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png in manual.gwiki
 + doconce format cwiki manual.do.txt
-run preprocess -DFORMAT=cwiki  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=cwiki  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format cwiki
 output in manual.cwiki
 + doconce format mwiki manual.do.txt
-run preprocess -DFORMAT=mwiki  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=mwiki  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format mwiki
 
 NOTE: Upload image file figs/streamtubes.png to the Wiki* site
@@ -52711,7 +53658,7 @@ list of capabilities:
 <blockquote>    <!-- begin verbatim block   shpro-->
 <pre>
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -52729,7 +53676,9 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 
 doconce remove_inline_comments file.do.txt
 
-doconce sphinx_dir author='Me and you' title='Quick title'     version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3
+doconce sphinx_dir author='Me and you' title='Quick title' \
+    version=0.1 dirname=sphinx-rootdir theme=default \
+    file1 file2 file3
 (requires sphinx version &gt;= 1.1)
 
 doconce latin2html file.html
@@ -52750,8 +53699,9 @@ doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 
 doconce grab --from[-] from-text [--to[-] to-text] somefile
-
 doconce spellcheck -d .dict4spell.txt *.do.txt
+doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+        dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
@@ -52815,7 +53765,8 @@ programming language, very similar to Python.
     
 ************** File: quickref.p.tex *****************
 %%
-%% Automatically generated LaTeX file from Doconce source
+%% Automatically generated ptex2tex (extended LaTeX) file
+%% from Doconce source
 %% http://code.google.com/p/doconce/
 %%
 
@@ -53446,7 +54397,7 @@ list of capabilities:
 
 \bshpro
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -53464,7 +54415,9 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 
 doconce remove_inline_comments file.do.txt
 
-doconce sphinx_dir author='Me and you' title='Quick title'     version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3
+doconce sphinx_dir author='Me and you' title='Quick title' \
+    version=0.1 dirname=sphinx-rootdir theme=default \
+    file1 file2 file3
 (requires sphinx version >= 1.1)
 
 doconce latin2html file.html
@@ -53485,8 +54438,9 @@ doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 
 doconce grab --from[-] from-text [--to[-] to-text] somefile
-
 doconce spellcheck -d .dict4spell.txt *.do.txt
+doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+        dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
@@ -54077,7 +55031,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -54095,7 +55049,9 @@ list of capabilities::
         
         doconce remove_inline_comments file.do.txt
         
-        doconce sphinx_dir author='Me and you' title='Quick title'     version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3
+        doconce sphinx_dir author='Me and you' title='Quick title' \
+            version=0.1 dirname=sphinx-rootdir theme=default \
+            file1 file2 file3
         (requires sphinx version >= 1.1)
         
         doconce latin2html file.html
@@ -54116,8 +55072,9 @@ list of capabilities::
         doconce sphinxfix_local_URLs file.rst
         
         doconce grab --from[-] from-text [--to[-] to-text] somefile
-        
         doconce spellcheck -d .dict4spell.txt *.do.txt
+        doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+                dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
         
         doconce list_labels doconcefile.do.txt | latexfile.tex
         doconce teamod name
@@ -54609,7 +55566,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -54627,7 +55584,9 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 
 doconce remove_inline_comments file.do.txt
 
-doconce sphinx_dir author='Me and you' title='Quick title'     version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3
+doconce sphinx_dir author='Me and you' title='Quick title' \
+    version=0.1 dirname=sphinx-rootdir theme=default \
+    file1 file2 file3
 (requires sphinx version >= 1.1)
 
 doconce latin2html file.html
@@ -54648,8 +55607,9 @@ doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 
 doconce grab --from[-] from-text [--to[-] to-text] somefile
-
 doconce spellcheck -d .dict4spell.txt *.do.txt
+doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+        dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
@@ -55109,7 +56069,7 @@ list of capabilities:
 
 <syntaxhighlight lang="bash">
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -55127,7 +56087,9 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 
 doconce remove_inline_comments file.do.txt
 
-doconce sphinx_dir author='Me and you' title='Quick title'     version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3
+doconce sphinx_dir author='Me and you' title='Quick title' \
+    version=0.1 dirname=sphinx-rootdir theme=default \
+    file1 file2 file3
 (requires sphinx version >= 1.1)
 
 doconce latin2html file.html
@@ -55148,8 +56110,9 @@ doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 
 doconce grab --from[-] from-text [--to[-] to-text] somefile
-
 doconce spellcheck -d .dict4spell.txt *.do.txt
+doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+        dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
@@ -55635,7 +56598,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -55653,7 +56616,9 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 
 doconce remove_inline_comments file.do.txt
 
-doconce sphinx_dir author='Me and you' title='Quick title'     version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3
+doconce sphinx_dir author='Me and you' title='Quick title' \
+    version=0.1 dirname=sphinx-rootdir theme=default \
+    file1 file2 file3
 (requires sphinx version >= 1.1)
 
 doconce latin2html file.html
@@ -55674,8 +56639,9 @@ doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 
 doconce grab --from[-] from-text [--to[-] to-text] somefile
-
 doconce spellcheck -d .dict4spell.txt *.do.txt
+doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+        dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
@@ -56194,7 +57160,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -56212,7 +57178,9 @@ list of capabilities::
         
         doconce remove_inline_comments file.do.txt
         
-        doconce sphinx_dir author='Me and you' title='Quick title'     version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3
+        doconce sphinx_dir author='Me and you' title='Quick title' \
+            version=0.1 dirname=sphinx-rootdir theme=default \
+            file1 file2 file3
         (requires sphinx version >= 1.1)
         
         doconce latin2html file.html
@@ -56233,8 +57201,9 @@ list of capabilities::
         doconce sphinxfix_local_URLs file.rst
         
         doconce grab --from[-] from-text [--to[-] to-text] somefile
-        
         doconce spellcheck -d .dict4spell.txt *.do.txt
+        doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+                dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
         
         doconce list_labels doconcefile.do.txt | latexfile.tex
         doconce teamod name
@@ -56770,7 +57739,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -56788,7 +57757,9 @@ list of capabilities::
         
         doconce remove_inline_comments file.do.txt
         
-        doconce sphinx_dir author='Me and you' title='Quick title'     version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3
+        doconce sphinx_dir author='Me and you' title='Quick title' \
+            version=0.1 dirname=sphinx-rootdir theme=default \
+            file1 file2 file3
         (requires sphinx version >= 1.1)
         
         doconce latin2html file.html
@@ -56809,8 +57780,9 @@ list of capabilities::
         doconce sphinxfix_local_URLs file.rst
         
         doconce grab --from[-] from-text [--to[-] to-text] somefile
-        
         doconce spellcheck -d .dict4spell.txt *.do.txt
+        doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+                dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
         
         doconce list_labels doconcefile.do.txt | latexfile.tex
         doconce teamod name
@@ -57383,7 +58355,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -57401,7 +58373,9 @@ list of capabilities::
         
         doconce remove_inline_comments file.do.txt
         
-        doconce sphinx_dir author='Me and you' title='Quick title'     version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3
+        doconce sphinx_dir author='Me and you' title='Quick title' \
+            version=0.1 dirname=sphinx-rootdir theme=default \
+            file1 file2 file3
         (requires sphinx version >= 1.1)
         
         doconce latin2html file.html
@@ -57422,8 +58396,9 @@ list of capabilities::
         doconce sphinxfix_local_URLs file.rst
         
         doconce grab --from[-] from-text [--to[-] to-text] somefile
-        
         doconce spellcheck -d .dict4spell.txt *.do.txt
+        doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+                dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
         
         doconce list_labels doconcefile.do.txt | latexfile.tex
         doconce teamod name
@@ -57812,25 +58787,21 @@ and
 For example,
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
+$$
 \begin{align*}
 \nabla\cdot u &= 0,\\
 \nabla\times u & 0.
 \end{align*}
-
-
+$$
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 will appear as
-
-
+$$
 \begin{align*}
 \nabla\cdot u &= 0,\\
 \nabla\times u & 0.
 \end{align*}
-
-
+$$
 
 One can use `#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")` to let
 the preprocessor choose a block of mathematics in LaTeX format
@@ -57871,9 +58842,9 @@ Figures and Movies
 Figures and movies have almost equal syntax:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
 
-MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Note the mandatory comma after the figure/movie file.
@@ -57950,7 +58921,7 @@ from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-label{name}
+\label{name}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 with no backslash
@@ -58020,7 +58991,7 @@ list of capabilities:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -58038,7 +59009,9 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 
 doconce remove_inline_comments file.do.txt
 
-doconce sphinx_dir author='Me and you' title='Quick title'     version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3
+doconce sphinx_dir author='Me and you' title='Quick title' \
+    version=0.1 dirname=sphinx-rootdir theme=default \
+    file1 file2 file3
 (requires sphinx version >= 1.1)
 
 doconce latin2html file.html
@@ -58059,8 +59032,9 @@ doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 
 doconce grab --from[-] from-text [--to[-] to-text] somefile
-
 doconce spellcheck -d .dict4spell.txt *.do.txt
+doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+        dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
@@ -58078,7 +59052,7 @@ looks as follows:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
-label{problem:ellipsearea1}
+\label{problem:ellipsearea1}
 file=ellipse_area.pdf
 solution=ellipse_area1_sol.pdf
 
@@ -58125,66 +59099,66 @@ programming language, very similar to Python.
 
 ************** File: /home/hpl/vc/doconce/test/test.output *****************
 + doconce format html testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 output in testdoc.html
 + doconce format latex testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
 output in testdoc.p.tex
 + doconce format pdflatex testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format pdflatex
 output in testdoc.p.tex
 + ptex2tex -DMINTED testdoc
 running preprocessor on testdoc.p.tex...  defines: 'MINTED'  done
 done testdoc.p.tex -> testdoc.tex
 + doconce format plain testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
+found info about 3 exercises, written to .testdoc.exerinfo
 output in testdoc.txt
 + doconce format st testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
+found info about 3 exercises, written to .testdoc.exerinfo
 output in testdoc.st
 + doconce format sphinx testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning:
@@ -58192,13 +59166,13 @@ Not recommended for sphinx output: math environment {eqnarray}
 (use equation, \[ \], or align/align*)
 Not recommended for sphinx output: math environment {multline}
 Not recommended for sphinx output: math environment {gather}
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format sphinx
 
 Warning: the "alignat" environment will give errors in Sphinx:
@@ -58211,47 +59185,49 @@ Warning: the "alignat" environment will give errors in Sphinx:
 output in testdoc.rst
 + mv -f testdoc.rst testdoc.sphinx.rst
 + doconce format rst testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 output in testdoc.rst
 + doconce format epytext testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
+found info about 3 exercises, written to .testdoc.exerinfo
 output in testdoc.epytext
 + doconce format pandoc testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
+found info about 3 exercises, written to .testdoc.exerinfo
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
 output in testdoc.mkd
 + doconce format mwiki testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format mwiki
 
 NOTE: Upload image file ../doc/manual/figs/streamtubes.png to the Wiki* site
@@ -58259,28 +59235,28 @@ NOTE: Upload image file ../doc/manual/figs/streamtubes.png to the Wiki* site
 
 output in testdoc.mwiki
 + doconce format cwiki testdoc.do.txt
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format cwiki
 output in testdoc.cwiki
 + doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string
-run mako on testdoc.do.txt to make __tmp.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
 mako variables: {'MYVAR1': 3, 'MYVAR2': 'a string', 'FORMAT': 'gwiki'}
 translate preprocessed doconce text in __tmp.do.txt
-copy from regex "subroutine" until ""
+copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
-copy after regex "a comment" until "^C\s+END1"
+copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
-Info about 3 exercises written to .testdoc.exerinfo
-Figure file ../doc/manual/figs/streamtubes:
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format gwiki
 
 NOTE: Place ../doc/manual/figs/streamtubes.png at some place on the web and edit the
@@ -58289,6 +59265,34 @@ NOTE: Place ../doc/manual/figs/streamtubes.png at some place on the web and edit
       doconce gwiki_figsubst.py mydoc.gwiki URL
 
 output in testdoc.gwiki
++ doconce format latex testdoc.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
+translate preprocessed doconce text in __tmp.do.txt
+copying from regex "subroutine" until ""
+     file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
+copying after regex "a comment" until "^C\s+END1"
+     file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
+copy complete file ../doc/manual/__testcode.f  (format: fpro)
+found info about 3 exercises, written to .testdoc.exerinfo
+figure file ../doc/manual/figs/streamtubes:
+    can use ../doc/manual/figs/streamtubes.eps for format latex
+output in testdoc.p.tex
++ doconce ptex2tex testdoc -DBOOK -DLATEXHEADING=traditional
++ pandoc -f latex -t markdown -o testdoc.mkd testdoc.tex
++ pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.mkd
++ doconce format pandoc testdoc.do.txt
+running mako on testdoc.do.txt to make __tmp.do.txt
+translate preprocessed doconce text in __tmp.do.txt
+copying from regex "subroutine" until ""
+     file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
+copying after regex "a comment" until "^C\s+END1"
+     file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
+copy complete file ../doc/manual/__testcode.f  (format: fpro)
+found info about 3 exercises, written to .testdoc.exerinfo
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
+output in testdoc.mkd
++ pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.mkd
 + doconce grab --from- ={9} --to subroutine@ testdoc.do.txt
 + doconce grab --from Compute a Probability --to- drawing uniformly testdoc.do.txt
 + doconce grab --from- \*\s+\$.+normally testdoc.do.txt
@@ -58404,16 +59408,16 @@ Normal text.
 replacing # Comment before list by  in tmp2.do.txt
 + doconce format rst tmp2
 translate doconce text in tmp2.do.txt
-Figure file ../doc/manual/figs/streamtubes:
+figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 output in tmp2.rst+ ./clean.sh
 Removing in /home/hpl/vc/doconce/doc/tutorial:
 + doconce format html tutorial
-run preprocess -DFORMAT=html  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=html  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.html
 + doconce format latex tutorial
-run preprocess -DFORMAT=latex  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=latex  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.p.tex
 + ptex2tex -DHELVETICA tutorial
@@ -58498,89 +59502,93 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1]
-Overfull \hbox (8.67865pt too wide) in paragraph at lines 135--139
+Overfull \hbox (8.67865pt too wide) in paragraph at lines 136--140
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
 [2] [3] [4]
 
-LaTeX Warning: Reference `my:first:sec' on page 5 undefined on input line 327.
+LaTeX Warning: Reference `my:first:sec' on page 5 undefined on input line 328.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 5 undefined on input line 33
-2.
+3.
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 369.
+(amsmath)                 on input line 370.
 
 [5]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 450--468
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 451--469
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 450--468
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 451--469
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 450--468
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 451--469
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[6] [7] [8]
-Overfull \hbox (1.85565pt too wide) in paragraph at lines 589--593
+[6] [7]
+Overfull \hbox (79.3756pt too wide) in paragraph at lines 566--574
+\OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
+ doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
+[8]
+Overfull \hbox (1.85565pt too wide) in paragraph at lines 607--611
  \OT1/phv/b/n/10 Step 1.[] \OT1/phv/m/n/10 Fil-ter the do-conce text to a pre-L
 aTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/phv/m/n/10 for []\OT1/cmtt/m/n/10
  ptex2tex\OT1/phv/m/n/10 :
 
-LaTeX Warning: Reference `newcommands' on page 9 undefined on input line 598.
+LaTeX Warning: Reference `newcommands' on page 9 undefined on input line 616.
 
 
-Overfull \hbox (55.19026pt too wide) in paragraph at lines 596--601
+Overfull \hbox (55.19026pt too wide) in paragraph at lines 614--619
 \OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [9] [10] [11] [12]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 790--791
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 828--829
 [][][][][][][] 
-
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 825--831
+[13]
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 863--869
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (0.74806pt too wide) in paragraph at lines 832--851
+Overfull \hbox (0.74806pt too wide) in paragraph at lines 870--889
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
-[13]
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 863--866
+
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 901--904
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [14] [15]
-Overfull \hbox (44.67775pt too wide) in paragraph at lines 975--981
+Overfull \hbox (44.67775pt too wide) in paragraph at lines 1013--1019
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [16]
-Overfull \hbox (21.15628pt too wide) in paragraph at lines 1041--1045
+Overfull \hbox (21.15628pt too wide) in paragraph at lines 1079--1083
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-[17]
+[17] [18]
 
-LaTeX Warning: Reference `doconce2formats' on page 18 undefined on input line 1
-118.
+LaTeX Warning: Reference `doconce2formats' on page 19 undefined on input line 1
+156.
 
 
-Overfull \hbox (0.80836pt too wide) in paragraph at lines 1116--1119
+Overfull \hbox (0.80836pt too wide) in paragraph at lines 1154--1157
 \OT1/phv/m/n/10 If you use the minted style, you have to en-able it by run-ning
  []\OT1/cmtt/m/n/10 ptex2tex -DMINTED
-[18]
-Overfull \hbox (5.04823pt too wide) in paragraph at lines 1167--1172
+
+Overfull \hbox (5.04823pt too wide) in paragraph at lines 1205--1210
 []\OT1/phv/m/n/10 Finally, trans-la-tion to []\OT1/cmtt/m/n/10 pandoc \OT1/phv/
 m/n/10 re-quires the [][][][][][] pro-gram (writ-ten in Haskell)
-
-Overfull \hbox (22.94165pt too wide) in paragraph at lines 1177--1187
+[19]
+Overfull \hbox (22.94165pt too wide) in paragraph at lines 1215--1225
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
 OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
 hv/m/n/10 .
 No file tutorial.ind.
-[19] (./tutorial.aux)
+[20] (./tutorial.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -58589,7 +59597,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (19 pages, 84308 bytes).
+Output written on tutorial.dvi (20 pages, 87424 bytes).
 Transcript written on tutorial.log.
 + latex tutorial.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -58666,80 +59674,84 @@ Writing index file tutorial.idx
 (./tutorial.out) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1]
-Overfull \hbox (8.67865pt too wide) in paragraph at lines 135--139
+Overfull \hbox (8.67865pt too wide) in paragraph at lines 136--140
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
 [2] [3] [4]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 369.
+(amsmath)                 on input line 370.
 
 [5]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 450--468
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 451--469
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 450--468
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 451--469
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 450--468
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 451--469
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[6] [7] [8]
-Overfull \hbox (1.85565pt too wide) in paragraph at lines 589--593
+[6] [7]
+Overfull \hbox (79.3756pt too wide) in paragraph at lines 566--574
+\OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
+ doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
+[8]
+Overfull \hbox (1.85565pt too wide) in paragraph at lines 607--611
  \OT1/phv/b/n/10 Step 1.[] \OT1/phv/m/n/10 Fil-ter the do-conce text to a pre-L
 aTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/phv/m/n/10 for []\OT1/cmtt/m/n/10
  ptex2tex\OT1/phv/m/n/10 :
 
-Overfull \hbox (55.19026pt too wide) in paragraph at lines 596--601
+Overfull \hbox (55.19026pt too wide) in paragraph at lines 614--619
 \OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [9] [10] [11] [12]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 790--791
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 828--829
 [][][][][][][] 
-
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 825--831
+[13]
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 863--869
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (0.74806pt too wide) in paragraph at lines 832--851
+Overfull \hbox (0.74806pt too wide) in paragraph at lines 870--889
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
-[13]
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 863--866
+
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 901--904
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [14] [15]
-Overfull \hbox (44.67775pt too wide) in paragraph at lines 975--981
+Overfull \hbox (44.67775pt too wide) in paragraph at lines 1013--1019
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [16]
-Overfull \hbox (21.15628pt too wide) in paragraph at lines 1041--1045
+Overfull \hbox (21.15628pt too wide) in paragraph at lines 1079--1083
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-[17]
-Overfull \hbox (0.80836pt too wide) in paragraph at lines 1116--1119
+[17] [18]
+Overfull \hbox (0.80836pt too wide) in paragraph at lines 1154--1157
 \OT1/phv/m/n/10 If you use the minted style, you have to en-able it by run-ning
  []\OT1/cmtt/m/n/10 ptex2tex -DMINTED
-[18]
-Overfull \hbox (5.04823pt too wide) in paragraph at lines 1167--1172
+
+Overfull \hbox (5.04823pt too wide) in paragraph at lines 1205--1210
 []\OT1/phv/m/n/10 Finally, trans-la-tion to []\OT1/cmtt/m/n/10 pandoc \OT1/phv/
 m/n/10 re-quires the [][][][][][] pro-gram (writ-ten in Haskell)
-
-Overfull \hbox (22.94165pt too wide) in paragraph at lines 1177--1187
+[19]
+Overfull \hbox (22.94165pt too wide) in paragraph at lines 1215--1225
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
 OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
 hv/m/n/10 .
 No file tutorial.ind.
-[19] (./tutorial.aux) )
+[20] (./tutorial.aux) )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (19 pages, 86980 bytes).
+Output written on tutorial.dvi (20 pages, 90096 bytes).
 Transcript written on tutorial.log.
 + dvipdf tutorial.dvi
 + doconce format sphinx tutorial
-run preprocess -DFORMAT=sphinx  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=sphinx  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning:
@@ -58832,7 +59844,7 @@ reading sources... [ 50%] index
 reading sources... [100%] tutorial
 
 /home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:412: WARNING: Duplicate explicit target name: "sphinx".
-/home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:901: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+/home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:938: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -58998,27 +60010,27 @@ Chapter 4.
 [11]
 
 LaTeX Warning: Hyper reference `tutorial:newcommands' on page 12 undefined on i
-nput line 688.
+nput line 705.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 686--691
+Underfull \hbox (badness 10000) in paragraph at lines 703--708
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 686--691
+Underfull \hbox (badness 5359) in paragraph at lines 703--708
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[12] [13] [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1051--1055
+[12] [13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
-[16] [17]
+[17] [18]
 
-LaTeX Warning: Hyper reference `tutorial:doconce2formats' on page 18 undefined 
-on input line 1195.
+LaTeX Warning: Hyper reference `tutorial:doconce2formats' on page 19 undefined 
+on input line 1231.
 
-[18] [19] [20]
+[19] [20]
 Chapter 5.
 No file DoconceDocumentOnceIncludeAnywhere.ind.
 [21] (./DoconceDocumentOnceIncludeAnywhere.aux)
@@ -59044,7 +60056,7 @@ etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 xlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/u
 rw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 210832 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 212490 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -59168,19 +60180,19 @@ Package amsmath Warning: Foreign command \over;
 [9] [10]
 Chapter 4.
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 686--691
+Underfull \hbox (badness 10000) in paragraph at lines 703--708
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 686--691
+Underfull \hbox (badness 5359) in paragraph at lines 703--708
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[12] [13] [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1051--1055
+[12] [13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
-[16] [17] [18] [19] [20]
+[17] [18] [19] [20]
 Chapter 5.
 No file DoconceDocumentOnceIncludeAnywhere.ind.
 [21] (./DoconceDocumentOnceIncludeAnywhere.aux) )
@@ -59196,7 +60208,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 221943 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -59320,19 +60332,19 @@ Package amsmath Warning: Foreign command \over;
 [9] [10]
 Chapter 4.
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 686--691
+Underfull \hbox (badness 10000) in paragraph at lines 703--708
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 686--691
+Underfull \hbox (badness 5359) in paragraph at lines 703--708
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[12] [13] [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1051--1055
+[12] [13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
-[16] [17] [18] [19] [20]
+[17] [18] [19] [20]
 Chapter 5.
 No file DoconceDocumentOnceIncludeAnywhere.ind.
 [21] (./DoconceDocumentOnceIncludeAnywhere.aux) )
@@ -59348,7 +60360,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 221943 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -59478,19 +60490,19 @@ Package amsmath Warning: Foreign command \over;
 [9] [10]
 Chapter 4.
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 686--691
+Underfull \hbox (badness 10000) in paragraph at lines 703--708
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 686--691
+Underfull \hbox (badness 5359) in paragraph at lines 703--708
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[12] [13] [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1051--1055
+[12] [13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
-[16] [17] [18] [19] [20]
+[17] [18] [19] [20]
 Chapter 5.
 (./DoconceDocumentOnceIncludeAnywhere.ind) [21]
 (./DoconceDocumentOnceIncludeAnywhere.aux) )
@@ -59506,7 +60518,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 221943 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -59630,19 +60642,19 @@ Package amsmath Warning: Foreign command \over;
 [9] [10]
 Chapter 4.
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 686--691
+Underfull \hbox (badness 10000) in paragraph at lines 703--708
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 686--691
+Underfull \hbox (badness 5359) in paragraph at lines 703--708
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[12] [13] [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1051--1055
+[12] [13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
-[16] [17] [18] [19] [20]
+[17] [18] [19] [20]
 Chapter 5.
 (./DoconceDocumentOnceIncludeAnywhere.ind) [21]
 (./DoconceDocumentOnceIncludeAnywhere.aux) )
@@ -59658,26 +60670,26 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 221943 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
 + cd ../../..
 + doconce format rst tutorial
-run preprocess -DFORMAT=rst  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=rst  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.rst
 + rst2xml.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
-tutorial.rst:855: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+tutorial.rst:890: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2odt.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
 + rst2html.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
-tutorial.rst:855: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+tutorial.rst:890: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2latex.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
-tutorial.rst:855: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+tutorial.rst:890: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + latex tutorial.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
 entering extended mode
@@ -59850,136 +60862,154 @@ Overfull \hbox (59.00006pt too wide) in paragraph at lines 646--649
 
 Overfull \hbox (35.00006pt too wide) in paragraph at lines 700--703
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd 
-[7]
-Overfull \hbox (125.00006pt too wide) in paragraph at lines 718--718
-[]\T1/pcr/m/n/10 Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid 
-ams math  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 719--721
+Overfull \hbox (11.29898pt too wide) in paragraph at lines 711--718
+\T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
+cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
+m/n/10 ,
+[7]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 721--723
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
-Overfull \hbox (11.278pt too wide) in paragraph at lines 745--748
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 739--741
+[]\T1/pcr/m/n/10 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd 
+
+
+Overfull \hbox (11.278pt too wide) in paragraph at lines 763--766
 []\T1/pcr/m/n/10 ptex2tex\T1/ptm/m/n/10 : 
 
 LaTeX Warning: Hyper reference `macros-newcommands-cross-references-index-and-b
-ibliography' on page 8 undefined on input line 757.
+ibliography' on page 8 undefined on input line 775.
 
 
-Overfull \hbox (78.51936pt too wide) in paragraph at lines 755--760
+Overfull \hbox (78.51936pt too wide) in paragraph at lines 773--778
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
 
-Overfull \hbox (2.10667pt too wide) in paragraph at lines 755--760
+Overfull \hbox (2.10667pt too wide) in paragraph at lines 773--778
 \T1/ptm/m/n/10 (see the sec-tion [][][][][][]).
-
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 790--793
+[8]
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 808--811
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc 
 
-Overfull \hbox (5.00006pt too wide) in paragraph at lines 797--800
+Overfull \hbox (5.00006pt too wide) in paragraph at lines 815--818
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc 
-[8]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 819--820
+
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 832--833
+\T1/pcr/m/n/10 Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED 
+\  
+
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 834--834
+[]          \T1/pcr/m/n/10 cycod=\begin{quote}\begin{python};\end{python}\end{q
+uote} \  
+
+Overfull \hbox (18.03822pt too wide) in paragraph at lines 839--847
+\T1/ptm/m/n/10 plies \T1/pcr/m/n/10 \begin{python}{fortran}\T1/ptm/m/n/10 . The
+re is a sim-i-lar sup-port for \T1/pcr/m/n/10 ans\T1/ptm/m/n/10 : \T1/pcr/m/n/1
+0 cppcod=ans
+
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 857--858
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 821--821
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 859--859
 []\T1/pcr/m/n/10 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 822--824
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 860--862
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
 
-Overfull \hbox (0.57846pt too wide) in paragraph at lines 844--851
+Overfull \hbox (0.57846pt too wide) in paragraph at lines 882--889
 \T1/ptm/m/n/10 needed. This pack-age is in-cluded by run-ning \T1/pcr/m/n/10 do
 conce format \T1/ptm/m/n/10 with the \T1/pcr/m/n/10 -DMINTED
 [9]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 909--912
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 947--950
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 934--935
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 972--973
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 936--936
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 974--974
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 937--937
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 975--975
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 938--940
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 976--978
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-
-Overfull \hbox (13.07689pt too wide) in paragraph at lines 979--980
-[][][][][][][] 
 [10]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 997--998
+Overfull \hbox (13.07689pt too wide) in paragraph at lines 1017--1018
+[][][][][][][] 
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1035--1036
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 999--999
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 1037--1037
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
 
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 1024--1030
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 1062--1068
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
-
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 1063--1066
+[11]
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 1101--1104
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 1067--1070
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 1105--1108
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[11] [12]
-Overfull \hbox (314.9936pt too wide) in paragraph at lines 1178--1184
+[12]
+Overfull \hbox (314.9936pt too wide) in paragraph at lines 1216--1222
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][][],
-
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1217--1228
+[13]
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1255--1266
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[13]
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1272--1272
+
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1310--1310
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1282--1283
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1320--1321
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
-
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1315--1316
+[14]
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1353--1354
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
-[14]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1320--1320
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1358--1358
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 1341--1342
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 1379--1380
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 15 undef
-ined on input line 1350.
+ined on input line 1388.
 
 
-Overfull \hbox (7.2784pt too wide) in paragraph at lines 1348--1351
+Overfull \hbox (7.2784pt too wide) in paragraph at lines 1386--1389
 []\T1/ptm/m/n/10 If you use the minted style, you have to en-able it by run-nin
 g \T1/pcr/m/n/10 ptex2tex -DMINTED
 
-Overfull \hbox (15.00778pt too wide) in paragraph at lines 1348--1351
+Overfull \hbox (15.00778pt too wide) in paragraph at lines 1386--1389
 \T1/ptm/m/n/10 and then \T1/pcr/m/n/10 latex -shell-escape\T1/ptm/m/n/10 , see 
 the the sec-tion [][][][][][]. 
 
-Overfull \hbox (185.00006pt too wide) in paragraph at lines 1356--1357
+Overfull \hbox (185.00006pt too wide) in paragraph at lines 1394--1395
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
 s/trunk/docutils  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1366--1369
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1404--1407
 []\T1/pcr/m/n/10 sudo apt-get install unovonv libreoffice libreoffice-dmaths 
-
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 1401--1402
+[15]
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 1439--1440
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
-[15]
-Overfull \hbox (134.56776pt too wide) in paragraph at lines 1445--1445
+
+Overfull \hbox (134.56776pt too wide) in paragraph at lines 1483--1483
 [][][][][][] 
 [16] (./tutorial.rst.aux)
 
@@ -59990,36 +61020,40 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.rst.dvi (16 pages, 77460 bytes).
+Output written on tutorial.rst.dvi (16 pages, 79660 bytes).
 Transcript written on tutorial.rst.log.
 + dvipdf tutorial.rst.dvi
 + doconce format plain tutorial.do.txt
-run preprocess -DFORMAT=plain  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=plain  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.txt
 + doconce format gwiki tutorial.do.txt
-run preprocess -DFORMAT=gwiki  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=gwiki  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.gwiki
 + doconce format cwiki tutorial.do.txt
-run preprocess -DFORMAT=cwiki  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=cwiki  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.cwiki
 + doconce format mwiki tutorial.do.txt
-run preprocess -DFORMAT=mwiki  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=mwiki  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.mwiki
 + doconce format st tutorial.do.txt
-run preprocess -DFORMAT=st  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=st  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.st
 + doconce format epytext tutorial.do.txt
-run preprocess -DFORMAT=epytext  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=epytext  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.epytext
 + doconce format pandoc tutorial.do.txt
-run preprocess -DFORMAT=pandoc  tutorial.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=pandoc  tutorial.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
+Warning: latex envir \begin{eqnarray} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{quote} does not work well
+         pandoc extended markdown syntax handles only single equations
 output in tutorial.mkd
 + a2ps_plain=a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer=''
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.do.ps tutorial.do.txt
@@ -60033,34 +61067,34 @@ output in tutorial.mkd
 [18 lines wrapped]
 + ps2pdf tutorial.epytext.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.txt.ps tutorial.txt
-[tutorial.txt (plain): 18 pages on 18 sheets]
-[Total: 18 pages on 18 sheets] saved into the file `tutorial.txt.ps'
+[tutorial.txt (plain): 19 pages on 19 sheets]
+[Total: 19 pages on 19 sheets] saved into the file `tutorial.txt.ps'
 [14 lines wrapped]
 + ps2pdf tutorial.txt.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.gwiki.ps tutorial.gwiki
-[tutorial.gwiki (plain): 16 pages on 16 sheets]
-[Total: 16 pages on 16 sheets] saved into the file `tutorial.gwiki.ps'
+[tutorial.gwiki (plain): 17 pages on 17 sheets]
+[Total: 17 pages on 17 sheets] saved into the file `tutorial.gwiki.ps'
 [72 lines wrapped]
 + ps2pdf tutorial.gwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.cwiki.ps tutorial.cwiki
 [tutorial.cwiki (plain): 17 pages on 17 sheets]
 [Total: 17 pages on 17 sheets] saved into the file `tutorial.cwiki.ps'
-[81 lines wrapped]
+[83 lines wrapped]
 + ps2pdf tutorial.cwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mwiki.ps tutorial.mwiki
-[tutorial.mwiki (plain): 17 pages on 17 sheets]
-[Total: 17 pages on 17 sheets] saved into the file `tutorial.mwiki.ps'
-[150 lines wrapped]
+[tutorial.mwiki (plain): 18 pages on 18 sheets]
+[Total: 18 pages on 18 sheets] saved into the file `tutorial.mwiki.ps'
+[161 lines wrapped]
 + ps2pdf tutorial.mwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mkd.ps tutorial.mkd
-[tutorial.mkd (plain): 19 pages on 19 sheets]
-[Total: 19 pages on 19 sheets] saved into the file `tutorial.mkd.ps'
+[tutorial.mkd (plain): 20 pages on 20 sheets]
+[Total: 20 pages on 20 sheets] saved into the file `tutorial.mkd.ps'
 [9 lines wrapped]
 + ps2pdf tutorial.mkd.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
-[tutorial.xml (plain): 16 pages on 16 sheets]
-[Total: 16 pages on 16 sheets] saved into the file `tutorial.xml.ps'
-[452 lines wrapped]
+[tutorial.xml (plain): 17 pages on 17 sheets]
+[Total: 17 pages on 17 sheets] saved into the file `tutorial.xml.ps'
+[468 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.mkd.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.mkd.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -60082,21 +61116,21 @@ Go to the demo directory and load index.html into a web browser.
 Removing in /home/hpl/vc/doconce/doc/manual:
 + d2f=doconce format
 + doconce format html manual.do.txt
-run preprocess -DFORMAT=html  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=html  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format html
 output in manual.html
 + doconce format sphinx manual.do.txt
-run preprocess -DFORMAT=sphinx  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=sphinx  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
@@ -60106,11 +61140,11 @@ Warning:
 Not recommended for sphinx output: math environment beqa
 (use equation, \[ \], or align/align*)
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format sphinx
 output in manual.rst
 + rm -rf sphinx-rootdir
@@ -60195,8 +61229,8 @@ updating environment: 2 added, 0 changed, 0 removed
 reading sources... [ 50%] index
 reading sources... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1093: SEVERE: Duplicate ID: "equation-myeq1".
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:809: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1130: SEVERE: Duplicate ID: "equation-myeq1".
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:846: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -60204,8 +61238,8 @@ preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1483: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1483: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1520: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1520: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
 writing additional files... (0 module code pages) genindex search
 copying images... [ 33%] figs/wavepacket_0001.png
 copying images... [ 66%] figs/wavepacket_0010.png
@@ -60366,22 +61400,22 @@ Chapter 3.
 [9]
 
 LaTeX Warning: Hyper reference `manual:newcommands' on page 10 undefined on inp
-ut line 518.
+ut line 535.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 516--521
+Underfull \hbox (badness 10000) in paragraph at lines 533--538
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
 
-Underfull \hbox (badness 5359) in paragraph at lines 516--521
+Underfull \hbox (badness 5359) in paragraph at lines 533--538
 \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
-[10] [11] [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 881--885
+[10] [11] [12] [13] [14]
+Underfull \hbox (badness 10000) in paragraph at lines 917--921
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
-[14] [15] [16]
+[15] [16]
 Chapter 4.
 [17] [18] [19] [20]
 Chapter 5.
@@ -60389,54 +61423,54 @@ Chapter 5.
 <use streamtubes.png> [21] [22 <./streamtubes.png>]
 
 LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 23 undefine
-d on input line 1259.
+d on input line 1295.
 
 [23]
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 24 undefined on
- input line 1381.
+ input line 1417.
 
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 24 undefined on
- input line 1385.
+ input line 1421.
 
 
 LaTeX Warning: Hyper reference `manual:inline-tagging' on page 24 undefined on 
-input line 1416.
+input line 1452.
 
 [24]
 
 LaTeX Warning: Hyper reference `manual:fig-viz' on page 25 undefined on input l
-ine 1471.
+ine 1507.
 
 
 LaTeX Warning: Hyper reference `manual:mathtext' on page 25 undefined on input 
-line 1473.
+line 1509.
 
 
 LaTeX Warning: Hyper reference `manual:newcommands' on page 25 undefined on inp
-ut line 1473.
+ut line 1509.
 
 
 LaTeX Warning: Hyper reference `manual:inline-tagging' on page 25 undefined on 
-input line 1480.
+input line 1516.
 
 [25]
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 26 undefined o
-n input line 1570.
+n input line 1606.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 26 undefined on input 
-line 1570.
+line 1606.
 
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 26 undefined o
-n input line 1571.
+n input line 1607.
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 26 undefined on input 
-line 1571.
+line 1607.
 
 [26] [27] [28] [29]
 ! FancyVerb Error:
@@ -60446,30 +61480,30 @@ line 1571.
 \space \space #1
 }
                                                   
-l.1891 \end{Verbatim}
+l.1927 \end{Verbatim}
                      
 ? OK, entering \nonstopmode...
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1897.
+(amsmath)                 on input line 1933.
 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.1897 \end{gather}
+l.1933 \end{gather}
                    
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.1897 \end{gather}
+l.1933 \end{gather}
                    
 [30]
-Underfull \hbox (badness 10000) in paragraph at lines 1931--1937
+Underfull \hbox (badness 10000) in paragraph at lines 1967--1973
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax' \T1/ptm/m/n/10 (en-abled by de-fault)
 
-Underfull \hbox (badness 10000) in paragraph at lines 1931--1937
+Underfull \hbox (badness 10000) in paragraph at lines 1967--1973
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 'matplotlib.sphinxext.mathmpl' \T1/ptm/m/n/10
  (dis-abled by de-fault) lines, and un-com-ment the
 [31] <wavepacket_0001.png, id=253, 642.4pt x 481.8pt>
@@ -60478,7 +61512,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1931--1937
 <use wavepacket_0010.png>
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 32 undefined on
- input line 2056.
+ input line 2092.
 
 [32] [33 <./wavepacket_0001.png (PNG copy)>] [34 <./wavepacket_0010.png (PNG co
 py)>] [35] [36]
@@ -60486,7 +61520,7 @@ Chapter 6.
 [37] [38]
 
 LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 39 undefine
-d on input line 2412.
+d on input line 2448.
 
 [39] [40] [41] [42]
 Chapter 7.
@@ -60517,31 +61551,31 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
 mr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (53 pages, 389590 bytes).
+Output written on DoconceManual.pdf (53 pages, 391065 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
 + cd ../../..
 + doconce format rst manual.do.txt
-run preprocess -DFORMAT=rst  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=rst  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format rst
 output in manual.rst
 + rst2html.py manual.rst
-manual.rst:751: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+manual.rst:786: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2xml.py manual.rst
-manual.rst:751: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+manual.rst:786: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2latex.py manual.rst
-manual.rst:751: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+manual.rst:786: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + doconce subst \.png  manual.rst.tex
 \.png replaced by  in manual.rst.tex
 + latex manual.rst.tex
@@ -60684,449 +61718,468 @@ Overfull \hbox (59.00006pt too wide) in paragraph at lines 466--469
 Overfull \hbox (35.00006pt too wide) in paragraph at lines 520--523
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd 
 
-Overfull \hbox (125.00006pt too wide) in paragraph at lines 538--538
-[]\T1/pcr/m/n/10 Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid 
-ams math  
+Overfull \hbox (11.29898pt too wide) in paragraph at lines 531--538
+\T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
+cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
+m/n/10 ,
 [5]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 539--541
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 541--543
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
-Overfull \hbox (11.278pt too wide) in paragraph at lines 565--568
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 559--561
+[]\T1/pcr/m/n/10 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd 
+
+
+Overfull \hbox (11.278pt too wide) in paragraph at lines 583--586
 []\T1/pcr/m/n/10 ptex2tex\T1/ptm/m/n/10 : 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 6 undefined on inpu
-t line 577.
+t line 595.
 
 
-Overfull \hbox (78.51936pt too wide) in paragraph at lines 575--580
+Overfull \hbox (78.51936pt too wide) in paragraph at lines 593--598
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 610--613
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 628--631
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc 
-
-Overfull \hbox (5.00006pt too wide) in paragraph at lines 617--620
+[6]
+Overfull \hbox (5.00006pt too wide) in paragraph at lines 635--638
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 639--640
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 652--653
+\T1/pcr/m/n/10 Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED 
+\  
+
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 654--654
+[]          \T1/pcr/m/n/10 cycod=\begin{quote}\begin{python};\end{python}\end{q
+uote} \  
+
+Overfull \hbox (18.03822pt too wide) in paragraph at lines 659--667
+\T1/ptm/m/n/10 plies \T1/pcr/m/n/10 \begin{python}{fortran}\T1/ptm/m/n/10 . The
+re is a sim-i-lar sup-port for \T1/pcr/m/n/10 ans\T1/ptm/m/n/10 : \T1/pcr/m/n/1
+0 cppcod=ans
+
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 677--678
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
-[6]
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 641--641
+
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 679--679
 []\T1/pcr/m/n/10 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 642--644
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 680--682
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
 
-Overfull \hbox (0.57846pt too wide) in paragraph at lines 664--671
+Overfull \hbox (0.57846pt too wide) in paragraph at lines 702--709
 \T1/ptm/m/n/10 needed. This pack-age is in-cluded by run-ning \T1/pcr/m/n/10 do
 conce format \T1/ptm/m/n/10 with the \T1/pcr/m/n/10 -DMINTED
-
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 729--732
+[7]
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 767--770
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
-[7]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 754--755
+
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 792--793
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 756--756
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 794--794
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 757--757
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 795--795
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 758--760
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 796--798
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-
-Overfull \hbox (13.07689pt too wide) in paragraph at lines 799--800
+[8]
+Overfull \hbox (13.07689pt too wide) in paragraph at lines 837--838
 [][][][][][][] 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 817--818
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 855--856
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 819--819
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 857--857
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
-[8]
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 844--850
+
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 882--888
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
-
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 883--886
+[9]
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 921--924
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 887--890
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 925--928
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[9] [10]
-Overfull \hbox (314.9936pt too wide) in paragraph at lines 998--1004
+[10]
+Overfull \hbox (314.9936pt too wide) in paragraph at lines 1036--1042
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][][],
-
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1037--1048
+[11]
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1075--1086
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[11] [12]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 1183--1188
+[12]
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 1221--1226
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1213--1216
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1251--1254
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
-
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1224--1227
+[13]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1262--1265
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1235--1235
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1273--1273
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1236--1236
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1274--1274
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1253--1253
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1291--1291
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
-[13]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1295--1296
-\T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1341--1344
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1333--1334
+\T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
+[14]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1379--1382
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
-[14] <figs/streamtubes.eps>
-Overfull \hbox (2.15817pt too wide) in paragraph at lines 1368--1371
+<figs/streamtubes.eps> [15]
+Overfull \hbox (2.15817pt too wide) in paragraph at lines 1406--1409
 []\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
 1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1371--1372
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1409--1410
 \T1/pcr/m/n/10 montage file1 file2 ... file4 -geometry +2+2  result  
-[15]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1397--1400
-[]\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1425--1428
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1435--1438
+[]\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
+[16]
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1463--1466
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1430--1434
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1468--1472
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1435--1441
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1473--1479
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 16 un
-defined on input line 1453.
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 17 un
+defined on input line 1491.
 
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1451--1454
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1489--1492
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1479--1482
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1517--1520
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
-[16]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1492--1494
-[]\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1513--1516
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1530--1532
+[]\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
+[17]
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1551--1554
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1536--1537
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1574--1575
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
-Overfull \hbox (1.1292pt too wide) in paragraph at lines 1542--1545
+Overfull \hbox (1.1292pt too wide) in paragraph at lines 1580--1583
 []\T1/ptm/m/n/10 Then you can link to \T1/pcr/m/n/10 _static/make.sh.html \T1/p
 tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1545--1548
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1583--1586
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1589--1592
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1627--1630
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 17 undef
-ined on input line 1611.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 18 undef
+ined on input line 1649.
 
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 17 undef
-ined on input line 1615.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 18 undef
+ined on input line 1653.
 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1603--1616
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1641--1654
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
-[17]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1629--1629
+[18]
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1667--1667
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1630--1632
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1668--1670
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-LaTeX Warning: Hyper reference `id5' on page 18 undefined on input line 1653.
+LaTeX Warning: Hyper reference `id5' on page 19 undefined on input line 1691.
 
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1661--1661
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1699--1699
 []\T1/pcr/m/n/10 # Here are some comment lines that do not affect any formattin
 g.  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1662--1662
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1700--1700
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
-[18]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1695--1697
+
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1733--1735
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
+[19]
 
-LaTeX Warning: Hyper reference `fig-viz' on page 19 undefined on input line 171
-3.
-
-
-LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 19 u
-ndefined on input line 1715.
+LaTeX Warning: Hyper reference `fig-viz' on page 20 undefined on input line 175
+1.
 
 
-LaTeX Warning: Hyper reference `macros-newcommands' on page 19 undefined on inp
-ut line 1715.
+LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 20 u
+ndefined on input line 1753.
 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1711--1720
+LaTeX Warning: Hyper reference `macros-newcommands' on page 20 undefined on inp
+ut line 1753.
+
+
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1749--1758
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-LaTeX Warning: Hyper reference `id5' on page 19 undefined on input line 1722.
+LaTeX Warning: Hyper reference `id5' on page 20 undefined on input line 1760.
 
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1721--1723
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1759--1761
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1746--1749
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1784--1787
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1764--1767
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1802--1805
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
-[19]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1795--1795
+[20]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1833--1833
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1796--1796
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1834--1834
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 1820--1822
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 1858--1860
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1823--1826
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1861--1864
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-[20]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1940--1941
-\T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 [21]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2014--2017
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1978--1979
+\T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
+[22]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2052--2055
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[22]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2096--2098
+[23]
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2134--2136
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[23] [24]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2213--2213
+[24]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2251--2251
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2214--2214
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2252--2252
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2223--2223
+[25]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2261--2261
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2224--2224
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2262--2262
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (22.2296pt too wide) in paragraph at lines 2235--2241
+Overfull \hbox (22.2296pt too wide) in paragraph at lines 2273--2279
 \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki") \T1/ptm/m
 /n/10 one places
 
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2268--2274
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2306--2312
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2268--2274
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2306--2312
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2268--2274
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2306--2312
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[25]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2320--2323
+[26]
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2358--2361
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2355--2355
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2393--2393
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2356--2356
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2394--2394
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2372--2384
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2410--2422
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[26] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [27]
+[27] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [28]
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 28 undef
-ined on input line 2414.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 29 undef
+ined on input line 2452.
 
-[28]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2462--2462
-[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [29]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2541--2543
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2500--2500
+[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
+[30]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2579--2581
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2603--2605
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2641--2643
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[30]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2725--2728
-[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 [31]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 2742--2745
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2763--2766
+[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
+[32]
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 2780--2783
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2749--2752
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2787--2790
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2788--2789
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2826--2827
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2791--2793
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2829--2831
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[32]
+[33]
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 33 un
-defined on input line 2932.
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 34 un
+defined on input line 2970.
 
-[33] [34]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3090--3091
+[34] [35]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3128--3129
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3092--3092
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3130--3130
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3095--3095
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3133--3133
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[35]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3253--3256
+[36]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3291--3294
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[36]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3294--3295
+[37]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3332--3333
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3296--3296
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3334--3334
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3297--3297
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3335--3335
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3300--3300
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3338--3338
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3301--3301
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3339--3339
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3302--3302
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3340--3340
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3303--3303
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3341--3341
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 3308--3308
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 3346--3346
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3309--3309
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3347--3347
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3310--3310
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3348--3348
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 3313--3313
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 3351--3351
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 3316--3316
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 3354--3354
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 3318--3318
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 3356--3356
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3321--3321
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3359--3359
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3328--3328
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3366--3366
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3330--3330
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3368--3368
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3332--3332
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3370--3370
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3335--3335
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3373--3373
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
-[37]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3341--3341
+[38]
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3379--3379
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3382--3382
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3420--3420
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3384--3384
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3422--3422
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3385--3385
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3423--3423
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3386--3386
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3424--3424
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3387--3387
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3425--3425
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 
-Overfull \hbox (134.56776pt too wide) in paragraph at lines 3437--3437
+Overfull \hbox (134.56776pt too wide) in paragraph at lines 3475--3475
 [][][][][][] 
-[38] [39] [40] (./manual.rst.aux)
+[39] [40] [41] (./manual.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -61135,7 +62188,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (40 pages, 175116 bytes).
+Output written on manual.rst.dvi (41 pages, 177960 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -61269,469 +62322,495 @@ Overfull \hbox (59.00006pt too wide) in paragraph at lines 466--469
 Overfull \hbox (35.00006pt too wide) in paragraph at lines 520--523
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd 
 
-Overfull \hbox (125.00006pt too wide) in paragraph at lines 538--538
-[]\T1/pcr/m/n/10 Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid 
-ams math  
+Overfull \hbox (11.29898pt too wide) in paragraph at lines 531--538
+\T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
+cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
+m/n/10 ,
 [5]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 539--541
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 541--543
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
-Overfull \hbox (11.278pt too wide) in paragraph at lines 565--568
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 559--561
+[]\T1/pcr/m/n/10 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd 
+
+
+Overfull \hbox (11.278pt too wide) in paragraph at lines 583--586
 []\T1/pcr/m/n/10 ptex2tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (78.51936pt too wide) in paragraph at lines 575--580
+Overfull \hbox (78.51936pt too wide) in paragraph at lines 593--598
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 610--613
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 628--631
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc 
-
-Overfull \hbox (5.00006pt too wide) in paragraph at lines 617--620
+[6]
+Overfull \hbox (5.00006pt too wide) in paragraph at lines 635--638
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 639--640
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 652--653
+\T1/pcr/m/n/10 Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED 
+\  
+
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 654--654
+[]          \T1/pcr/m/n/10 cycod=\begin{quote}\begin{python};\end{python}\end{q
+uote} \  
+
+Overfull \hbox (18.03822pt too wide) in paragraph at lines 659--667
+\T1/ptm/m/n/10 plies \T1/pcr/m/n/10 \begin{python}{fortran}\T1/ptm/m/n/10 . The
+re is a sim-i-lar sup-port for \T1/pcr/m/n/10 ans\T1/ptm/m/n/10 : \T1/pcr/m/n/1
+0 cppcod=ans
+
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 677--678
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
-[6]
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 641--641
+
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 679--679
 []\T1/pcr/m/n/10 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 642--644
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 680--682
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
 
-Overfull \hbox (0.57846pt too wide) in paragraph at lines 664--671
+Overfull \hbox (0.57846pt too wide) in paragraph at lines 702--709
 \T1/ptm/m/n/10 needed. This pack-age is in-cluded by run-ning \T1/pcr/m/n/10 do
 conce format \T1/ptm/m/n/10 with the \T1/pcr/m/n/10 -DMINTED
-
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 729--732
+[7]
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 767--770
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
-[7]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 754--755
+
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 792--793
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 756--756
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 794--794
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 757--757
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 795--795
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 758--760
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 796--798
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-
-Overfull \hbox (13.07689pt too wide) in paragraph at lines 799--800
+[8]
+Overfull \hbox (13.07689pt too wide) in paragraph at lines 837--838
 [][][][][][][] 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 817--818
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 855--856
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 819--819
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 857--857
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
-[8]
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 844--850
+
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 882--888
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
-
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 883--886
+[9]
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 921--924
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 887--890
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 925--928
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[9] [10]
-Overfull \hbox (314.9936pt too wide) in paragraph at lines 998--1004
+[10]
+Overfull \hbox (314.9936pt too wide) in paragraph at lines 1036--1042
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][][],
-
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1037--1048
+[11]
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1075--1086
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[11] [12]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 1183--1188
+[12]
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 1221--1226
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1213--1216
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1251--1254
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
-
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1224--1227
+[13]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1262--1265
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1235--1235
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1273--1273
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1236--1236
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1274--1274
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1253--1253
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1291--1291
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
-[13]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1295--1296
-\T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1341--1344
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1333--1334
+\T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
+[14]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1379--1382
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
-[14] <figs/streamtubes.eps>
-Overfull \hbox (2.15817pt too wide) in paragraph at lines 1368--1371
+<figs/streamtubes.eps> [15]
+Overfull \hbox (2.15817pt too wide) in paragraph at lines 1406--1409
 []\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
 1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1371--1372
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1409--1410
 \T1/pcr/m/n/10 montage file1 file2 ... file4 -geometry +2+2  result  
-[15]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1397--1400
-[]\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1425--1428
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1435--1438
+[]\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
+[16]
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1463--1466
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1430--1434
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1468--1472
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1435--1441
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1473--1479
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1451--1454
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1489--1492
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1479--1482
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1517--1520
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
-[16]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1492--1494
-[]\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1513--1516
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1530--1532
+[]\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
+[17]
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1551--1554
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1536--1537
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1574--1575
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
-Overfull \hbox (1.1292pt too wide) in paragraph at lines 1542--1545
+Overfull \hbox (1.1292pt too wide) in paragraph at lines 1580--1583
 []\T1/ptm/m/n/10 Then you can link to \T1/pcr/m/n/10 _static/make.sh.html \T1/p
 tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1545--1548
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1583--1586
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1589--1592
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1627--1630
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1603--1616
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1641--1654
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
-[17]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1629--1629
+[18]
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1667--1667
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1630--1632
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1668--1670
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1661--1661
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1699--1699
 []\T1/pcr/m/n/10 # Here are some comment lines that do not affect any formattin
 g.  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1662--1662
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1700--1700
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
-[18]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1695--1697
+
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1733--1735
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
-
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1711--1720
+[19]
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1749--1758
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1721--1723
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1759--1761
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1746--1749
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1784--1787
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1764--1767
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1802--1805
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
-[19]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1795--1795
+[20]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1833--1833
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1796--1796
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1834--1834
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 1820--1822
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 1858--1860
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1823--1826
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1861--1864
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-[20]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1940--1941
-\T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 [21]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2014--2017
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 1978--1979
+\T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
+[22]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2052--2055
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[22]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2096--2098
+[23]
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2134--2136
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[23] [24]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2213--2213
+[24]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2251--2251
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2214--2214
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2252--2252
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2223--2223
+[25]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2261--2261
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2224--2224
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2262--2262
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (22.2296pt too wide) in paragraph at lines 2235--2241
+Overfull \hbox (22.2296pt too wide) in paragraph at lines 2273--2279
 \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki") \T1/ptm/m
 /n/10 one places
 
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2268--2274
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2306--2312
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2268--2274
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2306--2312
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2268--2274
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2306--2312
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[25]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2320--2323
+[26]
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2358--2361
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2355--2355
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2393--2393
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2356--2356
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2394--2394
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2372--2384
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2410--2422
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[26] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [27] [28]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2462--2462
+[27] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [28] [29]
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2500--2500
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[29]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2541--2543
+[30]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2579--2581
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2603--2605
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2641--2643
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[30]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2725--2728
-[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 [31]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 2742--2745
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2763--2766
+[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
+[32]
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 2780--2783
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2749--2752
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2787--2790
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2788--2789
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2826--2827
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2791--2793
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2829--2831
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[32] [33] [34]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3090--3091
+[33] [34] [35]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3128--3129
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3092--3092
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3130--3130
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3095--3095
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3133--3133
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[35]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3253--3256
+[36]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3291--3294
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[36]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3294--3295
+[37]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3332--3333
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3296--3296
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3334--3334
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3297--3297
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3335--3335
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3300--3300
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3338--3338
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3301--3301
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3339--3339
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3302--3302
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3340--3340
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3303--3303
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3341--3341
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 3308--3308
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 3346--3346
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3309--3309
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3347--3347
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3310--3310
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3348--3348
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 3313--3313
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 3351--3351
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 3316--3316
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 3354--3354
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 3318--3318
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 3356--3356
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3321--3321
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3359--3359
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3328--3328
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3366--3366
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3330--3330
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3368--3368
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3332--3332
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3370--3370
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3335--3335
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3373--3373
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
-[37]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3341--3341
+[38]
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3379--3379
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3382--3382
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3420--3420
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3384--3384
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3422--3422
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3385--3385
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3423--3423
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3386--3386
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3424--3424
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3387--3387
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3425--3425
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 
-Overfull \hbox (134.56776pt too wide) in paragraph at lines 3437--3437
+Overfull \hbox (134.56776pt too wide) in paragraph at lines 3475--3475
 [][][][][][] 
-[38] [39] [40] (./manual.rst.aux) )
+[39] [40] [41] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (40 pages, 183372 bytes).
+Output written on manual.rst.dvi (41 pages, 186216 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments
-run preprocess -DFORMAT=plain  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=plain  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 output in manual.txt
 + doconce format epytext manual.do.txt
-run preprocess -DFORMAT=epytext  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=epytext  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 output in manual.epytext
 + doconce format st manual.do.txt
-run preprocess -DFORMAT=st  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=st  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 output in manual.st
 + doconce format pandoc manual.do.txt
-run preprocess -DFORMAT=pandoc  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=pandoc  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{eqnarray} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
 output in manual.mkd
 + doconce format pdflatex manual.do.txt
-run preprocess -DFORMAT=pdflatex  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=pdflatex  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format pdflatex
 output in manual.p.tex
 + doconce replace usepackage{ptex2tex usepackage{ptex2tex,subfigure manual.p.tex
@@ -61830,139 +62909,144 @@ No file manual.aux.
 /pdftex/updmap/pdftex.map}] [2] [3]
 
 LaTeX Warning: Reference `doconce2formats' on page 4 undefined on input line 24
-3.
+4.
 
 [4]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [5] [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
+
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-LaTeX Warning: Reference `newcommands' on page 7 undefined on input line 472.
+LaTeX Warning: Reference `newcommands' on page 7 undefined on input line 490.
 
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (22.24706pt too wide) in paragraph at lines 664--665
+Overfull \hbox (22.24706pt too wide) in paragraph at lines 702--703
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
-
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (1.04228pt too wide) in paragraph at lines 849--855
+Overfull \hbox (1.04228pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
 [14] [15] [16] [17] <figs/streamtubes.png, id=145, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [18 <./figs/streamtubes.png>]
+<use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 19 undefined on input li
-ne 1248.
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 20 undefined on input li
+ne 1286.
 
-[19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[20]
+[20] [21]
 
-LaTeX Warning: Reference `doconce2formats' on page 21 undefined on input line 1
-383.
-
-
-LaTeX Warning: Reference `doconce2formats' on page 21 undefined on input line 1
-387.
+LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
+421.
 
 
-LaTeX Warning: Reference `inline:tagging' on page 21 undefined on input line 14
-17.
-
-[21]
-
-LaTeX Warning: Reference `fig:viz' on page 22 undefined on input line 1470.
-
-
-LaTeX Warning: Reference `mathtext' on page 22 undefined on input line 1472.
-
-
-LaTeX Warning: Reference `newcommands' on page 22 undefined on input line 1472.
-
-
-
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
-
-
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
+425.
 
 
 LaTeX Warning: Reference `inline:tagging' on page 22 undefined on input line 14
-79.
+55.
 
-[22] [23]
+[22]
+
+LaTeX Warning: Reference `fig:viz' on page 23 undefined on input line 1508.
+
+
+LaTeX Warning: Reference `mathtext' on page 23 undefined on input line 1510.
+
+
+LaTeX Warning: Reference `newcommands' on page 23 undefined on input line 1510.
+
+
+
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+
+
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+
+
+LaTeX Warning: Reference `inline:tagging' on page 23 undefined on input line 15
+17.
+
+[23]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-570.
+608.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1570.
+LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1608.
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-571.
+609.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1571.
+LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1609.
 
-[24] [25] (./manual.out.pyg) (./manual.out.pyg) [26] (./manual.out.pyg)
-(./manual.out.pyg) [27]
+[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+(./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.png, id=241, 642.4pt x 481.8pt>
+[30] <figs/wavepacket_0001.png, id=238, 642.4pt x 481.8pt>
 <use figs/wavepacket_0001.png>
-<figs/wavepacket_0010.png, id=242, 642.4pt x 481.8pt>
+<figs/wavepacket_0010.png, id=239, 642.4pt x 481.8pt>
 <use figs/wavepacket_0010.png>
 
 LaTeX Warning: Reference `doconce2formats' on page 31 undefined on input line 2
-086.
+124.
 
-[31 <./figs/wavepacket_0001.png (PNG copy)>] [32 <./figs/wavepacket_0010.png (P
-NG copy)>]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2177--2184
+[31] [32 <./figs/wavepacket_0001.png (PNG copy)> <./figs/wavepacket_0010.png (P
+NG copy)>] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2215--2222
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2177--2184
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2215--2222
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36]
+[34] [35] [36] [37]
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 37 undefined on input li
-ne 2409.
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 38 undefined on input li
+ne 2447.
 
-[37] [38] [39] [40] [41]
+[38] [39] [40] [41] [42]
 No file manual.bbl.
 No file manual.ind.
-[42] (./manual.aux)
+[43] (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -61985,7 +63069,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (42 pages, 414791 bytes).
+Output written on manual.pdf (43 pages, 417425 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -62091,89 +63175,94 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1{/var/lib/texmf/fonts/map
 /pdftex/updmap/pdftex.map}] [2] [3] [4]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [5] [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
+
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (22.24706pt too wide) in paragraph at lines 664--665
+Overfull \hbox (22.24706pt too wide) in paragraph at lines 702--703
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
-
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (1.04228pt too wide) in paragraph at lines 849--855
+Overfull \hbox (1.04228pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
 [14] [15] [16] [17] <figs/streamtubes.png, id=311, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [18 <./figs/streamtubes.png>] [19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+<use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[20] [21]
+[20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
-
-
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
-
-[22] [23]
-
-LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-570.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1570.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
 
+[23]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-571.
+608.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1571.
+LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1608.
 
-[24] [25] (./manual.out.pyg) (./manual.out.pyg) [26] (./manual.out.pyg)
-(./manual.out.pyg) [27]
+
+LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
+609.
+
+
+LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1609.
+
+[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+(./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.png, id=401, 642.4pt x 481.8pt>
+[30] <figs/wavepacket_0001.png, id=399, 642.4pt x 481.8pt>
 <use figs/wavepacket_0001.png>
-<figs/wavepacket_0010.png, id=402, 642.4pt x 481.8pt>
-<use figs/wavepacket_0010.png> [31 <./figs/wavepacket_0001.png (PNG copy)>]
-[32 <./figs/wavepacket_0010.png (PNG copy)>]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2177--2184
+<figs/wavepacket_0010.png, id=400, 642.4pt x 481.8pt>
+<use figs/wavepacket_0010.png> [31] [32 <./figs/wavepacket_0001.png (PNG copy)>
+ <./figs/wavepacket_0010.png (PNG copy)>] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2215--2222
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2177--2184
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2215--2222
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36] [37] [38] [39] [40] [41] (./manual.bbl) (./manual.ind
-[42] [43]) (./manual.aux)
+[34] [35] [36] [37] [38] [39] [40] [41] [42] (./manual.bbl) (./manual.ind
+[43] [44]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -62196,7 +63285,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (43 pages, 434900 bytes).
+Output written on manual.pdf (44 pages, 437413 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -62290,74 +63379,79 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1{/var/lib/texmf/fonts/map
 /pdftex/updmap/pdftex.map}] [2] [3] [4]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [5] [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
+
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (22.24706pt too wide) in paragraph at lines 664--665
+Overfull \hbox (22.24706pt too wide) in paragraph at lines 702--703
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
-
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (1.04228pt too wide) in paragraph at lines 849--855
+Overfull \hbox (1.04228pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
 [14] [15] [16] [17] <figs/streamtubes.png, id=311, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [18 <./figs/streamtubes.png>] [19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+<use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[20] [21]
+[20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
 
 
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
 
-[22] [23] [24] [25] (./manual.out.pyg) (./manual.out.pyg) [26]
-(./manual.out.pyg) (./manual.out.pyg) [27]
+[23] [24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27]
+(./manual.out.pyg) (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.png, id=407, 642.4pt x 481.8pt>
+[30] <figs/wavepacket_0001.png, id=405, 642.4pt x 481.8pt>
 <use figs/wavepacket_0001.png>
-<figs/wavepacket_0010.png, id=408, 642.4pt x 481.8pt>
-<use figs/wavepacket_0010.png> [31 <./figs/wavepacket_0001.png (PNG copy)>]
-[32 <./figs/wavepacket_0010.png (PNG copy)>]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2177--2184
+<figs/wavepacket_0010.png, id=406, 642.4pt x 481.8pt>
+<use figs/wavepacket_0010.png> [31] [32 <./figs/wavepacket_0001.png (PNG copy)>
+ <./figs/wavepacket_0010.png (PNG copy)>] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2215--2222
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2177--2184
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2215--2222
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36] [37] [38] [39] [40] [41] (./manual.bbl) (./manual.ind
-[42] [43]) (./manual.aux)
+[34] [35] [36] [37] [38] [39] [40] [41] [42] (./manual.bbl) (./manual.ind
+[43] [44]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -62380,21 +63474,21 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (43 pages, 435616 bytes).
+Output written on manual.pdf (44 pages, 438130 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt
-run preprocess -DFORMAT=latex  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=latex  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.eps for format latex
 output in manual.p.tex
 + doconce replace usepackage{ptex2tex usepackage{ptex2tex,subfigure manual.p.tex
@@ -62497,79 +63591,84 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 166--170
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 433--438
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
+
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
-[7] [8] [9]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 664--665
+[7] [8] [9] [10]
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
 [][][][][][][] 
-[10]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
-[12]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 849--855
+[12] [13]
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[13] [14] [15] [16] [17] <figs/streamtubes.eps> [18]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+[14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[19] [20] [21]
+[20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
 
 
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
 
-[22] [23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1566--1568
+[23]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] (./manual.out.pyg) (./manual.out.pyg) [26] (./manual.out.pyg)
-(./manual.out.pyg) [27]
+[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+(./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2169--2176
+[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2169--2176
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36] [37] [38] [39] [40] [41] (./manual.bbl) (./manual.ind
-[42] [43]) (./manual.aux)
+[34] [35] [36] [37] [38] [39] [40] [41] [42] (./manual.bbl) (./manual.ind
+[43] [44]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -62578,7 +63677,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (43 pages, 195200 bytes).
+Output written on manual.dvi (44 pages, 198480 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -62671,79 +63770,84 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 166--170
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 433--438
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
+
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
-[7] [8] [9]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 664--665
+[7] [8] [9] [10]
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
 [][][][][][][] 
-[10]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
-[12]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 849--855
+[12] [13]
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[13] [14] [15] [16] [17] <figs/streamtubes.eps> [18]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+[14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[19] [20] [21]
+[20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
 
 
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
 
-[22] [23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1566--1568
+[23]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] (./manual.out.pyg) (./manual.out.pyg) [26] (./manual.out.pyg)
-(./manual.out.pyg) [27]
+[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+(./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2169--2176
+[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2169--2176
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36] [37] [38] [39] [40] [41] (./manual.bbl) (./manual.ind
-[42] [43]) (./manual.aux)
+[34] [35] [36] [37] [38] [39] [40] [41] [42] (./manual.bbl) (./manual.ind
+[43] [44]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -62752,7 +63856,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (43 pages, 195200 bytes).
+Output written on manual.dvi (44 pages, 198480 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -62857,79 +63961,84 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 166--170
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 433--438
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
+
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
-[7] [8] [9]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 664--665
+[7] [8] [9] [10]
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
 [][][][][][][] 
-[10]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
-[12]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 849--855
+[12] [13]
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[13] [14] [15] [16] [17] <figs/streamtubes.eps> [18]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+[14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[19] [20] [21]
+[20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
 
 
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
 
-[22] [23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1566--1568
+[23]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] (./manual.out.pyg) (./manual.out.pyg) [26] (./manual.out.pyg)
-(./manual.out.pyg) [27]
+[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+(./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2169--2176
+[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2169--2176
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36] [37] [38] [39] [40] [41] (./manual.bbl) (./manual.ind
-[42] [43]) (./manual.aux)
+[34] [35] [36] [37] [38] [39] [40] [41] [42] (./manual.bbl) (./manual.ind
+[43] [44]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -62938,7 +64047,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (43 pages, 195200 bytes).
+Output written on manual.dvi (44 pages, 198480 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -63031,79 +64140,84 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 166--170
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 302--312
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 433--438
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
+
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+[]\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
+ us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
+e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 463--467
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 470--475
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
-[7] [8] [9]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 664--665
+[7] [8] [9] [10]
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
 [][][][][][][] 
-[10]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 699--705
+[11]
+Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
-[11]
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 737--740
+
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
-[12]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 849--855
+[12] [13]
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[13] [14] [15] [16] [17] <figs/streamtubes.eps> [18]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1256--1259
+[14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
-[19] [20] [21]
+[20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
 
 
-LaTeX Warning: Reference `my:eq2' on page 22 undefined on input line 1474.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
 
-[22] [23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1566--1568
+[23]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] (./manual.out.pyg) (./manual.out.pyg) [26] (./manual.out.pyg)
-(./manual.out.pyg) [27]
+[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+(./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1903.
+(amsmath)                 on input line 1941.
 
-[28] [29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 1975--1977
+[29]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2169--2176
+[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2169--2176
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[33] [34] [35] [36] [37] [38] [39] [40] [41] (./manual.bbl) (./manual.ind
-[42] [43]) (./manual.aux)
+[34] [35] [36] [37] [38] [39] [40] [41] [42] (./manual.bbl) (./manual.ind
+[43] [44]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -63112,21 +64226,21 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (43 pages, 195200 bytes).
+Output written on manual.dvi (44 pages, 198480 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt
-run preprocess -DFORMAT=gwiki  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=gwiki  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format gwiki
 
 NOTE: Place figs/streamtubes.png at some place on the web and edit the
@@ -63150,31 +64264,31 @@ output in manual.gwiki
 + doconce subst \(the URL of the image file figs/streamtubes.png must be inserted here\) https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png manual.gwiki
 \(the URL of the image file figs/streamtubes.png must be inserted here\) replaced by https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png in manual.gwiki
 + doconce format cwiki manual.do.txt
-run preprocess -DFORMAT=cwiki  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=cwiki  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format cwiki
 output in manual.cwiki
 + doconce format mwiki manual.do.txt
-run preprocess -DFORMAT=mwiki  manual.do.txt > __tmp.do.txt
+running preprocess -DFORMAT=mwiki  manual.do.txt > __tmp.do.txt
 translate preprocessed doconce text in __tmp.do.txt
 
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 copy complete file __testcode.f  (format: fpro)
-copy from regex "subroutine\s+test" until "^C\s{5}END1"
+copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
 copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
-Figure file figs/streamtubes:
+figure file figs/streamtubes:
     can use figs/streamtubes.png for format mwiki
 
 NOTE: Upload image file figs/streamtubes.png to the Wiki* site
@@ -63303,34 +64417,34 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1] [2] [3] [4]
-Overfull \hbox (4.40137pt too wide) in paragraph at lines 350--359
+Overfull \hbox (4.40137pt too wide) in paragraph at lines 351--360
 \OT1/phv/m/n/10 fi-ca-tion copies from the first line match-ing the \OT1/phv/m/
 sl/10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 doconce clean
 
-Overfull \hbox (27.8928pt too wide) in paragraph at lines 350--359
+Overfull \hbox (27.8928pt too wide) in paragraph at lines 351--360
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
 /10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 ^doconce split_rst\OT1/phv/m/n/10
  .
 [5]
-Overfull \hbox (10.99698pt too wide) in paragraph at lines 423--427
+Overfull \hbox (10.99698pt too wide) in paragraph at lines 424--428
 []\OT1/phv/m/n/10 One can use []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdfla
 tex", "sphinx", "mwiki")
 
-Overfull \hbox (12.54659pt too wide) in paragraph at lines 444--453
+Overfull \hbox (12.54659pt too wide) in paragraph at lines 445--454
 \OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally []\OT1/cmt
 t/m/n/10 # #ifdef format == "latex"\OT1/phv/m/n/10 )
 [6]
 
-LaTeX Warning: Reference `quick:sections' on page 7 undefined on input line 496
+LaTeX Warning: Reference `quick:sections' on page 7 undefined on input line 497
 .
 
 [7]
-Overfull \hbox (60.6356pt too wide) in paragraph at lines 566--575
+Overfull \hbox (60.6356pt too wide) in paragraph at lines 567--576
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
 \OT1/cmtt/m/n/10 name \OT1/phv/m/n/10 on the form []\OT1/cmtt/m/n/10 Author1_Au
 thor2_YYYY\OT1/phv/m/n/10 ,
 
-Overfull \hbox (82.96643pt too wide) in paragraph at lines 580--587
+Overfull \hbox (82.96643pt too wide) in paragraph at lines 581--588
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib,name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
 (./quickref.out.pyg [8]) [9]
@@ -63344,7 +64458,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (10 pages, 41284 bytes).
+Output written on quickref.dvi (10 pages, 42336 bytes).
 Transcript written on quickref.log.
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -63429,36 +64543,36 @@ Writing index file quickref.idx
 (./quickref.out) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1] [2] [3] [4]
-Overfull \hbox (4.40137pt too wide) in paragraph at lines 350--359
+Overfull \hbox (4.40137pt too wide) in paragraph at lines 351--360
 \OT1/phv/m/n/10 fi-ca-tion copies from the first line match-ing the \OT1/phv/m/
 sl/10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 doconce clean
 
-Overfull \hbox (27.8928pt too wide) in paragraph at lines 350--359
+Overfull \hbox (27.8928pt too wide) in paragraph at lines 351--360
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
 /10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 ^doconce split_rst\OT1/phv/m/n/10
  .
 [5]
-Overfull \hbox (10.99698pt too wide) in paragraph at lines 423--427
+Overfull \hbox (10.99698pt too wide) in paragraph at lines 424--428
 []\OT1/phv/m/n/10 One can use []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdfla
 tex", "sphinx", "mwiki")
 
-Overfull \hbox (12.54659pt too wide) in paragraph at lines 444--453
+Overfull \hbox (12.54659pt too wide) in paragraph at lines 445--454
 \OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally []\OT1/cmt
 t/m/n/10 # #ifdef format == "latex"\OT1/phv/m/n/10 )
 [6] [7]
-Overfull \hbox (60.6356pt too wide) in paragraph at lines 566--575
+Overfull \hbox (60.6356pt too wide) in paragraph at lines 567--576
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
 \OT1/cmtt/m/n/10 name \OT1/phv/m/n/10 on the form []\OT1/cmtt/m/n/10 Author1_Au
 thor2_YYYY\OT1/phv/m/n/10 ,
 
-Overfull \hbox (82.96643pt too wide) in paragraph at lines 580--587
+Overfull \hbox (82.96643pt too wide) in paragraph at lines 581--588
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib,name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
 (./quickref.out.pyg [8]) [9]
 No file quickref.ind.
 [10] (./quickref.aux) )
 (see the transcript file for additional information)
-Output written on quickref.dvi (10 pages, 43008 bytes).
+Output written on quickref.dvi (10 pages, 44056 bytes).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref
@@ -63778,12 +64892,12 @@ Overfull \hbox (37.56873pt too wide) in paragraph at lines 773--781
 []\T1/ptm/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/pcr/m/n/10 B
 IBFILE: name_bib.bib, name_bib.rst,
 
-Overfull \hbox (1505.00006pt too wide) in paragraph at lines 813--813
+Overfull \hbox (1559.00006pt too wide) in paragraph at lines 813--813
 []\T1/pcr/m/n/10 commands: format insertdocstr old2new_format gwiki_figsubst re
 move_inline_comments latin2html sphinx_dir subst replace replace_from_file clea
 n help latex_header latex_footer guess_encoding change_encoding bbl2rst split_r
 st list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellchec
-k  
+k ptex2tex  
 
 Overfull \hbox (299.00006pt too wide) in paragraph at lines 815--815
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -63807,34 +64921,44 @@ Overfull \hbox (59.00006pt too wide) in paragraph at lines 824--824
 Overfull \hbox (47.00006pt too wide) in paragraph at lines 825--825
 []\T1/pcr/m/n/10 (exact text substitution, but a set of from-to relations)  
 
-Overfull \hbox (503.00006pt too wide) in paragraph at lines 831--831
-[]\T1/pcr/m/n/10 doconce sphinx_dir author='Me and you' title='Quick title'    
- version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3  
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 831--831
+[]\T1/pcr/m/n/10 doconce sphinx_dir author='Me and you' title='Quick title' \  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 839--839
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 832--832
+[]    \T1/pcr/m/n/10 version=0.1 dirname=sphinx-rootdir theme=default \  
+
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 841--841
 []\T1/pcr/m/n/10 (remove all files that the doconce format can regenerate)  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 851--851
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 853--853
 []\T1/pcr/m/n/10 doconce grab --from[-] from-text [--to[-] to-text] somefile  
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 855--855
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 855--855
+[]\T1/pcr/m/n/10 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \  
+
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 856--856
+[]        \T1/pcr/m/n/10 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{q
+uote}  
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 858--858
 []\T1/pcr/m/n/10 doconce list_labels doconcefile.do.txt | latexfile.tex  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 875--876
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 878--879
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
-
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 881--881
+[9]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 884--884
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
-[9]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 882--882
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 885--885
 []\T1/pcr/m/n/10 the area under a curve that defines half of the allipse.  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 885--885
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 888--888
 []\T1/pcr/m/n/10 __Hint 1.__ Wikipedia has the formula for the curve.  
 
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 887--887
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 890--890
 []\T1/pcr/m/n/10 __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perh
 aps  
 [10] (./quickref.rst.aux)
@@ -63846,7 +64970,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (10 pages, 40556 bytes).
+Output written on quickref.rst.dvi (10 pages, 40720 bytes).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -64037,12 +65161,12 @@ Overfull \hbox (37.56873pt too wide) in paragraph at lines 773--781
 []\T1/ptm/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/pcr/m/n/10 B
 IBFILE: name_bib.bib, name_bib.rst,
 
-Overfull \hbox (1505.00006pt too wide) in paragraph at lines 813--813
+Overfull \hbox (1559.00006pt too wide) in paragraph at lines 813--813
 []\T1/pcr/m/n/10 commands: format insertdocstr old2new_format gwiki_figsubst re
 move_inline_comments latin2html sphinx_dir subst replace replace_from_file clea
 n help latex_header latex_footer guess_encoding change_encoding bbl2rst split_r
 st list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellchec
-k  
+k ptex2tex  
 
 Overfull \hbox (299.00006pt too wide) in paragraph at lines 815--815
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -64066,39 +65190,49 @@ Overfull \hbox (59.00006pt too wide) in paragraph at lines 824--824
 Overfull \hbox (47.00006pt too wide) in paragraph at lines 825--825
 []\T1/pcr/m/n/10 (exact text substitution, but a set of from-to relations)  
 
-Overfull \hbox (503.00006pt too wide) in paragraph at lines 831--831
-[]\T1/pcr/m/n/10 doconce sphinx_dir author='Me and you' title='Quick title'    
- version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3  
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 831--831
+[]\T1/pcr/m/n/10 doconce sphinx_dir author='Me and you' title='Quick title' \  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 839--839
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 832--832
+[]    \T1/pcr/m/n/10 version=0.1 dirname=sphinx-rootdir theme=default \  
+
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 841--841
 []\T1/pcr/m/n/10 (remove all files that the doconce format can regenerate)  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 851--851
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 853--853
 []\T1/pcr/m/n/10 doconce grab --from[-] from-text [--to[-] to-text] somefile  
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 855--855
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 855--855
+[]\T1/pcr/m/n/10 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \  
+
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 856--856
+[]        \T1/pcr/m/n/10 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{q
+uote}  
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 858--858
 []\T1/pcr/m/n/10 doconce list_labels doconcefile.do.txt | latexfile.tex  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 875--876
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 878--879
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
-
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 881--881
+[9]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 884--884
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
-[9]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 882--882
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 885--885
 []\T1/pcr/m/n/10 the area under a curve that defines half of the allipse.  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 885--885
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 888--888
 []\T1/pcr/m/n/10 __Hint 1.__ Wikipedia has the formula for the curve.  
 
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 887--887
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 890--890
 []\T1/pcr/m/n/10 __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perh
 aps  
 [10] (./quickref.rst.aux) )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (10 pages, 41976 bytes).
+Output written on quickref.rst.dvi (10 pages, 42140 bytes).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref
