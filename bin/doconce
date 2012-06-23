@@ -1539,6 +1539,12 @@ Download from http://code.google.com/p/preprocess
                                       envir2latex[envir][1])
     filestr = filestr.replace(r'\usepackage{ptex2tex}', '')
 
+    # Treat the \code{} commands
+    cpattern = re.compile(r'\\code\{(.*?)\}([ \n,.;:?)"])', re.DOTALL)
+    fontsize = 10
+    verb_command = 'verb'
+    filestr = cpattern.sub(r'{\\fontsize{%spt}{%spt}\\%s!\g<1>!}\g<2>' %
+                           (fontsize, fontsize, verb_command), filestr)
     f = open(filename + '.tex', 'w')
     f.write(filestr)
     f.close()
