@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.9: http://docutils.sourceforge.net/" />
+<title>Doconce Quick Reference</title>
+<meta name="author" content="Hans Petter Langtangen" />
+<meta name="date" content="Jun 23, 2012" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7056 2011-06-17 10:50:48Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="doconce-quick-reference">
+<h1 class="title">Doconce Quick Reference</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>Hans Petter Langtangen</td></tr>
+<tr><th class="docinfo-name">Date:</th>
+<td>Jun 23, 2012</td></tr>
+</tbody>
+</table>
+<!-- Automatically generated reST file from Doconce source
+(http://code.google.com/p/doconce/) -->
+<!-- Very preliminary -->
+<p><strong>WARNING: This quick reference is very incomplete!</strong></p>
+<div class="section" id="supported-formats">
+<h1>Supported Formats</h1>
+<p>Doconce currently translates files to the following formats:</p>
+<blockquote>
+<ul class="simple">
+<li>LaTeX (format <tt class="docutils literal">latex</tt>)</li>
+<li>HTML (format <tt class="docutils literal">html</tt>)</li>
+<li>reStructuredText (format <tt class="docutils literal">rst</tt>)</li>
+<li>StructuredText (format <tt class="docutils literal">st</tt>)</li>
+<li>plain (untagged) ASCII (format <tt class="docutils literal">plain</tt>)</li>
+<li>Sphinx (format <tt class="docutils literal">sphinx</tt>)</li>
+<li>Googlecode wiki (format <tt class="docutils literal">gwiki</tt>)</li>
+<li>MediaWiki, a la Wikipedia and Wikibooks (format <tt class="docutils literal">mwiki</tt>)</li>
+<li>Creoloe wiki (format <tt class="docutils literal">cwiki</tt>)</li>
+<li>Epydoc (format <tt class="docutils literal">epydoc</tt>)</li>
+<li>Pandoc (format <tt class="docutils literal">pandoc</tt>, very experimental)</li>
+</ul>
+</blockquote>
+<p>The best supported formats are <tt class="docutils literal">latex</tt>, <tt class="docutils literal">sphinx</tt>, <tt class="docutils literal">html</tt>, and <tt class="docutils literal">plain</tt>.</p>
+</div>
+<div class="section" id="title-authors-and-date">
+<h1>Title, Authors, and Date</h1>
+<p>A typical example of giving a title, a set of authors, and a date
+reads:</p>
+<pre class="literal-block">
+TITLE: On an Ultimate Markup Language
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: Kaare Dump Email: dump&#64;cyb.space.com at Segfault, Cyberspace Inc.
+AUTHOR: A. Dummy Author
+DATE: today
+</pre>
+<p>The title must appear on a single line.
+The author syntax is:</p>
+<pre class="literal-block">
+name Email: somename&#64;adr.net at institution1 and institution2
+</pre>
+<p>where the email is optional, the &quot;at&quot; keyword is required if one or
+more institutions are to be specified, and the &quot;and&quot; keyword
+separates the institutions. Each author specification must appear
+on a single line.
+When more than one author belong to the
+same institution, make sure that the institution is specified in an identical
+way for each author.</p>
+<p>The date can be set as any text different from <tt class="docutils literal">today</tt> if not the
+current date is wanted, e.g., <tt class="docutils literal">Feb 22, 2016</tt>.</p>
+</div>
+<div class="section" id="section-types">
+<span id="quick-sections"></span><h1>Section Types</h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Section type</th>
+<th class="head">Syntax</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>chapter</td>
+<td><tt class="docutils literal"><span class="pre">=========</span> Heading <span class="pre">========</span></tt> (9 <tt class="docutils literal">=</tt>)</td>
+</tr>
+<tr><td>section</td>
+<td><tt class="docutils literal"><span class="pre">=======</span> Heading <span class="pre">=======</span></tt>    (7 <tt class="docutils literal">=</tt>)</td>
+</tr>
+<tr><td>subsection</td>
+<td><tt class="docutils literal"><span class="pre">=====</span> Heading <span class="pre">=====</span></tt>        (5 <tt class="docutils literal">=</tt>)</td>
+</tr>
+<tr><td>subsubsection</td>
+<td><tt class="docutils literal">=== Heading ===</tt>            (3 <tt class="docutils literal">=</tt>)</td>
+</tr>
+<tr><td>paragraph</td>
+<td><tt class="docutils literal">__Heading.__</tt>               (2 <tt class="docutils literal">_</tt>)</td>
+</tr>
+<tr><td>abstract</td>
+<td><tt class="docutils literal">__Abstract.__</tt> Running text...</td>
+</tr>
+</tbody>
+</table>
+<p>Note that abstracts are recognized by starting with <tt class="docutils literal">__Abstract.__</tt> at
+the beginning of a line and ending with three or more <tt class="docutils literal">=</tt> signs of the
+next heading.</p>
+</div>
+<div class="section" id="inline-formatting">
+<h1>Inline Formatting</h1>
+<p>Words surrounded by <tt class="docutils literal">*</tt> are emphasized: <tt class="docutils literal">*emphasized words*</tt> becomes
+<em>emphasized words</em>. Similarly, an underscore surrounds words that
+appear in boldface: <tt class="docutils literal">_boldface_</tt> become <strong>boldface</strong>.</p>
+</div>
+<div class="section" id="lists">
+<h1>Lists</h1>
+<p>There are three types of lists: <em>bullet lists</em>, where each item starts
+with <tt class="docutils literal">*</tt>, <em>enumeration lists</em>, where each item starts with <tt class="docutils literal">o</tt> and gets
+consqutive numbers,
+and <em>description</em> lists, where each item starts with <tt class="docutils literal">-</tt> followed
+by a keyword and a colon:</p>
+<pre class="literal-block">
+Here is a bullet list:
+
+ * item1
+ * item2
+  * subitem1 of item2
+  * subitem2 of item2
+ * item3
+
+Note that sublists are consistently indented by one or more blanks..
+Here is an enumeration list:
+
+ o item1
+ o item2
+   may appear on
+   multiple lines
+  o subitem1 of item2
+  o subitem2 of item2
+ o item3
+
+And finally a description list:
+
+ - keyword1: followed by
+   some text
+   over multiple
+   lines
+ - keyword2:
+   followed by text on the next line
+ - keyword3: and its description may fit on one line
+</pre>
+<p>The code above follows.</p>
+<p>Here is a bullet list:</p>
+<blockquote>
+<ul class="simple">
+<li>item1</li>
+<li>item2</li>
+</ul>
+<blockquote>
+<ul class="simple">
+<li>subitem1 of item2</li>
+<li>subitem2 of item2</li>
+</ul>
+</blockquote>
+<ul class="simple">
+<li>item3</li>
+</ul>
+</blockquote>
+<p>Note that sublists are indented.
+Here is an enumeration list:</p>
+<ol class="arabic simple">
+<li>item1</li>
+<li>item2
+may appear on
+multiple lines</li>
+</ol>
+<blockquote>
+<ol class="arabic simple">
+<li>subitem1 of item2</li>
+<li>subitem2 of item2</li>
+</ol>
+</blockquote>
+<ol class="arabic simple" start="3">
+<li>item3</li>
+</ol>
+<p>And finally a description list:</p>
+<blockquote>
+<dl class="docutils">
+<dt>keyword1:</dt>
+<dd>followed by
+some text
+over multiple
+lines</dd>
+<dt>keyword2:</dt>
+<dd>followed by text on the next line</dd>
+<dt>keyword3:</dt>
+<dd>and its description may fit on one line</dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="comments">
+<h1>Comments</h1>
+<p>Lines starting with <tt class="docutils literal">#</tt> are treated as comments in the document
+and translated to the proper syntax for comments in
+the output document. Such comment lines
+should not appear before LaTeX math blocks, verbatim code blocks,
+or lists if the formats <tt class="docutils literal">rst</tt> and <tt class="docutils literal">sphinx</tt> are desired.</p>
+<p>When using the Mako preprocessor one can also place comments in
+the Doconce source file that will be removed by Mako before
+Doconce starts processing the file. Mako comments are recognized
+by lines starting with two hashes <tt class="docutils literal">##</tt> or by blocks of text
+inside the comment directives <tt class="docutils literal">%&lt;doc&gt;</tt> (beginning) and <tt class="docutils literal">&lt;%doc/&gt;</tt> (end).</p>
+<p>Inline comments, in the text, that are meant as messages or notes to readers
+(authors in particular)
+are often useful and enabled by the syntax:</p>
+<pre class="literal-block">
+[name: running text]
+</pre>
+<p>where <tt class="docutils literal">name</tt> is the name or ID of an author or reader making the comment,
+and <tt class="docutils literal">running text</tt> is the comment. There must be a space after the colon.
+Running:</p>
+<pre class="literal-block">
+doconce format html mydoc.do.txt --skip_inline_comments
+</pre>
+<p>removes all such inline comments from the output. This feature makes it easy
+to turn on and off notes to readers and is frequently used while writing
+a document.</p>
+<p>All inline comments to readers can also be physically
+removed from the Doconce source if desired:</p>
+<pre class="literal-block">
+doconce remove_inline_comments mydoc.do.txt
+</pre>
+<p>This action is appropriate when all issues with such comments are resolved.</p>
+</div>
+<div class="section" id="verbatim-computer-code">
+<h1>Verbatim/Computer Code</h1>
+<p>Inline verbatim code is typeset within single backquotes, as in:</p>
+<pre class="literal-block">
+Some sentence with `words in verbatim style`.
+</pre>
+<p>resulting in Some sentence with <tt class="docutils literal">words in verbatim style</tt>.</p>
+<p>Multi-line blocks of verbatim text, typically computer code, is typeset
+in between <tt class="docutils literal">!bc xxx</tt> and <tt class="docutils literal">!ec</tt> directives (which must appear on the
+beginning of the line). A specification <tt class="docutils literal">xxx</tt> indicates what verbatim
+formatting style that is to be used. Typical values for <tt class="docutils literal">xxx</tt> are
+nothing, <tt class="docutils literal">cod</tt> for a code snippet, <tt class="docutils literal">pro</tt> for a complete program,
+<tt class="docutils literal">sys</tt> for a terminal session, <tt class="docutils literal">dat</tt> for a data file (or output from a
+program),
+<tt class="docutils literal">Xpro</tt> or <tt class="docutils literal">Xcod</tt> for a program or code snipped, respectively,
+in programming <tt class="docutils literal">X</tt>, where <tt class="docutils literal">X</tt> may be <tt class="docutils literal">py</tt> for Python,
+<tt class="docutils literal">cy</tt> for Cython, <tt class="docutils literal">sh</tt> for Bash or other Unix shells,
+<tt class="docutils literal">f</tt> for Fortran, <tt class="docutils literal">c</tt> for C, <tt class="docutils literal">cpp</tt> for C++, <tt class="docutils literal">m</tt> for MATLAB,
+<tt class="docutils literal">pl</tt> for Perl. For output in <tt class="docutils literal">latex</tt> one can let <tt class="docutils literal">xxx</tt> reflect any
+defined verbatim environment in the <tt class="docutils literal">ptex2tex</tt> configuration file
+(<tt class="docutils literal">.ptex2tex.cfg</tt>). For <tt class="docutils literal">sphinx</tt> output one can insert a comment:</p>
+<pre class="literal-block">
+# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+</pre>
+<p>that maps environments (<tt class="docutils literal">xxx</tt>) onto valid language types for
+Pygments (which is what <tt class="docutils literal">sphinx</tt> applies to typeset computer code).</p>
+<p>The <tt class="docutils literal">xxx</tt> specifier has only effect for <tt class="docutils literal">latex</tt> and
+<tt class="docutils literal">sphinx</tt> output. All other formats use a fixed monospace font for all
+kinds of verbatim output.</p>
+<!-- When showing copy from file in !bc envir, intent a character - otherwise -->
+<!-- ptex2tex is confused and starts copying... -->
+<p>Computer code can also be copied from a file:</p>
+<pre class="literal-block">
+&#64;&#64;&#64;CODE doconce_program.sh
+&#64;&#64;&#64;CODE doconce_program.sh  fromto: doconce clean&#64;^doconce split_rst
+&#64;&#64;&#64;CODE doconce_program.sh  from-to: doconce clean&#64;^doconce split_rst
+</pre>
+<p>The <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> identifier must appear at the very beginning of the line.
+The first specification copies the complete file <tt class="docutils literal">doconce_program.sh</tt>.
+The second specification copies from the first line matching the <em>regular
+expression</em> <tt class="docutils literal">doconce clean</tt> up to, but not including the line
+matching the <em>regular expression</em> <tt class="docutils literal">^doconce split_rst</tt>.
+The third specification behaves as the second, but the line matching
+the first regular expression is not copied (aimed at copying
+text between begin-end comment pair in the file).</p>
+<p>The copied line from file are in this example put inside <tt class="docutils literal">!bc shpro</tt>
+and <tt class="docutils literal">!ec</tt> directives, if a complete file is copied, while the
+directives become <tt class="docutils literal">!bc shcod</tt> and <tt class="docutils literal">!ec</tt> when a code snippet is copied
+from file. In general, for a filename extension <tt class="docutils literal">.X</tt>, the environment
+becomes <tt class="docutils literal">!bc Xpro</tt> or <tt class="docutils literal">!bc Xcod</tt> for a complete program or snippet,
+respectively. The enivorments (<tt class="docutils literal">Xcod</tt> and <tt class="docutils literal">Xpro</tt>) are only active
+for <tt class="docutils literal">latex</tt> and <tt class="docutils literal">sphinx</tt> outout.</p>
+<p>Important warnings:</p>
+<blockquote>
+<ul class="simple">
+<li>A code block must come after some plain sentence (at least for successful
+output in reStructredText), not directly after a section/paragraph heading,
+table, comment, figure, or movie.</li>
+<li>Verbatim code blocks inside lists can be ugly typeset in some
+output formats. A more robust approach is to replace the list by
+paragraphs with headings.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="latex-mathematics">
+<h1>LaTeX Mathematics</h1>
+<p>Doconce supports inline mathematics and blocks of mathematics, using
+standard LaTeX syntax. The output formats <tt class="docutils literal">sphinx</tt>, <tt class="docutils literal">latex</tt>, and <tt class="docutils literal">pdflatex</tt>
+work with this syntax while all other formats will just display the
+raw LaTeX code.</p>
+<p>Inline expressions are written in the standard
+LaTeX way with the mathematics surrounded by dollar signs, as in
+Ax=b. To help increase readability in other formats than <tt class="docutils literal">sphinx</tt>,
+<tt class="docutils literal">latex</tt>, and <tt class="docutils literal">pdflatex</tt>, inline mathematics may have a more human
+readable companion expression. The syntax is like:</p>
+<pre class="literal-block">
+$\sin(\norm{\bf u})$|$sin(||u||)$
+</pre>
+<p>That is, the LaTeX expression appears to the left of a vertical bar (pipe
+symbol) and the more readable expression appears to the right. Both
+expressions are surrounded by dollar signs. Plain text formats and HTML
+will applied the expression to the right.</p>
+<p>Blocks of LaTeX mathematics are written within
+<tt class="docutils literal">!bt</tt>
+and
+<tt class="docutils literal">!et</tt> (&quot;begin/end TeX&quot;) directives, just like computer code.
+For example:</p>
+<pre class="literal-block">
+!bt
+\begin{align*}
+\nabla\cdot u &amp;= 0,\\
+\nabla\times u &amp; 0.
+\end{align*}
+</pre>
+<p>will appear as:</p>
+<pre class="literal-block">
+\begin{align*}
+\nabla\cdot u &amp;= 0,\\
+\nabla\times u &amp; 0.
+\end{align*}
+</pre>
+<p>One can use <tt class="docutils literal">#if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;, &quot;sphinx&quot;, &quot;mwiki&quot;)</tt> to let
+the preprocessor choose a block of mathematics in LaTeX format
+or (<tt class="docutils literal">#else</tt>) a modified form more suited for plain text and wiki
+formats without support for mathematics.</p>
+<p>Any LaTeX syntax is accepted, but if output in the <tt class="docutils literal">sphinx</tt> format
+is important, one must know that <tt class="docutils literal">sphinx</tt> does not support many
+LaTeX constructs. For output both in <tt class="docutils literal">latex</tt> and <tt class="docutils literal">sphinx</tt> formats we
+recommend the following:</p>
+<blockquote>
+<ul class="simple">
+<li>Use only the equation environments <tt class="docutils literal">\[</tt>, <tt class="docutils literal">\]</tt>,
+<tt class="docutils literal">equation</tt>, <tt class="docutils literal">equation*</tt>, <tt class="docutils literal">align</tt>, and <tt class="docutils literal">align*</tt>.</li>
+<li>Labels in multiple equation environments such as <tt class="docutils literal">align</tt> are
+not (yet) handled by <tt class="docutils literal">sphinx</tt>, so avoid inserting labels and referring
+to equation labels in <tt class="docutils literal">align</tt> environments. Actually, <tt class="docutils literal">align*</tt>
+is the preferred environment for multiple equations. Writing with
+also <tt class="docutils literal">sphinx</tt> output in mind results in a slightly adjusted type
+of LaTeX writing.</li>
+<li>LaTeX supports lots of fancy formatting, for example, multiple
+plots in the same figure, footnotes, margin notes, etc.
+Allowing other output formats, such as <tt class="docutils literal">sphinx</tt>, makes it necessary
+to only utilze very standard LaTeX and avoid, for instance, more than
+one plot per figure. However, one can use preprocessor if-tests on
+the format (typically <tt class="docutils literal"># #ifdef format == &quot;latex&quot;</tt>) to
+include special code for <tt class="docutils literal">latex</tt> output and more straightforward
+typesetting for other formats. In this way, one can also allow
+advanced LaTeX features and fine tuning of resulting PDF document.</li>
+</ul>
+</blockquote>
+<p><em>LaTeX Newcommands.</em> Text missing...</p>
+</div>
+<div class="section" id="figures-and-movies">
+<h1>Figures and Movies</h1>
+<p>Figures and movies have almost equal syntax:</p>
+<pre class="literal-block">
+FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+
+MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+</pre>
+<p>Note the mandatory comma after the figure/movie file.</p>
+<p>The figure file can be listed without extension. Doconce will then find
+the version of the file with the most appropriate extension for the chosen
+output format. If not suitable version is found, Doconce will convert
+another format to the desired one.</p>
+<p>Movie files can either be a video or a wildcard expression for a
+series of frames. In the latter case, a simple device in an HTML page
+will display the individual frame files as a movie.</p>
+<p>Combining several image files into one can be done by the
+<tt class="docutils literal">convert</tt> and <tt class="docutils literal">montage</tt> programs from the ImageMagick suite:</p>
+<pre class="literal-block">
+montage file1.png file2.png ... file4.png -geometry +2+2  result.png
+montage file1.png file2.png -tile x1 result.png
+montage file1.png file2.png -tile 1x result.png
+
+convert -background white file1.png file2.png +append tmp.png
+</pre>
+<p>Use <tt class="docutils literal">+append</tt> for stacking left to right, <tt class="docutils literal"><span class="pre">-append</span></tt> for top to bottom.
+The positioning of the figures can be controlled by <tt class="docutils literal"><span class="pre">-gravity</span></tt>.</p>
+</div>
+<div class="section" id="tables">
+<h1>Tables</h1>
+<p>The table in the section <a class="reference internal" href="#section-types">Section Types</a> was written with this
+syntax:</p>
+<pre class="literal-block">
+|----------------c--------|------------------c--------------------|
+|      Section type       |        Syntax                         |
+|----------------l--------|------------------l--------------------|
+| chapter                 | `========= Heading ========` (9 `=`)  |
+| section                 | `======= Heading =======`    (7 `=`)  |
+| subsection              | `===== Heading =====`        (5 `=`)  |
+| subsubsection           | `=== Heading ===`            (3 `=`)  |
+| paragraph               | `__Heading.__`               (2 `_`)  |
+|-----------------------------------------------------------------|
+</pre>
+<p>Note that</p>
+<blockquote>
+<ul class="simple">
+<li>Each line begins and ends with a vertical bar (pipe symbol).</li>
+<li>Column data are separated by a vertical bar (pipe symbol).</li>
+<li>There may be horizontal rules, i.e., lines with dashes for
+indicating the heading and the end of the table, and these may
+contain characters 'c', 'l', or 'r' for how to align headings or
+columns. The first horizontal rule may indicate how to align
+headings (center, left, right), and the horizontal rule after the
+heading line may indicate how to align the data in the columns
+(center, left, right).</li>
+<li>If the horizontal rules are without alignment information there should
+be no vertical bar (pipe symbol) between the columns. Otherwise, such
+a bar indicates a vertical bar between columns in LaTeX.</li>
+<li>Many output formats are so primitive that heading and column alignment
+have no effect.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="labels-references-citations-and-index">
+<h1>Labels, References, Citations, and Index</h1>
+<p>The notion of labels, references, citations, and an index is adopted
+from LaTeX with a very similar syntax. As in LaTeX, a label can be
+inserted anywhere, using the syntax:</p>
+<pre class="literal-block">
+label{name}
+</pre>
+<p>with no backslash
+preceding the label keyword! It is common practice to choose <tt class="docutils literal">name</tt>
+as some hierarchical name, say <tt class="docutils literal">a:b:c</tt>, where <tt class="docutils literal">a</tt> and <tt class="docutils literal">b</tt> indicate
+some abbreviations for a section and/or subsection for the topic and
+<tt class="docutils literal">c</tt> is some name for the particular unit that has a label.</p>
+<p>A reference to the label <tt class="docutils literal">name</tt> is written as:</p>
+<pre class="literal-block">
+ref{name}
+</pre>
+<p>again with no backslash before <tt class="docutils literal">ref</tt>.</p>
+<p>Single citations are written as:</p>
+<pre class="literal-block">
+cite{name}
+</pre>
+<p>where <tt class="docutils literal">name</tt> is a logical name
+of the reference (again, LaTeX writers must not insert a backslash).
+Bibliography citations often have <tt class="docutils literal">name</tt> on the form
+<tt class="docutils literal">Author1_Author2_YYYY</tt>, <tt class="docutils literal">Author_YYYY</tt>, or <tt class="docutils literal">Author1_etal_YYYY</tt>, where
+<tt class="docutils literal">YYYY</tt> is the year of the publication.
+Multiple citations at once is possible by separating the logical names
+by comma:</p>
+<pre class="literal-block">
+cite{name1,name2,name3}
+</pre>
+<p>The bibliography is specified by a line <tt class="docutils literal">BIBFILE: name_bib.bib,
+name_bib.rst, name_bib.py</tt>, where <tt class="docutils literal">name</tt> is the logical name of the
+document (the doconce file will then normally have the name
+<tt class="docutils literal">name.do.txt</tt>), and the various files reflect different formattings of
+the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
+bibliography, and '.py' a Python list of dictionaries for specifying
+the entries in the bibliography. The bibliography (as read from file)
+is inserted where the <tt class="docutils literal">BIBFILE</tt> keyword appears.</p>
+<p>Doconce supports creating an index of keywords. A certain keyword
+is registered for the index by a syntax like (no
+backslash!):</p>
+<pre class="literal-block">
+index{name}
+</pre>
+<p>It is recommended to place any index of this type outside
+running text, i.e., after (sub)section titles and in the space between
+paragraphs. Index specifications placed right before paragraphs also
+gives the doconce source code an indication of the content in the
+forthcoming text. The index is only produced for the <tt class="docutils literal">latex</tt>, <tt class="docutils literal">rst</tt>, and
+<tt class="docutils literal">sphinx</tt> formats.</p>
+</div>
+<div class="section" id="capabilities-of-the-doconce-program">
+<h1>Capabilities of the &quot;doconce&quot; Program</h1>
+<p>The <tt class="docutils literal">doconce</tt> program can be used for a number of purposes besides
+transforming a <tt class="docutils literal">.do.txt</tt> file to some format. Here is the
+list of capabilities:</p>
+<pre class="literal-block">
+Usage: doconce command [optional arguments]
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck
+
+doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
+
+doconce subst [-s -m -x --restore] regex-pattern regex-replacement file1 file2 ...
+(-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier,
+ -x is the re.VERBOSE modifier, --restore copies backup files back again)
+
+doconce replace from-text to-text file1 file2 ...
+(exact text substutition)
+
+doconce replace_from_file file-with-from-to file1 file2 ...
+(exact text substitution, but a set of from-to relations)
+
+doconce gwiki_figsubst file.gwiki URL-of-fig-dir
+
+doconce remove_inline_comments file.do.txt
+
+doconce sphinx_dir author='Me and you' title='Quick title'     version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3
+(requires sphinx version &gt;= 1.1)
+
+doconce latin2html file.html
+
+doconce insertdocstr rootdir
+
+doconce clean
+(remove all files that the doconce format can regenerate)
+
+doconce latex_header
+doconce latex_footer
+
+doconce change_encoding utf-8 latin1 filename
+doconce guess_encoding filename
+
+doconce bbl2rst file.bbl
+doconce split_rst complete_file.rst
+doconce sphinxfix_local_URLs file.rst
+
+doconce grab --from[-] from-text [--to[-] to-text] somefile
+
+doconce spellcheck -d .dict4spell.txt *.do.txt
+
+doconce list_labels doconcefile.do.txt | latexfile.tex
+doconce teamod name
+doconce assemble name master.do.txt
+</pre>
+</div>
+<div class="section" id="exercises">
+<h1>Exercises</h1>
+<p>Doconce supports <em>Exercise</em>, <em>Problem</em>, and <em>Project</em>. These are typeset
+as ordinary sections and referred to by their section labels.
+The typical sketch of an exercise, problem, or project sections
+looks as follows:</p>
+<pre class="literal-block">
+===== Problem: Derive the Formula for the Area of an Ellipse =====
+label{problem:ellipsearea1}
+file=ellipse_area.pdf
+solution=ellipse_area1_sol.pdf
+
+Derive an expression for the area of an ellipse by integrating
+the area under a curve that defines half of the allipse.
+Show each step in the mathematical derivation.
+
+__Hint 1.__ Wikipedia has the formula for the curve.
+
+__Hint 2.__ &quot;Wolframalpha&quot;: &quot;http://wolframalpha.com&quot; can perhaps
+compute the integral.
+</pre>
+<p>An exercise, problem, or project has certain elements:</p>
+<blockquote>
+<ul class="simple">
+<li>A headline at the level of a subsection or subsubsection,
+containing one of the words &quot;Exercise:&quot;, &quot;Problem:&quot;, or
+&quot;Project:&quot;, followed by a title. (Required.)</li>
+<li>A standard label for referring to the exercise. (Optional.)</li>
+<li>A name for the file with the result/answer (<tt class="docutils literal">file=filename</tt>). (Optional.)</li>
+<li>A name for the solution file (<tt class="docutils literal">solution=filename</tt>), where the file
+name may be a URL. (Optional.)</li>
+<li>The running text of the exercise. (Required.)</li>
+<li>A sequence of hints, indicated as paragraphs. There can be a
+single hint, without any number, or several numbered hints.
+(Optional.)</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="labels-index-and-citations">
+<h1>Labels, Index, and Citations</h1>
+</div>
+<div class="section" id="preprocessing">
+<h1>Preprocessing</h1>
+<p>Doconce documents may utilize a preprocessor, either <tt class="docutils literal">preprocess</tt> or
+<tt class="docutils literal">mako</tt>. The former is a C-style preprocessor that allows if-tests
+and including other files (but not macros with arguments).
+The <tt class="docutils literal">mako</tt> preprocessor is much more advanced - it is actually a full
+programming language, very similar to Python.</p>
+</div>
+</div>
+</body>
+</html>
