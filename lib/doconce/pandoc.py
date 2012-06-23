@@ -59,17 +59,20 @@ def pandoc_code(filestr, format):
     return filestr
 
 def pandoc_table(table):
+    """
+
+    Simple markdown tables look like this::
+
+        Left         Right   Center     Default
+        -------     ------ ----------   -------
+        12              12     12            12
+        123            123     123          123
+        1                1      1             1
+
+    """
     # Slight modification of rst_table
     # Here is the pandoc table format
-    """
-    Simple tables look like this:
 
-      Right     Left     Center     Default
-    -------     ------ ----------   -------
-         12     12        12            12
-        123     123       123          123
-          1     1          1             1
-    """
     column_width = table_analysis(table['rows'])
     ncolumns = len(column_width)
     column_spec = table.get('columns_align', 'c'*ncolumns).replace('|', '')

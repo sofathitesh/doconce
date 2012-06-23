@@ -57,11 +57,6 @@
   <div class="section" id="module-doconce.html">
 <span id="doconce-html"></span><h1><a class="reference internal" href="#module-doconce.html" title="doconce.html"><tt class="xref py py-mod docutils literal"><span class="pre">doconce.html</span></tt></a><a class="headerlink" href="#module-doconce.html" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="doconce.html.HTML_code">
-<tt class="descclassname">doconce.html.</tt><tt class="descname">HTML_code</tt><big>(</big><em>filestr</em>, <em>format</em><big>)</big><a class="headerlink" href="#doconce.html.HTML_code" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
 <dt id="doconce.html.bibdict2htmllist">
 <tt class="descclassname">doconce.html.</tt><tt class="descname">bibdict2htmllist</tt><big>(</big><em>pyfile</em>, <em>citations</em><big>)</big><a class="headerlink" href="#doconce.html.bibdict2htmllist" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform dict with bibliography to an HTML ordered list with anchors.</p>
@@ -69,12 +64,22 @@
 
 <dl class="function">
 <dt id="doconce.html.define">
-<tt class="descclassname">doconce.html.</tt><tt class="descname">define</tt><big>(</big><em>FILENAME_EXTENSION</em>, <em>BLANKLINE</em>, <em>INLINE_TAGS_SUBST</em>, <em>CODE</em>, <em>LIST</em>, <em>ARGLIST</em>, <em>TABLE</em>, <em>FIGURE_EXT</em>, <em>CROSS_REFS</em>, <em>INDEX_BIB</em>, <em>INTRO</em>, <em>OUTRO</em><big>)</big><a class="headerlink" href="#doconce.html.define" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">doconce.html.</tt><tt class="descname">define</tt><big>(</big><em>FILENAME_EXTENSION</em>, <em>BLANKLINE</em>, <em>INLINE_TAGS_SUBST</em>, <em>CODE</em>, <em>LIST</em>, <em>ARGLIST</em>, <em>TABLE</em>, <em>EXERCISE</em>, <em>FIGURE_EXT</em>, <em>CROSS_REFS</em>, <em>INDEX_BIB</em>, <em>INTRO</em>, <em>OUTRO</em><big>)</big><a class="headerlink" href="#doconce.html.define" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="doconce.html.html_author">
-<tt class="descclassname">doconce.html.</tt><tt class="descname">html_author</tt><big>(</big><em>authors_and_institutions</em>, <em>auth2index</em>, <em>inst2index</em>, <em>index2inst</em><big>)</big><a class="headerlink" href="#doconce.html.html_author" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">doconce.html.</tt><tt class="descname">html_author</tt><big>(</big><em>authors_and_institutions</em>, <em>auth2index</em>, <em>inst2index</em>, <em>index2inst</em>, <em>auth2email</em><big>)</big><a class="headerlink" href="#doconce.html.html_author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="doconce.html.html_code">
+<tt class="descclassname">doconce.html.</tt><tt class="descname">html_code</tt><big>(</big><em>filestr</em>, <em>format</em><big>)</big><a class="headerlink" href="#doconce.html.html_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="doconce.html.html_figure">
+<tt class="descclassname">doconce.html.</tt><tt class="descname">html_figure</tt><big>(</big><em>m</em><big>)</big><a class="headerlink" href="#doconce.html.html_figure" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -137,7 +142,7 @@ European characters in general.)</p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -171,7 +176,7 @@ European characters in general.)</p>
     </div>
     <div class="footer">
         &copy; Copyright 2010, H. P. Langtangen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1pre.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

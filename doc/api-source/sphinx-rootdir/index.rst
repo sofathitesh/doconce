@@ -1,10 +1,10 @@
-.. Doconce Documentation documentation master file, created by
+.. Doconce documentation master file, created by
    sphinx-quickstart on Fri Jul 30 13:32:45 2010.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Doconce Documentation's documentation!
-=================================================
+Welcome to the Doconce documentation!
+=====================================
 
 Contents:
 
