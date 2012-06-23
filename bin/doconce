@@ -322,8 +322,9 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
         if len(newdict_add) > 0:
             print '%s: %d, %s: %d items' % (newdict, len(newdict_add), 'new_dictionary.txt~', len(union))
 
+
 def _spellcheck_all(**kwargs):
-    for filename in glob.glob('tmp_misspelled*~') + glob.glob('misspellings.txt~*'):
+    for filename in glob.glob('tmp_misspelled*~') + glob.glob('misspellings.txt~*') + glob.glob('tmp_stripped_*'):
         os.remove(filename)
     for filename in sys.argv[1:]:
         _spellcheck(filename, **kwargs)
@@ -915,11 +916,9 @@ extensions = [
           #'matplotlib.sphinxext.mathmpl',
           'matplotlib.sphinxext.only_directives',
           'matplotlib.sphinxext.plot_directive',
-          'matplotlib.sphinxext.ipython_directive',
           'sphinx.ext.autodoc',
           'sphinx.ext.doctest',
           'sphinx.ext.viewcode',
-          'matplotlib.sphinxext.ipython_console_highlighting',
           'sphinx.ext.inheritance_diagram']
 
 #pngmath_dvipng_args = ['-D 200', '-bg Transparent', '-gamma 1.5']  # large math fonts (200)
@@ -940,6 +939,11 @@ except ImportError:
     additional_themes_url['cloud'] = 'https://bitbucket.org/ecollins/cloud_sptheme'
 
 """
+    # Note: in the extension list above,
+    #'matplotlib.sphinxext.ipython_directive',
+    #'matplotlib.sphinxext.ipython_console_highlighting',
+    # are now in IPython, but not installed as Python modules
+
     text = re.sub(r'extensions = .*\]', extensions, text)
     text = text.replace('#html_theme_options = {}', """\
 # See http://sphinx.pocoo.org/theming.html for options
@@ -1122,7 +1126,10 @@ google-chrome %(sphinx_rootdir)s/_build/html/index.html
     os.chmod('automake-sphinx.py', 0755)
     print """
 'automake-sphinx.py' contains the steps to (re)compile the sphinx
-version. You may want to edit this file, or run the steps manually.
+version. You may want to edit this file, or run the steps manually,
+or just run it by
+
+  python automake-sphinx.py
 """
 
 def dofix_localURLs(filename, exclude_adr):
