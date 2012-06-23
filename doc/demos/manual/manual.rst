@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Jun 3, 2012
+:Date: Jun 23, 2012
 
 .. lines beginning with # are comment lines
 
@@ -351,7 +351,7 @@ The resulting file ``mydoc.html`` can be loaded into any web browser for viewing
 Pandoc
 ------
 
-Output in the versatile Pandoc format results from::
+Output in Pandoc's extended Markdown format results from::
 
 
         Terminal> doconce format pandoc mydoc
@@ -360,7 +360,6 @@ The name of the output file is ``mydoc.mkd``.
 From this format one can go to numerous other formats::
 
 
-        Terminal> pandoc -R -t markdown  -o mydoc.txt mydoc.mkd
         Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
 
 Pandoc supports ``latex``, ``html``, ``odt`` (OpenOffice), ``docx`` (Microsoft
@@ -369,16 +368,20 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the `Pandoc documentation <http://johnmacfarlane.net/pandoc/README.html>`_
 for the many features of the ``pandoc`` program.
 
-Here are some useful options for using ``pandoc`` to handle mathematics
-in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively)::
+Pandoc is useful to go from LaTeX mathematics to MS Word.
+However, this should be done via LaTeX, not via Pandoc's extended Markdown
+format. For example::
 
 
-        Terminal> pandoc -R --latexmathml -t html -o mydoc.html mydoc.mkd
-        Terminal> pandoc -R --mathml      -t html -o mydoc.html mydoc.mkd
-        Terminal> pandoc -R --jsmath      -t html -o mydoc.html mydoc.mkd
-        Terminal> pandoc -R --mathjax     -t html -o mydoc.html mydoc.mkd
+        Terminal> doconce format latex mydoc
+        Terminal> ptex2tex mydoc
+        Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+        Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
-
+Quite some ``doconce replace`` and ``doconce subst`` edits might be needed
+to successfully have mathematics that is well translated to MS Word.
+Also when going to reStructuredText using Pandoc, it can be advantageous
+to go via LaTeX.
 
 
 LaTeX
@@ -2219,6 +2222,13 @@ Too short underlining of reST headlines
 This may happen if there is a paragraph heading without
 proceeding text before some section heading.
 
+
+Found !bt but no tex blocks extracted (BUG)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This message points to a bug, but has been resolved by removing blank lines
+between the text and the first ``!bt`` (inserting the blanks again did not
+trigger the error message again...).
 
 Problems with code or Tex Blocks
 --------------------------------

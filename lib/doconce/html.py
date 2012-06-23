@@ -22,8 +22,8 @@ def html_figure(m):
 
     if opts:
         info = [s.split('=') for s in opts.split()]
-        opts = ['%s=%s' % (option, value)
-                for option, value in info if option not in ['frac']]
+        opts = ' ' .join(['%s=%s' % (option, value)
+                          for option, value in info if option not in ['frac']])
 
     if caption:
        # Caption above figure and a horizontal rule (fine for anchoring):

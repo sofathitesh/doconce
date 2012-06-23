@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jun 3, 2012</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jun 23, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -603,14 +603,13 @@ Terminal&gt; doconce format html mydoc
 </div>
 <div class="section" id="id2">
 <h2>Pandoc</h2>
-<p>Output in the versatile Pandoc format results from:</p>
+<p>Output in Pandoc's extended Markdown format results from:</p>
 <pre class="literal-block">
 Terminal&gt; doconce format pandoc mydoc
 </pre>
 <p>The name of the output file is <tt class="docutils literal">mydoc.mkd</tt>.
 From this format one can go to numerous other formats:</p>
 <pre class="literal-block">
-Terminal&gt; pandoc -R -t markdown  -o mydoc.txt mydoc.mkd
 Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
 </pre>
 <p>Pandoc supports <tt class="docutils literal">latex</tt>, <tt class="docutils literal">html</tt>, <tt class="docutils literal">odt</tt> (OpenOffice), <tt class="docutils literal">docx</tt> (Microsoft
@@ -618,14 +617,19 @@ Word), <tt class="docutils literal">rtf</tt>, <tt class="docutils literal">texin
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the <a class="reference external" href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</a>
 for the many features of the <tt class="docutils literal">pandoc</tt> program.</p>
-<p>Here are some useful options for using <tt class="docutils literal">pandoc</tt> to handle mathematics
-in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively):</p>
+<p>Pandoc is useful to go from LaTeX mathematics to MS Word.
+However, this should be done via LaTeX, not via Pandoc's extended Markdown
+format. For example:</p>
 <pre class="literal-block">
-Terminal&gt; pandoc -R --latexmathml -t html -o mydoc.html mydoc.mkd
-Terminal&gt; pandoc -R --mathml      -t html -o mydoc.html mydoc.mkd
-Terminal&gt; pandoc -R --jsmath      -t html -o mydoc.html mydoc.mkd
-Terminal&gt; pandoc -R --mathjax     -t html -o mydoc.html mydoc.mkd
+Terminal&gt; doconce format latex mydoc
+Terminal&gt; ptex2tex mydoc
+Terminal&gt; doconce replace &quot;pmb{&quot; &quot;mathbf{&quot; mydoc.tex  # avoid ams math
+Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </pre>
+<p>Quite some <tt class="docutils literal">doconce replace</tt> and <tt class="docutils literal">doconce subst</tt> edits might be needed
+to successfully have mathematics that is well translated to MS Word.
+Also when going to reStructuredText using Pandoc, it can be advantageous
+to go via LaTeX.</p>
 </div>
 <div class="section" id="latex">
 <h2>LaTeX</h2>
@@ -2175,6 +2179,12 @@ run <tt class="docutils literal">doconce change_encoding</tt> to change the enco
 <p>This may happen if there is a paragraph heading without
 proceeding text before some section heading.</p>
 </div>
+<div class="section" id="found-bt-but-no-tex-blocks-extracted-bug">
+<h3>Found !bt but no tex blocks extracted (BUG)</h3>
+<p>This message points to a bug, but has been resolved by removing blank lines
+between the text and the first <tt class="docutils literal">!bt</tt> (inserting the blanks again did not
+trigger the error message again...).</p>
+</div>
 </div>
 <div class="section" id="problems-with-code-or-tex-blocks">
 <h2>Problems with code or Tex Blocks</h2>
@@ -2538,7 +2548,7 @@ groundwater flow.
 <div class="system-messages section">
 <h1>Docutils System Messages</h1>
 <div class="system-message" id="id11">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">manual.rst</tt>, line 748); <em><a href="#id12">backlink</a></em></p>
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">manual.rst</tt>, line 751); <em><a href="#id12">backlink</a></em></p>
 Unknown target name: &quot;googlecode wiki &lt;http://code.google.com/p/support/wiki/wikisyntax&lt;google code&gt;&gt;&quot;.</div>
 </div>
 </div>
