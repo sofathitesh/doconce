@@ -344,19 +344,34 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the [http://johnmacfarlane.net/pandoc/README.html Pandoc documentation]
 for the many features of the `pandoc` program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+`doconce format pandoc` and then translating using `pandoc`, or
+`doconce format latex`, and then going from LaTeX to the desired format
+using `pandoc`.
+Here is an example on the latter strategy:
 {{{
 Terminal> doconce format latex mydoc
-Terminal> ptex2tex mydoc
-Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> doconce ptex2tex mydoc
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 }}}
+When we go through `pandoc`, only single equations or `align*`
+environments are well understood.
+
 Quite some `doconce replace` and `doconce subst` edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the `.mkd` or `.tex` files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+{{{
+Terminal> doconce format pandoc mydoc
+Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+}}}
+The `-s` option adds a proper header and footer to the `mydoc.html` file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 ==== LaTeX ====
 
@@ -380,11 +395,12 @@ so that your commands are defined.
 {{{
 Terminal> ptex2tex mydoc
 }}}
-or just perform a plain copy,
+In case you do not have `ptex2tex`, you may run a (very) simplified version:
 {{{
-Terminal> cp mydoc.p.tex mydoc.tex
+Terminal> doconce ptex2tex mydoc
 }}}
-Doconce generates a `.p.tex` file with some preprocessor macros
+
+Note that Doconce generates a `.p.tex` file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -409,7 +425,24 @@ documents. After any `!bc` command in the Doconce source you can
 insert verbatim block styles as defined in your `.ptex2tex.cfg`
 file, e.g., `!bc cod` for a code snippet, where `cod` is set to
 a certain environment in `.ptex2tex.cfg` (e.g., `CodeIntended`).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the `doconce ptex2tex` command supports preprocessor directives
+for processing the `.p.tex` file. The command allows specifications
+of code environments as well. Here is an example:
+{{{
+Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+}}}
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+`verbatim` above, which implies `\begin{verbatim}` and `\end{verbatim}`).
+The value `minted` can be used for code environments where the
+language is specified, as in `fpro`, where `minted` implies
+`\begin{python}{fortran}`. There is a similar support for `ans`:
+`cppcod=ans` imples `\begin{c++}` and `\end{c++}` using the
+`anslistings` package.
 
 *Step 2b (optional).* Edit the `mydoc.tex` file to your needs.
 For example, you may want to substitute `section` by `section*` to

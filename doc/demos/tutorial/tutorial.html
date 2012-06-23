@@ -514,21 +514,40 @@ See the <a href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentat
 for the many features of the <tt>pandoc</tt> program.
 
 <P>
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+<tt>doconce format pandoc</tt> and then translating using <tt>pandoc</tt>, or
+<tt>doconce format latex</tt>, and then going from LaTeX to the desired format
+using <tt>pandoc</tt>.
+Here is an example on the latter strategy:
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
 Terminal&gt; doconce format latex mydoc
-Terminal&gt; ptex2tex mydoc
-Terminal&gt; doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal&gt; doconce ptex2tex mydoc
 Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </pre>
 </blockquote>   <! -- end verbatim block -->
+When we go through <tt>pandoc</tt>, only single equations or <tt>align*</tt>
+environments are well understood.
+
+<P>
 Quite some <tt>doconce replace</tt> and <tt>doconce subst</tt> edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the <tt>.mkd</tt> or <tt>.tex</tt> files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+<P>
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; doconce format pandoc mydoc
+Terminal&gt; pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+</pre>
+</blockquote>   <! -- end verbatim block -->
+The <tt>-s</tt> option adds a proper header and footer to the <tt>mydoc.html</tt> file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 <P>
 
@@ -561,13 +580,15 @@ so that your commands are defined.
 Terminal&gt; ptex2tex mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
-or just perform a plain copy,
+In case you do not have <tt>ptex2tex</tt>, you may run a (very) simplified version:
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
-Terminal&gt; cp mydoc.p.tex mydoc.tex
+Terminal&gt; doconce ptex2tex mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
-Doconce generates a <tt>.p.tex</tt> file with some preprocessor macros
+
+<P>
+Note that Doconce generates a <tt>.p.tex</tt> file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -599,7 +620,27 @@ documents. After any <tt>!bc</tt> command in the Doconce source you can
 insert verbatim block styles as defined in your <tt>.ptex2tex.cfg</tt>
 file, e.g., <tt>!bc cod</tt> for a code snippet, where <tt>cod</tt> is set to
 a certain environment in <tt>.ptex2tex.cfg</tt> (e.g., <tt>CodeIntended</tt>).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+<P>
+Also the <tt>doconce ptex2tex</tt> command supports preprocessor directives
+for processing the <tt>.p.tex</tt> file. The command allows specifications
+of code environments as well. Here is an example:
+<blockquote>    <!-- begin verbatim block   sys-->
+<pre>
+Terminal&gt; doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+</pre>
+</blockquote>   <! -- end verbatim block -->
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+<tt>verbatim</tt> above, which implies <tt>\begin{verbatim}</tt> and <tt>\end{verbatim}</tt>).
+The value <tt>minted</tt> can be used for code environments where the
+language is specified, as in <tt>fpro</tt>, where <tt>minted</tt> implies
+<tt>\begin{python}{fortran}</tt>. There is a similar support for <tt>ans</tt>:
+<tt>cppcod=ans</tt> imples <tt>\begin{c++}</tt> and <tt>\end{c++}</tt> using the
+<tt>anslistings</tt> package.
 
 <P>
 <b>Step 2b (optional).</b> Edit the <tt>mydoc.tex</tt> file to your needs.

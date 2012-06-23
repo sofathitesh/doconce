@@ -335,19 +335,32 @@ Word), <tt class="docutils literal"><span class="pre">rtf</span></tt>, <tt class
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the <a class="reference external" href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</a>
 for the many features of the <tt class="docutils literal"><span class="pre">pandoc</span></tt> program.</p>
-<p>Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc&#8217;s extended Markdown
-format. For example,</p>
+<p>Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+<tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">pandoc</span></tt> and then translating using <tt class="docutils literal"><span class="pre">pandoc</span></tt>, or
+<tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">latex</span></tt>, and then going from LaTeX to the desired format
+using <tt class="docutils literal"><span class="pre">pandoc</span></tt>.
+Here is an example on the latter strategy:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format latex mydoc</span>
-<span class="go">Terminal&gt; ptex2tex mydoc</span>
-<span class="go">Terminal&gt; doconce replace &quot;pmb{&quot; &quot;mathbf{&quot; mydoc.tex  # avoid ams math</span>
+<span class="go">Terminal&gt; doconce ptex2tex mydoc</span>
 <span class="go">Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex</span>
 </pre></div>
 </div>
+<p>When we go through <tt class="docutils literal"><span class="pre">pandoc</span></tt>, only single equations or <tt class="docutils literal"><span class="pre">align*</span></tt>
+environments are well understood.</p>
 <p>Quite some <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">replace</span></tt> and <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">subst</span></tt> edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.</p>
+on the <tt class="docutils literal"><span class="pre">.mkd</span></tt> or <tt class="docutils literal"><span class="pre">.tex</span></tt> files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.</p>
+<p>Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format pandoc mydoc</span>
+<span class="go">Terminal&gt; pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">-s</span></tt> option adds a proper header and footer to the <tt class="docutils literal"><span class="pre">mydoc.html</span></tt> file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.</p>
 </div>
 <div class="section" id="latex">
 <h2>LaTeX<a class="headerlink" href="#latex" title="Permalink to this headline">¶</a></h2>
@@ -369,11 +382,11 @@ so that your commands are defined.</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; ptex2tex mydoc</span>
 </pre></div>
 </div>
-<p>or just perform a plain copy,</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; cp mydoc.p.tex mydoc.tex</span>
+<p>In case you do not have <tt class="docutils literal"><span class="pre">ptex2tex</span></tt>, you may run a (very) simplified version:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce ptex2tex mydoc</span>
 </pre></div>
 </div>
-<p>Doconce generates a <tt class="docutils literal"><span class="pre">.p.tex</span></tt> file with some preprocessor macros
+<p>Note that Doconce generates a <tt class="docutils literal"><span class="pre">.p.tex</span></tt> file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run</p>
@@ -397,7 +410,23 @@ documents. After any <tt class="docutils literal"><span class="pre">!bc</span></
 insert verbatim block styles as defined in your <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt>
 file, e.g., <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">cod</span></tt> for a code snippet, where <tt class="docutils literal"><span class="pre">cod</span></tt> is set to
 a certain environment in <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt> (e.g., <tt class="docutils literal"><span class="pre">CodeIntended</span></tt>).
-There are over 30 styles to choose from.</p>
+There are about 40 styles to choose from.</p>
+<p>Also the <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">ptex2tex</span></tt> command supports preprocessor directives
+for processing the <tt class="docutils literal"><span class="pre">.p.tex</span></tt> file. The command allows specifications
+of code environments as well. Here is an example:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \</span>
+<span class="go">          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \</span>
+<span class="go">          fpro=minted fcod=minted sys=verbatim</span>
+</pre></div>
+</div>
+<p>Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+<tt class="docutils literal"><span class="pre">verbatim</span></tt> above, which implies <tt class="docutils literal"><span class="pre">\begin{verbatim}</span></tt> and <tt class="docutils literal"><span class="pre">\end{verbatim}</span></tt>).
+The value <tt class="docutils literal"><span class="pre">minted</span></tt> can be used for code environments where the
+language is specified, as in <tt class="docutils literal"><span class="pre">fpro</span></tt>, where <tt class="docutils literal"><span class="pre">minted</span></tt> implies
+<tt class="docutils literal"><span class="pre">\begin{python}{fortran}</span></tt>. There is a similar support for <tt class="docutils literal"><span class="pre">ans</span></tt>:
+<tt class="docutils literal"><span class="pre">cppcod=ans</span></tt> imples <tt class="docutils literal"><span class="pre">\begin{c++}</span></tt> and <tt class="docutils literal"><span class="pre">\end{c++}</span></tt> using the
+<tt class="docutils literal"><span class="pre">anslistings</span></tt> package.</p>
 <p><em>Step 2b (optional).</em> Edit the <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt> file to your needs.
 For example, you may want to substitute <tt class="docutils literal"><span class="pre">section</span></tt> by <tt class="docutils literal"><span class="pre">section*</span></tt> to
 avoid numbering of sections, you may want to insert linebreaks
