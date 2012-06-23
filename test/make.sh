@@ -16,6 +16,16 @@ doconce format cwiki testdoc.do.txt
 # Test mako variables too
 doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string'
 
+# Test pandoc
+doconce format latex testdoc.do.txt
+doconce ptex2tex testdoc -DBOOK -DLATEXHEADING=traditional
+#doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
+pandoc -f latex -t markdown -o testdoc.mkd testdoc.tex
+pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.mkd
+
+doconce format pandoc testdoc.do.txt
+pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.mkd
+
 # Test grab
 doconce grab --from- '={9}' --to 'subroutine@' testdoc.do.txt > testdoc.tmp
 doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' testdoc.do.txt >> testdoc.tmp

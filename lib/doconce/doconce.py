@@ -456,7 +456,7 @@ def insert_code_from_file(filestr, format):
                     raise SyntaxError, \
                     'Syntax error: missing @ in regex in line\n  %s' % line
 
-                print 'copy %s regex "%s" until "%s"\n     file: %s,' % \
+                print 'copying %s regex "%s" until "%s"\n     file: %s,' % \
                       ('after' if fromto == 'from-to:' else 'from',
                        from_, to_, filename),
                 # Note that from_ and to_ are regular expressions
@@ -651,7 +651,7 @@ def exercises(filestr, format):
 """ % filename)
         f.write(pprint.pformat(all_exer))
         f.close()
-        print 'Info about %d exercises written to %s' % \
+        print 'found info about %d exercises, written to %s' % \
               (len(all_exer), exer_filename)
     else:
         debugpr('No exercises found.\n')
@@ -1006,7 +1006,7 @@ def handle_figures(filestr, format):
                 for ext in extensions:
                     newname = figfile + ext
                     if os.path.isfile(newname):
-                        print 'Figure file %s:\n    can use %s for format %s' % \
+                        print 'figure file %s:\n    can use %s for format %s' % \
                               (figfile, newname, format)
                         filestr = filestr.replace(figfile, newname)
                         figfile = newname
@@ -1625,7 +1625,7 @@ preprocess package (sudo apt-get install preprocess).
 
         cmd = 'preprocess -DFORMAT=%s %s %s > %s' % \
               (format, preprocess_options, filename, resultfile)
-        print 'run', cmd
+        print 'running', cmd
         failure, outtext = commands.getstatusoutput(cmd)
         if failure:
             print 'Could not run preprocessor:\n%s' % cmd
@@ -1653,7 +1653,7 @@ python-mako package (sudo apt-get install python-mako).
 """ % filename
             sys.exit(1)
 
-        print 'run mako on', filename, 'to make', resultfile
+        print 'running mako on', filename, 'to make', resultfile
         # add a space after \\ at the end of lines (otherwise mako
         # eats one of the backslashes in tex blocks)
         # same for a single \ before newline
