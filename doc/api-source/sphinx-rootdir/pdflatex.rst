@@ -1,8 +1,8 @@
 
-:mod:`doconce.wiki`
+:mod:`doconce.pdflatex`
 =======================
 
-.. automodule:: doconce.wiki
+.. automodule:: doconce.pdflatex
    :members:
    :undoc-members:
    :show-inheritance:
