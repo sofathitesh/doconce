@@ -16,10 +16,14 @@ Contents:
    common
    html
    latex
+   pdflatex
    rst
    sphinx
    gwiki
+   mwiki
+   cwiki
    plaintext
+   pandoc
    st
    epytext
    DocWriter
