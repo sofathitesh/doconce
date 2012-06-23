@@ -579,7 +579,8 @@ def define(FILENAME_EXTENSION,
     INDEX_BIB['latex'] = latex_index_bib
 
     INTRO['latex'] = r"""%%
-%% Automatically generated LaTeX file from Doconce source
+%% Automatically generated ptex2tex (extended LaTeX) file
+%% from Doconce source
 %% http://code.google.com/p/doconce/
 %%
 

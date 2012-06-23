@@ -89,7 +89,7 @@ MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie based o
 # Check out the correct with and height of YouTube movies from the
 # embed command that the YouTube page can generate
 
-MOVIE: [http://www.youtube.com/embed/7cC-_-aqx18, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
+MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
 ===== Table Demo =====
 label{subsec:table}
@@ -181,7 +181,18 @@ or with number and label, as in (ref{my:eq1}):
 \end{equation}
 !et
 We can refer to this equation by (ref{my:eq1}).
-Or a system of equations with labels,
+
+Here is a system without equation numbers:
+!bt
+\begin{align*}
+a &= q + 4 + 5+ 6 \\
+b &= \nabla^2 u + \nabla^4 x
+\end{align*}
+!et
+
+
+% if FORMAT in ('latex', 'pdflatex', 'sphinx'):
+And here is a system of equations with labels:
 !bt
 \begin{align}
 a &= q + 4 + 5+ 6 label{eq1} \\
@@ -189,13 +200,6 @@ b &= \nabla^2 u + \nabla^4 x label{eq2}
 \end{align}
 !et
 We can refer to (ref{eq1})-(ref{eq2}).
-Or align without eq numbers:
-!bt
-\begin{align*}
-a &= q + 4 + 5+ 6 \\
-b &= \nabla^2 u + \nabla^4 x
-\end{align*}
-!et
 
 Or with multline?
 !bt
@@ -242,7 +246,7 @@ Here is eqnarray:
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}
 !et
-
+% endif
 
 ======= Exercises =======
 

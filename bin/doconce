@@ -1430,6 +1430,87 @@ def replace_from_file():
             f.write(text)
             f.close()
 
+def usage_ptex2tex():
+    print r'Usage: doconce ptex2tex [file | file.p.tex] [-Dvar1=val1 ...] [cod=\begin{verbatim};\end{verbatim} pypro=Verbatim]'
+
+def ptex2tex():
+    if len(sys.argv) <= 1:
+        usage_ptex2tex()
+        sys.exit(1)
+
+    # Process command-line options
+    preprocess_options = []
+    envir_user_spec = []
+    for arg in sys.argv[1:]:
+        if arg.startswith('-D') or arg.startswith('-U'):
+            preprocess_options.append(arg)
+        elif '=' in arg:
+            envir, value = arg.split('=')
+            if ';' in value:
+                begin, end = value.split(';')
+            else:
+                begin = '\\' + 'begin{' + value + '}'
+                end = '\\' + 'end{' + value + '}'
+            envir_user_spec.append((envir, begin, end))
+        else:
+            filename = arg
+
+    if filename.endswith('.p.tex'):
+        filename = filename[:-6]
+
+    # Run preprocess
+    if not preprocess_options:
+        preprocess_options = ['-DLATEX_HEADING=traditional']
+
+    cmd = 'preprocess %s %s > %s' % \
+          (' '.join(preprocess_options),
+           filename + '.p.tex',
+           filename + '.tex')
+    failure = os.system(cmd)
+    if failure:
+        print """
+Could not run
+    %s
+preprocess is probably not installed.
+This program is required.
+Download from http://code.google.com/p/preprocess
+"""
+        sys.exit(1)
+
+    # Mimic ptex2tex by replacing all code environments by
+    # a plain verbatim command
+    f = open(filename + '.tex', 'r')
+    filestr = f.read()
+    f.close()
+
+    # All envirs in the .ptex2tex.cfg file as of June 2012
+    envirs = 'ccq cc ccl pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans bashans swigans uflans sni dat dsni sys slin ipy py rpy plin ver warn rule summ'.split()
+    # Init default envirs
+    envir2latex = {}
+    default_b_envir = r'\begin{quote}\begin{verbatim}'
+    default_e_envir = r'\end{verbatim}\end{quote}'
+    for envir in envirs:
+        envir2latex[envir] = (default_b_envir, default_e_envir)
+    # Override with user's envirs
+    for envir, begin, end in envir_user_spec:
+        envir2latex[envir] = (begin, end)
+
+    # Replace
+    for envir in envirs:
+        ptex2tex_begin = '\\' + 'b' + envir
+        ptex2tex_end = '\\' + 'e' + envir
+        if ptex2tex_begin in filestr:
+            filestr = filestr.replace(ptex2tex_begin,
+                                      envir2latex[envir][0])
+            filestr = filestr.replace(ptex2tex_end,
+                                      envir2latex[envir][1])
+    filestr = filestr.replace(r'\usepackage{ptex2tex}', '')
+
+    f = open(filename + '.tex', 'w')
+    f.write(filestr)
+    f.close()
+
+
 def usage_grab():
     print 'Usage: doconce grab --from[-] from-text [--to[-] to-text] file'
 
@@ -1967,7 +2048,7 @@ def analyzer():
 
 # -----------------------------------------------------------------------
 
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex'.split()
 
 # -----------------------------------------------------------------------
 
@@ -2012,8 +2093,8 @@ doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 
 doconce grab --from[-] from-text [--to[-] to-text] somefile
-
 doconce spellcheck -d .dict4spell.txt *.do.txt
+doconce ptex2tex mydoc -DMINTED cod=\begin{minted}{python};\end{minted} sys=Verbatim
 
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
