@@ -528,22 +528,40 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the \href{http://johnmacfarlane.net/pandoc/README.html}{Pandoc documentation}
 for the many features of the \texttt{pandoc} program.
 
-Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example:
+Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+\texttt{doconce format pandoc} and then translating using \texttt{pandoc}, or
+\texttt{doconce format latex}, and then going from LaTeX to the desired format
+using \texttt{pandoc}.
+Here is an example on the latter strategy:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Terminal>~doconce~format~latex~mydoc\\
-Terminal>~ptex2tex~mydoc\\
-Terminal>~doconce~replace~"pmb\{"~"mathbf\{"~mydoc.tex~~\#~avoid~ams~math\\
+Terminal>~doconce~ptex2tex~mydoc\\
 Terminal>~pandoc~-f~latex~-t~docx~-o~mydoc.docx~mydoc.tex
 }
 \end{quote}
 
+When we go through \texttt{pandoc}, only single equations or \texttt{align*}
+environments are well understood.
+
 Quite some \texttt{doconce replace} and \texttt{doconce subst} edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.
+on the \texttt{.mkd} or \texttt{.tex} files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~format~pandoc~mydoc\\
+Terminal>~pandoc~-t~html~-o~mydoc.html~-s~-{}-mathjax~mydoc.mkd
+}
+\end{quote}
+
+The \texttt{-s} option adds a proper header and footer to the \texttt{mydoc.html} file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 
 %___________________________________________________________________________
@@ -585,14 +603,14 @@ Terminal>~ptex2tex~mydoc
 }
 \end{quote}
 
-or just perform a plain copy:
+In case you do not have \texttt{ptex2tex}, you may run a (very) simplified version:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~cp~mydoc.p.tex~mydoc.tex
+Terminal>~doconce~ptex2tex~mydoc
 }
 \end{quote}
 
-Doconce generates a \texttt{.p.tex} file with some preprocessor macros
+Note that Doconce generates a \texttt{.p.tex} file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run:
@@ -625,7 +643,27 @@ documents. After any \texttt{!bc} command in the Doconce source you can
 insert verbatim block styles as defined in your \texttt{.ptex2tex.cfg}
 file, e.g., \texttt{!bc cod} for a code snippet, where \texttt{cod} is set to
 a certain environment in \texttt{.ptex2tex.cfg} (e.g., \texttt{CodeIntended}).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the \texttt{doconce ptex2tex} command supports preprocessor directives
+for processing the \texttt{.p.tex} file. The command allows specifications
+of code environments as well. Here is an example:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~ptex2tex~-DLATEX\_HEADING=traditional~-DMINTED~\textbackslash{}\\
+~~~~~~~~~~cycod=\textbackslash{}begin\{quote\}\textbackslash{}begin\{python\};\textbackslash{}end\{python\}\textbackslash{}end\{quote\}~\textbackslash{}\\
+~~~~~~~~~~fpro=minted~fcod=minted~sys=verbatim
+}
+\end{quote}
+
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+\texttt{verbatim} above, which implies \texttt{\textbackslash{}begin\{verbatim\}} and \texttt{\textbackslash{}end\{verbatim\}}).
+The value \texttt{minted} can be used for code environments where the
+language is specified, as in \texttt{fpro}, where \texttt{minted} implies
+\texttt{\textbackslash{}begin\{python\}\{fortran\}}. There is a similar support for \texttt{ans}:
+\texttt{cppcod=ans} imples \texttt{\textbackslash{}begin\{c++\}} and \texttt{\textbackslash{}end\{c++\}} using the
+\texttt{anslistings} package.
 
 \emph{Step 2b (optional).} Edit the \texttt{mydoc.tex} file to your needs.
 For example, you may want to substitute \texttt{section} by \texttt{section*} to
@@ -3430,7 +3468,7 @@ groundwater flow.
 \DUtitle[system-message]{system-message}
 \raisebox{1em}{\hypertarget{id11}{}}
 
-{\color{red}ERROR/3} in \texttt{manual.rst}, line~751
+{\color{red}ERROR/3} in \texttt{manual.rst}, line~786
 
 \hyperlink{id12}{
 Unknown target name: ``googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>''.

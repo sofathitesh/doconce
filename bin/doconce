@@ -1540,6 +1540,11 @@ Download from http://code.google.com/p/preprocess
     filestr = filestr.replace(r'\usepackage{ptex2tex}', '')
 
     # Treat the \code{} commands
+
+    # remove one newline (two implies far too long inline verbatim)
+    pattern = re.compile(r'\\code\{([^\n}]*?)\n(.*?)\}', re.DOTALL)
+    # (this pattern does not handle \code{...} with internal } AND \n!)
+    filestr = pattern.sub(r'\code{\g<1>\g<2>}', filestr)
     cpattern = re.compile(r'\\code\{(.*?)\}([ \n,.;:?)"])', re.DOTALL)
     fontsize = 10
     verb_command = 'verb'
@@ -2092,7 +2097,7 @@ commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comm
 # -----------------------------------------------------------------------
 
 def help():
-    print """
+    print r"""
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
 doconce subst [-s -m -x --restore] regex-pattern regex-replacement file1 file2 ...
@@ -2133,7 +2138,8 @@ doconce sphinxfix_local_URLs file.rst
 
 doconce grab --from[-] from-text [--to[-] to-text] somefile
 doconce spellcheck -d .dict4spell.txt *.do.txt
-doconce ptex2tex mydoc -DMINTED cod=\begin{minted}{python};\end{minted} sys=Verbatim
+doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+        dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name

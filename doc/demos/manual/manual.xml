@@ -132,20 +132,27 @@ From this format one can go to numerous other formats:</paragraph><literal_block
 Word), <literal>rtf</literal>, <literal>texinfo</literal>, to mention some. The <literal>-R</literal> option makes
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the <reference name="Pandoc documentation" refuri="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</reference><target ids="pandoc-documentation" names="pandoc\ documentation" refuri="http://johnmacfarlane.net/pandoc/README.html"/>
-for the many features of the <literal>pandoc</literal> program.</paragraph><paragraph>Pandoc is useful to go from LaTeX mathematics to MS Word.
-However, this should be done via LaTeX, not via Pandoc's extended Markdown
-format. For example:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format latex mydoc
-Terminal&gt; ptex2tex mydoc
-Terminal&gt; doconce replace &quot;pmb{&quot; &quot;mathbf{&quot; mydoc.tex  # avoid ams math
-Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex</literal_block><paragraph>Quite some <literal>doconce replace</literal> and <literal>doconce subst</literal> edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via LaTeX.</paragraph></section><section ids="latex" names="latex"><title>LaTeX</title><paragraph>Making a LaTeX file <literal>mydoc.tex</literal> from <literal>mydoc.do.txt</literal> is done in two steps:
+for the many features of the <literal>pandoc</literal> program.</paragraph><paragraph>Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+<literal>doconce format pandoc</literal> and then translating using <literal>pandoc</literal>, or
+<literal>doconce format latex</literal>, and then going from LaTeX to the desired format
+using <literal>pandoc</literal>.
+Here is an example on the latter strategy:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format latex mydoc
+Terminal&gt; doconce ptex2tex mydoc
+Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex</literal_block><paragraph>When we go through <literal>pandoc</literal>, only single equations or <literal>align*</literal>
+environments are well understood.</paragraph><paragraph>Quite some <literal>doconce replace</literal> and <literal>doconce subst</literal> edits might be needed
+on the <literal>.mkd</literal> or <literal>.tex</literal> files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via LaTeX.</paragraph><paragraph>Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format pandoc mydoc
+Terminal&gt; pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd</literal_block><paragraph>The <literal>-s</literal> option adds a proper header and footer to the <literal>mydoc.html</literal> file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.</paragraph></section><section ids="latex" names="latex"><title>LaTeX</title><paragraph>Making a LaTeX file <literal>mydoc.tex</literal> from <literal>mydoc.do.txt</literal> is done in two steps:
 .. Note: putting code blocks inside a list is not successful in many</paragraph><comment xml:space="preserve">formats - the text may be messed up. A better choice is a paragraph</comment><comment xml:space="preserve">environment, as used here.</comment><definition_list><definition_list_item><term><emphasis>Step 1.</emphasis> Filter the doconce text to a pre-LaTeX form <literal>mydoc.p.tex</literal> for</term><definition><paragraph><literal>ptex2tex</literal>:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce format latex mydoc</literal_block></definition></definition_list_item></definition_list><paragraph>LaTeX-specific commands (&quot;newcommands&quot;) in math formulas and similar
 can be placed in files <literal>newcommands.tex</literal>, <literal>newcommands_keep.tex</literal>, or
 <literal>newcommands_replace.tex</literal> (see the section <reference name="Macros (Newcommands)" refid="macros-newcommands">Macros (Newcommands)</reference>).
 If these files are present, they are included in the LaTeX document
-so that your commands are defined.</paragraph><paragraph><emphasis>Step 2.</emphasis> Run <literal>ptex2tex</literal> (if you have it) to make a standard LaTeX file:</paragraph><literal_block xml:space="preserve">Terminal&gt; ptex2tex mydoc</literal_block><paragraph>or just perform a plain copy:</paragraph><literal_block xml:space="preserve">Terminal&gt; cp mydoc.p.tex mydoc.tex</literal_block><paragraph>Doconce generates a <literal>.p.tex</literal> file with some preprocessor macros
+so that your commands are defined.</paragraph><paragraph><emphasis>Step 2.</emphasis> Run <literal>ptex2tex</literal> (if you have it) to make a standard LaTeX file:</paragraph><literal_block xml:space="preserve">Terminal&gt; ptex2tex mydoc</literal_block><paragraph>In case you do not have <literal>ptex2tex</literal>, you may run a (very) simplified version:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce ptex2tex mydoc</literal_block><paragraph>Note that Doconce generates a <literal>.p.tex</literal> file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run:</paragraph><literal_block xml:space="preserve">Terminal&gt; ptex2tex -DHELVETICA mydoc</literal_block><paragraph>The title, authors, and date are by default typeset in a non-standard
@@ -157,7 +164,18 @@ documents. After any <literal>!bc</literal> command in the Doconce source you ca
 insert verbatim block styles as defined in your <literal>.ptex2tex.cfg</literal>
 file, e.g., <literal>!bc cod</literal> for a code snippet, where <literal>cod</literal> is set to
 a certain environment in <literal>.ptex2tex.cfg</literal> (e.g., <literal>CodeIntended</literal>).
-There are over 30 styles to choose from.</paragraph><paragraph><emphasis>Step 2b (optional).</emphasis> Edit the <literal>mydoc.tex</literal> file to your needs.
+There are about 40 styles to choose from.</paragraph><paragraph>Also the <literal>doconce ptex2tex</literal> command supports preprocessor directives
+for processing the <literal>.p.tex</literal> file. The command allows specifications
+of code environments as well. Here is an example:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim</literal_block><paragraph>Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+<literal>verbatim</literal> above, which implies <literal>\begin{verbatim}</literal> and <literal>\end{verbatim}</literal>).
+The value <literal>minted</literal> can be used for code environments where the
+language is specified, as in <literal>fpro</literal>, where <literal>minted</literal> implies
+<literal>\begin{python}{fortran}</literal>. There is a similar support for <literal>ans</literal>:
+<literal>cppcod=ans</literal> imples <literal>\begin{c++}</literal> and <literal>\end{c++}</literal> using the
+<literal>anslistings</literal> package.</paragraph><paragraph><emphasis>Step 2b (optional).</emphasis> Edit the <literal>mydoc.tex</literal> file to your needs.
 For example, you may want to substitute <literal>section</literal> by <literal>section*</literal> to
 avoid numbering of sections, you may want to insert linebreaks
 (and perhaps space) in the title, etc. This can be automatically
@@ -1184,4 +1202,4 @@ the iterations.</paragraph></definition></definition_list_item></definition_list
 Springer, 2009.</paragraph></citation><citation backrefs="id8 id10" ids="osnes-98" names="osnes:98"><label>Osnes:98</label><paragraph>H. Osnes and H. P. Langtangen.
 An efficient probabilistic finite element method for stochastic
 groundwater flow.
-<emphasis>Advances in Water Resources</emphasis>, vol 22, 185-195, 1998.</paragraph></citation></section></section><section classes="system-messages"><title>Docutils System Messages</title><system_message backrefs="id12" ids="id11" level="3" line="751" source="manual.rst" type="ERROR"><paragraph>Unknown target name: &quot;googlecode wiki &lt;http://code.google.com/p/support/wiki/wikisyntax&lt;google code&gt;&gt;&quot;.</paragraph></system_message></section></document>
+<emphasis>Advances in Water Resources</emphasis>, vol 22, 185-195, 1998.</paragraph></citation></section></section><section classes="system-messages"><title>Docutils System Messages</title><system_message backrefs="id12" ids="id11" level="3" line="786" source="manual.rst" type="ERROR"><paragraph>Unknown target name: &quot;googlecode wiki &lt;http://code.google.com/p/support/wiki/wikisyntax&lt;google code&gt;&gt;&quot;.</paragraph></system_message></section></document>

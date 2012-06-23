@@ -810,7 +810,7 @@ list of capabilities:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Usage:~doconce~command~{[}optional~arguments{]}\\
-commands:~format~insertdocstr~old2new\_format~gwiki\_figsubst~remove\_inline\_comments~latin2html~sphinx\_dir~subst~replace~replace\_from\_file~clean~help~latex\_header~latex\_footer~guess\_encoding~change\_encoding~bbl2rst~split\_rst~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~grab~spellcheck\\
+commands:~format~insertdocstr~old2new\_format~gwiki\_figsubst~remove\_inline\_comments~latin2html~sphinx\_dir~subst~replace~replace\_from\_file~clean~help~latex\_header~latex\_footer~guess\_encoding~change\_encoding~bbl2rst~split\_rst~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~grab~spellcheck~ptex2tex\\
 ~\\
 doconce~format~html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext~file.do.txt\\
 ~\\
@@ -828,7 +828,9 @@ doconce~gwiki\_figsubst~file.gwiki~URL-of-fig-dir\\
 ~\\
 doconce~remove\_inline\_comments~file.do.txt\\
 ~\\
-doconce~sphinx\_dir~author='Me~and~you'~title='Quick~title'~~~~~version=0.1~dirname=sphinx-rootdir~theme=default~~~~~file1~file2~file3\\
+doconce~sphinx\_dir~author='Me~and~you'~title='Quick~title'~\textbackslash{}\\
+~~~~version=0.1~dirname=sphinx-rootdir~theme=default~\textbackslash{}\\
+~~~~file1~file2~file3\\
 (requires~sphinx~version~>=~1.1)\\
 ~\\
 doconce~latin2html~file.html\\
@@ -849,8 +851,9 @@ doconce~split\_rst~complete\_file.rst\\
 doconce~sphinxfix\_local\_URLs~file.rst\\
 ~\\
 doconce~grab~-{}-from{[}-{]}~from-text~{[}-{}-to{[}-{]}~to-text{]}~somefile\\
-~\\
 doconce~spellcheck~-d~.dict4spell.txt~*.do.txt\\
+doconce~ptex2tex~mydoc~-DMINTED~pycod=minted~sys=Verbatim~\textbackslash{}\\
+~~~~~~~~dat=\textbackslash{}begin\{quote\}\textbackslash{}begin\{verbatim\};\textbackslash{}end\{verbatim\}\textbackslash{}end\{quote\}\\
 ~\\
 doconce~list\_labels~doconcefile.do.txt~|~latexfile.tex\\
 doconce~teamod~name\\

@@ -326,25 +326,21 @@ and
 For example,
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
+$$
 \begin{align*}
 \nabla\cdot u &= 0,\\
 \nabla\times u & 0.
 \end{align*}
-
-
+$$
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 will appear as
-
-
+$$
 \begin{align*}
 \nabla\cdot u &= 0,\\
 \nabla\times u & 0.
 \end{align*}
-
-
+$$
 
 One can use `#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")` to let
 the preprocessor choose a block of mathematics in LaTeX format
@@ -385,9 +381,9 @@ Figures and Movies
 Figures and movies have almost equal syntax:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
 
-MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Note the mandatory comma after the figure/movie file.
@@ -464,7 +460,7 @@ from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-label{name}
+\label{name}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 with no backslash
@@ -534,7 +530,7 @@ list of capabilities:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -552,7 +548,9 @@ doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 
 doconce remove_inline_comments file.do.txt
 
-doconce sphinx_dir author='Me and you' title='Quick title'     version=0.1 dirname=sphinx-rootdir theme=default     file1 file2 file3
+doconce sphinx_dir author='Me and you' title='Quick title' \
+    version=0.1 dirname=sphinx-rootdir theme=default \
+    file1 file2 file3
 (requires sphinx version >= 1.1)
 
 doconce latin2html file.html
@@ -573,8 +571,9 @@ doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 
 doconce grab --from[-] from-text [--to[-] to-text] somefile
-
 doconce spellcheck -d .dict4spell.txt *.do.txt
+doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+        dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
@@ -592,7 +591,7 @@ looks as follows:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
-label{problem:ellipsearea1}
+\label{problem:ellipsearea1}
 file=ellipse_area.pdf
 solution=ellipse_area1_sol.pdf
 

@@ -1,5 +1,6 @@
 %%
-%% Automatically generated LaTeX file from Doconce source
+%% Automatically generated ptex2tex (extended LaTeX) file
+%% from Doconce source
 %% http://code.google.com/p/doconce/
 %%
 
@@ -562,21 +563,38 @@ Pandoc pass raw HTML or {\LaTeX} to the output format instead of ignoring it.
 See the \href{{http://johnmacfarlane.net/pandoc/README.html}}{Pandoc documentation}
 for the many features of the {\fontsize{10pt}{10pt}\verb!pandoc!} program.
 
-Pandoc is useful to go from {\LaTeX} mathematics to MS Word.
-However, this should be done via {\LaTeX}, not via Pandoc's extended Markdown
-format. For example,
+Pandoc is useful to go from {\LaTeX} mathematics to, e.g., HTML or MS Word.
+There are two ways (experiment to find the best one for your document):
+{\fontsize{10pt}{10pt}\verb!doconce format pandoc!} and then translating using {\fontsize{10pt}{10pt}\verb!pandoc!}, or
+{\fontsize{10pt}{10pt}\verb!doconce format latex!}, and then going from {\LaTeX} to the desired format
+using {\fontsize{10pt}{10pt}\verb!pandoc!}.
+Here is an example on the latter strategy:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Terminal> doconce format latex mydoc
-Terminal> ptex2tex mydoc
-Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> doconce ptex2tex mydoc
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 \end{Verbatim}
+When we go through {\fontsize{10pt}{10pt}\verb!pandoc!}, only single equations or {\fontsize{10pt}{10pt}\verb!align*!}
+environments are well understood.
+
 Quite some {\fontsize{10pt}{10pt}\verb!doconce replace!} and {\fontsize{10pt}{10pt}\verb!doconce subst!} edits might be needed
-to successfully have mathematics that is well translated to MS Word.
-Also when going to reStructuredText using Pandoc, it can be advantageous
-to go via {\LaTeX}.
+on the {\fontsize{10pt}{10pt}\verb!.mkd!} or {\fontsize{10pt}{10pt}\verb!.tex!} files to successfully have mathematics that is
+well translated to MS Word.  Also when going to reStructuredText using
+Pandoc, it can be advantageous to go via {\LaTeX}.
+
+Here is an example where we take a Doconce snippet (without title, author,
+and date), maybe with some unnumbered equations, and quickly generate
+HTML with mathematics displayed my MathJax:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format pandoc mydoc
+Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
+\end{Verbatim}
+The {\fontsize{10pt}{10pt}\verb!-s!} option adds a proper header and footer to the {\fontsize{10pt}{10pt}\verb!mydoc.html!} file.
+This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 \subsection{{\LaTeX}}
 
@@ -606,13 +624,14 @@ Run {\fontsize{10pt}{10pt}\verb!ptex2tex!} (if you have it) to make a standard {
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Terminal> ptex2tex mydoc
 \end{Verbatim}
-or just perform a plain copy,
+In case you do not have {\fontsize{10pt}{10pt}\verb!ptex2tex!}, you may run a (very) simplified version:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Terminal> cp mydoc.p.tex mydoc.tex
+Terminal> doconce ptex2tex mydoc
 \end{Verbatim}
-Doconce generates a {\fontsize{10pt}{10pt}\verb!.p.tex!} file with some preprocessor macros
+
+Note that Doconce generates a {\fontsize{10pt}{10pt}\verb!.p.tex!} file with some preprocessor macros
 that can be used to steer certain properties of the {\LaTeX} document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
@@ -643,7 +662,26 @@ documents. After any {\fontsize{10pt}{10pt}\verb!!bc!} command in the Doconce so
 insert verbatim block styles as defined in your {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!}
 file, e.g., {\fontsize{10pt}{10pt}\verb!!bc cod!} for a code snippet, where {\fontsize{10pt}{10pt}\verb!cod!} is set to
 a certain environment in {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!} (e.g., {\fontsize{10pt}{10pt}\verb!CodeIntended!}).
-There are over 30 styles to choose from.
+There are about 40 styles to choose from.
+
+Also the {\fontsize{10pt}{10pt}\verb!doconce ptex2tex!} command supports preprocessor directives
+for processing the {\fontsize{10pt}{10pt}\verb!.p.tex!} file. The command allows specifications
+of code environments as well. Here is an example:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
+          fpro=minted fcod=minted sys=verbatim
+\end{Verbatim}
+Note that semicolon must be used to separate the begin and end
+commands, unless only the environment name is given (such as
+{\fontsize{10pt}{10pt}\verb!verbatim!} above, which implies {\fontsize{10pt}{10pt}\verb!\begin{verbatim}!} and {\fontsize{10pt}{10pt}\verb!\end{verbatim}!}).
+The value {\fontsize{10pt}{10pt}\verb!minted!} can be used for code environments where the
+language is specified, as in {\fontsize{10pt}{10pt}\verb!fpro!}, where {\fontsize{10pt}{10pt}\verb!minted!} implies
+{\fontsize{10pt}{10pt}\verb!\begin{python}{fortran}!}. There is a similar support for {\fontsize{10pt}{10pt}\verb!ans!}:
+{\fontsize{10pt}{10pt}\verb!cppcod=ans!} imples {\fontsize{10pt}{10pt}\verb!\begin{c++}!} and {\fontsize{10pt}{10pt}\verb!\end{c++}!} using the
+{\fontsize{10pt}{10pt}\verb!anslistings!} package.
 
 \paragraph{Step 2b (optional).}
 Edit the {\fontsize{10pt}{10pt}\verb!mydoc.tex!} file to your needs.
