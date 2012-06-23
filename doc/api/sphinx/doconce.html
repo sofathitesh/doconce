@@ -63,9 +63,25 @@
 
 <dl class="function">
 <dt id="doconce.doconce.doconce2format">
-<tt class="descclassname">doconce.doconce.</tt><tt class="descname">doconce2format</tt><big>(</big><em>in_filename</em>, <em>format</em>, <em>out_filename</em><big>)</big><a class="headerlink" href="#doconce.doconce.doconce2format" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">doconce.doconce.</tt><tt class="descname">doconce2format</tt><big>(</big><em>filestr</em>, <em>format</em><big>)</big><a class="headerlink" href="#doconce.doconce.doconce2format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="doconce.doconce.doconce2format4docstrings">
+<tt class="descclassname">doconce.doconce.</tt><tt class="descname">doconce2format4docstrings</tt><big>(</big><em>filestr</em>, <em>format</em><big>)</big><a class="headerlink" href="#doconce.doconce.doconce2format4docstrings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run doconce2format on all doc strings in a Python file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="doconce.doconce.exercises">
+<tt class="descclassname">doconce.doconce.</tt><tt class="descname">exercises</tt><big>(</big><em>filestr</em>, <em>format</em><big>)</big><a class="headerlink" href="#doconce.doconce.exercises" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="doconce.doconce.file2file">
+<tt class="descclassname">doconce.doconce.</tt><tt class="descname">file2file</tt><big>(</big><em>in_filename</em>, <em>format</em>, <em>out_filename</em><big>)</big><a class="headerlink" href="#doconce.doconce.file2file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform the transformation of a doconce file, stored in in_filename,
-to a given format (HTML, LaTeX, etc.), written to out_filename.
+to a given format (html, latex, etc.), written to out_filename.
 This is the &#8220;main&#8221; function in the module.</p>
 </dd></dl>
 
@@ -139,6 +155,11 @@ always defined.</p>
 <dd></dd></dl>
 
 <dl class="function">
+<dt id="doconce.doconce.subst_class_func_mod">
+<tt class="descclassname">doconce.doconce.</tt><tt class="descname">subst_class_func_mod</tt><big>(</big><em>filestr</em>, <em>format</em><big>)</big><a class="headerlink" href="#doconce.doconce.subst_class_func_mod" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
 <dt id="doconce.doconce.supported_format_names">
 <tt class="descclassname">doconce.doconce.</tt><tt class="descname">supported_format_names</tt><big>(</big><big>)</big><a class="headerlink" href="#doconce.doconce.supported_format_names" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -194,7 +215,7 @@ by other modules.</p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -228,7 +249,7 @@ by other modules.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2010, H. P. Langtangen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1pre.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

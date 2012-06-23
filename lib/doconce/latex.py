@@ -651,31 +651,31 @@ def fix_latex_command_regex(pattern, application='match'):
     starting with a backslash.
 
     For a pattern to be matched or substituted, and extra backslash is
-    always needed (either a special regex construction like \w leads
-    to wrong match, or \c leads to wrong substitution since \ just
-    escapes c so only the c is replaced, leaving an undesired
+    always needed (either a special regex construction like ``\w`` leads
+    to wrong match, or ``\c`` leads to wrong substitution since ``\`` just
+    escapes ``c`` so only the ``c`` is replaced, leaving an undesired
     backslash). For the replacement pattern in a substitutions, specified
-    by the application='replacement' argument, a backslash
-    before any of the characters abfgnrtv must be preceeded by an
+    by the ``application='replacement'`` argument, a backslash
+    before any of the characters ``abfgnrtv`` must be preceeded by an
     additional backslash.
 
-    The application variable equals 'match' if pattern is used for
-    a match and 'replacement' if pattern defines a replacement
-    regex in a re.sub command.
+    The application variable equals 'match' if `pattern` is used for
+    a match and 'replacement' if `pattern` defines a replacement
+    regex in a ``re.sub`` command.
 
-    Caveats: let pattern just contain LaTeX commands, not combination
-    of commands and other regular expressions (\s, \d, etc.) as the
+    Caveats: let `pattern` just contain LaTeX commands, not combination
+    of commands and other regular expressions (``\s``, ``\d``, etc.) as the
     latter will end up with an extra undesired backslash.
 
-    Here are examples on failures::
+    Here are examples on failures.
 
     >>> re.sub(r'\begin\{equation\}', r'\[', r'\begin{equation}')
     '\\begin{equation}'
-    >>> # match of mbox, not \mbox, and wrong output:
+    >>> # match of mbox, not \mbox, and wrong output
     >>> re.sub(r'\mbox\{(.+?)\}', r'\fbox{\g<1>}', r'\mbox{not}')
     '\\\x0cbox{not}'
 
-    Here are examples on using this function::
+    Here are examples on using this function.
 
     >>> from doconce.latex import fix_latex_command_regex as fix
     >>> pattern = fix(r'\begin\{equation\}', application='match')
@@ -687,7 +687,7 @@ def fix_latex_command_regex(pattern, application='match'):
     '\\fbox{not}'
 
     Avoid mixing LaTeX commands and ordinary regular expression
-    commands, e.g.::
+    commands, e.g.,
 
     >>> pattern = fix(r'\mbox\{(\d+)\}', application='match')
     >>> pattern
