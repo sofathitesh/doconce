@@ -76,7 +76,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jun 3, 2012
+Jun 23, 2012
 %
 \begin{itemize}
 
@@ -687,7 +687,7 @@ The resulting file \texttt{mydoc.html} can be loaded into any web browser for vi
   \label{pandoc}%
 }
 
-Output in the versatile Pandoc format results from:
+Output in Pandoc's extended Markdown format results from:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Terminal>~doconce~format~pandoc~mydoc
@@ -698,7 +698,6 @@ The name of the output file is \texttt{mydoc.mkd}.
 From this format one can go to numerous other formats:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~pandoc~-R~-t~markdown~~-o~mydoc.txt~mydoc.mkd\\
 Terminal>~pandoc~-R~-t~mediawiki~-o~mydoc.mwk~mydoc.mkd
 }
 \end{quote}
@@ -709,16 +708,22 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the \href{http://johnmacfarlane.net/pandoc/README.html}{Pandoc documentation}
 for the many features of the \texttt{pandoc} program.
 
-Here are some useful options for using \texttt{pandoc} to handle mathematics
-in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively):
+Pandoc is useful to go from LaTeX mathematics to MS Word.
+However, this should be done via LaTeX, not via Pandoc's extended Markdown
+format. For example:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~pandoc~-R~-{}-latexmathml~-t~html~-o~mydoc.html~mydoc.mkd\\
-Terminal>~pandoc~-R~-{}-mathml~~~~~~-t~html~-o~mydoc.html~mydoc.mkd\\
-Terminal>~pandoc~-R~-{}-jsmath~~~~~~-t~html~-o~mydoc.html~mydoc.mkd\\
-Terminal>~pandoc~-R~-{}-mathjax~~~~~-t~html~-o~mydoc.html~mydoc.mkd
+Terminal>~doconce~format~latex~mydoc\\
+Terminal>~ptex2tex~mydoc\\
+Terminal>~doconce~replace~"pmb\{"~"mathbf\{"~mydoc.tex~~\#~avoid~ams~math\\
+Terminal>~pandoc~-f~latex~-t~docx~-o~mydoc.docx~mydoc.tex
 }
 \end{quote}
+
+Quite some \texttt{doconce replace} and \texttt{doconce subst} edits might be needed
+to successfully have mathematics that is well translated to MS Word.
+Also when going to reStructuredText using Pandoc, it can be advantageous
+to go via LaTeX.
 
 
 %___________________________________________________________________________
@@ -1433,7 +1438,7 @@ run regularly.
 \DUtitle[system-message]{system-message}
 \raisebox{1em}{\hypertarget{id7}{}}
 
-{\color{red}ERROR/3} in \texttt{tutorial.rst}, line~852
+{\color{red}ERROR/3} in \texttt{tutorial.rst}, line~855
 
 \hyperlink{id8}{
 Unknown target name: ``googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>''.

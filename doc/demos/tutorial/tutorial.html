@@ -22,7 +22,7 @@ Automatically generated HTML file from Doconce source
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Jun 3, 2012</h3></center>
+<center><h3>Jun 23, 2012</h3></center>
 <P>
 
 <P>
@@ -494,7 +494,7 @@ The resulting file <tt>mydoc.html</tt> can be loaded into any web browser for vi
 <P>
 <h3>Pandoc</h3>
 <P>
-Output in the versatile Pandoc format results from
+Output in Pandoc's extended Markdown format results from
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
 Terminal&gt; doconce format pandoc mydoc
@@ -504,7 +504,6 @@ The name of the output file is <tt>mydoc.mkd</tt>.
 From this format one can go to numerous other formats:
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
-Terminal&gt; pandoc -R -t markdown  -o mydoc.txt mydoc.mkd
 Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -515,18 +514,21 @@ See the <a href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentat
 for the many features of the <tt>pandoc</tt> program.
 
 <P>
-Here are some useful options for using <tt>pandoc</tt> to handle mathematics
-in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively):
+Pandoc is useful to go from LaTeX mathematics to MS Word.
+However, this should be done via LaTeX, not via Pandoc's extended Markdown
+format. For example,
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
-Terminal&gt; pandoc -R --latexmathml -t html -o mydoc.html mydoc.mkd
-Terminal&gt; pandoc -R --mathml      -t html -o mydoc.html mydoc.mkd
-Terminal&gt; pandoc -R --jsmath      -t html -o mydoc.html mydoc.mkd
-Terminal&gt; pandoc -R --mathjax     -t html -o mydoc.html mydoc.mkd
+Terminal&gt; doconce format latex mydoc
+Terminal&gt; ptex2tex mydoc
+Terminal&gt; doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </pre>
 </blockquote>   <! -- end verbatim block -->
-
-<P>
+Quite some <tt>doconce replace</tt> and <tt>doconce subst</tt> edits might be needed
+to successfully have mathematics that is well translated to MS Word.
+Also when going to reStructuredText using Pandoc, it can be advantageous
+to go via LaTeX.
 
 <P>
 

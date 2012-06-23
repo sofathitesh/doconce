@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Doconce Documentation documentation build configuration file, created by
+# Doconce documentation build configuration file, created by
 # sphinx-quickstart on Fri Jul 30 13:32:45 2010.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -37,8 +37,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Doconce Documentation'
-copyright = u'2010, H. P. Langtangen'
+project = u'Doconce'
+copyright = u'2012, H. P. Langtangen'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

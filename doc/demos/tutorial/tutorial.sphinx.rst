@@ -6,7 +6,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Jun 3, 2012
+:Date: Jun 23, 2012
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -471,7 +471,7 @@ The resulting file ``mydoc.html`` can be loaded into any web browser for viewing
 Pandoc
 ------
 
-Output in the versatile Pandoc format results from
+Output in Pandoc's extended Markdown format results from
 
 .. code-block:: console
 
@@ -482,7 +482,6 @@ From this format one can go to numerous other formats:
 
 .. code-block:: console
 
-        Terminal> pandoc -R -t markdown  -o mydoc.txt mydoc.mkd
         Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
 
 Pandoc supports ``latex``, ``html``, ``odt`` (OpenOffice), ``docx`` (Microsoft
@@ -491,17 +490,21 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the `Pandoc documentation <http://johnmacfarlane.net/pandoc/README.html>`_
 for the many features of the ``pandoc`` program.
 
-Here are some useful options for using ``pandoc`` to handle mathematics
-in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively):
+Pandoc is useful to go from LaTeX mathematics to MS Word.
+However, this should be done via LaTeX, not via Pandoc's extended Markdown
+format. For example,
 
 .. code-block:: console
 
-        Terminal> pandoc -R --latexmathml -t html -o mydoc.html mydoc.mkd
-        Terminal> pandoc -R --mathml      -t html -o mydoc.html mydoc.mkd
-        Terminal> pandoc -R --jsmath      -t html -o mydoc.html mydoc.mkd
-        Terminal> pandoc -R --mathjax     -t html -o mydoc.html mydoc.mkd
+        Terminal> doconce format latex mydoc
+        Terminal> ptex2tex mydoc
+        Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+        Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
-
+Quite some ``doconce replace`` and ``doconce subst`` edits might be needed
+to successfully have mathematics that is well translated to MS Word.
+Also when going to reStructuredText using Pandoc, it can be advantageous
+to go via LaTeX.
 
 
 LaTeX

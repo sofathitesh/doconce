@@ -406,7 +406,7 @@ The resulting file C{mydoc.html} can be loaded into any web browser for viewing.
 Pandoc
 ------
 
-Output in the versatile Pandoc format results from::
+Output in Pandoc's extended Markdown format results from::
 
 
         Terminal> doconce format pandoc mydoc
@@ -415,7 +415,6 @@ The name of the output file is C{mydoc.mkd}.
 From this format one can go to numerous other formats::
 
 
-        Terminal> pandoc -R -t markdown  -o mydoc.txt mydoc.mkd
         Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
 
 Pandoc supports C{latex}, C{html}, C{odt} (OpenOffice), C{docx} (Microsoft
@@ -424,16 +423,20 @@ Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the U{Pandoc documentation<http://johnmacfarlane.net/pandoc/README.html>}
 for the many features of the C{pandoc} program.
 
-Here are some useful options for using C{pandoc} to handle mathematics
-in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively)::
+Pandoc is useful to go from LaTeX mathematics to MS Word.
+However, this should be done via LaTeX, not via Pandoc's extended Markdown
+format. For example::
 
 
-        Terminal> pandoc -R --latexmathml -t html -o mydoc.html mydoc.mkd
-        Terminal> pandoc -R --mathml      -t html -o mydoc.html mydoc.mkd
-        Terminal> pandoc -R --jsmath      -t html -o mydoc.html mydoc.mkd
-        Terminal> pandoc -R --mathjax     -t html -o mydoc.html mydoc.mkd
+        Terminal> doconce format latex mydoc
+        Terminal> ptex2tex mydoc
+        Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+        Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 
-
+Quite some C{doconce replace} and C{doconce subst} edits might be needed
+to successfully have mathematics that is well translated to MS Word.
+Also when going to reStructuredText using Pandoc, it can be advantageous
+to go via LaTeX.
 
 
 LaTeX

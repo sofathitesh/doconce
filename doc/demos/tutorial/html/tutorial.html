@@ -57,7 +57,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jun 3, 2012</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jun 23, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -434,7 +434,8 @@ format specific actions through tests like <tt class="docutils literal"><span cl
 </div>
 <p>One can also remove all such comments from the original Doconce
 file by running:</p>
-<div class="highlight-py"><pre>Terminal&gt; doconce remove_inline_comments mydoc</pre>
+<div class="highlight-py"><div class="highlight"><pre><span class="n">Terminal</span><span class="o">&gt;</span> <span class="n">doconce</span> <span class="n">remove_inline_comments</span> <span class="n">mydoc</span>
+</pre></div>
 </div>
 <p>This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.</p>
@@ -449,14 +450,13 @@ is performed by</p>
 </div>
 <div class="section" id="pandoc">
 <h2>Pandoc<a class="headerlink" href="#pandoc" title="Permalink to this headline">¶</a></h2>
-<p>Output in the versatile Pandoc format results from</p>
+<p>Output in Pandoc&#8217;s extended Markdown format results from</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format pandoc mydoc</span>
 </pre></div>
 </div>
 <p>The name of the output file is <tt class="docutils literal"><span class="pre">mydoc.mkd</span></tt>.
 From this format one can go to numerous other formats:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; pandoc -R -t markdown  -o mydoc.txt mydoc.mkd</span>
-<span class="go">Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd</span>
 </pre></div>
 </div>
 <p>Pandoc supports <tt class="docutils literal"><span class="pre">latex</span></tt>, <tt class="docutils literal"><span class="pre">html</span></tt>, <tt class="docutils literal"><span class="pre">odt</span></tt> (OpenOffice), <tt class="docutils literal"><span class="pre">docx</span></tt> (Microsoft
@@ -464,14 +464,19 @@ Word), <tt class="docutils literal"><span class="pre">rtf</span></tt>, <tt class
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
 See the <a class="reference external" href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</a>
 for the many features of the <tt class="docutils literal"><span class="pre">pandoc</span></tt> program.</p>
-<p>Here are some useful options for using <tt class="docutils literal"><span class="pre">pandoc</span></tt> to handle mathematics
-in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively):</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; pandoc -R --latexmathml -t html -o mydoc.html mydoc.mkd</span>
-<span class="go">Terminal&gt; pandoc -R --mathml      -t html -o mydoc.html mydoc.mkd</span>
-<span class="go">Terminal&gt; pandoc -R --jsmath      -t html -o mydoc.html mydoc.mkd</span>
-<span class="go">Terminal&gt; pandoc -R --mathjax     -t html -o mydoc.html mydoc.mkd</span>
+<p>Pandoc is useful to go from LaTeX mathematics to MS Word.
+However, this should be done via LaTeX, not via Pandoc&#8217;s extended Markdown
+format. For example,</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format latex mydoc</span>
+<span class="go">Terminal&gt; ptex2tex mydoc</span>
+<span class="go">Terminal&gt; doconce replace &quot;pmb{&quot; &quot;mathbf{&quot; mydoc.tex  # avoid ams math</span>
+<span class="go">Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex</span>
 </pre></div>
 </div>
+<p>Quite some <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">replace</span></tt> and <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">subst</span></tt> edits might be needed
+to successfully have mathematics that is well translated to MS Word.
+Also when going to reStructuredText using Pandoc, it can be advantageous
+to go via LaTeX.</p>
 </div>
 <div class="section" id="id2">
 <h2>LaTeX<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -752,10 +757,11 @@ Links to local files in <tt class="docutils literal"><span class="pre">mydoc.rst
 files in the <tt class="docutils literal"><span class="pre">_static</span></tt> directory, see comment above.</p>
 <p><em>Step 4.</em> Edit the generated <tt class="docutils literal"><span class="pre">index.rst</span></tt> file so that <tt class="docutils literal"><span class="pre">mydoc.rst</span></tt>
 is included, i.e., add <tt class="docutils literal"><span class="pre">mydoc</span></tt> to the <tt class="docutils literal"><span class="pre">toctree</span></tt> section so that it becomes</p>
-<div class="highlight-py"><pre>.. toctree::
-   :maxdepth: 2
+<div class="highlight-py"><div class="highlight"><pre><span class="o">..</span> <span class="n">toctree</span><span class="p">::</span>
+   <span class="p">:</span><span class="n">maxdepth</span><span class="p">:</span> <span class="mi">2</span>
 
-   mydoc</pre>
+   <span class="n">mydoc</span>
+</pre></div>
 </div>
 <p>(The spaces before <tt class="docutils literal"><span class="pre">mydoc</span></tt> are important!)</p>
 <p><em>Step 5.</em> Generate, for instance, an HTML version of the Sphinx source:</p>
@@ -1022,7 +1028,7 @@ run regularly.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2012, Hans Petter Langtangen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

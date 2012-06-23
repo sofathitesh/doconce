@@ -103,13 +103,13 @@ urlcolor=blue]{hyperref}
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Jun 3, 2012}
+\date{Jun 23, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Jun 3, 2012}}
+{\large\textsf{Jun 23, 2012}}
 
 \end{center}
 \vfill
@@ -118,7 +118,7 @@ urlcolor=blue]{hyperref}
 % #else
 
 \begin{center}
-Jun 3, 2012
+Jun 23, 2012
 \end{center}
 
 % #endif
@@ -568,14 +568,13 @@ The resulting file \code{mydoc.html} can be loaded into any web browser for view
 
 \subsection{Pandoc}
 
-Output in the versatile Pandoc format results from
+Output in Pandoc's extended Markdown format results from
 \bsys
 Terminal> doconce format pandoc mydoc
 \esys
 The name of the output file is \code{mydoc.mkd}.
 From this format one can go to numerous other formats:
 \bsys
-Terminal> pandoc -R -t markdown  -o mydoc.txt mydoc.mkd
 Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
 \esys
 Pandoc supports \code{latex}, \code{html}, \code{odt} (OpenOffice), \code{docx} (Microsoft
@@ -584,14 +583,19 @@ Pandoc pass raw HTML or {\LaTeX} to the output format instead of ignoring it.
 See the \href{{http://johnmacfarlane.net/pandoc/README.html}}{Pandoc documentation}
 for the many features of the \code{pandoc} program.
 
-Here are some useful options for using \code{pandoc} to handle mathematics
-in HTML (LaTeXMathML, MathML, and jsMath, MathJax, respectively):
+Pandoc is useful to go from {\LaTeX} mathematics to MS Word.
+However, this should be done via {\LaTeX}, not via Pandoc's extended Markdown
+format. For example,
 \bsys
-Terminal> pandoc -R --latexmathml -t html -o mydoc.html mydoc.mkd
-Terminal> pandoc -R --mathml      -t html -o mydoc.html mydoc.mkd
-Terminal> pandoc -R --jsmath      -t html -o mydoc.html mydoc.mkd
-Terminal> pandoc -R --mathjax     -t html -o mydoc.html mydoc.mkd
+Terminal> doconce format latex mydoc
+Terminal> ptex2tex mydoc
+Terminal> doconce replace "pmb{" "mathbf{" mydoc.tex  # avoid ams math
+Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 \esys
+Quite some \code{doconce replace} and \code{doconce subst} edits might be needed
+to successfully have mathematics that is well translated to MS Word.
+Also when going to reStructuredText using Pandoc, it can be advantageous
+to go via {\LaTeX}.
 
 \subsection{{\LaTeX}}
 

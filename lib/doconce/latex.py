@@ -54,6 +54,8 @@ def latex_figure(m, includegraphics=True):
     # note that label{...} are substituted by \label{...} (inline
     # label tag) so we write just label and not \label below:
 
+    # fraction is 0.9/linewidth by default, but can be adjusted with
+    # the fraction keyword
     frac = 0.9
     opts = m.group('options')
     if opts:
