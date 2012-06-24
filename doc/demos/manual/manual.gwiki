@@ -2,7 +2,7 @@
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== Jun 23, 2012 ====
+==== Jun 24, 2012 ====
 
 <wiki:comment> lines beginning with # are comment lines </wiki:comment>
 
@@ -1015,7 +1015,7 @@ The line above gets typeset as
 *several words in boldface* followed by *ephasized text*.
 
 Verbatim text, typically used for short inline code,
-is typeset between backquotes:
+is typeset between back-ticks:
 {{{
 `call myroutine(a, b)` looks like a Fortran call
 while `void myfunc(double *a, double *b)` must be C.
@@ -1028,7 +1028,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and `ptex2tex`) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -1943,12 +1943,12 @@ However, the following will not be typeset correctly:
 {{{
 see the "`examples` directory": "src/examples/index.html"
 }}}
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 ==== Inline verbatim code is not detected ====
 
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 ==== Strange non-English characters ====
 
@@ -1974,7 +1974,7 @@ run `doconce change_encoding` to change the encoding of the Doconce file.
 
 ==== Inline verbatim text is not formatted correctly ====
 
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 ==== Too short underlining of reST headlines ====
 
@@ -2099,7 +2099,7 @@ If the problem is undefined control sequence involving
 {{{
 \code{...}
 }}}
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -2126,7 +2126,7 @@ Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
 
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper `texttt` command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 

@@ -86,7 +86,7 @@ Documentation of Doconce is found in
 Both directories contain a make.sh file for creating various formats.
 '''
 
-__version__ = '0.7.2'
+__version__ = '0.7.3'
 version = __version__
 __author__ = 'Hans Petter Langtangen', 'Johannes H. Ring'
 author = __author__

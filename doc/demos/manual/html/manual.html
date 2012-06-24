@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jun 23, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jun 24, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -1004,7 +1004,7 @@ be no spaces between an asterisk and the emphasized text, as in</p>
 <p>The line above gets typeset as
 <strong>several words in boldface</strong> followed by <em>ephasized text</em>.</p>
 <p>Verbatim text, typically used for short inline code,
-is typeset between backquotes:</p>
+is typeset between back-ticks:</p>
 <div class="highlight-py"><div class="highlight"><pre><span class="sb">`call myroutine(a, b)`</span> <span class="n">looks</span> <span class="n">like</span> <span class="n">a</span> <span class="n">Fortran</span> <span class="n">call</span>
 <span class="k">while</span> <span class="sb">`void myfunc(double *a, double *b)`</span> <span class="n">must</span> <span class="n">be</span> <span class="n">C</span><span class="o">.</span>
 </pre></div>
@@ -1015,7 +1015,7 @@ while <tt class="docutils literal"><span class="pre">void</span> <span class="pr
 <p>It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and <tt class="docutils literal"><span class="pre">ptex2tex</span></tt>) will have
 problems with inline verbatim text that is split over two lines.</p>
-<p>Watch out for mixing backquotes and asterisk (i.e., verbatim and
+<p>Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -1846,12 +1846,12 @@ in links are allowed if the whole link is typeset in verbatim:</p>
 <div class="highlight-py"><div class="highlight"><pre><span class="n">see</span> <span class="n">the</span> <span class="s">&quot;`examples` directory&quot;</span><span class="p">:</span> <span class="s">&quot;src/examples/index.html&quot;</span>
 </pre></div>
 </div>
-<p>The backquotes must be removed, or the text can be reformulated as
+<p>The back-ticks must be removed, or the text can be reformulated as
 in the line above it.</p>
 </div>
 <div class="section" id="inline-verbatim-code-is-not-detected">
 <h3>Inline verbatim code is not detected<a class="headerlink" href="#inline-verbatim-code-is-not-detected" title="Permalink to this headline">¶</a></h3>
-<p>Make sure there is a space before the first backquote.</p>
+<p>Make sure there is a space before the first back-tick.</p>
 </div>
 <div class="section" id="strange-non-english-characters">
 <h3>Strange non-English characters<a class="headerlink" href="#strange-non-english-characters" title="Permalink to this headline">¶</a></h3>
@@ -1877,7 +1877,7 @@ run <tt class="docutils literal"><span class="pre">doconce</span> <span class="p
 </div>
 <div class="section" id="inline-verbatim-text-is-not-formatted-correctly">
 <h3>Inline verbatim text is not formatted correctly<a class="headerlink" href="#inline-verbatim-text-is-not-formatted-correctly" title="Permalink to this headline">¶</a></h3>
-<p>Make sure there is whitespace surrounding the text in backquotes.</p>
+<p>Make sure there is whitespace surrounding the text in back-ticks.</p>
 </div>
 <div class="section" id="too-short-underlining-of-rest-headlines">
 <h3>Too short underlining of reST headlines<a class="headerlink" href="#too-short-underlining-of-rest-headlines" title="Permalink to this headline">¶</a></h3>
@@ -2004,7 +2004,7 @@ the use of the Minted style (and therefore <tt class="docutils literal"><span cl
 <div class="highlight-py"><div class="highlight"><pre>\<span class="n">code</span><span class="p">{</span><span class="o">...</span><span class="p">}</span>
 </pre></div>
 </div>
-<p>the cause is usually a verbatim inline text (in backquotes in the
+<p>the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.</p>
 </div>
@@ -2026,7 +2026,7 @@ blocks - that is safe.</p>
 <p>Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.</p>
 <p>(Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper <tt class="docutils literal"><span class="pre">texttt</span></tt> command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)</p>
 </div>

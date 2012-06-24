@@ -189,7 +189,7 @@ This action is appropriate when all issues with such comments are resolved.
 
 Verbatim/Computer Code
 
-Inline verbatim code is typeset within single backquotes, as in::
+Inline verbatim code is typeset within back-ticks, as in::
 
 
         Some sentence with `words in verbatim style`.

@@ -8,6 +8,11 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 </head>
 
 <body bgcolor="white">
@@ -22,7 +27,7 @@ Automatically generated HTML file from Doconce source
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Jun 23, 2012</h3></center>
+<center><h3>Jun 24, 2012</h3></center>
 <P>
 
 <P>
@@ -1324,7 +1329,7 @@ the section <a href="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> 
 <P>
 Doconce supports tags for <em>emphasized phrases</em>, <b>boldface phrases</b>,
 and <tt>verbatim text</tt> (also called type writer text, for inline code)
-plus LaTeX/TeX inline mathematics, such as v = sin(x).
+plus LaTeX/TeX inline mathematics, such as \( \nu = \sin(x) \)o.
 
 <P>
 Emphasized text is typeset inside a pair of asterisk, and there should
@@ -1347,7 +1352,7 @@ The line above gets typeset as
 
 <P>
 Verbatim text, typically used for short inline code,
-is typeset between backquotes:
+is typeset between back-ticks:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 `call myroutine(a, b)` looks like a Fortran call
@@ -1364,7 +1369,7 @@ the Doconce file, because some formats (LaTeX and <tt>ptex2tex</tt>) will have
 problems with inline verbatim text that is split over two lines.
 
 <P>
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -1486,9 +1491,9 @@ That is, we provide two alternative expressions, both enclosed in
 dollar signs and separated by a pipe symbol, the expression to the
 left is used in LaTeX, while the expression to the right is used for
 all other formats.  The above text is typeset as "Here is an example
-on a linear system Ax=b, where A
-is an nxn matrix, and x and b
-are vectors of length n."
+on a linear system \( {\bf A}{\bf x} = {\bf b} \)o, where \( \bf A \)o
+is an \( n\times n \)o matrix, and \( \bf x \)o and \( \bf b \)o
+are vectors of length \( n \)o."
 
 <P>
 <h3>Comments</h3>
@@ -1534,7 +1539,7 @@ comments to be in the source code of the output document.
 References and labels are supported. The syntax is simple:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
-label{section:verbatim}   # defines a label
+\label{section:verbatim}   # defines a label
 For more information we refer to Section ref{section:verbatim}.
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -1728,7 +1733,7 @@ it) and a solution file:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 ===== Project: Determine the Distance to the Moon =====
-label{proj:moondist} file=earth2moon.pdf
+\label{proj:moondist} file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
 
 Here goes the running text of the project....
@@ -1997,21 +2002,21 @@ the opening tag is <tt>!bt</tt> (begin TeX) and the closing tag is
 line and followed by a newline.
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
-<blockquote><pre>
+$$
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
-</pre></blockquote>
+$$
 </pre>
 </blockquote>   <! -- end verbatim block -->
 Here is the result of the above <tt>!bt</tt> - <tt>!et</tt> block:
-<blockquote><pre>
+$$
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
-</pre></blockquote>
+$$
 
 <P>
 This text looks ugly in all Doconce supported formats, except from
@@ -2115,18 +2120,18 @@ The LaTeX block
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 \beqa
-\x\cdot\normalvec &=& 0, label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep   label{my:eq2}
+\x\cdot\normalvec &=& 0, \label{my:eq1}\\
+\Ddt{\uvec} &=& \Q \ep   \label{my:eq2}
 \eeqa
 </pre>
 </blockquote>   <! -- end verbatim block -->
 will then be rendered to
-<blockquote><pre>
+$$
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
-</pre></blockquote>
+$$
 in the current format.
 
 <P>
@@ -2460,7 +2465,7 @@ However, the following will not be typeset correctly:
 see the "`examples` directory": "src/examples/index.html"
 </pre>
 </blockquote>   <! -- end verbatim block -->
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 <P>
@@ -2468,7 +2473,7 @@ in the line above it.
 <P>
 <h4>Inline verbatim code is not detected</h4>
 <P>
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 <P>
 <h4>Strange non-English characters</h4>
@@ -2501,7 +2506,7 @@ run <tt>doconce change_encoding</tt> to change the encoding of the Doconce file.
 <P>
 <h4>Inline verbatim text is not formatted correctly</h4>
 <P>
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 <P>
 <h4>Too short underlining of reST headlines</h4>
@@ -2650,7 +2655,7 @@ If the problem is undefined control sequence involving
 \code{...}
 </pre>
 </blockquote>   <! -- end verbatim block -->
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -2685,7 +2690,7 @@ around math, and similar LaTeX syntax errors.
 
 <P>
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper <tt>texttt</tt> command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
