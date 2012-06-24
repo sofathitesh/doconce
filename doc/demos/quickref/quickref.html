@@ -8,6 +8,11 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 </head>
 
 <body bgcolor="white">
@@ -22,7 +27,7 @@ Automatically generated HTML file from Doconce source
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Jun 23, 2012</h3></center>
+<center><h3>Jun 24, 2012</h3></center>
 <P>
 <!-- Very preliminary -->
 
@@ -257,7 +262,7 @@ This action is appropriate when all issues with such comments are resolved.
 <P>
 <h3>Verbatim/Computer Code</h3>
 <P>
-Inline verbatim code is typeset within single backquotes, as in
+Inline verbatim code is typeset within back-ticks, as in
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 Some sentence with `words in verbatim style`.
@@ -345,7 +350,7 @@ raw LaTeX code.
 <P>
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
-Ax=b. To help increase readability in other formats than <tt>sphinx</tt>,
+\( Ax=b \). To help increase readability in other formats than <tt>sphinx</tt>,
 <tt>latex</tt>, and <tt>pdflatex</tt>, inline mathematics may have a more human
 readable companion expression. The syntax is like
 <blockquote>    <!-- begin verbatim block  -->
@@ -366,21 +371,21 @@ and
 For example,
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
-<blockquote><pre>
+$$
 \begin{align*}
 \nabla\cdot u &= 0,\\
 \nabla\times u & 0.
 \end{align*}
-</pre></blockquote>
+$$
 </pre>
 </blockquote>   <! -- end verbatim block -->
 will appear as
-<blockquote><pre>
+$$
 \begin{align*}
 \nabla\cdot u &= 0,\\
 \nabla\times u & 0.
 \end{align*}
-</pre></blockquote>
+$$
 
 <P>
 One can use <tt>#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")</tt> to let
@@ -426,9 +431,9 @@ recommend the following:
 Figures and movies have almost equal syntax:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
 
-MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
 </pre>
 </blockquote>   <! -- end verbatim block -->
 Note the mandatory comma after the figure/movie file.
@@ -508,7 +513,7 @@ from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
-label{name}
+\label{name}
 </pre>
 </blockquote>   <! -- end verbatim block -->
 with no backslash
@@ -644,7 +649,7 @@ looks as follows:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
-label{problem:ellipsearea1}
+\label{problem:ellipsearea1}
 file=ellipse_area.pdf
 solution=ellipse_area1_sol.pdf
 

@@ -6,7 +6,7 @@ Doconce Quick Reference
 
 :Author: Hans Petter Langtangen
 
-:Date: Jun 23, 2012
+:Date: Jun 24, 2012
 
 .. Very preliminary
 
@@ -229,7 +229,7 @@ This action is appropriate when all issues with such comments are resolved.
 Verbatim/Computer Code
 ----------------------
 
-Inline verbatim code is typeset within single backquotes, as in::
+Inline verbatim code is typeset within back-ticks, as in::
 
 
         Some sentence with `words in verbatim style`.

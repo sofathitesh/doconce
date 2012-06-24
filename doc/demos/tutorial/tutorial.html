@@ -8,6 +8,11 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 </head>
 
 <body bgcolor="white">
@@ -22,7 +27,7 @@ Automatically generated HTML file from Doconce source
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Jun 23, 2012</h3></center>
+<center><h3>Jun 24, 2012</h3></center>
 <P>
 
 <P>
@@ -193,7 +198,7 @@ Here is an example of some simple text written in the Doconce format:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 ===== A Subsection with Sample Text =====
-label{my:first:sec}
+\label{my:first:sec}
 
 Ordinary text looks like ordinary text, and the tags used for
 _boldface_ words, *emphasized* words, and `computer` words look
@@ -293,11 +298,11 @@ Tables are also supperted, e.g.,
 <P>
 <h3>Mathematics and Computer Code</h3>
 <P>
-Inline mathematics, such as v = sin(x),
+Inline mathematics, such as \( \nu = \sin(x) \)o,
 allows the formula to be specified both as LaTeX and as plain text.
 This results in a professional LaTeX typesetting, but in other formats
 the text version normally looks better than raw LaTeX mathematics with
-backslashes. An inline formula like v = sin(x) is
+backslashes. An inline formula like \( \nu = \sin(x) \)o is
 typeset as
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
@@ -311,12 +316,12 @@ version of the formula.
 Blocks of mathematics are better typeset with raw LaTeX, inside
 <tt>!bt</tt> and <tt>!et</tt> (begin tex / end tex) instructions.
 The result looks like this:
-<blockquote><pre>
+$$
 \begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}
-</pre></blockquote>
+$$
 Of course, such blocks only looks nice in LaTeX. The raw
 LaTeX syntax appears in all other formats (but can still be useful
 for those who can read LaTeX syntax).

@@ -172,11 +172,13 @@ fool a regex substitution with only i.e. since the dot matches anything.
 Also, look at Fig. 4 to see how the data compares with Tab. ref{mytab}.
 % endif
 
-Here is an equation without label:
+===== LaTeX Mathematics =====
+
+Here is an equation without label using backslash-bracket environment:
 !bt
 \[ a = b + c \]
 !et
-or with number and label, as in (ref{my:eq1}):
+or with number and label, as in (ref{my:eq1}), using the equation environment:
 !bt
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u label{my:eq1}
@@ -184,17 +186,17 @@ or with number and label, as in (ref{my:eq1}):
 !et
 We can refer to this equation by (ref{my:eq1}).
 
-Here is a system without equation numbers:
+Here is a system without equation numbers, using the align-astrisk environment:
 !bt
 \begin{align*}
-a &= q + 4 + 5+ 6 \\
-b &= \nabla^2 u + \nabla^4 x
+\pmb{a} &= \pmb{q}\times\pmb{n} \\
+b &= \nabla^2 u + \nabla^4 v
 \end{align*}
 !et
 
 
-% if FORMAT in ('latex', 'pdflatex', 'sphinx'):
-And here is a system of equations with labels:
+% if FORMAT in ('latex', 'pdflatex', 'sphinx', 'html', 'pandoc'):
+And here is a system of equations with labels in an align environment:
 !bt
 \begin{align}
 a &= q + 4 + 5+ 6 label{eq1} \\
@@ -241,14 +243,16 @@ b &= \nabla^2 u + \nabla^4 x & x\in\Omega label{eq2a}
 Let us refer to (ref{eq1})-(ref{eq2}) again, and to the
 alignat variant (ref{eq1a})-(ref{eq2a}), and to (ref{my:eq1}).
 
-Here is eqnarray:
+Here is eqnarray in action:
 !bt
 \begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
+{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g label{myeq2}
 \end{eqnarray}
 !et
 % endif
+
+More mathematical typesetting is demonstrated in the exercises below.
 
 ======= Exercises =======
 
@@ -333,6 +337,11 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 </head>
 
 <body bgcolor="white">
@@ -597,30 +606,91 @@ is fine to have.
 <P>
 
 <P>
-Here is an equation without label:
-<blockquote><pre>
-\[ a = b + c \]
-</pre></blockquote>
-or with number and label, as in (<a href="#my:eq1">my:eq1</a>):
-<blockquote><pre>
+<h3>LaTeX Mathematics</h3>
+<P>
+Here is an equation without label using backslash-bracket environment:
+$$ a = b + c $$
+or with number and label, as in (<a href="#my:eq1">my:eq1</a>), using the equation environment:
+$$
 \begin{equation}
-{\partial u\over\partial t} = \nabla^2 u label{my:eq1}
+{\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
-</pre></blockquote>
+$$
 We can refer to this equation by (<a href="#my:eq1">my:eq1</a>).
 
 <P>
-Here is a system without equation numbers:
-<blockquote><pre>
+Here is a system without equation numbers, using the align-astrisk environment:
+$$
 \begin{align*}
-a &= q + 4 + 5+ 6 \\ 
-b &= \nabla^2 u + \nabla^4 x
+\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+b &= \nabla^2 u + \nabla^4 v
 \end{align*}
-</pre></blockquote>
+$$
 
 <P>
 
 <P>
+And here is a system of equations with labels in an align environment:
+$$
+\begin{align}
+a &= q + 4 + 5+ 6 \label{eq1} \\ 
+b &= \nabla^2 u + \nabla^4 x \label{eq2}
+\end{align}
+$$
+We can refer to (<a href="#eq1">eq1</a>)-(<a href="#eq2">eq2</a>).
+
+<P>
+Or with multline?
+$$
+\begin{multline}
+a = b = q + \\ 
+  f + \nabla\cdot\nabla u
+\label{multiline:eq1}
+\end{multline}
+$$
+Maybe split is better:
+$$
+\begin{equation}
+\label{split:envir:eq}
+\begin{split}
+a = b = q &+ \\ 
+  & f + \nabla\cdot\nabla u
+\end{split}
+\end{equation}
+$$
+And we can refer to the last equation by (<a href="#split:envir:eq">split:envir:eq</a>).
+
+<P>
+What about gather?
+$$
+\begin{gather}
+a = b \\ 
+c = d + 7 + 9
+\end{gather}
+$$
+
+<P>
+And what about alignat?
+$$
+\begin{alignat}{2}
+a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\ 
+b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
+\end{alignat}
+$$
+Let us refer to (<a href="#eq1">eq1</a>)-(<a href="#eq2">eq2</a>) again, and to the
+alignat variant (<a href="#eq1a">eq1a</a>)-(<a href="#eq2a">eq2a</a>), and to (<a href="#my:eq1">my:eq1</a>).
+
+<P>
+Here is eqnarray in action:
+$$
+\begin{eqnarray}
+{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\ 
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
+\end{eqnarray}
+$$
+
+<P>
+More mathematical typesetting is demonstrated in the exercises below.
 
 <P>
 <h2>Exercises</h2>
@@ -629,7 +699,7 @@ b &= \nabla^2 u + \nabla^4 x
 <P>
 
 <P>
-Make a program that simulates flipping a coin N times.
+Make a program that simulates flipping a coin \( N \) times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
@@ -637,7 +707,7 @@ let the program count the number of heads.
 <b>Hint 1.</b> Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
 
 <P>
-<b>Hint 2.</b> Draw an integer among \{1,2\} with
+<b>Hint 2.</b> Draw an integer among \( \{1,2\} \) with
 <tt>r = random.randint(1,2)</tt> and define head when <tt>r</tt> is 1.
 <em>Filename</em>: <tt>flip_coin.py</tt>
 
@@ -649,12 +719,12 @@ let the program count the number of heads.
 
 <P>
 What is the probability of getting a number between 0.5 and 0.6 when
-drawing uniformly distributed random numbers from the interval [0,1)?
+drawing uniformly distributed random numbers from the interval \( [0,1) \)?
 To answer this question empirically, let a program
-draw N such random numbers using Python's standard <tt>random</tt> module,
-count how many of them, M, that fall in the interval (0.5,0.6), and
-compute the probability as M/N. Run the program with the four
-values N=10^i for i=1,2,3,6.
+draw \( N \) such random numbers using Python's standard <tt>random</tt> module,
+count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
+compute the probability as \( M/N \). Run the program with the four
+values \( N=10^i \) for \( i=1,2,3,6 \).
 
 <P>
 
@@ -664,15 +734,15 @@ values N=10^i for i=1,2,3,6.
 
 <P>
 The formula for a circle is given by
-<blockquote><pre>
+$$
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\ 
 y &= y_0 + R\sin 2\pi t,
 \end{align}
-</pre></blockquote>
-where R is the radius of the circle, (x_0,y_0) is the
-center point, and t is a parameter in the unit interval [0,1].
-For any t, (x,y) is a point on the circle.
+$$
+where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the
+center point, and \( t \) is a parameter in the unit interval \( [0,1] \).
+For any \( t \), \( (x,y) \) is a point on the circle.
 The formula can be used to generate <tt>n</tt> points on a circle:
 <blockquote>    <!-- begin verbatim block   pycod-->
 <pre>
@@ -689,20 +759,20 @@ def circle(R, x0, y0, n=501):
 <P>
 
 <P>
-The goal of this project is to draw N circles with random
+The goal of this project is to draw \( N \) circles with random
 center and radius. Plot each circle using the <tt>circle</tt> function
 above. The following cases should be explored:
 
 <P>
 
 <ul>
- <li> R normally distributed and (x_0,y_0) uniformly distributed
- <li> R uniformly distributed and (x_0,y_0) normally distributed
- <li> R and (x_0,y_0) normally distributed
+ <li> \( R \) normally distributed and \( (x_0,y_0) \) uniformly distributed
+ <li> \( R \) uniformly distributed and \( (x_0,y_0) \) normally distributed
+ <li> \( R \) and \( (x_0,y_0) \) normally distributed
 </ul>
 
 <b>Hint.</b> Use the <tt>numpy.random</tt> module to draw the
-x_0, y_0, and R quantities.
+\( x_0 \), \( y_0 \), and \( R \) quantities.
 <em>Filename</em>: <tt>circles.pdf</tt>
 
 <P>
@@ -1183,22 +1253,24 @@ with Ms.~Larsen. A sentence containing "refines lines" could easily
 fool a regex substitution with only i.e.~since the dot matches anything.
 Also, look at Fig.~4 to see how the data compares with Tab.~\ref{mytab}.
 
-Here is an equation without label:
+\subsection{{\LaTeX} Mathematics}
+
+Here is an equation without label using backslash-bracket environment:
 \[ a = b + c \]
-or with number and label, as in (\ref{my:eq1}):
+or with number and label, as in (\ref{my:eq1}), using the equation environment:
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
 We can refer to this equation by (\ref{my:eq1}).
 
-Here is a system without equation numbers:
+Here is a system without equation numbers, using the align-astrisk environment:
 \begin{align*}
-a &= q + 4 + 5+ 6 \\ 
-b &= \nabla^2 u + \nabla^4 x
+\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+b &= \nabla^2 u + \nabla^4 v
 \end{align*}
 
 
-And here is a system of equations with labels:
+And here is a system of equations with labels in an align environment:
 \begin{align}
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
@@ -1235,11 +1307,13 @@ b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 Let us refer to (\ref{eq1})-(\ref{eq2}) again, and to the
 alignat variant (\ref{eq1a})-(\ref{eq2a}), and to (\ref{my:eq1}).
 
-Here is eqnarray:
+Here is eqnarray in action:
 \begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\ 
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
+{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\ 
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
 \end{eqnarray}
+
+More mathematical typesetting is demonstrated in the exercises below.
 
 
 \section{Exercises}
@@ -1678,22 +1752,24 @@ with Ms.~Larsen. A sentence containing "refines lines" could easily
 fool a regex substitution with only i.e.~since the dot matches anything.
 Also, look at Fig.~4 to see how the data compares with Tab.~\ref{mytab}.
 
-Here is an equation without label:
+\subsection{{\LaTeX} Mathematics}
+
+Here is an equation without label using backslash-bracket environment:
 \[ a = b + c \]
-or with number and label, as in (\ref{my:eq1}):
+or with number and label, as in (\ref{my:eq1}), using the equation environment:
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
 We can refer to this equation by (\ref{my:eq1}).
 
-Here is a system without equation numbers:
+Here is a system without equation numbers, using the align-astrisk environment:
 \begin{align*}
-a &= q + 4 + 5+ 6 \\ 
-b &= \nabla^2 u + \nabla^4 x
+\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+b &= \nabla^2 u + \nabla^4 v
 \end{align*}
 
 
-And here is a system of equations with labels:
+And here is a system of equations with labels in an align environment:
 \begin{align}
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
@@ -1730,11 +1806,13 @@ b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 Let us refer to (\ref{eq1})-(\ref{eq2}) again, and to the
 alignat variant (\ref{eq1a})-(\ref{eq2a}), and to (\ref{my:eq1}).
 
-Here is eqnarray:
+Here is eqnarray in action:
 \begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f,\label{myeq1}\\ 
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
+{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\ 
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
 \end{eqnarray}
+
+More mathematical typesetting is demonstrated in the exercises below.
 
 
 \section{Exercises}
@@ -2052,11 +2130,14 @@ is fine to have.
 
 
 
-Here is an equation without label::
+LaTeX Mathematics
+-----------------
+
+Here is an equation without label using backslash-bracket environment::
 
         \[ a = b + c \]
 
-or with number and label, as in Equation (my:eq1)::
+or with number and label, as in Equation (my:eq1), using the equation environment::
 
         \begin{equation}
         {\partial u\over\partial t} = \nabla^2 u label{my:eq1}
@@ -2064,15 +2145,17 @@ or with number and label, as in Equation (my:eq1)::
 
 We can refer to this equation by Equation (my:eq1).
 
-Here is a system without equation numbers::
+Here is a system without equation numbers, using the align-astrisk environment::
 
         \begin{align*}
-        a &= q + 4 + 5+ 6 \\ 
-        b &= \nabla^2 u + \nabla^4 x
+        \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+        b &= \nabla^2 u + \nabla^4 v
         \end{align*}
 
 
 
+
+More mathematical typesetting is demonstrated in the exercises below.
 
 Exercises
 =========
@@ -2402,12 +2485,15 @@ is fine to have.
 
 
 
-Here is an equation without label:
+LaTeX Mathematics
+-----------------
+
+Here is an equation without label using backslash-bracket environment:
 
 .. math::
          a = b + c 
 
-or with number and label, as in :eq:`my:eq1`:
+or with number and label, as in :eq:`my:eq1`, using the equation environment:
 
 .. math::
    :label: my:eq1
@@ -2417,17 +2503,17 @@ or with number and label, as in :eq:`my:eq1`:
 
 We can refer to this equation by :eq:`my:eq1`.
 
-Here is a system without equation numbers:
+Here is a system without equation numbers, using the align-astrisk environment:
 
 .. math::
         
-        a &= q + 4 + 5+ 6 \\ 
-        b &= \nabla^2 u + \nabla^4 x
+        \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+        b &= \nabla^2 u + \nabla^4 v
         
 
 
 
-And here is a system of equations with labels:
+And here is a system of equations with labels in an align environment:
 
 .. math::
         
@@ -2481,15 +2567,16 @@ And what about alignat?
 Let us refer to (:ref:`eq1`)-(:ref:`eq2`) again, and to the
 alignat variant (:ref:`eq1a`)-(:ref:`eq2a`), and to :eq:`my:eq1`.
 
-Here is eqnarray:
+Here is eqnarray in action:
 
 .. math::
-   :label: myeq1
         
-        {\partial u\over\partial t}  &=  \nabla^2 u + f,\\ 
-        {\partial v\over\partial t}  &=  \nabla\cdot(q(u)\nabla v) + g
+        {\partial u\over\partial t}  &=  \nabla^2 u + f, \\ 
+        {\partial v\over\partial t}  &=  \nabla\cdot(q(u)\nabla v) + g 
         
 
+
+More mathematical typesetting is demonstrated in the exercises below.
 
 Exercises
 =========
@@ -2761,12 +2848,13 @@ is fine to have.
 <wiki:comment> note that when there is no http: or file:, it can be a file link </wiki:comment>
 <wiki:comment> if the link name is URL, url, "URL", or "url". </wiki:comment>
 
+==== LaTeX Mathematics ====
 
-Here is an equation without label:
+Here is an equation without label using backslash-bracket environment:
 {{{
 \[ a = b + c \]
 }}}
-or with number and label, as in Equation (my:eq1):
+or with number and label, as in Equation (my:eq1), using the equation environment:
 {{{
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u label{my:eq1}
@@ -2774,13 +2862,17 @@ or with number and label, as in Equation (my:eq1):
 }}}
 We can refer to this equation by Equation (my:eq1).
 
-Here is a system without equation numbers:
+Here is a system without equation numbers, using the align-astrisk environment:
 {{{
 \begin{align*}
-a &= q + 4 + 5+ 6 \\ 
-b &= \nabla^2 u + \nabla^4 x
+\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+b &= \nabla^2 u + \nabla^4 v
 \end{align*}
 }}}
+
+
+
+More mathematical typesetting is demonstrated in the exercises below.
 
 
 
@@ -3022,12 +3114,13 @@ is fine to have.
 <!--> note that when there is no http: or file:, it can be a file link -->
 <!--> if the link name is URL, url, "URL", or "url". -->
 
+==== LaTeX Mathematics ====
 
-Here is an equation without label:
+Here is an equation without label using backslash-bracket environment:
 :<math>
 \[ a = b + c \]
 </math>
-or with number and label, as in Equation (my:eq1):
+or with number and label, as in Equation (my:eq1), using the equation environment:
 :<math>
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u label{my:eq1}
@@ -3035,13 +3128,17 @@ or with number and label, as in Equation (my:eq1):
 </math>
 We can refer to this equation by Equation (my:eq1).
 
-Here is a system without equation numbers:
+Here is a system without equation numbers, using the align-astrisk environment:
 :<math>
 \begin{align*}
-a &= q + 4 + 5+ 6 \\ 
-b &= \nabla^2 u + \nabla^4 x
+\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+b &= \nabla^2 u + \nabla^4 v
 \end{align*}
 </math>
+
+
+
+More mathematical typesetting is demonstrated in the exercises below.
 
 
 
@@ -3289,11 +3386,13 @@ is fine to have.
 <wiki:comment> if the link name is URL, url, "URL", or "url". </wiki:comment>
 
 
-Here is an equation without label:
+== LaTeX Mathematics ==
+
+Here is an equation without label using backslash-bracket environment:
 {{{
 \[ a = b + c \]
 }}}
-or with number and label, as in Equation (my:eq1):
+or with number and label, as in Equation (my:eq1), using the equation environment:
 {{{
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u label{my:eq1}
@@ -3301,13 +3400,17 @@ or with number and label, as in Equation (my:eq1):
 }}}
 We can refer to this equation by Equation (my:eq1).
 
-Here is a system without equation numbers:
+Here is a system without equation numbers, using the align-astrisk environment:
 {{{
 \begin{align*}
-a &= q + 4 + 5+ 6 \\ 
-b &= \nabla^2 u + \nabla^4 x
+\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+b &= \nabla^2 u + \nabla^4 v
 \end{align*}
 }}}
+
+
+
+More mathematical typesetting is demonstrated in the exercises below.
 
 
 
@@ -3539,13 +3642,13 @@ tested: "http://folk.uio.no/hpl":hpl's homepage. Now also 'file:///'
 works: "file:///home/hpl/vc/doconce/trunk/test/tmp_HTML.html":link to a file
 is fine to have.
 
+LaTeX Mathematics
 
-
-Here is an equation without label::
+Here is an equation without label using backslash-bracket environment::
 
         \[ a = b + c \]
 
-or with number and label, as in Equation (my:eq1)::
+or with number and label, as in Equation (my:eq1), using the equation environment::
 
         \begin{equation}
         {\partial u\over\partial t} = \nabla^2 u label{my:eq1}
@@ -3553,13 +3656,17 @@ or with number and label, as in Equation (my:eq1)::
 
 We can refer to this equation by Equation (my:eq1).
 
-Here is a system without equation numbers::
+Here is a system without equation numbers, using the align-astrisk environment::
 
         \begin{align*}
-        a &= q + 4 + 5+ 6 \\ 
-        b &= \nabla^2 u + \nabla^4 x
+        \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+        b &= \nabla^2 u + \nabla^4 v
         \end{align*}
 
+
+
+
+More mathematical typesetting is demonstrated in the exercises below.
 
 Exercises
 
@@ -3795,11 +3902,14 @@ is fine to have.
 
 
 
-Here is an equation without label::
+LaTeX Mathematics
+-----------------
+
+Here is an equation without label using backslash-bracket environment::
 
         \[ a = b + c \]
 
-or with number and label, as in Equation (my:eq1)::
+or with number and label, as in Equation (my:eq1), using the equation environment::
 
 
             NOTE: A verbatim block has been removed because
@@ -3808,7 +3918,7 @@ or with number and label, as in Equation (my:eq1)::
 
 We can refer to this equation by Equation (my:eq1).
 
-Here is a system without equation numbers::
+Here is a system without equation numbers, using the align-astrisk environment::
 
 
             NOTE: A verbatim block has been removed because
@@ -3817,6 +3927,8 @@ Here is a system without equation numbers::
 
 
 
+
+More mathematical typesetting is demonstrated in the exercises below.
 
 Exercises
 =========
@@ -4082,11 +4194,14 @@ is fine to have.
 
 
 
-Here is an equation without label::
+LaTeX Mathematics
+-----------------
+
+Here is an equation without label using backslash-bracket environment::
 
         \[ a = b + c \]
 
-or with number and label, as in Equation (my:eq1)::
+or with number and label, as in Equation (my:eq1), using the equation environment::
 
         \begin{equation}
         {\partial u\over\partial t} = \nabla^2 u label{my:eq1}
@@ -4094,15 +4209,17 @@ or with number and label, as in Equation (my:eq1)::
 
 We can refer to this equation by Equation (my:eq1).
 
-Here is a system without equation numbers::
+Here is a system without equation numbers, using the align-astrisk environment::
 
         \begin{align*}
-        a &= q + 4 + 5+ 6 \\ 
-        b &= \nabla^2 u + \nabla^4 x
+        \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+        b &= \nabla^2 u + \nabla^4 v
         \end{align*}
 
 
 
+
+More mathematical typesetting is demonstrated in the exercises below.
 
 Exercises
 =========
@@ -4369,9 +4486,12 @@ is fine to have.
 
 
 
-Here is an equation without label:
+LaTeX Mathematics
+-----------------
+
+Here is an equation without label using backslash-bracket environment:
 $$ a = b + c $$
-or with number and label, as in Equation (my:eq1):
+or with number and label, as in Equation (my:eq1), using the equation environment:
 $$
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
@@ -4379,15 +4499,71 @@ $$
 $$
 We can refer to this equation by Equation (my:eq1).
 
-Here is a system without equation numbers:
+Here is a system without equation numbers, using the align-astrisk environment:
 $$
 \begin{align*}
-a &= q + 4 + 5+ 6 \\ 
-b &= \nabla^2 u + \nabla^4 x
+\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+b &= \nabla^2 u + \nabla^4 v
 \end{align*}
 $$
 
 
+And here is a system of equations with labels in an align environment:
+$$
+\begin{align}
+a &= q + 4 + 5+ 6 \label{eq1} \\ 
+b &= \nabla^2 u + \nabla^4 x \label{eq2}
+\end{align}
+$$
+We can refer to Equations (eq1)-(eq2).
+
+Or with multline?
+$$
+\begin{multline}
+a = b = q + \\ 
+  f + \nabla\cdot\nabla u
+\label{multiline:eq1}
+\end{multline}
+$$
+Maybe split is better:
+$$
+\begin{equation}
+\label{split:envir:eq}
+\begin{split}
+a = b = q &+ \\ 
+  & f + \nabla\cdot\nabla u
+\end{split}
+\end{equation}
+$$
+And we can refer to the last equation by Equation (split:envir:eq).
+
+What about gather?
+$$
+\begin{gather}
+a = b \\ 
+c = d + 7 + 9
+\end{gather}
+$$
+
+And what about alignat?
+$$
+\begin{alignat}{2}
+a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\ 
+b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
+\end{alignat}
+$$
+Let us refer to Equations (eq1)-(eq2) again, and to the
+alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).
+
+Here is eqnarray in action:
+$$
+\begin{eqnarray}
+{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\ 
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
+\end{eqnarray}
+$$
+
+More mathematical typesetting is demonstrated in the exercises below.
 
 Exercises
 =========
@@ -4694,14 +4870,15 @@ C     END1
 <p>Here are some nice URLs, e.g., hpl’s home page <a href="{http://folk.uio.no/hpl}">hpl</a>, or the URL if desired, <a href="{http://folk.uio.no/hpl}">http://folk.uio.no/hpl</a>. Here is a plain file link <a href="{testdoc.do.txt}">testdoc.do.txt</a>, or <a href="{testdoc.do.txt}">testdoc.do.txt</a>, or <a href="{testdoc.do.txt}">testdoc.do.txt</a> or <a href="{testdoc.do.txt}">testdoc.do.txt</a> or <a href="{testdoc.do.txt}">a link with newline</a>. Can test spaces with the link with word too: <a href="{http://folk.uio.no/hpl}">hpl</a> or <a href="{http://folk.uio.no/hpl}">hpl</a>. The old syntax must also be tested: <a href="http://folk.uio.no/hpl">hpl’s homepage</a>. Now also 10pt10pt<code>file:///</code> works: <a href="{file:///home/hpl/vc/doconce/trunk/test/tmp_HTML.html}">link to a file</a> is fine to have.</p>
 <h3 id="some-latex-constructs">Some LaTeX Constructs</h3>
 <p>Let’s check abbr. of some common kind, e.g. the well-known i.e. 7-9 as an example. Moreover, Dr. Tang and Prof. Monsen, or maybe also prof. Ting, will go to the Dept. of Science to test how Mr. Hansen is doing together with Ms. Larsen. A sentence containing &quot;refines lines&quot; could easily fool a regex substitution with only i.e. since the dot matches anything. Also, look at Fig. 4 to see how the data compares with Tab. [mytab].</p>
-<p>Here is an equation without label: \[a = b + c\] or with number and label, as in ([my:eq1]):</p>
+<h3 id="latex-mathematics">LaTeX Mathematics</h3>
+<p>Here is an equation without label using backslash-bracket environment: \[a = b + c\] or with number and label, as in ([my:eq1]), using the equation environment:</p>
 <p>\[{\partial u\over\partial t} = \nabla^2 u \label{my:eq1}\]</p>
 <p>We can refer to this equation by ([my:eq1]).</p>
-<p>Here is a system without equation numbers:</p>
+<p>Here is a system without equation numbers, using the align-astrisk environment:</p>
 <p>\[\begin{aligned*}
-a &amp;= q + 4 + 5+ 6 \\ 
-b &amp;= \nabla^2 u + \nabla^4 x\end{aligned*}\]</p>
-<p>And here is a system of equations with labels:</p>
+\pmb{a} &amp;= \pmb{q}\times\pmb{n} \\ 
+b &amp;= \nabla^2 u + \nabla^4 v\end{aligned*}\]</p>
+<p>And here is a system of equations with labels in an align environment:</p>
 <p>\[\begin{aligned*}
 a &amp;= q + 4 + 5+ 6 \label{eq1} \\ 
 b &amp;= \nabla^2 u + \nabla^4 x \label{eq2}\end{aligned*}\]</p>
@@ -4725,10 +4902,11 @@ c = d + 7 + 9\end{gathered}\]</p>
 a &amp;= q + 4 + 5+ 6\qquad &amp; \mbox{for } q\geq 0 \label{eq1a} \\ 
 b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}\end{aligned*}\]</p>
 <p>Let us refer to ([eq1])-([eq2]) again, and to the alignat variant ([eq1a])-([eq2a]), and to ([my:eq1]).</p>
-<p>Here is eqnarray:</p>
+<p>Here is eqnarray in action:</p>
 <p>\[\begin{aligned*}
-{\partial u\over\partial t} &amp;=&amp; \nabla^2 u + f,\label{myeq1}\\ 
-{\partial v\over\partial t} &amp;=&amp; \nabla\cdot(q(u)\nabla v) + g\end{aligned*}\]</p>
+{\partial u\over\partial t} &amp;=&amp; \nabla^2 u + f, \label{myeq1}\\ 
+{\partial v\over\partial t} &amp;=&amp; \nabla\cdot(q(u)\nabla v) + g \label{myeq2}\end{aligned*}\]</p>
+<p>More mathematical typesetting is demonstrated in the exercises below.</p>
 <h2 id="exercises">Exercises</h2>
 <h3 id="flip-a-coin">Flip a Coin</h3>
 <p>[demo:ex:1]</p>
@@ -4950,17 +5128,58 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </table>
 <h2 id="urls">URLs</h2>
 <p>Here are some nice URLs, e.g., hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or the URL if desired, <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>. Here is a plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or <testdoc.do.txt> or <testdoc.do.txt> or <a href="testdoc.do.txt">a link with newline</a>. Can test spaces with the link with word too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. The old syntax must also be tested: hpl's homepage (http://folk.uio.no/hpl). Now also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/trunk/test/tmp_HTML.html">link to a file</a> is fine to have.</p>
-<p>Here is an equation without label: \[ a = b + c \] or with number and label, as in Equation (my:eq1): \[
+<h2 id="latex-mathematics">LaTeX Mathematics</h2>
+<p>Here is an equation without label using backslash-bracket environment: \[ a = b + c \] or with number and label, as in Equation (my:eq1), using the equation environment: \[
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
 \] We can refer to this equation by Equation (my:eq1).</p>
-<p>Here is a system without equation numbers: \[
+<p>Here is a system without equation numbers, using the align-astrisk environment: \[
 \begin{align*}
-a &amp;= q + 4 + 5+ 6 \\ 
-b &amp;= \nabla^2 u + \nabla^4 x
+\pmb{a} &amp;= \pmb{q}\times\pmb{n} \\ 
+b &amp;= \nabla^2 u + \nabla^4 v
 \end{align*}
 \]</p>
+<p>And here is a system of equations with labels in an align environment: \[
+\begin{align}
+a &amp;= q + 4 + 5+ 6 \label{eq1} \\ 
+b &amp;= \nabla^2 u + \nabla^4 x \label{eq2}
+\end{align}
+\] We can refer to Equations (eq1)-(eq2).</p>
+<p>Or with multline? \[
+\begin{multline}
+a = b = q + \\ 
+  f + \nabla\cdot\nabla u
+\label{multiline:eq1}
+\end{multline}
+\] Maybe split is better: \[
+\begin{equation}
+\label{split:envir:eq}
+\begin{split}
+a = b = q &amp;+ \\ 
+  &amp; f + \nabla\cdot\nabla u
+\end{split}
+\end{equation}
+\] And we can refer to the last equation by Equation (split:envir:eq).</p>
+<p>What about gather? \[
+\begin{gather}
+a = b \\ 
+c = d + 7 + 9
+\end{gather}
+\]</p>
+<p>And what about alignat? \[
+\begin{alignat}{2}
+a &amp;= q + 4 + 5+ 6\qquad &amp; \mbox{for } q\geq 0 \label{eq1a} \\ 
+b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}
+\end{alignat}
+\] Let us refer to Equations (eq1)-(eq2) again, and to the alignat variant Equations (eq1a)-(eq2a), and to Equation (my:eq1).</p>
+<p>Here is eqnarray in action: \[
+\begin{eqnarray}
+{\partial u\over\partial t} &amp;=&amp; \nabla^2 u + f, \label{myeq1}\\ 
+{\partial v\over\partial t} &amp;=&amp; \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
+\end{eqnarray}
+\]</p>
+<p>More mathematical typesetting is demonstrated in the exercises below.</p>
 <h1 id="exercises">Exercises</h1>
 <h2 id="flip-a-coin">Flip a Coin</h2>
 <p>Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
@@ -5527,6 +5746,11 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 </head>
 
 <body bgcolor="white">
@@ -5712,7 +5936,7 @@ Here is an example of some simple text written in the Doconce format:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 ===== A Subsection with Sample Text =====
-label{my:first:sec}
+\label{my:first:sec}
 
 Ordinary text looks like ordinary text, and the tags used for
 _boldface_ words, *emphasized* words, and `computer` words look
@@ -5812,11 +6036,11 @@ Tables are also supperted, e.g.,
 <P>
 <h3>Mathematics and Computer Code</h3>
 <P>
-Inline mathematics, such as v = sin(x),
+Inline mathematics, such as \( \nu = \sin(x) \)o,
 allows the formula to be specified both as LaTeX and as plain text.
 This results in a professional LaTeX typesetting, but in other formats
 the text version normally looks better than raw LaTeX mathematics with
-backslashes. An inline formula like v = sin(x) is
+backslashes. An inline formula like \( \nu = \sin(x) \)o is
 typeset as
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
@@ -5830,12 +6054,12 @@ version of the formula.
 Blocks of mathematics are better typeset with raw LaTeX, inside
 <tt>!bt</tt> and <tt>!et</tt> (begin tex / end tex) instructions.
 The result looks like this:
-<blockquote><pre>
+$$
 \begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
 \end{eqnarray}
-</pre></blockquote>
+$$
 Of course, such blocks only looks nice in LaTeX. The raw
 LaTeX syntax appears in all other formats (but can still be useful
 for those who can read LaTeX syntax).
@@ -16733,7 +16957,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 23 Jun 2012 (19:09)
+DATE: Sun, 24 Jun 2012 (13:47)
 
 
 
@@ -16837,7 +17061,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 23 Jun 2012 (19:09)
+DATE: Sun, 24 Jun 2012 (13:47)
 
 
 
@@ -16951,7 +17175,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 23 Jun 2012 (19:09)</center>
+<center>Sun, 24 Jun 2012 (13:47)</center>
 
 
 
@@ -17082,7 +17306,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 23 Jun 2012 (19:09)</center>
+<center>Sun, 24 Jun 2012 (13:47)</center>
 
 
 
@@ -17745,7 +17969,7 @@ The line above gets typeset as
 _several words in boldface_ followed by *ephasized text*.
 
 Verbatim text, typically used for short inline code,
-is typeset between backquotes:
+is typeset between back-ticks:
 !bc
 `call myroutine(a, b)` looks like a Fortran call
 while `void myfunc(double *a, double *b)` must be C.
@@ -17758,7 +17982,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and `ptex2tex`) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -18664,13 +18888,13 @@ However, the following will not be typeset correctly:
 !bc
 see the "`examples` directory": "src/examples/index.html"
 !ec
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 
 === Inline verbatim code is not detected ===
 
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 === Strange non-English characters ===
 
@@ -18696,7 +18920,7 @@ run `doconce change_encoding` to change the encoding of the Doconce file.
 
 === Inline verbatim text is not formatted correctly ===
 
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 === Too short underlining of reST headlines ===
 
@@ -18823,7 +19047,7 @@ If the problem is undefined control sequence involving
 !bc
 \code{...}
 !ec
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -18851,7 +19075,7 @@ Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
 
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper `texttt` command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
@@ -19103,6 +19327,11 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 </head>
 
 <body bgcolor="white">
@@ -20419,7 +20648,7 @@ the section <a href="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> 
 <P>
 Doconce supports tags for <em>emphasized phrases</em>, <b>boldface phrases</b>,
 and <tt>verbatim text</tt> (also called type writer text, for inline code)
-plus LaTeX/TeX inline mathematics, such as v = sin(x).
+plus LaTeX/TeX inline mathematics, such as \( \nu = \sin(x) \)o.
 
 <P>
 Emphasized text is typeset inside a pair of asterisk, and there should
@@ -20442,7 +20671,7 @@ The line above gets typeset as
 
 <P>
 Verbatim text, typically used for short inline code,
-is typeset between backquotes:
+is typeset between back-ticks:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 `call myroutine(a, b)` looks like a Fortran call
@@ -20459,7 +20688,7 @@ the Doconce file, because some formats (LaTeX and <tt>ptex2tex</tt>) will have
 problems with inline verbatim text that is split over two lines.
 
 <P>
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -20581,9 +20810,9 @@ That is, we provide two alternative expressions, both enclosed in
 dollar signs and separated by a pipe symbol, the expression to the
 left is used in LaTeX, while the expression to the right is used for
 all other formats.  The above text is typeset as "Here is an example
-on a linear system Ax=b, where A
-is an nxn matrix, and x and b
-are vectors of length n."
+on a linear system \( {\bf A}{\bf x} = {\bf b} \)o, where \( \bf A \)o
+is an \( n\times n \)o matrix, and \( \bf x \)o and \( \bf b \)o
+are vectors of length \( n \)o."
 
 <P>
 <h3>Comments</h3>
@@ -20629,7 +20858,7 @@ comments to be in the source code of the output document.
 References and labels are supported. The syntax is simple:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
-label{section:verbatim}   # defines a label
+\label{section:verbatim}   # defines a label
 For more information we refer to Section ref{section:verbatim}.
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -20823,7 +21052,7 @@ it) and a solution file:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 ===== Project: Determine the Distance to the Moon =====
-label{proj:moondist} file=earth2moon.pdf
+\label{proj:moondist} file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
 
 Here goes the running text of the project....
@@ -21092,21 +21321,21 @@ the opening tag is <tt>!bt</tt> (begin TeX) and the closing tag is
 line and followed by a newline.
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
-<blockquote><pre>
+$$
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
-</pre></blockquote>
+$$
 </pre>
 </blockquote>   <! -- end verbatim block -->
 Here is the result of the above <tt>!bt</tt> - <tt>!et</tt> block:
-<blockquote><pre>
+$$
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
-</pre></blockquote>
+$$
 
 <P>
 This text looks ugly in all Doconce supported formats, except from
@@ -21210,18 +21439,18 @@ The LaTeX block
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 \beqa
-\x\cdot\normalvec &=& 0, label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep   label{my:eq2}
+\x\cdot\normalvec &=& 0, \label{my:eq1}\\
+\Ddt{\uvec} &=& \Q \ep   \label{my:eq2}
 \eeqa
 </pre>
 </blockquote>   <! -- end verbatim block -->
 will then be rendered to
-<blockquote><pre>
+$$
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
-</pre></blockquote>
+$$
 in the current format.
 
 <P>
@@ -21555,7 +21784,7 @@ However, the following will not be typeset correctly:
 see the "`examples` directory": "src/examples/index.html"
 </pre>
 </blockquote>   <! -- end verbatim block -->
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 <P>
@@ -21563,7 +21792,7 @@ in the line above it.
 <P>
 <h4>Inline verbatim code is not detected</h4>
 <P>
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 <P>
 <h4>Strange non-English characters</h4>
@@ -21596,7 +21825,7 @@ run <tt>doconce change_encoding</tt> to change the encoding of the Doconce file.
 <P>
 <h4>Inline verbatim text is not formatted correctly</h4>
 <P>
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 <P>
 <h4>Too short underlining of reST headlines</h4>
@@ -21745,7 +21974,7 @@ If the problem is undefined control sequence involving
 \code{...}
 </pre>
 </blockquote>   <! -- end verbatim block -->
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -21780,7 +22009,7 @@ around math, and similar LaTeX syntax errors.
 
 <P>
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper <tt>texttt</tt> command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
@@ -23317,7 +23546,7 @@ The line above gets typeset as
 \textbf{several words in boldface} followed by \emph{ephasized text}.
 
 Verbatim text, typically used for short inline code,
-is typeset between backquotes:
+is typeset between back-ticks:
 \bccq
 `call myroutine(a, b)` looks like a Fortran call
 while `void myfunc(double *a, double *b)` must be C.
@@ -23330,7 +23559,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats ({\LaTeX} and \code{ptex2tex}) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -24249,11 +24478,11 @@ However, the following will not be typeset correctly:
 \bccq
 see the "`examples` directory": "src/examples/index.html"
 \eccq
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 \paragraph{Inline verbatim code is not detected.}
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 \paragraph{Strange non-English characters.}
 Check the encoding of the \code{.do.txt} file with the Unix \code{file} command
@@ -24276,7 +24505,7 @@ the section "Strange non-English characters" above for how to
 run \code{doconce change_encoding} to change the encoding of the Doconce file.
 
 \paragraph{Inline verbatim text is not formatted correctly.}
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 \paragraph{Too short underlining of reST headlines.}
 This may happen if there is a paragraph heading without
@@ -24386,7 +24615,7 @@ If the problem is undefined control sequence involving
 \bccq
 \code{...}
 \eccq
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -24411,7 +24640,7 @@ Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar {\LaTeX} syntax errors.
 
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper \code{texttt} command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
@@ -25818,7 +26047,7 @@ The line above gets typeset as
 **several words in boldface** followed by *ephasized text*.
 
 Verbatim text, typically used for short inline code,
-is typeset between backquotes::
+is typeset between back-ticks::
 
 
         `call myroutine(a, b)` looks like a Fortran call
@@ -25832,7 +26061,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and ``ptex2tex``) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -26847,14 +27076,14 @@ However, the following will not be typeset correctly::
 
         see the "`examples` directory": "src/examples/index.html"
 
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 
 Inline verbatim code is not detected
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 Strange non-English characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -26885,7 +27114,7 @@ run ``doconce change_encoding`` to change the encoding of the Doconce file.
 Inline verbatim text is not formatted correctly
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 Too short underlining of reST headlines
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -27032,7 +27261,7 @@ If the problem is undefined control sequence involving::
 
         \code{...}
 
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -27065,7 +27294,7 @@ Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
 
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper ``texttt`` command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
@@ -28596,7 +28825,7 @@ The line above gets typeset as
 **several words in boldface** followed by *ephasized text*.
 
 Verbatim text, typically used for short inline code,
-is typeset between backquotes:
+is typeset between back-ticks:
 
 .. code-block:: py
 
@@ -28612,7 +28841,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and ``ptex2tex``) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -29723,14 +29952,14 @@ However, the following will not be typeset correctly:
 
         see the "`examples` directory": "src/examples/index.html"
 
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 
 Inline verbatim code is not detected
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 Strange non-English characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -29765,7 +29994,7 @@ run ``doconce change_encoding`` to change the encoding of the Doconce file.
 Inline verbatim text is not formatted correctly
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 Too short underlining of reST headlines
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -29915,7 +30144,7 @@ If the problem is undefined control sequence involving
 
         \code{...}
 
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -29950,7 +30179,7 @@ Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
 
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper ``texttt`` command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
@@ -31210,7 +31439,7 @@ The line above gets typeset as
 *several words in boldface* followed by *ephasized text*.
 
 Verbatim text, typically used for short inline code,
-is typeset between backquotes:
+is typeset between back-ticks:
 {{{
 `call myroutine(a, b)` looks like a Fortran call
 while `void myfunc(double *a, double *b)` must be C.
@@ -31223,7 +31452,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and `ptex2tex`) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -32138,12 +32367,12 @@ However, the following will not be typeset correctly:
 {{{
 see the "`examples` directory": "src/examples/index.html"
 }}}
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 ==== Inline verbatim code is not detected ====
 
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 ==== Strange non-English characters ====
 
@@ -32169,7 +32398,7 @@ run `doconce change_encoding` to change the encoding of the Doconce file.
 
 ==== Inline verbatim text is not formatted correctly ====
 
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 ==== Too short underlining of reST headlines ====
 
@@ -32294,7 +32523,7 @@ If the problem is undefined control sequence involving
 {{{
 \code{...}
 }}}
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -32321,7 +32550,7 @@ Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
 
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper `texttt` command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
@@ -33510,7 +33739,7 @@ The line above gets typeset as
 '''several words in boldface''' followed by ''ephasized text''.
 
 Verbatim text, typically used for short inline code,
-is typeset between backquotes:
+is typeset between back-ticks:
 <code>
 `call myroutine(a, b)` looks like a Fortran call
 while `void myfunc(double *a, double *b)` must be C.
@@ -33523,7 +33752,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and <code>ptex2tex</code>) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -34409,12 +34638,12 @@ However, the following will not be typeset correctly:
 <code>
 see the "`examples` directory": "src/examples/index.html"
 </code>
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 ==== Inline verbatim code is not detected ====
 
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 ==== Strange non-English characters ====
 
@@ -34440,7 +34669,7 @@ run <code>doconce change_encoding</code> to change the encoding of the Doconce f
 
 ==== Inline verbatim text is not formatted correctly ====
 
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 ==== Too short underlining of reST headlines ====
 
@@ -34565,7 +34794,7 @@ If the problem is undefined control sequence involving
 <code>
 \code{...}
 </code>
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -34592,7 +34821,7 @@ Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
 
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper <code>texttt</code> command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
@@ -35809,7 +36038,7 @@ The line above gets typeset as
 **several words in boldface** followed by //ephasized text//.
 
 Verbatim text, typically used for short inline code,
-is typeset between backquotes:
+is typeset between back-ticks:
 {{{
 `call myroutine(a, b)` looks like a Fortran call
 while `void myfunc(double *a, double *b)` must be C.
@@ -35822,7 +36051,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and {{{ptex2tex}}}) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -36724,12 +36953,12 @@ However, the following will not be typeset correctly:
 {{{
 see the "`examples` directory": "src/examples/index.html"
 }}}
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 === Inline verbatim code is not detected ===
 
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 === Strange non-English characters ===
 
@@ -36755,7 +36984,7 @@ run {{{doconce change_encoding}}} to change the encoding of the Doconce file.
 
 === Inline verbatim text is not formatted correctly ===
 
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 === Too short underlining of reST headlines ===
 
@@ -36883,7 +37112,7 @@ If the problem is undefined control sequence involving
 {{{
 \code{...}
 }}}
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -36910,7 +37139,7 @@ Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
 
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper {{{texttt}}} command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
@@ -38169,7 +38398,7 @@ The line above gets typeset as
 **several words in boldface** followed by *ephasized text*.
 
 Verbatim text, typically used for short inline code,
-is typeset between backquotes::
+is typeset between back-ticks::
 
 
         `call myroutine(a, b)` looks like a Fortran call
@@ -38183,7 +38412,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and 'ptex2tex') will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -39092,12 +39321,12 @@ However, the following will not be typeset correctly::
 
         see the "`examples` directory": "src/examples/index.html"
 
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 Inline verbatim code is not detected
 
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 Strange non-English characters
 
@@ -39125,7 +39354,7 @@ run 'doconce change_encoding' to change the encoding of the Doconce file.
 
 Inline verbatim text is not formatted correctly
 
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 Too short underlining of reST headlines
 
@@ -39252,7 +39481,7 @@ If the problem is undefined control sequence involving::
 
         \code{...}
 
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -39277,7 +39506,7 @@ Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
 
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper 'texttt' command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
@@ -40586,7 +40815,7 @@ The line above gets typeset as
 B{several words in boldface} followed by I{ephasized text}.
 
 Verbatim text, typically used for short inline code,
-is typeset between backquotes::
+is typeset between back-ticks::
 
 
         `call myroutine(a, b)` looks like a Fortran call
@@ -40600,7 +40829,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and C{ptex2tex}) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -41546,14 +41775,14 @@ However, the following will not be typeset correctly::
 
         see the "`examples` directory": "src/examples/index.html"
 
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 
 Inline verbatim code is not detected
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 Strange non-English characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -41584,7 +41813,7 @@ run C{doconce change_encoding} to change the encoding of the Doconce file.
 Inline verbatim text is not formatted correctly
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 Too short underlining of reST headlines
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -41731,7 +41960,7 @@ If the problem is undefined control sequence involving::
 
         \code{...}
 
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -41760,7 +41989,7 @@ Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
 
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper C{texttt} command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
@@ -43066,7 +43295,7 @@ The line above gets typeset as
 _several words in boldface_ followed by *ephasized text*.
 
 Verbatim text, typically used for short inline code,
-is typeset between backquotes::
+is typeset between back-ticks::
 
 
         `call myroutine(a, b)` looks like a Fortran call
@@ -43080,7 +43309,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and ptex2tex) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -44022,14 +44251,14 @@ However, the following will not be typeset correctly::
 
         see the "`examples` directory": "src/examples/index.html"
 
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 
 Inline verbatim code is not detected
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 Strange non-English characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -44060,7 +44289,7 @@ run doconce change_encoding to change the encoding of the Doconce file.
 Inline verbatim text is not formatted correctly
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 Too short underlining of reST headlines
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -44207,7 +44436,7 @@ If the problem is undefined control sequence involving::
 
         \code{...}
 
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -44236,7 +44465,7 @@ Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
 
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper texttt command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
@@ -45660,7 +45889,7 @@ The line above gets typeset as
 _several words in boldface_ followed by *ephasized text*.
 
 Verbatim text, typically used for short inline code,
-is typeset between backquotes:
+is typeset between back-ticks:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 `call myroutine(a, b)` looks like a Fortran call
@@ -45675,7 +45904,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and `ptex2tex`) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -46669,14 +46898,14 @@ However, the following will not be typeset correctly:
 see the "`examples` directory": "src/examples/index.html"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 
 Inline verbatim code is not detected
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 Strange non-English characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -46709,7 +46938,7 @@ run `doconce change_encoding` to change the encoding of the Doconce file.
 Inline verbatim text is not formatted correctly
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 Too short underlining of reST headlines
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -46858,7 +47087,7 @@ If the problem is undefined control sequence involving
 \code{...}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -46888,7 +47117,7 @@ Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
 
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper `texttt` command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
@@ -47366,6 +47595,16 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 found info about 3 exercises, written to .testdoc.exerinfo
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{multline} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{gather} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{alignat} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{eqnarray} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
 output in testdoc.mkd
 + doconce format mwiki testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -47438,6 +47677,16 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 found info about 3 exercises, written to .testdoc.exerinfo
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{multline} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{gather} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{alignat} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{eqnarray} does not work well
+         pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 output in testdoc.mkd
@@ -49700,7 +49949,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
 mr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (53 pages, 391065 bytes).
+Output written on DoconceManual.pdf (53 pages, 391068 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -50337,7 +50586,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (41 pages, 177960 bytes).
+Output written on manual.rst.dvi (41 pages, 177964 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -50889,7 +51138,7 @@ Overfull \hbox (134.56776pt too wide) in paragraph at lines 3475--3475
 [][][][][][] 
 [39] [40] [41] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (41 pages, 186216 bytes).
+Output written on manual.rst.dvi (41 pages, 186224 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments
@@ -51218,7 +51467,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (43 pages, 417425 bytes).
+Output written on manual.pdf (43 pages, 417430 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -51434,7 +51683,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (44 pages, 437413 bytes).
+Output written on manual.pdf (44 pages, 437418 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -51623,7 +51872,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (44 pages, 438130 bytes).
+Output written on manual.pdf (44 pages, 438135 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt
@@ -51826,7 +52075,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198480 bytes).
+Output written on manual.dvi (44 pages, 198488 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -52005,7 +52254,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198480 bytes).
+Output written on manual.dvi (44 pages, 198488 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -52196,7 +52445,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198480 bytes).
+Output written on manual.dvi (44 pages, 198488 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -52375,7 +52624,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198480 bytes).
+Output written on manual.dvi (44 pages, 198488 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt
@@ -52759,7 +53008,7 @@ This action is appropriate when all issues with such comments are resolved.
 
 ===== Verbatim/Computer Code =====
 
-Inline verbatim code is typeset within single backquotes, as in
+Inline verbatim code is typeset within back-ticks, as in
 !bc
 Some sentence with `words in verbatim style`.
 !ec
@@ -53083,6 +53332,11 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 </head>
 
 <body bgcolor="white">
@@ -53332,7 +53586,7 @@ This action is appropriate when all issues with such comments are resolved.
 <P>
 <h3>Verbatim/Computer Code</h3>
 <P>
-Inline verbatim code is typeset within single backquotes, as in
+Inline verbatim code is typeset within back-ticks, as in
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 Some sentence with `words in verbatim style`.
@@ -53420,7 +53674,7 @@ raw LaTeX code.
 <P>
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
-Ax=b. To help increase readability in other formats than <tt>sphinx</tt>,
+\( Ax=b \). To help increase readability in other formats than <tt>sphinx</tt>,
 <tt>latex</tt>, and <tt>pdflatex</tt>, inline mathematics may have a more human
 readable companion expression. The syntax is like
 <blockquote>    <!-- begin verbatim block  -->
@@ -53441,21 +53695,21 @@ and
 For example,
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
-<blockquote><pre>
+$$
 \begin{align*}
 \nabla\cdot u &= 0,\\
 \nabla\times u & 0.
 \end{align*}
-</pre></blockquote>
+$$
 </pre>
 </blockquote>   <! -- end verbatim block -->
 will appear as
-<blockquote><pre>
+$$
 \begin{align*}
 \nabla\cdot u &= 0,\\
 \nabla\times u & 0.
 \end{align*}
-</pre></blockquote>
+$$
 
 <P>
 One can use <tt>#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")</tt> to let
@@ -53501,9 +53755,9 @@ recommend the following:
 Figures and movies have almost equal syntax:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
 
-MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
 </pre>
 </blockquote>   <! -- end verbatim block -->
 Note the mandatory comma after the figure/movie file.
@@ -53583,7 +53837,7 @@ from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
-label{name}
+\label{name}
 </pre>
 </blockquote>   <! -- end verbatim block -->
 with no backslash
@@ -53719,7 +53973,7 @@ looks as follows:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
-label{problem:ellipsearea1}
+\label{problem:ellipsearea1}
 file=ellipse_area.pdf
 solution=ellipse_area1_sol.pdf
 
@@ -54118,7 +54372,7 @@ This action is appropriate when all issues with such comments are resolved.
 
 \subsection{Verbatim/Computer Code}
 
-Inline verbatim code is typeset within single backquotes, as in
+Inline verbatim code is typeset within back-ticks, as in
 \bccq
 Some sentence with `words in verbatim style`.
 \eccq
@@ -54737,7 +54991,7 @@ This action is appropriate when all issues with such comments are resolved.
 Verbatim/Computer Code
 ----------------------
 
-Inline verbatim code is typeset within single backquotes, as in::
+Inline verbatim code is typeset within back-ticks, as in::
 
 
         Some sentence with `words in verbatim style`.
@@ -55326,7 +55580,7 @@ This action is appropriate when all issues with such comments are resolved.
 
 ==== Verbatim/Computer Code ====
 
-Inline verbatim code is typeset within single backquotes, as in
+Inline verbatim code is typeset within back-ticks, as in
 {{{
 Some sentence with `words in verbatim style`.
 }}}
@@ -55833,7 +56087,7 @@ This action is appropriate when all issues with such comments are resolved.
 
 ==== Verbatim/Computer Code ====
 
-Inline verbatim code is typeset within single backquotes, as in
+Inline verbatim code is typeset within back-ticks, as in
 <code>
 Some sentence with `words in verbatim style`.
 </code>
@@ -56353,7 +56607,7 @@ This action is appropriate when all issues with such comments are resolved.
 
 == Verbatim/Computer Code ==
 
-Inline verbatim code is typeset within single backquotes, as in
+Inline verbatim code is typeset within back-ticks, as in
 {{{
 Some sentence with `words in verbatim style`.
 }}}
@@ -56884,7 +57138,7 @@ This action is appropriate when all issues with such comments are resolved.
 
 Verbatim/Computer Code
 
-Inline verbatim code is typeset within single backquotes, as in::
+Inline verbatim code is typeset within back-ticks, as in::
 
 
         Some sentence with `words in verbatim style`.
@@ -57456,7 +57710,7 @@ This action is appropriate when all issues with such comments are resolved.
 Verbatim/Computer Code
 ----------------------
 
-Inline verbatim code is typeset within single backquotes, as in::
+Inline verbatim code is typeset within back-ticks, as in::
 
 
         Some sentence with `words in verbatim style`.
@@ -58065,7 +58319,7 @@ This action is appropriate when all issues with such comments are resolved.
 Verbatim/Computer Code
 ----------------------
 
-Inline verbatim code is typeset within single backquotes, as in::
+Inline verbatim code is typeset within back-ticks, as in::
 
 
         Some sentence with `words in verbatim style`.
@@ -58688,7 +58942,7 @@ This action is appropriate when all issues with such comments are resolved.
 Verbatim/Computer Code
 ----------------------
 
-Inline verbatim code is typeset within single backquotes, as in
+Inline verbatim code is typeset within back-ticks, as in
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Some sentence with `words in verbatim style`.
@@ -59217,6 +59471,16 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 found info about 3 exercises, written to .testdoc.exerinfo
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{multline} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{gather} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{alignat} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{eqnarray} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
 output in testdoc.mkd
 + doconce format mwiki testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -59289,6 +59553,16 @@ copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
 found info about 3 exercises, written to .testdoc.exerinfo
+Warning: latex envir \begin{align} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{multline} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{gather} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{alignat} does not work well
+         pandoc extended markdown syntax handles only single equations
+Warning: latex envir \begin{eqnarray} does not work well
+         pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 output in testdoc.mkd
@@ -61551,7 +61825,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
 mr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (53 pages, 391065 bytes).
+Output written on DoconceManual.pdf (53 pages, 391068 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -62188,7 +62462,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (41 pages, 177960 bytes).
+Output written on manual.rst.dvi (41 pages, 177964 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -62740,7 +63014,7 @@ Overfull \hbox (134.56776pt too wide) in paragraph at lines 3475--3475
 [][][][][][] 
 [39] [40] [41] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (41 pages, 186216 bytes).
+Output written on manual.rst.dvi (41 pages, 186224 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments
@@ -63069,7 +63343,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (43 pages, 417425 bytes).
+Output written on manual.pdf (43 pages, 417430 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -63285,7 +63559,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (44 pages, 437413 bytes).
+Output written on manual.pdf (44 pages, 437418 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -63474,7 +63748,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (44 pages, 438130 bytes).
+Output written on manual.pdf (44 pages, 438135 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt
@@ -63677,7 +63951,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198480 bytes).
+Output written on manual.dvi (44 pages, 198488 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -63856,7 +64130,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198480 bytes).
+Output written on manual.dvi (44 pages, 198488 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -64047,7 +64321,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198480 bytes).
+Output written on manual.dvi (44 pages, 198488 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -64226,7 +64500,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198480 bytes).
+Output written on manual.dvi (44 pages, 198488 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt
@@ -64458,7 +64732,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (10 pages, 42336 bytes).
+Output written on quickref.dvi (10 pages, 42332 bytes).
 Transcript written on quickref.log.
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -64970,7 +65244,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (10 pages, 40720 bytes).
+Output written on quickref.rst.dvi (10 pages, 40712 bytes).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -65232,7 +65506,7 @@ Overfull \hbox (95.00006pt too wide) in paragraph at lines 890--890
 aps  
 [10] (./quickref.rst.aux) )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (10 pages, 42140 bytes).
+Output written on quickref.rst.dvi (10 pages, 42132 bytes).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref

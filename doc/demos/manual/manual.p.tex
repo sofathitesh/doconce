@@ -106,13 +106,13 @@ urlcolor=blue]{hyperref}
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Jun 23, 2012}
+\date{Jun 24, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Jun 23, 2012}}
+{\large\textsf{Jun 24, 2012}}
 
 \end{center}
 \vfill
@@ -121,7 +121,7 @@ urlcolor=blue]{hyperref}
 % #else
 
 \begin{center}
-Jun 23, 2012
+Jun 24, 2012
 \end{center}
 
 % #endif
@@ -1267,7 +1267,7 @@ The line above gets typeset as
 \textbf{several words in boldface} followed by \emph{ephasized text}.
 
 Verbatim text, typically used for short inline code,
-is typeset between backquotes:
+is typeset between back-ticks:
 \bccq
 `call myroutine(a, b)` looks like a Fortran call
 while `void myfunc(double *a, double *b)` must be C.
@@ -1280,7 +1280,7 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats ({\LaTeX} and \code{ptex2tex}) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing backquotes and asterisk (i.e., verbatim and
+Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
@@ -2199,11 +2199,11 @@ However, the following will not be typeset correctly:
 \bccq
 see the "`examples` directory": "src/examples/index.html"
 \eccq
-The backquotes must be removed, or the text can be reformulated as
+The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
 \paragraph{Inline verbatim code is not detected.}
-Make sure there is a space before the first backquote.
+Make sure there is a space before the first back-tick.
 
 \paragraph{Strange non-English characters.}
 Check the encoding of the \code{.do.txt} file with the Unix \code{file} command
@@ -2226,7 +2226,7 @@ the section "Strange non-English characters" above for how to
 run \code{doconce change_encoding} to change the encoding of the Doconce file.
 
 \paragraph{Inline verbatim text is not formatted correctly.}
-Make sure there is whitespace surrounding the text in backquotes.
+Make sure there is whitespace surrounding the text in back-ticks.
 
 \paragraph{Too short underlining of reST headlines.}
 This may happen if there is a paragraph heading without
@@ -2336,7 +2336,7 @@ If the problem is undefined control sequence involving
 \bccq
 \code{...}
 \eccq
-the cause is usually a verbatim inline text (in backquotes in the
+the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
@@ -2361,7 +2361,7 @@ Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar {\LaTeX} syntax errors.
 
 (Note that verbatim font is likely to cause trouble inside figure captions,
-but Doconce will automatically replace verbatim text in backquotes by
+but Doconce will automatically replace verbatim text in back-ticks by
 a proper \code{texttt} command (since verbatim font constructions does not work
 inside figure captions) and precede underscores by backslash.)
 
