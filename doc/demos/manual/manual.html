@@ -9,6 +9,14 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js"]
+  }
+});
+</script>
 <script type="text/javascript"
  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
@@ -1257,7 +1265,7 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
 
 <P>
 <!-- latex/PDF format can make use of the movie15 package for displaying movies, -->
-<!-- or just plain \h<a href="#run: ...">run: ...</a>{...} -->
+<!-- or just plain \href{run: ...}{...} -->
 
 <P>
 
@@ -1562,7 +1570,7 @@ By the way, here is an example on referencing Figure <a href="#fig:viz">fig:viz<
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections <a href="#mathtext">LaTeX Blocks of Mathematical Text</a> and <a href="#newcommands">Macros (Newcommands)</a> are
 nice to demonstrate, as well as a reference to equations,
-say (<a href="#my:eq1">my:eq1</a>)--(<a href="#my:eq2">my:eq2</a>). A comparison of the output and
+say \eqref{my:eq1}--\eqref{my:eq2}. A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 

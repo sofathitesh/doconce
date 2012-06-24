@@ -58,10 +58,12 @@ def table_analysis(table):
 def ref2equations(filestr):
     """
     Replace references to equations:
+
     (ref{my:label}) -> Equation (my:label)
     (ref{my:label1})-(ref{my:label2}) -> Equations (my:label1)-(my:label2)
     (ref{my:label1}) and (ref{my:label2}) -> Equations (my:label1) and (my:label2)
     (ref{my:label1}), (ref{my:label2}) and (ref{my:label3}) -> Equations (my:label1), (my:label2) and (ref{my:label2})
+
     """
     filestr = re.sub(r'\(ref\{(.+?)\}\)-\(ref\{(.+?)\}\)',
                      r'Equations (\g<1>)-(\g<2>)', filestr)
@@ -71,6 +73,14 @@ def ref2equations(filestr):
                      r'Equations (\g<1>), (\g<2>)\g<3> and (\g<4>)', filestr)
     filestr = re.sub(r'\(ref\{(.+?)\}\)',
                      r'Equation (\g<1>)', filestr)
+
+    # Note that we insert "Equation(s)" here, assuming that this word
+    # is *not* used in running text prior to a reference. Sometimes
+    # sentences are started with "Equation ref{...}" and this double
+    # occurence of Equation must be fixed.
+
+    filestr = re.sub('Equation\s+Equation', 'Equation', filestr)
+    filestr = re.sub('Equations\s+Equations', 'Equations', filestr)
     return filestr
 
 def default_movie(m):

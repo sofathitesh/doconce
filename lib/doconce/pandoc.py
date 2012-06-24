@@ -62,7 +62,7 @@ def pandoc_code(filestr, format):
             print 'Warning: latex envir \\begin{%s} does not work well' % envir
             print '         pandoc extended markdown syntax handles only single equations'
 
-    # pandoc supports LaTeX if embedded in $$
+    # pandoc/markdown supports LaTeX if embedded in $$
     filestr = re.sub(r'!bt *\n', '$$\n', filestr)
     filestr = re.sub(r'!et *\n', '$$\n', filestr)
 
@@ -74,6 +74,7 @@ def pandoc_code(filestr, format):
     cpattern = re.compile(pattern, re.MULTILINE)
     filestr = cpattern.sub('\\label{', filestr)
 
+    filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
     return filestr
 
 def pandoc_table(table):

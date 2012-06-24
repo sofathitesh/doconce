@@ -27,6 +27,10 @@ def html_code(filestr, format):
     else:
         filestr = c.sub(r'<blockquote><pre>\n', filestr)
         filestr = re.sub(r'!et\n', r'</pre></blockquote>\n', filestr)
+
+    #[[[
+    filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
+
     return filestr
 
 def html_figure(m):
@@ -164,6 +168,10 @@ def html_ref_and_label(section_label2title, format, filestr):
     replacement = r'the chapter\g<1> ref{'
     filestr = re.sub(pattern, replacement, filestr)
 
+    # extract the labels in the text (filestr is now without
+    # mathematics and those labels)
+    running_text_labels = re.findall(r'label\{(.+?)\}', filestr)
+
     # turn label{myname} to anchors <A NAME="myname"></a>
     filestr = re.sub(r'label\{(.+?)\}', r'<a name="\g<1>"></A>', filestr)
 
@@ -188,10 +196,9 @@ def html_ref_and_label(section_label2title, format, filestr):
                                   '<a href="#%s">%s</a>' % (label, title))
 
     # replace all other references ref{myname} by <a href="#myname">myname</a>:
-    filestr = re.sub(r'ref\{(.+?)\}', r'<a href="#\g<1>">\g<1></a>', filestr)
-
-    from common import ref2equations
-    filestr = ref2equations(filestr)
+    for label in running_text_labels:
+        filestr = filestr.replace('ref{%s}' % label,
+                                  '<a href="#%s">%s</a>' % (label, label))
 
     return filestr
 
@@ -327,6 +334,14 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js"]
+  }
+});
+</script>
 <script type="text/javascript"
  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
