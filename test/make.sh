@@ -8,6 +8,8 @@ doconce format plain testdoc.do.txt
 doconce format st testdoc.do.txt
 doconce format sphinx testdoc.do.txt
 mv -f testdoc.rst testdoc.sphinx.rst
+# Note: the chapter heading must be removed
+# for successful compilation of the sphinx document.
 doconce format rst testdoc.do.txt
 doconce format epytext testdoc.do.txt
 doconce format pandoc testdoc.do.txt
