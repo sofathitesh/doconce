@@ -10,9 +10,23 @@ def html_code(filestr, format):
     filestr = re.sub(r'!ec\n',
                      r'</pre>\n</blockquote>   <! -- end verbatim block -->\n',
                      filestr)
+
+    MATH_TYPESETTING = 'MathJax'
     c = re.compile(r'^!bt\n', re.MULTILINE)
-    filestr = c.sub(r'<blockquote><pre>\n', filestr)
-    filestr = re.sub(r'!et\n', r'</pre></blockquote>\n', filestr)
+    if MATH_TYPESETTING == 'MathJax':
+        filestr = re.sub(r'!bt *\n', '$$\n', filestr)
+        filestr = re.sub(r'!et *\n', '$$\n', filestr)
+
+        filestr = re.sub(r'\$\$\s*\\\[', '$$', filestr)
+        filestr = re.sub(r'\\\]\s*\$\$', '$$', filestr)
+
+        filestr = filestr.replace(' label{', ' \\label{')
+        pattern = r'^label\{'
+        cpattern = re.compile(pattern, re.MULTILINE)
+        filestr = cpattern.sub('\\label{', filestr)
+    else:
+        filestr = c.sub(r'<blockquote><pre>\n', filestr)
+        filestr = re.sub(r'!et\n', r'</pre></blockquote>\n', filestr)
     return filestr
 
 def html_figure(m):
@@ -236,8 +250,9 @@ def define(FILENAME_EXTENSION,
 
     INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
         # keep math as is:
-        'math':          r'\g<begin>\g<subst>\g<end>',
-        'math2':         r'\g<begin>\g<puretext>\g<end>',
+        'math':          r'\g<begin>\( \g<subst> \)\g<end>',
+        #'math2':         r'\g<begin>\g<puretext>\g<end>',
+        'math2':         r'\g<begin>\( \g<latexmath> \)o\g<end>',
         'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
         'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
         'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
@@ -311,6 +326,11 @@ Automatically generated HTML file from Doconce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 </head>
 
 <body bgcolor="white">
