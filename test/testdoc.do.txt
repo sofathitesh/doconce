@@ -170,11 +170,13 @@ fool a regex substitution with only i.e. since the dot matches anything.
 Also, look at Fig. 4 to see how the data compares with Tab. ref{mytab}.
 % endif
 
-Here is an equation without label:
+===== LaTeX Mathematics =====
+
+Here is an equation without label using backslash-bracket environment:
 !bt
 \[ a = b + c \]
 !et
-or with number and label, as in (ref{my:eq1}):
+or with number and label, as in (ref{my:eq1}), using the equation environment:
 !bt
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u label{my:eq1}
@@ -182,17 +184,17 @@ or with number and label, as in (ref{my:eq1}):
 !et
 We can refer to this equation by (ref{my:eq1}).
 
-Here is a system without equation numbers:
+Here is a system without equation numbers, using the align-astrisk environment:
 !bt
 \begin{align*}
-a &= q + 4 + 5+ 6 \\
-b &= \nabla^2 u + \nabla^4 x
+\pmb{a} &= \pmb{q}\times\pmb{n} \\
+b &= \nabla^2 u + \nabla^4 v
 \end{align*}
 !et
 
 
-% if FORMAT in ('latex', 'pdflatex', 'sphinx'):
-And here is a system of equations with labels:
+% if FORMAT in ('latex', 'pdflatex', 'sphinx', 'html', 'pandoc'):
+And here is a system of equations with labels in an align environment:
 !bt
 \begin{align}
 a &= q + 4 + 5+ 6 label{eq1} \\
@@ -239,14 +241,16 @@ b &= \nabla^2 u + \nabla^4 x & x\in\Omega label{eq2a}
 Let us refer to (ref{eq1})-(ref{eq2}) again, and to the
 alignat variant (ref{eq1a})-(ref{eq2a}), and to (ref{my:eq1}).
 
-Here is eqnarray:
+Here is eqnarray in action:
 !bt
 \begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f,label{myeq1}\\
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
+{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g label{myeq2}
 \end{eqnarray}
 !et
 % endif
+
+More mathematical typesetting is demonstrated in the exercises below.
 
 ======= Exercises =======
 
