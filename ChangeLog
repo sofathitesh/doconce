@@ -1,3 +1,16 @@
+* Added MathJax numbering of eqs in HTML format.
+
+* Extended HTML format to handle mathematics using MathJax. No more
+  verbatim typesetting of mathematics in HTML!
+
+Version 0.7.2:
+
+* Fixed doconce ptex2tex to treat \code{} properly.
+
+* Fixed some problems with pandoc and math.
+
+* Added doconce ptex2tex for convenience when ptex2tex is not installed.
+
 Version 0.7.1:
 
 * Documentation fixes.
@@ -13,7 +26,7 @@ Version 0.6-0.7:
 
 * Improved plain URLs in latex with the \nolinkurl formatting command.
 
-* Dpendence on scitools removed.
+* Dependence on scitools removed.
 
 * Many improve error messages and warnings. More extensive syntax testing.
 
