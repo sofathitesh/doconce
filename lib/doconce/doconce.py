@@ -415,14 +415,22 @@ def insert_code_from_file(filestr, format):
                     sys.exit(1)
 
             # Determine code environment from filename extension
-            filename_ext = os.path.splitext(filename)[1]
-            if filename_ext == '.cxx' or filename_ext == '.C':
-                filename_ext = '.cpp'
-            if filename_ext == '.pyx':  # Cython code is called cy
-                filename_ext = '.cy'
-            if filename_ext in ('.py', '.f', '.c', '.cpp', '.sh',
-                                '.m', '.pl', '.cy'):
-                code_envir = filename_ext[1:]
+            filetype = os.path.splitext(filename)[1][1:]  # drop dot
+            if filetype == 'cxx' or filetype == 'C':
+                filetype = 'cpp'
+            elif filetype in ('f90', 'f95'):
+                filetype = 'f'
+            elif filetype == 'pyx':  # Cython code is called cy
+                filetype = 'cy'
+            elif filetype == 'i':    # SWIG file, use C
+                filetype = 'c'
+            elif filetype == 'ufl':  # UFL applies Python
+                filetype = 'py'
+            elif filetype in ('csh', 'ksh', 'zsh', 'tcsh'):
+                filetype = 'sh'
+            if filetype in ('py', 'f', 'c', 'cpp', 'sh',
+                            'm', 'pl', 'cy'):
+                code_envir = filetype
             else:
                 code_envir = ''
 
