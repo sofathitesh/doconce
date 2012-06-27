@@ -760,7 +760,7 @@ def sphinx_dir():
         elif arg.startswith('author='):
             author = arg.split('=')[1]
         elif arg.startswith('version='):
-            author = arg.split('=')[1]
+            version = arg.split('=')[1]
         elif arg.startswith('dirname='):
             sphinx_rootdir = arg.split('=')[1]
         elif arg.startswith('theme='):
