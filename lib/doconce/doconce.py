@@ -375,6 +375,7 @@ def make_one_line_paragraphs(filestr, format):
     return filestr
 
 def insert_code_from_file(filestr, format):
+    CREATE_DUMMY_FILE = False # create dummy file if specified file not found?
     lines = filestr.splitlines()
     inside_verbatim = False
     for i in range(len(lines)):
@@ -401,7 +402,7 @@ def insert_code_from_file(filestr, format):
                 codefile = open(filename, 'r')
             except IOError, e:
                 print 'Could not open the file %s used in @@@CODE instruction' % filename
-                if 'No such file or directory' in str(e):
+                if CREATE_DUMMY_FILE and 'No such file or directory' in str(e):
                     print '    No such file or directory!'
                     print '    A dummy file %s is generated...' % filename
                     dummyfile = open(filename, 'w')
@@ -422,8 +423,8 @@ def insert_code_from_file(filestr, format):
                 filetype = 'f'
             elif filetype == 'pyx':  # Cython code is called cy
                 filetype = 'cy'
-            elif filetype == 'i':    # SWIG file, use C
-                filetype = 'c'
+            elif filetype == 'i':    # SWIG file, use C++
+                filetype = 'cpp'
             elif filetype == 'ufl':  # UFL applies Python
                 filetype = 'py'
             elif filetype in ('csh', 'ksh', 'zsh', 'tcsh'):
