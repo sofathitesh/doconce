@@ -1,3 +1,5 @@
+Version 0.7.3:
+
 * Added MathJax numbering of eqs in HTML format.
 
 * Extended HTML format to handle mathematics using MathJax. No more
