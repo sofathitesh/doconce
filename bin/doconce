@@ -1469,11 +1469,13 @@ def ptex2tex():
             envir, value = arg.split('=')
             if ';' in value:
                 begin, end = value.split(';')
+                envir_user_spec.append((envir, begin, end))
             else:
-                envirs_present,add('value')
+                envirs_present.add(value)
                 begin = '\\' + 'begin{' + value + '}'
                 end = '\\' + 'end{' + value + '}'
-                # Fix minted: it needs the language
+
+                # Fix minted and ans*: they need the language
                 if value == 'minted':
                     languages = dict(py='python', cy='python', f='fortran',
                                      c='c', cpp='c++', sh='bash', rst='rst',
@@ -1481,6 +1483,7 @@ def ptex2tex():
                     for lang in languages:
                         if envir.startswith(lang):
                             begin += '{' + languages[lang] + '}'
+                    envir_user_spec.append((envir, begin, end))
                 elif value.startswith('ans'):
                     languages = dict(py='python', cy='python', f='fortran',
                                      c='c', cpp='c++', sh='bash')
@@ -1491,8 +1494,9 @@ def ptex2tex():
                                 lang += ':nt'
                             begin = '\\' + 'begin{' + lang + '}'
                             end = '\\' + 'end{' + lang + '}'
-
-            envir_user_spec.append((envir, begin, end))
+                    envir_user_spec.append((envir, begin, end))
+                else:
+                    envir_user_spec.append((envir, begin, end))
         else:
             filename = arg
 
