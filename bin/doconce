@@ -1433,7 +1433,8 @@ def replace_from_file():
 def usage_ptex2tex():
     print r"""\
 Usage: doconce ptex2tex [file | file.p.tex] [-Dvar1=val1 ...] \
-                        [cod=\begin{verbatim};\end{verbatim} pypro=Verbatim]'
+       [cod=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote} \
+        pypro=Verbatim fcod=minted ccod=ans cpppro=anslistings:nt]'
 
 Running the plain
 
@@ -1444,6 +1445,11 @@ in latex is done by envir=begin;end, where begin is the latex
 begin command, end is the latex end command, and the two must
 be separated by semicolon. Writing just envir=package implies
 the latex commands \begin{package} and \end{package}.
+Choosing envir=minted gives the minted environment with
+the specified language inserted. Similarly, envir=ans,
+envir=ans:nt, envir=anslistings, or envir=anslistings:nt
+imply the anslistings package with the right environment
+(\begin{c++:nt} for instance).
 """
 
 def ptex2tex():
@@ -1451,6 +1457,8 @@ def ptex2tex():
         usage_ptex2tex()
         sys.exit(1)
 
+    import sets
+    envirs_present = sets.Set()
     # Process command-line options
     preprocess_options = []
     envir_user_spec = []
@@ -1462,6 +1470,7 @@ def ptex2tex():
             if ';' in value:
                 begin, end = value.split(';')
             else:
+                envirs_present,add('value')
                 begin = '\\' + 'begin{' + value + '}'
                 end = '\\' + 'end{' + value + '}'
                 # Fix minted: it needs the language
@@ -1472,17 +1481,22 @@ def ptex2tex():
                     for lang in languages:
                         if envir.startswith(lang):
                             begin += '{' + languages[lang] + '}'
-                elif value == 'ans':
+                elif value.startswith('ans'):
                     languages = dict(py='python', cy='python', f='fortran',
                                      c='c', cpp='c++', sh='bash')
                     for lang in languages:
                         if envir.startswith(lang):
-                            begin = '\\' + 'begin{' + languages[lang] + '}'
-                            end = '\\' + 'end{' + languages[lang] + '}'
+                            lang = languages[lang]
+                            if value.endswith(':nt'):
+                                lang += ':nt'
+                            begin = '\\' + 'begin{' + lang + '}'
+                            end = '\\' + 'end{' + lang + '}'
 
             envir_user_spec.append((envir, begin, end))
         else:
             filename = arg
+
+    envirs_present = list(envirs_present)
 
     if filename.endswith('.p.tex'):
         filename = filename[:-6]
@@ -1490,6 +1504,9 @@ def ptex2tex():
     # Run preprocess
     if not preprocess_options:
         preprocess_options = ['-DLATEX_HEADING=traditional']
+
+    if 'minted' in envirs_present and '-DMINTED' not in preprocess_options:
+        preprocess_options += ['-DMINTED']
 
     cmd = 'preprocess %s %s > %s' % \
           (' '.join(preprocess_options),
@@ -1537,7 +1554,16 @@ Download from http://code.google.com/p/preprocess
                                       envir2latex[envir][0])
             filestr = filestr.replace(ptex2tex_end,
                                       envir2latex[envir][1])
-    filestr = filestr.replace(r'\usepackage{ptex2tex}', '')
+
+    ans = False # do we have the ans* environments? if yes, include package
+    for e in envirs_present:
+        if e.startswith('ans'):
+            ans = True
+
+    if ans:
+        filestr = filestr.replace(r'\usepackage{ptex2tex}', r'\usepackage{anslistings}')
+    else:
+        filestr = filestr.replace(r'\usepackage{ptex2tex}', '')
 
     # Treat the \code{} commands
 
