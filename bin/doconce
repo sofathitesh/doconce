@@ -1484,7 +1484,6 @@ def ptex2tex():
                 else:
                     envir_user_spec.append((envir, begin, end))
             else:
-                print 'Found', envir, value
                 envirs_present.add(value)
                 # Fix minted and ans*: they need the language
                 if value == 'minted':
@@ -1539,7 +1538,6 @@ def ptex2tex():
 
     envirs_present = list(envirs_present)
 
-    print envir_user_spec, envirs_present #[[[
     if filename.endswith('.p.tex'):
         filename = filename[:-6]
 
