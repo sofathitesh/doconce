@@ -605,13 +605,27 @@ def define(FILENAME_EXTENSION,
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
 % #endif
+% #ifdef PALATINO
+% Set paraltino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 
+% Hyperlinks in PDF:
 \usepackage[%
-colorlinks=true,
-linkcolor=blue,
-citecolor=black,
-filecolor=blue,
-urlcolor=blue]{hyperref}
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
