@@ -1436,11 +1436,14 @@ Usage: doconce ptex2tex [file | file.p.tex] [-Dvar1=val1 ...] \
        [cod=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote} \
         pypro=Verbatim fcod=minted ccod=ans cpppro=anslistings:nt]'
 
+or
+       doconce ptex2tex file -Dvar1=val1 ... envir=ans:nt
+
 Running the plain
 
    doconce ptex2tex
 
-works. Note that specifications of how !bc envir is to be typeset
+also works. Note that specifications of how !bc envir is to be typeset
 in latex is done by envir=begin;end, where begin is the latex
 begin command, end is the latex end command, and the two must
 be separated by semicolon. Writing just envir=package implies
@@ -1450,6 +1453,8 @@ the specified language inserted. Similarly, envir=ans,
 envir=ans:nt, envir=anslistings, or envir=anslistings:nt
 imply the anslistings package with the right environment
 (\begin{c++:nt} for instance).
+If envir is simply the string envir, the value applies to all
+registered environments.
 """
 
 def ptex2tex():
@@ -1457,9 +1462,13 @@ def ptex2tex():
         usage_ptex2tex()
         sys.exit(1)
 
+    # All envirs in the .ptex2tex.cfg file as of June 2012
+    envirs = 'ccq cc ccl pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans bashans swigans uflans sni dat dsni sys slin ipy py rpy plin ver warn rule summ'.split()
+
+    # Process command-line options
     import sets
     envirs_present = sets.Set()
-    # Process command-line options
+
     preprocess_options = []
     envir_user_spec = []
     for arg in sys.argv[1:]:
@@ -1469,39 +1478,68 @@ def ptex2tex():
             envir, value = arg.split('=')
             if ';' in value:
                 begin, end = value.split(';')
-                envir_user_spec.append((envir, begin, end))
+                if envir == 'envir':
+                    for e in envirs:
+                        envir_user_spec.append((e, begin, end))
+                else:
+                    envir_user_spec.append((envir, begin, end))
             else:
+                print 'Found', envir, value
                 envirs_present.add(value)
-                begin = '\\' + 'begin{' + value + '}'
-                end = '\\' + 'end{' + value + '}'
-
                 # Fix minted and ans*: they need the language
                 if value == 'minted':
                     languages = dict(py='python', cy='python', f='fortran',
                                      c='c', cpp='c++', sh='bash', rst='rst',
                                      m ='matlab', pl='perl')
-                    for lang in languages:
-                        if envir.startswith(lang):
-                            begin += '{' + languages[lang] + '}'
-                    envir_user_spec.append((envir, begin, end))
+                    if envir == 'envir':
+                        for lang in languages:
+                            begin = '\\' + 'begin{' + value + '}{' \
+                                    + languages[lang] + '}'
+                            end = '\\' + 'end{' + value + '}'
+                            envir_user_spec.append((lang+'cod', begin, end))
+                            envir_user_spec.append((lang+'pro', begin, end))
+                    else:
+                        for lang in languages:
+                            if envir == lang + 'cod' or envir == lang + 'pro':
+                                begin = '\\' + 'begin{' + value + '}{' \
+                                        + languages[lang] + '}'
+                                end = '\\' + 'end{' + value + '}'
+                                envir_user_spec.append((envir, begin, end))
                 elif value.startswith('ans'):
                     languages = dict(py='python', cy='python', f='fortran',
                                      c='c', cpp='c++', sh='bash')
-                    for lang in languages:
-                        if envir.startswith(lang):
-                            lang = languages[lang]
+                    if envir == 'envir':
+                        for lang in languages:
+                            language = languages[lang]
                             if value.endswith(':nt'):
-                                lang += ':nt'
-                            begin = '\\' + 'begin{' + lang + '}'
-                            end = '\\' + 'end{' + lang + '}'
-                    envir_user_spec.append((envir, begin, end))
+                                language += ':nt'
+                            begin = '\\' + 'begin{' + language + '}'
+                            end = '\\' + 'end{' + language + '}'
+                            envir_user_spec.append((lang+'cod', begin, end))
+                            envir_user_spec.append((lang+'pro', begin, end))
+                    else:
+                        for lang in languages:
+                            if envir == lang + 'cod' or envir == lang + 'pro':
+                                lang = languages[lang]
+                                if value.endswith(':nt'):
+                                    lang += ':nt'
+                                begin = '\\' + 'begin{' + lang + '}'
+                                end = '\\' + 'end{' + lang + '}'
+                                envir_user_spec.append((envir, begin, end))
                 else:
-                    envir_user_spec.append((envir, begin, end))
+                    begin = '\\' + 'begin{' + value + '}'
+                    end = '\\' + 'end{' + value + '}'
+                    if envir == 'envir':
+                        for e in envirs:
+                            envir_user_spec.append((e, begin, end))
+                    else:
+                        envir_user_spec.append((envir, begin, end))
         else:
             filename = arg
 
     envirs_present = list(envirs_present)
 
+    print envir_user_spec, envirs_present #[[[
     if filename.endswith('.p.tex'):
         filename = filename[:-6]
 
@@ -1533,15 +1571,11 @@ Download from http://code.google.com/p/preprocess
     filestr = f.read()
     f.close()
 
-    # All envirs in the .ptex2tex.cfg file as of June 2012
-    envirs = 'ccq cc ccl pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans bashans swigans uflans sni dat dsni sys slin ipy py rpy plin ver warn rule summ'.split()
     # Init default envirs
     envir2latex = {}
-    default_b_envir = r"""\
-\begin{quote}
+    default_b_envir = r"""\begin{quote}
 \begin{verbatim}"""
-    default_e_envir = r"""\
-\end{verbatim}
+    default_e_envir = r"""\end{verbatim}
 \end{quote}"""
     for envir in envirs:
         envir2latex[envir] = (default_b_envir, default_e_envir)
