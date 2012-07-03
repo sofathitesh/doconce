@@ -76,7 +76,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jun 24, 2012
+Jul 3, 2012
 %
 \begin{itemize}
 
@@ -1066,25 +1066,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te \texttt{doconce sphinx\_dir} script copies directories named \texttt{figs} or \texttt{figures}
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, \texttt{automake-sphinx.py} must be edited accordingly.
-Links to local files (not \texttt{http:} or \texttt{file:} URLs) must be placed
-in the \texttt{\_static} subdirectory of the Sphinx directory. The
-utility \texttt{doconce sphinxfix\_localURLs} is run to check for local
-links: for each such link, say \texttt{dir1/dir2/myfile.txt} it replaces
-the link by \texttt{\_static/myfile.txt} and copies \texttt{dir1/dir2/myfile.txt}
-to a local \texttt{\_static} directory (in the same directory as the
-script is run). The user must copy all \texttt{\_static/*} files to the
-\texttt{\_static} subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the \texttt{\_static} subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a \texttt{\_static} directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The \texttt{doconce sphinx\_dir} script copies directories named \texttt{figs} or
+\texttt{figures} over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, \texttt{automake-sphinx.py} must be edited accordingly.  Files,
+to which there are local links (not \texttt{http:} or \texttt{file:} URLs), must be
+placed in the \texttt{\_static} subdirectory of the Sphinx directory. The
+utility \texttt{doconce sphinxfix\_localURLs} is run to check for local links
+in the Doconce file: for each such link, say \texttt{dir1/dir2/myfile.txt} it
+replaces the link by \texttt{\_static/myfile.txt} and copies
+\texttt{dir1/dir2/myfile.txt} to a local \texttt{\_static} directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in \texttt{\_static} or lets a script
+do it automatically. The user must copy all \texttt{\_static/*} files to the
+\texttt{\_static} subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a \texttt{\_static} or \texttt{\_static-name} directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the \texttt{conf.py}
@@ -1476,7 +1475,7 @@ run regularly.
 \DUtitle[system-message]{system-message}
 \raisebox{1em}{\hypertarget{id7}{}}
 
-{\color{red}ERROR/3} in \texttt{tutorial.rst}, line~890
+{\color{red}ERROR/3} in \texttt{tutorial.rst}, line~889
 
 \hyperlink{id8}{
 Unknown target name: ``googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>''.

@@ -601,25 +601,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te C{doconce sphinx_dir} script copies directories named C{figs} or C{figures}
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, C{automake-sphinx.py} must be edited accordingly.
-Links to local files (not C{http:} or C{file:} URLs) must be placed
-in the C{_static} subdirectory of the Sphinx directory. The
-utility C{doconce sphinxfix_localURLs} is run to check for local
-links: for each such link, say C{dir1/dir2/myfile.txt} it replaces
-the link by C{_static/myfile.txt} and copies C{dir1/dir2/myfile.txt}
-to a local C{_static} directory (in the same directory as the
-script is run). The user must copy all C{_static/*} files to the
-C{_static} subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the C{_static} subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a C{_static} directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The C{doconce sphinx_dir} script copies directories named C{figs} or
+C{figures} over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, C{automake-sphinx.py} must be edited accordingly.  Files,
+to which there are local links (not C{http:} or C{file:} URLs), must be
+placed in the C{_static} subdirectory of the Sphinx directory. The
+utility C{doconce sphinxfix_localURLs} is run to check for local links
+in the Doconce file: for each such link, say C{dir1/dir2/myfile.txt} it
+replaces the link by C{_static/myfile.txt} and copies
+C{dir1/dir2/myfile.txt} to a local C{_static} directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in C{_static} or lets a script
+do it automatically. The user must copy all C{_static/*} files to the
+C{_static} subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a C{_static} or C{_static-name} directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the C{conf.py}
@@ -1133,9 +1132,27 @@ setup::
         see the "Doconce Manual": "manual.do.txt".
 
 which appears as see the U{Doconce Manual<manual.do.txt>}.
-If you want to view such source code files I{in the browser},
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+  - In the C{html} format the links work well if the files are
+    supplied with the C{.html} with the same relative location.
+  - In the C{latex} and C{pdflatex} formats, such links in PDF files
+    will unless the C{.tex} file has a full URL specified through
+    a C{\hyperbaseurl} command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+  - In the C{sphinx} format, local files to which there are links should only be
+    located in a C{_static} or C{_static-name} subdirectory.
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a C{_static} or C{_static-name} directory and makes links to
+files in this directory only (C{name} is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the C{html} format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 C{pygmentize}, e.g.::
 
 
@@ -1143,14 +1160,16 @@ C{pygmentize}, e.g.::
                   -o _static/make.sh.html subdir/make.sh
 
 Then you can link to C{_static/make.sh.html} instead of
-C{subdir/make.sh}. Or you can do both versions::
+C{subdir/make.sh}. Here is an example where the reader
+has the file available as C{src/myprog.py} in her
+software and the document links to C{_static/myprog.py}::
 
 
         See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 
 
-Links to files with other extensions must be realized
-I{with the filename as link text}, written as
+Links to files with other extensions are typeset with
+I{the filename as link text}. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes::
 
@@ -1160,7 +1179,7 @@ in double quotes::
 resulting in the link U{manual.html<manual.html>}.
 
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes::
 
 

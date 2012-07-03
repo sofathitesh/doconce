@@ -35,7 +35,7 @@ MathJax.Hub.Config({
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Jun 24, 2012</h3></center>
+<center><h3>Jul 3, 2012</h3></center>
 <P>
 
 <P>
@@ -757,25 +757,24 @@ You should at least read the script prior to executing it to have
 some idea of what is done.
 
 <P>
-Te <tt>doconce sphinx_dir</tt> script copies directories named <tt>figs</tt> or <tt>figures</tt>
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, <tt>automake-sphinx.py</tt> must be edited accordingly.
-Links to local files (not <tt>http:</tt> or <tt>file:</tt> URLs) must be placed
-in the <tt>_static</tt> subdirectory of the Sphinx directory. The
-utility <tt>doconce sphinxfix_localURLs</tt> is run to check for local
-links: for each such link, say <tt>dir1/dir2/myfile.txt</tt> it replaces
-the link by <tt>_static/myfile.txt</tt> and copies <tt>dir1/dir2/myfile.txt</tt>
-to a local <tt>_static</tt> directory (in the same directory as the
-script is run). The user must copy all <tt>_static/*</tt> files to the
-<tt>_static</tt> subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the <tt>_static</tt> subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a <tt>_static</tt> directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The <tt>doconce sphinx_dir</tt> script copies directories named <tt>figs</tt> or
+<tt>figures</tt> over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, <tt>automake-sphinx.py</tt> must be edited accordingly.  Files,
+to which there are local links (not <tt>http:</tt> or <tt>file:</tt> URLs), must be
+placed in the <tt>_static</tt> subdirectory of the Sphinx directory. The
+utility <tt>doconce sphinxfix_localURLs</tt> is run to check for local links
+in the Doconce file: for each such link, say <tt>dir1/dir2/myfile.txt</tt> it
+replaces the link by <tt>_static/myfile.txt</tt> and copies
+<tt>dir1/dir2/myfile.txt</tt> to a local <tt>_static</tt> directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in <tt>_static</tt> or lets a script
+do it automatically. The user must copy all <tt>_static/*</tt> files to the
+<tt>_static</tt> subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a <tt>_static</tt> or <tt>_static-name</tt> directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 <P>
 Doconce comes with a collection of HTML themes for Sphinx documents.
@@ -1403,9 +1402,32 @@ see the "Doconce Manual": "manual.do.txt".
 </pre>
 </blockquote>   <! -- end verbatim block -->
 which appears as see the <a href="manual.do.txt">Doconce Manual</a>.
-If you want to view such source code files <em>in the browser</em>,
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+<P>
+
+<ul>
+  <li> In the <tt>html</tt> format the links work well if the files are
+    supplied with the <tt>.html</tt> with the same relative location.
+  <li> In the <tt>latex</tt> and <tt>pdflatex</tt> formats, such links in PDF files
+    will unless the <tt>.tex</tt> file has a full URL specified through
+    a <tt>\hyperbaseurl</tt> command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+  <li> In the <tt>sphinx</tt> format, local files to which there are links should only be
+    located in a <tt>_static</tt> or <tt>_static-name</tt> subdirectory.
+</ul>
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a <tt>_static</tt> or <tt>_static-name</tt> directory and makes links to
+files in this directory only (<tt>name</tt> is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the <tt>html</tt> format is of relevance).
+
+<P>
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 <tt>pygmentize</tt>, e.g.,
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
@@ -1414,7 +1436,9 @@ Terminal&gt; pygmentize -l bash -f html -O full,style=emacs \
 </pre>
 </blockquote>   <! -- end verbatim block -->
 Then you can link to <tt>_static/make.sh.html</tt> instead of
-<tt>subdir/make.sh</tt>. Or you can do both versions:
+<tt>subdir/make.sh</tt>. Here is an example where the reader
+has the file available as <tt>src/myprog.py</tt> in her
+software and the document links to <tt>_static/myprog.py</tt>:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
@@ -1422,8 +1446,8 @@ See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 </blockquote>   <! -- end verbatim block -->
 
 <P>
-Links to files with other extensions must be realized
-<em>with the filename as link text</em>, written as
+Links to files with other extensions are typeset with
+<em>the filename as link text</em>. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 <blockquote>    <!-- begin verbatim block  -->
@@ -1448,7 +1472,7 @@ resulting in the link <a href="manual.html"><tt>manual.html</tt></a>.
 <!-- adjusted.) -->
 
 <P>
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>

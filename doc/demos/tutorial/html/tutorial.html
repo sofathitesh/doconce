@@ -57,7 +57,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jun 24, 2012</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jul 3, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -702,25 +702,24 @@ document.  One can either run <tt class="docutils literal"><span class="pre">aut
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.</p>
-<p>Te <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">sphinx_dir</span></tt> script copies directories named <tt class="docutils literal"><span class="pre">figs</span></tt> or <tt class="docutils literal"><span class="pre">figures</span></tt>
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, <tt class="docutils literal"><span class="pre">automake-sphinx.py</span></tt> must be edited accordingly.
-Links to local files (not <tt class="docutils literal"><span class="pre">http:</span></tt> or <tt class="docutils literal"><span class="pre">file:</span></tt> URLs) must be placed
-in the <tt class="docutils literal"><span class="pre">_static</span></tt> subdirectory of the Sphinx directory. The
-utility <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">sphinxfix_localURLs</span></tt> is run to check for local
-links: for each such link, say <tt class="docutils literal"><span class="pre">dir1/dir2/myfile.txt</span></tt> it replaces
-the link by <tt class="docutils literal"><span class="pre">_static/myfile.txt</span></tt> and copies <tt class="docutils literal"><span class="pre">dir1/dir2/myfile.txt</span></tt>
-to a local <tt class="docutils literal"><span class="pre">_static</span></tt> directory (in the same directory as the
-script is run). The user must copy all <tt class="docutils literal"><span class="pre">_static/*</span></tt> files to the
-<tt class="docutils literal"><span class="pre">_static</span></tt> subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the <tt class="docutils literal"><span class="pre">_static</span></tt> subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a <tt class="docutils literal"><span class="pre">_static</span></tt> directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.</p>
+<p>The <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">sphinx_dir</span></tt> script copies directories named <tt class="docutils literal"><span class="pre">figs</span></tt> or
+<tt class="docutils literal"><span class="pre">figures</span></tt> over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, <tt class="docutils literal"><span class="pre">automake-sphinx.py</span></tt> must be edited accordingly.  Files,
+to which there are local links (not <tt class="docutils literal"><span class="pre">http:</span></tt> or <tt class="docutils literal"><span class="pre">file:</span></tt> URLs), must be
+placed in the <tt class="docutils literal"><span class="pre">_static</span></tt> subdirectory of the Sphinx directory. The
+utility <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">sphinxfix_localURLs</span></tt> is run to check for local links
+in the Doconce file: for each such link, say <tt class="docutils literal"><span class="pre">dir1/dir2/myfile.txt</span></tt> it
+replaces the link by <tt class="docutils literal"><span class="pre">_static/myfile.txt</span></tt> and copies
+<tt class="docutils literal"><span class="pre">dir1/dir2/myfile.txt</span></tt> to a local <tt class="docutils literal"><span class="pre">_static</span></tt> directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in <tt class="docutils literal"><span class="pre">_static</span></tt> or lets a script
+do it automatically. The user must copy all <tt class="docutils literal"><span class="pre">_static/*</span></tt> files to the
+<tt class="docutils literal"><span class="pre">_static</span></tt> subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a <tt class="docutils literal"><span class="pre">_static</span></tt> or <tt class="docutils literal"><span class="pre">_static-name</span></tt> directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.</p>
 <p>Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the <tt class="docutils literal"><span class="pre">conf.py</span></tt>
 configuration file for Sphinx is edited accordingly, and a script

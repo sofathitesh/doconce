@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Doconce Description &mdash; Doconce Manual 1.0 documentation</title>
+    <title>Doconce Description &mdash; Doconce Manual 0.6 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '1.0',
+        VERSION:     '0.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Doconce Manual 1.0 documentation" href="index.html" />
+    <link rel="top" title="Doconce Manual 0.6 documentation" href="index.html" />
     <link rel="prev" title="Doconce Manual" href="index.html" /> 
   </head>
   <body>
@@ -39,7 +39,7 @@
         <li class="right" >
           <a href="index.html" title="Doconce Manual"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Doconce Manual 1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Doconce Manual 0.6 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jun 24, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jul 3, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -573,25 +573,24 @@ document.  One can either run <tt class="docutils literal"><span class="pre">aut
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.</p>
-<p>Te <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">sphinx_dir</span></tt> script copies directories named <tt class="docutils literal"><span class="pre">figs</span></tt> or <tt class="docutils literal"><span class="pre">figures</span></tt>
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, <tt class="docutils literal"><span class="pre">automake-sphinx.py</span></tt> must be edited accordingly.
-Links to local files (not <tt class="docutils literal"><span class="pre">http:</span></tt> or <tt class="docutils literal"><span class="pre">file:</span></tt> URLs) must be placed
-in the <tt class="docutils literal"><span class="pre">_static</span></tt> subdirectory of the Sphinx directory. The
-utility <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">sphinxfix_localURLs</span></tt> is run to check for local
-links: for each such link, say <tt class="docutils literal"><span class="pre">dir1/dir2/myfile.txt</span></tt> it replaces
-the link by <tt class="docutils literal"><span class="pre">_static/myfile.txt</span></tt> and copies <tt class="docutils literal"><span class="pre">dir1/dir2/myfile.txt</span></tt>
-to a local <tt class="docutils literal"><span class="pre">_static</span></tt> directory (in the same directory as the
-script is run). The user must copy all <tt class="docutils literal"><span class="pre">_static/*</span></tt> files to the
-<tt class="docutils literal"><span class="pre">_static</span></tt> subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the <tt class="docutils literal"><span class="pre">_static</span></tt> subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a <tt class="docutils literal"><span class="pre">_static</span></tt> directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.</p>
+<p>The <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">sphinx_dir</span></tt> script copies directories named <tt class="docutils literal"><span class="pre">figs</span></tt> or
+<tt class="docutils literal"><span class="pre">figures</span></tt> over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, <tt class="docutils literal"><span class="pre">automake-sphinx.py</span></tt> must be edited accordingly.  Files,
+to which there are local links (not <tt class="docutils literal"><span class="pre">http:</span></tt> or <tt class="docutils literal"><span class="pre">file:</span></tt> URLs), must be
+placed in the <tt class="docutils literal"><span class="pre">_static</span></tt> subdirectory of the Sphinx directory. The
+utility <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">sphinxfix_localURLs</span></tt> is run to check for local links
+in the Doconce file: for each such link, say <tt class="docutils literal"><span class="pre">dir1/dir2/myfile.txt</span></tt> it
+replaces the link by <tt class="docutils literal"><span class="pre">_static/myfile.txt</span></tt> and copies
+<tt class="docutils literal"><span class="pre">dir1/dir2/myfile.txt</span></tt> to a local <tt class="docutils literal"><span class="pre">_static</span></tt> directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in <tt class="docutils literal"><span class="pre">_static</span></tt> or lets a script
+do it automatically. The user must copy all <tt class="docutils literal"><span class="pre">_static/*</span></tt> files to the
+<tt class="docutils literal"><span class="pre">_static</span></tt> subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a <tt class="docutils literal"><span class="pre">_static</span></tt> or <tt class="docutils literal"><span class="pre">_static-name</span></tt> directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.</p>
 <p>Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the <tt class="docutils literal"><span class="pre">conf.py</span></tt>
 configuration file for Sphinx is edited accordingly, and a script
@@ -1035,28 +1034,49 @@ setup:</p>
 </pre></div>
 </div>
 <p>which appears as see the <a class="reference external" href="manual.do.txt">Doconce Manual</a>.
-If you want to view such source code files <em>in the browser</em>,
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:</p>
+<blockquote>
+<div><ul class="simple">
+<li>In the <tt class="docutils literal"><span class="pre">html</span></tt> format the links work well if the files are
+supplied with the <tt class="docutils literal"><span class="pre">.html</span></tt> with the same relative location.</li>
+<li>In the <tt class="docutils literal"><span class="pre">latex</span></tt> and <tt class="docutils literal"><span class="pre">pdflatex</span></tt> formats, such links in PDF files
+will unless the <tt class="docutils literal"><span class="pre">.tex</span></tt> file has a full URL specified through
+a <tt class="docutils literal"><span class="pre">\hyperbaseurl</span></tt> command and the linked files are located correctly
+relative to this URL. Otherwise full URL must be used in links.</li>
+<li>In the <tt class="docutils literal"><span class="pre">sphinx</span></tt> format, local files to which there are links should only be
+located in a <tt class="docutils literal"><span class="pre">_static</span></tt> or <tt class="docutils literal"><span class="pre">_static-name</span></tt> subdirectory.</li>
+</ul>
+</div></blockquote>
+<p>As a consequence, we strongly recommend that one copies the relevant
+files to a <tt class="docutils literal"><span class="pre">_static</span></tt> or <tt class="docutils literal"><span class="pre">_static-name</span></tt> directory and makes links to
+files in this directory only (<tt class="docutils literal"><span class="pre">name</span></tt> is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the <tt class="docutils literal"><span class="pre">html</span></tt> format is of relevance).</p>
+<p>If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 <tt class="docutils literal"><span class="pre">pygmentize</span></tt>, e.g.,</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; pygmentize -l bash -f html -O full,style=emacs \</span>
 <span class="go">          -o _static/make.sh.html subdir/make.sh</span>
 </pre></div>
 </div>
 <p>Then you can link to <tt class="docutils literal"><span class="pre">_static/make.sh.html</span></tt> instead of
-<tt class="docutils literal"><span class="pre">subdir/make.sh</span></tt>. Or you can do both versions:</p>
+<tt class="docutils literal"><span class="pre">subdir/make.sh</span></tt>. Here is an example where the reader
+has the file available as <tt class="docutils literal"><span class="pre">src/myprog.py</span></tt> in her
+software and the document links to <tt class="docutils literal"><span class="pre">_static/myprog.py</span></tt>:</p>
 <div class="highlight-py"><div class="highlight"><pre><span class="n">See</span> <span class="n">the</span> <span class="n">code</span> <span class="n">URL</span><span class="p">:</span><span class="s">&quot;src/myprog.py&quot;</span> <span class="p">(</span><span class="s">&quot;view: &quot;</span><span class="n">_static</span><span class="o">/</span><span class="n">myprog</span><span class="o">.</span><span class="n">py</span><span class="o">.</span><span class="n">html</span><span class="s">&quot;).</span>
 </pre></div>
 </div>
-<p>Links to files with other extensions must be realized
-<em>with the filename as link text</em>, written as
+<p>Links to files with other extensions are typeset with
+<em>the filename as link text</em>. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:</p>
 <div class="highlight-py"><div class="highlight"><pre><span class="n">URL</span><span class="p">:</span> <span class="s">&quot;manual.html&quot;</span>
 </pre></div>
 </div>
 <p>resulting in the link <a class="reference external" href="manual.html">manual.html</a>.</p>
-<p>To have the URL address itself as link text, put an &#8220;URL&#8221; or URL
+<p>Similarly, to have the URL address itself as link text, put an &#8220;URL&#8221; or URL
 before the address enclosed in double quotes:</p>
 <div class="highlight-py"><div class="highlight"><pre><span class="n">Click</span> <span class="n">on</span> <span class="n">this</span> <span class="n">link</span><span class="p">:</span> <span class="n">URL</span><span class="p">:</span><span class="s">&quot;http://code.google.com/p/doconce&quot;</span><span class="o">.</span>
 </pre></div>
@@ -2396,11 +2416,11 @@ groundwater flow.
         <li class="right" >
           <a href="index.html" title="Doconce Manual"
              >previous</a> |</li>
-        <li><a href="index.html">Doconce Manual 1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Doconce Manual 0.6 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, 0.6.
+        &copy; Copyright 2012, HPL.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

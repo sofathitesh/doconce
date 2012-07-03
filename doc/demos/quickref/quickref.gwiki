@@ -2,7 +2,7 @@
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== Jun 24, 2012 ====
+==== Jul 3, 2012 ====
 
 <wiki:comment> Very preliminary </wiki:comment>
 
@@ -517,3 +517,7 @@ Doconce documents may utilize a preprocessor, either `preprocess` or
 and including other files (but not macros with arguments).
 The `mako` preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+==== Resources ====
+
+ * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"

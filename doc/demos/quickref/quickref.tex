@@ -15,12 +15,21 @@
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
 
+% Hyperlinks in PDF:
 \usepackage[%
-colorlinks=true,
-linkcolor=blue,
-citecolor=black,
-filecolor=blue,
-urlcolor=blue]{hyperref}
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
@@ -61,7 +70,7 @@ urlcolor=blue]{hyperref}
 
 
 \begin{center}
-Jun 24, 2012
+Jul 3, 2012
 \end{center}
 
 
@@ -715,6 +724,14 @@ Doconce documents may utilize a preprocessor, either {\fontsize{10pt}{10pt}\verb
 and including other files (but not macros with arguments).
 The {\fontsize{10pt}{10pt}\verb!mako!} preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+\subsection{Resources}
+
+\begin{itemize}
+ \item Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+\end{itemize}
+
+\noindent
 
 \printindex
 

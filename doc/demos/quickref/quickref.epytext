@@ -579,3 +579,8 @@ C{mako}. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
 The C{mako} preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+Resources
+---------
+
+ - Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"

@@ -669,25 +669,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te 'doconce sphinx_dir' script copies directories named 'figs' or 'figures'
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, 'automake-sphinx.py' must be edited accordingly.
-Links to local files (not 'http:' or 'file:' URLs) must be placed
-in the '_static' subdirectory of the Sphinx directory. The
-utility 'doconce sphinxfix_localURLs' is run to check for local
-links: for each such link, say 'dir1/dir2/myfile.txt' it replaces
-the link by '_static/myfile.txt' and copies 'dir1/dir2/myfile.txt'
-to a local '_static' directory (in the same directory as the
-script is run). The user must copy all '_static/*' files to the
-'_static' subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the '_static' subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a '_static' directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The 'doconce sphinx_dir' script copies directories named 'figs' or
+'figures' over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, 'automake-sphinx.py' must be edited accordingly.  Files,
+to which there are local links (not 'http:' or 'file:' URLs), must be
+placed in the '_static' subdirectory of the Sphinx directory. The
+utility 'doconce sphinxfix_localURLs' is run to check for local links
+in the Doconce file: for each such link, say 'dir1/dir2/myfile.txt' it
+replaces the link by '_static/myfile.txt' and copies
+'dir1/dir2/myfile.txt' to a local '_static' directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in '_static' or lets a script
+do it automatically. The user must copy all '_static/*' files to the
+'_static' subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a '_static' or '_static-name' directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the 'conf.py'

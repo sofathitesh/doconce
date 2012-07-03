@@ -25,13 +25,27 @@
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
 % #endif
+% #ifdef PALATINO
+% Set paraltino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 
+% Hyperlinks in PDF:
 \usepackage[%
-colorlinks=true,
-linkcolor=blue,
-citecolor=black,
-filecolor=blue,
-urlcolor=blue]{hyperref}
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
@@ -106,13 +120,13 @@ urlcolor=blue]{hyperref}
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Jun 24, 2012}
+\date{Jul 3, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Jun 24, 2012}}
+{\large\textsf{Jul 3, 2012}}
 
 \end{center}
 \vfill
@@ -121,7 +135,7 @@ urlcolor=blue]{hyperref}
 % #else
 
 \begin{center}
-Jun 24, 2012
+Jul 3, 2012
 \end{center}
 
 % #endif
@@ -715,25 +729,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te \code{doconce sphinx_dir} script copies directories named \code{figs} or \code{figures}
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, \code{automake-sphinx.py} must be edited accordingly.
-Links to local files (not \code{http:} or \code{file:} URLs) must be placed
-in the \code{_static} subdirectory of the Sphinx directory. The
-utility \code{doconce sphinxfix_localURLs} is run to check for local
-links: for each such link, say \code{dir1/dir2/myfile.txt} it replaces
-the link by \code{_static/myfile.txt} and copies \code{dir1/dir2/myfile.txt}
-to a local \code{_static} directory (in the same directory as the
-script is run). The user must copy all \code{_static/*} files to the
-\code{_static} subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the \code{_static} subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a \code{_static} directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The \code{doconce sphinx_dir} script copies directories named \code{figs} or
+\code{figures} over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, \code{automake-sphinx.py} must be edited accordingly.  Files,
+to which there are local links (not \code{http:} or \code{file:} URLs), must be
+placed in the \code{_static} subdirectory of the Sphinx directory. The
+utility \code{doconce sphinxfix_localURLs} is run to check for local links
+in the Doconce file: for each such link, say \code{dir1/dir2/myfile.txt} it
+replaces the link by \code{_static/myfile.txt} and copies
+\code{dir1/dir2/myfile.txt} to a local \code{_static} directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in \code{_static} or lets a script
+do it automatically. The user must copy all \code{_static/*} files to the
+\code{_static} subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a \code{_static} or \code{_static-name} directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the \code{conf.py}
@@ -1301,22 +1314,47 @@ setup:
 see the "Doconce Manual": "manual.do.txt".
 \eccq
 which appears as see the \href{{manual.do.txt}}{Doconce Manual}.
-If you want to view such source code files \emph{in the browser},
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+\begin{itemize}
+  \item In the \code{html} format the links work well if the files are
+    supplied with the \code{.html} with the same relative location.
+
+  \item In the \code{latex} and \code{pdflatex} formats, such links in PDF files
+    will unless the \code{.tex} file has a full URL specified through
+    a \code{\hyperbaseurl} command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+
+  \item In the \code{sphinx} format, local files to which there are links should only be
+    located in a \code{_static} or \code{_static-name} subdirectory.
+\end{itemize}
+
+\noindent
+As a consequence, we strongly recommend that one copies the relevant
+files to a \code{_static} or \code{_static-name} directory and makes links to
+files in this directory only (\code{name} is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the \code{html} format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 \code{pygmentize}, e.g.,
 \bsys
 Terminal> pygmentize -l bash -f html -O full,style=emacs \
           -o _static/make.sh.html subdir/make.sh
 \esys
 Then you can link to \code{_static/make.sh.html} instead of
-\code{subdir/make.sh}. Or you can do both versions:
+\code{subdir/make.sh}. Here is an example where the reader
+has the file available as \code{src/myprog.py} in her
+software and the document links to \code{_static/myprog.py}:
 \bccq
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 \eccq
 
-Links to files with other extensions must be realized
-\emph{with the filename as link text}, written as
+Links to files with other extensions are typeset with
+\emph{the filename as link text}. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 \bccq
@@ -1337,7 +1375,7 @@ resulting in the link \href{{manual.html}}{\nolinkurl{manual.html}}.
 % \code{_static} directory - links in the \code{.rst} files are automatically
 % adjusted.)
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 \bccq
 Click on this link: URL:"http://code.google.com/p/doconce".
