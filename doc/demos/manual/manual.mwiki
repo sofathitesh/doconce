@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Jun 24, 2012 ====
+==== Jul 3, 2012 ====
 
 <!--> lines beginning with # are comment lines -->
 
@@ -520,25 +520,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te <code>doconce sphinx_dir</code> script copies directories named <code>figs</code> or <code>figures</code>
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, <code>automake-sphinx.py</code> must be edited accordingly.
-Links to local files (not <code>http:</code> or <code>file:</code> URLs) must be placed
-in the <code>_static</code> subdirectory of the Sphinx directory. The
-utility <code>doconce sphinxfix_localURLs</code> is run to check for local
-links: for each such link, say <code>dir1/dir2/myfile.txt</code> it replaces
-the link by <code>_static/myfile.txt</code> and copies <code>dir1/dir2/myfile.txt</code>
-to a local <code>_static</code> directory (in the same directory as the
-script is run). The user must copy all <code>_static/*</code> files to the
-<code>_static</code> subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the <code>_static</code> subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a <code>_static</code> directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The <code>doconce sphinx_dir</code> script copies directories named <code>figs</code> or
+<code>figures</code> over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, <code>automake-sphinx.py</code> must be edited accordingly.  Files,
+to which there are local links (not <code>http:</code> or <code>file:</code> URLs), must be
+placed in the <code>_static</code> subdirectory of the Sphinx directory. The
+utility <code>doconce sphinxfix_localURLs</code> is run to check for local links
+in the Doconce file: for each such link, say <code>dir1/dir2/myfile.txt</code> it
+replaces the link by <code>_static/myfile.txt</code> and copies
+<code>dir1/dir2/myfile.txt</code> to a local <code>_static</code> directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in <code>_static</code> or lets a script
+do it automatically. The user must copy all <code>_static/*</code> files to the
+<code>_static</code> subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a <code>_static</code> or <code>_static-name</code> directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the <code>conf.py</code>
@@ -1016,22 +1015,37 @@ setup:
 see the "Doconce Manual": "manual.do.txt".
 </code>
 which appears as see the [manual.do.txt Doconce Manual].
-If you want to view such source code files ''in the browser'',
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+
+<ul>
+  <li> In the <code>html</code> format the links work well if the files are    supplied with the <code>.html</code> with the same relative location.  <li> In the <code>latex</code> and <code>pdflatex</code> formats, such links in PDF files    will unless the <code>.tex</code> file has a full URL specified through    a <code>\hyperbaseurl</code> command and the linked files are located correctly    relative to this URL. Otherwise full URL must be used in links.  <li> In the <code>sphinx</code> format, local files to which there are links should only be    located in a <code>_static</code> or <code>_static-name</code> subdirectory.</ul>
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a <code>_static</code> or <code>_static-name</code> directory and makes links to
+files in this directory only (<code>name</code> is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the <code>html</code> format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 <code>pygmentize</code>, e.g.,
 <syntaxhighlight lang="bash">
 Terminal> pygmentize -l bash -f html -O full,style=emacs \
           -o _static/make.sh.html subdir/make.sh
 </code>
 Then you can link to <code>_static/make.sh.html</code> instead of
-<code>subdir/make.sh</code>. Or you can do both versions:
+<code>subdir/make.sh</code>. Here is an example where the reader
+has the file available as <code>src/myprog.py</code> in her
+software and the document links to <code>_static/myprog.py</code>:
 <code>
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 </code>
 
-Links to files with other extensions must be realized
-''with the filename as link text'', written as
+Links to files with other extensions are typeset with
+''the filename as link text''. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 <code>
@@ -1052,7 +1066,7 @@ resulting in the link manual.html.
 <!--> <code>_static</code> directory - links in the <code>.rst</code> files are automatically -->
 <!--> adjusted.) -->
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 <code>
 Click on this link: URL:"http://code.google.com/p/doconce".

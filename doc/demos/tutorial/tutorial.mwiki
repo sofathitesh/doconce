@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Jun 24, 2012 ====
+==== Jul 3, 2012 ====
 
 <ul>
  <li> When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format? <li> Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging? <li> Do you have the same information scattered around in different   documents in different typesetting formats? Would it be a good idea   to write things once, in one format, stored in one place, and   include it anywhere?</ul>
@@ -571,25 +571,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te <code>doconce sphinx_dir</code> script copies directories named <code>figs</code> or <code>figures</code>
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, <code>automake-sphinx.py</code> must be edited accordingly.
-Links to local files (not <code>http:</code> or <code>file:</code> URLs) must be placed
-in the <code>_static</code> subdirectory of the Sphinx directory. The
-utility <code>doconce sphinxfix_localURLs</code> is run to check for local
-links: for each such link, say <code>dir1/dir2/myfile.txt</code> it replaces
-the link by <code>_static/myfile.txt</code> and copies <code>dir1/dir2/myfile.txt</code>
-to a local <code>_static</code> directory (in the same directory as the
-script is run). The user must copy all <code>_static/*</code> files to the
-<code>_static</code> subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the <code>_static</code> subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a <code>_static</code> directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The <code>doconce sphinx_dir</code> script copies directories named <code>figs</code> or
+<code>figures</code> over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, <code>automake-sphinx.py</code> must be edited accordingly.  Files,
+to which there are local links (not <code>http:</code> or <code>file:</code> URLs), must be
+placed in the <code>_static</code> subdirectory of the Sphinx directory. The
+utility <code>doconce sphinxfix_localURLs</code> is run to check for local links
+in the Doconce file: for each such link, say <code>dir1/dir2/myfile.txt</code> it
+replaces the link by <code>_static/myfile.txt</code> and copies
+<code>dir1/dir2/myfile.txt</code> to a local <code>_static</code> directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in <code>_static</code> or lets a script
+do it automatically. The user must copy all <code>_static/*</code> files to the
+<code>_static</code> subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a <code>_static</code> or <code>_static-name</code> directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the <code>conf.py</code>

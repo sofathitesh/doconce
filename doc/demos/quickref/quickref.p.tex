@@ -25,13 +25,27 @@
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
 % #endif
+% #ifdef PALATINO
+% Set paraltino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 
+% Hyperlinks in PDF:
 \usepackage[%
-colorlinks=true,
-linkcolor=blue,
-citecolor=black,
-filecolor=blue,
-urlcolor=blue]{hyperref}
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
@@ -104,13 +118,13 @@ urlcolor=blue]{hyperref}
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Jun 24, 2012}
+\date{Jul 3, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Jun 24, 2012}}
+{\large\textsf{Jul 3, 2012}}
 
 \end{center}
 \vfill
@@ -119,7 +133,7 @@ urlcolor=blue]{hyperref}
 % #else
 
 \begin{center}
-Jun 24, 2012
+Jul 3, 2012
 \end{center}
 
 % #endif
@@ -734,6 +748,14 @@ Doconce documents may utilize a preprocessor, either \code{preprocess} or
 and including other files (but not macros with arguments).
 The \code{mako} preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+\subsection{Resources}
+
+\begin{itemize}
+ \item Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+\end{itemize}
+
+\noindent
 
 \printindex
 

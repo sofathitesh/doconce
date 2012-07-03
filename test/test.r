@@ -338,6 +338,14 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js"]
+  }
+});
+</script>
 <script type="text/javascript"
  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
@@ -610,13 +618,13 @@ is fine to have.
 <P>
 Here is an equation without label using backslash-bracket environment:
 $$ a = b + c $$
-or with number and label, as in (<a href="#my:eq1">my:eq1</a>), using the equation environment:
+or with number and label, as in \eqref{my:eq1}, using the equation environment:
 $$
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
 $$
-We can refer to this equation by (<a href="#my:eq1">my:eq1</a>).
+We can refer to this equation by \eqref{my:eq1}.
 
 <P>
 Here is a system without equation numbers, using the align-astrisk environment:
@@ -637,7 +645,7 @@ a &= q + 4 + 5+ 6 \label{eq1} \\
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
 $$
-We can refer to (<a href="#eq1">eq1</a>)-(<a href="#eq2">eq2</a>).
+We can refer to \eqref{eq1}-\eqref{eq2}.
 
 <P>
 Or with multline?
@@ -658,7 +666,7 @@ a = b = q &+ \\
 \end{split}
 \end{equation}
 $$
-And we can refer to the last equation by (<a href="#split:envir:eq">split:envir:eq</a>).
+And we can refer to the last equation by \eqref{split:envir:eq}.
 
 <P>
 What about gather?
@@ -677,8 +685,8 @@ a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\
 b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
 $$
-Let us refer to (<a href="#eq1">eq1</a>)-(<a href="#eq2">eq2</a>) again, and to the
-alignat variant (<a href="#eq1a">eq1a</a>)-(<a href="#eq2a">eq2a</a>), and to (<a href="#my:eq1">my:eq1</a>).
+Let us refer to \eqref{eq1}-\eqref{eq2} again, and to the
+alignat variant \eqref{eq1a}-\eqref{eq2a}, and to \eqref{my:eq1}.
 
 <P>
 Here is eqnarray in action:
@@ -810,13 +818,27 @@ above. The following cases should be explored:
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
 % #endif
+% #ifdef PALATINO
+% Set paraltino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 
+% Hyperlinks in PDF:
 \usepackage[%
-colorlinks=true,
-linkcolor=blue,
-citecolor=black,
-filecolor=blue,
-urlcolor=blue]{hyperref}
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
@@ -1407,12 +1429,21 @@ Filename: \code{circles.pdf}.
 
 
 
+% Hyperlinks in PDF:
 \usepackage[%
-colorlinks=true,
-linkcolor=blue,
-citecolor=black,
-filecolor=blue,
-urlcolor=blue]{hyperref}
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
@@ -1551,7 +1582,6 @@ to Section~\ref{subsubsec:ex}. \index{somefunc@{\rm\texttt{somefunc}} function}
 
 Let's do some copying from files too. First from subroutine up to the very end,
 
-\
 \begin{quote}
 \begin{verbatim}
       subroutine    test()
@@ -1567,11 +1597,9 @@ C     END1
       program testme
       call test()
       return
-\
 \end{verbatim}
 \end{quote}
 and then just the subroutine,
-\
 \begin{quote}
 \begin{verbatim}
 
@@ -1583,11 +1611,9 @@ and then just the subroutine,
          r = r + i
       end do
       return
-\
 \end{verbatim}
 \end{quote}
 and finally the complete file:
-\
 \begin{quote}
 \begin{verbatim}
 C     a comment
@@ -1605,7 +1631,6 @@ C     END1
       program testme
       call test()
       return
-\
 \end{verbatim}
 \end{quote}
 
@@ -1693,7 +1718,6 @@ Table of velocity and acceleration.
 \end{table}
 
 The Doconce source code reads
-\
 \begin{quote}
 \begin{verbatim}
   |--------------------------------|
@@ -1703,7 +1727,6 @@ The Doconce source code reads
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
-\
 \end{verbatim}
 \end{quote}
 
@@ -1856,7 +1879,6 @@ where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ is a point on the circle.
 The formula can be used to generate {\fontsize{10pt}{10pt}\verb!n!} points on a circle:
-\
 \begin{quote}
 \begin{verbatim}
 import numpy as np
@@ -1866,7 +1888,6 @@ def circle(R, x0, y0, n=501):
     x = x0 + R*np.cos(2*np.pi*t)
     y = y0 + R*np.sin(2*np.pi*t)
     return x, y
-\
 \end{verbatim}
 \end{quote}
 
@@ -4746,8 +4767,7 @@ C     END1
 
       program testme
       call test()
-      return
-\</code></pre>
+      return</code></pre>
 </blockquote>
 <p>and then just the subroutine,</p>
 <blockquote>
@@ -4759,8 +4779,7 @@ C     END1
       do i = 1, i
          r = r + i
       end do
-      return
-\</code></pre>
+      return</code></pre>
 </blockquote>
 <p>and finally the complete file:</p>
 <blockquote>
@@ -4778,8 +4797,7 @@ C     END1
 
       program testme
       call test()
-      return
-\</code></pre>
+      return</code></pre>
 </blockquote>
 <h3 id="subsection-2">Subsection 2</h3>
 <p>[subsec:ex]</p>
@@ -4833,8 +4851,7 @@ C     END1
   | 0.0  | 1.4186   | -5.01        |
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
-  |--------------------------------|
-\</code></pre>
+  |--------------------------------|</code></pre>
 </blockquote>
 <p>Here is yet another table to test that we can handle more than one table:</p>
 <blockquote>
@@ -4932,8 +4949,7 @@ def circle(R, x0, y0, n=501):
     t = np.linspace(0, 1, n)
     x = x0 + R*np.cos(2*np.pi*t)
     y = y0 + R*np.sin(2*np.pi*t)
-    return x, y
-\</code></pre>
+    return x, y</code></pre>
 </blockquote>
 <p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the 10pt10pt<code>circle</code> function above. The following cases should be explored:</p>
 <ul>
@@ -5222,6 +5238,8 @@ doconce format plain testdoc.do.txt
 doconce format st testdoc.do.txt
 doconce format sphinx testdoc.do.txt
 mv -f testdoc.rst testdoc.sphinx.rst
+# Note: the chapter heading must be removed
+# for successful compilation of the sphinx document.
 doconce format rst testdoc.do.txt
 doconce format epytext testdoc.do.txt
 doconce format pandoc testdoc.do.txt
@@ -5747,6 +5765,14 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js"]
+  }
+});
+</script>
 <script type="text/javascript"
  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
@@ -6575,25 +6601,24 @@ You should at least read the script prior to executing it to have
 some idea of what is done.
 
 <P>
-Te <tt>doconce sphinx_dir</tt> script copies directories named <tt>figs</tt> or <tt>figures</tt>
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, <tt>automake-sphinx.py</tt> must be edited accordingly.
-Links to local files (not <tt>http:</tt> or <tt>file:</tt> URLs) must be placed
-in the <tt>_static</tt> subdirectory of the Sphinx directory. The
-utility <tt>doconce sphinxfix_localURLs</tt> is run to check for local
-links: for each such link, say <tt>dir1/dir2/myfile.txt</tt> it replaces
-the link by <tt>_static/myfile.txt</tt> and copies <tt>dir1/dir2/myfile.txt</tt>
-to a local <tt>_static</tt> directory (in the same directory as the
-script is run). The user must copy all <tt>_static/*</tt> files to the
-<tt>_static</tt> subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the <tt>_static</tt> subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a <tt>_static</tt> directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The <tt>doconce sphinx_dir</tt> script copies directories named <tt>figs</tt> or
+<tt>figures</tt> over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, <tt>automake-sphinx.py</tt> must be edited accordingly.  Files,
+to which there are local links (not <tt>http:</tt> or <tt>file:</tt> URLs), must be
+placed in the <tt>_static</tt> subdirectory of the Sphinx directory. The
+utility <tt>doconce sphinxfix_localURLs</tt> is run to check for local links
+in the Doconce file: for each such link, say <tt>dir1/dir2/myfile.txt</tt> it
+replaces the link by <tt>_static/myfile.txt</tt> and copies
+<tt>dir1/dir2/myfile.txt</tt> to a local <tt>_static</tt> directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in <tt>_static</tt> or lets a script
+do it automatically. The user must copy all <tt>_static/*</tt> files to the
+<tt>_static</tt> subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a <tt>_static</tt> or <tt>_static-name</tt> directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 <P>
 Doconce comes with a collection of HTML themes for Sphinx documents.
@@ -6992,13 +7017,27 @@ run regularly.
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
 % #endif
+% #ifdef PALATINO
+% Set paraltino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 
+% Hyperlinks in PDF:
 \usepackage[%
-colorlinks=true,
-linkcolor=blue,
-citecolor=black,
-filecolor=blue,
-urlcolor=blue]{hyperref}
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
@@ -7811,25 +7850,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te \code{doconce sphinx_dir} script copies directories named \code{figs} or \code{figures}
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, \code{automake-sphinx.py} must be edited accordingly.
-Links to local files (not \code{http:} or \code{file:} URLs) must be placed
-in the \code{_static} subdirectory of the Sphinx directory. The
-utility \code{doconce sphinxfix_localURLs} is run to check for local
-links: for each such link, say \code{dir1/dir2/myfile.txt} it replaces
-the link by \code{_static/myfile.txt} and copies \code{dir1/dir2/myfile.txt}
-to a local \code{_static} directory (in the same directory as the
-script is run). The user must copy all \code{_static/*} files to the
-\code{_static} subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the \code{_static} subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a \code{_static} directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The \code{doconce sphinx_dir} script copies directories named \code{figs} or
+\code{figures} over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, \code{automake-sphinx.py} must be edited accordingly.  Files,
+to which there are local links (not \code{http:} or \code{file:} URLs), must be
+placed in the \code{_static} subdirectory of the Sphinx directory. The
+utility \code{doconce sphinxfix_localURLs} is run to check for local links
+in the Doconce file: for each such link, say \code{dir1/dir2/myfile.txt} it
+replaces the link by \code{_static/myfile.txt} and copies
+\code{dir1/dir2/myfile.txt} to a local \code{_static} directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in \code{_static} or lets a script
+do it automatically. The user must copy all \code{_static/*} files to the
+\code{_static} subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a \code{_static} or \code{_static-name} directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the \code{conf.py}
@@ -8887,25 +8925,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te ``doconce sphinx_dir`` script copies directories named ``figs`` or ``figures``
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, ``automake-sphinx.py`` must be edited accordingly.
-Links to local files (not ``http:`` or ``file:`` URLs) must be placed
-in the ``_static`` subdirectory of the Sphinx directory. The
-utility ``doconce sphinxfix_localURLs`` is run to check for local
-links: for each such link, say ``dir1/dir2/myfile.txt`` it replaces
-the link by ``_static/myfile.txt`` and copies ``dir1/dir2/myfile.txt``
-to a local ``_static`` directory (in the same directory as the
-script is run). The user must copy all ``_static/*`` files to the
-``_static`` subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the ``_static`` subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a ``_static`` directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The ``doconce sphinx_dir`` script copies directories named ``figs`` or
+``figures`` over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, ``automake-sphinx.py`` must be edited accordingly.  Files,
+to which there are local links (not ``http:`` or ``file:`` URLs), must be
+placed in the ``_static`` subdirectory of the Sphinx directory. The
+utility ``doconce sphinxfix_localURLs`` is run to check for local links
+in the Doconce file: for each such link, say ``dir1/dir2/myfile.txt`` it
+replaces the link by ``_static/myfile.txt`` and copies
+``dir1/dir2/myfile.txt`` to a local ``_static`` directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in ``_static`` or lets a script
+do it automatically. The user must copy all ``_static/*`` files to the
+``_static`` subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a ``_static`` or ``_static-name`` directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the ``conf.py``
@@ -10019,25 +10056,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te ``doconce sphinx_dir`` script copies directories named ``figs`` or ``figures``
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, ``automake-sphinx.py`` must be edited accordingly.
-Links to local files (not ``http:`` or ``file:`` URLs) must be placed
-in the ``_static`` subdirectory of the Sphinx directory. The
-utility ``doconce sphinxfix_localURLs`` is run to check for local
-links: for each such link, say ``dir1/dir2/myfile.txt`` it replaces
-the link by ``_static/myfile.txt`` and copies ``dir1/dir2/myfile.txt``
-to a local ``_static`` directory (in the same directory as the
-script is run). The user must copy all ``_static/*`` files to the
-``_static`` subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the ``_static`` subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a ``_static`` directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The ``doconce sphinx_dir`` script copies directories named ``figs`` or
+``figures`` over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, ``automake-sphinx.py`` must be edited accordingly.  Files,
+to which there are local links (not ``http:`` or ``file:`` URLs), must be
+placed in the ``_static`` subdirectory of the Sphinx directory. The
+utility ``doconce sphinxfix_localURLs`` is run to check for local links
+in the Doconce file: for each such link, say ``dir1/dir2/myfile.txt`` it
+replaces the link by ``_static/myfile.txt`` and copies
+``dir1/dir2/myfile.txt`` to a local ``_static`` directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in ``_static`` or lets a script
+do it automatically. The user must copy all ``_static/*`` files to the
+``_static`` subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a ``_static`` or ``_static-name`` directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the ``conf.py``
@@ -10973,25 +11009,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te `doconce sphinx_dir` script copies directories named `figs` or `figures`
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, `automake-sphinx.py` must be edited accordingly.
-Links to local files (not `http:` or `file:` URLs) must be placed
-in the `_static` subdirectory of the Sphinx directory. The
-utility `doconce sphinxfix_localURLs` is run to check for local
-links: for each such link, say `dir1/dir2/myfile.txt` it replaces
-the link by `_static/myfile.txt` and copies `dir1/dir2/myfile.txt`
-to a local `_static` directory (in the same directory as the
-script is run). The user must copy all `_static/*` files to the
-`_static` subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the `_static` subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a `_static` directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The `doconce sphinx_dir` script copies directories named `figs` or
+`figures` over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, `automake-sphinx.py` must be edited accordingly.  Files,
+to which there are local links (not `http:` or `file:` URLs), must be
+placed in the `_static` subdirectory of the Sphinx directory. The
+utility `doconce sphinxfix_localURLs` is run to check for local links
+in the Doconce file: for each such link, say `dir1/dir2/myfile.txt` it
+replaces the link by `_static/myfile.txt` and copies
+`dir1/dir2/myfile.txt` to a local `_static` directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in `_static` or lets a script
+do it automatically. The user must copy all `_static/*` files to the
+`_static` subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a `_static` or `_static-name` directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the `conf.py`
@@ -11854,25 +11889,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te <code>doconce sphinx_dir</code> script copies directories named <code>figs</code> or <code>figures</code>
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, <code>automake-sphinx.py</code> must be edited accordingly.
-Links to local files (not <code>http:</code> or <code>file:</code> URLs) must be placed
-in the <code>_static</code> subdirectory of the Sphinx directory. The
-utility <code>doconce sphinxfix_localURLs</code> is run to check for local
-links: for each such link, say <code>dir1/dir2/myfile.txt</code> it replaces
-the link by <code>_static/myfile.txt</code> and copies <code>dir1/dir2/myfile.txt</code>
-to a local <code>_static</code> directory (in the same directory as the
-script is run). The user must copy all <code>_static/*</code> files to the
-<code>_static</code> subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the <code>_static</code> subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a <code>_static</code> directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The <code>doconce sphinx_dir</code> script copies directories named <code>figs</code> or
+<code>figures</code> over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, <code>automake-sphinx.py</code> must be edited accordingly.  Files,
+to which there are local links (not <code>http:</code> or <code>file:</code> URLs), must be
+placed in the <code>_static</code> subdirectory of the Sphinx directory. The
+utility <code>doconce sphinxfix_localURLs</code> is run to check for local links
+in the Doconce file: for each such link, say <code>dir1/dir2/myfile.txt</code> it
+replaces the link by <code>_static/myfile.txt</code> and copies
+<code>dir1/dir2/myfile.txt</code> to a local <code>_static</code> directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in <code>_static</code> or lets a script
+do it automatically. The user must copy all <code>_static/*</code> files to the
+<code>_static</code> subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a <code>_static</code> or <code>_static-name</code> directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the <code>conf.py</code>
@@ -12835,25 +12869,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te 'doconce sphinx_dir' script copies directories named 'figs' or 'figures'
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, 'automake-sphinx.py' must be edited accordingly.
-Links to local files (not 'http:' or 'file:' URLs) must be placed
-in the '_static' subdirectory of the Sphinx directory. The
-utility 'doconce sphinxfix_localURLs' is run to check for local
-links: for each such link, say 'dir1/dir2/myfile.txt' it replaces
-the link by '_static/myfile.txt' and copies 'dir1/dir2/myfile.txt'
-to a local '_static' directory (in the same directory as the
-script is run). The user must copy all '_static/*' files to the
-'_static' subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the '_static' subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a '_static' directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The 'doconce sphinx_dir' script copies directories named 'figs' or
+'figures' over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, 'automake-sphinx.py' must be edited accordingly.  Files,
+to which there are local links (not 'http:' or 'file:' URLs), must be
+placed in the '_static' subdirectory of the Sphinx directory. The
+utility 'doconce sphinxfix_localURLs' is run to check for local links
+in the Doconce file: for each such link, say 'dir1/dir2/myfile.txt' it
+replaces the link by '_static/myfile.txt' and copies
+'dir1/dir2/myfile.txt' to a local '_static' directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in '_static' or lets a script
+do it automatically. The user must copy all '_static/*' files to the
+'_static' subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a '_static' or '_static-name' directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the 'conf.py'
@@ -13862,25 +13895,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te C{doconce sphinx_dir} script copies directories named C{figs} or C{figures}
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, C{automake-sphinx.py} must be edited accordingly.
-Links to local files (not C{http:} or C{file:} URLs) must be placed
-in the C{_static} subdirectory of the Sphinx directory. The
-utility C{doconce sphinxfix_localURLs} is run to check for local
-links: for each such link, say C{dir1/dir2/myfile.txt} it replaces
-the link by C{_static/myfile.txt} and copies C{dir1/dir2/myfile.txt}
-to a local C{_static} directory (in the same directory as the
-script is run). The user must copy all C{_static/*} files to the
-C{_static} subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the C{_static} subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a C{_static} directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The C{doconce sphinx_dir} script copies directories named C{figs} or
+C{figures} over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, C{automake-sphinx.py} must be edited accordingly.  Files,
+to which there are local links (not C{http:} or C{file:} URLs), must be
+placed in the C{_static} subdirectory of the Sphinx directory. The
+utility C{doconce sphinxfix_localURLs} is run to check for local links
+in the Doconce file: for each such link, say C{dir1/dir2/myfile.txt} it
+replaces the link by C{_static/myfile.txt} and copies
+C{dir1/dir2/myfile.txt} to a local C{_static} directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in C{_static} or lets a script
+do it automatically. The user must copy all C{_static/*} files to the
+C{_static} subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a C{_static} or C{_static-name} directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the C{conf.py}
@@ -14933,25 +14965,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te doconce sphinx_dir script copies directories named figs or figures
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, automake-sphinx.py must be edited accordingly.
-Links to local files (not http: or file: URLs) must be placed
-in the _static subdirectory of the Sphinx directory. The
-utility doconce sphinxfix_localURLs is run to check for local
-links: for each such link, say dir1/dir2/myfile.txt it replaces
-the link by _static/myfile.txt and copies dir1/dir2/myfile.txt
-to a local _static directory (in the same directory as the
-script is run). The user must copy all _static/* files to the
-_static subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the _static subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a _static directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The doconce sphinx_dir script copies directories named figs or
+figures over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, automake-sphinx.py must be edited accordingly.  Files,
+to which there are local links (not http: or file: URLs), must be
+placed in the _static subdirectory of the Sphinx directory. The
+utility doconce sphinxfix_localURLs is run to check for local links
+in the Doconce file: for each such link, say dir1/dir2/myfile.txt it
+replaces the link by _static/myfile.txt and copies
+dir1/dir2/myfile.txt to a local _static directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in _static or lets a script
+do it automatically. The user must copy all _static/* files to the
+_static subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a _static or _static-name directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the conf.py
@@ -16031,25 +16062,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te `doconce sphinx_dir` script copies directories named `figs` or `figures`
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, `automake-sphinx.py` must be edited accordingly.
-Links to local files (not `http:` or `file:` URLs) must be placed
-in the `_static` subdirectory of the Sphinx directory. The
-utility `doconce sphinxfix_localURLs` is run to check for local
-links: for each such link, say `dir1/dir2/myfile.txt` it replaces
-the link by `_static/myfile.txt` and copies `dir1/dir2/myfile.txt`
-to a local `_static` directory (in the same directory as the
-script is run). The user must copy all `_static/*` files to the
-`_static` subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the `_static` subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a `_static` directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The `doconce sphinx_dir` script copies directories named `figs` or
+`figures` over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, `automake-sphinx.py` must be edited accordingly.  Files,
+to which there are local links (not `http:` or `file:` URLs), must be
+placed in the `_static` subdirectory of the Sphinx directory. The
+utility `doconce sphinxfix_localURLs` is run to check for local links
+in the Doconce file: for each such link, say `dir1/dir2/myfile.txt` it
+replaces the link by `_static/myfile.txt` and copies
+`dir1/dir2/myfile.txt` to a local `_static` directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in `_static` or lets a script
+do it automatically. The user must copy all `_static/*` files to the
+`_static` subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a `_static` or `_static-name` directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the `conf.py`
@@ -16787,25 +16817,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te `doconce sphinx_dir` script copies directories named `figs` or `figures`
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, `automake-sphinx.py` must be edited accordingly.
-Links to local files (not `http:` or `file:` URLs) must be placed
-in the `_static` subdirectory of the Sphinx directory. The
-utility `doconce sphinxfix_localURLs` is run to check for local
-links: for each such link, say `dir1/dir2/myfile.txt` it replaces
-the link by `_static/myfile.txt` and copies `dir1/dir2/myfile.txt`
-to a local `_static` directory (in the same directory as the
-script is run). The user must copy all `_static/*` files to the
-`_static` subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the `_static` subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a `_static` directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The `doconce sphinx_dir` script copies directories named `figs` or
+`figures` over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, `automake-sphinx.py` must be edited accordingly.  Files,
+to which there are local links (not `http:` or `file:` URLs), must be
+placed in the `_static` subdirectory of the Sphinx directory. The
+utility `doconce sphinxfix_localURLs` is run to check for local links
+in the Doconce file: for each such link, say `dir1/dir2/myfile.txt` it
+replaces the link by `_static/myfile.txt` and copies
+`dir1/dir2/myfile.txt` to a local `_static` directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in `_static` or lets a script
+do it automatically. The user must copy all `_static/*` files to the
+`_static` subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a `_static` or `_static-name` directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the `conf.py`
@@ -16957,7 +16986,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sun, 24 Jun 2012 (13:47)
+DATE: Tue, 03 Jul 2012 (15:42)
 
 
 
@@ -17061,7 +17090,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sun, 24 Jun 2012 (13:47)
+DATE: Tue, 03 Jul 2012 (15:42)
 
 
 
@@ -17175,7 +17204,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 24 Jun 2012 (13:47)</center>
+<center>Tue, 03 Jul 2012 (15:42)</center>
 
 
 
@@ -17306,7 +17335,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 24 Jun 2012 (13:47)</center>
+<center>Tue, 03 Jul 2012 (15:42)</center>
 
 
 
@@ -18003,22 +18032,42 @@ setup:
 see the "Doconce Manual": "manual.do.txt".
 !ec
 which appears as see the "Doconce Manual": "manual.do.txt".
-If you want to view such source code files *in the browser*,
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+  * In the `html` format the links work well if the files are
+    supplied with the `.html` with the same relative location.
+  * In the `latex` and `pdflatex` formats, such links in PDF files
+    will unless the `.tex` file has a full URL specified through
+    a `\hyperbaseurl` command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+  * In the `sphinx` format, local files to which there are links should only be
+    located in a `_static` or `_static-name` subdirectory.
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a `_static` or `_static-name` directory and makes links to
+files in this directory only (`name` is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the `html` format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 `pygmentize`, e.g.,
 !bc sys
 Terminal> pygmentize -l bash -f html -O full,style=emacs \
           -o _static/make.sh.html subdir/make.sh
 !ec
 Then you can link to `_static/make.sh.html` instead of
-`subdir/make.sh`. Or you can do both versions:
+`subdir/make.sh`. Here is an example where the reader
+has the file available as `src/myprog.py` in her
+software and the document links to `_static/myprog.py`:
 !bc
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 !ec
 
-Links to files with other extensions must be realized
-*with the filename as link text*, written as
+Links to files with other extensions are typeset with
+*the filename as link text*. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 !bc
@@ -18039,7 +18088,7 @@ resulting in the link URL: "manual.html".
 #`_static` directory - links in the `.rst` files are automatically
 #adjusted.)
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 !bc
 Click on this link: URL:"http://code.google.com/p/doconce".
@@ -19328,6 +19377,14 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js"]
+  }
+});
+</script>
 <script type="text/javascript"
  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
@@ -20068,25 +20125,24 @@ You should at least read the script prior to executing it to have
 some idea of what is done.
 
 <P>
-Te <tt>doconce sphinx_dir</tt> script copies directories named <tt>figs</tt> or <tt>figures</tt>
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, <tt>automake-sphinx.py</tt> must be edited accordingly.
-Links to local files (not <tt>http:</tt> or <tt>file:</tt> URLs) must be placed
-in the <tt>_static</tt> subdirectory of the Sphinx directory. The
-utility <tt>doconce sphinxfix_localURLs</tt> is run to check for local
-links: for each such link, say <tt>dir1/dir2/myfile.txt</tt> it replaces
-the link by <tt>_static/myfile.txt</tt> and copies <tt>dir1/dir2/myfile.txt</tt>
-to a local <tt>_static</tt> directory (in the same directory as the
-script is run). The user must copy all <tt>_static/*</tt> files to the
-<tt>_static</tt> subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the <tt>_static</tt> subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a <tt>_static</tt> directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The <tt>doconce sphinx_dir</tt> script copies directories named <tt>figs</tt> or
+<tt>figures</tt> over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, <tt>automake-sphinx.py</tt> must be edited accordingly.  Files,
+to which there are local links (not <tt>http:</tt> or <tt>file:</tt> URLs), must be
+placed in the <tt>_static</tt> subdirectory of the Sphinx directory. The
+utility <tt>doconce sphinxfix_localURLs</tt> is run to check for local links
+in the Doconce file: for each such link, say <tt>dir1/dir2/myfile.txt</tt> it
+replaces the link by <tt>_static/myfile.txt</tt> and copies
+<tt>dir1/dir2/myfile.txt</tt> to a local <tt>_static</tt> directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in <tt>_static</tt> or lets a script
+do it automatically. The user must copy all <tt>_static/*</tt> files to the
+<tt>_static</tt> subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a <tt>_static</tt> or <tt>_static-name</tt> directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 <P>
 Doconce comes with a collection of HTML themes for Sphinx documents.
@@ -20576,7 +20632,7 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
 
 <P>
 <!-- latex/PDF format can make use of the movie15 package for displaying movies, -->
-<!-- or just plain \h<a href="#run: ...">run: ...</a>{...} -->
+<!-- or just plain \href{run: ...}{...} -->
 
 <P>
 
@@ -20714,9 +20770,32 @@ see the "Doconce Manual": "manual.do.txt".
 </pre>
 </blockquote>   <! -- end verbatim block -->
 which appears as see the <a href="manual.do.txt">Doconce Manual</a>.
-If you want to view such source code files <em>in the browser</em>,
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+<P>
+
+<ul>
+  <li> In the <tt>html</tt> format the links work well if the files are
+    supplied with the <tt>.html</tt> with the same relative location.
+  <li> In the <tt>latex</tt> and <tt>pdflatex</tt> formats, such links in PDF files
+    will unless the <tt>.tex</tt> file has a full URL specified through
+    a <tt>\hyperbaseurl</tt> command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+  <li> In the <tt>sphinx</tt> format, local files to which there are links should only be
+    located in a <tt>_static</tt> or <tt>_static-name</tt> subdirectory.
+</ul>
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a <tt>_static</tt> or <tt>_static-name</tt> directory and makes links to
+files in this directory only (<tt>name</tt> is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the <tt>html</tt> format is of relevance).
+
+<P>
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 <tt>pygmentize</tt>, e.g.,
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
@@ -20725,7 +20804,9 @@ Terminal&gt; pygmentize -l bash -f html -O full,style=emacs \
 </pre>
 </blockquote>   <! -- end verbatim block -->
 Then you can link to <tt>_static/make.sh.html</tt> instead of
-<tt>subdir/make.sh</tt>. Or you can do both versions:
+<tt>subdir/make.sh</tt>. Here is an example where the reader
+has the file available as <tt>src/myprog.py</tt> in her
+software and the document links to <tt>_static/myprog.py</tt>:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
@@ -20733,8 +20814,8 @@ See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 </blockquote>   <! -- end verbatim block -->
 
 <P>
-Links to files with other extensions must be realized
-<em>with the filename as link text</em>, written as
+Links to files with other extensions are typeset with
+<em>the filename as link text</em>. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 <blockquote>    <!-- begin verbatim block  -->
@@ -20759,7 +20840,7 @@ resulting in the link <a href="manual.html"><tt>manual.html</tt></a>.
 <!-- adjusted.) -->
 
 <P>
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
@@ -20881,7 +20962,7 @@ By the way, here is an example on referencing Figure <a href="#fig:viz">fig:viz<
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections <a href="#mathtext">LaTeX Blocks of Mathematical Text</a> and <a href="#newcommands">Macros (Newcommands)</a> are
 nice to demonstrate, as well as a reference to equations,
-say (<a href="#my:eq1">my:eq1</a>)--(<a href="#my:eq2">my:eq2</a>). A comparison of the output and
+say \eqref{my:eq1}--\eqref{my:eq2}. A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -22304,13 +22385,27 @@ and Sphinx just typeset the list as a list with keywords.
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
 % #endif
+% #ifdef PALATINO
+% Set paraltino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 
+% Hyperlinks in PDF:
 \usepackage[%
-colorlinks=true,
-linkcolor=blue,
-citecolor=black,
-filecolor=blue,
-urlcolor=blue]{hyperref}
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
@@ -22994,25 +23089,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te \code{doconce sphinx_dir} script copies directories named \code{figs} or \code{figures}
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, \code{automake-sphinx.py} must be edited accordingly.
-Links to local files (not \code{http:} or \code{file:} URLs) must be placed
-in the \code{_static} subdirectory of the Sphinx directory. The
-utility \code{doconce sphinxfix_localURLs} is run to check for local
-links: for each such link, say \code{dir1/dir2/myfile.txt} it replaces
-the link by \code{_static/myfile.txt} and copies \code{dir1/dir2/myfile.txt}
-to a local \code{_static} directory (in the same directory as the
-script is run). The user must copy all \code{_static/*} files to the
-\code{_static} subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the \code{_static} subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a \code{_static} directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The \code{doconce sphinx_dir} script copies directories named \code{figs} or
+\code{figures} over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, \code{automake-sphinx.py} must be edited accordingly.  Files,
+to which there are local links (not \code{http:} or \code{file:} URLs), must be
+placed in the \code{_static} subdirectory of the Sphinx directory. The
+utility \code{doconce sphinxfix_localURLs} is run to check for local links
+in the Doconce file: for each such link, say \code{dir1/dir2/myfile.txt} it
+replaces the link by \code{_static/myfile.txt} and copies
+\code{dir1/dir2/myfile.txt} to a local \code{_static} directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in \code{_static} or lets a script
+do it automatically. The user must copy all \code{_static/*} files to the
+\code{_static} subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a \code{_static} or \code{_static-name} directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the \code{conf.py}
@@ -23580,22 +23674,47 @@ setup:
 see the "Doconce Manual": "manual.do.txt".
 \eccq
 which appears as see the \href{{manual.do.txt}}{Doconce Manual}.
-If you want to view such source code files \emph{in the browser},
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+\begin{itemize}
+  \item In the \code{html} format the links work well if the files are
+    supplied with the \code{.html} with the same relative location.
+
+  \item In the \code{latex} and \code{pdflatex} formats, such links in PDF files
+    will unless the \code{.tex} file has a full URL specified through
+    a \code{\hyperbaseurl} command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+
+  \item In the \code{sphinx} format, local files to which there are links should only be
+    located in a \code{_static} or \code{_static-name} subdirectory.
+\end{itemize}
+
+\noindent
+As a consequence, we strongly recommend that one copies the relevant
+files to a \code{_static} or \code{_static-name} directory and makes links to
+files in this directory only (\code{name} is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the \code{html} format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 \code{pygmentize}, e.g.,
 \bsys
 Terminal> pygmentize -l bash -f html -O full,style=emacs \
           -o _static/make.sh.html subdir/make.sh
 \esys
 Then you can link to \code{_static/make.sh.html} instead of
-\code{subdir/make.sh}. Or you can do both versions:
+\code{subdir/make.sh}. Here is an example where the reader
+has the file available as \code{src/myprog.py} in her
+software and the document links to \code{_static/myprog.py}:
 \bccq
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 \eccq
 
-Links to files with other extensions must be realized
-\emph{with the filename as link text}, written as
+Links to files with other extensions are typeset with
+\emph{the filename as link text}. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 \bccq
@@ -23616,7 +23735,7 @@ resulting in the link \href{{manual.html}}{\nolinkurl{manual.html}}.
 % \code{_static} directory - links in the \code{.rst} files are automatically
 % adjusted.)
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 \bccq
 Click on this link: URL:"http://code.google.com/p/doconce".
@@ -25516,25 +25635,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te ``doconce sphinx_dir`` script copies directories named ``figs`` or ``figures``
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, ``automake-sphinx.py`` must be edited accordingly.
-Links to local files (not ``http:`` or ``file:`` URLs) must be placed
-in the ``_static`` subdirectory of the Sphinx directory. The
-utility ``doconce sphinxfix_localURLs`` is run to check for local
-links: for each such link, say ``dir1/dir2/myfile.txt`` it replaces
-the link by ``_static/myfile.txt`` and copies ``dir1/dir2/myfile.txt``
-to a local ``_static`` directory (in the same directory as the
-script is run). The user must copy all ``_static/*`` files to the
-``_static`` subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the ``_static`` subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a ``_static`` directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The ``doconce sphinx_dir`` script copies directories named ``figs`` or
+``figures`` over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, ``automake-sphinx.py`` must be edited accordingly.  Files,
+to which there are local links (not ``http:`` or ``file:`` URLs), must be
+placed in the ``_static`` subdirectory of the Sphinx directory. The
+utility ``doconce sphinxfix_localURLs`` is run to check for local links
+in the Doconce file: for each such link, say ``dir1/dir2/myfile.txt`` it
+replaces the link by ``_static/myfile.txt`` and copies
+``dir1/dir2/myfile.txt`` to a local ``_static`` directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in ``_static`` or lets a script
+do it automatically. The user must copy all ``_static/*`` files to the
+``_static`` subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a ``_static`` or ``_static-name`` directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the ``conf.py``
@@ -26084,9 +26202,29 @@ setup::
         see the "Doconce Manual": "manual.do.txt".
 
 which appears as see the `Doconce Manual <manual.do.txt>`_.
-If you want to view such source code files *in the browser*,
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+  * In the ``html`` format the links work well if the files are
+    supplied with the ``.html`` with the same relative location.
+
+  * In the ``latex`` and ``pdflatex`` formats, such links in PDF files
+    will unless the ``.tex`` file has a full URL specified through
+    a ``\hyperbaseurl`` command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+
+  * In the ``sphinx`` format, local files to which there are links should only be
+    located in a ``_static`` or ``_static-name`` subdirectory.
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a ``_static`` or ``_static-name`` directory and makes links to
+files in this directory only (``name`` is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the ``html`` format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 ``pygmentize``, e.g.::
 
 
@@ -26094,14 +26232,16 @@ the source code file to HTML format by running
                   -o _static/make.sh.html subdir/make.sh
 
 Then you can link to ``_static/make.sh.html`` instead of
-``subdir/make.sh``. Or you can do both versions::
+``subdir/make.sh``. Here is an example where the reader
+has the file available as ``src/myprog.py`` in her
+software and the document links to ``_static/myprog.py``::
 
 
         See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 
 
-Links to files with other extensions must be realized
-*with the filename as link text*, written as
+Links to files with other extensions are typeset with
+*the filename as link text*. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes::
 
@@ -26136,7 +26276,7 @@ resulting in the link `<manual.html>`_.
 .. adjusted.)
 
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes::
 
 
@@ -28232,25 +28372,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te ``doconce sphinx_dir`` script copies directories named ``figs`` or ``figures``
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, ``automake-sphinx.py`` must be edited accordingly.
-Links to local files (not ``http:`` or ``file:`` URLs) must be placed
-in the ``_static`` subdirectory of the Sphinx directory. The
-utility ``doconce sphinxfix_localURLs`` is run to check for local
-links: for each such link, say ``dir1/dir2/myfile.txt`` it replaces
-the link by ``_static/myfile.txt`` and copies ``dir1/dir2/myfile.txt``
-to a local ``_static`` directory (in the same directory as the
-script is run). The user must copy all ``_static/*`` files to the
-``_static`` subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the ``_static`` subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a ``_static`` directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The ``doconce sphinx_dir`` script copies directories named ``figs`` or
+``figures`` over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, ``automake-sphinx.py`` must be edited accordingly.  Files,
+to which there are local links (not ``http:`` or ``file:`` URLs), must be
+placed in the ``_static`` subdirectory of the Sphinx directory. The
+utility ``doconce sphinxfix_localURLs`` is run to check for local links
+in the Doconce file: for each such link, say ``dir1/dir2/myfile.txt`` it
+replaces the link by ``_static/myfile.txt`` and copies
+``dir1/dir2/myfile.txt`` to a local ``_static`` directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in ``_static`` or lets a script
+do it automatically. The user must copy all ``_static/*`` files to the
+``_static`` subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a ``_static`` or ``_static-name`` directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the ``conf.py``
@@ -28868,9 +29007,29 @@ setup:
         see the "Doconce Manual": "manual.do.txt".
 
 which appears as see the `Doconce Manual <manual.do.txt>`_.
-If you want to view such source code files *in the browser*,
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+  * In the ``html`` format the links work well if the files are
+    supplied with the ``.html`` with the same relative location.
+
+  * In the ``latex`` and ``pdflatex`` formats, such links in PDF files
+    will unless the ``.tex`` file has a full URL specified through
+    a ``\hyperbaseurl`` command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+
+  * In the ``sphinx`` format, local files to which there are links should only be
+    located in a ``_static`` or ``_static-name`` subdirectory.
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a ``_static`` or ``_static-name`` directory and makes links to
+files in this directory only (``name`` is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the ``html`` format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 ``pygmentize``, e.g.,
 
 .. code-block:: console
@@ -28879,7 +29038,9 @@ the source code file to HTML format by running
                   -o _static/make.sh.html subdir/make.sh
 
 Then you can link to ``_static/make.sh.html`` instead of
-``subdir/make.sh``. Or you can do both versions:
+``subdir/make.sh``. Here is an example where the reader
+has the file available as ``src/myprog.py`` in her
+software and the document links to ``_static/myprog.py``:
 
 .. code-block:: py
 
@@ -28887,8 +29048,8 @@ Then you can link to ``_static/make.sh.html`` instead of
         See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 
 
-Links to files with other extensions must be realized
-*with the filename as link text*, written as
+Links to files with other extensions are typeset with
+*the filename as link text*. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 
@@ -28925,7 +29086,7 @@ resulting in the link `<manual.html>`_.
 .. adjusted.)
 
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 
 .. code-block:: py
@@ -30950,25 +31111,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te `doconce sphinx_dir` script copies directories named `figs` or `figures`
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, `automake-sphinx.py` must be edited accordingly.
-Links to local files (not `http:` or `file:` URLs) must be placed
-in the `_static` subdirectory of the Sphinx directory. The
-utility `doconce sphinxfix_localURLs` is run to check for local
-links: for each such link, say `dir1/dir2/myfile.txt` it replaces
-the link by `_static/myfile.txt` and copies `dir1/dir2/myfile.txt`
-to a local `_static` directory (in the same directory as the
-script is run). The user must copy all `_static/*` files to the
-`_static` subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the `_static` subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a `_static` directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The `doconce sphinx_dir` script copies directories named `figs` or
+`figures` over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, `automake-sphinx.py` must be edited accordingly.  Files,
+to which there are local links (not `http:` or `file:` URLs), must be
+placed in the `_static` subdirectory of the Sphinx directory. The
+utility `doconce sphinxfix_localURLs` is run to check for local links
+in the Doconce file: for each such link, say `dir1/dir2/myfile.txt` it
+replaces the link by `_static/myfile.txt` and copies
+`dir1/dir2/myfile.txt` to a local `_static` directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in `_static` or lets a script
+do it automatically. The user must copy all `_static/*` files to the
+`_static` subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a `_static` or `_static-name` directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the `conf.py`
@@ -31473,22 +31633,38 @@ setup:
 see the "Doconce Manual": "manual.do.txt".
 }}}
 which appears as see the [manual.do.txt Doconce Manual].
-If you want to view such source code files *in the browser*,
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+
+  * In the `html` format the links work well if the files are    supplied with the `.html` with the same relative location.
+  * In the `latex` and `pdflatex` formats, such links in PDF files    will unless the `.tex` file has a full URL specified through    a `\hyperbaseurl` command and the linked files are located correctly    relative to this URL. Otherwise full URL must be used in links.
+  * In the `sphinx` format, local files to which there are links should only be    located in a `_static` or `_static-name` subdirectory.
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a `_static` or `_static-name` directory and makes links to
+files in this directory only (`name` is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the `html` format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 `pygmentize`, e.g.,
 {{{
 Terminal> pygmentize -l bash -f html -O full,style=emacs \
           -o _static/make.sh.html subdir/make.sh
 }}}
 Then you can link to `_static/make.sh.html` instead of
-`subdir/make.sh`. Or you can do both versions:
+`subdir/make.sh`. Here is an example where the reader
+has the file available as `src/myprog.py` in her
+software and the document links to `_static/myprog.py`:
 {{{
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 }}}
 
-Links to files with other extensions must be realized
-*with the filename as link text*, written as
+Links to files with other extensions are typeset with
+*the filename as link text*. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 {{{
@@ -31509,7 +31685,7 @@ resulting in the link manual.html.
 <wiki:comment> `_static` directory - links in the `.rst` files are automatically </wiki:comment>
 <wiki:comment> adjusted.) </wiki:comment>
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 {{{
 Click on this link: URL:"http://code.google.com/p/doconce".
@@ -33277,25 +33453,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te <code>doconce sphinx_dir</code> script copies directories named <code>figs</code> or <code>figures</code>
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, <code>automake-sphinx.py</code> must be edited accordingly.
-Links to local files (not <code>http:</code> or <code>file:</code> URLs) must be placed
-in the <code>_static</code> subdirectory of the Sphinx directory. The
-utility <code>doconce sphinxfix_localURLs</code> is run to check for local
-links: for each such link, say <code>dir1/dir2/myfile.txt</code> it replaces
-the link by <code>_static/myfile.txt</code> and copies <code>dir1/dir2/myfile.txt</code>
-to a local <code>_static</code> directory (in the same directory as the
-script is run). The user must copy all <code>_static/*</code> files to the
-<code>_static</code> subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the <code>_static</code> subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a <code>_static</code> directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The <code>doconce sphinx_dir</code> script copies directories named <code>figs</code> or
+<code>figures</code> over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, <code>automake-sphinx.py</code> must be edited accordingly.  Files,
+to which there are local links (not <code>http:</code> or <code>file:</code> URLs), must be
+placed in the <code>_static</code> subdirectory of the Sphinx directory. The
+utility <code>doconce sphinxfix_localURLs</code> is run to check for local links
+in the Doconce file: for each such link, say <code>dir1/dir2/myfile.txt</code> it
+replaces the link by <code>_static/myfile.txt</code> and copies
+<code>dir1/dir2/myfile.txt</code> to a local <code>_static</code> directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in <code>_static</code> or lets a script
+do it automatically. The user must copy all <code>_static/*</code> files to the
+<code>_static</code> subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a <code>_static</code> or <code>_static-name</code> directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the <code>conf.py</code>
@@ -33773,22 +33948,37 @@ setup:
 see the "Doconce Manual": "manual.do.txt".
 </code>
 which appears as see the [manual.do.txt Doconce Manual].
-If you want to view such source code files ''in the browser'',
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+
+<ul>
+  <li> In the <code>html</code> format the links work well if the files are    supplied with the <code>.html</code> with the same relative location.  <li> In the <code>latex</code> and <code>pdflatex</code> formats, such links in PDF files    will unless the <code>.tex</code> file has a full URL specified through    a <code>\hyperbaseurl</code> command and the linked files are located correctly    relative to this URL. Otherwise full URL must be used in links.  <li> In the <code>sphinx</code> format, local files to which there are links should only be    located in a <code>_static</code> or <code>_static-name</code> subdirectory.</ul>
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a <code>_static</code> or <code>_static-name</code> directory and makes links to
+files in this directory only (<code>name</code> is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the <code>html</code> format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 <code>pygmentize</code>, e.g.,
 <syntaxhighlight lang="bash">
 Terminal> pygmentize -l bash -f html -O full,style=emacs \
           -o _static/make.sh.html subdir/make.sh
 </code>
 Then you can link to <code>_static/make.sh.html</code> instead of
-<code>subdir/make.sh</code>. Or you can do both versions:
+<code>subdir/make.sh</code>. Here is an example where the reader
+has the file available as <code>src/myprog.py</code> in her
+software and the document links to <code>_static/myprog.py</code>:
 <code>
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 </code>
 
-Links to files with other extensions must be realized
-''with the filename as link text'', written as
+Links to files with other extensions are typeset with
+''the filename as link text''. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 <code>
@@ -33809,7 +33999,7 @@ resulting in the link manual.html.
 <!--> <code>_static</code> directory - links in the <code>.rst</code> files are automatically -->
 <!--> adjusted.) -->
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 <code>
 Click on this link: URL:"http://code.google.com/p/doconce".
@@ -35563,25 +35753,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te {{{doconce sphinx_dir}}} script copies directories named {{{figs}}} or {{{figures}}}
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, {{{automake-sphinx.py}}} must be edited accordingly.
-Links to local files (not {{{http:}}} or {{{file:}}} URLs) must be placed
-in the {{{_static}}} subdirectory of the Sphinx directory. The
-utility {{{doconce sphinxfix_localURLs}}} is run to check for local
-links: for each such link, say {{{dir1/dir2/myfile.txt}}} it replaces
-the link by {{{_static/myfile.txt}}} and copies {{{dir1/dir2/myfile.txt}}}
-to a local {{{_static}}} directory (in the same directory as the
-script is run). The user must copy all {{{_static/*}}} files to the
-{{{_static}}} subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the {{{_static}}} subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a {{{_static}}} directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The {{{doconce sphinx_dir}}} script copies directories named {{{figs}}} or
+{{{figures}}} over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, {{{automake-sphinx.py}}} must be edited accordingly.  Files,
+to which there are local links (not {{{http:}}} or {{{file:}}} URLs), must be
+placed in the {{{_static}}} subdirectory of the Sphinx directory. The
+utility {{{doconce sphinxfix_localURLs}}} is run to check for local links
+in the Doconce file: for each such link, say {{{dir1/dir2/myfile.txt}}} it
+replaces the link by {{{_static/myfile.txt}}} and copies
+{{{dir1/dir2/myfile.txt}}} to a local {{{_static}}} directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in {{{_static}}} or lets a script
+do it automatically. The user must copy all {{{_static/*}}} files to the
+{{{_static}}} subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a {{{_static}}} or {{{_static-name}}} directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the {{{conf.py}}}
@@ -36072,22 +36261,38 @@ setup:
 see the "Doconce Manual": "manual.do.txt".
 }}}
 which appears as see the [[manual.do.txt|Doconce Manual]].
-If you want to view such source code files //in the browser//,
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+
+  * In the {{{html}}} format the links work well if the files are    supplied with the {{{.html}}} with the same relative location.
+  * In the {{{latex}}} and {{{pdflatex}}} formats, such links in PDF files    will unless the {{{.tex}}} file has a full URL specified through    a {{{\hyperbaseurl}}} command and the linked files are located correctly    relative to this URL. Otherwise full URL must be used in links.
+  * In the {{{sphinx}}} format, local files to which there are links should only be    located in a {{{_static}}} or {{{_static-name}}} subdirectory.
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a {{{_static}}} or {{{_static-name}}} directory and makes links to
+files in this directory only ({{{name}}} is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the {{{html}}} format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 {{{pygmentize}}}, e.g.,
 {{{
 Terminal> pygmentize -l bash -f html -O full,style=emacs \
           -o _static/make.sh.html subdir/make.sh
 }}}
 Then you can link to {{{_static/make.sh.html}}} instead of
-{{{subdir/make.sh}}}. Or you can do both versions:
+{{{subdir/make.sh}}}. Here is an example where the reader
+has the file available as {{{src/myprog.py}}} in her
+software and the document links to {{{_static/myprog.py}}}:
 {{{
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 }}}
 
-Links to files with other extensions must be realized
-//with the filename as link text//, written as
+Links to files with other extensions are typeset with
+//the filename as link text//. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 {{{
@@ -36108,7 +36313,7 @@ resulting in the link [[manual.html]].
 <wiki:comment> {{{_static}}} directory - links in the {{{.rst}}} files are automatically </wiki:comment>
 <wiki:comment> adjusted.) </wiki:comment>
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 {{{
 Click on this link: URL:"http://code.google.com/p/doconce".
@@ -37921,25 +38126,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te 'doconce sphinx_dir' script copies directories named 'figs' or 'figures'
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, 'automake-sphinx.py' must be edited accordingly.
-Links to local files (not 'http:' or 'file:' URLs) must be placed
-in the '_static' subdirectory of the Sphinx directory. The
-utility 'doconce sphinxfix_localURLs' is run to check for local
-links: for each such link, say 'dir1/dir2/myfile.txt' it replaces
-the link by '_static/myfile.txt' and copies 'dir1/dir2/myfile.txt'
-to a local '_static' directory (in the same directory as the
-script is run). The user must copy all '_static/*' files to the
-'_static' subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the '_static' subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a '_static' directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The 'doconce sphinx_dir' script copies directories named 'figs' or
+'figures' over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, 'automake-sphinx.py' must be edited accordingly.  Files,
+to which there are local links (not 'http:' or 'file:' URLs), must be
+placed in the '_static' subdirectory of the Sphinx directory. The
+utility 'doconce sphinxfix_localURLs' is run to check for local links
+in the Doconce file: for each such link, say 'dir1/dir2/myfile.txt' it
+replaces the link by '_static/myfile.txt' and copies
+'dir1/dir2/myfile.txt' to a local '_static' directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in '_static' or lets a script
+do it automatically. The user must copy all '_static/*' files to the
+'_static' subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a '_static' or '_static-name' directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the 'conf.py'
@@ -38435,9 +38639,27 @@ setup::
         see the "Doconce Manual": "manual.do.txt".
 
 which appears as see the "manual.do.txt":Doconce Manual.
-If you want to view such source code files *in the browser*,
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+  - In the 'html' format the links work well if the files are
+    supplied with the '.html' with the same relative location.
+  - In the 'latex' and 'pdflatex' formats, such links in PDF files
+    will unless the '.tex' file has a full URL specified through
+    a '\hyperbaseurl' command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+  - In the 'sphinx' format, local files to which there are links should only be
+    located in a '_static' or '_static-name' subdirectory.
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a '_static' or '_static-name' directory and makes links to
+files in this directory only ('name' is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the 'html' format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 'pygmentize', e.g.::
 
 
@@ -38445,14 +38667,15 @@ the source code file to HTML format by running
                   -o _static/make.sh.html subdir/make.sh
 
 Then you can link to '_static/make.sh.html' instead of
-'subdir/make.sh'. Or you can do both versions::
-
-
+'subdir/make.sh'. Here is an example where the reader
+has the file available as 'src/myprog.py' in her
+software and the document links to '_static/myprog.py':
+!bc  
         See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 
 
-Links to files with other extensions must be realized
-*with the filename as link text*, written as
+Links to files with other extensions are typeset with
+*the filename as link text*. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes::
 
@@ -38462,7 +38685,7 @@ in double quotes::
 resulting in the link "manual.html":manual.html.
 
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes::
 
 
@@ -40320,25 +40543,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te C{doconce sphinx_dir} script copies directories named C{figs} or C{figures}
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, C{automake-sphinx.py} must be edited accordingly.
-Links to local files (not C{http:} or C{file:} URLs) must be placed
-in the C{_static} subdirectory of the Sphinx directory. The
-utility C{doconce sphinxfix_localURLs} is run to check for local
-links: for each such link, say C{dir1/dir2/myfile.txt} it replaces
-the link by C{_static/myfile.txt} and copies C{dir1/dir2/myfile.txt}
-to a local C{_static} directory (in the same directory as the
-script is run). The user must copy all C{_static/*} files to the
-C{_static} subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the C{_static} subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a C{_static} directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The C{doconce sphinx_dir} script copies directories named C{figs} or
+C{figures} over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, C{automake-sphinx.py} must be edited accordingly.  Files,
+to which there are local links (not C{http:} or C{file:} URLs), must be
+placed in the C{_static} subdirectory of the Sphinx directory. The
+utility C{doconce sphinxfix_localURLs} is run to check for local links
+in the Doconce file: for each such link, say C{dir1/dir2/myfile.txt} it
+replaces the link by C{_static/myfile.txt} and copies
+C{dir1/dir2/myfile.txt} to a local C{_static} directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in C{_static} or lets a script
+do it automatically. The user must copy all C{_static/*} files to the
+C{_static} subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a C{_static} or C{_static-name} directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the C{conf.py}
@@ -40852,9 +41074,27 @@ setup::
         see the "Doconce Manual": "manual.do.txt".
 
 which appears as see the U{Doconce Manual<manual.do.txt>}.
-If you want to view such source code files I{in the browser},
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+  - In the C{html} format the links work well if the files are
+    supplied with the C{.html} with the same relative location.
+  - In the C{latex} and C{pdflatex} formats, such links in PDF files
+    will unless the C{.tex} file has a full URL specified through
+    a C{\hyperbaseurl} command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+  - In the C{sphinx} format, local files to which there are links should only be
+    located in a C{_static} or C{_static-name} subdirectory.
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a C{_static} or C{_static-name} directory and makes links to
+files in this directory only (C{name} is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the C{html} format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 C{pygmentize}, e.g.::
 
 
@@ -40862,14 +41102,16 @@ C{pygmentize}, e.g.::
                   -o _static/make.sh.html subdir/make.sh
 
 Then you can link to C{_static/make.sh.html} instead of
-C{subdir/make.sh}. Or you can do both versions::
+C{subdir/make.sh}. Here is an example where the reader
+has the file available as C{src/myprog.py} in her
+software and the document links to C{_static/myprog.py}::
 
 
         See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 
 
-Links to files with other extensions must be realized
-I{with the filename as link text}, written as
+Links to files with other extensions are typeset with
+I{the filename as link text}. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes::
 
@@ -40879,7 +41121,7 @@ in double quotes::
 resulting in the link U{manual.html<manual.html>}.
 
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes::
 
 
@@ -42787,25 +43029,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te doconce sphinx_dir script copies directories named figs or figures
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, automake-sphinx.py must be edited accordingly.
-Links to local files (not http: or file: URLs) must be placed
-in the _static subdirectory of the Sphinx directory. The
-utility doconce sphinxfix_localURLs is run to check for local
-links: for each such link, say dir1/dir2/myfile.txt it replaces
-the link by _static/myfile.txt and copies dir1/dir2/myfile.txt
-to a local _static directory (in the same directory as the
-script is run). The user must copy all _static/* files to the
-_static subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the _static subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a _static directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The doconce sphinx_dir script copies directories named figs or
+figures over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, automake-sphinx.py must be edited accordingly.  Files,
+to which there are local links (not http: or file: URLs), must be
+placed in the _static subdirectory of the Sphinx directory. The
+utility doconce sphinxfix_localURLs is run to check for local links
+in the Doconce file: for each such link, say dir1/dir2/myfile.txt it
+replaces the link by _static/myfile.txt and copies
+dir1/dir2/myfile.txt to a local _static directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in _static or lets a script
+do it automatically. The user must copy all _static/* files to the
+_static subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a _static or _static-name directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the conf.py
@@ -43332,9 +43573,29 @@ setup::
         see the "Doconce Manual": "manual.do.txt".
 
 which appears as see the Doconce Manual (manual.do.txt).
-If you want to view such source code files *in the browser*,
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+  * In the html format the links work well if the files are
+    supplied with the .html with the same relative location.
+
+  * In the latex and pdflatex formats, such links in PDF files
+    will unless the .tex file has a full URL specified through
+    a \hyperbaseurl command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+
+  * In the sphinx format, local files to which there are links should only be
+    located in a _static or _static-name subdirectory.
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a _static or _static-name directory and makes links to
+files in this directory only (name is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the html format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 pygmentize, e.g.::
 
 
@@ -43342,14 +43603,16 @@ pygmentize, e.g.::
                   -o _static/make.sh.html subdir/make.sh
 
 Then you can link to _static/make.sh.html instead of
-subdir/make.sh. Or you can do both versions::
+subdir/make.sh. Here is an example where the reader
+has the file available as src/myprog.py in her
+software and the document links to _static/myprog.py::
 
 
         See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 
 
-Links to files with other extensions must be realized
-*with the filename as link text*, written as
+Links to files with other extensions are typeset with
+*the filename as link text*. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes::
 
@@ -43359,7 +43622,7 @@ in double quotes::
 resulting in the link manual.html.
 
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes::
 
 
@@ -45349,25 +45612,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te `doconce sphinx_dir` script copies directories named `figs` or `figures`
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, `automake-sphinx.py` must be edited accordingly.
-Links to local files (not `http:` or `file:` URLs) must be placed
-in the `_static` subdirectory of the Sphinx directory. The
-utility `doconce sphinxfix_localURLs` is run to check for local
-links: for each such link, say `dir1/dir2/myfile.txt` it replaces
-the link by `_static/myfile.txt` and copies `dir1/dir2/myfile.txt`
-to a local `_static` directory (in the same directory as the
-script is run). The user must copy all `_static/*` files to the
-`_static` subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the `_static` subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a `_static` directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The `doconce sphinx_dir` script copies directories named `figs` or
+`figures` over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, `automake-sphinx.py` must be edited accordingly.  Files,
+to which there are local links (not `http:` or `file:` URLs), must be
+placed in the `_static` subdirectory of the Sphinx directory. The
+utility `doconce sphinxfix_localURLs` is run to check for local links
+in the Doconce file: for each such link, say `dir1/dir2/myfile.txt` it
+replaces the link by `_static/myfile.txt` and copies
+`dir1/dir2/myfile.txt` to a local `_static` directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in `_static` or lets a script
+do it automatically. The user must copy all `_static/*` files to the
+`_static` subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a `_static` or `_static-name` directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the `conf.py`
@@ -45929,9 +46191,29 @@ see the "Doconce Manual": "manual.do.txt".
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 which appears as see the [Doconce Manual](manual.do.txt).
-If you want to view such source code files *in the browser*,
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+  * In the `html` format the links work well if the files are
+    supplied with the `.html` with the same relative location.
+
+  * In the `latex` and `pdflatex` formats, such links in PDF files
+    will unless the `.tex` file has a full URL specified through
+    a `\hyperbaseurl` command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+
+  * In the `sphinx` format, local files to which there are links should only be
+    located in a `_static` or `_static-name` subdirectory.
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a `_static` or `_static-name` directory and makes links to
+files in this directory only (`name` is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the `html` format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 `pygmentize`, e.g.,
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
@@ -45940,15 +46222,17 @@ Terminal> pygmentize -l bash -f html -O full,style=emacs \
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Then you can link to `_static/make.sh.html` instead of
-`subdir/make.sh`. Or you can do both versions:
+`subdir/make.sh`. Here is an example where the reader
+has the file available as `src/myprog.py` in her
+software and the document links to `_static/myprog.py`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-Links to files with other extensions must be realized
-*with the filename as link text*, written as
+Links to files with other extensions are typeset with
+*the filename as link text*. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 
@@ -45959,7 +46243,7 @@ URL: "manual.html"
 resulting in the link <manual.html>.
 
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47900,88 +48184,88 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1]
-Overfull \hbox (8.67865pt too wide) in paragraph at lines 136--140
+Overfull \hbox (8.67865pt too wide) in paragraph at lines 145--149
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
 [2] [3] [4]
 
-LaTeX Warning: Reference `my:first:sec' on page 5 undefined on input line 328.
+LaTeX Warning: Reference `my:first:sec' on page 5 undefined on input line 337.
 
 
-LaTeX Warning: Reference `doconce2formats' on page 5 undefined on input line 33
-3.
+LaTeX Warning: Reference `doconce2formats' on page 5 undefined on input line 34
+2.
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 370.
+(amsmath)                 on input line 379.
 
 [5]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 451--469
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 460--478
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 451--469
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 460--478
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 451--469
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 460--478
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 [6] [7]
-Overfull \hbox (79.3756pt too wide) in paragraph at lines 566--574
+Overfull \hbox (79.3756pt too wide) in paragraph at lines 575--583
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
 [8]
-Overfull \hbox (1.85565pt too wide) in paragraph at lines 607--611
+Overfull \hbox (1.85565pt too wide) in paragraph at lines 616--620
  \OT1/phv/b/n/10 Step 1.[] \OT1/phv/m/n/10 Fil-ter the do-conce text to a pre-L
 aTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/phv/m/n/10 for []\OT1/cmtt/m/n/10
  ptex2tex\OT1/phv/m/n/10 :
 
-LaTeX Warning: Reference `newcommands' on page 9 undefined on input line 616.
+LaTeX Warning: Reference `newcommands' on page 9 undefined on input line 625.
 
 
-Overfull \hbox (55.19026pt too wide) in paragraph at lines 614--619
+Overfull \hbox (55.19026pt too wide) in paragraph at lines 623--628
 \OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [9] [10] [11] [12]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 828--829
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 837--838
 [][][][][][][] 
 [13]
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 863--869
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 872--878
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (0.74806pt too wide) in paragraph at lines 870--889
+Overfull \hbox (0.74806pt too wide) in paragraph at lines 879--897
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 901--904
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 909--912
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [14] [15]
-Overfull \hbox (44.67775pt too wide) in paragraph at lines 1013--1019
+Overfull \hbox (44.67775pt too wide) in paragraph at lines 1021--1027
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [16]
-Overfull \hbox (21.15628pt too wide) in paragraph at lines 1079--1083
+Overfull \hbox (21.15628pt too wide) in paragraph at lines 1087--1091
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [17] [18]
 
 LaTeX Warning: Reference `doconce2formats' on page 19 undefined on input line 1
-156.
+164.
 
 
-Overfull \hbox (0.80836pt too wide) in paragraph at lines 1154--1157
+Overfull \hbox (0.80836pt too wide) in paragraph at lines 1162--1165
 \OT1/phv/m/n/10 If you use the minted style, you have to en-able it by run-ning
  []\OT1/cmtt/m/n/10 ptex2tex -DMINTED
 
-Overfull \hbox (5.04823pt too wide) in paragraph at lines 1205--1210
+Overfull \hbox (5.04823pt too wide) in paragraph at lines 1213--1218
 []\OT1/phv/m/n/10 Finally, trans-la-tion to []\OT1/cmtt/m/n/10 pandoc \OT1/phv/
 m/n/10 re-quires the [][][][][][] pro-gram (writ-ten in Haskell)
 [19]
-Overfull \hbox (22.94165pt too wide) in paragraph at lines 1215--1225
+Overfull \hbox (22.94165pt too wide) in paragraph at lines 1223--1233
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
 OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
 hv/m/n/10 .
@@ -47995,7 +48279,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (20 pages, 87424 bytes).
+Output written on tutorial.dvi (20 pages, 87288 bytes).
 Transcript written on tutorial.log.
 + latex tutorial.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -48072,80 +48356,80 @@ Writing index file tutorial.idx
 (./tutorial.out) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1]
-Overfull \hbox (8.67865pt too wide) in paragraph at lines 136--140
+Overfull \hbox (8.67865pt too wide) in paragraph at lines 145--149
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
 [2] [3] [4]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 370.
+(amsmath)                 on input line 379.
 
 [5]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 451--469
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 460--478
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 451--469
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 460--478
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 451--469
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 460--478
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 [6] [7]
-Overfull \hbox (79.3756pt too wide) in paragraph at lines 566--574
+Overfull \hbox (79.3756pt too wide) in paragraph at lines 575--583
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
 [8]
-Overfull \hbox (1.85565pt too wide) in paragraph at lines 607--611
+Overfull \hbox (1.85565pt too wide) in paragraph at lines 616--620
  \OT1/phv/b/n/10 Step 1.[] \OT1/phv/m/n/10 Fil-ter the do-conce text to a pre-L
 aTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/phv/m/n/10 for []\OT1/cmtt/m/n/10
  ptex2tex\OT1/phv/m/n/10 :
 
-Overfull \hbox (55.19026pt too wide) in paragraph at lines 614--619
+Overfull \hbox (55.19026pt too wide) in paragraph at lines 623--628
 \OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [9] [10] [11] [12]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 828--829
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 837--838
 [][][][][][][] 
 [13]
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 863--869
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 872--878
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (0.74806pt too wide) in paragraph at lines 870--889
+Overfull \hbox (0.74806pt too wide) in paragraph at lines 879--897
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 901--904
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 909--912
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [14] [15]
-Overfull \hbox (44.67775pt too wide) in paragraph at lines 1013--1019
+Overfull \hbox (44.67775pt too wide) in paragraph at lines 1021--1027
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [16]
-Overfull \hbox (21.15628pt too wide) in paragraph at lines 1079--1083
+Overfull \hbox (21.15628pt too wide) in paragraph at lines 1087--1091
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [17] [18]
-Overfull \hbox (0.80836pt too wide) in paragraph at lines 1154--1157
+Overfull \hbox (0.80836pt too wide) in paragraph at lines 1162--1165
 \OT1/phv/m/n/10 If you use the minted style, you have to en-able it by run-ning
  []\OT1/cmtt/m/n/10 ptex2tex -DMINTED
 
-Overfull \hbox (5.04823pt too wide) in paragraph at lines 1205--1210
+Overfull \hbox (5.04823pt too wide) in paragraph at lines 1213--1218
 []\OT1/phv/m/n/10 Finally, trans-la-tion to []\OT1/cmtt/m/n/10 pandoc \OT1/phv/
 m/n/10 re-quires the [][][][][][] pro-gram (writ-ten in Haskell)
 [19]
-Overfull \hbox (22.94165pt too wide) in paragraph at lines 1215--1225
+Overfull \hbox (22.94165pt too wide) in paragraph at lines 1223--1233
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
 OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
 hv/m/n/10 .
 No file tutorial.ind.
 [20] (./tutorial.aux) )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (20 pages, 90096 bytes).
+Output written on tutorial.dvi (20 pages, 89936 bytes).
 Transcript written on tutorial.log.
 + dvipdf tutorial.dvi
 + doconce format sphinx tutorial
@@ -48242,7 +48526,7 @@ reading sources... [ 50%] index
 reading sources... [100%] tutorial
 
 /home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:412: WARNING: Duplicate explicit target name: "sphinx".
-/home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:938: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+/home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:937: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -48420,13 +48704,13 @@ Underfull \hbox (badness 5359) in paragraph at lines 703--708
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
 [12] [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
+Underfull \hbox (badness 10000) in paragraph at lines 1086--1090
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
 [17] [18]
 
 LaTeX Warning: Hyper reference `tutorial:doconce2formats' on page 19 undefined 
-on input line 1231.
+on input line 1230.
 
 [19] [20]
 Chapter 5.
@@ -48454,7 +48738,7 @@ etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 xlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/u
 rw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 212490 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 212565 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -48587,7 +48871,7 @@ Underfull \hbox (badness 5359) in paragraph at lines 703--708
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
 [12] [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
+Underfull \hbox (badness 10000) in paragraph at lines 1086--1090
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
 [17] [18] [19] [20]
@@ -48606,7 +48890,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223673 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -48739,7 +49023,7 @@ Underfull \hbox (badness 5359) in paragraph at lines 703--708
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
 [12] [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
+Underfull \hbox (badness 10000) in paragraph at lines 1086--1090
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
 [17] [18] [19] [20]
@@ -48758,7 +49042,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223673 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -48897,7 +49181,7 @@ Underfull \hbox (badness 5359) in paragraph at lines 703--708
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
 [12] [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
+Underfull \hbox (badness 10000) in paragraph at lines 1086--1090
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
 [17] [18] [19] [20]
@@ -48916,7 +49200,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223673 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -49049,7 +49333,7 @@ Underfull \hbox (badness 5359) in paragraph at lines 703--708
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
 [12] [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
+Underfull \hbox (badness 10000) in paragraph at lines 1086--1090
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
 [17] [18] [19] [20]
@@ -49068,7 +49352,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223673 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -49079,15 +49363,15 @@ translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.rst
 + rst2xml.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
-tutorial.rst:890: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+tutorial.rst:889: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2odt.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
 + rst2html.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
-tutorial.rst:890: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+tutorial.rst:889: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2latex.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
-tutorial.rst:890: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+tutorial.rst:889: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + latex tutorial.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
 entering extended mode
@@ -49350,64 +49634,64 @@ Overfull \hbox (16.80876pt too wide) in paragraph at lines 1062--1068
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
 [11]
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 1101--1104
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 1100--1103
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 1105--1108
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 1104--1107
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [12]
-Overfull \hbox (314.9936pt too wide) in paragraph at lines 1216--1222
+Overfull \hbox (314.9936pt too wide) in paragraph at lines 1215--1221
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][][],
 [13]
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1255--1266
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1254--1265
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1310--1310
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1309--1309
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1320--1321
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1319--1320
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
 [14]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1353--1354
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1352--1353
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1358--1358
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1357--1357
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 1379--1380
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 1378--1379
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 15 undef
-ined on input line 1388.
+ined on input line 1387.
 
 
-Overfull \hbox (7.2784pt too wide) in paragraph at lines 1386--1389
+Overfull \hbox (7.2784pt too wide) in paragraph at lines 1385--1388
 []\T1/ptm/m/n/10 If you use the minted style, you have to en-able it by run-nin
 g \T1/pcr/m/n/10 ptex2tex -DMINTED
 
-Overfull \hbox (15.00778pt too wide) in paragraph at lines 1386--1389
+Overfull \hbox (15.00778pt too wide) in paragraph at lines 1385--1388
 \T1/ptm/m/n/10 and then \T1/pcr/m/n/10 latex -shell-escape\T1/ptm/m/n/10 , see 
 the the sec-tion [][][][][][]. 
 
-Overfull \hbox (185.00006pt too wide) in paragraph at lines 1394--1395
+Overfull \hbox (185.00006pt too wide) in paragraph at lines 1393--1394
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
 s/trunk/docutils  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1404--1407
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1403--1406
 []\T1/pcr/m/n/10 sudo apt-get install unovonv libreoffice libreoffice-dmaths 
 [15]
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 1439--1440
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 1438--1439
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
 
-Overfull \hbox (134.56776pt too wide) in paragraph at lines 1483--1483
+Overfull \hbox (134.56776pt too wide) in paragraph at lines 1482--1482
 [][][][][][] 
 [16] (./tutorial.rst.aux)
 
@@ -49418,7 +49702,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.rst.dvi (16 pages, 79660 bytes).
+Output written on tutorial.rst.dvi (16 pages, 79688 bytes).
 Transcript written on tutorial.rst.log.
 + dvipdf tutorial.rst.dvi
 + doconce format plain tutorial.do.txt
@@ -49477,12 +49761,12 @@ output in tutorial.mkd
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.cwiki.ps tutorial.cwiki
 [tutorial.cwiki (plain): 17 pages on 17 sheets]
 [Total: 17 pages on 17 sheets] saved into the file `tutorial.cwiki.ps'
-[83 lines wrapped]
+[82 lines wrapped]
 + ps2pdf tutorial.cwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mwiki.ps tutorial.mwiki
 [tutorial.mwiki (plain): 18 pages on 18 sheets]
 [Total: 18 pages on 18 sheets] saved into the file `tutorial.mwiki.ps'
-[161 lines wrapped]
+[163 lines wrapped]
 + ps2pdf tutorial.mwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mkd.ps tutorial.mkd
 [tutorial.mkd (plain): 20 pages on 20 sheets]
@@ -49492,7 +49776,7 @@ output in tutorial.mkd
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
 [tutorial.xml (plain): 17 pages on 17 sheets]
 [Total: 17 pages on 17 sheets] saved into the file `tutorial.xml.ps'
-[468 lines wrapped]
+[475 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.mkd.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.mkd.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -49570,7 +49854,7 @@ software. Each version can have multiple releases. For example, for
 Python the version is something like 2.5 or 3.0, while the release is
 something like 2.5.1 or 3.0a1.  If you don't need this dual structure,
 just set both to the same value.
-> Project version: > Project release [1.0]: 
+> Project version: > Project release [0.6]: 
 The file name suffix for source files. Commonly, this is either ".txt"
 or ".rst".  Only files with this suffix are considered documents.
 > Source file suffix [.rst]: * Please enter a file suffix, e.g. '.rst' or '.txt'.
@@ -49601,7 +49885,7 @@ source files. Use the Makefile to build the docs, like so:
 where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
 Title: Doconce Manual
-Author: 0.6
+Author: HPL
 These Sphinx themes were found: slim-agogo, default, pylons, agogo, traditional, cbc, flask, scrolls, sphinxdoc, solarized, classy, redcloud, epub, fenics_minimal, vlinux-theme, haiku, jal, agni, cloud, basic, fenics, nature, pyramid, default
 
 'automake-sphinx.py' contains the steps to (re)compile the sphinx
@@ -49627,8 +49911,8 @@ updating environment: 2 added, 0 changed, 0 removed
 reading sources... [ 50%] index
 reading sources... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1130: SEVERE: Duplicate ID: "equation-myeq1".
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:846: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1129: SEVERE: Duplicate ID: "equation-myeq1".
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:845: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -49636,8 +49920,8 @@ preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1520: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1520: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1541: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1541: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
 writing additional files... (0 module code pages) genindex search
 copying images... [ 33%] figs/wavepacket_0001.png
 copying images... [ 66%] figs/wavepacket_0010.png
@@ -49810,7 +50094,7 @@ Underfull \hbox (badness 5359) in paragraph at lines 533--538
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
 [10] [11] [12] [13] [14]
-Underfull \hbox (badness 10000) in paragraph at lines 917--921
+Underfull \hbox (badness 10000) in paragraph at lines 916--920
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
 [15] [16]
@@ -49821,56 +50105,57 @@ Chapter 5.
 <use streamtubes.png> [21] [22 <./streamtubes.png>]
 
 LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 23 undefine
-d on input line 1295.
+d on input line 1294.
 
 [23]
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 24 undefined on
- input line 1417.
+ input line 1443.
 
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 24 undefined on
- input line 1421.
-
-
-LaTeX Warning: Hyper reference `manual:inline-tagging' on page 24 undefined on 
-input line 1452.
+ input line 1447.
 
 [24]
 
+LaTeX Warning: Hyper reference `manual:inline-tagging' on page 25 undefined on 
+input line 1478.
+
+
 LaTeX Warning: Hyper reference `manual:fig-viz' on page 25 undefined on input l
-ine 1507.
+ine 1533.
 
 
 LaTeX Warning: Hyper reference `manual:mathtext' on page 25 undefined on input 
-line 1509.
+line 1535.
 
 
 LaTeX Warning: Hyper reference `manual:newcommands' on page 25 undefined on inp
-ut line 1509.
-
-
-LaTeX Warning: Hyper reference `manual:inline-tagging' on page 25 undefined on 
-input line 1516.
+ut line 1535.
 
 [25]
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 26 undefined o
-n input line 1606.
+LaTeX Warning: Hyper reference `manual:inline-tagging' on page 26 undefined on 
+input line 1542.
+
+[26]
+
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 27 undefined o
+n input line 1632.
 
 
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 26 undefined on input 
-line 1606.
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 27 undefined on input 
+line 1632.
 
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 26 undefined o
-n input line 1607.
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 27 undefined o
+n input line 1633.
 
 
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 26 undefined on input 
-line 1607.
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 27 undefined on input 
+line 1633.
 
-[26] [27] [28] [29]
+[27] [28] [29]
 ! FancyVerb Error:
   Empty verbatim environment
 .
@@ -49878,39 +50163,39 @@ line 1607.
 \space \space #1
 }
                                                   
-l.1927 \end{Verbatim}
+l.1953 \end{Verbatim}
                      
 ? OK, entering \nonstopmode...
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1933.
+(amsmath)                 on input line 1959.
 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.1933 \end{gather}
+l.1959 \end{gather}
                    
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.1933 \end{gather}
+l.1959 \end{gather}
                    
 [30]
-Underfull \hbox (badness 10000) in paragraph at lines 1967--1973
+Underfull \hbox (badness 10000) in paragraph at lines 1993--1999
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax' \T1/ptm/m/n/10 (en-abled by de-fault)
 
-Underfull \hbox (badness 10000) in paragraph at lines 1967--1973
+Underfull \hbox (badness 10000) in paragraph at lines 1993--1999
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 'matplotlib.sphinxext.mathmpl' \T1/ptm/m/n/10
  (dis-abled by de-fault) lines, and un-com-ment the
-[31] <wavepacket_0001.png, id=253, 642.4pt x 481.8pt>
+[31] <wavepacket_0001.png, id=255, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=254, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=256, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png>
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 32 undefined on
- input line 2092.
+ input line 2118.
 
 [32] [33 <./wavepacket_0001.png (PNG copy)>] [34 <./wavepacket_0010.png (PNG co
 py)>] [35] [36]
@@ -49918,7 +50203,7 @@ Chapter 6.
 [37] [38]
 
 LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 39 undefine
-d on input line 2448.
+d on input line 2474.
 
 [39] [40] [41] [42]
 Chapter 7.
@@ -49949,7 +50234,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
 mr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (53 pages, 391068 bytes).
+Output written on DoconceManual.pdf (53 pages, 392863 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -49969,11 +50254,11 @@ figure file figs/streamtubes:
     can use figs/streamtubes.png for format rst
 output in manual.rst
 + rst2html.py manual.rst
-manual.rst:786: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+manual.rst:785: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2xml.py manual.rst
-manual.rst:786: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+manual.rst:785: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2latex.py manual.rst
-manual.rst:786: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+manual.rst:785: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + doconce subst \.png  manual.rst.tex
 \.png replaced by  in manual.rst.tex
 + latex manual.rst.tex
@@ -50202,382 +50487,386 @@ Overfull \hbox (16.80876pt too wide) in paragraph at lines 882--888
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
 [9]
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 921--924
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 920--923
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 925--928
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 924--927
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [10]
-Overfull \hbox (314.9936pt too wide) in paragraph at lines 1036--1042
+Overfull \hbox (314.9936pt too wide) in paragraph at lines 1035--1041
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][][],
 [11]
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1075--1086
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1074--1085
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [12]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 1221--1226
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 1220--1225
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1251--1254
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1250--1253
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 [13]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1262--1265
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1261--1264
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1273--1273
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1272--1272
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1274--1274
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1273--1273
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1291--1291
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1290--1290
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1333--1334
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1332--1333
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 [14]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1379--1382
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1378--1381
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
 <figs/streamtubes.eps> [15]
-Overfull \hbox (2.15817pt too wide) in paragraph at lines 1406--1409
+Overfull \hbox (2.15817pt too wide) in paragraph at lines 1405--1408
 []\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
 1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1409--1410
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1408--1409
 \T1/pcr/m/n/10 montage file1 file2 ... file4 -geometry +2+2  result  
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1435--1438
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1434--1437
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 [16]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1463--1466
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1462--1465
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1468--1472
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1467--1471
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1473--1479
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1472--1478
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 17 un
-defined on input line 1491.
+defined on input line 1490.
 
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1489--1492
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1488--1491
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1517--1520
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1516--1519
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1530--1532
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1529--1531
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 [17]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1551--1554
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1550--1553
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1574--1575
+Overfull \hbox (22.65768pt too wide) in paragraph at lines 1577--1581
+\T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
+RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
+
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1601--1602
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
-Overfull \hbox (1.1292pt too wide) in paragraph at lines 1580--1583
+Overfull \hbox (1.1292pt too wide) in paragraph at lines 1607--1612
 []\T1/ptm/m/n/10 Then you can link to \T1/pcr/m/n/10 _static/make.sh.html \T1/p
 tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1583--1586
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1612--1615
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1627--1630
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1656--1659
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
+[18]
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 18 undef
-ined on input line 1649.
-
-
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 18 undef
-ined on input line 1653.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 19 undef
+ined on input line 1678.
 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1641--1654
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 19 undef
+ined on input line 1682.
+
+
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1670--1683
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
-[18]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1667--1667
+
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1696--1696
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1668--1670
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1697--1699
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-LaTeX Warning: Hyper reference `id5' on page 19 undefined on input line 1691.
+LaTeX Warning: Hyper reference `id5' on page 19 undefined on input line 1720.
 
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1699--1699
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1728--1728
 []\T1/pcr/m/n/10 # Here are some comment lines that do not affect any formattin
 g.  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1700--1700
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1729--1729
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
-
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1733--1735
+[19]
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1762--1764
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
-[19]
 
-LaTeX Warning: Hyper reference `fig-viz' on page 20 undefined on input line 175
-1.
+LaTeX Warning: Hyper reference `fig-viz' on page 20 undefined on input line 178
+0.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 20 u
-ndefined on input line 1753.
+ndefined on input line 1782.
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 20 undefined on inp
-ut line 1753.
+ut line 1782.
 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1749--1758
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1778--1787
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-LaTeX Warning: Hyper reference `id5' on page 20 undefined on input line 1760.
+LaTeX Warning: Hyper reference `id5' on page 20 undefined on input line 1789.
 
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1759--1761
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1788--1790
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1784--1787
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1813--1816
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
-
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1802--1805
-[]\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 [20]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1833--1833
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1831--1834
+[]\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
+
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1862--1862
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1834--1834
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1863--1863
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 1858--1860
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 1887--1889
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1861--1864
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1890--1893
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [21]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1978--1979
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2007--2008
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 [22]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2052--2055
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2081--2084
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
 [23]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2134--2136
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2163--2165
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[24]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2251--2251
+[24] [25]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2280--2280
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2252--2252
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2281--2281
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-[25]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2261--2261
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2290--2290
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2262--2262
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2291--2291
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (22.2296pt too wide) in paragraph at lines 2273--2279
+Overfull \hbox (22.2296pt too wide) in paragraph at lines 2302--2308
 \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki") \T1/ptm/m
 /n/10 one places
 
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2306--2312
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2335--2341
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2306--2312
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2335--2341
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2306--2312
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2335--2341
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
 [26]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2358--2361
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2387--2390
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2393--2393
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2422--2422
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2394--2394
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2423--2423
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2410--2422
+[27]
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2439--2451
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[27] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [28]
+<figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [28] [29]
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 29 undef
-ined on input line 2452.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 30 undef
+ined on input line 2481.
 
-[29]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2500--2500
-[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [30]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2579--2581
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2529--2529
+[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
+[31]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2608--2610
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2641--2643
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2670--2672
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[31]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2763--2766
-[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 [32]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 2780--2783
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2792--2795
+[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
+[33]
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 2809--2812
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2787--2790
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2816--2819
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2826--2827
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2855--2856
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2829--2831
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2858--2860
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[33]
+[34]
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 34 un
-defined on input line 2970.
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 35 un
+defined on input line 2999.
 
-[34] [35]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3128--3129
+[35] [36]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3157--3158
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3130--3130
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3159--3159
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3133--3133
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3162--3162
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[36]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3291--3294
+[37]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3320--3323
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[37]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3332--3333
+[38]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3361--3362
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3334--3334
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3363--3363
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3335--3335
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3364--3364
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3338--3338
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3367--3367
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3339--3339
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3368--3368
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3340--3340
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3369--3369
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3341--3341
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3370--3370
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 3346--3346
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 3375--3375
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3347--3347
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3376--3376
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3348--3348
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3377--3377
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 3351--3351
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 3380--3380
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 3354--3354
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 3383--3383
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 3356--3356
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 3385--3385
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3359--3359
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3388--3388
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3366--3366
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3395--3395
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3397--3397
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3370--3370
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3399--3399
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3373--3373
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3402--3402
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
-[38]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3379--3379
+[39]
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3408--3408
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3420--3420
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3449--3449
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3422--3422
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3451--3451
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3423--3423
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3452--3452
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3424--3424
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3453--3453
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3425--3425
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3454--3454
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 
-Overfull \hbox (134.56776pt too wide) in paragraph at lines 3475--3475
+Overfull \hbox (134.56776pt too wide) in paragraph at lines 3504--3504
 [][][][][][] 
-[39] [40] [41] (./manual.rst.aux)
+[40] [41] [42] (./manual.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -50586,7 +50875,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (41 pages, 177964 bytes).
+Output written on manual.rst.dvi (42 pages, 180120 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -50802,343 +51091,347 @@ Overfull \hbox (16.80876pt too wide) in paragraph at lines 882--888
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
 [9]
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 921--924
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 920--923
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 925--928
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 924--927
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [10]
-Overfull \hbox (314.9936pt too wide) in paragraph at lines 1036--1042
+Overfull \hbox (314.9936pt too wide) in paragraph at lines 1035--1041
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][][],
 [11]
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1075--1086
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1074--1085
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [12]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 1221--1226
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 1220--1225
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1251--1254
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1250--1253
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 [13]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1262--1265
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1261--1264
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1273--1273
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1272--1272
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1274--1274
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1273--1273
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1291--1291
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1290--1290
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1333--1334
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1332--1333
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 [14]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1379--1382
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1378--1381
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
 <figs/streamtubes.eps> [15]
-Overfull \hbox (2.15817pt too wide) in paragraph at lines 1406--1409
+Overfull \hbox (2.15817pt too wide) in paragraph at lines 1405--1408
 []\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
 1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1409--1410
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1408--1409
 \T1/pcr/m/n/10 montage file1 file2 ... file4 -geometry +2+2  result  
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1435--1438
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1434--1437
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 [16]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1463--1466
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1462--1465
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1468--1472
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1467--1471
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1473--1479
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1472--1478
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1489--1492
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1488--1491
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1517--1520
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1516--1519
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1530--1532
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1529--1531
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 [17]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1551--1554
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1550--1553
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1574--1575
+Overfull \hbox (22.65768pt too wide) in paragraph at lines 1577--1581
+\T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
+RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
+
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1601--1602
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
-Overfull \hbox (1.1292pt too wide) in paragraph at lines 1580--1583
+Overfull \hbox (1.1292pt too wide) in paragraph at lines 1607--1612
 []\T1/ptm/m/n/10 Then you can link to \T1/pcr/m/n/10 _static/make.sh.html \T1/p
 tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1583--1586
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1612--1615
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1627--1630
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1656--1659
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
-
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1641--1654
+[18]
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1670--1683
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
-[18]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1667--1667
+
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1696--1696
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1668--1670
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1697--1699
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1699--1699
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1728--1728
 []\T1/pcr/m/n/10 # Here are some comment lines that do not affect any formattin
 g.  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1700--1700
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1729--1729
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
-
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1733--1735
+[19]
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1762--1764
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
-[19]
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1749--1758
+
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1778--1787
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1759--1761
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1788--1790
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1784--1787
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1813--1816
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
-
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1802--1805
-[]\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 [20]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1833--1833
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1831--1834
+[]\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
+
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1862--1862
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1834--1834
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1863--1863
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 1858--1860
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 1887--1889
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1861--1864
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1890--1893
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [21]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1978--1979
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2007--2008
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 [22]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2052--2055
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2081--2084
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
 [23]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2134--2136
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2163--2165
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[24]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2251--2251
+[24] [25]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2280--2280
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2252--2252
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2281--2281
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-[25]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2261--2261
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2290--2290
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2262--2262
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2291--2291
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (22.2296pt too wide) in paragraph at lines 2273--2279
+Overfull \hbox (22.2296pt too wide) in paragraph at lines 2302--2308
 \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki") \T1/ptm/m
 /n/10 one places
 
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2306--2312
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2335--2341
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2306--2312
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2335--2341
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2306--2312
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2335--2341
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
 [26]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2358--2361
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2387--2390
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2393--2393
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2422--2422
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2394--2394
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2423--2423
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2410--2422
+[27]
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2439--2451
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[27] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [28] [29]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2500--2500
+<figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [28] [29] [30]
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2529--2529
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[30]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2579--2581
+[31]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2608--2610
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2641--2643
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2670--2672
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[31]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2763--2766
-[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 [32]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 2780--2783
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2792--2795
+[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
+[33]
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 2809--2812
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2787--2790
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2816--2819
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2826--2827
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2855--2856
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2829--2831
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2858--2860
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[33] [34] [35]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3128--3129
+[34] [35] [36]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3157--3158
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3130--3130
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3159--3159
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3133--3133
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3162--3162
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[36]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3291--3294
+[37]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3320--3323
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[37]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3332--3333
+[38]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3361--3362
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3334--3334
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3363--3363
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3335--3335
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3364--3364
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3338--3338
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3367--3367
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3339--3339
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3368--3368
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3340--3340
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3369--3369
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3341--3341
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3370--3370
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 3346--3346
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 3375--3375
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3347--3347
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3376--3376
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3348--3348
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3377--3377
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 3351--3351
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 3380--3380
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 3354--3354
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 3383--3383
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 3356--3356
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 3385--3385
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3359--3359
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3388--3388
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3366--3366
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3395--3395
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3397--3397
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3370--3370
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3399--3399
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3373--3373
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3402--3402
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
-[38]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3379--3379
+[39]
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3408--3408
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3420--3420
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3449--3449
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3422--3422
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3451--3451
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3423--3423
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3452--3452
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3424--3424
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3453--3453
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3425--3425
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3454--3454
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 
-Overfull \hbox (134.56776pt too wide) in paragraph at lines 3475--3475
+Overfull \hbox (134.56776pt too wide) in paragraph at lines 3504--3504
 [][][][][][] 
-[39] [40] [41] (./manual.rst.aux) )
+[40] [41] [42] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (41 pages, 186224 bytes).
+Output written on manual.rst.dvi (42 pages, 188380 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments
@@ -51306,140 +51599,140 @@ No file manual.aux.
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1{/var/lib/texmf/fonts/map
 /pdftex/updmap/pdftex.map}] [2] [3]
 
-LaTeX Warning: Reference `doconce2formats' on page 4 undefined on input line 24
-4.
+LaTeX Warning: Reference `doconce2formats' on page 4 undefined on input line 25
+3.
 
 [4]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [5] [6]
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-LaTeX Warning: Reference `newcommands' on page 7 undefined on input line 490.
+LaTeX Warning: Reference `newcommands' on page 7 undefined on input line 499.
 
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (22.24706pt too wide) in paragraph at lines 702--703
+Overfull \hbox (22.24706pt too wide) in paragraph at lines 711--712
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (1.04228pt too wide) in paragraph at lines 887--893
+Overfull \hbox (1.04228pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
 [14] [15] [16] [17] <figs/streamtubes.png, id=145, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 20 undefined on input li
-ne 1286.
+ne 1294.
 
 
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21]
 
 LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-421.
+454.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-425.
+458.
 
 
 LaTeX Warning: Reference `inline:tagging' on page 22 undefined on input line 14
-55.
+88.
 
 [22]
 
-LaTeX Warning: Reference `fig:viz' on page 23 undefined on input line 1508.
+LaTeX Warning: Reference `fig:viz' on page 23 undefined on input line 1541.
 
 
-LaTeX Warning: Reference `mathtext' on page 23 undefined on input line 1510.
+LaTeX Warning: Reference `mathtext' on page 23 undefined on input line 1543.
 
 
-LaTeX Warning: Reference `newcommands' on page 23 undefined on input line 1510.
+LaTeX Warning: Reference `newcommands' on page 23 undefined on input line 1543.
 
 
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
 
 LaTeX Warning: Reference `inline:tagging' on page 23 undefined on input line 15
-17.
+50.
 
-[23]
+[23] [24]
 
-LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-608.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1608.
+LaTeX Warning: Citation `Python:Primer:09' on page 25 undefined on input line 1
+641.
 
 
-LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-609.
+LaTeX Warning: Citation `Osnes:98' on page 25 undefined on input line 1641.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1609.
+LaTeX Warning: Citation `Python:Primer:09' on page 25 undefined on input line 1
+642.
 
-[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+
+LaTeX Warning: Citation `Osnes:98' on page 25 undefined on input line 1642.
+
+[25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
 (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.png, id=238, 642.4pt x 481.8pt>
+[31] <figs/wavepacket_0001.png, id=246, 642.4pt x 481.8pt>
 <use figs/wavepacket_0001.png>
-<figs/wavepacket_0010.png, id=239, 642.4pt x 481.8pt>
+<figs/wavepacket_0010.png, id=247, 642.4pt x 481.8pt>
 <use figs/wavepacket_0010.png>
 
-LaTeX Warning: Reference `doconce2formats' on page 31 undefined on input line 2
-124.
+LaTeX Warning: Reference `doconce2formats' on page 32 undefined on input line 2
+157.
 
-[31] [32 <./figs/wavepacket_0001.png (PNG copy)> <./figs/wavepacket_0010.png (P
-NG copy)>] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2215--2222
+[32 <./figs/wavepacket_0001.png (PNG copy)>] [33 <./figs/wavepacket_0010.png (P
+NG copy)>]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2248--2255
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2215--2222
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2248--2255
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
 [34] [35] [36] [37]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 38 undefined on input li
-ne 2447.
+ne 2480.
 
 [38] [39] [40] [41] [42]
 No file manual.bbl.
@@ -51467,7 +51760,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (43 pages, 417430 bytes).
+Output written on manual.pdf (43 pages, 418592 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -51573,89 +51866,89 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1{/var/lib/texmf/fonts/map
 /pdftex/updmap/pdftex.map}] [2] [3] [4]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [5] [6]
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (22.24706pt too wide) in paragraph at lines 702--703
+Overfull \hbox (22.24706pt too wide) in paragraph at lines 711--712
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (1.04228pt too wide) in paragraph at lines 887--893
+Overfull \hbox (1.04228pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
 [14] [15] [16] [17] <figs/streamtubes.png, id=311, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
-[23]
+[23] [24]
 
-LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-608.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1608.
+LaTeX Warning: Citation `Python:Primer:09' on page 25 undefined on input line 1
+641.
 
 
-LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-609.
+LaTeX Warning: Citation `Osnes:98' on page 25 undefined on input line 1641.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1609.
+LaTeX Warning: Citation `Python:Primer:09' on page 25 undefined on input line 1
+642.
 
-[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+
+LaTeX Warning: Citation `Osnes:98' on page 25 undefined on input line 1642.
+
+[25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
 (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.png, id=399, 642.4pt x 481.8pt>
+[31] <figs/wavepacket_0001.png, id=406, 642.4pt x 481.8pt>
 <use figs/wavepacket_0001.png>
-<figs/wavepacket_0010.png, id=400, 642.4pt x 481.8pt>
-<use figs/wavepacket_0010.png> [31] [32 <./figs/wavepacket_0001.png (PNG copy)>
- <./figs/wavepacket_0010.png (PNG copy)>] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2215--2222
+<figs/wavepacket_0010.png, id=407, 642.4pt x 481.8pt>
+<use figs/wavepacket_0010.png> [32 <./figs/wavepacket_0001.png (PNG copy)>]
+[33 <./figs/wavepacket_0010.png (PNG copy)>]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2248--2255
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2215--2222
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2248--2255
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -51683,7 +51976,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (44 pages, 437418 bytes).
+Output written on manual.pdf (44 pages, 438534 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -51777,74 +52070,74 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1{/var/lib/texmf/fonts/map
 /pdftex/updmap/pdftex.map}] [2] [3] [4]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [5] [6]
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (22.24706pt too wide) in paragraph at lines 702--703
+Overfull \hbox (22.24706pt too wide) in paragraph at lines 711--712
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (1.04228pt too wide) in paragraph at lines 887--893
+Overfull \hbox (1.04228pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
 [14] [15] [16] [17] <figs/streamtubes.png, id=311, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
 [23] [24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27]
 (./manual.out.pyg) (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.png, id=405, 642.4pt x 481.8pt>
+[31] <figs/wavepacket_0001.png, id=412, 642.4pt x 481.8pt>
 <use figs/wavepacket_0001.png>
-<figs/wavepacket_0010.png, id=406, 642.4pt x 481.8pt>
-<use figs/wavepacket_0010.png> [31] [32 <./figs/wavepacket_0001.png (PNG copy)>
- <./figs/wavepacket_0010.png (PNG copy)>] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2215--2222
+<figs/wavepacket_0010.png, id=413, 642.4pt x 481.8pt>
+<use figs/wavepacket_0010.png> [32 <./figs/wavepacket_0001.png (PNG copy)>]
+[33 <./figs/wavepacket_0010.png (PNG copy)>]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2248--2255
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2215--2222
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2248--2255
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -51872,7 +52165,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (44 pages, 438135 bytes).
+Output written on manual.pdf (44 pages, 439252 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt
@@ -51989,79 +52282,79 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 176--180
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 443--448
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
 
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 711--712
 [][][][][][][] 
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
-[23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
+[23] [24]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1637--1639
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+[25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
 (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
+[31] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -52075,7 +52368,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198488 bytes).
+Output written on manual.dvi (44 pages, 199692 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -52168,79 +52461,79 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 176--180
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 443--448
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
 
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 711--712
 [][][][][][][] 
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
-[23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
+[23] [24]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1637--1639
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+[25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
 (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
+[31] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -52254,7 +52547,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198488 bytes).
+Output written on manual.dvi (44 pages, 199692 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -52359,79 +52652,79 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 176--180
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 443--448
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
 
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 711--712
 [][][][][][][] 
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
-[23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
+[23] [24]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1637--1639
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+[25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
 (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
+[31] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -52445,7 +52738,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198488 bytes).
+Output written on manual.dvi (44 pages, 199692 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -52538,79 +52831,79 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 176--180
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 443--448
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
 
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 711--712
 [][][][][][][] 
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
-[23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
+[23] [24]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1637--1639
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+[25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
 (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
+[31] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -52624,7 +52917,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198488 bytes).
+Output written on manual.dvi (44 pages, 199692 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt
@@ -53321,6 +53614,11 @@ and including other files (but not macros with arguments).
 The `mako` preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
 
+===== Resources =====
+
+ * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+
+
 ************** File: quickref.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
@@ -53333,6 +53631,14 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js"]
+  }
+});
+</script>
 <script type="text/javascript"
  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
@@ -54014,6 +54320,14 @@ and including other files (but not macros with arguments).
 The <tt>mako</tt> preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
 
+<P>
+<h3>Resources</h3>
+<P>
+
+<ul>
+ <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+</ul>
+
 </body>
 </html>
     
@@ -54045,13 +54359,27 @@ programming language, very similar to Python.
 \RequirePackage{helvet}
 \renewcommand\familydefault{phv}
 % #endif
+% #ifdef PALATINO
+% Set paraltino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
+% #endif
 
+% Hyperlinks in PDF:
 \usepackage[%
-colorlinks=true,
-linkcolor=blue,
-citecolor=black,
-filecolor=blue,
-urlcolor=blue]{hyperref}
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
@@ -54755,6 +55083,14 @@ and including other files (but not macros with arguments).
 The \code{mako} preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
 
+\subsection{Resources}
+
+\begin{itemize}
+ \item Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+\end{itemize}
+
+\noindent
+
 \printindex
 
 \end{document}
@@ -55388,6 +55724,11 @@ Doconce documents may utilize a preprocessor, either ``preprocess`` or
 and including other files (but not macros with arguments).
 The ``mako`` preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+Resources
+---------
+
+ * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 ************** File: quickref.sphinx.rst *****************
 NOT FOUND!
 ************** File: quickref.gwiki *****************
@@ -55911,6 +56252,10 @@ and including other files (but not macros with arguments).
 The `mako` preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
 
+==== Resources ====
+
+ * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+
 ************** File: quickref.mwiki *****************
 #TITLE (actually governed by the filename): Doconce Quick Reference
 
@@ -56409,6 +56754,11 @@ Doconce documents may utilize a preprocessor, either <code>preprocess</code> or
 and including other files (but not macros with arguments).
 The <code>mako</code> preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+==== Resources ====
+
+<ul>
+ <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"</ul>
 
 ************** File: quickref.cwiki *****************
 #summary Doconce Quick Reference
@@ -56945,6 +57295,11 @@ Doconce documents may utilize a preprocessor, either {{{preprocess}}} or
 and including other files (but not macros with arguments).
 The {{{mako}}} preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+
+== Resources ==
+
+ * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
 ************** File: quickref.st *****************
 TITLE: Doconce Quick Reference
@@ -57509,6 +57864,10 @@ Doconce documents may utilize a preprocessor, either 'preprocess' or
 and including other files (but not macros with arguments).
 The 'mako' preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+Resources
+
+ - Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 ************** File: quickref.epytext *****************
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
@@ -58091,6 +58450,11 @@ C{mako}. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
 The C{mako} preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+Resources
+---------
+
+ - Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 ************** File: quickref.txt *****************
 Doconce Quick Reference
 =======================
@@ -58712,6 +59076,11 @@ mako. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
 The mako preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+Resources
+---------
+
+ * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 ************** File: quickref.mkd *****************
 % Doconce Quick Reference
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
@@ -59351,6 +59720,11 @@ and including other files (but not macros with arguments).
 The `mako` preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
 
+Resources
+---------
+
+ * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+
 ************** File: /home/hpl/vc/doconce/test/test.output *****************
 + doconce format html testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -59776,88 +60150,88 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1]
-Overfull \hbox (8.67865pt too wide) in paragraph at lines 136--140
+Overfull \hbox (8.67865pt too wide) in paragraph at lines 145--149
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
 [2] [3] [4]
 
-LaTeX Warning: Reference `my:first:sec' on page 5 undefined on input line 328.
+LaTeX Warning: Reference `my:first:sec' on page 5 undefined on input line 337.
 
 
-LaTeX Warning: Reference `doconce2formats' on page 5 undefined on input line 33
-3.
+LaTeX Warning: Reference `doconce2formats' on page 5 undefined on input line 34
+2.
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 370.
+(amsmath)                 on input line 379.
 
 [5]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 451--469
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 460--478
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 451--469
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 460--478
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 451--469
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 460--478
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 [6] [7]
-Overfull \hbox (79.3756pt too wide) in paragraph at lines 566--574
+Overfull \hbox (79.3756pt too wide) in paragraph at lines 575--583
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
 [8]
-Overfull \hbox (1.85565pt too wide) in paragraph at lines 607--611
+Overfull \hbox (1.85565pt too wide) in paragraph at lines 616--620
  \OT1/phv/b/n/10 Step 1.[] \OT1/phv/m/n/10 Fil-ter the do-conce text to a pre-L
 aTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/phv/m/n/10 for []\OT1/cmtt/m/n/10
  ptex2tex\OT1/phv/m/n/10 :
 
-LaTeX Warning: Reference `newcommands' on page 9 undefined on input line 616.
+LaTeX Warning: Reference `newcommands' on page 9 undefined on input line 625.
 
 
-Overfull \hbox (55.19026pt too wide) in paragraph at lines 614--619
+Overfull \hbox (55.19026pt too wide) in paragraph at lines 623--628
 \OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [9] [10] [11] [12]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 828--829
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 837--838
 [][][][][][][] 
 [13]
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 863--869
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 872--878
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (0.74806pt too wide) in paragraph at lines 870--889
+Overfull \hbox (0.74806pt too wide) in paragraph at lines 879--897
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 901--904
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 909--912
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [14] [15]
-Overfull \hbox (44.67775pt too wide) in paragraph at lines 1013--1019
+Overfull \hbox (44.67775pt too wide) in paragraph at lines 1021--1027
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [16]
-Overfull \hbox (21.15628pt too wide) in paragraph at lines 1079--1083
+Overfull \hbox (21.15628pt too wide) in paragraph at lines 1087--1091
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [17] [18]
 
 LaTeX Warning: Reference `doconce2formats' on page 19 undefined on input line 1
-156.
+164.
 
 
-Overfull \hbox (0.80836pt too wide) in paragraph at lines 1154--1157
+Overfull \hbox (0.80836pt too wide) in paragraph at lines 1162--1165
 \OT1/phv/m/n/10 If you use the minted style, you have to en-able it by run-ning
  []\OT1/cmtt/m/n/10 ptex2tex -DMINTED
 
-Overfull \hbox (5.04823pt too wide) in paragraph at lines 1205--1210
+Overfull \hbox (5.04823pt too wide) in paragraph at lines 1213--1218
 []\OT1/phv/m/n/10 Finally, trans-la-tion to []\OT1/cmtt/m/n/10 pandoc \OT1/phv/
 m/n/10 re-quires the [][][][][][] pro-gram (writ-ten in Haskell)
 [19]
-Overfull \hbox (22.94165pt too wide) in paragraph at lines 1215--1225
+Overfull \hbox (22.94165pt too wide) in paragraph at lines 1223--1233
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
 OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
 hv/m/n/10 .
@@ -59871,7 +60245,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (20 pages, 87424 bytes).
+Output written on tutorial.dvi (20 pages, 87288 bytes).
 Transcript written on tutorial.log.
 + latex tutorial.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -59948,80 +60322,80 @@ Writing index file tutorial.idx
 (./tutorial.out) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1]
-Overfull \hbox (8.67865pt too wide) in paragraph at lines 136--140
+Overfull \hbox (8.67865pt too wide) in paragraph at lines 145--149
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
 [2] [3] [4]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 370.
+(amsmath)                 on input line 379.
 
 [5]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 451--469
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 460--478
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 451--469
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 460--478
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 451--469
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 460--478
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 [6] [7]
-Overfull \hbox (79.3756pt too wide) in paragraph at lines 566--574
+Overfull \hbox (79.3756pt too wide) in paragraph at lines 575--583
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
 [8]
-Overfull \hbox (1.85565pt too wide) in paragraph at lines 607--611
+Overfull \hbox (1.85565pt too wide) in paragraph at lines 616--620
  \OT1/phv/b/n/10 Step 1.[] \OT1/phv/m/n/10 Fil-ter the do-conce text to a pre-L
 aTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/phv/m/n/10 for []\OT1/cmtt/m/n/10
  ptex2tex\OT1/phv/m/n/10 :
 
-Overfull \hbox (55.19026pt too wide) in paragraph at lines 614--619
+Overfull \hbox (55.19026pt too wide) in paragraph at lines 623--628
 \OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [9] [10] [11] [12]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 828--829
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 837--838
 [][][][][][][] 
 [13]
-Overfull \hbox (6.8168pt too wide) in paragraph at lines 863--869
+Overfull \hbox (6.8168pt too wide) in paragraph at lines 872--878
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (0.74806pt too wide) in paragraph at lines 870--889
+Overfull \hbox (0.74806pt too wide) in paragraph at lines 879--897
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (10.33038pt too wide) in paragraph at lines 901--904
+Overfull \hbox (10.33038pt too wide) in paragraph at lines 909--912
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
 [14] [15]
-Overfull \hbox (44.67775pt too wide) in paragraph at lines 1013--1019
+Overfull \hbox (44.67775pt too wide) in paragraph at lines 1021--1027
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [16]
-Overfull \hbox (21.15628pt too wide) in paragraph at lines 1079--1083
+Overfull \hbox (21.15628pt too wide) in paragraph at lines 1087--1091
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [17] [18]
-Overfull \hbox (0.80836pt too wide) in paragraph at lines 1154--1157
+Overfull \hbox (0.80836pt too wide) in paragraph at lines 1162--1165
 \OT1/phv/m/n/10 If you use the minted style, you have to en-able it by run-ning
  []\OT1/cmtt/m/n/10 ptex2tex -DMINTED
 
-Overfull \hbox (5.04823pt too wide) in paragraph at lines 1205--1210
+Overfull \hbox (5.04823pt too wide) in paragraph at lines 1213--1218
 []\OT1/phv/m/n/10 Finally, trans-la-tion to []\OT1/cmtt/m/n/10 pandoc \OT1/phv/
 m/n/10 re-quires the [][][][][][] pro-gram (writ-ten in Haskell)
 [19]
-Overfull \hbox (22.94165pt too wide) in paragraph at lines 1215--1225
+Overfull \hbox (22.94165pt too wide) in paragraph at lines 1223--1233
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
 OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
 hv/m/n/10 .
 No file tutorial.ind.
 [20] (./tutorial.aux) )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (20 pages, 90096 bytes).
+Output written on tutorial.dvi (20 pages, 89936 bytes).
 Transcript written on tutorial.log.
 + dvipdf tutorial.dvi
 + doconce format sphinx tutorial
@@ -60118,7 +60492,7 @@ reading sources... [ 50%] index
 reading sources... [100%] tutorial
 
 /home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:412: WARNING: Duplicate explicit target name: "sphinx".
-/home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:938: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+/home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:937: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -60296,13 +60670,13 @@ Underfull \hbox (badness 5359) in paragraph at lines 703--708
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
 [12] [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
+Underfull \hbox (badness 10000) in paragraph at lines 1086--1090
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
 [17] [18]
 
 LaTeX Warning: Hyper reference `tutorial:doconce2formats' on page 19 undefined 
-on input line 1231.
+on input line 1230.
 
 [19] [20]
 Chapter 5.
@@ -60330,7 +60704,7 @@ etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 xlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/u
 rw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 212490 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 212565 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -60463,7 +60837,7 @@ Underfull \hbox (badness 5359) in paragraph at lines 703--708
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
 [12] [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
+Underfull \hbox (badness 10000) in paragraph at lines 1086--1090
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
 [17] [18] [19] [20]
@@ -60482,7 +60856,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223673 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -60615,7 +60989,7 @@ Underfull \hbox (badness 5359) in paragraph at lines 703--708
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
 [12] [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
+Underfull \hbox (badness 10000) in paragraph at lines 1086--1090
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
 [17] [18] [19] [20]
@@ -60634,7 +61008,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223673 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -60773,7 +61147,7 @@ Underfull \hbox (badness 5359) in paragraph at lines 703--708
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
 [12] [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
+Underfull \hbox (badness 10000) in paragraph at lines 1086--1090
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
 [17] [18] [19] [20]
@@ -60792,7 +61166,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223673 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -60925,7 +61299,7 @@ Underfull \hbox (badness 5359) in paragraph at lines 703--708
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
 [12] [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1091
+Underfull \hbox (badness 10000) in paragraph at lines 1086--1090
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
 [17] [18] [19] [20]
@@ -60944,7 +61318,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
 hare/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223598 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (25 pages, 223673 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -60955,15 +61329,15 @@ translate preprocessed doconce text in __tmp.do.txt
 output in tutorial.rst
 + rst2xml.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
-tutorial.rst:890: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+tutorial.rst:889: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2odt.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
 + rst2html.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
-tutorial.rst:890: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+tutorial.rst:889: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2latex.py tutorial.rst
 tutorial.rst:403: (WARNING/2) Duplicate explicit target name: "sphinx".
-tutorial.rst:890: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+tutorial.rst:889: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + latex tutorial.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
 entering extended mode
@@ -61226,64 +61600,64 @@ Overfull \hbox (16.80876pt too wide) in paragraph at lines 1062--1068
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
 [11]
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 1101--1104
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 1100--1103
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 1105--1108
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 1104--1107
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [12]
-Overfull \hbox (314.9936pt too wide) in paragraph at lines 1216--1222
+Overfull \hbox (314.9936pt too wide) in paragraph at lines 1215--1221
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][][],
 [13]
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1255--1266
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1254--1265
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1310--1310
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1309--1309
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1320--1321
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1319--1320
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
 [14]
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1353--1354
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1352--1353
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1358--1358
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1357--1357
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 1379--1380
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 1378--1379
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 15 undef
-ined on input line 1388.
+ined on input line 1387.
 
 
-Overfull \hbox (7.2784pt too wide) in paragraph at lines 1386--1389
+Overfull \hbox (7.2784pt too wide) in paragraph at lines 1385--1388
 []\T1/ptm/m/n/10 If you use the minted style, you have to en-able it by run-nin
 g \T1/pcr/m/n/10 ptex2tex -DMINTED
 
-Overfull \hbox (15.00778pt too wide) in paragraph at lines 1386--1389
+Overfull \hbox (15.00778pt too wide) in paragraph at lines 1385--1388
 \T1/ptm/m/n/10 and then \T1/pcr/m/n/10 latex -shell-escape\T1/ptm/m/n/10 , see 
 the the sec-tion [][][][][][]. 
 
-Overfull \hbox (185.00006pt too wide) in paragraph at lines 1394--1395
+Overfull \hbox (185.00006pt too wide) in paragraph at lines 1393--1394
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
 s/trunk/docutils  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1404--1407
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1403--1406
 []\T1/pcr/m/n/10 sudo apt-get install unovonv libreoffice libreoffice-dmaths 
 [15]
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 1439--1440
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 1438--1439
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
 
-Overfull \hbox (134.56776pt too wide) in paragraph at lines 1483--1483
+Overfull \hbox (134.56776pt too wide) in paragraph at lines 1482--1482
 [][][][][][] 
 [16] (./tutorial.rst.aux)
 
@@ -61294,7 +61668,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.rst.dvi (16 pages, 79660 bytes).
+Output written on tutorial.rst.dvi (16 pages, 79688 bytes).
 Transcript written on tutorial.rst.log.
 + dvipdf tutorial.rst.dvi
 + doconce format plain tutorial.do.txt
@@ -61353,12 +61727,12 @@ output in tutorial.mkd
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.cwiki.ps tutorial.cwiki
 [tutorial.cwiki (plain): 17 pages on 17 sheets]
 [Total: 17 pages on 17 sheets] saved into the file `tutorial.cwiki.ps'
-[83 lines wrapped]
+[82 lines wrapped]
 + ps2pdf tutorial.cwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mwiki.ps tutorial.mwiki
 [tutorial.mwiki (plain): 18 pages on 18 sheets]
 [Total: 18 pages on 18 sheets] saved into the file `tutorial.mwiki.ps'
-[161 lines wrapped]
+[163 lines wrapped]
 + ps2pdf tutorial.mwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mkd.ps tutorial.mkd
 [tutorial.mkd (plain): 20 pages on 20 sheets]
@@ -61368,7 +61742,7 @@ output in tutorial.mkd
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
 [tutorial.xml (plain): 17 pages on 17 sheets]
 [Total: 17 pages on 17 sheets] saved into the file `tutorial.xml.ps'
-[468 lines wrapped]
+[475 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.mkd.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.mkd.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -61446,7 +61820,7 @@ software. Each version can have multiple releases. For example, for
 Python the version is something like 2.5 or 3.0, while the release is
 something like 2.5.1 or 3.0a1.  If you don't need this dual structure,
 just set both to the same value.
-> Project version: > Project release [1.0]: 
+> Project version: > Project release [0.6]: 
 The file name suffix for source files. Commonly, this is either ".txt"
 or ".rst".  Only files with this suffix are considered documents.
 > Source file suffix [.rst]: * Please enter a file suffix, e.g. '.rst' or '.txt'.
@@ -61477,7 +61851,7 @@ source files. Use the Makefile to build the docs, like so:
 where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
 Title: Doconce Manual
-Author: 0.6
+Author: HPL
 These Sphinx themes were found: slim-agogo, default, pylons, agogo, traditional, cbc, flask, scrolls, sphinxdoc, solarized, classy, redcloud, epub, fenics_minimal, vlinux-theme, haiku, jal, agni, cloud, basic, fenics, nature, pyramid, default
 
 'automake-sphinx.py' contains the steps to (re)compile the sphinx
@@ -61503,8 +61877,8 @@ updating environment: 2 added, 0 changed, 0 removed
 reading sources... [ 50%] index
 reading sources... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1130: SEVERE: Duplicate ID: "equation-myeq1".
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:846: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1129: SEVERE: Duplicate ID: "equation-myeq1".
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:845: ERROR: Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -61512,8 +61886,8 @@ preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1520: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1520: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1541: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1541: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
 writing additional files... (0 module code pages) genindex search
 copying images... [ 33%] figs/wavepacket_0001.png
 copying images... [ 66%] figs/wavepacket_0010.png
@@ -61686,7 +62060,7 @@ Underfull \hbox (badness 5359) in paragraph at lines 533--538
 tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
 ee the sec-tion
 [10] [11] [12] [13] [14]
-Underfull \hbox (badness 10000) in paragraph at lines 917--921
+Underfull \hbox (badness 10000) in paragraph at lines 916--920
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: []\T1/ptm/b/n/10 `Google-code wiki
 [15] [16]
@@ -61697,56 +62071,57 @@ Chapter 5.
 <use streamtubes.png> [21] [22 <./streamtubes.png>]
 
 LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 23 undefine
-d on input line 1295.
+d on input line 1294.
 
 [23]
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 24 undefined on
- input line 1417.
+ input line 1443.
 
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 24 undefined on
- input line 1421.
-
-
-LaTeX Warning: Hyper reference `manual:inline-tagging' on page 24 undefined on 
-input line 1452.
+ input line 1447.
 
 [24]
 
+LaTeX Warning: Hyper reference `manual:inline-tagging' on page 25 undefined on 
+input line 1478.
+
+
 LaTeX Warning: Hyper reference `manual:fig-viz' on page 25 undefined on input l
-ine 1507.
+ine 1533.
 
 
 LaTeX Warning: Hyper reference `manual:mathtext' on page 25 undefined on input 
-line 1509.
+line 1535.
 
 
 LaTeX Warning: Hyper reference `manual:newcommands' on page 25 undefined on inp
-ut line 1509.
-
-
-LaTeX Warning: Hyper reference `manual:inline-tagging' on page 25 undefined on 
-input line 1516.
+ut line 1535.
 
 [25]
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 26 undefined o
-n input line 1606.
+LaTeX Warning: Hyper reference `manual:inline-tagging' on page 26 undefined on 
+input line 1542.
+
+[26]
+
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 27 undefined o
+n input line 1632.
 
 
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 26 undefined on input 
-line 1606.
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 27 undefined on input 
+line 1632.
 
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 26 undefined o
-n input line 1607.
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 27 undefined o
+n input line 1633.
 
 
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 26 undefined on input 
-line 1607.
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 27 undefined on input 
+line 1633.
 
-[26] [27] [28] [29]
+[27] [28] [29]
 ! FancyVerb Error:
   Empty verbatim environment
 .
@@ -61754,39 +62129,39 @@ line 1607.
 \space \space #1
 }
                                                   
-l.1927 \end{Verbatim}
+l.1953 \end{Verbatim}
                      
 ? OK, entering \nonstopmode...
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1933.
+(amsmath)                 on input line 1959.
 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.1933 \end{gather}
+l.1959 \end{gather}
                    
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.1933 \end{gather}
+l.1959 \end{gather}
                    
 [30]
-Underfull \hbox (badness 10000) in paragraph at lines 1967--1973
+Underfull \hbox (badness 10000) in paragraph at lines 1993--1999
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax' \T1/ptm/m/n/10 (en-abled by de-fault)
 
-Underfull \hbox (badness 10000) in paragraph at lines 1967--1973
+Underfull \hbox (badness 10000) in paragraph at lines 1993--1999
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 'matplotlib.sphinxext.mathmpl' \T1/ptm/m/n/10
  (dis-abled by de-fault) lines, and un-com-ment the
-[31] <wavepacket_0001.png, id=253, 642.4pt x 481.8pt>
+[31] <wavepacket_0001.png, id=255, 642.4pt x 481.8pt>
 <use wavepacket_0001.png> <use wavepacket_0001.png>
-<wavepacket_0010.png, id=254, 642.4pt x 481.8pt> <use wavepacket_0010.png>
+<wavepacket_0010.png, id=256, 642.4pt x 481.8pt> <use wavepacket_0010.png>
 <use wavepacket_0010.png>
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 32 undefined on
- input line 2092.
+ input line 2118.
 
 [32] [33 <./wavepacket_0001.png (PNG copy)>] [34 <./wavepacket_0010.png (PNG co
 py)>] [35] [36]
@@ -61794,7 +62169,7 @@ Chapter 6.
 [37] [38]
 
 LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 39 undefine
-d on input line 2448.
+d on input line 2474.
 
 [39] [40] [41] [42]
 Chapter 7.
@@ -61825,7 +62200,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
 mr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceManual.pdf (53 pages, 391068 bytes).
+Output written on DoconceManual.pdf (53 pages, 392863 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -61845,11 +62220,11 @@ figure file figs/streamtubes:
     can use figs/streamtubes.png for format rst
 output in manual.rst
 + rst2html.py manual.rst
-manual.rst:786: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+manual.rst:785: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2xml.py manual.rst
-manual.rst:786: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+manual.rst:785: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + rst2latex.py manual.rst
-manual.rst:786: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
+manual.rst:785: (ERROR/3) Unknown target name: "googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>".
 + doconce subst \.png  manual.rst.tex
 \.png replaced by  in manual.rst.tex
 + latex manual.rst.tex
@@ -62078,382 +62453,386 @@ Overfull \hbox (16.80876pt too wide) in paragraph at lines 882--888
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
 [9]
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 921--924
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 920--923
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 925--928
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 924--927
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [10]
-Overfull \hbox (314.9936pt too wide) in paragraph at lines 1036--1042
+Overfull \hbox (314.9936pt too wide) in paragraph at lines 1035--1041
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][][],
 [11]
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1075--1086
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1074--1085
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [12]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 1221--1226
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 1220--1225
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1251--1254
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1250--1253
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 [13]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1262--1265
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1261--1264
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1273--1273
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1272--1272
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1274--1274
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1273--1273
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1291--1291
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1290--1290
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1333--1334
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1332--1333
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 [14]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1379--1382
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1378--1381
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
 <figs/streamtubes.eps> [15]
-Overfull \hbox (2.15817pt too wide) in paragraph at lines 1406--1409
+Overfull \hbox (2.15817pt too wide) in paragraph at lines 1405--1408
 []\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
 1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1409--1410
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1408--1409
 \T1/pcr/m/n/10 montage file1 file2 ... file4 -geometry +2+2  result  
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1435--1438
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1434--1437
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 [16]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1463--1466
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1462--1465
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1468--1472
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1467--1471
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1473--1479
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1472--1478
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 17 un
-defined on input line 1491.
+defined on input line 1490.
 
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1489--1492
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1488--1491
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1517--1520
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1516--1519
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1530--1532
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1529--1531
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 [17]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1551--1554
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1550--1553
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1574--1575
+Overfull \hbox (22.65768pt too wide) in paragraph at lines 1577--1581
+\T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
+RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
+
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1601--1602
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
-Overfull \hbox (1.1292pt too wide) in paragraph at lines 1580--1583
+Overfull \hbox (1.1292pt too wide) in paragraph at lines 1607--1612
 []\T1/ptm/m/n/10 Then you can link to \T1/pcr/m/n/10 _static/make.sh.html \T1/p
 tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1583--1586
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1612--1615
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1627--1630
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1656--1659
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
+[18]
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 18 undef
-ined on input line 1649.
-
-
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 18 undef
-ined on input line 1653.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 19 undef
+ined on input line 1678.
 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1641--1654
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 19 undef
+ined on input line 1682.
+
+
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1670--1683
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
-[18]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1667--1667
+
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1696--1696
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1668--1670
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1697--1699
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-LaTeX Warning: Hyper reference `id5' on page 19 undefined on input line 1691.
+LaTeX Warning: Hyper reference `id5' on page 19 undefined on input line 1720.
 
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1699--1699
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1728--1728
 []\T1/pcr/m/n/10 # Here are some comment lines that do not affect any formattin
 g.  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1700--1700
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1729--1729
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
-
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1733--1735
+[19]
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1762--1764
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
-[19]
 
-LaTeX Warning: Hyper reference `fig-viz' on page 20 undefined on input line 175
-1.
+LaTeX Warning: Hyper reference `fig-viz' on page 20 undefined on input line 178
+0.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 20 u
-ndefined on input line 1753.
+ndefined on input line 1782.
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 20 undefined on inp
-ut line 1753.
+ut line 1782.
 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1749--1758
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1778--1787
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-LaTeX Warning: Hyper reference `id5' on page 20 undefined on input line 1760.
+LaTeX Warning: Hyper reference `id5' on page 20 undefined on input line 1789.
 
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1759--1761
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1788--1790
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1784--1787
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1813--1816
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
-
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1802--1805
-[]\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 [20]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1833--1833
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1831--1834
+[]\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
+
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1862--1862
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1834--1834
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1863--1863
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 1858--1860
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 1887--1889
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1861--1864
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1890--1893
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [21]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1978--1979
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2007--2008
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 [22]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2052--2055
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2081--2084
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
 [23]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2134--2136
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2163--2165
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[24]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2251--2251
+[24] [25]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2280--2280
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2252--2252
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2281--2281
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-[25]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2261--2261
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2290--2290
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2262--2262
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2291--2291
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (22.2296pt too wide) in paragraph at lines 2273--2279
+Overfull \hbox (22.2296pt too wide) in paragraph at lines 2302--2308
 \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki") \T1/ptm/m
 /n/10 one places
 
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2306--2312
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2335--2341
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2306--2312
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2335--2341
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2306--2312
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2335--2341
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
 [26]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2358--2361
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2387--2390
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2393--2393
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2422--2422
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2394--2394
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2423--2423
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2410--2422
+[27]
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2439--2451
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[27] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [28]
+<figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [28] [29]
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 29 undef
-ined on input line 2452.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 30 undef
+ined on input line 2481.
 
-[29]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2500--2500
-[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [30]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2579--2581
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2529--2529
+[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
+[31]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2608--2610
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2641--2643
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2670--2672
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[31]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2763--2766
-[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 [32]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 2780--2783
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2792--2795
+[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
+[33]
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 2809--2812
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2787--2790
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2816--2819
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2826--2827
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2855--2856
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2829--2831
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2858--2860
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[33]
+[34]
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 34 un
-defined on input line 2970.
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 35 un
+defined on input line 2999.
 
-[34] [35]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3128--3129
+[35] [36]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3157--3158
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3130--3130
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3159--3159
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3133--3133
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3162--3162
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[36]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3291--3294
+[37]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3320--3323
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[37]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3332--3333
+[38]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3361--3362
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3334--3334
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3363--3363
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3335--3335
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3364--3364
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3338--3338
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3367--3367
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3339--3339
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3368--3368
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3340--3340
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3369--3369
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3341--3341
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3370--3370
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 3346--3346
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 3375--3375
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3347--3347
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3376--3376
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3348--3348
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3377--3377
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 3351--3351
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 3380--3380
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 3354--3354
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 3383--3383
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 3356--3356
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 3385--3385
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3359--3359
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3388--3388
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3366--3366
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3395--3395
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3397--3397
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3370--3370
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3399--3399
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3373--3373
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3402--3402
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
-[38]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3379--3379
+[39]
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3408--3408
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3420--3420
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3449--3449
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3422--3422
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3451--3451
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3423--3423
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3452--3452
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3424--3424
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3453--3453
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3425--3425
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3454--3454
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 
-Overfull \hbox (134.56776pt too wide) in paragraph at lines 3475--3475
+Overfull \hbox (134.56776pt too wide) in paragraph at lines 3504--3504
 [][][][][][] 
-[39] [40] [41] (./manual.rst.aux)
+[40] [41] [42] (./manual.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -62462,7 +62841,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (41 pages, 177964 bytes).
+Output written on manual.rst.dvi (42 pages, 180120 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -62678,343 +63057,347 @@ Overfull \hbox (16.80876pt too wide) in paragraph at lines 882--888
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
 [9]
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 921--924
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 920--923
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 925--928
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 924--927
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [10]
-Overfull \hbox (314.9936pt too wide) in paragraph at lines 1036--1042
+Overfull \hbox (314.9936pt too wide) in paragraph at lines 1035--1041
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][][],
 [11]
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1075--1086
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1074--1085
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [12]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 1221--1226
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 1220--1225
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1251--1254
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1250--1253
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 [13]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1262--1265
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1261--1264
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1273--1273
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1272--1272
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1274--1274
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1273--1273
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1291--1291
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1290--1290
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1333--1334
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1332--1333
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 [14]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1379--1382
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1378--1381
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
 <figs/streamtubes.eps> [15]
-Overfull \hbox (2.15817pt too wide) in paragraph at lines 1406--1409
+Overfull \hbox (2.15817pt too wide) in paragraph at lines 1405--1408
 []\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
 1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1409--1410
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1408--1409
 \T1/pcr/m/n/10 montage file1 file2 ... file4 -geometry +2+2  result  
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1435--1438
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1434--1437
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 [16]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1463--1466
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1462--1465
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1468--1472
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1467--1471
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1473--1479
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1472--1478
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1489--1492
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1488--1491
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1517--1520
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1516--1519
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1530--1532
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1529--1531
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 [17]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1551--1554
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1550--1553
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1574--1575
+Overfull \hbox (22.65768pt too wide) in paragraph at lines 1577--1581
+\T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
+RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
+
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1601--1602
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
-Overfull \hbox (1.1292pt too wide) in paragraph at lines 1580--1583
+Overfull \hbox (1.1292pt too wide) in paragraph at lines 1607--1612
 []\T1/ptm/m/n/10 Then you can link to \T1/pcr/m/n/10 _static/make.sh.html \T1/p
 tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1583--1586
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1612--1615
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1627--1630
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1656--1659
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
-
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1641--1654
+[18]
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1670--1683
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
-[18]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1667--1667
+
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1696--1696
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1668--1670
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1697--1699
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1699--1699
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1728--1728
 []\T1/pcr/m/n/10 # Here are some comment lines that do not affect any formattin
 g.  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1700--1700
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1729--1729
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
-
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1733--1735
+[19]
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1762--1764
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
-[19]
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1749--1758
+
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1778--1787
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1759--1761
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1788--1790
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1784--1787
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1813--1816
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
-
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1802--1805
-[]\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 [20]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1833--1833
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1831--1834
+[]\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
+
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1862--1862
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 1834--1834
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1863--1863
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 1858--1860
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 1887--1889
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 1861--1864
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 1890--1893
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [21]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 1978--1979
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2007--2008
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 [22]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2052--2055
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2081--2084
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
 [23]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2134--2136
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2163--2165
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[24]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2251--2251
+[24] [25]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2280--2280
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2252--2252
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2281--2281
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-[25]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2261--2261
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2290--2290
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2262--2262
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2291--2291
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (22.2296pt too wide) in paragraph at lines 2273--2279
+Overfull \hbox (22.2296pt too wide) in paragraph at lines 2302--2308
 \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki") \T1/ptm/m
 /n/10 one places
 
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2306--2312
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2335--2341
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2306--2312
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2335--2341
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2306--2312
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2335--2341
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
 [26]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2358--2361
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2387--2390
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2393--2393
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2422--2422
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2394--2394
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2423--2423
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2410--2422
+[27]
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2439--2451
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[27] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [28] [29]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2500--2500
+<figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [28] [29] [30]
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2529--2529
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[30]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2579--2581
+[31]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2608--2610
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2641--2643
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2670--2672
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[31]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2763--2766
-[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 [32]
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 2780--2783
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2792--2795
+[]\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
+[33]
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 2809--2812
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 2787--2790
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 2816--2819
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2826--2827
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2855--2856
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2829--2831
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2858--2860
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[33] [34] [35]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3128--3129
+[34] [35] [36]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3157--3158
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3130--3130
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3159--3159
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3133--3133
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3162--3162
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[36]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3291--3294
+[37]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3320--3323
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[37]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3332--3333
+[38]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3361--3362
 \T1/pcr/m/n/10 FILENAME_EXTENSION['html'] = '.html'  # output file extension  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3334--3334
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3363--3363
 []\T1/pcr/m/n/10 BLANKLINE['html'] = '<p>\n'           # blank input line => ne
 w paragraph  
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3335--3335
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3364--3364
 []\T1/pcr/m/n/10 INLINE_TAGS_SUBST['html'] = {         # from inline tags to HT
 ML tags  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3338--3338
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3367--3367
 []    \T1/pcr/m/n/10 'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3339--3339
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3368--3368
 []    \T1/pcr/m/n/10 'bold':          r'\g<begin><b>\g<subst></b>\g<end>',  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 3340--3340
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3369--3369
 []    \T1/pcr/m/n/10 'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',  
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3341--3341
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3370--3370
 []    \T1/pcr/m/n/10 'URL':           r'\g<begin><a href="\g<url>">\g<link></a>
 ',  
 
-Overfull \hbox (221.00006pt too wide) in paragraph at lines 3346--3346
+Overfull \hbox (221.00006pt too wide) in paragraph at lines 3375--3375
 []    \T1/pcr/m/n/10 'title':         r'<title>\g<subst></title>\n<center><h1>\
 g<subst></h1></center>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3347--3347
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3376--3376
 []    \T1/pcr/m/n/10 'date':          r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3348--3348
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3377--3377
 []    \T1/pcr/m/n/10 'author':        r'<center><h3>\g<subst></h3></center>',  
 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 3351--3351
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 3380--3380
 []\T1/pcr/m/n/10 # how to replace code and latex blocks by html (<pre>) environ
 ment:  
 
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 3354--3354
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 3383--3383
 []    \T1/pcr/m/n/10 filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre
 >\n', filestr)  
 
-Overfull \hbox (137.00006pt too wide) in paragraph at lines 3356--3356
+Overfull \hbox (137.00006pt too wide) in paragraph at lines 3385--3385
 []                     \T1/pcr/m/n/10 r'</pre>\n<! -- END VERBATIM BLOCK -->\n'
 , filestr)  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3359--3359
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3388--3388
 []    \T1/pcr/m/n/10 filestr = re.sub(r'!et\n', r'</pre>\n', filestr)  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3366--3366
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3395--3395
 []    \T1/pcr/m/n/10 {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
   
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3397--3397
 []    \T1/pcr/m/n/10 {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
   
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3370--3370
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3399--3399
 []    \T1/pcr/m/n/10 {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\
 n\n'},  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3373--3373
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3402--3402
 []\T1/pcr/m/n/10 # how to type set description lists for function arguments, re
 turn  
-[38]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 3379--3379
+[39]
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 3408--3408
 []    \T1/pcr/m/n/10 'instance variable': '<b>instance variable</b>',  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3420--3420
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3449--3449
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3422--3422
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3451--3451
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3423--3423
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3452--3452
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3424--3424
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3453--3453
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3425--3425
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3454--3454
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
 
-Overfull \hbox (134.56776pt too wide) in paragraph at lines 3475--3475
+Overfull \hbox (134.56776pt too wide) in paragraph at lines 3504--3504
 [][][][][][] 
-[39] [40] [41] (./manual.rst.aux) )
+[40] [41] [42] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (41 pages, 186224 bytes).
+Output written on manual.rst.dvi (42 pages, 188380 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments
@@ -63182,140 +63565,140 @@ No file manual.aux.
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1{/var/lib/texmf/fonts/map
 /pdftex/updmap/pdftex.map}] [2] [3]
 
-LaTeX Warning: Reference `doconce2formats' on page 4 undefined on input line 24
-4.
+LaTeX Warning: Reference `doconce2formats' on page 4 undefined on input line 25
+3.
 
 [4]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [5] [6]
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-LaTeX Warning: Reference `newcommands' on page 7 undefined on input line 490.
+LaTeX Warning: Reference `newcommands' on page 7 undefined on input line 499.
 
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (22.24706pt too wide) in paragraph at lines 702--703
+Overfull \hbox (22.24706pt too wide) in paragraph at lines 711--712
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (1.04228pt too wide) in paragraph at lines 887--893
+Overfull \hbox (1.04228pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
 [14] [15] [16] [17] <figs/streamtubes.png, id=145, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 20 undefined on input li
-ne 1286.
+ne 1294.
 
 
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21]
 
 LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-421.
+454.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-425.
+458.
 
 
 LaTeX Warning: Reference `inline:tagging' on page 22 undefined on input line 14
-55.
+88.
 
 [22]
 
-LaTeX Warning: Reference `fig:viz' on page 23 undefined on input line 1508.
+LaTeX Warning: Reference `fig:viz' on page 23 undefined on input line 1541.
 
 
-LaTeX Warning: Reference `mathtext' on page 23 undefined on input line 1510.
+LaTeX Warning: Reference `mathtext' on page 23 undefined on input line 1543.
 
 
-LaTeX Warning: Reference `newcommands' on page 23 undefined on input line 1510.
+LaTeX Warning: Reference `newcommands' on page 23 undefined on input line 1543.
 
 
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
 
 LaTeX Warning: Reference `inline:tagging' on page 23 undefined on input line 15
-17.
+50.
 
-[23]
+[23] [24]
 
-LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-608.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1608.
+LaTeX Warning: Citation `Python:Primer:09' on page 25 undefined on input line 1
+641.
 
 
-LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-609.
+LaTeX Warning: Citation `Osnes:98' on page 25 undefined on input line 1641.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1609.
+LaTeX Warning: Citation `Python:Primer:09' on page 25 undefined on input line 1
+642.
 
-[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+
+LaTeX Warning: Citation `Osnes:98' on page 25 undefined on input line 1642.
+
+[25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
 (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.png, id=238, 642.4pt x 481.8pt>
+[31] <figs/wavepacket_0001.png, id=246, 642.4pt x 481.8pt>
 <use figs/wavepacket_0001.png>
-<figs/wavepacket_0010.png, id=239, 642.4pt x 481.8pt>
+<figs/wavepacket_0010.png, id=247, 642.4pt x 481.8pt>
 <use figs/wavepacket_0010.png>
 
-LaTeX Warning: Reference `doconce2formats' on page 31 undefined on input line 2
-124.
+LaTeX Warning: Reference `doconce2formats' on page 32 undefined on input line 2
+157.
 
-[31] [32 <./figs/wavepacket_0001.png (PNG copy)> <./figs/wavepacket_0010.png (P
-NG copy)>] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2215--2222
+[32 <./figs/wavepacket_0001.png (PNG copy)>] [33 <./figs/wavepacket_0010.png (P
+NG copy)>]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2248--2255
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2215--2222
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2248--2255
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
 [34] [35] [36] [37]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 38 undefined on input li
-ne 2447.
+ne 2480.
 
 [38] [39] [40] [41] [42]
 No file manual.bbl.
@@ -63343,7 +63726,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (43 pages, 417430 bytes).
+Output written on manual.pdf (43 pages, 418592 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -63449,89 +63832,89 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1{/var/lib/texmf/fonts/map
 /pdftex/updmap/pdftex.map}] [2] [3] [4]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [5] [6]
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (22.24706pt too wide) in paragraph at lines 702--703
+Overfull \hbox (22.24706pt too wide) in paragraph at lines 711--712
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (1.04228pt too wide) in paragraph at lines 887--893
+Overfull \hbox (1.04228pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
 [14] [15] [16] [17] <figs/streamtubes.png, id=311, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
-[23]
+[23] [24]
 
-LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-608.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1608.
+LaTeX Warning: Citation `Python:Primer:09' on page 25 undefined on input line 1
+641.
 
 
-LaTeX Warning: Citation `Python:Primer:09' on page 24 undefined on input line 1
-609.
+LaTeX Warning: Citation `Osnes:98' on page 25 undefined on input line 1641.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 24 undefined on input line 1609.
+LaTeX Warning: Citation `Python:Primer:09' on page 25 undefined on input line 1
+642.
 
-[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+
+LaTeX Warning: Citation `Osnes:98' on page 25 undefined on input line 1642.
+
+[25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
 (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.png, id=399, 642.4pt x 481.8pt>
+[31] <figs/wavepacket_0001.png, id=406, 642.4pt x 481.8pt>
 <use figs/wavepacket_0001.png>
-<figs/wavepacket_0010.png, id=400, 642.4pt x 481.8pt>
-<use figs/wavepacket_0010.png> [31] [32 <./figs/wavepacket_0001.png (PNG copy)>
- <./figs/wavepacket_0010.png (PNG copy)>] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2215--2222
+<figs/wavepacket_0010.png, id=407, 642.4pt x 481.8pt>
+<use figs/wavepacket_0010.png> [32 <./figs/wavepacket_0001.png (PNG copy)>]
+[33 <./figs/wavepacket_0010.png (PNG copy)>]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2248--2255
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2215--2222
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2248--2255
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -63559,7 +63942,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (44 pages, 437418 bytes).
+Output written on manual.pdf (44 pages, 438534 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -63653,74 +64036,74 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1{/var/lib/texmf/fonts/map
 /pdftex/updmap/pdftex.map}] [2] [3] [4]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [5] [6]
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (22.24706pt too wide) in paragraph at lines 702--703
+Overfull \hbox (22.24706pt too wide) in paragraph at lines 711--712
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (1.04228pt too wide) in paragraph at lines 887--893
+Overfull \hbox (1.04228pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
 [14] [15] [16] [17] <figs/streamtubes.png, id=311, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
 [23] [24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27]
 (./manual.out.pyg) (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.png, id=405, 642.4pt x 481.8pt>
+[31] <figs/wavepacket_0001.png, id=412, 642.4pt x 481.8pt>
 <use figs/wavepacket_0001.png>
-<figs/wavepacket_0010.png, id=406, 642.4pt x 481.8pt>
-<use figs/wavepacket_0010.png> [31] [32 <./figs/wavepacket_0001.png (PNG copy)>
- <./figs/wavepacket_0010.png (PNG copy)>] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2215--2222
+<figs/wavepacket_0010.png, id=413, 642.4pt x 481.8pt>
+<use figs/wavepacket_0010.png> [32 <./figs/wavepacket_0001.png (PNG copy)>]
+[33 <./figs/wavepacket_0010.png (PNG copy)>]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2248--2255
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2215--2222
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2248--2255
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -63748,7 +64131,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt9.pfb>
-Output written on manual.pdf (44 pages, 438135 bytes).
+Output written on manual.pdf (44 pages, 439252 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt
@@ -63865,79 +64248,79 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 176--180
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 443--448
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
 
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 711--712
 [][][][][][][] 
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
-[23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
+[23] [24]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1637--1639
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+[25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
 (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
+[31] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -63951,7 +64334,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198488 bytes).
+Output written on manual.dvi (44 pages, 199692 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -64044,79 +64427,79 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 176--180
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 443--448
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
 
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 711--712
 [][][][][][][] 
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
-[23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
+[23] [24]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1637--1639
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+[25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
 (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
+[31] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -64130,7 +64513,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198488 bytes).
+Output written on manual.dvi (44 pages, 199692 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -64235,79 +64618,79 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 176--180
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 443--448
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
 
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 711--712
 [][][][][][][] 
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
-[23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
+[23] [24]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1637--1639
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+[25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
 (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
+[31] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -64321,7 +64704,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198488 bytes).
+Output written on manual.dvi (44 pages, 199692 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -64414,79 +64797,79 @@ LaTeX Warning: Label `myeq1' multiply defined.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd) [1]
-Overfull \hbox (16.52663pt too wide) in paragraph at lines 167--171
+Overfull \hbox (16.52663pt too wide) in paragraph at lines 176--180
 \OT1/cmr/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
 [2] [3]
-Overfull \hbox (4.26834pt too wide) in paragraph at lines 303--313
+Overfull \hbox (4.26834pt too wide) in paragraph at lines 312--322
 \OT1/cmr/m/n/10 avail-able in Debian-based sys-tem through the []\OT1/cmtt/m/n/
 10 apt-get install \OT1/cmr/m/n/10 com-mand. How-
 [4] [5]
-Overfull \hbox (1.65509pt too wide) in paragraph at lines 434--439
+Overfull \hbox (1.65509pt too wide) in paragraph at lines 443--448
 \OT1/cmr/m/n/10 L[]T[]X to the out-put for-mat in-stead of ig-nor-ing it. See t
 he [][][][][][]
 
-Overfull \hbox (37.69255pt too wide) in paragraph at lines 440--448
+Overfull \hbox (37.69255pt too wide) in paragraph at lines 449--457
 []\OT1/cmtt/m/n/10 doconce format pandoc \OT1/cmr/m/n/10 and then trans-lat-ing
  us-ing []\OT1/cmtt/m/n/10 pandoc\OT1/cmr/m/n/10 , or []\OT1/cmtt/m/n/10 doconc
 e format latex\OT1/cmr/m/n/10 ,
 [6]
-Overfull \hbox (7.21347pt too wide) in paragraph at lines 481--485
+Overfull \hbox (7.21347pt too wide) in paragraph at lines 490--494
  \OT1/cmr/bx/n/10 Step 1.[] \OT1/cmr/m/n/10 Fil-ter the do-conce text to a pre-
 LaTeX form []\OT1/cmtt/m/n/10 mydoc.p.tex \OT1/cmr/m/n/10 for []\OT1/cmtt/m/n/1
 0 ptex2tex\OT1/cmr/m/n/10 :
 
-Overfull \hbox (53.0808pt too wide) in paragraph at lines 488--493
+Overfull \hbox (53.0808pt too wide) in paragraph at lines 497--502
 \OT1/cmr/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/cmr/m
 /n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/cmr/m/n/10 , or []\OT1/cmtt
 /m/n/10 newcommands_replace.tex
 [7] [8] [9] [10]
-Overfull \hbox (43.24687pt too wide) in paragraph at lines 702--703
+Overfull \hbox (43.24687pt too wide) in paragraph at lines 711--712
 [][][][][][][] 
 [11]
-Overfull \hbox (1.943pt too wide) in paragraph at lines 737--743
+Overfull \hbox (1.943pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/cmr/m/n/10 com
 -mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
 
-Overfull \hbox (9.37846pt too wide) in paragraph at lines 775--778
+Overfull \hbox (9.37846pt too wide) in paragraph at lines 783--786
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/cmr/m/n/10 , re-spec-tively. With-ou
 t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/cmr/m/n/10 makes
 [12] [13]
-Overfull \hbox (41.59793pt too wide) in paragraph at lines 887--893
+Overfull \hbox (41.59793pt too wide) in paragraph at lines 895--901
 \OT1/cmr/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
 [14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
-Overfull \hbox (29.62364pt too wide) in paragraph at lines 1294--1297
+Overfull \hbox (29.62364pt too wide) in paragraph at lines 1302--1305
 \OT1/cmr/m/n/10 Doconce sup-ports tags for \OT1/cmr/m/it/10 em-pha-sized phrase
 s\OT1/cmr/m/n/10 , \OT1/cmr/bx/n/10 bold-face phrases\OT1/cmr/m/n/10 , and []\O
 T1/cmtt/m/n/10 verbatim text
 [20] [21] [22]
 
-LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq1' on page 23 undefined on input line 1545.
 
 
-LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1512.
+LaTeX Warning: Reference `my:eq2' on page 23 undefined on input line 1545.
 
-[23]
-Overfull \hbox (42.44295pt too wide) in paragraph at lines 1604--1606
+[23] [24]
+Overfull \hbox (42.44295pt too wide) in paragraph at lines 1637--1639
 []\OT1/cmr/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[24] [25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
+[25] [26] (./manual.out.pyg) (./manual.out.pyg) [27] (./manual.out.pyg)
 (./manual.out.pyg) [28]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1941.
+(amsmath)                 on input line 1974.
 
-[29]
-Overfull \hbox (19.95741pt too wide) in paragraph at lines 2013--2015
+[29] [30]
+Overfull \hbox (19.95741pt too wide) in paragraph at lines 2046--2048
  \OT1/cmr/bx/n/10 Ex-am-ple.[] \OT1/cmr/m/n/10 Sup-pose we have the fol-low-ing
  com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/cmr/m/n/10 : 
-[30] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [31] [32] [33]
-Overfull \hbox (88.6258pt too wide) in paragraph at lines 2207--2214
+[31] <figs/wavepacket_0001.eps> <figs/wavepacket_0010.eps> [32] [33]
+Overfull \hbox (88.6258pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (6.12802pt too wide) in paragraph at lines 2207--2214
+Overfull \hbox (6.12802pt too wide) in paragraph at lines 2240--2247
 \OT1/cmr/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/cmr/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/cmr/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
@@ -64500,7 +64883,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (44 pages, 198488 bytes).
+Output written on manual.dvi (44 pages, 199692 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt
@@ -64691,37 +65074,40 @@ Package hyperref Warning: Rerun to get /PageLabels entry.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1] [2] [3] [4]
-Overfull \hbox (4.40137pt too wide) in paragraph at lines 351--360
+Overfull \hbox (4.40137pt too wide) in paragraph at lines 360--369
 \OT1/phv/m/n/10 fi-ca-tion copies from the first line match-ing the \OT1/phv/m/
 sl/10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 doconce clean
 
-Overfull \hbox (27.8928pt too wide) in paragraph at lines 351--360
+Overfull \hbox (27.8928pt too wide) in paragraph at lines 360--369
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
 /10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 ^doconce split_rst\OT1/phv/m/n/10
  .
 [5]
-Overfull \hbox (10.99698pt too wide) in paragraph at lines 424--428
+Overfull \hbox (10.99698pt too wide) in paragraph at lines 433--437
 []\OT1/phv/m/n/10 One can use []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdfla
 tex", "sphinx", "mwiki")
 
-Overfull \hbox (12.54659pt too wide) in paragraph at lines 445--454
+Overfull \hbox (12.54659pt too wide) in paragraph at lines 454--463
 \OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally []\OT1/cmt
 t/m/n/10 # #ifdef format == "latex"\OT1/phv/m/n/10 )
 [6]
 
-LaTeX Warning: Reference `quick:sections' on page 7 undefined on input line 497
+LaTeX Warning: Reference `quick:sections' on page 7 undefined on input line 506
 .
 
 [7]
-Overfull \hbox (60.6356pt too wide) in paragraph at lines 567--576
+Overfull \hbox (60.6356pt too wide) in paragraph at lines 576--585
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
 \OT1/cmtt/m/n/10 name \OT1/phv/m/n/10 on the form []\OT1/cmtt/m/n/10 Author1_Au
 thor2_YYYY\OT1/phv/m/n/10 ,
 
-Overfull \hbox (82.96643pt too wide) in paragraph at lines 581--588
+Overfull \hbox (82.96643pt too wide) in paragraph at lines 590--597
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib,name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
 (./quickref.out.pyg [8]) [9]
+Overfull \hbox (10.9457pt too wide) in paragraph at lines 731--732
+[]\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
+.ethz.ch/ creller/we-
 No file quickref.ind.
 [10] (./quickref.aux)
 
@@ -64732,7 +65118,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (10 pages, 42332 bytes).
+Output written on quickref.dvi (10 pages, 42696 bytes).
 Transcript written on quickref.log.
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -64817,36 +65203,39 @@ Writing index file quickref.idx
 (./quickref.out) (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsphv.fd) [1] [2] [3] [4]
-Overfull \hbox (4.40137pt too wide) in paragraph at lines 351--360
+Overfull \hbox (4.40137pt too wide) in paragraph at lines 360--369
 \OT1/phv/m/n/10 fi-ca-tion copies from the first line match-ing the \OT1/phv/m/
 sl/10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 doconce clean
 
-Overfull \hbox (27.8928pt too wide) in paragraph at lines 351--360
+Overfull \hbox (27.8928pt too wide) in paragraph at lines 360--369
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
 /10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 ^doconce split_rst\OT1/phv/m/n/10
  .
 [5]
-Overfull \hbox (10.99698pt too wide) in paragraph at lines 424--428
+Overfull \hbox (10.99698pt too wide) in paragraph at lines 433--437
 []\OT1/phv/m/n/10 One can use []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdfla
 tex", "sphinx", "mwiki")
 
-Overfull \hbox (12.54659pt too wide) in paragraph at lines 445--454
+Overfull \hbox (12.54659pt too wide) in paragraph at lines 454--463
 \OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally []\OT1/cmt
 t/m/n/10 # #ifdef format == "latex"\OT1/phv/m/n/10 )
 [6] [7]
-Overfull \hbox (60.6356pt too wide) in paragraph at lines 567--576
+Overfull \hbox (60.6356pt too wide) in paragraph at lines 576--585
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
 \OT1/cmtt/m/n/10 name \OT1/phv/m/n/10 on the form []\OT1/cmtt/m/n/10 Author1_Au
 thor2_YYYY\OT1/phv/m/n/10 ,
 
-Overfull \hbox (82.96643pt too wide) in paragraph at lines 581--588
+Overfull \hbox (82.96643pt too wide) in paragraph at lines 590--597
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib,name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
 (./quickref.out.pyg [8]) [9]
+Overfull \hbox (10.9457pt too wide) in paragraph at lines 731--732
+[]\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
+.ethz.ch/ creller/we-
 No file quickref.ind.
 [10] (./quickref.aux) )
 (see the transcript file for additional information)
-Output written on quickref.dvi (10 pages, 44056 bytes).
+Output written on quickref.dvi (10 pages, 44500 bytes).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref
@@ -64878,7 +65267,7 @@ software. Each version can have multiple releases. For example, for
 Python the version is something like 2.5 or 3.0, while the release is
 something like 2.5.1 or 3.0a1.  If you don't need this dual structure,
 just set both to the same value.
-> Project version: > Project release [1.0]: 
+> Project version: > Project release [0.7]: 
 The file name suffix for source files. Commonly, this is either ".txt"
 or ".rst".  Only files with this suffix are considered documents.
 > Source file suffix [.rst]: * Please enter a file suffix, e.g. '.rst' or '.txt'.
@@ -64911,7 +65300,7 @@ where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 searching for TITLE in quickref.do.txt
 Using title "Doconce Quick Reference" from quickref.do.txt
 Title: Doconce Quick Reference
-Author: 0.7
+Author: HPL
 These Sphinx themes were found: slim-agogo, default, pylons, agogo, traditional, cbc, flask, scrolls, sphinxdoc, solarized, classy, redcloud, epub, fenics_minimal, vlinux-theme, haiku, jal, agni, cloud, basic, fenics, nature, pyramid, default
 
 'automake-sphinx.py' contains the steps to (re)compile the sphinx
@@ -65235,6 +65624,10 @@ Overfull \hbox (17.00006pt too wide) in paragraph at lines 888--888
 Overfull \hbox (95.00006pt too wide) in paragraph at lines 890--890
 []\T1/pcr/m/n/10 __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perh
 aps  
+
+Overfull \hbox (114.855pt too wide) in paragraph at lines 959--960
+[]\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
+ 
 [10] (./quickref.rst.aux)
 
 LaTeX Warning: There were undefined references.
@@ -65244,7 +65637,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (10 pages, 40712 bytes).
+Output written on quickref.rst.dvi (10 pages, 41520 bytes).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -65504,9 +65897,13 @@ Overfull \hbox (17.00006pt too wide) in paragraph at lines 888--888
 Overfull \hbox (95.00006pt too wide) in paragraph at lines 890--890
 []\T1/pcr/m/n/10 __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perh
 aps  
+
+Overfull \hbox (114.855pt too wide) in paragraph at lines 959--960
+[]\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
+ 
 [10] (./quickref.rst.aux) )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (10 pages, 42132 bytes).
+Output written on quickref.rst.dvi (10 pages, 43024 bytes).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref

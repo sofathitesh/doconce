@@ -79,7 +79,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jun 24, 2012
+Jul 3, 2012
 
 \end{DUfieldlist}
 
@@ -886,25 +886,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te \texttt{doconce sphinx\_dir} script copies directories named \texttt{figs} or \texttt{figures}
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, \texttt{automake-sphinx.py} must be edited accordingly.
-Links to local files (not \texttt{http:} or \texttt{file:} URLs) must be placed
-in the \texttt{\_static} subdirectory of the Sphinx directory. The
-utility \texttt{doconce sphinxfix\_localURLs} is run to check for local
-links: for each such link, say \texttt{dir1/dir2/myfile.txt} it replaces
-the link by \texttt{\_static/myfile.txt} and copies \texttt{dir1/dir2/myfile.txt}
-to a local \texttt{\_static} directory (in the same directory as the
-script is run). The user must copy all \texttt{\_static/*} files to the
-\texttt{\_static} subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the \texttt{\_static} subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a \texttt{\_static} directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The \texttt{doconce sphinx\_dir} script copies directories named \texttt{figs} or
+\texttt{figures} over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, \texttt{automake-sphinx.py} must be edited accordingly.  Files,
+to which there are local links (not \texttt{http:} or \texttt{file:} URLs), must be
+placed in the \texttt{\_static} subdirectory of the Sphinx directory. The
+utility \texttt{doconce sphinxfix\_localURLs} is run to check for local links
+in the Doconce file: for each such link, say \texttt{dir1/dir2/myfile.txt} it
+replaces the link by \texttt{\_static/myfile.txt} and copies
+\texttt{dir1/dir2/myfile.txt} to a local \texttt{\_static} directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in \texttt{\_static} or lets a script
+do it automatically. The user must copy all \texttt{\_static/*} files to the
+\texttt{\_static} subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a \texttt{\_static} or \texttt{\_static-name} directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the \texttt{conf.py}
@@ -1566,9 +1565,37 @@ see~the~"Doconce~Manual":~"manual.do.txt".
 \end{quote}
 
 which appears as see the \href{manual.do.txt}{Doconce Manual}.
-If you want to view such source code files \emph{in the browser},
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+%
+\begin{quote}
+%
+\begin{itemize}
+
+\item In the \texttt{html} format the links work well if the files are
+supplied with the \texttt{.html} with the same relative location.
+
+\item In the \texttt{latex} and \texttt{pdflatex} formats, such links in PDF files
+will unless the \texttt{.tex} file has a full URL specified through
+a \texttt{\textbackslash{}hyperbaseurl} command and the linked files are located correctly
+relative to this URL. Otherwise full URL must be used in links.
+
+\item In the \texttt{sphinx} format, local files to which there are links should only be
+located in a \texttt{\_static} or \texttt{\_static-name} subdirectory.
+
+\end{itemize}
+
+\end{quote}
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a \texttt{\_static} or \texttt{\_static-name} directory and makes links to
+files in this directory only (\texttt{name} is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the \texttt{html} format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 \texttt{pygmentize}, e.g.:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
@@ -1578,15 +1605,17 @@ Terminal>~pygmentize~-l~bash~-f~html~-O~full,style=emacs~\textbackslash{}\\
 \end{quote}
 
 Then you can link to \texttt{\_static/make.sh.html} instead of
-\texttt{subdir/make.sh}. Or you can do both versions:
+\texttt{subdir/make.sh}. Here is an example where the reader
+has the file available as \texttt{src/myprog.py} in her
+software and the document links to \texttt{\_static/myprog.py}:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 See~the~code~URL:"src/myprog.py"~("view:~"\_static/myprog.py.html").
 }
 \end{quote}
 
-Links to files with other extensions must be realized
-\emph{with the filename as link text}, written as
+Links to files with other extensions are typeset with
+\emph{the filename as link text}. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 %
@@ -1621,7 +1650,7 @@ resulting in the link \url{manual.html}.
 
 % adjusted.)
 
-To have the URL address itself as link text, put an ``URL'' or URL
+Similarly, to have the URL address itself as link text, put an ``URL'' or URL
 before the address enclosed in double quotes:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
@@ -3468,7 +3497,7 @@ groundwater flow.
 \DUtitle[system-message]{system-message}
 \raisebox{1em}{\hypertarget{id11}{}}
 
-{\color{red}ERROR/3} in \texttt{manual.rst}, line~786
+{\color{red}ERROR/3} in \texttt{manual.rst}, line~785
 
 \hyperlink{id12}{
 Unknown target name: ``googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>''.

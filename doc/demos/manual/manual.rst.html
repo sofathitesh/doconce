@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jun 24, 2012</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jul 3, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -858,25 +858,24 @@ document.  One can either run <tt class="docutils literal"><span class="pre">aut
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.</p>
-<p>Te <tt class="docutils literal">doconce sphinx_dir</tt> script copies directories named <tt class="docutils literal">figs</tt> or <tt class="docutils literal">figures</tt>
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, <tt class="docutils literal"><span class="pre">automake-sphinx.py</span></tt> must be edited accordingly.
-Links to local files (not <tt class="docutils literal">http:</tt> or <tt class="docutils literal">file:</tt> URLs) must be placed
-in the <tt class="docutils literal">_static</tt> subdirectory of the Sphinx directory. The
-utility <tt class="docutils literal">doconce sphinxfix_localURLs</tt> is run to check for local
-links: for each such link, say <tt class="docutils literal">dir1/dir2/myfile.txt</tt> it replaces
-the link by <tt class="docutils literal">_static/myfile.txt</tt> and copies <tt class="docutils literal">dir1/dir2/myfile.txt</tt>
-to a local <tt class="docutils literal">_static</tt> directory (in the same directory as the
-script is run). The user must copy all <tt class="docutils literal">_static/*</tt> files to the
-<tt class="docutils literal">_static</tt> subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the <tt class="docutils literal">_static</tt> subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a <tt class="docutils literal">_static</tt> directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.</p>
+<p>The <tt class="docutils literal">doconce sphinx_dir</tt> script copies directories named <tt class="docutils literal">figs</tt> or
+<tt class="docutils literal">figures</tt> over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, <tt class="docutils literal"><span class="pre">automake-sphinx.py</span></tt> must be edited accordingly.  Files,
+to which there are local links (not <tt class="docutils literal">http:</tt> or <tt class="docutils literal">file:</tt> URLs), must be
+placed in the <tt class="docutils literal">_static</tt> subdirectory of the Sphinx directory. The
+utility <tt class="docutils literal">doconce sphinxfix_localURLs</tt> is run to check for local links
+in the Doconce file: for each such link, say <tt class="docutils literal">dir1/dir2/myfile.txt</tt> it
+replaces the link by <tt class="docutils literal">_static/myfile.txt</tt> and copies
+<tt class="docutils literal">dir1/dir2/myfile.txt</tt> to a local <tt class="docutils literal">_static</tt> directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in <tt class="docutils literal">_static</tt> or lets a script
+do it automatically. The user must copy all <tt class="docutils literal">_static/*</tt> files to the
+<tt class="docutils literal">_static</tt> subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a <tt class="docutils literal">_static</tt> or <tt class="docutils literal"><span class="pre">_static-name</span></tt> directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.</p>
 <p>Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the <tt class="docutils literal">conf.py</tt>
 configuration file for Sphinx is edited accordingly, and a script
@@ -1324,21 +1323,42 @@ setup:</p>
 see the &quot;Doconce Manual&quot;: &quot;manual.do.txt&quot;.
 </pre>
 <p>which appears as see the <a class="reference external" href="manual.do.txt">Doconce Manual</a>.
-If you want to view such source code files <em>in the browser</em>,
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:</p>
+<blockquote>
+<ul class="simple">
+<li>In the <tt class="docutils literal">html</tt> format the links work well if the files are
+supplied with the <tt class="docutils literal">.html</tt> with the same relative location.</li>
+<li>In the <tt class="docutils literal">latex</tt> and <tt class="docutils literal">pdflatex</tt> formats, such links in PDF files
+will unless the <tt class="docutils literal">.tex</tt> file has a full URL specified through
+a <tt class="docutils literal">\hyperbaseurl</tt> command and the linked files are located correctly
+relative to this URL. Otherwise full URL must be used in links.</li>
+<li>In the <tt class="docutils literal">sphinx</tt> format, local files to which there are links should only be
+located in a <tt class="docutils literal">_static</tt> or <tt class="docutils literal"><span class="pre">_static-name</span></tt> subdirectory.</li>
+</ul>
+</blockquote>
+<p>As a consequence, we strongly recommend that one copies the relevant
+files to a <tt class="docutils literal">_static</tt> or <tt class="docutils literal"><span class="pre">_static-name</span></tt> directory and makes links to
+files in this directory only (<tt class="docutils literal">name</tt> is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the <tt class="docutils literal">html</tt> format is of relevance).</p>
+<p>If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 <tt class="docutils literal">pygmentize</tt>, e.g.:</p>
 <pre class="literal-block">
 Terminal&gt; pygmentize -l bash -f html -O full,style=emacs \
           -o _static/make.sh.html subdir/make.sh
 </pre>
 <p>Then you can link to <tt class="docutils literal">_static/make.sh.html</tt> instead of
-<tt class="docutils literal">subdir/make.sh</tt>. Or you can do both versions:</p>
+<tt class="docutils literal">subdir/make.sh</tt>. Here is an example where the reader
+has the file available as <tt class="docutils literal">src/myprog.py</tt> in her
+software and the document links to <tt class="docutils literal">_static/myprog.py</tt>:</p>
 <pre class="literal-block">
 See the code URL:&quot;src/myprog.py&quot; (&quot;view: &quot;_static/myprog.py.html&quot;).
 </pre>
-<p>Links to files with other extensions must be realized
-<em>with the filename as link text</em>, written as
+<p>Links to files with other extensions are typeset with
+<em>the filename as link text</em>. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:</p>
 <pre class="literal-block">
@@ -1357,7 +1377,7 @@ URL: &quot;manual.html&quot;
 <!-- ``_static``, which must be manually copied to the Sphinx directory's -->
 <!-- ``_static`` directory - links in the ``.rst`` files are automatically -->
 <!-- adjusted.) -->
-<p>To have the URL address itself as link text, put an &quot;URL&quot; or URL
+<p>Similarly, to have the URL address itself as link text, put an &quot;URL&quot; or URL
 before the address enclosed in double quotes:</p>
 <pre class="literal-block">
 Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.
@@ -2577,7 +2597,7 @@ groundwater flow.
 <div class="system-messages section">
 <h1>Docutils System Messages</h1>
 <div class="system-message" id="id11">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">manual.rst</tt>, line 786); <em><a href="#id12">backlink</a></em></p>
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">manual.rst</tt>, line 785); <em><a href="#id12">backlink</a></em></p>
 Unknown target name: &quot;googlecode wiki &lt;http://code.google.com/p/support/wiki/wikisyntax&lt;google code&gt;&gt;&quot;.</div>
 </div>
 </div>

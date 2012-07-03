@@ -420,22 +420,42 @@ setup:
 see the "Doconce Manual": "manual.do.txt".
 !ec
 which appears as see the "Doconce Manual": "manual.do.txt".
-If you want to view such source code files *in the browser*,
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+  * In the `html` format the links work well if the files are
+    supplied with the `.html` with the same relative location.
+  * In the `latex` and `pdflatex` formats, such links in PDF files
+    will unless the `.tex` file has a full URL specified through
+    a `\hyperbaseurl` command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+  * In the `sphinx` format, local files to which there are links should only be
+    located in a `_static` or `_static-name` subdirectory.
+
+As a consequence, we strongly recommend that one copies the relevant
+files to a `_static` or `_static-name` directory and makes links to
+files in this directory only (`name` is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the `html` format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 `pygmentize`, e.g.,
 !bc sys
 Terminal> pygmentize -l bash -f html -O full,style=emacs \
           -o _static/make.sh.html subdir/make.sh
 !ec
 Then you can link to `_static/make.sh.html` instead of
-`subdir/make.sh`. Or you can do both versions:
+`subdir/make.sh`. Here is an example where the reader
+has the file available as `src/myprog.py` in her
+software and the document links to `_static/myprog.py`:
 !bc
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 !ec
 
-Links to files with other extensions must be realized
-*with the filename as link text*, written as
+Links to files with other extensions are typeset with
+*the filename as link text*. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 !bc
@@ -456,7 +476,7 @@ resulting in the link URL: "manual.html".
 #`_static` directory - links in the `.rst` files are automatically
 #adjusted.)
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 !bc
 Click on this link: URL:"http://code.google.com/p/doconce".

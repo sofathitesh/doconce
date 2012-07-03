@@ -12,12 +12,21 @@
 \usepackage{minted}  % requires latex -shell-escape (for Minted_* ptex2tex envirs)
 
 
+% Hyperlinks in PDF:
 \usepackage[%
-colorlinks=true,
-linkcolor=blue,
-citecolor=black,
-filecolor=blue,
-urlcolor=blue]{hyperref}
+    colorlinks=true,
+    linkcolor=black,
+    %linkcolor=blue,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    urlcolor=black,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    urlcolor=black,
+    %urlcolor=blue,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+            ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
@@ -60,7 +69,7 @@ urlcolor=blue]{hyperref}
 
 
 \begin{center}
-Jun 24, 2012
+Jul 3, 2012
 \end{center}
 
 
@@ -741,25 +750,24 @@ steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
 
-Te {\fontsize{10pt}{10pt}\verb!doconce sphinx_dir!} script copies directories named {\fontsize{10pt}{10pt}\verb!figs!} or {\fontsize{10pt}{10pt}\verb!figures!}
-over to the Sphinx directory so that figures are accessible in the
-Sphinx compilation.  If figures or movies are located in other
-directories, {\fontsize{10pt}{10pt}\verb!automake-sphinx.py!} must be edited accordingly.
-Links to local files (not {\fontsize{10pt}{10pt}\verb!http:!} or {\fontsize{10pt}{10pt}\verb!file:!} URLs) must be placed
-in the {\fontsize{10pt}{10pt}\verb!_static!} subdirectory of the Sphinx directory. The
-utility {\fontsize{10pt}{10pt}\verb!doconce sphinxfix_localURLs!} is run to check for local
-links: for each such link, say {\fontsize{10pt}{10pt}\verb!dir1/dir2/myfile.txt!} it replaces
-the link by {\fontsize{10pt}{10pt}\verb!_static/myfile.txt!} and copies {\fontsize{10pt}{10pt}\verb!dir1/dir2/myfile.txt!}
-to a local {\fontsize{10pt}{10pt}\verb!_static!} directory (in the same directory as the
-script is run). The user must copy all {\fontsize{10pt}{10pt}\verb!_static/*!} files to the
-{\fontsize{10pt}{10pt}\verb!_static!} subdirectory of the Sphinx directory. Links to local
-HTML files (say another Sphinx document) may present a problem if they link
-to other files: all necessary files must be correctly copied to
-the {\fontsize{10pt}{10pt}\verb!_static!} subdirectory of the Sphinx directory.
-It may be wise to place relevant files in a {\fontsize{10pt}{10pt}\verb!_static!} directory
-and link to these directly from the Doconce document - then links
-to not need to be modified when creating  a Sphinx version of
-the document.
+The {\fontsize{10pt}{10pt}\verb!doconce sphinx_dir!} script copies directories named {\fontsize{10pt}{10pt}\verb!figs!} or
+{\fontsize{10pt}{10pt}\verb!figures!} over to the Sphinx directory so that figures are accessible
+in the Sphinx compilation.  If figures or movies are located in other
+directories, {\fontsize{10pt}{10pt}\verb!automake-sphinx.py!} must be edited accordingly.  Files,
+to which there are local links (not {\fontsize{10pt}{10pt}\verb!http:!} or {\fontsize{10pt}{10pt}\verb!file:!} URLs), must be
+placed in the {\fontsize{10pt}{10pt}\verb!_static!} subdirectory of the Sphinx directory. The
+utility {\fontsize{10pt}{10pt}\verb!doconce sphinxfix_localURLs!} is run to check for local links
+in the Doconce file: for each such link, say {\fontsize{10pt}{10pt}\verb!dir1/dir2/myfile.txt!} it
+replaces the link by {\fontsize{10pt}{10pt}\verb!_static/myfile.txt!} and copies
+{\fontsize{10pt}{10pt}\verb!dir1/dir2/myfile.txt!} to a local {\fontsize{10pt}{10pt}\verb!_static!} directory (in the same
+directory as the script is run).  However, we recommend instead that
+the writer of the document places files in {\fontsize{10pt}{10pt}\verb!_static!} or lets a script
+do it automatically. The user must copy all {\fontsize{10pt}{10pt}\verb!_static/*!} files to the
+{\fontsize{10pt}{10pt}\verb!_static!} subdirectory of the Sphinx directory.  It may be wise to
+always put files, to which there are local links in the Doconce
+document, in a {\fontsize{10pt}{10pt}\verb!_static!} or {\fontsize{10pt}{10pt}\verb!_static-name!} directory and use these
+local links. Then links do not need to be modified when creating a
+Sphinx version of the document.
 
 Doconce comes with a collection of HTML themes for Sphinx documents.
 These are packed out in the Sphinx directory, the {\fontsize{10pt}{10pt}\verb!conf.py!}
@@ -1353,9 +1361,32 @@ see the "Doconce Manual": "manual.do.txt".
 \end{Verbatim}
 \noindent
 which appears as see the \href{{manual.do.txt}}{Doconce Manual}.
-If you want to view such source code files \emph{in the browser},
-rather than dowloading the file, we recommend to transform
-the source code file to HTML format by running
+However, linking to local files like this needs caution:
+
+\begin{itemize}
+  \item In the {\fontsize{10pt}{10pt}\verb!html!} format the links work well if the files are
+    supplied with the {\fontsize{10pt}{10pt}\verb!.html!} with the same relative location.
+
+  \item In the {\fontsize{10pt}{10pt}\verb!latex!} and {\fontsize{10pt}{10pt}\verb!pdflatex!} formats, such links in PDF files
+    will unless the {\fontsize{10pt}{10pt}\verb!.tex!} file has a full URL specified through
+    a {\fontsize{10pt}{10pt}\verb!\hyperbaseurl!} command and the linked files are located correctly
+    relative to this URL. Otherwise full URL must be used in links.
+
+  \item In the {\fontsize{10pt}{10pt}\verb!sphinx!} format, local files to which there are links should only be
+    located in a {\fontsize{10pt}{10pt}\verb!_static!} or {\fontsize{10pt}{10pt}\verb!_static-name!} subdirectory.
+\end{itemize}
+
+\noindent
+As a consequence, we strongly recommend that one copies the relevant
+files to a {\fontsize{10pt}{10pt}\verb!_static!} or {\fontsize{10pt}{10pt}\verb!_static-name!} directory and makes links to
+files in this directory only ({\fontsize{10pt}{10pt}\verb!name!} is the nickname of the Doconce
+document, usually the name of the parent directory or main document).
+Other links to files should use the full URL (unless one knows that
+only the {\fontsize{10pt}{10pt}\verb!html!} format is of relevance).
+
+If you want a link to a local source code file and have it
+viewed in the browser rather than being downloaded, we recommend
+to transform the source code file to HTML format by running
 {\fontsize{10pt}{10pt}\verb!pygmentize!}, e.g.,
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
@@ -1364,15 +1395,17 @@ Terminal> pygmentize -l bash -f html -O full,style=emacs \
           -o _static/make.sh.html subdir/make.sh
 \end{Verbatim}
 Then you can link to {\fontsize{10pt}{10pt}\verb!_static/make.sh.html!} instead of
-{\fontsize{10pt}{10pt}\verb!subdir/make.sh!}. Or you can do both versions:
+{\fontsize{10pt}{10pt}\verb!subdir/make.sh!}. Here is an example where the reader
+has the file available as {\fontsize{10pt}{10pt}\verb!src/myprog.py!} in her
+software and the document links to {\fontsize{10pt}{10pt}\verb!_static/myprog.py!}:
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 \end{Verbatim}
 \noindent
 
-Links to files with other extensions must be realized
-\emph{with the filename as link text}, written as
+Links to files with other extensions are typeset with
+\emph{the filename as link text}. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
@@ -1395,7 +1428,7 @@ resulting in the link \href{{manual.html}}{\nolinkurl{manual.html}}.
 % {\fontsize{10pt}{10pt}\verb!_static!} directory - links in the {\fontsize{10pt}{10pt}\verb!.rst!} files are automatically
 % adjusted.)
 
-To have the URL address itself as link text, put an "URL" or URL
+Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
