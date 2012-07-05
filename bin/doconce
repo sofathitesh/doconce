@@ -919,9 +919,12 @@ extensions = [
           'sphinx.ext.autodoc',
           'sphinx.ext.doctest',
           'sphinx.ext.viewcode',
+          'sphinx.ext.intersphinx',
           'sphinx.ext.inheritance_diagram']
 
 #pngmath_dvipng_args = ['-D 200', '-bg Transparent', '-gamma 1.5']  # large math fonts (200)
+
+#intersphinx_mapping = {}
 
 # Check which additional themes that are installed
 additional_themes_installed = []
