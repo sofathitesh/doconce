@@ -92,7 +92,7 @@ def syntax_check(filestr, format):
                              re.MULTILINE)
         m = pattern.search(filestr)
         if m:
-            #and (format == 'rst' or format == 'sphinx'):
+            #and format in ('rst', 'sphinx'):
             print '\nSyntax error: Line before list or !bc/!bt/@@@CODE block is a %s line\nwhich will "swallow" the block in reST format.\nInsert some extra line (text) to separate the two elements.' % construction
             print filestr[m.start():m.start()+80]
             sys.exit(1)
@@ -1595,7 +1595,6 @@ def preprocess(filename, format, preprocessor_options=[]):
 
     # First guess if preprocess or mako is used
     preprocess_commands = r'^#\s*#(if|define|include)'
-    mako_commands = r'^\s*<?%'
     if re.search(preprocess_commands, filestr, re.MULTILINE):
         #print 'run preprocess on', filename, 'to make', resultfile
         preprocessor = 'preprocess'
@@ -1643,9 +1642,21 @@ preprocess package (sudo apt-get install preprocess).
         f = open(resultfile, 'r'); filestr = f.read(); f.close()
 
 
+    mako_commands = r'^\s*<?%'
     if re.search(mako_commands, filestr, re.MULTILINE):
+        # Check if there is SWIG code that can fool mako
+        swig_commands = [r'^%module\s+', r'%{', r'^%}']
+        found_swig = False
+        for swig_command in swig_commands:
+            if re.search(swig_command, filestr, re.MULTILINE):
+                found_swig = True;
+                break;
+        if found_swig:
+            print 'Found SWIG statements - cannot run Mako as preprocessor (both use % heavily)'
+            return filename if preprocessor is None else resultfile
+
         if preprocessor is not None:  # already found preprocess commands?
-            # The output is in resultfile, preprocess is run on that
+            # The output is in resultfile, mako is run on that
             filename = resultfile
         preprocessor = 'mako'
         resultfile = '__tmp.do.txt'
