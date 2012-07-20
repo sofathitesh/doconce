@@ -272,7 +272,7 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 `!bt`
 and
-`!et` ("begin/end TeX") directives, just like computer code.
+`!et` ("begin/end TeX") directives.
 For example,
 !bc
 !bt
