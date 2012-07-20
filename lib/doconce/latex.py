@@ -7,6 +7,7 @@ additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 def latex_code(filestr, format):
     lines = filestr.splitlines()
     arg = None
+    args = []  # list of arg values in "!bc arg" lines; used for warning
     bc_arg = re.compile(r'^!bc\s+([^ ]+?)$')
     ec = re.compile(r'^!ec\s*$')
     for i in range(len(lines)):
@@ -22,6 +23,7 @@ def latex_code(filestr, format):
         if m:
             arg = m.group(1)
             #print 'yes, this is a !bc line with arg =', arg
+            args.append(arg)
             # add \b to arg, e.g., if arg is cod, make \bcod (ptex2tex)
             lines[i] = bc_arg.sub(r'\\b' + arg, lines[i])
             #print 'new b envir:', lines[i]
@@ -42,6 +44,13 @@ def latex_code(filestr, format):
     #filestr = c.sub('\n', filestr)  # why an extra \n?
     filestr = c.sub('', filestr)
     filestr = re.sub(r'!et\n', '', filestr)
+
+    # Check for misspellings
+    envirs = 'pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans bashans swigans uflans sni dat dsni sys slin ipy rpy plin ver warn rule summ ccq cc ccl py'.split()
+    for arg in args:
+        if arg not in envirs:
+            print 'Warning: found "!bc %s", but %s is not a predefined ptex2tex environment' % (arg, arg)
+
     return filestr
 
 def latex_figure(m, includegraphics=True):
