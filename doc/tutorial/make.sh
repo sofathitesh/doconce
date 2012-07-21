@@ -74,7 +74,7 @@ pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial
 
 rm -rf demo
 mkdir demo
-cp -r tutorial.do.txt tutorial.html tutorial.p.tex tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.gwiki tutorial.mwiki tutorial. cwiki tutorial.txt tutorial.epytext tutorial.st tutorial.mkd collection_of_results.pdf sphinx-rootdir/_build/html demo
+cp -r tutorial.do.txt tutorial.html tutorial.p.tex tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.gwiki tutorial.mwiki tutorial.cwiki tutorial.txt tutorial.epytext tutorial.st tutorial.mkd collection_of_results.pdf sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF

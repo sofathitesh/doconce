@@ -328,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jul 3, 2012</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jul 21, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -779,14 +779,11 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.</p>
 .. Note: putting code blocks inside a list is not successful in many</p>
 <!-- formats - the text may be messed up. A better choice is a paragraph -->
 <!-- environment, as used here. -->
-<dl class="docutils">
-<dt><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal">mydoc.p.tex</tt> for</dt>
-<dd><p class="first"><tt class="docutils literal">ptex2tex</tt>:</p>
-<pre class="last literal-block">
+<p><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal">mydoc.p.tex</tt> for
+the <tt class="docutils literal">ptex2tex</tt> program (or <tt class="docutils literal">doconce ptex2tex</tt>):</p>
+<pre class="literal-block">
 Terminal&gt; doconce format latex mydoc
 </pre>
-</dd>
-</dl>
 <p>LaTeX-specific commands (&quot;newcommands&quot;) in math formulas and similar
 can be placed in files <tt class="docutils literal">newcommands.tex</tt>, <tt class="docutils literal">newcommands_keep.tex</tt>, or
 <tt class="docutils literal">newcommands_replace.tex</tt> (see the section <a class="reference internal" href="#macros-newcommands-cross-references-index-and-bibliography">Macros (Newcommands), Cross-References, Index, and Bibliography</a>).
@@ -806,18 +803,14 @@ For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run:</p>
 <pre class="literal-block">
 Terminal&gt; ptex2tex -DHELVETICA mydoc
+Terminal&gt; doconce ptex2tex mydoc -DHELVETICA  # alternative
 </pre>
 <p>The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard LaTeX &quot;maketitle&quot; heading
-is also available through:</p>
-<pre class="literal-block">
-Terminal&gt; ptex2tex -DLATEX_HEADING=traditional mydoc
-</pre>
-<p>A separate titlepage can be generate by:</p>
-<pre class="literal-block">
-Terminal&gt; ptex2tex -DLATEX_HEADING=titlepage mydoc
-</pre>
+is also available through <tt class="docutils literal"><span class="pre">-DLATEX_HEADING=traditional</span></tt>.
+A separate titlepage can be generate by
+<tt class="docutils literal"><span class="pre">-DLATEX_HEADING=titlepage</span></tt>.</p>
 <p>The <tt class="docutils literal">ptex2tex</tt> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents. After any <tt class="docutils literal">!bc</tt> command in the Doconce source you can
@@ -830,17 +823,16 @@ for processing the <tt class="docutils literal">.p.tex</tt> file. The command al
 of code environments as well. Here is an example:</p>
 <pre class="literal-block">
 Terminal&gt; doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
-          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
-          fpro=minted fcod=minted sys=verbatim
+          &quot;sys=\begin{quote}\begin{verbatim}&#64;\end{verbatim}\end{quote}&quot; \
+          fpro=minted fcod=minted envir=ans:nt
 </pre>
-<p>Note that semicolon must be used to separate the begin and end
-commands, unless only the environment name is given (such as
-<tt class="docutils literal">verbatim</tt> above, which implies <tt class="docutils literal">\begin{verbatim}</tt> and <tt class="docutils literal">\end{verbatim}</tt>).
-The value <tt class="docutils literal">minted</tt> can be used for code environments where the
-language is specified, as in <tt class="docutils literal">fpro</tt>, where <tt class="docutils literal">minted</tt> implies
-<tt class="docutils literal"><span class="pre">\begin{python}{fortran}</span></tt>. There is a similar support for <tt class="docutils literal">ans</tt>:
-<tt class="docutils literal">cppcod=ans</tt> imples <tt class="docutils literal"><span class="pre">\begin{c++}</span></tt> and <tt class="docutils literal"><span class="pre">\end{c++}</span></tt> using the
-<tt class="docutils literal">anslistings</tt> package.</p>
+<p>Note that <tt class="docutils literal">&#64;</tt> must be used to separate the begin and end
+LaTeX commands, unless only the environment name is given (such as
+<tt class="docutils literal">minted</tt> above, which implies <tt class="docutils literal"><span class="pre">\begin{minted}{fortran}</span></tt> and <tt class="docutils literal">\end{minted}</tt>).
+Specifying <tt class="docutils literal">envir=ans:nt</tt> means that all other environments are typeset
+with the <tt class="docutils literal">anslistings.sty</tt> package, e.g., <tt class="docutils literal">!bc cppcod</tt> will then
+result in <tt class="docutils literal"><span class="pre">\begin{c++}</span></tt>. If no environments like <tt class="docutils literal">sys</tt> or <tt class="docutils literal">fpro</tt> are
+defined, the plain <tt class="docutils literal">\begin{verbatim}</tt> and <tt class="docutils literal">\end{verbatim}</tt> used.</p>
 <p><em>Step 2b (optional).</em> Edit the <tt class="docutils literal">mydoc.tex</tt> file to your needs.
 For example, you may want to substitute <tt class="docutils literal">section</tt> by <tt class="docutils literal">section*</tt> to
 avoid numbering of sections, you may want to insert linebreaks
@@ -1275,7 +1267,7 @@ run regularly.</p>
 <div class="system-messages section">
 <h1>Docutils System Messages</h1>
 <div class="system-message" id="id7">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">tutorial.rst</tt>, line 889); <em><a href="#id8">backlink</a></em></p>
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">tutorial.rst</tt>, line 883); <em><a href="#id8">backlink</a></em></p>
 Unknown target name: &quot;googlecode wiki &lt;http://code.google.com/p/support/wiki/wikisyntax&lt;google code&gt;&gt;&quot;.</div>
 </div>
 </div>

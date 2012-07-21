@@ -35,7 +35,7 @@ MathJax.Hub.Config({
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Jul 3, 2012</h3></center>
+<center><h3>Jul 21, 2012</h3></center>
 <P>
 <!-- Very preliminary -->
 
@@ -375,7 +375,7 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 <tt>!bt</tt>
 and
-<tt>!et</tt> ("begin/end TeX") directives, just like computer code.
+<tt>!et</tt> ("begin/end TeX") directives.
 For example,
 <blockquote>    <!-- begin verbatim block  -->
 <pre>
@@ -402,10 +402,11 @@ or (<tt>#else</tt>) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
 <P>
-Any LaTeX syntax is accepted, but if output in the <tt>sphinx</tt> format
-is important, one must know that <tt>sphinx</tt> does not support many
-LaTeX constructs. For output both in <tt>latex</tt> and <tt>sphinx</tt> formats we
-recommend the following:
+Any LaTeX syntax is accepted, but if output in the <tt>sphinx</tt>, <tt>pandoc</tt>,
+or <tt>html</tt> formats
+is important, one must know that these formats does not support many
+LaTeX constructs. For output both in <tt>latex</tt> and the mentioned formats
+the following rules are recommended:
 
 <P>
 
@@ -413,20 +414,19 @@ recommend the following:
   <li> Use only the equation environments <tt>\[</tt>, <tt>\]</tt>,
     <tt>equation</tt>, <tt>equation*</tt>, <tt>align</tt>, and <tt>align*</tt>.
   <li> Labels in multiple equation environments such as <tt>align</tt> are
-    not (yet) handled by <tt>sphinx</tt>, so avoid inserting labels and referring
-    to equation labels in <tt>align</tt> environments. Actually, <tt>align*</tt>
-    is the preferred environment for multiple equations. Writing with
-    also <tt>sphinx</tt> output in mind results in a slightly adjusted type
-    of LaTeX writing.
+    not (yet) handled by <tt>sphinx</tt> and <tt>pandoc</tt>, so avoid inserting
+    labels and referring  to equation labels in <tt>align</tt> environments.
+    Actually, <tt>align*</tt> is the preferred environment for multiple equations.
   <li> LaTeX supports lots of fancy formatting, for example, multiple
     plots in the same figure, footnotes, margin notes, etc.
     Allowing other output formats, such as <tt>sphinx</tt>, makes it necessary
     to only utilze very standard LaTeX and avoid, for instance, more than
     one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically <tt># #ifdef format == "latex"</tt>) to
-    include special code for <tt>latex</tt> output and more straightforward
-    typesetting for other formats. In this way, one can also allow
-    advanced LaTeX features and fine tuning of resulting PDF document.
+    the format (typically <tt># #if FORMAT in ("latex", "pdflatex")</tt>) to
+    include special code for <tt>latex</tt> and <tt>pdflatex</tt> output and more
+    straightforward typesetting for other formats. In this way, one can
+    also allow advanced LaTeX features and fine tuning of resulting
+    PDF document.
 </ul>
 
 <b>LaTeX Newcommands.</b> Text missing...

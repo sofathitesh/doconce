@@ -147,17 +147,17 @@ for processing the `.p.tex` file. The command allows specifications
 of code environments as well. Here is an example:
 !bc sys
 Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
-          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
-          fpro=minted fcod=minted sys=verbatim
+          "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
+          fpro=minted fcod=minted envir=ans:nt
 !ec
-Note that semicolon must be used to separate the begin and end
-commands, unless only the environment name is given (such as
-`verbatim` above, which implies `\begin{verbatim}` and `\end{verbatim}`).
-The value `minted` can be used for code environments where the
-language is specified, as in `fpro`, where `minted` implies
-`\begin{python}{fortran}`. There is a similar support for `ans`:
-`cppcod=ans` imples `\begin{c++}` and `\end{c++}` using the
-`anslistings` package.
+Note that `@` must be used to separate the begin and end
+LaTeX commands, unless only the environment name is given (such as
+`minted` above, which implies `\begin{minted}{fortran}` and `\end{minted}`).
+Specifying `envir=ans:nt` means that all other environments are typeset
+with the `anslistings.sty` package, e.g., `!bc cppcod` will then
+result in `\begin{c++}`. If no environments like `sys` or `fpro` are
+defined, the plain `\begin{verbatim}` and `\end{verbatim}` used.
+
 
 __Step 2b (optional).__ Edit the `mydoc.tex` file to your needs.
 For example, you may want to substitute `section` by `section*` to

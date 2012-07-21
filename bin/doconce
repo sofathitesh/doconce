@@ -1436,28 +1436,38 @@ def replace_from_file():
 def usage_ptex2tex():
     print r"""\
 Usage: doconce ptex2tex [file | file.p.tex] [-Dvar1=val1 ...] \
-       [cod=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote} \
+       [cod=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote} \
         pypro=Verbatim fcod=minted ccod=ans cpppro=anslistings:nt]'
 
 or
        doconce ptex2tex file -Dvar1=val1 ... envir=ans:nt
 
+or
+       doconce ptex2tex file -DMINTED sys=\begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt] envir=minted
+
 Running the plain
 
    doconce ptex2tex
 
-also works. Note that specifications of how !bc envir is to be typeset
-in latex is done by envir=begin;end, where begin is the latex
+also works, but then all environments will be plain latex verbatim.
+
+Note that specifications of how "!bc environment" is to be typeset
+in latex is done by environment=begin@end, where begin is the latex
 begin command, end is the latex end command, and the two must
-be separated by semicolon. Writing just envir=package implies
+be separated by the at sign (@). Writing just environment=package implies
 the latex commands \begin{package} and \end{package}.
-Choosing envir=minted gives the minted environment with
-the specified language inserted. Similarly, envir=ans,
-envir=ans:nt, envir=anslistings, or envir=anslistings:nt
+
+Choosing environment=minted gives the minted environment with
+the specified language inserted. Similarly, environment=ans,
+environment=ans:nt, environment=anslistings, or environment=anslistings:nt
 imply the anslistings package with the right environment
-(\begin{c++:nt} for instance).
-If envir is simply the string envir, the value applies to all
-registered environments.
+(\begin{c++:nt} for instance for !bc cppcod or !bc cpppro,
+environment=ans:nt - :nt means no title over the code box).
+
+If environment is simply the string "envir", the value applies to all
+registered environments. Specifying (e.g.) sys=... and then envir=ans,
+will substitute the sys environment by the specified syntax and all
+other environments will apply the latex construct from anslistings.sty.
 """
 
 def ptex2tex():
@@ -1471,30 +1481,32 @@ def ptex2tex():
     envirs = 'pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans fans bashans swigans uflans sni dat dsni sys slin ipy rpy plin ver warn rule summ ccq cc ccl py'.split()
 
     # Process command-line options
-    import sets
-    envirs_present = sets.Set()
 
-    preprocess_options = []
-    envir_user_spec = []
+    preprocess_options = []  # -Dvariable or -Dvariable=value
+    envir_user_spec = []     # user's specified environments
     for arg in sys.argv[1:]:
         if arg.startswith('-D') or arg.startswith('-U'):
             preprocess_options.append(arg)
         elif '=' in arg:
             envir, value = arg.split('=')
-            if ';' in value:
-                begin, end = value.split(';')
+            if '@' in value:
+                begin, end = value.split('@')
+
                 if envir == 'envir':
+                    # User specifies all ptex2tex environments at once
+                    # as "envir=begin@end"
                     for e in envirs:
                         envir_user_spec.append((e, begin, end))
                 else:
                     envir_user_spec.append((envir, begin, end))
             else:
-                envirs_present.add(value)
-                # Fix minted and ans*: they need the language explicitly
+                # Fix value=minted and value=ans*:
+                # they need the language explicitly
                 if value == 'minted':
-                    languages = dict(py='python', cy='python', f='fortran',
+                    languages = dict(py='python', cy='cython', f='fortran',
                                      c='c', cpp='c++', sh='bash', rst='rst',
-                                     m ='matlab', pl='perl')
+                                     m ='matlab', pl='perl', swig='c++',
+                                     latex='latex', html='html', js='js',)
                     if envir == 'envir':
                         for lang in languages:
                             begin = '\\' + 'begin{minted}[fontsize=\\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{' \
@@ -1511,8 +1523,9 @@ def ptex2tex():
                                 envir_user_spec.append((envir, begin, end))
                 elif value.startswith('ans'):
                     languages = dict(py='python', cy='python', f='fortran',
-                                     cpp='c++', sh='bash', swig='swig',
-                                     ufl='ufl', m='matlab', c='c++')
+                                     cpp='c++', sh='bash', swig='swigcode',
+                                     ufl='uflcode', m='matlab', c='c++',
+                                     latex='latexcode')
                     if envir == 'envir':
                         for lang in languages:
                             language = languages[lang]
@@ -1532,6 +1545,7 @@ def ptex2tex():
                                 end = '\\' + 'end{' + lang + '}'
                                 envir_user_spec.append((envir, begin, end))
                 else:
+                    # value is not minted or ans*
                     begin = '\\' + 'begin{' + value + '}'
                     end = '\\' + 'end{' + value + '}'
                     if envir == 'envir':
@@ -1542,7 +1556,39 @@ def ptex2tex():
         else:
             filename = arg
 
-    envirs_present = list(envirs_present)
+    # Find which environments that will be defined and which
+    # latex packages that must be included.
+
+    ans = ['c++', 'c', 'fortran', 'python', 'cython', 'xml',
+           'bash', 'swigcode', 'uflcode', 'matlab', 'progoutput',
+           'latexcode', 'anycode']
+    ans = ans + [i+':nt' for i in ans]
+    package2envir = dict(fancyvrb='Verbatim', anslistings=ans, minted='minted')
+    latexenvir2package = {}
+    for package in package2envir:
+
+        if isinstance(package2envir[package], list):
+            for latexenvir in package2envir[package]:
+                latexenvir2package[latexenvir] = package
+        else: # str
+            latexenvir2package[package2envir[package]] = package
+    #print 'envir_user_spec:'
+    #import pprint; pprint.pprint(envir_user_spec)
+    #print 'latex2envir2package:'; pprint.pprint(latexenvir2package)
+    # Run through user's specifications and grab latexenvir from
+    # end = \end{latexenvir}, find corresponding package and add to set
+    import sets
+    packages = sets.Set()
+    for envir, begin, end in envir_user_spec:
+        m = re.search(r'\\end\{(.+?)\}', end)
+        if m:
+            latexenvir = m.group(1)
+            if latexenvir in latexenvir2package:
+                packages.add(latexenvir2package[latexenvir])
+            else:
+                print 'No package known for latex environment "%s" ' % latexenvir
+    packages = list(packages)
+    #print 'packages:';  pprint.pprint(packages)
 
     if filename.endswith('.p.tex'):
         filename = filename[:-6]
@@ -1551,8 +1597,8 @@ def ptex2tex():
     if not preprocess_options:
         preprocess_options = ['-DLATEX_HEADING=traditional']
 
-    if 'minted' in envirs_present and '-DMINTED' not in preprocess_options:
-        preprocess_options += ['-DMINTED']
+    # We do not need -DMINTED here because the minted package
+    # is ensured below using the packages list
 
     cmd = 'preprocess %s %s > %s' % \
           (' '.join(preprocess_options),
@@ -1563,9 +1609,8 @@ def ptex2tex():
         print """
 Could not run
     %s
-preprocess is probably not installed.
-This program is required.
-Download from http://code.google.com/p/preprocess
+preprocess failed or is not installed.
+Download preprocess from http://code.google.com/p/preprocess
 """
         sys.exit(1)
 
@@ -1575,35 +1620,31 @@ Download from http://code.google.com/p/preprocess
     filestr = f.read()
     f.close()
 
-    # Init default envirs
-    envir2latex = {}
-    default_b_envir = r"""\begin{quote}
-\begin{verbatim}"""
-    default_e_envir = r"""\end{verbatim}
-\end{quote}"""
-    for envir in envirs:
-        envir2latex[envir] = (default_b_envir, default_e_envir)
-    # Override with user's envirs
+    # Replace the environments specified by the user
     for envir, begin, end in envir_user_spec:
-        envir2latex[envir] = (begin, end)
+        ptex2tex_begin = '\\' + 'b' + envir
+        ptex2tex_end = '\\' + 'e' + envir
+        if ptex2tex_begin in filestr:
+            filestr = filestr.replace(ptex2tex_begin, begin)
+            filestr = filestr.replace(ptex2tex_end, end)
+            print '%s (!bc %s) -> %s' % (ptex2tex_begin, envir, begin)
 
-    # Replace
+    # Replace other known ptex2tex environments by a default choice
+    begin = r"""\begin{quote}\begin{verbatim}"""
+    end = r"""\end{verbatim}\end{quote}"""
     for envir in envirs:
         ptex2tex_begin = '\\' + 'b' + envir
         ptex2tex_end = '\\' + 'e' + envir
         if ptex2tex_begin in filestr:
-            filestr = filestr.replace(ptex2tex_begin,
-                                      envir2latex[envir][0])
-            filestr = filestr.replace(ptex2tex_end,
-                                      envir2latex[envir][1])
+            filestr = filestr.replace(ptex2tex_begin, begin)
+            filestr = filestr.replace(ptex2tex_end, end)
+            print '%s (!bc %s) -> %s' % (ptex2tex_begin, envir, begin)
 
-    ans = False # do we have the ans* environments? if yes, include package
-    for e in envirs_present:
-        if e.startswith('ans'):
-            ans = True
-
-    if ans:
-        filestr = filestr.replace(r'\usepackage{ptex2tex}', r'\usepackage{anslistings}')
+    # Make sure we include the necessary verbatim packages
+    if packages:
+        filestr = filestr.replace(r'\usepackage{ptex2tex}',
+           r'\usepackage{%s} %% packages needed for verbatim environments' %
+                                                          ','.join(packages))
     else:
         filestr = filestr.replace(r'\usepackage{ptex2tex}', '')
 

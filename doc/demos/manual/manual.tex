@@ -9,7 +9,7 @@
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex,subfigure}
-\usepackage{minted}  % requires latex -shell-escape (for Minted_* ptex2tex envirs)
+\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 
 
 % Hyperlinks in PDF:
@@ -69,7 +69,7 @@
 
 
 \begin{center}
-Jul 3, 2012
+Jul 21, 2012
 \end{center}
 
 
@@ -488,7 +488,7 @@ Making a {\LaTeX} file {\fontsize{10pt}{10pt}\verb!mydoc.tex!} from {\fontsize{1
 
 \paragraph{Step 1.}
 Filter the doconce text to a pre-LaTeX form {\fontsize{10pt}{10pt}\verb!mydoc.p.tex!} for
-     {\fontsize{10pt}{10pt}\verb!ptex2tex!}:
+the {\fontsize{10pt}{10pt}\verb!ptex2tex!} program (or {\fontsize{10pt}{10pt}\verb!doconce ptex2tex!}):
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
@@ -522,22 +522,14 @@ Computer Modern font, run
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Terminal> ptex2tex -DHELVETICA mydoc
+Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative
 \end{Verbatim}
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard {\LaTeX} "maketitle" heading
-is also available through
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc
-\end{Verbatim}
+is also available through {\fontsize{10pt}{10pt}\verb!-DLATEX_HEADING=traditional!}.
 A separate titlepage can be generate by
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc
-\end{Verbatim}
+{\fontsize{10pt}{10pt}\verb!-DLATEX_HEADING=titlepage!}.
 
 The {\fontsize{10pt}{10pt}\verb!ptex2tex!} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in {\LaTeX}
@@ -554,17 +546,17 @@ of code environments as well. Here is an example:
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
-          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
-          fpro=minted fcod=minted sys=verbatim
+          "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
+          fpro=minted fcod=minted envir=ans:nt
 \end{Verbatim}
-Note that semicolon must be used to separate the begin and end
-commands, unless only the environment name is given (such as
-{\fontsize{10pt}{10pt}\verb!verbatim!} above, which implies {\fontsize{10pt}{10pt}\verb!\begin{verbatim}!} and {\fontsize{10pt}{10pt}\verb!\end{verbatim}!}).
-The value {\fontsize{10pt}{10pt}\verb!minted!} can be used for code environments where the
-language is specified, as in {\fontsize{10pt}{10pt}\verb!fpro!}, where {\fontsize{10pt}{10pt}\verb!minted!} implies
-{\fontsize{10pt}{10pt}\verb!\begin{python}{fortran}!}. There is a similar support for {\fontsize{10pt}{10pt}\verb!ans!}:
-{\fontsize{10pt}{10pt}\verb!cppcod=ans!} imples {\fontsize{10pt}{10pt}\verb!\begin{c++}!} and {\fontsize{10pt}{10pt}\verb!\end{c++}!} using the
-{\fontsize{10pt}{10pt}\verb!anslistings!} package.
+Note that {\fontsize{10pt}{10pt}\verb!@!} must be used to separate the begin and end
+{\LaTeX} commands, unless only the environment name is given (such as
+{\fontsize{10pt}{10pt}\verb!minted!} above, which implies {\fontsize{10pt}{10pt}\verb!\begin{minted}{fortran}!} and {\fontsize{10pt}{10pt}\verb!\end{minted}!}).
+Specifying {\fontsize{10pt}{10pt}\verb!envir=ans:nt!} means that all other environments are typeset
+with the {\fontsize{10pt}{10pt}\verb!anslistings.sty!} package, e.g., {\fontsize{10pt}{10pt}\verb!!bc cppcod!} will then
+result in {\fontsize{10pt}{10pt}\verb!\begin{c++}!}. If no environments like {\fontsize{10pt}{10pt}\verb!sys!} or {\fontsize{10pt}{10pt}\verb!fpro!} are
+defined, the plain {\fontsize{10pt}{10pt}\verb!\begin{verbatim}!} and {\fontsize{10pt}{10pt}\verb!\end{verbatim}!} used.
+
 
 \paragraph{Step 2b (optional).}
 Edit the {\fontsize{10pt}{10pt}\verb!mydoc.tex!} file to your needs.

@@ -17,7 +17,7 @@
 \usepackage{movie15}
 % #endif
 % #ifdef MINTED
-\usepackage{minted}  % requires latex -shell-escape (for Minted_* ptex2tex envirs)
+\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 % #endif
 
 % #ifdef HELVETICA
@@ -118,13 +118,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Jul 3, 2012}
+\date{Jul 21, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Jul 3, 2012}}
+{\large\textsf{Jul 21, 2012}}
 
 \end{center}
 \vfill
@@ -133,7 +133,7 @@
 % #else
 
 \begin{center}
-Jul 3, 2012
+Jul 21, 2012
 \end{center}
 
 % #endif
@@ -458,7 +458,7 @@ will applied the expression to the right.
 Blocks of {\LaTeX} mathematics are written within
 \code{!bt}
 and
-\code{!et} ("begin/end TeX") directives, just like computer code.
+\code{!et} ("begin/end TeX") directives.
 For example,
 \bccq
 \begin{align*}
@@ -477,31 +477,31 @@ the preprocessor choose a block of mathematics in {\LaTeX} format
 or (\code{#else}) a modified form more suited for plain text and wiki
 formats without support for mathematics.
 
-Any {\LaTeX} syntax is accepted, but if output in the \code{sphinx} format
-is important, one must know that \code{sphinx} does not support many
-{\LaTeX} constructs. For output both in \code{latex} and \code{sphinx} formats we
-recommend the following:
+Any {\LaTeX} syntax is accepted, but if output in the \code{sphinx}, \code{pandoc},
+or \code{html} formats
+is important, one must know that these formats does not support many
+{\LaTeX} constructs. For output both in \code{latex} and the mentioned formats
+the following rules are recommended:
 
 \begin{itemize}
   \item Use only the equation environments \code{\[}, \code{\]},
     \code{equation}, \code{equation*}, \code{align}, and \code{align*}.
 
   \item Labels in multiple equation environments such as \code{align} are
-    not (yet) handled by \code{sphinx}, so avoid inserting labels and referring
-    to equation labels in \code{align} environments. Actually, \code{align*}
-    is the preferred environment for multiple equations. Writing with
-    also \code{sphinx} output in mind results in a slightly adjusted type
-    of {\LaTeX} writing.
+    not (yet) handled by \code{sphinx} and \code{pandoc}, so avoid inserting
+    labels and referring  to equation labels in \code{align} environments.
+    Actually, \code{align*} is the preferred environment for multiple equations.
 
   \item {\LaTeX} supports lots of fancy formatting, for example, multiple
     plots in the same figure, footnotes, margin notes, etc.
     Allowing other output formats, such as \code{sphinx}, makes it necessary
     to only utilze very standard {\LaTeX} and avoid, for instance, more than
     one plot per figure. However, one can use preprocessor if-tests on
-    the format (typically \code{# #ifdef format == "latex"}) to
-    include special code for \code{latex} output and more straightforward
-    typesetting for other formats. In this way, one can also allow
-    advanced {\LaTeX} features and fine tuning of resulting PDF document.
+    the format (typically \code{# #if FORMAT in ("latex", "pdflatex")}) to
+    include special code for \code{latex} and \code{pdflatex} output and more
+    straightforward typesetting for other formats. In this way, one can
+    also allow advanced {\LaTeX} features and fine tuning of resulting
+    PDF document.
 \end{itemize}
 
 \noindent
