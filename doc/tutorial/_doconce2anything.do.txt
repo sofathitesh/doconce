@@ -100,7 +100,7 @@ Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
 # environment, as used here.
 
 __Step 1.__ Filter the doconce text to a pre-LaTeX form `mydoc.p.tex` for
-     `ptex2tex`:
+the `ptex2tex` program (or `doconce ptex2tex`):
 !bc sys
 Terminal> doconce format latex mydoc
 !ec
@@ -125,18 +125,14 @@ For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
 !bc sys
 Terminal> ptex2tex -DHELVETICA mydoc
+Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative
 !ec
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard LaTeX "maketitle" heading
-is also available through
-!bc sys
-Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc
-!ec
+is also available through `-DLATEX_HEADING=traditional`.
 A separate titlepage can be generate by
-!bc sys
-Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc
-!ec
+`-DLATEX_HEADING=titlepage`.
 
 The `ptex2tex` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX

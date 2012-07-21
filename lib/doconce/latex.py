@@ -46,7 +46,7 @@ def latex_code(filestr, format):
     filestr = re.sub(r'!et\n', '', filestr)
 
     # Check for misspellings
-    envirs = 'pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans bashans swigans uflans sni dat dsni sys slin ipy rpy plin ver warn rule summ ccq cc ccl py'.split()
+    envirs = 'pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans fans bashans swigans uflans sni dat dsni sys slin ipy rpy plin ver warn rule summ ccq cc ccl py'.split()
     for arg in args:
         if arg not in envirs:
             print 'Warning: found "!bc %s", but %s is not a predefined ptex2tex environment' % (arg, arg)
@@ -601,12 +601,12 @@ def define(FILENAME_EXTENSION,
 
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
-\usepackage{ptex2tex}
+\usepackage{ptex2tex}  % http://code.google.com/p/ptex2tex
 % #ifdef MOVIE15
-\usepackage{movie15}
+\usepackage{movie15} % for movie playing
 % #endif
 % #ifdef MINTED
-\usepackage{minted}  % requires latex -shell-escape (for Minted_* ptex2tex envirs)
+\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 % #endif
 
 % #ifdef HELVETICA
