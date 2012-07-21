@@ -601,9 +601,9 @@ def define(FILENAME_EXTENSION,
 
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
-\usepackage{ptex2tex}  % http://code.google.com/p/ptex2tex
+\usepackage{ptex2tex}
 % #ifdef MOVIE15
-\usepackage{movie15} % for movie playing
+\usepackage{movie15}
 % #endif
 % #ifdef MINTED
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
