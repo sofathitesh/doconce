@@ -6,7 +6,7 @@
 <meta name="generator" content="Docutils 0.9: http://docutils.sourceforge.net/" />
 <title>Doconce Quick Reference</title>
 <meta name="author" content="Hans Petter Langtangen" />
-<meta name="date" content="Jul 3, 2012" />
+<meta name="date" content="Jul 21, 2012" />
 <style type="text/css">
 
 /*
@@ -325,7 +325,7 @@ ul.auto-toc {
 <tr><th class="docinfo-name">Author:</th>
 <td>Hans Petter Langtangen</td></tr>
 <tr><th class="docinfo-name">Date:</th>
-<td>Jul 3, 2012</td></tr>
+<td>Jul 21, 2012</td></tr>
 </tbody>
 </table>
 <!-- Automatically generated reST file from Doconce source
@@ -626,7 +626,7 @@ will applied the expression to the right.</p>
 <p>Blocks of LaTeX mathematics are written within
 <tt class="docutils literal">!bt</tt>
 and
-<tt class="docutils literal">!et</tt> (&quot;begin/end TeX&quot;) directives, just like computer code.
+<tt class="docutils literal">!et</tt> (&quot;begin/end TeX&quot;) directives.
 For example:</p>
 <pre class="literal-block">
 !bt
@@ -646,29 +646,29 @@ For example:</p>
 the preprocessor choose a block of mathematics in LaTeX format
 or (<tt class="docutils literal">#else</tt>) a modified form more suited for plain text and wiki
 formats without support for mathematics.</p>
-<p>Any LaTeX syntax is accepted, but if output in the <tt class="docutils literal">sphinx</tt> format
-is important, one must know that <tt class="docutils literal">sphinx</tt> does not support many
-LaTeX constructs. For output both in <tt class="docutils literal">latex</tt> and <tt class="docutils literal">sphinx</tt> formats we
-recommend the following:</p>
+<p>Any LaTeX syntax is accepted, but if output in the <tt class="docutils literal">sphinx</tt>, <tt class="docutils literal">pandoc</tt>,
+or <tt class="docutils literal">html</tt> formats
+is important, one must know that these formats does not support many
+LaTeX constructs. For output both in <tt class="docutils literal">latex</tt> and the mentioned formats
+the following rules are recommended:</p>
 <blockquote>
 <ul class="simple">
 <li>Use only the equation environments <tt class="docutils literal">\[</tt>, <tt class="docutils literal">\]</tt>,
 <tt class="docutils literal">equation</tt>, <tt class="docutils literal">equation*</tt>, <tt class="docutils literal">align</tt>, and <tt class="docutils literal">align*</tt>.</li>
 <li>Labels in multiple equation environments such as <tt class="docutils literal">align</tt> are
-not (yet) handled by <tt class="docutils literal">sphinx</tt>, so avoid inserting labels and referring
-to equation labels in <tt class="docutils literal">align</tt> environments. Actually, <tt class="docutils literal">align*</tt>
-is the preferred environment for multiple equations. Writing with
-also <tt class="docutils literal">sphinx</tt> output in mind results in a slightly adjusted type
-of LaTeX writing.</li>
+not (yet) handled by <tt class="docutils literal">sphinx</tt> and <tt class="docutils literal">pandoc</tt>, so avoid inserting
+labels and referring  to equation labels in <tt class="docutils literal">align</tt> environments.
+Actually, <tt class="docutils literal">align*</tt> is the preferred environment for multiple equations.</li>
 <li>LaTeX supports lots of fancy formatting, for example, multiple
 plots in the same figure, footnotes, margin notes, etc.
 Allowing other output formats, such as <tt class="docutils literal">sphinx</tt>, makes it necessary
 to only utilze very standard LaTeX and avoid, for instance, more than
 one plot per figure. However, one can use preprocessor if-tests on
-the format (typically <tt class="docutils literal"># #ifdef format == &quot;latex&quot;</tt>) to
-include special code for <tt class="docutils literal">latex</tt> output and more straightforward
-typesetting for other formats. In this way, one can also allow
-advanced LaTeX features and fine tuning of resulting PDF document.</li>
+the format (typically <tt class="docutils literal"># #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)</tt>) to
+include special code for <tt class="docutils literal">latex</tt> and <tt class="docutils literal">pdflatex</tt> output and more
+straightforward typesetting for other formats. In this way, one can
+also allow advanced LaTeX features and fine tuning of resulting
+PDF document.</li>
 </ul>
 </blockquote>
 <p><em>LaTeX Newcommands.</em> Text missing...</p>

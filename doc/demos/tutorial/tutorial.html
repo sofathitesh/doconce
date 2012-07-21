@@ -35,7 +35,7 @@ MathJax.Hub.Config({
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Jul 3, 2012</h3></center>
+<center><h3>Jul 21, 2012</h3></center>
 <P>
 
 <P>
@@ -574,7 +574,7 @@ Making a LaTeX file <tt>mydoc.tex</tt> from <tt>mydoc.do.txt</tt> is done in two
 
 <P>
 <b>Step 1.</b> Filter the doconce text to a pre-LaTeX form <tt>mydoc.p.tex</tt> for
-     <tt>ptex2tex</tt>:
+the <tt>ptex2tex</tt> program (or <tt>doconce ptex2tex</tt>):
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
 Terminal&gt; doconce format latex mydoc
@@ -608,23 +608,15 @@ Computer Modern font, run
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
 Terminal&gt; ptex2tex -DHELVETICA mydoc
+Terminal&gt; doconce ptex2tex mydoc -DHELVETICA  # alternative
 </pre>
 </blockquote>   <! -- end verbatim block -->
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard LaTeX "maketitle" heading
-is also available through
-<blockquote>    <!-- begin verbatim block   sys-->
-<pre>
-Terminal&gt; ptex2tex -DLATEX_HEADING=traditional mydoc
-</pre>
-</blockquote>   <! -- end verbatim block -->
+is also available through <tt>-DLATEX_HEADING=traditional</tt>.
 A separate titlepage can be generate by
-<blockquote>    <!-- begin verbatim block   sys-->
-<pre>
-Terminal&gt; ptex2tex -DLATEX_HEADING=titlepage mydoc
-</pre>
-</blockquote>   <! -- end verbatim block -->
+<tt>-DLATEX_HEADING=titlepage</tt>.
 
 <P>
 The <tt>ptex2tex</tt> tool makes it possible to easily switch between many
@@ -642,18 +634,19 @@ of code environments as well. Here is an example:
 <blockquote>    <!-- begin verbatim block   sys-->
 <pre>
 Terminal&gt; doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
-          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
-          fpro=minted fcod=minted sys=verbatim
+          "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
+          fpro=minted fcod=minted envir=ans:nt
 </pre>
 </blockquote>   <! -- end verbatim block -->
-Note that semicolon must be used to separate the begin and end
-commands, unless only the environment name is given (such as
-<tt>verbatim</tt> above, which implies <tt>\begin{verbatim}</tt> and <tt>\end{verbatim}</tt>).
-The value <tt>minted</tt> can be used for code environments where the
-language is specified, as in <tt>fpro</tt>, where <tt>minted</tt> implies
-<tt>\begin{python}{fortran}</tt>. There is a similar support for <tt>ans</tt>:
-<tt>cppcod=ans</tt> imples <tt>\begin{c++}</tt> and <tt>\end{c++}</tt> using the
-<tt>anslistings</tt> package.
+Note that <tt>@</tt> must be used to separate the begin and end
+LaTeX commands, unless only the environment name is given (such as
+<tt>minted</tt> above, which implies <tt>\begin{minted}{fortran}</tt> and <tt>\end{minted}</tt>).
+Specifying <tt>envir=ans:nt</tt> means that all other environments are typeset
+with the <tt>anslistings.sty</tt> package, e.g., <tt>!bc cppcod</tt> will then
+result in <tt>\begin{c++}</tt>. If no environments like <tt>sys</tt> or <tt>fpro</tt> are
+defined, the plain <tt>\begin{verbatim}</tt> and <tt>\end{verbatim}</tt> used.
+
+<P>
 
 <P>
 <b>Step 2b (optional).</b> Edit the <tt>mydoc.tex</tt> file to your needs.

@@ -615,7 +615,7 @@ def define(FILENAME_EXTENSION,
 \renewcommand\familydefault{phv}
 % #endif
 % #ifdef PALATINO
-% Set paraltino as the default font family:
+% Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
 % #endif

@@ -57,7 +57,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jul 3, 2012</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jul 21, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -495,10 +495,8 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.</p>
 <h2>LaTeX<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>Making a LaTeX file <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt> from <tt class="docutils literal"><span class="pre">mydoc.do.txt</span></tt> is done in two steps:
 .. Note: putting code blocks inside a list is not successful in many</p>
-<dl class="docutils">
-<dt><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal"><span class="pre">mydoc.p.tex</span></tt> for</dt>
-<dd><tt class="docutils literal"><span class="pre">ptex2tex</span></tt>:</dd>
-</dl>
+<p><em>Step 1.</em> Filter the doconce text to a pre-LaTeX form <tt class="docutils literal"><span class="pre">mydoc.p.tex</span></tt> for
+the <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> program (or <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">ptex2tex</span></tt>):</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format latex mydoc</span>
 </pre></div>
 </div>
@@ -520,19 +518,15 @@ that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; ptex2tex -DHELVETICA mydoc</span>
+<span class="go">Terminal&gt; doconce ptex2tex mydoc -DHELVETICA  # alternative</span>
 </pre></div>
 </div>
 <p>The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard LaTeX &#8220;maketitle&#8221; heading
-is also available through</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; ptex2tex -DLATEX_HEADING=traditional mydoc</span>
-</pre></div>
-</div>
-<p>A separate titlepage can be generate by</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; ptex2tex -DLATEX_HEADING=titlepage mydoc</span>
-</pre></div>
-</div>
+is also available through <tt class="docutils literal"><span class="pre">-DLATEX_HEADING=traditional</span></tt>.
+A separate titlepage can be generate by
+<tt class="docutils literal"><span class="pre">-DLATEX_HEADING=titlepage</span></tt>.</p>
 <p>The <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents. After any <tt class="docutils literal"><span class="pre">!bc</span></tt> command in the Doconce source you can
@@ -544,18 +538,17 @@ There are about 40 styles to choose from.</p>
 for processing the <tt class="docutils literal"><span class="pre">.p.tex</span></tt> file. The command allows specifications
 of code environments as well. Here is an example:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \</span>
-<span class="go">          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \</span>
-<span class="go">          fpro=minted fcod=minted sys=verbatim</span>
+<span class="go">          &quot;sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}&quot; \</span>
+<span class="go">          fpro=minted fcod=minted envir=ans:nt</span>
 </pre></div>
 </div>
-<p>Note that semicolon must be used to separate the begin and end
-commands, unless only the environment name is given (such as
-<tt class="docutils literal"><span class="pre">verbatim</span></tt> above, which implies <tt class="docutils literal"><span class="pre">\begin{verbatim}</span></tt> and <tt class="docutils literal"><span class="pre">\end{verbatim}</span></tt>).
-The value <tt class="docutils literal"><span class="pre">minted</span></tt> can be used for code environments where the
-language is specified, as in <tt class="docutils literal"><span class="pre">fpro</span></tt>, where <tt class="docutils literal"><span class="pre">minted</span></tt> implies
-<tt class="docutils literal"><span class="pre">\begin{python}{fortran}</span></tt>. There is a similar support for <tt class="docutils literal"><span class="pre">ans</span></tt>:
-<tt class="docutils literal"><span class="pre">cppcod=ans</span></tt> imples <tt class="docutils literal"><span class="pre">\begin{c++}</span></tt> and <tt class="docutils literal"><span class="pre">\end{c++}</span></tt> using the
-<tt class="docutils literal"><span class="pre">anslistings</span></tt> package.</p>
+<p>Note that <tt class="docutils literal"><span class="pre">&#64;</span></tt> must be used to separate the begin and end
+LaTeX commands, unless only the environment name is given (such as
+<tt class="docutils literal"><span class="pre">minted</span></tt> above, which implies <tt class="docutils literal"><span class="pre">\begin{minted}{fortran}</span></tt> and <tt class="docutils literal"><span class="pre">\end{minted}</span></tt>).
+Specifying <tt class="docutils literal"><span class="pre">envir=ans:nt</span></tt> means that all other environments are typeset
+with the <tt class="docutils literal"><span class="pre">anslistings.sty</span></tt> package, e.g., <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">cppcod</span></tt> will then
+result in <tt class="docutils literal"><span class="pre">\begin{c++}</span></tt>. If no environments like <tt class="docutils literal"><span class="pre">sys</span></tt> or <tt class="docutils literal"><span class="pre">fpro</span></tt> are
+defined, the plain <tt class="docutils literal"><span class="pre">\begin{verbatim}</span></tt> and <tt class="docutils literal"><span class="pre">\end{verbatim}</span></tt> used.</p>
 <p><em>Step 2b (optional).</em> Edit the <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt> file to your needs.
 For example, you may want to substitute <tt class="docutils literal"><span class="pre">section</span></tt> by <tt class="docutils literal"><span class="pre">section*</span></tt> to
 avoid numbering of sections, you may want to insert linebreaks

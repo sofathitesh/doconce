@@ -1,9 +1,9 @@
 <%doc>
-This is a test on Doconce.
-The Mako preprocessor is used.
+This is Mako comment block
+to test the use of Mako as preprocessor.
 </%doc>
 
-TITLE: A Test Document
+TITLE: A Document for Testing Doconce
 AUTHOR: Hans Petter Langtangen Email: hpl@simula.no at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
 AUTHOR: Kaare Dump at Segfault Inc, Cyberspace
 AUTHOR: A. Dummy Author
@@ -39,8 +39,7 @@ is part of the abstract.
 ======= Section 1 =======
 label{sec1}
 
-Just a little bit of text
-and then a list:
+Here is a nested list:
 
   * item1
   * item2
@@ -67,6 +66,35 @@ and then just the subroutine,
 and finally the complete file:
 @@@CODE ../doc/manual/__testcode.f
 
+Testing other code environments. First Python:
+!bc pycod
+def f(x):
+    return x+1
+!ec
+Then Cython:
+!bc cycod
+cpdef f(double x):
+    return x + 1
+!ec
+C++:
+!bc cpppro
+#include <iostream>
+
+int main()
+{
+   std::cout << "Sample output" << std::endl;
+   return 0
+}
+!ec
+System call:
+!bc sys
+Terminal> mkdir test
+Terminal> cd test
+Terminal> myprog -f
+output1
+output2
+!ec
+
 ===== Subsection 2 =====
 label{subsec:ex}
 idx{figures}
@@ -80,7 +108,7 @@ Test of movies.
 
 MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=700 height=400] Mjolnir tsunami (by Sylfest Glimsdal).
 
-# Empty caption:
+# Test empty caption:
 
 MOVIE: [../doc/manual/figs/wavepacket.mpeg, width=700 height=400]
 
@@ -91,16 +119,17 @@ MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie based o
 
 MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
 
-===== Table Demo =====
+===== Tables =====
 label{subsec:table}
 
 Let us take this table from the manual:
-idx{some `class X` which is convenient}
+idx{test index with `verbatim text` which is possible}
 
 % if FORMAT == "latex":
 \begin{table}
 \caption{
-Table of velocity and acceleration.
+Testing table environment in LaTeX, enabled by testing on the "latex" format
+with the preprocessor.
 label{mytab}
 }
 % endif
@@ -118,7 +147,7 @@ label{mytab}
 % endif
 
 The Doconce source code reads
-!bc cod
+!bc ccq
   |--------------------------------|
   |time  | velocity | acceleration |
   |--l--------r-----------r--------|
@@ -142,8 +171,8 @@ one table:
 ===== URLs ======
 label{subsubsec:ex}
 
-Here are some nice URLs, e.g., hpl's home page "hpl":"http://folk.uio.no/hpl",
-or the URL if desired, "URL": "http://folk.uio.no/hpl".
+Testing of URLs: hpl's home page "hpl":"http://folk.uio.no/hpl",
+or the entire URL if desired, "URL": "http://folk.uio.no/hpl".
 Here is a plain file link "URL": "testdoc.do.txt", or "url":"testdoc.do.txt",
 or URL: "testdoc.do.txt" or url : "testdoc.do.txt" or "a link
 with newline": "testdoc.do.txt". Can test spaces
@@ -159,10 +188,10 @@ is fine to have.
 
 % if FORMAT == "latex":
 
-===== Some LaTeX Constructs =====
+===== Test of Some LaTeX Fixes =====
 
 Let's check abbr. of some common kind, e.g. the well-known i.e.
-7-9 as an example. Moreover, Dr. Tang and Prof. Monsen,
+expression as an example. Moreover, Dr. Tang and Prof. Monsen,
 or maybe also prof. Ting,
 will go to the Dept. of Science to test how Mr. Hansen is doing together
 with Ms. Larsen. A sentence containing "refines lines" could easily
@@ -203,7 +232,8 @@ b &= \nabla^2 u + \nabla^4 x label{eq2}
 !et
 We can refer to (ref{eq1})-(ref{eq2}).
 
-Or with multline?
+Many of the next environments will fail in non-latex formats.
+Testing multiline:
 !bt
 \begin{multline}
 a = b = q + \\
@@ -211,7 +241,7 @@ a = b = q + \\
 label{multiline:eq1}
 \end{multline}
 !et
-Maybe split is better:
+Testing split:
 !bt
 \begin{equation}
 label{split:envir:eq}
@@ -221,9 +251,9 @@ a = b = q &+ \\
 \end{split}
 \end{equation}
 !et
-And we can refer to the last equation by (ref{split:envir:eq}).
+We can refer to the last equation by (ref{split:envir:eq}).
 
-What about gather?
+Testing gather:
 !bt
 \begin{gather}
 a = b \\
@@ -231,7 +261,7 @@ c = d + 7 + 9
 \end{gather}
 !et
 
-And what about alignat?
+Testing alignat:
 !bt
 \begin{alignat}{2}
 a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 label{eq1a} \\
@@ -241,7 +271,7 @@ b &= \nabla^2 u + \nabla^4 x & x\in\Omega label{eq2a}
 Let us refer to (ref{eq1})-(ref{eq2}) again, and to the
 alignat variant (ref{eq1a})-(ref{eq2a}), and to (ref{my:eq1}).
 
-Here is eqnarray in action:
+Testing eqnarray:
 !bt
 \begin{eqnarray}
 {\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
@@ -272,7 +302,8 @@ __Hint 2.__ Draw an integer among $\{1,2\}$ with
 
 ===== Exercise: Compute a Probability =====
 
-label{demo:ex:2}  solution =/my/home/hpl/sol/file1.txt
+label{demo:ex:2}
+solution =/my/home/hpl/sol/file1.do.txt
 
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
@@ -298,7 +329,7 @@ where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ is a point on the circle.
 The formula can be used to generate `n` points on a circle:
-!bc pycod
+!bc pypro
 import numpy as np
 
 def circle(R, x0, y0, n=501):
@@ -306,6 +337,8 @@ def circle(R, x0, y0, n=501):
     x = x0 + R*np.cos(2*np.pi*t)
     y = y0 + R*np.sin(2*np.pi*t)
     return x, y
+
+x, y = circle(2.0, 0, 0)
 !ec
 
 # Often in an exercise we have some comments about the solution

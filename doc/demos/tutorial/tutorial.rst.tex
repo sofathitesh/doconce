@@ -76,7 +76,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jul 3, 2012
+Jul 21, 2012
 %
 \begin{itemize}
 
@@ -758,17 +758,14 @@ Making a LaTeX file \texttt{mydoc.tex} from \texttt{mydoc.do.txt} is done in two
 % formats - the text may be messed up. A better choice is a paragraph
 
 % environment, as used here.
-%
-\begin{description}
-\item[{\emph{Step 1.} Filter the doconce text to a pre-LaTeX form \texttt{mydoc.p.tex} for}] \leavevmode 
-\texttt{ptex2tex}:
+
+\emph{Step 1.} Filter the doconce text to a pre-LaTeX form \texttt{mydoc.p.tex} for
+the \texttt{ptex2tex} program (or \texttt{doconce ptex2tex}):
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Terminal>~doconce~format~latex~mydoc
 }
 \end{quote}
-
-\end{description}
 
 LaTeX-specific commands (``newcommands'') in math formulas and similar
 can be placed in files \texttt{newcommands.tex}, \texttt{newcommands\_keep.tex}, or
@@ -796,26 +793,17 @@ For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~ptex2tex~-DHELVETICA~mydoc
+Terminal>~ptex2tex~-DHELVETICA~mydoc\\
+Terminal>~doconce~ptex2tex~mydoc~-DHELVETICA~~\#~alternative
 }
 \end{quote}
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard LaTeX ``maketitle'' heading
-is also available through:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~ptex2tex~-DLATEX\_HEADING=traditional~mydoc
-}
-\end{quote}
-
-A separate titlepage can be generate by:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~ptex2tex~-DLATEX\_HEADING=titlepage~mydoc
-}
-\end{quote}
+is also available through \texttt{-DLATEX\_HEADING=traditional}.
+A separate titlepage can be generate by
+\texttt{-DLATEX\_HEADING=titlepage}.
 
 The \texttt{ptex2tex} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -831,19 +819,18 @@ of code environments as well. Here is an example:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Terminal>~doconce~ptex2tex~-DLATEX\_HEADING=traditional~-DMINTED~\textbackslash{}\\
-~~~~~~~~~~cycod=\textbackslash{}begin\{quote\}\textbackslash{}begin\{python\};\textbackslash{}end\{python\}\textbackslash{}end\{quote\}~\textbackslash{}\\
-~~~~~~~~~~fpro=minted~fcod=minted~sys=verbatim
+~~~~~~~~~~"sys=\textbackslash{}begin\{quote\}\textbackslash{}begin\{verbatim\}@\textbackslash{}end\{verbatim\}\textbackslash{}end\{quote\}"~\textbackslash{}\\
+~~~~~~~~~~fpro=minted~fcod=minted~envir=ans:nt
 }
 \end{quote}
 
-Note that semicolon must be used to separate the begin and end
-commands, unless only the environment name is given (such as
-\texttt{verbatim} above, which implies \texttt{\textbackslash{}begin\{verbatim\}} and \texttt{\textbackslash{}end\{verbatim\}}).
-The value \texttt{minted} can be used for code environments where the
-language is specified, as in \texttt{fpro}, where \texttt{minted} implies
-\texttt{\textbackslash{}begin\{python\}\{fortran\}}. There is a similar support for \texttt{ans}:
-\texttt{cppcod=ans} imples \texttt{\textbackslash{}begin\{c++\}} and \texttt{\textbackslash{}end\{c++\}} using the
-\texttt{anslistings} package.
+Note that \texttt{@} must be used to separate the begin and end
+LaTeX commands, unless only the environment name is given (such as
+\texttt{minted} above, which implies \texttt{\textbackslash{}begin\{minted\}\{fortran\}} and \texttt{\textbackslash{}end\{minted\}}).
+Specifying \texttt{envir=ans:nt} means that all other environments are typeset
+with the \texttt{anslistings.sty} package, e.g., \texttt{!bc cppcod} will then
+result in \texttt{\textbackslash{}begin\{c++\}}. If no environments like \texttt{sys} or \texttt{fpro} are
+defined, the plain \texttt{\textbackslash{}begin\{verbatim\}} and \texttt{\textbackslash{}end\{verbatim\}} used.
 
 \emph{Step 2b (optional).} Edit the \texttt{mydoc.tex} file to your needs.
 For example, you may want to substitute \texttt{section} by \texttt{section*} to
@@ -1475,7 +1462,7 @@ run regularly.
 \DUtitle[system-message]{system-message}
 \raisebox{1em}{\hypertarget{id7}{}}
 
-{\color{red}ERROR/3} in \texttt{tutorial.rst}, line~889
+{\color{red}ERROR/3} in \texttt{tutorial.rst}, line~883
 
 \hyperlink{id8}{
 Unknown target name: ``googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>''.

@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Jul 3, 2012 ====
+==== Jul 21, 2012 ====
 
 <ul>
  <li> When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format? <li> Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging? <li> Do you have the same information scattered around in different   documents in different typesetting formats? Would it be a good idea   to write things once, in one format, stored in one place, and   include it anywhere?</ul>
@@ -359,7 +359,7 @@ Making a LaTeX file <code>mydoc.tex</code> from <code>mydoc.do.txt</code> is don
 <!--> environment, as used here. -->
 
 ''Step 1.'' Filter the doconce text to a pre-LaTeX form <code>mydoc.p.tex</code> for
-     <code>ptex2tex</code>:
+the <code>ptex2tex</code> program (or <code>doconce ptex2tex</code>):
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc
 </code>
@@ -384,18 +384,14 @@ For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
 <syntaxhighlight lang="bash">
 Terminal> ptex2tex -DHELVETICA mydoc
+Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative
 </code>
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard LaTeX "maketitle" heading
-is also available through
-<syntaxhighlight lang="bash">
-Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc
-</code>
+is also available through <code>-DLATEX_HEADING=traditional</code>.
 A separate titlepage can be generate by
-<syntaxhighlight lang="bash">
-Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc
-</code>
+<code>-DLATEX_HEADING=titlepage</code>.
 
 The <code>ptex2tex</code> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -410,17 +406,17 @@ for processing the <code>.p.tex</code> file. The command allows specifications
 of code environments as well. Here is an example:
 <syntaxhighlight lang="bash">
 Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
-          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
-          fpro=minted fcod=minted sys=verbatim
+          "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
+          fpro=minted fcod=minted envir=ans:nt
 </code>
-Note that semicolon must be used to separate the begin and end
-commands, unless only the environment name is given (such as
-<code>verbatim</code> above, which implies <code>\begin{verbatim}</code> and <code>\end{verbatim}</code>).
-The value <code>minted</code> can be used for code environments where the
-language is specified, as in <code>fpro</code>, where <code>minted</code> implies
-<code>\begin{python}{fortran}</code>. There is a similar support for <code>ans</code>:
-<code>cppcod=ans</code> imples <code>\begin{c++}</code> and <code>\end{c++}</code> using the
-<code>anslistings</code> package.
+Note that <code>@</code> must be used to separate the begin and end
+LaTeX commands, unless only the environment name is given (such as
+<code>minted</code> above, which implies <code>\begin{minted}{fortran}</code> and <code>\end{minted}</code>).
+Specifying <code>envir=ans:nt</code> means that all other environments are typeset
+with the <code>anslistings.sty</code> package, e.g., <code>!bc cppcod</code> will then
+result in <code>\begin{c++}</code>. If no environments like <code>sys</code> or <code>fpro</code> are
+defined, the plain <code>\begin{verbatim}</code> and <code>\end{verbatim}</code> used.
+
 
 ''Step 2b (optional).'' Edit the <code>mydoc.tex</code> file to your needs.
 For example, you may want to substitute <code>section</code> by <code>section*</code> to

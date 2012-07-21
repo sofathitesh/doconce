@@ -1,9 +1,13 @@
 #!/bin/sh -x
-# Test multiple authors
 doconce format html testdoc.do.txt
+
 doconce format latex testdoc.do.txt
 doconce format pdflatex testdoc.do.txt
-ptex2tex -DMINTED testdoc
+ptex2tex -DMINTED -DBOOK -DLATEX_HEADING=titlepage testdoc
+cp testdoc.tex testdoc.tex_ptex2tex
+doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\end{Verbatim}\end{quote} pypro=ans:nt envir=minted
+cp testdoc.tex testdoc.tex_doconce_ptex2tex
+
 doconce format plain testdoc.do.txt
 doconce format st testdoc.do.txt
 doconce format sphinx testdoc.do.txt
@@ -15,12 +19,13 @@ doconce format epytext testdoc.do.txt
 doconce format pandoc testdoc.do.txt
 doconce format mwiki testdoc.do.txt
 doconce format cwiki testdoc.do.txt
+
 # Test mako variables too
 doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string'
 
-# Test pandoc
+# Test pandoc: from latex to markdown, from markdown to html
 doconce format latex testdoc.do.txt
-doconce ptex2tex testdoc -DBOOK -DLATEXHEADING=traditional
+doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
 #doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
 pandoc -f latex -t markdown -o testdoc.mkd testdoc.tex
 pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.mkd

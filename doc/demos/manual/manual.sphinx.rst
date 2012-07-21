@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Jul 3, 2012
+:Date: Jul 21, 2012
 
 .. lines beginning with # are comment lines
 
@@ -444,7 +444,7 @@ Making a LaTeX file ``mydoc.tex`` from ``mydoc.do.txt`` is done in two steps:
 
 
 *Step 1.* Filter the doconce text to a pre-LaTeX form ``mydoc.p.tex`` for
-     ``ptex2tex``:
+the ``ptex2tex`` program (or ``doconce ptex2tex``):
 
 .. code-block:: console
 
@@ -477,22 +477,14 @@ Computer Modern font, run
 .. code-block:: console
 
         Terminal> ptex2tex -DHELVETICA mydoc
+        Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative
 
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard LaTeX "maketitle" heading
-is also available through
-
-.. code-block:: console
-
-        Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc
-
+is also available through ``-DLATEX_HEADING=traditional``.
 A separate titlepage can be generate by
-
-.. code-block:: console
-
-        Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc
-
+``-DLATEX_HEADING=titlepage``.
 
 The ``ptex2tex`` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -509,17 +501,17 @@ of code environments as well. Here is an example:
 .. code-block:: console
 
         Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
-                  cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
-                  fpro=minted fcod=minted sys=verbatim
+                  "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
+                  fpro=minted fcod=minted envir=ans:nt
 
-Note that semicolon must be used to separate the begin and end
-commands, unless only the environment name is given (such as
-``verbatim`` above, which implies ``\begin{verbatim}`` and ``\end{verbatim}``).
-The value ``minted`` can be used for code environments where the
-language is specified, as in ``fpro``, where ``minted`` implies
-``\begin{python}{fortran}``. There is a similar support for ``ans``:
-``cppcod=ans`` imples ``\begin{c++}`` and ``\end{c++}`` using the
-``anslistings`` package.
+Note that ``@`` must be used to separate the begin and end
+LaTeX commands, unless only the environment name is given (such as
+``minted`` above, which implies ``\begin{minted}{fortran}`` and ``\end{minted}``).
+Specifying ``envir=ans:nt`` means that all other environments are typeset
+with the ``anslistings.sty`` package, e.g., ``!bc cppcod`` will then
+result in ``\begin{c++}``. If no environments like ``sys`` or ``fpro`` are
+defined, the plain ``\begin{verbatim}`` and ``\end{verbatim}`` used.
+
 
 *Step 2b (optional).* Edit the ``mydoc.tex`` file to your needs.
 For example, you may want to substitute ``section`` by ``section*`` to

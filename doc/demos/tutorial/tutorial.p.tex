@@ -17,7 +17,7 @@
 \usepackage{movie15}
 % #endif
 % #ifdef MINTED
-\usepackage{minted}  % requires latex -shell-escape (for Minted_* ptex2tex envirs)
+\usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 % #endif
 
 % #ifdef HELVETICA
@@ -118,13 +118,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Jul 3, 2012}
+\date{Jul 21, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Jul 3, 2012}}
+{\large\textsf{Jul 21, 2012}}
 
 \end{center}
 \vfill
@@ -133,7 +133,7 @@
 % #else
 
 \begin{center}
-Jul 3, 2012
+Jul 21, 2012
 \end{center}
 
 % #endif
@@ -636,7 +636,7 @@ Making a {\LaTeX} file \code{mydoc.tex} from \code{mydoc.do.txt} is done in two 
 
 \paragraph{Step 1.}
 Filter the doconce text to a pre-LaTeX form \code{mydoc.p.tex} for
-     \code{ptex2tex}:
+the \code{ptex2tex} program (or \code{doconce ptex2tex}):
 \bsys
 Terminal> doconce format latex mydoc
 \esys
@@ -662,18 +662,14 @@ For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
 \bsys
 Terminal> ptex2tex -DHELVETICA mydoc
+Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative
 \esys
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard {\LaTeX} "maketitle" heading
-is also available through
-\bsys
-Terminal> ptex2tex -DLATEX_HEADING=traditional mydoc
-\esys
+is also available through \code{-DLATEX_HEADING=traditional}.
 A separate titlepage can be generate by
-\bsys
-Terminal> ptex2tex -DLATEX_HEADING=titlepage mydoc
-\esys
+\code{-DLATEX_HEADING=titlepage}.
 
 The \code{ptex2tex} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in {\LaTeX}
@@ -688,17 +684,17 @@ for processing the \code{.p.tex} file. The command allows specifications
 of code environments as well. Here is an example:
 \bsys
 Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
-          cycod=\begin{quote}\begin{python};\end{python}\end{quote} \
-          fpro=minted fcod=minted sys=verbatim
+          "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
+          fpro=minted fcod=minted envir=ans:nt
 \esys
-Note that semicolon must be used to separate the begin and end
-commands, unless only the environment name is given (such as
-\code{verbatim} above, which implies \code{\begin{verbatim}} and \code{\end{verbatim}}).
-The value \code{minted} can be used for code environments where the
-language is specified, as in \code{fpro}, where \code{minted} implies
-\code{\begin{python}{fortran}}. There is a similar support for \code{ans}:
-\code{cppcod=ans} imples \code{\begin{c++}} and \code{\end{c++}} using the
-\code{anslistings} package.
+Note that \code{@} must be used to separate the begin and end
+{\LaTeX} commands, unless only the environment name is given (such as
+\code{minted} above, which implies \code{\begin{minted}{fortran}} and \code{\end{minted}}).
+Specifying \code{envir=ans:nt} means that all other environments are typeset
+with the \code{anslistings.sty} package, e.g., \code{!bc cppcod} will then
+result in \code{\begin{c++}}. If no environments like \code{sys} or \code{fpro} are
+defined, the plain \code{\begin{verbatim}} and \code{\end{verbatim}} used.
+
 
 \paragraph{Step 2b (optional).}
 Edit the \code{mydoc.tex} file to your needs.
