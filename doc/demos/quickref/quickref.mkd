@@ -1,6 +1,6 @@
 % Doconce Quick Reference
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Jul 21, 2012
+% Jul 25, 2012
 
 _WARNING: This quick reference is very incomplete!_
 
@@ -430,7 +430,6 @@ syntax:
 |-----------------------------------------------------------------|
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Note that
 
  * Each line begins and ends with a vertical bar (pipe symbol).
@@ -494,7 +493,6 @@ by comma:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 cite{name1,name2,name3}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 The bibliography is specified by a line `BIBFILE: name_bib.bib,
 name_bib.rst, name_bib.py`, where `name` is the logical name of the
@@ -579,7 +577,6 @@ doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
 doconce assemble name master.do.txt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 Exercises
 ---------

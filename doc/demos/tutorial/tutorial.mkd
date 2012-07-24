@@ -1,6 +1,6 @@
 % Doconce: Document Once, Include Anywhere
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Jul 21, 2012
+% Jul 25, 2012
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -526,7 +526,6 @@ In case you do not have `ptex2tex`, you may run a (very) simplified version:
 Terminal> doconce ptex2tex mydoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Note that Doconce generates a `.p.tex` file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
@@ -626,8 +625,6 @@ Terminal> latex -shell-escape mydoc
 Terminal> dvipdf mydoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-
 PDFLaTeX
 --------
 
@@ -647,7 +644,6 @@ Terminal> bibitem mydoc     # if bibliography
 Terminal> pdflatex -shell-escape mydoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Plain ASCII Text
 ----------------
 
@@ -658,7 +654,6 @@ computer source code:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 reStructuredText
 ----------------
@@ -680,7 +675,6 @@ Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 The OpenOffice file `mydoc.odt` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
 However, it is more convenient to use the program `unovonv`
@@ -701,7 +695,6 @@ Terminal> unoconv -f ooxml mydoc.odt
 Terminal> unoconv -f doc mydoc.odt
 Terminal> unoconv -f pdf mydoc.odt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 *Remark about Mathematical Typesetting.* At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
@@ -797,7 +790,6 @@ Sphinx document from a file `mydoc.do.txt`.
 Terminal> doconce format sphinx mydoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 *Step 2.* Create a Sphinx root directory
 either manually or by using the interactive `sphinx-quickstart`
 program. Here is a scripted version of the steps with the latter:
@@ -868,7 +860,6 @@ make clean   # remove old versions
 make html
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Sphinx can generate a range of different formats:
 standalone HTML, HTML in separate directories with `index.html` files,
 a large single HTML file, JSON files, various help files (the qthelp, HTML,
@@ -881,7 +872,6 @@ and Texinfo files.
 Terminal> firefox _build/html/index.html
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Note that verbatim code blocks can be typeset in a variety of ways
 depending the argument that follows `!bc`: `cod` gives Python
 (`code-block:: python` in Sphinx syntax) and `cppcod` gives C++, but
@@ -892,7 +882,7 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-[Googlecode wiki](Google Code (http://code.google.com/p/support/wiki/WikiSyntax)), , MediaWiki, and Creole Wiki. These formats are called
+[Googlecode wiki](http://code.google.com/p/support/wiki/WikiSyntax), MediaWiki, and Creole Wiki. These formats are called
 `gwiki`, `mwiki`, and `cwiki`, respectively.
 Transformation from Doconce to these formats is done by
 
@@ -901,7 +891,6 @@ Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 The Googlecode wiki document, `mydoc.gwiki`, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -972,7 +961,6 @@ cd doconce
 sudo python setup.py install
 cd ..
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 If you make use of the [Preprocess](http://code.google.com/p/preprocess)
 preprocessor, this program must be installed:
@@ -1058,7 +1046,6 @@ To use the OpenOffice suite you will typically on Debian systems install
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 There is a possibility to create PDF files from reST documents
 using ReportLab instead of LaTeX. The enabling software is
 [rst2pdf](http://code.google.com/p/rst2pdf). Either download the tarball
@@ -1076,7 +1063,6 @@ sudo python setup.py install
 cd ..
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 When the output format is `epydoc` one needs that program too, installed
 by
 
@@ -1087,7 +1073,6 @@ sudo make install
 cd ..
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Finally, translation to `pandoc` requires the
 [Pandoc](http://johnmacfarlane.net/pandoc/) program
 (written in Haskell) to be installed.
@@ -1095,7 +1080,6 @@ Finally, translation to `pandoc` requires the
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 sudo apt-get install pandoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 *Remark.* Several of the packages above installed from source code
 are also available in Debian-based system through the

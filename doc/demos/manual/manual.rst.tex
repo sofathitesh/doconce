@@ -5,7 +5,6 @@
 \usepackage{ifthen}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{color}
 \usepackage{float} % float configuration
 \floatplacement{figure}{H} % place figures here definitely
 \usepackage{graphicx}
@@ -23,34 +22,12 @@
 
 %%% Fallback definitions for Docutils-specific commands
 
-% admonition (specially marked topic)
-\providecommand{\DUadmonition}[2][class-arg]{%
-  % try \DUadmonition#1{#2}:
-  \ifcsname DUadmonition#1\endcsname%
-    \csname DUadmonition#1\endcsname{#2}%
-  \else
-    \begin{center}
-      \fbox{\parbox{0.9\textwidth}{#2}}
-    \end{center}
-  \fi
-}
-
 % fieldlist environment
 \ifthenelse{\isundefined{\DUfieldlist}}{
   \newenvironment{DUfieldlist}%
     {\quote\description}
     {\enddescription\endquote}
 }{}
-
-% title for topics, admonitions and sidebar
-\providecommand*{\DUtitle}[2][class-arg]{%
-  % call \DUtitle#1{#2} if it exists:
-  \ifcsname DUtitle#1\endcsname%
-    \csname DUtitle#1\endcsname{#2}%
-  \else
-    \smallskip\noindent\textbf{#2}\smallskip%
-  \fi
-}
 
 % hyperlinks:
 \ifthenelse{\isundefined{\hypersetup}}{
@@ -79,7 +56,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jul 21, 2012
+Jul 25, 2012
 
 \end{DUfieldlist}
 
@@ -1020,8 +997,7 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 }
 
 There are many different wiki formats, but Doconce only supports three:
-%
-\raisebox{1em}{\hypertarget{id12}{}}\hyperlink{id11}{\textbf{\color{red}`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax<Google Code>>`\_}}, , MediaWiki, and Creole Wiki. These formats are called
+\href{http://code.google.com/p/support/wiki/WikiSyntax}{Googlecode wiki}, MediaWiki, and Creole Wiki. These formats are called
 \texttt{gwiki}, \texttt{mwiki}, and \texttt{cwiki}, respectively.
 Transformation from Doconce to these formats is done by:
 %
@@ -1836,8 +1812,8 @@ and \texttt{Nielsen\_Kjeldstrup\_1999} is a new (the 14th) citation. The citatio
 can be any sequence of characters, except for curly braces and comma.
 
 The bibliography itself is specified by the special keyword \texttt{BIBFILE:},
-which is optionally followed by a BibTeX file, having extension \texttt{.bib},
-a corresponding reST bibliography, having extension \texttt{.rst},
+followed by a BibTeX file with extension \texttt{.bib},
+a corresponding reST bibliography with extension \texttt{.rst},
 or simply a Python dictionary written in a file with extension \texttt{.py}.
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
@@ -1858,14 +1834,21 @@ O.~B.~Larsen.~On~Markup~and~Generality.\\
 }
 \end{quote}
 
-In the LaTeX format, the \texttt{.bib} file will be used in the standard way,
-in the \texttt{rst} and \texttt{sphinx} formats, the \texttt{.rst} file will be
-copied into the document at the place where the \texttt{BIBFILE:} keyword
-appears, while all other formats will make use of the Python dictionary
-typeset as an ordered Doconce list, replacing the \texttt{BIBFILE:} line
-in the document.
+In the \texttt{latex} and \texttt{pdflatex} formats, the \texttt{.bib} file will be used in
+the standard BibTeX way.  In the \texttt{rst} and \texttt{sphinx} formats, the
+\texttt{.rst} file will be copied into the document at the place where the
+\texttt{BIBFILE:} keyword appears, while all other formats will make use of
+the Python dictionary typeset as an ordered Doconce list inserted at
+the \texttt{BIBFILE:} line in the document.
 
-At present, only one file with bibliographic references can be used.
+Only one file with bibliographic references can be used. It is recommended
+to create all references in BibTeX format. Say the file is \texttt{myfile.bib}.
+Insert \texttt{BIBFILE: myfile.bib} at the end of the file (for instance).
+Then make a LaTeX document and check that the references appear correctly.
+A next step can be to create the \texttt{.rst} file, either by manual editing
+of \texttt{myfile.bbl} or using \texttt{doconce bbl2rst myfile.bbl} to automate (most of)
+this editing. From the \texttt{myfile.rst} file it is easy to create \texttt{myfile.py}
+with the dictionary version of the references.
 
 % see ketch/tex2rst for nice bibtex to rst converter which could
 
@@ -3471,23 +3454,5 @@ An efficient probabilistic finite element method for stochastic
 groundwater flow.
 \emph{Advances in Water Resources}, vol 22, 185-195, 1998.
 \end{figure}
-
-
-%___________________________________________________________________________
-
-\section*{\phantomsection%
-  \color{red}Docutils System Messages%
-  \addcontentsline{toc}{section}{Docutils System Messages}%
-}
-
-\DUadmonition[system-message]{
-\DUtitle[system-message]{system-message}
-\raisebox{1em}{\hypertarget{id11}{}}
-
-{\color{red}ERROR/3} in \texttt{manual.rst}, line~779
-
-\hyperlink{id12}{
-Unknown target name: ``googlecode wiki <http://code.google.com/p/support/wiki/wikisyntax<google code>>''.
-}}
 
 \end{document}

@@ -26,7 +26,7 @@
 \renewcommand\familydefault{phv}
 % #endif
 % #ifdef PALATINO
-% Set paraltino as the default font family:
+% Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
 % #endif
@@ -120,13 +120,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Jul 21, 2012}
+\date{Jul 25, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Jul 21, 2012}}
+{\large\textsf{Jul 25, 2012}}
 
 \end{center}
 \vfill
@@ -135,7 +135,7 @@
 % #else
 
 \begin{center}
-Jul 21, 2012
+Jul 25, 2012
 \end{center}
 
 % #endif
@@ -854,7 +854,7 @@ all such arguments can be customized both for Sphinx and {\LaTeX} output.
 \subsection{Wiki Formats}
 
 There are many different wiki formats, but Doconce only supports three:
-\href{{http://code.google.com/p/support/wiki/WikiSyntax<Google Code>}}{Googlecode wiki}, , MediaWiki, and Creole Wiki. These formats are called
+\href{{http://code.google.com/p/support/wiki/WikiSyntax}}{Googlecode wiki}, MediaWiki, and Creole Wiki. These formats are called
 \code{gwiki}, \code{mwiki}, and \code{cwiki}, respectively.
 Transformation from Doconce to these formats is done by
 \bsys
@@ -1526,8 +1526,8 @@ and \code{Nielsen_Kjeldstrup_1999} is a new (the 14th) citation. The citation la
 can be any sequence of characters, except for curly braces and comma.
 
 The bibliography itself is specified by the special keyword \code{BIBFILE:},
-which is optionally followed by a BibTeX file, having extension \code{.bib},
-a corresponding reST bibliography, having extension \code{.rst},
+followed by a BibTeX file with extension \code{.bib},
+a corresponding reST bibliography with extension \code{.rst},
 or simply a Python dictionary written in a file with extension \code{.py}.
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
@@ -1545,14 +1545,22 @@ O. B. Larsen. On Markup and Generality.
 """
 }
 \eccq
-In the {\LaTeX} format, the \code{.bib} file will be used in the standard way,
-in the \code{rst} and \code{sphinx} formats, the \code{.rst} file will be
-copied into the document at the place where the \code{BIBFILE:} keyword
-appears, while all other formats will make use of the Python dictionary
-typeset as an ordered Doconce list, replacing the \code{BIBFILE:} line
-in the document.
 
-At present, only one file with bibliographic references can be used.
+In the \code{latex} and \code{pdflatex} formats, the \code{.bib} file will be used in
+the standard BibTeX way.  In the \code{rst} and \code{sphinx} formats, the
+\code{.rst} file will be copied into the document at the place where the
+\code{BIBFILE:} keyword appears, while all other formats will make use of
+the Python dictionary typeset as an ordered Doconce list inserted at
+the \code{BIBFILE:} line in the document.
+
+Only one file with bibliographic references can be used. It is recommended
+to create all references in BibTeX format. Say the file is \code{myfile.bib}.
+Insert \code{BIBFILE: myfile.bib} at the end of the file (for instance).
+Then make a {\LaTeX} document and check that the references appear correctly.
+A next step can be to create the \code{.rst} file, either by manual editing
+of \code{myfile.bbl} or using \code{doconce bbl2rst myfile.bbl} to automate (most of)
+this editing. From the \code{myfile.rst} file it is easy to create \code{myfile.py}
+with the dictionary version of the references.
 
 % see ketch/tex2rst for nice bibtex to rst converter which could
 % be used here
@@ -2612,6 +2620,7 @@ and Sphinx just typeset the list as a list with keywords.
 \noindent
 \bibliographystyle{plain}
 \bibliography{manual_bib}
+
 
 \printindex
 

@@ -316,7 +316,8 @@ def sphinx_code_newmathlabels(filestr, format):
 
     return filestr
 
-def sphinx_code(filestr, format):
+def sphinx_code(filestr, code_blocks, code_block_types,
+                tex_blocks, format):
     # In rst syntax, code blocks are typeset with :: (verbatim)
     # followed by intended blocks. This function indents everything
     # inside code (or TeX) blocks.
@@ -345,18 +346,8 @@ def sphinx_code(filestr, format):
         # (the "python" typesetting is neutral if the text
         # does not parse as python)
 
-    # Remove all !bc ipy since interactive sessions are automatically
-    # handled by sphinx without indentation (just a blank line before
-    # and after)
-    cpattern = re.compile(r'^!bc +ipy *\n(.*?)^!ec *\n',
-                          re.DOTALL|re.MULTILINE)
-    filestr = cpattern.sub('\n\g<1>\n', filestr)
+    # First indent all code blocks
 
-    # First indent all code/tex blocks by 1) extracting all blocks,
-    # 2) intending each block, and 3) inserting the blocks.
-    # In between, handle the math blocks.
-
-    filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
     for i in range(len(code_blocks)):
         code_blocks[i] = indent_lines(code_blocks[i], format)
 
@@ -430,6 +421,13 @@ def sphinx_code(filestr, format):
 
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
 
+    # Remove all !bc ipy since interactive sessions are automatically
+    # handled by sphinx without indentation (just a blank line before
+    # and after)
+    cpattern = re.compile(r'^!bc +ipy *\n(.*?)^!ec *\n',
+                          re.DOTALL|re.MULTILINE)
+    filestr = cpattern.sub('\n\g<1>\n', filestr)
+
     # Make correct code-block:: language constructions
     for key in envir2lang:
         language = envir2lang[key]
@@ -447,7 +445,7 @@ def sphinx_code(filestr, format):
     # any !bc with/without argument becomes a py (python) block:
     #filestr = re.sub(r'^!bc.+\n', '\n.. code-block:: py\n\n', filestr,
     #                 flags=re.MULTILINE)
-    cpattern = re.compile(r'^!bc.+$', flags=re.MULTILINE)
+    cpattern = re.compile(r'^!bc.*$', flags=re.MULTILINE)
     filestr = cpattern.sub('\n.. code-block:: py\n\n', filestr)
 
     filestr = re.sub(r'!ec *\n', '\n\n', filestr)

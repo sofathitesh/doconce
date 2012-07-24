@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Jul 21, 2012 ====
+==== Jul 25, 2012 ====
 
 <!--> lines beginning with # are comment lines -->
 
@@ -639,7 +639,7 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 ==== Wiki Formats ====
 
 There are many different wiki formats, but Doconce only supports three:
-[http://code.google.com/p/support/wiki/WikiSyntax<Google Code> Googlecode wiki], , MediaWiki, and Creole Wiki. These formats are called
+[http://code.google.com/p/support/wiki/WikiSyntax Googlecode wiki], MediaWiki, and Creole Wiki. These formats are called
 <code>gwiki</code>, <code>mwiki</code>, and <code>cwiki</code>, respectively.
 Transformation from Doconce to these formats is done by
 <syntaxhighlight lang="bash">
@@ -1213,8 +1213,8 @@ and <code>Nielsen_Kjeldstrup_1999</code> is a new (the 14th) citation. The citat
 can be any sequence of characters, except for curly braces and comma.
 
 The bibliography itself is specified by the special keyword <code>BIBFILE:</code>,
-which is optionally followed by a BibTeX file, having extension <code>.bib</code>,
-a corresponding reST bibliography, having extension <code>.rst</code>,
+followed by a BibTeX file with extension <code>.bib</code>,
+a corresponding reST bibliography with extension <code>.rst</code>,
 or simply a Python dictionary written in a file with extension <code>.py</code>.
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
@@ -1232,14 +1232,22 @@ O. B. Larsen. On Markup and Generality.
 """
 }
 </code>
-In the LaTeX format, the <code>.bib</code> file will be used in the standard way,
-in the <code>rst</code> and <code>sphinx</code> formats, the <code>.rst</code> file will be
-copied into the document at the place where the <code>BIBFILE:</code> keyword
-appears, while all other formats will make use of the Python dictionary
-typeset as an ordered Doconce list, replacing the <code>BIBFILE:</code> line
-in the document.
 
-At present, only one file with bibliographic references can be used.
+In the <code>latex</code> and <code>pdflatex</code> formats, the <code>.bib</code> file will be used in
+the standard BibTeX way.  In the <code>rst</code> and <code>sphinx</code> formats, the
+<code>.rst</code> file will be copied into the document at the place where the
+<code>BIBFILE:</code> keyword appears, while all other formats will make use of
+the Python dictionary typeset as an ordered Doconce list inserted at
+the <code>BIBFILE:</code> line in the document.
+
+Only one file with bibliographic references can be used. It is recommended
+to create all references in BibTeX format. Say the file is <code>myfile.bib</code>.
+Insert <code>BIBFILE: myfile.bib</code> at the end of the file (for instance).
+Then make a LaTeX document and check that the references appear correctly.
+A next step can be to create the <code>.rst</code> file, either by manual editing
+of <code>myfile.bbl</code> or using <code>doconce bbl2rst myfile.bbl</code> to automate (most of)
+this editing. From the <code>myfile.rst</code> file it is easy to create <code>myfile.py</code>
+with the dictionary version of the references.
 
 <!--> see ketch/tex2rst for nice bibtex to rst converter which could -->
 <!--> be used here -->

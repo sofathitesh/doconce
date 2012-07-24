@@ -1,8 +1,11 @@
 import re, os, glob, sys
-from common import table_analysis, plain_exercise
+from common import table_analysis, plain_exercise, insert_code_and_tex
 
 # how to replace code and LaTeX blocks by html (<pre>) environment:
-def html_code(filestr, format):
+def html_code(filestr, code_blocks, code_block_types,
+              tex_blocks, format):
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
     # Do not use <code> here, it gives an extra line at the top
     filestr = c.sub(r'<blockquote>    <!-- begin verbatim block \g<1>-->\n<pre>\n',
@@ -28,7 +31,6 @@ def html_code(filestr, format):
         filestr = c.sub(r'<blockquote><pre>\n', filestr)
         filestr = re.sub(r'!et\n', r'</pre></blockquote>\n', filestr)
 
-    #[[[
     filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
 
     return filestr

@@ -1,45 +1,41 @@
 # -*- coding: iso-8859-15 -*-
 
 import os, commands, re, sys
-from common import plain_exercise, table_analysis
+from common import plain_exercise, table_analysis, _CODE_BLOCK, _MATH_BLOCK
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
-def latex_code(filestr, format):
+def latex_code(filestr, code_blocks, code_block_types,
+               tex_blocks, format):
+    # labels inside tex envirs must have backslash \label:
+    for i in range(len(tex_blocks)):
+        tex_blocks[i] = re.sub(r'([^\\])label', r'\g<1>\\label',
+                               tex_blocks[i])
+
     lines = filestr.splitlines()
-    arg = None
-    args = []  # list of arg values in "!bc arg" lines; used for warning
-    bc_arg = re.compile(r'^!bc\s+([^ ]+?)$')
-    ec = re.compile(r'^!ec\s*$')
-    for i in range(len(lines)):
-        #if re.search(r'^![be]c', lines[i]):a
-        #    print 'latex_code treats line\n', lines[i]
+    for code in code_blocks:
+        for i in range(len(lines)):
+            if _CODE_BLOCK in lines[i]:
+                words = lines[i].split()
+                if len(words) == 2:
+                    envir = words[1]
+                else:
+                    envir = 'ccq'
+                lines[i] = '\\' + 'b' + envir + '\n' + code + '\\' + 'e' + envir
+                break
 
-        # !bc without argument is substituted as !bc ccq:
-        lines[i] = re.sub(r'^!bc\s*$', r'!bc ccq', lines[i])
-        #print 'after mod:', lines[i]
+    for tex in tex_blocks:
+        # Also here problems with this: (\nabla becomes \n (newline) and abla)
+        # which means that
+        # filestr = re.sub(_MATH_BLOCK, '!bt\n%s!et' % tex, filestr, 1)
+        # does not work properly. Instead, we use str.replace
 
-        # treat a line !bc arg:
-        m = bc_arg.search(lines[i])
-        if m:
-            arg = m.group(1)
-            #print 'yes, this is a !bc line with arg =', arg
-            args.append(arg)
-            # add \b to arg, e.g., if arg is cod, make \bcod (ptex2tex)
-            lines[i] = bc_arg.sub(r'\\b' + arg, lines[i])
-            #print 'new b envir:', lines[i]
-        # treat a line !ec:
-        m = ec.search(lines[i])
-        if m:
-            #print 'yes, this is a !ec line with arg =', arg
-            if arg == None:
-                print '\n'.join(lines[:i+1])
-                print '\n\nError: !ec with a non-matching !bc before, '\
-                      'see print out above, up to the problematic line.'
-                sys.exit(1)
-            lines[i] = ec.sub(r'\\e' + arg, lines[i])
-            #print 'new e envir:', lines[i]
-            arg = None
+        for i in range(len(lines)):
+            if _MATH_BLOCK in lines[i]:
+                lines[i] = lines[i].replace(_MATH_BLOCK,
+                                            '!bt\n%s!et' % tex)
+                break
     filestr = '\n'.join(lines)
+
     c = re.compile(r'^!bt\n', re.MULTILINE)
     #filestr = c.sub('\n', filestr)  # why an extra \n?
     filestr = c.sub('', filestr)
@@ -47,9 +43,9 @@ def latex_code(filestr, format):
 
     # Check for misspellings
     envirs = 'pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans fans bashans swigans uflans sni dat dsni sys slin ipy rpy plin ver warn rule summ ccq cc ccl py'.split()
-    for arg in args:
-        if arg not in envirs:
-            print 'Warning: found "!bc %s", but %s is not a predefined ptex2tex environment' % (arg, arg)
+    for envir in code_block_types:
+        if envir and envir not in envirs:
+            print 'Warning: found "!bc %s", but %s is not a standard predefined ptex2tex environment' % (envir, envir)
 
     return filestr
 

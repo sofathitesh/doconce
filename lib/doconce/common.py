@@ -168,12 +168,14 @@ def remove_code_and_tex(filestr):
     if filestr[-1] != '\n':
         filestr = filestr + '\n'
 
-    code_blocks = [c for opt, c in code.findall(filestr)]
+    result = code.findall(filestr)
+    code_blocks = [c for opt, c in result]
+    code_block_types = [opt.strip() for opt, c in result]
 
     tex = re.compile(r'^!bt\n(.*?)^!et *\n', re.DOTALL|re.MULTILINE)
     tex_blocks = tex.findall(filestr)
 
-    # Record for consistency check
+    # Perform consistency checks
     nbc = len(re.compile(r'^!bc', re.MULTILINE).findall(filestr))
     nec = len(re.compile(r'^!ec', re.MULTILINE).findall(filestr))
     nbt = len(re.compile(r'^!bt', re.MULTILINE).findall(filestr))
@@ -218,13 +220,13 @@ def remove_code_and_tex(filestr):
     # removed since they may contain underscores and asterix and hence
     # be destroyed by substutitions of inline tags
 
-    return filestr, code_blocks, tex_blocks
+    return filestr, code_blocks, code_block_types, tex_blocks
 
 
 def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
     lines = filestr.splitlines()
     for code in code_blocks:
-        # this construction does not handle newlines in regex and
+        # the following construction does not handle newlines in regex and
         # similar verbatim environments properly:
         #filestr = re.sub(r'%s (.*?)\n' % _CODE_BLOCK,
         #                 '!bc\g<1>\n%s!ec\n' % code, filestr, 1)
@@ -232,30 +234,16 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
 
         for i in range(len(lines)):
             if _CODE_BLOCK in lines[i]:
-                # use re.sub for the heading when we need a group:
-                lines[i] = re.sub('%s(.*)' % _CODE_BLOCK,
-                                  '!bc\g<1>\n!XX&XX', lines[i])
-                # use string.replace to deal correctly with \n:
-                try:
-                    #lines[i] = lines[i].replace('!XX&XX', '%s\n!ec' % code)
-                    # the \n should not be there (gives extra newline)
-                    lines[i] = lines[i].replace('!XX&XX', '%s!ec' % code)
-                except UnicodeDecodeError, e:
-                    raise UnicodeDecodeError(e + '\nproblem with code block:\n' + code)
+                words = lines[i].split()
+                words[0] = '!bc'
+                lines[i] = ' '.join(words) + '\n' + code + '!ec'
                 break
+
     for tex in tex_blocks:
         # Also here problems with this: (\nabla becomes \n (newline) and abla)
         # which means that
         # filestr = re.sub(_MATH_BLOCK, '!bt\n%s!et' % tex, filestr, 1)
         # does not work properly. Instead, we use str.replace
-
-        if format == 'latex' or format == 'pdflatex':  # fix
-            # ref/label is ok outside tex environments (see test in
-            # cross_referencing), but inside !bt/!et environments the user
-            # is allowed to have ref and label without backslashes
-            # and these must be equipped by backslashes in LaTeX format
-            filestr = re.sub(r'([^\\])label\{', r'\g<1>\label{', filestr)
-            filestr = re.sub(r'([^\\])ref\{', r'\g<1>\\ref{', filestr)
 
         for i in range(len(lines)):
             if _MATH_BLOCK in lines[i]:

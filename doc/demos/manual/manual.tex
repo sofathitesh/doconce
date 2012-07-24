@@ -69,7 +69,7 @@
 
 
 \begin{center}
-Jul 21, 2012
+Jul 25, 2012
 \end{center}
 
 
@@ -885,7 +885,7 @@ all such arguments can be customized both for Sphinx and {\LaTeX} output.
 \subsection{Wiki Formats}
 
 There are many different wiki formats, but Doconce only supports three:
-\href{{http://code.google.com/p/support/wiki/WikiSyntax<Google Code>}}{Googlecode wiki}, , MediaWiki, and Creole Wiki. These formats are called
+\href{{http://code.google.com/p/support/wiki/WikiSyntax}}{Googlecode wiki}, MediaWiki, and Creole Wiki. These formats are called
 {\fontsize{10pt}{10pt}\verb!gwiki!}, {\fontsize{10pt}{10pt}\verb!mwiki!}, and {\fontsize{10pt}{10pt}\verb!cwiki!}, respectively.
 Transformation from Doconce to these formats is done by
 \vspace{4pt}
@@ -1593,8 +1593,8 @@ and {\fontsize{10pt}{10pt}\verb!Nielsen_Kjeldstrup_1999!} is a new (the 14th) ci
 can be any sequence of characters, except for curly braces and comma.
 
 The bibliography itself is specified by the special keyword {\fontsize{10pt}{10pt}\verb!BIBFILE:!},
-which is optionally followed by a BibTeX file, having extension {\fontsize{10pt}{10pt}\verb!.bib!},
-a corresponding reST bibliography, having extension {\fontsize{10pt}{10pt}\verb!.rst!},
+followed by a BibTeX file with extension {\fontsize{10pt}{10pt}\verb!.bib!},
+a corresponding reST bibliography with extension {\fontsize{10pt}{10pt}\verb!.rst!},
 or simply a Python dictionary written in a file with extension {\fontsize{10pt}{10pt}\verb!.py!}.
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
@@ -1614,14 +1614,22 @@ O. B. Larsen. On Markup and Generality.
 }
 \end{Verbatim}
 \noindent
-In the {\LaTeX} format, the {\fontsize{10pt}{10pt}\verb!.bib!} file will be used in the standard way,
-in the {\fontsize{10pt}{10pt}\verb!rst!} and {\fontsize{10pt}{10pt}\verb!sphinx!} formats, the {\fontsize{10pt}{10pt}\verb!.rst!} file will be
-copied into the document at the place where the {\fontsize{10pt}{10pt}\verb!BIBFILE:!} keyword
-appears, while all other formats will make use of the Python dictionary
-typeset as an ordered Doconce list, replacing the {\fontsize{10pt}{10pt}\verb!BIBFILE:!} line
-in the document.
 
-At present, only one file with bibliographic references can be used.
+In the {\fontsize{10pt}{10pt}\verb!latex!} and {\fontsize{10pt}{10pt}\verb!pdflatex!} formats, the {\fontsize{10pt}{10pt}\verb!.bib!} file will be used in
+the standard BibTeX way.  In the {\fontsize{10pt}{10pt}\verb!rst!} and {\fontsize{10pt}{10pt}\verb!sphinx!} formats, the
+{\fontsize{10pt}{10pt}\verb!.rst!} file will be copied into the document at the place where the
+{\fontsize{10pt}{10pt}\verb!BIBFILE:!} keyword appears, while all other formats will make use of
+the Python dictionary typeset as an ordered Doconce list inserted at
+the {\fontsize{10pt}{10pt}\verb!BIBFILE:!} line in the document.
+
+Only one file with bibliographic references can be used. It is recommended
+to create all references in BibTeX format. Say the file is {\fontsize{10pt}{10pt}\verb!myfile.bib!}.
+Insert {\fontsize{10pt}{10pt}\verb!BIBFILE: myfile.bib!} at the end of the file (for instance).
+Then make a {\LaTeX} document and check that the references appear correctly.
+A next step can be to create the {\fontsize{10pt}{10pt}\verb!.rst!} file, either by manual editing
+of {\fontsize{10pt}{10pt}\verb!myfile.bbl!} or using {\fontsize{10pt}{10pt}\verb!doconce bbl2rst myfile.bbl!} to automate (most of)
+this editing. From the {\fontsize{10pt}{10pt}\verb!myfile.rst!} file it is easy to create {\fontsize{10pt}{10pt}\verb!myfile.py!}
+with the dictionary version of the references.
 
 % see ketch/tex2rst for nice bibtex to rst converter which could
 % be used here
@@ -2774,6 +2782,7 @@ and Sphinx just typeset the list as a list with keywords.
 \noindent
 \bibliographystyle{plain}
 \bibliography{manual_bib}
+
 
 \printindex
 

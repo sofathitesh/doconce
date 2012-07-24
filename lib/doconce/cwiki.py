@@ -5,9 +5,11 @@ See http://www.wikicreole.org/wiki/Creole1.0 for syntax.
 # Simple edit of gwiki.py
 
 import re, os, commands, sys
-from common import default_movie, plain_exercise
+from common import default_movie, plain_exercise, insert_code_and_tex
 
-def cwiki_code(filestr, format):
+def cwiki_code(filestr, code_blocks, code_block_types,
+               tex_blocks, format):
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
     filestr = c.sub(r'{{{\n', filestr)
     filestr = re.sub(r'!ec\n', r'}}}\n', filestr)

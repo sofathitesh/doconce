@@ -436,7 +436,7 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 ===== Wiki Formats =====
 
 There are many different wiki formats, but Doconce only supports three:
-"Googlecode wiki": "http://code.google.com/p/support/wiki/WikiSyntax<Google Code>", , MediaWiki, and Creole Wiki. These formats are called
+"Googlecode wiki": "http://code.google.com/p/support/wiki/WikiSyntax", MediaWiki, and Creole Wiki. These formats are called
 `gwiki`, `mwiki`, and `cwiki`, respectively.
 Transformation from Doconce to these formats is done by
 !bc sys

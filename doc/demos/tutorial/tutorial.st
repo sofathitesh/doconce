@@ -339,7 +339,7 @@ From Doconce to Other Formats
 
 Transformation of a Doconce document 'mydoc.do.txt' to various other
 formats applies the script 'doconce format':
-!bc   sys
+!bc sys
         Terminal> doconce format format mydoc.do.txt
 
 or just::
@@ -587,7 +587,7 @@ reStructuredText
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file 'mydoc.rst':
-!bc   sys
+!bc sys
         Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats::
@@ -794,7 +794,7 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
-"http://code.google.com/p/support/wiki/WikiSyntax<Google Code>":Googlecode wiki, , MediaWiki, and Creole Wiki. These formats are called
+"http://code.google.com/p/support/wiki/WikiSyntax":Googlecode wiki, MediaWiki, and Creole Wiki. These formats are called
 'gwiki', 'mwiki', and 'cwiki', respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -881,7 +881,7 @@ preprocessor, this program must be installed::
 A much more advanced alternative to Preprocess is
 "http://www.makotemplates.org":Mako. Its installation is most
 conveniently done by 'pip',
-!bc   sys
+!bc sys
         pip install Mako
 
 This command requires 'pip' to be installed. On Debian Linux systems,

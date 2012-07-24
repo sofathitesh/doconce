@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jul 21, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jul 25, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -517,55 +517,55 @@ forthcoming text. The index is only produced for the <tt class="docutils literal
 <p>The <tt class="docutils literal"><span class="pre">doconce</span></tt> program can be used for a number of purposes besides
 transforming a <tt class="docutils literal"><span class="pre">.do.txt</span></tt> file to some format. Here is the
 list of capabilities:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">Usage</span><span class="p">:</span> <span class="n">doconce</span> <span class="n">command</span> <span class="p">[</span><span class="n">optional</span> <span class="n">arguments</span><span class="p">]</span>
-<span class="n">commands</span><span class="p">:</span> <span class="n">format</span> <span class="n">insertdocstr</span> <span class="n">old2new_format</span> <span class="n">gwiki_figsubst</span> <span class="n">remove_inline_comments</span> <span class="n">latin2html</span> <span class="n">sphinx_dir</span> <span class="n">subst</span> <span class="n">replace</span> <span class="n">replace_from_file</span> <span class="n">clean</span> <span class="n">help</span> <span class="n">latex_header</span> <span class="n">latex_footer</span> <span class="n">guess_encoding</span> <span class="n">change_encoding</span> <span class="n">bbl2rst</span> <span class="n">split_rst</span> <span class="n">list_labels</span> <span class="n">teamod</span> <span class="n">sphinxfix_localURLs</span> <span class="n">make_figure_code_links</span> <span class="n">grab</span> <span class="n">spellcheck</span> <span class="n">ptex2tex</span>
+<div class="highlight-bash"><div class="highlight"><pre>Usage: doconce <span class="nb">command</span> <span class="o">[</span>optional arguments<span class="o">]</span>
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean <span class="nb">help </span>latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
 
-<span class="n">doconce</span> <span class="n">format</span> <span class="n">html</span><span class="o">|</span><span class="n">latex</span><span class="o">|</span><span class="n">pdflatex</span><span class="o">|</span><span class="n">rst</span><span class="o">|</span><span class="n">sphinx</span><span class="o">|</span><span class="n">plain</span><span class="o">|</span><span class="n">gwiki</span><span class="o">|</span><span class="n">mwiki</span><span class="o">|</span><span class="n">cwiki</span><span class="o">|</span><span class="n">pandoc</span><span class="o">|</span><span class="n">st</span><span class="o">|</span><span class="n">epytext</span> <span class="nb">file</span><span class="o">.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span>
+doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
-<span class="n">doconce</span> <span class="n">subst</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span> <span class="o">-</span><span class="n">m</span> <span class="o">-</span><span class="n">x</span> <span class="o">--</span><span class="n">restore</span><span class="p">]</span> <span class="n">regex</span><span class="o">-</span><span class="n">pattern</span> <span class="n">regex</span><span class="o">-</span><span class="n">replacement</span> <span class="n">file1</span> <span class="n">file2</span> <span class="o">...</span>
-<span class="p">(</span><span class="o">-</span><span class="n">s</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span> <span class="n">modifier</span><span class="p">,</span> <span class="o">-</span><span class="n">m</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span> <span class="n">modifier</span><span class="p">,</span>
- <span class="o">-</span><span class="n">x</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span> <span class="n">modifier</span><span class="p">,</span> <span class="o">--</span><span class="n">restore</span> <span class="n">copies</span> <span class="n">backup</span> <span class="n">files</span> <span class="n">back</span> <span class="n">again</span><span class="p">)</span>
+doconce subst <span class="o">[</span>-s -m -x --restore<span class="o">]</span> regex-pattern regex-replacement file1 file2 ...
+<span class="o">(</span>-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier,
+ -x is the re.VERBOSE modifier, --restore copies backup files back again<span class="o">)</span>
 
-<span class="n">doconce</span> <span class="n">replace</span> <span class="n">from</span><span class="o">-</span><span class="n">text</span> <span class="n">to</span><span class="o">-</span><span class="n">text</span> <span class="n">file1</span> <span class="n">file2</span> <span class="o">...</span>
-<span class="p">(</span><span class="n">exact</span> <span class="n">text</span> <span class="n">substutition</span><span class="p">)</span>
+doconce replace from-text to-text file1 file2 ...
+<span class="o">(</span>exact text substutition<span class="o">)</span>
 
-<span class="n">doconce</span> <span class="n">replace_from_file</span> <span class="nb">file</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">from</span><span class="o">-</span><span class="n">to</span> <span class="n">file1</span> <span class="n">file2</span> <span class="o">...</span>
-<span class="p">(</span><span class="n">exact</span> <span class="n">text</span> <span class="n">substitution</span><span class="p">,</span> <span class="n">but</span> <span class="n">a</span> <span class="nb">set</span> <span class="n">of</span> <span class="n">from</span><span class="o">-</span><span class="n">to</span> <span class="n">relations</span><span class="p">)</span>
+doconce replace_from_file file-with-from-to file1 file2 ...
+<span class="o">(</span>exact text substitution, but a <span class="nb">set </span>of from-to relations<span class="o">)</span>
 
-<span class="n">doconce</span> <span class="n">gwiki_figsubst</span> <span class="nb">file</span><span class="o">.</span><span class="n">gwiki</span> <span class="n">URL</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">fig</span><span class="o">-</span><span class="nb">dir</span>
+doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 
-<span class="n">doconce</span> <span class="n">remove_inline_comments</span> <span class="nb">file</span><span class="o">.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span>
+doconce remove_inline_comments file.do.txt
 
-<span class="n">doconce</span> <span class="n">sphinx_dir</span> <span class="n">author</span><span class="o">=</span><span class="s">&#39;Me and you&#39;</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;Quick title&#39;</span> \
-    <span class="n">version</span><span class="o">=</span><span class="mf">0.1</span> <span class="n">dirname</span><span class="o">=</span><span class="n">sphinx</span><span class="o">-</span><span class="n">rootdir</span> <span class="n">theme</span><span class="o">=</span><span class="n">default</span> \
-    <span class="n">file1</span> <span class="n">file2</span> <span class="n">file3</span>
-<span class="p">(</span><span class="n">requires</span> <span class="n">sphinx</span> <span class="n">version</span> <span class="o">&gt;=</span> <span class="mf">1.1</span><span class="p">)</span>
+doconce sphinx_dir <span class="nv">author</span><span class="o">=</span><span class="s1">&#39;Me and you&#39;</span> <span class="nv">title</span><span class="o">=</span><span class="s1">&#39;Quick title&#39;</span> <span class="se">\</span>
+    <span class="nv">version</span><span class="o">=</span>0.1 <span class="nv">dirname</span><span class="o">=</span>sphinx-rootdir <span class="nv">theme</span><span class="o">=</span>default <span class="se">\</span>
+    file1 file2 file3
+<span class="o">(</span>requires sphinx version &gt;<span class="o">=</span> 1.1<span class="o">)</span>
 
-<span class="n">doconce</span> <span class="n">latin2html</span> <span class="nb">file</span><span class="o">.</span><span class="n">html</span>
+doconce latin2html file.html
 
-<span class="n">doconce</span> <span class="n">insertdocstr</span> <span class="n">rootdir</span>
+doconce insertdocstr rootdir
 
-<span class="n">doconce</span> <span class="n">clean</span>
-<span class="p">(</span><span class="n">remove</span> <span class="nb">all</span> <span class="n">files</span> <span class="n">that</span> <span class="n">the</span> <span class="n">doconce</span> <span class="n">format</span> <span class="n">can</span> <span class="n">regenerate</span><span class="p">)</span>
+doconce clean
+<span class="o">(</span>remove all files that the doconce format can regenerate<span class="o">)</span>
 
-<span class="n">doconce</span> <span class="n">latex_header</span>
-<span class="n">doconce</span> <span class="n">latex_footer</span>
+doconce latex_header
+doconce latex_footer
 
-<span class="n">doconce</span> <span class="n">change_encoding</span> <span class="n">utf</span><span class="o">-</span><span class="mi">8</span> <span class="n">latin1</span> <span class="n">filename</span>
-<span class="n">doconce</span> <span class="n">guess_encoding</span> <span class="n">filename</span>
+doconce change_encoding utf-8 latin1 filename
+doconce guess_encoding filename
 
-<span class="n">doconce</span> <span class="n">bbl2rst</span> <span class="nb">file</span><span class="o">.</span><span class="n">bbl</span>
-<span class="n">doconce</span> <span class="n">split_rst</span> <span class="n">complete_file</span><span class="o">.</span><span class="n">rst</span>
-<span class="n">doconce</span> <span class="n">sphinxfix_local_URLs</span> <span class="nb">file</span><span class="o">.</span><span class="n">rst</span>
+doconce bbl2rst file.bbl
+doconce split_rst complete_file.rst
+doconce sphinxfix_local_URLs file.rst
 
-<span class="n">doconce</span> <span class="n">grab</span> <span class="o">--</span><span class="n">from</span><span class="p">[</span><span class="o">-</span><span class="p">]</span> <span class="n">from</span><span class="o">-</span><span class="n">text</span> <span class="p">[</span><span class="o">--</span><span class="n">to</span><span class="p">[</span><span class="o">-</span><span class="p">]</span> <span class="n">to</span><span class="o">-</span><span class="n">text</span><span class="p">]</span> <span class="n">somefile</span>
-<span class="n">doconce</span> <span class="n">spellcheck</span> <span class="o">-</span><span class="n">d</span> <span class="o">.</span><span class="n">dict4spell</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span>
-<span class="n">doconce</span> <span class="n">ptex2tex</span> <span class="n">mydoc</span> <span class="o">-</span><span class="n">DMINTED</span> <span class="n">pycod</span><span class="o">=</span><span class="n">minted</span> <span class="n">sys</span><span class="o">=</span><span class="n">Verbatim</span> \
-        <span class="n">dat</span><span class="o">=</span>\<span class="n">begin</span><span class="p">{</span><span class="n">quote</span><span class="p">}</span>\<span class="n">begin</span><span class="p">{</span><span class="n">verbatim</span><span class="p">};</span>\<span class="n">end</span><span class="p">{</span><span class="n">verbatim</span><span class="p">}</span>\<span class="n">end</span><span class="p">{</span><span class="n">quote</span><span class="p">}</span>
+doconce grab --from<span class="o">[</span>-<span class="o">]</span> from-text <span class="o">[</span>--to<span class="o">[</span>-<span class="o">]</span> to-text<span class="o">]</span> somefile
+doconce spellcheck -d .dict4spell.txt *.do.txt
+doconce ptex2tex mydoc -DMINTED <span class="nv">pycod</span><span class="o">=</span>minted <span class="nv">sys</span><span class="o">=</span>Verbatim <span class="se">\</span>
+        <span class="nv">dat</span><span class="o">=</span><span class="se">\b</span>egin<span class="o">{</span>quote<span class="o">}</span><span class="se">\b</span>egin<span class="o">{</span>verbatim<span class="o">}</span>;<span class="se">\e</span>nd<span class="o">{</span>verbatim<span class="o">}</span><span class="se">\e</span>nd<span class="o">{</span>quote<span class="o">}</span>
 
-<span class="n">doconce</span> <span class="n">list_labels</span> <span class="n">doconcefile</span><span class="o">.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">latexfile</span><span class="o">.</span><span class="n">tex</span>
-<span class="n">doconce</span> <span class="n">teamod</span> <span class="n">name</span>
-<span class="n">doconce</span> <span class="n">assemble</span> <span class="n">name</span> <span class="n">master</span><span class="o">.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span>
+doconce list_labels doconcefile.do.txt | latexfile.tex
+doconce teamod name
+doconce assemble name master.do.txt
 </pre></div>
 </div>
 </div>

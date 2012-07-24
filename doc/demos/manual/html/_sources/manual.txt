@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Jul 21, 2012
+:Date: Jul 25, 2012
 
 .. lines beginning with # are comment lines
 
@@ -835,7 +835,7 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax<Google Code>>`_, , MediaWiki, and Creole Wiki. These formats are called
+`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_, MediaWiki, and Creole Wiki. These formats are called
 ``gwiki``, ``mwiki``, and ``cwiki``, respectively.
 Transformation from Doconce to these formats is done by
 
@@ -1605,8 +1605,8 @@ and ``Nielsen_Kjeldstrup_1999`` is a new (the 14th) citation. The citation label
 can be any sequence of characters, except for curly braces and comma.
 
 The bibliography itself is specified by the special keyword ``BIBFILE:``,
-which is optionally followed by a BibTeX file, having extension ``.bib``,
-a corresponding reST bibliography, having extension ``.rst``,
+followed by a BibTeX file with extension ``.bib``,
+a corresponding reST bibliography with extension ``.rst``,
 or simply a Python dictionary written in a file with extension ``.py``.
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
@@ -1627,14 +1627,22 @@ in the bibliography. Doconce markup can be used in this text, e.g.,
         """
         }
 
-In the LaTeX format, the ``.bib`` file will be used in the standard way,
-in the ``rst`` and ``sphinx`` formats, the ``.rst`` file will be
-copied into the document at the place where the ``BIBFILE:`` keyword
-appears, while all other formats will make use of the Python dictionary
-typeset as an ordered Doconce list, replacing the ``BIBFILE:`` line
-in the document.
 
-At present, only one file with bibliographic references can be used.
+In the ``latex`` and ``pdflatex`` formats, the ``.bib`` file will be used in
+the standard BibTeX way.  In the ``rst`` and ``sphinx`` formats, the
+``.rst`` file will be copied into the document at the place where the
+``BIBFILE:`` keyword appears, while all other formats will make use of
+the Python dictionary typeset as an ordered Doconce list inserted at
+the ``BIBFILE:`` line in the document.
+
+Only one file with bibliographic references can be used. It is recommended
+to create all references in BibTeX format. Say the file is ``myfile.bib``.
+Insert ``BIBFILE: myfile.bib`` at the end of the file (for instance).
+Then make a LaTeX document and check that the references appear correctly.
+A next step can be to create the ``.rst`` file, either by manual editing
+of ``myfile.bbl`` or using ``doconce bbl2rst myfile.bbl`` to automate (most of)
+this editing. From the ``myfile.rst`` file it is easy to create ``myfile.py``
+with the dictionary version of the references.
 
 .. see ketch/tex2rst for nice bibtex to rst converter which could
 
@@ -1886,8 +1894,7 @@ final line with the "to" text is not included in the verbatim block.
 Let us copy a whole file (the first line above):
 
 
-.. code-block:: py
-
+.. code-block:: fortran
 
         C     a comment
         
@@ -1910,8 +1917,7 @@ Let us then copy just a piece in the middle as indicated by the ``fromto:``
 directive above:
 
 
-.. code-block:: py
-
+.. code-block:: fortran
 
               subroutine    test()
               integer i
@@ -1930,7 +1936,7 @@ Note that the "to" line is not copied into the Doconce file, but the
 code segments throughout a file, while still distinguishing between them.
 Copying the second set of parameters from the text
 
-.. code-block:: fortran
+.. code-block:: python
 
         # --- Start Example 1 ---
         c = -1
@@ -2070,8 +2076,7 @@ expressions).
 ``newcommand_replace.tex``:
 
 
-.. code-block:: py
-
+.. code-block:: python
 
         \newcommand{\beqa}{\begin{eqnarray}}
         \newcommand{\eeqa}{\end{eqnarray}}
@@ -2083,8 +2088,7 @@ expressions).
 and these in ``newcommands_keep.tex``:
 
 
-.. code-block:: py
-
+.. code-block:: python
 
         \newcommand{\x}{\pmb{x}}
         \newcommand{\normalvec}{\pmb{n}}
@@ -2202,7 +2206,7 @@ Here is an example. Say the name of the master file is ``master.do.txt``.
 The following Bash script does the job:
 We run
 
-.. code-block:: fortran
+.. code-block:: python
 
         doconce format sphinx master
         # Split master.rst into parts
