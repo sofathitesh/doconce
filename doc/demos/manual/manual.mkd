@@ -1,6 +1,6 @@
 % Doconce Description
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Jul 21, 2012
+% Jul 25, 2012
 
 What Is Doconce?
 ================
@@ -103,7 +103,6 @@ sudo python setup.py install
 cd ..
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 If you make use of the [Preprocess](http://code.google.com/p/preprocess)
 preprocessor, this program must be installed:
 
@@ -188,7 +187,6 @@ To use the OpenOffice suite you will typically on Debian systems install
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 There is a possibility to create PDF files from reST documents
 using ReportLab instead of LaTeX. The enabling software is
 [rst2pdf](http://code.google.com/p/rst2pdf). Either download the tarball
@@ -206,7 +204,6 @@ sudo python setup.py install
 cd ..
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 When the output format is `epydoc` one needs that program too, installed
 by
 
@@ -217,7 +214,6 @@ sudo make install
 cd ..
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Finally, translation to `pandoc` requires the
 [Pandoc](http://johnmacfarlane.net/pandoc/) program
 (written in Haskell) to be installed.
@@ -225,7 +221,6 @@ Finally, translation to `pandoc` requires the
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 sudo apt-get install pandoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 *Remark.* Several of the packages above installed from source code
 are also available in Debian-based system through the
@@ -418,7 +413,6 @@ In case you do not have `ptex2tex`, you may run a (very) simplified version:
 Terminal> doconce ptex2tex mydoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Note that Doconce generates a `.p.tex` file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
@@ -518,8 +512,6 @@ Terminal> latex -shell-escape mydoc
 Terminal> dvipdf mydoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-
 PDFLaTeX
 --------
 
@@ -539,7 +531,6 @@ Terminal> bibitem mydoc     # if bibliography
 Terminal> pdflatex -shell-escape mydoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Plain ASCII Text
 ----------------
 
@@ -550,7 +541,6 @@ computer source code:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 reStructuredText
 ----------------
@@ -572,7 +562,6 @@ Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 The OpenOffice file `mydoc.odt` can be loaded into OpenOffice and
 saved in, among other things, the RTF format or the Microsoft Word format.
 However, it is more convenient to use the program `unovonv`
@@ -593,7 +582,6 @@ Terminal> unoconv -f ooxml mydoc.odt
 Terminal> unoconv -f doc mydoc.odt
 Terminal> unoconv -f pdf mydoc.odt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 *Remark about Mathematical Typesetting.* At the time of this writing, there is no easy way to go from Doconce
 and LaTeX mathematics to reST and further to OpenOffice and the
@@ -689,7 +677,6 @@ Sphinx document from a file `mydoc.do.txt`.
 Terminal> doconce format sphinx mydoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 *Step 2.* Create a Sphinx root directory
 either manually or by using the interactive `sphinx-quickstart`
 program. Here is a scripted version of the steps with the latter:
@@ -760,7 +747,6 @@ make clean   # remove old versions
 make html
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Sphinx can generate a range of different formats:
 standalone HTML, HTML in separate directories with `index.html` files,
 a large single HTML file, JSON files, various help files (the qthelp, HTML,
@@ -773,7 +759,6 @@ and Texinfo files.
 Terminal> firefox _build/html/index.html
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Note that verbatim code blocks can be typeset in a variety of ways
 depending the argument that follows `!bc`: `cod` gives Python
 (`code-block:: python` in Sphinx syntax) and `cppcod` gives C++, but
@@ -784,7 +769,7 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-[Googlecode wiki](Google Code (http://code.google.com/p/support/wiki/WikiSyntax)), , MediaWiki, and Creole Wiki. These formats are called
+[Googlecode wiki](http://code.google.com/p/support/wiki/WikiSyntax), MediaWiki, and Creole Wiki. These formats are called
 `gwiki`, `mwiki`, and `cwiki`, respectively.
 Transformation from Doconce to these formats is done by
 
@@ -793,7 +778,6 @@ Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 The Googlecode wiki document, `mydoc.gwiki`, is most conveniently stored
 in a directory which is a clone of the wiki part of the Googlecode project.
@@ -858,7 +842,6 @@ and is indented as follows
    * item 3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 This list gets typeset as
 
    * item 1
@@ -891,7 +874,6 @@ in "ordered"):
    o item 3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 resulting in
 
   1. item 1
@@ -920,7 +902,6 @@ by a keyword followed by a colon:
      if there are multiple
      lines)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 The result becomes
 
@@ -1047,7 +1028,6 @@ The running text goes here.
 __A Paragraph.__ The running text goes here.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Special Lines
 =============
 
@@ -1105,9 +1085,6 @@ for showing the movie.
 MOVIE: [filename, height=xxx width=yyy] possible caption
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-
-
 <embed src="figs/mjolnir.mpeg" width=600 height=470 autoplay="false" loop="true"></embed>
 <p>
 <em></em>
@@ -1134,7 +1111,6 @@ viewer when displaying the PDF file (in Acrobat Reader):
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 The HTML, reST, and Sphinx formats can also treat filenames of the form
 `myframes*.png`. In that case, an HTML file for showing the sequence of frames
@@ -1172,7 +1148,6 @@ be no spaces between an asterisk and the emphasized text, as in
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *emphasized words*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 Boldface font is recognized by an underscore instead of an asterisk:
 
@@ -1262,7 +1237,6 @@ software and the document links to `_static/myprog.py`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 Links to files with other extensions are typeset with
 *the filename as link text*. The syntax consists of
@@ -1449,8 +1423,8 @@ and `Nielsen_Kjeldstrup_1999` is a new (the 14th) citation. The citation labels
 can be any sequence of characters, except for curly braces and comma.
 
 The bibliography itself is specified by the special keyword `BIBFILE:`,
-which is optionally followed by a BibTeX file, having extension `.bib`,
-a corresponding reST bibliography, having extension `.rst`,
+followed by a BibTeX file with extension `.bib`,
+a corresponding reST bibliography with extension `.rst`,
 or simply a Python dictionary written in a file with extension `.py`.
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
@@ -1470,14 +1444,21 @@ O. B. Larsen. On Markup and Generality.
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In the LaTeX format, the `.bib` file will be used in the standard way,
-in the `rst` and `sphinx` formats, the `.rst` file will be
-copied into the document at the place where the `BIBFILE:` keyword
-appears, while all other formats will make use of the Python dictionary
-typeset as an ordered Doconce list, replacing the `BIBFILE:` line
-in the document.
+In the `latex` and `pdflatex` formats, the `.bib` file will be used in
+the standard BibTeX way.  In the `rst` and `sphinx` formats, the
+`.rst` file will be copied into the document at the place where the
+`BIBFILE:` keyword appears, while all other formats will make use of
+the Python dictionary typeset as an ordered Doconce list inserted at
+the `BIBFILE:` line in the document.
 
-At present, only one file with bibliographic references can be used.
+Only one file with bibliographic references can be used. It is recommended
+to create all references in BibTeX format. Say the file is `myfile.bib`.
+Insert `BIBFILE: myfile.bib` at the end of the file (for instance).
+Then make a LaTeX document and check that the references appear correctly.
+A next step can be to create the `.rst` file, either by manual editing
+of `myfile.bbl` or using `doconce bbl2rst myfile.bbl` to automate (most of)
+this editing. From the `myfile.rst` file it is easy to create `myfile.py`
+with the dictionary version of the references.
 
 
 Conversion of BibTeX databases to reST format can be
@@ -1677,7 +1658,6 @@ void myfunc(double* x, const double& myarr) {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Computer code can be copied directly from a file, if desired. The syntax
 is then
 
@@ -1725,7 +1705,6 @@ C     END1
       return
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Let us then copy just a piece in the middle as indicated by the `fromto:`
 directive above:
 
@@ -1740,7 +1719,6 @@ directive above:
       end do
       return
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 Note that the "to" line is not copied into the Doconce file, but the
 "from" line is. Sometimes it is convenient to also neglect the
@@ -1887,7 +1865,6 @@ expressions).
 \newcommand{\Q}{\pmb{Q}}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 and these in `newcommands_keep.tex`:
 
 
@@ -1896,7 +1873,6 @@ and these in `newcommands_keep.tex`:
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 The LaTeX block
 
@@ -2115,7 +2091,6 @@ pack it out and go to the root directory.
 cp misc/.doconce-mode.el $HOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 *Step 3.* Add these lines to `$HOME/.emacs`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2198,7 +2173,6 @@ do not work well. You need to link to a specific HTML file:
 see the "examples directory": "src/examples/index.html"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 Links are not typeset correctly
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2242,7 +2216,6 @@ Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 Wrong Norwegian charcters
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2524,7 +2497,6 @@ Each line is interpreted by a regular expression
 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<text>.*)\s?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 That is, a possible indent (which we measure), an optional list
 item identifier, optional space, optional words ended by colon,
 and optional text. All lines are of this form. However, some
@@ -2622,8 +2594,6 @@ OUTRO['html'] = """
 """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-
 Typesetting of Function Arguments, Return Values, and Variables
 ---------------------------------------------------------------
 
@@ -2650,7 +2620,6 @@ arguments and variables are nicely formatted.
     - module variable debug: True: debug mode is on; False: no debugging
       (bool variable).
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 The result depends on the output format: all formats except Epytext
 and Sphinx just typeset the list as a list with keywords.

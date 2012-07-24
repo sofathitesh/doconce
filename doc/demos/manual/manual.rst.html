@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jul 21, 2012</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jul 25, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -962,7 +962,7 @@ all such arguments can be customized both for Sphinx and LaTeX output.</p>
 <div class="section" id="wiki-formats">
 <h2>Wiki Formats</h2>
 <p>There are many different wiki formats, but Doconce only supports three:
-<a href="#id11"><span class="problematic" id="id12">`Googlecode wiki &lt;http://code.google.com/p/support/wiki/WikiSyntax&lt;Google Code&gt;&gt;`_</span></a>, , MediaWiki, and Creole Wiki. These formats are called
+<a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>, MediaWiki, and Creole Wiki. These formats are called
 <tt class="docutils literal">gwiki</tt>, <tt class="docutils literal">mwiki</tt>, and <tt class="docutils literal">cwiki</tt>, respectively.
 Transformation from Doconce to these formats is done by:</p>
 <pre class="literal-block">
@@ -1511,8 +1511,8 @@ as found in [3][14]
 and <tt class="docutils literal">Nielsen_Kjeldstrup_1999</tt> is a new (the 14th) citation. The citation labels
 can be any sequence of characters, except for curly braces and comma.</p>
 <p>The bibliography itself is specified by the special keyword <tt class="docutils literal">BIBFILE:</tt>,
-which is optionally followed by a BibTeX file, having extension <tt class="docutils literal">.bib</tt>,
-a corresponding reST bibliography, having extension <tt class="docutils literal">.rst</tt>,
+followed by a BibTeX file with extension <tt class="docutils literal">.bib</tt>,
+a corresponding reST bibliography with extension <tt class="docutils literal">.rst</tt>,
 or simply a Python dictionary written in a file with extension <tt class="docutils literal">.py</tt>.
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
@@ -1530,13 +1530,20 @@ O. B. Larsen. On Markup and Generality.
 &quot;&quot;&quot;
 }
 </pre>
-<p>In the LaTeX format, the <tt class="docutils literal">.bib</tt> file will be used in the standard way,
-in the <tt class="docutils literal">rst</tt> and <tt class="docutils literal">sphinx</tt> formats, the <tt class="docutils literal">.rst</tt> file will be
-copied into the document at the place where the <tt class="docutils literal">BIBFILE:</tt> keyword
-appears, while all other formats will make use of the Python dictionary
-typeset as an ordered Doconce list, replacing the <tt class="docutils literal">BIBFILE:</tt> line
-in the document.</p>
-<p>At present, only one file with bibliographic references can be used.</p>
+<p>In the <tt class="docutils literal">latex</tt> and <tt class="docutils literal">pdflatex</tt> formats, the <tt class="docutils literal">.bib</tt> file will be used in
+the standard BibTeX way.  In the <tt class="docutils literal">rst</tt> and <tt class="docutils literal">sphinx</tt> formats, the
+<tt class="docutils literal">.rst</tt> file will be copied into the document at the place where the
+<tt class="docutils literal">BIBFILE:</tt> keyword appears, while all other formats will make use of
+the Python dictionary typeset as an ordered Doconce list inserted at
+the <tt class="docutils literal">BIBFILE:</tt> line in the document.</p>
+<p>Only one file with bibliographic references can be used. It is recommended
+to create all references in BibTeX format. Say the file is <tt class="docutils literal">myfile.bib</tt>.
+Insert <tt class="docutils literal">BIBFILE: myfile.bib</tt> at the end of the file (for instance).
+Then make a LaTeX document and check that the references appear correctly.
+A next step can be to create the <tt class="docutils literal">.rst</tt> file, either by manual editing
+of <tt class="docutils literal">myfile.bbl</tt> or using <tt class="docutils literal">doconce bbl2rst myfile.bbl</tt> to automate (most of)
+this editing. From the <tt class="docutils literal">myfile.rst</tt> file it is easy to create <tt class="docutils literal">myfile.py</tt>
+with the dictionary version of the references.</p>
 <!-- see ketch/tex2rst for nice bibtex to rst converter which could -->
 <!-- be used here -->
 <p>Conversion of BibTeX databases to reST format can be
@@ -2585,12 +2592,6 @@ groundwater flow.
 </tbody>
 </table>
 </div>
-</div>
-<div class="system-messages section">
-<h1>Docutils System Messages</h1>
-<div class="system-message" id="id11">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">manual.rst</tt>, line 779); <em><a href="#id12">backlink</a></em></p>
-Unknown target name: &quot;googlecode wiki &lt;http://code.google.com/p/support/wiki/wikisyntax&lt;google code&gt;&gt;&quot;.</div>
 </div>
 </div>
 </body>

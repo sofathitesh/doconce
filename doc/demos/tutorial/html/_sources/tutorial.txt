@@ -6,7 +6,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Jul 21, 2012
+:Date: Jul 25, 2012
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -306,7 +306,7 @@ for those who can read LaTeX syntax).
 You can have blocks of computer code, starting and ending with
 ``!bc`` and ``!ec`` instructions, respectively. Such blocks look like
 
-.. code-block:: fortran
+.. code-block:: python
 
         from math import sin, pi
         def myfunc(x):
@@ -927,7 +927,7 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax<Google Code>>`_, , MediaWiki, and Creole Wiki. These formats are called
+`Googlecode wiki <http://code.google.com/p/support/wiki/WikiSyntax>`_, MediaWiki, and Creole Wiki. These formats are called
 ``gwiki``, ``mwiki``, and ``cwiki``, respectively.
 Transformation from Doconce to these formats is done by
 

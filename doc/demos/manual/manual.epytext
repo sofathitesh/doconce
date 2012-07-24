@@ -727,7 +727,7 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-U{Googlecode wiki<http://code.google.com/p/support/wiki/WikiSyntax<Google Code>>}, , MediaWiki, and Creole Wiki. These formats are called
+U{Googlecode wiki<http://code.google.com/p/support/wiki/WikiSyntax>}, MediaWiki, and Creole Wiki. These formats are called
 C{gwiki}, C{mwiki}, and C{cwiki}, respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -1337,8 +1337,8 @@ and C{Nielsen_Kjeldstrup_1999} is a new (the 14th) citation. The citation labels
 can be any sequence of characters, except for curly braces and comma.
 
 The bibliography itself is specified by the special keyword C{BIBFILE:},
-which is optionally followed by a BibTeX file, having extension C{.bib},
-a corresponding reST bibliography, having extension C{.rst},
+followed by a BibTeX file with extension C{.bib},
+a corresponding reST bibliography with extension C{.rst},
 or simply a Python dictionary written in a file with extension C{.py}.
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
@@ -1357,14 +1357,22 @@ in the bibliography. Doconce markup can be used in this text, e.g.::
         """
         }
 
-In the LaTeX format, the C{.bib} file will be used in the standard way,
-in the C{rst} and C{sphinx} formats, the C{.rst} file will be
-copied into the document at the place where the C{BIBFILE:} keyword
-appears, while all other formats will make use of the Python dictionary
-typeset as an ordered Doconce list, replacing the C{BIBFILE:} line
-in the document.
 
-At present, only one file with bibliographic references can be used.
+In the C{latex} and C{pdflatex} formats, the C{.bib} file will be used in
+the standard BibTeX way.  In the C{rst} and C{sphinx} formats, the
+C{.rst} file will be copied into the document at the place where the
+C{BIBFILE:} keyword appears, while all other formats will make use of
+the Python dictionary typeset as an ordered Doconce list inserted at
+the C{BIBFILE:} line in the document.
+
+Only one file with bibliographic references can be used. It is recommended
+to create all references in BibTeX format. Say the file is C{myfile.bib}.
+Insert C{BIBFILE: myfile.bib} at the end of the file (for instance).
+Then make a LaTeX document and check that the references appear correctly.
+A next step can be to create the C{.rst} file, either by manual editing
+of C{myfile.bbl} or using C{doconce bbl2rst myfile.bbl} to automate (most of)
+this editing. From the C{myfile.rst} file it is easy to create C{myfile.py}
+with the dictionary version of the references.
 
 
 Conversion of BibTeX databases to reST format can be

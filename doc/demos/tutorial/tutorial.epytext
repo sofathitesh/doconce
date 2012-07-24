@@ -824,7 +824,7 @@ Wiki Formats
 ------------
 
 There are many different wiki formats, but Doconce only supports three:
-U{Googlecode wiki<http://code.google.com/p/support/wiki/WikiSyntax<Google Code>>}, , MediaWiki, and Creole Wiki. These formats are called
+U{Googlecode wiki<http://code.google.com/p/support/wiki/WikiSyntax>}, MediaWiki, and Creole Wiki. These formats are called
 C{gwiki}, C{mwiki}, and C{cwiki}, respectively.
 Transformation from Doconce to these formats is done by::
 

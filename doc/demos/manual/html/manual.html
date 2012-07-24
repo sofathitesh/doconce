@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jul 21, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jul 25, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -678,7 +678,7 @@ all such arguments can be customized both for Sphinx and LaTeX output.</p>
 <div class="section" id="wiki-formats">
 <h2>Wiki Formats<a class="headerlink" href="#wiki-formats" title="Permalink to this headline">¶</a></h2>
 <p>There are many different wiki formats, but Doconce only supports three:
-<a href="#id11"><span class="problematic" id="id12">`Googlecode wiki &lt;http://code.google.com/p/support/wiki/WikiSyntax&lt;Google Code&gt;&gt;`_</span></a>, , MediaWiki, and Creole Wiki. These formats are called
+<a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>, MediaWiki, and Creole Wiki. These formats are called
 <tt class="docutils literal"><span class="pre">gwiki</span></tt>, <tt class="docutils literal"><span class="pre">mwiki</span></tt>, and <tt class="docutils literal"><span class="pre">cwiki</span></tt>, respectively.
 Transformation from Doconce to these formats is done by</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format gwiki mydoc.do.txt</span>
@@ -1208,8 +1208,8 @@ will typically look like</p>
 and <tt class="docutils literal"><span class="pre">Nielsen_Kjeldstrup_1999</span></tt> is a new (the 14th) citation. The citation labels
 can be any sequence of characters, except for curly braces and comma.</p>
 <p>The bibliography itself is specified by the special keyword <tt class="docutils literal"><span class="pre">BIBFILE:</span></tt>,
-which is optionally followed by a BibTeX file, having extension <tt class="docutils literal"><span class="pre">.bib</span></tt>,
-a corresponding reST bibliography, having extension <tt class="docutils literal"><span class="pre">.rst</span></tt>,
+followed by a BibTeX file with extension <tt class="docutils literal"><span class="pre">.bib</span></tt>,
+a corresponding reST bibliography with extension <tt class="docutils literal"><span class="pre">.rst</span></tt>,
 or simply a Python dictionary written in a file with extension <tt class="docutils literal"><span class="pre">.py</span></tt>.
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
@@ -1227,13 +1227,20 @@ in the bibliography. Doconce markup can be used in this text, e.g.,</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In the LaTeX format, the <tt class="docutils literal"><span class="pre">.bib</span></tt> file will be used in the standard way,
-in the <tt class="docutils literal"><span class="pre">rst</span></tt> and <tt class="docutils literal"><span class="pre">sphinx</span></tt> formats, the <tt class="docutils literal"><span class="pre">.rst</span></tt> file will be
-copied into the document at the place where the <tt class="docutils literal"><span class="pre">BIBFILE:</span></tt> keyword
-appears, while all other formats will make use of the Python dictionary
-typeset as an ordered Doconce list, replacing the <tt class="docutils literal"><span class="pre">BIBFILE:</span></tt> line
-in the document.</p>
-<p>At present, only one file with bibliographic references can be used.</p>
+<p>In the <tt class="docutils literal"><span class="pre">latex</span></tt> and <tt class="docutils literal"><span class="pre">pdflatex</span></tt> formats, the <tt class="docutils literal"><span class="pre">.bib</span></tt> file will be used in
+the standard BibTeX way.  In the <tt class="docutils literal"><span class="pre">rst</span></tt> and <tt class="docutils literal"><span class="pre">sphinx</span></tt> formats, the
+<tt class="docutils literal"><span class="pre">.rst</span></tt> file will be copied into the document at the place where the
+<tt class="docutils literal"><span class="pre">BIBFILE:</span></tt> keyword appears, while all other formats will make use of
+the Python dictionary typeset as an ordered Doconce list inserted at
+the <tt class="docutils literal"><span class="pre">BIBFILE:</span></tt> line in the document.</p>
+<p>Only one file with bibliographic references can be used. It is recommended
+to create all references in BibTeX format. Say the file is <tt class="docutils literal"><span class="pre">myfile.bib</span></tt>.
+Insert <tt class="docutils literal"><span class="pre">BIBFILE:</span> <span class="pre">myfile.bib</span></tt> at the end of the file (for instance).
+Then make a LaTeX document and check that the references appear correctly.
+A next step can be to create the <tt class="docutils literal"><span class="pre">.rst</span></tt> file, either by manual editing
+of <tt class="docutils literal"><span class="pre">myfile.bbl</span></tt> or using <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">bbl2rst</span> <span class="pre">myfile.bbl</span></tt> to automate (most of)
+this editing. From the <tt class="docutils literal"><span class="pre">myfile.rst</span></tt> file it is easy to create <tt class="docutils literal"><span class="pre">myfile.py</span></tt>
+with the dictionary version of the references.</p>
 <p>Conversion of BibTeX databases to reST format can be
 done by the <a class="reference external" href="http://pypi.python.org/pypi/bibliograph.parsing/">bibliograph.parsing</a> tool.</p>
 <p>Finally, we here test the citation command and bibliography by
@@ -1445,32 +1452,32 @@ example above, we copy code from the line matching <tt class="docutils literal">
 matching <tt class="docutils literal"><span class="pre">C</span> <span class="pre">END1</span></tt> (C followed by 5 blanks and then the text END1). The
 final line with the &#8220;to&#8221; text is not included in the verbatim block.</p>
 <p>Let us copy a whole file (the first line above):</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">C</span>     <span class="n">a</span> <span class="n">comment</span>
+<div class="highlight-fortran"><div class="highlight"><pre><span class="nv">C</span>     <span class="nv">a</span> <span class="nv">comment</span>
 
-      <span class="n">subroutine</span>    <span class="n">test</span><span class="p">()</span>
-      <span class="n">integer</span> <span class="n">i</span>
-      <span class="n">real</span><span class="o">*</span><span class="mi">8</span> <span class="n">r</span>
-      <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
-      <span class="n">do</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span>
-         <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">i</span>
-      <span class="n">end</span> <span class="n">do</span>
-      <span class="k">return</span>
-<span class="n">C</span>     <span class="n">END1</span>
+      <span class="k">subroutine    </span><span class="nv">test</span><span class="p">()</span>
+      <span class="kt">integer </span><span class="nv">i</span>
+      <span class="kt">real</span><span class="o">*</span><span class="mi">8</span> <span class="nv">r</span>
+      <span class="nv">r</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">do </span><span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">i</span>
+         <span class="nv">r</span> <span class="o">=</span> <span class="nv">r</span> <span class="o">+</span> <span class="nv">i</span>
+      <span class="k">end do</span>
+<span class="k">      return</span>
+<span class="nv">C</span>     <span class="nv">END1</span>
 
-      <span class="n">program</span> <span class="n">testme</span>
-      <span class="n">call</span> <span class="n">test</span><span class="p">()</span>
+      <span class="k">program </span><span class="nv">testme</span>
+      <span class="k">call </span><span class="nv">test</span><span class="p">()</span>
       <span class="k">return</span>
 </pre></div>
 </div>
 <p>Let us then copy just a piece in the middle as indicated by the <tt class="docutils literal"><span class="pre">fromto:</span></tt>
 directive above:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">subroutine</span>    <span class="n">test</span><span class="p">()</span>
-<span class="n">integer</span> <span class="n">i</span>
-<span class="n">real</span><span class="o">*</span><span class="mi">8</span> <span class="n">r</span>
-<span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">do</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span>
-   <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">i</span>
-<span class="n">end</span> <span class="n">do</span>
+<div class="highlight-fortran"><div class="highlight"><pre><span class="k">subroutine    </span><span class="nv">test</span><span class="p">()</span>
+<span class="kt">integer </span><span class="nv">i</span>
+<span class="kt">real</span><span class="o">*</span><span class="mi">8</span> <span class="nv">r</span>
+<span class="nv">r</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">do </span><span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">i</span>
+   <span class="nv">r</span> <span class="o">=</span> <span class="nv">r</span> <span class="o">+</span> <span class="nv">i</span>
+<span class="k">end do</span>
 <span class="k">return</span>
 </pre></div>
 </div>
@@ -1480,19 +1487,20 @@ directive above:</p>
 <tt class="docutils literal"><span class="pre">from-to</span></tt> (&#8220;from with minus&#8221;). This allows for copying very similar
 code segments throughout a file, while still distinguishing between them.
 Copying the second set of parameters from the text</p>
-<div class="highlight-fortran"><pre># --- Start Example 1 ---
-c = -1
-A = 2
-p0 = 4
-simulate_and_plot(c, A, p0)
-# --- End Example 1 ---
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># --- Start Example 1 ---</span>
+<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">A</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">simulate_and_plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span>
+<span class="c"># --- End Example 1 ---</span>
 
-# --- Start Example 2 ---
-c = -1
-A = 1
-p0 = 0
-simulate_and_plot(c, A, p0)
-# --- End Example 2 ---</pre>
+<span class="c"># --- Start Example 2 ---</span>
+<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">A</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">simulate_and_plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span>
+<span class="c"># --- End Example 2 ---</span>
+</pre></div>
 </div>
 <p>is easy with</p>
 <div class="highlight-py"><div class="highlight"><pre><span class="n">from</span><span class="o">-</span><span class="n">to</span><span class="p">:</span> <span class="n">Start</span> <span class="n">Example</span> <span class="mi">2</span><span class="nd">@End</span> <span class="n">Example</span> <span class="mi">2</span>
@@ -1588,7 +1596,7 @@ line (multi-line newcommands are too hard to parse with regular
 expressions).</p>
 <p><em>Example.</em> Suppose we have the following commands in
 <tt class="docutils literal"><span class="pre">newcommand_replace.tex</span></tt>:</p>
-<div class="highlight-py"><div class="highlight"><pre>\<span class="n">newcommand</span><span class="p">{</span>\<span class="n">beqa</span><span class="p">}{</span>\<span class="n">begin</span><span class="p">{</span><span class="n">eqnarray</span><span class="p">}}</span>
+<div class="highlight-python"><div class="highlight"><pre>\<span class="n">newcommand</span><span class="p">{</span>\<span class="n">beqa</span><span class="p">}{</span>\<span class="n">begin</span><span class="p">{</span><span class="n">eqnarray</span><span class="p">}}</span>
 \<span class="n">newcommand</span><span class="p">{</span>\<span class="n">eeqa</span><span class="p">}{</span>\<span class="n">end</span><span class="p">{</span><span class="n">eqnarray</span><span class="p">}}</span>
 \<span class="n">newcommand</span><span class="p">{</span>\<span class="n">ep</span><span class="p">}{</span>\<span class="n">thinspace</span> <span class="o">.</span> <span class="p">}</span>
 \<span class="n">newcommand</span><span class="p">{</span>\<span class="n">uvec</span><span class="p">}{</span>\<span class="n">vec</span> <span class="n">u</span><span class="p">}</span>
@@ -1596,7 +1604,7 @@ expressions).</p>
 </pre></div>
 </div>
 <p>and these in <tt class="docutils literal"><span class="pre">newcommands_keep.tex</span></tt>:</p>
-<div class="highlight-py"><div class="highlight"><pre>\<span class="n">newcommand</span><span class="p">{</span>\<span class="n">x</span><span class="p">}{</span>\<span class="n">pmb</span><span class="p">{</span><span class="n">x</span><span class="p">}}</span>
+<div class="highlight-python"><div class="highlight"><pre>\<span class="n">newcommand</span><span class="p">{</span>\<span class="n">x</span><span class="p">}{</span>\<span class="n">pmb</span><span class="p">{</span><span class="n">x</span><span class="p">}}</span>
 \<span class="n">newcommand</span><span class="p">{</span>\<span class="n">normalvec</span><span class="p">}{</span>\<span class="n">pmb</span><span class="p">{</span><span class="n">n</span><span class="p">}}</span>
 \<span class="n">newcommand</span><span class="p">{</span>\<span class="n">Ddt</span><span class="p">}[</span><span class="mi">1</span><span class="p">]{</span>\<span class="n">frac</span><span class="p">{</span><span class="n">D</span><span class="c">#1}{dt}}</span>
 </pre></div>
@@ -1677,7 +1685,7 @@ to contain the keyword <tt class="docutils literal"><span class="pre">part:</spa
 <p>Here is an example. Say the name of the master file is <tt class="docutils literal"><span class="pre">master.do.txt</span></tt>.
 The following Bash script does the job:
 We run</p>
-<div class="highlight-fortran"><pre>doconce format sphinx master
+<div class="highlight-python"><pre>doconce format sphinx master
 # Split master.rst into parts
 # as defined by #&gt;&gt;&gt;&gt;&gt; part: name &gt;&gt;&gt;&gt;&gt; lines
 files=`doconce split_rst master.rst`

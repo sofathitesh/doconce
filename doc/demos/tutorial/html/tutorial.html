@@ -57,7 +57,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jul 21, 2012</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jul 25, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -332,12 +332,13 @@ LaTeX syntax appears in all other formats (but can still be useful
 for those who can read LaTeX syntax).</p>
 <p>You can have blocks of computer code, starting and ending with
 <tt class="docutils literal"><span class="pre">!bc</span></tt> and <tt class="docutils literal"><span class="pre">!ec</span></tt> instructions, respectively. Such blocks look like</p>
-<div class="highlight-fortran"><pre>from math import sin, pi
-def myfunc(x):
-    return sin(pi*x)
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">pi</span>
+<span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
 
-import integrate
-I = integrate.trapezoidal(myfunc, 0, pi, 100)</pre>
+<span class="kn">import</span> <span class="nn">integrate</span>
+<span class="n">I</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">trapezoidal</span><span class="p">(</span><span class="n">myfunc</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
 </div>
 <p>A code block must come after some plain sentence (at least for successful
 output to <tt class="docutils literal"><span class="pre">sphinx</span></tt>, <tt class="docutils literal"><span class="pre">rst</span></tt>, and ASCII-close formats),
@@ -807,7 +808,7 @@ all such arguments can be customized both for Sphinx and LaTeX output.</p>
 <div class="section" id="wiki-formats">
 <h2>Wiki Formats<a class="headerlink" href="#wiki-formats" title="Permalink to this headline">¶</a></h2>
 <p>There are many different wiki formats, but Doconce only supports three:
-<a href="#id7"><span class="problematic" id="id8">`Googlecode wiki &lt;http://code.google.com/p/support/wiki/WikiSyntax&lt;Google Code&gt;&gt;`_</span></a>, , MediaWiki, and Creole Wiki. These formats are called
+<a class="reference external" href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>, MediaWiki, and Creole Wiki. These formats are called
 <tt class="docutils literal"><span class="pre">gwiki</span></tt>, <tt class="docutils literal"><span class="pre">mwiki</span></tt>, and <tt class="docutils literal"><span class="pre">cwiki</span></tt>, respectively.
 Transformation from Doconce to these formats is done by</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format gwiki mydoc.do.txt</span>

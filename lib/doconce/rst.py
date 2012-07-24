@@ -65,18 +65,17 @@ def rst_movie(m):
 bc_regex_pattern = r'([a-zA-Z0-9)"`.*_}=-^~])[\n:.?!, ]\s*?^!bc.*?$'
 bt_regex_pattern = r'([a-zA-Z0-9)"`.*_}=-^~])[\n:.?!, ]\s*?^!bt.*?$'
 
-def rst_code(filestr, format):
+def rst_code(filestr, code_blocks, code_block_types,
+             tex_blocks, format):
     # In rst syntax, code blocks are typeset with :: (verbatim)
     # followed by intended blocks. This function indents everything
     # inside code (or TeX) blocks.
-
-    # first indent all code/tex blocks:
-    filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
 
     for i in range(len(code_blocks)):
         code_blocks[i] = indent_lines(code_blocks[i], format)
     for i in range(len(tex_blocks)):
         tex_blocks[i] = indent_lines(tex_blocks[i], format)
+
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
 
     # substitute !bc and !ec appropriately:

@@ -6,7 +6,7 @@ Doconce Quick Reference
 
 :Author: Hans Petter Langtangen
 
-:Date: Jul 21, 2012
+:Date: Jul 25, 2012
 
 .. Very preliminary
 
@@ -559,8 +559,7 @@ transforming a ``.do.txt`` file to some format. Here is the
 list of capabilities:
 
 
-.. code-block:: py
-
+.. code-block:: bash
 
         Usage: doconce command [optional arguments]
         commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex

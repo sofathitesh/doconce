@@ -15,9 +15,12 @@ exercise (probably ok with the plain solution).
 
 
 import re, os, commands, sys
-from common import default_movie, plain_exercise
+from common import default_movie, plain_exercise, insert_code_and_tex
 
-def mwiki_code(filestr, format):
+def mwiki_code(filestr, code_blocks, code_block_types,
+               tex_blocks, format):
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+
     # Supported programming languages:
     # http://www.mediawiki.org/wiki/Extension:SyntaxHighlight_GeSHi#Supported_languages
     envir2lang = dict(cod='python', pycod='python', cycod='python',
@@ -33,7 +36,7 @@ def mwiki_code(filestr, format):
         cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
         filestr = cpattern.sub('<syntaxhighlight lang="%s">\n' % \
                                envir2lang[key], filestr)
-    c = re.compile(r'^!bc.+$\n', re.MULTILINE)
+    c = re.compile(r'^!bc.*$\n', re.MULTILINE)
     filestr = c.sub('<code>\n', filestr)
     filestr = re.sub(r'!ec\n', '</code>\n', filestr)
     c = re.compile(r'^!bt\n', re.MULTILINE)

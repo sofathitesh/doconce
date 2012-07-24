@@ -8,7 +8,8 @@ for syntax.
 """
 
 import re, sys
-from common import default_movie, plain_exercise, table_analysis
+from common import default_movie, plain_exercise, table_analysis, \
+     insert_code_and_tex
 from html import html_movie
 
 def pandoc_author(authors_and_institutions, auth2index,
@@ -23,7 +24,10 @@ def pandoc_author(authors_and_institutions, auth2index,
     authors = '% ' + ';  '.join(authors) + '\n'
     return authors
 
-def pandoc_code(filestr, format):
+def pandoc_code(filestr, code_blocks, code_block_types,
+                tex_blocks, format):
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+
     defs = dict(cod='Python', pycod='Python', cppcod='Cpp',
                 fcod='Fortran', ccod='C',
                 pro='Python', pypro='Python', cpppro='Cpp',
@@ -43,15 +47,13 @@ def pandoc_code(filestr, format):
         cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
         filestr = cpattern.sub(replacement, filestr)
 
-    # any !bc with/without argument becomes a cod (python) block:
-    #replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s}' % defs['cod']
-    # or no, we then just skip any specification
+    # any !bc with/without argument becomes an unspecified block
     replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-    #filestr = re.sub(r'^!bc.+\n', replacement, filestr, flags=re.MULTILINE)
-    cpattern = re.compile(r'^!bc.+$', flags=re.MULTILINE)
+    cpattern = re.compile(r'^!bc.*$', flags=re.MULTILINE)
     filestr = cpattern.sub(replacement, filestr)
 
-    filestr = re.sub(r'!ec *\n', '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n', filestr)
+    cpattern = re.compile(r'^!ec\s*$', flags=re.MULTILINE)
+    filestr = cpattern.sub('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n', filestr)
 
     # Math: give warning if not only single equations
     pattern = r'!bt.+?\\begin\{(.+?)\}'

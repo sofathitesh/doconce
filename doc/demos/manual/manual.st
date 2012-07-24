@@ -102,7 +102,7 @@ preprocessor, this program must be installed::
 A much more advanced alternative to Preprocess is
 "http://www.makotemplates.org":Mako. Its installation is most
 conveniently done by 'pip',
-!bc   sys
+!bc sys
         pip install Mako
 
 This command requires 'pip' to be installed. On Debian Linux systems,
@@ -241,7 +241,7 @@ From Doconce to Other Formats
 
 Transformation of a Doconce document 'mydoc.do.txt' to various other
 formats applies the script 'doconce format':
-!bc   sys
+!bc sys
         Terminal> doconce format format mydoc.do.txt
 
 or just::
@@ -489,7 +489,7 @@ reStructuredText
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file 'mydoc.rst':
-!bc   sys
+!bc sys
         Terminal> doconce format rst mydoc.do.txt
 
 We may now produce various other formats::
@@ -696,7 +696,7 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 Wiki Formats
 
 There are many different wiki formats, but Doconce only supports three:
-"http://code.google.com/p/support/wiki/WikiSyntax<Google Code>":Googlecode wiki, , MediaWiki, and Creole Wiki. These formats are called
+"http://code.google.com/p/support/wiki/WikiSyntax":Googlecode wiki, MediaWiki, and Creole Wiki. These formats are called
 'gwiki', 'mwiki', and 'cwiki', respectively.
 Transformation from Doconce to these formats is done by::
 
@@ -1110,7 +1110,7 @@ Then you can link to '_static/make.sh.html' instead of
 'subdir/make.sh'. Here is an example where the reader
 has the file available as 'src/myprog.py' in her
 software and the document links to '_static/myprog.py':
-!bc  
+!bc
         See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 
 
@@ -1184,7 +1184,7 @@ in the section "Inline Tagging".
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
 lines start with the hash '#':
-!bc  
+!bc
         #
         # Here are some comment lines that do not affect any formatting.
         # These lines are converted to comments in the output format.
@@ -1284,8 +1284,8 @@ and 'Nielsen_Kjeldstrup_1999' is a new (the 14th) citation. The citation labels
 can be any sequence of characters, except for curly braces and comma.
 
 The bibliography itself is specified by the special keyword 'BIBFILE:',
-which is optionally followed by a BibTeX file, having extension '.bib',
-a corresponding reST bibliography, having extension '.rst',
+followed by a BibTeX file with extension '.bib',
+a corresponding reST bibliography with extension '.rst',
 or simply a Python dictionary written in a file with extension '.py'.
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
@@ -1304,14 +1304,22 @@ in the bibliography. Doconce markup can be used in this text, e.g.::
         """
         }
 
-In the LaTeX format, the '.bib' file will be used in the standard way,
-in the 'rst' and 'sphinx' formats, the '.rst' file will be
-copied into the document at the place where the 'BIBFILE:' keyword
-appears, while all other formats will make use of the Python dictionary
-typeset as an ordered Doconce list, replacing the 'BIBFILE:' line
-in the document.
 
-At present, only one file with bibliographic references can be used.
+In the 'latex' and 'pdflatex' formats, the '.bib' file will be used in
+the standard BibTeX way.  In the 'rst' and 'sphinx' formats, the
+'.rst' file will be copied into the document at the place where the
+'BIBFILE:' keyword appears, while all other formats will make use of
+the Python dictionary typeset as an ordered Doconce list inserted at
+the 'BIBFILE:' line in the document.
+
+Only one file with bibliographic references can be used. It is recommended
+to create all references in BibTeX format. Say the file is 'myfile.bib'.
+Insert 'BIBFILE: myfile.bib' at the end of the file (for instance).
+Then make a LaTeX document and check that the references appear correctly.
+A next step can be to create the '.rst' file, either by manual editing
+of 'myfile.bbl' or using 'doconce bbl2rst myfile.bbl' to automate (most of)
+this editing. From the 'myfile.rst' file it is easy to create 'myfile.py'
+with the dictionary version of the references.
 
 
 Conversion of BibTeX databases to reST format can be
@@ -1683,7 +1691,7 @@ expressions).
 *Example.* Suppose we have the following commands in
 'newcommand_replace.tex':
 
-!bc   pro
+!bc pro
         \newcommand{\beqa}{\begin{eqnarray}}
         \newcommand{\eeqa}{\end{eqnarray}}
         \newcommand{\ep}{\thinspace . }
@@ -1693,7 +1701,7 @@ expressions).
 
 and these in 'newcommands_keep.tex':
 
-!bc   pro
+!bc pro
         \newcommand{\x}{\pmb{x}}
         \newcommand{\normalvec}{\pmb{n}}
         \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
@@ -1903,7 +1911,7 @@ pack it out and go to the root directory.
 
 
 *Step 3.* Add these lines to '$HOME/.emacs':
-!bc  
+!bc
         (load-file "~/hg/.doconce-mode.el")
         (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 

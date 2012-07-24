@@ -1471,7 +1471,8 @@ def doconce2format(filestr, format):
 
     # Next step: remove all verbatim and math blocks
 
-    filestr, code_blocks, tex_blocks = remove_code_and_tex(filestr)
+    filestr, code_blocks, code_block_types, tex_blocks = \
+             remove_code_and_tex(filestr)
 
     # for html we should make replacements of < and > in code_blocks,
     # since these can be interpreted as tags, and we must
@@ -1488,16 +1489,13 @@ def doconce2format(filestr, format):
         # with encoding="utf-8" in the first line in the html file:
         # (but we do it explicitly to make it robust)
         filestr = html.latin2html(filestr)
-    elif format == 'latex' or format == 'pdflatex':  # fix
-        # labels inside tex envirs must have backslash \label:
-        for i in range(len(tex_blocks)):
-            tex_blocks[i] = re.sub(r'([^\\])label', r'\g<1>\\label',
-                                    tex_blocks[i])
 
     debugpr('%s\n**** The file after removal of code/tex blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
     debugpr('%s\n**** The code blocks:\n\n%s\n\n' % \
           ('*'*80, pprint.pformat(code_blocks)))
+    debugpr('%s\n**** The code block types:\n\n%s\n\n' % \
+          ('*'*80, pprint.pformat(code_block_types)))
     debugpr('%s\n**** The tex blocks:\n\n%s\n\n' % \
           ('*'*80, pprint.pformat(tex_blocks)))
 
@@ -1558,12 +1556,11 @@ def doconce2format(filestr, format):
     # non-rst/sphinx formats:
     filestr = subst_class_func_mod(filestr, format)
 
-    # Next step: insert verbatim and math code blocks again:
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+    # Next step: insert verbatim and math code blocks again and
+    # substitute code and tex environments:
+    filestr = CODE[format](filestr, code_blocks, code_block_types,
+                           tex_blocks, format)
     filestr += '\n'
-
-    # Next step: substitute code and tex environments:
-    filestr = CODE[format](filestr, format)
     debugpr('%s\n**** The file after inserting tex/code blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
