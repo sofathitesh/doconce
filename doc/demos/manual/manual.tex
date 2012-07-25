@@ -173,7 +173,10 @@ limitations of regular expressions, some formatting of Doconce syntax
 may face problems when transformed to HTML, {\LaTeX}, Sphinx, and similar
 formats.
 
-\subsection{Dependencies and Installation}
+
+\section{Installation of Doconce and its Dependencies}
+
+\subsection{Doconce}
 
 Doconce itself is pure Python code hosted at \href{{http://code.google.com/p/doconce}}{\nolinkurl{http://code.google.com/p/doconce}}.  Its installation from the
 Mercurial ({\fontsize{10pt}{10pt}\verb!hg!}) source follows the standard procedure:
@@ -186,9 +189,41 @@ cd doconce
 sudo python setup.py install
 cd ..
 \end{Verbatim}
+Since Doconce is frequently updated, it is recommended to use the
+above procedure and whenever a problem occurs, make sure to
+update to the most recent version:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+cd doconce
+hg pull
+hg update
+sudo python setup.py install
+\end{Verbatim}
 
+Debian GNU/Linux users can also run
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+sudo apt-get install doconce
+\end{Verbatim}
+This installs the latest release and not the most updated and bugfixed
+version.
+On Ubuntu one needs to run
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+sudo add-apt-repository ppa:scitools/ppa
+sudo apt-get update
+sudo apt-get install doconce
+\end{Verbatim}
+
+\subsection{Dependencies}
+
+\paragraph{Preprocessors.}
 If you make use of the \href{{http://code.google.com/p/preprocess}}{Preprocess}
 preprocessor, this program must be installed:
+
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
@@ -198,9 +233,11 @@ cd doconce
 sudo python setup.py install
 cd ..
 \end{Verbatim}
+
 A much more advanced alternative to Preprocess is
 \href{{http://www.makotemplates.org}}{Mako}. Its installation is most
 conveniently done by {\fontsize{10pt}{10pt}\verb!pip!},
+
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
@@ -208,6 +245,7 @@ pip install Mako
 \end{Verbatim}
 This command requires {\fontsize{10pt}{10pt}\verb!pip!} to be installed. On Debian Linux systems,
 such as Ubuntu, the installation is simply done by
+
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
@@ -215,23 +253,32 @@ sudo apt-get install python-pip
 \end{Verbatim}
 Alternatively, one can install from the {\fontsize{10pt}{10pt}\verb!pip!} \href{{http://pypi.python.org/pypi/pip}}{source code}.
 
-To make {\LaTeX}
-documents (without going through the reStructuredText format) you
-need \href{{http://code.google.com/p/ptex2tex}}{ptex2tex}, which is
-installed by
+\paragraph{Ptex2tex for {\LaTeX} Output.}
+To make {\LaTeX} documents with very flexible choice of typesetting of
+verbatim code blocks you need \href{{http://code.google.com/p/ptex2tex}}{ptex2tex},
+which is installed by
+
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
 sudo python setup.py install
+\end{Verbatim}
+It may happen that you need additional style files, you can run
+a script, {\fontsize{10pt}{10pt}\verb!cp2texmf.sh!}:
+
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
 cd latex
 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
 cd ../..
 \end{Verbatim}
-As seen, {\fontsize{10pt}{10pt}\verb!cp2texmf.sh!} copies some special stylefiles that
+This script copies some special stylefiles that
 that {\fontsize{10pt}{10pt}\verb!ptex2tex!} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
+
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
@@ -241,8 +288,14 @@ on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the {\fontsize{10pt}{10pt}\verb!~/texmf/tex/latex/misc!} directory).
 
-The \emph{minted} {\LaTeX} style is offered by {\fontsize{10pt}{10pt}\verb!ptex2tex!} and popular among
-users. This style requires the package \href{{http://pygments.org}}{Pygments}:
+Note that the {\fontsize{10pt}{10pt}\verb!doconce ptex2tex!} command, which needs no installation
+beyond Doconce itself, can be used as a simpler alternative to the {\fontsize{10pt}{10pt}\verb!ptex2tex!}
+program.
+
+The \emph{minted} {\LaTeX} style is offered by {\fontsize{10pt}{10pt}\verb!ptex2tex!} and {\fontsize{10pt}{10pt}\verb!doconce ptext2tex!}
+is popular among many
+users. This style requires the package \href{{http://pygments.org}}{Pygments}
+to be installed:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
@@ -250,13 +303,19 @@ hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
 \end{Verbatim}
-If you use the minted style, you have to enable it by running
-{\fontsize{10pt}{10pt}\verb!ptex2tex -DMINTED!} and then {\fontsize{10pt}{10pt}\verb!latex -shell-escape!}, see
-the Section~\ref{doconce2formats}.
 
-For {\fontsize{10pt}{10pt}\verb!rst!} output and further transformation to {\LaTeX}, HTML, XML,
-OpenOffice, and so on, one needs \href{{http://docutils.sourceforge.net}}{docutils}.
-The installation can be done by
+If you use the minted style together with {\fontsize{10pt}{10pt}\verb!ptex2tex!}, you have to
+enable it by the {\fontsize{10pt}{10pt}\verb!-DMINTED!} command-line argument to {\fontsize{10pt}{10pt}\verb!ptex2tex!}.  All
+use of the minted style requires the {\fontsize{10pt}{10pt}\verb!-shell-escape!} command-line
+argument when running {\LaTeX}, i.e., {\fontsize{10pt}{10pt}\verb!latex -shell-escape!} or {\fontsize{10pt}{10pt}\verb!pdflatex-shell-escape!}.
+
+% Say something about anslistings.sty
+
+\paragraph{reStructuredText (reST) Output.}
+The {\fontsize{10pt}{10pt}\verb!rst!} output from Doconce allows further transformation to {\LaTeX},
+HTML, XML, OpenOffice, and so on, through the \href{{http://docutils.sourceforge.net}}{docutils} package.  The installation of the
+most recent version can be done by
+
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
@@ -276,7 +335,7 @@ There is a possibility to create PDF files from reST documents
 using ReportLab instead of {\LaTeX}. The enabling software is
 \href{{http://code.google.com/p/rst2pdf}}{rst2pdf}. Either download the tarball
 or clone the svn repository, go to the {\fontsize{10pt}{10pt}\verb!rst2pdf!} directory and
-run {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}.
+run the usual {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}.
 
 
 Output to {\fontsize{10pt}{10pt}\verb!sphinx!} requires of course \href{{http://sphinx.pocoo.org}}{Sphinx},
@@ -290,6 +349,19 @@ sudo python setup.py install
 cd ..
 \end{Verbatim}
 
+\paragraph{Markdown and Pandoc Output.}
+The Doconce format {\fontsize{10pt}{10pt}\verb!pandoc!} outputs the document in the Pandoc
+extended Markdown format, which via the {\fontsize{10pt}{10pt}\verb!pandoc!} program can be
+translated to a range of other formats. Installation of \href{{http://johnmacfarlane.net/pandoc/}}{Pandoc}, written in Haskell, is most
+easily done by
+
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+sudo apt-get install pandoc
+\end{Verbatim}
+
+\paragraph{Epydoc Output.}
 When the output format is {\fontsize{10pt}{10pt}\verb!epydoc!} one needs that program too, installed
 by
 \vspace{4pt}
@@ -301,15 +373,6 @@ sudo make install
 cd ..
 \end{Verbatim}
 
-Finally, translation to {\fontsize{10pt}{10pt}\verb!pandoc!} requires the
-\href{{http://johnmacfarlane.net/pandoc/}}{Pandoc} program
-(written in Haskell) to be installed.
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-sudo apt-get install pandoc
-\end{Verbatim}
-
 \paragraph{Remark.}
 Several of the packages above installed from source code
 are also available in Debian-based system through the
@@ -319,8 +382,6 @@ updates and bug fixes. For {\fontsize{10pt}{10pt}\verb!svn!} directories, go to 
 run {\fontsize{10pt}{10pt}\verb!svn update!}, and then {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}. For
 Mercurial ({\fontsize{10pt}{10pt}\verb!hg!}) directories, go to the directory, run
 {\fontsize{10pt}{10pt}\verb!hg pull; hg update!}, and then {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}.
-Doconce itself is frequently updated so these commands should be
-run regularly.
 
 
 % 
@@ -1468,13 +1529,15 @@ All such comments can easily be removed from the {\fontsize{10pt}{10pt}\verb!.do
 (see Chapter~\ref{doconce2formats}).
 
 Inline mathematics is written as in {\LaTeX}, i.e., inside dollar signs.
-Most formats leave this syntax as it is (including to dollar signs),
-hence nice math formatting is only obtained in {\LaTeX} (Epytext has some
-inline math support that is utilized).  However, mathematical
-expressions in {\LaTeX} syntax often contains special formatting
-commands, which may appear annoying in plain text. Doconce therefore
-supports an extended inline math syntax where the writer can provide
-an alternative syntax suited for formats close to plain ASCII:
+Many formats leave this syntax as it is (including to dollar signs),
+hence nice math formatting is only obtained in {\LaTeX}, HTML, MediaWiki,
+and Sphinx (Epytext has some inline math support that is utilized).
+However, mathematical expressions in {\LaTeX} syntax often contains
+special formatting commands, which may appear annoying in plain
+text. Doconce therefore supports an extended inline math syntax where
+the writer can provide an alternative syntax suited for formats close
+to plain ASCII:
+
 \begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
 fontfamily=tt,xleftmargin=7mm]
 Here is an example on a linear system
@@ -1485,7 +1548,8 @@ $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
 \noindent
 That is, we provide two alternative expressions, both enclosed in
 dollar signs and separated by a pipe symbol, the expression to the
-left is used in {\LaTeX}, while the expression to the right is used for
+left is used in formats with {\LaTeX} support ({\fontsize{10pt}{10pt}\verb!latex!}, {\fontsize{10pt}{10pt}\verb!pdflatex!}, {\fontsize{10pt}{10pt}\verb!html!},
+{\fontsize{10pt}{10pt}\verb!sphinx!}, {\fontsize{10pt}{10pt}\verb!mwiki!}), while the expression to the right is used for
 all other formats.  The above text is typeset as "Here is an example
 on a linear system ${\bf A}{\bf x} = {\bf b}$, where $\bf A$
 is an $n\times n$ matrix, and $\bf x$ and $\bf b$
@@ -1991,22 +2055,28 @@ Here is the result of the above {\fontsize{10pt}{10pt}\verb!!bt!} - {\fontsize{1
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
 
-This text looks ugly in all Doconce supported formats, except from
-{\LaTeX} and Sphinx.  If HTML is desired, and Sphinx is not an option,
-one can filter the Doconce text first to {\LaTeX} and then use the tex4ht
-tool to convert the dvi file to HTML, or one could just link a PDF
-file (made from {\LaTeX}) directly from HTML.
+The support of {\LaTeX} mathematics varies among the formats.  Output
+{\fontsize{10pt}{10pt}\verb!latex!} and {\fontsize{10pt}{10pt}\verb!pdflatex!} has of course full support. The {\fontsize{10pt}{10pt}\verb!html!} format
+supports single equations and multiple equations via the align
+environment, also with labels. Although {\fontsize{10pt}{10pt}\verb!sphinx!}, like {\fontsize{10pt}{10pt}\verb!html!}, employs
+MathJax, it does not support labels in align environments.  Markdown
+({\fontsize{10pt}{10pt}\verb!pandoc!} format) allows single equations and inline mathematics.
+Going from Doconce to MS Word is most easily done by outputting in
+the {\fontsize{10pt}{10pt}\verb!latex!} format and then using the Pandoc program to translate
+from {\LaTeX} to MS Word (note that only a subset of {\LaTeX} will be
+translated correctly).
 
-If the document targets both {\LaTeX}, Sphinx, and other formats like
-plain text and wiki, one can use the preprocessor to typeset the
-mathematics in two versions. After {\fontsize{10pt}{10pt}\verb!#if FORMAT in ("latex", "pdflatex","sphinx", "mwiki")!} one places {\LaTeX} mathematics, and after {\fontsize{10pt}{10pt}\verb!#else!} one can
-write inline mathematics in a way that looks nice in plain text and
-wiki formats without support for mathematical typesetting.
+If the document targets formats with and without support of {\LaTeX}
+mathematics, one can use the preprocessor to typeset the mathematics
+in two versions. After {\fontsize{10pt}{10pt}\verb!#if FORMAT in ("latex", "pdflatex", "html","sphinx", "mwiki", "pandoc")!} one places {\LaTeX} mathematics, and after
+{\fontsize{10pt}{10pt}\verb!#else!} one can write inline mathematics in a way that looks nice in
+plain text and wiki formats without support for mathematical
+typesetting.
 
 \paragraph{Mathematics for PowerPoint/OpenOffice.}
 If you have {\LaTeX} mathematics written in Doconce, it is fairly easy
 to generate PNG images of all mathematical formulas and equations for
-use with PowerPoint or OpenOffice documents.
+use with PowerPoint or OpenOffice presentations.
 
 \begin{enumerate}
  \item Make a Sphinx version of the Doconce file.

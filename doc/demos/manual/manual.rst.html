@@ -412,8 +412,11 @@ all sorts of sophisticated markup languages. Moreover, because of
 limitations of regular expressions, some formatting of Doconce syntax
 may face problems when transformed to HTML, LaTeX, Sphinx, and similar
 formats.</p>
-<div class="section" id="dependencies-and-installation">
-<h2>Dependencies and Installation</h2>
+</div>
+<div class="section" id="installation-of-doconce-and-its-dependencies">
+<h1>Installation of Doconce and its Dependencies</h1>
+<div class="section" id="doconce">
+<h2>Doconce</h2>
 <p>Doconce itself is pure Python code hosted at <a class="reference external" href="http://code.google.com/p/doconce">http://code.google.com/p/doconce</a>.  Its installation from the
 Mercurial (<tt class="docutils literal">hg</tt>) source follows the standard procedure:</p>
 <pre class="literal-block">
@@ -423,6 +426,32 @@ cd doconce
 sudo python setup.py install
 cd ..
 </pre>
+<p>Since Doconce is frequently updated, it is recommended to use the
+above procedure and whenever a problem occurs, make sure to
+update to the most recent version:</p>
+<pre class="literal-block">
+cd doconce
+hg pull
+hg update
+sudo python setup.py install
+</pre>
+<p>Debian GNU/Linux users can also run:</p>
+<pre class="literal-block">
+sudo apt-get install doconce
+</pre>
+<p>This installs the latest release and not the most updated and bugfixed
+version.
+On Ubuntu one needs to run:</p>
+<pre class="literal-block">
+sudo add-apt-repository ppa:scitools/ppa
+sudo apt-get update
+sudo apt-get install doconce
+</pre>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies</h2>
+<div class="section" id="preprocessors">
+<h3>Preprocessors</h3>
 <p>If you make use of the <a class="reference external" href="http://code.google.com/p/preprocess">Preprocess</a>
 preprocessor, this program must be installed:</p>
 <pre class="literal-block">
@@ -444,19 +473,25 @@ such as Ubuntu, the installation is simply done by:</p>
 sudo apt-get install python-pip
 </pre>
 <p>Alternatively, one can install from the <tt class="docutils literal">pip</tt> <a class="reference external" href="http://pypi.python.org/pypi/pip">source code</a>.</p>
-<p>To make LaTeX
-documents (without going through the reStructuredText format) you
-need <a class="reference external" href="http://code.google.com/p/ptex2tex">ptex2tex</a>, which is
-installed by:</p>
+</div>
+<div class="section" id="ptex2tex-for-latex-output">
+<h3>Ptex2tex for LaTeX Output</h3>
+<p>To make LaTeX documents with very flexible choice of typesetting of
+verbatim code blocks you need <a class="reference external" href="http://code.google.com/p/ptex2tex">ptex2tex</a>,
+which is installed by:</p>
 <pre class="literal-block">
 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
 sudo python setup.py install
+</pre>
+<p>It may happen that you need additional style files, you can run
+a script, <tt class="docutils literal">cp2texmf.sh</tt>:</p>
+<pre class="literal-block">
 cd latex
 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
 cd ../..
 </pre>
-<p>As seen, <tt class="docutils literal">cp2texmf.sh</tt> copies some special stylefiles that
+<p>This script copies some special stylefiles that
 that <tt class="docutils literal">ptex2tex</tt> potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by:</p>
 <pre class="literal-block">
@@ -465,19 +500,30 @@ sudo apt-get install texlive-latex-extra
 <p>on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the <tt class="docutils literal">~/texmf/tex/latex/misc</tt> directory).</p>
-<p>The <em>minted</em> LaTeX style is offered by <tt class="docutils literal">ptex2tex</tt> and popular among
-users. This style requires the package <a class="reference external" href="http://pygments.org">Pygments</a>:</p>
+<p>Note that the <tt class="docutils literal">doconce ptex2tex</tt> command, which needs no installation
+beyond Doconce itself, can be used as a simpler alternative to the <tt class="docutils literal">ptex2tex</tt>
+program.</p>
+<p>The <em>minted</em> LaTeX style is offered by <tt class="docutils literal">ptex2tex</tt> and <tt class="docutils literal">doconce ptext2tex</tt>
+is popular among many
+users. This style requires the package <a class="reference external" href="http://pygments.org">Pygments</a>
+to be installed:</p>
 <pre class="literal-block">
 hg clone ssh://hg&#64;bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
 </pre>
-<p>If you use the minted style, you have to enable it by running
-<tt class="docutils literal">ptex2tex <span class="pre">-DMINTED</span></tt> and then <tt class="docutils literal">latex <span class="pre">-shell-escape</span></tt>, see
-the the section <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a>.</p>
-<p>For <tt class="docutils literal">rst</tt> output and further transformation to LaTeX, HTML, XML,
-OpenOffice, and so on, one needs <a class="reference external" href="http://docutils.sourceforge.net">docutils</a>.
-The installation can be done by:</p>
+<p>If you use the minted style together with <tt class="docutils literal">ptex2tex</tt>, you have to
+enable it by the <tt class="docutils literal"><span class="pre">-DMINTED</span></tt> command-line argument to <tt class="docutils literal">ptex2tex</tt>.  All
+use of the minted style requires the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> command-line
+argument when running LaTeX, i.e., <tt class="docutils literal">latex <span class="pre">-shell-escape</span></tt> or <tt class="docutils literal">pdflatex
+<span class="pre">-shell-escape</span></tt>.</p>
+<!-- Say something about anslistings.sty -->
+</div>
+<div class="section" id="restructuredtext-rest-output">
+<h3>reStructuredText (reST) Output</h3>
+<p>The <tt class="docutils literal">rst</tt> output from Doconce allows further transformation to LaTeX,
+HTML, XML, OpenOffice, and so on, through the <a class="reference external" href="http://docutils.sourceforge.net">docutils</a> package.  The installation of the
+most recent version can be done by:</p>
 <pre class="literal-block">
 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
@@ -492,7 +538,7 @@ sudo apt-get install unovonv libreoffice libreoffice-dmaths
 using ReportLab instead of LaTeX. The enabling software is
 <a class="reference external" href="http://code.google.com/p/rst2pdf">rst2pdf</a>. Either download the tarball
 or clone the svn repository, go to the <tt class="docutils literal">rst2pdf</tt> directory and
-run <tt class="docutils literal">sudo python setup.py install</tt>.</p>
+run the usual <tt class="docutils literal">sudo python setup.py install</tt>.</p>
 <p>Output to <tt class="docutils literal">sphinx</tt> requires of course <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a>,
 installed by:</p>
 <pre class="literal-block">
@@ -501,6 +547,19 @@ cd sphinx
 sudo python setup.py install
 cd ..
 </pre>
+</div>
+<div class="section" id="markdown-and-pandoc-output">
+<h3>Markdown and Pandoc Output</h3>
+<p>The Doconce format <tt class="docutils literal">pandoc</tt> outputs the document in the Pandoc
+extended Markdown format, which via the <tt class="docutils literal">pandoc</tt> program can be
+translated to a range of other formats. Installation of <a class="reference external" href="http://johnmacfarlane.net/pandoc/">Pandoc</a>, written in Haskell, is most
+easily done by:</p>
+<pre class="literal-block">
+sudo apt-get install pandoc
+</pre>
+</div>
+<div class="section" id="epydoc-output">
+<h3>Epydoc Output</h3>
 <p>When the output format is <tt class="docutils literal">epydoc</tt> one needs that program too, installed
 by:</p>
 <pre class="literal-block">
@@ -509,12 +568,6 @@ cd epydoc
 sudo make install
 cd ..
 </pre>
-<p>Finally, translation to <tt class="docutils literal">pandoc</tt> requires the
-<a class="reference external" href="http://johnmacfarlane.net/pandoc/">Pandoc</a> program
-(written in Haskell) to be installed:</p>
-<pre class="literal-block">
-sudo apt-get install pandoc
-</pre>
 <p><em>Remark.</em> Several of the packages above installed from source code
 are also available in Debian-based system through the
 <tt class="docutils literal"><span class="pre">apt-get</span> install</tt> command. However, we recommend installation directly
@@ -522,9 +575,7 @@ from the version control system repository as there might be important
 updates and bug fixes. For <tt class="docutils literal">svn</tt> directories, go to the directory,
 run <tt class="docutils literal">svn update</tt>, and then <tt class="docutils literal">sudo python setup.py install</tt>. For
 Mercurial (<tt class="docutils literal">hg</tt>) directories, go to the directory, run
-<tt class="docutils literal">hg pull; hg update</tt>, and then <tt class="docutils literal">sudo python setup.py install</tt>.
-Doconce itself is frequently updated so these commands should be
-run regularly.</p>
+<tt class="docutils literal">hg pull; hg update</tt>, and then <tt class="docutils literal">sudo python setup.py install</tt>.</p>
 <!-- Here are some comment lines that do not affect any formatting -->
 <!-- these lines are converted to comments in the output format. -->
 <!-- This may have some side effects, especially in rst and sphinx -->
@@ -534,6 +585,7 @@ run regularly.</p>
 <!-- *before* doconce sees the text. That can be useful when -->
 <!-- doconce comments interferes with formatting. -->
 <!-- The mako tool also supports <%doc> .. </%doc> -->
+</div>
 </div>
 <div class="section" id="demos">
 <h2>Demos</h2>
@@ -1407,13 +1459,14 @@ and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the <tt class="docutils literal">.do.txt</tt> file
 (see the chapter <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a>).</p>
 <p>Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
-Most formats leave this syntax as it is (including to dollar signs),
-hence nice math formatting is only obtained in LaTeX (Epytext has some
-inline math support that is utilized).  However, mathematical
-expressions in LaTeX syntax often contains special formatting
-commands, which may appear annoying in plain text. Doconce therefore
-supports an extended inline math syntax where the writer can provide
-an alternative syntax suited for formats close to plain ASCII:</p>
+Many formats leave this syntax as it is (including to dollar signs),
+hence nice math formatting is only obtained in LaTeX, HTML, MediaWiki,
+and Sphinx (Epytext has some inline math support that is utilized).
+However, mathematical expressions in LaTeX syntax often contains
+special formatting commands, which may appear annoying in plain
+text. Doconce therefore supports an extended inline math syntax where
+the writer can provide an alternative syntax suited for formats close
+to plain ASCII:</p>
 <pre class="literal-block">
 Here is an example on a linear system
 ${\bf A}{\bf x} = {\bf b}$|$Ax=b$,
@@ -1422,7 +1475,8 @@ $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
 </pre>
 <p>That is, we provide two alternative expressions, both enclosed in
 dollar signs and separated by a pipe symbol, the expression to the
-left is used in LaTeX, while the expression to the right is used for
+left is used in formats with LaTeX support (<tt class="docutils literal">latex</tt>, <tt class="docutils literal">pdflatex</tt>, <tt class="docutils literal">html</tt>,
+<tt class="docutils literal">sphinx</tt>, <tt class="docutils literal">mwiki</tt>), while the expression to the right is used for
 all other formats.  The above text is typeset as &quot;Here is an example
 on a linear system Ax=b, where A
 is an nxn matrix, and x and b
@@ -1861,22 +1915,28 @@ line and followed by a newline:</p>
 {\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
 </pre>
-<p>This text looks ugly in all Doconce supported formats, except from
-LaTeX and Sphinx.  If HTML is desired, and Sphinx is not an option,
-one can filter the Doconce text first to LaTeX and then use the tex4ht
-tool to convert the dvi file to HTML, or one could just link a PDF
-file (made from LaTeX) directly from HTML.</p>
-<p>If the document targets both LaTeX, Sphinx, and other formats like
-plain text and wiki, one can use the preprocessor to typeset the
-mathematics in two versions. After <tt class="docutils literal">#if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;,
-&quot;sphinx&quot;, &quot;mwiki&quot;)</tt> one places LaTeX mathematics, and after <tt class="docutils literal">#else</tt> one can
-write inline mathematics in a way that looks nice in plain text and
-wiki formats without support for mathematical typesetting.</p>
+<p>The support of LaTeX mathematics varies among the formats.  Output
+<tt class="docutils literal">latex</tt> and <tt class="docutils literal">pdflatex</tt> has of course full support. The <tt class="docutils literal">html</tt> format
+supports single equations and multiple equations via the align
+environment, also with labels. Although <tt class="docutils literal">sphinx</tt>, like <tt class="docutils literal">html</tt>, employs
+MathJax, it does not support labels in align environments.  Markdown
+(<tt class="docutils literal">pandoc</tt> format) allows single equations and inline mathematics.
+Going from Doconce to MS Word is most easily done by outputting in
+the <tt class="docutils literal">latex</tt> format and then using the Pandoc program to translate
+from LaTeX to MS Word (note that only a subset of LaTeX will be
+translated correctly).</p>
+<p>If the document targets formats with and without support of LaTeX
+mathematics, one can use the preprocessor to typeset the mathematics
+in two versions. After <tt class="docutils literal">#if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;, &quot;html&quot;,
+&quot;sphinx&quot;, &quot;mwiki&quot;, &quot;pandoc&quot;)</tt> one places LaTeX mathematics, and after
+<tt class="docutils literal">#else</tt> one can write inline mathematics in a way that looks nice in
+plain text and wiki formats without support for mathematical
+typesetting.</p>
 <div class="section" id="mathematics-for-powerpoint-openoffice">
 <h3>Mathematics for PowerPoint/OpenOffice</h3>
 <p>If you have LaTeX mathematics written in Doconce, it is fairly easy
 to generate PNG images of all mathematical formulas and equations for
-use with PowerPoint or OpenOffice documents.</p>
+use with PowerPoint or OpenOffice presentations.</p>
 <blockquote>
 <ol class="arabic simple">
 <li>Make a Sphinx version of the Doconce file.</li>

@@ -162,14 +162,16 @@ Blocks of mathematics are better typeset with raw LaTeX, inside
 <code>!bt</code> and <code>!et</code> (begin tex / end tex) instructions.
 The result looks like this:
 :<math>
-\begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-\end{eqnarray}
+\begin{align}
+{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+\end{align}
 </math>
-Of course, such blocks only looks nice in LaTeX. The raw
-LaTeX syntax appears in all other formats (but can still be useful
-for those who can read LaTeX syntax).
+Of course, such blocks only looks nice in formats with support
+for LaTeX mathematics, and here the align environment in particular
+(this includes <code>latex</code>, <code>pdflatex</code>, <code>html</code>, and <code>sphinx</code>). The raw
+LaTeX syntax appears in simpler formats, but can still be useful
+for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
 <code>!bc</code> and <code>!ec</code> instructions, respectively. Such blocks look like
@@ -765,7 +767,11 @@ There is another demo in the <code>docs/manual</code> directory which
 translates the more comprehensive documentation, <code>manual.do.txt</code>, to
 various formats. The <code>make.sh</code> script runs a set of translations.
 
-==== Dependencies and Installation ====
+
+
+== Installation of Doconce and its Dependencies ==
+
+==== Doconce ====
 
 Doconce itself is pure Python code hosted at http://code.google.com/p/doconce.  Its installation from the
 Mercurial (<code>hg</code>) source follows the standard procedure:
@@ -776,9 +782,36 @@ cd doconce
 sudo python setup.py install
 cd ..
 </code>
+Since Doconce is frequently updated, it is recommended to use the
+above procedure and whenever a problem occurs, make sure to
+update to the most recent version:
+<syntaxhighlight lang="bash">
+cd doconce
+hg pull
+hg update
+sudo python setup.py install
+</code>
+
+Debian GNU/Linux users can also run
+<syntaxhighlight lang="bash">
+sudo apt-get install doconce
+</code>
+This installs the latest release and not the most updated and bugfixed
+version.
+On Ubuntu one needs to run
+<syntaxhighlight lang="bash">
+sudo add-apt-repository ppa:scitools/ppa
+sudo apt-get update
+sudo apt-get install doconce
+</code>
+
+==== Dependencies ====
+
+==== Preprocessors ====
 
 If you make use of the [http://code.google.com/p/preprocess Preprocess]
 preprocessor, this program must be installed:
+
 <syntaxhighlight lang="bash">
 svn checkout http://preprocess.googlecode.com/svn/trunk/ preprocess
 cd preprocess
@@ -786,34 +819,45 @@ cd doconce
 sudo python setup.py install
 cd ..
 </code>
+
 A much more advanced alternative to Preprocess is
 [http://www.makotemplates.org Mako]. Its installation is most
 conveniently done by <code>pip</code>,
+
 <syntaxhighlight lang="bash">
 pip install Mako
 </code>
 This command requires <code>pip</code> to be installed. On Debian Linux systems,
 such as Ubuntu, the installation is simply done by
+
 <syntaxhighlight lang="bash">
 sudo apt-get install python-pip
 </code>
 Alternatively, one can install from the <code>pip</code> [http://pypi.python.org/pypi/pip source code].
 
-To make LaTeX
-documents (without going through the reStructuredText format) you
-need [http://code.google.com/p/ptex2tex ptex2tex], which is
-installed by
+==== Ptex2tex for LaTeX Output ====
+
+To make LaTeX documents with very flexible choice of typesetting of
+verbatim code blocks you need [http://code.google.com/p/ptex2tex ptex2tex],
+which is installed by
+
 <syntaxhighlight lang="bash">
 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
 sudo python setup.py install
+</code>
+It may happen that you need additional style files, you can run
+a script, <code>cp2texmf.sh</code>:
+
+<syntaxhighlight lang="bash">
 cd latex
 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
 cd ../..
 </code>
-As seen, <code>cp2texmf.sh</code> copies some special stylefiles that
+This script copies some special stylefiles that
 that <code>ptex2tex</code> potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
+
 <syntaxhighlight lang="bash">
 sudo apt-get install texlive-latex-extra
 </code>
@@ -821,20 +865,34 @@ on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the <code>~/texmf/tex/latex/misc</code> directory).
 
-The ''minted'' LaTeX style is offered by <code>ptex2tex</code> and popular among
-users. This style requires the package [http://pygments.org Pygments]:
+Note that the <code>doconce ptex2tex</code> command, which needs no installation
+beyond Doconce itself, can be used as a simpler alternative to the <code>ptex2tex</code>
+program.
+
+The ''minted'' LaTeX style is offered by <code>ptex2tex</code> and <code>doconce ptext2tex</code>
+is popular among many
+users. This style requires the package [http://pygments.org Pygments]
+to be installed:
 <syntaxhighlight lang="bash">
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
 </code>
-If you use the minted style, you have to enable it by running
-<code>ptex2tex -DMINTED</code> and then <code>latex -shell-escape</code>, see
-the the section [#From_Doconce_to_Other_Formats].
 
-For <code>rst</code> output and further transformation to LaTeX, HTML, XML,
-OpenOffice, and so on, one needs [http://docutils.sourceforge.net docutils].
-The installation can be done by
+If you use the minted style together with <code>ptex2tex</code>, you have to
+enable it by the <code>-DMINTED</code> command-line argument to <code>ptex2tex</code>.  All
+use of the minted style requires the <code>-shell-escape</code> command-line
+argument when running LaTeX, i.e., <code>latex -shell-escape</code> or <code>pdflatex
+-shell-escape</code>.
+
+<!--> Say something about anslistings.sty -->
+
+==== reStructuredText (reST) Output ====
+
+The <code>rst</code> output from Doconce allows further transformation to LaTeX,
+HTML, XML, OpenOffice, and so on, through the [http://docutils.sourceforge.net docutils] package.  The installation of the
+most recent version can be done by
+
 <syntaxhighlight lang="bash">
 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
@@ -850,7 +908,7 @@ There is a possibility to create PDF files from reST documents
 using ReportLab instead of LaTeX. The enabling software is
 [http://code.google.com/p/rst2pdf rst2pdf]. Either download the tarball
 or clone the svn repository, go to the <code>rst2pdf</code> directory and
-run <code>sudo python setup.py install</code>.
+run the usual <code>sudo python setup.py install</code>.
 
 
 Output to <code>sphinx</code> requires of course [http://sphinx.pocoo.org Sphinx],
@@ -862,6 +920,19 @@ sudo python setup.py install
 cd ..
 </code>
 
+==== Markdown and Pandoc Output ====
+
+The Doconce format <code>pandoc</code> outputs the document in the Pandoc
+extended Markdown format, which via the <code>pandoc</code> program can be
+translated to a range of other formats. Installation of [http://johnmacfarlane.net/pandoc/ Pandoc], written in Haskell, is most
+easily done by
+
+<syntaxhighlight lang="bash">
+sudo apt-get install pandoc
+</code>
+
+==== Epydoc Output ====
+
 When the output format is <code>epydoc</code> one needs that program too, installed
 by
 <syntaxhighlight lang="bash">
@@ -869,13 +940,6 @@ svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc
 cd epydoc
 sudo make install
 cd ..
-</code>
-
-Finally, translation to <code>pandoc</code> requires the
-[http://johnmacfarlane.net/pandoc/ Pandoc] program
-(written in Haskell) to be installed.
-<syntaxhighlight lang="bash">
-sudo apt-get install pandoc
 </code>
 
 ''Remark.'' Several of the packages above installed from source code
@@ -886,5 +950,3 @@ updates and bug fixes. For <code>svn</code> directories, go to the directory,
 run <code>svn update</code>, and then <code>sudo python setup.py install</code>. For
 Mercurial (<code>hg</code>) directories, go to the directory, run
 <code>hg pull; hg update</code>, and then <code>sudo python setup.py install</code>.
-Doconce itself is frequently updated so these commands should be
-run regularly.

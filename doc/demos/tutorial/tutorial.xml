@@ -141,12 +141,14 @@ backslashes. An inline formula like v = sin(x) is
 typeset as:</paragraph><literal_block xml:space="preserve">$\nu = \sin(x)$|$v = sin(x)$</literal_block><paragraph>The pipe symbol acts as a delimiter between LaTeX code and the plain text
 version of the formula.</paragraph><paragraph>Blocks of mathematics are better typeset with raw LaTeX, inside
 <literal>!bt</literal> and <literal>!et</literal> (begin tex / end tex) instructions.
-The result looks like this:</paragraph><literal_block xml:space="preserve">\begin{eqnarray}
-{\partial u\over\partial t} &amp;=&amp; \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &amp;=&amp; \nabla\cdot(q(u)\nabla v) + g
-\end{eqnarray}</literal_block><paragraph>Of course, such blocks only looks nice in LaTeX. The raw
-LaTeX syntax appears in all other formats (but can still be useful
-for those who can read LaTeX syntax).</paragraph><paragraph>You can have blocks of computer code, starting and ending with
+The result looks like this:</paragraph><literal_block xml:space="preserve">\begin{align}
+{\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
+{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g
+\end{align}</literal_block><paragraph>Of course, such blocks only looks nice in formats with support
+for LaTeX mathematics, and here the align environment in particular
+(this includes <literal>latex</literal>, <literal>pdflatex</literal>, <literal>html</literal>, and <literal>sphinx</literal>). The raw
+LaTeX syntax appears in simpler formats, but can still be useful
+for those who can read LaTeX syntax.</paragraph><paragraph>You can have blocks of computer code, starting and ending with
 <literal>!bc</literal> and <literal>!ec</literal> instructions, respectively. Such blocks look like:</paragraph><literal_block xml:space="preserve">from math import sin, pi
 def myfunc(x):
     return sin(pi*x)
@@ -454,12 +456,21 @@ gives a quick introduction to how Doconce is used in a real case.
 <reference name="Here" refuri="https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html">Here</reference><target ids="here" names="here" refuri="https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html"/>
 is a sample of how this tutorial looks in different formats.</paragraph><paragraph>There is another demo in the <literal>docs/manual</literal> directory which
 translates the more comprehensive documentation, <literal>manual.do.txt</literal>, to
-various formats. The <literal>make.sh</literal> script runs a set of translations.</paragraph></section><section ids="dependencies-and-installation" names="dependencies\ and\ installation"><title>Dependencies and Installation</title><paragraph>Doconce itself is pure Python code hosted at <reference name="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce">http://code.google.com/p/doconce</reference><target ids="http-code-google-com-p-doconce" names="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce"/>.  Its installation from the
+various formats. The <literal>make.sh</literal> script runs a set of translations.</paragraph></section></section><section ids="installation-of-doconce-and-its-dependencies" names="installation\ of\ doconce\ and\ its\ dependencies"><title>Installation of Doconce and its Dependencies</title><section ids="doconce" names="doconce"><title>Doconce</title><paragraph>Doconce itself is pure Python code hosted at <reference name="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce">http://code.google.com/p/doconce</reference><target ids="http-code-google-com-p-doconce" names="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce"/>.  Its installation from the
 Mercurial (<literal>hg</literal>) source follows the standard procedure:</paragraph><literal_block xml:space="preserve"># Doconce
 hg clone https://doconce.googlecode.com/hg/ doconce
 cd doconce
 sudo python setup.py install
-cd ..</literal_block><paragraph>If you make use of the <reference name="Preprocess" refuri="http://code.google.com/p/preprocess">Preprocess</reference><target ids="preprocess" names="preprocess" refuri="http://code.google.com/p/preprocess"/>
+cd ..</literal_block><paragraph>Since Doconce is frequently updated, it is recommended to use the
+above procedure and whenever a problem occurs, make sure to
+update to the most recent version:</paragraph><literal_block xml:space="preserve">cd doconce
+hg pull
+hg update
+sudo python setup.py install</literal_block><paragraph>Debian GNU/Linux users can also run:</paragraph><literal_block xml:space="preserve">sudo apt-get install doconce</literal_block><paragraph>This installs the latest release and not the most updated and bugfixed
+version.
+On Ubuntu one needs to run:</paragraph><literal_block xml:space="preserve">sudo add-apt-repository ppa:scitools/ppa
+sudo apt-get update
+sudo apt-get install doconce</literal_block></section><section ids="dependencies" names="dependencies"><title>Dependencies</title><section ids="preprocessors" names="preprocessors"><title>Preprocessors</title><paragraph>If you make use of the <reference name="Preprocess" refuri="http://code.google.com/p/preprocess">Preprocess</reference><target ids="preprocess" names="preprocess" refuri="http://code.google.com/p/preprocess"/>
 preprocessor, this program must be installed:</paragraph><literal_block xml:space="preserve">svn checkout http://preprocess.googlecode.com/svn/trunk/ preprocess
 cd preprocess
 cd doconce
@@ -467,49 +478,53 @@ sudo python setup.py install
 cd ..</literal_block><paragraph>A much more advanced alternative to Preprocess is
 <reference name="Mako" refuri="http://www.makotemplates.org">Mako</reference><target ids="mako" names="mako" refuri="http://www.makotemplates.org"/>. Its installation is most
 conveniently done by <literal>pip</literal>:</paragraph><literal_block xml:space="preserve">pip install Mako</literal_block><paragraph>This command requires <literal>pip</literal> to be installed. On Debian Linux systems,
-such as Ubuntu, the installation is simply done by:</paragraph><literal_block xml:space="preserve">sudo apt-get install python-pip</literal_block><paragraph>Alternatively, one can install from the <literal>pip</literal> <reference name="source code" refuri="http://pypi.python.org/pypi/pip">source code</reference><target ids="source-code" names="source\ code" refuri="http://pypi.python.org/pypi/pip"/>.</paragraph><paragraph>To make LaTeX
-documents (without going through the reStructuredText format) you
-need <reference name="ptex2tex" refuri="http://code.google.com/p/ptex2tex">ptex2tex</reference><target ids="ptex2tex" names="ptex2tex" refuri="http://code.google.com/p/ptex2tex"/>, which is
-installed by:</paragraph><literal_block xml:space="preserve">svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
+such as Ubuntu, the installation is simply done by:</paragraph><literal_block xml:space="preserve">sudo apt-get install python-pip</literal_block><paragraph>Alternatively, one can install from the <literal>pip</literal> <reference name="source code" refuri="http://pypi.python.org/pypi/pip">source code</reference><target ids="source-code" names="source\ code" refuri="http://pypi.python.org/pypi/pip"/>.</paragraph></section><section ids="ptex2tex-for-latex-output" names="ptex2tex\ for\ latex\ output"><title>Ptex2tex for LaTeX Output</title><paragraph>To make LaTeX documents with very flexible choice of typesetting of
+verbatim code blocks you need <reference name="ptex2tex" refuri="http://code.google.com/p/ptex2tex">ptex2tex</reference><target ids="ptex2tex" names="ptex2tex" refuri="http://code.google.com/p/ptex2tex"/>,
+which is installed by:</paragraph><literal_block xml:space="preserve">svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
-sudo python setup.py install
-cd latex
+sudo python setup.py install</literal_block><paragraph>It may happen that you need additional style files, you can run
+a script, <literal>cp2texmf.sh</literal>:</paragraph><literal_block xml:space="preserve">cd latex
 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
-cd ../..</literal_block><paragraph>As seen, <literal>cp2texmf.sh</literal> copies some special stylefiles that
+cd ../..</literal_block><paragraph>This script copies some special stylefiles that
 that <literal>ptex2tex</literal> potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by:</paragraph><literal_block xml:space="preserve">sudo apt-get install texlive-latex-extra</literal_block><paragraph>on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
-manually in the <literal>~/texmf/tex/latex/misc</literal> directory).</paragraph><paragraph>The <emphasis>minted</emphasis> LaTeX style is offered by <literal>ptex2tex</literal> and popular among
-users. This style requires the package <reference name="Pygments" refuri="http://pygments.org">Pygments</reference><target ids="pygments" names="pygments" refuri="http://pygments.org"/>:</paragraph><literal_block xml:space="preserve">hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
+manually in the <literal>~/texmf/tex/latex/misc</literal> directory).</paragraph><paragraph>Note that the <literal>doconce ptex2tex</literal> command, which needs no installation
+beyond Doconce itself, can be used as a simpler alternative to the <literal>ptex2tex</literal>
+program.</paragraph><paragraph>The <emphasis>minted</emphasis> LaTeX style is offered by <literal>ptex2tex</literal> and <literal>doconce ptext2tex</literal>
+is popular among many
+users. This style requires the package <reference name="Pygments" refuri="http://pygments.org">Pygments</reference><target ids="pygments" names="pygments" refuri="http://pygments.org"/>
+to be installed:</paragraph><literal_block xml:space="preserve">hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
-sudo python setup.py install</literal_block><paragraph>If you use the minted style, you have to enable it by running
-<literal>ptex2tex -DMINTED</literal> and then <literal>latex -shell-escape</literal>, see
-the the section <reference name="From Doconce to Other Formats" refid="from-doconce-to-other-formats">From Doconce to Other Formats</reference>.</paragraph><paragraph>For <literal>rst</literal> output and further transformation to LaTeX, HTML, XML,
-OpenOffice, and so on, one needs <reference name="docutils" refuri="http://docutils.sourceforge.net">docutils</reference><target ids="docutils" names="docutils" refuri="http://docutils.sourceforge.net"/>.
-The installation can be done by:</paragraph><literal_block xml:space="preserve">svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
+sudo python setup.py install</literal_block><paragraph>If you use the minted style together with <literal>ptex2tex</literal>, you have to
+enable it by the <literal>-DMINTED</literal> command-line argument to <literal>ptex2tex</literal>.  All
+use of the minted style requires the <literal>-shell-escape</literal> command-line
+argument when running LaTeX, i.e., <literal>latex -shell-escape</literal> or <literal>pdflatex
+-shell-escape</literal>.</paragraph><comment xml:space="preserve">Say something about anslistings.sty</comment></section><section ids="restructuredtext-rest-output" names="restructuredtext\ (rest)\ output"><title>reStructuredText (reST) Output</title><paragraph>The <literal>rst</literal> output from Doconce allows further transformation to LaTeX,
+HTML, XML, OpenOffice, and so on, through the <reference name="docutils" refuri="http://docutils.sourceforge.net">docutils</reference><target ids="docutils" names="docutils" refuri="http://docutils.sourceforge.net"/> package.  The installation of the
+most recent version can be done by:</paragraph><literal_block xml:space="preserve">svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
 sudo python setup.py install
 cd ..</literal_block><paragraph>To use the OpenOffice suite you will typically on Debian systems install:</paragraph><literal_block xml:space="preserve">sudo apt-get install unovonv libreoffice libreoffice-dmaths</literal_block><paragraph>There is a possibility to create PDF files from reST documents
 using ReportLab instead of LaTeX. The enabling software is
 <reference name="rst2pdf" refuri="http://code.google.com/p/rst2pdf">rst2pdf</reference><target ids="rst2pdf" names="rst2pdf" refuri="http://code.google.com/p/rst2pdf"/>. Either download the tarball
 or clone the svn repository, go to the <literal>rst2pdf</literal> directory and
-run <literal>sudo python setup.py install</literal>.</paragraph><system_message backrefs="id5" level="2" line="403" source="tutorial.rst" type="WARNING"><paragraph>Duplicate explicit target name: &quot;sphinx&quot;.</paragraph></system_message><paragraph>Output to <literal>sphinx</literal> requires of course <reference name="Sphinx" refuri="http://sphinx.pocoo.org">Sphinx</reference><target dupnames="sphinx" ids="id5" refuri="http://sphinx.pocoo.org"/>,
+run the usual <literal>sudo python setup.py install</literal>.</paragraph><system_message backrefs="id5" level="2" line="968" source="tutorial.rst" type="WARNING"><paragraph>Duplicate explicit target name: &quot;sphinx&quot;.</paragraph></system_message><paragraph>Output to <literal>sphinx</literal> requires of course <reference name="Sphinx" refuri="http://sphinx.pocoo.org">Sphinx</reference><target dupnames="sphinx" ids="id5" refuri="http://sphinx.pocoo.org"/>,
 installed by:</paragraph><literal_block xml:space="preserve">hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
 sudo python setup.py install
-cd ..</literal_block><paragraph>When the output format is <literal>epydoc</literal> one needs that program too, installed
+cd ..</literal_block></section><section ids="markdown-and-pandoc-output" names="markdown\ and\ pandoc\ output"><title>Markdown and Pandoc Output</title><paragraph>The Doconce format <literal>pandoc</literal> outputs the document in the Pandoc
+extended Markdown format, which via the <literal>pandoc</literal> program can be
+translated to a range of other formats. Installation of <reference name="Pandoc" refuri="http://johnmacfarlane.net/pandoc/">Pandoc</reference><target ids="id6" names="pandoc" refuri="http://johnmacfarlane.net/pandoc/"/>, written in Haskell, is most
+easily done by:</paragraph><literal_block xml:space="preserve">sudo apt-get install pandoc</literal_block></section><section ids="epydoc-output" names="epydoc\ output"><title>Epydoc Output</title><paragraph>When the output format is <literal>epydoc</literal> one needs that program too, installed
 by:</paragraph><literal_block xml:space="preserve">svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc
 cd epydoc
 sudo make install
-cd ..</literal_block><paragraph>Finally, translation to <literal>pandoc</literal> requires the
-<reference name="Pandoc" refuri="http://johnmacfarlane.net/pandoc/">Pandoc</reference><target ids="id6" names="pandoc" refuri="http://johnmacfarlane.net/pandoc/"/> program
-(written in Haskell) to be installed:</paragraph><literal_block xml:space="preserve">sudo apt-get install pandoc</literal_block><paragraph><emphasis>Remark.</emphasis> Several of the packages above installed from source code
+cd ..</literal_block><paragraph><emphasis>Remark.</emphasis> Several of the packages above installed from source code
 are also available in Debian-based system through the
 <literal>apt-get install</literal> command. However, we recommend installation directly
 from the version control system repository as there might be important
 updates and bug fixes. For <literal>svn</literal> directories, go to the directory,
 run <literal>svn update</literal>, and then <literal>sudo python setup.py install</literal>. For
 Mercurial (<literal>hg</literal>) directories, go to the directory, run
-<literal>hg pull; hg update</literal>, and then <literal>sudo python setup.py install</literal>.
-Doconce itself is frequently updated so these commands should be
-run regularly.</paragraph></section></section></document>
+<literal>hg pull; hg update</literal>, and then <literal>sudo python setup.py install</literal>.</paragraph></section></section></section></document>

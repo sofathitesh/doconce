@@ -183,10 +183,19 @@ formats.
 
 %___________________________________________________________________________
 
+\section*{\phantomsection%
+  Installation of Doconce and its Dependencies%
+  \addcontentsline{toc}{section}{Installation of Doconce and its Dependencies}%
+  \label{installation-of-doconce-and-its-dependencies}%
+}
+
+
+%___________________________________________________________________________
+
 \subsection*{\phantomsection%
-  Dependencies and Installation%
-  \addcontentsline{toc}{subsection}{Dependencies and Installation}%
-  \label{dependencies-and-installation}%
+  Doconce%
+  \addcontentsline{toc}{subsection}{Doconce}%
+  \label{doconce}%
 }
 
 Doconce itself is pure Python code hosted at \url{http://code.google.com/p/doconce}.  Its installation from the
@@ -200,6 +209,54 @@ sudo~python~setup.py~install\\
 cd~..
 }
 \end{quote}
+
+Since Doconce is frequently updated, it is recommended to use the
+above procedure and whenever a problem occurs, make sure to
+update to the most recent version:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+cd~doconce\\
+hg~pull\\
+hg~update\\
+sudo~python~setup.py~install
+}
+\end{quote}
+
+Debian GNU/Linux users can also run:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~apt-get~install~doconce
+}
+\end{quote}
+
+This installs the latest release and not the most updated and bugfixed
+version.
+On Ubuntu one needs to run:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~add-apt-repository~ppa:scitools/ppa\\
+sudo~apt-get~update\\
+sudo~apt-get~install~doconce
+}
+\end{quote}
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Dependencies%
+  \addcontentsline{toc}{subsection}{Dependencies}%
+  \label{dependencies}%
+}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Preprocessors%
+  \addcontentsline{toc}{subsubsection}{Preprocessors}%
+  \label{preprocessors}%
+}
 
 If you make use of the \href{http://code.google.com/p/preprocess}{Preprocess}
 preprocessor, this program must be installed:
@@ -232,22 +289,37 @@ sudo~apt-get~install~python-pip
 
 Alternatively, one can install from the \texttt{pip} \href{http://pypi.python.org/pypi/pip}{source code}.
 
-To make LaTeX
-documents (without going through the reStructuredText format) you
-need \href{http://code.google.com/p/ptex2tex}{ptex2tex}, which is
-installed by:
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Ptex2tex for LaTeX Output%
+  \addcontentsline{toc}{subsubsection}{Ptex2tex for LaTeX Output}%
+  \label{ptex2tex-for-latex-output}%
+}
+
+To make LaTeX documents with very flexible choice of typesetting of
+verbatim code blocks you need \href{http://code.google.com/p/ptex2tex}{ptex2tex},
+which is installed by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 svn~checkout~http://ptex2tex.googlecode.com/svn/trunk/~ptex2tex\\
 cd~ptex2tex\\
-sudo~python~setup.py~install\\
+sudo~python~setup.py~install
+}
+\end{quote}
+
+It may happen that you need additional style files, you can run
+a script, \texttt{cp2texmf.sh}:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
 cd~latex\\
 sh~cp2texmf.sh~~\#~copy~stylefiles~to~\textasciitilde{}/texmf~directory\\
 cd~../..
 }
 \end{quote}
 
-As seen, \texttt{cp2texmf.sh} copies some special stylefiles that
+This script copies some special stylefiles that
 that \texttt{ptex2tex} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by:
 %
@@ -260,8 +332,14 @@ on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the \texttt{\textasciitilde{}/texmf/tex/latex/misc} directory).
 
-The \emph{minted} LaTeX style is offered by \texttt{ptex2tex} and popular among
-users. This style requires the package \href{http://pygments.org}{Pygments}:
+Note that the \texttt{doconce ptex2tex} command, which needs no installation
+beyond Doconce itself, can be used as a simpler alternative to the \texttt{ptex2tex}
+program.
+
+The \emph{minted} LaTeX style is offered by \texttt{ptex2tex} and \texttt{doconce ptext2tex}
+is popular among many
+users. This style requires the package \href{http://pygments.org}{Pygments}
+to be installed:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 hg~clone~ssh://hg@bitbucket.org/birkenfeld/pygments-main~pygments\\
@@ -270,13 +348,26 @@ sudo~python~setup.py~install
 }
 \end{quote}
 
-If you use the minted style, you have to enable it by running
-\texttt{ptex2tex -DMINTED} and then \texttt{latex -shell-escape}, see
-the the section \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats}.
+If you use the minted style together with \texttt{ptex2tex}, you have to
+enable it by the \texttt{-DMINTED} command-line argument to \texttt{ptex2tex}.  All
+use of the minted style requires the \texttt{-shell-escape} command-line
+argument when running LaTeX, i.e., \texttt{latex -shell-escape} or \texttt{pdflatex
+-shell-escape}.
 
-For \texttt{rst} output and further transformation to LaTeX, HTML, XML,
-OpenOffice, and so on, one needs \href{http://docutils.sourceforge.net}{docutils}.
-The installation can be done by:
+% Say something about anslistings.sty
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  reStructuredText (reST) Output%
+  \addcontentsline{toc}{subsubsection}{reStructuredText (reST) Output}%
+  \label{restructuredtext-rest-output}%
+}
+
+The \texttt{rst} output from Doconce allows further transformation to LaTeX,
+HTML, XML, OpenOffice, and so on, through the \href{http://docutils.sourceforge.net}{docutils} package.  The installation of the
+most recent version can be done by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 svn~checkout~http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils\\
@@ -297,7 +388,7 @@ There is a possibility to create PDF files from reST documents
 using ReportLab instead of LaTeX. The enabling software is
 \href{http://code.google.com/p/rst2pdf}{rst2pdf}. Either download the tarball
 or clone the svn repository, go to the \texttt{rst2pdf} directory and
-run \texttt{sudo python setup.py install}.
+run the usual \texttt{sudo python setup.py install}.
 
 Output to \texttt{sphinx} requires of course \href{http://sphinx.pocoo.org}{Sphinx},
 installed by:
@@ -310,6 +401,34 @@ cd~..
 }
 \end{quote}
 
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Markdown and Pandoc Output%
+  \addcontentsline{toc}{subsubsection}{Markdown and Pandoc Output}%
+  \label{markdown-and-pandoc-output}%
+}
+
+The Doconce format \texttt{pandoc} outputs the document in the Pandoc
+extended Markdown format, which via the \texttt{pandoc} program can be
+translated to a range of other formats. Installation of \href{http://johnmacfarlane.net/pandoc/}{Pandoc}, written in Haskell, is most
+easily done by:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~apt-get~install~pandoc
+}
+\end{quote}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Epydoc Output%
+  \addcontentsline{toc}{subsubsection}{Epydoc Output}%
+  \label{epydoc-output}%
+}
+
 When the output format is \texttt{epydoc} one needs that program too, installed
 by:
 %
@@ -321,15 +440,6 @@ cd~..
 }
 \end{quote}
 
-Finally, translation to \texttt{pandoc} requires the
-\href{http://johnmacfarlane.net/pandoc/}{Pandoc} program
-(written in Haskell) to be installed:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-sudo~apt-get~install~pandoc
-}
-\end{quote}
-
 \emph{Remark.} Several of the packages above installed from source code
 are also available in Debian-based system through the
 \texttt{apt-get install} command. However, we recommend installation directly
@@ -338,8 +448,6 @@ updates and bug fixes. For \texttt{svn} directories, go to the directory,
 run \texttt{svn update}, and then \texttt{sudo python setup.py install}. For
 Mercurial (\texttt{hg}) directories, go to the directory, run
 \texttt{hg pull; hg update}, and then \texttt{sudo python setup.py install}.
-Doconce itself is frequently updated so these commands should be
-run regularly.
 
 % Here are some comment lines that do not affect any formatting
 
@@ -1661,13 +1769,14 @@ All such comments can easily be removed from the \texttt{.do.txt} file
 (see the chapter \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats}).
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
-Most formats leave this syntax as it is (including to dollar signs),
-hence nice math formatting is only obtained in LaTeX (Epytext has some
-inline math support that is utilized).  However, mathematical
-expressions in LaTeX syntax often contains special formatting
-commands, which may appear annoying in plain text. Doconce therefore
-supports an extended inline math syntax where the writer can provide
-an alternative syntax suited for formats close to plain ASCII:
+Many formats leave this syntax as it is (including to dollar signs),
+hence nice math formatting is only obtained in LaTeX, HTML, MediaWiki,
+and Sphinx (Epytext has some inline math support that is utilized).
+However, mathematical expressions in LaTeX syntax often contains
+special formatting commands, which may appear annoying in plain
+text. Doconce therefore supports an extended inline math syntax where
+the writer can provide an alternative syntax suited for formats close
+to plain ASCII:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Here~is~an~example~on~a~linear~system\\
@@ -1679,7 +1788,8 @@ where~\$\textbackslash{}bf~A\$|\$A\$~is~an~\$n\textbackslash{}times~n\$|\$nxn\$~
 
 That is, we provide two alternative expressions, both enclosed in
 dollar signs and separated by a pipe symbol, the expression to the
-left is used in LaTeX, while the expression to the right is used for
+left is used in formats with LaTeX support (\texttt{latex}, \texttt{pdflatex}, \texttt{html},
+\texttt{sphinx}, \texttt{mwiki}), while the expression to the right is used for
 all other formats.  The above text is typeset as ``Here is an example
 on a linear system Ax=b, where A
 is an nxn matrix, and x and b
@@ -2279,18 +2389,24 @@ Here is the result of the above \texttt{!bt} - \texttt{!et} block:
 }
 \end{quote}
 
-This text looks ugly in all Doconce supported formats, except from
-LaTeX and Sphinx.  If HTML is desired, and Sphinx is not an option,
-one can filter the Doconce text first to LaTeX and then use the tex4ht
-tool to convert the dvi file to HTML, or one could just link a PDF
-file (made from LaTeX) directly from HTML.
+The support of LaTeX mathematics varies among the formats.  Output
+\texttt{latex} and \texttt{pdflatex} has of course full support. The \texttt{html} format
+supports single equations and multiple equations via the align
+environment, also with labels. Although \texttt{sphinx}, like \texttt{html}, employs
+MathJax, it does not support labels in align environments.  Markdown
+(\texttt{pandoc} format) allows single equations and inline mathematics.
+Going from Doconce to MS Word is most easily done by outputting in
+the \texttt{latex} format and then using the Pandoc program to translate
+from LaTeX to MS Word (note that only a subset of LaTeX will be
+translated correctly).
 
-If the document targets both LaTeX, Sphinx, and other formats like
-plain text and wiki, one can use the preprocessor to typeset the
-mathematics in two versions. After \texttt{\#if FORMAT in ("latex", "pdflatex",
-"sphinx", "mwiki")} one places LaTeX mathematics, and after \texttt{\#else} one can
-write inline mathematics in a way that looks nice in plain text and
-wiki formats without support for mathematical typesetting.
+If the document targets formats with and without support of LaTeX
+mathematics, one can use the preprocessor to typeset the mathematics
+in two versions. After \texttt{\#if FORMAT in ("latex", "pdflatex", "html",
+"sphinx", "mwiki", "pandoc")} one places LaTeX mathematics, and after
+\texttt{\#else} one can write inline mathematics in a way that looks nice in
+plain text and wiki formats without support for mathematical
+typesetting.
 
 
 %___________________________________________________________________________
@@ -2303,7 +2419,7 @@ wiki formats without support for mathematical typesetting.
 
 If you have LaTeX mathematics written in Doconce, it is fairly easy
 to generate PNG images of all mathematical formulas and equations for
-use with PowerPoint or OpenOffice documents.
+use with PowerPoint or OpenOffice presentations.
 %
 \begin{quote}
 \setcounter{listcnt0}{0}

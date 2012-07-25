@@ -451,13 +451,15 @@ version of the formula.
 Blocks of mathematics are better typeset with raw {\LaTeX}, inside
 \code{!bt} and \code{!et} (begin tex / end tex) instructions.
 The result looks like this:
-\begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-\end{eqnarray}
-Of course, such blocks only looks nice in {\LaTeX}. The raw
-{\LaTeX} syntax appears in all other formats (but can still be useful
-for those who can read {\LaTeX} syntax).
+\begin{align}
+{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+\end{align}
+Of course, such blocks only looks nice in formats with support
+for {\LaTeX} mathematics, and here the align environment in particular
+(this includes \code{latex}, \code{pdflatex}, \code{html}, and \code{sphinx}). The raw
+{\LaTeX} syntax appears in simpler formats, but can still be useful
+for those who can read {\LaTeX} syntax.
 
 You can have blocks of computer code, starting and ending with
 \code{!bc} and \code{!ec} instructions, respectively. Such blocks look like
@@ -1073,7 +1075,10 @@ There is another demo in the \code{docs/manual} directory which
 translates the more comprehensive documentation, \code{manual.do.txt}, to
 various formats. The \code{make.sh} script runs a set of translations.
 
-\subsection{Dependencies and Installation}
+
+\section{Installation of Doconce and its Dependencies}
+
+\subsection{Doconce}
 
 Doconce itself is pure Python code hosted at \href{{http://code.google.com/p/doconce}}{\nolinkurl{http://code.google.com/p/doconce}}.  Its installation from the
 Mercurial (\code{hg}) source follows the standard procedure:
@@ -1084,9 +1089,35 @@ cd doconce
 sudo python setup.py install
 cd ..
 \esys
+Since Doconce is frequently updated, it is recommended to use the
+above procedure and whenever a problem occurs, make sure to
+update to the most recent version:
+\bsys
+cd doconce
+hg pull
+hg update
+sudo python setup.py install
+\esys
 
+Debian GNU/Linux users can also run
+\bsys
+sudo apt-get install doconce
+\esys
+This installs the latest release and not the most updated and bugfixed
+version.
+On Ubuntu one needs to run
+\bsys
+sudo add-apt-repository ppa:scitools/ppa
+sudo apt-get update
+sudo apt-get install doconce
+\esys
+
+\subsection{Dependencies}
+
+\paragraph{Preprocessors.}
 If you make use of the \href{{http://code.google.com/p/preprocess}}{Preprocess}
 preprocessor, this program must be installed:
+
 \bsys
 svn checkout http://preprocess.googlecode.com/svn/trunk/ preprocess
 cd preprocess
@@ -1094,34 +1125,44 @@ cd doconce
 sudo python setup.py install
 cd ..
 \esys
+
 A much more advanced alternative to Preprocess is
 \href{{http://www.makotemplates.org}}{Mako}. Its installation is most
 conveniently done by \code{pip},
+
 \bsys
 pip install Mako
 \esys
 This command requires \code{pip} to be installed. On Debian Linux systems,
 such as Ubuntu, the installation is simply done by
+
 \bsys
 sudo apt-get install python-pip
 \esys
 Alternatively, one can install from the \code{pip} \href{{http://pypi.python.org/pypi/pip}}{source code}.
 
-To make {\LaTeX}
-documents (without going through the reStructuredText format) you
-need \href{{http://code.google.com/p/ptex2tex}}{ptex2tex}, which is
-installed by
+\paragraph{Ptex2tex for {\LaTeX} Output.}
+To make {\LaTeX} documents with very flexible choice of typesetting of
+verbatim code blocks you need \href{{http://code.google.com/p/ptex2tex}}{ptex2tex},
+which is installed by
+
 \bsys
 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
 sudo python setup.py install
+\esys
+It may happen that you need additional style files, you can run
+a script, \code{cp2texmf.sh}:
+
+\bsys
 cd latex
 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
 cd ../..
 \esys
-As seen, \code{cp2texmf.sh} copies some special stylefiles that
+This script copies some special stylefiles that
 that \code{ptex2tex} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
+
 \bsys
 sudo apt-get install texlive-latex-extra
 \esys
@@ -1129,20 +1170,33 @@ on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the \code{~/texmf/tex/latex/misc} directory).
 
-The \emph{minted} {\LaTeX} style is offered by \code{ptex2tex} and popular among
-users. This style requires the package \href{{http://pygments.org}}{Pygments}:
+Note that the \code{doconce ptex2tex} command, which needs no installation
+beyond Doconce itself, can be used as a simpler alternative to the \code{ptex2tex}
+program.
+
+The \emph{minted} {\LaTeX} style is offered by \code{ptex2tex} and \code{doconce ptext2tex}
+is popular among many
+users. This style requires the package \href{{http://pygments.org}}{Pygments}
+to be installed:
 \bsys
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
 \esys
-If you use the minted style, you have to enable it by running
-\code{ptex2tex -DMINTED} and then \code{latex -shell-escape}, see
-the Section~\ref{doconce2formats}.
 
-For \code{rst} output and further transformation to {\LaTeX}, HTML, XML,
-OpenOffice, and so on, one needs \href{{http://docutils.sourceforge.net}}{docutils}.
-The installation can be done by
+If you use the minted style together with \code{ptex2tex}, you have to
+enable it by the \code{-DMINTED} command-line argument to \code{ptex2tex}.  All
+use of the minted style requires the \code{-shell-escape} command-line
+argument when running {\LaTeX}, i.e., \code{latex -shell-escape} or \code{pdflatex
+-shell-escape}.
+
+% Say something about anslistings.sty
+
+\paragraph{reStructuredText (reST) Output.}
+The \code{rst} output from Doconce allows further transformation to {\LaTeX},
+HTML, XML, OpenOffice, and so on, through the \href{{http://docutils.sourceforge.net}}{docutils} package.  The installation of the
+most recent version can be done by
+
 \bsys
 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
@@ -1158,7 +1212,7 @@ There is a possibility to create PDF files from reST documents
 using ReportLab instead of {\LaTeX}. The enabling software is
 \href{{http://code.google.com/p/rst2pdf}}{rst2pdf}. Either download the tarball
 or clone the svn repository, go to the \code{rst2pdf} directory and
-run \code{sudo python setup.py install}.
+run the usual \code{sudo python setup.py install}.
 
 
 Output to \code{sphinx} requires of course \href{{http://sphinx.pocoo.org}}{Sphinx},
@@ -1170,6 +1224,17 @@ sudo python setup.py install
 cd ..
 \esys
 
+\paragraph{Markdown and Pandoc Output.}
+The Doconce format \code{pandoc} outputs the document in the Pandoc
+extended Markdown format, which via the \code{pandoc} program can be
+translated to a range of other formats. Installation of \href{{http://johnmacfarlane.net/pandoc/}}{Pandoc}, written in Haskell, is most
+easily done by
+
+\bsys
+sudo apt-get install pandoc
+\esys
+
+\paragraph{Epydoc Output.}
 When the output format is \code{epydoc} one needs that program too, installed
 by
 \bsys
@@ -1177,13 +1242,6 @@ svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc
 cd epydoc
 sudo make install
 cd ..
-\esys
-
-Finally, translation to \code{pandoc} requires the
-\href{{http://johnmacfarlane.net/pandoc/}}{Pandoc} program
-(written in Haskell) to be installed.
-\bsys
-sudo apt-get install pandoc
 \esys
 
 \paragraph{Remark.}
@@ -1195,8 +1253,6 @@ updates and bug fixes. For \code{svn} directories, go to the directory,
 run \code{svn update}, and then \code{sudo python setup.py install}. For
 Mercurial (\code{hg}) directories, go to the directory, run
 \code{hg pull; hg update}, and then \code{sudo python setup.py install}.
-Doconce itself is frequently updated so these commands should be
-run regularly.
 
 
 \printindex

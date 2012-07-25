@@ -325,14 +325,16 @@ Blocks of mathematics are better typeset with raw LaTeX, inside
 <tt>!bt</tt> and <tt>!et</tt> (begin tex / end tex) instructions.
 The result looks like this:
 $$
-\begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-\end{eqnarray}
+\begin{align}
+{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+\end{align}
 $$
-Of course, such blocks only looks nice in LaTeX. The raw
-LaTeX syntax appears in all other formats (but can still be useful
-for those who can read LaTeX syntax).
+Of course, such blocks only looks nice in formats with support
+for LaTeX mathematics, and here the align environment in particular
+(this includes <tt>latex</tt>, <tt>pdflatex</tt>, <tt>html</tt>, and <tt>sphinx</tt>). The raw
+LaTeX syntax appears in simpler formats, but can still be useful
+for those who can read LaTeX syntax.
 
 <P>
 You can have blocks of computer code, starting and ending with
@@ -1081,7 +1083,9 @@ translates the more comprehensive documentation, <tt>manual.do.txt</tt>, to
 various formats. The <tt>make.sh</tt> script runs a set of translations.
 
 <P>
-<h3>Dependencies and Installation</h3>
+<h2>Installation of Doconce and its Dependencies</h2>
+<P>
+<h3>Doconce</h3>
 <P>
 Doconce itself is pure Python code hosted at <a href="http://code.google.com/p/doconce"><tt>http://code.google.com/p/doconce</tt></a>.  Its installation from the
 Mercurial (<tt>hg</tt>) source follows the standard procedure:
@@ -1094,10 +1098,45 @@ sudo python setup.py install
 cd ..
 </pre>
 </blockquote>   <! -- end verbatim block -->
+Since Doconce is frequently updated, it is recommended to use the
+above procedure and whenever a problem occurs, make sure to
+update to the most recent version:
+<blockquote>    <!-- begin verbatim block  sys-->
+<pre>
+cd doconce
+hg pull
+hg update
+sudo python setup.py install
+</pre>
+</blockquote>   <! -- end verbatim block -->
 
+<P>
+Debian GNU/Linux users can also run
+<blockquote>    <!-- begin verbatim block  sys-->
+<pre>
+sudo apt-get install doconce
+</pre>
+</blockquote>   <! -- end verbatim block -->
+This installs the latest release and not the most updated and bugfixed
+version.
+On Ubuntu one needs to run
+<blockquote>    <!-- begin verbatim block  sys-->
+<pre>
+sudo add-apt-repository ppa:scitools/ppa
+sudo apt-get update
+sudo apt-get install doconce
+</pre>
+</blockquote>   <! -- end verbatim block -->
+
+<P>
+<h3>Dependencies</h3>
+<P>
+<h4>Preprocessors</h4>
 <P>
 If you make use of the <a href="http://code.google.com/p/preprocess">Preprocess</a>
 preprocessor, this program must be installed:
+
+<P>
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
 svn checkout http://preprocess.googlecode.com/svn/trunk/ preprocess
@@ -1107,9 +1146,13 @@ sudo python setup.py install
 cd ..
 </pre>
 </blockquote>   <! -- end verbatim block -->
+
+<P>
 A much more advanced alternative to Preprocess is
 <a href="http://www.makotemplates.org">Mako</a>. Its installation is most
 conveniently done by <tt>pip</tt>,
+
+<P>
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
 pip install Mako
@@ -1117,6 +1160,8 @@ pip install Mako
 </blockquote>   <! -- end verbatim block -->
 This command requires <tt>pip</tt> to be installed. On Debian Linux systems,
 such as Ubuntu, the installation is simply done by
+
+<P>
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
 sudo apt-get install python-pip
@@ -1125,23 +1170,36 @@ sudo apt-get install python-pip
 Alternatively, one can install from the <tt>pip</tt> <a href="http://pypi.python.org/pypi/pip">source code</a>.
 
 <P>
-To make LaTeX
-documents (without going through the reStructuredText format) you
-need <a href="http://code.google.com/p/ptex2tex">ptex2tex</a>, which is
-installed by
+<h4>Ptex2tex for LaTeX Output</h4>
+<P>
+To make LaTeX documents with very flexible choice of typesetting of
+verbatim code blocks you need <a href="http://code.google.com/p/ptex2tex">ptex2tex</a>,
+which is installed by
+
+<P>
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
 sudo python setup.py install
+</pre>
+</blockquote>   <! -- end verbatim block -->
+It may happen that you need additional style files, you can run
+a script, <tt>cp2texmf.sh</tt>:
+
+<P>
+<blockquote>    <!-- begin verbatim block  sys-->
+<pre>
 cd latex
 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
 cd ../..
 </pre>
 </blockquote>   <! -- end verbatim block -->
-As seen, <tt>cp2texmf.sh</tt> copies some special stylefiles that
+This script copies some special stylefiles that
 that <tt>ptex2tex</tt> potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
+
+<P>
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
 sudo apt-get install texlive-latex-extra
@@ -1152,8 +1210,15 @@ the necessary stylefiles (if not, they can be found by googling and installed
 manually in the <tt>~/texmf/tex/latex/misc</tt> directory).
 
 <P>
-The <em>minted</em> LaTeX style is offered by <tt>ptex2tex</tt> and popular among
-users. This style requires the package <a href="http://pygments.org">Pygments</a>:
+Note that the <tt>doconce ptex2tex</tt> command, which needs no installation
+beyond Doconce itself, can be used as a simpler alternative to the <tt>ptex2tex</tt>
+program.
+
+<P>
+The <em>minted</em> LaTeX style is offered by <tt>ptex2tex</tt> and <tt>doconce ptext2tex</tt>
+is popular among many
+users. This style requires the package <a href="http://pygments.org">Pygments</a>
+to be installed:
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -1161,14 +1226,25 @@ cd pygments
 sudo python setup.py install
 </pre>
 </blockquote>   <! -- end verbatim block -->
-If you use the minted style, you have to enable it by running
-<tt>ptex2tex -DMINTED</tt> and then <tt>latex -shell-escape</tt>, see
-the the section <a href="#doconce2formats">From Doconce to Other Formats</a>.
 
 <P>
-For <tt>rst</tt> output and further transformation to LaTeX, HTML, XML,
-OpenOffice, and so on, one needs <a href="http://docutils.sourceforge.net">docutils</a>.
-The installation can be done by
+If you use the minted style together with <tt>ptex2tex</tt>, you have to
+enable it by the <tt>-DMINTED</tt> command-line argument to <tt>ptex2tex</tt>.  All
+use of the minted style requires the <tt>-shell-escape</tt> command-line
+argument when running LaTeX, i.e., <tt>latex -shell-escape</tt> or <tt>pdflatex
+-shell-escape</tt>.
+
+<P>
+<!-- Say something about anslistings.sty -->
+
+<P>
+<h4>reStructuredText (reST) Output</h4>
+<P>
+The <tt>rst</tt> output from Doconce allows further transformation to LaTeX,
+HTML, XML, OpenOffice, and so on, through the <a href="http://docutils.sourceforge.net">docutils</a> package.  The installation of the
+most recent version can be done by
+
+<P>
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
@@ -1189,7 +1265,7 @@ There is a possibility to create PDF files from reST documents
 using ReportLab instead of LaTeX. The enabling software is
 <a href="http://code.google.com/p/rst2pdf">rst2pdf</a>. Either download the tarball
 or clone the svn repository, go to the <tt>rst2pdf</tt> directory and
-run <tt>sudo python setup.py install</tt>.
+run the usual <tt>sudo python setup.py install</tt>.
 
 <P>
 
@@ -1206,6 +1282,23 @@ cd ..
 </blockquote>   <! -- end verbatim block -->
 
 <P>
+<h4>Markdown and Pandoc Output</h4>
+<P>
+The Doconce format <tt>pandoc</tt> outputs the document in the Pandoc
+extended Markdown format, which via the <tt>pandoc</tt> program can be
+translated to a range of other formats. Installation of <a href="http://johnmacfarlane.net/pandoc/">Pandoc</a>, written in Haskell, is most
+easily done by
+
+<P>
+<blockquote>    <!-- begin verbatim block  sys-->
+<pre>
+sudo apt-get install pandoc
+</pre>
+</blockquote>   <! -- end verbatim block -->
+
+<P>
+<h4>Epydoc Output</h4>
+<P>
 When the output format is <tt>epydoc</tt> one needs that program too, installed
 by
 <blockquote>    <!-- begin verbatim block  sys-->
@@ -1218,16 +1311,6 @@ cd ..
 </blockquote>   <! -- end verbatim block -->
 
 <P>
-Finally, translation to <tt>pandoc</tt> requires the
-<a href="http://johnmacfarlane.net/pandoc/">Pandoc</a> program
-(written in Haskell) to be installed.
-<blockquote>    <!-- begin verbatim block  sys-->
-<pre>
-sudo apt-get install pandoc
-</pre>
-</blockquote>   <! -- end verbatim block -->
-
-<P>
 <b>Remark.</b> Several of the packages above installed from source code
 are also available in Debian-based system through the
 <tt>apt-get install</tt> command. However, we recommend installation directly
@@ -1236,8 +1319,6 @@ updates and bug fixes. For <tt>svn</tt> directories, go to the directory,
 run <tt>svn update</tt>, and then <tt>sudo python setup.py install</tt>. For
 Mercurial (<tt>hg</tt>) directories, go to the directory, run
 <tt>hg pull; hg update</tt>, and then <tt>sudo python setup.py install</tt>.
-Doconce itself is frequently updated so these commands should be
-run regularly.
 
 <P>
 
