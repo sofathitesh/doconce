@@ -595,6 +595,23 @@ def define(FILENAME_EXTENSION,
 \documentclass{article}
 % #endif
 
+% #ifndef LAYOUT
+% #define LAYOUT
+% #endif
+
+% #if LAYOUT == "a4"
+\usepackage[a4paper]{geometry}
+% #elif LAYOUT == "epub"
+\usepackage[%
+  a6paper,                  % suitable for epub-style formats
+  text={90mm,130mm},        % text area
+  inner={5mm},              % inner margin
+  top=5mm,
+  headsep=4mm
+  ]{geometry}
+% #endif
+
+
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
