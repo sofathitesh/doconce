@@ -18798,7 +18798,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 25 Jul 2012 (01:00)
+DATE: Wed, 25 Jul 2012 (16:20)
 
 
 
@@ -18902,7 +18902,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 25 Jul 2012 (01:00)
+DATE: Wed, 25 Jul 2012 (16:20)
 
 
 
@@ -19016,7 +19016,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 25 Jul 2012 (01:00)</center>
+<center>Wed, 25 Jul 2012 (16:20)</center>
 
 
 
@@ -19147,7 +19147,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 25 Jul 2012 (01:00)</center>
+<center>Wed, 25 Jul 2012 (16:20)</center>
 
 
 
