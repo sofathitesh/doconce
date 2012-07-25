@@ -104,8 +104,11 @@ formats.
 
 
 
-Dependencies and Installation
------------------------------
+Installation of Doconce and its Dependencies
+============================================
+
+Doconce
+-------
 
 Doconce itself is pure Python code hosted at `<http://code.google.com/p/doconce>`_.  Its installation from the
 Mercurial (``hg``) source follows the standard procedure:
@@ -118,9 +121,44 @@ Mercurial (``hg``) source follows the standard procedure:
         sudo python setup.py install
         cd ..
 
+Since Doconce is frequently updated, it is recommended to use the
+above procedure and whenever a problem occurs, make sure to
+update to the most recent version:
+
+.. code-block:: console
+
+        cd doconce
+        hg pull
+        hg update
+        sudo python setup.py install
+
+
+Debian GNU/Linux users can also run
+
+.. code-block:: console
+
+        sudo apt-get install doconce
+
+This installs the latest release and not the most updated and bugfixed
+version.
+On Ubuntu one needs to run
+
+.. code-block:: console
+
+        sudo add-apt-repository ppa:scitools/ppa
+        sudo apt-get update
+        sudo apt-get install doconce
+
+
+Dependencies
+------------
+
+Preprocessors
+~~~~~~~~~~~~~
 
 If you make use of the `Preprocess <http://code.google.com/p/preprocess>`_
 preprocessor, this program must be installed:
+
 
 .. code-block:: console
 
@@ -130,9 +168,11 @@ preprocessor, this program must be installed:
         sudo python setup.py install
         cd ..
 
+
 A much more advanced alternative to Preprocess is
 `Mako <http://www.makotemplates.org>`_. Its installation is most
 conveniently done by ``pip``,
+
 
 .. code-block:: console
 
@@ -141,29 +181,41 @@ conveniently done by ``pip``,
 This command requires ``pip`` to be installed. On Debian Linux systems,
 such as Ubuntu, the installation is simply done by
 
+
 .. code-block:: console
 
         sudo apt-get install python-pip
 
 Alternatively, one can install from the ``pip`` `source code <http://pypi.python.org/pypi/pip>`_.
 
-To make LaTeX
-documents (without going through the reStructuredText format) you
-need `ptex2tex <http://code.google.com/p/ptex2tex>`_, which is
-installed by
+Ptex2tex for LaTeX Output
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To make LaTeX documents with very flexible choice of typesetting of
+verbatim code blocks you need `ptex2tex <http://code.google.com/p/ptex2tex>`_,
+which is installed by
+
 
 .. code-block:: console
 
         svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
         cd ptex2tex
         sudo python setup.py install
+
+It may happen that you need additional style files, you can run
+a script, ``cp2texmf.sh``:
+
+
+.. code-block:: console
+
         cd latex
         sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
         cd ../..
 
-As seen, ``cp2texmf.sh`` copies some special stylefiles that
+This script copies some special stylefiles that
 that ``ptex2tex`` potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
+
 
 .. code-block:: console
 
@@ -173,8 +225,14 @@ on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the ``~/texmf/tex/latex/misc`` directory).
 
-The *minted* LaTeX style is offered by ``ptex2tex`` and popular among
-users. This style requires the package `Pygments <http://pygments.org>`_:
+Note that the ``doconce ptex2tex`` command, which needs no installation
+beyond Doconce itself, can be used as a simpler alternative to the ``ptex2tex``
+program.
+
+The *minted* LaTeX style is offered by ``ptex2tex`` and ``doconce ptext2tex``
+is popular among many
+users. This style requires the package `Pygments <http://pygments.org>`_
+to be installed:
 
 .. code-block:: console
 
@@ -182,13 +240,23 @@ users. This style requires the package `Pygments <http://pygments.org>`_:
         cd pygments
         sudo python setup.py install
 
-If you use the minted style, you have to enable it by running
-``ptex2tex -DMINTED`` and then ``latex -shell-escape``, see
-the the section :ref:`doconce2formats`.
 
-For ``rst`` output and further transformation to LaTeX, HTML, XML,
-OpenOffice, and so on, one needs `docutils <http://docutils.sourceforge.net>`_.
-The installation can be done by
+If you use the minted style together with ``ptex2tex``, you have to
+enable it by the ``-DMINTED`` command-line argument to ``ptex2tex``.  All
+use of the minted style requires the ``-shell-escape`` command-line
+argument when running LaTeX, i.e., ``latex -shell-escape`` or ``pdflatex
+-shell-escape``.
+
+.. Say something about anslistings.sty
+
+
+reStructuredText (reST) Output
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``rst`` output from Doconce allows further transformation to LaTeX,
+HTML, XML, OpenOffice, and so on, through the `docutils <http://docutils.sourceforge.net>`_ package.  The installation of the
+most recent version can be done by
+
 
 .. code-block:: console
 
@@ -208,7 +276,7 @@ There is a possibility to create PDF files from reST documents
 using ReportLab instead of LaTeX. The enabling software is
 `rst2pdf <http://code.google.com/p/rst2pdf>`_. Either download the tarball
 or clone the svn repository, go to the ``rst2pdf`` directory and
-run ``sudo python setup.py install``.
+run the usual ``sudo python setup.py install``.
 
 
 Output to ``sphinx`` requires of course `Sphinx <http://sphinx.pocoo.org>`_,
@@ -222,6 +290,23 @@ installed by
         cd ..
 
 
+Markdown and Pandoc Output
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Doconce format ``pandoc`` outputs the document in the Pandoc
+extended Markdown format, which via the ``pandoc`` program can be
+translated to a range of other formats. Installation of `Pandoc <http://johnmacfarlane.net/pandoc/>`_, written in Haskell, is most
+easily done by
+
+
+.. code-block:: console
+
+        sudo apt-get install pandoc
+
+
+Epydoc Output
+~~~~~~~~~~~~~
+
 When the output format is ``epydoc`` one needs that program too, installed
 by
 
@@ -233,15 +318,6 @@ by
         cd ..
 
 
-Finally, translation to ``pandoc`` requires the
-`Pandoc <http://johnmacfarlane.net/pandoc/>`_ program
-(written in Haskell) to be installed.
-
-.. code-block:: console
-
-        sudo apt-get install pandoc
-
-
 *Remark.* Several of the packages above installed from source code
 are also available in Debian-based system through the
 ``apt-get install`` command. However, we recommend installation directly
@@ -250,8 +326,6 @@ updates and bug fixes. For ``svn`` directories, go to the directory,
 run ``svn update``, and then ``sudo python setup.py install``. For
 Mercurial (``hg``) directories, go to the directory, run
 ``hg pull; hg update``, and then ``sudo python setup.py install``.
-Doconce itself is frequently updated so these commands should be
-run regularly.
 
 
 
@@ -1457,13 +1531,15 @@ All such comments can easily be removed from the ``.do.txt`` file
 (see the chapter :ref:`doconce2formats`).
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
-Most formats leave this syntax as it is (including to dollar signs),
-hence nice math formatting is only obtained in LaTeX (Epytext has some
-inline math support that is utilized).  However, mathematical
-expressions in LaTeX syntax often contains special formatting
-commands, which may appear annoying in plain text. Doconce therefore
-supports an extended inline math syntax where the writer can provide
-an alternative syntax suited for formats close to plain ASCII:
+Many formats leave this syntax as it is (including to dollar signs),
+hence nice math formatting is only obtained in LaTeX, HTML, MediaWiki,
+and Sphinx (Epytext has some inline math support that is utilized).
+However, mathematical expressions in LaTeX syntax often contains
+special formatting commands, which may appear annoying in plain
+text. Doconce therefore supports an extended inline math syntax where
+the writer can provide an alternative syntax suited for formats close
+to plain ASCII:
+
 
 .. code-block:: py
 
@@ -1475,7 +1551,8 @@ an alternative syntax suited for formats close to plain ASCII:
 
 That is, we provide two alternative expressions, both enclosed in
 dollar signs and separated by a pipe symbol, the expression to the
-left is used in LaTeX, while the expression to the right is used for
+left is used in formats with LaTeX support (``latex``, ``pdflatex``, ``html``,
+``sphinx``, ``mwiki``), while the expression to the right is used for
 all other formats.  The above text is typeset as "Here is an example
 on a linear system :math:`{\bf A}{\bf x} = {\bf b}`, where :math:`\bf A`
 is an :math:`n\times n` matrix, and :math:`\bf x` and :math:`\bf b`
@@ -2018,18 +2095,24 @@ Here is the result of the above ``!bt`` - ``!et`` block:
         
 
 
-This text looks ugly in all Doconce supported formats, except from
-LaTeX and Sphinx.  If HTML is desired, and Sphinx is not an option,
-one can filter the Doconce text first to LaTeX and then use the tex4ht
-tool to convert the dvi file to HTML, or one could just link a PDF
-file (made from LaTeX) directly from HTML.
+The support of LaTeX mathematics varies among the formats.  Output
+``latex`` and ``pdflatex`` has of course full support. The ``html`` format
+supports single equations and multiple equations via the align
+environment, also with labels. Although ``sphinx``, like ``html``, employs
+MathJax, it does not support labels in align environments.  Markdown
+(``pandoc`` format) allows single equations and inline mathematics.
+Going from Doconce to MS Word is most easily done by outputting in
+the ``latex`` format and then using the Pandoc program to translate
+from LaTeX to MS Word (note that only a subset of LaTeX will be
+translated correctly).
 
-If the document targets both LaTeX, Sphinx, and other formats like
-plain text and wiki, one can use the preprocessor to typeset the
-mathematics in two versions. After ``#if FORMAT in ("latex", "pdflatex",
-"sphinx", "mwiki")`` one places LaTeX mathematics, and after ``#else`` one can
-write inline mathematics in a way that looks nice in plain text and
-wiki formats without support for mathematical typesetting.
+If the document targets formats with and without support of LaTeX
+mathematics, one can use the preprocessor to typeset the mathematics
+in two versions. After ``#if FORMAT in ("latex", "pdflatex", "html",
+"sphinx", "mwiki", "pandoc")`` one places LaTeX mathematics, and after
+``#else`` one can write inline mathematics in a way that looks nice in
+plain text and wiki formats without support for mathematical
+typesetting.
 
 
 Mathematics for PowerPoint/OpenOffice
@@ -2037,7 +2120,7 @@ Mathematics for PowerPoint/OpenOffice
 
 If you have LaTeX mathematics written in Doconce, it is fairly easy
 to generate PNG images of all mathematical formulas and equations for
-use with PowerPoint or OpenOffice documents.
+use with PowerPoint or OpenOffice presentations.
 
  1. Make a Sphinx version of the Doconce file.
 

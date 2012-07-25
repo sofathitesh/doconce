@@ -486,16 +486,18 @@ Blocks of mathematics are better typeset with raw LaTeX, inside
 The result looks like this:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-\textbackslash{}begin\{eqnarray\}\\
-\{\textbackslash{}partial~u\textbackslash{}over\textbackslash{}partial~t\}~\&=\&~\textbackslash{}nabla\textasciicircum{}2~u~+~f,~label\{myeq1\}\textbackslash{}\textbackslash{}\\
-\{\textbackslash{}partial~v\textbackslash{}over\textbackslash{}partial~t\}~\&=\&~\textbackslash{}nabla\textbackslash{}cdot(q(u)\textbackslash{}nabla~v)~+~g\\
-\textbackslash{}end\{eqnarray\}
+\textbackslash{}begin\{align\}\\
+\{\textbackslash{}partial~u\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textasciicircum{}2~u~+~f,~label\{myeq1\}\textbackslash{}\textbackslash{}\\
+\{\textbackslash{}partial~v\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textbackslash{}cdot(q(u)\textbackslash{}nabla~v)~+~g\\
+\textbackslash{}end\{align\}
 }
 \end{quote}
 
-Of course, such blocks only looks nice in LaTeX. The raw
-LaTeX syntax appears in all other formats (but can still be useful
-for those who can read LaTeX syntax).
+Of course, such blocks only looks nice in formats with support
+for LaTeX mathematics, and here the align environment in particular
+(this includes \texttt{latex}, \texttt{pdflatex}, \texttt{html}, and \texttt{sphinx}). The raw
+LaTeX syntax appears in simpler formats, but can still be useful
+for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
 \texttt{!bc} and \texttt{!ec} instructions, respectively. Such blocks look like:
@@ -1297,10 +1299,19 @@ various formats. The \texttt{make.sh} script runs a set of translations.
 
 %___________________________________________________________________________
 
+\section*{\phantomsection%
+  Installation of Doconce and its Dependencies%
+  \addcontentsline{toc}{section}{Installation of Doconce and its Dependencies}%
+  \label{installation-of-doconce-and-its-dependencies}%
+}
+
+
+%___________________________________________________________________________
+
 \subsection*{\phantomsection%
-  Dependencies and Installation%
-  \addcontentsline{toc}{subsection}{Dependencies and Installation}%
-  \label{dependencies-and-installation}%
+  Doconce%
+  \addcontentsline{toc}{subsection}{Doconce}%
+  \label{doconce}%
 }
 
 Doconce itself is pure Python code hosted at \url{http://code.google.com/p/doconce}.  Its installation from the
@@ -1314,6 +1325,54 @@ sudo~python~setup.py~install\\
 cd~..
 }
 \end{quote}
+
+Since Doconce is frequently updated, it is recommended to use the
+above procedure and whenever a problem occurs, make sure to
+update to the most recent version:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+cd~doconce\\
+hg~pull\\
+hg~update\\
+sudo~python~setup.py~install
+}
+\end{quote}
+
+Debian GNU/Linux users can also run:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~apt-get~install~doconce
+}
+\end{quote}
+
+This installs the latest release and not the most updated and bugfixed
+version.
+On Ubuntu one needs to run:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~add-apt-repository~ppa:scitools/ppa\\
+sudo~apt-get~update\\
+sudo~apt-get~install~doconce
+}
+\end{quote}
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Dependencies%
+  \addcontentsline{toc}{subsection}{Dependencies}%
+  \label{dependencies}%
+}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Preprocessors%
+  \addcontentsline{toc}{subsubsection}{Preprocessors}%
+  \label{preprocessors}%
+}
 
 If you make use of the \href{http://code.google.com/p/preprocess}{Preprocess}
 preprocessor, this program must be installed:
@@ -1346,22 +1405,37 @@ sudo~apt-get~install~python-pip
 
 Alternatively, one can install from the \texttt{pip} \href{http://pypi.python.org/pypi/pip}{source code}.
 
-To make LaTeX
-documents (without going through the reStructuredText format) you
-need \href{http://code.google.com/p/ptex2tex}{ptex2tex}, which is
-installed by:
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Ptex2tex for LaTeX Output%
+  \addcontentsline{toc}{subsubsection}{Ptex2tex for LaTeX Output}%
+  \label{ptex2tex-for-latex-output}%
+}
+
+To make LaTeX documents with very flexible choice of typesetting of
+verbatim code blocks you need \href{http://code.google.com/p/ptex2tex}{ptex2tex},
+which is installed by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 svn~checkout~http://ptex2tex.googlecode.com/svn/trunk/~ptex2tex\\
 cd~ptex2tex\\
-sudo~python~setup.py~install\\
+sudo~python~setup.py~install
+}
+\end{quote}
+
+It may happen that you need additional style files, you can run
+a script, \texttt{cp2texmf.sh}:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
 cd~latex\\
 sh~cp2texmf.sh~~\#~copy~stylefiles~to~\textasciitilde{}/texmf~directory\\
 cd~../..
 }
 \end{quote}
 
-As seen, \texttt{cp2texmf.sh} copies some special stylefiles that
+This script copies some special stylefiles that
 that \texttt{ptex2tex} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by:
 %
@@ -1374,8 +1448,14 @@ on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the \texttt{\textasciitilde{}/texmf/tex/latex/misc} directory).
 
-The \emph{minted} LaTeX style is offered by \texttt{ptex2tex} and popular among
-users. This style requires the package \href{http://pygments.org}{Pygments}:
+Note that the \texttt{doconce ptex2tex} command, which needs no installation
+beyond Doconce itself, can be used as a simpler alternative to the \texttt{ptex2tex}
+program.
+
+The \emph{minted} LaTeX style is offered by \texttt{ptex2tex} and \texttt{doconce ptext2tex}
+is popular among many
+users. This style requires the package \href{http://pygments.org}{Pygments}
+to be installed:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 hg~clone~ssh://hg@bitbucket.org/birkenfeld/pygments-main~pygments\\
@@ -1384,13 +1464,26 @@ sudo~python~setup.py~install
 }
 \end{quote}
 
-If you use the minted style, you have to enable it by running
-\texttt{ptex2tex -DMINTED} and then \texttt{latex -shell-escape}, see
-the the section \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats}.
+If you use the minted style together with \texttt{ptex2tex}, you have to
+enable it by the \texttt{-DMINTED} command-line argument to \texttt{ptex2tex}.  All
+use of the minted style requires the \texttt{-shell-escape} command-line
+argument when running LaTeX, i.e., \texttt{latex -shell-escape} or \texttt{pdflatex
+-shell-escape}.
 
-For \texttt{rst} output and further transformation to LaTeX, HTML, XML,
-OpenOffice, and so on, one needs \href{http://docutils.sourceforge.net}{docutils}.
-The installation can be done by:
+% Say something about anslistings.sty
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  reStructuredText (reST) Output%
+  \addcontentsline{toc}{subsubsection}{reStructuredText (reST) Output}%
+  \label{restructuredtext-rest-output}%
+}
+
+The \texttt{rst} output from Doconce allows further transformation to LaTeX,
+HTML, XML, OpenOffice, and so on, through the \href{http://docutils.sourceforge.net}{docutils} package.  The installation of the
+most recent version can be done by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 svn~checkout~http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils\\
@@ -1411,13 +1504,13 @@ There is a possibility to create PDF files from reST documents
 using ReportLab instead of LaTeX. The enabling software is
 \href{http://code.google.com/p/rst2pdf}{rst2pdf}. Either download the tarball
 or clone the svn repository, go to the \texttt{rst2pdf} directory and
-run \texttt{sudo python setup.py install}.
+run the usual \texttt{sudo python setup.py install}.
 
 \DUadmonition[system-message]{
 \DUtitle[system-message]{system-message}
 
 
-{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~403
+{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~968
 
 \hyperlink{id5}{
 Duplicate explicit target name: ``sphinx''.
@@ -1434,6 +1527,34 @@ cd~..
 }
 \end{quote}
 
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Markdown and Pandoc Output%
+  \addcontentsline{toc}{subsubsection}{Markdown and Pandoc Output}%
+  \label{markdown-and-pandoc-output}%
+}
+
+The Doconce format \texttt{pandoc} outputs the document in the Pandoc
+extended Markdown format, which via the \texttt{pandoc} program can be
+translated to a range of other formats. Installation of \href{http://johnmacfarlane.net/pandoc/}{Pandoc}, written in Haskell, is most
+easily done by:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~apt-get~install~pandoc
+}
+\end{quote}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Epydoc Output%
+  \addcontentsline{toc}{subsubsection}{Epydoc Output}%
+  \label{epydoc-output}%
+}
+
 When the output format is \texttt{epydoc} one needs that program too, installed
 by:
 %
@@ -1445,15 +1566,6 @@ cd~..
 }
 \end{quote}
 
-Finally, translation to \texttt{pandoc} requires the
-\href{http://johnmacfarlane.net/pandoc/}{Pandoc} program
-(written in Haskell) to be installed:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-sudo~apt-get~install~pandoc
-}
-\end{quote}
-
 \emph{Remark.} Several of the packages above installed from source code
 are also available in Debian-based system through the
 \texttt{apt-get install} command. However, we recommend installation directly
@@ -1462,7 +1574,5 @@ updates and bug fixes. For \texttt{svn} directories, go to the directory,
 run \texttt{svn update}, and then \texttt{sudo python setup.py install}. For
 Mercurial (\texttt{hg}) directories, go to the directory, run
 \texttt{hg pull; hg update}, and then \texttt{sudo python setup.py install}.
-Doconce itself is frequently updated so these commands should be
-run regularly.
 
 \end{document}

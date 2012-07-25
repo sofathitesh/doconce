@@ -51,12 +51,21 @@ tweaking the layout is obviously limited since the text can go to
 all sorts of sophisticated markup languages. Moreover, because of
 limitations of regular expressions, some formatting of Doconce syntax
 may face problems when transformed to HTML, LaTeX, Sphinx, and similar
-formats.</paragraph><section ids="dependencies-and-installation" names="dependencies\ and\ installation"><title>Dependencies and Installation</title><paragraph>Doconce itself is pure Python code hosted at <reference name="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce">http://code.google.com/p/doconce</reference><target ids="http-code-google-com-p-doconce" names="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce"/>.  Its installation from the
+formats.</paragraph></section><section ids="installation-of-doconce-and-its-dependencies" names="installation\ of\ doconce\ and\ its\ dependencies"><title>Installation of Doconce and its Dependencies</title><section ids="doconce" names="doconce"><title>Doconce</title><paragraph>Doconce itself is pure Python code hosted at <reference name="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce">http://code.google.com/p/doconce</reference><target ids="http-code-google-com-p-doconce" names="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce"/>.  Its installation from the
 Mercurial (<literal>hg</literal>) source follows the standard procedure:</paragraph><literal_block xml:space="preserve"># Doconce
 hg clone https://doconce.googlecode.com/hg/ doconce
 cd doconce
 sudo python setup.py install
-cd ..</literal_block><paragraph>If you make use of the <reference name="Preprocess" refuri="http://code.google.com/p/preprocess">Preprocess</reference><target ids="preprocess" names="preprocess" refuri="http://code.google.com/p/preprocess"/>
+cd ..</literal_block><paragraph>Since Doconce is frequently updated, it is recommended to use the
+above procedure and whenever a problem occurs, make sure to
+update to the most recent version:</paragraph><literal_block xml:space="preserve">cd doconce
+hg pull
+hg update
+sudo python setup.py install</literal_block><paragraph>Debian GNU/Linux users can also run:</paragraph><literal_block xml:space="preserve">sudo apt-get install doconce</literal_block><paragraph>This installs the latest release and not the most updated and bugfixed
+version.
+On Ubuntu one needs to run:</paragraph><literal_block xml:space="preserve">sudo add-apt-repository ppa:scitools/ppa
+sudo apt-get update
+sudo apt-get install doconce</literal_block></section><section ids="dependencies" names="dependencies"><title>Dependencies</title><section ids="preprocessors" names="preprocessors"><title>Preprocessors</title><paragraph>If you make use of the <reference name="Preprocess" refuri="http://code.google.com/p/preprocess">Preprocess</reference><target ids="preprocess" names="preprocess" refuri="http://code.google.com/p/preprocess"/>
 preprocessor, this program must be installed:</paragraph><literal_block xml:space="preserve">svn checkout http://preprocess.googlecode.com/svn/trunk/ preprocess
 cd preprocess
 cd doconce
@@ -64,52 +73,56 @@ sudo python setup.py install
 cd ..</literal_block><paragraph>A much more advanced alternative to Preprocess is
 <reference name="Mako" refuri="http://www.makotemplates.org">Mako</reference><target ids="mako" names="mako" refuri="http://www.makotemplates.org"/>. Its installation is most
 conveniently done by <literal>pip</literal>:</paragraph><literal_block xml:space="preserve">pip install Mako</literal_block><paragraph>This command requires <literal>pip</literal> to be installed. On Debian Linux systems,
-such as Ubuntu, the installation is simply done by:</paragraph><literal_block xml:space="preserve">sudo apt-get install python-pip</literal_block><paragraph>Alternatively, one can install from the <literal>pip</literal> <reference name="source code" refuri="http://pypi.python.org/pypi/pip">source code</reference><target ids="source-code" names="source\ code" refuri="http://pypi.python.org/pypi/pip"/>.</paragraph><paragraph>To make LaTeX
-documents (without going through the reStructuredText format) you
-need <reference name="ptex2tex" refuri="http://code.google.com/p/ptex2tex">ptex2tex</reference><target ids="ptex2tex" names="ptex2tex" refuri="http://code.google.com/p/ptex2tex"/>, which is
-installed by:</paragraph><literal_block xml:space="preserve">svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
+such as Ubuntu, the installation is simply done by:</paragraph><literal_block xml:space="preserve">sudo apt-get install python-pip</literal_block><paragraph>Alternatively, one can install from the <literal>pip</literal> <reference name="source code" refuri="http://pypi.python.org/pypi/pip">source code</reference><target ids="source-code" names="source\ code" refuri="http://pypi.python.org/pypi/pip"/>.</paragraph></section><section ids="ptex2tex-for-latex-output" names="ptex2tex\ for\ latex\ output"><title>Ptex2tex for LaTeX Output</title><paragraph>To make LaTeX documents with very flexible choice of typesetting of
+verbatim code blocks you need <reference name="ptex2tex" refuri="http://code.google.com/p/ptex2tex">ptex2tex</reference><target ids="ptex2tex" names="ptex2tex" refuri="http://code.google.com/p/ptex2tex"/>,
+which is installed by:</paragraph><literal_block xml:space="preserve">svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
-sudo python setup.py install
-cd latex
+sudo python setup.py install</literal_block><paragraph>It may happen that you need additional style files, you can run
+a script, <literal>cp2texmf.sh</literal>:</paragraph><literal_block xml:space="preserve">cd latex
 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
-cd ../..</literal_block><paragraph>As seen, <literal>cp2texmf.sh</literal> copies some special stylefiles that
+cd ../..</literal_block><paragraph>This script copies some special stylefiles that
 that <literal>ptex2tex</literal> potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by:</paragraph><literal_block xml:space="preserve">sudo apt-get install texlive-latex-extra</literal_block><paragraph>on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
-manually in the <literal>~/texmf/tex/latex/misc</literal> directory).</paragraph><paragraph>The <emphasis>minted</emphasis> LaTeX style is offered by <literal>ptex2tex</literal> and popular among
-users. This style requires the package <reference name="Pygments" refuri="http://pygments.org">Pygments</reference><target ids="pygments" names="pygments" refuri="http://pygments.org"/>:</paragraph><literal_block xml:space="preserve">hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
+manually in the <literal>~/texmf/tex/latex/misc</literal> directory).</paragraph><paragraph>Note that the <literal>doconce ptex2tex</literal> command, which needs no installation
+beyond Doconce itself, can be used as a simpler alternative to the <literal>ptex2tex</literal>
+program.</paragraph><paragraph>The <emphasis>minted</emphasis> LaTeX style is offered by <literal>ptex2tex</literal> and <literal>doconce ptext2tex</literal>
+is popular among many
+users. This style requires the package <reference name="Pygments" refuri="http://pygments.org">Pygments</reference><target ids="pygments" names="pygments" refuri="http://pygments.org"/>
+to be installed:</paragraph><literal_block xml:space="preserve">hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
-sudo python setup.py install</literal_block><paragraph>If you use the minted style, you have to enable it by running
-<literal>ptex2tex -DMINTED</literal> and then <literal>latex -shell-escape</literal>, see
-the the section <reference name="From Doconce to Other Formats" refid="from-doconce-to-other-formats">From Doconce to Other Formats</reference>.</paragraph><paragraph>For <literal>rst</literal> output and further transformation to LaTeX, HTML, XML,
-OpenOffice, and so on, one needs <reference name="docutils" refuri="http://docutils.sourceforge.net">docutils</reference><target ids="docutils" names="docutils" refuri="http://docutils.sourceforge.net"/>.
-The installation can be done by:</paragraph><literal_block xml:space="preserve">svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
+sudo python setup.py install</literal_block><paragraph>If you use the minted style together with <literal>ptex2tex</literal>, you have to
+enable it by the <literal>-DMINTED</literal> command-line argument to <literal>ptex2tex</literal>.  All
+use of the minted style requires the <literal>-shell-escape</literal> command-line
+argument when running LaTeX, i.e., <literal>latex -shell-escape</literal> or <literal>pdflatex
+-shell-escape</literal>.</paragraph><comment xml:space="preserve">Say something about anslistings.sty</comment></section><section ids="restructuredtext-rest-output" names="restructuredtext\ (rest)\ output"><title>reStructuredText (reST) Output</title><paragraph>The <literal>rst</literal> output from Doconce allows further transformation to LaTeX,
+HTML, XML, OpenOffice, and so on, through the <reference name="docutils" refuri="http://docutils.sourceforge.net">docutils</reference><target ids="docutils" names="docutils" refuri="http://docutils.sourceforge.net"/> package.  The installation of the
+most recent version can be done by:</paragraph><literal_block xml:space="preserve">svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
 sudo python setup.py install
 cd ..</literal_block><paragraph>To use the OpenOffice suite you will typically on Debian systems install:</paragraph><literal_block xml:space="preserve">sudo apt-get install unovonv libreoffice libreoffice-dmaths</literal_block><paragraph>There is a possibility to create PDF files from reST documents
 using ReportLab instead of LaTeX. The enabling software is
 <reference name="rst2pdf" refuri="http://code.google.com/p/rst2pdf">rst2pdf</reference><target ids="rst2pdf" names="rst2pdf" refuri="http://code.google.com/p/rst2pdf"/>. Either download the tarball
 or clone the svn repository, go to the <literal>rst2pdf</literal> directory and
-run <literal>sudo python setup.py install</literal>.</paragraph><paragraph>Output to <literal>sphinx</literal> requires of course <reference name="Sphinx" refuri="http://sphinx.pocoo.org">Sphinx</reference><target ids="sphinx" names="sphinx" refuri="http://sphinx.pocoo.org"/>,
+run the usual <literal>sudo python setup.py install</literal>.</paragraph><paragraph>Output to <literal>sphinx</literal> requires of course <reference name="Sphinx" refuri="http://sphinx.pocoo.org">Sphinx</reference><target ids="sphinx" names="sphinx" refuri="http://sphinx.pocoo.org"/>,
 installed by:</paragraph><literal_block xml:space="preserve">hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
 sudo python setup.py install
-cd ..</literal_block><paragraph>When the output format is <literal>epydoc</literal> one needs that program too, installed
+cd ..</literal_block></section><section ids="markdown-and-pandoc-output" names="markdown\ and\ pandoc\ output"><title>Markdown and Pandoc Output</title><paragraph>The Doconce format <literal>pandoc</literal> outputs the document in the Pandoc
+extended Markdown format, which via the <literal>pandoc</literal> program can be
+translated to a range of other formats. Installation of <reference name="Pandoc" refuri="http://johnmacfarlane.net/pandoc/">Pandoc</reference><target ids="pandoc" names="pandoc" refuri="http://johnmacfarlane.net/pandoc/"/>, written in Haskell, is most
+easily done by:</paragraph><literal_block xml:space="preserve">sudo apt-get install pandoc</literal_block></section><section ids="epydoc-output" names="epydoc\ output"><title>Epydoc Output</title><paragraph>When the output format is <literal>epydoc</literal> one needs that program too, installed
 by:</paragraph><literal_block xml:space="preserve">svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc
 cd epydoc
 sudo make install
-cd ..</literal_block><paragraph>Finally, translation to <literal>pandoc</literal> requires the
-<reference name="Pandoc" refuri="http://johnmacfarlane.net/pandoc/">Pandoc</reference><target ids="pandoc" names="pandoc" refuri="http://johnmacfarlane.net/pandoc/"/> program
-(written in Haskell) to be installed:</paragraph><literal_block xml:space="preserve">sudo apt-get install pandoc</literal_block><paragraph><emphasis>Remark.</emphasis> Several of the packages above installed from source code
+cd ..</literal_block><paragraph><emphasis>Remark.</emphasis> Several of the packages above installed from source code
 are also available in Debian-based system through the
 <literal>apt-get install</literal> command. However, we recommend installation directly
 from the version control system repository as there might be important
 updates and bug fixes. For <literal>svn</literal> directories, go to the directory,
 run <literal>svn update</literal>, and then <literal>sudo python setup.py install</literal>. For
 Mercurial (<literal>hg</literal>) directories, go to the directory, run
-<literal>hg pull; hg update</literal>, and then <literal>sudo python setup.py install</literal>.
-Doconce itself is frequently updated so these commands should be
-run regularly.</paragraph><comment xml:space="preserve">Here are some comment lines that do not affect any formatting</comment><comment xml:space="preserve">these lines are converted to comments in the output format.</comment><comment xml:space="preserve">This may have some side effects, especially in rst and sphinx</comment><comment xml:space="preserve">where lines following the comment may be taken as part of</comment><comment xml:space="preserve">the comment if there are no blank lines after the comment.</comment><comment xml:space="preserve">One can use ## and the mako preprocessor to remove comments</comment><comment xml:space="preserve">*before* doconce sees the text. That can be useful when</comment><comment xml:space="preserve">doconce comments interferes with formatting.</comment><comment xml:space="preserve">The mako tool also supports &lt;%doc&gt; .. &lt;/%doc&gt;</comment></section><section ids="demos" names="demos"><title>Demos</title><paragraph>The current text is generated from a Doconce format stored in the:</paragraph><literal_block xml:space="preserve">docs/manual/manual.do.txt</literal_block><paragraph>file in the Doconce source code tree. We have made a
+<literal>hg pull; hg update</literal>, and then <literal>sudo python setup.py install</literal>.</paragraph><comment xml:space="preserve">Here are some comment lines that do not affect any formatting</comment><comment xml:space="preserve">these lines are converted to comments in the output format.</comment><comment xml:space="preserve">This may have some side effects, especially in rst and sphinx</comment><comment xml:space="preserve">where lines following the comment may be taken as part of</comment><comment xml:space="preserve">the comment if there are no blank lines after the comment.</comment><comment xml:space="preserve">One can use ## and the mako preprocessor to remove comments</comment><comment xml:space="preserve">*before* doconce sees the text. That can be useful when</comment><comment xml:space="preserve">doconce comments interferes with formatting.</comment><comment xml:space="preserve">The mako tool also supports &lt;%doc&gt; .. &lt;/%doc&gt;</comment></section></section><section ids="demos" names="demos"><title>Demos</title><paragraph>The current text is generated from a Doconce format stored in the:</paragraph><literal_block xml:space="preserve">docs/manual/manual.do.txt</literal_block><paragraph>file in the Doconce source code tree. We have made a
 <reference name="demo web page" refuri="https://doconce.googlecode.com/hg/doc/demos/manual/index.html">demo web page</reference><target ids="demo-web-page" names="demo\ web\ page" refuri="https://doconce.googlecode.com/hg/doc/demos/manual/index.html"/>
 where you can compare the Doconce source with the output in many
 different formats: HTML, LaTeX, plain text, etc.</paragraph><paragraph>The file <literal>make.sh</literal> in the same directory as the <literal>manual.do.txt</literal> file
@@ -546,18 +559,20 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the <literal>.do.txt</literal> file
 (see the chapter <reference name="From Doconce to Other Formats" refid="from-doconce-to-other-formats">From Doconce to Other Formats</reference>).</paragraph><paragraph>Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
-Most formats leave this syntax as it is (including to dollar signs),
-hence nice math formatting is only obtained in LaTeX (Epytext has some
-inline math support that is utilized).  However, mathematical
-expressions in LaTeX syntax often contains special formatting
-commands, which may appear annoying in plain text. Doconce therefore
-supports an extended inline math syntax where the writer can provide
-an alternative syntax suited for formats close to plain ASCII:</paragraph><literal_block xml:space="preserve">Here is an example on a linear system
+Many formats leave this syntax as it is (including to dollar signs),
+hence nice math formatting is only obtained in LaTeX, HTML, MediaWiki,
+and Sphinx (Epytext has some inline math support that is utilized).
+However, mathematical expressions in LaTeX syntax often contains
+special formatting commands, which may appear annoying in plain
+text. Doconce therefore supports an extended inline math syntax where
+the writer can provide an alternative syntax suited for formats close
+to plain ASCII:</paragraph><literal_block xml:space="preserve">Here is an example on a linear system
 ${\bf A}{\bf x} = {\bf b}$|$Ax=b$,
 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and
 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.</literal_block><paragraph>That is, we provide two alternative expressions, both enclosed in
 dollar signs and separated by a pipe symbol, the expression to the
-left is used in LaTeX, while the expression to the right is used for
+left is used in formats with LaTeX support (<literal>latex</literal>, <literal>pdflatex</literal>, <literal>html</literal>,
+<literal>sphinx</literal>, <literal>mwiki</literal>), while the expression to the right is used for
 all other formats.  The above text is typeset as &quot;Here is an example
 on a linear system Ax=b, where A
 is an nxn matrix, and x and b
@@ -836,18 +851,24 @@ line and followed by a newline:</paragraph><literal_block xml:space="preserve">!
 \end{align}</literal_block><paragraph>Here is the result of the above <literal>!bt</literal> - <literal>!et</literal> block:</paragraph><literal_block xml:space="preserve">\begin{align}
 {\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g
-\end{align}</literal_block><paragraph>This text looks ugly in all Doconce supported formats, except from
-LaTeX and Sphinx.  If HTML is desired, and Sphinx is not an option,
-one can filter the Doconce text first to LaTeX and then use the tex4ht
-tool to convert the dvi file to HTML, or one could just link a PDF
-file (made from LaTeX) directly from HTML.</paragraph><paragraph>If the document targets both LaTeX, Sphinx, and other formats like
-plain text and wiki, one can use the preprocessor to typeset the
-mathematics in two versions. After <literal>#if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;,
-&quot;sphinx&quot;, &quot;mwiki&quot;)</literal> one places LaTeX mathematics, and after <literal>#else</literal> one can
-write inline mathematics in a way that looks nice in plain text and
-wiki formats without support for mathematical typesetting.</paragraph><section ids="mathematics-for-powerpoint-openoffice" names="mathematics\ for\ powerpoint/openoffice"><title>Mathematics for PowerPoint/OpenOffice</title><paragraph>If you have LaTeX mathematics written in Doconce, it is fairly easy
+\end{align}</literal_block><paragraph>The support of LaTeX mathematics varies among the formats.  Output
+<literal>latex</literal> and <literal>pdflatex</literal> has of course full support. The <literal>html</literal> format
+supports single equations and multiple equations via the align
+environment, also with labels. Although <literal>sphinx</literal>, like <literal>html</literal>, employs
+MathJax, it does not support labels in align environments.  Markdown
+(<literal>pandoc</literal> format) allows single equations and inline mathematics.
+Going from Doconce to MS Word is most easily done by outputting in
+the <literal>latex</literal> format and then using the Pandoc program to translate
+from LaTeX to MS Word (note that only a subset of LaTeX will be
+translated correctly).</paragraph><paragraph>If the document targets formats with and without support of LaTeX
+mathematics, one can use the preprocessor to typeset the mathematics
+in two versions. After <literal>#if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;, &quot;html&quot;,
+&quot;sphinx&quot;, &quot;mwiki&quot;, &quot;pandoc&quot;)</literal> one places LaTeX mathematics, and after
+<literal>#else</literal> one can write inline mathematics in a way that looks nice in
+plain text and wiki formats without support for mathematical
+typesetting.</paragraph><section ids="mathematics-for-powerpoint-openoffice" names="mathematics\ for\ powerpoint/openoffice"><title>Mathematics for PowerPoint/OpenOffice</title><paragraph>If you have LaTeX mathematics written in Doconce, it is fairly easy
 to generate PNG images of all mathematical formulas and equations for
-use with PowerPoint or OpenOffice documents.</paragraph><block_quote><enumerated_list enumtype="arabic" prefix="" suffix="."><list_item><paragraph>Make a Sphinx version of the Doconce file.</paragraph></list_item><list_item><paragraph>Go to the Sphinx directory and load the <literal>conf.py</literal> file into
+use with PowerPoint or OpenOffice presentations.</paragraph><block_quote><enumerated_list enumtype="arabic" prefix="" suffix="."><list_item><paragraph>Make a Sphinx version of the Doconce file.</paragraph></list_item><list_item><paragraph>Go to the Sphinx directory and load the <literal>conf.py</literal> file into
 a browser.</paragraph></list_item><list_item><paragraph>Search for &quot;math&quot; and comment out the
 <literal>'sphinx.ext.mathjax'</literal> (enabled by default) and
 <literal>'matplotlib.sphinxext.mathmpl'</literal> (disabled by default)

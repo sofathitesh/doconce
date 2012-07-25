@@ -14,7 +14,7 @@ Doconce currently translates files to the following formats:
 
 
 <ul>
- <li> LaTeX (format <code>latex</code>) <li> HTML (format <code>html</code>) <li> reStructuredText (format <code>rst</code>) <li> StructuredText (format <code>st</code>) <li> plain (untagged) ASCII (format <code>plain</code>) <li> Sphinx (format <code>sphinx</code>) <li> Googlecode wiki (format <code>gwiki</code>) <li> MediaWiki, a la Wikipedia and Wikibooks (format <code>mwiki</code>) <li> Creoloe wiki (format <code>cwiki</code>) <li> Epydoc (format <code>epydoc</code>) <li> Pandoc (format <code>pandoc</code>, very experimental)</ul>
+ <li> LaTeX (format <code>latex</code> and <code>pdflatex</code>) <li> HTML (format <code>html</code>) <li> reStructuredText (format <code>rst</code>) <li> plain (untagged) ASCII (format <code>plain</code>) <li> Sphinx (format <code>sphinx</code>) <li> (Pandoc extended) Markdown (format <code>pandoc</code>) <li> Googlecode wiki (format <code>gwiki</code>) <li> MediaWiki for Wikipedia and Wikibooks (format <code>mwiki</code>) <li> Creoloe wiki (format <code>cwiki</code>) <li> Epydoc (format <code>epydoc</code>) <li> StructuredText (format <code>st</code>)</ul>
 
 The best supported formats are <code>latex</code>, <code>sphinx</code>, <code>html</code>, and <code>plain</code>.
 
@@ -29,7 +29,7 @@ AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
 </code>
-The title must appear on a single line.
+The entire title must appear on a single line.
 The author syntax is
 <code>
 name Email: somename@adr.net at institution1 and institution2

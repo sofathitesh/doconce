@@ -191,14 +191,16 @@ Blocks of mathematics are better typeset with raw LaTeX, inside
 `!bt` and `!et` (begin tex / end tex) instructions.
 The result looks like this:
 !bt
-\begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g
-\end{eqnarray}
+\begin{align}
+{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+\end{align}
 !et
-Of course, such blocks only looks nice in LaTeX. The raw
-LaTeX syntax appears in all other formats (but can still be useful
-for those who can read LaTeX syntax).
+Of course, such blocks only looks nice in formats with support
+for LaTeX mathematics, and here the align environment in particular
+(this includes `latex`, `pdflatex`, `html`, and `sphinx`). The raw
+LaTeX syntax appears in simpler formats, but can still be useful
+for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
 `!bc` and `!ec` instructions, respectively. Such blocks look like
@@ -312,6 +314,6 @@ There is another demo in the `docs/manual` directory which
 translates the more comprehensive documentation, `manual.do.txt`, to
 various formats. The `make.sh` script runs a set of translations.
 
-# #include "../manual/_install.do.txt"
+# #include "../manual/install.do.txt"
 
 

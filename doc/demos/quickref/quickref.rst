@@ -19,27 +19,27 @@ Supported Formats
 
 Doconce currently translates files to the following formats:
 
- * LaTeX (format ``latex``)
+ * LaTeX (format ``latex`` and ``pdflatex``)
 
  * HTML (format ``html``)
 
  * reStructuredText (format ``rst``)
 
- * StructuredText (format ``st``)
-
  * plain (untagged) ASCII (format ``plain``)
 
  * Sphinx (format ``sphinx``)
 
+ * (Pandoc extended) Markdown (format ``pandoc``)
+
  * Googlecode wiki (format ``gwiki``)
 
- * MediaWiki, a la Wikipedia and Wikibooks (format ``mwiki``)
+ * MediaWiki for Wikipedia and Wikibooks (format ``mwiki``)
 
  * Creoloe wiki (format ``cwiki``)
 
  * Epydoc (format ``epydoc``)
 
- * Pandoc (format ``pandoc``, very experimental)
+ * StructuredText (format ``st``)
 
 The best supported formats are ``latex``, ``sphinx``, ``html``, and ``plain``.
 
@@ -56,7 +56,7 @@ reads::
         AUTHOR: A. Dummy Author
         DATE: today
 
-The title must appear on a single line.
+The entire title must appear on a single line.
 The author syntax is::
 
 

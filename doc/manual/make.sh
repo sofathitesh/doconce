@@ -138,7 +138,7 @@ Doconce can also be converted to
 <a href="manual.gwiki">Googlecode wiki</a>,
 <a href="manual.cwiki">Creole wiki</a>,
 <a href="manual.mwiki">MediaWiki</a>,
-<a href="manual.mkd">Pandoc</a>,
+<a href="manual.mkd">Markdown</a> (Pandoc extended version),
 <a href="manual.st">Structured Text</a>,
 <a href="manual.epytext">Epytext</a>,
 and maybe the most important format of all:
@@ -152,5 +152,7 @@ rm -rf ../demos/manual
 cp -r demo ../demos/manual
 # update wiki too
 cp manual.gwiki ../../../doconce.wiki/Description.wiki
+doconce format gwiki install
+cp install.gwiki ../../../doconce.wiki/Installation1.wiki
 echo
 echo "Go to the demo directory and load index.html into a web browser."

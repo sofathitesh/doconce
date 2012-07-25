@@ -81,27 +81,27 @@ Doconce currently translates files to the following formats:
 %
 \begin{itemize}
 
-\item LaTeX (format \texttt{latex})
+\item LaTeX (format \texttt{latex} and \texttt{pdflatex})
 
 \item HTML (format \texttt{html})
 
 \item reStructuredText (format \texttt{rst})
 
-\item StructuredText (format \texttt{st})
-
 \item plain (untagged) ASCII (format \texttt{plain})
 
 \item Sphinx (format \texttt{sphinx})
 
+\item (Pandoc extended) Markdown (format \texttt{pandoc})
+
 \item Googlecode wiki (format \texttt{gwiki})
 
-\item MediaWiki, a la Wikipedia and Wikibooks (format \texttt{mwiki})
+\item MediaWiki for Wikipedia and Wikibooks (format \texttt{mwiki})
 
 \item Creoloe wiki (format \texttt{cwiki})
 
 \item Epydoc (format \texttt{epydoc})
 
-\item Pandoc (format \texttt{pandoc}, very experimental)
+\item StructuredText (format \texttt{st})
 
 \end{itemize}
 
@@ -130,7 +130,7 @@ DATE:~today
 }
 \end{quote}
 
-The title must appear on a single line.
+The entire title must appear on a single line.
 The author syntax is:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
