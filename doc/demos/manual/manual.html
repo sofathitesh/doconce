@@ -35,7 +35,7 @@ MathJax.Hub.Config({
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Jul 25, 2012</h3></center>
+<center><h3>Jul 26, 2012</h3></center>
 <P>
 
 <P>
@@ -531,13 +531,23 @@ A separate titlepage can be generate by
 <tt>-DLATEX_HEADING=titlepage</tt>.
 
 <P>
+Other preprocessor variables are <tt>BOOK</tt> for the "book" documentclass
+rather than the standard "article" (necessary if you apply chapter
+headings), <tt>PALATINO</tt> for the palatino font, <tt>A4PAPER</tt> for A4 paper
+size, <tt>A6PAPER</tt> for A6 paper size (suitable for reading on small
+devices), <tt>MOVIE15</tt> for inclusion of the movie15 LaTeX package, and
+<tt>MINTED</tt> for inclusion of the minted package (which requires <tt>latex</tt>
+or <tt>pdflatex</tt> to be run with the <tt>-shell-escape</tt> option).
+
+<P>
 The <tt>ptex2tex</tt> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents. After any <tt>!bc</tt> command in the Doconce source you can
 insert verbatim block styles as defined in your <tt>.ptex2tex.cfg</tt>
-file, e.g., <tt>!bc cod</tt> for a code snippet, where <tt>cod</tt> is set to
-a certain environment in <tt>.ptex2tex.cfg</tt> (e.g., <tt>CodeIntended</tt>).
-There are about 40 styles to choose from.
+file, e.g., <tt>!bc sys</tt> for a terminal session, where <tt>sys</tt> is set to
+a certain environment in <tt>.ptex2tex.cfg</tt> (e.g., <tt>CodeTerminal</tt>).
+There are about 40 styles to choose from, and you can easily add
+new ones.
 
 <P>
 Also the <tt>doconce ptex2tex</tt> command supports preprocessor directives
@@ -545,18 +555,21 @@ for processing the <tt>.p.tex</tt> file. The command allows specifications
 of code environments as well. Here is an example:
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
-Terminal&gt; doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+Terminal&gt; doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
+          -DPALATINO -DA6PAPER \
           "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
-          fpro=minted fcod=minted envir=ans:nt
+          fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
 </pre>
 </blockquote>   <! -- end verbatim block -->
-Note that <tt>@</tt> must be used to separate the begin and end
-LaTeX commands, unless only the environment name is given (such as
-<tt>minted</tt> above, which implies <tt>\begin{minted}{fortran}</tt> and <tt>\end{minted}</tt>).
-Specifying <tt>envir=ans:nt</tt> means that all other environments are typeset
-with the <tt>anslistings.sty</tt> package, e.g., <tt>!bc cppcod</tt> will then
-result in <tt>\begin{c++}</tt>. If no environments like <tt>sys</tt> or <tt>fpro</tt> are
-defined, the plain <tt>\begin{verbatim}</tt> and <tt>\end{verbatim}</tt> used.
+Note that <tt>@</tt> must be used to separate the begin and end LaTeX
+commands, unless only the environment name is given (such as <tt>minted</tt>
+above, which implies <tt>\begin{minted}{fortran}</tt> and <tt>\end{minted}</tt> as
+begin and end for blocks inside <tt>!bc fpro</tt> and <tt>!ec</tt>).  Specifying
+<tt>envir=ans:nt</tt> means that all other environments are typeset with the
+<tt>anslistings.sty</tt> package, e.g., <tt>!bc cppcod</tt> will then result in
+<tt>\begin{c++}</tt>. If no environments like <tt>sys</tt>, <tt>fpro</tt>, or the common
+<tt>envir</tt> are defined on the command line, the plain <tt>\begin{verbatim}</tt>
+and <tt>\end{verbatim}</tt> used.
 
 <P>
 
@@ -568,7 +581,7 @@ avoid numbering of sections, you may want to insert linebreaks
 edited with the aid of the <tt>doconce replace</tt> and <tt>doconce subst</tt>
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
-Here are some examples:
+Here are two examples:
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce replace 'section{' 'section*{' mydoc.tex
@@ -594,12 +607,14 @@ Terminal&gt; latex mydoc
 Terminal&gt; dvipdf mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
-If one wishes to use the <tt>Minted_Python</tt>, <tt>Minted_Cpp</tt>, etc.,
-environments in <tt>ptex2tex</tt> for typesetting code (specified, e.g., in
-the <tt>*pro</tt> and <tt>*cod</tt> environments in <tt>.ptex2tex.cfg</tt> or
-<tt>$HOME/.ptex2tex.cfg</tt>), the <tt>minted</tt> LaTeX package is needed.  This
-package is included by running <tt>doconce format</tt> with the <tt>-DMINTED</tt>
-option:
+
+<P>
+If one wishes to run <tt>ptex2tex</tt> and use the minted LaTeX package for
+typesetting code blocks (<tt>Minted_Python</tt>, <tt>Minted_Cpp</tt>, etc., in
+<tt>ptex2tex</tt> specified through the <tt>*pro</tt> and <tt>*cod</tt> variables in
+<tt>.ptex2tex.cfg</tt> or <tt>$HOME/.ptex2tex.cfg</tt>), the minted LaTeX package is
+needed.  This package is included by running <tt>ptex2tex</tt> with the
+<tt>-DMINTED</tt> option:
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; ptex2tex -DMINTED mydoc
@@ -617,6 +632,9 @@ Terminal&gt; latex -shell-escape mydoc
 Terminal&gt; dvipdf mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
+When running <tt>doconce ptex2tex mydoc envir=minted</tt> (or other minted
+specifications with <tt>doconce ptex2tex</tt>), the minted package is automatically
+included so there is no need for the <tt>-DMINTED</tt> option.
 
 <P>
 

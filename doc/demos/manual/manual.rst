@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Jul 25, 2012
+:Date: Jul 26, 2012
 
 .. lines beginning with # are comment lines
 
@@ -450,30 +450,42 @@ is also available through ``-DLATEX_HEADING=traditional``.
 A separate titlepage can be generate by
 ``-DLATEX_HEADING=titlepage``.
 
+Other preprocessor variables are ``BOOK`` for the "book" documentclass
+rather than the standard "article" (necessary if you apply chapter
+headings), ``PALATINO`` for the palatino font, ``A4PAPER`` for A4 paper
+size, ``A6PAPER`` for A6 paper size (suitable for reading on small
+devices), ``MOVIE15`` for inclusion of the movie15 LaTeX package, and
+``MINTED`` for inclusion of the minted package (which requires ``latex``
+or ``pdflatex`` to be run with the ``-shell-escape`` option).
+
 The ``ptex2tex`` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents. After any ``!bc`` command in the Doconce source you can
 insert verbatim block styles as defined in your ``.ptex2tex.cfg``
-file, e.g., ``!bc cod`` for a code snippet, where ``cod`` is set to
-a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeIntended``).
-There are about 40 styles to choose from.
+file, e.g., ``!bc sys`` for a terminal session, where ``sys`` is set to
+a certain environment in ``.ptex2tex.cfg`` (e.g., ``CodeTerminal``).
+There are about 40 styles to choose from, and you can easily add
+new ones.
 
 Also the ``doconce ptex2tex`` command supports preprocessor directives
 for processing the ``.p.tex`` file. The command allows specifications
 of code environments as well. Here is an example::
 
 
-        Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+        Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
+                  -DPALATINO -DA6PAPER \
                   "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
-                  fpro=minted fcod=minted envir=ans:nt
+                  fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
 
-Note that ``@`` must be used to separate the begin and end
-LaTeX commands, unless only the environment name is given (such as
-``minted`` above, which implies ``\begin{minted}{fortran}`` and ``\end{minted}``).
-Specifying ``envir=ans:nt`` means that all other environments are typeset
-with the ``anslistings.sty`` package, e.g., ``!bc cppcod`` will then
-result in ``\begin{c++}``. If no environments like ``sys`` or ``fpro`` are
-defined, the plain ``\begin{verbatim}`` and ``\end{verbatim}`` used.
+Note that ``@`` must be used to separate the begin and end LaTeX
+commands, unless only the environment name is given (such as ``minted``
+above, which implies ``\begin{minted}{fortran}`` and ``\end{minted}`` as
+begin and end for blocks inside ``!bc fpro`` and ``!ec``).  Specifying
+``envir=ans:nt`` means that all other environments are typeset with the
+``anslistings.sty`` package, e.g., ``!bc cppcod`` will then result in
+``\begin{c++}``. If no environments like ``sys``, ``fpro``, or the common
+``envir`` are defined on the command line, the plain ``\begin{verbatim}``
+and ``\end{verbatim}`` used.
 
 
 *Step 2b (optional).* Edit the ``mydoc.tex`` file to your needs.
@@ -483,7 +495,7 @@ avoid numbering of sections, you may want to insert linebreaks
 edited with the aid of the ``doconce replace`` and ``doconce subst``
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
-Here are some examples::
+Here are two examples::
 
 
         Terminal> doconce replace 'section{' 'section*{' mydoc.tex
@@ -506,12 +518,13 @@ and create the PDF file::
         Terminal> latex mydoc
         Terminal> dvipdf mydoc
 
-If one wishes to use the ``Minted_Python``, ``Minted_Cpp``, etc.,
-environments in ``ptex2tex`` for typesetting code (specified, e.g., in
-the ``*pro`` and ``*cod`` environments in ``.ptex2tex.cfg`` or
-``$HOME/.ptex2tex.cfg``), the ``minted`` LaTeX package is needed.  This
-package is included by running ``doconce format`` with the ``-DMINTED``
-option::
+
+If one wishes to run ``ptex2tex`` and use the minted LaTeX package for
+typesetting code blocks (``Minted_Python``, ``Minted_Cpp``, etc., in
+``ptex2tex`` specified through the ``*pro`` and ``*cod`` variables in
+``.ptex2tex.cfg`` or ``$HOME/.ptex2tex.cfg``), the minted LaTeX package is
+needed.  This package is included by running ``ptex2tex`` with the
+``-DMINTED`` option::
 
 
         Terminal> ptex2tex -DMINTED mydoc
@@ -527,6 +540,9 @@ In this case, ``latex`` must be run with the
         Terminal> latex -shell-escape mydoc
         Terminal> dvipdf mydoc
 
+When running ``doconce ptex2tex mydoc envir=minted`` (or other minted
+specifications with ``doconce ptex2tex``), the minted package is automatically
+included so there is no need for the ``-DMINTED`` option.
 
 
 PDFLaTeX

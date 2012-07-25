@@ -590,22 +590,20 @@ def define(FILENAME_EXTENSION,
 %%
 
 % #ifdef BOOK
-\documentclass{book}
+\documentclass[twoside]{book}
 % #else
-\documentclass{article}
+\documentclass[twoside]{article}
 % #endif
 
-% #ifndef LAYOUT
-% #define LAYOUT
-% #endif
-
-% #if LAYOUT == "a4"
+% #ifdef A4PAPER
 \usepackage[a4paper]{geometry}
-% #elif LAYOUT == "epub"
+% #endif
+% #ifdef A6PAPER
+% a6paper is suitable for epub-style formats
 \usepackage[%
-  a6paper,                  % suitable for epub-style formats
-  text={90mm,130mm},        % text area
-  inner={5mm},              % inner margin
+  a6paper,
+  text={90mm,130mm},
+  inner={5mm},              % inner margin (two-sided documents)
   top=5mm,
   headsep=4mm
   ]{geometry}
