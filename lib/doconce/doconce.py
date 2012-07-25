@@ -1462,9 +1462,10 @@ def doconce2format(filestr, format):
           ('*'*80, filestr))
 
     # hack to fix a bug with !ec/!et at the end of files, which is not
-    # correctly substituted by '' in rst, sphinx, st, epytext, plain
+    # correctly substituted by '' in rst, sphinx, st, epytext, plain, wikis
     # (the fix is to add "enough" blank lines)
-    if format in ('rst', 'sphinx', 'st', 'epytext', 'plain'):
+    if format in ('rst', 'sphinx', 'st', 'epytext', 'plain',
+                  'mwiki', 'cwiki', 'gwiki'):
         filestr = filestr.rstrip()
         if filestr.endswith('!ec') or filestr.endswith('!et'):
             filestr += '\n'*10
@@ -1473,22 +1474,6 @@ def doconce2format(filestr, format):
 
     filestr, code_blocks, code_block_types, tex_blocks = \
              remove_code_and_tex(filestr)
-
-    # for html we should make replacements of < and > in code_blocks,
-    # since these can be interpreted as tags, and we must
-    # handle latin-1 characters
-    if format == 'html':  # fix
-        for i in range(len(code_blocks)):
-            # This does not catch things like '<x ...<y>'
-            #code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
-            #                        '&lt;\g<2>&gt;', code_blocks[i])
-            code_blocks[i] = code_blocks[i].replace('<', '&lt;')
-            code_blocks[i] = code_blocks[i].replace('>', '&gt;')
-
-        # This special character transformation is easier done
-        # with encoding="utf-8" in the first line in the html file:
-        # (but we do it explicitly to make it robust)
-        filestr = html.latin2html(filestr)
 
     debugpr('%s\n**** The file after removal of code/tex blocks:\n\n%s\n\n' % \
           ('*'*80, filestr))

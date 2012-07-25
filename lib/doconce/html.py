@@ -4,7 +4,23 @@ from common import table_analysis, plain_exercise, insert_code_and_tex
 # how to replace code and LaTeX blocks by html (<pre>) environment:
 def html_code(filestr, code_blocks, code_block_types,
               tex_blocks, format):
+
+    # For html we should make replacements of < and > in code_blocks,
+    # since these can be interpreted as tags, and we must
+    # handle latin-1 characters.
+    for i in range(len(code_blocks)):
+        # This does not catch things like '<x ...<y>'
+        #code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
+        #                        '&lt;\g<2>&gt;', code_blocks[i])
+        code_blocks[i] = code_blocks[i].replace('<', '&lt;')
+        code_blocks[i] = code_blocks[i].replace('>', '&gt;')
+
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+
+    # This special character transformation is easier done
+    # with encoding="utf-8" in the first line in the html file:
+    # (but we do it explicitly to make it robust)
+    filestr = latin2html(filestr)
 
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
     # Do not use <code> here, it gives an extra line at the top
