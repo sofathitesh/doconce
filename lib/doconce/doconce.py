@@ -1463,7 +1463,8 @@ def doconce2format(filestr, format):
 
     # hack to fix a bug with !ec/!et at the end of files, which is not
     # correctly substituted by '' in rst, sphinx, st, epytext, plain, wikis
-    # (the fix is to add "enough" blank lines)
+    # (the fix is to add "enough" blank lines - the reason can be
+    # an effective strip of filestr, e.g., through '\n'.join(lines))
     if format in ('rst', 'sphinx', 'st', 'epytext', 'plain',
                   'mwiki', 'cwiki', 'gwiki'):
         filestr = filestr.rstrip()
