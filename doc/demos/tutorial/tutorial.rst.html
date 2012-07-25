@@ -328,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jul 25, 2012</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jul 26, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -811,28 +811,39 @@ institutions in common. However, the standard LaTeX &quot;maketitle&quot; headin
 is also available through <tt class="docutils literal"><span class="pre">-DLATEX_HEADING=traditional</span></tt>.
 A separate titlepage can be generate by
 <tt class="docutils literal"><span class="pre">-DLATEX_HEADING=titlepage</span></tt>.</p>
+<p>Other preprocessor variables are <tt class="docutils literal">BOOK</tt> for the &quot;book&quot; documentclass
+rather than the standard &quot;article&quot; (necessary if you apply chapter
+headings), <tt class="docutils literal">PALATINO</tt> for the palatino font, <tt class="docutils literal">A4PAPER</tt> for A4 paper
+size, <tt class="docutils literal">A6PAPER</tt> for A6 paper size (suitable for reading on small
+devices), <tt class="docutils literal">MOVIE15</tt> for inclusion of the movie15 LaTeX package, and
+<tt class="docutils literal">MINTED</tt> for inclusion of the minted package (which requires <tt class="docutils literal">latex</tt>
+or <tt class="docutils literal">pdflatex</tt> to be run with the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option).</p>
 <p>The <tt class="docutils literal">ptex2tex</tt> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents. After any <tt class="docutils literal">!bc</tt> command in the Doconce source you can
 insert verbatim block styles as defined in your <tt class="docutils literal">.ptex2tex.cfg</tt>
-file, e.g., <tt class="docutils literal">!bc cod</tt> for a code snippet, where <tt class="docutils literal">cod</tt> is set to
-a certain environment in <tt class="docutils literal">.ptex2tex.cfg</tt> (e.g., <tt class="docutils literal">CodeIntended</tt>).
-There are about 40 styles to choose from.</p>
+file, e.g., <tt class="docutils literal">!bc sys</tt> for a terminal session, where <tt class="docutils literal">sys</tt> is set to
+a certain environment in <tt class="docutils literal">.ptex2tex.cfg</tt> (e.g., <tt class="docutils literal">CodeTerminal</tt>).
+There are about 40 styles to choose from, and you can easily add
+new ones.</p>
 <p>Also the <tt class="docutils literal">doconce ptex2tex</tt> command supports preprocessor directives
 for processing the <tt class="docutils literal">.p.tex</tt> file. The command allows specifications
 of code environments as well. Here is an example:</p>
 <pre class="literal-block">
-Terminal&gt; doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+Terminal&gt; doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
+          -DPALATINO -DA6PAPER \
           &quot;sys=\begin{quote}\begin{verbatim}&#64;\end{verbatim}\end{quote}&quot; \
-          fpro=minted fcod=minted envir=ans:nt
+          fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
 </pre>
-<p>Note that <tt class="docutils literal">&#64;</tt> must be used to separate the begin and end
-LaTeX commands, unless only the environment name is given (such as
-<tt class="docutils literal">minted</tt> above, which implies <tt class="docutils literal"><span class="pre">\begin{minted}{fortran}</span></tt> and <tt class="docutils literal">\end{minted}</tt>).
-Specifying <tt class="docutils literal">envir=ans:nt</tt> means that all other environments are typeset
-with the <tt class="docutils literal">anslistings.sty</tt> package, e.g., <tt class="docutils literal">!bc cppcod</tt> will then
-result in <tt class="docutils literal"><span class="pre">\begin{c++}</span></tt>. If no environments like <tt class="docutils literal">sys</tt> or <tt class="docutils literal">fpro</tt> are
-defined, the plain <tt class="docutils literal">\begin{verbatim}</tt> and <tt class="docutils literal">\end{verbatim}</tt> used.</p>
+<p>Note that <tt class="docutils literal">&#64;</tt> must be used to separate the begin and end LaTeX
+commands, unless only the environment name is given (such as <tt class="docutils literal">minted</tt>
+above, which implies <tt class="docutils literal"><span class="pre">\begin{minted}{fortran}</span></tt> and <tt class="docutils literal">\end{minted}</tt> as
+begin and end for blocks inside <tt class="docutils literal">!bc fpro</tt> and <tt class="docutils literal">!ec</tt>).  Specifying
+<tt class="docutils literal">envir=ans:nt</tt> means that all other environments are typeset with the
+<tt class="docutils literal">anslistings.sty</tt> package, e.g., <tt class="docutils literal">!bc cppcod</tt> will then result in
+<tt class="docutils literal"><span class="pre">\begin{c++}</span></tt>. If no environments like <tt class="docutils literal">sys</tt>, <tt class="docutils literal">fpro</tt>, or the common
+<tt class="docutils literal">envir</tt> are defined on the command line, the plain <tt class="docutils literal">\begin{verbatim}</tt>
+and <tt class="docutils literal">\end{verbatim}</tt> used.</p>
 <p><em>Step 2b (optional).</em> Edit the <tt class="docutils literal">mydoc.tex</tt> file to your needs.
 For example, you may want to substitute <tt class="docutils literal">section</tt> by <tt class="docutils literal">section*</tt> to
 avoid numbering of sections, you may want to insert linebreaks
@@ -840,7 +851,7 @@ avoid numbering of sections, you may want to insert linebreaks
 edited with the aid of the <tt class="docutils literal">doconce replace</tt> and <tt class="docutils literal">doconce subst</tt>
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
-Here are some examples:</p>
+Here are two examples:</p>
 <pre class="literal-block">
 Terminal&gt; doconce replace 'section{' 'section*{' mydoc.tex
 Terminal&gt; doconce subst 'title\{(.+)Using (.+)\}' \
@@ -860,12 +871,12 @@ Terminal&gt; bibitem mydoc     # if bibliography
 Terminal&gt; latex mydoc
 Terminal&gt; dvipdf mydoc
 </pre>
-<p>If one wishes to use the <tt class="docutils literal">Minted_Python</tt>, <tt class="docutils literal">Minted_Cpp</tt>, etc.,
-environments in <tt class="docutils literal">ptex2tex</tt> for typesetting code (specified, e.g., in
-the <tt class="docutils literal">*pro</tt> and <tt class="docutils literal">*cod</tt> environments in <tt class="docutils literal">.ptex2tex.cfg</tt> or
-<tt class="docutils literal"><span class="pre">$HOME/.ptex2tex.cfg</span></tt>), the <tt class="docutils literal">minted</tt> LaTeX package is needed.  This
-package is included by running <tt class="docutils literal">doconce format</tt> with the <tt class="docutils literal"><span class="pre">-DMINTED</span></tt>
-option:</p>
+<p>If one wishes to run <tt class="docutils literal">ptex2tex</tt> and use the minted LaTeX package for
+typesetting code blocks (<tt class="docutils literal">Minted_Python</tt>, <tt class="docutils literal">Minted_Cpp</tt>, etc., in
+<tt class="docutils literal">ptex2tex</tt> specified through the <tt class="docutils literal">*pro</tt> and <tt class="docutils literal">*cod</tt> variables in
+<tt class="docutils literal">.ptex2tex.cfg</tt> or <tt class="docutils literal"><span class="pre">$HOME/.ptex2tex.cfg</span></tt>), the minted LaTeX package is
+needed.  This package is included by running <tt class="docutils literal">ptex2tex</tt> with the
+<tt class="docutils literal"><span class="pre">-DMINTED</span></tt> option:</p>
 <pre class="literal-block">
 Terminal&gt; ptex2tex -DMINTED mydoc
 </pre>
@@ -879,6 +890,9 @@ Terminal&gt; bibitem mydoc     # if bibliography
 Terminal&gt; latex -shell-escape mydoc
 Terminal&gt; dvipdf mydoc
 </pre>
+<p>When running <tt class="docutils literal">doconce ptex2tex mydoc envir=minted</tt> (or other minted
+specifications with <tt class="docutils literal">doconce ptex2tex</tt>), the minted package is automatically
+included so there is no need for the <tt class="docutils literal"><span class="pre">-DMINTED</span></tt> option.</p>
 </div>
 <div class="section" id="pdflatex">
 <h2>PDFLaTeX</h2>

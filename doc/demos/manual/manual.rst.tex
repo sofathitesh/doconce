@@ -56,7 +56,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Jul 25, 2012
+Jul 26, 2012
 
 \end{DUfieldlist}
 
@@ -602,32 +602,44 @@ is also available through \texttt{-DLATEX\_HEADING=traditional}.
 A separate titlepage can be generate by
 \texttt{-DLATEX\_HEADING=titlepage}.
 
+Other preprocessor variables are \texttt{BOOK} for the ``book'' documentclass
+rather than the standard ``article'' (necessary if you apply chapter
+headings), \texttt{PALATINO} for the palatino font, \texttt{A4PAPER} for A4 paper
+size, \texttt{A6PAPER} for A6 paper size (suitable for reading on small
+devices), \texttt{MOVIE15} for inclusion of the movie15 LaTeX package, and
+\texttt{MINTED} for inclusion of the minted package (which requires \texttt{latex}
+or \texttt{pdflatex} to be run with the \texttt{-shell-escape} option).
+
 The \texttt{ptex2tex} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents. After any \texttt{!bc} command in the Doconce source you can
 insert verbatim block styles as defined in your \texttt{.ptex2tex.cfg}
-file, e.g., \texttt{!bc cod} for a code snippet, where \texttt{cod} is set to
-a certain environment in \texttt{.ptex2tex.cfg} (e.g., \texttt{CodeIntended}).
-There are about 40 styles to choose from.
+file, e.g., \texttt{!bc sys} for a terminal session, where \texttt{sys} is set to
+a certain environment in \texttt{.ptex2tex.cfg} (e.g., \texttt{CodeTerminal}).
+There are about 40 styles to choose from, and you can easily add
+new ones.
 
 Also the \texttt{doconce ptex2tex} command supports preprocessor directives
 for processing the \texttt{.p.tex} file. The command allows specifications
 of code environments as well. Here is an example:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~ptex2tex~-DLATEX\_HEADING=traditional~-DMINTED~\textbackslash{}\\
+Terminal>~doconce~ptex2tex~mydoc~-DLATEX\_HEADING=traditional~\textbackslash{}\\
+~~~~~~~~~~-DPALATINO~-DA6PAPER~\textbackslash{}\\
 ~~~~~~~~~~"sys=\textbackslash{}begin\{quote\}\textbackslash{}begin\{verbatim\}@\textbackslash{}end\{verbatim\}\textbackslash{}end\{quote\}"~\textbackslash{}\\
-~~~~~~~~~~fpro=minted~fcod=minted~envir=ans:nt
+~~~~~~~~~~fpro=minted~fcod=minted~shcod=Verbatim~envir=ans:nt
 }
 \end{quote}
 
-Note that \texttt{@} must be used to separate the begin and end
-LaTeX commands, unless only the environment name is given (such as
-\texttt{minted} above, which implies \texttt{\textbackslash{}begin\{minted\}\{fortran\}} and \texttt{\textbackslash{}end\{minted\}}).
-Specifying \texttt{envir=ans:nt} means that all other environments are typeset
-with the \texttt{anslistings.sty} package, e.g., \texttt{!bc cppcod} will then
-result in \texttt{\textbackslash{}begin\{c++\}}. If no environments like \texttt{sys} or \texttt{fpro} are
-defined, the plain \texttt{\textbackslash{}begin\{verbatim\}} and \texttt{\textbackslash{}end\{verbatim\}} used.
+Note that \texttt{@} must be used to separate the begin and end LaTeX
+commands, unless only the environment name is given (such as \texttt{minted}
+above, which implies \texttt{\textbackslash{}begin\{minted\}\{fortran\}} and \texttt{\textbackslash{}end\{minted\}} as
+begin and end for blocks inside \texttt{!bc fpro} and \texttt{!ec}).  Specifying
+\texttt{envir=ans:nt} means that all other environments are typeset with the
+\texttt{anslistings.sty} package, e.g., \texttt{!bc cppcod} will then result in
+\texttt{\textbackslash{}begin\{c++\}}. If no environments like \texttt{sys}, \texttt{fpro}, or the common
+\texttt{envir} are defined on the command line, the plain \texttt{\textbackslash{}begin\{verbatim\}}
+and \texttt{\textbackslash{}end\{verbatim\}} used.
 
 \emph{Step 2b (optional).} Edit the \texttt{mydoc.tex} file to your needs.
 For example, you may want to substitute \texttt{section} by \texttt{section*} to
@@ -636,7 +648,7 @@ avoid numbering of sections, you may want to insert linebreaks
 edited with the aid of the \texttt{doconce replace} and \texttt{doconce subst}
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
-Here are some examples:
+Here are two examples:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Terminal>~doconce~replace~'section\{'~'section*\{'~mydoc.tex\\
@@ -663,12 +675,12 @@ Terminal>~dvipdf~mydoc
 }
 \end{quote}
 
-If one wishes to use the \texttt{Minted\_Python}, \texttt{Minted\_Cpp}, etc.,
-environments in \texttt{ptex2tex} for typesetting code (specified, e.g., in
-the \texttt{*pro} and \texttt{*cod} environments in \texttt{.ptex2tex.cfg} or
-\texttt{\$HOME/.ptex2tex.cfg}), the \texttt{minted} LaTeX package is needed.  This
-package is included by running \texttt{doconce format} with the \texttt{-DMINTED}
-option:
+If one wishes to run \texttt{ptex2tex} and use the minted LaTeX package for
+typesetting code blocks (\texttt{Minted\_Python}, \texttt{Minted\_Cpp}, etc., in
+\texttt{ptex2tex} specified through the \texttt{*pro} and \texttt{*cod} variables in
+\texttt{.ptex2tex.cfg} or \texttt{\$HOME/.ptex2tex.cfg}), the minted LaTeX package is
+needed.  This package is included by running \texttt{ptex2tex} with the
+\texttt{-DMINTED} option:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Terminal>~ptex2tex~-DMINTED~mydoc
@@ -687,6 +699,10 @@ Terminal>~latex~-shell-escape~mydoc\\
 Terminal>~dvipdf~mydoc
 }
 \end{quote}
+
+When running \texttt{doconce ptex2tex mydoc envir=minted} (or other minted
+specifications with \texttt{doconce ptex2tex}), the minted package is automatically
+included so there is no need for the \texttt{-DMINTED} option.
 
 
 %___________________________________________________________________________

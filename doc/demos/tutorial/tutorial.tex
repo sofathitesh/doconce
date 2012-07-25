@@ -4,7 +4,9 @@
 %% http://code.google.com/p/doconce/
 %%
 
-\documentclass{article}
+\documentclass[twoside]{article}
+
+
 
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
@@ -69,7 +71,7 @@
 
 
 \begin{center}
-Jul 25, 2012
+Jul 26, 2012
 \end{center}
 
 
@@ -657,13 +659,22 @@ is also available through {\fontsize{10pt}{10pt}\verb!-DLATEX_HEADING=traditiona
 A separate titlepage can be generate by
 {\fontsize{10pt}{10pt}\verb!-DLATEX_HEADING=titlepage!}.
 
+Other preprocessor variables are {\fontsize{10pt}{10pt}\verb!BOOK!} for the "book" documentclass
+rather than the standard "article" (necessary if you apply chapter
+headings), {\fontsize{10pt}{10pt}\verb!PALATINO!} for the palatino font, {\fontsize{10pt}{10pt}\verb!A4PAPER!} for A4 paper
+size, {\fontsize{10pt}{10pt}\verb!A6PAPER!} for A6 paper size (suitable for reading on small
+devices), {\fontsize{10pt}{10pt}\verb!MOVIE15!} for inclusion of the movie15 {\LaTeX} package, and
+{\fontsize{10pt}{10pt}\verb!MINTED!} for inclusion of the minted package (which requires {\fontsize{10pt}{10pt}\verb!latex!}
+or {\fontsize{10pt}{10pt}\verb!pdflatex!} to be run with the {\fontsize{10pt}{10pt}\verb!-shell-escape!} option).
+
 The {\fontsize{10pt}{10pt}\verb!ptex2tex!} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in {\LaTeX}
 documents. After any {\fontsize{10pt}{10pt}\verb!!bc!} command in the Doconce source you can
 insert verbatim block styles as defined in your {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!}
-file, e.g., {\fontsize{10pt}{10pt}\verb!!bc cod!} for a code snippet, where {\fontsize{10pt}{10pt}\verb!cod!} is set to
-a certain environment in {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!} (e.g., {\fontsize{10pt}{10pt}\verb!CodeIntended!}).
-There are about 40 styles to choose from.
+file, e.g., {\fontsize{10pt}{10pt}\verb!!bc sys!} for a terminal session, where {\fontsize{10pt}{10pt}\verb!sys!} is set to
+a certain environment in {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!} (e.g., {\fontsize{10pt}{10pt}\verb!CodeTerminal!}).
+There are about 40 styles to choose from, and you can easily add
+new ones.
 
 Also the {\fontsize{10pt}{10pt}\verb!doconce ptex2tex!} command supports preprocessor directives
 for processing the {\fontsize{10pt}{10pt}\verb!.p.tex!} file. The command allows specifications
@@ -671,17 +682,20 @@ of code environments as well. Here is an example:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
-Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
+          -DPALATINO -DA6PAPER \
           "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
-          fpro=minted fcod=minted envir=ans:nt
+          fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
 \end{Verbatim}
-Note that {\fontsize{10pt}{10pt}\verb!@!} must be used to separate the begin and end
-{\LaTeX} commands, unless only the environment name is given (such as
-{\fontsize{10pt}{10pt}\verb!minted!} above, which implies {\fontsize{10pt}{10pt}\verb!\begin{minted}{fortran}!} and {\fontsize{10pt}{10pt}\verb!\end{minted}!}).
-Specifying {\fontsize{10pt}{10pt}\verb!envir=ans:nt!} means that all other environments are typeset
-with the {\fontsize{10pt}{10pt}\verb!anslistings.sty!} package, e.g., {\fontsize{10pt}{10pt}\verb!!bc cppcod!} will then
-result in {\fontsize{10pt}{10pt}\verb!\begin{c++}!}. If no environments like {\fontsize{10pt}{10pt}\verb!sys!} or {\fontsize{10pt}{10pt}\verb!fpro!} are
-defined, the plain {\fontsize{10pt}{10pt}\verb!\begin{verbatim}!} and {\fontsize{10pt}{10pt}\verb!\end{verbatim}!} used.
+Note that {\fontsize{10pt}{10pt}\verb!@!} must be used to separate the begin and end {\LaTeX}
+commands, unless only the environment name is given (such as {\fontsize{10pt}{10pt}\verb!minted!}
+above, which implies {\fontsize{10pt}{10pt}\verb!\begin{minted}{fortran}!} and {\fontsize{10pt}{10pt}\verb!\end{minted}!} as
+begin and end for blocks inside {\fontsize{10pt}{10pt}\verb!!bc fpro!} and {\fontsize{10pt}{10pt}\verb!!ec!}).  Specifying
+{\fontsize{10pt}{10pt}\verb!envir=ans:nt!} means that all other environments are typeset with the
+{\fontsize{10pt}{10pt}\verb!anslistings.sty!} package, e.g., {\fontsize{10pt}{10pt}\verb!!bc cppcod!} will then result in
+{\fontsize{10pt}{10pt}\verb!\begin{c++}!}. If no environments like {\fontsize{10pt}{10pt}\verb!sys!}, {\fontsize{10pt}{10pt}\verb!fpro!}, or the common
+{\fontsize{10pt}{10pt}\verb!envir!} are defined on the command line, the plain {\fontsize{10pt}{10pt}\verb!\begin{verbatim}!}
+and {\fontsize{10pt}{10pt}\verb!\end{verbatim}!} used.
 
 
 \paragraph{Step 2b (optional).}
@@ -692,7 +706,7 @@ avoid numbering of sections, you may want to insert linebreaks
 edited with the aid of the {\fontsize{10pt}{10pt}\verb!doconce replace!} and {\fontsize{10pt}{10pt}\verb!doconce subst!}
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
-Here are some examples:
+Here are two examples:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
@@ -718,12 +732,13 @@ Terminal> bibitem mydoc     # if bibliography
 Terminal> latex mydoc
 Terminal> dvipdf mydoc
 \end{Verbatim}
-If one wishes to use the {\fontsize{10pt}{10pt}\verb!Minted_Python!}, {\fontsize{10pt}{10pt}\verb!Minted_Cpp!}, etc.,
-environments in {\fontsize{10pt}{10pt}\verb!ptex2tex!} for typesetting code (specified, e.g., in
-the {\fontsize{10pt}{10pt}\verb!*pro!} and {\fontsize{10pt}{10pt}\verb!*cod!} environments in {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!} or
-{\fontsize{10pt}{10pt}\verb!$HOME/.ptex2tex.cfg!}), the {\fontsize{10pt}{10pt}\verb!minted!} {\LaTeX} package is needed.  This
-package is included by running {\fontsize{10pt}{10pt}\verb!doconce format!} with the {\fontsize{10pt}{10pt}\verb!-DMINTED!}
-option:
+
+If one wishes to run {\fontsize{10pt}{10pt}\verb!ptex2tex!} and use the minted {\LaTeX} package for
+typesetting code blocks ({\fontsize{10pt}{10pt}\verb!Minted_Python!}, {\fontsize{10pt}{10pt}\verb!Minted_Cpp!}, etc., in
+{\fontsize{10pt}{10pt}\verb!ptex2tex!} specified through the {\fontsize{10pt}{10pt}\verb!*pro!} and {\fontsize{10pt}{10pt}\verb!*cod!} variables in
+{\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!} or {\fontsize{10pt}{10pt}\verb!$HOME/.ptex2tex.cfg!}), the minted {\LaTeX} package is
+needed.  This package is included by running {\fontsize{10pt}{10pt}\verb!ptex2tex!} with the
+{\fontsize{10pt}{10pt}\verb!-DMINTED!} option:
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
 labelposition=topline,framesep=2.5mm,framerule=0.7pt]
@@ -741,6 +756,9 @@ Terminal> bibitem mydoc     # if bibliography
 Terminal> latex -shell-escape mydoc
 Terminal> dvipdf mydoc
 \end{Verbatim}
+When running {\fontsize{10pt}{10pt}\verb!doconce ptex2tex mydoc envir=minted!} (or other minted
+specifications with {\fontsize{10pt}{10pt}\verb!doconce ptex2tex!}), the minted package is automatically
+included so there is no need for the {\fontsize{10pt}{10pt}\verb!-DMINTED!} option.
 
 \subsection{PDFLaTeX}
 

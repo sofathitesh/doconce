@@ -402,30 +402,42 @@ is also available through C{-DLATEX_HEADING=traditional}.
 A separate titlepage can be generate by
 C{-DLATEX_HEADING=titlepage}.
 
+Other preprocessor variables are C{BOOK} for the "book" documentclass
+rather than the standard "article" (necessary if you apply chapter
+headings), C{PALATINO} for the palatino font, C{A4PAPER} for A4 paper
+size, C{A6PAPER} for A6 paper size (suitable for reading on small
+devices), C{MOVIE15} for inclusion of the movie15 LaTeX package, and
+C{MINTED} for inclusion of the minted package (which requires C{latex}
+or C{pdflatex} to be run with the C{-shell-escape} option).
+
 The C{ptex2tex} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents. After any C{!bc} command in the Doconce source you can
 insert verbatim block styles as defined in your C{.ptex2tex.cfg}
-file, e.g., C{!bc cod} for a code snippet, where C{cod} is set to
-a certain environment in C{.ptex2tex.cfg} (e.g., C{CodeIntended}).
-There are about 40 styles to choose from.
+file, e.g., C{!bc sys} for a terminal session, where C{sys} is set to
+a certain environment in C{.ptex2tex.cfg} (e.g., C{CodeTerminal}).
+There are about 40 styles to choose from, and you can easily add
+new ones.
 
 Also the C{doconce ptex2tex} command supports preprocessor directives
 for processing the C{.p.tex} file. The command allows specifications
 of code environments as well. Here is an example::
 
 
-        Terminal> doconce ptex2tex -DLATEX_HEADING=traditional -DMINTED \
+        Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
+                  -DPALATINO -DA6PAPER \
                   "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
-                  fpro=minted fcod=minted envir=ans:nt
+                  fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
 
-Note that C{@} must be used to separate the begin and end
-LaTeX commands, unless only the environment name is given (such as
-C{minted} above, which implies C{\begin{minted}{fortran}} and C{\end{minted}}).
-Specifying C{envir=ans:nt} means that all other environments are typeset
-with the C{anslistings.sty} package, e.g., C{!bc cppcod} will then
-result in C{\begin{c++}}. If no environments like C{sys} or C{fpro} are
-defined, the plain C{\begin{verbatim}} and C{\end{verbatim}} used.
+Note that C{@} must be used to separate the begin and end LaTeX
+commands, unless only the environment name is given (such as C{minted}
+above, which implies C{\begin{minted}{fortran}} and C{\end{minted}} as
+begin and end for blocks inside C{!bc fpro} and C{!ec}).  Specifying
+C{envir=ans:nt} means that all other environments are typeset with the
+C{anslistings.sty} package, e.g., C{!bc cppcod} will then result in
+C{\begin{c++}}. If no environments like C{sys}, C{fpro}, or the common
+C{envir} are defined on the command line, the plain C{\begin{verbatim}}
+and C{\end{verbatim}} used.
 
 
 I{Step 2b (optional).} Edit the C{mydoc.tex} file to your needs.
@@ -435,7 +447,7 @@ avoid numbering of sections, you may want to insert linebreaks
 edited with the aid of the C{doconce replace} and C{doconce subst}
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
-Here are some examples::
+Here are two examples::
 
 
         Terminal> doconce replace 'section{' 'section*{' mydoc.tex
@@ -458,12 +470,13 @@ and create the PDF file::
         Terminal> latex mydoc
         Terminal> dvipdf mydoc
 
-If one wishes to use the C{Minted_Python}, C{Minted_Cpp}, etc.,
-environments in C{ptex2tex} for typesetting code (specified, e.g., in
-the C{*pro} and C{*cod} environments in C{.ptex2tex.cfg} or
-C{$HOME/.ptex2tex.cfg}), the C{minted} LaTeX package is needed.  This
-package is included by running C{doconce format} with the C{-DMINTED}
-option::
+
+If one wishes to run C{ptex2tex} and use the minted LaTeX package for
+typesetting code blocks (C{Minted_Python}, C{Minted_Cpp}, etc., in
+C{ptex2tex} specified through the C{*pro} and C{*cod} variables in
+C{.ptex2tex.cfg} or C{$HOME/.ptex2tex.cfg}), the minted LaTeX package is
+needed.  This package is included by running C{ptex2tex} with the
+C{-DMINTED} option::
 
 
         Terminal> ptex2tex -DMINTED mydoc
@@ -479,6 +492,9 @@ C{-shell-escape} option::
         Terminal> latex -shell-escape mydoc
         Terminal> dvipdf mydoc
 
+When running C{doconce ptex2tex mydoc envir=minted} (or other minted
+specifications with C{doconce ptex2tex}), the minted package is automatically
+included so there is no need for the C{-DMINTED} option.
 
 
 PDFLaTeX

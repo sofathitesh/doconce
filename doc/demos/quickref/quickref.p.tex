@@ -5,10 +5,25 @@
 %%
 
 % #ifdef BOOK
-\documentclass{book}
+\documentclass[twoside]{book}
 % #else
-\documentclass{article}
+\documentclass[twoside]{article}
 % #endif
+
+% #ifdef A4PAPER
+\usepackage[a4paper]{geometry}
+% #endif
+% #ifdef A6PAPER
+% a6paper is suitable for epub-style formats
+\usepackage[%
+  a6paper,
+  text={90mm,130mm},
+  inner={5mm},              % inner margin (two-sided documents)
+  top=5mm,
+  headsep=4mm
+  ]{geometry}
+% #endif
+
 
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
@@ -118,13 +133,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Jul 25, 2012}
+\date{Jul 26, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Jul 25, 2012}}
+{\large\textsf{Jul 26, 2012}}
 
 \end{center}
 \vfill
@@ -133,7 +148,7 @@
 % #else
 
 \begin{center}
-Jul 25, 2012
+Jul 26, 2012
 \end{center}
 
 % #endif
