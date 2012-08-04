@@ -391,7 +391,8 @@ def latex_ref_and_label(section_label2title, format, filestr):
     #filestr = re.sub(r'\bLaTeX\b', r'{\LaTeX}', filestr)
 
     # handle & (Texas A&M -> Texas A{\&}M):
-    filestr = re.sub(r'([A-Za-z])\s*&\s*([A-Za-z])', r'\g<1>{\&}\g<2>', filestr)
+    # (NOTE: destroys URLs with & - and potentially align math envirs)
+    #filestr = re.sub(r'([A-Za-z])\s*&\s*([A-Za-z])', r'\g<1>{\&}\g<2>', filestr)
 
     # handle non-English characters:
     chars = {'æ': r'{\ae}', 'ø': r'{\o}', 'å': r'{\aa}',
