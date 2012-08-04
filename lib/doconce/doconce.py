@@ -7,11 +7,9 @@ except ImportError:
     # citations is then lost)
     OrderedDict = dict
 
-global debug
-debug = False  # can be reset in main()
 def debugpr(out):
-    if debug:
-        #print out
+    """Add the text in string `out` to the log file (name in _log variable)."""
+    if '--debug' in sys.argv:
         global _log
         _log = open('_doconce_debugging.log','a')
         _log.write(out + '\n')
@@ -349,7 +347,7 @@ def make_one_line_paragraphs(filestr, format):
     # THIS FUNCTION DOES NOT WORK WELL - it's difficult to make
     # one-line paragraphs...
     print 'make_one_line_paragraphs: this function does not work well'
-    print 'drop oneline_paragraphs option on the command line...'
+    print 'drop --oneline_paragraphs option on the command line...'
     # make double linebreaks to triple
     filestr = re.sub('\n *\n', '[[[[[DOUBLE_NEWLINE]]]]]', filestr)
     # save some single linebreaks
@@ -1486,10 +1484,10 @@ def doconce2format(filestr, format):
           ('*'*80, pprint.pformat(tex_blocks)))
 
     # remove linebreaks within paragraphs:
-    if oneline_paragraphs:  # (does not yet work well)
+    if '--oneline_paragraphs' in sys.argv:  # (does not yet work well)
         filestr = make_one_line_paragraphs(filestr, format)
 
-    if skip_inline_comments:
+    if '--skip_inline_comments' in sys.argv:
         filestr = subst_away_inline_comments(filestr)
 
     # Next step: deal with exercises
@@ -1720,11 +1718,10 @@ def main():
 
     # oneline is inactive (doesn't work well yet)
 
-    options = ['debug', 'skip_inline_comments', 'encoding=',
-               'oneline_paragraphs',] # 'tmp1']
+    options = ['--debug', '--skip_inline_comments', '--encoding=',
+               '--oneline_paragraphs',]
 
-    global debug, _log, oneline_paragraphs, \
-           skip_inline_comments, encoding, filename
+    global _log, encoding, filename
 
     try:
         format = sys.argv[1]
@@ -1732,7 +1729,7 @@ def main():
         del sys.argv[1:3]
     except IndexError:
         print 'Usage: %s format filename [%s] [preprocessor options]\n' \
-              % (sys.argv[0], ' | '.join(options))
+              % (sys.argv[0], ' '.join(options))
         if len(sys.argv) == 1:
             print 'Missing format specification!'
         print 'formats:', str(supported_format_names())[1:-1]
@@ -1745,39 +1742,13 @@ def main():
         print '%s is not among the supported formats:\n%s' % (format, names)
         sys.exit(1)
 
-    debug = False
-    if 'debug' in sys.argv[1:]:
-        debug = True
-        sys.argv.remove('debug')
-    if '--debug' in sys.argv[1:]:
-        debug = True
-        sys.argv.remove('--debug')
-
-    oneline_paragraphs = False
-    if 'oneline_paragraphs' in sys.argv[1:]:
-        oneline_paragraphs = True
-        sys.argv.remove('oneline_paragraphs')
-    if '--oneline_paragraphs' in sys.argv[1:]:
-        oneline_paragraphs = True
-        sys.argv.remove('--oneline_paragraphs')
-
-    skip_inline_comments = False
-    if 'skip_inline_comments' in sys.argv[1:]:
-        skip_inline_comments = True
-        sys.argv.remove('skip_inline_comments')
-    if '--skip_inline_comments' in sys.argv[1:]:
-        skip_inline_comments = True
-        sys.argv.remove('--skip_inline_comments')
-
     encoding = ''
     for arg in sys.argv[1:]:
         if arg.startswith('encoding=') or arg.startswith('--encoding='):
             dummy, encoding = arg.split('=')
             break
-    if encoding:
-        sys.argv.remove(arg)
 
-    if debug:
+    if '--debug' in sys.argv:
         _log_filename = '_doconce_debugging.log'
         _log = open(_log_filename,'w')
         _log.write("""
