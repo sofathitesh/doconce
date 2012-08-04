@@ -1344,9 +1344,10 @@ def file2file(in_filename, format, out_filename):
     This is the "main" function in the module.
     """
     if in_filename.startswith('__'):
-        print 'translate preprocessed doconce text in', in_filename
+        print 'translating preprocessed doconce text in', in_filename, \
+              'to', format
     else:
-        print 'translate doconce text in', in_filename
+        print 'translating doconce text in', in_filename, 'to', format
 
     # if trouble with encoding:
     # Unix> doconce guess_encoding myfile.do.txt

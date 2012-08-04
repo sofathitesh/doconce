@@ -30,7 +30,7 @@ def define(FILENAME_EXTENSION,
                      OUTRO)
 
     # The BIG difference between pdflatex and latex
-    FIGURE_EXT['pdflatex'] = ('.jpg', '.jpeg', '.png', '.pdf')
+    FIGURE_EXT['pdflatex'] = ('.pdf', '.jpg', '.jpeg', '.png')
 
     # The rest is copy
     FILENAME_EXTENSION['pdflatex'] = FILENAME_EXTENSION['latex']
