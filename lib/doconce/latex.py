@@ -213,13 +213,9 @@ def latex_title(m):
     title = m.group('subst')
     # Make appropriate linebreaks for the default typesetting
     import textwrap
-    default_title = r' \\\\ [1.5mm] '.join(textwrap.wrap(title, width=38))
+    multiline_title = r' \\\\ [1.5mm] '.join(textwrap.wrap(title, width=38))
 
     text = fix_latex_command_regex(pattern=r"""
-
-%% #ifndef LATEX_HEADING
-%% #define LATEX_HEADING
-%% #endif
 
 %% ----------------- Title -------------------------
 %% #if LATEX_HEADING == "traditional"
@@ -234,6 +230,12 @@ def latex_title(m):
 \begin{center}
 {\huge{\bfseries{%s}}}
 
+%% #elif LATEX_HEADING == "Springer-collection"
+
+\title*{%s}
+% Short version of title:
+%\titlerunning{...}
+
 %% #else
 
 \begin{center}
@@ -241,7 +243,7 @@ def latex_title(m):
 \end{center}
 
 %% #endif
-""" % (title, title, default_title), application='replacement')
+""" % (title, title, title, multiline_title), application='replacement')
     return text
 
 def latex_author(authors_and_institutions, auth2index,
@@ -310,7 +312,24 @@ def latex_author(authors_and_institutions, auth2index,
                 (index, index2inst[index])
 
     text += r"""
+% #elif LATEX_HEADING == "Springer-collection"
+"""
+    text += r"""
+\author{%s}
+% Short version of authors:
+%\authorrunning{...}
+""" % (' and ' .join([author for author in auth2index]))
 
+    text += r"\institute{"
+    a_list = []
+    for a, i, e in authors_and_institutions:
+        if e is not None:
+            a_list.append(r'%s \at %s \email{%s}' % (a, ' and '.join(i), e))
+        else:
+            a_list.append(r'%s \at %s' % (a, ' and '.join(i)))
+    text += r' \and '.join(a_list) + '}\n'
+
+    text += r"""
 % #else
 """
     for author in auth2index: # correct order of authors
@@ -499,8 +518,23 @@ def define(FILENAME_EXTENSION,
         #'subsubsection': '\n' + r'\subsubsection{\g<subst>}' + '\n',
         'subsubsection': r'\n\paragraph{\g<subst>.}',
         'paragraph':     r'\paragraph{\g<subst>}\n',
-        #'abstract':      '\n\n' + r'\\begin{abstract}' + '\n' + r'\g<text>' + '\n' + r'\end{abstract}' + '\n\n' + r'\g<rest>',
-        'abstract':      r'\n\n\\begin{abstract}\n\g<text>\n\end{abstract}\n\n\g<rest>',
+        #'abstract':      '\n\n' + r'\\begin{abstract}' + '\n' + r'\g<text>' + '\n' + r'\end{abstract}' + '\n\n' + r'\g<rest>', # not necessary with separate \n
+        #'abstract':      r'\n\n\\begin{abstract}\n\g<text>\n\end{abstract}\n\n\g<rest>',
+        'abstract':      r'"""
+
+% #if LATEX_HEADING == "Springer-collection"
+\abstract{
+% #else
+\\begin{abstract}
+% #endif
+\g<text>
+% #if LATEX_HEADING == "Springer-collection"
+}
+% #else
+\end{abstract}
+% #endif
+
+\g<rest>""",
         # recall that this is regex so latex commands must be treated carefully:
         #'title':         r'\\title{\g<subst>}' + '\n', # we don'e use maketitle
         'title':         latex_title,
@@ -589,6 +623,21 @@ def define(FILENAME_EXTENSION,
 %% http://code.google.com/p/doconce/
 %%
 
+% #ifndef LATEX_HEADING
+% #define LATEX_HEADING
+% #endif
+
+% #ifndef PREAMBLE
+% #if LATEX_HEADING == "Springer-collection"
+% #undef PREAMBLE
+% #else
+% #define PREAMBLE
+% #endif
+% #endif
+
+
+% #ifdef PREAMBLE
+
 % #ifdef BOOK
 \documentclass[twoside]{book}
 % #else
@@ -654,6 +703,7 @@ def define(FILENAME_EXTENSION,
 \makeindex
 
 \begin{document}
+% #endif
 
 """
     newcommands_files = 'newcommands.tex', 'newcommands_replace.tex', \
@@ -674,9 +724,11 @@ def define(FILENAME_EXTENSION,
 
     OUTRO['latex'] = r"""
 
+% #ifdef PREAMBLE
 \printindex
 
 \end{document}
+% #endif
 """
 
 
