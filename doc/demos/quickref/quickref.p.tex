@@ -4,6 +4,21 @@
 %% http://code.google.com/p/doconce/
 %%
 
+% #ifndef LATEX_HEADING
+% #define LATEX_HEADING
+% #endif
+
+% #ifndef PREAMBLE
+% #if LATEX_HEADING == "Springer-collection"
+% #undef PREAMBLE
+% #else
+% #define PREAMBLE
+% #endif
+% #endif
+
+
+% #ifdef PREAMBLE
+
 % #ifdef BOOK
 \documentclass[twoside]{book}
 % #else
@@ -66,15 +81,14 @@
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
+% insert custom LaTeX commands...
+
 \makeindex
 
 \begin{document}
-
-
-
-% #ifndef LATEX_HEADING
-% #define LATEX_HEADING
 % #endif
+
+
 
 % ----------------- Title -------------------------
 % #if LATEX_HEADING == "traditional"
@@ -88,6 +102,12 @@
 \vfill
 \begin{center}
 {\huge{\bfseries{Doconce Quick Reference}}}
+
+% #elif LATEX_HEADING == "Springer-collection"
+
+\title*{Doconce Quick Reference}
+% Short version of title:
+%\titlerunning{...}
 
 % #else
 
@@ -112,6 +132,12 @@
 
 {\large\textsf{${}^1$Simula Research Laboratory} \\ [1.5mm]}
 {\large\textsf{${}^2$University of Oslo} \\ [1.5mm]}
+% #elif LATEX_HEADING == "Springer-collection"
+
+\author{Hans Petter Langtangen}
+% Short version of authors:
+%\authorrunning{...}
+\institute{Hans Petter Langtangen\at Simula Research Laboratory and University of Oslo}
 
 % #else
 
@@ -133,13 +159,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Jul 26, 2012}
+\date{Aug 4, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Jul 26, 2012}}
+{\large\textsf{Aug 4, 2012}}
 
 \end{center}
 \vfill
@@ -148,7 +174,7 @@
 % #else
 
 \begin{center}
-Jul 26, 2012
+Aug 4, 2012
 \end{center}
 
 % #endif
@@ -773,6 +799,8 @@ programming language, very similar to Python.
 \noindent
 
 
+% #ifdef PREAMBLE
 \printindex
 
 \end{document}
+% #endif

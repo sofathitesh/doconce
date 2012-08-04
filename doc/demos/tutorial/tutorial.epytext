@@ -505,7 +505,9 @@ Other preprocessor variables are C{BOOK} for the "book" documentclass
 rather than the standard "article" (necessary if you apply chapter
 headings), C{PALATINO} for the palatino font, C{A4PAPER} for A4 paper
 size, C{A6PAPER} for A6 paper size (suitable for reading on small
-devices), C{MOVIE15} for inclusion of the movie15 LaTeX package, and
+devices), C{MOVIE15} for inclusion of the movie15 LaTeX package,
+C{PREAMBLE} to turn the LaTeX preamble on or off,
+and
 C{MINTED} for inclusion of the minted package (which requires C{latex}
 or C{pdflatex} to be run with the C{-shell-escape} option).
 

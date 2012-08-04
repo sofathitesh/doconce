@@ -2,7 +2,7 @@
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== Jul 26, 2012 ====
+==== Aug 4, 2012 ====
 
 <wiki:comment> lines beginning with # are comment lines </wiki:comment>
 
@@ -411,7 +411,9 @@ Other preprocessor variables are `BOOK` for the "book" documentclass
 rather than the standard "article" (necessary if you apply chapter
 headings), `PALATINO` for the palatino font, `A4PAPER` for A4 paper
 size, `A6PAPER` for A6 paper size (suitable for reading on small
-devices), `MOVIE15` for inclusion of the movie15 LaTeX package, and
+devices), `MOVIE15` for inclusion of the movie15 LaTeX package,
+`PREAMBLE` to turn the LaTeX preamble on or off,
+and
 `MINTED` for inclusion of the minted package (which requires `latex`
 or `pdflatex` to be run with the `-shell-escape` option).
 
@@ -2187,15 +2189,123 @@ verbatim environment.
 
 ==== Problems with LaTeX Output ====
 
-==== Error when running latex: You must 'pygmentize' installed ====
+==== Error when running latex: You must have 'pygmentize' installed ====
 
-This points to the used of the Minted style for typesetting verbatim
-code. You need to run
+This message points to the use of the minted style for typesetting verbatim
+code. You need to include the `-shell-escape` command-line argument when
+running `latex` or `pdflatex`:
 {{{
-Terminal> latex -shell-escape file
+Terminal> latex -shell-escape file mydoc.tex
+Terminal> pdflatex -shell-escape file mydoc.tex
 }}}
-if you have run `ptex2tex` with the `-DMINTED` option and turned on
-the use of the Minted style (and therefore `pygmentize` program).
+Using `doconce ptex2tex` will turn on the minted style if specified as
+environment on the command line, while using `ptex2tex` requires the
+preprocessor option `-DMINTED` to turn on the minted package.
+When this package is included, `latex` or `pdflatex` runs the
+`pygmentize` program and the `shell-escape` option is required.
+
+==== How can I use my fancy LaTeX environments? ====
+
+Doconce supports only basic formatting elements (headings, paragraphs,
+lists, etc.), while LaTeX users are used to fancy environments for, e.g.,
+theorems. A flexible strategy is to typeset theorems
+using paragraph headings, which will look satisfactorily in all
+formats, but add comment lines that can be replaced by LaTeX environments
+via `doconce replace`. Theorems can be numbered using a variable in Mako.
+Here is an example on raw Doconce code:
+
+{{{
+<%
+theorem_counter = 4
+%>
+
+# begin theorem
+label{theorem:fundamental1}
+<%
+theorem_counter += 1
+theorem_fundamental1 = theorem_counter
+%>
+
+__Theorem ${theorem_counter}.__
+Let $a=1$ and $b=2$. Then $c=3$.
+# end theorem
+
+# begin proof
+__Proof.__
+Since $c=a+b$, the result follows from straightforward addition.
+$\Diamond$|$END$
+# end proof
+
+As we see, the proof of Theorem ${theorem_counter} is a modest
+achievement.
+}}}
+The `.p.tex` output file now reads
+{{{
+% begin theorem
+\label{theorem:fundamental1}
+
+
+\paragraph{Theorem 5.}
+Let $a=1$ and $b=2$. Then $c=3$.
+% end theorem
+
+% begin proof
+\paragraph{Proof.}
+Since $c=a+b$, the result follows from straightforward addition.
+$\Diamond$
+% end proof
+
+As we see, the proof of Theorem 5 is a modest
+achievement.
+}}}
+Note that with Mako variables we can easily create our own counters,
+and this works in any format. In LaTeX we can use both the generated
+numbers from Mako variables or we can use the labels.
+
+The next step is to replace the `% begin ...` and `% end ...` lines with
+the proper LaTeX expressions in the `.p.tex` file. Moreover, we
+need to remove the paragraphs with *Theorem*.
+The following Bash script does the job:
+{{{
+file=mydoc.p.tex
+thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]'
+doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $file
+doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file
+doconce replace '% begin theorem' '\begin{theorem}' $file
+doconce replace '% end theorem' '\end{theorem}' $file
+}}}
+More heavy editing is better done in a Python script that reads the
+`mydoc.p.tex` file and performs string substitutions and regex
+substitutions as needed.
+
+The resulting `mydoc.tex` file now becomes
+{{{
+\usepackage{theorem}
+\newtheorem{theorem}{Theorem}[section]
+
+...
+
+\begin{theorem}
+\label{theorem:fundamental1}
+
+
+
+Let $a=1$ and $b=2$. Then $c=3$.
+\end{theorem}
+
+% begin proof
+\paragraph{Proof.}
+Since $c=a+b$, the result follows from straightforward addition.
+$\Diamond$
+% end proof
+
+As we see, the proof of Theorem 5 is a modest
+achievement.
+}}}
+Even better, HTML output looks nice as well.
+
+Note that Doconce supports fancy environments for verbatim code (for example,
+the `ptex2tex` program with all its flexibility for choosing environments).
 
 ==== The LaTeX file does not compile ====
 

@@ -1626,6 +1626,11 @@ preprocess package (sudo apt-get install preprocess).
 
     mako_commands = r'^\s*<?%'
     if re.search(mako_commands, filestr, re.MULTILINE):
+
+        if '--no-mako' in sys.argv:
+            print 'Found Mako-like statements, but --no-mako prevents running the Mako preprocessor'
+            return filename if preprocessor is None else resultfile
+
         # Check if there is SWIG code that can fool mako
         swig_commands = [r'^%module\s+', r'%{', r'^%}']
         found_swig = False
@@ -1720,7 +1725,7 @@ def main():
     # oneline is inactive (doesn't work well yet)
 
     options = ['--debug', '--skip_inline_comments', '--encoding=',
-               '--oneline_paragraphs',]
+               '--oneline_paragraphs', '--no-mako']
 
     global _log, encoding, filename
 
@@ -1777,7 +1782,7 @@ def main():
     #print '\n----- doconce format %s %s' % (format, filename)
     filename_preprocessed = preprocess(filename, format, sys.argv[1:])
     file2file(filename_preprocessed, format, out_filename)
-    if filename_preprocessed.startswith('__') and not debug:
+    if filename_preprocessed.startswith('__') and '--debug' not in sys.argv:
         os.remove(filename_preprocessed)  # clean up
     #print '----- successful run: %s filtered to %s\n' % (filename, out_filename)
     print 'output in', out_filename

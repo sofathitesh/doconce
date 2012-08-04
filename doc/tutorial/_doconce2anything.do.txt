@@ -138,7 +138,9 @@ Other preprocessor variables are `BOOK` for the "book" documentclass
 rather than the standard "article" (necessary if you apply chapter
 headings), `PALATINO` for the palatino font, `A4PAPER` for A4 paper
 size, `A6PAPER` for A6 paper size (suitable for reading on small
-devices), `MOVIE15` for inclusion of the movie15 LaTeX package, and
+devices), `MOVIE15` for inclusion of the movie15 LaTeX package,
+`PREAMBLE` to turn the LaTeX preamble on or off,
+and
 `MINTED` for inclusion of the minted package (which requires `latex`
 or `pdflatex` to be run with the `-shell-escape` option).
 

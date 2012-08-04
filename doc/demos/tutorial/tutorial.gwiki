@@ -2,7 +2,7 @@
 <wiki:toc max_depth="2" />
 By *Hans Petter Langtangen*
 
-==== Jul 26, 2012 ====
+==== Aug 4, 2012 ====
 
  * When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format?
  * Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging?
@@ -421,7 +421,9 @@ Other preprocessor variables are `BOOK` for the "book" documentclass
 rather than the standard "article" (necessary if you apply chapter
 headings), `PALATINO` for the palatino font, `A4PAPER` for A4 paper
 size, `A6PAPER` for A6 paper size (suitable for reading on small
-devices), `MOVIE15` for inclusion of the movie15 LaTeX package, and
+devices), `MOVIE15` for inclusion of the movie15 LaTeX package,
+`PREAMBLE` to turn the LaTeX preamble on or off,
+and
 `MINTED` for inclusion of the minted package (which requires `latex`
 or `pdflatex` to be run with the `-shell-escape` option).
 

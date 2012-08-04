@@ -6,7 +6,7 @@ Doconce Quick Reference
 
 :Author: Hans Petter Langtangen
 
-:Date: Jul 26, 2012
+:Date: Aug 4, 2012
 
 .. Very preliminary
 

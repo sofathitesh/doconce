@@ -10,10 +10,10 @@
 
 d2f="doconce format"
 # doconce html format:
-$d2f html manual.do.txt
+$d2f html manual.do.txt --no-mako
 
 # Sphinx
-$d2f sphinx manual.do.txt
+$d2f sphinx manual.do.txt --no-mako
 rm -rf sphinx-rootdir
 # We have several examples on AUTHOR: so to avoid multiple
 # authors we have to specify
@@ -39,7 +39,7 @@ cd ../../..
 
 
 # rst:
-$d2f rst manual.do.txt
+$d2f rst manual.do.txt --no-mako
 
 rst2html.py manual.rst > manual.rst.html
 rst2xml.py manual.rst > manual.xml
@@ -54,14 +54,14 @@ latex manual.rst.tex
 dvipdf manual.rst.dvi
 
 # plain text:
-$d2f plain manual.do.txt --skip_inline_comments
+$d2f plain manual.do.txt --skip_inline_comments --no-mako
 
-$d2f epytext manual.do.txt
-$d2f st manual.do.txt
-$d2f pandoc manual.do.txt
+$d2f epytext manual.do.txt --no-mako
+$d2f st manual.do.txt --no-mako
+$d2f pandoc manual.do.txt --no-mako
 
 # doconce pdflatex:
-$d2f pdflatex manual.do.txt
+$d2f pdflatex manual.do.txt --no-mako
 doconce replace 'usepackage{ptex2tex' 'usepackage{ptex2tex,subfigure' manual.p.tex  # need subfigure latex package
 ptex2tex -DMINTED manual    # turn ptex2tex format into plain latex
 pdflatex -shell-escape manual
@@ -72,7 +72,7 @@ pdflatex -shell-escape manual
 cp manual.pdf manual_pdflatex.pdf
 
 # doconce latex:
-$d2f latex manual.do.txt    # produces ptex2tex: manual.p.tex
+$d2f latex manual.do.txt --no-mako   # produces ptex2tex: manual.p.tex
 doconce replace 'usepackage{ptex2tex' 'usepackage{ptex2tex,subfigure' manual.p.tex  # need subfigure latex package
 ptex2tex -DMINTED manual    # turn ptex2tex format into plain latex
 latex -shell-escape manual
@@ -84,13 +84,13 @@ latex -shell-escape manual
 dvipdf manual.dvi
 
 # Google Code wiki:
-$d2f gwiki manual.do.txt
+$d2f gwiki manual.do.txt --no-mako
 
 # fix figure in wiki: (can also by done by doconce gwiki_figsubst)
 doconce subst "\(the URL of the image file figs/streamtubes.png must be inserted here\)" "https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png" manual.gwiki
 
-$d2f cwiki manual.do.txt
-$d2f mwiki manual.do.txt
+$d2f cwiki manual.do.txt --no-mako
+$d2f mwiki manual.do.txt --no-mako
 
 rm -f *.ps
 

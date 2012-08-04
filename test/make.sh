@@ -3,8 +3,22 @@ doconce format html testdoc.do.txt
 
 doconce format latex testdoc.do.txt
 doconce format pdflatex testdoc.do.txt
-ptex2tex -DMINTED -DBOOK -DLATEX_HEADING=titlepage testdoc
+
+thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]'
+doconce subst '% insert custom LaTeX commands\.\.\.' $thpack testdoc.p.tex
+doconce subst '\\paragraph\{Theorem \d+\.\}' '' testdoc.p.tex
+doconce replace '% begin theorem' '\begin{theorem}' testdoc.p.tex
+doconce replace '% end theorem' '\end{theorem}' testdoc.p.tex
+
+ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage testdoc
+
+# test that pdflatex works
+pdflatex -shell-escape testdoc
+
 cp testdoc.tex testdoc.tex_ptex2tex
+
+# -DBOOK will not work for latex/pdflatex since we have an abstract,
+# but here we just use the translated text for testing, not latex compiling
 doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\end{Verbatim}\end{quote} pypro=ans:nt envir=minted
 cp testdoc.tex testdoc.tex_doconce_ptex2tex
 
