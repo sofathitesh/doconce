@@ -32,9 +32,8 @@ numerous constructions, also special and less common cases.
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
 
-========= Chapter 1 =========
-
-======= Section 0 =======
+# Cannot demonstrate chapter headings since abstract and chapter
+# is mutually exclusive in LaTeX
 
 ======= Section 1 =======
 label{sec1}
@@ -117,7 +116,39 @@ MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie based o
 # Check out the correct with and height of YouTube movies from the
 # embed command that the YouTube page can generate
 
-MOVIE: http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
+MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
+
+===== Custom Environments =====
+
+Here is an attempt to create a theorem environment via Mako
+(for counting theorems) and comment lines to help replacing lines in
+the `.tex` by proper begin-end LaTeX environments for theorems.
+Should look nice in most formats!
+
+<%
+theorem_counter = 4
+%>
+
+# begin theorem
+label{theorem:fundamental1}
+<%
+theorem_counter += 1
+theorem_fundamental1 = theorem_counter
+%>
+
+__Theorem ${theorem_counter}.__
+Let $a=1$ and $b=2$. Then $c=3$.
+# end theorem
+
+# begin proof
+__Proof.__
+Since $c=a+b$, the result follows from straightforward addition.
+$\Diamond$|$END$
+# end proof
+
+As we see, the proof of Theorem ${theorem_counter} is a modest
+achievement.
+
 
 ===== Tables =====
 label{subsec:table}

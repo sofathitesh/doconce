@@ -233,8 +233,8 @@ def latex_title(m):
 %% #elif LATEX_HEADING == "Springer-collection"
 
 \title*{%s}
-% Short version of title:
-%\titlerunning{...}
+%% Short version of title:
+%%\titlerunning{...}
 
 %% #else
 
@@ -316,17 +316,19 @@ def latex_author(authors_and_institutions, auth2index,
 """
     text += r"""
 \author{%s}
-% Short version of authors:
-%\authorrunning{...}
+%% Short version of authors:
+%%\authorrunning{...}
 """ % (' and ' .join([author for author in auth2index]))
 
     text += r"\institute{"
     a_list = []
     for a, i, e in authors_and_institutions:
+        s = a
+        if i is not None:
+            s += r'\at ' + ' and '.join(i)
         if e is not None:
-            a_list.append(r'%s \at %s \email{%s}' % (a, ' and '.join(i), e))
-        else:
-            a_list.append(r'%s \at %s' % (a, ' and '.join(i)))
+            s += r'\email{%s}' % e
+        a_list.append(s)
     text += r' \and '.join(a_list) + '}\n'
 
     text += r"""
@@ -520,7 +522,7 @@ def define(FILENAME_EXTENSION,
         'paragraph':     r'\paragraph{\g<subst>}\n',
         #'abstract':      '\n\n' + r'\\begin{abstract}' + '\n' + r'\g<text>' + '\n' + r'\end{abstract}' + '\n\n' + r'\g<rest>', # not necessary with separate \n
         #'abstract':      r'\n\n\\begin{abstract}\n\g<text>\n\end{abstract}\n\n\g<rest>',
-        'abstract':      r'"""
+        'abstract':      r"""
 
 % #if LATEX_HEADING == "Springer-collection"
 \abstract{
@@ -699,6 +701,8 @@ def define(FILENAME_EXTENSION,
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
+
+% insert custom LaTeX commands...
 
 \makeindex
 

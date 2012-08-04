@@ -4,6 +4,21 @@
 %% http://code.google.com/p/doconce/
 %%
 
+% #ifndef LATEX_HEADING
+% #define LATEX_HEADING
+% #endif
+
+% #ifndef PREAMBLE
+% #if LATEX_HEADING == "Springer-collection"
+% #undef PREAMBLE
+% #else
+% #define PREAMBLE
+% #endif
+% #endif
+
+
+% #ifdef PREAMBLE
+
 % #ifdef BOOK
 \documentclass[twoside]{book}
 % #else
@@ -66,15 +81,14 @@
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
+% insert custom LaTeX commands...
+
 \makeindex
 
 \begin{document}
-
-
-
-% #ifndef LATEX_HEADING
-% #define LATEX_HEADING
 % #endif
+
+
 
 % ----------------- Title -------------------------
 % #if LATEX_HEADING == "traditional"
@@ -88,6 +102,12 @@
 \vfill
 \begin{center}
 {\huge{\bfseries{Doconce: Document Once, Include Anywhere}}}
+
+% #elif LATEX_HEADING == "Springer-collection"
+
+\title*{Doconce: Document Once, Include Anywhere}
+% Short version of title:
+%\titlerunning{...}
 
 % #else
 
@@ -112,6 +132,12 @@
 
 {\large\textsf{${}^1$Simula Research Laboratory} \\ [1.5mm]}
 {\large\textsf{${}^2$University of Oslo} \\ [1.5mm]}
+% #elif LATEX_HEADING == "Springer-collection"
+
+\author{Hans Petter Langtangen}
+% Short version of authors:
+%\authorrunning{...}
+\institute{Hans Petter Langtangen\at Simula Research Laboratory and University of Oslo}
 
 % #else
 
@@ -133,13 +159,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Jul 26, 2012}
+\date{Aug 4, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Jul 26, 2012}}
+{\large\textsf{Aug 4, 2012}}
 
 \end{center}
 \vfill
@@ -148,7 +174,7 @@
 % #else
 
 \begin{center}
-Jul 26, 2012
+Aug 4, 2012
 \end{center}
 
 % #endif
@@ -692,7 +718,9 @@ Other preprocessor variables are \code{BOOK} for the "book" documentclass
 rather than the standard "article" (necessary if you apply chapter
 headings), \code{PALATINO} for the palatino font, \code{A4PAPER} for A4 paper
 size, \code{A6PAPER} for A6 paper size (suitable for reading on small
-devices), \code{MOVIE15} for inclusion of the movie15 {\LaTeX} package, and
+devices), \code{MOVIE15} for inclusion of the movie15 {\LaTeX} package,
+\code{PREAMBLE} to turn the {\LaTeX} preamble on or off,
+and
 \code{MINTED} for inclusion of the minted package (which requires \code{latex}
 or \code{pdflatex} to be run with the \code{-shell-escape} option).
 
@@ -1255,6 +1283,8 @@ Mercurial (\code{hg}) directories, go to the directory, run
 \code{hg pull; hg update}, and then \code{sudo python setup.py install}.
 
 
+% #ifdef PREAMBLE
 \printindex
 
 \end{document}
+% #endif

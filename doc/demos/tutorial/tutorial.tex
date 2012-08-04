@@ -4,6 +4,10 @@
 %% http://code.google.com/p/doconce/
 %%
 
+
+
+
+
 \documentclass[twoside]{article}
 
 
@@ -36,10 +40,11 @@
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
+% insert custom LaTeX commands...
+
 \makeindex
 
 \begin{document}
-
 
 
 
@@ -71,7 +76,7 @@
 
 
 \begin{center}
-Jul 26, 2012
+Aug 4, 2012
 \end{center}
 
 
@@ -665,7 +670,9 @@ Other preprocessor variables are {\fontsize{10pt}{10pt}\verb!BOOK!} for the "boo
 rather than the standard "article" (necessary if you apply chapter
 headings), {\fontsize{10pt}{10pt}\verb!PALATINO!} for the palatino font, {\fontsize{10pt}{10pt}\verb!A4PAPER!} for A4 paper
 size, {\fontsize{10pt}{10pt}\verb!A6PAPER!} for A6 paper size (suitable for reading on small
-devices), {\fontsize{10pt}{10pt}\verb!MOVIE15!} for inclusion of the movie15 {\LaTeX} package, and
+devices), {\fontsize{10pt}{10pt}\verb!MOVIE15!} for inclusion of the movie15 {\LaTeX} package,
+{\fontsize{10pt}{10pt}\verb!PREAMBLE!} to turn the {\LaTeX} preamble on or off,
+and
 {\fontsize{10pt}{10pt}\verb!MINTED!} for inclusion of the minted package (which requires {\fontsize{10pt}{10pt}\verb!latex!}
 or {\fontsize{10pt}{10pt}\verb!pdflatex!} to be run with the {\fontsize{10pt}{10pt}\verb!-shell-escape!} option).
 
