@@ -250,7 +250,8 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
                 lines[i] = lines[i].replace(_MATH_BLOCK,
                                             '!bt\n%s!et' % tex)
                 break
-    filestr = '\n'.join(lines)
+
+    filestr = '\n'.join(lines)  # will fail if ord(char) > 127
     return filestr
 
 def plain_exercise(exer):

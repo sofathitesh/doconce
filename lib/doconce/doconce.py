@@ -1725,7 +1725,8 @@ def main():
     # oneline is inactive (doesn't work well yet)
 
     options = ['--debug', '--skip_inline_comments', '--encoding=',
-               '--oneline_paragraphs', '--no-mako']
+               '--oneline_paragraphs', '--no-mako', '--no-pygments-html',
+               ]
 
     global _log, encoding, filename
 
