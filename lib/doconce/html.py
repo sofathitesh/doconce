@@ -5,30 +5,70 @@ from common import table_analysis, plain_exercise, insert_code_and_tex
 def html_code(filestr, code_blocks, code_block_types,
               tex_blocks, format):
 
+    types2languages = dict(py='python', cy='cython', f='fortran',
+                           c='c', cpp='c++', sh='bash', rst='rst',
+                           m ='matlab', pl='perl', swig='c++',
+                           latex='latex', html='html', js='js',
+                           sys='bash')
+    try:
+        import pygments as pygm
+        from pygments.lexers import guess_lexer, get_lexer_by_name
+        from pygments.formatters import HtmlFormatter
+        from pygments import highlight
+    except ImportError:
+        pygm = None
+    # Can turn off pygments on the cmd line
+    if '--no-pygments-html' in sys.argv:
+        pygm = None
+
     # For html we should make replacements of < and > in code_blocks,
     # since these can be interpreted as tags, and we must
     # handle latin-1 characters.
     for i in range(len(code_blocks)):
-        # This does not catch things like '<x ...<y>'
-        #code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
-        #                        '&lt;\g<2>&gt;', code_blocks[i])
-        code_blocks[i] = code_blocks[i].replace('<', '&lt;')
-        code_blocks[i] = code_blocks[i].replace('>', '&gt;')
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+        if pygm is not None:
+            # Typeset with pygments
+            #lexer = guess_lexer(code_blocks[i])
+            if code_block_types[i].endswith('cod') or \
+               code_block_types[i].endswith('pro'):
+                type_ = code_block_types[i][:-3]
+            else:
+                type_ = code_block_types[i]
+            if type_ in types2languages:
+                language = types2languages[type_]
+            else:
+                language = 'text'
+            lexer = get_lexer_by_name(language)
+            formatter = HtmlFormatter(linenos=True, noclasses=True,
+                                      style='emacs')
+            result = highlight(code_blocks[i], lexer, formatter)
+            code_blocks[i] = result
+        else:
+            # Plain <pre>: This does not catch things like '<x ...<y>'
+            #code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
+            #                        '&lt;\g<2>&gt;', code_blocks[i])
+            code_blocks[i] = code_blocks[i].replace('<', '&lt;')
+            code_blocks[i] = code_blocks[i].replace('>', '&gt;')
 
     # This special character transformation is easier done
     # with encoding="utf-8" in the first line in the html file:
     # (but we do it explicitly to make it robust)
     filestr = latin2html(filestr)
 
-    c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
-    # Do not use <code> here, it gives an extra line at the top
-    filestr = c.sub(r'<blockquote>    <!-- begin verbatim block \g<1>-->\n<pre>\n',
-                    filestr)
-    filestr = re.sub(r'!ec\n',
-                     r'</pre>\n</blockquote>   <! -- end verbatim block -->\n',
-                     filestr)
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+
+
+    if pygm:
+        c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
+        filestr = c.sub(r'<p>\n\n', filestr)
+        filestr = re.sub(r'!ec\n', r'<p>\n', filestr)
+    else:
+        c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
+        # Do not use <code> here, it gives an extra line at the top
+        filestr = c.sub(r'<blockquote>    <!-- begin verbatim block \g<1>-->\n<pre>\n', filestr)
+        filestr = re.sub(r'!ec\n',
+                r'</pre>\n</blockquote>   <! -- end verbatim block -->\n',
+                filestr)
 
     MATH_TYPESETTING = 'MathJax'
     c = re.compile(r'^!bt\n', re.MULTILINE)
@@ -226,14 +266,19 @@ def bibdict2htmllist(pyfile, citations):
     bibstr = f.read()
     try:
         bibdict = eval(bibstr)
-    except:
+    except Exception, e:
         print 'Error in Python dictionary for bibliography in', pyfile
+        print e
         sys.exit(1)
     text = '\n\n<h1>Bibliography</h1>\n\n<ol>\n'
     for label in citations:
-        # remove newlines in reference data:
-        text += '  <p><li><a name="%s"> ' % label + \
-                ' '.join(bibdict[label].splitlines()) + '\n'
+        if label in bibdict:
+            # remove newlines in reference data:
+            text += '  <p><li><a name="%s"> ' % label + \
+                    ' '.join(bibdict[label].splitlines()) + '\n'
+        else:
+            print 'ERROR: cite{%s}: %s is not defined in %s' % \
+                  (label, label, pyfile)
     text += '</ol>\n\n'
     return text
 
