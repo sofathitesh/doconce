@@ -568,6 +568,11 @@ def define(FILENAME_EXTENSION,
 \end{center}
 
 % #endif
+
+% #ifdef TOC
+\tableofcontents
+% #endif
+
 """, application='replacement'),
         'figure':        latex_figure,
         'movie':         latex_movie,

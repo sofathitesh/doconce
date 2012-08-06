@@ -134,15 +134,20 @@ is also available through `-DLATEX_HEADING=traditional`.
 A separate titlepage can be generate by
 `-DLATEX_HEADING=titlepage`.
 
-Other preprocessor variables are `BOOK` for the "book" documentclass
-rather than the standard "article" (necessary if you apply chapter
-headings), `PALATINO` for the palatino font, `A4PAPER` for A4 paper
-size, `A6PAPER` for A6 paper size (suitable for reading on small
-devices), `MOVIE15` for inclusion of the movie15 LaTeX package,
-`PREAMBLE` to turn the LaTeX preamble on or off,
-and
-`MINTED` for inclusion of the minted package (which requires `latex`
-or `pdflatex` to be run with the `-shell-escape` option).
+Preprocessor variables to be defined or undefined are
+
+ * `TOC` for including a table of contents
+ * `BOOK` for the "book" documentclass rather than the standard
+   "article" class (necessary if you apply chapter headings)
+ * `PALATINO` for the Palatino font
+ * `HELVETIA` for the Helvetica font
+ * `A4PAPER` for A4 paper size
+ * `A6PAPER` for A6 paper size (suitable for reading on small devices)
+ * `MOVIE15` for inclusion of the movie15 LaTeX package
+ * `PREAMBLE` to turn the LaTeX preamble on or off (i.e., complete document
+   or document to be included elsewhere)
+ * `MINTED` for inclusion of the minted package (which requires `latex`
+   or `pdflatex` to be run with the `-shell-escape` option)
 
 The `ptex2tex` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
