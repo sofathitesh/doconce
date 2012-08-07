@@ -139,6 +139,7 @@ def define(FILENAME_EXTENSION,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
+           TOC,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -210,6 +211,7 @@ def define(FILENAME_EXTENSION,
     from plaintext import plain_index_bib
     EXERCISE['cwiki'] = plain_exercise
     INDEX_BIB['cwiki'] = plain_index_bib
+    TOC['cwiki'] = lambda s: '<<TableOfContents>>'
 
     # document start:
     INTRO['cwiki'] = ''

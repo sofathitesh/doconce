@@ -2,9 +2,9 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Aug 4, 2012 ====
+==== Aug 7, 2012 ====
 
-<!--> Very preliminary -->
+''TOC'' <!--> Very preliminary -->
 
 '''WARNING: This quick reference is very incomplete!'''
 
@@ -20,7 +20,8 @@ The best supported formats are <code>latex</code>, <code>sphinx</code>, <code>ht
 
 ==== Title, Authors, and Date ====
 
-A typical example of giving a title, a set of authors, and a date
+A typical example of giving a title, a set of authors, a date,
+and an optional table of contents
 reads
 <code>
 TITLE: On an Ultimate Markup Language
@@ -28,6 +29,7 @@ AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Lab
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
+TOC: on
 </code>
 The entire title must appear on a single line.
 The author syntax is
@@ -44,6 +46,8 @@ way for each author.
 
 The date can be set as any text different from <code>today</code> if not the
 current date is wanted, e.g., <code>Feb 22, 2016</code>.
+
+The table of contents is removed by writing <code>TOC: off</code>.
 
 ==== Section Types ====
 

@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Aug 4, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Aug 7, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -369,21 +369,28 @@ is performed by</p>
 </pre></div>
 </div>
 <p>The resulting file <tt class="docutils literal"><span class="pre">mydoc.html</span></tt> can be loaded into any web browser for viewing.</p>
+<p>If the Pygments package (including the <tt class="docutils literal"><span class="pre">pygmentize</span></tt> program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument <tt class="docutils literal"><span class="pre">--no-pygments-html</span></tt>
+turns off the use of Pygments and makes code blocks appear with
+plain <tt class="docutils literal"><span class="pre">&lt;pre&gt;</span></tt> HTML tags. The option <tt class="docutils literal"><span class="pre">--pygments-html-linenos</span></tt> turns
+on line numbers in Pygments-formatted code blocks.</p>
 </div>
-<div class="section" id="id2">
-<h2>Pandoc<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pandoc-and-markdown">
+<h2>Pandoc and Markdown<a class="headerlink" href="#pandoc-and-markdown" title="Permalink to this headline">¶</a></h2>
 <p>Output in Pandoc&#8217;s extended Markdown format results from</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format pandoc mydoc</span>
 </pre></div>
 </div>
 <p>The name of the output file is <tt class="docutils literal"><span class="pre">mydoc.mkd</span></tt>.
 From this format one can go to numerous other formats:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd</span>
 </pre></div>
 </div>
 <p>Pandoc supports <tt class="docutils literal"><span class="pre">latex</span></tt>, <tt class="docutils literal"><span class="pre">html</span></tt>, <tt class="docutils literal"><span class="pre">odt</span></tt> (OpenOffice), <tt class="docutils literal"><span class="pre">docx</span></tt> (Microsoft
 Word), <tt class="docutils literal"><span class="pre">rtf</span></tt>, <tt class="docutils literal"><span class="pre">texinfo</span></tt>, to mention some. The <tt class="docutils literal"><span class="pre">-R</span></tt> option makes
-Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
+Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
+while the <tt class="docutils literal"><span class="pre">--toc</span></tt> option generates a table of contents.
 See the <a class="reference external" href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</a>
 for the many features of the <tt class="docutils literal"><span class="pre">pandoc</span></tt> program.</p>
 <p>Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
@@ -449,15 +456,22 @@ institutions in common. However, the standard LaTeX &#8220;maketitle&#8221; head
 is also available through <tt class="docutils literal"><span class="pre">-DLATEX_HEADING=traditional</span></tt>.
 A separate titlepage can be generate by
 <tt class="docutils literal"><span class="pre">-DLATEX_HEADING=titlepage</span></tt>.</p>
-<p>Other preprocessor variables are <tt class="docutils literal"><span class="pre">BOOK</span></tt> for the &#8220;book&#8221; documentclass
-rather than the standard &#8220;article&#8221; (necessary if you apply chapter
-headings), <tt class="docutils literal"><span class="pre">PALATINO</span></tt> for the palatino font, <tt class="docutils literal"><span class="pre">A4PAPER</span></tt> for A4 paper
-size, <tt class="docutils literal"><span class="pre">A6PAPER</span></tt> for A6 paper size (suitable for reading on small
-devices), <tt class="docutils literal"><span class="pre">MOVIE15</span></tt> for inclusion of the movie15 LaTeX package,
-<tt class="docutils literal"><span class="pre">PREAMBLE</span></tt> to turn the LaTeX preamble on or off,
-and
-<tt class="docutils literal"><span class="pre">MINTED</span></tt> for inclusion of the minted package (which requires <tt class="docutils literal"><span class="pre">latex</span></tt>
-or <tt class="docutils literal"><span class="pre">pdflatex</span></tt> to be run with the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option).</p>
+<p>Preprocessor variables to be defined or undefined are</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">BOOK</span></tt> for the &#8220;book&#8221; documentclass rather than the standard
+&#8220;article&#8221; class (necessary if you apply chapter headings)</li>
+<li><tt class="docutils literal"><span class="pre">PALATINO</span></tt> for the Palatino font</li>
+<li><tt class="docutils literal"><span class="pre">HELVETIA</span></tt> for the Helvetica font</li>
+<li><tt class="docutils literal"><span class="pre">A4PAPER</span></tt> for A4 paper size</li>
+<li><tt class="docutils literal"><span class="pre">A6PAPER</span></tt> for A6 paper size (suitable for reading on small devices)</li>
+<li><tt class="docutils literal"><span class="pre">MOVIE15</span></tt> for inclusion of the movie15 LaTeX package</li>
+<li><tt class="docutils literal"><span class="pre">PREAMBLE</span></tt> to turn the LaTeX preamble on or off (i.e., complete document
+or document to be included elsewhere)</li>
+<li><tt class="docutils literal"><span class="pre">MINTED</span></tt> for inclusion of the minted package (which requires <tt class="docutils literal"><span class="pre">latex</span></tt>
+or <tt class="docutils literal"><span class="pre">pdflatex</span></tt> to be run with the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option)</li>
+</ul>
+</div></blockquote>
 <p>The <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents. After any <tt class="docutils literal"><span class="pre">!bc</span></tt> command in the Doconce source you can
@@ -603,8 +617,8 @@ Some links for going from LaTeX to Word are listed below.</p>
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="id3">
-<h2>Sphinx<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2>Sphinx<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">sphinx_dir</span></tt> command:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce sphinx_dir author=&quot;authors&#39; names&quot; \</span>
@@ -918,7 +932,13 @@ format:</p>
 </div>
 <p>Similar typesetting is done for LaTeX and HTML formats.</p>
 <p>The current date can be specified as <tt class="docutils literal"><span class="pre">today</span></tt>.</p>
-<span class="target" id="index-5"></span><p id="index-6"><em>Section Headings.</em> Section headings are recognized by being surrounded by equal signs (=) or
+<p id="index-5"><em>Table of Contents.</em> A table of contents can be generated by the line</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="n">TOC</span><span class="p">:</span> <span class="n">on</span>
+</pre></div>
+</div>
+<p>This line is usually placed after the <tt class="docutils literal"><span class="pre">DATE:</span></tt> line.
+A value <tt class="docutils literal"><span class="pre">off</span></tt> turns off the table of contents.</p>
+<span class="target" id="index-6"></span><p id="index-7"><em>Section Headings.</em> Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
 or equal signs (=):</p>
@@ -963,8 +983,8 @@ section heading is taken as part of the text of the abstract).</p>
 </div>
 </div>
 </div>
-<div class="section" id="id4">
-<h1>Special Lines<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id3">
+<h1>Special Lines<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="figures">
 <h2>Figures<a class="headerlink" href="#figures" title="Permalink to this headline">¶</a></h2>
 <p>Figures are recognized by the special line syntax</p>
@@ -1047,8 +1067,8 @@ of computer code from a file directly into a verbatim environment, see
 the section <a class="reference internal" href="#sec-verbatim-blocks"><em>Blocks of Verbatim Computer Code</em></a> below.</p>
 </div>
 <div class="section" id="inline-tagging">
-<span id="id5"></span><h2>Inline Tagging<a class="headerlink" href="#inline-tagging" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="index-7"></span><span class="target" id="index-8"></span><span class="target" id="index-9"></span><span class="target" id="index-10"></span><p id="index-11">Doconce supports tags for <em>emphasized phrases</em>, <strong>boldface phrases</strong>,
+<span id="id4"></span><h2>Inline Tagging<a class="headerlink" href="#inline-tagging" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="index-8"></span><span class="target" id="index-9"></span><span class="target" id="index-10"></span><span class="target" id="index-11"></span><p id="index-12">Doconce supports tags for <em>emphasized phrases</em>, <strong>boldface phrases</strong>,
 and <tt class="docutils literal"><span class="pre">verbatim</span> <span class="pre">text</span></tt> (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as <span class="math">\(\nu = \sin(x)\)</span>.</p>
 <p>Emphasized text is typeset inside a pair of asterisk, and there should
@@ -1211,7 +1231,7 @@ comments to be in the source code of the output document.</p>
 </div>
 <div class="section" id="cross-referencing">
 <h2>Cross-Referencing<a class="headerlink" href="#cross-referencing" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="index-12"></span><span class="target" id="index-13"></span><p id="index-14">References and labels are supported. The syntax is simple:</p>
+<span class="target" id="index-13"></span><span class="target" id="index-14"></span><p id="index-15">References and labels are supported. The syntax is simple:</p>
 <div class="highlight-py"><div class="highlight"><pre><span class="n">label</span><span class="p">{</span><span class="n">section</span><span class="p">:</span><span class="n">verbatim</span><span class="p">}</span>   <span class="c"># defines a label</span>
 <span class="n">For</span> <span class="n">more</span> <span class="n">information</span> <span class="n">we</span> <span class="n">refer</span> <span class="n">to</span> <span class="n">Section</span> <span class="n">ref</span><span class="p">{</span><span class="n">section</span><span class="p">:</span><span class="n">verbatim</span><span class="p">}</span><span class="o">.</span>
 </pre></div>
@@ -1241,7 +1261,7 @@ in the section <a class="reference internal" href="#inline-tagging"><em>Inline T
 </div>
 <div class="section" id="index-and-bibliography">
 <h2>Index and Bibliography<a class="headerlink" href="#index-and-bibliography" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="index-15"></span><span class="target" id="index-16"></span><p id="index-17">An index can be created for the <tt class="docutils literal"><span class="pre">latex</span></tt>, <tt class="docutils literal"><span class="pre">rst</span></tt>, and <tt class="docutils literal"><span class="pre">sphinx</span></tt> formats
+<span class="target" id="index-16"></span><span class="target" id="index-17"></span><p id="index-18">An index can be created for the <tt class="docutils literal"><span class="pre">latex</span></tt>, <tt class="docutils literal"><span class="pre">rst</span></tt>, and <tt class="docutils literal"><span class="pre">sphinx</span></tt> formats
 by the <tt class="docutils literal"><span class="pre">idx</span></tt> keyword, following a LaTeX-inspired syntax:</p>
 <div class="highlight-py"><pre>idx{some index entry}
 idx{main entry!subentry}
@@ -2430,7 +2450,7 @@ the iterations.</td>
 <table class="docutils citation" frame="void" id="python-primer-09" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Python:Primer:09]</td><td><em>(<a class="fn-backref" href="#id7">1</a>, <a class="fn-backref" href="#id9">2</a>)</em> H. P. Langtangen.
+<tr><td class="label">[Python:Primer:09]</td><td><em>(<a class="fn-backref" href="#id6">1</a>, <a class="fn-backref" href="#id8">2</a>)</em> H. P. Langtangen.
 <em>A Primer on Scientific Programming with Python</em>.
 Springer, 2009.</td></tr>
 </tbody>
@@ -2438,7 +2458,7 @@ Springer, 2009.</td></tr>
 <table class="docutils citation" frame="void" id="osnes-98" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Osnes:98]</td><td><em>(<a class="fn-backref" href="#id8">1</a>, <a class="fn-backref" href="#id10">2</a>)</em> H. Osnes and H. P. Langtangen.
+<tr><td class="label">[Osnes:98]</td><td><em>(<a class="fn-backref" href="#id7">1</a>, <a class="fn-backref" href="#id9">2</a>)</em> H. Osnes and H. P. Langtangen.
 An efficient probabilistic finite element method for stochastic
 groundwater flow.
 <em>Advances in Water Resources</em>, vol 22, 185-195, 1998.</td></tr>
@@ -2472,12 +2492,12 @@ groundwater flow.
 </li>
 <li><a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a><ul>
 <li><a class="reference internal" href="#html">HTML</a></li>
-<li><a class="reference internal" href="#id2">Pandoc</a></li>
+<li><a class="reference internal" href="#pandoc-and-markdown">Pandoc and Markdown</a></li>
 <li><a class="reference internal" href="#latex">LaTeX</a></li>
 <li><a class="reference internal" href="#pdflatex">PDFLaTeX</a></li>
 <li><a class="reference internal" href="#plain-ascii-text">Plain ASCII Text</a></li>
 <li><a class="reference internal" href="#restructuredtext">reStructuredText</a></li>
-<li><a class="reference internal" href="#id3">Sphinx</a></li>
+<li><a class="reference internal" href="#id2">Sphinx</a></li>
 <li><a class="reference internal" href="#wiki-formats">Wiki Formats</a></li>
 <li><a class="reference internal" href="#tweaking-the-doconce-output">Tweaking the Doconce Output</a></li>
 </ul>
@@ -2487,7 +2507,7 @@ groundwater flow.
 <li><a class="reference internal" href="#special-lines">Special Lines</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id4">Special Lines</a><ul>
+<li><a class="reference internal" href="#id3">Special Lines</a><ul>
 <li><a class="reference internal" href="#figures">Figures</a></li>
 <li><a class="reference internal" href="#movies">Movies</a></li>
 <li><a class="reference internal" href="#copying-computer-code-from-source-files">Copying Computer Code from Source Files</a></li>

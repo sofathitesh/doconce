@@ -200,6 +200,7 @@ def define(FILENAME_EXTENSION,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
+           TOC,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -254,5 +255,6 @@ def define(FILENAME_EXTENSION,
     TABLE['pandoc'] = pandoc_table
     INDEX_BIB['pandoc'] = pandoc_index_bib
     EXERCISE['pandoc'] = plain_exercise
+    TOC['pandoc'] = lambda s: '# Table of contents: Run pandoc with --toc option'
 
     # no return, rely on in-place modification of dictionaries

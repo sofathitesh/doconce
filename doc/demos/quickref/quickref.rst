@@ -6,7 +6,12 @@ Doconce Quick Reference
 
 :Author: Hans Petter Langtangen
 
-:Date: Aug 4, 2012
+:Date: Aug 7, 2012
+
+.. contents:: Table of Contents
+   :depth: 2
+
+
 
 .. Very preliminary
 
@@ -46,7 +51,8 @@ The best supported formats are ``latex``, ``sphinx``, ``html``, and ``plain``.
 Title, Authors, and Date
 ------------------------
 
-A typical example of giving a title, a set of authors, and a date
+A typical example of giving a title, a set of authors, a date,
+and an optional table of contents
 reads::
 
 
@@ -55,6 +61,7 @@ reads::
         AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
         AUTHOR: A. Dummy Author
         DATE: today
+        TOC: on
 
 The entire title must appear on a single line.
 The author syntax is::
@@ -72,6 +79,8 @@ way for each author.
 
 The date can be set as any text different from ``today`` if not the
 current date is wanted, e.g., ``Feb 22, 2016``.
+
+The table of contents is removed by writing ``TOC: off``.
 
 
 .. _quick:sections:

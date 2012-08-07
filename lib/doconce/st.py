@@ -13,6 +13,7 @@ def define(FILENAME_EXTENSION,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
+           TOC,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -66,4 +67,5 @@ def define(FILENAME_EXTENSION,
     CROSS_REFS['st'] = plain_ref_and_label
     INDEX_BIB['st'] = plain_index_bib
     EXERCISE['st'] = plain_exercise
+    TOC['st'] = lambda s: ''  # drop
 

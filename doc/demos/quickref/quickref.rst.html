@@ -6,7 +6,7 @@
 <meta name="generator" content="Docutils 0.9: http://docutils.sourceforge.net/" />
 <title>Doconce Quick Reference</title>
 <meta name="author" content="Hans Petter Langtangen" />
-<meta name="date" content="Aug 4, 2012" />
+<meta name="date" content="Aug 7, 2012" />
 <style type="text/css">
 
 /*
@@ -325,15 +325,36 @@ ul.auto-toc {
 <tr><th class="docinfo-name">Author:</th>
 <td>Hans Petter Langtangen</td></tr>
 <tr><th class="docinfo-name">Date:</th>
-<td>Aug 4, 2012</td></tr>
+<td>Aug 7, 2012</td></tr>
 </tbody>
 </table>
 <!-- Automatically generated reST file from Doconce source
 (http://code.google.com/p/doconce/) -->
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#supported-formats" id="id1">Supported Formats</a></li>
+<li><a class="reference internal" href="#title-authors-and-date" id="id2">Title, Authors, and Date</a></li>
+<li><a class="reference internal" href="#section-types" id="id3">Section Types</a></li>
+<li><a class="reference internal" href="#inline-formatting" id="id4">Inline Formatting</a></li>
+<li><a class="reference internal" href="#lists" id="id5">Lists</a></li>
+<li><a class="reference internal" href="#comments" id="id6">Comments</a></li>
+<li><a class="reference internal" href="#verbatim-computer-code" id="id7">Verbatim/Computer Code</a></li>
+<li><a class="reference internal" href="#latex-mathematics" id="id8">LaTeX Mathematics</a></li>
+<li><a class="reference internal" href="#figures-and-movies" id="id9">Figures and Movies</a></li>
+<li><a class="reference internal" href="#tables" id="id10">Tables</a></li>
+<li><a class="reference internal" href="#labels-references-citations-and-index" id="id11">Labels, References, Citations, and Index</a></li>
+<li><a class="reference internal" href="#capabilities-of-the-doconce-program" id="id12">Capabilities of the &quot;doconce&quot; Program</a></li>
+<li><a class="reference internal" href="#exercises" id="id13">Exercises</a></li>
+<li><a class="reference internal" href="#labels-index-and-citations" id="id14">Labels, Index, and Citations</a></li>
+<li><a class="reference internal" href="#preprocessing" id="id15">Preprocessing</a></li>
+<li><a class="reference internal" href="#resources" id="id16">Resources</a></li>
+</ul>
+</div>
 <!-- Very preliminary -->
 <p><strong>WARNING: This quick reference is very incomplete!</strong></p>
 <div class="section" id="supported-formats">
-<h1>Supported Formats</h1>
+<h1><a class="toc-backref" href="#id1">Supported Formats</a></h1>
 <p>Doconce currently translates files to the following formats:</p>
 <blockquote>
 <ul class="simple">
@@ -353,8 +374,9 @@ ul.auto-toc {
 <p>The best supported formats are <tt class="docutils literal">latex</tt>, <tt class="docutils literal">sphinx</tt>, <tt class="docutils literal">html</tt>, and <tt class="docutils literal">plain</tt>.</p>
 </div>
 <div class="section" id="title-authors-and-date">
-<h1>Title, Authors, and Date</h1>
-<p>A typical example of giving a title, a set of authors, and a date
+<h1><a class="toc-backref" href="#id2">Title, Authors, and Date</a></h1>
+<p>A typical example of giving a title, a set of authors, a date,
+and an optional table of contents
 reads:</p>
 <pre class="literal-block">
 TITLE: On an Ultimate Markup Language
@@ -362,6 +384,7 @@ AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Lab
 AUTHOR: Kaare Dump Email: dump&#64;cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
+TOC: on
 </pre>
 <p>The entire title must appear on a single line.
 The author syntax is:</p>
@@ -377,9 +400,10 @@ same institution, make sure that the institution is specified in an identical
 way for each author.</p>
 <p>The date can be set as any text different from <tt class="docutils literal">today</tt> if not the
 current date is wanted, e.g., <tt class="docutils literal">Feb 22, 2016</tt>.</p>
+<p>The table of contents is removed by writing <tt class="docutils literal">TOC: off</tt>.</p>
 </div>
 <div class="section" id="section-types">
-<span id="quick-sections"></span><h1>Section Types</h1>
+<span id="quick-sections"></span><h1><a class="toc-backref" href="#id3">Section Types</a></h1>
 <table border="1" class="docutils">
 <colgroup>
 <col width="47%" />
@@ -416,13 +440,13 @@ the beginning of a line and ending with three or more <tt class="docutils litera
 next heading.</p>
 </div>
 <div class="section" id="inline-formatting">
-<h1>Inline Formatting</h1>
+<h1><a class="toc-backref" href="#id4">Inline Formatting</a></h1>
 <p>Words surrounded by <tt class="docutils literal">*</tt> are emphasized: <tt class="docutils literal">*emphasized words*</tt> becomes
 <em>emphasized words</em>. Similarly, an underscore surrounds words that
 appear in boldface: <tt class="docutils literal">_boldface_</tt> become <strong>boldface</strong>.</p>
 </div>
 <div class="section" id="lists">
-<h1>Lists</h1>
+<h1><a class="toc-backref" href="#id5">Lists</a></h1>
 <p>There are three types of lists: <em>bullet lists</em>, where each item starts
 with <tt class="docutils literal">*</tt>, <em>enumeration lists</em>, where each item starts with <tt class="docutils literal">o</tt> and gets
 consqutive numbers,
@@ -508,7 +532,7 @@ lines</dd>
 </blockquote>
 </div>
 <div class="section" id="comments">
-<h1>Comments</h1>
+<h1><a class="toc-backref" href="#id6">Comments</a></h1>
 <p>Lines starting with <tt class="docutils literal">#</tt> are treated as comments in the document
 and translated to the proper syntax for comments in
 the output document. Such comment lines
@@ -542,7 +566,7 @@ doconce remove_inline_comments mydoc.do.txt
 <p>This action is appropriate when all issues with such comments are resolved.</p>
 </div>
 <div class="section" id="verbatim-computer-code">
-<h1>Verbatim/Computer Code</h1>
+<h1><a class="toc-backref" href="#id7">Verbatim/Computer Code</a></h1>
 <p>Inline verbatim code is typeset within back-ticks, as in:</p>
 <pre class="literal-block">
 Some sentence with `words in verbatim style`.
@@ -606,7 +630,7 @@ paragraphs with headings.</li>
 </blockquote>
 </div>
 <div class="section" id="latex-mathematics">
-<h1>LaTeX Mathematics</h1>
+<h1><a class="toc-backref" href="#id8">LaTeX Mathematics</a></h1>
 <p>Doconce supports inline mathematics and blocks of mathematics, using
 standard LaTeX syntax. The output formats <tt class="docutils literal">sphinx</tt>, <tt class="docutils literal">latex</tt>, and <tt class="docutils literal">pdflatex</tt>
 work with this syntax while all other formats will just display the
@@ -674,7 +698,7 @@ PDF document.</li>
 <p><em>LaTeX Newcommands.</em> Text missing...</p>
 </div>
 <div class="section" id="figures-and-movies">
-<h1>Figures and Movies</h1>
+<h1><a class="toc-backref" href="#id9">Figures and Movies</a></h1>
 <p>Figures and movies have almost equal syntax:</p>
 <pre class="literal-block">
 FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
@@ -702,7 +726,7 @@ convert -background white file1.png file2.png +append tmp.png
 The positioning of the figures can be controlled by <tt class="docutils literal"><span class="pre">-gravity</span></tt>.</p>
 </div>
 <div class="section" id="tables">
-<h1>Tables</h1>
+<h1><a class="toc-backref" href="#id10">Tables</a></h1>
 <p>The table in the section <a class="reference internal" href="#section-types">Section Types</a> was written with this
 syntax:</p>
 <pre class="literal-block">
@@ -737,7 +761,7 @@ have no effect.</li>
 </blockquote>
 </div>
 <div class="section" id="labels-references-citations-and-index">
-<h1>Labels, References, Citations, and Index</h1>
+<h1><a class="toc-backref" href="#id11">Labels, References, Citations, and Index</a></h1>
 <p>The notion of labels, references, citations, and an index is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax:</p>
@@ -790,7 +814,7 @@ forthcoming text. The index is only produced for the <tt class="docutils literal
 <tt class="docutils literal">sphinx</tt> formats.</p>
 </div>
 <div class="section" id="capabilities-of-the-doconce-program">
-<h1>Capabilities of the &quot;doconce&quot; Program</h1>
+<h1><a class="toc-backref" href="#id12">Capabilities of the &quot;doconce&quot; Program</a></h1>
 <p>The <tt class="docutils literal">doconce</tt> program can be used for a number of purposes besides
 transforming a <tt class="docutils literal">.do.txt</tt> file to some format. Here is the
 list of capabilities:</p>
@@ -847,7 +871,7 @@ doconce assemble name master.do.txt
 </pre>
 </div>
 <div class="section" id="exercises">
-<h1>Exercises</h1>
+<h1><a class="toc-backref" href="#id13">Exercises</a></h1>
 <p>Doconce supports <em>Exercise</em>, <em>Problem</em>, and <em>Project</em>. These are typeset
 as ordinary sections and referred to by their section labels.
 The typical sketch of an exercise, problem, or project sections
@@ -885,10 +909,10 @@ single hint, without any number, or several numbered hints.
 </blockquote>
 </div>
 <div class="section" id="labels-index-and-citations">
-<h1>Labels, Index, and Citations</h1>
+<h1><a class="toc-backref" href="#id14">Labels, Index, and Citations</a></h1>
 </div>
 <div class="section" id="preprocessing">
-<h1>Preprocessing</h1>
+<h1><a class="toc-backref" href="#id15">Preprocessing</a></h1>
 <p>Doconce documents may utilize a preprocessor, either <tt class="docutils literal">preprocess</tt> or
 <tt class="docutils literal">mako</tt>. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
@@ -896,7 +920,7 @@ The <tt class="docutils literal">mako</tt> preprocessor is much more advanced - 
 programming language, very similar to Python.</p>
 </div>
 <div class="section" id="resources">
-<h1>Resources</h1>
+<h1><a class="toc-backref" href="#id16">Resources</a></h1>
 <blockquote>
 <ul class="simple">
 <li>Excellent &quot;Sphinx Tutorial&quot; by C. Reller: &quot;<a class="reference external" href="http://people.ee.ethz.ch/~creller/web/tricks/reST.html">http://people.ee.ethz.ch/~creller/web/tricks/reST.html</a>&quot;</li>

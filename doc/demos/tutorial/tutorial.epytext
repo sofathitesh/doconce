@@ -405,8 +405,16 @@ is performed by::
 
 The resulting file C{mydoc.html} can be loaded into any web browser for viewing.
 
-Pandoc
-------
+If the Pygments package (including the C{pygmentize} program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument C{--no-pygments-html}
+turns off the use of Pygments and makes code blocks appear with
+plain C{<pre>} HTML tags. The option C{--pygments-html-linenos} turns
+on line numbers in Pygments-formatted code blocks.
+
+
+Pandoc and Markdown
+-------------------
 
 Output in Pandoc's extended Markdown format results from::
 
@@ -417,11 +425,12 @@ The name of the output file is C{mydoc.mkd}.
 From this format one can go to numerous other formats::
 
 
-        Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
+        Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd
 
 Pandoc supports C{latex}, C{html}, C{odt} (OpenOffice), C{docx} (Microsoft
 Word), C{rtf}, C{texinfo}, to mention some. The C{-R} option makes
-Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
+Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
+while the C{--toc} option generates a table of contents.
 See the U{Pandoc documentation<http://johnmacfarlane.net/pandoc/README.html>}
 for the many features of the C{pandoc} program.
 
@@ -501,15 +510,19 @@ is also available through C{-DLATEX_HEADING=traditional}.
 A separate titlepage can be generate by
 C{-DLATEX_HEADING=titlepage}.
 
-Other preprocessor variables are C{BOOK} for the "book" documentclass
-rather than the standard "article" (necessary if you apply chapter
-headings), C{PALATINO} for the palatino font, C{A4PAPER} for A4 paper
-size, C{A6PAPER} for A6 paper size (suitable for reading on small
-devices), C{MOVIE15} for inclusion of the movie15 LaTeX package,
-C{PREAMBLE} to turn the LaTeX preamble on or off,
-and
-C{MINTED} for inclusion of the minted package (which requires C{latex}
-or C{pdflatex} to be run with the C{-shell-escape} option).
+Preprocessor variables to be defined or undefined are
+
+ - C{BOOK} for the "book" documentclass rather than the standard
+   "article" class (necessary if you apply chapter headings)
+ - C{PALATINO} for the Palatino font
+ - C{HELVETIA} for the Helvetica font
+ - C{A4PAPER} for A4 paper size
+ - C{A6PAPER} for A6 paper size (suitable for reading on small devices)
+ - C{MOVIE15} for inclusion of the movie15 LaTeX package
+ - C{PREAMBLE} to turn the LaTeX preamble on or off (i.e., complete document
+   or document to be included elsewhere)
+ - C{MINTED} for inclusion of the minted package (which requires C{latex}
+   or C{pdflatex} to be run with the C{-shell-escape} option)
 
 The C{ptex2tex} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX

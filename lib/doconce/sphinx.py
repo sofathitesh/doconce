@@ -498,6 +498,7 @@ def define(FILENAME_EXTENSION,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
+           TOC,
            INTRO,
            OUTRO):
     if not 'rst' in BLANKLINE:
@@ -545,4 +546,5 @@ def define(FILENAME_EXTENSION,
         'module variable': ':var',
         }
 
+    TOC['sphinx'] = lambda s: ''  # Sphinx automatically generates a toc
 

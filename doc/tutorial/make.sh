@@ -2,7 +2,7 @@
 ./clean.sh
 
 # html
-doconce format html tutorial
+doconce format html tutorial  --no-pygments-html
 
 # latex
 doconce format latex tutorial

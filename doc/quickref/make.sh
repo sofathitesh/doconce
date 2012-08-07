@@ -4,7 +4,7 @@ sh ./clean.sh
 # Make latest bin/doconce doc
 doconce > doconce_program.sh
 
-doconce format html quickref
+doconce format html quickref --no-pygments-html
 
 # latex (shpro because of @@@CODE copy, need minted style)
 doconce format latex quickref
@@ -18,6 +18,7 @@ doconce format sphinx quickref
 rm -rf sphinx-rootdir
 doconce sphinx_dir author='HPL' version=0.7 quickref
 python automake-sphinx.py
+cp quickref.rst quickref.sphinx.rst  # save
 
 # reStructuredText:
 doconce format rst quickref

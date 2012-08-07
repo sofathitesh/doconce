@@ -287,6 +287,7 @@ def define(FILENAME_EXTENSION,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
+           TOC,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -358,6 +359,7 @@ def define(FILENAME_EXTENSION,
 
     TABLE['rst'] = rst_table
     EXERCISE['rst'] = plain_exercise
+    TOC['rst'] = lambda s: '.. contents:: Table of Contents\n   :depth: 2'
     INTRO['rst'] = """\
 .. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)

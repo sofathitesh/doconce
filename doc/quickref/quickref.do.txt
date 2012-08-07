@@ -1,6 +1,7 @@
 TITLE: Doconce Quick Reference
 AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
 DATE: today
+TOC: on
 
 # Very preliminary
 
@@ -27,7 +28,8 @@ The best supported formats are `latex`, `sphinx`, `html`, and `plain`.
 
 ===== Title, Authors, and Date =====
 
-A typical example of giving a title, a set of authors, and a date
+A typical example of giving a title, a set of authors, a date,
+and an optional table of contents
 reads
 !bc
 TITLE: On an Ultimate Markup Language
@@ -35,6 +37,7 @@ AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Lab
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: today
+TOC: on
 !ec
 The entire title must appear on a single line.
 The author syntax is
@@ -51,6 +54,8 @@ way for each author.
 
 The date can be set as any text different from `today` if not the
 current date is wanted, e.g., `Feb 22, 2016`.
+
+The table of contents is removed by writing `TOC: off`.
 
 
 ===== Section Types =====

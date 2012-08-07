@@ -76,7 +76,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Aug 4, 2012
+Aug 7, 2012
 %
 \begin{itemize}
 
@@ -680,13 +680,20 @@ Terminal>~doconce~format~html~mydoc
 
 The resulting file \texttt{mydoc.html} can be loaded into any web browser for viewing.
 
+If the Pygments package (including the \texttt{pygmentize} program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument \texttt{-{}-no-pygments-html}
+turns off the use of Pygments and makes code blocks appear with
+plain \texttt{<pre>} HTML tags. The option \texttt{-{}-pygments-html-linenos} turns
+on line numbers in Pygments-formatted code blocks.
+
 
 %___________________________________________________________________________
 
 \subsection*{\phantomsection%
-  Pandoc%
-  \addcontentsline{toc}{subsection}{Pandoc}%
-  \label{pandoc}%
+  Pandoc and Markdown%
+  \addcontentsline{toc}{subsection}{Pandoc and Markdown}%
+  \label{pandoc-and-markdown}%
 }
 
 Output in Pandoc's extended Markdown format results from:
@@ -700,13 +707,14 @@ The name of the output file is \texttt{mydoc.mkd}.
 From this format one can go to numerous other formats:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~pandoc~-R~-t~mediawiki~-o~mydoc.mwk~mydoc.mkd
+Terminal>~pandoc~-R~-t~mediawiki~-o~mydoc.mwk~-{}-toc~mydoc.mkd
 }
 \end{quote}
 
 Pandoc supports \texttt{latex}, \texttt{html}, \texttt{odt} (OpenOffice), \texttt{docx} (Microsoft
 Word), \texttt{rtf}, \texttt{texinfo}, to mention some. The \texttt{-R} option makes
-Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
+Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
+while the \texttt{-{}-toc} option generates a table of contents.
 See the \href{http://johnmacfarlane.net/pandoc/README.html}{Pandoc documentation}
 for the many features of the \texttt{pandoc} program.
 
@@ -807,15 +815,34 @@ is also available through \texttt{-DLATEX\_HEADING=traditional}.
 A separate titlepage can be generate by
 \texttt{-DLATEX\_HEADING=titlepage}.
 
-Other preprocessor variables are \texttt{BOOK} for the ``book'' documentclass
-rather than the standard ``article'' (necessary if you apply chapter
-headings), \texttt{PALATINO} for the palatino font, \texttt{A4PAPER} for A4 paper
-size, \texttt{A6PAPER} for A6 paper size (suitable for reading on small
-devices), \texttt{MOVIE15} for inclusion of the movie15 LaTeX package,
-\texttt{PREAMBLE} to turn the LaTeX preamble on or off,
-and
-\texttt{MINTED} for inclusion of the minted package (which requires \texttt{latex}
-or \texttt{pdflatex} to be run with the \texttt{-shell-escape} option).
+Preprocessor variables to be defined or undefined are
+%
+\begin{quote}
+%
+\begin{itemize}
+
+\item \texttt{BOOK} for the ``book'' documentclass rather than the standard
+``article'' class (necessary if you apply chapter headings)
+
+\item \texttt{PALATINO} for the Palatino font
+
+\item \texttt{HELVETIA} for the Helvetica font
+
+\item \texttt{A4PAPER} for A4 paper size
+
+\item \texttt{A6PAPER} for A6 paper size (suitable for reading on small devices)
+
+\item \texttt{MOVIE15} for inclusion of the movie15 LaTeX package
+
+\item \texttt{PREAMBLE} to turn the LaTeX preamble on or off (i.e., complete document
+or document to be included elsewhere)
+
+\item \texttt{MINTED} for inclusion of the minted package (which requires \texttt{latex}
+or \texttt{pdflatex} to be run with the \texttt{-shell-escape} option)
+
+\end{itemize}
+
+\end{quote}
 
 The \texttt{ptex2tex} tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
@@ -1512,7 +1539,7 @@ run the usual \texttt{sudo python setup.py install}.
 \DUtitle[system-message]{system-message}
 
 
-{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~970
+{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~990
 
 \hyperlink{id5}{
 Duplicate explicit target name: ``sphinx''.
