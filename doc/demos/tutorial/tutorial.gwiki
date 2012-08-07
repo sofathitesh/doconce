@@ -1,8 +1,8 @@
 #summary Doconce: Document Once, Include Anywhere
-<wiki:toc max_depth="2" />
+
 By *Hans Petter Langtangen*
 
-==== Aug 4, 2012 ====
+==== Aug 7, 2012 ====
 
  * When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format?
  * Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging?
@@ -329,7 +329,14 @@ Terminal> doconce format html mydoc
 }}}
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
-==== Pandoc ====
+If the Pygments package (including the `pygmentize` program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument `--no-pygments-html`
+turns off the use of Pygments and makes code blocks appear with
+plain `<pre>` HTML tags. The option `--pygments-html-linenos` turns
+on line numbers in Pygments-formatted code blocks.
+
+==== Pandoc and Markdown ====
 
 Output in Pandoc's extended Markdown format results from
 {{{
@@ -338,11 +345,12 @@ Terminal> doconce format pandoc mydoc
 The name of the output file is `mydoc.mkd`.
 From this format one can go to numerous other formats:
 {{{
-Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
+Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd
 }}}
 Pandoc supports `latex`, `html`, `odt` (OpenOffice), `docx` (Microsoft
 Word), `rtf`, `texinfo`, to mention some. The `-R` option makes
-Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
+Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
+while the `--toc` option generates a table of contents.
 See the [http://johnmacfarlane.net/pandoc/README.html Pandoc documentation]
 for the many features of the `pandoc` program.
 
@@ -417,15 +425,17 @@ is also available through `-DLATEX_HEADING=traditional`.
 A separate titlepage can be generate by
 `-DLATEX_HEADING=titlepage`.
 
-Other preprocessor variables are `BOOK` for the "book" documentclass
-rather than the standard "article" (necessary if you apply chapter
-headings), `PALATINO` for the palatino font, `A4PAPER` for A4 paper
-size, `A6PAPER` for A6 paper size (suitable for reading on small
-devices), `MOVIE15` for inclusion of the movie15 LaTeX package,
-`PREAMBLE` to turn the LaTeX preamble on or off,
-and
-`MINTED` for inclusion of the minted package (which requires `latex`
-or `pdflatex` to be run with the `-shell-escape` option).
+Preprocessor variables to be defined or undefined are
+
+
+ * `BOOK` for the "book" documentclass rather than the standard   "article" class (necessary if you apply chapter headings)
+ * `PALATINO` for the Palatino font
+ * `HELVETIA` for the Helvetica font
+ * `A4PAPER` for A4 paper size
+ * `A6PAPER` for A6 paper size (suitable for reading on small devices)
+ * `MOVIE15` for inclusion of the movie15 LaTeX package
+ * `PREAMBLE` to turn the LaTeX preamble on or off (i.e., complete document   or document to be included elsewhere)
+ * `MINTED` for inclusion of the minted package (which requires `latex`   or `pdflatex` to be run with the `-shell-escape` option)
 
 The `ptex2tex` tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX

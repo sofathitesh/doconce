@@ -81,6 +81,18 @@ def plain_index_bib(filestr, index, citations, bibfile):
 
     return filestr
 
+def plain_toc(sections):
+    # Find minimum section level
+    tp_min = 4
+    for title, tp in sections:
+        if tp < tp_min:
+            tp_min = tp
+
+    s = 'Table of contents:\n\n'
+    for title, tp in sections:
+        s += ' '*(2*(tp-tp_min)) + title + '\n'
+    return s
+
 def define(FILENAME_EXTENSION,
            BLANKLINE,
            INLINE_TAGS_SUBST,
@@ -92,6 +104,7 @@ def define(FILENAME_EXTENSION,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
+           TOC,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -143,8 +156,9 @@ def define(FILENAME_EXTENSION,
     CROSS_REFS['plain'] = plain_ref_and_label
     from rst import rst_table
     TABLE['plain'] = rst_table
-    EXERCISE['plain'] = plain_exercise
     #TABLE['plain'] = plain_table
+    EXERCISE['plain'] = plain_exercise
     INDEX_BIB['plain'] = plain_index_bib
+    TOC['plain'] = plain_toc
 
     # no return, rely on in-place modification of dictionaries

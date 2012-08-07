@@ -46,7 +46,7 @@ clean_and_make(append=False)
 
 log = open(logfilename, 'a')
 files = '.do.txt', '.html', '.p.tex', '.tex_ptex2tex', '.tex_doconce_ptex2tex', '.rst', '.sphinx.rst', '.gwiki', '.mwiki', '.cwiki', '.st', '.epytext', '.txt', '.mkd', '.tmp'
-files = ['testdoc' + ext for ext in files] + ['testdoc.exerinfo', 'tmp_encodings.txt', 'testdoc_pnd_l2h.html', 'testdoc_pnd_d2h.html']
+files = ['testdoc' + ext for ext in files] + ['.testdoc.exerinfo', 'tmp_encodings.txt', 'testdoc_pnd_l2h.html', 'testdoc_pnd_d2h.html']
 for f in files:
     add(f, log)
 add('make.sh', log)
@@ -104,7 +104,7 @@ files = '.do.txt', '.html', '.p.tex', '.rst', '.sphinx.rst', '.gwiki', '.mwiki',
 files = ['manual' + ext for ext in files]
 for f in files:
     add(f, log)
-add('_install.do.txt', log)
+add('install.do.txt', log)
 
 os.chdir(thisdir)
 add(outputfilename, log)

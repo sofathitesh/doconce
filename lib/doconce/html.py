@@ -20,6 +20,8 @@ def html_code(filestr, code_blocks, code_block_types,
     # Can turn off pygments on the cmd line
     if '--no-pygments-html' in sys.argv:
         pygm = None
+    if pygm is not None:
+        linenos = '--pygments-html-linenos' in sys.argv
 
     # For html we should make replacements of < and > in code_blocks,
     # since these can be interpreted as tags, and we must
@@ -39,7 +41,7 @@ def html_code(filestr, code_blocks, code_block_types,
             else:
                 language = 'text'
             lexer = get_lexer_by_name(language)
-            formatter = HtmlFormatter(linenos=True, noclasses=True,
+            formatter = HtmlFormatter(linenos=linenos, noclasses=True,
                                       style='emacs')
             result = highlight(code_blocks[i], lexer, formatter)
             code_blocks[i] = result
@@ -230,18 +232,18 @@ def html_ref_and_label(section_label2title, format, filestr):
     # mathematics and those labels)
     running_text_labels = re.findall(r'label\{(.+?)\}', filestr)
 
-    # turn label{myname} to anchors <A NAME="myname"></a>
-    filestr = re.sub(r'label\{(.+?)\}', r'<a name="\g<1>"></A>', filestr)
+    # turn label{myname} to anchors <a name="myname"></a>
+    filestr = re.sub(r'label\{(.+?)\}', r'<a name="\g<1>"></a>', filestr)
 
-    # make special anchors for all the section titles:
+    # make special anchors for all the section titles with labels:
     for label in section_label2title:
         # first remove the anchor with this label as created above:
-        filestr = filestr.replace('<a name="%s"></A>' % label, '')
+        filestr = filestr.replace('<a name="%s"></a>' % label, '')
         # make new anchor for this label (put in title):
         title = section_label2title[label]
-        title_pattern = r'(_{3,7}|={3,7})\s*%s\s*(_{3,7}|={3,7})' % re.escape(title)  # title may contain ? () etc.
+        title_pattern = r'(_{3,7}|={3,7})\s*%s\s*(_{3,7}|={3,7})' % re.escape(title)  # title may contain ? () etc. which fool next re.subn
         filestr, n = re.subn(title_pattern,
-                     '\g<1> %s <a name="%s"></A> \g<2>' % (title, label),
+                     '\g<1> %s <a name="%s"></a> \g<2>' % (title, label),
                      filestr)
         # (a little odd with mix of doconce title syntax and html NAME tag...)
         if n == 0:
@@ -257,6 +259,17 @@ def html_ref_and_label(section_label2title, format, filestr):
     for label in running_text_labels:
         filestr = filestr.replace('ref{%s}' % label,
                                   '<a href="#%s">%s</a>' % (label, label))
+
+    # insert enumerated anchors in all section headings in case we
+    # want a table of contents with linkes to each section
+    section_pattern = r'(_{3,7}|={3,7})(.+?)(_{3,7}|={3,7})'
+    m = re.findall(section_pattern, filestr)
+    for i in range(len(m)):
+        heading1, title, heading2 = m[i]
+        newtitle = title + ' <a name="___sec%d"></a>' % i
+        filestr = filestr.replace(heading1 + title + heading2,
+                                  heading1 + newtitle + heading2)
+
 
     return filestr
 
@@ -300,6 +313,23 @@ def html_index_bib(filestr, index, citations, bibfile):
     return filestr
 
 
+def html_toc(sections):
+    # Find minimum section level
+    tp_min = 4
+    for title, tp in sections:
+        if tp < tp_min:
+            tp_min = tp
+
+    #hr = '<hr>'
+    hr = ''
+    s = '<h2>Table of contents</h2>\n\n%s\n' % hr
+    for i in range(len(sections)):
+        title, tp = sections[i]
+        s += '&nbsp; '*(3*(tp-tp_min)) + \
+             '<a href="#___sec%d">%s</a>' % (i, title ) + '<br>\n'
+    s += '%s\n<p>\n' % hr
+    return s
+
 def define(FILENAME_EXTENSION,
            BLANKLINE,
            INLINE_TAGS_SUBST,
@@ -311,12 +341,13 @@ def define(FILENAME_EXTENSION,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
+           TOC,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
 
     FILENAME_EXTENSION['html'] = '.html'  # output file extension
-    BLANKLINE['html'] = '\n<P>\n'         # blank input line => new paragraph
+    BLANKLINE['html'] = '\n<p>\n'         # blank input line => new paragraph
 
     INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
         # keep math as is:
@@ -334,10 +365,10 @@ def define(FILENAME_EXTENSION,
         'linkURL3v':     r'<a href="\g<url>"><tt>\g<link></tt></a>',
         'plainURL':      r'<a href="\g<url>"><tt>\g<url></tt></a>',
         'inlinecomment': r'[<b>\g<name></b>: <em>\g<comment></em>]',
-        'chapter':       r'<h1>\g<subst></h1>',
-        'section':       r'<h2>\g<subst></h2>',
-        'subsection':    r'<h3>\g<subst></h3>',
-        'subsubsection': r'<h4>\g<subst></h4>',
+        'chapter':       r'\n<h1>\g<subst></h1>',
+        'section':       r'\n<h2>\g<subst></h2>',
+        'subsection':    r'\n<h3>\g<subst></h3>',
+        'subsubsection': r'\n<h4>\g<subst></h4>',
         'paragraph':     r'<b>\g<subst></b> ',
         'abstract':      r'<b>\g<type>.</b> \g<text>\n\g<rest>',
         'title':         r'<title>\g<subst></title>\n<center><h1>\g<subst></h1></center>',
@@ -383,6 +414,7 @@ def define(FILENAME_EXTENSION,
     TABLE['html'] = html_table
     INDEX_BIB['html'] = html_index_bib
     EXERCISE['html'] = plain_exercise
+    TOC['html'] = html_toc
 
     # document start:
     INTRO['html'] = """\

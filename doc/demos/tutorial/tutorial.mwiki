@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Aug 4, 2012 ====
+==== Aug 7, 2012 ====
 
 <ul>
  <li> When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format? <li> Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging? <li> Do you have the same information scattered around in different   documents in different typesetting formats? Would it be a good idea   to write things once, in one format, stored in one place, and   include it anywhere?</ul>
@@ -307,7 +307,14 @@ Terminal> doconce format html mydoc
 </code>
 The resulting file <code>mydoc.html</code> can be loaded into any web browser for viewing.
 
-==== Pandoc ====
+If the Pygments package (including the <code>pygmentize</code> program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument <code>--no-pygments-html</code>
+turns off the use of Pygments and makes code blocks appear with
+plain <code><pre></code> HTML tags. The option <code>--pygments-html-linenos</code> turns
+on line numbers in Pygments-formatted code blocks.
+
+==== Pandoc and Markdown ====
 
 Output in Pandoc's extended Markdown format results from
 <syntaxhighlight lang="bash">
@@ -316,11 +323,12 @@ Terminal> doconce format pandoc mydoc
 The name of the output file is <code>mydoc.mkd</code>.
 From this format one can go to numerous other formats:
 <syntaxhighlight lang="bash">
-Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
+Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd
 </code>
 Pandoc supports <code>latex</code>, <code>html</code>, <code>odt</code> (OpenOffice), <code>docx</code> (Microsoft
 Word), <code>rtf</code>, <code>texinfo</code>, to mention some. The <code>-R</code> option makes
-Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
+Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
+while the <code>--toc</code> option generates a table of contents.
 See the [http://johnmacfarlane.net/pandoc/README.html Pandoc documentation]
 for the many features of the <code>pandoc</code> program.
 
@@ -395,15 +403,11 @@ is also available through <code>-DLATEX_HEADING=traditional</code>.
 A separate titlepage can be generate by
 <code>-DLATEX_HEADING=titlepage</code>.
 
-Other preprocessor variables are <code>BOOK</code> for the "book" documentclass
-rather than the standard "article" (necessary if you apply chapter
-headings), <code>PALATINO</code> for the palatino font, <code>A4PAPER</code> for A4 paper
-size, <code>A6PAPER</code> for A6 paper size (suitable for reading on small
-devices), <code>MOVIE15</code> for inclusion of the movie15 LaTeX package,
-<code>PREAMBLE</code> to turn the LaTeX preamble on or off,
-and
-<code>MINTED</code> for inclusion of the minted package (which requires <code>latex</code>
-or <code>pdflatex</code> to be run with the <code>-shell-escape</code> option).
+Preprocessor variables to be defined or undefined are
+
+
+<ul>
+ <li> <code>BOOK</code> for the "book" documentclass rather than the standard   "article" class (necessary if you apply chapter headings) <li> <code>PALATINO</code> for the Palatino font <li> <code>HELVETIA</code> for the Helvetica font <li> <code>A4PAPER</code> for A4 paper size <li> <code>A6PAPER</code> for A6 paper size (suitable for reading on small devices) <li> <code>MOVIE15</code> for inclusion of the movie15 LaTeX package <li> <code>PREAMBLE</code> to turn the LaTeX preamble on or off (i.e., complete document   or document to be included elsewhere) <li> <code>MINTED</code> for inclusion of the minted package (which requires <code>latex</code>   or <code>pdflatex</code> to be run with the <code>-shell-escape</code> option)</ul>
 
 The <code>ptex2tex</code> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX

@@ -57,7 +57,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Aug 4, 2012</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Aug 7, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -450,21 +450,28 @@ is performed by</p>
 </pre></div>
 </div>
 <p>The resulting file <tt class="docutils literal"><span class="pre">mydoc.html</span></tt> can be loaded into any web browser for viewing.</p>
+<p>If the Pygments package (including the <tt class="docutils literal"><span class="pre">pygmentize</span></tt> program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument <tt class="docutils literal"><span class="pre">--no-pygments-html</span></tt>
+turns off the use of Pygments and makes code blocks appear with
+plain <tt class="docutils literal"><span class="pre">&lt;pre&gt;</span></tt> HTML tags. The option <tt class="docutils literal"><span class="pre">--pygments-html-linenos</span></tt> turns
+on line numbers in Pygments-formatted code blocks.</p>
 </div>
-<div class="section" id="pandoc">
-<h2>Pandoc<a class="headerlink" href="#pandoc" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pandoc-and-markdown">
+<h2>Pandoc and Markdown<a class="headerlink" href="#pandoc-and-markdown" title="Permalink to this headline">¶</a></h2>
 <p>Output in Pandoc&#8217;s extended Markdown format results from</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format pandoc mydoc</span>
 </pre></div>
 </div>
 <p>The name of the output file is <tt class="docutils literal"><span class="pre">mydoc.mkd</span></tt>.
 From this format one can go to numerous other formats:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd</span>
 </pre></div>
 </div>
 <p>Pandoc supports <tt class="docutils literal"><span class="pre">latex</span></tt>, <tt class="docutils literal"><span class="pre">html</span></tt>, <tt class="docutils literal"><span class="pre">odt</span></tt> (OpenOffice), <tt class="docutils literal"><span class="pre">docx</span></tt> (Microsoft
 Word), <tt class="docutils literal"><span class="pre">rtf</span></tt>, <tt class="docutils literal"><span class="pre">texinfo</span></tt>, to mention some. The <tt class="docutils literal"><span class="pre">-R</span></tt> option makes
-Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
+Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
+while the <tt class="docutils literal"><span class="pre">--toc</span></tt> option generates a table of contents.
 See the <a class="reference external" href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</a>
 for the many features of the <tt class="docutils literal"><span class="pre">pandoc</span></tt> program.</p>
 <p>Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
@@ -530,15 +537,22 @@ institutions in common. However, the standard LaTeX &#8220;maketitle&#8221; head
 is also available through <tt class="docutils literal"><span class="pre">-DLATEX_HEADING=traditional</span></tt>.
 A separate titlepage can be generate by
 <tt class="docutils literal"><span class="pre">-DLATEX_HEADING=titlepage</span></tt>.</p>
-<p>Other preprocessor variables are <tt class="docutils literal"><span class="pre">BOOK</span></tt> for the &#8220;book&#8221; documentclass
-rather than the standard &#8220;article&#8221; (necessary if you apply chapter
-headings), <tt class="docutils literal"><span class="pre">PALATINO</span></tt> for the palatino font, <tt class="docutils literal"><span class="pre">A4PAPER</span></tt> for A4 paper
-size, <tt class="docutils literal"><span class="pre">A6PAPER</span></tt> for A6 paper size (suitable for reading on small
-devices), <tt class="docutils literal"><span class="pre">MOVIE15</span></tt> for inclusion of the movie15 LaTeX package,
-<tt class="docutils literal"><span class="pre">PREAMBLE</span></tt> to turn the LaTeX preamble on or off,
-and
-<tt class="docutils literal"><span class="pre">MINTED</span></tt> for inclusion of the minted package (which requires <tt class="docutils literal"><span class="pre">latex</span></tt>
-or <tt class="docutils literal"><span class="pre">pdflatex</span></tt> to be run with the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option).</p>
+<p>Preprocessor variables to be defined or undefined are</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">BOOK</span></tt> for the &#8220;book&#8221; documentclass rather than the standard
+&#8220;article&#8221; class (necessary if you apply chapter headings)</li>
+<li><tt class="docutils literal"><span class="pre">PALATINO</span></tt> for the Palatino font</li>
+<li><tt class="docutils literal"><span class="pre">HELVETIA</span></tt> for the Helvetica font</li>
+<li><tt class="docutils literal"><span class="pre">A4PAPER</span></tt> for A4 paper size</li>
+<li><tt class="docutils literal"><span class="pre">A6PAPER</span></tt> for A6 paper size (suitable for reading on small devices)</li>
+<li><tt class="docutils literal"><span class="pre">MOVIE15</span></tt> for inclusion of the movie15 LaTeX package</li>
+<li><tt class="docutils literal"><span class="pre">PREAMBLE</span></tt> to turn the LaTeX preamble on or off (i.e., complete document
+or document to be included elsewhere)</li>
+<li><tt class="docutils literal"><span class="pre">MINTED</span></tt> for inclusion of the minted package (which requires <tt class="docutils literal"><span class="pre">latex</span></tt>
+or <tt class="docutils literal"><span class="pre">pdflatex</span></tt> to be run with the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option)</li>
+</ul>
+</div></blockquote>
 <p>The <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents. After any <tt class="docutils literal"><span class="pre">!bc</span></tt> command in the Doconce source you can
@@ -1066,7 +1080,7 @@ Mercurial (<tt class="docutils literal"><span class="pre">hg</span></tt>) direct
 </li>
 <li><a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a><ul>
 <li><a class="reference internal" href="#id1">HTML</a></li>
-<li><a class="reference internal" href="#pandoc">Pandoc</a></li>
+<li><a class="reference internal" href="#pandoc-and-markdown">Pandoc and Markdown</a></li>
 <li><a class="reference internal" href="#id2">LaTeX</a></li>
 <li><a class="reference internal" href="#pdflatex">PDFLaTeX</a></li>
 <li><a class="reference internal" href="#plain-ascii-text">Plain ASCII Text</a></li>

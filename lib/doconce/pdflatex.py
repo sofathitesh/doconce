@@ -12,6 +12,7 @@ def define(FILENAME_EXTENSION,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
+           TOC,
            INTRO,
            OUTRO):
 
@@ -19,15 +20,19 @@ def define(FILENAME_EXTENSION,
         # latex.define is not yet ran on these dictionaries, do it:
         import latex
         latex.define(FILENAME_EXTENSION,
-                     BLANKLINE,
-                     INLINE_TAGS_SUBST,
-                     CODE,
-                     LIST,
-                     ARGLIST,
-                     TABLE,
-                     FIGURE_EXT,
-                     INTRO,
-                     OUTRO)
+           BLANKLINE,
+           INLINE_TAGS_SUBST,
+           CODE,
+           LIST,
+           ARGLIST,
+           TABLE,
+           EXERCISE,
+           FIGURE_EXT,
+           CROSS_REFS,
+           INDEX_BIB,
+           TOC,
+           INTRO,
+           OUTRO)
 
     # The BIG difference between pdflatex and latex
     FIGURE_EXT['pdflatex'] = ('.pdf', '.jpg', '.jpeg', '.png')
@@ -44,6 +49,7 @@ def define(FILENAME_EXTENSION,
     INTRO['pdflatex'] = INTRO['latex']
     OUTRO['pdflatex'] = OUTRO['latex']
     ARGLIST['pdflatex'] = ARGLIST['latex']
+    TOC['pdflatex'] = TOC['latex']
 
     # make true copy of INLINE_TAGS_SUBST:
     INLINE_TAGS_SUBST['pdflatex'] = {}

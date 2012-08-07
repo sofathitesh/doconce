@@ -31,6 +31,7 @@ for module in html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki,
                   FIGURE_EXT,
                   CROSS_REFS,
                   INDEX_BIB,
+                  TOC,
                   INTRO,
                   OUTRO)
 
@@ -77,7 +78,7 @@ def syntax_check(filestr, format):
             print filestr2[m.start():m.start()+80]
             sys.exit(1)
 
-    # Code/latex blocks cannot have a comment, table, figure, etc.
+    # Code/tex blocks cannot have a comment, table, figure, etc.
     # right before them
     constructions = {'comment': r'^\s*#.*?$',
                      'table': r'-\|\s*$',
@@ -1076,8 +1077,30 @@ def handle_cross_referencing(filestr, format):
         section_label2title[label] = title.strip()
     #pprint.pprint(section_label2title)
 
-    # 2. perform format-specific editing of ref{...} and label{...}
+    # 2. Make table of contents
+    # TOC: on|off
+    section_pattern = r'(_{3,7}|={3,7})(.+?)(_{3,7}|={3,7})'
+    m = re.findall(section_pattern, filestr)
+    sections = []
+    heading2section_type = {9: 0, 7: 1, 5: 2, 3: 3}
+    for heading, title, dummy2 in m:
+        sections.append((title, heading2section_type[len(heading)]))
+    #print 'sections:'
+    #import pprint; pprint.pprint(sections)
+
+    pattern = re.compile(r'^TOC:\s*(on|off).*$', re.MULTILINE)
+    m = pattern.search(filestr)
+    if m:
+        value = m.group(1)
+        if value == 'on':
+            toc = TOC[format](sections)
+            filestr = pattern.sub('\n%s\n\n' % toc, filestr)
+        else:
+            filestr = pattern.sub('', filestr)
+
+    # 3. Perform format-specific editing of ref{...} and label{...}
     filestr = CROSS_REFS[format](section_label2title, format, filestr)
+
     return filestr
 
 
@@ -1242,7 +1265,8 @@ def inline_tag_subst(filestr, format):
     debugpr('\n*** Inline tags substitution phase ***')
 
     ordered_tags = (
-        'title', 'date',
+        'title',
+        'date',
         'movie',
         #'figure',  # done separately
         'abstract',  # must become before sections since it tests on ===
@@ -1679,16 +1703,17 @@ python-mako package (sudo apt-get install python-mako).
         f = open(resultfile, 'w')
         kwargs = {'FORMAT': format}
         for option in preprocessor_options:
-            try:
-                key, value = option.split('=')
-            except ValueError:
-                print 'command line argument "%s" not recognized' % option
-                sys.exit(1)
-            # Try eval(value), if it fails, assume string
-            try:
-                kwargs[key] = eval(value)
-            except (NameError, SyntaxError):
-                kwargs[key] = value
+            if not option.startswith('--'):
+                try:
+                    key, value = option.split('=')
+                except ValueError:
+                    print 'command line argument "%s" not recognized' % option
+                    sys.exit(1)
+                # Try eval(value), if it fails, assume string
+                try:
+                    kwargs[key] = eval(value)
+                except (NameError, SyntaxError):
+                    kwargs[key] = value
         debugpr('Keyword arguments to be sent to mako: %s' % \
                 pprint.pformat(kwargs))
         try:
@@ -1725,7 +1750,8 @@ def main():
     # oneline is inactive (doesn't work well yet)
 
     options = ['--debug', '--skip_inline_comments', '--encoding=',
-               '--oneline_paragraphs', '--no-mako', '--no-pygments-html',
+               '--oneline_paragraphs', '--no-mako',
+               '--no-pygments-html', '--pygments-html-linenos',
                ]
 
     global _log, encoding, filename

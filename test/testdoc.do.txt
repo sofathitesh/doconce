@@ -12,6 +12,8 @@ AUTHOR: J. Doe mail: j_doe@cyberspace.com
 # latex demands DATE
 DATE: today
 
+TOC: off
+
 The format of this document is
 % if FORMAT == 'html':
 plain, homemade HTML (from Doconce).

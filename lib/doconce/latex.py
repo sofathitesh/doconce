@@ -485,6 +485,7 @@ def define(FILENAME_EXTENSION,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
+           TOC,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -526,7 +527,7 @@ def define(FILENAME_EXTENSION,
         'abstract':      r"""
 
 % #if LATEX_HEADING == "Springer-collection"
-\abstract{
+\\abstract{
 % #else
 \\begin{abstract}
 % #endif
@@ -567,10 +568,6 @@ def define(FILENAME_EXTENSION,
 \g<subst>
 \end{center}
 
-% #endif
-
-% #ifdef TOC
-\tableofcontents
 % #endif
 
 """, application='replacement'),
@@ -624,6 +621,7 @@ def define(FILENAME_EXTENSION,
     TABLE['latex'] = latex_table
     EXERCISE['latex'] = latex_exercise
     INDEX_BIB['latex'] = latex_index_bib
+    TOC['latex'] = lambda s: r'\\tableofcontents'
 
     INTRO['latex'] = r"""%%
 %% Automatically generated ptex2tex (extended LaTeX) file

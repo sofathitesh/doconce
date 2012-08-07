@@ -10,7 +10,7 @@
 
 d2f="doconce format"
 # doconce html format:
-$d2f html manual.do.txt --no-mako
+$d2f html manual.do.txt --no-mako --no-pygments-html
 
 # Sphinx
 $d2f sphinx manual.do.txt --no-mako

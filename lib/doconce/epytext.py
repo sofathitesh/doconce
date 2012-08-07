@@ -52,6 +52,7 @@ def define(FILENAME_EXTENSION,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
+           TOC,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -113,4 +114,5 @@ def define(FILENAME_EXTENSION,
         'class variable': '@cvar',
         'module variable': '@var',
         }
+    TOC['epytext'] = lambda x: '\n'  # no toc for epydoc
 

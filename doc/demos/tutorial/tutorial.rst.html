@@ -328,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Aug 4, 2012</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Aug 7, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -731,9 +731,15 @@ is performed by:</p>
 Terminal&gt; doconce format html mydoc
 </pre>
 <p>The resulting file <tt class="docutils literal">mydoc.html</tt> can be loaded into any web browser for viewing.</p>
+<p>If the Pygments package (including the <tt class="docutils literal">pygmentize</tt> program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument <tt class="docutils literal"><span class="pre">--no-pygments-html</span></tt>
+turns off the use of Pygments and makes code blocks appear with
+plain <tt class="docutils literal">&lt;pre&gt;</tt> HTML tags. The option <tt class="docutils literal"><span class="pre">--pygments-html-linenos</span></tt> turns
+on line numbers in Pygments-formatted code blocks.</p>
 </div>
-<div class="section" id="pandoc">
-<h2>Pandoc</h2>
+<div class="section" id="pandoc-and-markdown">
+<h2>Pandoc and Markdown</h2>
 <p>Output in Pandoc's extended Markdown format results from:</p>
 <pre class="literal-block">
 Terminal&gt; doconce format pandoc mydoc
@@ -741,11 +747,12 @@ Terminal&gt; doconce format pandoc mydoc
 <p>The name of the output file is <tt class="docutils literal">mydoc.mkd</tt>.
 From this format one can go to numerous other formats:</p>
 <pre class="literal-block">
-Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
+Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd
 </pre>
 <p>Pandoc supports <tt class="docutils literal">latex</tt>, <tt class="docutils literal">html</tt>, <tt class="docutils literal">odt</tt> (OpenOffice), <tt class="docutils literal">docx</tt> (Microsoft
 Word), <tt class="docutils literal">rtf</tt>, <tt class="docutils literal">texinfo</tt>, to mention some. The <tt class="docutils literal"><span class="pre">-R</span></tt> option makes
-Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
+Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
+while the <tt class="docutils literal"><span class="pre">--toc</span></tt> option generates a table of contents.
 See the <a class="reference external" href="http://johnmacfarlane.net/pandoc/README.html">Pandoc documentation</a>
 for the many features of the <tt class="docutils literal">pandoc</tt> program.</p>
 <p>Pandoc is useful to go from LaTeX mathematics to, e.g., HTML or MS Word.
@@ -813,15 +820,22 @@ institutions in common. However, the standard LaTeX &quot;maketitle&quot; headin
 is also available through <tt class="docutils literal"><span class="pre">-DLATEX_HEADING=traditional</span></tt>.
 A separate titlepage can be generate by
 <tt class="docutils literal"><span class="pre">-DLATEX_HEADING=titlepage</span></tt>.</p>
-<p>Other preprocessor variables are <tt class="docutils literal">BOOK</tt> for the &quot;book&quot; documentclass
-rather than the standard &quot;article&quot; (necessary if you apply chapter
-headings), <tt class="docutils literal">PALATINO</tt> for the palatino font, <tt class="docutils literal">A4PAPER</tt> for A4 paper
-size, <tt class="docutils literal">A6PAPER</tt> for A6 paper size (suitable for reading on small
-devices), <tt class="docutils literal">MOVIE15</tt> for inclusion of the movie15 LaTeX package,
-<tt class="docutils literal">PREAMBLE</tt> to turn the LaTeX preamble on or off,
-and
-<tt class="docutils literal">MINTED</tt> for inclusion of the minted package (which requires <tt class="docutils literal">latex</tt>
-or <tt class="docutils literal">pdflatex</tt> to be run with the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option).</p>
+<p>Preprocessor variables to be defined or undefined are</p>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal">BOOK</tt> for the &quot;book&quot; documentclass rather than the standard
+&quot;article&quot; class (necessary if you apply chapter headings)</li>
+<li><tt class="docutils literal">PALATINO</tt> for the Palatino font</li>
+<li><tt class="docutils literal">HELVETIA</tt> for the Helvetica font</li>
+<li><tt class="docutils literal">A4PAPER</tt> for A4 paper size</li>
+<li><tt class="docutils literal">A6PAPER</tt> for A6 paper size (suitable for reading on small devices)</li>
+<li><tt class="docutils literal">MOVIE15</tt> for inclusion of the movie15 LaTeX package</li>
+<li><tt class="docutils literal">PREAMBLE</tt> to turn the LaTeX preamble on or off (i.e., complete document
+or document to be included elsewhere)</li>
+<li><tt class="docutils literal">MINTED</tt> for inclusion of the minted package (which requires <tt class="docutils literal">latex</tt>
+or <tt class="docutils literal">pdflatex</tt> to be run with the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> option)</li>
+</ul>
+</blockquote>
 <p>The <tt class="docutils literal">ptex2tex</tt> tool makes it possible to easily switch between many
 different fancy formattings of computer or verbatim code in LaTeX
 documents. After any <tt class="docutils literal">!bc</tt> command in the Doconce source you can
@@ -1292,7 +1306,7 @@ using ReportLab instead of LaTeX. The enabling software is
 or clone the svn repository, go to the <tt class="docutils literal">rst2pdf</tt> directory and
 run the usual <tt class="docutils literal">sudo python setup.py install</tt>.</p>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 970); <em><a href="#id5">backlink</a></em></p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 990); <em><a href="#id5">backlink</a></em></p>
 Duplicate explicit target name: &quot;sphinx&quot;.</div>
 <p>Output to <tt class="docutils literal">sphinx</tt> requires of course <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a>,
 installed by:</p>

@@ -301,6 +301,7 @@ INDEX_BIB = {}
 INTRO = {}
 OUTRO = {}
 EXERCISE = {}
+TOC = {}
 
 
 # regular expressions for inline tags:

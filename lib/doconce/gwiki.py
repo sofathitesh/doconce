@@ -166,6 +166,7 @@ def define(FILENAME_EXTENSION,
            FIGURE_EXT,
            CROSS_REFS,
            INDEX_BIB,
+           TOC,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -195,7 +196,8 @@ def define(FILENAME_EXTENSION,
 #        'subsection':    r'++++++ \g<subst> ++++++',
 #        'subsubsection': r'++++++++ \g<subst> ++++++++',
         'paragraph':     r'*\g<subst>* ',
-        'title':         r'#summary \g<subst>\n<wiki:toc max_depth="2" />',
+        #'title':         r'#summary \g<subst>\n<wiki:toc max_depth="2" />',
+        'title':         r'#summary \g<subst>\n',
         'date':          r'===== \g<subst> =====',
         'author':        gwiki_author, #r'===== \g<name>, \g<institution> =====',
 #        'figure':        r'<\g<filename>>',
@@ -237,6 +239,7 @@ def define(FILENAME_EXTENSION,
     from plaintext import plain_index_bib
     EXERCISE['gwiki'] = plain_exercise
     INDEX_BIB['gwiki'] = plain_index_bib
+    TOC['gwiki'] = lambda s: '<wiki: toc max_depth="2" />'
 
     # document start:
     INTRO['gwiki'] = ''

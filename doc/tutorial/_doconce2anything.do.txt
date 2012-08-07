@@ -45,7 +45,15 @@ Terminal> doconce format html mydoc
 !ec
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
-===== Pandoc =====
+If the Pygments package (including the `pygmentize` program)
+is installed, code blocks are typeset with
+aid of this package. The command-line argument `--no-pygments-html`
+turns off the use of Pygments and makes code blocks appear with
+plain `<pre>` HTML tags. The option `--pygments-html-linenos` turns
+on line numbers in Pygments-formatted code blocks.
+
+
+===== Pandoc and Markdown =====
 
 Output in Pandoc's extended Markdown format results from
 !bc sys
@@ -54,11 +62,12 @@ Terminal> doconce format pandoc mydoc
 The name of the output file is `mydoc.mkd`.
 From this format one can go to numerous other formats:
 !bc sys
-Terminal> pandoc -R -t mediawiki -o mydoc.mwk mydoc.mkd
+Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd
 !ec
 Pandoc supports `latex`, `html`, `odt` (OpenOffice), `docx` (Microsoft
 Word), `rtf`, `texinfo`, to mention some. The `-R` option makes
-Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it.
+Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
+while the `--toc` option generates a table of contents.
 See the "Pandoc documentation": "http://johnmacfarlane.net/pandoc/README.html"
 for the many features of the `pandoc` program.
 
@@ -136,7 +145,6 @@ A separate titlepage can be generate by
 
 Preprocessor variables to be defined or undefined are
 
- * `TOC` for including a table of contents
  * `BOOK` for the "book" documentclass rather than the standard
    "article" class (necessary if you apply chapter headings)
  * `PALATINO` for the Palatino font
