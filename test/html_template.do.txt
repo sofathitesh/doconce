@@ -1,0 +1,18 @@
+DATE: today
+
+===== This is a test of HTML templates =====
+
+Note: The Doconce file cannot have a title (to avoid generating a
+header). It should neither have an author.
+
+======= This is a 7 heading =======
+
+===== This is a 5 heading =====
+
+The template can be any HTML file with header and footer and
+three possible slots: *title*, *date* and *main*,
+where *main* will become the Doconce file (the main body of text),
+*title* is the first heading in the Doconce file, and
+*date* is extracted from the Doconce file (if present).
+
+

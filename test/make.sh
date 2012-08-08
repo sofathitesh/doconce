@@ -52,6 +52,11 @@ doconce grab --from- '={9}' --to 'subroutine@' testdoc.do.txt > testdoc.tmp
 doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' testdoc.do.txt >> testdoc.tmp
 doconce grab --from- '\*\s+\$.+normally' testdoc.do.txt >> testdoc.tmp
 
+# Test html templates
+doconce format html html_template --html-template=template1.html
+cp html_template.html html_template1.html
+doconce format html html_template --html-template=template_inf1100.html
+
 # Test encoding
 doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
 cp encoding1.do.txt tmp1.do.txt

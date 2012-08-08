@@ -47,6 +47,17 @@ def latex_code(filestr, code_blocks, code_block_types,
         if envir and envir not in envirs:
             print 'Warning: found "!bc %s", but %s is not a standard predefined ptex2tex environment' % (envir, envir)
 
+    # Final fixes for latex format
+
+    # Add movie15 package if the file has a movie
+    if r'\includemovie[' in filestr:
+        filestr = filestr.replace('usepackage{ptex2tex}', """\
+usepackage{ptex2tex}
+% #ifdef MOVIE15
+\usepackage{movie15}
+% #endif
+""")
+
     return filestr
 
 def latex_figure(m, includegraphics=True):
@@ -668,9 +679,6 @@ def define(FILENAME_EXTENSION,
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
-% #ifdef MOVIE15
-\usepackage{movie15}
-% #endif
 % #ifdef MINTED
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 % #endif

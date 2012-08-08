@@ -1398,7 +1398,18 @@ def file2file(in_filename, format, out_filename):
         f = codecs.open(out_filename, 'w', encoding)
     else:
         f = open(out_filename, 'w')
-    f.write(filestr)
+
+    try:
+        f.write(filestr)
+    except UnicodeEncodeError, e:
+        m = str(e)
+        if "codec can't encode character" in m:
+            pos = int(m.split('position')[1].split(':')[0])
+            print 'pos', pos
+            print 'Problem with character when writing to file:', filestr[pos]
+            print filestr[pos-40:pos], '|', filestr[pos], '|', filestr[pos+1:pos+40]
+            print 'Fix character or try --encoding=utf-8 or --encoding=iso-8859-15'
+            sys.exit(1)
     f.close()
 
 
@@ -1550,7 +1561,7 @@ def doconce2format(filestr, format):
     # Next step: substitute latex-style newcommands in filestr and tex_blocks
     # (not in code_blocks)
     from expand_newcommands import expand_newcommands
-    if format != 'latex' and format != 'pdflatex' and format != 'pandoc':
+    if format not in ('latex', 'pdflatex', 'pandoc'):
         newcommand_files = ['newcommands_replace.tex']
         if format == 'sphinx':  # replace all newcommands in sphinx
             newcommand_files.extend(['newcommands.tex', 'newcommands_keep.tex'])
@@ -1565,24 +1576,21 @@ def doconce2format(filestr, format):
     # non-rst/sphinx formats:
     filestr = subst_class_func_mod(filestr, format)
 
-    # Next step: insert verbatim and math code blocks again and
-    # substitute code and tex environments:
-    filestr = CODE[format](filestr, code_blocks, code_block_types,
-                           tex_blocks, format)
-    filestr += '\n'
-    debugpr('%s\n**** The file after inserting tex/code blocks:\n\n%s\n\n' % \
-          ('*'*80, filestr))
-
+    # Next step: add header and footer
     if has_title:
         if format in INTRO:
             filestr = INTRO[format] + filestr
         if format in OUTRO:
             filestr = filestr + OUTRO[format]
 
-    if format == 'latex' or format == 'pdflatex':
-        if r'\includemovie[' not in filestr:
-            # avoid the need for movie15 package in latex file
-            filestr = filestr.replace('define MOVIE', 'undef MOVIE')
+    # Next step: insert verbatim and math code blocks again and
+    # substitute code and tex environments:
+    # (this is the place to do package-specific fixes too!)
+    filestr = CODE[format](filestr, code_blocks, code_block_types,
+                           tex_blocks, format)
+    filestr += '\n'
+    debugpr('%s\n**** The file after inserting intro/outro and tex/code blocks, and fixing last format-specific issues:\n\n%s\n\n' % \
+          ('*'*80, filestr))
 
     return filestr
 

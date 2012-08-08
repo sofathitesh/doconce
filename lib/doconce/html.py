@@ -91,6 +91,49 @@ def html_code(filestr, code_blocks, code_block_types,
 
     filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
 
+    # Final fixes for html format
+
+    #print filestr
+    #print '========================================================='
+    header = '<title>' in filestr  # will the html file get a header?
+    template = ''
+    for arg in sys.argv:
+        if arg.startswith('--html-template='):
+            template = arg.split('=')[1]
+            if header:
+                print 'Warning: HTML template %s ignored since the file has a title (and hence an HTML header)' % template
+            authors = '<! -- author(s) -->' in filestr
+            if authors:
+                print 'Warning: AUTHOR is not recommended when using HTML templates (looks no good)'
+            break
+    if template and not header:
+        title = ''
+        date = ''
+        m = re.search(r'<h\d>(.+?)<a name=', filestr)
+        if m:
+            title = m.group(1).strip()
+        pattern = r'<center><h\d>(.+?)</h\d></center>\s*<!-- date -->'
+        m = re.search(pattern, filestr)
+        if m:
+            date = m.group(1).strip()
+            # remove date since date is in template
+            filestr = re.sub(pattern, '', filestr)
+
+        f = open(template, 'r'); template = f.read(); f.close()
+        # template can only have slots for title, date, main
+        template = latin2html(template) # code non-ascii chars
+        # replate % by %% in template, except for %(title), %(date), %(main)
+        template = template.replace('%(title)s', '@@@TITLE@@@')
+        template = template.replace('%(date)s', '@@@DATE@@@')
+        template = template.replace('%(main)s', '@@@MAIN@@@')
+        template = template.replace('%', '%%')
+        template = template.replace('@@@TITLE@@@', '%(title)s')
+        template = template.replace('@@@DATE@@@', '%(date)s')
+        template = template.replace('@@@MAIN@@@', '%(main)s')
+
+        variables = {'title': title, 'date': date, 'main': filestr}
+        filestr = template % variables
+
     return filestr
 
 def html_figure(m):
@@ -200,7 +243,7 @@ def html_movie(m):
 
 def html_author(authors_and_institutions, auth2index,
                 inst2index, index2inst, auth2email):
-    text = ''
+    text = '\n\n<! -- author(s) -->\n'
     for author in auth2index:
         email = auth2email[author]
         if email is None:
@@ -211,7 +254,7 @@ def html_author(authors_and_institutions, auth2index,
 
         text += '\n<center>\n<b>%s</b> %s%s\n</center>\n' % \
             (author, str(auth2index[author]), email_text)
-    text += '\n<p>\n'
+    text += '\n\n<p>\n<!-- institutions -->\n\n'
     for index in index2inst:
         text += '<center>[%d] <b>%s</b></center>\n' % (index, index2inst[index])
     text += '\n\n'
@@ -371,8 +414,8 @@ def define(FILENAME_EXTENSION,
         'subsubsection': r'\n<h4>\g<subst></h4>',
         'paragraph':     r'<b>\g<subst></b> ',
         'abstract':      r'<b>\g<type>.</b> \g<text>\n\g<rest>',
-        'title':         r'<title>\g<subst></title>\n<center><h1>\g<subst></h1></center>',
-        'date':          r'<center><h3>\g<subst></h3></center>',
+        'title':         r'\n<title>\g<subst></title>\n\n<center><h1>\g<subst></h1></center>  <! -- document title -->\n',
+        'date':          r'<center><h3>\g<subst></h3></center> <!-- date -->',
         'author':        html_author,
         #'figure':        r'<p><em>\g<caption></em></p><img src="\g<filename>" align="bottom" \g<options>>',
         #'figure':        r'<img src="\g<filename>" align="bottom" \g<options>> <p><em>\g<caption></em></p>',
@@ -429,6 +472,36 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
+<style type="text/css">
+    body {
+      margin-top: 1.0em;
+      <!-- background-color: #e1c931; -->
+      background-color: #000000;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    #container {
+      margin: 0 auto;
+      width: 700px;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
+    h1 .small { font-size: 0.4em; }
+    h1 a { text-decoration: none }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { text-align: left; color: #1e36ce; }
+    h4 { text-align: left; color: #1e36ce; }
+    a { color: #1e36ce; }
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .download { float: right; }
+    <!-- white on black: pre { background: #000; color: #fff; padding: 15px;} -->
+    <!-- black on white: pre { background: #fff; color: #000; padding: 15px;} -->
+    pre { background: #EDEDED; color: #000; padding: 15px;}
+    <!-- http://www.december.com/html/spec/color0.html -->
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
+</style>
+
+<!-- Use MathJax to render mathematics -->
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -444,9 +517,12 @@ MathJax.Hub.Config({
 </head>
 
 <body bgcolor="white">
+<!-- ---------------------------- main content ------------------------>
     """
     # document ending:
     OUTRO['html'] = """
+
+<!-- ---------------------------- end of main content ----------------->
 </body>
 </html>
     """
