@@ -327,25 +327,49 @@ Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
+!bhint
+Use `r = random.random()` and define head as `r <= 0.5`.
+!ehint
 
-__Hint 1.__ Use `r = random.random()` and define head as `r <= 0.5`.
-
-__Hint 2.__ Draw an integer among $\{1,2\}$ with
+!bhint
+Draw an integer among $\{1,2\}$ with
 `r = random.randint(1,2)` and define head when `r` is 1.
+!ehint
+
+!bans
+If the `random.random()` function returns a number $<1/2$, let it be
+head, otherwise tail. Repeat this $N$ number of times.
+!eans
+
+!bsol
+!bc pycod
+import sys, random
+N = int(sys.argv[1])
+heads = 0
+for i in range(N):
+    r = random.random()
+    if r <= 0.5:
+        heads += 1
+print 'Flipping a coin %d times gave %d heads' % (N, heads)
+!ec
+!esol
 
 
 ===== Exercise: Compute a Probability =====
 
+# Minimalistic exercise
+
 label{demo:ex:2}
-solution =/my/home/hpl/sol/file1.do.txt
 
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
+
+!bhint
 To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard `random` module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
-compute the probability as $M/N$. Run the program with the four
-values $N=10^i$ for $i=1,2,3,6$.
+compute the probability as $M/N$.
+!ehint
 
 ===== Project: Explore Distributions of Random Circles =====
 
@@ -376,18 +400,41 @@ x, y = circle(2.0, 0, 0)
 !ec
 
 # Often in an exercise we have some comments about the solution
-# which we normally want to migrate to the end.
+# which we normally want to keep where they are.
 
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the `circle` function
-above. The following cases should be explored:
+above.
 
- * $R$ normally distributed and $(x_0,y_0)$ uniformly distributed
- * $R$ uniformly distributed and $(x_0,y_0)$ normally distributed
- * $R$ and $(x_0,y_0)$ normally distributed
+!bsubex
+Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
-__Hint.__ Use the `numpy.random` module to draw the
+!bans
+Here goes the short answer to part a).
+!eans
+
+!bsol
+Here goes a full solution to part a).
+!esol
+
+!bhint
+Use the `numpy.random` module to draw the
 $x_0$, $y_0$, and $R$ quantities.
+!ehint
+
+!esubex
+
+!bsubex
+Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
+
+file=norm.py  # test local filename for subexercise
+!esubex
+
+!bsubex
+Let $R$ and $(x_0,y_0)$ be normally distributed.
+!esubex
+
+
 
 
 
@@ -950,6 +997,7 @@ More mathematical typesetting is demonstrated in the exercises below.
 Make a program that simulates flipping a coin \( N \) times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+<em>Filename</em>: <tt>flip_coin.py</tt>.
 
 <p>
 <b>Hint 1.</b> Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
@@ -957,7 +1005,46 @@ let the program count the number of heads.
 <p>
 <b>Hint 2.</b> Draw an integer among \( \{1,2\} \) with
 <tt>r = random.randint(1,2)</tt> and define head when <tt>r</tt> is 1.
-<em>Filename</em>: <tt>flip_coin.py</tt>
+
+<p>
+<!-- --- begin short answer in exercise -->
+
+<p>
+<b>Answer.</b> If the <tt>random.random()</tt> function returns a number \( <1/2 \), let it be
+head, otherwise tail. Repeat this \( N \) number of times.
+<!-- --- end short answer in exercise -->
+
+<p>
+<!-- --- begin solution of exercise -->
+
+<p>
+<b>Solution.</b> Code:
+<p>
+
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">sys</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">random</span>
+N <span style="color: #666666">=</span> <span style="color: #AA22FF">int</span>(sys<span style="color: #666666">.</span>argv[<span style="color: #666666">1</span>])
+heads <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+<span style="color: #AA22FF; font-weight: bold">for</span> i <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #AA22FF">range</span>(N):
+    r <span style="color: #666666">=</span> random<span style="color: #666666">.</span>random()
+    <span style="color: #AA22FF; font-weight: bold">if</span> r <span style="color: #666666">&lt;=</span> <span style="color: #666666">0.5</span>:
+        heads <span style="color: #666666">+=</span> <span style="color: #666666">1</span>
+<span style="color: #AA22FF; font-weight: bold">print</span> <span style="color: #BB4444">&#39;Flipping a coin </span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BB4444"> times gave </span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BB4444"> heads&#39;</span> <span style="color: #666666">%</span> (N, heads)
+</pre></div>
+</td></tr></table><p>
+
+<p>
+<!-- --- end solution of exercise -->
+
+<p>
+<!-- solution file: mysol.txt -->
+<!-- --- end of exercise -->
 
 <p>
 
@@ -967,13 +1054,22 @@ let the program count the number of heads.
 <p>
 
 <p>
+<!-- Minimalistic exercise -->
+
+<p>
+
+<p>
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval \( [0,1) \)?
-To answer this question empirically, let a program
+
+<p>
+<b>Hint.</b> To answer this question empirically, let a program
 draw \( N \) such random numbers using Python's standard <tt>random</tt> module,
 count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
-compute the probability as \( M/N \). Run the program with the four
-values \( N=10^i \) for \( i=1,2,3,6 \).
+compute the probability as \( M/N \).
+
+<p>
+<!-- --- end of exercise -->
 
 <p>
 
@@ -1017,27 +1113,49 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 </td></tr></table><p>
 
 <p>
+<!-- Often in an exercise we have some comments about the solution -->
+<!-- which we normally want to keep where they are. -->
 
 <p>
 The goal of this project is to draw \( N \) circles with random
 center and radius. Plot each circle using the <tt>circle</tt> function
-above. The following cases should be explored:
+above.
+<em>Filename</em>: <tt>circles.pdf</tt>.
 
 <p>
 
-<ul>
- <li> \( R \) normally distributed and \( (x_0,y_0) \) uniformly distributed
- <li> \( R \) uniformly distributed and \( (x_0,y_0) \) normally distributed
- <li> \( R \) and \( (x_0,y_0) \) normally distributed
-</ul>
+<p>
+<b>a)</b> Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
 
+<p>
 <b>Hint.</b> Use the <tt>numpy.random</tt> module to draw the
 \( x_0 \), \( y_0 \), and \( R \) quantities.
-<em>Filename</em>: <tt>circles.pdf</tt>
 
 <p>
-<!-- Often in an exercise we have some comments about the solution -->
-<!-- which we normally want to migrate to the end. -->
+<!-- --- begin short answer in exercise -->
+
+<p>
+<b>Answer.</b> Here goes the short answer to part a).
+<!-- --- end short answer in exercise -->
+
+<p>
+<!-- --- begin solution of exercise -->
+
+<p>
+<b>Solution.</b> Here goes a full solution to part a).
+
+<p>
+<!-- --- end solution of exercise -->
+
+<p>
+<b>b)</b> Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
+<em>Filename</em>: <tt>norm.py</tt>.
+
+<p>
+<b>c)</b> Let \( R \) and \( (x_0,y_0) \) be normally distributed.
+<!-- --- end of exercise -->
+
+<p>
 
 <!-- ---------------------------- end of main content ----------------->
 </body>
@@ -1704,24 +1822,59 @@ More mathematical typesetting is demonstrated in the exercises below.
 Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+\emph{Filename}: \code{flip_coin.py}.
+
 \paragraph{Hint 1.}
 Use \code{r = random.random()} and define head as \code{r <= 0.5}.
+
 \paragraph{Hint 2.}
 Draw an integer among $\{1,2\}$ with
 \code{r = random.randint(1,2)} and define head when \code{r} is 1.
-Filename: \code{flip_coin.py}.
+
+% --- begin short answer in exercise
+
+\paragraph{Answer.}
+If the \code{random.random()} function returns a number $<1/2$, let it be
+head, otherwise tail. Repeat this $N$ number of times.
+% --- end short answer in exercise
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+Code:
+\bpycod
+import sys, random
+N = int(sys.argv[1])
+heads = 0
+for i in range(N):
+    r = random.random()
+    if r <= 0.5:
+        heads += 1
+print 'Flipping a coin %d times gave %d heads' % (N, heads)
+\epycod
+
+% --- end solution of exercise
+
+% solution file: mysol.txt
+% --- end of exercise
 
 \subsection{Compute a Probability}
 
 \label{demo:ex:2}
 
+% Minimalistic exercise
+
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
+
+\paragraph{Hint.}
 To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard \code{random} module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
-compute the probability as $M/N$. Run the program with the four
-values $N=10^i$ for $i=1,2,3,6$.
+compute the probability as $M/N$.
+
+% --- end of exercise
 
 \subsection{Explore Distributions of Random Circles}
 
@@ -1748,27 +1901,42 @@ def circle(R, x0, y0, n=501):
 x, y = circle(2.0, 0, 0)
 \epypro
 
+% Often in an exercise we have some comments about the solution
+% which we normally want to keep where they are.
 
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the \code{circle} function
-above. The following cases should be explored:
+above.
+\emph{Filename}: \code{circles.pdf}.
 
-\begin{itemize}
- \item $R$ normally distributed and $(x_0,y_0)$ uniformly distributed
 
- \item $R$ uniformly distributed and $(x_0,y_0)$ normally distributed
+\paragraph{a)}
+Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
- \item $R$ and $(x_0,y_0)$ normally distributed
-\end{itemize}
-
-\noindent
 \paragraph{Hint.}
 Use the \code{numpy.random} module to draw the
 $x_0$, $y_0$, and $R$ quantities.
-Filename: \code{circles.pdf}.
 
-% Often in an exercise we have some comments about the solution
-% which we normally want to migrate to the end.
+% --- begin short answer in exercise
+
+\paragraph{Answer.}
+Here goes the short answer to part a).
+% --- end short answer in exercise
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+Here goes a full solution to part a).
+
+% --- end solution of exercise
+
+\paragraph{b)}
+Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
+\emph{Filename}: \code{norm.py}.
+
+\paragraph{c)}
+Let $R$ and $(x_0,y_0)$ be normally distributed.
+% --- end of exercise
 
 % #ifdef PREAMBLE
 \printindex
@@ -2275,24 +2443,60 @@ More mathematical typesetting is demonstrated in the exercises below.
 Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+\emph{Filename}: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}.
+
 \paragraph{Hint 1.}
 Use {\fontsize{10pt}{10pt}\verb!r = random.random()!} and define head as {\fontsize{10pt}{10pt}\verb!r <= 0.5!}.
+
 \paragraph{Hint 2.}
 Draw an integer among $\{1,2\}$ with
 {\fontsize{10pt}{10pt}\verb!r = random.randint(1,2)!} and define head when {\fontsize{10pt}{10pt}\verb!r!} is 1.
-Filename: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}.
+
+% --- begin short answer in exercise
+
+\paragraph{Answer.}
+If the {\fontsize{10pt}{10pt}\verb!random.random()!} function returns a number $<1/2$, let it be
+head, otherwise tail. Repeat this $N$ number of times.
+% --- end short answer in exercise
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+Code:
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+import sys, random
+N = int(sys.argv[1])
+heads = 0
+for i in range(N):
+    r = random.random()
+    if r <= 0.5:
+        heads += 1
+print 'Flipping a coin %d times gave %d heads' % (N, heads)
+\end{minted}
+\noindent
+
+% --- end solution of exercise
+
+% solution file: mysol.txt
+% --- end of exercise
 
 \subsection{Compute a Probability}
 
 \label{demo:ex:2}
 
+% Minimalistic exercise
+
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
+
+\paragraph{Hint.}
 To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard {\fontsize{10pt}{10pt}\verb!random!} module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
-compute the probability as $M/N$. Run the program with the four
-values $N=10^i$ for $i=1,2,3,6$.
+compute the probability as $M/N$.
+
+% --- end of exercise
 
 \subsection{Explore Distributions of Random Circles}
 
@@ -2320,27 +2524,42 @@ x, y = circle(2.0, 0, 0)
 \end{minted}
 \noindent
 
+% Often in an exercise we have some comments about the solution
+% which we normally want to keep where they are.
 
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the {\fontsize{10pt}{10pt}\verb!circle!} function
-above. The following cases should be explored:
+above.
+\emph{Filename}: {\fontsize{10pt}{10pt}\verb!circles.pdf!}.
 
-\begin{itemize}
- \item $R$ normally distributed and $(x_0,y_0)$ uniformly distributed
 
- \item $R$ uniformly distributed and $(x_0,y_0)$ normally distributed
+\paragraph{a)}
+Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
- \item $R$ and $(x_0,y_0)$ normally distributed
-\end{itemize}
-
-\noindent
 \paragraph{Hint.}
 Use the {\fontsize{10pt}{10pt}\verb!numpy.random!} module to draw the
 $x_0$, $y_0$, and $R$ quantities.
-Filename: {\fontsize{10pt}{10pt}\verb!circles.pdf!}.
 
-% Often in an exercise we have some comments about the solution
-% which we normally want to migrate to the end.
+% --- begin short answer in exercise
+
+\paragraph{Answer.}
+Here goes the short answer to part a).
+% --- end short answer in exercise
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+Here goes a full solution to part a).
+
+% --- end solution of exercise
+
+\paragraph{b)}
+Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
+\emph{Filename}: {\fontsize{10pt}{10pt}\verb!norm.py!}.
+
+\paragraph{c)}
+Let $R$ and $(x_0,y_0)$ be normally distributed.
+% --- end of exercise
 
 \printindex
 
@@ -2826,24 +3045,59 @@ More mathematical typesetting is demonstrated in the exercises below.
 Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+\emph{Filename}: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}.
+
 \paragraph{Hint 1.}
 Use {\fontsize{10pt}{10pt}\verb!r = random.random()!} and define head as {\fontsize{10pt}{10pt}\verb!r <= 0.5!}.
+
 \paragraph{Hint 2.}
 Draw an integer among $\{1,2\}$ with
 {\fontsize{10pt}{10pt}\verb!r = random.randint(1,2)!} and define head when {\fontsize{10pt}{10pt}\verb!r!} is 1.
-Filename: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}.
+
+% --- begin short answer in exercise
+
+\paragraph{Answer.}
+If the {\fontsize{10pt}{10pt}\verb!random.random()!} function returns a number $<1/2$, let it be
+head, otherwise tail. Repeat this $N$ number of times.
+% --- end short answer in exercise
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+Code:
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+import sys, random
+N = int(sys.argv[1])
+heads = 0
+for i in range(N):
+    r = random.random()
+    if r <= 0.5:
+        heads += 1
+print 'Flipping a coin %d times gave %d heads' % (N, heads)
+\end{minted}
+
+% --- end solution of exercise
+
+% solution file: mysol.txt
+% --- end of exercise
 
 \subsection{Compute a Probability}
 
 \label{demo:ex:2}
 
+% Minimalistic exercise
+
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
+
+\paragraph{Hint.}
 To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard {\fontsize{10pt}{10pt}\verb!random!} module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
-compute the probability as $M/N$. Run the program with the four
-values $N=10^i$ for $i=1,2,3,6$.
+compute the probability as $M/N$.
+
+% --- end of exercise
 
 \subsection{Explore Distributions of Random Circles}
 
@@ -2870,27 +3124,42 @@ def circle(R, x0, y0, n=501):
 x, y = circle(2.0, 0, 0)
 \end{python:nt}
 
+% Often in an exercise we have some comments about the solution
+% which we normally want to keep where they are.
 
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the {\fontsize{10pt}{10pt}\verb!circle!} function
-above. The following cases should be explored:
+above.
+\emph{Filename}: {\fontsize{10pt}{10pt}\verb!circles.pdf!}.
 
-\begin{itemize}
- \item $R$ normally distributed and $(x_0,y_0)$ uniformly distributed
 
- \item $R$ uniformly distributed and $(x_0,y_0)$ normally distributed
+\paragraph{a)}
+Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
- \item $R$ and $(x_0,y_0)$ normally distributed
-\end{itemize}
-
-\noindent
 \paragraph{Hint.}
 Use the {\fontsize{10pt}{10pt}\verb!numpy.random!} module to draw the
 $x_0$, $y_0$, and $R$ quantities.
-Filename: {\fontsize{10pt}{10pt}\verb!circles.pdf!}.
 
-% Often in an exercise we have some comments about the solution
-% which we normally want to migrate to the end.
+% --- begin short answer in exercise
+
+\paragraph{Answer.}
+Here goes the short answer to part a).
+% --- end short answer in exercise
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+Here goes a full solution to part a).
+
+% --- end solution of exercise
+
+\paragraph{b)}
+Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
+\emph{Filename}: {\fontsize{10pt}{10pt}\verb!norm.py!}.
+
+\paragraph{c)}
+Let $R$ and $(x_0,y_0)$ be normally distributed.
+% --- end of exercise
 
 \printindex
 
@@ -3228,12 +3497,44 @@ Flip a Coin
 Make a program that simulates flipping a coin N times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+*Filename*: ``flip_coin.py``.
 
 *Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
 
 *Hint 2.* Draw an integer among \{1,2\} with
 ``r = random.randint(1,2)`` and define head when ``r`` is 1.
-*Filename*: ``flip_coin.py``
+
+.. --- begin short answer in exercise
+
+
+*Answer.* If the ``random.random()`` function returns a number <1/2, let it be
+head, otherwise tail. Repeat this N number of times.
+.. --- end short answer in exercise
+
+
+.. --- begin solution of exercise
+
+
+*Solution.* Code::
+
+
+        import sys, random
+        N = int(sys.argv[1])
+        heads = 0
+        for i in range(N):
+            r = random.random()
+            if r <= 0.5:
+                heads += 1
+        print 'Flipping a coin %d times gave %d heads' % (N, heads)
+
+
+.. --- end solution of exercise
+
+
+.. solution file: mysol.txt
+
+.. --- end of exercise
+
 
 
 .. _demo:ex:2:
@@ -3241,13 +3542,20 @@ let the program count the number of heads.
 Compute a Probability
 ---------------------
 
+.. Minimalistic exercise
+
+
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval [0,1)?
-To answer this question empirically, let a program
+
+*Hint.* To answer this question empirically, let a program
 draw N such random numbers using Python's standard ``random`` module,
 count how many of them, M, that fall in the interval (0.5,0.6), and
-compute the probability as M/N. Run the program with the four
-values N=10^i for i=1,2,3,6.
+compute the probability as M/N.
+
+.. --- end of exercise
+
 
 
 .. _proj:circle1:
@@ -3279,24 +3587,42 @@ The formula can be used to generate ``n`` points on a circle::
         x, y = circle(2.0, 0, 0)
 
 
+.. Often in an exercise we have some comments about the solution
+
+.. which we normally want to keep where they are.
+
 
 The goal of this project is to draw N circles with random
 center and radius. Plot each circle using the ``circle`` function
-above. The following cases should be explored:
+above.
+*Filename*: ``circles.pdf``.
 
- * R normally distributed and (x_0,y_0) uniformly distributed
 
- * R uniformly distributed and (x_0,y_0) normally distributed
-
- * R and (x_0,y_0) normally distributed
+*a)* Let R be normally distributed and (x_0,y_0) uniformly distributed.
 
 *Hint.* Use the ``numpy.random`` module to draw the
 x_0, y_0, and R quantities.
-*Filename*: ``circles.pdf``
 
-.. Often in an exercise we have some comments about the solution
+.. --- begin short answer in exercise
 
-.. which we normally want to migrate to the end.
+
+*Answer.* Here goes the short answer to part a).
+.. --- end short answer in exercise
+
+
+.. --- begin solution of exercise
+
+
+*Solution.* Here goes a full solution to part a).
+
+.. --- end solution of exercise
+
+
+*b)* Let R be uniformly distributed and (x_0,y_0) normally distributed.
+*Filename*: ``norm.py``.
+
+*c)* Let R and (x_0,y_0) be normally distributed.
+.. --- end of exercise
 
 ************** File: testdoc.sphinx.rst *****************
 .. Automatically generated reST file from Doconce source
@@ -3719,12 +4045,45 @@ Flip a Coin
 Make a program that simulates flipping a coin :math:`N` times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+*Filename*: ``flip_coin.py``.
 
 *Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
 
 *Hint 2.* Draw an integer among :math:`\{1,2\}` with
 ``r = random.randint(1,2)`` and define head when ``r`` is 1.
-*Filename*: ``flip_coin.py``
+
+.. --- begin short answer in exercise
+
+
+*Answer.* If the ``random.random()`` function returns a number :math:`<1/2`, let it be
+head, otherwise tail. Repeat this :math:`N` number of times.
+.. --- end short answer in exercise
+
+
+.. --- begin solution of exercise
+
+
+*Solution.* Code:
+
+.. code-block:: python
+
+        import sys, random
+        N = int(sys.argv[1])
+        heads = 0
+        for i in range(N):
+            r = random.random()
+            if r <= 0.5:
+                heads += 1
+        print 'Flipping a coin %d times gave %d heads' % (N, heads)
+
+
+.. --- end solution of exercise
+
+
+.. solution file: mysol.txt
+
+.. --- end of exercise
+
 
 
 .. _demo:ex:2:
@@ -3732,13 +4091,20 @@ let the program count the number of heads.
 Compute a Probability
 ---------------------
 
+.. Minimalistic exercise
+
+
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval :math:`[0,1)`?
-To answer this question empirically, let a program
+
+*Hint.* To answer this question empirically, let a program
 draw :math:`N` such random numbers using Python's standard ``random`` module,
 count how many of them, :math:`M`, that fall in the interval :math:`(0.5,0.6)`, and
-compute the probability as :math:`M/N`. Run the program with the four
-values :math:`N=10^i` for :math:`i=1,2,3,6`.
+compute the probability as :math:`M/N`.
+
+.. --- end of exercise
+
 
 
 .. _proj:circle1:
@@ -3772,24 +4138,42 @@ The formula can be used to generate ``n`` points on a circle:
         x, y = circle(2.0, 0, 0)
 
 
+.. Often in an exercise we have some comments about the solution
+
+.. which we normally want to keep where they are.
+
 
 The goal of this project is to draw :math:`N` circles with random
 center and radius. Plot each circle using the ``circle`` function
-above. The following cases should be explored:
+above.
+*Filename*: ``circles.pdf``.
 
- * :math:`R` normally distributed and :math:`(x_0,y_0)` uniformly distributed
 
- * :math:`R` uniformly distributed and :math:`(x_0,y_0)` normally distributed
-
- * :math:`R` and :math:`(x_0,y_0)` normally distributed
+*a)* Let :math:`R` be normally distributed and :math:`(x_0,y_0)` uniformly distributed.
 
 *Hint.* Use the ``numpy.random`` module to draw the
 :math:`x_0`, :math:`y_0`, and :math:`R` quantities.
-*Filename*: ``circles.pdf``
 
-.. Often in an exercise we have some comments about the solution
+.. --- begin short answer in exercise
 
-.. which we normally want to migrate to the end.
+
+*Answer.* Here goes the short answer to part a).
+.. --- end short answer in exercise
+
+
+.. --- begin solution of exercise
+
+
+*Solution.* Here goes a full solution to part a).
+
+.. --- end solution of exercise
+
+
+*b)* Let :math:`R` be uniformly distributed and :math:`(x_0,y_0)` normally distributed.
+*Filename*: ``norm.py``.
+
+*c)* Let :math:`R` and :math:`(x_0,y_0)` be normally distributed.
+.. --- end of exercise
 
 ************** File: testdoc.gwiki *****************
 
@@ -4061,22 +4445,52 @@ More mathematical typesetting is demonstrated in the exercises below.
 Make a program that simulates flipping a coin `N` times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+*Filename*: `flip_coin.py`.
 
 *Hint 1.* Use `r = random.random()` and define head as `r <= 0.5`.
 
 *Hint 2.* Draw an integer among `\{1,2\}` with
 `r = random.randint(1,2)` and define head when `r` is 1.
-*Filename*: `flip_coin.py`
+
+<wiki:comment> --- begin short answer in exercise </wiki:comment>
+
+*Answer.* If the `random.random()` function returns a number `<1/2`, let it be
+head, otherwise tail. Repeat this `N` number of times.
+<wiki:comment> --- end short answer in exercise </wiki:comment>
+
+<wiki:comment> --- begin solution of exercise </wiki:comment>
+
+*Solution.* Code:
+{{{
+import sys, random
+N = int(sys.argv[1])
+heads = 0
+for i in range(N):
+    r = random.random()
+    if r <= 0.5:
+        heads += 1
+print 'Flipping a coin %d times gave %d heads' % (N, heads)
+}}}
+
+<wiki:comment> --- end solution of exercise </wiki:comment>
+
+<wiki:comment> solution file: mysol.txt </wiki:comment>
+<wiki:comment> --- end of exercise </wiki:comment>
 
 ==== Compute a Probability ====
 
+<wiki:comment> Minimalistic exercise </wiki:comment>
+
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval `[0,1)`?
-To answer this question empirically, let a program
+
+*Hint.* To answer this question empirically, let a program
 draw `N` such random numbers using Python's standard `random` module,
 count how many of them, `M`, that fall in the interval `(0.5,0.6)`, and
-compute the probability as `M/N`. Run the program with the four
-values `N=10^i` for `i=1,2,3,6`.
+compute the probability as `M/N`.
+
+<wiki:comment> --- end of exercise </wiki:comment>
 
 ==== Explore Distributions of Random Circles ====
 
@@ -4103,22 +4517,36 @@ def circle(R, x0, y0, n=501):
 x, y = circle(2.0, 0, 0)
 }}}
 
+<wiki:comment> Often in an exercise we have some comments about the solution </wiki:comment>
+<wiki:comment> which we normally want to keep where they are. </wiki:comment>
 
 The goal of this project is to draw `N` circles with random
 center and radius. Plot each circle using the `circle` function
-above. The following cases should be explored:
+above.
+*Filename*: `circles.pdf`.
 
 
- * `R` normally distributed and `(x_0,y_0)` uniformly distributed
- * `R` uniformly distributed and `(x_0,y_0)` normally distributed
- * `R` and `(x_0,y_0)` normally distributed
+*a)* Let `R` be normally distributed and `(x_0,y_0)` uniformly distributed.
 
 *Hint.* Use the `numpy.random` module to draw the
 `x_0`, `y_0`, and `R` quantities.
-*Filename*: `circles.pdf`
 
-<wiki:comment> Often in an exercise we have some comments about the solution </wiki:comment>
-<wiki:comment> which we normally want to migrate to the end. </wiki:comment>
+<wiki:comment> --- begin short answer in exercise </wiki:comment>
+
+*Answer.* Here goes the short answer to part a).
+<wiki:comment> --- end short answer in exercise </wiki:comment>
+
+<wiki:comment> --- begin solution of exercise </wiki:comment>
+
+*Solution.* Here goes a full solution to part a).
+
+<wiki:comment> --- end solution of exercise </wiki:comment>
+
+*b)* Let `R` be uniformly distributed and `(x_0,y_0)` normally distributed.
+*Filename*: `norm.py`.
+
+*c)* Let `R` and `(x_0,y_0)` be normally distributed.
+<wiki:comment> --- end of exercise </wiki:comment>
 
 ************** File: testdoc.mwiki *****************
 
@@ -4374,22 +4802,52 @@ More mathematical typesetting is demonstrated in the exercises below.
 Make a program that simulates flipping a coin <math>N</math> times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+''Filename'': <code>flip_coin.py</code>.
 
 ''Hint 1.'' Use <code>r = random.random()</code> and define head as <code>r <= 0.5</code>.
 
 ''Hint 2.'' Draw an integer among <math>\{1,2\}</math> with
 <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
-''Filename'': <code>flip_coin.py</code>
+
+<!--> --- begin short answer in exercise -->
+
+''Answer.'' If the <code>random.random()</code> function returns a number <math><1/2</math>, let it be
+head, otherwise tail. Repeat this <math>N</math> number of times.
+<!--> --- end short answer in exercise -->
+
+<!--> --- begin solution of exercise -->
+
+''Solution.'' Code:
+<syntaxhighlight lang="python">
+import sys, random
+N = int(sys.argv[1])
+heads = 0
+for i in range(N):
+    r = random.random()
+    if r <= 0.5:
+        heads += 1
+print 'Flipping a coin %d times gave %d heads' % (N, heads)
+</code>
+
+<!--> --- end solution of exercise -->
+
+<!--> solution file: mysol.txt -->
+<!--> --- end of exercise -->
 
 ==== Compute a Probability ====
 
+<!--> Minimalistic exercise -->
+
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval <math>[0,1)</math>?
-To answer this question empirically, let a program
+
+''Hint.'' To answer this question empirically, let a program
 draw <math>N</math> such random numbers using Python's standard <code>random</code> module,
 count how many of them, <math>M</math>, that fall in the interval <math>(0.5,0.6)</math>, and
-compute the probability as <math>M/N</math>. Run the program with the four
-values <math>N=10^i</math> for <math>i=1,2,3,6</math>.
+compute the probability as <math>M/N</math>.
+
+<!--> --- end of exercise -->
 
 ==== Explore Distributions of Random Circles ====
 
@@ -4416,21 +4874,36 @@ def circle(R, x0, y0, n=501):
 x, y = circle(2.0, 0, 0)
 </code>
 
+<!--> Often in an exercise we have some comments about the solution -->
+<!--> which we normally want to keep where they are. -->
 
 The goal of this project is to draw <math>N</math> circles with random
 center and radius. Plot each circle using the <code>circle</code> function
-above. The following cases should be explored:
+above.
+''Filename'': <code>circles.pdf</code>.
 
 
-<ul>
- <li> <math>R</math> normally distributed and <math>(x_0,y_0)</math> uniformly distributed <li> <math>R</math> uniformly distributed and <math>(x_0,y_0)</math> normally distributed <li> <math>R</math> and <math>(x_0,y_0)</math> normally distributed</ul>
+''a)'' Let <math>R</math> be normally distributed and <math>(x_0,y_0)</math> uniformly distributed.
 
 ''Hint.'' Use the <code>numpy.random</code> module to draw the
 <math>x_0</math>, <math>y_0</math>, and <math>R</math> quantities.
-''Filename'': <code>circles.pdf</code>
 
-<!--> Often in an exercise we have some comments about the solution -->
-<!--> which we normally want to migrate to the end. -->
+<!--> --- begin short answer in exercise -->
+
+''Answer.'' Here goes the short answer to part a).
+<!--> --- end short answer in exercise -->
+
+<!--> --- begin solution of exercise -->
+
+''Solution.'' Here goes a full solution to part a).
+
+<!--> --- end solution of exercise -->
+
+''b)'' Let <math>R</math> be uniformly distributed and <math>(x_0,y_0)</math> normally distributed.
+''Filename'': <code>norm.py</code>.
+
+''c)'' Let <math>R</math> and <math>(x_0,y_0)</math> be normally distributed.
+<!--> --- end of exercise -->
 
 ************** File: testdoc.cwiki *****************
 
@@ -4695,23 +5168,53 @@ More mathematical typesetting is demonstrated in the exercises below.
 Make a program that simulates flipping a coin {{{N}}} times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+//Filename//: {{{flip_coin.py}}}.
 
 //Hint 1.// Use {{{r = random.random()}}} and define head as {{{r <= 0.5}}}.
 
 //Hint 2.// Draw an integer among {{{\{1,2\}}}} with
 {{{r = random.randint(1,2)}}} and define head when {{{r}}} is 1.
-//Filename//: {{{flip_coin.py}}}
+
+<wiki:comment> --- begin short answer in exercise </wiki:comment>
+
+//Answer.// If the {{{random.random()}}} function returns a number {{{<1/2}}}, let it be
+head, otherwise tail. Repeat this {{{N}}} number of times.
+<wiki:comment> --- end short answer in exercise </wiki:comment>
+
+<wiki:comment> --- begin solution of exercise </wiki:comment>
+
+//Solution.// Code:
+{{{
+import sys, random
+N = int(sys.argv[1])
+heads = 0
+for i in range(N):
+    r = random.random()
+    if r <= 0.5:
+        heads += 1
+print 'Flipping a coin %d times gave %d heads' % (N, heads)
+}}}
+
+<wiki:comment> --- end solution of exercise </wiki:comment>
+
+<wiki:comment> solution file: mysol.txt </wiki:comment>
+<wiki:comment> --- end of exercise </wiki:comment>
 
 
 == Compute a Probability ==
 
+<wiki:comment> Minimalistic exercise </wiki:comment>
+
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval {{{[0,1)}}}?
-To answer this question empirically, let a program
+
+//Hint.// To answer this question empirically, let a program
 draw {{{N}}} such random numbers using Python's standard {{{random}}} module,
 count how many of them, {{{M}}}, that fall in the interval {{{(0.5,0.6)}}}, and
-compute the probability as {{{M/N}}}. Run the program with the four
-values {{{N=10^i}}} for {{{i=1,2,3,6}}}.
+compute the probability as {{{M/N}}}.
+
+<wiki:comment> --- end of exercise </wiki:comment>
 
 
 == Explore Distributions of Random Circles ==
@@ -4739,22 +5242,36 @@ def circle(R, x0, y0, n=501):
 x, y = circle(2.0, 0, 0)
 }}}
 
+<wiki:comment> Often in an exercise we have some comments about the solution </wiki:comment>
+<wiki:comment> which we normally want to keep where they are. </wiki:comment>
 
 The goal of this project is to draw {{{N}}} circles with random
 center and radius. Plot each circle using the {{{circle}}} function
-above. The following cases should be explored:
+above.
+//Filename//: {{{circles.pdf}}}.
 
 
- * {{{R}}} normally distributed and {{{(x_0,y_0)}}} uniformly distributed
- * {{{R}}} uniformly distributed and {{{(x_0,y_0)}}} normally distributed
- * {{{R}}} and {{{(x_0,y_0)}}} normally distributed
+//a)// Let {{{R}}} be normally distributed and {{{(x_0,y_0)}}} uniformly distributed.
 
 //Hint.// Use the {{{numpy.random}}} module to draw the
 {{{x_0}}}, {{{y_0}}}, and {{{R}}} quantities.
-//Filename//: {{{circles.pdf}}}
 
-<wiki:comment> Often in an exercise we have some comments about the solution </wiki:comment>
-<wiki:comment> which we normally want to migrate to the end. </wiki:comment>
+<wiki:comment> --- begin short answer in exercise </wiki:comment>
+
+//Answer.// Here goes the short answer to part a).
+<wiki:comment> --- end short answer in exercise </wiki:comment>
+
+<wiki:comment> --- begin solution of exercise </wiki:comment>
+
+//Solution.// Here goes a full solution to part a).
+
+<wiki:comment> --- end solution of exercise </wiki:comment>
+
+//b)// Let {{{R}}} be uniformly distributed and {{{(x_0,y_0)}}} normally distributed.
+//Filename//: {{{norm.py}}}.
+
+//c)// Let {{{R}}} and {{{(x_0,y_0)}}} be normally distributed.
+<wiki:comment> --- end of exercise </wiki:comment>
 
 ************** File: testdoc.st *****************
 
@@ -4997,22 +5514,40 @@ Flip a Coin
 Make a program that simulates flipping a coin N times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+*Filename*: 'flip_coin.py'.
 
 *Hint 1.* Use 'r = random.random()' and define head as 'r <= 0.5'.
 
 *Hint 2.* Draw an integer among \{1,2\} with
 'r = random.randint(1,2)' and define head when 'r' is 1.
-*Filename*: 'flip_coin.py'
+
+
+*Answer.* If the 'random.random()' function returns a number <1/2, let it be
+head, otherwise tail. Repeat this N number of times.
+
+
+*Solution.* Code::
+
+
+        import sys, random
+        N = int(sys.argv[1])
+        heads = 0
+        for i in range(N):
+            r = random.random()
+            if r <= 0.5:
+                heads += 1
+        print 'Flipping a coin %d times gave %d heads' % (N, heads)
+
 
 Compute a Probability
 
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval [0,1)?
-To answer this question empirically, let a program
+
+*Hint.* To answer this question empirically, let a program
 draw N such random numbers using Python's standard 'random' module,
 count how many of them, M, that fall in the interval (0.5,0.6), and
-compute the probability as M/N. Run the program with the four
-values N=10^i for i=1,2,3,6.
+compute the probability as M/N.
 
 Explore Distributions of Random Circles
 
@@ -5043,15 +5578,26 @@ The formula can be used to generate 'n' points on a circle::
 
 The goal of this project is to draw N circles with random
 center and radius. Plot each circle using the 'circle' function
-above. The following cases should be explored:
+above.
+*Filename*: 'circles.pdf'.
 
- - R normally distributed and (x_0,y_0) uniformly distributed
- - R uniformly distributed and (x_0,y_0) normally distributed
- - R and (x_0,y_0) normally distributed
+
+*a)* Let R be normally distributed and (x_0,y_0) uniformly distributed.
 
 *Hint.* Use the 'numpy.random' module to draw the
 x_0, y_0, and R quantities.
-*Filename*: 'circles.pdf'
+
+
+*Answer.* Here goes the short answer to part a).
+
+
+*Solution.* Here goes a full solution to part a).
+
+
+*b)* Let R be uniformly distributed and (x_0,y_0) normally distributed.
+*Filename*: 'norm.py'.
+
+*c)* Let R and (x_0,y_0) be normally distributed.
 
 ************** File: testdoc.epytext *****************
 
@@ -5312,24 +5858,47 @@ Flip a Coin
 Make a program that simulates flipping a coin M{N} times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+I{Filename}: C{flip_coin.py}.
 
 I{Hint 1.} Use C{r = random.random()} and define head as C{r <= 0.5}.
 
 I{Hint 2.} Draw an integer among M{\{1,2\}} with
 C{r = random.randint(1,2)} and define head when C{r} is 1.
-I{Filename}: C{flip_coin.py}
+
+
+I{Answer.} If the C{random.random()} function returns a number M{<1/2}, let it be
+head, otherwise tail. Repeat this M{N} number of times.
+
+
+I{Solution.} Code::
+
+
+        import sys, random
+        N = int(sys.argv[1])
+        heads = 0
+        for i in range(N):
+            r = random.random()
+            if r <= 0.5:
+                heads += 1
+        print 'Flipping a coin %d times gave %d heads' % (N, heads)
+
+
+
 
 
 Compute a Probability
 ---------------------
 
+
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval M{[0,1)}?
-To answer this question empirically, let a program
+
+I{Hint.} To answer this question empirically, let a program
 draw M{N} such random numbers using Python's standard C{random} module,
 count how many of them, M{M}, that fall in the interval M{(0.5,0.6)}, and
-compute the probability as M{M/N}. Run the program with the four
-values M{N=10^i} for M{i=1,2,3,6}.
+compute the probability as M{M/N}.
+
 
 
 Explore Distributions of Random Circles
@@ -5362,15 +5931,26 @@ The formula can be used to generate C{n} points on a circle::
 
 The goal of this project is to draw M{N} circles with random
 center and radius. Plot each circle using the C{circle} function
-above. The following cases should be explored:
+above.
+I{Filename}: C{circles.pdf}.
 
- - M{R} normally distributed and M{(x_0,y_0)} uniformly distributed
- - M{R} uniformly distributed and M{(x_0,y_0)} normally distributed
- - M{R} and M{(x_0,y_0)} normally distributed
+
+I{a)} Let M{R} be normally distributed and M{(x_0,y_0)} uniformly distributed.
 
 I{Hint.} Use the C{numpy.random} module to draw the
 M{x_0}, M{y_0}, and M{R} quantities.
-I{Filename}: C{circles.pdf}
+
+
+I{Answer.} Here goes the short answer to part a).
+
+
+I{Solution.} Here goes a full solution to part a).
+
+
+I{b)} Let M{R} be uniformly distributed and M{(x_0,y_0)} normally distributed.
+I{Filename}: C{norm.py}.
+
+I{c)} Let M{R} and M{(x_0,y_0)} be normally distributed.
 
 ************** File: testdoc.txt *****************
 
@@ -5652,24 +6232,47 @@ Flip a Coin
 Make a program that simulates flipping a coin N times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+*Filename*: flip_coin.py.
 
 *Hint 1.* Use r = random.random() and define head as r <= 0.5.
 
 *Hint 2.* Draw an integer among \{1,2\} with
 r = random.randint(1,2) and define head when r is 1.
-*Filename*: flip_coin.py
+
+
+*Answer.* If the random.random() function returns a number <1/2, let it be
+head, otherwise tail. Repeat this N number of times.
+
+
+*Solution.* Code::
+
+
+        import sys, random
+        N = int(sys.argv[1])
+        heads = 0
+        for i in range(N):
+            r = random.random()
+            if r <= 0.5:
+                heads += 1
+        print 'Flipping a coin %d times gave %d heads' % (N, heads)
+
+
+
 
 
 Compute a Probability
 ---------------------
 
+
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval [0,1)?
-To answer this question empirically, let a program
+
+*Hint.* To answer this question empirically, let a program
 draw N such random numbers using Python's standard random module,
 count how many of them, M, that fall in the interval (0.5,0.6), and
-compute the probability as M/N. Run the program with the four
-values N=10^i for i=1,2,3,6.
+compute the probability as M/N.
+
 
 
 Explore Distributions of Random Circles
@@ -5702,17 +6305,26 @@ The formula can be used to generate n points on a circle::
 
 The goal of this project is to draw N circles with random
 center and radius. Plot each circle using the circle function
-above. The following cases should be explored:
+above.
+*Filename*: circles.pdf.
 
- * R normally distributed and (x_0,y_0) uniformly distributed
 
- * R uniformly distributed and (x_0,y_0) normally distributed
-
- * R and (x_0,y_0) normally distributed
+*a)* Let R be normally distributed and (x_0,y_0) uniformly distributed.
 
 *Hint.* Use the numpy.random module to draw the
 x_0, y_0, and R quantities.
-*Filename*: circles.pdf
+
+
+*Answer.* Here goes the short answer to part a).
+
+
+*Solution.* Here goes a full solution to part a).
+
+
+*b)* Let R be uniformly distributed and (x_0,y_0) normally distributed.
+*Filename*: norm.py.
+
+*c)* Let R and (x_0,y_0) be normally distributed.
 
 ************** File: testdoc.mkd *****************
 
@@ -6050,24 +6662,44 @@ Flip a Coin
 Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
+*Filename*: `flip_coin.py`.
 
 *Hint 1.* Use `r = random.random()` and define head as `r <= 0.5`.
 
 *Hint 2.* Draw an integer among $\{1,2\}$ with
 `r = random.randint(1,2)` and define head when `r` is 1.
-*Filename*: `flip_coin.py`
 
+
+*Answer.* If the `random.random()` function returns a number $<1/2$, let it be
+head, otherwise tail. Repeat this $N$ number of times.
+
+
+*Solution.* Code:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+import sys, random
+N = int(sys.argv[1])
+heads = 0
+for i in range(N):
+    r = random.random()
+    if r <= 0.5:
+        heads += 1
+print 'Flipping a coin %d times gave %d heads' % (N, heads)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Compute a Probability
 ---------------------
 
+
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
-To answer this question empirically, let a program
+
+*Hint.* To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard `random` module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
-compute the probability as $M/N$. Run the program with the four
-values $N=10^i$ for $i=1,2,3,6$.
+compute the probability as $M/N$.
+
 
 
 Explore Distributions of Random Circles
@@ -6099,31 +6731,37 @@ x, y = circle(2.0, 0, 0)
 
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the `circle` function
-above. The following cases should be explored:
+above.
+*Filename*: `circles.pdf`.
 
- * $R$ normally distributed and $(x_0,y_0)$ uniformly distributed
 
- * $R$ uniformly distributed and $(x_0,y_0)$ normally distributed
-
- * $R$ and $(x_0,y_0)$ normally distributed
+*a)* Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
 *Hint.* Use the `numpy.random` module to draw the
 $x_0$, $y_0$, and $R$ quantities.
-*Filename*: `circles.pdf`
+
+
+*Answer.* Here goes the short answer to part a).
+
+
+*Solution.* Here goes a full solution to part a).
+
+
+*b)* Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
+*Filename*: `norm.py`.
+
+*c)* Let $R$ and $(x_0,y_0)$ be normally distributed.
 
 ************** File: testdoc.tmp *****************
 Could not find match for from regex "={9}"
 ===== Exercise: Compute a Probability =====
 
+# Minimalistic exercise
+
 label{demo:ex:2}
-solution =/my/home/hpl/sol/file1.do.txt
 
 What is the probability of getting a number between 0.5 and 0.6 when
- * $R$ uniformly distributed and $(x_0,y_0)$ normally distributed
- * $R$ and $(x_0,y_0)$ normally distributed
-
-__Hint.__ Use the `numpy.random` module to draw the
-$x_0$, $y_0$, and $R$ quantities.
+Could not find match for from regex "\*\s+\$.+normally"
 
 ************** File: .testdoc.exerinfo *****************
 
@@ -6134,33 +6772,55 @@ $x_0$, $y_0$, and $R$ quantities.
 # for i in range(7): f.readline()  # skip comments in the top
 # exer = eval(f.read())
 #
-[{'comments': '',
+[{'answer': 'If the `random.random()` function returns a number $<1/2$, let it be\nhead, otherwise tail. Repeat this $N$ number of times.',
   'file': 'flip_coin.py',
   'heading': '=====',
-  'hint': {1: '__Hint 1.__ Use `r = random.random()` and define head as `r <= 0.5`.',
-           2: '__Hint 2.__ Draw an integer among $\\{1,2\\}$ with\n`r = random.randint(1,2)` and define head when `r` is 1.'},
+  'hints': ['Use `r = random.random()` and define head as `r <= 0.5`.',
+            'Draw an integer among $\\{1,2\\}$ with\n`r = random.randint(1,2)` and define head when `r` is 1.'],
   'label': 'demo:ex:1',
   'no': 1,
-  'solution': 'mysol.txt',
+  'solution': '<<<!!CODE_BLOCK  pycod',
+  'solution_file': 'mysol.txt',
+  'subex': [],
   'text': 'Make a program that simulates flipping a coin $N$ times.\nPrint out "tail" or "head" for each flip and\nlet the program count the number of heads.',
   'title': 'Flip a Coin',
   'type': 'Problem'},
- {'comments': '',
+ {'answer': '',
+  'file': None,
   'heading': '=====',
-  'hint': {},
+  'hints': ["To answer this question empirically, let a program\ndraw $N$ such random numbers using Python's standard `random` module,\ncount how many of them, $M$, that fall in the interval $(0.5,0.6)$, and\ncompute the probability as $M/N$."],
   'label': 'demo:ex:2',
   'no': 2,
-  'solution': '/my/home/hpl/sol/file1.do.txt',
-  'text': "What is the probability of getting a number between 0.5 and 0.6 when\ndrawing uniformly distributed random numbers from the interval $[0,1)$?\nTo answer this question empirically, let a program\ndraw $N$ such random numbers using Python's standard `random` module,\ncount how many of them, $M$, that fall in the interval $(0.5,0.6)$, and\ncompute the probability as $M/N$. Run the program with the four\nvalues $N=10^i$ for $i=1,2,3,6$.",
+  'solution': '',
+  'solution_file': None,
+  'subex': [],
+  'text': '# Minimalistic exercise\n\n\nWhat is the probability of getting a number between 0.5 and 0.6 when\ndrawing uniformly distributed random numbers from the interval $[0,1)$?',
   'title': 'Compute a Probability',
   'type': 'Exercise'},
- {'comments': '# Often in an exercise we have some comments about the solution\n# which we normally want to migrate to the end.',
+ {'answer': '',
   'file': 'circles.pdf',
   'heading': '=====',
-  'hint': {1: '__Hint.__ Use the `numpy.random` module to draw the\n$x_0$, $y_0$, and $R$ quantities.'},
+  'hints': [],
   'label': 'proj:circle1',
   'no': 3,
-  'text': 'The formula for a circle is given by\n<<<!!MATH_BLOCK\nwhere $R$ is the radius of the circle, $(x_0,y_0)$ is the\ncenter point, and $t$ is a parameter in the unit interval $[0,1]$.\nFor any $t$, $(x,y)$ is a point on the circle.\nThe formula can be used to generate `n` points on a circle:\n<<<!!CODE_BLOCK  pypro\n\n\nThe goal of this project is to draw $N$ circles with random\ncenter and radius. Plot each circle using the `circle` function\nabove. The following cases should be explored:\n\n * $R$ normally distributed and $(x_0,y_0)$ uniformly distributed\n * $R$ uniformly distributed and $(x_0,y_0)$ normally distributed\n * $R$ and $(x_0,y_0)$ normally distributed',
+  'solution': '',
+  'solution_file': None,
+  'subex': [{'answer': 'Here goes the short answer to part a).',
+             'file': None,
+             'hints': ['Use the `numpy.random` module to draw the\n$x_0$, $y_0$, and $R$ quantities.'],
+             'solution': 'Here goes a full solution to part a).',
+             'text': 'Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.'},
+            {'answer': '',
+             'file': 'norm.py',
+             'hints': [],
+             'solution': '',
+             'text': 'Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.'},
+            {'answer': '',
+             'file': None,
+             'hints': [],
+             'solution': '',
+             'text': 'Let $R$ and $(x_0,y_0)$ be normally distributed.'}],
+  'text': 'The formula for a circle is given by\n<<<!!MATH_BLOCK\nwhere $R$ is the radius of the circle, $(x_0,y_0)$ is the\ncenter point, and $t$ is a parameter in the unit interval $[0,1]$.\nFor any $t$, $(x,y)$ is a point on the circle.\nThe formula can be used to generate `n` points on a circle:\n<<<!!CODE_BLOCK  pypro\n\n# Often in an exercise we have some comments about the solution\n# which we normally want to keep where they are.\n\nThe goal of this project is to draw $N$ circles with random\ncenter and radius. Plot each circle using the `circle` function\nabove.',
   'title': 'Explore Distributions of Random Circles',
   'type': 'Project'}]
 ************** File: tmp_encodings.txt *****************
@@ -6413,14 +7073,30 @@ b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}\end{aligned*}\]</
 <h1 id="exercises">Exercises</h1>
 <h2 id="flip-a-coin">Flip a Coin</h2>
 <p>[demo:ex:1]</p>
-<p>Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
+<p>Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads. <em>Filename</em>: 10pt10pt<code>flip_coin.py</code>.</p>
 <h4 id="hint-1.">Hint 1.</h4>
 <p>Use 10pt10pt<code>r = random.random()</code> and define head as 10pt10pt<code>r &lt;= 0.5</code>.</p>
 <h4 id="hint-2.">Hint 2.</h4>
-<p>Draw an integer among \(\{1,2\}\) with 10pt10pt<code>r = random.randint(1,2)</code> and define head when 10pt10pt<code>r</code> is 1. Filename: 10pt10pt<code>flip_coin.py</code>.</p>
+<p>Draw an integer among \(\{1,2\}\) with 10pt10pt<code>r = random.randint(1,2)</code> and define head when 10pt10pt<code>r</code> is 1.</p>
+<h4 id="answer.">Answer.</h4>
+<p>If the 10pt10pt<code>random.random()</code> function returns a number \(&lt;1/2\), let it be head, otherwise tail. Repeat this \(N\) number of times.</p>
+<h4 id="solution.">Solution.</h4>
+<p>Code:</p>
+<blockquote>
+<pre><code>import sys, random
+N = int(sys.argv[1])
+heads = 0
+for i in range(N):
+    r = random.random()
+    if r &lt;= 0.5:
+        heads += 1
+print &#39;Flipping a coin %d times gave %d heads&#39; % (N, heads)</code></pre>
+</blockquote>
 <h2 id="compute-a-probability">Compute a Probability</h2>
 <p>[demo:ex:2]</p>
-<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \([0,1)\)? To answer this question empirically, let a program draw \(N\) such random numbers using Python’s standard 10pt10pt<code>random</code> module, count how many of them, \(M\), that fall in the interval \((0.5,0.6)\), and compute the probability as \(M/N\). Run the program with the four values \(N=10^i\) for \(i=1,2,3,6\).</p>
+<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \([0,1)\)?</p>
+<h4 id="hint.">Hint.</h4>
+<p>To answer this question empirically, let a program draw \(N\) such random numbers using Python’s standard 10pt10pt<code>random</code> module, count how many of them, \(M\), that fall in the interval \((0.5,0.6)\), and compute the probability as \(M/N\).</p>
 <h2 id="explore-distributions-of-random-circles">Explore Distributions of Random Circles</h2>
 <p>[proj:circle1]</p>
 <p>The formula for a circle is given by</p>
@@ -6439,14 +7115,19 @@ def circle(R, x0, y0, n=501):
 
 x, y = circle(2.0, 0, 0)</code></pre>
 </blockquote>
-<p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the 10pt10pt<code>circle</code> function above. The following cases should be explored:</p>
-<ul>
-<li><p>\(R\) normally distributed and \((x_0,y_0)\) uniformly distributed</p></li>
-<li><p>\(R\) uniformly distributed and \((x_0,y_0)\) normally distributed</p></li>
-<li><p>\(R\) and \((x_0,y_0)\) normally distributed</p></li>
-</ul>
-<h4 id="hint.">Hint.</h4>
-<p>Use the 10pt10pt<code>numpy.random</code> module to draw the \(x_0\), \(y_0\), and \(R\) quantities. Filename: 10pt10pt<code>circles.pdf</code>.</p>
+<p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the 10pt10pt<code>circle</code> function above. <em>Filename</em>: 10pt10pt<code>circles.pdf</code>.</p>
+<h4 id="a">a)</h4>
+<p>Let \(R\) be normally distributed and \((x_0,y_0)\) uniformly distributed.</p>
+<h4 id="hint.-1">Hint.</h4>
+<p>Use the 10pt10pt<code>numpy.random</code> module to draw the \(x_0\), \(y_0\), and \(R\) quantities.</p>
+<h4 id="answer.-1">Answer.</h4>
+<p>Here goes the short answer to part a).</p>
+<h4 id="solution.-1">Solution.</h4>
+<p>Here goes a full solution to part a).</p>
+<h4 id="b">b)</h4>
+<p>Let \(R\) be uniformly distributed and \((x_0,y_0)\) normally distributed. <em>Filename</em>: 10pt10pt<code>norm.py</code>.</p>
+<h4 id="c">c)</h4>
+<p>Let \(R\) and \((x_0,y_0)\) be normally distributed.</p>
 </body>
 </html>
 
@@ -6712,11 +7393,22 @@ b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}
 <p>More mathematical typesetting is demonstrated in the exercises below.</p>
 <h1 id="exercises">Exercises</h1>
 <h2 id="flip-a-coin">Flip a Coin</h2>
-<p>Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
+<p>Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads. <em>Filename</em>: <code>flip_coin.py</code>.</p>
 <p><em>Hint 1.</em> Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
-<p><em>Hint 2.</em> Draw an integer among \(\{1,2\}\) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1. <em>Filename</em>: <code>flip_coin.py</code></p>
+<p><em>Hint 2.</em> Draw an integer among \(\{1,2\}\) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.</p>
+<p><em>Answer.</em> If the <code>random.random()</code> function returns a number \(&lt;1/2\), let it be head, otherwise tail. Repeat this \(N\) number of times.</p>
+<p><em>Solution.</em> Code:</p>
+<pre class="sourceCode Python"><code class="sourceCode python"><span class="ch">import</span> sys, random
+N = <span class="dt">int</span>(sys.argv[<span class="dv">1</span>])
+heads = <span class="dv">0</span>
+<span class="kw">for</span> i in <span class="dt">range</span>(N):
+    r = random.random()
+    <span class="kw">if</span> r &lt;= <span class="fl">0.5</span>:
+        heads += <span class="dv">1</span>
+<span class="kw">print</span> <span class="st">&#39;Flipping a coin </span><span class="ot">%d</span><span class="st"> times gave </span><span class="ot">%d</span><span class="st"> heads&#39;</span> % (N, heads)</code></pre>
 <h2 id="compute-a-probability">Compute a Probability</h2>
-<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \([0,1)\)? To answer this question empirically, let a program draw \(N\) such random numbers using Python's standard <code>random</code> module, count how many of them, \(M\), that fall in the interval \((0.5,0.6)\), and compute the probability as \(M/N\). Run the program with the four values \(N=10^i\) for \(i=1,2,3,6\).</p>
+<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \([0,1)\)?</p>
+<p><em>Hint.</em> To answer this question empirically, let a program draw \(N\) such random numbers using Python's standard <code>random</code> module, count how many of them, \(M\), that fall in the interval \((0.5,0.6)\), and compute the probability as \(M/N\).</p>
 <h2 id="explore-distributions-of-random-circles">Explore Distributions of Random Circles</h2>
 <p>The formula for a circle is given by \[
 \begin{align}
@@ -6733,13 +7425,13 @@ y &amp;= y_0 + R\sin 2\pi t,
     <span class="kw">return</span> x, y
 
 x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</code></pre>
-<p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the <code>circle</code> function above. The following cases should be explored:</p>
-<ul>
-<li><p>\(R\) normally distributed and \((x_0,y_0)\) uniformly distributed</p></li>
-<li><p>\(R\) uniformly distributed and \((x_0,y_0)\) normally distributed</p></li>
-<li><p>\(R\) and \((x_0,y_0)\) normally distributed</p></li>
-</ul>
-<p><em>Hint.</em> Use the <code>numpy.random</code> module to draw the \(x_0\), \(y_0\), and \(R\) quantities. <em>Filename</em>: <code>circles.pdf</code></p>
+<p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the <code>circle</code> function above. <em>Filename</em>: <code>circles.pdf</code>.</p>
+<p><em>a)</em> Let \(R\) be normally distributed and \((x_0,y_0)\) uniformly distributed.</p>
+<p><em>Hint.</em> Use the <code>numpy.random</code> module to draw the \(x_0\), \(y_0\), and \(R\) quantities.</p>
+<p><em>Answer.</em> Here goes the short answer to part a).</p>
+<p><em>Solution.</em> Here goes a full solution to part a).</p>
+<p><em>b)</em> Let \(R\) be uniformly distributed and \((x_0,y_0)\) normally distributed. <em>Filename</em>: <code>norm.py</code>.</p>
+<p><em>c)</em> Let \(R\) and \((x_0,y_0)\) be normally distributed.</p>
 </body>
 </html>
 
@@ -21707,7 +22399,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 11 Aug 2012 (14:03)
+DATE: Sat, 11 Aug 2012 (18:13)
 
 
 
@@ -21811,7 +22503,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 11 Aug 2012 (14:03)
+DATE: Sat, 11 Aug 2012 (18:13)
 
 
 
@@ -21925,7 +22617,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 11 Aug 2012 (14:03)</center>
+<center>Sat, 11 Aug 2012 (18:13)</center>
 
 
 
@@ -22056,7 +22748,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 11 Aug 2012 (14:03)</center>
+<center>Sat, 11 Aug 2012 (18:13)</center>
 
 
 
@@ -23078,38 +23770,88 @@ consists of the word "Exercise", "Problem", or "Project", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file:
+in) and a solution file. The Doconce code looks like this:
 !bc
 ===== Project: Determine the Distance to the Moon =====
-label{proj:moondist} file=earth2moon.pdf
+label{proj:moondist}
+file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
 
 Here goes the running text of the project....
 
-__Hint 1.__ Do not plan a travel to the moon.
-
-__Hint 2.__ Wikipedia is always helpful.
 !ec
 Doconce will recognize the exercise, problem, or project *title*,
-the *label*, the *result file*, the *solution file* (if any of
-these three entities is present), the *text*, and a sequence of
-*hints*. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.
+the *label*, the *result file*, the *solution* (if any of
+these three entities is present), and the *running text*. In addition,
+one can add subexercise environments, starting with `!bsubex` and ending
+with `!esubex`, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) *answer*, and *hints*. The environments have begin-end
+directives `!bans`, `!eans`, `!bsol`, `!esol`, `!bhint`, `!ehint`, which
+all must appear on the beginning of a separate line (just as
+`!bc` and `!ec`).
 
-Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+The solution environment allows inline
+solution as an alternative to the `solution=...` directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.
+
+A full exercise set-up can be sketched as follows:
+!bc
+===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
+file=earth2moon.pdf
+
+Here goes the running text of the project....
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+!ec
+
+The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
+if `mydoc.do.txt` is the name of the Doconce file.
+
+Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.
+
+For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem ..."
-works well in all formats ("..." will be a number in LaTeX and
-the problem title in most other formats).
+or "Project:" word, so that references like "see Problem ref{...}"
+works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named "Exercises", "Problems", or
@@ -26108,41 +26850,97 @@ consists of the word "Exercise", "Problem", or "Project", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file:
+in) and a solution file. The Doconce code looks like this:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
 ===== Project: Determine the Distance to the Moon =====
-\label{proj:moondist} file=earth2moon.pdf
+\label{proj:moondist}
+file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
 
 Here goes the running text of the project....
 
-__Hint 1.__ Do not plan a travel to the moon.
-
-__Hint 2.__ Wikipedia is always helpful.
 </pre>
 </blockquote>   <! -- end verbatim block -->
 Doconce will recognize the exercise, problem, or project <em>title</em>,
-the <em>label</em>, the <em>result file</em>, the <em>solution file</em> (if any of
-these three entities is present), the <em>text</em>, and a sequence of
-<em>hints</em>. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.
+the <em>label</em>, the <em>result file</em>, the <em>solution</em> (if any of
+these three entities is present), and the <em>running text</em>. In addition,
+one can add subexercise environments, starting with <tt>!bsubex</tt> and ending
+with <tt>!esubex</tt>, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) <em>answer</em>, and <em>hints</em>. The environments have begin-end
+directives <tt>!bans</tt>, <tt>!eans</tt>, <tt>!bsol</tt>, <tt>!esol</tt>, <tt>!bhint</tt>, <tt>!ehint</tt>, which
+all must appear on the beginning of a separate line (just as
+<tt>!bc</tt> and <tt>!ec</tt>).
 
 <p>
-Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+The solution environment allows inline
+solution as an alternative to the <tt>solution=...</tt> directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.
+
+<p>
+A full exercise set-up can be sketched as follows:
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+===== Exercise: Determine the Distance to the Moon =====
+\label{exer:moondist}
+file=earth2moon.pdf
+
+Here goes the running text of the project....
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+</pre>
+</blockquote>   <! -- end verbatim block -->
+
+<p>
+The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file <tt>.mydoc.exerinfo</tt>,
+if <tt>mydoc.do.txt</tt> is the name of the Doconce file.
+
+<p>
+Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.
+
+<p>
+For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The <em>title</em> is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem ..."
-works well in all formats ("..." will be a number in LaTeX and
-the problem title in most other formats).
+or "Project:" word, so that references like "see Problem ref{...}"
+works well in all formats.
 
 <p>
 It is recommended to collect all exercises as subsetions (or subsubsections)
@@ -29293,38 +30091,88 @@ consists of the word "Exercise", "Problem", or "Project", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file:
+in) and a solution file. The Doconce code looks like this:
 \bccq
 ===== Project: Determine the Distance to the Moon =====
-label{proj:moondist} file=earth2moon.pdf
+label{proj:moondist}
+file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
 
 Here goes the running text of the project....
 
-__Hint 1.__ Do not plan a travel to the moon.
-
-__Hint 2.__ Wikipedia is always helpful.
 \eccq
 Doconce will recognize the exercise, problem, or project \emph{title},
-the \emph{label}, the \emph{result file}, the \emph{solution file} (if any of
-these three entities is present), the \emph{text}, and a sequence of
-\emph{hints}. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.
+the \emph{label}, the \emph{result file}, the \emph{solution} (if any of
+these three entities is present), and the \emph{running text}. In addition,
+one can add subexercise environments, starting with \code{!bsubex} and ending
+with \code{!esubex}, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) \emph{answer}, and \emph{hints}. The environments have begin-end
+directives \code{!bans}, \code{!eans}, \code{!bsol}, \code{!esol}, \code{!bhint}, \code{!ehint}, which
+all must appear on the beginning of a separate line (just as
+\code{!bc} and \code{!ec}).
 
-Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+The solution environment allows inline
+solution as an alternative to the \code{solution=...} directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.
+
+A full exercise set-up can be sketched as follows:
+\bccq
+===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
+file=earth2moon.pdf
+
+Here goes the running text of the project....
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+\eccq
+
+The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file \code{.mydoc.exerinfo},
+if \code{mydoc.do.txt} is the name of the Doconce file.
+
+Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.
+
+For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in {\LaTeX}, for instance) or a link to the title of the section.
 The \emph{title} is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem ..."
-works well in all formats ("..." will be a number in {\LaTeX} and
-the problem title in most other formats).
+or "Project:" word, so that references like "see Problem~\ref{...}"
+works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named "Exercises", "Problems", or
@@ -32071,39 +32919,90 @@ consists of the word "Exercise", "Problem", or "Project", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file::
+in) and a solution file. The Doconce code looks like this::
 
 
         ===== Project: Determine the Distance to the Moon =====
-        label{proj:moondist} file=earth2moon.pdf
+        label{proj:moondist}
+        file=earth2moon.pdf
         solution=eart2moon_sol.do.txt
         
         Here goes the running text of the project....
         
-        __Hint 1.__ Do not plan a travel to the moon.
-        
-        __Hint 2.__ Wikipedia is always helpful.
 
 Doconce will recognize the exercise, problem, or project *title*,
-the *label*, the *result file*, the *solution file* (if any of
-these three entities is present), the *text*, and a sequence of
-*hints*. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.
+the *label*, the *result file*, the *solution* (if any of
+these three entities is present), and the *running text*. In addition,
+one can add subexercise environments, starting with ``!bsubex`` and ending
+with ``!esubex``, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) *answer*, and *hints*. The environments have begin-end
+directives ``!bans``, ``!eans``, ``!bsol``, ``!esol``, ``!bhint``, ``!ehint``, which
+all must appear on the beginning of a separate line (just as
+``!bc`` and ``!ec``).
 
-Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+The solution environment allows inline
+solution as an alternative to the ``solution=...`` directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.
+
+A full exercise set-up can be sketched as follows::
+
+
+        ===== Exercise: Determine the Distance to the Moon =====
+        label{exer:moondist}
+        file=earth2moon.pdf
+        
+        Here goes the running text of the project....
+        
+        !bsubex
+        Subexercises are numbered a), b), etc.
+        
+        !bans
+        Short answer to subexercise a).
+        !eans
+        
+        !bhint
+        First hint to subexercise a).
+        !ehint
+        
+        !bhint
+        Second hint to subexercise a).
+        !ehint
+        !esubex
+        
+        !bsubex
+        Here goes the text for subexercise b).
+        
+        !bhint
+        A hint for this subexercise.
+        !ehint
+        !esubex
+
+
+The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file ``.mydoc.exerinfo``,
+if ``mydoc.do.txt`` is the name of the Doconce file.
+
+Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.
+
+For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem ..."
-works well in all formats ("..." will be a number in LaTeX and
-the problem title in most other formats).
+or "Project:" word, so that references like "see Problem `...`_"
+works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named "Exercises", "Problems", or
@@ -35158,41 +36057,94 @@ consists of the word "Exercise", "Problem", or "Project", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file:
+in) and a solution file. The Doconce code looks like this:
 
 .. code-block:: py
 
 
         ===== Project: Determine the Distance to the Moon =====
-        label{proj:moondist} file=earth2moon.pdf
+        label{proj:moondist}
+        file=earth2moon.pdf
         solution=eart2moon_sol.do.txt
         
         Here goes the running text of the project....
         
-        __Hint 1.__ Do not plan a travel to the moon.
-        
-        __Hint 2.__ Wikipedia is always helpful.
 
 Doconce will recognize the exercise, problem, or project *title*,
-the *label*, the *result file*, the *solution file* (if any of
-these three entities is present), the *text*, and a sequence of
-*hints*. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.
+the *label*, the *result file*, the *solution* (if any of
+these three entities is present), and the *running text*. In addition,
+one can add subexercise environments, starting with ``!bsubex`` and ending
+with ``!esubex``, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) *answer*, and *hints*. The environments have begin-end
+directives ``!bans``, ``!eans``, ``!bsol``, ``!esol``, ``!bhint``, ``!ehint``, which
+all must appear on the beginning of a separate line (just as
+``!bc`` and ``!ec``).
 
-Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+The solution environment allows inline
+solution as an alternative to the ``solution=...`` directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.
+
+A full exercise set-up can be sketched as follows:
+
+.. code-block:: py
+
+
+        ===== Exercise: Determine the Distance to the Moon =====
+        label{exer:moondist}
+        file=earth2moon.pdf
+        
+        Here goes the running text of the project....
+        
+        !bsubex
+        Subexercises are numbered a), b), etc.
+        
+        !bans
+        Short answer to subexercise a).
+        !eans
+        
+        !bhint
+        First hint to subexercise a).
+        !ehint
+        
+        !bhint
+        Second hint to subexercise a).
+        !ehint
+        !esubex
+        
+        !bsubex
+        Here goes the text for subexercise b).
+        
+        !bhint
+        A hint for this subexercise.
+        !ehint
+        !esubex
+
+
+The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file ``.mydoc.exerinfo``,
+if ``mydoc.do.txt`` is the name of the Doconce file.
+
+Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.
+
+For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem ..."
-works well in all formats ("..." will be a number in LaTeX and
-the problem title in most other formats).
+or "Project:" word, so that references like "see Problem :ref:`...`"
+works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named "Exercises", "Problems", or
@@ -37916,38 +38868,88 @@ consists of the word "Exercise", "Problem", or "Project", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file:
+in) and a solution file. The Doconce code looks like this:
 {{{
 ===== Project: Determine the Distance to the Moon =====
-label{proj:moondist} file=earth2moon.pdf
+label{proj:moondist}
+file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
 
 Here goes the running text of the project....
 
-__Hint 1.__ Do not plan a travel to the moon.
-
-__Hint 2.__ Wikipedia is always helpful.
 }}}
 Doconce will recognize the exercise, problem, or project *title*,
-the *label*, the *result file*, the *solution file* (if any of
-these three entities is present), the *text*, and a sequence of
-*hints*. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.
+the *label*, the *result file*, the *solution* (if any of
+these three entities is present), and the *running text*. In addition,
+one can add subexercise environments, starting with `!bsubex` and ending
+with `!esubex`, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) *answer*, and *hints*. The environments have begin-end
+directives `!bans`, `!eans`, `!bsol`, `!esol`, `!bhint`, `!ehint`, which
+all must appear on the beginning of a separate line (just as
+`!bc` and `!ec`).
 
-Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+The solution environment allows inline
+solution as an alternative to the `solution=...` directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.
+
+A full exercise set-up can be sketched as follows:
+{{{
+===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
+file=earth2moon.pdf
+
+Here goes the running text of the project....
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+}}}
+
+The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
+if `mydoc.do.txt` is the name of the Doconce file.
+
+Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.
+
+For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like "see Problem ..."
-works well in all formats ("..." will be a number in LaTeX and
-the problem title in most other formats).
+works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named "Exercises", "Problems", or
@@ -40414,38 +41416,88 @@ consists of the word "Exercise", "Problem", or "Project", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file:
+in) and a solution file. The Doconce code looks like this:
 <code>
 ===== Project: Determine the Distance to the Moon =====
-label{proj:moondist} file=earth2moon.pdf
+label{proj:moondist}
+file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
 
 Here goes the running text of the project....
 
-__Hint 1.__ Do not plan a travel to the moon.
-
-__Hint 2.__ Wikipedia is always helpful.
 </code>
 Doconce will recognize the exercise, problem, or project ''title'',
-the ''label'', the ''result file'', the ''solution file'' (if any of
-these three entities is present), the ''text'', and a sequence of
-''hints''. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.
+the ''label'', the ''result file'', the ''solution'' (if any of
+these three entities is present), and the ''running text''. In addition,
+one can add subexercise environments, starting with <code>!bsubex</code> and ending
+with <code>!esubex</code>, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) ''answer'', and ''hints''. The environments have begin-end
+directives <code>!bans</code>, <code>!eans</code>, <code>!bsol</code>, <code>!esol</code>, <code>!bhint</code>, <code>!ehint</code>, which
+all must appear on the beginning of a separate line (just as
+<code>!bc</code> and <code>!ec</code>).
 
-Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+The solution environment allows inline
+solution as an alternative to the <code>solution=...</code> directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.
+
+A full exercise set-up can be sketched as follows:
+<code>
+===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
+file=earth2moon.pdf
+
+Here goes the running text of the project....
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+</code>
+
+The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file <code>.mydoc.exerinfo</code>,
+if <code>mydoc.do.txt</code> is the name of the Doconce file.
+
+Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.
+
+For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The ''title'' is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like "see Problem ..."
-works well in all formats ("..." will be a number in LaTeX and
-the problem title in most other formats).
+works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named "Exercises", "Problems", or
@@ -42950,38 +44002,88 @@ consists of the word "Exercise", "Problem", or "Project", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file:
+in) and a solution file. The Doconce code looks like this:
 {{{
 ===== Project: Determine the Distance to the Moon =====
-label{proj:moondist} file=earth2moon.pdf
+label{proj:moondist}
+file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
 
 Here goes the running text of the project....
 
-__Hint 1.__ Do not plan a travel to the moon.
-
-__Hint 2.__ Wikipedia is always helpful.
 }}}
 Doconce will recognize the exercise, problem, or project //title//,
-the //label//, the //result file//, the //solution file// (if any of
-these three entities is present), the //text//, and a sequence of
-//hints//. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.
+the //label//, the //result file//, the //solution// (if any of
+these three entities is present), and the //running text//. In addition,
+one can add subexercise environments, starting with {{{!bsubex}}} and ending
+with {{{!esubex}}}, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) //answer//, and //hints//. The environments have begin-end
+directives {{{!bans}}}, {{{!eans}}}, {{{!bsol}}}, {{{!esol}}}, {{{!bhint}}}, {{{!ehint}}}, which
+all must appear on the beginning of a separate line (just as
+{{{!bc}}} and {{{!ec}}}).
 
-Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+The solution environment allows inline
+solution as an alternative to the {{{solution=...}}} directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.
+
+A full exercise set-up can be sketched as follows:
+{{{
+===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
+file=earth2moon.pdf
+
+Here goes the running text of the project....
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+}}}
+
+The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file {{{.mydoc.exerinfo}}},
+if {{{mydoc.do.txt}}} is the name of the Doconce file.
+
+Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.
+
+For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The //title// is typeset without any leading "Exercise:", "Problem:",
 or "Project:" word, so that references like "see Problem ..."
-works well in all formats ("..." will be a number in LaTeX and
-the problem title in most other formats).
+works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named "Exercises", "Problems", or
@@ -45540,39 +46642,90 @@ consists of the word "Exercise", "Problem", or "Project", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file::
+in) and a solution file. The Doconce code looks like this::
 
 
         ===== Project: Determine the Distance to the Moon =====
-        label{proj:moondist} file=earth2moon.pdf
+        label{proj:moondist}
+        file=earth2moon.pdf
         solution=eart2moon_sol.do.txt
         
         Here goes the running text of the project....
         
-        __Hint 1.__ Do not plan a travel to the moon.
-        
-        __Hint 2.__ Wikipedia is always helpful.
 
 Doconce will recognize the exercise, problem, or project *title*,
-the *label*, the *result file*, the *solution file* (if any of
-these three entities is present), the *text*, and a sequence of
-*hints*. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.
+the *label*, the *result file*, the *solution* (if any of
+these three entities is present), and the *running text*. In addition,
+one can add subexercise environments, starting with '!bsubex' and ending
+with '!esubex', on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) *answer*, and *hints*. The environments have begin-end
+directives '!bans', '!eans', '!bsol', '!esol', '!bhint', '!ehint', which
+all must appear on the beginning of a separate line (just as
+'!bc' and '!ec').
 
-Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+The solution environment allows inline
+solution as an alternative to the 'solution=...' directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.
+
+A full exercise set-up can be sketched as follows::
+
+
+        ===== Exercise: Determine the Distance to the Moon =====
+        label{exer:moondist}
+        file=earth2moon.pdf
+        
+        Here goes the running text of the project....
+        
+        !bsubex
+        Subexercises are numbered a), b), etc.
+        
+        !bans
+        Short answer to subexercise a).
+        !eans
+        
+        !bhint
+        First hint to subexercise a).
+        !ehint
+        
+        !bhint
+        Second hint to subexercise a).
+        !ehint
+        !esubex
+        
+        !bsubex
+        Here goes the text for subexercise b).
+        
+        !bhint
+        A hint for this subexercise.
+        !ehint
+        !esubex
+
+
+The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file '.mydoc.exerinfo',
+if 'mydoc.do.txt' is the name of the Doconce file.
+
+Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.
+
+For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem ..."
-works well in all formats ("..." will be a number in LaTeX and
-the problem title in most other formats).
+or "Project:" word, so that references like "see Problem ref{...}"
+works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named "Exercises", "Problems", or
@@ -48213,39 +49366,90 @@ consists of the word "Exercise", "Problem", or "Project", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file::
+in) and a solution file. The Doconce code looks like this::
 
 
         ===== Project: Determine the Distance to the Moon =====
-        label{proj:moondist} file=earth2moon.pdf
+        label{proj:moondist}
+        file=earth2moon.pdf
         solution=eart2moon_sol.do.txt
         
         Here goes the running text of the project....
         
-        __Hint 1.__ Do not plan a travel to the moon.
-        
-        __Hint 2.__ Wikipedia is always helpful.
 
 Doconce will recognize the exercise, problem, or project I{title},
-the I{label}, the I{result file}, the I{solution file} (if any of
-these three entities is present), the I{text}, and a sequence of
-I{hints}. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.
+the I{label}, the I{result file}, the I{solution} (if any of
+these three entities is present), and the I{running text}. In addition,
+one can add subexercise environments, starting with C{!bsubex} and ending
+with C{!esubex}, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) I{answer}, and I{hints}. The environments have begin-end
+directives C{!bans}, C{!eans}, C{!bsol}, C{!esol}, C{!bhint}, C{!ehint}, which
+all must appear on the beginning of a separate line (just as
+C{!bc} and C{!ec}).
 
-Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+The solution environment allows inline
+solution as an alternative to the C{solution=...} directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.
+
+A full exercise set-up can be sketched as follows::
+
+
+        ===== Exercise: Determine the Distance to the Moon =====
+        label{exer:moondist}
+        file=earth2moon.pdf
+        
+        Here goes the running text of the project....
+        
+        !bsubex
+        Subexercises are numbered a), b), etc.
+        
+        !bans
+        Short answer to subexercise a).
+        !eans
+        
+        !bhint
+        First hint to subexercise a).
+        !ehint
+        
+        !bhint
+        Second hint to subexercise a).
+        !ehint
+        !esubex
+        
+        !bsubex
+        Here goes the text for subexercise b).
+        
+        !bhint
+        A hint for this subexercise.
+        !ehint
+        !esubex
+
+
+The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file C{.mydoc.exerinfo},
+if C{mydoc.do.txt} is the name of the Doconce file.
+
+Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.
+
+For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The I{title} is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem ..."
-works well in all formats ("..." will be a number in LaTeX and
-the problem title in most other formats).
+or "Project:" word, so that references like "see Problem ref{...}"
+works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named "Exercises", "Problems", or
@@ -50969,39 +52173,90 @@ consists of the word "Exercise", "Problem", or "Project", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file::
+in) and a solution file. The Doconce code looks like this::
 
 
         ===== Project: Determine the Distance to the Moon =====
-        label{proj:moondist} file=earth2moon.pdf
+        label{proj:moondist}
+        file=earth2moon.pdf
         solution=eart2moon_sol.do.txt
         
         Here goes the running text of the project....
         
-        __Hint 1.__ Do not plan a travel to the moon.
-        
-        __Hint 2.__ Wikipedia is always helpful.
 
 Doconce will recognize the exercise, problem, or project *title*,
-the *label*, the *result file*, the *solution file* (if any of
-these three entities is present), the *text*, and a sequence of
-*hints*. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.
+the *label*, the *result file*, the *solution* (if any of
+these three entities is present), and the *running text*. In addition,
+one can add subexercise environments, starting with !bsubex and ending
+with !esubex, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) *answer*, and *hints*. The environments have begin-end
+directives !bans, !eans, !bsol, !esol, !bhint, !ehint, which
+all must appear on the beginning of a separate line (just as
+  !bc and !ec).
 
-Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+The solution environment allows inline
+solution as an alternative to the solution=... directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.
+
+A full exercise set-up can be sketched as follows::
+
+
+        ===== Exercise: Determine the Distance to the Moon =====
+        label{exer:moondist}
+        file=earth2moon.pdf
+        
+        Here goes the running text of the project....
+        
+        !bsubex
+        Subexercises are numbered a), b), etc.
+        
+        !bans
+        Short answer to subexercise a).
+        !eans
+        
+        !bhint
+        First hint to subexercise a).
+        !ehint
+        
+        !bhint
+        Second hint to subexercise a).
+        !ehint
+        !esubex
+        
+        !bsubex
+        Here goes the text for subexercise b).
+        
+        !bhint
+        A hint for this subexercise.
+        !ehint
+        !esubex
+
+
+The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file .mydoc.exerinfo,
+if mydoc.do.txt is the name of the Doconce file.
+
+Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.
+
+For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem ..."
-works well in all formats ("..." will be a number in LaTeX and
-the problem title in most other formats).
+or "Project:" word, so that references like "see Problem ref{...}"
+works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named "Exercises", "Problems", or
@@ -53832,40 +55087,91 @@ consists of the word "Exercise", "Problem", or "Project", followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file:
+in) and a solution file. The Doconce code looks like this:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ===== Project: Determine the Distance to the Moon =====
-\label{proj:moondist} file=earth2moon.pdf
+\label{proj:moondist}
+file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
 
 Here goes the running text of the project....
 
-__Hint 1.__ Do not plan a travel to the moon.
-
-__Hint 2.__ Wikipedia is always helpful.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Doconce will recognize the exercise, problem, or project *title*,
-the *label*, the *result file*, the *solution file* (if any of
-these three entities is present), the *text*, and a sequence of
-*hints*. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.
+the *label*, the *result file*, the *solution* (if any of
+these three entities is present), and the *running text*. In addition,
+one can add subexercise environments, starting with `!bsubex` and ending
+with `!esubex`, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) *answer*, and *hints*. The environments have begin-end
+directives `!bans`, `!eans`, `!bsol`, `!esol`, `!bhint`, `!ehint`, which
+all must appear on the beginning of a separate line (just as
+`!bc` and `!ec`).
 
-Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+The solution environment allows inline
+solution as an alternative to the `solution=...` directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.
+
+A full exercise set-up can be sketched as follows:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===== Exercise: Determine the Distance to the Moon =====
+\label{exer:moondist}
+file=earth2moon.pdf
+
+Here goes the running text of the project....
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
+if `mydoc.do.txt` is the name of the Doconce file.
+
+Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.
+
+For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem ..."
-works well in all formats ("..." will be a number in LaTeX and
-the problem title in most other formats).
+or "Project:" word, so that references like "see Problem ref{...}"
+works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named "Exercises", "Problems", or
@@ -55250,6 +56556,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
@@ -55262,6 +56572,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
@@ -55274,6 +56588,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format pdflatex
@@ -55433,7 +56751,7 @@ LaTeX Warning: Reference `eq2a' on page 7 undefined on input line 479.
 
 LaTeX Warning: Reference `my:eq1' on page 7 undefined on input line 479.
 
-[7] (./testdoc.out.pyg [8])
+[7] (./testdoc.out.pyg) [8] (./testdoc.out.pyg)
 No file testdoc.ind.
 [9]
 
@@ -55455,18 +56773,18 @@ public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
 onts/cm/cmbx8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx
 9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmitt10.pfb></us
 r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/p
-ublic/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb
-></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/shar
-e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-tex
-live/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/
-type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pfb
-></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (9 pages, 1404984 bytes).
+mf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/pu
+blic/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss12.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msam
+10.pfb>
+Output written on testdoc.pdf (9 pages, 1402677 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -55488,6 +56806,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 output in testdoc.txt
 + doconce format st testdoc.do.txt
@@ -55498,6 +56820,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 output in testdoc.st
 + doconce format sphinx testdoc.do.txt
@@ -55514,6 +56840,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format sphinx
@@ -55535,6 +56865,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
@@ -55547,6 +56881,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 output in testdoc.epytext
 + doconce format pandoc testdoc.do.txt
@@ -55557,6 +56895,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
@@ -55579,6 +56921,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format mwiki
@@ -55595,6 +56941,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format cwiki
@@ -55608,6 +56958,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format gwiki
@@ -55626,6 +56980,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
@@ -55657,6 +57015,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
@@ -57638,13 +59000,14 @@ writing output... [100%] manual
 
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1682: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1682: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1947: WARNING: undefined label: ... (if the link has no caption the label must precede a section header)
 writing additional files... (0 module code pages) genindex search
 copying images... [100%] figs/streamtubes.png
 
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 4 warnings.
+build succeeded, 5 warnings.
 
 Build finished. The HTML pages are in _build/html.
 + make latex
@@ -57660,12 +59023,13 @@ processing DoconceManual.tex... index manual
 resolving references...
 None:None: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
 None:None: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+None:None: WARNING: undefined label: ... (if the link has no caption the label must precede a section header)
 writing... /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.do.txt
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.html
 done
 copying images... figs/streamtubes.png
 copying TeX support files... done
-build succeeded, 5 warnings.
+build succeeded, 6 warnings.
 
 Build finished; the LaTeX files are in _build/latex.
 Run `make' in that directory to run these through (pdf)latex (use `make latexpdf' here to do that automatically).
@@ -57862,7 +59226,7 @@ n input line 1769.
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 29 undefined on input 
 line 1769.
 
-[29] [30] [31]
+[29] [30] [31] [32]
 ! FancyVerb Error:
   Empty verbatim environment
 .
@@ -57870,43 +59234,43 @@ line 1769.
 \space \space #1
 }
                                                   
-l.2089 \end{Verbatim}
+l.2139 \end{Verbatim}
                      
 ? OK, entering \nonstopmode...
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2095.
+(amsmath)                 on input line 2145.
 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2095 \end{gather}
+l.2145 \end{gather}
                    
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2095 \end{gather}
+l.2145 \end{gather}
                    
-[32]
-Underfull \hbox (badness 10000) in paragraph at lines 2135--2141
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 2185--2191
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax' \T1/ptm/m/n/10 (en-abled by de-fault)
 
-Underfull \hbox (badness 10000) in paragraph at lines 2135--2141
+Underfull \hbox (badness 10000) in paragraph at lines 2185--2191
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 'matplotlib.sphinxext.mathmpl' \T1/ptm/m/n/10
  (dis-abled by de-fault) lines, and un-com-ment the
-[33] [34]
+[34] [35]
 
-LaTeX Warning: Hyper reference `manual:doconce2formats' on page 35 undefined on
- input line 2283.
+LaTeX Warning: Hyper reference `manual:doconce2formats' on page 36 undefined on
+ input line 2333.
 
-[35] [36] [37] [38]
+[36] [37] [38]
 Chapter 7.
 [39] [40]
 
 LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 41 undefine
-d on input line 2645.
+d on input line 2695.
 
 [41] [42] [43] [44] [45] [46]
 Chapter 8.
@@ -57937,7 +59301,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on DoconceManual.pdf (55 pages, 386016 bytes).
+Output written on DoconceManual.pdf (55 pages, 387023 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -57963,8 +59327,11 @@ figure file figs/streamtubes:
     can use figs/streamtubes.png for format rst
 output in manual.rst
 + rst2html.py manual.rst
+manual.rst:1765: (ERROR/3) Unknown target name: "...".
 + rst2xml.py manual.rst
+manual.rst:1765: (ERROR/3) Unknown target name: "...".
 + rst2latex.py manual.rst
+manual.rst:1765: (ERROR/3) Unknown target name: "...".
 + doconce subst \.png  manual.rst.tex
 \.png replaced by  in manual.rst.tex
 + latex manual.rst.tex
@@ -57990,13 +59357,16 @@ Package cmap Warning: pdftex in DVI mode - exiting.
 (/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu)
 (/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu)
 (/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def))
 (/usr/share/texmf-texlive/tex/latex/float/float.sty)
 (/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
 (/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
-(/etc/texmf/tex/latex/config/graphics.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def)))
+(/etc/texmf/tex/latex/config/graphics.cfg)))
 (/usr/share/texmf-texlive/tex/latex/tools/longtable.sty)
 (/usr/share/texmf-texlive/tex/latex/caption/ltcaption.sty)
 (/usr/share/texmf-texlive/tex/latex/tools/array.sty)
@@ -58029,16 +59399,13 @@ Implicit mode ON; LaTeX internals redefined
 (/usr/share/texmf-texlive/tex/latex/hyperref/pdfmark.def))
 No file manual.rst.aux.
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1ptm.fd)
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def))
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty))
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd)
-Overfull \hbox (1.15796pt too wide) in paragraph at lines 98--104
+Overfull \hbox (1.15796pt too wide) in paragraph at lines 121--127
 \T1/ptm/m/n/10 etc.). The Do-conce markup lan-guage sup-port this work-ing stra
 t-
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd) [1]
@@ -58047,545 +59414,552 @@ t-
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omxztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd)
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 206--206
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 229--229
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
 [2]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 264--265
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 287--288
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 305--306
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 328--329
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
 
-Overfull \hbox (16.13748pt too wide) in paragraph at lines 312--315
+Overfull \hbox (16.13748pt too wide) in paragraph at lines 335--338
 []\T1/ptm/m/n/10 It may hap-pen that you need ad-di-tional style files, you can
  run a script, \T1/pcr/m/n/10 cp2texmf.sh\T1/ptm/m/n/10 : 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 317--317
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 340--340
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 [3]
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 344--345
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 367--368
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
 
-Overfull \hbox (185.00006pt too wide) in paragraph at lines 372--373
+Overfull \hbox (185.00006pt too wide) in paragraph at lines 395--396
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
 s/trunk/docutils  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 382--385
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 405--408
 []\T1/pcr/m/n/10 sudo apt-get install unovonv libreoffice libreoffice-dmaths 
 [4]
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 435--436
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 458--459
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
 
-Overfull \hbox (179.00006pt too wide) in paragraph at lines 538--539
+Overfull \hbox (179.00006pt too wide) in paragraph at lines 561--562
 \T1/pcr/m/n/10 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5  
    # preprocess  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 540--542
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 563--565
 []\T1/pcr/m/n/10 Terminal> doconce format latex yourdoc extra_sections=True VAR
 1=5  # mako 
 
-Overfull \hbox (30.7872pt too wide) in paragraph at lines 544--548
+Overfull \hbox (30.7872pt too wide) in paragraph at lines 567--571
 []\T1/ptm/m/n/10 The vari-able \T1/pcr/m/n/10 FORMAT \T1/ptm/m/n/10 is al-ways 
 de-fined as the cur-rent for-mat when run-ning \T1/pcr/m/n/10 preprocess\T1/ptm
 /m/n/10 .
 [5]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 554--557
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 577--580
 []\T1/pcr/m/n/10 Terminal> doconce format latex mydoc --skip_inline_comments 
 
-Overfull \hbox (50.49731pt too wide) in paragraph at lines 589--595
+Overfull \hbox (50.49731pt too wide) in paragraph at lines 612--618
 \T1/ptm/m/n/10 blocks are type-set with aid of this pack-age. The command-line 
 ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
 
-Overfull \hbox (0.81818pt too wide) in paragraph at lines 589--595
+Overfull \hbox (0.81818pt too wide) in paragraph at lines 612--618
 \T1/ptm/m/n/10 tags. The op-tion \T1/pcr/m/n/10 --pygments-html-linenos \T1/ptm
 /m/n/10 turns on line num-bers in Pygments-
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 609--612
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 632--635
 []\T1/pcr/m/n/10 Terminal> doconce format html mydoc --html-template=mytemplate
 .html 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 633--636
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 656--659
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
 [6]
-Overfull \hbox (11.29898pt too wide) in paragraph at lines 645--652
+Overfull \hbox (11.29898pt too wide) in paragraph at lines 668--675
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 655--657
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 678--680
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 673--675
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 696--698
 []\T1/pcr/m/n/10 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd 
 
 
-Overfull \hbox (15.73763pt too wide) in paragraph at lines 696--699
+Overfull \hbox (15.73763pt too wide) in paragraph at lines 719--722
 []\T1/ptm/m/it/10 Step 1. \T1/ptm/m/n/10 Fil-ter the do-conce text to a pre-LaT
 eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 7 undefined on inpu
-t line 706.
+t line 729.
 
 
-Overfull \hbox (78.51936pt too wide) in paragraph at lines 704--709
+Overfull \hbox (78.51936pt too wide) in paragraph at lines 727--732
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 731--733
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 754--756
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 [7]
-Overfull \hbox (47.28717pt too wide) in paragraph at lines 735--741
+Overfull \hbox (47.28717pt too wide) in paragraph at lines 758--764
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 784--785
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 807--808
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 787--787
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 810--810
 []          \T1/pcr/m/n/10 "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\en
 d{quote}" \  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 788--790
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 811--813
 []          \T1/pcr/m/n/10 fpro=minted fcod=minted shcod=Verbatim envir=ans:nt 
 
 
-Overfull \hbox (92.17801pt too wide) in paragraph at lines 792--801
+Overfull \hbox (92.17801pt too wide) in paragraph at lines 815--824
 \T1/ptm/m/n/10 only the en-vi-ron-ment name is given (such as \T1/pcr/m/n/10 mi
 nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
 }
 
-Overfull \hbox (54.6875pt too wide) in paragraph at lines 792--801
+Overfull \hbox (54.6875pt too wide) in paragraph at lines 815--824
 \T1/ptm/m/n/10 fy-ing \T1/pcr/m/n/10 envir=ans:nt \T1/ptm/m/n/10 means that all
  other en-vi-ron-ments are type-set with the \T1/pcr/m/n/10 anslistings.sty
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 811--812
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 834--835
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 [8]
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 813--813
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 836--836
 []\T1/pcr/m/n/10 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 814--816
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 837--839
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
 
-Overfull \hbox (27.6591pt too wide) in paragraph at lines 836--843
+Overfull \hbox (27.6591pt too wide) in paragraph at lines 859--866
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
  or \T1/pcr/m/n/10 $HOME/.ptex2tex.cfg\T1/ptm/m/n/10 ),
 
-Overfull \hbox (4.47917pt too wide) in paragraph at lines 861--864
+Overfull \hbox (4.47917pt too wide) in paragraph at lines 884--887
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 905--908
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 928--931
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
 [9]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 930--931
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 953--954
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 932--932
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 955--955
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 933--933
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 956--956
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 934--936
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 957--959
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
 
-Overfull \hbox (13.07689pt too wide) in paragraph at lines 975--976
+Overfull \hbox (13.07689pt too wide) in paragraph at lines 998--999
 [][][][][][][] 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 993--994
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1016--1017
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 995--995
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 1018--1018
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
 [10]
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 1020--1026
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 1043--1049
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
 
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 1058--1061
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 1081--1084
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 1062--1065
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 1085--1088
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [11] [12]
-Overfull \hbox (13.18697pt too wide) in paragraph at lines 1173--1178
+Overfull \hbox (13.18697pt too wide) in paragraph at lines 1196--1201
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][],
 
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1211--1222
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1234--1245
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [13] [14]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 1357--1362
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 1380--1385
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1387--1390
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1410--1413
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1398--1401
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1421--1424
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1409--1409
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1432--1432
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1410--1410
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1433--1433
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1427--1427
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1450--1450
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 [15]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1479--1480
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1502--1503
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 [16]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1525--1528
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1548--1551
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
 <figs/streamtubes.eps>
-Overfull \hbox (2.15817pt too wide) in paragraph at lines 1552--1555
+Overfull \hbox (2.15817pt too wide) in paragraph at lines 1575--1578
 []\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
 1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1555--1556
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1578--1579
 \T1/pcr/m/n/10 montage file1 file2 ... file4 -geometry +2+2  result  
 [17]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1581--1584
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1604--1607
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1609--1612
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1632--1635
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1614--1618
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1637--1641
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1619--1625
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1642--1648
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 18 un
-defined on input line 1637.
+defined on input line 1660.
 
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1635--1638
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1658--1661
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 [18]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1663--1666
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1686--1689
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1676--1678
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1699--1701
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1697--1700
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1720--1723
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 
-Overfull \hbox (22.65768pt too wide) in paragraph at lines 1724--1728
+Overfull \hbox (22.65768pt too wide) in paragraph at lines 1747--1751
 \T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
 RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1748--1749
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1771--1772
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 [19]
-Overfull \hbox (1.1292pt too wide) in paragraph at lines 1754--1759
+Overfull \hbox (1.1292pt too wide) in paragraph at lines 1777--1782
 []\T1/ptm/m/n/10 Then you can link to \T1/pcr/m/n/10 _static/make.sh.html \T1/p
 tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1759--1762
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1782--1785
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1803--1806
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1826--1829
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 20 undef
-ined on input line 1825.
+ined on input line 1848.
 
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 20 undef
-ined on input line 1829.
+ined on input line 1852.
 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1817--1830
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1840--1853
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1844--1844
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1867--1867
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1845--1847
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1868--1870
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-LaTeX Warning: Hyper reference `id4' on page 20 undefined on input line 1869.
+LaTeX Warning: Hyper reference `id4' on page 20 undefined on input line 1892.
 
 [20]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1877--1877
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1900--1900
 []\T1/pcr/m/n/10 # Here are some comment lines that do not affect any formattin
 g.  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1878--1878
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1901--1901
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1911--1913
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1934--1936
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
 
-LaTeX Warning: Hyper reference `fig-viz' on page 21 undefined on input line 192
-9.
+LaTeX Warning: Hyper reference `fig-viz' on page 21 undefined on input line 195
+2.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 21 u
-ndefined on input line 1931.
+ndefined on input line 1954.
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 21 undefined on inp
-ut line 1931.
+ut line 1954.
 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1927--1936
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1950--1959
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-LaTeX Warning: Hyper reference `id4' on page 21 undefined on input line 1938.
+LaTeX Warning: Hyper reference `id4' on page 21 undefined on input line 1961.
 
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1937--1939
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1960--1962
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 [21]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1962--1965
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1985--1988
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1980--1983
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2003--2006
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2011--2011
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2034--2034
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2012--2012
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2035--2035
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (7.29897pt too wide) in paragraph at lines 2030--2038
+Overfull \hbox (7.29897pt too wide) in paragraph at lines 2053--2061
 \T1/ptm/m/n/10 ther by man-ual edit-ing of \T1/pcr/m/n/10 myfile.bbl \T1/ptm/m/
 n/10 or us-ing \T1/pcr/m/n/10 doconce bbl2rst myfile.bbl
 [22]
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 2043--2045
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 2066--2068
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 2046--2049
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 2069--2072
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [23]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2163--2164
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2186--2187
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
-[24]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2237--2240
+
+Overfull \hbox (21.27702pt too wide) in paragraph at lines 2208--2213
+[]\T1/ptm/m/n/10 The so-lu-tion en-vi-ron-ment al-lows in-line so-lu-tion as an
+ al-ter-na-tive to the \T1/pcr/m/n/10 solution=...
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2216--2217
+\T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
+[24] [25]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2312--2315
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[25]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2319--2321
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2394--2396
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[26]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2436--2436
+[26] [27]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2511--2511
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2437--2437
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2512--2512
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2446--2446
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2521--2521
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2447--2447
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2522--2522
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-[27]
-Overfull \hbox (3.0pt too wide) in paragraph at lines 2463--2470
+
+Overfull \hbox (3.0pt too wide) in paragraph at lines 2538--2545
 \T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
-
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2497--2503
+[28]
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2572--2578
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2497--2503
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2572--2578
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2497--2503
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2572--2578
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[28]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2549--2552
+
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2624--2627
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2584--2584
+[29]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2659--2659
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2585--2585
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2660--2660
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2601--2613
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2676--2688
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2626--2627
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2701--2702
 \T1/pcr/m/n/10 # If PNGFIGS is defined, PNG files are used, otherwise Encapsula
 ted  
-[29]
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2636--2636
+[30]
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2711--2711
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2638--2638
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2713--2713
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001.eps}}  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2642--2642
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2717--2717
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2644--2644
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2719--2719
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010.eps}}  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2654--2654
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2729--2729
 []\T1/pcr/m/n/10 # Use default Doconce figure handling for all other formats  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2656--2656
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2731--2731
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0001, width=400] Wavepacket at time 0.
 1 s.  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2658--2658
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2733--2733
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0010, width=400] Wavepacket at time 0.
 2 s.  
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 30 undef
-ined on input line 2665.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 31 undef
+ined on input line 2740.
 
-[30]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2713--2713
-[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [31]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2799--2801
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2788--2788
+[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
+[32]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2874--2876
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
-[32]
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2861--2863
+[33]
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2936--2938
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[33]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2983--2986
+[34]
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 3058--3061
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 3000--3003
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 3075--3078
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3007--3010
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3082--3085
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3046--3047
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3121--3122
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3049--3051
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3124--3126
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[34] [35]
+[35]
 
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 36 un
-defined on input line 3190.
+defined on input line 3265.
 
-[36]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3357--3357
+[36] [37]
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3432--3432
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3361--3361
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3436--3436
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-[37]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3379--3379
-[]\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
-n.  
 
-Overfull \hbox (131.00006pt too wide) in paragraph at lines 3399--3399
-[]\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
-section]'  
-
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3400--3400
-[]\T1/pcr/m/n/10 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $
-file  
-
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3401--3401
-[]\T1/pcr/m/n/10 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file  
-
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3402--3402
-[]\T1/pcr/m/n/10 doconce replace '% begin theorem' '\begin{theorem}' $file  
-
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3403--3405
-[]\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3429--3429
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3454--3454
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 [38]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3474--3475
+Overfull \hbox (131.00006pt too wide) in paragraph at lines 3474--3474
+[]\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
+section]'  
+
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3475--3475
+[]\T1/pcr/m/n/10 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $
+file  
+
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3476--3476
+[]\T1/pcr/m/n/10 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file  
+
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3477--3477
+[]\T1/pcr/m/n/10 doconce replace '% begin theorem' '\begin{theorem}' $file  
+
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3478--3480
+[]\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
+
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3504--3504
+[]\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
+n.  
+[39]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3549--3550
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3476--3476
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3551--3551
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3479--3479
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3554--3554
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[39] [40]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3673--3676
+[40] [41]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3748--3751
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[41]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3725--3725
+
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3800--3800
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3727--3727
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3802--3802
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3728--3728
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3803--3803
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3729--3729
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3804--3804
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3730--3730
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3805--3805
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[42] [43] (./manual.rst.aux)
+[42] [43] [44] (./manual.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -58594,7 +59968,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (43 pages, 190556 bytes).
+Output written on manual.rst.dvi (44 pages, 194468 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -58619,13 +59993,16 @@ Package cmap Warning: pdftex in DVI mode - exiting.
 (/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu)
 (/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu)
 (/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def))
 (/usr/share/texmf-texlive/tex/latex/float/float.sty)
 (/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
 (/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
-(/etc/texmf/tex/latex/config/graphics.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def)))
+(/etc/texmf/tex/latex/config/graphics.cfg)))
 (/usr/share/texmf-texlive/tex/latex/tools/longtable.sty)
 (/usr/share/texmf-texlive/tex/latex/caption/ltcaption.sty)
 (/usr/share/texmf-texlive/tex/latex/tools/array.sty)
@@ -58657,13 +60034,10 @@ Implicit mode ON; LaTeX internals redefined
 (/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
 (/usr/share/texmf-texlive/tex/latex/hyperref/pdfmark.def)) (./manual.rst.aux)
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1ptm.fd)
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def))
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./manual.rst.out)
 (./manual.rst.out) (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd)
-Overfull \hbox (1.15796pt too wide) in paragraph at lines 98--104
+Overfull \hbox (1.15796pt too wide) in paragraph at lines 121--127
 \T1/ptm/m/n/10 etc.). The Do-conce markup lan-guage sup-port this work-ing stra
 t-
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd) [1]
@@ -58672,504 +60046,511 @@ t-
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omxztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd)
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 206--206
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 229--229
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
 [2]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 264--265
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 287--288
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 305--306
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 328--329
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
 
-Overfull \hbox (16.13748pt too wide) in paragraph at lines 312--315
+Overfull \hbox (16.13748pt too wide) in paragraph at lines 335--338
 []\T1/ptm/m/n/10 It may hap-pen that you need ad-di-tional style files, you can
  run a script, \T1/pcr/m/n/10 cp2texmf.sh\T1/ptm/m/n/10 : 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 317--317
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 340--340
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 [3]
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 344--345
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 367--368
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
 
-Overfull \hbox (185.00006pt too wide) in paragraph at lines 372--373
+Overfull \hbox (185.00006pt too wide) in paragraph at lines 395--396
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
 s/trunk/docutils  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 382--385
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 405--408
 []\T1/pcr/m/n/10 sudo apt-get install unovonv libreoffice libreoffice-dmaths 
 [4]
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 435--436
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 458--459
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
 
-Overfull \hbox (179.00006pt too wide) in paragraph at lines 538--539
+Overfull \hbox (179.00006pt too wide) in paragraph at lines 561--562
 \T1/pcr/m/n/10 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5  
    # preprocess  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 540--542
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 563--565
 []\T1/pcr/m/n/10 Terminal> doconce format latex yourdoc extra_sections=True VAR
 1=5  # mako 
 
-Overfull \hbox (30.7872pt too wide) in paragraph at lines 544--548
+Overfull \hbox (30.7872pt too wide) in paragraph at lines 567--571
 []\T1/ptm/m/n/10 The vari-able \T1/pcr/m/n/10 FORMAT \T1/ptm/m/n/10 is al-ways 
 de-fined as the cur-rent for-mat when run-ning \T1/pcr/m/n/10 preprocess\T1/ptm
 /m/n/10 .
 [5]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 554--557
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 577--580
 []\T1/pcr/m/n/10 Terminal> doconce format latex mydoc --skip_inline_comments 
 
-Overfull \hbox (50.49731pt too wide) in paragraph at lines 589--595
+Overfull \hbox (50.49731pt too wide) in paragraph at lines 612--618
 \T1/ptm/m/n/10 blocks are type-set with aid of this pack-age. The command-line 
 ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
 
-Overfull \hbox (0.81818pt too wide) in paragraph at lines 589--595
+Overfull \hbox (0.81818pt too wide) in paragraph at lines 612--618
 \T1/ptm/m/n/10 tags. The op-tion \T1/pcr/m/n/10 --pygments-html-linenos \T1/ptm
 /m/n/10 turns on line num-bers in Pygments-
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 609--612
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 632--635
 []\T1/pcr/m/n/10 Terminal> doconce format html mydoc --html-template=mytemplate
 .html 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 633--636
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 656--659
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
 [6]
-Overfull \hbox (11.29898pt too wide) in paragraph at lines 645--652
+Overfull \hbox (11.29898pt too wide) in paragraph at lines 668--675
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 655--657
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 678--680
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 673--675
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 696--698
 []\T1/pcr/m/n/10 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd 
 
 
-Overfull \hbox (15.73763pt too wide) in paragraph at lines 696--699
+Overfull \hbox (15.73763pt too wide) in paragraph at lines 719--722
 []\T1/ptm/m/it/10 Step 1. \T1/ptm/m/n/10 Fil-ter the do-conce text to a pre-LaT
 eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
 
-Overfull \hbox (78.51936pt too wide) in paragraph at lines 704--709
+Overfull \hbox (78.51936pt too wide) in paragraph at lines 727--732
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 731--733
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 754--756
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 [7]
-Overfull \hbox (47.28717pt too wide) in paragraph at lines 735--741
+Overfull \hbox (47.28717pt too wide) in paragraph at lines 758--764
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 784--785
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 807--808
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 787--787
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 810--810
 []          \T1/pcr/m/n/10 "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\en
 d{quote}" \  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 788--790
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 811--813
 []          \T1/pcr/m/n/10 fpro=minted fcod=minted shcod=Verbatim envir=ans:nt 
 
 
-Overfull \hbox (92.17801pt too wide) in paragraph at lines 792--801
+Overfull \hbox (92.17801pt too wide) in paragraph at lines 815--824
 \T1/ptm/m/n/10 only the en-vi-ron-ment name is given (such as \T1/pcr/m/n/10 mi
 nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
 }
 
-Overfull \hbox (54.6875pt too wide) in paragraph at lines 792--801
+Overfull \hbox (54.6875pt too wide) in paragraph at lines 815--824
 \T1/ptm/m/n/10 fy-ing \T1/pcr/m/n/10 envir=ans:nt \T1/ptm/m/n/10 means that all
  other en-vi-ron-ments are type-set with the \T1/pcr/m/n/10 anslistings.sty
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 811--812
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 834--835
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 [8]
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 813--813
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 836--836
 []\T1/pcr/m/n/10 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 814--816
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 837--839
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
 
-Overfull \hbox (27.6591pt too wide) in paragraph at lines 836--843
+Overfull \hbox (27.6591pt too wide) in paragraph at lines 859--866
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
  or \T1/pcr/m/n/10 $HOME/.ptex2tex.cfg\T1/ptm/m/n/10 ),
 
-Overfull \hbox (4.47917pt too wide) in paragraph at lines 861--864
+Overfull \hbox (4.47917pt too wide) in paragraph at lines 884--887
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 905--908
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 928--931
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
 [9]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 930--931
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 953--954
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 932--932
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 955--955
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 933--933
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 956--956
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 934--936
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 957--959
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
 
-Overfull \hbox (13.07689pt too wide) in paragraph at lines 975--976
+Overfull \hbox (13.07689pt too wide) in paragraph at lines 998--999
 [][][][][][][] 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 993--994
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1016--1017
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 995--995
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 1018--1018
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
 [10]
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 1020--1026
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 1043--1049
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
 
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 1058--1061
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 1081--1084
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 1062--1065
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 1085--1088
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [11] [12]
-Overfull \hbox (13.18697pt too wide) in paragraph at lines 1173--1178
+Overfull \hbox (13.18697pt too wide) in paragraph at lines 1196--1201
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][],
 
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1211--1222
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1234--1245
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [13] [14]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 1357--1362
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 1380--1385
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1387--1390
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1410--1413
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1398--1401
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1421--1424
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1409--1409
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1432--1432
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1410--1410
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1433--1433
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1427--1427
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1450--1450
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 [15]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1479--1480
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1502--1503
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 [16]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1525--1528
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1548--1551
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
 <figs/streamtubes.eps>
-Overfull \hbox (2.15817pt too wide) in paragraph at lines 1552--1555
+Overfull \hbox (2.15817pt too wide) in paragraph at lines 1575--1578
 []\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
 1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1555--1556
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1578--1579
 \T1/pcr/m/n/10 montage file1 file2 ... file4 -geometry +2+2  result  
 [17]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1581--1584
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1604--1607
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1609--1612
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1632--1635
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1614--1618
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1637--1641
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1619--1625
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1642--1648
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1635--1638
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1658--1661
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 [18]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1663--1666
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1686--1689
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1676--1678
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1699--1701
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1697--1700
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1720--1723
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 
-Overfull \hbox (22.65768pt too wide) in paragraph at lines 1724--1728
+Overfull \hbox (22.65768pt too wide) in paragraph at lines 1747--1751
 \T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
 RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1748--1749
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1771--1772
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 [19]
-Overfull \hbox (1.1292pt too wide) in paragraph at lines 1754--1759
+Overfull \hbox (1.1292pt too wide) in paragraph at lines 1777--1782
 []\T1/ptm/m/n/10 Then you can link to \T1/pcr/m/n/10 _static/make.sh.html \T1/p
 tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1759--1762
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1782--1785
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1803--1806
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1826--1829
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1817--1830
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1840--1853
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1844--1844
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1867--1867
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1845--1847
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1868--1870
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 [20]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1877--1877
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1900--1900
 []\T1/pcr/m/n/10 # Here are some comment lines that do not affect any formattin
 g.  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1878--1878
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1901--1901
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1911--1913
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1934--1936
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1927--1936
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1950--1959
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1937--1939
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1960--1962
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 [21]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1962--1965
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1985--1988
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1980--1983
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2003--2006
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2011--2011
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2034--2034
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2012--2012
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2035--2035
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (7.29897pt too wide) in paragraph at lines 2030--2038
+Overfull \hbox (7.29897pt too wide) in paragraph at lines 2053--2061
 \T1/ptm/m/n/10 ther by man-ual edit-ing of \T1/pcr/m/n/10 myfile.bbl \T1/ptm/m/
 n/10 or us-ing \T1/pcr/m/n/10 doconce bbl2rst myfile.bbl
 [22]
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 2043--2045
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 2066--2068
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 2046--2049
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 2069--2072
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [23]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2163--2164
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2186--2187
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
-[24]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2237--2240
+
+Overfull \hbox (21.27702pt too wide) in paragraph at lines 2208--2213
+[]\T1/ptm/m/n/10 The so-lu-tion en-vi-ron-ment al-lows in-line so-lu-tion as an
+ al-ter-na-tive to the \T1/pcr/m/n/10 solution=...
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2216--2217
+\T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
+[24] [25]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2312--2315
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[25]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2319--2321
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2394--2396
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[26]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2436--2436
+[26] [27]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2511--2511
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2437--2437
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2512--2512
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2446--2446
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2521--2521
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2447--2447
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2522--2522
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-[27]
-Overfull \hbox (3.0pt too wide) in paragraph at lines 2463--2470
+
+Overfull \hbox (3.0pt too wide) in paragraph at lines 2538--2545
 \T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
-
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2497--2503
+[28]
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2572--2578
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2497--2503
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2572--2578
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2497--2503
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2572--2578
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[28]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2549--2552
+
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2624--2627
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2584--2584
+[29]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2659--2659
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2585--2585
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2660--2660
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2601--2613
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2676--2688
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2626--2627
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2701--2702
 \T1/pcr/m/n/10 # If PNGFIGS is defined, PNG files are used, otherwise Encapsula
 ted  
-[29]
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2636--2636
+[30]
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2711--2711
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2638--2638
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2713--2713
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001.eps}}  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2642--2642
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2717--2717
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2644--2644
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2719--2719
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010.eps}}  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2654--2654
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2729--2729
 []\T1/pcr/m/n/10 # Use default Doconce figure handling for all other formats  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2656--2656
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2731--2731
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0001, width=400] Wavepacket at time 0.
 1 s.  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2658--2658
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2733--2733
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0010, width=400] Wavepacket at time 0.
 2 s.  
-[30]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2713--2713
-[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [31]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2799--2801
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2788--2788
+[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
+[32]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2874--2876
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
-[32]
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2861--2863
+[33]
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2936--2938
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[33]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2983--2986
+[34]
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 3058--3061
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 3000--3003
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 3075--3078
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3007--3010
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3082--3085
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3046--3047
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3121--3122
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3049--3051
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3124--3126
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[34] [35] [36]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3357--3357
+[35] [36] [37]
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3432--3432
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3361--3361
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3436--3436
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-[37]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3379--3379
-[]\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
-n.  
 
-Overfull \hbox (131.00006pt too wide) in paragraph at lines 3399--3399
-[]\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
-section]'  
-
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3400--3400
-[]\T1/pcr/m/n/10 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $
-file  
-
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3401--3401
-[]\T1/pcr/m/n/10 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file  
-
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3402--3402
-[]\T1/pcr/m/n/10 doconce replace '% begin theorem' '\begin{theorem}' $file  
-
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3403--3405
-[]\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3429--3429
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3454--3454
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 [38]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3474--3475
+Overfull \hbox (131.00006pt too wide) in paragraph at lines 3474--3474
+[]\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
+section]'  
+
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3475--3475
+[]\T1/pcr/m/n/10 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $
+file  
+
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3476--3476
+[]\T1/pcr/m/n/10 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file  
+
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3477--3477
+[]\T1/pcr/m/n/10 doconce replace '% begin theorem' '\begin{theorem}' $file  
+
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3478--3480
+[]\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
+
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3504--3504
+[]\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
+n.  
+[39]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3549--3550
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3476--3476
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3551--3551
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3479--3479
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3554--3554
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[39] [40]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3673--3676
+[40] [41]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3748--3751
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[41]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3725--3725
+
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3800--3800
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3727--3727
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3802--3802
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3728--3728
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3803--3803
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3729--3729
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3804--3804
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3730--3730
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3805--3805
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[42] [43] (./manual.rst.aux) )
+[42] [43] [44] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (43 pages, 199632 bytes).
+Output written on manual.rst.dvi (44 pages, 203644 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
@@ -59493,70 +60874,74 @@ LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 26 undefined on input line 1619.
 
-[26] [27] [28] [29] [30]
+[26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34]
-
-LaTeX Warning: Reference `doconce2formats' on page 35 undefined on input line 2
-094.
-
 [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+
+LaTeX Warning: Reference `doconce2formats' on page 36 undefined on input line 2
+144.
+
+[36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39]
+[37] [38] [39] [40]
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 40 undefined on input li
-ne 2397.
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 41 undefined on input li
+ne 2447.
 
-[40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46]
+[47]
 No file manual.bbl.
 No file manual.ind.
-[47] (./manual.aux)
+[48] (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -59575,7 +60960,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (47 pages, 322957 bytes).
+Output written on manual.pdf (48 pages, 324571 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -59762,57 +61147,61 @@ LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 26 undefined on input line 1619.
 
-[26] [27] [28] [29] [30]
+[26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34] [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+[35] [36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+[47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -59831,7 +61220,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (48 pages, 342725 bytes).
+Output written on manual.pdf (49 pages, 344434 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -59991,57 +61380,61 @@ LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1524.
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1518--1527
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26] [27] [28] [29] [30]
+[25] [26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34] [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+[35] [36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+[47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -60060,7 +61453,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (48 pages, 343446 bytes).
+Output written on manual.pdf (49 pages, 345155 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -60262,57 +61655,61 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) in paragraph at lines 1614--1616
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[26] [27] [28] [29] [30]
+[26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34] [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+[35] [36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+[47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -60321,7 +61718,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (48 pages, 201636 bytes).
+Output written on manual.dvi (49 pages, 204068 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -60486,57 +61883,61 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) in paragraph at lines 1614--1616
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[26] [27] [28] [29] [30]
+[26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34] [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+[35] [36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+[47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -60545,7 +61946,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (48 pages, 201636 bytes).
+Output written on manual.dvi (49 pages, 204068 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -60722,57 +62123,61 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) in paragraph at lines 1614--1616
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[26] [27] [28] [29] [30]
+[26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34] [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+[35] [36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+[47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -60781,7 +62186,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (48 pages, 201636 bytes).
+Output written on manual.dvi (49 pages, 204068 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -60946,57 +62351,61 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) in paragraph at lines 1614--1616
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[26] [27] [28] [29] [30]
+[26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34] [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+[35] [36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+[47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -61005,7 +62414,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (48 pages, 201636 bytes).
+Output written on manual.dvi (49 pages, 204068 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt --no-mako
@@ -61671,8 +63080,23 @@ list of capabilities:
 
 Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows:
+An exercise, problem, or project sections contains certain *elements*:
+
+  * a headline at the level of a subsection or subsubsection,
+    containing one of the words "Exercise:", "Problem:", or
+    "Project:", followed by a title (required)
+  * a label (optional)
+  * a solution file (optional)
+  * name of file with a student solution (optional)
+  * main exercise text (required)
+  * a short answer (optional)
+  * a full solution (optional)
+  * one or more hints (optional)
+  * one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)
+
+A typical sketch of a a problem without subexercises goes as follows:
 !bc
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
@@ -61683,24 +63107,52 @@ Derive an expression for the area of an ellipse by integrating
 the area under a curve that defines half of the allipse.
 Show each step in the mathematical derivation.
 
-__Hint 1.__ Wikipedia has the formula for the curve.
+!bhint
+Wikipedia has the formula for the curve.
+!ehint
 
-__Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+!bhint
+"Wolframalpha": "http://wolframalpha.com" can perhaps
 compute the integral.
+!ehint
 !ec
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up:
+!bc
+===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
 
-  * A headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title. (Required.)
-  * A standard label for referring to the exercise. (Optional.)
-  * A name for the file with the result/answer (`file=filename`). (Optional.)
-  * A name for the solution file (`solution=filename`), where the file
-    name may be a URL. (Optional.)
-  * The running text of the exercise. (Required.)
-  * A sequence of hints, indicated as paragraphs. There can be a
-    single hint, without any number, or several numbered hints.
-    (Optional.)
+Intro to this exercise. Questions are in subexercises below.
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+file=subexer_a.pdf
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+file=subexer_b.pdf
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+!ec
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 ===== Labels, Index, and Citations =====
 
@@ -62506,8 +63958,27 @@ doconce assemble name master.do.txt
 <p>
 Doconce supports <em>Exercise</em>, <em>Problem</em>, and <em>Project</em>. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows:
+An exercise, problem, or project sections contains certain <em>elements</em>:
+
+<p>
+
+<ul>
+  <li> a headline at the level of a subsection or subsubsection,
+    containing one of the words "Exercise:", "Problem:", or
+    "Project:", followed by a title (required)
+  <li> a label (optional)
+  <li> a solution file (optional)
+  <li> name of file with a student solution (optional)
+  <li> main exercise text (required)
+  <li> a short answer (optional)
+  <li> a full solution (optional)
+  <li> one or more hints (optional)
+  <li> one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)
+</ul>
+
+A typical sketch of a a problem without subexercises goes as follows:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
@@ -62519,29 +63990,57 @@ Derive an expression for the area of an ellipse by integrating
 the area under a curve that defines half of the allipse.
 Show each step in the mathematical derivation.
 
-__Hint 1.__ Wikipedia has the formula for the curve.
+!bhint
+Wikipedia has the formula for the curve.
+!ehint
 
-__Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+!bhint
+"Wolframalpha": "http://wolframalpha.com" can perhaps
 compute the integral.
+!ehint
 </pre>
 </blockquote>   <! -- end verbatim block -->
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up:
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+===== Exercise: Determine the Distance to the Moon =====
+\label{exer:moondist}
+
+Intro to this exercise. Questions are in subexercises below.
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+file=subexer_a.pdf
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+file=subexer_b.pdf
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+</pre>
+</blockquote>   <! -- end verbatim block -->
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 <p>
-
-<ul>
-  <li> A headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title. (Required.)
-  <li> A standard label for referring to the exercise. (Optional.)
-  <li> A name for the file with the result/answer (<tt>file=filename</tt>). (Optional.)
-  <li> A name for the solution file (<tt>solution=filename</tt>), where the file
-    name may be a URL. (Optional.)
-  <li> The running text of the exercise. (Required.)
-  <li> A sequence of hints, indicated as paragraphs. There can be a
-    single hint, without any number, or several numbered hints.
-    (Optional.)
-</ul>
 
 <h3>Labels, Index, and Citations  <a name="___sec17"></a></h3>
 <p>
@@ -63364,8 +64863,34 @@ doconce assemble name master.do.txt
 
 Doconce supports \emph{Exercise}, \emph{Problem}, and \emph{Project}. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows:
+An exercise, problem, or project sections contains certain \emph{elements}:
+
+\begin{itemize}
+  \item a headline at the level of a subsection or subsubsection,
+    containing one of the words "Exercise:", "Problem:", or
+    "Project:", followed by a title (required)
+
+  \item a label (optional)
+
+  \item a solution file (optional)
+
+  \item name of file with a student solution (optional)
+
+  \item main exercise text (required)
+
+  \item a short answer (optional)
+
+  \item a full solution (optional)
+
+  \item one or more hints (optional)
+
+  \item one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)
+\end{itemize}
+
+\noindent
+A typical sketch of a a problem without subexercises goes as follows:
 \bccq
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
@@ -63376,33 +64901,52 @@ Derive an expression for the area of an ellipse by integrating
 the area under a curve that defines half of the allipse.
 Show each step in the mathematical derivation.
 
-__Hint 1.__ Wikipedia has the formula for the curve.
+!bhint
+Wikipedia has the formula for the curve.
+!ehint
 
-__Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+!bhint
+"Wolframalpha": "http://wolframalpha.com" can perhaps
 compute the integral.
+!ehint
 \eccq
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up:
+\bccq
+===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
 
-\begin{itemize}
-  \item A headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title. (Required.)
+Intro to this exercise. Questions are in subexercises below.
 
-  \item A standard label for referring to the exercise. (Optional.)
+!bsubex
+Subexercises are numbered a), b), etc.
 
-  \item A name for the file with the result/answer (\code{file=filename}). (Optional.)
+file=subexer_a.pdf
 
-  \item A name for the solution file (\code{solution=filename}), where the file
-    name may be a URL. (Optional.)
+!bans
+Short answer to subexercise a).
+!eans
 
-  \item The running text of the exercise. (Required.)
+!bhint
+First hint to subexercise a).
+!ehint
 
-  \item A sequence of hints, indicated as paragraphs. There can be a
-    single hint, without any number, or several numbered hints.
-    (Optional.)
-\end{itemize}
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
 
-\noindent
+!bsubex
+Here goes the text for subexercise b).
+
+file=subexer_b.pdf
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+\eccq
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 \subsection{Labels, Index, and Citations}
 
@@ -64059,8 +65603,31 @@ Exercises
 
 Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows::
+An exercise, problem, or project sections contains certain *elements*:
+
+  * a headline at the level of a subsection or subsubsection,
+    containing one of the words "Exercise:", "Problem:", or
+    "Project:", followed by a title (required)
+
+  * a label (optional)
+
+  * a solution file (optional)
+
+  * name of file with a student solution (optional)
+
+  * main exercise text (required)
+
+  * a short answer (optional)
+
+  * a full solution (optional)
+
+  * one or more hints (optional)
+
+  * one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)
+
+A typical sketch of a a problem without subexercises goes as follows::
 
 
         ===== Problem: Derive the Formula for the Area of an Ellipse =====
@@ -64072,29 +65639,53 @@ looks as follows::
         the area under a curve that defines half of the allipse.
         Show each step in the mathematical derivation.
         
-        __Hint 1.__ Wikipedia has the formula for the curve.
+        !bhint
+        Wikipedia has the formula for the curve.
+        !ehint
         
-        __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+        !bhint
+        "Wolframalpha": "http://wolframalpha.com" can perhaps
         compute the integral.
+        !ehint
 
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up::
 
-  * A headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title. (Required.)
 
-  * A standard label for referring to the exercise. (Optional.)
+        ===== Exercise: Determine the Distance to the Moon =====
+        label{exer:moondist}
+        
+        Intro to this exercise. Questions are in subexercises below.
+        
+        !bsubex
+        Subexercises are numbered a), b), etc.
+        
+        file=subexer_a.pdf
+        
+        !bans
+        Short answer to subexercise a).
+        !eans
+        
+        !bhint
+        First hint to subexercise a).
+        !ehint
+        
+        !bhint
+        Second hint to subexercise a).
+        !ehint
+        !esubex
+        
+        !bsubex
+        Here goes the text for subexercise b).
+        
+        file=subexer_b.pdf
+        
+        !bhint
+        A hint for this subexercise.
+        !ehint
+        !esubex
 
-  * A name for the file with the result/answer (``file=filename``). (Optional.)
-
-  * A name for the solution file (``solution=filename``), where the file
-    name may be a URL. (Optional.)
-
-  * The running text of the exercise. (Required.)
-
-  * A sequence of hints, indicated as paragraphs. There can be a
-    single hint, without any number, or several numbered hints.
-    (Optional.)
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 Labels, Index, and Citations
 ----------------------------
@@ -64778,8 +66369,31 @@ Exercises
 
 Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows:
+An exercise, problem, or project sections contains certain *elements*:
+
+  * a headline at the level of a subsection or subsubsection,
+    containing one of the words "Exercise:", "Problem:", or
+    "Project:", followed by a title (required)
+
+  * a label (optional)
+
+  * a solution file (optional)
+
+  * name of file with a student solution (optional)
+
+  * main exercise text (required)
+
+  * a short answer (optional)
+
+  * a full solution (optional)
+
+  * one or more hints (optional)
+
+  * one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)
+
+A typical sketch of a a problem without subexercises goes as follows:
 
 .. code-block:: py
 
@@ -64793,29 +66407,55 @@ looks as follows:
         the area under a curve that defines half of the allipse.
         Show each step in the mathematical derivation.
         
-        __Hint 1.__ Wikipedia has the formula for the curve.
+        !bhint
+        Wikipedia has the formula for the curve.
+        !ehint
         
-        __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+        !bhint
+        "Wolframalpha": "http://wolframalpha.com" can perhaps
         compute the integral.
+        !ehint
 
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up:
 
-  * A headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title. (Required.)
+.. code-block:: py
 
-  * A standard label for referring to the exercise. (Optional.)
 
-  * A name for the file with the result/answer (``file=filename``). (Optional.)
+        ===== Exercise: Determine the Distance to the Moon =====
+        label{exer:moondist}
+        
+        Intro to this exercise. Questions are in subexercises below.
+        
+        !bsubex
+        Subexercises are numbered a), b), etc.
+        
+        file=subexer_a.pdf
+        
+        !bans
+        Short answer to subexercise a).
+        !eans
+        
+        !bhint
+        First hint to subexercise a).
+        !ehint
+        
+        !bhint
+        Second hint to subexercise a).
+        !ehint
+        !esubex
+        
+        !bsubex
+        Here goes the text for subexercise b).
+        
+        file=subexer_b.pdf
+        
+        !bhint
+        A hint for this subexercise.
+        !ehint
+        !esubex
 
-  * A name for the solution file (``solution=filename``), where the file
-    name may be a URL. (Optional.)
-
-  * The running text of the exercise. (Required.)
-
-  * A sequence of hints, indicated as paragraphs. There can be a
-    single hint, without any number, or several numbered hints.
-    (Optional.)
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 Labels, Index, and Citations
 ----------------------------
@@ -65371,8 +67011,20 @@ doconce assemble name master.do.txt
 
 Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows:
+An exercise, problem, or project sections contains certain *elements*:
+
+
+  * a headline at the level of a subsection or subsubsection,    containing one of the words "Exercise:", "Problem:", or    "Project:", followed by a title (required)
+  * a label (optional)
+  * a solution file (optional)
+  * name of file with a student solution (optional)
+  * main exercise text (required)
+  * a short answer (optional)
+  * a full solution (optional)
+  * one or more hints (optional)
+  * one or more subexercises (subproblems, subprojects), which can also    contain a text, a short answer, a full solution, name student file    to be handed in, and one or more hints (optional)
+
+A typical sketch of a a problem without subexercises goes as follows:
 {{{
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
@@ -65383,20 +67035,52 @@ Derive an expression for the area of an ellipse by integrating
 the area under a curve that defines half of the allipse.
 Show each step in the mathematical derivation.
 
-__Hint 1.__ Wikipedia has the formula for the curve.
+!bhint
+Wikipedia has the formula for the curve.
+!ehint
 
-__Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+!bhint
+"Wolframalpha": "http://wolframalpha.com" can perhaps
 compute the integral.
+!ehint
 }}}
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up:
+{{{
+===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
 
+Intro to this exercise. Questions are in subexercises below.
 
-  * A headline at the level of a subsection or subsubsection,    containing one of the words "Exercise:", "Problem:", or    "Project:", followed by a title. (Required.)
-  * A standard label for referring to the exercise. (Optional.)
-  * A name for the file with the result/answer (`file=filename`). (Optional.)
-  * A name for the solution file (`solution=filename`), where the file    name may be a URL. (Optional.)
-  * The running text of the exercise. (Required.)
-  * A sequence of hints, indicated as paragraphs. There can be a    single hint, without any number, or several numbered hints.    (Optional.)
+!bsubex
+Subexercises are numbered a), b), etc.
+
+file=subexer_a.pdf
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+file=subexer_b.pdf
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+}}}
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 ==== Labels, Index, and Citations ====
 
@@ -65924,8 +67608,13 @@ doconce assemble name master.do.txt
 
 Doconce supports ''Exercise'', ''Problem'', and ''Project''. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows:
+An exercise, problem, or project sections contains certain ''elements'':
+
+
+<ul>
+  <li> a headline at the level of a subsection or subsubsection,    containing one of the words "Exercise:", "Problem:", or    "Project:", followed by a title (required)  <li> a label (optional)  <li> a solution file (optional)  <li> name of file with a student solution (optional)  <li> main exercise text (required)  <li> a short answer (optional)  <li> a full solution (optional)  <li> one or more hints (optional)  <li> one or more subexercises (subproblems, subprojects), which can also    contain a text, a short answer, a full solution, name student file    to be handed in, and one or more hints (optional)</ul>
+
+A typical sketch of a a problem without subexercises goes as follows:
 <code>
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
@@ -65936,16 +67625,52 @@ Derive an expression for the area of an ellipse by integrating
 the area under a curve that defines half of the allipse.
 Show each step in the mathematical derivation.
 
-__Hint 1.__ Wikipedia has the formula for the curve.
+!bhint
+Wikipedia has the formula for the curve.
+!ehint
 
-__Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+!bhint
+"Wolframalpha": "http://wolframalpha.com" can perhaps
 compute the integral.
+!ehint
 </code>
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up:
+<code>
+===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
 
+Intro to this exercise. Questions are in subexercises below.
 
-<ul>
-  <li> A headline at the level of a subsection or subsubsection,    containing one of the words "Exercise:", "Problem:", or    "Project:", followed by a title. (Required.)  <li> A standard label for referring to the exercise. (Optional.)  <li> A name for the file with the result/answer (<code>file=filename</code>). (Optional.)  <li> A name for the solution file (<code>solution=filename</code>), where the file    name may be a URL. (Optional.)  <li> The running text of the exercise. (Required.)  <li> A sequence of hints, indicated as paragraphs. There can be a    single hint, without any number, or several numbered hints.    (Optional.)</ul>
+!bsubex
+Subexercises are numbered a), b), etc.
+
+file=subexer_a.pdf
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+file=subexer_b.pdf
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+</code>
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 ==== Labels, Index, and Citations ====
 
@@ -66509,8 +68234,20 @@ doconce assemble name master.do.txt
 
 Doconce supports //Exercise//, //Problem//, and //Project//. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows:
+An exercise, problem, or project sections contains certain //elements//:
+
+
+  * a headline at the level of a subsection or subsubsection,    containing one of the words "Exercise:", "Problem:", or    "Project:", followed by a title (required)
+  * a label (optional)
+  * a solution file (optional)
+  * name of file with a student solution (optional)
+  * main exercise text (required)
+  * a short answer (optional)
+  * a full solution (optional)
+  * one or more hints (optional)
+  * one or more subexercises (subproblems, subprojects), which can also    contain a text, a short answer, a full solution, name student file    to be handed in, and one or more hints (optional)
+
+A typical sketch of a a problem without subexercises goes as follows:
 {{{
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
@@ -66521,20 +68258,52 @@ Derive an expression for the area of an ellipse by integrating
 the area under a curve that defines half of the allipse.
 Show each step in the mathematical derivation.
 
-__Hint 1.__ Wikipedia has the formula for the curve.
+!bhint
+Wikipedia has the formula for the curve.
+!ehint
 
-__Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+!bhint
+"Wolframalpha": "http://wolframalpha.com" can perhaps
 compute the integral.
+!ehint
 }}}
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up:
+{{{
+===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
 
+Intro to this exercise. Questions are in subexercises below.
 
-  * A headline at the level of a subsection or subsubsection,    containing one of the words "Exercise:", "Problem:", or    "Project:", followed by a title. (Required.)
-  * A standard label for referring to the exercise. (Optional.)
-  * A name for the file with the result/answer ({{{file=filename}}}). (Optional.)
-  * A name for the solution file ({{{solution=filename}}}), where the file    name may be a URL. (Optional.)
-  * The running text of the exercise. (Required.)
-  * A sequence of hints, indicated as paragraphs. There can be a    single hint, without any number, or several numbered hints.    (Optional.)
+!bsubex
+Subexercises are numbered a), b), etc.
+
+file=subexer_a.pdf
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+file=subexer_b.pdf
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+}}}
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 
 == Labels, Index, and Citations ==
@@ -67124,8 +68893,23 @@ Exercises
 
 Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows::
+An exercise, problem, or project sections contains certain *elements*:
+
+  - a headline at the level of a subsection or subsubsection,
+    containing one of the words "Exercise:", "Problem:", or
+    "Project:", followed by a title (required)
+  - a label (optional)
+  - a solution file (optional)
+  - name of file with a student solution (optional)
+  - main exercise text (required)
+  - a short answer (optional)
+  - a full solution (optional)
+  - one or more hints (optional)
+  - one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)
+
+A typical sketch of a a problem without subexercises goes as follows::
 
 
         ===== Problem: Derive the Formula for the Area of an Ellipse =====
@@ -67137,24 +68921,53 @@ looks as follows::
         the area under a curve that defines half of the allipse.
         Show each step in the mathematical derivation.
         
-        __Hint 1.__ Wikipedia has the formula for the curve.
+        !bhint
+        Wikipedia has the formula for the curve.
+        !ehint
         
-        __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+        !bhint
+        "Wolframalpha": "http://wolframalpha.com" can perhaps
         compute the integral.
+        !ehint
 
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up::
 
-  - A headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title. (Required.)
-  - A standard label for referring to the exercise. (Optional.)
-  - A name for the file with the result/answer ('file=filename'). (Optional.)
-  - A name for the solution file ('solution=filename'), where the file
-    name may be a URL. (Optional.)
-  - The running text of the exercise. (Required.)
-  - A sequence of hints, indicated as paragraphs. There can be a
-    single hint, without any number, or several numbered hints.
-    (Optional.)
+
+        ===== Exercise: Determine the Distance to the Moon =====
+        label{exer:moondist}
+        
+        Intro to this exercise. Questions are in subexercises below.
+        
+        !bsubex
+        Subexercises are numbered a), b), etc.
+        
+        file=subexer_a.pdf
+        
+        !bans
+        Short answer to subexercise a).
+        !eans
+        
+        !bhint
+        First hint to subexercise a).
+        !ehint
+        
+        !bhint
+        Second hint to subexercise a).
+        !ehint
+        !esubex
+        
+        !bsubex
+        Here goes the text for subexercise b).
+        
+        file=subexer_b.pdf
+        
+        !bhint
+        A hint for this subexercise.
+        !ehint
+        !esubex
+
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 Labels, Index, and Citations
 
@@ -67759,8 +69572,23 @@ Exercises
 
 Doconce supports I{Exercise}, I{Problem}, and I{Project}. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows::
+An exercise, problem, or project sections contains certain I{elements}:
+
+  - a headline at the level of a subsection or subsubsection,
+    containing one of the words "Exercise:", "Problem:", or
+    "Project:", followed by a title (required)
+  - a label (optional)
+  - a solution file (optional)
+  - name of file with a student solution (optional)
+  - main exercise text (required)
+  - a short answer (optional)
+  - a full solution (optional)
+  - one or more hints (optional)
+  - one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)
+
+A typical sketch of a a problem without subexercises goes as follows::
 
 
         ===== Problem: Derive the Formula for the Area of an Ellipse =====
@@ -67772,24 +69600,53 @@ looks as follows::
         the area under a curve that defines half of the allipse.
         Show each step in the mathematical derivation.
         
-        __Hint 1.__ Wikipedia has the formula for the curve.
+        !bhint
+        Wikipedia has the formula for the curve.
+        !ehint
         
-        __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+        !bhint
+        "Wolframalpha": "http://wolframalpha.com" can perhaps
         compute the integral.
+        !ehint
 
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up::
 
-  - A headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title. (Required.)
-  - A standard label for referring to the exercise. (Optional.)
-  - A name for the file with the result/answer (C{file=filename}). (Optional.)
-  - A name for the solution file (C{solution=filename}), where the file
-    name may be a URL. (Optional.)
-  - The running text of the exercise. (Required.)
-  - A sequence of hints, indicated as paragraphs. There can be a
-    single hint, without any number, or several numbered hints.
-    (Optional.)
+
+        ===== Exercise: Determine the Distance to the Moon =====
+        label{exer:moondist}
+        
+        Intro to this exercise. Questions are in subexercises below.
+        
+        !bsubex
+        Subexercises are numbered a), b), etc.
+        
+        file=subexer_a.pdf
+        
+        !bans
+        Short answer to subexercise a).
+        !eans
+        
+        !bhint
+        First hint to subexercise a).
+        !ehint
+        
+        !bhint
+        Second hint to subexercise a).
+        !ehint
+        !esubex
+        
+        !bsubex
+        Here goes the text for subexercise b).
+        
+        file=subexer_b.pdf
+        
+        !bhint
+        A hint for this subexercise.
+        !ehint
+        !esubex
+
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 Labels, Index, and Citations
 ----------------------------
@@ -68429,8 +70286,31 @@ Exercises
 
 Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows::
+An exercise, problem, or project sections contains certain *elements*:
+
+  * a headline at the level of a subsection or subsubsection,
+    containing one of the words "Exercise:", "Problem:", or
+    "Project:", followed by a title (required)
+
+  * a label (optional)
+
+  * a solution file (optional)
+
+  * name of file with a student solution (optional)
+
+  * main exercise text (required)
+
+  * a short answer (optional)
+
+  * a full solution (optional)
+
+  * one or more hints (optional)
+
+  * one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)
+
+A typical sketch of a a problem without subexercises goes as follows::
 
 
         ===== Problem: Derive the Formula for the Area of an Ellipse =====
@@ -68442,29 +70322,53 @@ looks as follows::
         the area under a curve that defines half of the allipse.
         Show each step in the mathematical derivation.
         
-        __Hint 1.__ Wikipedia has the formula for the curve.
+        !bhint
+        Wikipedia has the formula for the curve.
+        !ehint
         
-        __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+        !bhint
+        "Wolframalpha": "http://wolframalpha.com" can perhaps
         compute the integral.
+        !ehint
 
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up::
 
-  * A headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title. (Required.)
 
-  * A standard label for referring to the exercise. (Optional.)
+        ===== Exercise: Determine the Distance to the Moon =====
+        label{exer:moondist}
+        
+        Intro to this exercise. Questions are in subexercises below.
+        
+        !bsubex
+        Subexercises are numbered a), b), etc.
+        
+        file=subexer_a.pdf
+        
+        !bans
+        Short answer to subexercise a).
+        !eans
+        
+        !bhint
+        First hint to subexercise a).
+        !ehint
+        
+        !bhint
+        Second hint to subexercise a).
+        !ehint
+        !esubex
+        
+        !bsubex
+        Here goes the text for subexercise b).
+        
+        file=subexer_b.pdf
+        
+        !bhint
+        A hint for this subexercise.
+        !ehint
+        !esubex
 
-  * A name for the file with the result/answer (file=filename). (Optional.)
-
-  * A name for the solution file (solution=filename), where the file
-    name may be a URL. (Optional.)
-
-  * The running text of the exercise. (Required.)
-
-  * A sequence of hints, indicated as paragraphs. There can be a
-    single hint, without any number, or several numbered hints.
-    (Optional.)
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 Labels, Index, and Citations
 ----------------------------
@@ -69114,8 +71018,31 @@ Exercises
 
 Doconce supports *Exercise*, *Problem*, and *Project*. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows:
+An exercise, problem, or project sections contains certain *elements*:
+
+  * a headline at the level of a subsection or subsubsection,
+    containing one of the words "Exercise:", "Problem:", or
+    "Project:", followed by a title (required)
+
+  * a label (optional)
+
+  * a solution file (optional)
+
+  * name of file with a student solution (optional)
+
+  * main exercise text (required)
+
+  * a short answer (optional)
+
+  * a full solution (optional)
+
+  * one or more hints (optional)
+
+  * one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)
+
+A typical sketch of a a problem without subexercises goes as follows:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
@@ -69127,30 +71054,55 @@ Derive an expression for the area of an ellipse by integrating
 the area under a curve that defines half of the allipse.
 Show each step in the mathematical derivation.
 
-__Hint 1.__ Wikipedia has the formula for the curve.
+!bhint
+Wikipedia has the formula for the curve.
+!ehint
 
-__Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+!bhint
+"Wolframalpha": "http://wolframalpha.com" can perhaps
 compute the integral.
+!ehint
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up:
 
-  * A headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title. (Required.)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===== Exercise: Determine the Distance to the Moon =====
+\label{exer:moondist}
 
-  * A standard label for referring to the exercise. (Optional.)
+Intro to this exercise. Questions are in subexercises below.
 
-  * A name for the file with the result/answer (`file=filename`). (Optional.)
+!bsubex
+Subexercises are numbered a), b), etc.
 
-  * A name for the solution file (`solution=filename`), where the file
-    name may be a URL. (Optional.)
+file=subexer_a.pdf
 
-  * The running text of the exercise. (Required.)
+!bans
+Short answer to subexercise a).
+!eans
 
-  * A sequence of hints, indicated as paragraphs. There can be a
-    single hint, without any number, or several numbered hints.
-    (Optional.)
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+file=subexer_b.pdf
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 Labels, Index, and Citations
 ----------------------------
@@ -69221,6 +71173,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
@@ -69233,6 +71189,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
@@ -69245,6 +71205,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format pdflatex
@@ -69404,7 +71368,7 @@ LaTeX Warning: Reference `eq2a' on page 7 undefined on input line 479.
 
 LaTeX Warning: Reference `my:eq1' on page 7 undefined on input line 479.
 
-[7] (./testdoc.out.pyg [8])
+[7] (./testdoc.out.pyg) [8] (./testdoc.out.pyg)
 No file testdoc.ind.
 [9]
 
@@ -69426,18 +71390,18 @@ public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
 onts/cm/cmbx8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx
 9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmitt10.pfb></us
 r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/p
-ublic/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb
-></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/shar
-e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-tex
-live/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/
-type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pfb
-></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (9 pages, 1404984 bytes).
+mf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/pu
+blic/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss12.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msam
+10.pfb>
+Output written on testdoc.pdf (9 pages, 1402677 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -69459,6 +71423,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 output in testdoc.txt
 + doconce format st testdoc.do.txt
@@ -69469,6 +71437,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 output in testdoc.st
 + doconce format sphinx testdoc.do.txt
@@ -69485,6 +71457,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format sphinx
@@ -69506,6 +71482,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
@@ -69518,6 +71498,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 output in testdoc.epytext
 + doconce format pandoc testdoc.do.txt
@@ -69528,6 +71512,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
@@ -69550,6 +71538,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format mwiki
@@ -69566,6 +71558,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format cwiki
@@ -69579,6 +71575,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format gwiki
@@ -69597,6 +71597,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
@@ -69628,6 +71632,10 @@ copying from regex "subroutine" until ""
 copying after regex "a comment" until "^C\s+END1"
      file: ../doc/manual/__testcode.f,  lines 2-11  (format: fcod)
 copy complete file ../doc/manual/__testcode.f  (format: fpro)
+
+warning: open solution in exercise "Flip a Coin" with a line of
+text before the code! (Now "Code:" is inserted)
+
 found info about 3 exercises, written to .testdoc.exerinfo
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
@@ -71609,13 +73617,14 @@ writing output... [100%] manual
 
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1682: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1682: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1947: WARNING: undefined label: ... (if the link has no caption the label must precede a section header)
 writing additional files... (0 module code pages) genindex search
 copying images... [100%] figs/streamtubes.png
 
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 4 warnings.
+build succeeded, 5 warnings.
 
 Build finished. The HTML pages are in _build/html.
 + make latex
@@ -71631,12 +73640,13 @@ processing DoconceManual.tex... index manual
 resolving references...
 None:None: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
 None:None: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+None:None: WARNING: undefined label: ... (if the link has no caption the label must precede a section header)
 writing... /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.do.txt
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.html
 done
 copying images... figs/streamtubes.png
 copying TeX support files... done
-build succeeded, 5 warnings.
+build succeeded, 6 warnings.
 
 Build finished; the LaTeX files are in _build/latex.
 Run `make' in that directory to run these through (pdf)latex (use `make latexpdf' here to do that automatically).
@@ -71833,7 +73843,7 @@ n input line 1769.
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 29 undefined on input 
 line 1769.
 
-[29] [30] [31]
+[29] [30] [31] [32]
 ! FancyVerb Error:
   Empty verbatim environment
 .
@@ -71841,43 +73851,43 @@ line 1769.
 \space \space #1
 }
                                                   
-l.2089 \end{Verbatim}
+l.2139 \end{Verbatim}
                      
 ? OK, entering \nonstopmode...
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2095.
+(amsmath)                 on input line 2145.
 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2095 \end{gather}
+l.2145 \end{gather}
                    
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2095 \end{gather}
+l.2145 \end{gather}
                    
-[32]
-Underfull \hbox (badness 10000) in paragraph at lines 2135--2141
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 2185--2191
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax' \T1/ptm/m/n/10 (en-abled by de-fault)
 
-Underfull \hbox (badness 10000) in paragraph at lines 2135--2141
+Underfull \hbox (badness 10000) in paragraph at lines 2185--2191
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 'matplotlib.sphinxext.mathmpl' \T1/ptm/m/n/10
  (dis-abled by de-fault) lines, and un-com-ment the
-[33] [34]
+[34] [35]
 
-LaTeX Warning: Hyper reference `manual:doconce2formats' on page 35 undefined on
- input line 2283.
+LaTeX Warning: Hyper reference `manual:doconce2formats' on page 36 undefined on
+ input line 2333.
 
-[35] [36] [37] [38]
+[36] [37] [38]
 Chapter 7.
 [39] [40]
 
 LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 41 undefine
-d on input line 2645.
+d on input line 2695.
 
 [41] [42] [43] [44] [45] [46]
 Chapter 8.
@@ -71908,7 +73918,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on DoconceManual.pdf (55 pages, 386016 bytes).
+Output written on DoconceManual.pdf (55 pages, 387023 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -71934,8 +73944,11 @@ figure file figs/streamtubes:
     can use figs/streamtubes.png for format rst
 output in manual.rst
 + rst2html.py manual.rst
+manual.rst:1765: (ERROR/3) Unknown target name: "...".
 + rst2xml.py manual.rst
+manual.rst:1765: (ERROR/3) Unknown target name: "...".
 + rst2latex.py manual.rst
+manual.rst:1765: (ERROR/3) Unknown target name: "...".
 + doconce subst \.png  manual.rst.tex
 \.png replaced by  in manual.rst.tex
 + latex manual.rst.tex
@@ -71961,13 +73974,16 @@ Package cmap Warning: pdftex in DVI mode - exiting.
 (/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu)
 (/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu)
 (/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def))
 (/usr/share/texmf-texlive/tex/latex/float/float.sty)
 (/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
 (/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
-(/etc/texmf/tex/latex/config/graphics.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def)))
+(/etc/texmf/tex/latex/config/graphics.cfg)))
 (/usr/share/texmf-texlive/tex/latex/tools/longtable.sty)
 (/usr/share/texmf-texlive/tex/latex/caption/ltcaption.sty)
 (/usr/share/texmf-texlive/tex/latex/tools/array.sty)
@@ -72000,16 +74016,13 @@ Implicit mode ON; LaTeX internals redefined
 (/usr/share/texmf-texlive/tex/latex/hyperref/pdfmark.def))
 No file manual.rst.aux.
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1ptm.fd)
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def))
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty))
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd)
-Overfull \hbox (1.15796pt too wide) in paragraph at lines 98--104
+Overfull \hbox (1.15796pt too wide) in paragraph at lines 121--127
 \T1/ptm/m/n/10 etc.). The Do-conce markup lan-guage sup-port this work-ing stra
 t-
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd) [1]
@@ -72018,545 +74031,552 @@ t-
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omxztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd)
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 206--206
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 229--229
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
 [2]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 264--265
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 287--288
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 305--306
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 328--329
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
 
-Overfull \hbox (16.13748pt too wide) in paragraph at lines 312--315
+Overfull \hbox (16.13748pt too wide) in paragraph at lines 335--338
 []\T1/ptm/m/n/10 It may hap-pen that you need ad-di-tional style files, you can
  run a script, \T1/pcr/m/n/10 cp2texmf.sh\T1/ptm/m/n/10 : 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 317--317
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 340--340
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 [3]
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 344--345
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 367--368
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
 
-Overfull \hbox (185.00006pt too wide) in paragraph at lines 372--373
+Overfull \hbox (185.00006pt too wide) in paragraph at lines 395--396
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
 s/trunk/docutils  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 382--385
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 405--408
 []\T1/pcr/m/n/10 sudo apt-get install unovonv libreoffice libreoffice-dmaths 
 [4]
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 435--436
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 458--459
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
 
-Overfull \hbox (179.00006pt too wide) in paragraph at lines 538--539
+Overfull \hbox (179.00006pt too wide) in paragraph at lines 561--562
 \T1/pcr/m/n/10 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5  
    # preprocess  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 540--542
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 563--565
 []\T1/pcr/m/n/10 Terminal> doconce format latex yourdoc extra_sections=True VAR
 1=5  # mako 
 
-Overfull \hbox (30.7872pt too wide) in paragraph at lines 544--548
+Overfull \hbox (30.7872pt too wide) in paragraph at lines 567--571
 []\T1/ptm/m/n/10 The vari-able \T1/pcr/m/n/10 FORMAT \T1/ptm/m/n/10 is al-ways 
 de-fined as the cur-rent for-mat when run-ning \T1/pcr/m/n/10 preprocess\T1/ptm
 /m/n/10 .
 [5]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 554--557
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 577--580
 []\T1/pcr/m/n/10 Terminal> doconce format latex mydoc --skip_inline_comments 
 
-Overfull \hbox (50.49731pt too wide) in paragraph at lines 589--595
+Overfull \hbox (50.49731pt too wide) in paragraph at lines 612--618
 \T1/ptm/m/n/10 blocks are type-set with aid of this pack-age. The command-line 
 ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
 
-Overfull \hbox (0.81818pt too wide) in paragraph at lines 589--595
+Overfull \hbox (0.81818pt too wide) in paragraph at lines 612--618
 \T1/ptm/m/n/10 tags. The op-tion \T1/pcr/m/n/10 --pygments-html-linenos \T1/ptm
 /m/n/10 turns on line num-bers in Pygments-
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 609--612
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 632--635
 []\T1/pcr/m/n/10 Terminal> doconce format html mydoc --html-template=mytemplate
 .html 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 633--636
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 656--659
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
 [6]
-Overfull \hbox (11.29898pt too wide) in paragraph at lines 645--652
+Overfull \hbox (11.29898pt too wide) in paragraph at lines 668--675
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 655--657
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 678--680
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 673--675
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 696--698
 []\T1/pcr/m/n/10 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd 
 
 
-Overfull \hbox (15.73763pt too wide) in paragraph at lines 696--699
+Overfull \hbox (15.73763pt too wide) in paragraph at lines 719--722
 []\T1/ptm/m/it/10 Step 1. \T1/ptm/m/n/10 Fil-ter the do-conce text to a pre-LaT
 eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 7 undefined on inpu
-t line 706.
+t line 729.
 
 
-Overfull \hbox (78.51936pt too wide) in paragraph at lines 704--709
+Overfull \hbox (78.51936pt too wide) in paragraph at lines 727--732
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 731--733
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 754--756
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 [7]
-Overfull \hbox (47.28717pt too wide) in paragraph at lines 735--741
+Overfull \hbox (47.28717pt too wide) in paragraph at lines 758--764
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 784--785
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 807--808
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 787--787
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 810--810
 []          \T1/pcr/m/n/10 "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\en
 d{quote}" \  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 788--790
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 811--813
 []          \T1/pcr/m/n/10 fpro=minted fcod=minted shcod=Verbatim envir=ans:nt 
 
 
-Overfull \hbox (92.17801pt too wide) in paragraph at lines 792--801
+Overfull \hbox (92.17801pt too wide) in paragraph at lines 815--824
 \T1/ptm/m/n/10 only the en-vi-ron-ment name is given (such as \T1/pcr/m/n/10 mi
 nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
 }
 
-Overfull \hbox (54.6875pt too wide) in paragraph at lines 792--801
+Overfull \hbox (54.6875pt too wide) in paragraph at lines 815--824
 \T1/ptm/m/n/10 fy-ing \T1/pcr/m/n/10 envir=ans:nt \T1/ptm/m/n/10 means that all
  other en-vi-ron-ments are type-set with the \T1/pcr/m/n/10 anslistings.sty
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 811--812
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 834--835
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 [8]
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 813--813
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 836--836
 []\T1/pcr/m/n/10 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 814--816
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 837--839
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
 
-Overfull \hbox (27.6591pt too wide) in paragraph at lines 836--843
+Overfull \hbox (27.6591pt too wide) in paragraph at lines 859--866
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
  or \T1/pcr/m/n/10 $HOME/.ptex2tex.cfg\T1/ptm/m/n/10 ),
 
-Overfull \hbox (4.47917pt too wide) in paragraph at lines 861--864
+Overfull \hbox (4.47917pt too wide) in paragraph at lines 884--887
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 905--908
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 928--931
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
 [9]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 930--931
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 953--954
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 932--932
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 955--955
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 933--933
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 956--956
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 934--936
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 957--959
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
 
-Overfull \hbox (13.07689pt too wide) in paragraph at lines 975--976
+Overfull \hbox (13.07689pt too wide) in paragraph at lines 998--999
 [][][][][][][] 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 993--994
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1016--1017
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 995--995
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 1018--1018
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
 [10]
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 1020--1026
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 1043--1049
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
 
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 1058--1061
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 1081--1084
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 1062--1065
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 1085--1088
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [11] [12]
-Overfull \hbox (13.18697pt too wide) in paragraph at lines 1173--1178
+Overfull \hbox (13.18697pt too wide) in paragraph at lines 1196--1201
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][],
 
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1211--1222
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1234--1245
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [13] [14]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 1357--1362
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 1380--1385
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1387--1390
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1410--1413
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1398--1401
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1421--1424
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1409--1409
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1432--1432
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1410--1410
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1433--1433
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1427--1427
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1450--1450
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 [15]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1479--1480
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1502--1503
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 [16]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1525--1528
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1548--1551
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
 <figs/streamtubes.eps>
-Overfull \hbox (2.15817pt too wide) in paragraph at lines 1552--1555
+Overfull \hbox (2.15817pt too wide) in paragraph at lines 1575--1578
 []\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
 1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1555--1556
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1578--1579
 \T1/pcr/m/n/10 montage file1 file2 ... file4 -geometry +2+2  result  
 [17]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1581--1584
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1604--1607
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1609--1612
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1632--1635
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1614--1618
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1637--1641
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1619--1625
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1642--1648
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 18 un
-defined on input line 1637.
+defined on input line 1660.
 
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1635--1638
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1658--1661
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 [18]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1663--1666
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1686--1689
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1676--1678
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1699--1701
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1697--1700
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1720--1723
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 
-Overfull \hbox (22.65768pt too wide) in paragraph at lines 1724--1728
+Overfull \hbox (22.65768pt too wide) in paragraph at lines 1747--1751
 \T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
 RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1748--1749
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1771--1772
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 [19]
-Overfull \hbox (1.1292pt too wide) in paragraph at lines 1754--1759
+Overfull \hbox (1.1292pt too wide) in paragraph at lines 1777--1782
 []\T1/ptm/m/n/10 Then you can link to \T1/pcr/m/n/10 _static/make.sh.html \T1/p
 tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1759--1762
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1782--1785
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1803--1806
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1826--1829
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 20 undef
-ined on input line 1825.
+ined on input line 1848.
 
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 20 undef
-ined on input line 1829.
+ined on input line 1852.
 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1817--1830
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1840--1853
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1844--1844
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1867--1867
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1845--1847
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1868--1870
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-LaTeX Warning: Hyper reference `id4' on page 20 undefined on input line 1869.
+LaTeX Warning: Hyper reference `id4' on page 20 undefined on input line 1892.
 
 [20]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1877--1877
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1900--1900
 []\T1/pcr/m/n/10 # Here are some comment lines that do not affect any formattin
 g.  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1878--1878
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1901--1901
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1911--1913
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1934--1936
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
 
-LaTeX Warning: Hyper reference `fig-viz' on page 21 undefined on input line 192
-9.
+LaTeX Warning: Hyper reference `fig-viz' on page 21 undefined on input line 195
+2.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 21 u
-ndefined on input line 1931.
+ndefined on input line 1954.
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 21 undefined on inp
-ut line 1931.
+ut line 1954.
 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1927--1936
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1950--1959
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-LaTeX Warning: Hyper reference `id4' on page 21 undefined on input line 1938.
+LaTeX Warning: Hyper reference `id4' on page 21 undefined on input line 1961.
 
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1937--1939
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1960--1962
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 [21]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1962--1965
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1985--1988
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1980--1983
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2003--2006
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2011--2011
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2034--2034
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2012--2012
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2035--2035
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (7.29897pt too wide) in paragraph at lines 2030--2038
+Overfull \hbox (7.29897pt too wide) in paragraph at lines 2053--2061
 \T1/ptm/m/n/10 ther by man-ual edit-ing of \T1/pcr/m/n/10 myfile.bbl \T1/ptm/m/
 n/10 or us-ing \T1/pcr/m/n/10 doconce bbl2rst myfile.bbl
 [22]
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 2043--2045
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 2066--2068
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 2046--2049
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 2069--2072
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [23]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2163--2164
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2186--2187
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
-[24]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2237--2240
+
+Overfull \hbox (21.27702pt too wide) in paragraph at lines 2208--2213
+[]\T1/ptm/m/n/10 The so-lu-tion en-vi-ron-ment al-lows in-line so-lu-tion as an
+ al-ter-na-tive to the \T1/pcr/m/n/10 solution=...
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2216--2217
+\T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
+[24] [25]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2312--2315
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[25]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2319--2321
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2394--2396
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[26]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2436--2436
+[26] [27]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2511--2511
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2437--2437
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2512--2512
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2446--2446
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2521--2521
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2447--2447
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2522--2522
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-[27]
-Overfull \hbox (3.0pt too wide) in paragraph at lines 2463--2470
+
+Overfull \hbox (3.0pt too wide) in paragraph at lines 2538--2545
 \T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
-
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2497--2503
+[28]
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2572--2578
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2497--2503
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2572--2578
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2497--2503
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2572--2578
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[28]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2549--2552
+
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2624--2627
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2584--2584
+[29]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2659--2659
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2585--2585
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2660--2660
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2601--2613
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2676--2688
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2626--2627
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2701--2702
 \T1/pcr/m/n/10 # If PNGFIGS is defined, PNG files are used, otherwise Encapsula
 ted  
-[29]
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2636--2636
+[30]
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2711--2711
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2638--2638
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2713--2713
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001.eps}}  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2642--2642
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2717--2717
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2644--2644
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2719--2719
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010.eps}}  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2654--2654
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2729--2729
 []\T1/pcr/m/n/10 # Use default Doconce figure handling for all other formats  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2656--2656
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2731--2731
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0001, width=400] Wavepacket at time 0.
 1 s.  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2658--2658
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2733--2733
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0010, width=400] Wavepacket at time 0.
 2 s.  
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 30 undef
-ined on input line 2665.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 31 undef
+ined on input line 2740.
 
-[30]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2713--2713
-[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [31]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2799--2801
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2788--2788
+[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
+[32]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2874--2876
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
-[32]
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2861--2863
+[33]
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2936--2938
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[33]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2983--2986
+[34]
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 3058--3061
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 3000--3003
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 3075--3078
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3007--3010
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3082--3085
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3046--3047
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3121--3122
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3049--3051
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3124--3126
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[34] [35]
+[35]
 
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 36 un
-defined on input line 3190.
+defined on input line 3265.
 
-[36]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3357--3357
+[36] [37]
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3432--3432
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3361--3361
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3436--3436
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-[37]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3379--3379
-[]\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
-n.  
 
-Overfull \hbox (131.00006pt too wide) in paragraph at lines 3399--3399
-[]\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
-section]'  
-
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3400--3400
-[]\T1/pcr/m/n/10 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $
-file  
-
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3401--3401
-[]\T1/pcr/m/n/10 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file  
-
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3402--3402
-[]\T1/pcr/m/n/10 doconce replace '% begin theorem' '\begin{theorem}' $file  
-
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3403--3405
-[]\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3429--3429
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3454--3454
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 [38]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3474--3475
+Overfull \hbox (131.00006pt too wide) in paragraph at lines 3474--3474
+[]\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
+section]'  
+
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3475--3475
+[]\T1/pcr/m/n/10 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $
+file  
+
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3476--3476
+[]\T1/pcr/m/n/10 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file  
+
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3477--3477
+[]\T1/pcr/m/n/10 doconce replace '% begin theorem' '\begin{theorem}' $file  
+
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3478--3480
+[]\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
+
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3504--3504
+[]\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
+n.  
+[39]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3549--3550
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3476--3476
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3551--3551
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3479--3479
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3554--3554
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[39] [40]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3673--3676
+[40] [41]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3748--3751
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[41]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3725--3725
+
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3800--3800
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3727--3727
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3802--3802
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3728--3728
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3803--3803
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3729--3729
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3804--3804
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3730--3730
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3805--3805
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[42] [43] (./manual.rst.aux)
+[42] [43] [44] (./manual.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -72565,7 +74585,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (43 pages, 190556 bytes).
+Output written on manual.rst.dvi (44 pages, 194468 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -72590,13 +74610,16 @@ Package cmap Warning: pdftex in DVI mode - exiting.
 (/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu)
 (/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu)
 (/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def)
+(/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def))
 (/usr/share/texmf-texlive/tex/latex/float/float.sty)
 (/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty)
 (/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
 (/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
-(/etc/texmf/tex/latex/config/graphics.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def)))
+(/etc/texmf/tex/latex/config/graphics.cfg)))
 (/usr/share/texmf-texlive/tex/latex/tools/longtable.sty)
 (/usr/share/texmf-texlive/tex/latex/caption/ltcaption.sty)
 (/usr/share/texmf-texlive/tex/latex/tools/array.sty)
@@ -72628,13 +74651,10 @@ Implicit mode ON; LaTeX internals redefined
 (/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
 (/usr/share/texmf-texlive/tex/latex/hyperref/pdfmark.def)) (./manual.rst.aux)
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1ptm.fd)
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
-(/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def))
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./manual.rst.out)
 (./manual.rst.out) (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd)
-Overfull \hbox (1.15796pt too wide) in paragraph at lines 98--104
+Overfull \hbox (1.15796pt too wide) in paragraph at lines 121--127
 \T1/ptm/m/n/10 etc.). The Do-conce markup lan-guage sup-port this work-ing stra
 t-
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd) [1]
@@ -72643,504 +74663,511 @@ t-
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/omxztmcm.fd)
 (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd)
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 206--206
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 229--229
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
 [2]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 264--265
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 287--288
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 305--306
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 328--329
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
 
-Overfull \hbox (16.13748pt too wide) in paragraph at lines 312--315
+Overfull \hbox (16.13748pt too wide) in paragraph at lines 335--338
 []\T1/ptm/m/n/10 It may hap-pen that you need ad-di-tional style files, you can
  run a script, \T1/pcr/m/n/10 cp2texmf.sh\T1/ptm/m/n/10 : 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 317--317
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 340--340
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
 [3]
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 344--345
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 367--368
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
 
-Overfull \hbox (185.00006pt too wide) in paragraph at lines 372--373
+Overfull \hbox (185.00006pt too wide) in paragraph at lines 395--396
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
 s/trunk/docutils  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 382--385
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 405--408
 []\T1/pcr/m/n/10 sudo apt-get install unovonv libreoffice libreoffice-dmaths 
 [4]
-Overfull \hbox (161.00006pt too wide) in paragraph at lines 435--436
+Overfull \hbox (161.00006pt too wide) in paragraph at lines 458--459
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
 
-Overfull \hbox (179.00006pt too wide) in paragraph at lines 538--539
+Overfull \hbox (179.00006pt too wide) in paragraph at lines 561--562
 \T1/pcr/m/n/10 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5  
    # preprocess  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 540--542
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 563--565
 []\T1/pcr/m/n/10 Terminal> doconce format latex yourdoc extra_sections=True VAR
 1=5  # mako 
 
-Overfull \hbox (30.7872pt too wide) in paragraph at lines 544--548
+Overfull \hbox (30.7872pt too wide) in paragraph at lines 567--571
 []\T1/ptm/m/n/10 The vari-able \T1/pcr/m/n/10 FORMAT \T1/ptm/m/n/10 is al-ways 
 de-fined as the cur-rent for-mat when run-ning \T1/pcr/m/n/10 preprocess\T1/ptm
 /m/n/10 .
 [5]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 554--557
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 577--580
 []\T1/pcr/m/n/10 Terminal> doconce format latex mydoc --skip_inline_comments 
 
-Overfull \hbox (50.49731pt too wide) in paragraph at lines 589--595
+Overfull \hbox (50.49731pt too wide) in paragraph at lines 612--618
 \T1/ptm/m/n/10 blocks are type-set with aid of this pack-age. The command-line 
 ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
 
-Overfull \hbox (0.81818pt too wide) in paragraph at lines 589--595
+Overfull \hbox (0.81818pt too wide) in paragraph at lines 612--618
 \T1/ptm/m/n/10 tags. The op-tion \T1/pcr/m/n/10 --pygments-html-linenos \T1/ptm
 /m/n/10 turns on line num-bers in Pygments-
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 609--612
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 632--635
 []\T1/pcr/m/n/10 Terminal> doconce format html mydoc --html-template=mytemplate
 .html 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 633--636
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 656--659
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
 [6]
-Overfull \hbox (11.29898pt too wide) in paragraph at lines 645--652
+Overfull \hbox (11.29898pt too wide) in paragraph at lines 668--675
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 655--657
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 678--680
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 673--675
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 696--698
 []\T1/pcr/m/n/10 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd 
 
 
-Overfull \hbox (15.73763pt too wide) in paragraph at lines 696--699
+Overfull \hbox (15.73763pt too wide) in paragraph at lines 719--722
 []\T1/ptm/m/it/10 Step 1. \T1/ptm/m/n/10 Fil-ter the do-conce text to a pre-LaT
 eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
 
-Overfull \hbox (78.51936pt too wide) in paragraph at lines 704--709
+Overfull \hbox (78.51936pt too wide) in paragraph at lines 727--732
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 731--733
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 754--756
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 [7]
-Overfull \hbox (47.28717pt too wide) in paragraph at lines 735--741
+Overfull \hbox (47.28717pt too wide) in paragraph at lines 758--764
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 784--785
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 807--808
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 787--787
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 810--810
 []          \T1/pcr/m/n/10 "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\en
 d{quote}" \  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 788--790
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 811--813
 []          \T1/pcr/m/n/10 fpro=minted fcod=minted shcod=Verbatim envir=ans:nt 
 
 
-Overfull \hbox (92.17801pt too wide) in paragraph at lines 792--801
+Overfull \hbox (92.17801pt too wide) in paragraph at lines 815--824
 \T1/ptm/m/n/10 only the en-vi-ron-ment name is given (such as \T1/pcr/m/n/10 mi
 nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
 }
 
-Overfull \hbox (54.6875pt too wide) in paragraph at lines 792--801
+Overfull \hbox (54.6875pt too wide) in paragraph at lines 815--824
 \T1/ptm/m/n/10 fy-ing \T1/pcr/m/n/10 envir=ans:nt \T1/ptm/m/n/10 means that all
  other en-vi-ron-ments are type-set with the \T1/pcr/m/n/10 anslistings.sty
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 811--812
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 834--835
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 [8]
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 813--813
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 836--836
 []\T1/pcr/m/n/10 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 814--816
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 837--839
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
 
-Overfull \hbox (27.6591pt too wide) in paragraph at lines 836--843
+Overfull \hbox (27.6591pt too wide) in paragraph at lines 859--866
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
  or \T1/pcr/m/n/10 $HOME/.ptex2tex.cfg\T1/ptm/m/n/10 ),
 
-Overfull \hbox (4.47917pt too wide) in paragraph at lines 861--864
+Overfull \hbox (4.47917pt too wide) in paragraph at lines 884--887
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 905--908
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 928--931
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
 [9]
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 930--931
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 953--954
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 932--932
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 955--955
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 933--933
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 956--956
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 934--936
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 957--959
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
 
-Overfull \hbox (13.07689pt too wide) in paragraph at lines 975--976
+Overfull \hbox (13.07689pt too wide) in paragraph at lines 998--999
 [][][][][][][] 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 993--994
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1016--1017
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 995--995
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 1018--1018
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
 [10]
-Overfull \hbox (16.80876pt too wide) in paragraph at lines 1020--1026
+Overfull \hbox (16.80876pt too wide) in paragraph at lines 1043--1049
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
 
-Overfull \hbox (6.80879pt too wide) in paragraph at lines 1058--1061
+Overfull \hbox (6.80879pt too wide) in paragraph at lines 1081--1084
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 
-Overfull \hbox (15.89764pt too wide) in paragraph at lines 1062--1065
+Overfull \hbox (15.89764pt too wide) in paragraph at lines 1085--1088
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
 [11] [12]
-Overfull \hbox (13.18697pt too wide) in paragraph at lines 1173--1178
+Overfull \hbox (13.18697pt too wide) in paragraph at lines 1196--1201
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][],
 
-Overfull \hbox (1.98695pt too wide) in paragraph at lines 1211--1222
+Overfull \hbox (1.98695pt too wide) in paragraph at lines 1234--1245
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
 [13] [14]
-Overfull \hbox (1.65791pt too wide) in paragraph at lines 1357--1362
+Overfull \hbox (1.65791pt too wide) in paragraph at lines 1380--1385
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1387--1390
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 1410--1413
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 1398--1401
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 1421--1424
 []\T1/pcr/m/n/10 name Email: somename@site.net at institution1 and institution2
  
 
-Overfull \hbox (467.00006pt too wide) in paragraph at lines 1409--1409
+Overfull \hbox (467.00006pt too wide) in paragraph at lines 1432--1432
 []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, S
 imula Research Laboratory and Dept. of Informatics, Univ. of Oslo  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 1410--1410
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 1433--1433
 []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cybe
 rspace Inc.  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1427--1427
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1450--1450
 []\T1/pcr/m/n/10 [1] Center for Biomedical Computing, Simula Research Laborator
 y  
 [15]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1479--1480
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1502--1503
 \T1/pcr/m/n/10 __Abstract.__ The following text just attempts to exemplify  
 [16]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1525--1528
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1548--1551
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
 <figs/streamtubes.eps>
-Overfull \hbox (2.15817pt too wide) in paragraph at lines 1552--1555
+Overfull \hbox (2.15817pt too wide) in paragraph at lines 1575--1578
 []\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
 1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1555--1556
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1578--1579
 \T1/pcr/m/n/10 montage file1 file2 ... file4 -geometry +2+2  result  
 [17]
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1581--1584
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1604--1607
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1609--1612
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1632--1635
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
-Overfull \hbox (18.18745pt too wide) in paragraph at lines 1614--1618
+Overfull \hbox (18.18745pt too wide) in paragraph at lines 1637--1641
 []\T1/ptm/m/n/10 The HTML, reST, and Sphinx for-mats can also treat file-names 
 of the form \T1/pcr/m/n/10 myframes*\T1/ptm/m/n/10 .
 
-Overfull \hbox (2.6077pt too wide) in paragraph at lines 1619--1625
+Overfull \hbox (2.6077pt too wide) in paragraph at lines 1642--1648
 []\T1/ptm/m/n/10 Many pub-lish their sci-en-tific movies on YouTube, and Do-con
 ce rec-og-nizes YouTube
 
-Overfull \hbox (69.25586pt too wide) in paragraph at lines 1635--1638
+Overfull \hbox (69.25586pt too wide) in paragraph at lines 1658--1661
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
 [18]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 1663--1666
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 1686--1689
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 1676--1678
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 1699--1701
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1697--1700
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1720--1723
 []\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
 
-Overfull \hbox (22.65768pt too wide) in paragraph at lines 1724--1728
+Overfull \hbox (22.65768pt too wide) in paragraph at lines 1747--1751
 \T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
 RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1748--1749
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1771--1772
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 [19]
-Overfull \hbox (1.1292pt too wide) in paragraph at lines 1754--1759
+Overfull \hbox (1.1292pt too wide) in paragraph at lines 1777--1782
 []\T1/ptm/m/n/10 Then you can link to \T1/pcr/m/n/10 _static/make.sh.html \T1/p
 tm/m/n/10 in-stead of \T1/pcr/m/n/10 subdir/make.sh\T1/ptm/m/n/10 .
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1759--1762
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1782--1785
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1803--1806
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 1826--1829
 []\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
 
-Overfull \hbox (22.22789pt too wide) in paragraph at lines 1817--1830
+Overfull \hbox (22.22789pt too wide) in paragraph at lines 1840--1853
 \T1/ptm/m/n/10 ar-gu-ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 
 (see the chap-ter [][][][][][]
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 1844--1844
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 1867--1867
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 1845--1847
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 1868--1870
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 [20]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 1877--1877
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 1900--1900
 []\T1/pcr/m/n/10 # Here are some comment lines that do not affect any formattin
 g.  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1878--1878
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1901--1901
 []\T1/pcr/m/n/10 # These lines are converted to comments in the output format. 
  
 
-Overfull \hbox (83.00006pt too wide) in paragraph at lines 1911--1913
+Overfull \hbox (83.00006pt too wide) in paragraph at lines 1934--1936
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
 
-Overfull \hbox (21.44621pt too wide) in paragraph at lines 1927--1936
+Overfull \hbox (21.44621pt too wide) in paragraph at lines 1950--1959
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-Overfull \hbox (27.01674pt too wide) in paragraph at lines 1937--1939
+Overfull \hbox (27.01674pt too wide) in paragraph at lines 1960--1962
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 [21]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1962--1965
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1985--1988
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 1980--1983
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2003--2006
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2011--2011
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2034--2034
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2012--2012
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2035--2035
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
 
-Overfull \hbox (7.29897pt too wide) in paragraph at lines 2030--2038
+Overfull \hbox (7.29897pt too wide) in paragraph at lines 2053--2061
 \T1/ptm/m/n/10 ther by man-ual edit-ing of \T1/pcr/m/n/10 myfile.bbl \T1/ptm/m/
 n/10 or us-ing \T1/pcr/m/n/10 doconce bbl2rst myfile.bbl
 [22]
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 2043--2045
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 2066--2068
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 2046--2049
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 2069--2072
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
 [23]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2163--2164
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2186--2187
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
-[24]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2237--2240
+
+Overfull \hbox (21.27702pt too wide) in paragraph at lines 2208--2213
+[]\T1/ptm/m/n/10 The so-lu-tion en-vi-ron-ment al-lows in-line so-lu-tion as an
+ al-ter-na-tive to the \T1/pcr/m/n/10 solution=...
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2216--2217
+\T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
+[24] [25]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2312--2315
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[25]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2319--2321
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2394--2396
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[26]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2436--2436
+[26] [27]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2511--2511
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2437--2437
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2512--2512
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2446--2446
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2521--2521
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2447--2447
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2522--2522
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
-[27]
-Overfull \hbox (3.0pt too wide) in paragraph at lines 2463--2470
+
+Overfull \hbox (3.0pt too wide) in paragraph at lines 2538--2545
 \T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
-
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2497--2503
+[28]
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2572--2578
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2497--2503
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2572--2578
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2497--2503
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2572--2578
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[28]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2549--2552
+
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2624--2627
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2584--2584
+[29]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2659--2659
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2585--2585
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 2660--2660
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
 
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2601--2613
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2676--2688
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2626--2627
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2701--2702
 \T1/pcr/m/n/10 # If PNGFIGS is defined, PNG files are used, otherwise Encapsula
 ted  
-[29]
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2636--2636
+[30]
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2711--2711
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2638--2638
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2713--2713
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001.eps}}  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2642--2642
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2717--2717
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2644--2644
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2719--2719
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010.eps}}  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2654--2654
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2729--2729
 []\T1/pcr/m/n/10 # Use default Doconce figure handling for all other formats  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2656--2656
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2731--2731
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0001, width=400] Wavepacket at time 0.
 1 s.  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2658--2658
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2733--2733
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0010, width=400] Wavepacket at time 0.
 2 s.  
-[30]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2713--2713
-[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [31]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2799--2801
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2788--2788
+[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
+[32]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2874--2876
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
-[32]
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2861--2863
+[33]
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 2936--2938
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[33]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2983--2986
+[34]
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 3058--3061
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 3000--3003
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 3075--3078
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3007--3010
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3082--3085
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3046--3047
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3121--3122
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3049--3051
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3124--3126
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[34] [35] [36]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3357--3357
+[35] [36] [37]
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3432--3432
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3361--3361
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3436--3436
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-[37]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3379--3379
-[]\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
-n.  
 
-Overfull \hbox (131.00006pt too wide) in paragraph at lines 3399--3399
-[]\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
-section]'  
-
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3400--3400
-[]\T1/pcr/m/n/10 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $
-file  
-
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3401--3401
-[]\T1/pcr/m/n/10 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file  
-
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3402--3402
-[]\T1/pcr/m/n/10 doconce replace '% begin theorem' '\begin{theorem}' $file  
-
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3403--3405
-[]\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3429--3429
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3454--3454
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 [38]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3474--3475
+Overfull \hbox (131.00006pt too wide) in paragraph at lines 3474--3474
+[]\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
+section]'  
+
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3475--3475
+[]\T1/pcr/m/n/10 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $
+file  
+
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3476--3476
+[]\T1/pcr/m/n/10 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file  
+
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3477--3477
+[]\T1/pcr/m/n/10 doconce replace '% begin theorem' '\begin{theorem}' $file  
+
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3478--3480
+[]\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
+
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3504--3504
+[]\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
+n.  
+[39]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3549--3550
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3476--3476
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3551--3551
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3479--3479
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3554--3554
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[39] [40]
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3673--3676
+[40] [41]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3748--3751
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[41]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3725--3725
+
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3800--3800
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3727--3727
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3802--3802
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3728--3728
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3803--3803
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3729--3729
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3804--3804
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3730--3730
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3805--3805
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[42] [43] (./manual.rst.aux) )
+[42] [43] [44] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (43 pages, 199632 bytes).
+Output written on manual.rst.dvi (44 pages, 203644 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
@@ -73464,70 +75491,74 @@ LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 26 undefined on input line 1619.
 
-[26] [27] [28] [29] [30]
+[26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34]
-
-LaTeX Warning: Reference `doconce2formats' on page 35 undefined on input line 2
-094.
-
 [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+
+LaTeX Warning: Reference `doconce2formats' on page 36 undefined on input line 2
+144.
+
+[36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39]
+[37] [38] [39] [40]
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 40 undefined on input li
-ne 2397.
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 41 undefined on input li
+ne 2447.
 
-[40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46]
+[47]
 No file manual.bbl.
 No file manual.ind.
-[47] (./manual.aux)
+[48] (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -73546,7 +75577,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (47 pages, 322957 bytes).
+Output written on manual.pdf (48 pages, 324571 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -73733,57 +75764,61 @@ LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 26 undefined on input line 1619.
 
-[26] [27] [28] [29] [30]
+[26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34] [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+[35] [36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+[47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -73802,7 +75837,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (48 pages, 342725 bytes).
+Output written on manual.pdf (49 pages, 344434 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -73962,57 +75997,61 @@ LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1524.
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1518--1527
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26] [27] [28] [29] [30]
+[25] [26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34] [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+[35] [36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+[47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -74031,7 +76070,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (48 pages, 343446 bytes).
+Output written on manual.pdf (49 pages, 345155 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -74233,57 +76272,61 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) in paragraph at lines 1614--1616
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[26] [27] [28] [29] [30]
+[26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34] [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+[35] [36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+[47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -74292,7 +76335,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (48 pages, 201636 bytes).
+Output written on manual.dvi (49 pages, 204068 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -74457,57 +76500,61 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) in paragraph at lines 1614--1616
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[26] [27] [28] [29] [30]
+[26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34] [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+[35] [36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+[47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -74516,7 +76563,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (48 pages, 201636 bytes).
+Output written on manual.dvi (49 pages, 204068 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -74693,57 +76740,61 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) in paragraph at lines 1614--1616
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[26] [27] [28] [29] [30]
+[26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34] [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+[35] [36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+[47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -74752,7 +76803,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (48 pages, 201636 bytes).
+Output written on manual.dvi (49 pages, 204068 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -74917,57 +76968,61 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) in paragraph at lines 1614--1616
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[26] [27] [28] [29] [30]
+[26] [27] [28]
+
+LaTeX Warning: Reference `...' on page 29 undefined on input line 1756.
+
+[29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1918.
+(amsmath)                 on input line 1968.
 
-[31]
-Overfull \hbox (50.98633pt too wide) in paragraph at lines 1931--1937
+[32]
+Overfull \hbox (50.98633pt too wide) in paragraph at lines 1981--1987
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html","sphinx", "mwiki", "pandoc")
 
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 1976--1994
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2026--2044
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[32]
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 1996--1998
+[33]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2046--2048
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
 
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2031--2043
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2081--2093
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[33]
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2048--2055
+[34]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2098--2105
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[34] [35]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2186--2191
+[35] [36]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2186--2191
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2236--2241
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2718--2728
+[37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2768--2778
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+[47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -74976,7 +77031,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (48 pages, 201636 bytes).
+Output written on manual.dvi (49 pages, 204068 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt --no-mako
@@ -75072,13 +77127,11 @@ Go to the demo directory and load index.html into a web browser.+ sh ./clean.sh
 Removing in /home/hpl/vc/doconce/doc/quickref:
 + doconce
 + doconce format html quickref --no-pygments-html --no-preprocess
-running preprocess -DFORMAT=html -D--no-pygments-html -D--no-preprocess quickref.do.txt > __tmp.do.txt
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to html
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.html
 + doconce format latex quickref --no-preprocess
-running preprocess -DFORMAT=latex -D--no-preprocess quickref.do.txt > __tmp.do.txt
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to latex
 copy complete file doconce_program.sh  (format: shpro)
@@ -75197,21 +77250,21 @@ thor2_YYYY\OT1/phv/m/n/10 ,
 Overfull \hbox (82.96643pt too wide) in paragraph at lines 570--577
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib,name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
-[9] [10]
-Overfull \hbox (2.40855pt too wide) in paragraph at lines 697--702
+[9] [10] [11]
+Overfull \hbox (2.40855pt too wide) in paragraph at lines 742--747
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther []\
 OT1/cmtt/m/n/10 preprocess \OT1/phv/m/n/10 and/or []\OT1/cmtt/m/n/10 mako\OT1/p
 hv/m/n/10 .
 
-Overfull \hbox (0.18839pt too wide) in paragraph at lines 703--707
+Overfull \hbox (0.18839pt too wide) in paragraph at lines 748--752
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing []\OT1/cmtt/m/n/10 prep
 rocess \OT1/phv/m/n/10 to in-clude an-other doc-u-ment, "com-
-[11]
-Overfull \hbox (87.48466pt too wide) in paragraph at lines 747--748
+[12]
+Overfull \hbox (87.48466pt too wide) in paragraph at lines 792--793
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
-[12] (./quickref.aux)
+[13] (./quickref.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -75220,7 +77273,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (12 pages, 42804 bytes).
+Output written on quickref.dvi (13 pages, 44460 bytes).
 Transcript written on quickref.log.
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -75320,27 +77373,26 @@ thor2_YYYY\OT1/phv/m/n/10 ,
 Overfull \hbox (82.96643pt too wide) in paragraph at lines 570--577
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib,name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
-[9] [10]
-Overfull \hbox (2.40855pt too wide) in paragraph at lines 697--702
+[9] [10] [11]
+Overfull \hbox (2.40855pt too wide) in paragraph at lines 742--747
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther []\
 OT1/cmtt/m/n/10 preprocess \OT1/phv/m/n/10 and/or []\OT1/cmtt/m/n/10 mako\OT1/p
 hv/m/n/10 .
 
-Overfull \hbox (0.18839pt too wide) in paragraph at lines 703--707
+Overfull \hbox (0.18839pt too wide) in paragraph at lines 748--752
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing []\OT1/cmtt/m/n/10 prep
 rocess \OT1/phv/m/n/10 to in-clude an-other doc-u-ment, "com-
-[11]
-Overfull \hbox (87.48466pt too wide) in paragraph at lines 747--748
+[12]
+Overfull \hbox (87.48466pt too wide) in paragraph at lines 792--793
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
-[12] (./quickref.aux) )
+[13] (./quickref.aux) )
 (see the transcript file for additional information)
-Output written on quickref.dvi (12 pages, 53716 bytes).
+Output written on quickref.dvi (13 pages, 55352 bytes).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no-preprocess
-running preprocess -DFORMAT=sphinx -D--no-preprocess quickref.do.txt > __tmp.do.txt
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to sphinx
 copy complete file doconce_program.sh  (format: shpro)
@@ -75415,7 +77467,6 @@ or just run it by
 + doconce replace doconce format sphinx %s doconce format sphinx %s --no-preprocess automake-sphinx.py
 replacing doconce format sphinx %s by doconce format sphinx %s --no-preprocess in automake-sphinx.py
 + python automake-sphinx.py
-running preprocess -DFORMAT=sphinx -D--no-preprocess quickref.do.txt > __tmp.do.txt
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to sphinx
 copy complete file doconce_program.sh  (format: shpro)
@@ -75459,7 +77510,6 @@ google-chrome sphinx-rootdir/_build/html/index.html
 
 + cp quickref.rst quickref.sphinx.rst
 + doconce format rst quickref --no-preprocess
-running preprocess -DFORMAT=rst -D--no-preprocess quickref.do.txt > __tmp.do.txt
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to rst
 copy complete file doconce_program.sh  (format: shpro)
@@ -75723,37 +77773,40 @@ uote}
 
 Overfull \hbox (29.00006pt too wide) in paragraph at lines 869--869
 []\T1/pcr/m/n/10 doconce list_labels doconcefile.do.txt | latexfile.tex  
-
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 889--890
+[9]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 920--921
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
-[9]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 895--895
+
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 926--926
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 896--896
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 927--927
 []\T1/pcr/m/n/10 the area under a curve that defines half of the allipse.  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 899--899
-[]\T1/pcr/m/n/10 __Hint 1.__ Wikipedia has the formula for the curve.  
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 935--935
+[]\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
 
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 901--901
-[]\T1/pcr/m/n/10 __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perh
-aps  
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 944--945
+\T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
 
-Overfull \hbox (263.00006pt too wide) in paragraph at lines 970--970
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 948--948
+[]\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
+
+[10]
+Overfull \hbox (263.00006pt too wide) in paragraph at lines 1019--1019
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
-[10]
-Overfull \hbox (4.19656pt too wide) in paragraph at lines 994--998
+[11]
+Overfull \hbox (4.19656pt too wide) in paragraph at lines 1043--1047
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
 
-Overfull \hbox (114.855pt too wide) in paragraph at lines 1012--1013
+Overfull \hbox (114.855pt too wide) in paragraph at lines 1061--1062
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
-[11] (./quickref.rst.aux)
+[12] (./quickref.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -75762,7 +77815,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (11 pages, 44576 bytes).
+Output written on quickref.rst.dvi (12 pages, 46220 bytes).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -76009,82 +78062,78 @@ uote}
 Overfull \hbox (29.00006pt too wide) in paragraph at lines 869--869
 []\T1/pcr/m/n/10 doconce list_labels doconcefile.do.txt | latexfile.tex  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 889--890
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 920--921
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 895--895
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 926--926
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 896--896
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 927--927
 []\T1/pcr/m/n/10 the area under a curve that defines half of the allipse.  
-
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 899--899
-[]\T1/pcr/m/n/10 __Hint 1.__ Wikipedia has the formula for the curve.  
-
-Overfull \hbox (95.00006pt too wide) in paragraph at lines 901--901
-[]\T1/pcr/m/n/10 __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perh
-aps  
 [10]
-Overfull \hbox (263.00006pt too wide) in paragraph at lines 970--970
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 935--935
+[]\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 944--945
+\T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
+
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 948--948
+[]\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
+
+[11]
+Overfull \hbox (263.00006pt too wide) in paragraph at lines 1019--1019
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
 
-Overfull \hbox (4.19656pt too wide) in paragraph at lines 994--998
+Overfull \hbox (4.19656pt too wide) in paragraph at lines 1043--1047
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
 
-Overfull \hbox (114.855pt too wide) in paragraph at lines 1012--1013
+Overfull \hbox (114.855pt too wide) in paragraph at lines 1061--1062
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
-[11] [12] (./quickref.rst.aux)
+[12] (./quickref.rst.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (12 pages, 50832 bytes).
+Output written on quickref.rst.dvi (12 pages, 51856 bytes).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref --no-preprocess
-running preprocess -DFORMAT=plain -D--no-preprocess quickref.do.txt > __tmp.do.txt
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to plain
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.txt
 + doconce format gwiki quickref --no-preprocess
-running preprocess -DFORMAT=gwiki -D--no-preprocess quickref.do.txt > __tmp.do.txt
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to gwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.gwiki
 + doconce format mwiki quickref --no-preprocess
-running preprocess -DFORMAT=mwiki -D--no-preprocess quickref.do.txt > __tmp.do.txt
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to mwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.mwiki
 + doconce format cwiki quickref --no-preprocess
-running preprocess -DFORMAT=cwiki -D--no-preprocess quickref.do.txt > __tmp.do.txt
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to cwiki
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.cwiki
 + doconce format st quickref --no-preprocess
-running preprocess -DFORMAT=st -D--no-preprocess quickref.do.txt > __tmp.do.txt
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to st
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.st
 + doconce format epytext quickref --no-preprocess
-running preprocess -DFORMAT=epytext -D--no-preprocess quickref.do.txt > __tmp.do.txt
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to epytext
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.epytext
 + doconce format pandoc quickref --no-preprocess
-running preprocess -DFORMAT=pandoc -D--no-preprocess quickref.do.txt > __tmp.do.txt
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to pandoc
 copy complete file doconce_program.sh  (format: shpro)

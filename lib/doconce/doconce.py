@@ -47,10 +47,18 @@ def supported_format_names():
 
 def syntax_check(filestr, format):
 
+    begin_end_consistency_checks(filestr, ['c', 't', 'ans', 'sol', 'hint'])
+
     pattern = re.compile(r'^ +![eb][ct]', re.MULTILINE)
     m = pattern.search(filestr)
     if m:
         print '\nSyntax error: !bc/!bt/!ec/!et does not start at the beginning of the line'
+        print repr(filestr[m.start():m.start()+80])
+        sys.exit(1)
+    pattern = re.compile(r'^ +![eb](hint|ans|sol)', re.MULTILINE)
+    m = pattern.search(filestr)
+    if m:
+        print '\nSyntax error: !bhint/!ehint/!bans/!eans/!bsol/!esol does not start at the beginning of the line'
         print repr(filestr[m.start():m.start()+80])
         sys.exit(1)
 
@@ -551,73 +559,133 @@ def insert_code_from_file(filestr, format):
 
 def exercises(filestr, format):
     # Exercise: ===== Exercise: title ===== (starts with at least 3 =, max 5)
-    # label{some:label} file=thisfile.py solution=somefile.do.txt or file.py
+    # label{some:label} file=thisfile.py solution=somefile.do.txt
     # __Hint 1.__ some paragraph...,
     # __Hint 2.__ ...
 
-    debugpr('\n\n\n***** Interpreting exercises *****\n\n')
+    debugpr('\n\n***** Data structure from interpreting exercises *****\n')
 
     all_exer = []   # collection of all exercises
-    exer = {}       # data for one exercise
+    exer = {}       # data for one exercise, to be appended to all_exer
     inside_exer = False
     exer_end = False
     exer_counter = 0
-    lines = filestr.splitlines()
-    newlines = []  # lines in resulting file
-    exer_line_pattern = re.compile(r'^\s*([_=]{3,5})\s*([Ee]xercise|[Pp]roblem|[Pp]roject):\s*(?P<title>[^ =-].+?)\s*[_=]+')
+
+    exer_heading_pattern = re.compile(r'^\s*([_=]{3,5})\s*([Ee]xercise|[Pp]roblem|[Pp]roject):\s*(?P<title>[^ =-].+?)\s*[_=]+')
     label_pattern = re.compile(r'label\{(.+?)\}')
     file_pattern = re.compile(r'file\s*=\s*([^\s]+)')
     solution_pattern = re.compile(r'solution\s*=\s*([^\s]+)')
+
+    hint_pattern_begin = '!bhint'
+    hint_pattern_end = '!ehint'
+    answer_pattern_begin = '!bans'
+    answer_pattern_end = '!eans'
+    solution_pattern_begin = '!bsol'
+    solution_pattern_end = '!esol'
+    subex_pattern_begin = '!bsubex'
+    subex_pattern_end = '!esubex'
+
+    lines = filestr.splitlines()
+    newlines = []  # lines in resulting file
+
     for i in range(len(lines)):
-        m = exer_line_pattern.search(lines[i])
-        if m:
-            exer = {}  # data in the exercise
-            exer['title'] = m.group('title')
-            exer['heading'] = m.group(1)
-            exer['type'] = m.group(2)
+        line = lines[i].lstrip()
+        #print line
+
+        m_heading = exer_heading_pattern.search(line)
+        if m_heading:
             inside_exer = True
-            exer['text'] = []
-            exer['hint'] = {}
-            exer['comments'] = []
+
+            exer = {}  # data in the exercise
             exer_counter += 1
             exer['no'] = exer_counter
-            hint_counter = 0
-            inside_hint = False
+            exer['title'] = m_heading.group('title')
+            exer['heading'] = m_heading.group(1)   # heading type
+            exer['type'] = m_heading.group(2)      # exercise type
+            exer['label'] = None
+            exer['solution_file'] = None
+            exer['file'] = None
+            exer.update(dict(text=[], hints=[], answer=[],
+                             solution=[], subex=[]))
+
             exer_end = False
-            text_line = True
+
+            inside_hint = False
+            inside_subex = False
+            inside_answer = False
+            inside_solution = False
+
         elif inside_exer:
-            label_info_line = False
-            m = label_pattern.search(lines[i])
-            if m:
-                exer['label'] = m.group(1)
-                label_info_line = True
-            m = file_pattern.search(lines[i])
-            if m:
-                exer['file'] = m.group(1)
-                label_info_line = True
-            m = solution_pattern.search(lines[i])
-            if m:
-                exer['solution'] = m.group(1)
-                label_info_line = True
+            instruction_line = True
 
-            # Hints have to come at the end of the text.
-            # Only __Hint marks the beginning of a new hint.
-            if '__Hint' in lines[i]:
-                hint_counter += 1
-                exer['hint'][hint_counter] = []
+            m_label = label_pattern.search(line)
+            m_file = file_pattern.search(line)
+            m_solution_file = solution_pattern.search(line)
+            if m_label:
+                exer['label'] = m_label.group(1)
+            elif m_file and not inside_subex:
+                exer['file'] = m_file.group(1)
+            elif m_file and inside_subex:
+                subex['file'] = m_file.group(1)
+            elif m_solution_file:
+                exer['solution_file'] = m_solution_file.group(1)
+
+            elif line.startswith(subex_pattern_begin):
+                inside_subex = True
+                subex = dict(text=[], hints=[], answer=[],
+                             solution=[], file=None)
+            elif line.startswith(subex_pattern_end):
+                inside_subex = False
+                subex['text'] = '\n'.join(subex['text']).strip()
+                subex['answer'] = '\n'.join(subex['answer']).strip()
+                subex['solution'] = '\n'.join(subex['solution']).strip()
+                for i in range(len(subex['hints'])):
+                    subex['hints'][i] = '\n'.join(subex['hints'][i]).strip()
+
+                exer['subex'].append(subex)
+
+            elif line.startswith(answer_pattern_begin):
+                inside_answer = True
+            elif line.startswith(answer_pattern_end):
+                inside_answer = False
+
+            elif line.startswith(solution_pattern_begin):
+                inside_solution = True
+            elif line.startswith(solution_pattern_end):
+                inside_solution = False
+
+            elif line.startswith(hint_pattern_begin):
                 inside_hint = True
-                text_line = False
-            if inside_hint:
-                if lines[i].startswith('#'):
-                    exer['comments'].append(lines[i])
+                if inside_subex:
+                    subex['hints'].append([])
                 else:
-                    exer['hint'][hint_counter].append(lines[i])
+                    exer['hints'].append([])
+            elif line.startswith(hint_pattern_end):
+                inside_hint = False
+            else:
+                instruction_line = False
 
-            if text_line and not label_info_line:
-                if lines[i].startswith('#'):
-                    exer['comments'].append(lines[i])
+            if inside_subex and not instruction_line:
+                if inside_answer:
+                    subex['answer'].append(lines[i])
+                elif inside_solution:
+                    subex['solution'].append(lines[i])
+                elif inside_hint:
+                    subex['hints'][-1].append(lines[i])
                 else:
+                    # ordinary text line
+                    subex['text'].append(lines[i])
+            elif not inside_subex and not instruction_line:
+                if inside_answer:
+                    exer['answer'].append(lines[i])
+                elif inside_solution:
+                    exer['solution'].append(lines[i])
+                elif inside_hint:
+                    exer['hints'][-1].append(lines[i])
+                else:
+                    # ordinary text line
                     exer['text'].append(lines[i])
+
         else:  # outside exercise
             newlines.append(lines[i])
 
@@ -630,9 +698,10 @@ def exercises(filestr, format):
 
         if exer and exer_end:
             exer['text'] = '\n'.join(exer['text']).strip()
-            for hint_no in exer['hint']:
-                exer['hint'][hint_no] = '\n'.join(exer['hint'][hint_no]).strip()
-            exer['comments'] = '\n'.join(exer['comments']).strip()
+            exer['answer'] = '\n'.join(exer['answer']).strip()
+            exer['solution'] = '\n'.join(exer['solution']).strip()
+            for i in range(len(exer['hints'])):
+                exer['hints'][i] = '\n'.join(exer['hints'][i]).strip()
 
             debugpr(pprint.pformat(exer))
             formatted_exercise = EXERCISE[format](exer)
@@ -660,6 +729,8 @@ def exercises(filestr, format):
         f.close()
         print 'found info about %d exercises, written to %s' % \
               (len(all_exer), exer_filename)
+        debugpr('\n%s\n**** The file after interpreting exercises ***\n\n%s\n%s\n\n\n' % ('-'*80, filestr, '-'*80))
+
     else:
         debugpr('No exercises found.\n')
 
@@ -1339,8 +1410,7 @@ def inline_tag_subst(filestr, format):
         else:
             raise ValueError, 'replacement is of type %s' % type(replacement)
         if occurences > 0:
-            debugpr('\n**** The file after %d "%s" substitutions ***\n%s\n%s\n\n' % \
-                  (occurences, tag, filestr, '-'*80))
+            debugpr('\n**** The file after %d "%s" substitutions ***\n%s\n%s\n\n' % (occurences, tag, filestr, '-'*80))
     return filestr
 
 def subst_away_inline_comments(filestr):

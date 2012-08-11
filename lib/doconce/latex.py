@@ -1,7 +1,8 @@
 # -*- coding: iso-8859-15 -*-
 
 import os, commands, re, sys
-from common import plain_exercise, table_analysis, _CODE_BLOCK, _MATH_BLOCK
+from common import plain_exercise, table_analysis, \
+     _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
 def latex_code(filestr, code_blocks, code_block_types,
@@ -458,14 +459,15 @@ def latex_index_bib(filestr, index, citations, bibfile):
     return filestr
 
 
-def latex_exercise(exer):
+def latex_exercise_old(exer):
+    # NOTE: this is the old exercise handler!!
     s = ''  # result string
     if not 'heading' in exer:
         print 'Wrong formatting of exercise, not a 3/5 === type heading'
         print exer
         sys.exit(1)
 
-    # Reuse plan_exercise (std doconce formatting) where possible
+    # Reuse plain_exercise (std doconce formatting) where possible
     # and just make a few adjustments
 
     s += exer['heading'] + ' ' + exer['title'] + ' ' + exer['heading'] + '\n'
@@ -484,6 +486,21 @@ def latex_exercise(exer):
         pass
     return s
 
+
+def latex_exercise(exer):
+    begin_solution = '# --- begin solution of exercise\n\n__Solution.__\n'
+    end_solution = '\n# --- end solution of exercise'
+    begin_answer = '# --- begin short answer in exercise\n\n__Answer.__ '
+    end_answer = '\n# --- end short answer in exercise'
+    begin_hint = '__Hint.__ '
+    end_hint = ''
+    end_exercise = '# --- end of exercise'
+
+    return doconce_exercise_output(exer,
+                                   begin_answer, end_answer,
+                                   begin_solution, end_solution,
+                                   begin_hint, end_hint,
+                                   end_exercise)
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,

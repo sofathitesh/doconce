@@ -883,8 +883,39 @@ doconce~assemble~name~master.do.txt
 
 Doconce supports \emph{Exercise}, \emph{Problem}, and \emph{Project}. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows:
+An exercise, problem, or project sections contains certain \emph{elements}:
+%
+\begin{quote}
+%
+\begin{itemize}
+
+\item a headline at the level of a subsection or subsubsection,
+containing one of the words ``Exercise:'', ``Problem:'', or
+``Project:'', followed by a title (required)
+
+\item a label (optional)
+
+\item a solution file (optional)
+
+\item name of file with a student solution (optional)
+
+\item main exercise text (required)
+
+\item a short answer (optional)
+
+\item a full solution (optional)
+
+\item one or more hints (optional)
+
+\item one or more subexercises (subproblems, subprojects), which can also
+contain a text, a short answer, a full solution, name student file
+to be handed in, and one or more hints (optional)
+
+\end{itemize}
+
+\end{quote}
+
+A typical sketch of a a problem without subexercises goes as follows:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 =====~Problem:~Derive~the~Formula~for~the~Area~of~an~Ellipse~=====\\
@@ -896,39 +927,57 @@ Derive~an~expression~for~the~area~of~an~ellipse~by~integrating\\
 the~area~under~a~curve~that~defines~half~of~the~allipse.\\
 Show~each~step~in~the~mathematical~derivation.\\
 ~\\
-\_\_Hint~1.\_\_~Wikipedia~has~the~formula~for~the~curve.\\
+!bhint\\
+Wikipedia~has~the~formula~for~the~curve.\\
+!ehint\\
 ~\\
-\_\_Hint~2.\_\_~"Wolframalpha":~"http://wolframalpha.com"~can~perhaps\\
-compute~the~integral.
+!bhint\\
+"Wolframalpha":~"http://wolframalpha.com"~can~perhaps\\
+compute~the~integral.\\
+!ehint
 }
 \end{quote}
 
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up:
 %
-\begin{quote}
-%
-\begin{itemize}
-
-\item A headline at the level of a subsection or subsubsection,
-containing one of the words ``Exercise:'', ``Problem:'', or
-``Project:'', followed by a title. (Required.)
-
-\item A standard label for referring to the exercise. (Optional.)
-
-\item A name for the file with the result/answer (\texttt{file=filename}). (Optional.)
-
-\item A name for the solution file (\texttt{solution=filename}), where the file
-name may be a URL. (Optional.)
-
-\item The running text of the exercise. (Required.)
-
-\item A sequence of hints, indicated as paragraphs. There can be a
-single hint, without any number, or several numbered hints.
-(Optional.)
-
-\end{itemize}
-
+\begin{quote}{\ttfamily \raggedright \noindent
+=====~Exercise:~Determine~the~Distance~to~the~Moon~=====\\
+label\{exer:moondist\}\\
+~\\
+Intro~to~this~exercise.~Questions~are~in~subexercises~below.\\
+~\\
+!bsubex\\
+Subexercises~are~numbered~a),~b),~etc.\\
+~\\
+file=subexer\_a.pdf\\
+~\\
+!bans\\
+Short~answer~to~subexercise~a).\\
+!eans\\
+~\\
+!bhint\\
+First~hint~to~subexercise~a).\\
+!ehint\\
+~\\
+!bhint\\
+Second~hint~to~subexercise~a).\\
+!ehint\\
+!esubex\\
+~\\
+!bsubex\\
+Here~goes~the~text~for~subexercise~b).\\
+~\\
+file=subexer\_b.pdf\\
+~\\
+!bhint\\
+A~hint~for~this~subexercise.\\
+!ehint\\
+!esubex
+}
 \end{quote}
+
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 
 %___________________________________________________________________________

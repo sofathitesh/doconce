@@ -874,8 +874,25 @@ doconce assemble name master.do.txt
 <h1><a class="toc-backref" href="#id13">Exercises</a></h1>
 <p>Doconce supports <em>Exercise</em>, <em>Problem</em>, and <em>Project</em>. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows:</p>
+An exercise, problem, or project sections contains certain <em>elements</em>:</p>
+<blockquote>
+<ul class="simple">
+<li>a headline at the level of a subsection or subsubsection,
+containing one of the words &quot;Exercise:&quot;, &quot;Problem:&quot;, or
+&quot;Project:&quot;, followed by a title (required)</li>
+<li>a label (optional)</li>
+<li>a solution file (optional)</li>
+<li>name of file with a student solution (optional)</li>
+<li>main exercise text (required)</li>
+<li>a short answer (optional)</li>
+<li>a full solution (optional)</li>
+<li>one or more hints (optional)</li>
+<li>one or more subexercises (subproblems, subprojects), which can also
+contain a text, a short answer, a full solution, name student file
+to be handed in, and one or more hints (optional)</li>
+</ul>
+</blockquote>
+<p>A typical sketch of a a problem without subexercises goes as follows:</p>
 <pre class="literal-block">
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
@@ -886,27 +903,52 @@ Derive an expression for the area of an ellipse by integrating
 the area under a curve that defines half of the allipse.
 Show each step in the mathematical derivation.
 
-__Hint 1.__ Wikipedia has the formula for the curve.
+!bhint
+Wikipedia has the formula for the curve.
+!ehint
 
-__Hint 2.__ &quot;Wolframalpha&quot;: &quot;http://wolframalpha.com&quot; can perhaps
+!bhint
+&quot;Wolframalpha&quot;: &quot;http://wolframalpha.com&quot; can perhaps
 compute the integral.
+!ehint
 </pre>
-<p>An exercise, problem, or project has certain elements:</p>
-<blockquote>
-<ul class="simple">
-<li>A headline at the level of a subsection or subsubsection,
-containing one of the words &quot;Exercise:&quot;, &quot;Problem:&quot;, or
-&quot;Project:&quot;, followed by a title. (Required.)</li>
-<li>A standard label for referring to the exercise. (Optional.)</li>
-<li>A name for the file with the result/answer (<tt class="docutils literal">file=filename</tt>). (Optional.)</li>
-<li>A name for the solution file (<tt class="docutils literal">solution=filename</tt>), where the file
-name may be a URL. (Optional.)</li>
-<li>The running text of the exercise. (Required.)</li>
-<li>A sequence of hints, indicated as paragraphs. There can be a
-single hint, without any number, or several numbered hints.
-(Optional.)</li>
-</ul>
-</blockquote>
+<p>An exercise with subproblems, answers and full solutions has this
+setup-up:</p>
+<pre class="literal-block">
+===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
+
+Intro to this exercise. Questions are in subexercises below.
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+file=subexer_a.pdf
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+file=subexer_b.pdf
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+</pre>
+<p>By default, answers, solutions, and hints are typeset as paragraphs.</p>
 </div>
 <div class="section" id="labels-index-and-citations">
 <h1><a class="toc-backref" href="#id14">Labels, Index, and Citations</a></h1>

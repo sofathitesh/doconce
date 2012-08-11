@@ -745,8 +745,27 @@ doconce assemble name master.do.txt
 <p>
 Doconce supports <em>Exercise</em>, <em>Problem</em>, and <em>Project</em>. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows:
+An exercise, problem, or project sections contains certain <em>elements</em>:
+
+<p>
+
+<ul>
+  <li> a headline at the level of a subsection or subsubsection,
+    containing one of the words "Exercise:", "Problem:", or
+    "Project:", followed by a title (required)
+  <li> a label (optional)
+  <li> a solution file (optional)
+  <li> name of file with a student solution (optional)
+  <li> main exercise text (required)
+  <li> a short answer (optional)
+  <li> a full solution (optional)
+  <li> one or more hints (optional)
+  <li> one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)
+</ul>
+
+A typical sketch of a a problem without subexercises goes as follows:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
@@ -758,29 +777,57 @@ Derive an expression for the area of an ellipse by integrating
 the area under a curve that defines half of the allipse.
 Show each step in the mathematical derivation.
 
-__Hint 1.__ Wikipedia has the formula for the curve.
+!bhint
+Wikipedia has the formula for the curve.
+!ehint
 
-__Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+!bhint
+"Wolframalpha": "http://wolframalpha.com" can perhaps
 compute the integral.
+!ehint
 </pre>
 </blockquote>   <! -- end verbatim block -->
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up:
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+===== Exercise: Determine the Distance to the Moon =====
+\label{exer:moondist}
+
+Intro to this exercise. Questions are in subexercises below.
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+file=subexer_a.pdf
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+file=subexer_b.pdf
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+</pre>
+</blockquote>   <! -- end verbatim block -->
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 <p>
-
-<ul>
-  <li> A headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title. (Required.)
-  <li> A standard label for referring to the exercise. (Optional.)
-  <li> A name for the file with the result/answer (<tt>file=filename</tt>). (Optional.)
-  <li> A name for the solution file (<tt>solution=filename</tt>), where the file
-    name may be a URL. (Optional.)
-  <li> The running text of the exercise. (Required.)
-  <li> A sequence of hints, indicated as paragraphs. There can be a
-    single hint, without any number, or several numbered hints.
-    (Optional.)
-</ul>
 
 <h3>Labels, Index, and Citations  <a name="___sec17"></a></h3>
 <p>

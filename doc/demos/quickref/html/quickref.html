@@ -576,39 +576,79 @@ doconce assemble name master.do.txt
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <p>Doconce supports <em>Exercise</em>, <em>Problem</em>, and <em>Project</em>. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="o">=====</span> <span class="n">Problem</span><span class="p">:</span> <span class="n">Derive</span> <span class="n">the</span> <span class="n">Formula</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Area</span> <span class="n">of</span> <span class="n">an</span> <span class="n">Ellipse</span> <span class="o">=====</span>
-<span class="n">label</span><span class="p">{</span><span class="n">problem</span><span class="p">:</span><span class="n">ellipsearea1</span><span class="p">}</span>
-<span class="nb">file</span><span class="o">=</span><span class="n">ellipse_area</span><span class="o">.</span><span class="n">pdf</span>
-<span class="n">solution</span><span class="o">=</span><span class="n">ellipse_area1_sol</span><span class="o">.</span><span class="n">pdf</span>
-
-<span class="n">Derive</span> <span class="n">an</span> <span class="n">expression</span> <span class="k">for</span> <span class="n">the</span> <span class="n">area</span> <span class="n">of</span> <span class="n">an</span> <span class="n">ellipse</span> <span class="n">by</span> <span class="n">integrating</span>
-<span class="n">the</span> <span class="n">area</span> <span class="n">under</span> <span class="n">a</span> <span class="n">curve</span> <span class="n">that</span> <span class="n">defines</span> <span class="n">half</span> <span class="n">of</span> <span class="n">the</span> <span class="n">allipse</span><span class="o">.</span>
-<span class="n">Show</span> <span class="n">each</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">mathematical</span> <span class="n">derivation</span><span class="o">.</span>
-
-<span class="n">__Hint</span> <span class="mf">1.</span><span class="n">__</span> <span class="n">Wikipedia</span> <span class="n">has</span> <span class="n">the</span> <span class="n">formula</span> <span class="k">for</span> <span class="n">the</span> <span class="n">curve</span><span class="o">.</span>
-
-<span class="n">__Hint</span> <span class="mf">2.</span><span class="n">__</span> <span class="s">&quot;Wolframalpha&quot;</span><span class="p">:</span> <span class="s">&quot;http://wolframalpha.com&quot;</span> <span class="n">can</span> <span class="n">perhaps</span>
-<span class="n">compute</span> <span class="n">the</span> <span class="n">integral</span><span class="o">.</span>
-</pre></div>
-</div>
-<p>An exercise, problem, or project has certain elements:</p>
+An exercise, problem, or project sections contains certain <em>elements</em>:</p>
 <blockquote>
 <div><ul class="simple">
-<li>A headline at the level of a subsection or subsubsection,
+<li>a headline at the level of a subsection or subsubsection,
 containing one of the words &#8220;Exercise:&#8221;, &#8220;Problem:&#8221;, or
-&#8220;Project:&#8221;, followed by a title. (Required.)</li>
-<li>A standard label for referring to the exercise. (Optional.)</li>
-<li>A name for the file with the result/answer (<tt class="docutils literal"><span class="pre">file=filename</span></tt>). (Optional.)</li>
-<li>A name for the solution file (<tt class="docutils literal"><span class="pre">solution=filename</span></tt>), where the file
-name may be a URL. (Optional.)</li>
-<li>The running text of the exercise. (Required.)</li>
-<li>A sequence of hints, indicated as paragraphs. There can be a
-single hint, without any number, or several numbered hints.
-(Optional.)</li>
+&#8220;Project:&#8221;, followed by a title (required)</li>
+<li>a label (optional)</li>
+<li>a solution file (optional)</li>
+<li>name of file with a student solution (optional)</li>
+<li>main exercise text (required)</li>
+<li>a short answer (optional)</li>
+<li>a full solution (optional)</li>
+<li>one or more hints (optional)</li>
+<li>one or more subexercises (subproblems, subprojects), which can also
+contain a text, a short answer, a full solution, name student file
+to be handed in, and one or more hints (optional)</li>
 </ul>
 </div></blockquote>
+<p>A typical sketch of a a problem without subexercises goes as follows:</p>
+<div class="highlight-py"><pre>===== Problem: Derive the Formula for the Area of an Ellipse =====
+label{problem:ellipsearea1}
+file=ellipse_area.pdf
+solution=ellipse_area1_sol.pdf
+
+Derive an expression for the area of an ellipse by integrating
+the area under a curve that defines half of the allipse.
+Show each step in the mathematical derivation.
+
+!bhint
+Wikipedia has the formula for the curve.
+!ehint
+
+!bhint
+"Wolframalpha": "http://wolframalpha.com" can perhaps
+compute the integral.
+!ehint</pre>
+</div>
+<p>An exercise with subproblems, answers and full solutions has this
+setup-up:</p>
+<div class="highlight-py"><pre>===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
+
+Intro to this exercise. Questions are in subexercises below.
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+file=subexer_a.pdf
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+file=subexer_b.pdf
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex</pre>
+</div>
+<p>By default, answers, solutions, and hints are typeset as paragraphs.</p>
 </div>
 <div class="section" id="labels-index-and-citations">
 <h2>Labels, Index, and Citations<a class="headerlink" href="#labels-index-and-citations" title="Permalink to this headline">¶</a></h2>

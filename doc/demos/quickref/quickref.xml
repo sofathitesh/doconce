@@ -258,8 +258,11 @@ doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
 doconce assemble name master.do.txt</literal_block></section><section ids="exercises" names="exercises"><title refid="id13">Exercises</title><paragraph>Doconce supports <emphasis>Exercise</emphasis>, <emphasis>Problem</emphasis>, and <emphasis>Project</emphasis>. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows:</paragraph><literal_block xml:space="preserve">===== Problem: Derive the Formula for the Area of an Ellipse =====
+An exercise, problem, or project sections contains certain <emphasis>elements</emphasis>:</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph>a headline at the level of a subsection or subsubsection,
+containing one of the words &quot;Exercise:&quot;, &quot;Problem:&quot;, or
+&quot;Project:&quot;, followed by a title (required)</paragraph></list_item><list_item><paragraph>a label (optional)</paragraph></list_item><list_item><paragraph>a solution file (optional)</paragraph></list_item><list_item><paragraph>name of file with a student solution (optional)</paragraph></list_item><list_item><paragraph>main exercise text (required)</paragraph></list_item><list_item><paragraph>a short answer (optional)</paragraph></list_item><list_item><paragraph>a full solution (optional)</paragraph></list_item><list_item><paragraph>one or more hints (optional)</paragraph></list_item><list_item><paragraph>one or more subexercises (subproblems, subprojects), which can also
+contain a text, a short answer, a full solution, name student file
+to be handed in, and one or more hints (optional)</paragraph></list_item></bullet_list></block_quote><paragraph>A typical sketch of a a problem without subexercises goes as follows:</paragraph><literal_block xml:space="preserve">===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
 file=ellipse_area.pdf
 solution=ellipse_area1_sol.pdf
@@ -268,15 +271,46 @@ Derive an expression for the area of an ellipse by integrating
 the area under a curve that defines half of the allipse.
 Show each step in the mathematical derivation.
 
-__Hint 1.__ Wikipedia has the formula for the curve.
+!bhint
+Wikipedia has the formula for the curve.
+!ehint
 
-__Hint 2.__ &quot;Wolframalpha&quot;: &quot;http://wolframalpha.com&quot; can perhaps
-compute the integral.</literal_block><paragraph>An exercise, problem, or project has certain elements:</paragraph><block_quote><bullet_list bullet="*"><list_item><paragraph>A headline at the level of a subsection or subsubsection,
-containing one of the words &quot;Exercise:&quot;, &quot;Problem:&quot;, or
-&quot;Project:&quot;, followed by a title. (Required.)</paragraph></list_item><list_item><paragraph>A standard label for referring to the exercise. (Optional.)</paragraph></list_item><list_item><paragraph>A name for the file with the result/answer (<literal>file=filename</literal>). (Optional.)</paragraph></list_item><list_item><paragraph>A name for the solution file (<literal>solution=filename</literal>), where the file
-name may be a URL. (Optional.)</paragraph></list_item><list_item><paragraph>The running text of the exercise. (Required.)</paragraph></list_item><list_item><paragraph>A sequence of hints, indicated as paragraphs. There can be a
-single hint, without any number, or several numbered hints.
-(Optional.)</paragraph></list_item></bullet_list></block_quote></section><section ids="labels-index-and-citations" names="labels,\ index,\ and\ citations"><title refid="id14">Labels, Index, and Citations</title></section><section ids="preprocessing" names="preprocessing"><title refid="id15">Preprocessing</title><paragraph>Doconce documents may utilize a preprocessor, either <literal>preprocess</literal> and/or
+!bhint
+&quot;Wolframalpha&quot;: &quot;http://wolframalpha.com&quot; can perhaps
+compute the integral.
+!ehint</literal_block><paragraph>An exercise with subproblems, answers and full solutions has this
+setup-up:</paragraph><literal_block xml:space="preserve">===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
+
+Intro to this exercise. Questions are in subexercises below.
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+file=subexer_a.pdf
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+file=subexer_b.pdf
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex</literal_block><paragraph>By default, answers, solutions, and hints are typeset as paragraphs.</paragraph></section><section ids="labels-index-and-citations" names="labels,\ index,\ and\ citations"><title refid="id14">Labels, Index, and Citations</title></section><section ids="preprocessing" names="preprocessing"><title refid="id15">Preprocessing</title><paragraph>Doconce documents may utilize a preprocessor, either <literal>preprocess</literal> and/or
 <literal>mako</literal>. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
 The <literal>mako</literal> preprocessor is much more advanced - it is actually a full
