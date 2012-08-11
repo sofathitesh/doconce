@@ -33,6 +33,10 @@ _environments = [
     # Doconce
     ("!bc",                 "!ec"),  # could have side effect if in text, but that's only in Doconce manuals...
     ("!bt",                 "!et"),
+    ("!bhint",              "!ehint"),
+    ("!bans",               "!eans"),
+    ("!bsol",               "!esol"),
+    ("!bsubex",             "!esubex"),
     # Mako
     ("<%doc>",              "</%doc>"),
     # hpl tex stuff
@@ -324,10 +328,11 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
 
 
 def _spellcheck_all(**kwargs):
-    for filename in glob.glob('tmp_misspelled*~') + glob.glob('misspellings.txt~*') + glob.glob('tmp_stripped_*'):
+    for filename in glob.glob('tmp_misspelled*~') + glob.glob('misspellings.txt~*'):
         os.remove(filename)
     for filename in sys.argv[1:]:
-        _spellcheck(filename, **kwargs)
+        if not filename.startswith('tmp_stripped_'):
+            _spellcheck(filename, **kwargs)
     if len(glob.glob('tmp_misspelled*~')) > 0:
         print '\nFound misspellings!'
         if len(sys.argv[1:]) == 1:
