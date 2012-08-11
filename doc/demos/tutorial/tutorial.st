@@ -362,6 +362,9 @@ running 'preprocess'. That is, in the last example, 'FORMAT' is
 defined as 'latex'. Inside the Doconce document one can then perform
 format specific actions through tests like '#if FORMAT == "latex"'.
 
+The command-line arguments '--no-preprocess' and '--no-mako' turn off
+running 'preprocess' and 'mako', respectively.
+
 Inline comments in the text are removed from the output by::
 
 
@@ -392,6 +395,23 @@ aid of this package. The command-line argument '--no-pygments-html'
 turns off the use of Pygments and makes code blocks appear with
 plain '<pre>' HTML tags. The option '--pygments-html-linenos' turns
 on line numbers in Pygments-formatted code blocks.
+
+The HTML file can be embedded in a template if the Doconce document
+does not have a title (because then there will be
+no header and footer in the HTML file). The template file must contain
+valid HTML code and can have three "slots": '%(title)s' for a title,
+'%(date)s' for a date, and '%(main)s' for the main body of text, i.e., the
+Doconce document translated to HTML. The title becomes the first
+heading in the Doconce document, and the date is extracted from the
+'DATE:' line, if present. With the template feature one can easily embed
+the text in the look and feel of a website. The template can be extracted
+from the source code of a page at the site; just insert '%(title)s' and
+'%(date)s' at appropriate places and replace the main bod of text
+by '%(main)s'. Here is an example::
+
+
+        Terminal> doconce format html mydoc --html-template=mytemplate.html
+
 
 Pandoc and Markdown
 
@@ -495,7 +515,7 @@ Preprocessor variables to be defined or undefined are
  - 'HELVETIA' for the Helvetica font
  - 'A4PAPER' for A4 paper size
  - 'A6PAPER' for A6 paper size (suitable for reading on small devices)
- - 'MOVIE15' for inclusion of the movie15 LaTeX package
+ - 'MOVIE15' for using the movie15 LaTeX package to display movies
  - 'PREAMBLE' to turn the LaTeX preamble on or off (i.e., complete document
    or document to be included elsewhere)
  - 'MINTED' for inclusion of the minted package (which requires 'latex'

@@ -415,7 +415,7 @@ def define(FILENAME_EXTENSION,
         'paragraph':     r'<b>\g<subst></b> ',
         'abstract':      r'<b>\g<type>.</b> \g<text>\n\g<rest>',
         'title':         r'\n<title>\g<subst></title>\n\n<center><h1>\g<subst></h1></center>  <! -- document title -->\n',
-        'date':          r'<center><h3>\g<subst></h3></center> <!-- date -->',
+        'date':          r'<center><h4>\g<subst></h4></center> <!-- date -->',
         'author':        html_author,
         #'figure':        r'<p><em>\g<caption></em></p><img src="\g<filename>" align="bottom" \g<options>>',
         #'figure':        r'<img src="\g<filename>" align="bottom" \g<options>> <p><em>\g<caption></em></p>',
@@ -488,8 +488,8 @@ Automatically generated HTML file from Doconce source
     h1 .small { font-size: 0.4em; }
     h1 a { text-decoration: none }
     h2 { font-size: 1.5em; color: #1e36ce; }
-    h3 { text-align: left; color: #1e36ce; }
-    h4 { text-align: left; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    <! -- h4 { color: #1e36ce; } -->
     a { color: #1e36ce; }
     .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
     .download { float: right; }

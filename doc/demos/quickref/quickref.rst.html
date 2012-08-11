@@ -6,7 +6,7 @@
 <meta name="generator" content="Docutils 0.9: http://docutils.sourceforge.net/" />
 <title>Doconce Quick Reference</title>
 <meta name="author" content="Hans Petter Langtangen" />
-<meta name="date" content="Aug 7, 2012" />
+<meta name="date" content="Aug 11, 2012" />
 <style type="text/css">
 
 /*
@@ -325,7 +325,7 @@ ul.auto-toc {
 <tr><th class="docinfo-name">Author:</th>
 <td>Hans Petter Langtangen</td></tr>
 <tr><th class="docinfo-name">Date:</th>
-<td>Aug 7, 2012</td></tr>
+<td>Aug 11, 2012</td></tr>
 </tbody>
 </table>
 <!-- Automatically generated reST file from Doconce source
@@ -533,11 +533,11 @@ lines</dd>
 </div>
 <div class="section" id="comments">
 <h1><a class="toc-backref" href="#id6">Comments</a></h1>
-<p>Lines starting with <tt class="docutils literal">#</tt> are treated as comments in the document
-and translated to the proper syntax for comments in
-the output document. Such comment lines
-should not appear before LaTeX math blocks, verbatim code blocks,
-or lists if the formats <tt class="docutils literal">rst</tt> and <tt class="docutils literal">sphinx</tt> are desired.</p>
+<p>Lines starting with <tt class="docutils literal">#</tt> are treated as comments in the document and
+translated to the proper syntax for comments in the output
+document. Such comment lines should not appear before LaTeX math
+blocks, verbatim code blocks, or lists if the formats <tt class="docutils literal">rst</tt> and
+<tt class="docutils literal">sphinx</tt> are desired.</p>
 <p>When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
 Doconce starts processing the file. Mako comments are recognized
@@ -913,11 +913,49 @@ single hint, without any number, or several numbered hints.
 </div>
 <div class="section" id="preprocessing">
 <h1><a class="toc-backref" href="#id15">Preprocessing</a></h1>
-<p>Doconce documents may utilize a preprocessor, either <tt class="docutils literal">preprocess</tt> or
+<p>Doconce documents may utilize a preprocessor, either <tt class="docutils literal">preprocess</tt> and/or
 <tt class="docutils literal">mako</tt>. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
 The <tt class="docutils literal">mako</tt> preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.</p>
+<p>The command <tt class="docutils literal">doconce format</tt> first runs <tt class="docutils literal">preprocess</tt> and then <tt class="docutils literal">mako</tt>.
+Here is a typical example on utilizing <tt class="docutils literal">preprocess</tt> to include another
+document, &quot;comment out&quot; a large portion of text, and to write format-specific
+constructions:</p>
+<pre class="literal-block">
+# #include &quot;myotherdoc.do.txt&quot;
+
+# #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)
+\begin{table}
+\caption{Some words... label{mytab}}
+\begin{tabular}{lrr}
+\hline\noalign{\smallskip}
+\multicolumn{1}{c}{time} &amp; \multicolumn{1}{c}{velocity} &amp; \multicolumn{1}{c}{acceleration} \\
+\hline
+0.0          &amp; 1.4186       &amp; -5.01        \\
+2.0          &amp; 1.376512     &amp; 11.919       \\
+4.0          &amp; 1.1E+1       &amp; 14.717624    \\
+\hline
+\end{tabular}
+\end{table}
+# #else
+  |--------------------------------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+# #endif
+
+# #ifdef EXTRA_MATERIAL
+....large portions of text...
+# #endif
+</pre>
+<p>With the <tt class="docutils literal">mako</tt> preprocessor the if-else tests have slightly different syntax.
+An <a class="reference external" href="http://hplgit.github.com/bioinf-py/">example document</a> contains
+some illustrations on how to utilize <tt class="docutils literal">mako</tt> (clone the GitHub project and
+examine the Doconce source and the <tt class="docutils literal">doc/src/make.sh</tt> script).</p>
 </div>
 <div class="section" id="resources">
 <h1><a class="toc-backref" href="#id16">Resources</a></h1>

@@ -43,9 +43,6 @@
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
-% #ifdef MOVIE15
-\usepackage{movie15}
-% #endif
 % #ifdef MINTED
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 % #endif
@@ -159,13 +156,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Aug 7, 2012}
+\date{Aug 11, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Aug 7, 2012}}
+{\large\textsf{Aug 11, 2012}}
 
 \end{center}
 \vfill
@@ -174,7 +171,7 @@
 % #else
 
 \begin{center}
-Aug 7, 2012
+Aug 11, 2012
 \end{center}
 
 % #endif
@@ -379,11 +376,11 @@ And finally a description list:
 
 \subsection{Comments}
 
-Lines starting with \code{#} are treated as comments in the document
-and translated to the proper syntax for comments in
-the output document. Such comment lines
-should not appear before {\LaTeX} math blocks, verbatim code blocks,
-or lists if the formats \code{rst} and \code{sphinx} are desired.
+Lines starting with \code{#} are treated as comments in the document and
+translated to the proper syntax for comments in the output
+document. Such comment lines should not appear before {\LaTeX} math
+blocks, verbatim code blocks, or lists if the formats \code{rst} and
+\code{sphinx} are desired.
 
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
@@ -793,11 +790,52 @@ An exercise, problem, or project has certain elements:
 
 \subsection{Preprocessing}
 
-Doconce documents may utilize a preprocessor, either \code{preprocess} or
+Doconce documents may utilize a preprocessor, either \code{preprocess} and/or
 \code{mako}. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
 The \code{mako} preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+The command \code{doconce format} first runs \code{preprocess} and then \code{mako}.
+Here is a typical example on utilizing \code{preprocess} to include another
+document, "comment out" a large portion of text, and to write format-specific
+constructions:
+
+\bccq
+# #include "myotherdoc.do.txt"
+
+# #if FORMAT in ("latex", "pdflatex")
+\begin{table}
+\caption{Some words... label{mytab}}
+\begin{tabular}{lrr}
+\hline\noalign{\smallskip}
+\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\hline
+0.0          & 1.4186       & -5.01        \\
+2.0          & 1.376512     & 11.919       \\
+4.0          & 1.1E+1       & 14.717624    \\
+\hline
+\end{tabular}
+\end{table}
+# #else
+  |--------------------------------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+# #endif
+
+# #ifdef EXTRA_MATERIAL
+....large portions of text...
+# #endif
+\eccq
+
+With the \code{mako} preprocessor the if-else tests have slightly different syntax.
+An \href{{http://hplgit.github.com/bioinf-py/}}{example document} contains
+some illustrations on how to utilize \code{mako} (clone the GitHub project and
+examine the Doconce source and the \code{doc/src/make.sh} script).
 
 \subsection{Resources}
 
@@ -806,7 +844,6 @@ programming language, very similar to Python.
 \end{itemize}
 
 \noindent
-
 
 % #ifdef PREAMBLE
 \printindex

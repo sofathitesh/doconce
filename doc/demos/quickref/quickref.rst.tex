@@ -55,7 +55,7 @@
 \textbf{Author}: &
 	Hans Petter Langtangen \\
 \textbf{Date}: &
-	Aug 7, 2012 \\
+	Aug 11, 2012 \\
 \end{tabularx}
 \end{center}
 
@@ -398,11 +398,11 @@ and its description may fit on one line
   \label{comments}%
 }
 
-Lines starting with \texttt{\#} are treated as comments in the document
-and translated to the proper syntax for comments in
-the output document. Such comment lines
-should not appear before LaTeX math blocks, verbatim code blocks,
-or lists if the formats \texttt{rst} and \texttt{sphinx} are desired.
+Lines starting with \texttt{\#} are treated as comments in the document and
+translated to the proper syntax for comments in the output
+document. Such comment lines should not appear before LaTeX math
+blocks, verbatim code blocks, or lists if the formats \texttt{rst} and
+\texttt{sphinx} are desired.
 
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
@@ -948,11 +948,53 @@ single hint, without any number, or several numbered hints.
   \label{preprocessing}%
 }
 
-Doconce documents may utilize a preprocessor, either \texttt{preprocess} or
+Doconce documents may utilize a preprocessor, either \texttt{preprocess} and/or
 \texttt{mako}. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
 The \texttt{mako} preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+The command \texttt{doconce format} first runs \texttt{preprocess} and then \texttt{mako}.
+Here is a typical example on utilizing \texttt{preprocess} to include another
+document, ``comment out'' a large portion of text, and to write format-specific
+constructions:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+\#~\#include~"myotherdoc.do.txt"\\
+~\\
+\#~\#if~FORMAT~in~("latex",~"pdflatex")\\
+\textbackslash{}begin\{table\}\\
+\textbackslash{}caption\{Some~words...~label\{mytab\}\}\\
+\textbackslash{}begin\{tabular\}\{lrr\}\\
+\textbackslash{}hline\textbackslash{}noalign\{\textbackslash{}smallskip\}\\
+\textbackslash{}multicolumn\{1\}\{c\}\{time\}~\&~\textbackslash{}multicolumn\{1\}\{c\}\{velocity\}~\&~\textbackslash{}multicolumn\{1\}\{c\}\{acceleration\}~\textbackslash{}\textbackslash{}\\
+\textbackslash{}hline\\
+0.0~~~~~~~~~~\&~1.4186~~~~~~~\&~-5.01~~~~~~~~\textbackslash{}\textbackslash{}\\
+2.0~~~~~~~~~~\&~1.376512~~~~~\&~11.919~~~~~~~\textbackslash{}\textbackslash{}\\
+4.0~~~~~~~~~~\&~1.1E+1~~~~~~~\&~14.717624~~~~\textbackslash{}\textbackslash{}\\
+\textbackslash{}hline\\
+\textbackslash{}end\{tabular\}\\
+\textbackslash{}end\{table\}\\
+\#~\#else\\
+~~|-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-|\\
+~~|time~~|~velocity~|~acceleration~|\\
+~~|-{}-l-{}-{}-{}-{}-{}-{}-{}-r-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-r-{}-{}-{}-{}-{}-{}-{}-|\\
+~~|~0.0~~|~1.4186~~~|~-5.01~~~~~~~~|\\
+~~|~2.0~~|~1.376512~|~11.919~~~~~~~|\\
+~~|~4.0~~|~1.1E+1~~~|~14.717624~~~~|\\
+~~|-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-|\\
+\#~\#endif\\
+~\\
+\#~\#ifdef~EXTRA\_MATERIAL\\
+....large~portions~of~text...\\
+\#~\#endif
+}
+\end{quote}
+
+With the \texttt{mako} preprocessor the if-else tests have slightly different syntax.
+An \href{http://hplgit.github.com/bioinf-py/}{example document} contains
+some illustrations on how to utilize \texttt{mako} (clone the GitHub project and
+examine the Doconce source and the \texttt{doc/src/make.sh} script).
 
 
 %___________________________________________________________________________

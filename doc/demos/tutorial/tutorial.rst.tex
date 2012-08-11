@@ -76,7 +76,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Aug 7, 2012
+Aug 11, 2012
 %
 \begin{itemize}
 
@@ -643,6 +643,9 @@ running \texttt{preprocess}. That is, in the last example, \texttt{FORMAT} is
 defined as \texttt{latex}. Inside the Doconce document one can then perform
 format specific actions through tests like \texttt{\#if FORMAT == "latex"}.
 
+The command-line arguments \texttt{-{}-no-preprocess} and \texttt{-{}-no-mako} turn off
+running \texttt{preprocess} and \texttt{mako}, respectively.
+
 Inline comments in the text are removed from the output by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
@@ -686,6 +689,24 @@ aid of this package. The command-line argument \texttt{-{}-no-pygments-html}
 turns off the use of Pygments and makes code blocks appear with
 plain \texttt{<pre>} HTML tags. The option \texttt{-{}-pygments-html-linenos} turns
 on line numbers in Pygments-formatted code blocks.
+
+The HTML file can be embedded in a template if the Doconce document
+does not have a title (because then there will be
+no header and footer in the HTML file). The template file must contain
+valid HTML code and can have three ``slots'': \texttt{\%(title)s} for a title,
+\texttt{\%(date)s} for a date, and \texttt{\%(main)s} for the main body of text, i.e., the
+Doconce document translated to HTML. The title becomes the first
+heading in the Doconce document, and the date is extracted from the
+\texttt{DATE:} line, if present. With the template feature one can easily embed
+the text in the look and feel of a website. The template can be extracted
+from the source code of a page at the site; just insert \texttt{\%(title)s} and
+\texttt{\%(date)s} at appropriate places and replace the main bod of text
+by \texttt{\%(main)s}. Here is an example:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Terminal>~doconce~format~html~mydoc~-{}-html-template=mytemplate.html
+}
+\end{quote}
 
 
 %___________________________________________________________________________
@@ -832,7 +853,7 @@ Preprocessor variables to be defined or undefined are
 
 \item \texttt{A6PAPER} for A6 paper size (suitable for reading on small devices)
 
-\item \texttt{MOVIE15} for inclusion of the movie15 LaTeX package
+\item \texttt{MOVIE15} for using the movie15 LaTeX package to display movies
 
 \item \texttt{PREAMBLE} to turn the LaTeX preamble on or off (i.e., complete document
 or document to be included elsewhere)
@@ -1539,7 +1560,7 @@ run the usual \texttt{sudo python setup.py install}.
 \DUtitle[system-message]{system-message}
 
 
-{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~990
+{\color{red}WARNING/2} in \texttt{tutorial.rst}, line~1009
 
 \hyperlink{id5}{
 Duplicate explicit target name: ``sphinx''.

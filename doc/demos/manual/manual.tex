@@ -14,9 +14,13 @@
 
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
-\usepackage{ptex2tex,subfigure}
+\usepackage{subfigure}
+
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 
+% Set helvetica as the default font family:
+\RequirePackage{helvet}
+\renewcommand\familydefault{phv}
 
 % Hyperlinks in PDF:
 \usepackage[%
@@ -76,7 +80,7 @@
 
 
 \begin{center}
-Aug 7, 2012
+Aug 11, 2012
 \end{center}
 
 
@@ -186,9 +190,7 @@ formats.
 
 Doconce itself is pure Python code hosted at \href{{http://code.google.com/p/doconce}}{\nolinkurl{http://code.google.com/p/doconce}}.  Its installation from the
 Mercurial ({\fontsize{10pt}{10pt}\verb!hg!}) source follows the standard procedure:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 # Doconce
 hg clone https://doconce.googlecode.com/hg/ doconce
 cd doconce
@@ -198,9 +200,7 @@ cd ..
 Since Doconce is frequently updated, it is recommended to use the
 above procedure and whenever a problem occurs, make sure to
 update to the most recent version:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 cd doconce
 hg pull
 hg update
@@ -208,17 +208,13 @@ sudo python setup.py install
 \end{Verbatim}
 
 Debian GNU/Linux users can also run
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 sudo apt-get install doconce
 \end{Verbatim}
 This installs the latest release and not the most updated and bugfixed
 version.
 On Ubuntu one needs to run
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 sudo add-apt-repository ppa:scitools/ppa
 sudo apt-get update
 sudo apt-get install doconce
@@ -230,9 +226,7 @@ sudo apt-get install doconce
 If you make use of the \href{{http://code.google.com/p/preprocess}}{Preprocess}
 preprocessor, this program must be installed:
 
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 svn checkout http://preprocess.googlecode.com/svn/trunk/ preprocess
 cd preprocess
 cd doconce
@@ -244,17 +238,13 @@ A much more advanced alternative to Preprocess is
 \href{{http://www.makotemplates.org}}{Mako}. Its installation is most
 conveniently done by {\fontsize{10pt}{10pt}\verb!pip!},
 
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 pip install Mako
 \end{Verbatim}
 This command requires {\fontsize{10pt}{10pt}\verb!pip!} to be installed. On Debian Linux systems,
 such as Ubuntu, the installation is simply done by
 
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 sudo apt-get install python-pip
 \end{Verbatim}
 Alternatively, one can install from the {\fontsize{10pt}{10pt}\verb!pip!} \href{{http://pypi.python.org/pypi/pip}}{source code}.
@@ -264,9 +254,7 @@ To make {\LaTeX} documents with very flexible choice of typesetting of
 verbatim code blocks you need \href{{http://code.google.com/p/ptex2tex}}{ptex2tex},
 which is installed by
 
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
 sudo python setup.py install
@@ -274,9 +262,7 @@ sudo python setup.py install
 It may happen that you need additional style files, you can run
 a script, {\fontsize{10pt}{10pt}\verb!cp2texmf.sh!}:
 
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 cd latex
 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
 cd ../..
@@ -285,9 +271,7 @@ This script copies some special stylefiles that
 that {\fontsize{10pt}{10pt}\verb!ptex2tex!} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 sudo apt-get install texlive-latex-extra
 \end{Verbatim}
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
@@ -302,9 +286,7 @@ The \emph{minted} {\LaTeX} style is offered by {\fontsize{10pt}{10pt}\verb!ptex2
 is popular among many
 users. This style requires the package \href{{http://pygments.org}}{Pygments}
 to be installed:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
@@ -322,18 +304,14 @@ The {\fontsize{10pt}{10pt}\verb!rst!} output from Doconce allows further transfo
 HTML, XML, OpenOffice, and so on, through the \href{{http://docutils.sourceforge.net}}{docutils} package.  The installation of the
 most recent version can be done by
 
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
 sudo python setup.py install
 cd ..
 \end{Verbatim}
 To use the OpenOffice suite you will typically on Debian systems install
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
 \end{Verbatim}
 
@@ -346,9 +324,7 @@ run the usual {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}.
 
 Output to {\fontsize{10pt}{10pt}\verb!sphinx!} requires of course \href{{http://sphinx.pocoo.org}}{Sphinx},
 installed by
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
 sudo python setup.py install
@@ -361,18 +337,14 @@ extended Markdown format, which via the {\fontsize{10pt}{10pt}\verb!pandoc!} pro
 translated to a range of other formats. Installation of \href{{http://johnmacfarlane.net/pandoc/}}{Pandoc}, written in Haskell, is most
 easily done by
 
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 sudo apt-get install pandoc
 \end{Verbatim}
 
 \paragraph{Epydoc Output.}
 When the output format is {\fontsize{10pt}{10pt}\verb!epydoc!} one needs that program too, installed
 by
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc
 cd epydoc
 sudo make install
@@ -408,9 +380,7 @@ Mercurial ({\fontsize{10pt}{10pt}\verb!hg!}) directories, go to the directory, r
 \index{demos}
 
 The current text is generated from a Doconce format stored in the
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 docs/manual/manual.do.txt
 \end{Verbatim}
 file in the Doconce source code tree. We have made a
@@ -423,9 +393,7 @@ The file {\fontsize{10pt}{10pt}\verb!make.sh!} in the same directory as the {\fo
 Doconce file to obtain documents in various formats.
 
 Another demo is found in
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 docs/tutorial/tutorial.do.txt
 \end{Verbatim}
 In the {\fontsize{10pt}{10pt}\verb!tutorial!} directory there is also a {\fontsize{10pt}{10pt}\verb!make.sh!} file producing a
@@ -442,23 +410,17 @@ of the results.
 
 Transformation of a Doconce document {\fontsize{10pt}{10pt}\verb!mydoc.do.txt!} to various other
 formats applies the script {\fontsize{10pt}{10pt}\verb!doconce format!}:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format format mydoc.do.txt
 \end{Verbatim}
 or just
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format format mydoc
 \end{Verbatim}
 The {\fontsize{10pt}{10pt}\verb!mako!} or {\fontsize{10pt}{10pt}\verb!preprocess!} programs are always used to preprocess the
 file first, and options to {\fontsize{10pt}{10pt}\verb!mako!} or {\fontsize{10pt}{10pt}\verb!preprocess!} can be added after the
 filename. For example,
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
 Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 \end{Verbatim}
@@ -467,19 +429,18 @@ running {\fontsize{10pt}{10pt}\verb!preprocess!}. That is, in the last example, 
 defined as {\fontsize{10pt}{10pt}\verb!latex!}. Inside the Doconce document one can then perform
 format specific actions through tests like {\fontsize{10pt}{10pt}\verb!#if FORMAT == "latex"!}.
 
+The command-line arguments {\fontsize{10pt}{10pt}\verb!--no-preprocess!} and {\fontsize{10pt}{10pt}\verb!--no-mako!} turn off
+running {\fontsize{10pt}{10pt}\verb!preprocess!} and {\fontsize{10pt}{10pt}\verb!mako!}, respectively.
+
 Inline comments in the text are removed from the output by
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format latex mydoc --skip_inline_comments
 \end{Verbatim}
 One can also remove all such comments from the original Doconce
 file by running:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 Terminal> doconce remove_inline_comments mydoc
 \end{Verbatim}
-\noindent
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
 
@@ -487,9 +448,7 @@ and comments by different authors should be removed.
 
 Making an HTML version of a Doconce file {\fontsize{10pt}{10pt}\verb!mydoc.do.txt!}
 is performed by
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format html mydoc
 \end{Verbatim}
 The resulting file {\fontsize{10pt}{10pt}\verb!mydoc.html!} can be loaded into any web browser for viewing.
@@ -501,19 +460,31 @@ turns off the use of Pygments and makes code blocks appear with
 plain {\fontsize{10pt}{10pt}\verb!<pre>!} HTML tags. The option {\fontsize{10pt}{10pt}\verb!--pygments-html-linenos!} turns
 on line numbers in Pygments-formatted code blocks.
 
+The HTML file can be embedded in a template if the Doconce document
+does not have a title (because then there will be
+no header and footer in the HTML file). The template file must contain
+valid HTML code and can have three "slots": {\fontsize{10pt}{10pt}\verb!%(title)s!} for a title,
+{\fontsize{10pt}{10pt}\verb!%(date)s!} for a date, and {\fontsize{10pt}{10pt}\verb!%(main)s!} for the main body of text, i.e., the
+Doconce document translated to HTML. The title becomes the first
+heading in the Doconce document, and the date is extracted from the
+{\fontsize{10pt}{10pt}\verb!DATE:!} line, if present. With the template feature one can easily embed
+the text in the look and feel of a website. The template can be extracted
+from the source code of a page at the site; just insert {\fontsize{10pt}{10pt}\verb!%(title)s!} and
+{\fontsize{10pt}{10pt}\verb!%(date)s!} at appropriate places and replace the main bod of text
+by {\fontsize{10pt}{10pt}\verb!%(main)s!}. Here is an example:
+\begin{Verbatim}
+Terminal> doconce format html mydoc --html-template=mytemplate.html
+\end{Verbatim}
+
 \subsection{Pandoc and Markdown}
 
 Output in Pandoc's extended Markdown format results from
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format pandoc mydoc
 \end{Verbatim}
 The name of the output file is {\fontsize{10pt}{10pt}\verb!mydoc.mkd!}.
 From this format one can go to numerous other formats:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd
 \end{Verbatim}
 Pandoc supports {\fontsize{10pt}{10pt}\verb!latex!}, {\fontsize{10pt}{10pt}\verb!html!}, {\fontsize{10pt}{10pt}\verb!odt!} (OpenOffice), {\fontsize{10pt}{10pt}\verb!docx!} (Microsoft
@@ -529,9 +500,7 @@ There are two ways (experiment to find the best one for your document):
 {\fontsize{10pt}{10pt}\verb!doconce format latex!}, and then going from {\LaTeX} to the desired format
 using {\fontsize{10pt}{10pt}\verb!pandoc!}.
 Here is an example on the latter strategy:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format latex mydoc
 Terminal> doconce ptex2tex mydoc
 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex
@@ -547,9 +516,7 @@ Pandoc, it can be advantageous to go via {\LaTeX}.
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
 HTML with mathematics displayed my MathJax:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format pandoc mydoc
 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
 \end{Verbatim}
@@ -566,9 +533,7 @@ Making a {\LaTeX} file {\fontsize{10pt}{10pt}\verb!mydoc.tex!} from {\fontsize{1
 \paragraph{Step 1.}
 Filter the doconce text to a pre-LaTeX form {\fontsize{10pt}{10pt}\verb!mydoc.p.tex!} for
 the {\fontsize{10pt}{10pt}\verb!ptex2tex!} program (or {\fontsize{10pt}{10pt}\verb!doconce ptex2tex!}):
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format latex mydoc
 \end{Verbatim}
 LaTeX-specific commands ("newcommands") in math formulas and similar
@@ -579,15 +544,11 @@ so that your commands are defined.
 
 \paragraph{Step 2.}
 Run {\fontsize{10pt}{10pt}\verb!ptex2tex!} (if you have it) to make a standard {\LaTeX} file,
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> ptex2tex mydoc
 \end{Verbatim}
 In case you do not have {\fontsize{10pt}{10pt}\verb!ptex2tex!}, you may run a (very) simplified version:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce ptex2tex mydoc
 \end{Verbatim}
 
@@ -595,9 +556,7 @@ Note that Doconce generates a {\fontsize{10pt}{10pt}\verb!.p.tex!} file with som
 that can be used to steer certain properties of the {\LaTeX} document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> ptex2tex -DHELVETICA mydoc
 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative
 \end{Verbatim}
@@ -622,7 +581,7 @@ Preprocessor variables to be defined or undefined are
 
  \item {\fontsize{10pt}{10pt}\verb!A6PAPER!} for A6 paper size (suitable for reading on small devices)
 
- \item {\fontsize{10pt}{10pt}\verb!MOVIE15!} for inclusion of the movie15 {\LaTeX} package
+ \item {\fontsize{10pt}{10pt}\verb!MOVIE15!} for using the movie15 {\LaTeX} package to display movies
 
  \item {\fontsize{10pt}{10pt}\verb!PREAMBLE!} to turn the {\LaTeX} preamble on or off (i.e., complete document
    or document to be included elsewhere)
@@ -644,9 +603,7 @@ new ones.
 Also the {\fontsize{10pt}{10pt}\verb!doconce ptex2tex!} command supports preprocessor directives
 for processing the {\fontsize{10pt}{10pt}\verb!.p.tex!} file. The command allows specifications
 of code environments as well. Here is an example:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
           -DPALATINO -DA6PAPER \
           "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
@@ -672,9 +629,7 @@ edited with the aid of the {\fontsize{10pt}{10pt}\verb!doconce replace!} and {\f
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
 Here are two examples:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce replace 'section{' 'section*{' mydoc.tex
 Terminal> doconce subst 'title\{(.+)Using (.+)\}' \
           'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex
@@ -687,9 +642,7 @@ generating PDF from the {\LaTeX} file.
 \paragraph{Step 3.}
 Compile {\fontsize{10pt}{10pt}\verb!mydoc.tex!}
 and create the PDF file:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> latex mydoc
 Terminal> latex mydoc
 Terminal> makeindex mydoc   # if index
@@ -704,16 +657,12 @@ typesetting code blocks ({\fontsize{10pt}{10pt}\verb!Minted_Python!}, {\fontsize
 {\fontsize{10pt}{10pt}\verb!.ptex2tex.cfg!} or {\fontsize{10pt}{10pt}\verb!$HOME/.ptex2tex.cfg!}), the minted {\LaTeX} package is
 needed.  This package is included by running {\fontsize{10pt}{10pt}\verb!ptex2tex!} with the
 {\fontsize{10pt}{10pt}\verb!-DMINTED!} option:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> ptex2tex -DMINTED mydoc
 \end{Verbatim}
 In this case, {\fontsize{10pt}{10pt}\verb!latex!} must be run with the
 {\fontsize{10pt}{10pt}\verb!-shell-escape!} option:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> latex -shell-escape mydoc
 Terminal> latex -shell-escape mydoc
 Terminal> makeindex mydoc   # if index
@@ -729,15 +678,11 @@ included so there is no need for the {\fontsize{10pt}{10pt}\verb!-DMINTED!} opti
 
 Running {\fontsize{10pt}{10pt}\verb!pdflatex!} instead of {\fontsize{10pt}{10pt}\verb!latex!} follows almost the same steps,
 but the start is
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format latex mydoc
 \end{Verbatim}
 Then {\fontsize{10pt}{10pt}\verb!ptex2tex!} is run as explained above, and finally
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> pdflatex -shell-escape mydoc
 Terminal> makeindex mydoc   # if index
 Terminal> bibitem mydoc     # if bibliography
@@ -749,9 +694,7 @@ Terminal> pdflatex -shell-escape mydoc
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 \end{Verbatim}
 
@@ -760,15 +703,11 @@ Terminal> doconce format plain mydoc.do.txt  # results in mydoc.txt
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file {\fontsize{10pt}{10pt}\verb!mydoc.rst!}:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format rst mydoc.do.txt
 \end{Verbatim}
 We may now produce various other formats:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> rst2html.py  mydoc.rst > mydoc.html # html
 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex
 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML
@@ -780,18 +719,14 @@ saved in, among other things, the RTF format or the Microsoft Word format.
 However, it is more convenient to use the program {\fontsize{10pt}{10pt}\verb!unovonv!}
 to convert between the many formats OpenOffice supports \emph{on the command line}.
 Run
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> unoconv --show
 \end{Verbatim}
 to see all the formats that are supported.
 For example, the following commands take
 {\fontsize{10pt}{10pt}\verb!mydoc.odt!} to Microsoft Office Open XML format,
 classic MS Word format, and PDF:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> unoconv -f ooxml mydoc.odt
 Terminal> unoconv -f doc mydoc.odt
 Terminal> unoconv -f pdf mydoc.odt
@@ -818,9 +753,7 @@ Some links for going from {\LaTeX} to Word are listed below.
 
 Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the {\fontsize{10pt}{10pt}\verb!doconce sphinx_dir!} command:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce sphinx_dir author="authors' names" \
           title="some title" version=1.0 dirname=sphinxdir \
           theme=mytheme file1 file2 file3 ...
@@ -836,9 +769,7 @@ keyword is used to set the theme for design of HTML output from
 Sphinx (the default theme is {\fontsize{10pt}{10pt}\verb!'default'!}).
 
 With a single-file document in {\fontsize{10pt}{10pt}\verb!mydoc.do.txt!} one often just runs
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce sphinx_dir mydoc
 \end{Verbatim}
 and then an appropriate Sphinx directory {\fontsize{10pt}{10pt}\verb!sphinx-rootdir!} is made with
@@ -876,9 +807,7 @@ configuration file for Sphinx is edited accordingly, and a script
 {\fontsize{10pt}{10pt}\verb!make-themes.sh!} can make HTML documents with one or more themes.
 For example,
 to realize the themes {\fontsize{10pt}{10pt}\verb!fenics!} and {\fontsize{10pt}{10pt}\verb!pyramid!}, one writes
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> ./make-themes.sh fenics pyramid
 \end{Verbatim}
 The resulting directories with HTML documents are {\fontsize{10pt}{10pt}\verb!_build/html_fenics!}
@@ -891,9 +820,7 @@ Sphinx document from a file {\fontsize{10pt}{10pt}\verb!mydoc.do.txt!}.
 
 \paragraph{Step 1.}
 Translate Doconce into the Sphinx format:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format sphinx mydoc
 \end{Verbatim}
 
@@ -901,9 +828,7 @@ Terminal> doconce format sphinx mydoc
 Create a Sphinx root directory
 either manually or by using the interactive {\fontsize{10pt}{10pt}\verb!sphinx-quickstart!}
 program. Here is a scripted version of the steps with the latter:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 mkdir sphinx-rootdir
 sphinx-quickstart <<EOF
 sphinx-rootdir
@@ -938,9 +863,7 @@ are included.
 
 \paragraph{Step 3.}
 Copy the {\fontsize{10pt}{10pt}\verb!mydoc.rst!} file to the Sphinx root directory:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> cp mydoc.rst sphinx-rootdir
 \end{Verbatim}
 If you have figures in your document, the relative paths to those will
@@ -953,21 +876,17 @@ files in the {\fontsize{10pt}{10pt}\verb!_static!} directory, see comment above.
 \paragraph{Step 4.}
 Edit the generated {\fontsize{10pt}{10pt}\verb!index.rst!} file so that {\fontsize{10pt}{10pt}\verb!mydoc.rst!}
 is included, i.e., add {\fontsize{10pt}{10pt}\verb!mydoc!} to the {\fontsize{10pt}{10pt}\verb!toctree!} section so that it becomes
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 .. toctree::
    :maxdepth: 2
 
    mydoc
 \end{Verbatim}
-\noindent
 (The spaces before {\fontsize{10pt}{10pt}\verb!mydoc!} are important!)
 
 \paragraph{Step 5.}
 Generate, for instance, an HTML version of the Sphinx source:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 make clean   # remove old versions
 make html
 \end{Verbatim}
@@ -980,9 +899,7 @@ and Texinfo files.
 
 \paragraph{Step 6.}
 View the result:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> firefox _build/html/index.html
 \end{Verbatim}
 
@@ -997,9 +914,7 @@ There are many different wiki formats, but Doconce only supports three:
 \href{{http://code.google.com/p/support/wiki/WikiSyntax}}{Googlecode wiki}, MediaWiki, and Creole Wiki. These formats are called
 {\fontsize{10pt}{10pt}\verb!gwiki!}, {\fontsize{10pt}{10pt}\verb!mwiki!}, and {\fontsize{10pt}{10pt}\verb!cwiki!}, respectively.
 Transformation from Doconce to these formats is done by
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> doconce format gwiki mydoc.do.txt
 Terminal> doconce format mwiki mydoc.do.txt
 Terminal> doconce format cwiki mydoc.do.txt
@@ -1047,8 +962,7 @@ lists, special lines, inline tags, and environments.
 An unordered bullet list makes use of the {\fontsize{10pt}{10pt}\verb!*!} as bullet sign
 and is indented as follows
 
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
    * item 1
 
    * item 2
@@ -1062,7 +976,6 @@ fontfamily=tt,xleftmargin=7mm]
 
    * item 3
 \end{Verbatim}
-\noindent
 
 This list gets typeset as
 
@@ -1089,8 +1002,7 @@ This list gets typeset as
 In an ordered list, each item starts with an {\fontsize{10pt}{10pt}\verb!o!} (as the first letter
 in "ordered"):
 
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
    o item 1
 
    o item 2
@@ -1101,7 +1013,6 @@ fontfamily=tt,xleftmargin=7mm]
 
    o item 3
 \end{Verbatim}
-\noindent
 
 resulting in
 
@@ -1128,8 +1039,7 @@ applies to the outer list only.
 In a description list, each item is recognized by a dash followed
 by a keyword followed by a colon:
 
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
    - keyword1: explanation of keyword1
 
    - keyword2: explanation
@@ -1137,7 +1047,6 @@ fontfamily=tt,xleftmargin=7mm]
      if there are multiple
      lines)
 \end{Verbatim}
-\noindent
 
 The result becomes
 
@@ -1169,40 +1078,33 @@ to identify a title of the document, the authors, and the date. The
 title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
 the syntax
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 name at institution1 and institution2 and institution3
 \end{Verbatim}
-\noindent
 The {\fontsize{10pt}{10pt}\verb!at!} with surrounding spaces
 is essential for adding information about institution(s)
 to the author name, and the {\fontsize{10pt}{10pt}\verb!and!} with surrounding spaces is
 essential as delimiter between different institutions.
 An email address can optionally be included, using the syntax
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 name Email: somename@site.net at institution1 and institution2
 \end{Verbatim}
-\noindent
 Multiple authors require multiple {\fontsize{10pt}{10pt}\verb!AUTHOR:!} lines. All information
 associated with {\fontsize{10pt}{10pt}\verb!TITLE:!} and {\fontsize{10pt}{10pt}\verb!AUTHOR:!} keywords must appear on a single
 line.  Here is an example:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 TITLE: On an Ultimate Markup Language
 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
 AUTHOR: A. Dummy Author
 DATE: November 9, 2016
 \end{Verbatim}
-\noindent
 Note how one can specify a single institution, multiple institutions,
 and no institution. In some formats (including {\fontsize{10pt}{10pt}\verb!rst!} and {\fontsize{10pt}{10pt}\verb!sphinx!})
 only the author names appear. Some formats have
 "intelligence" in listing authors and institutions, e.g., the plain text
 format:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 Hans Petter Langtangen [1, 2]
 Kaare Dump  (dump@cyb.space.com) [3]
 A. Dummy Author
@@ -1211,7 +1113,6 @@ A. Dummy Author
 [2] Department of Informatics, University of Oslo
 [3] Segfault, Cyberspace Inc.
 \end{Verbatim}
-\noindent
 Similar typesetting is done for {\LaTeX} and HTML formats.
 
 The current date can be specified as {\fontsize{10pt}{10pt}\verb!today!}.
@@ -1220,11 +1121,9 @@ The current date can be specified as {\fontsize{10pt}{10pt}\verb!today!}.
 
 \paragraph{Table of Contents.}
 A table of contents can be generated by the line
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 TOC: on
 \end{Verbatim}
-\noindent
 This line is usually placed after the {\fontsize{10pt}{10pt}\verb!DATE:!} line.
 A value {\fontsize{10pt}{10pt}\verb!off!} turns off the table of contents.
 
@@ -1258,8 +1157,7 @@ section heading is taken as part of the text of the abstract).
 
 
 Here are some examples:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 __Abstract.__ The following text just attempts to exemplify
 various section headings.
 
@@ -1283,7 +1181,6 @@ The running text goes here.
 
 __A Paragraph.__ The running text goes here.
 \end{Verbatim}
-\noindent
 
 
 \section{Special Lines}
@@ -1291,11 +1188,9 @@ __A Paragraph.__ The running text goes here.
 \subsection{Figures}
 
 Figures are recognized by the special line syntax
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
 \end{Verbatim}
-\noindent
 The filename can be without extension, and Doconce will search for an
 appropriate file with the right extension. If the extension is wrong,
 say {\fontsize{10pt}{10pt}\verb!.eps!} when requesting an HTML format, Doconce tries to find another
@@ -1324,9 +1219,7 @@ included in the formatted caption).
 
 Combining several image files into one can be done by the
 {\fontsize{10pt}{10pt}\verb!convert!} and {\fontsize{10pt}{10pt}\verb!montage!} programs from the ImageMagick suite:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 montage file1.png file2.png ... file4.png -geometry +2+2  result.png
 montage file1.png file2.png -tile x1 result.png
 montage file1.png file2.png -tile 1x result.png
@@ -1342,11 +1235,9 @@ Here is an example on the {\fontsize{10pt}{10pt}\verb!MOVIE:!} keyword for embed
 feature works well for the {\fontsize{10pt}{10pt}\verb!latex!}, {\fontsize{10pt}{10pt}\verb!html!}, {\fontsize{10pt}{10pt}\verb!rst!}, and {\fontsize{10pt}{10pt}\verb!sphinx!} formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie.
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 MOVIE: [filename, height=xxx width=yyy] possible caption
 \end{Verbatim}
-\noindent
 
 % latex/PDF format can make use of the movie15 package for displaying movies,
 % or just plain \href{run: ...}{...}
@@ -1382,9 +1273,7 @@ the {\fontsize{10pt}{10pt}\verb!movie15!} package wanted, one has to turn on the
 variable {\fontsize{10pt}{10pt}\verb!MOVIE15!}. There is an associated variable
 {\fontsize{10pt}{10pt}\verb!EXTERNAL_MOVIE_VIEWER!} which can be defined to launch an external
 viewer when displaying the PDF file (in Acrobat Reader):
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc
 \end{Verbatim}
 
@@ -1418,29 +1307,23 @@ plus {\LaTeX}/TeX inline mathematics, such as $\nu = \sin(x)$.
 
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 *emphasized words*
 \end{Verbatim}
-\noindent
 
 Boldface font is recognized by an underscore instead of an asterisk:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 _several words in boldface_ followed by *ephasized text*.
 \end{Verbatim}
-\noindent
 The line above gets typeset as
 \textbf{several words in boldface} followed by \emph{ephasized text}.
 
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 `call myroutine(a, b)` looks like a Fortran call
 while `void myfunc(double *a, double *b)` must be C.
 \end{Verbatim}
-\noindent
 The typesetting result looks like this:
 {\fontsize{10pt}{10pt}\verb!call myroutine(a, b)!} looks like a Fortran call
 while {\fontsize{10pt}{10pt}\verb!void myfunc(double *a, double *b)!} must be C.
@@ -1457,22 +1340,18 @@ becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 some URL like "Doconce": "http://code.google.com/p/doconce"
 \end{Verbatim}
-\noindent
 which appears as some URL like \href{{http://google.com}}{Search Google}.
 The space after colon is optional.
 Links to files ending in {\fontsize{10pt}{10pt}\verb!.txt!}, {\fontsize{10pt}{10pt}\verb!.html!}, {\fontsize{10pt}{10pt}\verb!.pdf!}, {\fontsize{10pt}{10pt}\verb!.py!}, {\fontsize{10pt}{10pt}\verb!.f!},
 {\fontsize{10pt}{10pt}\verb!.f77!}, {\fontsize{10pt}{10pt}\verb!.f90!}, {\fontsize{10pt}{10pt}\verb!.f95!}, {\fontsize{10pt}{10pt}\verb!.sh!}, {\fontsize{10pt}{10pt}\verb!.csh!}, {\fontsize{10pt}{10pt}\verb!.ksh!}, {\fontsize{10pt}{10pt}\verb!.zsh!},
 {\fontsize{10pt}{10pt}\verb!.c!}, {\fontsize{10pt}{10pt}\verb!.cpp!}, {\fontsize{10pt}{10pt}\verb!.cxx!}, {\fontsize{10pt}{10pt}\verb!.pl!}, and {\fontsize{10pt}{10pt}\verb!.java!} follows the same
 setup:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 see the "Doconce Manual": "manual.do.txt".
 \end{Verbatim}
-\noindent
 which appears as see the \href{{manual.do.txt}}{Doconce Manual}.
 However, linking to local files like this needs caution:
 
@@ -1501,9 +1380,7 @@ If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend
 to transform the source code file to HTML format by running
 {\fontsize{10pt}{10pt}\verb!pygmentize!}, e.g.,
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> pygmentize -l bash -f html -O full,style=emacs \
           -o _static/make.sh.html subdir/make.sh
 \end{Verbatim}
@@ -1511,21 +1388,17 @@ Then you can link to {\fontsize{10pt}{10pt}\verb!_static/make.sh.html!} instead 
 {\fontsize{10pt}{10pt}\verb!subdir/make.sh!}. Here is an example where the reader
 has the file available as {\fontsize{10pt}{10pt}\verb!src/myprog.py!} in her
 software and the document links to {\fontsize{10pt}{10pt}\verb!_static/myprog.py!}:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
 \end{Verbatim}
-\noindent
 
 Links to files with other extensions are typeset with
 \emph{the filename as link text}. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 URL: "manual.html"
 \end{Verbatim}
-\noindent
 resulting in the link \href{{manual.html}}{\nolinkurl{manual.html}}.
 
 % This is now automatically carried out by the autogenerated
@@ -1543,19 +1416,15 @@ resulting in the link \href{{manual.html}}{\nolinkurl{manual.html}}.
 
 Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 Click on this link: URL:"http://code.google.com/p/doconce".
 \end{Verbatim}
-\noindent
 resulting in Click on this link: \href{{http://code.google.com/p/doconce}}{\nolinkurl{http://code.google.com/p/doconce}}.
 
 Doconce also supports inline comments in the text:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 [name: comment]
 \end{Verbatim}
-\noindent
 where {\fontsize{10pt}{10pt}\verb!name!} is the name of the author of the command, and {\fontsize{10pt}{10pt}\verb!comment!} is a
 plain text text. \inlinecomment{hpl}{Note that there must be a space after the colon,
 otherwise the comment is not recognized. Inline comments
@@ -1580,14 +1449,12 @@ text. Doconce therefore supports an extended inline math syntax where
 the writer can provide an alternative syntax suited for formats close
 to plain ASCII:
 
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 Here is an example on a linear system
 ${\bf A}{\bf x} = {\bf b}$|$Ax=b$,
 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and
 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
 \end{Verbatim}
-\noindent
 That is, we provide two alternative expressions, both enclosed in
 dollar signs and separated by a pipe symbol, the expression to the
 left is used in formats with {\LaTeX} support ({\fontsize{10pt}{10pt}\verb!latex!}, {\fontsize{10pt}{10pt}\verb!pdflatex!}, {\fontsize{10pt}{10pt}\verb!html!},
@@ -1606,14 +1473,12 @@ in Section~\ref{inline:tagging}.
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
 lines start with the hash {\fontsize{10pt}{10pt}\verb!#!}:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 #
 # Here are some comment lines that do not affect any formatting.
 # These lines are converted to comments in the output format.
 #
 \end{Verbatim}
-\noindent
 Such comment lines may have some side effects in the {\fontsize{10pt}{10pt}\verb!rst!} and {\fontsize{10pt}{10pt}\verb!sphinx!}
 formats because following lines are taken as part of the comment if
 there is not a blank line after the comment.
@@ -1634,12 +1499,10 @@ comments to be in the source code of the output document.
 \index{cross referencing} \index{labels} \index{references}
 
 References and labels are supported. The syntax is simple:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 label{section:verbatim}   # defines a label
 For more information we refer to Section ref{section:verbatim}.
 \end{Verbatim}
-\noindent
 This syntax is close that that of labels and cross-references in
 {\LaTeX}. When the label is placed after a section or subsection heading,
 the plain text, Epytext, and StructuredText formats will simply
@@ -1671,20 +1534,16 @@ in Section~\ref{inline:tagging}.
 
 An index can be created for the {\fontsize{10pt}{10pt}\verb!latex!}, {\fontsize{10pt}{10pt}\verb!rst!}, and {\fontsize{10pt}{10pt}\verb!sphinx!} formats
 by the {\fontsize{10pt}{10pt}\verb!idx!} keyword, following a LaTeX-inspired syntax:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 idx{some index entry}
 idx{main entry!subentry}
 idx{`verbatim_text` and more}
 \end{Verbatim}
-\noindent
 The exclamation mark divides a main entry and a subentry. Backquotes
 surround verbatim text, which is correctly transformed in a {\LaTeX} setting to
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 \end{Verbatim}
-\noindent
 Everything related to the index simply becomes invisible in plain
 text, Epytext, StructuredText, HTML, and wiki formats.  Note: {\fontsize{10pt}{10pt}\verb!idx!}
 commands should be inserted outside paragraphs, not in between the
@@ -1697,21 +1556,17 @@ the paragraph heading and the text body, although this works fine if
 {\LaTeX} is the output format).
 
 Literature citations also follow a LaTeX-inspired style:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}.
 \end{Verbatim}
-\noindent
 Citation labels can be separated by comma. In {\LaTeX}, this is directly
 translated to the corresponding {\fontsize{10pt}{10pt}\verb!cite!} command; in reST
 and Sphinx the labels can be clicked, while in all the other text
 formats the labels are consecutively numbered so the above citation
 will typically look like
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 as found in [3][14]
 \end{Verbatim}
-\noindent
 if {\fontsize{10pt}{10pt}\verb!Larsen_1986!} has already appeared in the 3rd citation in the document
 and {\fontsize{10pt}{10pt}\verb!Nielsen_Kjeldstrup_1999!} is a new (the 14th) citation. The citation labels
 can be any sequence of characters, except for curly braces and comma.
@@ -1723,8 +1578,7 @@ or simply a Python dictionary written in a file with extension {\fontsize{10pt}{
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
 in the bibliography. Doconce markup can be used in this text, e.g.,
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 {
 'Nielsen_Kjeldstrup_1999': """
 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languages*.
@@ -1737,7 +1591,6 @@ O. B. Larsen. On Markup and Generality.
 """
 }
 \end{Verbatim}
-\noindent
 
 In the {\fontsize{10pt}{10pt}\verb!latex!} and {\fontsize{10pt}{10pt}\verb!pdflatex!} formats, the {\fontsize{10pt}{10pt}\verb!.bib!} file will be used in
 the standard BibTeX way.  In the {\fontsize{10pt}{10pt}\verb!rst!} and {\fontsize{10pt}{10pt}\verb!sphinx!} formats, the
@@ -1785,8 +1638,7 @@ A table like
 
 \noindent
 is built up of pipe symbols and dashes:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
   |--------------------------------|
   |time  | velocity | acceleration |
   |--------------------------------|
@@ -1795,7 +1647,6 @@ fontfamily=tt,xleftmargin=7mm]
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
 \end{Verbatim}
-\noindent
 The pipes and column values do not need to be aligned (but why write
 the Doconce source in an ugly way?). In the line below the heading,
 one can insert the characters {\fontsize{10pt}{10pt}\verb!c!}, {\fontsize{10pt}{10pt}\verb!r!}, or {\fontsize{10pt}{10pt}\verb!l!} to specify the
@@ -1823,8 +1674,7 @@ by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
 it) and a solution file:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 ===== Project: Determine the Distance to the Moon =====
 label{proj:moondist} file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
@@ -1835,7 +1685,6 @@ __Hint 1.__ Do not plan a travel to the moon.
 
 __Hint 2.__ Wikipedia is always helpful.
 \end{Verbatim}
-\noindent
 Doconce will recognize the exercise, problem, or project \emph{title},
 the \emph{label}, the \emph{result file}, the \emph{solution file} (if any of
 these three entities is present), the \emph{text}, and a sequence of
@@ -1890,11 +1739,9 @@ supported for Sphinx as well.  The argument after {\fontsize{10pt}{10pt}\verb!!b
 Sphinx output mapped onto a valid Pygments language for typesetting of
 the verbatim block by Pygments. This mapping takes place in an
 optional comment to be inserted in the Doconce source file, e.g.,
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 \end{Verbatim}
-\noindent
 Here, three arguments are defined: {\fontsize{10pt}{10pt}\verb!pycod!} for Python code,
 {\fontsize{10pt}{10pt}\verb!cod!} also for Python code, {\fontsize{10pt}{10pt}\verb!cppcod!} for C++ code, and {\fontsize{10pt}{10pt}\verb!sys!}
 for terminal sessions. The same arguments would be defined
@@ -1930,7 +1777,7 @@ in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
 Here is a verbatim code block with Python code ({\fontsize{10pt}{10pt}\verb!pycod!} style):
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
+\begin{Verbatim}
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P<begin>(^|\s+))'
 inline_tag_end = r'(?P<end>[.,?!;:)\s])'
@@ -1945,28 +1792,24 @@ INLINE_TAGS = {
     r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
     (inline_tag_begin, inline_tag_end),
 }
-\end{minted}
-\noindent
+\end{Verbatim}
 And here is a C++ code snippet ({\fontsize{10pt}{10pt}\verb!cppcod!} style):
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{c++}
+\begin{Verbatim}
 void myfunc(double* x, const double& myarr) {
     for (int i = 1; i < myarr.size(); i++) {
         myarr[i] = myarr[i] - x[i]*myarr[i-1]
     }
 }
-\end{minted}
-\noindent
+\end{Verbatim}
 
 % When showing copy from file in !bc envir, intent a character - otherwise
 % ptex2tex is confused and starts copying...
 Computer code can be copied directly from a file, if desired. The syntax
 is then
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
  @@@CODE myfile.f
  @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1
 \end{Verbatim}
-\noindent
 The first line implies that all lines in the file {\fontsize{10pt}{10pt}\verb!myfile.f!} are
 copied into a verbatim block, typset in a {\fontsize{10pt}{10pt}\verb!!bc Xpro!} environment, where
 {\fontsize{10pt}{10pt}\verb!X!} is the extension of the filename, here {\fontsize{10pt}{10pt}\verb!f!} (i.e., the environment
@@ -1987,7 +1830,7 @@ final line with the "to" text is not included in the verbatim block.
 
 Let us copy a whole file (the first line above):
 
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
+\begin{Verbatim}
 C     a comment
 
       subroutine    test()
@@ -2003,13 +1846,12 @@ C     END1
       program testme
       call test()
       return
-\end{minted}
-\noindent
+\end{Verbatim}
 
 Let us then copy just a piece in the middle as indicated by the {\fontsize{10pt}{10pt}\verb!fromto:!}
 directive above:
 
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
+\begin{Verbatim}
       subroutine    test()
       integer i
       real*8 r
@@ -2018,8 +1860,7 @@ directive above:
          r = r + i
       end do
       return
-\end{minted}
-\noindent
+\end{Verbatim}
 
 Note that the "to" line is not copied into the Doconce file, but the
 "from" line is. Sometimes it is convenient to also neglect the
@@ -2027,21 +1868,6 @@ Note that the "to" line is not copied into the Doconce file, but the
 {\fontsize{10pt}{10pt}\verb!from-to!} ("from with minus"). This allows for copying very similar
 code segments throughout a file, while still distinguishing between them.
 Copying the second set of parameters from the text
-\providecommand{\shadedskip}{}
-\definecolor{shadecolor}{rgb}{0.87843, 0.95686, 1.0}
-\renewenvironment{shadedskip}{
-\def\FrameCommand{\colorbox{shadecolor}}\FrameRule0.6pt
-\MakeFramed {\FrameRestore}\vskip3mm}{\vskip0mm\endMakeFramed}
-\providecommand{\shadedquoteBlue}{}
-\renewenvironment{shadedquoteBlue}[1][]{
-\bgroup\rmfamily
-\fboxsep=0mm\relax
-\begin{shadedskip}
-\list{}{\parsep=-2mm\parskip=0mm\topsep=0pt\leftmargin=2mm
-\rightmargin=2\leftmargin\leftmargin=4pt\relax}
-\item\relax}
-{\endlist\end{shadedskip}\egroup}\begin{shadedquoteBlue}
-\fontsize{9pt}{9pt}
 \begin{Verbatim}
 # --- Start Example 1 ---
 c = -1
@@ -2057,14 +1883,10 @@ p0 = 0
 simulate_and_plot(c, A, p0)
 # --- End Example 2 ---
 \end{Verbatim}
-\end{shadedquoteBlue}
-\noindent
 is easy with
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 from-to: Start Example 2@End Example 2
 \end{Verbatim}
-\noindent
 With only {\fontsize{10pt}{10pt}\verb!fromto:!} this would be impossible.
 
 (Remark for those familiar with {\fontsize{10pt}{10pt}\verb!ptex2tex!}: The from-to
@@ -2083,14 +1905,12 @@ Blocks of mathematical text are like computer code blocks, but
 the opening tag is {\fontsize{10pt}{10pt}\verb!!bt!} (begin TeX) and the closing tag is
 {\fontsize{10pt}{10pt}\verb!!et!}. It is important that {\fontsize{10pt}{10pt}\verb!!bt!} and {\fontsize{10pt}{10pt}\verb!!et!} appear on the beginning of the
 line and followed by a newline.
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
 \end{Verbatim}
-\noindent
 Here is the result of the above {\fontsize{10pt}{10pt}\verb!!bt!} - {\fontsize{10pt}{10pt}\verb!!et!} block:
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
@@ -2176,21 +1996,6 @@ expressions).
 Suppose we have the following commands in
 {\fontsize{10pt}{10pt}\verb!newcommand_replace.tex!}:
 
-\providecommand{\shadedwbar}{}
-\definecolor{shadecolor}{rgb}{0.87843, 0.95686, 1.0}
-\renewenvironment{shadedwbar}{
-\def\FrameCommand{\color[rgb]{0.7,     0.95686, 1}\vrule width 1mm\normalcolor\colorbox{shadecolor}}\FrameRule0.6pt
-\MakeFramed {\advance\hsize-2mm\FrameRestore}\vskip3mm}{\vskip0mm\endMakeFramed}
-\providecommand{\shadedquoteBlueBar}{}
-\renewenvironment{shadedquoteBlueBar}[1][]{
-\bgroup\rmfamily
-\fboxsep=0mm\relax
-\begin{shadedwbar}
-\list{}{\parsep=-2mm\parskip=0mm\topsep=0pt\leftmargin=2mm
-\rightmargin=2\leftmargin\leftmargin=4pt\relax}
-\item\relax}
-{\endlist\end{shadedwbar}\egroup}\begin{shadedquoteBlueBar}
-\fontsize{9pt}{9pt}
 \begin{Verbatim}
 \newcommand{\beqa}{\begin{eqnarray}}
 \newcommand{\eeqa}{\end{eqnarray}}
@@ -2198,30 +2003,22 @@ Suppose we have the following commands in
 \newcommand{\uvec}{\vec u}
 \newcommand{\Q}{\pmb{Q}}
 \end{Verbatim}
-\end{shadedquoteBlueBar}
-\noindent
 
 and these in {\fontsize{10pt}{10pt}\verb!newcommands_keep.tex!}:
 
-\begin{shadedquoteBlueBar}
-\fontsize{9pt}{9pt}
 \begin{Verbatim}
 \newcommand{\x}{\pmb{x}}
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
 \end{Verbatim}
-\end{shadedquoteBlueBar}
-\noindent
 
 The {\LaTeX} block
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 \beqa
 \x\cdot\normalvec &=& 0, label{my:eq1}\\
 \Ddt{\uvec} &=& \Q \ep   label{my:eq2}
 \eeqa
 \end{Verbatim}
-\noindent
 will then be rendered to
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
@@ -2254,26 +2051,44 @@ defined as the desired output format of Doconce ({\fontsize{10pt}{10pt}\verb!htm
 the value of {\fontsize{10pt}{10pt}\verb!FORMAT!} and take different actions for different
 formats. For example, one may create special {\LaTeX} output for figures,
 say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example (see the Doconce
-source code of this document to understand how preprocess is used to
-create the example).
+a separate figure for each plot. Below is an example:
 
-% If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-% PostScript files are used.
+\begin{Verbatim}
+# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
+# PostScript files are used.
 
-% Use latex with subfigures (a) and (b)
+# #if FORMAT == "latex"
+# Use latex with subfigures (a) and (b)
 \begin{figure}
-\label{fig:wavepackets}
+label{fig:wavepackets}
   \begin{center}
+#  #ifdef PNGFIGS
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
+#  #else
 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
+#  #endif
 
+#  #ifdef PNGFIGS
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
+#  #else
 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
+#  #endif
   \end{center}
   \caption{
   Wavepackets at time (a) 0.1 s and (b) 0.2 s.
   }
 \end{figure}
 
+# #else
+
+# Use default Doconce figure handling for all other formats
+
+FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
+
+FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
+
+# #endif
+\end{Verbatim}
 
 Other user-defined variables for the preprocessor can be set at
 the command line as explained in Section~\ref{doconce2formats}.
@@ -2307,8 +2122,6 @@ to contain the keyword {\fontsize{10pt}{10pt}\verb!part:!}.
 Here is an example. Say the name of the master file is {\fontsize{10pt}{10pt}\verb!master.do.txt!}.
 The following Bash script does the job:
 We run
-\begin{shadedquoteBlue}
-\fontsize{9pt}{9pt}
 \begin{Verbatim}
 doconce format sphinx master
 # Split master.rst into parts
@@ -2330,8 +2143,6 @@ else
   cd ..
 fi
 \end{Verbatim}
-\end{shadedquoteBlue}
-\noindent
 The autogenerated {\fontsize{10pt}{10pt}\verb!automake-sphinx.sh!} file (by {\fontsize{10pt}{10pt}\verb!doconce sphinx_dir!})
 is compatible with a master {\fontsize{10pt}{10pt}\verb!.rst!} file split into pieces as long as
 the complete set of pieces in correct order is given to {\fontsize{10pt}{10pt}\verb!doconce sphinx_dir!}.
@@ -2345,11 +2156,17 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in {\LaTeX} output, test on the
-{\fontsize{10pt}{10pt}\verb!FORMAT!} variable ({\fontsize{10pt}{10pt}\verb!#if FORMAT == "latex"!}) in the Doconce code and
-insert the table in {\LaTeX} format. The {\fontsize{10pt}{10pt}\verb!else!} or {\fontsize{10pt}{10pt}\verb!elif!} branches may
-have the table in other formats or a simplified version in the Doconce
-table format. Similarly, if certain adjustments are needed, like
+if a sophisticated table is desired in {\LaTeX} output, do something line
+
+\begin{Verbatim}
+# #if FORMAT in ("latex", "pdflatex")
+# insert native LaTeX code for fancy table
+# #else
+# insert a Doconce-formatted "inline" table
+# #endif
+\end{Verbatim}
+
+Similarly, if certain adjustments are needed, like
 pagebreaks in {\LaTeX}, hardcode that in the Doconce format (and recall
 that this is really {\LaTeX} dependent - pagebreaks are not
 relevant HTML formats).
@@ -2363,34 +2180,28 @@ script, we may edit and fine-tune the output from Doconce.
 As an example, say you want a table of contents in the {\LaTeX} output
 (Doconce does not support table of contents). By inserting a
 recognizable comment in the Doconce source, say
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 # table of contents
 \end{Verbatim}
-\noindent
 we can use this comment to edit the {\LaTeX} file. First, we run
 Doconce {\fontsize{10pt}{10pt}\verb!doconce format latex mydoc!} to produce {\fontsize{10pt}{10pt}\verb!mydoc.p.tex!}. Then
 we use the {\fontsize{10pt}{10pt}\verb!doconce replace!} and {\fontsize{10pt}{10pt}\verb!doconce subst!} commands to
 replace the comment by the comment plus the table of contents command,
 or just the latter:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 Terminal> doconce replace '% table of contents'
           '\tableofcontents' mydoc.p.tex
 \end{Verbatim}
-\noindent
 The {\fontsize{10pt}{10pt}\verb!doconce replace from_text to_text filename!} command performs a
 character-by-character replacement (using the {\fontsize{10pt}{10pt}\verb!replace!} method in
 string objects in Python). If we want to preserve the comment and add
 a new line with {\fontsize{10pt}{10pt}\verb!\tableofcontents!}, we should use {\fontsize{10pt}{10pt}\verb!doconce subst!},
 which applies regular expressions for substitutions and thereby
 understands the newline character:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 Terminal> doconce subst '% table of contents' \
           '% table of contents\n\\tableofcontents' mydoc.p.tex
 \end{Verbatim}
-\noindent
 Note the double backshlash in front of the {\fontsize{10pt}{10pt}\verb!t!} character: without it we
 would get a tab and no backslash.
 The {\fontsize{10pt}{10pt}\verb!doconce subst!} is a powerful way to automatically edit the output
@@ -2427,20 +2238,16 @@ pack it out and go to the root directory.
 
 \paragraph{Step 2.}
 Copy the {\fontsize{10pt}{10pt}\verb!doconce-mode.el!} file to the home directory:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 cp misc/.doconce-mode.el $HOME
 \end{Verbatim}
-\noindent
 
 \paragraph{Step 3.}
 Add these lines to {\fontsize{10pt}{10pt}\verb!$HOME/.emacs!}:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 (load-file "~/hg/.doconce-mode.el")
 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
 \end{Verbatim}
-\noindent
 Emacs will now recognize files with extension {\fontsize{10pt}{10pt}\verb!.do.txt!} and enter
 the Doconce Editing Mode.
 
@@ -2491,32 +2298,24 @@ correctly. Merge them into one common expression.
 
 \paragraph{Links to local directories do not work.}
 Links of the type
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 see the "examples directory": "src/examples"
 \end{Verbatim}
-\noindent
 do not work well. You need to link to a specific HTML file:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 see the "examples directory": "src/examples/index.html"
 \end{Verbatim}
-\noindent
 
 \paragraph{Links are not typeset correctly.}
 Not all formats will allow formatting of the links. Verbatim words
 in links are allowed if the whole link is typeset in verbatim:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 see the directory "`examples`": "src/examples/index.html".
 \end{Verbatim}
-\noindent
 However, the following will not be typeset correctly:
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 see the "`examples` directory": "src/examples/index.html"
 \end{Verbatim}
-\noindent
 The back-ticks must be removed, or the text can be reformulated as
 in the line above it.
 
@@ -2526,20 +2325,16 @@ Make sure there is a space before the first back-tick.
 \paragraph{Strange non-English characters.}
 Check the encoding of the {\fontsize{10pt}{10pt}\verb!.do.txt!} file with the Unix {\fontsize{10pt}{10pt}\verb!file!} command
 or with
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 Unix> doconce guess_encoding myfile.do.txt
 \end{Verbatim}
-\noindent
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 \end{Verbatim}
-\noindent
 
 \paragraph{Wrong Norwegian charcters.}
 When Doconce documents have characters not in the standard ASCII set,
@@ -2648,9 +2443,7 @@ verbatim environment.
 This message points to the use of the minted style for typesetting verbatim
 code. You need to include the {\fontsize{10pt}{10pt}\verb!-shell-escape!} command-line argument when
 running {\fontsize{10pt}{10pt}\verb!latex!} or {\fontsize{10pt}{10pt}\verb!pdflatex!}:
-\vspace{4pt}
-\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
-labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}
 Terminal> latex -shell-escape file mydoc.tex
 Terminal> pdflatex -shell-escape file mydoc.tex
 \end{Verbatim}
@@ -2669,8 +2462,7 @@ formats, but add comment lines that can be replaced by {\LaTeX} environments
 via {\fontsize{10pt}{10pt}\verb!doconce replace!}. Theorems can be numbered using a variable in Mako.
 Here is an example on raw Doconce code:
 
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 <%
 theorem_counter = 4
 %>
@@ -2695,12 +2487,10 @@ $\Diamond$|$END$
 As we see, the proof of Theorem ${theorem_counter} is a modest
 achievement.
 \end{Verbatim}
-\noindent
 The {\fontsize{10pt}{10pt}\verb!.p.tex!} output file now reads
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 % begin theorem
-\label{theorem:fundamental1}
+label{theorem:fundamental1}
 
 
 \paragraph{Theorem 5.}
@@ -2716,7 +2506,6 @@ $\Diamond$
 As we see, the proof of Theorem 5 is a modest
 achievement.
 \end{Verbatim}
-\noindent
 Note that with Mako variables we can easily create our own counters,
 and this works in any format. In {\LaTeX} we can use both the generated
 numbers from Mako variables or we can use the labels.
@@ -2725,22 +2514,20 @@ The next step is to replace the {\fontsize{10pt}{10pt}\verb!% begin ...!} and {\
 the proper {\LaTeX} expressions in the {\fontsize{10pt}{10pt}\verb!.p.tex!} file. Moreover, we
 need to remove the paragraphs with \emph{Theorem}.
 The following Bash script does the job:
-\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{bash}
+\begin{Verbatim}
 file=mydoc.p.tex
 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]'
 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $file
 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file
 doconce replace '% begin theorem' '\begin{theorem}' $file
 doconce replace '% end theorem' '\end{theorem}' $file
-\end{minted}
-\noindent
+\end{Verbatim}
 More heavy editing is better done in a Python script that reads the
 {\fontsize{10pt}{10pt}\verb!mydoc.p.tex!} file and performs string substitutions and regex
 substitutions as needed.
 
 The resulting {\fontsize{10pt}{10pt}\verb!mydoc.tex!} file now becomes
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 \usepackage{theorem}
 \newtheorem{theorem}{Theorem}[section]
 
@@ -2763,7 +2550,6 @@ $\Diamond$
 As we see, the proof of Theorem 5 is a modest
 achievement.
 \end{Verbatim}
-\noindent
 Even better, HTML output looks nice as well.
 
 Note that Doconce supports fancy environments for verbatim code (for example,
@@ -2771,19 +2557,16 @@ the {\fontsize{10pt}{10pt}\verb!ptex2tex!} program with all its flexibility for 
 
 \paragraph{The {\LaTeX} file does not compile.}
 If the problem is undefined control sequence involving
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 {\fontsize{10pt}{10pt}\verb!...!}
 \end{Verbatim}
-\noindent
 the cause is usually a verbatim inline text (in back-ticks in the
 Doconce file) spans more than one line. Make sure, in the Doconce source,
 that all inline verbatim text appears on the same line.
 
 \paragraph{Inline verbatim gives error.}
 Check if the inline verbatim contains typical {\LaTeX} commands, e.g.,
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 some text with `\usepackage{mypack}` is difficult because
 ptex2tex will replace this by {\fontsize{10pt}{10pt}\verb!\usepackage{mypack}!} and
 then replace this by
@@ -2791,7 +2574,6 @@ then replace this by
 which is wrong because ptex2tex applies regex that don't
 capture the second }
 \end{Verbatim}
-\noindent
 The remedy is to place verbatim {\LaTeX} commands in verbatim
 blocks - that is safe.
 
@@ -2853,6 +2635,28 @@ output looks somewhat ugly. The good thing is that this gwiki source
 is seldom to be looked at - it is the Doconce source that one edits
 further.
 
+\subsection{Problems with HTML Output}
+
+\paragraph{How can I change the layout of the HTML page?.}
+The standard of way of controlling the HTML format is to use an
+HTML template. The Doconce source is then the body of text (leave
+out {\fontsize{10pt}{10pt}\verb!TITLE:!} to get HTML without a header and footer). The
+{\fontsize{10pt}{10pt}\verb!--html-template=filename!} command-line option will then embed the
+Doconce text in the specified template file, where you can use style
+sheets and desired constructs in the header and footer.
+The template can have "slots" for a title ({\fontsize{10pt}{10pt}\verb!%(title)s!}),
+a date ({\fontsize{10pt}{10pt}\verb!%(date)s!}), and the main body of text ({\fontsize{10pt}{10pt}\verb!%(main)s!}).
+For typesetting code, {\fontsize{10pt}{10pt}\verb!pygments!} is used (if installed) and can be
+turned off by {\fontsize{10pt}{10pt}\verb!--no-pygments-html!} (leaving code in gray boxes).
+
+
+The easiest way is to get fancy layouts in HTML is to
+use the {\fontsize{10pt}{10pt}\verb!sphinx!} format and one its many themes.
+
+A third, more primitive alternative is to edit the style in the top of
+the HTML file (preferably done automatically via {\fontsize{10pt}{10pt}\verb!doconce replace!} and
+{\fontsize{10pt}{10pt}\verb!doconce subst!} in the script that generates the final documents).
+
 \subsection{Debugging}
 
 Given a problem, extract a small portion of text surrounding the
@@ -2881,11 +2685,9 @@ handling of blank lines and comment lines.
 List parsing needs some awareness of the context.
 Each line is interpreted by a regular expression
 
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<text>.*)\s?
 \end{Verbatim}
-\noindent
 
 That is, a possible indent (which we measure), an optional list
 item identifier, optional space, optional words ended by colon,
@@ -2911,78 +2713,6 @@ sufficient to getting the layout you want, it is suggested to filter
 the document to another, more complex format, say reST or
 {\LaTeX}, and work further on the document in this format.
 
-\subsection{A Glimpse of How to Write a New Translator}
-
-This is the HTML-specific part of the
-source code of the HTML translator:
-
-
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
-FILENAME_EXTENSION['html'] = '.html'  # output file extension
-BLANKLINE['html'] = '<p>\n'           # blank input line => new paragraph
-INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
-    # keep math as is:
-    'math': None,  # indicates no substitution
-    'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
-    'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
-    'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
-    'URL':           r'\g<begin><a href="\g<url>">\g<link></a>',
-    'section':       r'<h1>\g<subst></h1>',
-    'subsection':    r'<h3>\g<subst></h3>',
-    'subsubsection': r'<h5>\g<subst></h5>',
-    'paragraph':     r'<b>\g<subst></b>. ',
-    'title':         r'<title>\g<subst></title>\n<center><h1>\g<subst></h1></center>',
-    'date':          r'<center><h3>\g<subst></h3></center>',
-    'author':        r'<center><h3>\g<subst></h3></center>',
-    }
-
-# how to replace code and latex blocks by html (<pre>) environment:
-def html_code(filestr):
-    c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
-    filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre>\n', filestr)
-    filestr = re.sub(r'!ec\n',
-                     r'</pre>\n<! -- END VERBATIM BLOCK -->\n', filestr)
-    c = re.compile(r'^!bt\n', re.MULTILINE)
-    filestr = c.sub(r'<pre>\n', filestr)
-    filestr = re.sub(r'!et\n', r'</pre>\n', filestr)
-    return filestr
-CODE['html'] = html_code
-
-# how to typeset lists and their items in html:
-LIST['html'] = {
-    'itemize':
-    {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
-    'enumerate':
-    {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
-    'description':
-    {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\n\n'},
-    }
-
-# how to type set description lists for function arguments, return
-# values, and module/class variables:
-ARGLIST['html'] = {
-    'parameter': '<b>argument</b>',
-    'keyword': '<b>keyword argument</b>',
-    'return': '<b>return value(s)</b>',
-    'instance variable': '<b>instance variable</b>',
-    'class variable': '<b>class variable</b>',
-    'module variable': '<b>module variable</b>',
-    }
-
-# document start:
-INTRO['html'] = """
-<html>
-<body bgcolor="white">
-"""
-# document ending:
-OUTRO['html'] = """
-</body>
-</html>
-"""
-\end{Verbatim}
-\noindent
-
 \subsection{Typesetting of Function Arguments, Return Values, and Variables}
 
 As part of comments (or doc strings) in computer code one often wishes
@@ -2996,8 +2726,7 @@ only legal keywords (descriptions) for the description list in this
 context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
 arguments and variables are nicely formatted.
 
-\begin{Verbatim}[fontsize=\fontsize{9pt}{9pt},tabsize=8,baselinestretch=0.85,
-fontfamily=tt,xleftmargin=7mm]
+\begin{Verbatim}
     - argument x: x value (float),
       which must be a positive number.
     - keyword argument tolerance: tolerance (float) for stopping
@@ -3008,7 +2737,6 @@ fontfamily=tt,xleftmargin=7mm]
     - module variable debug: True: debug mode is on; False: no debugging
       (bool variable).
 \end{Verbatim}
-\noindent
 
 The result depends on the output format: all formats except Epytext
 and Sphinx just typeset the list as a list with keywords.
@@ -3026,7 +2754,6 @@ and Sphinx just typeset the list as a list with keywords.
 \noindent
 \bibliographystyle{plain}
 \bibliography{manual_bib}
-
 
 \printindex
 

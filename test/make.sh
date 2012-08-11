@@ -53,7 +53,7 @@ doconce grab --from 'Compute a Probability' --to- 'drawing uniformly' testdoc.do
 doconce grab --from- '\*\s+\$.+normally' testdoc.do.txt >> testdoc.tmp
 
 # Test html templates
-doconce format html html_template --html-template=template1.html
+doconce format html html_template --html-template=template1.html --no-pygments-html
 cp html_template.html html_template1.html
 doconce format html html_template --html-template=template_inf1100.html
 

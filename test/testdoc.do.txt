@@ -9,7 +9,6 @@ AUTHOR: Kaare Dump at Segfault Inc, Cyberspace
 AUTHOR: A. Dummy Author
 AUTHOR: I. S. Overworked at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and Fourth Inst
 AUTHOR: J. Doe mail: j_doe@cyberspace.com
-# latex demands DATE
 DATE: today
 
 TOC: off
@@ -158,7 +157,7 @@ label{subsec:table}
 Let us take this table from the manual:
 idx{test index with `verbatim text` which is possible}
 
-% if FORMAT == "latex":
+% if FORMAT in ("latex", "pdflatex"):
 \begin{table}
 \caption{
 Testing table environment in LaTeX, enabled by testing on the "latex" format
@@ -175,7 +174,7 @@ label{mytab}
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
 
-% if FORMAT == "latex":
+% if FORMAT in ("latex", "pdflatex"):
 \end{table}
 % endif
 

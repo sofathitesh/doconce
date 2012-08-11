@@ -6,7 +6,7 @@
 ./clean.sh
 
 # The following packages must be installed for this script to run:
-# doconce, ptex2tex, docutils, preprocess, sphinx
+# doconce, docutils, preprocess, sphinx
 
 d2f="doconce format"
 # doconce html format:
@@ -62,8 +62,8 @@ $d2f pandoc manual.do.txt --no-mako
 
 # doconce pdflatex:
 $d2f pdflatex manual.do.txt --no-mako
-doconce replace 'usepackage{ptex2tex' 'usepackage{ptex2tex,subfigure' manual.p.tex  # need subfigure latex package
-ptex2tex -DMINTED manual    # turn ptex2tex format into plain latex
+doconce replace 'usepackage{ptex2tex' 'usepackage{subfigure' manual.p.tex  # need subfigure latex package
+doconce ptex2tex manual -DMINTED -DHELVETICA envir=Verbatim
 pdflatex -shell-escape manual
 bibtex manual
 makeindex manual
@@ -73,8 +73,8 @@ cp manual.pdf manual_pdflatex.pdf
 
 # doconce latex:
 $d2f latex manual.do.txt --no-mako   # produces ptex2tex: manual.p.tex
-doconce replace 'usepackage{ptex2tex' 'usepackage{ptex2tex,subfigure' manual.p.tex  # need subfigure latex package
-ptex2tex -DMINTED manual    # turn ptex2tex format into plain latex
+doconce replace 'usepackage{ptex2tex' 'usepackage{subfigure' manual.p.tex  # need subfigure latex package
+doconce ptex2tex manual -DMINTED -DHELVETICA envir=Verbatim
 latex -shell-escape manual
 latex -shell-escape manual
 bibtex manual

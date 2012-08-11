@@ -166,11 +166,11 @@ And finally a description list:
 Comments
 --------
 
-Lines starting with C{#} are treated as comments in the document
-and translated to the proper syntax for comments in
-the output document. Such comment lines
-should not appear before LaTeX math blocks, verbatim code blocks,
-or lists if the formats C{rst} and C{sphinx} are desired.
+Lines starting with C{#} are treated as comments in the document and
+translated to the proper syntax for comments in the output
+document. Such comment lines should not appear before LaTeX math
+blocks, verbatim code blocks, or lists if the formats C{rst} and
+C{sphinx} are desired.
 
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
@@ -583,11 +583,28 @@ Labels, Index, and Citations
 Preprocessing
 -------------
 
-Doconce documents may utilize a preprocessor, either C{preprocess} or
+Doconce documents may utilize a preprocessor, either C{preprocess} and/or
 C{mako}. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
 The C{mako} preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+The command C{doconce format} first runs C{preprocess} and then C{mako}.
+Here is a typical example on utilizing C{preprocess} to include another
+document, "comment out" a large portion of text, and to write format-specific
+constructions::
+
+
+
+            NOTE: A verbatim block has been removed because
+                  it causes problems for Epytext.
+
+
+
+With the C{mako} preprocessor the if-else tests have slightly different syntax.
+An U{example document<http://hplgit.github.com/bioinf-py/>} contains
+some illustrations on how to utilize C{mako} (clone the GitHub project and
+examine the Doconce source and the C{doc/src/make.sh} script).
 
 Resources
 ---------

@@ -9,6 +9,36 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
+<style type="text/css">
+    body {
+      margin-top: 1.0em;
+      <!-- background-color: #e1c931; -->
+      background-color: #000000;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    #container {
+      margin: 0 auto;
+      width: 700px;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
+    h1 .small { font-size: 0.4em; }
+    h1 a { text-decoration: none }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    <! -- h4 { color: #1e36ce; } -->
+    a { color: #1e36ce; }
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .download { float: right; }
+    <!-- white on black: pre { background: #000; color: #fff; padding: 15px;} -->
+    <!-- black on white: pre { background: #fff; color: #000; padding: 15px;} -->
+    pre { background: #EDEDED; color: #000; padding: 15px;}
+    <!-- http://www.december.com/html/spec/color0.html -->
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
+</style>
+
+<!-- Use MathJax to render mathematics -->
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -24,18 +54,27 @@ MathJax.Hub.Config({
 </head>
 
 <body bgcolor="white">
-    <title>Doconce: Document Once, Include Anywhere</title>
-<center><h1>Doconce: Document Once, Include Anywhere</h1></center>
+<!-- ---------------------------- main content ------------------------>
+    
+<title>Doconce: Document Once, Include Anywhere</title>
+
+<center><h1>Doconce: Document Once, Include Anywhere</h1></center>  <! -- document title -->
+
+<! -- author(s) -->
+
 <center>
 <b>Hans Petter Langtangen</b> [1, 2]
 </center>
 
+
 <p>
+<!-- institutions -->
+
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Aug 7, 2012</h3></center>
+<center><h4>Aug 11, 2012</h4></center> <!-- date -->
 <p>
 
 <p>
@@ -482,6 +521,10 @@ defined as <tt>latex</tt>. Inside the Doconce document one can then perform
 format specific actions through tests like <tt>#if FORMAT == "latex"</tt>.
 
 <p>
+The command-line arguments <tt>--no-preprocess</tt> and <tt>--no-mako</tt> turn off
+running <tt>preprocess</tt> and <tt>mako</tt>, respectively.
+
+<p>
 Inline comments in the text are removed from the output by
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
@@ -522,6 +565,23 @@ plain <tt><pre></tt> HTML tags. The option <tt>--pygments-html-linenos</tt> turn
 on line numbers in Pygments-formatted code blocks.
 
 <p>
+The HTML file can be embedded in a template if the Doconce document
+does not have a title (because then there will be
+no header and footer in the HTML file). The template file must contain
+valid HTML code and can have three "slots": <tt>%(title)s</tt> for a title,
+<tt>%(date)s</tt> for a date, and <tt>%(main)s</tt> for the main body of text, i.e., the
+Doconce document translated to HTML. The title becomes the first
+heading in the Doconce document, and the date is extracted from the
+<tt>DATE:</tt> line, if present. With the template feature one can easily embed
+the text in the look and feel of a website. The template can be extracted
+from the source code of a page at the site; just insert <tt>%(title)s</tt> and
+<tt>%(date)s</tt> at appropriate places and replace the main bod of text
+by <tt>%(main)s</tt>. Here is an example:
+<blockquote>    <!-- begin verbatim block  sys-->
+<pre>
+Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
+</pre>
+</blockquote>   <! -- end verbatim block -->
 
 <p>
 
@@ -652,7 +712,7 @@ Preprocessor variables to be defined or undefined are
  <li> <tt>HELVETIA</tt> for the Helvetica font
  <li> <tt>A4PAPER</tt> for A4 paper size
  <li> <tt>A6PAPER</tt> for A6 paper size (suitable for reading on small devices)
- <li> <tt>MOVIE15</tt> for inclusion of the movie15 LaTeX package
+ <li> <tt>MOVIE15</tt> for using the movie15 LaTeX package to display movies
  <li> <tt>PREAMBLE</tt> to turn the LaTeX preamble on or off (i.e., complete document
    or document to be included elsewhere)
  <li> <tt>MINTED</tt> for inclusion of the minted package (which requires <tt>latex</tt>
@@ -1366,6 +1426,7 @@ Mercurial (<tt>hg</tt>) directories, go to the directory, run
 
 <p>
 
+<!-- ---------------------------- end of main content ----------------->
 </body>
 </html>
     

@@ -23,6 +23,9 @@ running `preprocess`. That is, in the last example, `FORMAT` is
 defined as `latex`. Inside the Doconce document one can then perform
 format specific actions through tests like `#if FORMAT == "latex"`.
 
+The command-line arguments `--no-preprocess` and `--no-mako` turn off
+running `preprocess` and `mako`, respectively.
+
 Inline comments in the text are removed from the output by
 !bc sys
 Terminal> doconce format latex mydoc --skip_inline_comments

@@ -76,7 +76,7 @@
 
 
 \begin{center}
-Aug 7, 2012
+Aug 11, 2012
 \end{center}
 
 
@@ -534,6 +534,9 @@ running {\fontsize{10pt}{10pt}\verb!preprocess!}. That is, in the last example, 
 defined as {\fontsize{10pt}{10pt}\verb!latex!}. Inside the Doconce document one can then perform
 format specific actions through tests like {\fontsize{10pt}{10pt}\verb!#if FORMAT == "latex"!}.
 
+The command-line arguments {\fontsize{10pt}{10pt}\verb!--no-preprocess!} and {\fontsize{10pt}{10pt}\verb!--no-mako!} turn off
+running {\fontsize{10pt}{10pt}\verb!preprocess!} and {\fontsize{10pt}{10pt}\verb!mako!}, respectively.
+
 Inline comments in the text are removed from the output by
 \vspace{4pt}
 \begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
@@ -567,6 +570,24 @@ aid of this package. The command-line argument {\fontsize{10pt}{10pt}\verb!--no-
 turns off the use of Pygments and makes code blocks appear with
 plain {\fontsize{10pt}{10pt}\verb!<pre>!} HTML tags. The option {\fontsize{10pt}{10pt}\verb!--pygments-html-linenos!} turns
 on line numbers in Pygments-formatted code blocks.
+
+The HTML file can be embedded in a template if the Doconce document
+does not have a title (because then there will be
+no header and footer in the HTML file). The template file must contain
+valid HTML code and can have three "slots": {\fontsize{10pt}{10pt}\verb!%(title)s!} for a title,
+{\fontsize{10pt}{10pt}\verb!%(date)s!} for a date, and {\fontsize{10pt}{10pt}\verb!%(main)s!} for the main body of text, i.e., the
+Doconce document translated to HTML. The title becomes the first
+heading in the Doconce document, and the date is extracted from the
+{\fontsize{10pt}{10pt}\verb!DATE:!} line, if present. With the template feature one can easily embed
+the text in the look and feel of a website. The template can be extracted
+from the source code of a page at the site; just insert {\fontsize{10pt}{10pt}\verb!%(title)s!} and
+{\fontsize{10pt}{10pt}\verb!%(date)s!} at appropriate places and replace the main bod of text
+by {\fontsize{10pt}{10pt}\verb!%(main)s!}. Here is an example:
+\vspace{4pt}
+\begin{Verbatim}[numbers=none,frame=lines,label=\fbox{{\tiny Terminal}},fontsize=\fontsize{9pt}{9pt},
+labelposition=topline,framesep=2.5mm,framerule=0.7pt]
+Terminal> doconce format html mydoc --html-template=mytemplate.html
+\end{Verbatim}
 
 \subsection{Pandoc and Markdown}
 
@@ -689,7 +710,7 @@ Preprocessor variables to be defined or undefined are
 
  \item {\fontsize{10pt}{10pt}\verb!A6PAPER!} for A6 paper size (suitable for reading on small devices)
 
- \item {\fontsize{10pt}{10pt}\verb!MOVIE15!} for inclusion of the movie15 {\LaTeX} package
+ \item {\fontsize{10pt}{10pt}\verb!MOVIE15!} for using the movie15 {\LaTeX} package to display movies
 
  \item {\fontsize{10pt}{10pt}\verb!PREAMBLE!} to turn the {\LaTeX} preamble on or off (i.e., complete document
    or document to be included elsewhere)
@@ -1333,7 +1354,6 @@ updates and bug fixes. For {\fontsize{10pt}{10pt}\verb!svn!} directories, go to 
 run {\fontsize{10pt}{10pt}\verb!svn update!}, and then {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}. For
 Mercurial ({\fontsize{10pt}{10pt}\verb!hg!}) directories, go to the directory, run
 {\fontsize{10pt}{10pt}\verb!hg pull; hg update!}, and then {\fontsize{10pt}{10pt}\verb!sudo python setup.py install!}.
-
 
 \printindex
 
