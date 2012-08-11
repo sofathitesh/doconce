@@ -157,11 +157,11 @@ And finally a description list:
 
 Comments
 
-Lines starting with '#' are treated as comments in the document
-and translated to the proper syntax for comments in
-the output document. Such comment lines
-should not appear before LaTeX math blocks, verbatim code blocks,
-or lists if the formats 'rst' and 'sphinx' are desired.
+Lines starting with '#' are treated as comments in the document and
+translated to the proper syntax for comments in the output
+document. Such comment lines should not appear before LaTeX math
+blocks, verbatim code blocks, or lists if the formats 'rst' and
+'sphinx' are desired.
 
 When using the Mako preprocessor one can also place comments in
 the Doconce source file that will be removed by Mako before
@@ -563,11 +563,52 @@ Labels, Index, and Citations
 
 Preprocessing
 
-Doconce documents may utilize a preprocessor, either 'preprocess' or
+Doconce documents may utilize a preprocessor, either 'preprocess' and/or
 'mako'. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
 The 'mako' preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+The command 'doconce format' first runs 'preprocess' and then 'mako'.
+Here is a typical example on utilizing 'preprocess' to include another
+document, "comment out" a large portion of text, and to write format-specific
+constructions::
+
+
+        # #include "myotherdoc.do.txt"
+        
+        # #if FORMAT in ("latex", "pdflatex")
+        \begin{table}
+        \caption{Some words... label{mytab}}
+        \begin{tabular}{lrr}
+        \hline\noalign{\smallskip}
+        \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+        \hline
+        0.0          & 1.4186       & -5.01        \\
+        2.0          & 1.376512     & 11.919       \\
+        4.0          & 1.1E+1       & 14.717624    \\
+        \hline
+        \end{tabular}
+        \end{table}
+        # #else
+          |--------------------------------|
+          |time  | velocity | acceleration |
+          |--l--------r-----------r--------|
+          | 0.0  | 1.4186   | -5.01        |
+          | 2.0  | 1.376512 | 11.919       |
+          | 4.0  | 1.1E+1   | 14.717624    |
+          |--------------------------------|
+        # #endif
+        
+        # #ifdef EXTRA_MATERIAL
+        ....large portions of text...
+        # #endif
+
+
+With the 'mako' preprocessor the if-else tests have slightly different syntax.
+An "http://hplgit.github.com/bioinf-py/":example document contains
+some illustrations on how to utilize 'mako' (clone the GitHub project and
+examine the Doconce source and the 'doc/src/make.sh' script).
 
 Resources
 

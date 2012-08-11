@@ -57,7 +57,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Aug 7, 2012</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Aug 11, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -431,6 +431,8 @@ filename. For example,</p>
 running <tt class="docutils literal"><span class="pre">preprocess</span></tt>. That is, in the last example, <tt class="docutils literal"><span class="pre">FORMAT</span></tt> is
 defined as <tt class="docutils literal"><span class="pre">latex</span></tt>. Inside the Doconce document one can then perform
 format specific actions through tests like <tt class="docutils literal"><span class="pre">#if</span> <span class="pre">FORMAT</span> <span class="pre">==</span> <span class="pre">&quot;latex&quot;</span></tt>.</p>
+<p>The command-line arguments <tt class="docutils literal"><span class="pre">--no-preprocess</span></tt> and <tt class="docutils literal"><span class="pre">--no-mako</span></tt> turn off
+running <tt class="docutils literal"><span class="pre">preprocess</span></tt> and <tt class="docutils literal"><span class="pre">mako</span></tt>, respectively.</p>
 <p>Inline comments in the text are removed from the output by</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format latex mydoc --skip_inline_comments</span>
 </pre></div>
@@ -456,6 +458,21 @@ aid of this package. The command-line argument <tt class="docutils literal"><spa
 turns off the use of Pygments and makes code blocks appear with
 plain <tt class="docutils literal"><span class="pre">&lt;pre&gt;</span></tt> HTML tags. The option <tt class="docutils literal"><span class="pre">--pygments-html-linenos</span></tt> turns
 on line numbers in Pygments-formatted code blocks.</p>
+<p>The HTML file can be embedded in a template if the Doconce document
+does not have a title (because then there will be
+no header and footer in the HTML file). The template file must contain
+valid HTML code and can have three &#8220;slots&#8221;: <tt class="docutils literal"><span class="pre">%(title)s</span></tt> for a title,
+<tt class="docutils literal"><span class="pre">%(date)s</span></tt> for a date, and <tt class="docutils literal"><span class="pre">%(main)s</span></tt> for the main body of text, i.e., the
+Doconce document translated to HTML. The title becomes the first
+heading in the Doconce document, and the date is extracted from the
+<tt class="docutils literal"><span class="pre">DATE:</span></tt> line, if present. With the template feature one can easily embed
+the text in the look and feel of a website. The template can be extracted
+from the source code of a page at the site; just insert <tt class="docutils literal"><span class="pre">%(title)s</span></tt> and
+<tt class="docutils literal"><span class="pre">%(date)s</span></tt> at appropriate places and replace the main bod of text
+by <tt class="docutils literal"><span class="pre">%(main)s</span></tt>. Here is an example:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format html mydoc --html-template=mytemplate.html</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="pandoc-and-markdown">
 <h2>Pandoc and Markdown<a class="headerlink" href="#pandoc-and-markdown" title="Permalink to this headline">¶</a></h2>
@@ -546,7 +563,7 @@ A separate titlepage can be generate by
 <li><tt class="docutils literal"><span class="pre">HELVETIA</span></tt> for the Helvetica font</li>
 <li><tt class="docutils literal"><span class="pre">A4PAPER</span></tt> for A4 paper size</li>
 <li><tt class="docutils literal"><span class="pre">A6PAPER</span></tt> for A6 paper size (suitable for reading on small devices)</li>
-<li><tt class="docutils literal"><span class="pre">MOVIE15</span></tt> for inclusion of the movie15 LaTeX package</li>
+<li><tt class="docutils literal"><span class="pre">MOVIE15</span></tt> for using the movie15 LaTeX package to display movies</li>
 <li><tt class="docutils literal"><span class="pre">PREAMBLE</span></tt> to turn the LaTeX preamble on or off (i.e., complete document
 or document to be included elsewhere)</li>
 <li><tt class="docutils literal"><span class="pre">MINTED</span></tt> for inclusion of the minted package (which requires <tt class="docutils literal"><span class="pre">latex</span></tt>

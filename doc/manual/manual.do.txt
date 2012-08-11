@@ -1085,44 +1085,9 @@ defined as the desired output format of Doconce (`html`, `latex`,
 the value of `FORMAT` and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
 say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example (see the Doconce
-source code of this document to understand how preprocess is used to
-create the example).
+a separate figure for each plot. Below is an example:
 
-# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-# PostScript files are used.
-
-# #if FORMAT == "latex"
-# Use latex with subfigures (a) and (b)
-\begin{figure}
-label{fig:wavepackets}
-  \begin{center}
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-#  #endif
-
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-#  #endif
-  \end{center}
-  \caption{
-  Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-  }
-\end{figure}
-
-# #else
-
-# Use default Doconce figure handling for all other formats
-
-FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-
-FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-
-# #endif
+@@@CODE _format_specific1.do.txt
 
 Other user-defined variables for the preprocessor can be set at
 the command line as explained in Section ref{doconce2formats}.
@@ -1193,11 +1158,11 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, test on the
-`FORMAT` variable (`#if FORMAT == "latex"`) in the Doconce code and
-insert the table in LaTeX format. The `else` or `elif` branches may
-have the table in other formats or a simplified version in the Doconce
-table format. Similarly, if certain adjustments are needed, like
+if a sophisticated table is desired in LaTeX output, do something line
+
+@@@CODE _format_specific2.do.txt
+
+Similarly, if certain adjustments are needed, like
 pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
 that this is really LaTeX dependent - pagebreaks are not
 relevant HTML formats).
@@ -1548,7 +1513,7 @@ achievement.
 The `.p.tex` output file now reads
 !bc
 % begin theorem
-\label{theorem:fundamental1}
+label{theorem:fundamental1}
 
 
 \paragraph{Theorem 5.}
@@ -1697,6 +1662,30 @@ output looks somewhat ugly. The good thing is that this gwiki source
 is seldom to be looked at - it is the Doconce source that one edits
 further.
 
+===== Problems with HTML Output ======
+
+=== How can I change the layout of the HTML page? ===
+
+The standard of way of controlling the HTML format is to use an
+HTML template. The Doconce source is then the body of text (leave
+out `TITLE:` to get HTML without a header and footer). The
+`--html-template=filename` command-line option will then embed the
+Doconce text in the specified template file, where you can use style
+sheets and desired constructs in the header and footer.
+The template can have "slots" for a title (`%(title)s`),
+a date (`%(date)s`), and the main body of text (`%(main)s`).
+For typesetting code, `pygments` is used (if installed) and can be
+turned off by `--no-pygments-html` (leaving code in gray boxes).
+
+
+The easiest way is to get fancy layouts in HTML is to
+use the `sphinx` format and one its many themes.
+
+A third, more primitive alternative is to edit the style in the top of
+the HTML file (preferably done automatically via `doconce replace` and
+`doconce subst` in the script that generates the final documents).
+
+
 ===== Debugging =====
 
 Given a problem, extract a small portion of text surrounding the
@@ -1754,103 +1743,6 @@ sufficient to getting the layout you want, it is suggested to filter
 the document to another, more complex format, say reST or
 LaTeX, and work further on the document in this format.
 
-
-===== A Glimpse of How to Write a New Translator =====
-
-This is the HTML-specific part of the
-source code of the HTML translator:
-# #if FORMAT == "html"
-(note that in HTML one of the the less-than and greater-than signs
-in a link come up wrong because of the simple regex that is used
-to substitute these pair of signs by special HTML expressions)
-# #endif
-
-# #if FORMAT != "epytext"
-
-!bc
-FILENAME_EXTENSION['html'] = '.html'  # output file extension
-BLANKLINE['html'] = '<p>\n'           # blank input line => new paragraph
-INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
-    # keep math as is:
-    'math': None,  # indicates no substitution
-    'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
-    'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
-    'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
-    'URL':           r'\g<begin><a href="\g<url>">\g<link></a>',
-    'section':       r'<h1>\g<subst></h1>',
-    'subsection':    r'<h3>\g<subst></h3>',
-    'subsubsection': r'<h5>\g<subst></h5>',
-    'paragraph':     r'<b>\g<subst></b>. ',
-    'title':         r'<title>\g<subst></title>\n<center><h1>\g<subst></h1></center>',
-    'date':          r'<center><h3>\g<subst></h3></center>',
-    'author':        r'<center><h3>\g<subst></h3></center>',
-    }
-
-# how to replace code and latex blocks by html (<pre>) environment:
-def html_code(filestr):
-    c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
-    filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre>\n', filestr)
-    filestr = re.sub(r'!ec\n',
-                     r'</pre>\n<! -- END VERBATIM BLOCK -->\n', filestr)
-    c = re.compile(r'^!bt\n', re.MULTILINE)
-    filestr = c.sub(r'<pre>\n', filestr)
-    filestr = re.sub(r'!et\n', r'</pre>\n', filestr)
-    return filestr
-CODE['html'] = html_code
-
-# how to typeset lists and their items in html:
-LIST['html'] = {
-    'itemize':
-    {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
-    'enumerate':
-    {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
-    'description':
-    {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\n\n'},
-    }
-
-# how to type set description lists for function arguments, return
-# values, and module/class variables:
-ARGLIST['html'] = {
-    'parameter': '<b>argument</b>',
-    'keyword': '<b>keyword argument</b>',
-    'return': '<b>return value(s)</b>',
-    'instance variable': '<b>instance variable</b>',
-    'class variable': '<b>class variable</b>',
-    'module variable': '<b>module variable</b>',
-    }
-
-# document start:
-INTRO['html'] = """
-<html>
-<body bgcolor="white">
-"""
-# document ending:
-OUTRO['html'] = """
-</body>
-</html>
-"""
-!ec
-
-# #else
-Note that for Epytext, code or LaTeX blocks that contain a newline
-character (for example as in `\nabla` in LaTeX), will lead to an
-effect of the newline and generate error messages. Our remedy is
-to remove such code blocks and provide a notice about the removal.
-Eight here we only displacy a smaller snippet that Epytext can
-treat properly:
-
-!bc
-INLINE_TAGS_SUBST['html'] = {         # from inline tags to html tags
-    # keep math as is:
-    'math': None,  # indicates no substitution
-    'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
-    'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
-    'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
-    'URL':           r'\g<begin><a href="\g<url>">\g<link></a>',
-    }
-!ec
-
-# #endif
 
 ===== Typesetting of Function Arguments, Return Values, and Variables =====
 

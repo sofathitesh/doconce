@@ -43,9 +43,6 @@
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
 \usepackage{ptex2tex}
-% #ifdef MOVIE15
-\usepackage{movie15}
-% #endif
 % #ifdef MINTED
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
 % #endif
@@ -159,13 +156,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Aug 7, 2012}
+\date{Aug 11, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Aug 7, 2012}}
+{\large\textsf{Aug 11, 2012}}
 
 \end{center}
 \vfill
@@ -174,7 +171,7 @@
 % #else
 
 \begin{center}
-Aug 7, 2012
+Aug 11, 2012
 \end{center}
 
 % #endif
@@ -604,6 +601,9 @@ running \code{preprocess}. That is, in the last example, \code{FORMAT} is
 defined as \code{latex}. Inside the Doconce document one can then perform
 format specific actions through tests like \code{#if FORMAT == "latex"}.
 
+The command-line arguments \code{--no-preprocess} and \code{--no-mako} turn off
+running \code{preprocess} and \code{mako}, respectively.
+
 Inline comments in the text are removed from the output by
 \bsys
 Terminal> doconce format latex mydoc --skip_inline_comments
@@ -631,6 +631,22 @@ aid of this package. The command-line argument \code{--no-pygments-html}
 turns off the use of Pygments and makes code blocks appear with
 plain \code{<pre>} HTML tags. The option \code{--pygments-html-linenos} turns
 on line numbers in Pygments-formatted code blocks.
+
+The HTML file can be embedded in a template if the Doconce document
+does not have a title (because then there will be
+no header and footer in the HTML file). The template file must contain
+valid HTML code and can have three "slots": \code{%(title)s} for a title,
+\code{%(date)s} for a date, and \code{%(main)s} for the main body of text, i.e., the
+Doconce document translated to HTML. The title becomes the first
+heading in the Doconce document, and the date is extracted from the
+\code{DATE:} line, if present. With the template feature one can easily embed
+the text in the look and feel of a website. The template can be extracted
+from the source code of a page at the site; just insert \code{%(title)s} and
+\code{%(date)s} at appropriate places and replace the main bod of text
+by \code{%(main)s}. Here is an example:
+\bsys
+Terminal> doconce format html mydoc --html-template=mytemplate.html
+\esys
 
 \subsection{Pandoc and Markdown}
 
@@ -737,7 +753,7 @@ Preprocessor variables to be defined or undefined are
 
  \item \code{A6PAPER} for A6 paper size (suitable for reading on small devices)
 
- \item \code{MOVIE15} for inclusion of the movie15 {\LaTeX} package
+ \item \code{MOVIE15} for using the movie15 {\LaTeX} package to display movies
 
  \item \code{PREAMBLE} to turn the {\LaTeX} preamble on or off (i.e., complete document
    or document to be included elsewhere)
@@ -1304,7 +1320,6 @@ updates and bug fixes. For \code{svn} directories, go to the directory,
 run \code{svn update}, and then \code{sudo python setup.py install}. For
 Mercurial (\code{hg}) directories, go to the directory, run
 \code{hg pull; hg update}, and then \code{sudo python setup.py install}.
-
 
 % #ifdef PREAMBLE
 \printindex

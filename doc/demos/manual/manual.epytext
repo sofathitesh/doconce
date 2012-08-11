@@ -340,6 +340,9 @@ running C{preprocess}. That is, in the last example, C{FORMAT} is
 defined as C{latex}. Inside the Doconce document one can then perform
 format specific actions through tests like C{#if FORMAT == "latex"}.
 
+The command-line arguments C{--no-preprocess} and C{--no-mako} turn off
+running C{preprocess} and C{mako}, respectively.
+
 Inline comments in the text are removed from the output by::
 
 
@@ -372,6 +375,22 @@ aid of this package. The command-line argument C{--no-pygments-html}
 turns off the use of Pygments and makes code blocks appear with
 plain C{<pre>} HTML tags. The option C{--pygments-html-linenos} turns
 on line numbers in Pygments-formatted code blocks.
+
+The HTML file can be embedded in a template if the Doconce document
+does not have a title (because then there will be
+no header and footer in the HTML file). The template file must contain
+valid HTML code and can have three "slots": C{%(title)s} for a title,
+C{%(date)s} for a date, and C{%(main)s} for the main body of text, i.e., the
+Doconce document translated to HTML. The title becomes the first
+heading in the Doconce document, and the date is extracted from the
+C{DATE:} line, if present. With the template feature one can easily embed
+the text in the look and feel of a website. The template can be extracted
+from the source code of a page at the site; just insert C{%(title)s} and
+C{%(date)s} at appropriate places and replace the main bod of text
+by C{%(main)s}. Here is an example::
+
+
+        Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 
 Pandoc and Markdown
@@ -479,7 +498,7 @@ Preprocessor variables to be defined or undefined are
  - C{HELVETIA} for the Helvetica font
  - C{A4PAPER} for A4 paper size
  - C{A6PAPER} for A6 paper size (suitable for reading on small devices)
- - C{MOVIE15} for inclusion of the movie15 LaTeX package
+ - C{MOVIE15} for using the movie15 LaTeX package to display movies
  - C{PREAMBLE} to turn the LaTeX preamble on or off (i.e., complete document
    or document to be included elsewhere)
  - C{MINTED} for inclusion of the minted package (which requires C{latex}
@@ -1920,16 +1939,43 @@ C{plain}, C{rst}, C{sphinx}, C{epydoc}, C{st}).  It is then easy to test on
 the value of C{FORMAT} and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
 say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example (see the Doconce
-source code of this document to understand how preprocess is used to
-create the example).
+a separate figure for each plot. Below is an example::
 
 
-
-
-FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-
-FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
+        # If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
+        # PostScript files are used.
+        
+        # #if FORMAT == "latex"
+        # Use latex with subfigures (a) and (b)
+        \begin{figure}
+        label{fig:wavepackets}
+          \begin{center}
+        #  #ifdef PNGFIGS
+        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
+        #  #else
+        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
+        #  #endif
+        
+        #  #ifdef PNGFIGS
+        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
+        #  #else
+        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
+        #  #endif
+          \end{center}
+          \caption{
+          Wavepackets at time (a) 0.1 s and (b) 0.2 s.
+          }
+        \end{figure}
+        
+        # #else
+        
+        # Use default Doconce figure handling for all other formats
+        
+        FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
+        
+        FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
+        
+        # #endif
 
 
 Other user-defined variables for the preprocessor can be set at
@@ -2004,11 +2050,17 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, test on the
-C{FORMAT} variable (C{#if FORMAT == "latex"}) in the Doconce code and
-insert the table in LaTeX format. The C{else} or C{elif} branches may
-have the table in other formats or a simplified version in the Doconce
-table format. Similarly, if certain adjustments are needed, like
+if a sophisticated table is desired in LaTeX output, do something line::
+
+
+        # #if FORMAT in ("latex", "pdflatex")
+        # insert native LaTeX code for fancy table
+        # #else
+        # insert a Doconce-formatted "inline" table
+        # #endif
+
+
+Similarly, if certain adjustments are needed, like
 pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
 that this is really LaTeX dependent - pagebreaks are not
 relevant HTML formats).
@@ -2407,7 +2459,7 @@ The C{.p.tex} output file now reads::
 
 
         % begin theorem
-        \label{theorem:fundamental1}
+        label{theorem:fundamental1}
         
         
         \paragraph{Theorem 5.}
@@ -2547,6 +2599,32 @@ output looks somewhat ugly. The good thing is that this gwiki source
 is seldom to be looked at - it is the Doconce source that one edits
 further.
 
+Problems with HTML Output
+-------------------------
+
+How can I change the layout of the HTML page?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The standard of way of controlling the HTML format is to use an
+HTML template. The Doconce source is then the body of text (leave
+out C{TITLE:} to get HTML without a header and footer). The
+C{--html-template=filename} command-line option will then embed the
+Doconce text in the specified template file, where you can use style
+sheets and desired constructs in the header and footer.
+The template can have "slots" for a title (C{%(title)s}),
+a date (C{%(date)s}), and the main body of text (C{%(main)s}).
+For typesetting code, C{pygments} is used (if installed) and can be
+turned off by C{--no-pygments-html} (leaving code in gray boxes).
+
+
+The easiest way is to get fancy layouts in HTML is to
+use the C{sphinx} format and one its many themes.
+
+A third, more primitive alternative is to edit the style in the top of
+the HTML file (preferably done automatically via C{doconce replace} and
+C{doconce subst} in the script that generates the final documents).
+
+
 Debugging
 ---------
 
@@ -2604,31 +2682,6 @@ write out in the new format.  When the Doconce format is not
 sufficient to getting the layout you want, it is suggested to filter
 the document to another, more complex format, say reST or
 LaTeX, and work further on the document in this format.
-
-
-A Glimpse of How to Write a New Translator
-------------------------------------------
-
-This is the HTML-specific part of the
-source code of the HTML translator:
-
-Note that for Epytext, code or LaTeX blocks that contain a newline
-character (for example as in C{\nabla} in LaTeX), will lead to an
-effect of the newline and generate error messages. Our remedy is
-to remove such code blocks and provide a notice about the removal.
-Eight here we only displacy a smaller snippet that Epytext can
-treat properly::
-
-
-        INLINE_TAGS_SUBST['html'] = {         # from inline tags to html tags
-            # keep math as is:
-            'math': None,  # indicates no substitution
-            'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
-            'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
-            'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
-            'URL':           r'\g<begin><a href="\g<url>">\g<link></a>',
-            }
-
 
 
 Typesetting of Function Arguments, Return Values, and Variables

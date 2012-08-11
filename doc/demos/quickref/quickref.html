@@ -9,6 +9,36 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
+<style type="text/css">
+    body {
+      margin-top: 1.0em;
+      <!-- background-color: #e1c931; -->
+      background-color: #000000;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    #container {
+      margin: 0 auto;
+      width: 700px;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
+    h1 .small { font-size: 0.4em; }
+    h1 a { text-decoration: none }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    <! -- h4 { color: #1e36ce; } -->
+    a { color: #1e36ce; }
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .download { float: right; }
+    <!-- white on black: pre { background: #000; color: #fff; padding: 15px;} -->
+    <!-- black on white: pre { background: #fff; color: #000; padding: 15px;} -->
+    pre { background: #EDEDED; color: #000; padding: 15px;}
+    <!-- http://www.december.com/html/spec/color0.html -->
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
+</style>
+
+<!-- Use MathJax to render mathematics -->
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -24,18 +54,27 @@ MathJax.Hub.Config({
 </head>
 
 <body bgcolor="white">
-    <title>Doconce Quick Reference</title>
-<center><h1>Doconce Quick Reference</h1></center>
+<!-- ---------------------------- main content ------------------------>
+    
+<title>Doconce Quick Reference</title>
+
+<center><h1>Doconce Quick Reference</h1></center>  <! -- document title -->
+
+<! -- author(s) -->
+
 <center>
 <b>Hans Petter Langtangen</b> [1, 2]
 </center>
 
+
 <p>
+<!-- institutions -->
+
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Aug 7, 2012</h3></center>
+<center><h4>Aug 11, 2012</h4></center> <!-- date -->
 <p>
 <h2>Table of contents</h2>
 
@@ -270,11 +309,11 @@ And finally a description list:
 
 <h3>Comments  <a name="___sec9"></a></h3>
 <p>
-Lines starting with <tt>#</tt> are treated as comments in the document
-and translated to the proper syntax for comments in
-the output document. Such comment lines
-should not appear before LaTeX math blocks, verbatim code blocks,
-or lists if the formats <tt>rst</tt> and <tt>sphinx</tt> are desired.
+Lines starting with <tt>#</tt> are treated as comments in the document and
+translated to the proper syntax for comments in the output
+document. Such comment lines should not appear before LaTeX math
+blocks, verbatim code blocks, or lists if the formats <tt>rst</tt> and
+<tt>sphinx</tt> are desired.
 
 <p>
 When using the Mako preprocessor one can also place comments in
@@ -748,11 +787,57 @@ An exercise, problem, or project has certain elements:
 
 <h3>Preprocessing  <a name="___sec18"></a></h3>
 <p>
-Doconce documents may utilize a preprocessor, either <tt>preprocess</tt> or
+Doconce documents may utilize a preprocessor, either <tt>preprocess</tt> and/or
 <tt>mako</tt>. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
 The <tt>mako</tt> preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
+
+<p>
+The command <tt>doconce format</tt> first runs <tt>preprocess</tt> and then <tt>mako</tt>.
+Here is a typical example on utilizing <tt>preprocess</tt> to include another
+document, "comment out" a large portion of text, and to write format-specific
+constructions:
+
+<p>
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+# #include "myotherdoc.do.txt"
+
+# #if FORMAT in ("latex", "pdflatex")
+\begin{table}
+\caption{Some words... \label{mytab}}
+\begin{tabular}{lrr}
+\hline\noalign{\smallskip}
+\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\hline
+0.0          & 1.4186       & -5.01        \\
+2.0          & 1.376512     & 11.919       \\
+4.0          & 1.1E+1       & 14.717624    \\
+\hline
+\end{tabular}
+\end{table}
+# #else
+  |--------------------------------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+# #endif
+
+# #ifdef EXTRA_MATERIAL
+....large portions of text...
+# #endif
+</pre>
+</blockquote>   <! -- end verbatim block -->
+
+<p>
+With the <tt>mako</tt> preprocessor the if-else tests have slightly different syntax.
+An <a href="http://hplgit.github.com/bioinf-py/">example document</a> contains
+some illustrations on how to utilize <tt>mako</tt> (clone the GitHub project and
+examine the Doconce source and the <tt>doc/src/make.sh</tt> script).
 
 <p>
 
@@ -763,6 +848,8 @@ programming language, very similar to Python.
  <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 </ul>
 
+
+<!-- ---------------------------- end of main content ----------------->
 </body>
 </html>
     

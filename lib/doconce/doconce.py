@@ -1644,16 +1644,20 @@ preprocess package (sudo apt-get install preprocess).
 """ % filename
             sys.exit(1)
 
-        cmd = 'preprocess -DFORMAT=%s %s %s > %s' % \
-              (format, preprocess_options, filename, resultfile)
-        print 'running', cmd
-        failure, outtext = commands.getstatusoutput(cmd)
-        if failure:
-            print 'Could not run preprocessor:\n%s' % cmd
-            print outtext
-            sys.exit(1)
-        # Make filestr the result of preprocess in case mako shall be run
-        f = open(resultfile, 'r'); filestr = f.read(); f.close()
+        if '--no-preprocess' in sys.argv:
+            print 'Found preprocess-like statements, but --no-preprocess prevents running preprocess'
+            shutil.copy(filename, resultfile)  # just copy
+        else:
+            cmd = 'preprocess -DFORMAT=%s %s %s > %s' % \
+                  (format, preprocess_options, filename, resultfile)
+            print 'running', cmd
+            failure, outtext = commands.getstatusoutput(cmd)
+            if failure:
+                print 'Could not run preprocessor:\n%s' % cmd
+                print outtext
+                sys.exit(1)
+            # Make filestr the result of preprocess in case mako shall be run
+            f = open(resultfile, 'r'); filestr = f.read(); f.close()
 
 
     mako_commands = r'^\s*<?%'
@@ -1758,8 +1762,9 @@ def main():
     # oneline is inactive (doesn't work well yet)
 
     options = ['--debug', '--skip_inline_comments', '--encoding=',
-               '--oneline_paragraphs', '--no-mako',
+               '--oneline_paragraphs', '--no-mako', '--no-preprocess',
                '--no-pygments-html', '--pygments-html-linenos',
+
                ]
 
     global _log, encoding, filename

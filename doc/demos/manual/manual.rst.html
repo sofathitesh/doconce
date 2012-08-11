@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Aug 7, 2012</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Aug 11, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -633,6 +633,8 @@ Terminal&gt; doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 running <tt class="docutils literal">preprocess</tt>. That is, in the last example, <tt class="docutils literal">FORMAT</tt> is
 defined as <tt class="docutils literal">latex</tt>. Inside the Doconce document one can then perform
 format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;latex&quot;</tt>.</p>
+<p>The command-line arguments <tt class="docutils literal"><span class="pre">--no-preprocess</span></tt> and <tt class="docutils literal"><span class="pre">--no-mako</span></tt> turn off
+running <tt class="docutils literal">preprocess</tt> and <tt class="docutils literal">mako</tt>, respectively.</p>
 <p>Inline comments in the text are removed from the output by:</p>
 <pre class="literal-block">
 Terminal&gt; doconce format latex mydoc --skip_inline_comments
@@ -658,6 +660,21 @@ aid of this package. The command-line argument <tt class="docutils literal"><spa
 turns off the use of Pygments and makes code blocks appear with
 plain <tt class="docutils literal">&lt;pre&gt;</tt> HTML tags. The option <tt class="docutils literal"><span class="pre">--pygments-html-linenos</span></tt> turns
 on line numbers in Pygments-formatted code blocks.</p>
+<p>The HTML file can be embedded in a template if the Doconce document
+does not have a title (because then there will be
+no header and footer in the HTML file). The template file must contain
+valid HTML code and can have three &quot;slots&quot;: <tt class="docutils literal">%(title)s</tt> for a title,
+<tt class="docutils literal">%(date)s</tt> for a date, and <tt class="docutils literal">%(main)s</tt> for the main body of text, i.e., the
+Doconce document translated to HTML. The title becomes the first
+heading in the Doconce document, and the date is extracted from the
+<tt class="docutils literal">DATE:</tt> line, if present. With the template feature one can easily embed
+the text in the look and feel of a website. The template can be extracted
+from the source code of a page at the site; just insert <tt class="docutils literal">%(title)s</tt> and
+<tt class="docutils literal">%(date)s</tt> at appropriate places and replace the main bod of text
+by <tt class="docutils literal">%(main)s</tt>. Here is an example:</p>
+<pre class="literal-block">
+Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
+</pre>
 </div>
 <div class="section" id="pandoc-and-markdown">
 <h2>Pandoc and Markdown</h2>
@@ -750,7 +767,7 @@ A separate titlepage can be generate by
 <li><tt class="docutils literal">HELVETIA</tt> for the Helvetica font</li>
 <li><tt class="docutils literal">A4PAPER</tt> for A4 paper size</li>
 <li><tt class="docutils literal">A6PAPER</tt> for A6 paper size (suitable for reading on small devices)</li>
-<li><tt class="docutils literal">MOVIE15</tt> for inclusion of the movie15 LaTeX package</li>
+<li><tt class="docutils literal">MOVIE15</tt> for using the movie15 LaTeX package to display movies</li>
 <li><tt class="docutils literal">PREAMBLE</tt> to turn the LaTeX preamble on or off (i.e., complete document
 or document to be included elsewhere)</li>
 <li><tt class="docutils literal">MINTED</tt> for inclusion of the minted package (which requires <tt class="docutils literal">latex</tt>
@@ -2058,20 +2075,43 @@ defined as the desired output format of Doconce (<tt class="docutils literal">ht
 the value of <tt class="docutils literal">FORMAT</tt> and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
 say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example (see the Doconce
-source code of this document to understand how preprocess is used to
-create the example).</p>
-<!-- If PNGFIGS is defined, PNG files are used, otherwise Encapsulated -->
-<!-- PostScript files are used. -->
-<!-- Use default Doconce figure handling for all other formats -->
-<div class="figure">
-<img alt="figs/wavepacket_0001.png" src="figs/wavepacket_0001.png" style="width: 400px;" />
-<p class="caption">Wavepacket at time 0.1 s</p>
-</div>
-<div class="figure">
-<img alt="figs/wavepacket_0010.png" src="figs/wavepacket_0010.png" style="width: 400px;" />
-<p class="caption">Wavepacket at time 0.2 s</p>
-</div>
+a separate figure for each plot. Below is an example:</p>
+<pre class="literal-block">
+# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
+# PostScript files are used.
+
+# #if FORMAT == &quot;latex&quot;
+# Use latex with subfigures (a) and (b)
+\begin{figure}
+label{fig:wavepackets}
+  \begin{center}
+#  #ifdef PNGFIGS
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
+#  #else
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
+#  #endif
+
+#  #ifdef PNGFIGS
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
+#  #else
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
+#  #endif
+  \end{center}
+  \caption{
+  Wavepackets at time (a) 0.1 s and (b) 0.2 s.
+  }
+\end{figure}
+
+# #else
+
+# Use default Doconce figure handling for all other formats
+
+FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
+
+FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
+
+# #endif
+</pre>
 <p>Other user-defined variables for the preprocessor can be set at
 the command line as explained in the section <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a>.</p>
 <p>More advanced use of mako can include Python code that may automate
@@ -2135,11 +2175,15 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, test on the
-<tt class="docutils literal">FORMAT</tt> variable (<tt class="docutils literal">#if FORMAT == &quot;latex&quot;</tt>) in the Doconce code and
-insert the table in LaTeX format. The <tt class="docutils literal">else</tt> or <tt class="docutils literal">elif</tt> branches may
-have the table in other formats or a simplified version in the Doconce
-table format. Similarly, if certain adjustments are needed, like
+if a sophisticated table is desired in LaTeX output, do something line:</p>
+<pre class="literal-block">
+# #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)
+# insert native LaTeX code for fancy table
+# #else
+# insert a Doconce-formatted &quot;inline&quot; table
+# #endif
+</pre>
+<p>Similarly, if certain adjustments are needed, like
 pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
 that this is really LaTeX dependent - pagebreaks are not
 relevant HTML formats).</p>
@@ -2479,7 +2523,7 @@ achievement.
 <p>The <tt class="docutils literal">.p.tex</tt> output file now reads:</p>
 <pre class="literal-block">
 % begin theorem
-\label{theorem:fundamental1}
+label{theorem:fundamental1}
 
 
 \paragraph{Theorem 5.}
@@ -2624,6 +2668,27 @@ is seldom to be looked at - it is the Doconce source that one edits
 further.</p>
 </div>
 </div>
+<div class="section" id="problems-with-html-output">
+<h2>Problems with HTML Output</h2>
+<div class="section" id="how-can-i-change-the-layout-of-the-html-page">
+<h3>How can I change the layout of the HTML page?</h3>
+<p>The standard of way of controlling the HTML format is to use an
+HTML template. The Doconce source is then the body of text (leave
+out <tt class="docutils literal">TITLE:</tt> to get HTML without a header and footer). The
+<tt class="docutils literal"><span class="pre">--html-template=filename</span></tt> command-line option will then embed the
+Doconce text in the specified template file, where you can use style
+sheets and desired constructs in the header and footer.
+The template can have &quot;slots&quot; for a title (<tt class="docutils literal">%(title)s</tt>),
+a date (<tt class="docutils literal">%(date)s</tt>), and the main body of text (<tt class="docutils literal">%(main)s</tt>).
+For typesetting code, <tt class="docutils literal">pygments</tt> is used (if installed) and can be
+turned off by <tt class="docutils literal"><span class="pre">--no-pygments-html</span></tt> (leaving code in gray boxes).</p>
+<p>The easiest way is to get fancy layouts in HTML is to
+use the <tt class="docutils literal">sphinx</tt> format and one its many themes.</p>
+<p>A third, more primitive alternative is to edit the style in the top of
+the HTML file (preferably done automatically via <tt class="docutils literal">doconce replace</tt> and
+<tt class="docutils literal">doconce subst</tt> in the script that generates the final documents).</p>
+</div>
+</div>
 <div class="section" id="debugging">
 <h2>Debugging</h2>
 <p>Given a problem, extract a small portion of text surrounding the
@@ -2671,74 +2736,6 @@ write out in the new format.  When the Doconce format is not
 sufficient to getting the layout you want, it is suggested to filter
 the document to another, more complex format, say reST or
 LaTeX, and work further on the document in this format.</p>
-<div class="section" id="a-glimpse-of-how-to-write-a-new-translator">
-<h2>A Glimpse of How to Write a New Translator</h2>
-<p>This is the HTML-specific part of the
-source code of the HTML translator:</p>
-<pre class="literal-block">
-FILENAME_EXTENSION['html'] = '.html'  # output file extension
-BLANKLINE['html'] = '&lt;p&gt;\n'           # blank input line =&gt; new paragraph
-INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
-    # keep math as is:
-    'math': None,  # indicates no substitution
-    'emphasize':     r'\g&lt;begin&gt;&lt;em&gt;\g&lt;subst&gt;&lt;/em&gt;\g&lt;end&gt;',
-    'bold':          r'\g&lt;begin&gt;&lt;b&gt;\g&lt;subst&gt;&lt;/b&gt;\g&lt;end&gt;',
-    'verbatim':      r'\g&lt;begin&gt;&lt;tt&gt;\g&lt;subst&gt;&lt;/tt&gt;\g&lt;end&gt;',
-    'URL':           r'\g&lt;begin&gt;&lt;a href=&quot;\g&lt;url&gt;&quot;&gt;\g&lt;link&gt;&lt;/a&gt;',
-    'section':       r'&lt;h1&gt;\g&lt;subst&gt;&lt;/h1&gt;',
-    'subsection':    r'&lt;h3&gt;\g&lt;subst&gt;&lt;/h3&gt;',
-    'subsubsection': r'&lt;h5&gt;\g&lt;subst&gt;&lt;/h5&gt;',
-    'paragraph':     r'&lt;b&gt;\g&lt;subst&gt;&lt;/b&gt;. ',
-    'title':         r'&lt;title&gt;\g&lt;subst&gt;&lt;/title&gt;\n&lt;center&gt;&lt;h1&gt;\g&lt;subst&gt;&lt;/h1&gt;&lt;/center&gt;',
-    'date':          r'&lt;center&gt;&lt;h3&gt;\g&lt;subst&gt;&lt;/h3&gt;&lt;/center&gt;',
-    'author':        r'&lt;center&gt;&lt;h3&gt;\g&lt;subst&gt;&lt;/h3&gt;&lt;/center&gt;',
-    }
-
-# how to replace code and latex blocks by html (&lt;pre&gt;) environment:
-def html_code(filestr):
-    c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
-    filestr = c.sub(r'&lt;!-- BEGIN VERBATIM BLOCK \g&lt;1&gt;--&gt;\n&lt;pre&gt;\n', filestr)
-    filestr = re.sub(r'!ec\n',
-                     r'&lt;/pre&gt;\n&lt;! -- END VERBATIM BLOCK --&gt;\n', filestr)
-    c = re.compile(r'^!bt\n', re.MULTILINE)
-    filestr = c.sub(r'&lt;pre&gt;\n', filestr)
-    filestr = re.sub(r'!et\n', r'&lt;/pre&gt;\n', filestr)
-    return filestr
-CODE['html'] = html_code
-
-# how to typeset lists and their items in html:
-LIST['html'] = {
-    'itemize':
-    {'begin': '\n&lt;ul&gt;\n', 'item': '&lt;li&gt;', 'end': '&lt;/ul&gt;\n\n'},
-    'enumerate':
-    {'begin': '\n&lt;ol&gt;\n', 'item': '&lt;li&gt;', 'end': '&lt;/ol&gt;\n\n'},
-    'description':
-    {'begin': '\n&lt;dl&gt;\n', 'item': '&lt;dt&gt;%s&lt;dd&gt;', 'end': '&lt;/dl&gt;\n\n'},
-    }
-
-# how to type set description lists for function arguments, return
-# values, and module/class variables:
-ARGLIST['html'] = {
-    'parameter': '&lt;b&gt;argument&lt;/b&gt;',
-    'keyword': '&lt;b&gt;keyword argument&lt;/b&gt;',
-    'return': '&lt;b&gt;return value(s)&lt;/b&gt;',
-    'instance variable': '&lt;b&gt;instance variable&lt;/b&gt;',
-    'class variable': '&lt;b&gt;class variable&lt;/b&gt;',
-    'module variable': '&lt;b&gt;module variable&lt;/b&gt;',
-    }
-
-# document start:
-INTRO['html'] = &quot;&quot;&quot;
-&lt;html&gt;
-&lt;body bgcolor=&quot;white&quot;&gt;
-&quot;&quot;&quot;
-# document ending:
-OUTRO['html'] = &quot;&quot;&quot;
-&lt;/body&gt;
-&lt;/html&gt;
-&quot;&quot;&quot;
-</pre>
-</div>
 <div class="section" id="typesetting-of-function-arguments-return-values-and-variables">
 <h2>Typesetting of Function Arguments, Return Values, and Variables</h2>
 <p>As part of comments (or doc strings) in computer code one often wishes

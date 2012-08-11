@@ -7,7 +7,7 @@ Hans Petter Langtangen [1, 2]
 [2] University of Oslo
 
 
-Date: Aug 7, 2012
+Date: Aug 11, 2012
 
 What Is Doconce?
 ================
@@ -353,6 +353,9 @@ running preprocess. That is, in the last example, FORMAT is
 defined as latex. Inside the Doconce document one can then perform
 format specific actions through tests like #if FORMAT == "latex".
 
+The command-line arguments --no-preprocess and --no-mako turn off
+running preprocess and mako, respectively.
+
 Inline comments in the text are removed from the output by::
 
 
@@ -385,6 +388,22 @@ aid of this package. The command-line argument --no-pygments-html
 turns off the use of Pygments and makes code blocks appear with
 plain <pre> HTML tags. The option --pygments-html-linenos turns
 on line numbers in Pygments-formatted code blocks.
+
+The HTML file can be embedded in a template if the Doconce document
+does not have a title (because then there will be
+no header and footer in the HTML file). The template file must contain
+valid HTML code and can have three "slots": %(title)s for a title,
+%(date)s for a date, and %(main)s for the main body of text, i.e., the
+Doconce document translated to HTML. The title becomes the first
+heading in the Doconce document, and the date is extracted from the
+DATE: line, if present. With the template feature one can easily embed
+the text in the look and feel of a website. The template can be extracted
+from the source code of a page at the site; just insert %(title)s and
+%(date)s at appropriate places and replace the main bod of text
+by %(main)s. Here is an example::
+
+
+        Terminal> doconce format html mydoc --html-template=mytemplate.html
 
 
 Pandoc and Markdown
@@ -497,7 +516,7 @@ Preprocessor variables to be defined or undefined are
 
  * A6PAPER for A6 paper size (suitable for reading on small devices)
 
- * MOVIE15 for inclusion of the movie15 LaTeX package
+ * MOVIE15 for using the movie15 LaTeX package to display movies
 
  * PREAMBLE to turn the LaTeX preamble on or off (i.e., complete document
    or document to be included elsewhere)
@@ -1955,16 +1974,43 @@ plain, rst, sphinx, epydoc, st).  It is then easy to test on
 the value of FORMAT and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
 say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example (see the Doconce
-source code of this document to understand how preprocess is used to
-create the example).
+a separate figure for each plot. Below is an example::
 
 
-
-
-FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-
-FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
+        # If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
+        # PostScript files are used.
+        
+        # #if FORMAT == "latex"
+        # Use latex with subfigures (a) and (b)
+        \begin{figure}
+        label{fig:wavepackets}
+          \begin{center}
+        #  #ifdef PNGFIGS
+        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
+        #  #else
+        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
+        #  #endif
+        
+        #  #ifdef PNGFIGS
+        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
+        #  #else
+        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
+        #  #endif
+          \end{center}
+          \caption{
+          Wavepackets at time (a) 0.1 s and (b) 0.2 s.
+          }
+        \end{figure}
+        
+        # #else
+        
+        # Use default Doconce figure handling for all other formats
+        
+        FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
+        
+        FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
+        
+        # #endif
 
 
 Other user-defined variables for the preprocessor can be set at
@@ -2039,11 +2085,17 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, test on the
-FORMAT variable (#if FORMAT == "latex") in the Doconce code and
-insert the table in LaTeX format. The else or elif branches may
-have the table in other formats or a simplified version in the Doconce
-table format. Similarly, if certain adjustments are needed, like
+if a sophisticated table is desired in LaTeX output, do something line::
+
+
+        # #if FORMAT in ("latex", "pdflatex")
+        # insert native LaTeX code for fancy table
+        # #else
+        # insert a Doconce-formatted "inline" table
+        # #endif
+
+
+Similarly, if certain adjustments are needed, like
 pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
 that this is really LaTeX dependent - pagebreaks are not
 relevant HTML formats).
@@ -2440,7 +2492,7 @@ The .p.tex output file now reads::
 
 
         % begin theorem
-        \label{theorem:fundamental1}
+        label{theorem:fundamental1}
         
         
         \paragraph{Theorem 5.}
@@ -2600,6 +2652,32 @@ output looks somewhat ugly. The good thing is that this gwiki source
 is seldom to be looked at - it is the Doconce source that one edits
 further.
 
+Problems with HTML Output
+-------------------------
+
+How can I change the layout of the HTML page?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The standard of way of controlling the HTML format is to use an
+HTML template. The Doconce source is then the body of text (leave
+out TITLE: to get HTML without a header and footer). The
+--html-template=filename command-line option will then embed the
+Doconce text in the specified template file, where you can use style
+sheets and desired constructs in the header and footer.
+The template can have "slots" for a title (%(title)s),
+a date (%(date)s), and the main body of text (%(main)s).
+For typesetting code, pygments is used (if installed) and can be
+turned off by --no-pygments-html (leaving code in gray boxes).
+
+
+The easiest way is to get fancy layouts in HTML is to
+use the sphinx format and one its many themes.
+
+A third, more primitive alternative is to edit the style in the top of
+the HTML file (preferably done automatically via doconce replace and
+doconce subst in the script that generates the final documents).
+
+
 Debugging
 ---------
 
@@ -2657,77 +2735,6 @@ write out in the new format.  When the Doconce format is not
 sufficient to getting the layout you want, it is suggested to filter
 the document to another, more complex format, say reST or
 LaTeX, and work further on the document in this format.
-
-
-A Glimpse of How to Write a New Translator
-------------------------------------------
-
-This is the HTML-specific part of the
-source code of the HTML translator::
-
-
-        FILENAME_EXTENSION['html'] = '.html'  # output file extension
-        BLANKLINE['html'] = '<p>\n'           # blank input line => new paragraph
-        INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
-            # keep math as is:
-            'math': None,  # indicates no substitution
-            'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
-            'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
-            'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
-            'URL':           r'\g<begin><a href="\g<url>">\g<link></a>',
-            'section':       r'<h1>\g<subst></h1>',
-            'subsection':    r'<h3>\g<subst></h3>',
-            'subsubsection': r'<h5>\g<subst></h5>',
-            'paragraph':     r'<b>\g<subst></b>. ',
-            'title':         r'<title>\g<subst></title>\n<center><h1>\g<subst></h1></center>',
-            'date':          r'<center><h3>\g<subst></h3></center>',
-            'author':        r'<center><h3>\g<subst></h3></center>',
-            }
-        
-        # how to replace code and latex blocks by html (<pre>) environment:
-        def html_code(filestr):
-            c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
-            filestr = c.sub(r'<!-- BEGIN VERBATIM BLOCK \g<1>-->\n<pre>\n', filestr)
-            filestr = re.sub(r'!ec\n',
-                             r'</pre>\n<! -- END VERBATIM BLOCK -->\n', filestr)
-            c = re.compile(r'^!bt\n', re.MULTILINE)
-            filestr = c.sub(r'<pre>\n', filestr)
-            filestr = re.sub(r'!et\n', r'</pre>\n', filestr)
-            return filestr
-        CODE['html'] = html_code
-        
-        # how to typeset lists and their items in html:
-        LIST['html'] = {
-            'itemize':
-            {'begin': '\n<ul>\n', 'item': '<li>', 'end': '</ul>\n\n'},
-            'enumerate':
-            {'begin': '\n<ol>\n', 'item': '<li>', 'end': '</ol>\n\n'},
-            'description':
-            {'begin': '\n<dl>\n', 'item': '<dt>%s<dd>', 'end': '</dl>\n\n'},
-            }
-        
-        # how to type set description lists for function arguments, return
-        # values, and module/class variables:
-        ARGLIST['html'] = {
-            'parameter': '<b>argument</b>',
-            'keyword': '<b>keyword argument</b>',
-            'return': '<b>return value(s)</b>',
-            'instance variable': '<b>instance variable</b>',
-            'class variable': '<b>class variable</b>',
-            'module variable': '<b>module variable</b>',
-            }
-        
-        # document start:
-        INTRO['html'] = """
-        <html>
-        <body bgcolor="white">
-        """
-        # document ending:
-        OUTRO['html'] = """
-        </body>
-        </html>
-        """
-
 
 
 Typesetting of Function Arguments, Return Values, and Variables

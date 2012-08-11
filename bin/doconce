@@ -1631,8 +1631,10 @@ Download preprocess from http://code.google.com/p/preprocess
             print '%s (!bc %s) -> %s' % (ptex2tex_begin, envir, begin)
 
     # Replace other known ptex2tex environments by a default choice
-    begin = r"""\begin{quote}\begin{verbatim}"""
-    end = r"""\end{verbatim}\end{quote}"""
+    begin = r"""\begin{quote}
+\begin{verbatim}"""
+    end = r"""\end{verbatim}
+\end{quote}"""
     for envir in envirs:
         ptex2tex_begin = '\\' + 'b' + envir
         ptex2tex_end = '\\' + 'e' + envir

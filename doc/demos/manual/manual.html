@@ -9,6 +9,36 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
+<style type="text/css">
+    body {
+      margin-top: 1.0em;
+      <!-- background-color: #e1c931; -->
+      background-color: #000000;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    #container {
+      margin: 0 auto;
+      width: 700px;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
+    h1 .small { font-size: 0.4em; }
+    h1 a { text-decoration: none }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    <! -- h4 { color: #1e36ce; } -->
+    a { color: #1e36ce; }
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .download { float: right; }
+    <!-- white on black: pre { background: #000; color: #fff; padding: 15px;} -->
+    <!-- black on white: pre { background: #fff; color: #000; padding: 15px;} -->
+    pre { background: #EDEDED; color: #000; padding: 15px;}
+    <!-- http://www.december.com/html/spec/color0.html -->
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
+</style>
+
+<!-- Use MathJax to render mathematics -->
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -24,18 +54,27 @@ MathJax.Hub.Config({
 </head>
 
 <body bgcolor="white">
-    <title>Doconce Description</title>
-<center><h1>Doconce Description</h1></center>
+<!-- ---------------------------- main content ------------------------>
+    
+<title>Doconce Description</title>
+
+<center><h1>Doconce Description</h1></center>  <! -- document title -->
+
+<! -- author(s) -->
+
 <center>
 <b>Hans Petter Langtangen</b> [1, 2]
 </center>
 
+
 <p>
+<!-- institutions -->
+
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h3>Aug 7, 2012</h3></center>
+<center><h4>Aug 11, 2012</h4></center> <!-- date -->
 <p>
 
 <p>
@@ -476,6 +515,10 @@ defined as <tt>latex</tt>. Inside the Doconce document one can then perform
 format specific actions through tests like <tt>#if FORMAT == "latex"</tt>.
 
 <p>
+The command-line arguments <tt>--no-preprocess</tt> and <tt>--no-mako</tt> turn off
+running <tt>preprocess</tt> and <tt>mako</tt>, respectively.
+
+<p>
 Inline comments in the text are removed from the output by
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
@@ -516,6 +559,23 @@ plain <tt><pre></tt> HTML tags. The option <tt>--pygments-html-linenos</tt> turn
 on line numbers in Pygments-formatted code blocks.
 
 <p>
+The HTML file can be embedded in a template if the Doconce document
+does not have a title (because then there will be
+no header and footer in the HTML file). The template file must contain
+valid HTML code and can have three "slots": <tt>%(title)s</tt> for a title,
+<tt>%(date)s</tt> for a date, and <tt>%(main)s</tt> for the main body of text, i.e., the
+Doconce document translated to HTML. The title becomes the first
+heading in the Doconce document, and the date is extracted from the
+<tt>DATE:</tt> line, if present. With the template feature one can easily embed
+the text in the look and feel of a website. The template can be extracted
+from the source code of a page at the site; just insert <tt>%(title)s</tt> and
+<tt>%(date)s</tt> at appropriate places and replace the main bod of text
+by <tt>%(main)s</tt>. Here is an example:
+<blockquote>    <!-- begin verbatim block  sys-->
+<pre>
+Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
+</pre>
+</blockquote>   <! -- end verbatim block -->
 
 <p>
 
@@ -646,7 +706,7 @@ Preprocessor variables to be defined or undefined are
  <li> <tt>HELVETIA</tt> for the Helvetica font
  <li> <tt>A4PAPER</tt> for A4 paper size
  <li> <tt>A6PAPER</tt> for A6 paper size (suitable for reading on small devices)
- <li> <tt>MOVIE15</tt> for inclusion of the movie15 LaTeX package
+ <li> <tt>MOVIE15</tt> for using the movie15 LaTeX package to display movies
  <li> <tt>PREAMBLE</tt> to turn the LaTeX preamble on or off (i.e., complete document
    or document to be included elsewhere)
  <li> <tt>MINTED</tt> for inclusion of the minted package (which requires <tt>latex</tt>
@@ -2373,32 +2433,47 @@ defined as the desired output format of Doconce (<tt>html</tt>, <tt>latex</tt>,
 the value of <tt>FORMAT</tt> and take different actions for different
 formats. For example, one may create special LaTeX output for figures,
 say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example (see the Doconce
-source code of this document to understand how preprocess is used to
-create the example).
+a separate figure for each plot. Below is an example:
 
 <p>
-<!-- If PNGFIGS is defined, PNG files are used, otherwise Encapsulated -->
-<!-- PostScript files are used. -->
+<blockquote>    <!-- begin verbatim block  pro-->
+<pre>
+# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
+# PostScript files are used.
 
-<p>
+# #if FORMAT == "latex"
+# Use latex with subfigures (a) and (b)
+\begin{figure}
+\label{fig:wavepackets}
+  \begin{center}
+#  #ifdef PNGFIGS
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
+#  #else
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
+#  #endif
 
-<p>
-<!-- Use default Doconce figure handling for all other formats -->
+#  #ifdef PNGFIGS
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
+#  #else
+\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
+#  #endif
+  \end{center}
+  \caption{
+  Wavepackets at time (a) 0.1 s and (b) 0.2 s.
+  }
+\end{figure}
 
-<p>
-<center><hr>
-<caption><i>Wavepacket at time 0.1 s.</i></caption>
-<p><img src="figs/wavepacket_0001.png" align="bottom" width=400></p>
-</center>
+# #else
 
-<p>
-<center><hr>
-<caption><i>Wavepacket at time 0.2 s.</i></caption>
-<p><img src="figs/wavepacket_0010.png" align="bottom" width=400></p>
-</center>
+# Use default Doconce figure handling for all other formats
 
-<p>
+FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
+
+FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
+
+# #endif
+</pre>
+</blockquote>   <! -- end verbatim block -->
 
 <p>
 Other user-defined variables for the preprocessor can be set at
@@ -2482,11 +2557,21 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, test on the
-<tt>FORMAT</tt> variable (<tt>#if FORMAT == "latex"</tt>) in the Doconce code and
-insert the table in LaTeX format. The <tt>else</tt> or <tt>elif</tt> branches may
-have the table in other formats or a simplified version in the Doconce
-table format. Similarly, if certain adjustments are needed, like
+if a sophisticated table is desired in LaTeX output, do something line
+
+<p>
+<blockquote>    <!-- begin verbatim block  pro-->
+<pre>
+# #if FORMAT in ("latex", "pdflatex")
+# insert native LaTeX code for fancy table
+# #else
+# insert a Doconce-formatted "inline" table
+# #endif
+</pre>
+</blockquote>   <! -- end verbatim block -->
+
+<p>
+Similarly, if certain adjustments are needed, like
 pagebreaks in LaTeX, hardcode that in the Doconce format (and recall
 that this is really LaTeX dependent - pagebreaks are not
 relevant HTML formats).
@@ -3124,7 +3209,38 @@ further.
 
 <p>
 
-<h3>Debugging  <a name="___sec81"></a></h3>
+<h3>Problems with HTML Output  <a name="___sec81"></a></h3>
+<p>
+
+<h4>How can I change the layout of the HTML page?  <a name="___sec82"></a></h4>
+<p>
+The standard of way of controlling the HTML format is to use an
+HTML template. The Doconce source is then the body of text (leave
+out <tt>TITLE:</tt> to get HTML without a header and footer). The
+<tt>--html-template=filename</tt> command-line option will then embed the
+Doconce text in the specified template file, where you can use style
+sheets and desired constructs in the header and footer.
+The template can have "slots" for a title (<tt>%(title)s</tt>),
+a date (<tt>%(date)s</tt>), and the main body of text (<tt>%(main)s</tt>).
+For typesetting code, <tt>pygments</tt> is used (if installed) and can be
+turned off by <tt>--no-pygments-html</tt> (leaving code in gray boxes).
+
+<p>
+
+<p>
+The easiest way is to get fancy layouts in HTML is to
+use the <tt>sphinx</tt> format and one its many themes.
+
+<p>
+A third, more primitive alternative is to edit the style in the top of
+the HTML file (preferably done automatically via <tt>doconce replace</tt> and
+<tt>doconce subst</tt> in the script that generates the final documents).
+
+<p>
+
+<p>
+
+<h3>Debugging  <a name="___sec83"></a></h3>
 <p>
 Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
@@ -3142,7 +3258,7 @@ format, and you need to know these steps to make use of the logfile.
 
 <p>
 
-<h2>Basic Parsing Ideas  <a name="___sec82"></a></h2>
+<h2>Basic Parsing Ideas  <a name="___sec84"></a></h2>
 <p>
 <!-- avoid list here since we have code in between (never a good idea) -->
 
@@ -3199,88 +3315,7 @@ LaTeX, and work further on the document in this format.
 
 <p>
 
-<h3>A Glimpse of How to Write a New Translator  <a name="___sec83"></a></h3>
-<p>
-This is the HTML-specific part of the
-source code of the HTML translator:
-(note that in HTML one of the the less-than and greater-than signs
-in a link come up wrong because of the simple regex that is used
-to substitute these pair of signs by special HTML expressions)
-
-<p>
-
-<p>
-<blockquote>    <!-- begin verbatim block -->
-<pre>
-FILENAME_EXTENSION['html'] = '.html'  # output file extension
-BLANKLINE['html'] = '&lt;p&gt;\n'           # blank input line =&gt; new paragraph
-INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
-    # keep math as is:
-    'math': None,  # indicates no substitution
-    'emphasize':     r'\g&lt;begin&gt;&lt;em&gt;\g&lt;subst&gt;&lt;/em&gt;\g&lt;end&gt;',
-    'bold':          r'\g&lt;begin&gt;&lt;b&gt;\g&lt;subst&gt;&lt;/b&gt;\g&lt;end&gt;',
-    'verbatim':      r'\g&lt;begin&gt;&lt;tt&gt;\g&lt;subst&gt;&lt;/tt&gt;\g&lt;end&gt;',
-    'URL':           r'\g&lt;begin&gt;&lt;a href="\g&lt;url&gt;"&gt;\g&lt;link&gt;&lt;/a&gt;',
-    'section':       r'&lt;h1&gt;\g&lt;subst&gt;&lt;/h1&gt;',
-    'subsection':    r'&lt;h3&gt;\g&lt;subst&gt;&lt;/h3&gt;',
-    'subsubsection': r'&lt;h5&gt;\g&lt;subst&gt;&lt;/h5&gt;',
-    'paragraph':     r'&lt;b&gt;\g&lt;subst&gt;&lt;/b&gt;. ',
-    'title':         r'&lt;title&gt;\g&lt;subst&gt;&lt;/title&gt;\n&lt;center&gt;&lt;h1&gt;\g&lt;subst&gt;&lt;/h1&gt;&lt;/center&gt;',
-    'date':          r'&lt;center&gt;&lt;h3&gt;\g&lt;subst&gt;&lt;/h3&gt;&lt;/center&gt;',
-    'author':        r'&lt;center&gt;&lt;h3&gt;\g&lt;subst&gt;&lt;/h3&gt;&lt;/center&gt;',
-    }
-
-# how to replace code and latex blocks by html (&lt;pre&gt;) environment:
-def html_code(filestr):
-    c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
-    filestr = c.sub(r'&lt;!-- BEGIN VERBATIM BLOCK \g&lt;1&gt;--&gt;\n&lt;pre&gt;\n', filestr)
-    filestr = re.sub(r'!ec\n',
-                     r'&lt;/pre&gt;\n&lt;! -- END VERBATIM BLOCK --&gt;\n', filestr)
-    c = re.compile(r'^!bt\n', re.MULTILINE)
-    filestr = c.sub(r'&lt;pre&gt;\n', filestr)
-    filestr = re.sub(r'!et\n', r'&lt;/pre&gt;\n', filestr)
-    return filestr
-CODE['html'] = html_code
-
-# how to typeset lists and their items in html:
-LIST['html'] = {
-    'itemize':
-    {'begin': '\n&lt;ul&gt;\n', 'item': '&lt;li&gt;', 'end': '&lt;/ul&gt;\n\n'},
-    'enumerate':
-    {'begin': '\n&lt;ol&gt;\n', 'item': '&lt;li&gt;', 'end': '&lt;/ol&gt;\n\n'},
-    'description':
-    {'begin': '\n&lt;dl&gt;\n', 'item': '&lt;dt&gt;%s&lt;dd&gt;', 'end': '&lt;/dl&gt;\n\n'},
-    }
-
-# how to type set description lists for function arguments, return
-# values, and module/class variables:
-ARGLIST['html'] = {
-    'parameter': '&lt;b&gt;argument&lt;/b&gt;',
-    'keyword': '&lt;b&gt;keyword argument&lt;/b&gt;',
-    'return': '&lt;b&gt;return value(s)&lt;/b&gt;',
-    'instance variable': '&lt;b&gt;instance variable&lt;/b&gt;',
-    'class variable': '&lt;b&gt;class variable&lt;/b&gt;',
-    'module variable': '&lt;b&gt;module variable&lt;/b&gt;',
-    }
-
-# document start:
-INTRO['html'] = """
-&lt;html&gt;
-&lt;body bgcolor="white"&gt;
-"""
-# document ending:
-OUTRO['html'] = """
-&lt;/body&gt;
-&lt;/html&gt;
-"""
-</pre>
-</blockquote>   <! -- end verbatim block -->
-
-<p>
-
-<p>
-
-<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec84"></a></h3>
+<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec85"></a></h3>
 <p>
 As part of comments (or doc strings) in computer code one often wishes
 to explain what a function takes of arguments and what the return
@@ -3335,6 +3370,7 @@ and Sphinx just typeset the list as a list with keywords.
 
 <p>
 
+<!-- ---------------------------- end of main content ----------------->
 </body>
 </html>
     
