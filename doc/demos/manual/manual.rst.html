@@ -1727,37 +1727,82 @@ consists of the word &quot;Exercise&quot;, &quot;Problem&quot;, or &quot;Project
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file:</p>
+in) and a solution file. The Doconce code looks like this:</p>
 <pre class="literal-block">
 ===== Project: Determine the Distance to the Moon =====
-label{proj:moondist} file=earth2moon.pdf
+label{proj:moondist}
+file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
 
 Here goes the running text of the project....
-
-__Hint 1.__ Do not plan a travel to the moon.
-
-__Hint 2.__ Wikipedia is always helpful.
 </pre>
 <p>Doconce will recognize the exercise, problem, or project <em>title</em>,
-the <em>label</em>, the <em>result file</em>, the <em>solution file</em> (if any of
-these three entities is present), the <em>text</em>, and a sequence of
-<em>hints</em>. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.</p>
-<p>Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+the <em>label</em>, the <em>result file</em>, the <em>solution</em> (if any of
+these three entities is present), and the <em>running text</em>. In addition,
+one can add subexercise environments, starting with <tt class="docutils literal">!bsubex</tt> and ending
+with <tt class="docutils literal">!esubex</tt>, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) <em>answer</em>, and <em>hints</em>. The environments have begin-end
+directives <tt class="docutils literal">!bans</tt>, <tt class="docutils literal">!eans</tt>, <tt class="docutils literal">!bsol</tt>, <tt class="docutils literal">!esol</tt>, <tt class="docutils literal">!bhint</tt>, <tt class="docutils literal">!ehint</tt>, which
+all must appear on the beginning of a separate line (just as
+<tt class="docutils literal">!bc</tt> and <tt class="docutils literal">!ec</tt>).</p>
+<p>The solution environment allows inline
+solution as an alternative to the <tt class="docutils literal"><span class="pre">solution=...</span></tt> directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.</p>
+<p>A full exercise set-up can be sketched as follows:</p>
+<pre class="literal-block">
+===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
+file=earth2moon.pdf
+
+Here goes the running text of the project....
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex
+</pre>
+<p>The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file <tt class="docutils literal">.mydoc.exerinfo</tt>,
+if <tt class="docutils literal">mydoc.do.txt</tt> is the name of the Doconce file.</p>
+<p>Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.</p>
+<p>For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The <em>title</em> is typeset without any leading &quot;Exercise:&quot;, &quot;Problem:&quot;,
-or &quot;Project:&quot; word, so that references like &quot;see Problem ...&quot;
-works well in all formats (&quot;...&quot; will be a number in LaTeX and
-the problem title in most other formats).</p>
+or &quot;Project:&quot; word, so that references like &quot;see Problem <a href="#id10"><span class="problematic" id="id11">`...`_</span></a>&quot;
+works well in all formats.</p>
 <p>It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named &quot;Exercises&quot;, &quot;Problems&quot;, or
 &quot;Projects&quot;.</p>
@@ -2789,6 +2834,12 @@ groundwater flow.
 </tbody>
 </table>
 </div>
+</div>
+<div class="system-messages section">
+<h1>Docutils System Messages</h1>
+<div class="system-message" id="id10">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">manual.rst</tt>, line 1765); <em><a href="#id11">backlink</a></em></p>
+Unknown target name: &quot;...&quot;.</div>
 </div>
 </div>
 </body>

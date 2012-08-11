@@ -1421,37 +1421,81 @@ consists of the word &#8220;Exercise&#8221;, &#8220;Problem&#8221;, or &#8220;Pr
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file:</p>
+in) and a solution file. The Doconce code looks like this:</p>
 <div class="highlight-py"><div class="highlight"><pre><span class="o">=====</span> <span class="n">Project</span><span class="p">:</span> <span class="n">Determine</span> <span class="n">the</span> <span class="n">Distance</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Moon</span> <span class="o">=====</span>
-<span class="n">label</span><span class="p">{</span><span class="n">proj</span><span class="p">:</span><span class="n">moondist</span><span class="p">}</span> <span class="nb">file</span><span class="o">=</span><span class="n">earth2moon</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">label</span><span class="p">{</span><span class="n">proj</span><span class="p">:</span><span class="n">moondist</span><span class="p">}</span>
+<span class="nb">file</span><span class="o">=</span><span class="n">earth2moon</span><span class="o">.</span><span class="n">pdf</span>
 <span class="n">solution</span><span class="o">=</span><span class="n">eart2moon_sol</span><span class="o">.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span>
 
 <span class="n">Here</span> <span class="n">goes</span> <span class="n">the</span> <span class="n">running</span> <span class="n">text</span> <span class="n">of</span> <span class="n">the</span> <span class="n">project</span><span class="o">....</span>
-
-<span class="n">__Hint</span> <span class="mf">1.</span><span class="n">__</span> <span class="n">Do</span> <span class="ow">not</span> <span class="n">plan</span> <span class="n">a</span> <span class="n">travel</span> <span class="n">to</span> <span class="n">the</span> <span class="n">moon</span><span class="o">.</span>
-
-<span class="n">__Hint</span> <span class="mf">2.</span><span class="n">__</span> <span class="n">Wikipedia</span> <span class="ow">is</span> <span class="n">always</span> <span class="n">helpful</span><span class="o">.</span>
 </pre></div>
 </div>
 <p>Doconce will recognize the exercise, problem, or project <em>title</em>,
-the <em>label</em>, the <em>result file</em>, the <em>solution file</em> (if any of
-these three entities is present), the <em>text</em>, and a sequence of
-<em>hints</em>. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.</p>
-<p>Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+the <em>label</em>, the <em>result file</em>, the <em>solution</em> (if any of
+these three entities is present), and the <em>running text</em>. In addition,
+one can add subexercise environments, starting with <tt class="docutils literal"><span class="pre">!bsubex</span></tt> and ending
+with <tt class="docutils literal"><span class="pre">!esubex</span></tt>, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) <em>answer</em>, and <em>hints</em>. The environments have begin-end
+directives <tt class="docutils literal"><span class="pre">!bans</span></tt>, <tt class="docutils literal"><span class="pre">!eans</span></tt>, <tt class="docutils literal"><span class="pre">!bsol</span></tt>, <tt class="docutils literal"><span class="pre">!esol</span></tt>, <tt class="docutils literal"><span class="pre">!bhint</span></tt>, <tt class="docutils literal"><span class="pre">!ehint</span></tt>, which
+all must appear on the beginning of a separate line (just as
+<tt class="docutils literal"><span class="pre">!bc</span></tt> and <tt class="docutils literal"><span class="pre">!ec</span></tt>).</p>
+<p>The solution environment allows inline
+solution as an alternative to the <tt class="docutils literal"><span class="pre">solution=...</span></tt> directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.</p>
+<p>A full exercise set-up can be sketched as follows:</p>
+<div class="highlight-py"><pre>===== Exercise: Determine the Distance to the Moon =====
+label{exer:moondist}
+file=earth2moon.pdf
+
+Here goes the running text of the project....
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+!bhint
+A hint for this subexercise.
+!ehint
+!esubex</pre>
+</div>
+<p>The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file <tt class="docutils literal"><span class="pre">.mydoc.exerinfo</span></tt>,
+if <tt class="docutils literal"><span class="pre">mydoc.do.txt</span></tt> is the name of the Doconce file.</p>
+<p>Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.</p>
+<p>For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The <em>title</em> is typeset without any leading &#8220;Exercise:&#8221;, &#8220;Problem:&#8221;,
-or &#8220;Project:&#8221; word, so that references like &#8220;see Problem ...&#8221;
-works well in all formats (&#8221;...&#8221; will be a number in LaTeX and
-the problem title in most other formats).</p>
+or &#8220;Project:&#8221; word, so that references like &#8220;see Problem <em class="xref std std-ref">...</em>&#8221;
+works well in all formats.</p>
 <p>It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named &#8220;Exercises&#8221;, &#8220;Problems&#8221;, or
 &#8220;Projects&#8221;.</p>

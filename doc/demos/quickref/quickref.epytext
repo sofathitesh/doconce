@@ -545,8 +545,23 @@ Exercises
 
 Doconce supports I{Exercise}, I{Problem}, and I{Project}. These are typeset
 as ordinary sections and referred to by their section labels.
-The typical sketch of an exercise, problem, or project sections
-looks as follows::
+An exercise, problem, or project sections contains certain I{elements}:
+
+  - a headline at the level of a subsection or subsubsection,
+    containing one of the words "Exercise:", "Problem:", or
+    "Project:", followed by a title (required)
+  - a label (optional)
+  - a solution file (optional)
+  - name of file with a student solution (optional)
+  - main exercise text (required)
+  - a short answer (optional)
+  - a full solution (optional)
+  - one or more hints (optional)
+  - one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)
+
+A typical sketch of a a problem without subexercises goes as follows::
 
 
         ===== Problem: Derive the Formula for the Area of an Ellipse =====
@@ -558,24 +573,53 @@ looks as follows::
         the area under a curve that defines half of the allipse.
         Show each step in the mathematical derivation.
         
-        __Hint 1.__ Wikipedia has the formula for the curve.
+        !bhint
+        Wikipedia has the formula for the curve.
+        !ehint
         
-        __Hint 2.__ "Wolframalpha": "http://wolframalpha.com" can perhaps
+        !bhint
+        "Wolframalpha": "http://wolframalpha.com" can perhaps
         compute the integral.
+        !ehint
 
-An exercise, problem, or project has certain elements:
+An exercise with subproblems, answers and full solutions has this
+setup-up::
 
-  - A headline at the level of a subsection or subsubsection,
-    containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title. (Required.)
-  - A standard label for referring to the exercise. (Optional.)
-  - A name for the file with the result/answer (C{file=filename}). (Optional.)
-  - A name for the solution file (C{solution=filename}), where the file
-    name may be a URL. (Optional.)
-  - The running text of the exercise. (Required.)
-  - A sequence of hints, indicated as paragraphs. There can be a
-    single hint, without any number, or several numbered hints.
-    (Optional.)
+
+        ===== Exercise: Determine the Distance to the Moon =====
+        label{exer:moondist}
+        
+        Intro to this exercise. Questions are in subexercises below.
+        
+        !bsubex
+        Subexercises are numbered a), b), etc.
+        
+        file=subexer_a.pdf
+        
+        !bans
+        Short answer to subexercise a).
+        !eans
+        
+        !bhint
+        First hint to subexercise a).
+        !ehint
+        
+        !bhint
+        Second hint to subexercise a).
+        !ehint
+        !esubex
+        
+        !bsubex
+        Here goes the text for subexercise b).
+        
+        file=subexer_b.pdf
+        
+        !bhint
+        A hint for this subexercise.
+        !ehint
+        !esubex
+
+By default, answers, solutions, and hints are typeset as paragraphs.
 
 Labels, Index, and Citations
 ----------------------------

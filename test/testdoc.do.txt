@@ -325,25 +325,49 @@ Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
+!bhint
+Use `r = random.random()` and define head as `r <= 0.5`.
+!ehint
 
-__Hint 1.__ Use `r = random.random()` and define head as `r <= 0.5`.
-
-__Hint 2.__ Draw an integer among $\{1,2\}$ with
+!bhint
+Draw an integer among $\{1,2\}$ with
 `r = random.randint(1,2)` and define head when `r` is 1.
+!ehint
+
+!bans
+If the `random.random()` function returns a number $<1/2$, let it be
+head, otherwise tail. Repeat this $N$ number of times.
+!eans
+
+!bsol
+!bc pycod
+import sys, random
+N = int(sys.argv[1])
+heads = 0
+for i in range(N):
+    r = random.random()
+    if r <= 0.5:
+        heads += 1
+print 'Flipping a coin %d times gave %d heads' % (N, heads)
+!ec
+!esol
 
 
 ===== Exercise: Compute a Probability =====
 
+# Minimalistic exercise
+
 label{demo:ex:2}
-solution =/my/home/hpl/sol/file1.do.txt
 
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
+
+!bhint
 To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard `random` module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
-compute the probability as $M/N$. Run the program with the four
-values $N=10^i$ for $i=1,2,3,6$.
+compute the probability as $M/N$.
+!ehint
 
 ===== Project: Explore Distributions of Random Circles =====
 
@@ -374,17 +398,40 @@ x, y = circle(2.0, 0, 0)
 !ec
 
 # Often in an exercise we have some comments about the solution
-# which we normally want to migrate to the end.
+# which we normally want to keep where they are.
 
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the `circle` function
-above. The following cases should be explored:
+above.
 
- * $R$ normally distributed and $(x_0,y_0)$ uniformly distributed
- * $R$ uniformly distributed and $(x_0,y_0)$ normally distributed
- * $R$ and $(x_0,y_0)$ normally distributed
+!bsubex
+Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
-__Hint.__ Use the `numpy.random` module to draw the
+!bans
+Here goes the short answer to part a).
+!eans
+
+!bsol
+Here goes a full solution to part a).
+!esol
+
+!bhint
+Use the `numpy.random` module to draw the
 $x_0$, $y_0$, and $R$ quantities.
+!ehint
+
+!esubex
+
+!bsubex
+Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
+
+file=norm.py  # test local filename for subexercise
+!esubex
+
+!bsubex
+Let $R$ and $(x_0,y_0)$ be normally distributed.
+!esubex
+
+
 
 

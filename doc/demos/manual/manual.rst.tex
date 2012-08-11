@@ -5,6 +5,7 @@
 \usepackage{ifthen}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{color}
 \usepackage{float} % float configuration
 \floatplacement{figure}{H} % place figures here definitely
 \usepackage{graphicx}
@@ -22,12 +23,34 @@
 
 %%% Fallback definitions for Docutils-specific commands
 
+% admonition (specially marked topic)
+\providecommand{\DUadmonition}[2][class-arg]{%
+  % try \DUadmonition#1{#2}:
+  \ifcsname DUadmonition#1\endcsname%
+    \csname DUadmonition#1\endcsname{#2}%
+  \else
+    \begin{center}
+      \fbox{\parbox{0.9\textwidth}{#2}}
+    \end{center}
+  \fi
+}
+
 % fieldlist environment
 \ifthenelse{\isundefined{\DUfieldlist}}{
   \newenvironment{DUfieldlist}%
     {\quote\description}
     {\enddescription\endquote}
 }{}
+
+% title for topics, admonitions and sidebar
+\providecommand*{\DUtitle}[2][class-arg]{%
+  % call \DUtitle#1{#2} if it exists:
+  \ifcsname DUtitle#1\endcsname%
+    \csname DUtitle#1\endcsname{#2}%
+  \else
+    \smallskip\noindent\textbf{#2}\smallskip%
+  \fi
+}
 
 % hyperlinks:
 \ifthenelse{\isundefined{\hypersetup}}{
@@ -2158,41 +2181,93 @@ consists of the word ``Exercise'', ``Problem'', or ``Project'', followed
 by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
-it) and a solution file:
+in) and a solution file. The Doconce code looks like this:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 =====~Project:~Determine~the~Distance~to~the~Moon~=====\\
-label\{proj:moondist\}~file=earth2moon.pdf\\
+label\{proj:moondist\}\\
+file=earth2moon.pdf\\
 solution=eart2moon\_sol.do.txt\\
 ~\\
-Here~goes~the~running~text~of~the~project....\\
-~\\
-\_\_Hint~1.\_\_~Do~not~plan~a~travel~to~the~moon.\\
-~\\
-\_\_Hint~2.\_\_~Wikipedia~is~always~helpful.
+Here~goes~the~running~text~of~the~project....
 }
 \end{quote}
 
 Doconce will recognize the exercise, problem, or project \emph{title},
-the \emph{label}, the \emph{result file}, the \emph{solution file} (if any of
-these three entities is present), the \emph{text}, and a sequence of
-\emph{hints}. Tailored formatting of exercises in special output formats
-can make use of this. For example, one can image web formats where
-the hints are displayed one by one when needed and where the result
-file can be uploaded. One can also think of mechanisms for downloading
-the solution file if the result file meets certain criteria.
-Doconce does not yet generate such functionality in any output format,
-but this is an intended future feature to be impelemented.
+the \emph{label}, the \emph{result file}, the \emph{solution} (if any of
+these three entities is present), and the \emph{running text}. In addition,
+one can add subexercise environments, starting with \texttt{!bsubex} and ending
+with \texttt{!esubex}, on the beginning of separate lines.
+Within the main exercise or
+a subexercise, three other environments are possible: (full) solution,
+(short) \emph{answer}, and \emph{hints}. The environments have begin-end
+directives \texttt{!bans}, \texttt{!eans}, \texttt{!bsol}, \texttt{!esol}, \texttt{!bhint}, \texttt{!ehint}, which
+all must appear on the beginning of a separate line (just as
+\texttt{!bc} and \texttt{!ec}).
 
-Because exercises, problems, and projects are typeset as ordinary
-sections (this is the most general approach that will work for many
-formats), one must refer to an exercise, problem, or project
+The solution environment allows inline
+solution as an alternative to the \texttt{solution=...} directive mentioned above,
+which requires that the solution is in a separate file. Comment lines
+are inserted so that the beginning and end of answers and solutions can
+be identified and removed if desired.
+
+A full exercise set-up can be sketched as follows:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+=====~Exercise:~Determine~the~Distance~to~the~Moon~=====\\
+label\{exer:moondist\}\\
+file=earth2moon.pdf\\
+~\\
+Here~goes~the~running~text~of~the~project....\\
+~\\
+!bsubex\\
+Subexercises~are~numbered~a),~b),~etc.\\
+~\\
+!bans\\
+Short~answer~to~subexercise~a).\\
+!eans\\
+~\\
+!bhint\\
+First~hint~to~subexercise~a).\\
+!ehint\\
+~\\
+!bhint\\
+Second~hint~to~subexercise~a).\\
+!ehint\\
+!esubex\\
+~\\
+!bsubex\\
+Here~goes~the~text~for~subexercise~b).\\
+~\\
+!bhint\\
+A~hint~for~this~subexercise.\\
+!ehint\\
+!esubex
+}
+\end{quote}
+
+The various elements of exercises are collected in a special
+data structure (list of dictionaries) stored in a file \texttt{.mydoc.exerinfo},
+if \texttt{mydoc.do.txt} is the name of the Doconce file.
+
+Tailored formatting of exercises in special output formats can make
+use of the elements in an exercise.  For example, one can image web
+formats where the hints are displayed one by one when needed and where
+the result file can be uploaded. One can also think of mechanisms for
+downloading the solution file if the result file meets certain
+criteria.  Doconce does not yet generate such functionality in any
+output format, but this is an intended future feature to be
+impelemented.
+
+For now, exercises, problems, and projects are typeset as ordinary
+Doconce sections (this is the most general approach that will work for many
+format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The \emph{title} is typeset without any leading ``Exercise:'', ``Problem:'',
-or ``Project:'' word, so that references like ``see Problem ...''
-works well in all formats (``...'' will be a number in LaTeX and
-the problem title in most other formats).
+or ``Project:'' word, so that references like ``see Problem %
+\raisebox{1em}{\hypertarget{id11}{}}\hyperlink{id10}{\textbf{\color{red}`...`\_}}''
+works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named ``Exercises'', ``Problems'', or
@@ -3760,5 +3835,23 @@ An efficient probabilistic finite element method for stochastic
 groundwater flow.
 \emph{Advances in Water Resources}, vol 22, 185-195, 1998.
 \end{figure}
+
+
+%___________________________________________________________________________
+
+\section*{\phantomsection%
+  \color{red}Docutils System Messages%
+  \addcontentsline{toc}{section}{Docutils System Messages}%
+}
+
+\DUadmonition[system-message]{
+\DUtitle[system-message]{system-message}
+\raisebox{1em}{\hypertarget{id10}{}}
+
+{\color{red}ERROR/3} in \texttt{manual.rst}, line~1765
+
+\hyperlink{id11}{
+Unknown target name: ``...''.
+}}
 
 \end{document}

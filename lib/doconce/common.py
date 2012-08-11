@@ -146,6 +146,36 @@ def default_movie(m):
         text = '%s (Movie %s: play URL:"%s")' % (caption, filename, moviehtml)
     return text
 
+def begin_end_consistency_checks(filestr, envirs):
+    """Perform consistency checks: no of !bc must equal no of !ec, etc."""
+    for envir in envirs:
+        begin = '!b' + envir
+        end = '!e' + envir
+
+        nb = len(re.compile(r'^%s' % begin, re.MULTILINE).findall(filestr))
+        ne = len(re.compile(r'^%s' % end, re.MULTILINE).findall(filestr))
+
+        lines = []
+        if nb != ne:
+            print 'ERROR: %d %s do not match %d %s directives' % \
+                  (nb, begin, ne, end)
+            if not lines:
+                lines = filestr.splitlines()
+            begin_ends = []
+            for i, line in enumerate(lines):
+                if line.startswith(begin):
+                    begin_ends.append((begin, i))
+                if line.startswith(end):
+                    begin_ends.append((end, i))
+            for k in range(1, len(begin_ends)):
+                pattern, i = begin_ends[k]
+                if pattern == begin_ends[k-1][0]:
+                    print '\n\nTwo', pattern, 'after each other!\n'
+                    for j in range(begin_ends[k-1][1], begin_ends[k][1]+1):
+                        print lines[j]
+                    sys.exit(1)
+
+
 def remove_code_and_tex(filestr):
     """
     Remove verbatim and latex (math) code blocks from the file and
@@ -174,43 +204,6 @@ def remove_code_and_tex(filestr):
 
     tex = re.compile(r'^!bt\n(.*?)^!et *\n', re.DOTALL|re.MULTILINE)
     tex_blocks = tex.findall(filestr)
-
-    # Perform consistency checks
-    nbc = len(re.compile(r'^!bc', re.MULTILINE).findall(filestr))
-    nec = len(re.compile(r'^!ec', re.MULTILINE).findall(filestr))
-    nbt = len(re.compile(r'^!bt', re.MULTILINE).findall(filestr))
-    net = len(re.compile(r'^!et', re.MULTILINE).findall(filestr))
-    #nbc2 = sum(1 for line in filestr.splitlines() if line.startswith('!bc'))
-    def find2(filestr, begin_pattern, end_pattern):
-        lines = filestr.splitlines()
-        begin_ends = []
-        for i, line in enumerate(lines):
-            if line.startswith(begin_pattern):
-                begin_ends.append((begin_pattern, i))
-            if line.startswith(end_pattern):
-                begin_ends.append((end_pattern, i))
-        for k in range(1, len(begin_ends)):
-            pattern, i = begin_ends[k]
-            if pattern == begin_ends[k-1][0]:
-                print '\n\nTwo', pattern, 'after each other!\n'
-                for j in range(begin_ends[k-1][1], begin_ends[k][1]+1):
-                    print lines[j]
-                sys.exit(1)
-
-    if nbc != nec:
-        print '%d !bc do not match %d !ec directives' % (nbc, nec)
-        find2(filestr, '!bc', '!ec')
-        sys.exit(1)
-    if nbt != net:
-        print '%d !bt do not match %d !et directives' % (nbt, net)
-        find2(filestr, '!bt', '!et')
-        sys.exit(1)
-    if nbc != len(code_blocks):
-        print '%d !bc and %d extracted code blocks - BUG!!!' % \
-              (nbc, len(code_blocks))
-    if nbt != len(tex_blocks):
-        print '%d !bt and %d extracted tex blocks - BUG!!!' % \
-              (nbt, len(tex_blocks))
 
     # Remove blocks and substitute by a one-line sign
     filestr = code.sub('%s \g<1>\n' % _CODE_BLOCK, filestr)
@@ -254,8 +247,17 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
     filestr = '\n'.join(lines)  # will fail if ord(char) > 127
     return filestr
 
-def plain_exercise(exer):
+def doconce_exercise_output(exer,
+                            begin_answer, end_answer,
+                            begin_solution, end_solution,
+                            begin_hint, end_hint,
+                            end_exercise):
+    """
+    Write exercise in Doconce format. This output can be
+    reused in most formats.
+    """
     s = ''  # result string
+
     if not 'heading' in exer:
         print 'Wrong formatting of exercise, not a 3/5 === type heading'
         print exer
@@ -263,22 +265,88 @@ def plain_exercise(exer):
 
     #s += exer['heading'] + ' ' + exer['type'] + ' ' + exer['no'] + ': ' + exer['title'] + ' ' + exer['heading'] + '\n'
     s += exer['heading'] + ' ' + exer['title'] + ' ' + exer['heading'] + '\n'
-    # Write out label - it will be treated right in all formats
-    if 'label' in exer:
+
+    if exer['label']:
         s += 'label{%s}' % exer['label'] + '\n'
-    s += '\n' + exer['text'] + '\n'
-    for hint_no in sorted(exer['hint']):
-        s += '\n' + exer['hint'][hint_no] + '\n'
-    if 'file' in exer:
-        s += '*Filename*: `%s`' % exer['file'] + '\n'
-        #s += '\n' + '*Filename*: `%s`' % exer['file'] + '\n'
-    if 'solution' in exer:
-        pass
-    if 'comments' in exer:
-        s += '\n' + exer['comments']
+
+    if exer['text']:
+        s += '\n' + exer['text'] + '\n'
+
+    if exer['file']:
+        s += '*Filename*: `%s`' % exer['file'] + '.\n'
+        #s += '\n' + '*Filename*: `%s`' % exer['file'] + '.\n'
+
+    if exer['hints']:
+        for i, hint in enumerate(exer['hints']):
+            if len(exer['hints']) == 1 and i == 0:
+                begin_hint_ = begin_hint
+            else:
+                begin_hint_ = begin_hint.replace('Hint.', 'Hint %d.' % (i+1))
+            s += '\n' + begin_hint_ + hint + end_hint + '\n'
+
+    if exer['answer']:
+        s += '\n' + begin_answer + exer['answer'] + end_answer + '\n'
+
+    if exer['solution']:
+        s += '\n' + begin_solution
+        # Make sure we have a sentence after the heading
+        if exer['solution'].lstrip().startswith(_CODE_BLOCK):
+            print '\nwarning: open solution in exercise "%s" with a line of\ntext before the code! (Now "Code:" is inserted)' % exer['title'] + '\n'
+            s += 'Code:\n'
+        s += exer['solution'] + '\n' + end_solution + '\n'
+
+    if 'subex' in exer:
+        s += '\n'
+        import string
+        for i, subex in enumerate(exer['subex']):
+            letter = string.ascii_lowercase[i]
+            s += '\n__%s)__ ' % letter
+
+            if subex['text']:
+                s += '\n' + subex['text'] + '\n'
+
+                for i, hint in enumerate(subex['hints']):
+                    if len(subex['hints']) == 1 and i == 0:
+                        begin_hint_ = begin_hint
+                    else:
+                        begin_hint_ = begin_hint.replace(
+                            'Hint.', 'Hint %d.' % (i+1))
+                    s += '\n' + begin_hint_ + hint + end_hint + '\n'
+
+                if subex['file']:
+                    s += '*Filename*: `%s`' % subex['file'] + '.\n'
+
+                if subex['answer']:
+                    s += '\n' + begin_answer + subex['answer'] + end_answer + '\n'
+
+                if subex['solution']:
+                    s += '\n' + begin_solution
+                    # Make sure we have a sentence after the heading
+                    if subex['solution'].lstrip().startswith(_CODE_BLOCK):
+                        print '\nwarning: open solution in exercise "%s" with a line of text\nbefore the code! (Now "Code:" is inserted)' % exer['title'] + '\n'
+                        s += 'Code:\n'
+                    s += subex['solution'] + '\n' + end_solution + '\n'
+
+    if exer['solution_file']:
+        s += '# solution file: %s\n' % exer['solution_file']
+
+    s += end_exercise + '\n\n'
     return s
 
+def plain_exercise(exer):
+    begin_solution = '# --- begin solution of exercise\n\n__Solution.__\n'
+    end_solution = '\n# --- end solution of exercise'
+    begin_answer = '# --- begin short answer in exercise\n\n__Answer.__ '
+    end_answer = '\n# --- end short answer in exercise'
+    begin_hint = '__Hint.__ '
+    end_hint = ''
+    end_exercise = '# --- end of exercise'
 
+    return doconce_exercise_output(exer,
+                                   begin_answer, end_answer,
+                                   begin_solution, end_solution,
+                                   begin_hint, end_hint,
+                                   end_exercise)
 
 BLANKLINE = {}
 FILENAME_EXTENSION = {}
