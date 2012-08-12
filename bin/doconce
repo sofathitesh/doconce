@@ -333,23 +333,29 @@ def _spellcheck_all(**kwargs):
     for filename in sys.argv[1:]:
         if not filename.startswith('tmp_stripped_'):
             _spellcheck(filename, **kwargs)
-    if len(glob.glob('tmp_misspelled*~')) > 0:
+    tmp_misspelled = glob.glob('tmp_misspelled*~')
+    if len(tmp_misspelled) > 0:
         print '\nFound misspellings!'
         if len(sys.argv[1:]) == 1:
             print 'See misspellings.txt~.'
         else:
-            print 'See tmp_misspelled* for errors in individual files.'
-        print 'When all misspellings are acceptable, cp new_dictionary.txt~ .dict4spell.txt'
+            print 'See tmp_misspelled* for errors in individual files:'
+            for name in tmp_misspelled:
+                print '  ', name
+        dictfile = kwargs.get('dictionary', '.dict4spell.txt')
+        print 'When all misspellings are acceptable, cp new_dictionary.txt~',\
+              dictfile
         sys.exit(1)
     else:
         sys.exit(0)
 
 def usage_spellcheck():
     print """
-doconce spellcheck -d .dict4spell.txt file1.do.txt file2.do.txt ...
+doconce spellcheck file1.do.txt file2.do.txt ...  # use .dict4spell.txt
+doconce spellcheck -d .mydict.txt file1.do.txt file2.do.txt ...
 
-Spellcheck files via ispell, but remove problematic parts from the
-files first.
+Spellcheck of files via ispell (but problematic parts are removed from the
+files first).
 
 Output:
 
@@ -377,16 +383,18 @@ words.
 For each file:
 
   * Run spellcheck.py without a dictionary or with a previous dictionary:
-    doconce spellcheck file or doconce spellcheck -d .dict4spell.txt file
+    doconce spellcheck file or doconce spellcheck -d .mydict.txt file
+    (default dictionary file is .dict4spell.txt)
   * Check misspelled.txt~ for misspelled words. Change wrong words.
   * Rerun. If all words in misspelled.txt are acceptable,
-    copy new_dictionary.txt to .dict4spell.txt.
+    copy new_dictionary.txt to .dict4spell.txt (or another name)
   * Optional: import tmp_stripped_text.txt into MS Word for grammar check.
   * Remove tmp_* and *~ files
 
 The next time one can run::
 
-  spellcheck.py -d .dict4spell.txt file*
+  spellcheck.py file*                   # use .dict4spell.txt
+  spellcheck.py -d .mydict.txt file*
 
 misspellings.txt~ should ideally be empty if there are no (new)
 spelling errors. One can check that the file is empty or check
@@ -394,7 +402,7 @@ the $? variable on Unix since this prorgram exits with 1
 when spelling errors are found in any of the tested files::
 
   # Run spellcheck
-  doconce spellcheck -d .dict4spell.txt *.do.txt
+  doconce spellcheck *.do.txt
   if [ $? -ne 0 ]; then exit; fi
 
 
@@ -2277,7 +2285,7 @@ doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 
 doconce grab --from[-] from-text [--to[-] to-text] somefile
-doconce spellcheck -d .dict4spell.txt *.do.txt
+doconce spellcheck [-d .mydict.txt] *.do.txt
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
