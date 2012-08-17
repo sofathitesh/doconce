@@ -9,33 +9,26 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
+<!--
+Color definitions:  http://www.december.com/html/spec/color0.html
+CSS examples:       http://www.w3schools.com/css/css_examples.asp
+-->
+
 <style type="text/css">
     body {
       margin-top: 1.0em;
-      <!-- background-color: #e1c931; -->
-      background-color: #000000;
+      background-color: #ffffff;
       font-family: Helvetica, Arial, FreeSans, san-serif;
       color: #000000;
     }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
     h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
     h2 { font-size: 1.5em; color: #1e36ce; }
     h3 { color: #1e36ce; }
-    <! -- h4 { color: #1e36ce; } -->
-    a { color: #1e36ce; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    <!-- white on black: pre { background: #000; color: #fff; padding: 15px;} -->
-    <!-- black on white: pre { background: #fff; color: #000; padding: 15px;} -->
-    pre { background: #EDEDED; color: #000; padding: 15px;}
-    <!-- http://www.december.com/html/spec/color0.html -->
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    pre { background: #ededed; color: #000; padding: 15px;}
+    p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
 </style>
 
 <!-- Use MathJax to render mathematics -->
@@ -43,19 +36,23 @@ Automatically generated HTML file from Doconce source
 MathJax.Hub.Config({
   TeX: {
      equationNumbers: {  autoNumber: "AMS"  },
-     extensions: ["AMSmath.js"]
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
   }
 });
 </script>
 <script type="text/javascript"
  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
 </head>
 
-<body bgcolor="white">
-<!-- ---------------------------- main content ------------------------>
+<body>
     
+
+<!-- ---------------------------- main content ------------------------>
+
 <title>Doconce Quick Reference</title>
 
 <center><h1>Doconce Quick Reference</h1></center>  <! -- document title -->
@@ -74,7 +71,7 @@ MathJax.Hub.Config({
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Aug 11, 2012</h4></center> <!-- date -->
+<center><h4>Aug 18, 2012</h4></center> <!-- date -->
 <p>
 <h2>Table of contents</h2>
 
@@ -688,7 +685,7 @@ list of capabilities:
 <blockquote>    <!-- begin verbatim block  shpro-->
 <pre>
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex expand_commands
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -729,10 +726,11 @@ doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 
 doconce grab --from[-] from-text [--to[-] to-text] somefile
-doconce spellcheck -d .dict4spell.txt *.do.txt
+doconce spellcheck [-d .mydict.txt] *.do.txt
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
+doconce expand_commands file1 file2 ...
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
 doconce assemble name master.do.txt

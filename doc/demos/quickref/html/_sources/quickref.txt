@@ -6,7 +6,7 @@ Doconce Quick Reference
 
 :Author: Hans Petter Langtangen
 
-:Date: Aug 11, 2012
+:Date: Aug 18, 2012
 
 .. Very preliminary
 
@@ -566,7 +566,7 @@ list of capabilities:
 .. code-block:: bash
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex expand_commands
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -607,10 +607,11 @@ list of capabilities:
         doconce sphinxfix_local_URLs file.rst
         
         doconce grab --from[-] from-text [--to[-] to-text] somefile
-        doconce spellcheck -d .dict4spell.txt *.do.txt
+        doconce spellcheck [-d .mydict.txt] *.do.txt
         doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
                 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
         
+        doconce expand_commands file1 file2 ...
         doconce list_labels doconcefile.do.txt | latexfile.tex
         doconce teamod name
         doconce assemble name master.do.txt
