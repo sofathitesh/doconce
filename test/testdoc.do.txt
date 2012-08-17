@@ -76,6 +76,8 @@ Then Cython:
 cpdef f(double x):
     return x + 1
 !ec
+
+# This one tests a + before a code environment
 C++:
 !bc cpppro
 #include <iostream>
@@ -95,11 +97,18 @@ output1
 output2
 !ec
 
+It is time to test `verbatim inline font` especially with `a newline
+inside the text` and an exclamation mark at the end: `BEGIN`! The
+exclamation mark inside the verbatim text is not smart for latex as
+we use ! in the `verb` typesetting... Also test backslashes
+like `\begin` and `\end` in inline verbatim text.
+
 ===== Subsection 2 =====
 label{subsec:ex}
 idx{figures}
 
-Test of figures.
+Test of figures. In particular we refer to Figure ref{fig:impact} in which
+there is a flow.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. label{fig:impact}
 

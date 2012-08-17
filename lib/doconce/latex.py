@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-15 -*-
 
-import os, commands, re, sys
+import os, commands, re, sys, glob
 from common import plain_exercise, table_analysis, \
      _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
@@ -671,7 +671,7 @@ def define(FILENAME_EXTENSION,
 
 
 % #ifdef PREAMBLE
-
+%-------------------------- begin preamble --------------------------
 % #ifdef BOOK
 \documentclass[twoside]{book}
 % #else
@@ -736,11 +736,12 @@ def define(FILENAME_EXTENSION,
 \makeindex
 
 \begin{document}
+%-------------------------- end preamble --------------------------
+
 % #endif
 
 """
-    newcommands_files = 'newcommands.tex', 'newcommands_replace.tex', \
-                        'newcommands_keep.tex'
+    newcommands_files = glob.glob('newcommands*[^p].tex')
     for filename in newcommands_files:
         pfilename = filename[:-4] + '.p.tex'
         if os.path.isfile(filename) or os.path.isfile(pfilename):

@@ -1,4 +1,4 @@
-import re, os, glob, sys
+import re, os, glob, sys, glob
 from common import table_analysis, plain_exercise, insert_code_and_tex
 
 # how to replace code and LaTeX blocks by html (<pre>) environment:
@@ -51,11 +51,6 @@ def html_code(filestr, code_blocks, code_block_types,
             #                        '&lt;\g<2>&gt;', code_blocks[i])
             code_blocks[i] = code_blocks[i].replace('<', '&lt;')
             code_blocks[i] = code_blocks[i].replace('>', '&gt;')
-
-    # This special character transformation is easier done
-    # with encoding="utf-8" in the first line in the html file:
-    # (but we do it explicitly to make it robust)
-    filestr = latin2html(filestr)
 
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
 
@@ -148,7 +143,7 @@ def html_figure(m):
 
     if caption:
        # Caption above figure and a horizontal rule (fine for anchoring):
-       return '<center><hr>\n<caption><i>%s</i></caption>\n<p><img src="%s" align="bottom" %s></p>\n</center>' % (caption, filename, opts)
+       return '<center><hr>\n<caption><i> %s </i></caption>\n<p><img src="%s" align="bottom" %s></p>\n</center>' % (caption, filename, opts)
     else:
        # Just insert image file
        return '<center><p><img src="%s" align="bottom" %s></p></center>' % \
@@ -297,6 +292,40 @@ def html_ref_and_label(section_label2title, format, filestr):
         title = section_label2title[label]
         filestr = filestr.replace('ref{%s}' % label,
                                   '<a href="#%s">%s</a>' % (label, title))
+
+    # This special character transformation is easier done
+    # with encoding="utf-8" in the first line in the html file:
+    # (but we do it explicitly to make it robust)
+    filestr = latin2html(filestr)
+    # (wise to do latin2html before filestr = '\n'.join(lines) below)
+
+    # Number all figures, find all figure labels and replace their
+    # references by the figure numbers
+    # (note: figures are already handled!)
+    caption_pattern = r'^<caption><i>(.+?)</i>'
+    label_pattern = r'^<caption><i>.+?<a name="(.+?)">'
+    lines = filestr.splitlines()
+    label2no = {}
+    fig_no = 0
+    for i in range(len(lines)):
+        if lines[i].startswith('<caption>'):
+            m = re.search(caption_pattern, lines[i])
+            if m:
+                fig_no += 1
+                caption = m.group(1)
+                from_ = '<caption><i>' + caption
+                to_ = '<caption><i>Figure %d: ' % fig_no + caption
+                lines[i] = lines[i].replace(from_, to_)
+
+            m = re.search(label_pattern, lines[i])
+            if m:
+                label2no[m.group(1)] = fig_no
+    filestr = '\n'.join(lines)
+
+    for label in label2no:
+        filestr = filestr.replace('ref{%s}' % label,
+                                  '<a href="%s">%d</a>' %
+                                  (label, label2no[label]))
 
     # replace all other references ref{myname} by <a href="#myname">myname</a>:
     for label in running_text_labels:
@@ -472,33 +501,26 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
+<!--
+Color definitions:  http://www.december.com/html/spec/color0.html
+CSS examples:       http://www.w3schools.com/css/css_examples.asp
+-->
+
 <style type="text/css">
     body {
       margin-top: 1.0em;
-      <!-- background-color: #e1c931; -->
-      background-color: #000000;
+      background-color: #ffffff;
       font-family: Helvetica, Arial, FreeSans, san-serif;
       color: #000000;
     }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
     h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
     h2 { font-size: 1.5em; color: #1e36ce; }
     h3 { color: #1e36ce; }
-    <! -- h4 { color: #1e36ce; } -->
-    a { color: #1e36ce; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    <!-- white on black: pre { background: #000; color: #fff; padding: 15px;} -->
-    <!-- black on white: pre { background: #fff; color: #000; padding: 15px;} -->
-    pre { background: #EDEDED; color: #000; padding: 15px;}
-    <!-- http://www.december.com/html/spec/color0.html -->
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    pre { background: #ededed; color: #000; padding: 15px;}
+    p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
 </style>
 
 <!-- Use MathJax to render mathematics -->
@@ -506,19 +528,32 @@ Automatically generated HTML file from Doconce source
 MathJax.Hub.Config({
   TeX: {
      equationNumbers: {  autoNumber: "AMS"  },
-     extensions: ["AMSmath.js"]
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
   }
 });
 </script>
 <script type="text/javascript"
  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
 </head>
 
-<body bgcolor="white">
-<!-- ---------------------------- main content ------------------------>
+<body>
     """
+
+    newcommands_files = glob.glob('newcommands*[^p].tex')
+    newcommands = ''
+    for filename in newcommands_files:
+        f = open(filename, 'r')
+        newcommands += '\n<!-- %s -->\n' % filename + '$$\n' + f.read() \
+                       + '\n$$\n\n'
+    INTRO['html'] += newcommands
+    INTRO['html'] += """
+
+<!-- ---------------------------- main content ------------------------>
+"""
     # document ending:
     OUTRO['html'] = """
 

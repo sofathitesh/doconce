@@ -55,7 +55,7 @@
 \textbf{Author}: &
 	Hans Petter Langtangen \\
 \textbf{Date}: &
-	Aug 11, 2012 \\
+	Aug 18, 2012 \\
 \end{tabularx}
 \end{center}
 
@@ -821,7 +821,7 @@ list of capabilities:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Usage:~doconce~command~{[}optional~arguments{]}\\
-commands:~format~insertdocstr~old2new\_format~gwiki\_figsubst~remove\_inline\_comments~latin2html~sphinx\_dir~subst~replace~replace\_from\_file~clean~help~latex\_header~latex\_footer~guess\_encoding~change\_encoding~bbl2rst~split\_rst~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~grab~spellcheck~ptex2tex\\
+commands:~format~insertdocstr~old2new\_format~gwiki\_figsubst~remove\_inline\_comments~latin2html~sphinx\_dir~subst~replace~replace\_from\_file~clean~help~latex\_header~latex\_footer~guess\_encoding~change\_encoding~bbl2rst~split\_rst~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~grab~spellcheck~ptex2tex~expand\_commands\\
 ~\\
 doconce~format~html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext~file.do.txt\\
 ~\\
@@ -862,10 +862,11 @@ doconce~split\_rst~complete\_file.rst\\
 doconce~sphinxfix\_local\_URLs~file.rst\\
 ~\\
 doconce~grab~-{}-from{[}-{]}~from-text~{[}-{}-to{[}-{]}~to-text{]}~somefile\\
-doconce~spellcheck~-d~.dict4spell.txt~*.do.txt\\
+doconce~spellcheck~{[}-d~.mydict.txt{]}~*.do.txt\\
 doconce~ptex2tex~mydoc~-DMINTED~pycod=minted~sys=Verbatim~\textbackslash{}\\
 ~~~~~~~~dat=\textbackslash{}begin\{quote\}\textbackslash{}begin\{verbatim\};\textbackslash{}end\{verbatim\}\textbackslash{}end\{quote\}\\
 ~\\
+doconce~expand\_commands~file1~file2~...\\
 doconce~list\_labels~doconcefile.do.txt~|~latexfile.tex\\
 doconce~teamod~name\\
 doconce~assemble~name~master.do.txt

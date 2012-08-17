@@ -1446,6 +1446,89 @@ def replace_from_file():
             f.write(text)
             f.close()
 
+def usage_expand_commands():
+    print 'Usage: doconce expand_commands file1 file2 ...'
+    print """
+A file .expand_commands may define _replace and _regex_subst lists
+for str.replace and re.sub substitutions (respectively) to be applied
+to file1 file2 ...
+
+By default we use some common LaTeX math abbreviations:
+_replace = [
+(r'\bals', r'\begin{align*}'),  # must appear before \bal
+(r'\eals', r'\end{align*}'),
+(r'\bal', r'\begin{align}'),
+(r'\eal', r'\end{align}'),
+(r'\beq', r'\begin{equation}'),
+(r'\eeq', r'\end{equation}'),
+]
+
+_regex_subst = [
+(r'\ep' + '\n', r'\thinspace .' + '\n'),
+]
+"""
+
+def expand_commands():
+    if len(sys.argv) < 2:
+        usage_expand_commands()
+        sys.exit(1)
+
+    # Default set of str.replace and re.sub substitutions
+    _replace = [
+    (r'\bals', r'\begin{align*}'),  # must appear before \bal
+    (r'\eals', r'\end{align*}'),
+    (r'\bal', r'\begin{align}'),
+    (r'\eal', r'\end{align}'),
+    (r'\beq', r'\begin{equation}'),
+    (r'\eeq', r'\end{equation}'),
+    ]
+
+    _regex_subst = [
+    (r'\ep' + '\n', r'\thinspace .' + '\n'),
+    ]
+
+    expand_commands_file = '.expand_commands'
+    if os.path.isfile(strip_file):
+        execfile(strip_file)
+    else:
+        replace = []
+        regex_subst = []
+    # Add standard definitions (above)
+    replace += _replace
+    regex_subst += _regex_subst
+
+    filenames = sys.argv[1:]
+    for filename in filenames:
+        changed = False
+        f = open(filename, 'r')
+        text = f.read()
+        f.close()
+        for from_, to_ in replace:
+            if from_ in text:
+                text = text.replace(from_, to_)
+                print 'replacing %s by %s in %s' % (from_, to_, filename)
+                changed = True
+        for item in regex_subst:
+            if len(item) == 2:
+                from_, to_ = item
+                if re.search(from_, text):
+                    text = re.sub(from_, to_, text)
+                    print 'substituting %s by %s in %s' % (from_, to_, filename)
+                    changed = True
+            elif len(item) == 3:
+                frm_, to_, modifier = item
+                if re.search(from_, text, flags=modifier):
+                    text = re.sub(from_, to_, text, flags=modifier)
+                    print 'substituting %s by %s in %s' % (from_, to_, filename)
+                    changed = True
+        if changed:
+            shutil.copy(filename, filename + '.old~~')
+            f = open(filename, 'w')
+            f.write(text)
+            f.close()
+
+
+
 def usage_ptex2tex():
     print r"""\
 Usage: doconce ptex2tex [file | file.p.tex] [-Dvar1=val1 ...] \
@@ -1669,8 +1752,8 @@ Download preprocess from http://code.google.com/p/preprocess
     # remove one newline (two implies far too long inline verbatim)
     pattern = re.compile(r'\\code\{([^\n}]*?)\n(.*?)\}', re.DOTALL)
     # (this pattern does not handle \code{...} with internal } AND \n!)
-    filestr = pattern.sub(r'\code{\g<1>\g<2>}', filestr)
-    cpattern = re.compile(r'\\code\{(.*?)\}([ \n,.;:?)"])', re.DOTALL)
+    filestr = pattern.sub(r'\code{\g<1> \g<2>}', filestr)
+    cpattern = re.compile(r"""\\code\{(.*?)\}([ \n,.;:?!)"'-])""", re.DOTALL)
     fontsize = 10
     verb_command = 'verb'
     filestr = cpattern.sub(r'{\\fontsize{%spt}{%spt}\\%s!\g<1>!}\g<2>' %
@@ -2240,7 +2323,7 @@ def analyzer():
 
 # -----------------------------------------------------------------------
 
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex expand_commands'.split()
 
 # -----------------------------------------------------------------------
 
@@ -2289,6 +2372,7 @@ doconce spellcheck [-d .mydict.txt] *.do.txt
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
+doconce expand_commands file1 file2 ...
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
 doconce assemble name master.do.txt

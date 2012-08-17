@@ -65,7 +65,6 @@ legal_pygments_languages = [
     'xml+erb', 'xml+ruby', 'xml+evoque', 'xml+mako',
     'xml+myghty', 'xml+php', 'xml+smarty', 'xml', 'xslt', 'yaml']
 
-# redefine what is not appropriate:
 
 def sphinx_figure(m):
     result = ''
@@ -86,8 +85,12 @@ def sphinx_figure(m):
         parts[0] = parts[0].rstrip()
         if parts[0] and parts[0][-1] == '.':
             parts[0] = parts[0][:-1]
-        # insert emphasize marks
-        parts[0] = '*' + parts[0].strip() + '*'
+        parts[0] = parts[0].strip()
+        # insert emphasize marks if not latex $ at the
+        # beginning or end (math subst does not work for *$I=1$*
+        if not parts[0].startswith('$') and \
+           not parts[0].endswith('$'):
+            parts[0] = '*' + parts[0] + '*'
         #caption = '  label'.join(parts)
         caption = parts[0]
         # contrary to rst_figure, we do not write label into caption

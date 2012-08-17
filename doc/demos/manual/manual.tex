@@ -7,7 +7,7 @@
 
 
 
-
+%-------------------------- begin preamble --------------------------
 \documentclass[twoside]{article}
 
 
@@ -47,8 +47,9 @@
 \makeindex
 
 \begin{document}
+%-------------------------- end preamble --------------------------
 
-\input{newcommands_replace}
+
 \input{newcommands_keep}
 
 
@@ -80,7 +81,7 @@
 
 
 \begin{center}
-Aug 11, 2012
+Aug 18, 2012
 \end{center}
 
 
@@ -295,7 +296,7 @@ sudo python setup.py install
 If you use the minted style together with {\fontsize{10pt}{10pt}\verb!ptex2tex!}, you have to
 enable it by the {\fontsize{10pt}{10pt}\verb!-DMINTED!} command-line argument to {\fontsize{10pt}{10pt}\verb!ptex2tex!}.  All
 use of the minted style requires the {\fontsize{10pt}{10pt}\verb!-shell-escape!} command-line
-argument when running {\LaTeX}, i.e., {\fontsize{10pt}{10pt}\verb!latex -shell-escape!} or {\fontsize{10pt}{10pt}\verb!pdflatex-shell-escape!}.
+argument when running {\LaTeX}, i.e., {\fontsize{10pt}{10pt}\verb!latex -shell-escape!} or {\fontsize{10pt}{10pt}\verb!pdflatex -shell-escape!}.
 
 % Say something about anslistings.sty
 
@@ -1980,7 +1981,7 @@ translated correctly).
 
 If the document targets formats with and without support of {\LaTeX}
 mathematics, one can use the preprocessor to typeset the mathematics
-in two versions. After {\fontsize{10pt}{10pt}\verb!#if FORMAT in ("latex", "pdflatex", "html","sphinx", "mwiki", "pandoc")!} one places {\LaTeX} mathematics, and after
+in two versions. After {\fontsize{10pt}{10pt}\verb!#if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki", "pandoc")!} one places {\LaTeX} mathematics, and after
 {\fontsize{10pt}{10pt}\verb!#else!} one can write inline mathematics in a way that looks nice in
 plain text and wiki formats without support for mathematical
 typesetting.

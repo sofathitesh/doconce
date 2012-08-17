@@ -1631,10 +1631,10 @@ def doconce2format(filestr, format):
     # Next step: substitute latex-style newcommands in filestr and tex_blocks
     # (not in code_blocks)
     from expand_newcommands import expand_newcommands
-    if format not in ('latex', 'pdflatex', 'pandoc'):
-        newcommand_files = ['newcommands_replace.tex']
+    if format not in ('latex', 'pdflatex', 'pandoc', 'html'):
+        newcommand_files = glob.glob('newcommands*_replace.tex')
         if format == 'sphinx':  # replace all newcommands in sphinx
-            newcommand_files.extend(['newcommands.tex', 'newcommands_keep.tex'])
+            newcommand_files = glob.glob('newcommands*[^p].tex')
             # note: could use substitutions (|newcommand|) in rst/sphinx,
             # but they don't allow arguments so expansion of \newcommand
             # is probably a better solution
