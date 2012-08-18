@@ -899,13 +899,13 @@ EOF
         sys.exit(1)
     os.remove('sphinx_themes.zip')
     os.rename('sphinx_themes', '_themes')
-    themes = ['default'] + [name[8:] for name in \
-                            sorted(glob.glob(os.path.join('_themes', '*')))]
+    themes = [name[8:] for name in \
+              sorted(glob.glob(os.path.join('_themes', '*')))] + ['default']
     print 'These Sphinx themes were found:', ', '.join(themes)
 
     f = open('conf.py', 'r');  text = f.read();  f.close()
     themes_list = ["html_theme = '%s'" % theme] + \
-                  ["#html_theme = '%s'" % theme for theme in themes]
+                  ["#html_theme = '%s'" % t for t in themes]
     themes_code = r"""
 if html_theme == 'solarized':
     if not 'solarized' in additional_themes_installed:
@@ -982,19 +982,17 @@ fi
 
 for theme in $themes; do
     echo "building theme $theme..."
-    doconce replace "html_theme = '%s'" "html_theme = '$theme'" conf.py
+    doconce subst -m "^html_theme =.*$" "html_theme = '$theme'" conf.py
     make clean
     make html
     mv -f _build/html sphinx-$theme
-    # set back
-    doconce replace "html_theme = '$theme'" "html_theme = '%s'" conf.py
 done
 echo
 echo "Here are the built themes:"
 ls -d sphinx-*
 echo "for i in sphinx-*; do google-chrome $i/index.html; done"
 
-""" % (' '.join(themes), theme, theme))
+""" % (' '.join(themes)))
     f.close()
     os.chmod('make_themes.sh', 0755)
 
