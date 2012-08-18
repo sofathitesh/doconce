@@ -937,8 +937,8 @@ and then an appropriate Sphinx directory {\fontsize{10pt}{10pt}\verb!sphinx-root
 relevant files.
 
 The {\fontsize{10pt}{10pt}\verb!doconce sphinx_dir!} command generates a script
-{\fontsize{10pt}{10pt}\verb!automake-sphinx.py!} for compiling the Sphinx document into an HTML
-document.  One can either run {\fontsize{10pt}{10pt}\verb!automake-sphinx.py!} or perform the
+{\fontsize{10pt}{10pt}\verb!automake_sphinx.py!} for compiling the Sphinx document into an HTML
+document.  One can either run {\fontsize{10pt}{10pt}\verb!automake_sphinx.py!} or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -946,7 +946,7 @@ some idea of what is done.
 The {\fontsize{10pt}{10pt}\verb!doconce sphinx_dir!} script copies directories named {\fontsize{10pt}{10pt}\verb!figs!} or
 {\fontsize{10pt}{10pt}\verb!figures!} over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, {\fontsize{10pt}{10pt}\verb!automake-sphinx.py!} must be edited accordingly.  Files,
+directories, {\fontsize{10pt}{10pt}\verb!automake_sphinx.py!} must be edited accordingly.  Files,
 to which there are local links (not {\fontsize{10pt}{10pt}\verb!http:!} or {\fontsize{10pt}{10pt}\verb!file:!} URLs), must be
 placed in the {\fontsize{10pt}{10pt}\verb!_static!} subdirectory of the Sphinx directory. The
 utility {\fontsize{10pt}{10pt}\verb!doconce sphinxfix_localURLs!} is run to check for local links

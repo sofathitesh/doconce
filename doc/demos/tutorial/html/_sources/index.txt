@@ -1,15 +1,16 @@
+.. Doconce: Document Once, Include Anywhere documentation master file, created by
+   sphinx-quickstart on Sat Aug 18 13:48:35 2012.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
 
-.. Master file automatically created by doconce sphinx_dir
-
-Doconce: Document Once, Include Anywhere
-========================================
+Welcome to Doconce: Document Once, Include Anywhere's documentation!
+====================================================================
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
 
-   tutorial
 
 
 Indices and tables
@@ -18,3 +19,4 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+

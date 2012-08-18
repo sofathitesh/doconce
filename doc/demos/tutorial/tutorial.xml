@@ -360,14 +360,14 @@ The default value of <literal>dirname</literal> is <literal>sphinx-rootdir</lite
 keyword is used to set the theme for design of HTML output from
 Sphinx (the default theme is <literal>'default'</literal>).</paragraph><paragraph>With a single-file document in <literal>mydoc.do.txt</literal> one often just runs:</paragraph><literal_block xml:space="preserve">Terminal&gt; doconce sphinx_dir mydoc</literal_block><paragraph>and then an appropriate Sphinx directory <literal>sphinx-rootdir</literal> is made with
 relevant files.</paragraph><paragraph>The <literal>doconce sphinx_dir</literal> command generates a script
-<literal>automake-sphinx.py</literal> for compiling the Sphinx document into an HTML
-document.  One can either run <literal>automake-sphinx.py</literal> or perform the
+<literal>automake_sphinx.py</literal> for compiling the Sphinx document into an HTML
+document.  One can either run <literal>automake_sphinx.py</literal> or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.</paragraph><paragraph>The <literal>doconce sphinx_dir</literal> script copies directories named <literal>figs</literal> or
 <literal>figures</literal> over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, <literal>automake-sphinx.py</literal> must be edited accordingly.  Files,
+directories, <literal>automake_sphinx.py</literal> must be edited accordingly.  Files,
 to which there are local links (not <literal>http:</literal> or <literal>file:</literal> URLs), must be
 placed in the <literal>_static</literal> subdirectory of the Sphinx directory. The
 utility <literal>doconce sphinxfix_localURLs</literal> is run to check for local links
