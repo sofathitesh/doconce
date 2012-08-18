@@ -18,8 +18,8 @@ dvipdf quickref.dvi
 doconce format sphinx quickref --no-preprocess
 rm -rf sphinx-rootdir
 doconce sphinx_dir author='HPL' version=0.7 quickref
-doconce replace 'doconce format sphinx %s' 'doconce format sphinx %s --no-preprocess' automake-sphinx.py
-python automake-sphinx.py
+doconce replace 'doconce format sphinx %s' 'doconce format sphinx %s --no-preprocess' automake_sphinx.py
+python automake_sphinx.py
 cp quickref.rst quickref.sphinx.rst  # save
 
 # reStructuredText:

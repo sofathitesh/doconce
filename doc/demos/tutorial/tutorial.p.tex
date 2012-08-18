@@ -952,8 +952,8 @@ and then an appropriate Sphinx directory \code{sphinx-rootdir} is made with
 relevant files.
 
 The \code{doconce sphinx_dir} command generates a script
-\code{automake-sphinx.py} for compiling the Sphinx document into an HTML
-document.  One can either run \code{automake-sphinx.py} or perform the
+\code{automake_sphinx.py} for compiling the Sphinx document into an HTML
+document.  One can either run \code{automake_sphinx.py} or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -961,7 +961,7 @@ some idea of what is done.
 The \code{doconce sphinx_dir} script copies directories named \code{figs} or
 \code{figures} over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, \code{automake-sphinx.py} must be edited accordingly.  Files,
+directories, \code{automake_sphinx.py} must be edited accordingly.  Files,
 to which there are local links (not \code{http:} or \code{file:} URLs), must be
 placed in the \code{_static} subdirectory of the Sphinx directory. The
 utility \code{doconce sphinxfix_localURLs} is run to check for local links

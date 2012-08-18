@@ -10376,8 +10376,8 @@ relevant files.
 
 <p>
 The <tt>doconce sphinx_dir</tt> command generates a script
-<tt>automake-sphinx.py</tt> for compiling the Sphinx document into an HTML
-document.  One can either run <tt>automake-sphinx.py</tt> or perform the
+<tt>automake_sphinx.py</tt> for compiling the Sphinx document into an HTML
+document.  One can either run <tt>automake_sphinx.py</tt> or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -10386,7 +10386,7 @@ some idea of what is done.
 The <tt>doconce sphinx_dir</tt> script copies directories named <tt>figs</tt> or
 <tt>figures</tt> over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, <tt>automake-sphinx.py</tt> must be edited accordingly.  Files,
+directories, <tt>automake_sphinx.py</tt> must be edited accordingly.  Files,
 to which there are local links (not <tt>http:</tt> or <tt>file:</tt> URLs), must be
 placed in the <tt>_static</tt> subdirectory of the Sphinx directory. The
 utility <tt>doconce sphinxfix_localURLs</tt> is run to check for local links
@@ -11816,8 +11816,8 @@ and then an appropriate Sphinx directory \code{sphinx-rootdir} is made with
 relevant files.
 
 The \code{doconce sphinx_dir} command generates a script
-\code{automake-sphinx.py} for compiling the Sphinx document into an HTML
-document.  One can either run \code{automake-sphinx.py} or perform the
+\code{automake_sphinx.py} for compiling the Sphinx document into an HTML
+document.  One can either run \code{automake_sphinx.py} or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -11825,7 +11825,7 @@ some idea of what is done.
 The \code{doconce sphinx_dir} script copies directories named \code{figs} or
 \code{figures} over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, \code{automake-sphinx.py} must be edited accordingly.  Files,
+directories, \code{automake_sphinx.py} must be edited accordingly.  Files,
 to which there are local links (not \code{http:} or \code{file:} URLs), must be
 placed in the \code{_static} subdirectory of the Sphinx directory. The
 utility \code{doconce sphinxfix_localURLs} is run to check for local links
@@ -13000,8 +13000,8 @@ and then an appropriate Sphinx directory ``sphinx-rootdir`` is made with
 relevant files.
 
 The ``doconce sphinx_dir`` command generates a script
-``automake-sphinx.py`` for compiling the Sphinx document into an HTML
-document.  One can either run ``automake-sphinx.py`` or perform the
+``automake_sphinx.py`` for compiling the Sphinx document into an HTML
+document.  One can either run ``automake_sphinx.py`` or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -13009,7 +13009,7 @@ some idea of what is done.
 The ``doconce sphinx_dir`` script copies directories named ``figs`` or
 ``figures`` over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, ``automake-sphinx.py`` must be edited accordingly.  Files,
+directories, ``automake_sphinx.py`` must be edited accordingly.  Files,
 to which there are local links (not ``http:`` or ``file:`` URLs), must be
 placed in the ``_static`` subdirectory of the Sphinx directory. The
 utility ``doconce sphinxfix_localURLs`` is run to check for local links
@@ -14246,8 +14246,8 @@ and then an appropriate Sphinx directory ``sphinx-rootdir`` is made with
 relevant files.
 
 The ``doconce sphinx_dir`` command generates a script
-``automake-sphinx.py`` for compiling the Sphinx document into an HTML
-document.  One can either run ``automake-sphinx.py`` or perform the
+``automake_sphinx.py`` for compiling the Sphinx document into an HTML
+document.  One can either run ``automake_sphinx.py`` or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -14255,7 +14255,7 @@ some idea of what is done.
 The ``doconce sphinx_dir`` script copies directories named ``figs`` or
 ``figures`` over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, ``automake-sphinx.py`` must be edited accordingly.  Files,
+directories, ``automake_sphinx.py`` must be edited accordingly.  Files,
 to which there are local links (not ``http:`` or ``file:`` URLs), must be
 placed in the ``_static`` subdirectory of the Sphinx directory. The
 utility ``doconce sphinxfix_localURLs`` is run to check for local links
@@ -15319,8 +15319,8 @@ and then an appropriate Sphinx directory `sphinx-rootdir` is made with
 relevant files.
 
 The `doconce sphinx_dir` command generates a script
-`automake-sphinx.py` for compiling the Sphinx document into an HTML
-document.  One can either run `automake-sphinx.py` or perform the
+`automake_sphinx.py` for compiling the Sphinx document into an HTML
+document.  One can either run `automake_sphinx.py` or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -15328,7 +15328,7 @@ some idea of what is done.
 The `doconce sphinx_dir` script copies directories named `figs` or
 `figures` over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, `automake-sphinx.py` must be edited accordingly.  Files,
+directories, `automake_sphinx.py` must be edited accordingly.  Files,
 to which there are local links (not `http:` or `file:` URLs), must be
 placed in the `_static` subdirectory of the Sphinx directory. The
 utility `doconce sphinxfix_localURLs` is run to check for local links
@@ -16298,8 +16298,8 @@ and then an appropriate Sphinx directory <code>sphinx-rootdir</code> is made wit
 relevant files.
 
 The <code>doconce sphinx_dir</code> command generates a script
-<code>automake-sphinx.py</code> for compiling the Sphinx document into an HTML
-document.  One can either run <code>automake-sphinx.py</code> or perform the
+<code>automake_sphinx.py</code> for compiling the Sphinx document into an HTML
+document.  One can either run <code>automake_sphinx.py</code> or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -16307,7 +16307,7 @@ some idea of what is done.
 The <code>doconce sphinx_dir</code> script copies directories named <code>figs</code> or
 <code>figures</code> over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, <code>automake-sphinx.py</code> must be edited accordingly.  Files,
+directories, <code>automake_sphinx.py</code> must be edited accordingly.  Files,
 to which there are local links (not <code>http:</code> or <code>file:</code> URLs), must be
 placed in the <code>_static</code> subdirectory of the Sphinx directory. The
 utility <code>doconce sphinxfix_localURLs</code> is run to check for local links
@@ -17316,8 +17316,8 @@ and then an appropriate Sphinx directory {{{sphinx-rootdir}}} is made with
 relevant files.
 
 The {{{doconce sphinx_dir}}} command generates a script
-{{{automake-sphinx.py}}} for compiling the Sphinx document into an HTML
-document.  One can either run {{{automake-sphinx.py}}} or perform the
+{{{automake_sphinx.py}}} for compiling the Sphinx document into an HTML
+document.  One can either run {{{automake_sphinx.py}}} or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -17325,7 +17325,7 @@ some idea of what is done.
 The {{{doconce sphinx_dir}}} script copies directories named {{{figs}}} or
 {{{figures}}} over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, {{{automake-sphinx.py}}} must be edited accordingly.  Files,
+directories, {{{automake_sphinx.py}}} must be edited accordingly.  Files,
 to which there are local links (not {{{http:}}} or {{{file:}}} URLs), must be
 placed in the {{{_static}}} subdirectory of the Sphinx directory. The
 utility {{{doconce sphinxfix_localURLs}}} is run to check for local links
@@ -18406,8 +18406,8 @@ and then an appropriate Sphinx directory 'sphinx-rootdir' is made with
 relevant files.
 
 The 'doconce sphinx_dir' command generates a script
-'automake-sphinx.py' for compiling the Sphinx document into an HTML
-document.  One can either run 'automake-sphinx.py' or perform the
+'automake_sphinx.py' for compiling the Sphinx document into an HTML
+document.  One can either run 'automake_sphinx.py' or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -18415,7 +18415,7 @@ some idea of what is done.
 The 'doconce sphinx_dir' script copies directories named 'figs' or
 'figures' over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, 'automake-sphinx.py' must be edited accordingly.  Files,
+directories, 'automake_sphinx.py' must be edited accordingly.  Files,
 to which there are local links (not 'http:' or 'file:' URLs), must be
 placed in the '_static' subdirectory of the Sphinx directory. The
 utility 'doconce sphinxfix_localURLs' is run to check for local links
@@ -19532,8 +19532,8 @@ and then an appropriate Sphinx directory C{sphinx-rootdir} is made with
 relevant files.
 
 The C{doconce sphinx_dir} command generates a script
-C{automake-sphinx.py} for compiling the Sphinx document into an HTML
-document.  One can either run C{automake-sphinx.py} or perform the
+C{automake_sphinx.py} for compiling the Sphinx document into an HTML
+document.  One can either run C{automake_sphinx.py} or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -19541,7 +19541,7 @@ some idea of what is done.
 The C{doconce sphinx_dir} script copies directories named C{figs} or
 C{figures} over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, C{automake-sphinx.py} must be edited accordingly.  Files,
+directories, C{automake_sphinx.py} must be edited accordingly.  Files,
 to which there are local links (not C{http:} or C{file:} URLs), must be
 placed in the C{_static} subdirectory of the Sphinx directory. The
 utility C{doconce sphinxfix_localURLs} is run to check for local links
@@ -20716,8 +20716,8 @@ and then an appropriate Sphinx directory sphinx-rootdir is made with
 relevant files.
 
 The doconce sphinx_dir command generates a script
-automake-sphinx.py for compiling the Sphinx document into an HTML
-document.  One can either run automake-sphinx.py or perform the
+automake_sphinx.py for compiling the Sphinx document into an HTML
+document.  One can either run automake_sphinx.py or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -20725,7 +20725,7 @@ some idea of what is done.
 The doconce sphinx_dir script copies directories named figs or
 figures over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, automake-sphinx.py must be edited accordingly.  Files,
+directories, automake_sphinx.py must be edited accordingly.  Files,
 to which there are local links (not http: or file: URLs), must be
 placed in the _static subdirectory of the Sphinx directory. The
 utility doconce sphinxfix_localURLs is run to check for local links
@@ -21919,8 +21919,8 @@ and then an appropriate Sphinx directory `sphinx-rootdir` is made with
 relevant files.
 
 The `doconce sphinx_dir` command generates a script
-`automake-sphinx.py` for compiling the Sphinx document into an HTML
-document.  One can either run `automake-sphinx.py` or perform the
+`automake_sphinx.py` for compiling the Sphinx document into an HTML
+document.  One can either run `automake_sphinx.py` or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -21928,7 +21928,7 @@ some idea of what is done.
 The `doconce sphinx_dir` script copies directories named `figs` or
 `figures` over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, `automake-sphinx.py` must be edited accordingly.  Files,
+directories, `automake_sphinx.py` must be edited accordingly.  Files,
 to which there are local links (not `http:` or `file:` URLs), must be
 placed in the `_static` subdirectory of the Sphinx directory. The
 utility `doconce sphinxfix_localURLs` is run to check for local links
@@ -22779,8 +22779,8 @@ and then an appropriate Sphinx directory `sphinx-rootdir` is made with
 relevant files.
 
 The `doconce sphinx_dir` command generates a script
-`automake-sphinx.py` for compiling the Sphinx document into an HTML
-document.  One can either run `automake-sphinx.py` or perform the
+`automake_sphinx.py` for compiling the Sphinx document into an HTML
+document.  One can either run `automake_sphinx.py` or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -22788,7 +22788,7 @@ some idea of what is done.
 The `doconce sphinx_dir` script copies directories named `figs` or
 `figures` over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, `automake-sphinx.py` must be edited accordingly.  Files,
+directories, `automake_sphinx.py` must be edited accordingly.  Files,
 to which there are local links (not `http:` or `file:` URLs), must be
 placed in the `_static` subdirectory of the Sphinx directory. The
 utility `doconce sphinxfix_localURLs` is run to check for local links
@@ -22954,7 +22954,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 18 Aug 2012 (13:06)
+DATE: Sat, 18 Aug 2012 (13:48)
 
 
 
@@ -23058,7 +23058,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 18 Aug 2012 (13:06)
+DATE: Sat, 18 Aug 2012 (13:48)
 
 
 
@@ -23172,7 +23172,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 18 Aug 2012 (13:06)</center>
+<center>Sat, 18 Aug 2012 (13:48)</center>
 
 
 
@@ -23303,7 +23303,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 18 Aug 2012 (13:06)</center>
+<center>Sat, 18 Aug 2012 (13:48)</center>
 
 
 
@@ -24764,7 +24764,7 @@ dir=sphinxm-rootdir
 if [ ! -d $dir ]; then
   doconce sphinx_dir dirname=$dir author='me and you' \
           version=1.0 theme=default $files
-  sh automake-sphinx.sh
+  sh automake_sphinx.sh
 else
   for file in $files; do
     cp $file.rst $dir
@@ -24774,7 +24774,7 @@ else
   cd ..
 fi
 !ec
-The autogenerated `automake-sphinx.sh` file (by `doconce sphinx_dir`)
+The autogenerated `automake_sphinx.sh` file (by `doconce sphinx_dir`)
 is compatible with a master `.rst` file split into pieces as long as
 the complete set of pieces in correct order is given to `doconce sphinx_dir`.
 This set is the output of `doconce split_rst`, which we catch in a
@@ -26376,8 +26376,8 @@ relevant files.
 
 <p>
 The <tt>doconce sphinx_dir</tt> command generates a script
-<tt>automake-sphinx.py</tt> for compiling the Sphinx document into an HTML
-document.  One can either run <tt>automake-sphinx.py</tt> or perform the
+<tt>automake_sphinx.py</tt> for compiling the Sphinx document into an HTML
+document.  One can either run <tt>automake_sphinx.py</tt> or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -26386,7 +26386,7 @@ some idea of what is done.
 The <tt>doconce sphinx_dir</tt> script copies directories named <tt>figs</tt> or
 <tt>figures</tt> over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, <tt>automake-sphinx.py</tt> must be edited accordingly.  Files,
+directories, <tt>automake_sphinx.py</tt> must be edited accordingly.  Files,
 to which there are local links (not <tt>http:</tt> or <tt>file:</tt> URLs), must be
 placed in the <tt>_static</tt> subdirectory of the Sphinx directory. The
 utility <tt>doconce sphinxfix_localURLs</tt> is run to check for local links
@@ -28026,7 +28026,7 @@ dir=sphinxm-rootdir
 if [ ! -d $dir ]; then
   doconce sphinx_dir dirname=$dir author='me and you' \
           version=1.0 theme=default $files
-  sh automake-sphinx.sh
+  sh automake_sphinx.sh
 else
   for file in $files; do
     cp $file.rst $dir
@@ -28037,7 +28037,7 @@ else
 fi
 </pre>
 </blockquote>   <! -- end verbatim block -->
-The autogenerated <tt>automake-sphinx.sh</tt> file (by <tt>doconce sphinx_dir</tt>)
+The autogenerated <tt>automake_sphinx.sh</tt> file (by <tt>doconce sphinx_dir</tt>)
 is compatible with a master <tt>.rst</tt> file split into pieces as long as
 the complete set of pieces in correct order is given to <tt>doconce sphinx_dir</tt>.
 This set is the output of <tt>doconce split_rst</tt>, which we catch in a
@@ -29772,8 +29772,8 @@ and then an appropriate Sphinx directory \code{sphinx-rootdir} is made with
 relevant files.
 
 The \code{doconce sphinx_dir} command generates a script
-\code{automake-sphinx.py} for compiling the Sphinx document into an HTML
-document.  One can either run \code{automake-sphinx.py} or perform the
+\code{automake_sphinx.py} for compiling the Sphinx document into an HTML
+document.  One can either run \code{automake_sphinx.py} or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -29781,7 +29781,7 @@ some idea of what is done.
 The \code{doconce sphinx_dir} script copies directories named \code{figs} or
 \code{figures} over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, \code{automake-sphinx.py} must be edited accordingly.  Files,
+directories, \code{automake_sphinx.py} must be edited accordingly.  Files,
 to which there are local links (not \code{http:} or \code{file:} URLs), must be
 placed in the \code{_static} subdirectory of the Sphinx directory. The
 utility \code{doconce sphinxfix_localURLs} is run to check for local links
@@ -31202,7 +31202,7 @@ dir=sphinxm-rootdir
 if [ ! -d $dir ]; then
   doconce sphinx_dir dirname=$dir author='me and you' \
           version=1.0 theme=default $files
-  sh automake-sphinx.sh
+  sh automake_sphinx.sh
 else
   for file in $files; do
     cp $file.rst $dir
@@ -31212,7 +31212,7 @@ else
   cd ..
 fi
 \ecod
-The autogenerated \code{automake-sphinx.sh} file (by \code{doconce sphinx_dir})
+The autogenerated \code{automake_sphinx.sh} file (by \code{doconce sphinx_dir})
 is compatible with a master \code{.rst} file split into pieces as long as
 the complete set of pieces in correct order is given to \code{doconce sphinx_dir}.
 This set is the output of \code{doconce split_rst}, which we catch in a
@@ -32606,8 +32606,8 @@ and then an appropriate Sphinx directory ``sphinx-rootdir`` is made with
 relevant files.
 
 The ``doconce sphinx_dir`` command generates a script
-``automake-sphinx.py`` for compiling the Sphinx document into an HTML
-document.  One can either run ``automake-sphinx.py`` or perform the
+``automake_sphinx.py`` for compiling the Sphinx document into an HTML
+document.  One can either run ``automake_sphinx.py`` or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -32615,7 +32615,7 @@ some idea of what is done.
 The ``doconce sphinx_dir`` script copies directories named ``figs`` or
 ``figures`` over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, ``automake-sphinx.py`` must be edited accordingly.  Files,
+directories, ``automake_sphinx.py`` must be edited accordingly.  Files,
 to which there are local links (not ``http:`` or ``file:`` URLs), must be
 placed in the ``_static`` subdirectory of the Sphinx directory. The
 utility ``doconce sphinxfix_localURLs`` is run to check for local links
@@ -34074,7 +34074,7 @@ We run::
         if [ ! -d $dir ]; then
           doconce sphinx_dir dirname=$dir author='me and you' \
                   version=1.0 theme=default $files
-          sh automake-sphinx.sh
+          sh automake_sphinx.sh
         else
           for file in $files; do
             cp $file.rst $dir
@@ -34084,7 +34084,7 @@ We run::
           cd ..
         fi
 
-The autogenerated ``automake-sphinx.sh`` file (by ``doconce sphinx_dir``)
+The autogenerated ``automake_sphinx.sh`` file (by ``doconce sphinx_dir``)
 is compatible with a master ``.rst`` file split into pieces as long as
 the complete set of pieces in correct order is given to ``doconce sphinx_dir``.
 This set is the output of ``doconce split_rst``, which we catch in a
@@ -35644,8 +35644,8 @@ and then an appropriate Sphinx directory ``sphinx-rootdir`` is made with
 relevant files.
 
 The ``doconce sphinx_dir`` command generates a script
-``automake-sphinx.py`` for compiling the Sphinx document into an HTML
-document.  One can either run ``automake-sphinx.py`` or perform the
+``automake_sphinx.py`` for compiling the Sphinx document into an HTML
+document.  One can either run ``automake_sphinx.py`` or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -35653,7 +35653,7 @@ some idea of what is done.
 The ``doconce sphinx_dir`` script copies directories named ``figs`` or
 ``figures`` over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, ``automake-sphinx.py`` must be edited accordingly.  Files,
+directories, ``automake_sphinx.py`` must be edited accordingly.  Files,
 to which there are local links (not ``http:`` or ``file:`` URLs), must be
 placed in the ``_static`` subdirectory of the Sphinx directory. The
 utility ``doconce sphinxfix_localURLs`` is run to check for local links
@@ -37260,7 +37260,7 @@ We run
         if [ ! -d $dir ]; then
           doconce sphinx_dir dirname=$dir author='me and you' \
                   version=1.0 theme=default $files
-          sh automake-sphinx.sh
+          sh automake_sphinx.sh
         else
           for file in $files; do
             cp $file.rst $dir
@@ -37270,7 +37270,7 @@ We run
           cd ..
         fi
 
-The autogenerated ``automake-sphinx.sh`` file (by ``doconce sphinx_dir``)
+The autogenerated ``automake_sphinx.sh`` file (by ``doconce sphinx_dir``)
 is compatible with a master ``.rst`` file split into pieces as long as
 the complete set of pieces in correct order is given to ``doconce sphinx_dir``.
 This set is the output of ``doconce split_rst``, which we catch in a
@@ -38678,8 +38678,8 @@ and then an appropriate Sphinx directory `sphinx-rootdir` is made with
 relevant files.
 
 The `doconce sphinx_dir` command generates a script
-`automake-sphinx.py` for compiling the Sphinx document into an HTML
-document.  One can either run `automake-sphinx.py` or perform the
+`automake_sphinx.py` for compiling the Sphinx document into an HTML
+document.  One can either run `automake_sphinx.py` or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -38687,7 +38687,7 @@ some idea of what is done.
 The `doconce sphinx_dir` script copies directories named `figs` or
 `figures` over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, `automake-sphinx.py` must be edited accordingly.  Files,
+directories, `automake_sphinx.py` must be edited accordingly.  Files,
 to which there are local links (not `http:` or `file:` URLs), must be
 placed in the `_static` subdirectory of the Sphinx directory. The
 utility `doconce sphinxfix_localURLs` is run to check for local links
@@ -40004,7 +40004,7 @@ dir=sphinxm-rootdir
 if [ ! -d $dir ]; then
   doconce sphinx_dir dirname=$dir author='me and you' \
           version=1.0 theme=default $files
-  sh automake-sphinx.sh
+  sh automake_sphinx.sh
 else
   for file in $files; do
     cp $file.rst $dir
@@ -40014,7 +40014,7 @@ else
   cd ..
 fi
 }}}
-The autogenerated `automake-sphinx.sh` file (by `doconce sphinx_dir`)
+The autogenerated `automake_sphinx.sh` file (by `doconce sphinx_dir`)
 is compatible with a master `.rst` file split into pieces as long as
 the complete set of pieces in correct order is given to `doconce sphinx_dir`.
 This set is the output of `doconce split_rst`, which we catch in a
@@ -41269,8 +41269,8 @@ and then an appropriate Sphinx directory <code>sphinx-rootdir</code> is made wit
 relevant files.
 
 The <code>doconce sphinx_dir</code> command generates a script
-<code>automake-sphinx.py</code> for compiling the Sphinx document into an HTML
-document.  One can either run <code>automake-sphinx.py</code> or perform the
+<code>automake_sphinx.py</code> for compiling the Sphinx document into an HTML
+document.  One can either run <code>automake_sphinx.py</code> or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -41278,7 +41278,7 @@ some idea of what is done.
 The <code>doconce sphinx_dir</code> script copies directories named <code>figs</code> or
 <code>figures</code> over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, <code>automake-sphinx.py</code> must be edited accordingly.  Files,
+directories, <code>automake_sphinx.py</code> must be edited accordingly.  Files,
 to which there are local links (not <code>http:</code> or <code>file:</code> URLs), must be
 placed in the <code>_static</code> subdirectory of the Sphinx directory. The
 utility <code>doconce sphinxfix_localURLs</code> is run to check for local links
@@ -42562,7 +42562,7 @@ dir=sphinxm-rootdir
 if [ ! -d $dir ]; then
   doconce sphinx_dir dirname=$dir author='me and you' \
           version=1.0 theme=default $files
-  sh automake-sphinx.sh
+  sh automake_sphinx.sh
 else
   for file in $files; do
     cp $file.rst $dir
@@ -42572,7 +42572,7 @@ else
   cd ..
 fi
 </code>
-The autogenerated <code>automake-sphinx.sh</code> file (by <code>doconce sphinx_dir</code>)
+The autogenerated <code>automake_sphinx.sh</code> file (by <code>doconce sphinx_dir</code>)
 is compatible with a master <code>.rst</code> file split into pieces as long as
 the complete set of pieces in correct order is given to <code>doconce sphinx_dir</code>.
 This set is the output of <code>doconce split_rst</code>, which we catch in a
@@ -43849,8 +43849,8 @@ and then an appropriate Sphinx directory {{{sphinx-rootdir}}} is made with
 relevant files.
 
 The {{{doconce sphinx_dir}}} command generates a script
-{{{automake-sphinx.py}}} for compiling the Sphinx document into an HTML
-document.  One can either run {{{automake-sphinx.py}}} or perform the
+{{{automake_sphinx.py}}} for compiling the Sphinx document into an HTML
+document.  One can either run {{{automake_sphinx.py}}} or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -43858,7 +43858,7 @@ some idea of what is done.
 The {{{doconce sphinx_dir}}} script copies directories named {{{figs}}} or
 {{{figures}}} over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, {{{automake-sphinx.py}}} must be edited accordingly.  Files,
+directories, {{{automake_sphinx.py}}} must be edited accordingly.  Files,
 to which there are local links (not {{{http:}}} or {{{file:}}} URLs), must be
 placed in the {{{_static}}} subdirectory of the Sphinx directory. The
 utility {{{doconce sphinxfix_localURLs}}} is run to check for local links
@@ -45171,7 +45171,7 @@ dir=sphinxm-rootdir
 if [ ! -d $dir ]; then
   doconce sphinx_dir dirname=$dir author='me and you' \
           version=1.0 theme=default $files
-  sh automake-sphinx.sh
+  sh automake_sphinx.sh
 else
   for file in $files; do
     cp $file.rst $dir
@@ -45181,7 +45181,7 @@ else
   cd ..
 fi
 }}}
-The autogenerated {{{automake-sphinx.sh}}} file (by {{{doconce sphinx_dir}}})
+The autogenerated {{{automake_sphinx.sh}}} file (by {{{doconce sphinx_dir}}})
 is compatible with a master {{{.rst}}} file split into pieces as long as
 the complete set of pieces in correct order is given to {{{doconce sphinx_dir}}}.
 This set is the output of {{{doconce split_rst}}}, which we catch in a
@@ -46500,8 +46500,8 @@ and then an appropriate Sphinx directory 'sphinx-rootdir' is made with
 relevant files.
 
 The 'doconce sphinx_dir' command generates a script
-'automake-sphinx.py' for compiling the Sphinx document into an HTML
-document.  One can either run 'automake-sphinx.py' or perform the
+'automake_sphinx.py' for compiling the Sphinx document into an HTML
+document.  One can either run 'automake_sphinx.py' or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -46509,7 +46509,7 @@ some idea of what is done.
 The 'doconce sphinx_dir' script copies directories named 'figs' or
 'figures' over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, 'automake-sphinx.py' must be edited accordingly.  Files,
+directories, 'automake_sphinx.py' must be edited accordingly.  Files,
 to which there are local links (not 'http:' or 'file:' URLs), must be
 placed in the '_static' subdirectory of the Sphinx directory. The
 utility 'doconce sphinxfix_localURLs' is run to check for local links
@@ -47838,7 +47838,7 @@ We run::
         if [ ! -d $dir ]; then
           doconce sphinx_dir dirname=$dir author='me and you' \
                   version=1.0 theme=default $files
-          sh automake-sphinx.sh
+          sh automake_sphinx.sh
         else
           for file in $files; do
             cp $file.rst $dir
@@ -47848,7 +47848,7 @@ We run::
           cd ..
         fi
 
-The autogenerated 'automake-sphinx.sh' file (by 'doconce sphinx_dir')
+The autogenerated 'automake_sphinx.sh' file (by 'doconce sphinx_dir')
 is compatible with a master '.rst' file split into pieces as long as
 the complete set of pieces in correct order is given to 'doconce sphinx_dir'.
 This set is the output of 'doconce split_rst', which we catch in a
@@ -49209,8 +49209,8 @@ and then an appropriate Sphinx directory C{sphinx-rootdir} is made with
 relevant files.
 
 The C{doconce sphinx_dir} command generates a script
-C{automake-sphinx.py} for compiling the Sphinx document into an HTML
-document.  One can either run C{automake-sphinx.py} or perform the
+C{automake_sphinx.py} for compiling the Sphinx document into an HTML
+document.  One can either run C{automake_sphinx.py} or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -49218,7 +49218,7 @@ some idea of what is done.
 The C{doconce sphinx_dir} script copies directories named C{figs} or
 C{figures} over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, C{automake-sphinx.py} must be edited accordingly.  Files,
+directories, C{automake_sphinx.py} must be edited accordingly.  Files,
 to which there are local links (not C{http:} or C{file:} URLs), must be
 placed in the C{_static} subdirectory of the Sphinx directory. The
 utility C{doconce sphinxfix_localURLs} is run to check for local links
@@ -50584,7 +50584,7 @@ We run::
         if [ ! -d $dir ]; then
           doconce sphinx_dir dirname=$dir author='me and you' \
                   version=1.0 theme=default $files
-          sh automake-sphinx.sh
+          sh automake_sphinx.sh
         else
           for file in $files; do
             cp $file.rst $dir
@@ -50594,7 +50594,7 @@ We run::
           cd ..
         fi
 
-The autogenerated C{automake-sphinx.sh} file (by C{doconce sphinx_dir})
+The autogenerated C{automake_sphinx.sh} file (by C{doconce sphinx_dir})
 is compatible with a master C{.rst} file split into pieces as long as
 the complete set of pieces in correct order is given to C{doconce sphinx_dir}.
 This set is the output of C{doconce split_rst}, which we catch in a
@@ -52026,8 +52026,8 @@ and then an appropriate Sphinx directory sphinx-rootdir is made with
 relevant files.
 
 The doconce sphinx_dir command generates a script
-automake-sphinx.py for compiling the Sphinx document into an HTML
-document.  One can either run automake-sphinx.py or perform the
+automake_sphinx.py for compiling the Sphinx document into an HTML
+document.  One can either run automake_sphinx.py or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -52035,7 +52035,7 @@ some idea of what is done.
 The doconce sphinx_dir script copies directories named figs or
 figures over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, automake-sphinx.py must be edited accordingly.  Files,
+directories, automake_sphinx.py must be edited accordingly.  Files,
 to which there are local links (not http: or file: URLs), must be
 placed in the _static subdirectory of the Sphinx directory. The
 utility doconce sphinxfix_localURLs is run to check for local links
@@ -53414,7 +53414,7 @@ We run::
         if [ ! -d $dir ]; then
           doconce sphinx_dir dirname=$dir author='me and you' \
                   version=1.0 theme=default $files
-          sh automake-sphinx.sh
+          sh automake_sphinx.sh
         else
           for file in $files; do
             cp $file.rst $dir
@@ -53424,7 +53424,7 @@ We run::
           cd ..
         fi
 
-The autogenerated automake-sphinx.sh file (by doconce sphinx_dir)
+The autogenerated automake_sphinx.sh file (by doconce sphinx_dir)
 is compatible with a master .rst file split into pieces as long as
 the complete set of pieces in correct order is given to doconce sphinx_dir.
 This set is the output of doconce split_rst, which we catch in a
@@ -54909,8 +54909,8 @@ and then an appropriate Sphinx directory `sphinx-rootdir` is made with
 relevant files.
 
 The `doconce sphinx_dir` command generates a script
-`automake-sphinx.py` for compiling the Sphinx document into an HTML
-document.  One can either run `automake-sphinx.py` or perform the
+`automake_sphinx.py` for compiling the Sphinx document into an HTML
+document.  One can either run `automake_sphinx.py` or perform the
 steps in the script manually, possibly with necessary modifications.
 You should at least read the script prior to executing it to have
 some idea of what is done.
@@ -54918,7 +54918,7 @@ some idea of what is done.
 The `doconce sphinx_dir` script copies directories named `figs` or
 `figures` over to the Sphinx directory so that figures are accessible
 in the Sphinx compilation.  If figures or movies are located in other
-directories, `automake-sphinx.py` must be edited accordingly.  Files,
+directories, `automake_sphinx.py` must be edited accordingly.  Files,
 to which there are local links (not `http:` or `file:` URLs), must be
 placed in the `_static` subdirectory of the Sphinx directory. The
 utility `doconce sphinxfix_localURLs` is run to check for local links
@@ -56355,7 +56355,7 @@ dir=sphinxm-rootdir
 if [ ! -d $dir ]; then
   doconce sphinx_dir dirname=$dir author='me and you' \
           version=1.0 theme=default $files
-  sh automake-sphinx.sh
+  sh automake_sphinx.sh
 else
   for file in $files; do
     cp $file.rst $dir
@@ -56366,7 +56366,7 @@ else
 fi
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The autogenerated `automake-sphinx.sh` file (by `doconce sphinx_dir`)
+The autogenerated `automake_sphinx.sh` file (by `doconce sphinx_dir`)
 is compatible with a master `.rst` file split into pieces as long as
 the complete set of pieces in correct order is given to `doconce sphinx_dir`.
 This set is the output of `doconce split_rst`, which we catch in a
@@ -58084,11 +58084,11 @@ Overfull \hbox (43.24687pt too wide) in paragraph at lines 904--905
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 939--945
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 [14]
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 946--964
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 976--979
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -58249,11 +58249,11 @@ Overfull \hbox (43.24687pt too wide) in paragraph at lines 904--905
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 939--945
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 [14]
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 946--964
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 976--979
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -58345,14 +58345,16 @@ Author: ['Hans Petter Langtangen']
 Using author(s) "Hans Petter Langtangen" from tutorial.do.txt
 Title: Doconce: Document Once, Include Anywhere
 Author: Hans Petter Langtangen
-These Sphinx themes were found: slim-agogo, default, pylons, agogo, traditional, cbc, flask, scrolls, sphinxdoc, solarized, classy, redcloud, epub, fenics_minimal, vlinux-theme, haiku, jal, agni, cloud, basic, fenics, nature, pyramid, default
-
-'automake-sphinx.py' contains the steps to (re)compile the sphinx
-version. You may want to edit this file, or run the steps manually,
-or just run it by
-
-  python automake-sphinx.py
-
+These Sphinx themes were found: default, agni, agogo, basic, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, jal, nature, pylons, pyramid, redcloud, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme
+Traceback (most recent call last):
+  File "/usr/local/bin/doconce", line 2418, in <module>
+    main()
+  File "/usr/local/bin/doconce", line 2408, in main
+    eval(command + '()')
+  File "<string>", line 1, in <module>
+  File "/usr/local/bin/doconce", line 999, in sphinx_dir
+    os.chmod('make_themes.sh', 0755)
+OSError: [Errno 2] No such file or directory: 'make_themes.sh'
 + cp tutorial.rst tutorial.sphinx.rst
 + mv tutorial.rst sphinx-rootdir
 + cd sphinx-rootdir
@@ -58372,7 +58374,8 @@ reading sources... [100%] tutorial
 /home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:1059: WARNING: Duplicate explicit target name: "sphinx".
 looking for now-outdated files... none found
 pickling environment... done
-checking consistency... done
+checking consistency... /home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:: WARNING: document isn't included in any toctree
+done
 preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] tutorial
@@ -58381,7 +58384,7 @@ writing additional files... (0 module code pages) genindex search
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 2 warnings.
+build succeeded, 3 warnings.
 
 Build finished. The HTML pages are in _build/html.
 + make latex
@@ -58393,12 +58396,11 @@ loading pickled environment... done
 building [latex]: all documents
 updating environment: 0 added, 0 changed, 0 removed
 looking for now-outdated files... none found
-processing DoconceDocumentOnceIncludeAnywhere.tex... index tutorial 
+processing DoconceDocumentOnceIncludeAnywhere.tex... index 
 resolving references...
-writing... /home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:: WARNING: unusable reference target found: tutorial.do.txt
-done
+writing... done
 copying TeX support files... done
-build succeeded, 2 warnings.
+build succeeded, 1 warning.
 
 Build finished; the LaTeX files are in _build/latex.
 Run `make' in that directory to run these through (pdf)latex (use `make latexpdf' here to do that automatically).
@@ -58512,69 +58514,20 @@ tifier (name{page.ii}) has been already used, duplicate ignored
 l.113 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [3] [4]
-Chapter 2.
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [5] [6]
-Chapter 3.
-[7] [8]
-
-LaTeX Warning: Hyper reference `tutorial:my-first-sec' on page 9 undefined on i
-nput line 420.
-
-
-LaTeX Warning: Hyper reference `tutorial:doconce2formats' on page 9 undefined o
-n input line 425.
-
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 485.
-
-[9] [10]
-Chapter 4.
-[11] [12]
-
-LaTeX Warning: Hyper reference `tutorial:newcommands' on page 13 undefined on i
-nput line 733.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 731--736
-[]\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
-s and sim-i-lar can be placed in files
-
-Underfull \hbox (badness 5359) in paragraph at lines 731--736
-\T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
-tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
-ee the sec-tion
-[13] [14] [15] [16] [17] [18]
-Chapter 5.
-[19] [20] [21] [22]
-Chapter 6.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
 No file DoconceDocumentOnceIncludeAnywhere.ind.
-[23] (./DoconceDocumentOnceIncludeAnywhere.aux)
-
-LaTeX Warning: There were undefined references.
-
+[3] (./DoconceDocumentOnceIncludeAnywhere.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
-(see the transcript file for additional information)pdfTeX warning (dest): name
-{??} has been referenced but does not exist, replaced by a fixed one
-
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy
-10.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fon
-ts/type1/urw/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helv
-etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
-</usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/ur
-w/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 211249 byte
-s).
+(see the transcript file for additional information){/usr/share/texmf-texlive/f
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (7 pages, 41326 bytes)
+.
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -58684,46 +58637,17 @@ tifier (name{page.ii}) has been already used, duplicate ignored
 l.113 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [3] [4]
-Chapter 2.
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [5] [6]
-Chapter 3.
-[7] [8]
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 485.
-
-[9] [10]
-Chapter 4.
-[11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 731--736
-[]\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
-s and sim-i-lar can be placed in files
-
-Underfull \hbox (badness 5359) in paragraph at lines 731--736
-\T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
-tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
-ee the sec-tion
-[13] [14] [15] [16] [17] [18]
-Chapter 5.
-[19] [20] [21] [22]
-Chapter 6.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
 No file DoconceDocumentOnceIncludeAnywhere.ind.
-[23] (./DoconceDocumentOnceIncludeAnywhere.aux) )
+[3] (./DoconceDocumentOnceIncludeAnywhere.aux) )
 (see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrro8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
-onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
-/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 224618 byte
-s).
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (7 pages, 50785 bytes)
+.
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -58833,46 +58757,17 @@ tifier (name{page.ii}) has been already used, duplicate ignored
 l.113 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [3] [4]
-Chapter 2.
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [5] [6]
-Chapter 3.
-[7] [8]
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 485.
-
-[9] [10]
-Chapter 4.
-[11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 731--736
-[]\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
-s and sim-i-lar can be placed in files
-
-Underfull \hbox (badness 5359) in paragraph at lines 731--736
-\T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
-tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
-ee the sec-tion
-[13] [14] [15] [16] [17] [18]
-Chapter 5.
-[19] [20] [21] [22]
-Chapter 6.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
 No file DoconceDocumentOnceIncludeAnywhere.ind.
-[23] (./DoconceDocumentOnceIncludeAnywhere.aux) )
+[3] (./DoconceDocumentOnceIncludeAnywhere.aux) )
 (see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrro8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
-onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
-/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 224618 byte
-s).
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (7 pages, 50785 bytes)
+.
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
 This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
@@ -58988,46 +58883,17 @@ tifier (name{page.ii}) has been already used, duplicate ignored
 l.113 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [3] [4]
-Chapter 2.
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [5] [6]
-Chapter 3.
-[7] [8]
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 485.
-
-[9] [10]
-Chapter 4.
-[11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 731--736
-[]\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
-s and sim-i-lar can be placed in files
-
-Underfull \hbox (badness 5359) in paragraph at lines 731--736
-\T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
-tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
-ee the sec-tion
-[13] [14] [15] [16] [17] [18]
-Chapter 5.
-[19] [20] [21] [22]
-Chapter 6.
-(./DoconceDocumentOnceIncludeAnywhere.ind) [23]
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
+(./DoconceDocumentOnceIncludeAnywhere.ind) [3]
 (./DoconceDocumentOnceIncludeAnywhere.aux) )
 (see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrro8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
-onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
-/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 224618 byte
-s).
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (7 pages, 50785 bytes)
+.
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -59137,46 +59003,17 @@ tifier (name{page.ii}) has been already used, duplicate ignored
 l.113 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [3] [4]
-Chapter 2.
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [5] [6]
-Chapter 3.
-[7] [8]
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 485.
-
-[9] [10]
-Chapter 4.
-[11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 731--736
-[]\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
-s and sim-i-lar can be placed in files
-
-Underfull \hbox (badness 5359) in paragraph at lines 731--736
-\T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
-tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
-ee the sec-tion
-[13] [14] [15] [16] [17] [18]
-Chapter 5.
-[19] [20] [21] [22]
-Chapter 6.
-(./DoconceDocumentOnceIncludeAnywhere.ind) [23]
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
+(./DoconceDocumentOnceIncludeAnywhere.ind) [3]
 (./DoconceDocumentOnceIncludeAnywhere.aux) )
 (see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrro8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
-onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
-/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 224618 byte
-s).
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (7 pages, 50785 bytes)
+.
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
 + cd ../../..
@@ -59482,7 +59319,7 @@ Overfull \hbox (65.00006pt too wide) in paragraph at lines 1092--1092
 
 Overfull \hbox (16.80876pt too wide) in paragraph at lines 1117--1123
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
-gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
+gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (6.80879pt too wide) in paragraph at lines 1155--1158
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
@@ -59735,14 +59572,16 @@ where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
 Title: Doconce Manual
 Author: HPL
-These Sphinx themes were found: slim-agogo, default, pylons, agogo, traditional, cbc, flask, scrolls, sphinxdoc, solarized, classy, redcloud, epub, fenics_minimal, vlinux-theme, haiku, jal, agni, cloud, basic, fenics, nature, pyramid, default
-
-'automake-sphinx.py' contains the steps to (re)compile the sphinx
-version. You may want to edit this file, or run the steps manually,
-or just run it by
-
-  python automake-sphinx.py
-
+These Sphinx themes were found: default, agni, agogo, basic, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, jal, nature, pylons, pyramid, redcloud, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme
+Traceback (most recent call last):
+  File "/usr/local/bin/doconce", line 2418, in <module>
+    main()
+  File "/usr/local/bin/doconce", line 2408, in main
+    eval(command + '()')
+  File "<string>", line 1, in <module>
+  File "/usr/local/bin/doconce", line 999, in sphinx_dir
+    os.chmod('make_themes.sh', 0755)
+OSError: [Errno 2] No such file or directory: 'make_themes.sh'
 + cp manual.rst manual.sphinx.rst
 + cp manual.rst sphinx-rootdir
 + cp -r figs sphinx-rootdir
@@ -59763,7 +59602,8 @@ reading sources... [100%] manual
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1267: SEVERE: Duplicate ID: "equation-myeq1".
 looking for now-outdated files... none found
 pickling environment... done
-checking consistency... done
+checking consistency... /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: document isn't included in any toctree
+done
 preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] manual
@@ -59777,7 +59617,7 @@ copying images... [100%] figs/streamtubes.png
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 5 warnings.
+build succeeded, 6 warnings.
 
 Build finished. The HTML pages are in _build/html.
 + make latex
@@ -59789,22 +59629,16 @@ loading pickled environment... done
 building [latex]: all documents
 updating environment: 0 added, 0 changed, 0 removed
 looking for now-outdated files... none found
-processing DoconceManual.tex... index manual 
+processing DoconceManual.tex... index 
 resolving references...
-None:None: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-None:None: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
-None:None: WARNING: undefined label: ... (if the link has no caption the label must precede a section header)
-writing... /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.do.txt
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.html
-done
-copying images... figs/streamtubes.png
+writing... done
 copying TeX support files... done
-build succeeded, 6 warnings.
+build succeeded, 1 warning.
 
 Build finished; the LaTeX files are in _build/latex.
 Run `make' in that directory to run these through (pdf)latex (use `make latexpdf' here to do that automatically).
 + doconce subst \.\* .pdf _build/latex/DoconceManual.tex
-\.\* replaced by .pdf in _build/latex/DoconceManual.tex
+no substitutions
 + pwd
 + ln -s /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/../figs _build/latex/figs
 + cd _build/latex
@@ -59917,163 +59751,492 @@ tifier (name{page.ii}) has been already used, duplicate ignored
 l.113 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
-[3] [4]
-Chapter 2.
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd)
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [5] [6]
-Chapter 3.
-[7] [8] [9] [10]
-Chapter 4.
-[11] [12]
-
-LaTeX Warning: Hyper reference `manual:newcommands' on page 13 undefined on inp
-ut line 621.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 619--624
-[]\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
-s and sim-i-lar can be placed in files
-
-Underfull \hbox (badness 5359) in paragraph at lines 619--624
-\T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
-tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
-ee the sec-tion
-[13] [14] [15] [16] [17] [18]
-Chapter 5.
-[19] [20] [21] [22]
-Chapter 6.
-<streamtubes.png, id=169, 583.17876pt x 437.635pt> <use streamtubes.png>
-<use streamtubes.png> [23] [24 <./streamtubes.png>]
-
-LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 25 undefine
-d on input line 1419.
-
-[25]
-
-LaTeX Warning: Hyper reference `manual:doconce2formats' on page 26 undefined on
- input line 1568.
-
-
-LaTeX Warning: Hyper reference `manual:doconce2formats' on page 26 undefined on
- input line 1572.
-
-[26]
-
-LaTeX Warning: Hyper reference `manual:inline-tagging' on page 27 undefined on 
-input line 1605.
-
-
-LaTeX Warning: Hyper reference `manual:fig-viz' on page 27 undefined on input l
-ine 1660.
-
-
-LaTeX Warning: Hyper reference `manual:mathtext' on page 27 undefined on input 
-line 1662.
-
-
-LaTeX Warning: Hyper reference `manual:newcommands' on page 27 undefined on inp
-ut line 1662.
-
-[27]
-
-LaTeX Warning: Hyper reference `manual:inline-tagging' on page 28 undefined on 
-input line 1669.
-
-[28]
-
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 29 undefined o
-n input line 1766.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 29 undefined on input 
-line 1766.
-
-
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 29 undefined o
-n input line 1767.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 29 undefined on input 
-line 1767.
-
-[29] [30] [31] [32]
-! FancyVerb Error:
-  Empty verbatim environment
-.
-\FV@Error ... {FancyVerb Error:
-\space \space #1
-}
-                                                  
-l.2137 \end{Verbatim}
-                     
-? OK, entering \nonstopmode...
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2143.
-
-! Misplaced \omit.
-\math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
-                                                  \kern -\alignsep@ \iftag@ ...
-l.2143 \end{gather}
-                   
-! Misplaced \omit.
-\math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
-                                                  \kern -\alignsep@ \iftag@ ...
-l.2143 \end{gather}
-                   
-[33]
-Underfull \hbox (badness 10000) in paragraph at lines 2183--2189
-[]\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
-x.ext.mathjax' \T1/ptm/m/n/10 (en-abled by de-fault)
-
-Underfull \hbox (badness 10000) in paragraph at lines 2183--2189
-\T1/ptm/m/n/10 and \T1/pcr/m/n/10 'matplotlib.sphinxext.mathmpl' \T1/ptm/m/n/10
- (dis-abled by de-fault) lines, and un-com-ment the
-[34] [35]
-
-LaTeX Warning: Hyper reference `manual:doconce2formats' on page 36 undefined on
- input line 2331.
-
-[36] [37] [38]
-Chapter 7.
-[39] [40]
-
-LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 41 undefine
-d on input line 2693.
-
-[41] [42] [43] [44] [45] [46]
-Chapter 8.
-[47] [48]
-Chapter 9.
-[49] [50]
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
 No file DoconceManual.ind.
-[51] (./DoconceManual.aux)
-
-LaTeX Warning: There were undefined references.
-
+[3] (./DoconceManual.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
-(see the transcript file for additional information)pdfTeX warning (dest): name
-{??} has been referenced but does not exist, replaced by a fixed one
-
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-r7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
-r/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texl
-ive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/ur
-w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
-.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
-/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
-ri8a.pfb>
-Output written on DoconceManual.pdf (55 pages, 387740 bytes).
+(see the transcript file for additional information){/usr/share/texmf-texlive/f
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmri8a.pfb>
+Output written on DoconceManual.pdf (7 pages, 40748 bytes).
 Transcript written on DoconceManual.log.
-make: *** [DoconceManual.pdf] Error 1
+pdflatex  'DoconceManual.tex'
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./DoconceManual.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(./sphinxmanual.cls
+Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
+(/usr/share/texmf-texlive/tex/latex/base/report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo)))
+(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.def))
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def)))
+(/usr/share/texmf-texlive/tex/latex/psnfss/times.sty) (./fncychap.sty)
+(/usr/share/texmf-texlive/tex/latex/tools/longtable.sty) (./sphinx.sty
+(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.3 <2000/09/19> (tvz)
+) (/usr/share/texmf-texlive/tex/latex/titlesec/titlesec.sty) (./tabulary.sty
+(/usr/share/texmf-texlive/tex/latex/tools/array.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/framed.sty)
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def))
+(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz) (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty))
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/threeparttable.sty)
+(/usr/share/texmf-texlive/tex/latex/mdwtools/footnote.sty)
+(/usr/share/texmf-texlive/tex/latex/wrapfig/wrapfig.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/parskip.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)))
+(/usr/share/texmf-texlive/tex/plain/misc/pdfcolor.tex)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty))
+(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty))
+(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty))
+Implicit mode ON; LaTeX internals redefined
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty))
+*hyperref using default driver hpdftex*
+(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hypcap.sty))
+(/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty)
+Writing index file DoconceManual.idx
+(./DoconceManual.aux) (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1ptm.fd)
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty))
+(./DoconceManual.out) (./DoconceManual.out)
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fonts/ma
+p/pdftex/updmap/pdftex.map}] [2] (./DoconceManual.toc)
+Adding blank page after the table of contents.
+pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [1]pdfTeX warning (ext4): destination with the same iden
+tifier (name{page.ii}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [2] [1] [2]
+Chapter 1.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
+No file DoconceManual.ind.
+[3] (./DoconceManual.aux) )
+(see the transcript file for additional information){/usr/share/texmf-texlive/f
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceManual.pdf (7 pages, 50207 bytes).
+Transcript written on DoconceManual.log.
+pdflatex  'DoconceManual.tex'
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./DoconceManual.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(./sphinxmanual.cls
+Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
+(/usr/share/texmf-texlive/tex/latex/base/report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo)))
+(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.def))
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def)))
+(/usr/share/texmf-texlive/tex/latex/psnfss/times.sty) (./fncychap.sty)
+(/usr/share/texmf-texlive/tex/latex/tools/longtable.sty) (./sphinx.sty
+(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.3 <2000/09/19> (tvz)
+) (/usr/share/texmf-texlive/tex/latex/titlesec/titlesec.sty) (./tabulary.sty
+(/usr/share/texmf-texlive/tex/latex/tools/array.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/framed.sty)
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def))
+(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz) (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty))
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/threeparttable.sty)
+(/usr/share/texmf-texlive/tex/latex/mdwtools/footnote.sty)
+(/usr/share/texmf-texlive/tex/latex/wrapfig/wrapfig.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/parskip.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)))
+(/usr/share/texmf-texlive/tex/plain/misc/pdfcolor.tex)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty))
+(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty))
+(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty))
+Implicit mode ON; LaTeX internals redefined
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty))
+*hyperref using default driver hpdftex*
+(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hypcap.sty))
+(/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty)
+Writing index file DoconceManual.idx
+(./DoconceManual.aux) (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1ptm.fd)
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty))
+(./DoconceManual.out) (./DoconceManual.out)
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fonts/ma
+p/pdftex/updmap/pdftex.map}] [2] (./DoconceManual.toc)
+Adding blank page after the table of contents.
+pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [1]pdfTeX warning (ext4): destination with the same iden
+tifier (name{page.ii}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [2] [1] [2]
+Chapter 1.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
+No file DoconceManual.ind.
+[3] (./DoconceManual.aux) )
+(see the transcript file for additional information){/usr/share/texmf-texlive/f
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceManual.pdf (7 pages, 50207 bytes).
+Transcript written on DoconceManual.log.
+makeindex -s python.ist 'DoconceManual.idx'
+This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
+Scanning style file ./python.ist......done (6 attributes redefined, 0 ignored).
+Scanning input file DoconceManual.idx...done (0 entries accepted, 0 rejected).
+Nothing written in DoconceManual.ind.
+Transcript written in DoconceManual.ilg.
+pdflatex  'DoconceManual.tex'
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./DoconceManual.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(./sphinxmanual.cls
+Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
+(/usr/share/texmf-texlive/tex/latex/base/report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo)))
+(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.def))
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def)))
+(/usr/share/texmf-texlive/tex/latex/psnfss/times.sty) (./fncychap.sty)
+(/usr/share/texmf-texlive/tex/latex/tools/longtable.sty) (./sphinx.sty
+(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.3 <2000/09/19> (tvz)
+) (/usr/share/texmf-texlive/tex/latex/titlesec/titlesec.sty) (./tabulary.sty
+(/usr/share/texmf-texlive/tex/latex/tools/array.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/framed.sty)
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def))
+(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz) (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty))
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/threeparttable.sty)
+(/usr/share/texmf-texlive/tex/latex/mdwtools/footnote.sty)
+(/usr/share/texmf-texlive/tex/latex/wrapfig/wrapfig.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/parskip.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)))
+(/usr/share/texmf-texlive/tex/plain/misc/pdfcolor.tex)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty))
+(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty))
+(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty))
+Implicit mode ON; LaTeX internals redefined
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty))
+*hyperref using default driver hpdftex*
+(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hypcap.sty))
+(/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty)
+Writing index file DoconceManual.idx
+(./DoconceManual.aux) (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1ptm.fd)
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty))
+(./DoconceManual.out) (./DoconceManual.out)
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fonts/ma
+p/pdftex/updmap/pdftex.map}] [2] (./DoconceManual.toc)
+Adding blank page after the table of contents.
+pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [1]pdfTeX warning (ext4): destination with the same iden
+tifier (name{page.ii}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [2] [1] [2]
+Chapter 1.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) (./DoconceManual.ind)
+[3] (./DoconceManual.aux) )
+(see the transcript file for additional information){/usr/share/texmf-texlive/f
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceManual.pdf (7 pages, 50207 bytes).
+Transcript written on DoconceManual.log.
+pdflatex  'DoconceManual.tex'
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./DoconceManual.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(./sphinxmanual.cls
+Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
+(/usr/share/texmf-texlive/tex/latex/base/report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo)))
+(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.def))
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def)))
+(/usr/share/texmf-texlive/tex/latex/psnfss/times.sty) (./fncychap.sty)
+(/usr/share/texmf-texlive/tex/latex/tools/longtable.sty) (./sphinx.sty
+(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.3 <2000/09/19> (tvz)
+) (/usr/share/texmf-texlive/tex/latex/titlesec/titlesec.sty) (./tabulary.sty
+(/usr/share/texmf-texlive/tex/latex/tools/array.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/framed.sty)
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def))
+(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz) (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty))
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/threeparttable.sty)
+(/usr/share/texmf-texlive/tex/latex/mdwtools/footnote.sty)
+(/usr/share/texmf-texlive/tex/latex/wrapfig/wrapfig.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/parskip.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)))
+(/usr/share/texmf-texlive/tex/plain/misc/pdfcolor.tex)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty))
+(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty))
+(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty))
+Implicit mode ON; LaTeX internals redefined
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty))
+*hyperref using default driver hpdftex*
+(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hypcap.sty))
+(/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty)
+Writing index file DoconceManual.idx
+(./DoconceManual.aux) (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1ptm.fd)
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty))
+(./DoconceManual.out) (./DoconceManual.out)
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fonts/ma
+p/pdftex/updmap/pdftex.map}] [2] (./DoconceManual.toc)
+Adding blank page after the table of contents.
+pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [1]pdfTeX warning (ext4): destination with the same iden
+tifier (name{page.ii}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [2] [1] [2]
+Chapter 1.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) (./DoconceManual.ind)
+[3] (./DoconceManual.aux) )
+(see the transcript file for additional information){/usr/share/texmf-texlive/f
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceManual.pdf (7 pages, 50207 bytes).
+Transcript written on DoconceManual.log.
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
 + cd ../../..
 + doconce format rst manual.do.txt --no-mako
@@ -60349,7 +60512,7 @@ Overfull \hbox (65.00006pt too wide) in paragraph at lines 1018--1018
 [10]
 Overfull \hbox (16.80876pt too wide) in paragraph at lines 1043--1049
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
-gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
+gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
 
 Overfull \hbox (6.80879pt too wide) in paragraph at lines 1081--1084
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
@@ -60977,7 +61140,7 @@ Overfull \hbox (65.00006pt too wide) in paragraph at lines 1018--1018
 [10]
 Overfull \hbox (16.80876pt too wide) in paragraph at lines 1043--1049
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
-gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
+gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
 
 Overfull \hbox (6.80879pt too wide) in paragraph at lines 1081--1084
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
@@ -61567,11 +61730,11 @@ latex-[]to-[]openofficeword .
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -61737,7 +61900,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (48 pages, 324994 bytes).
+Output written on manual.pdf (48 pages, 324992 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -61881,11 +62044,11 @@ latex-[]to-[]openofficeword .
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -62005,7 +62168,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (49 pages, 344832 bytes).
+Output written on manual.pdf (49 pages, 344830 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -62137,11 +62300,11 @@ latex-[]to-[]openofficeword .
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -62246,7 +62409,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (49 pages, 345553 bytes).
+Output written on manual.pdf (49 pages, 345551 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -62416,11 +62579,11 @@ Overfull \hbox (43.24687pt too wide) in paragraph at lines 750--751
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -62652,11 +62815,11 @@ Overfull \hbox (43.24687pt too wide) in paragraph at lines 750--751
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -62900,11 +63063,11 @@ Overfull \hbox (43.24687pt too wide) in paragraph at lines 750--751
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -63136,11 +63299,11 @@ Overfull \hbox (43.24687pt too wide) in paragraph at lines 750--751
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -63352,8 +63515,8 @@ dvipdf quickref.dvi
 doconce format sphinx quickref --no-preprocess
 rm -rf sphinx-rootdir
 doconce sphinx_dir author='HPL' version=0.7 quickref
-doconce replace 'doconce format sphinx %s' 'doconce format sphinx %s --no-preprocess' automake-sphinx.py
-python automake-sphinx.py
+doconce replace 'doconce format sphinx %s' 'doconce format sphinx %s --no-preprocess' automake_sphinx.py
+python automake_sphinx.py
 cp quickref.rst quickref.sphinx.rst  # save
 
 # reStructuredText:
@@ -72790,11 +72953,11 @@ Overfull \hbox (43.24687pt too wide) in paragraph at lines 904--905
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 939--945
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 [14]
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 946--964
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 976--979
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -72955,11 +73118,11 @@ Overfull \hbox (43.24687pt too wide) in paragraph at lines 904--905
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 939--945
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 [14]
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 946--964
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 976--979
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -73051,14 +73214,16 @@ Author: ['Hans Petter Langtangen']
 Using author(s) "Hans Petter Langtangen" from tutorial.do.txt
 Title: Doconce: Document Once, Include Anywhere
 Author: Hans Petter Langtangen
-These Sphinx themes were found: slim-agogo, default, pylons, agogo, traditional, cbc, flask, scrolls, sphinxdoc, solarized, classy, redcloud, epub, fenics_minimal, vlinux-theme, haiku, jal, agni, cloud, basic, fenics, nature, pyramid, default
-
-'automake-sphinx.py' contains the steps to (re)compile the sphinx
-version. You may want to edit this file, or run the steps manually,
-or just run it by
-
-  python automake-sphinx.py
-
+These Sphinx themes were found: default, agni, agogo, basic, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, jal, nature, pylons, pyramid, redcloud, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme
+Traceback (most recent call last):
+  File "/usr/local/bin/doconce", line 2418, in <module>
+    main()
+  File "/usr/local/bin/doconce", line 2408, in main
+    eval(command + '()')
+  File "<string>", line 1, in <module>
+  File "/usr/local/bin/doconce", line 999, in sphinx_dir
+    os.chmod('make_themes.sh', 0755)
+OSError: [Errno 2] No such file or directory: 'make_themes.sh'
 + cp tutorial.rst tutorial.sphinx.rst
 + mv tutorial.rst sphinx-rootdir
 + cd sphinx-rootdir
@@ -73078,7 +73243,8 @@ reading sources... [100%] tutorial
 /home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:1059: WARNING: Duplicate explicit target name: "sphinx".
 looking for now-outdated files... none found
 pickling environment... done
-checking consistency... done
+checking consistency... /home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:: WARNING: document isn't included in any toctree
+done
 preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] tutorial
@@ -73087,7 +73253,7 @@ writing additional files... (0 module code pages) genindex search
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 2 warnings.
+build succeeded, 3 warnings.
 
 Build finished. The HTML pages are in _build/html.
 + make latex
@@ -73099,12 +73265,11 @@ loading pickled environment... done
 building [latex]: all documents
 updating environment: 0 added, 0 changed, 0 removed
 looking for now-outdated files... none found
-processing DoconceDocumentOnceIncludeAnywhere.tex... index tutorial 
+processing DoconceDocumentOnceIncludeAnywhere.tex... index 
 resolving references...
-writing... /home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:: WARNING: unusable reference target found: tutorial.do.txt
-done
+writing... done
 copying TeX support files... done
-build succeeded, 2 warnings.
+build succeeded, 1 warning.
 
 Build finished; the LaTeX files are in _build/latex.
 Run `make' in that directory to run these through (pdf)latex (use `make latexpdf' here to do that automatically).
@@ -73218,69 +73383,20 @@ tifier (name{page.ii}) has been already used, duplicate ignored
 l.113 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [3] [4]
-Chapter 2.
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [5] [6]
-Chapter 3.
-[7] [8]
-
-LaTeX Warning: Hyper reference `tutorial:my-first-sec' on page 9 undefined on i
-nput line 420.
-
-
-LaTeX Warning: Hyper reference `tutorial:doconce2formats' on page 9 undefined o
-n input line 425.
-
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 485.
-
-[9] [10]
-Chapter 4.
-[11] [12]
-
-LaTeX Warning: Hyper reference `tutorial:newcommands' on page 13 undefined on i
-nput line 733.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 731--736
-[]\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
-s and sim-i-lar can be placed in files
-
-Underfull \hbox (badness 5359) in paragraph at lines 731--736
-\T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
-tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
-ee the sec-tion
-[13] [14] [15] [16] [17] [18]
-Chapter 5.
-[19] [20] [21] [22]
-Chapter 6.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
 No file DoconceDocumentOnceIncludeAnywhere.ind.
-[23] (./DoconceDocumentOnceIncludeAnywhere.aux)
-
-LaTeX Warning: There were undefined references.
-
+[3] (./DoconceDocumentOnceIncludeAnywhere.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
-(see the transcript file for additional information)pdfTeX warning (dest): name
-{??} has been referenced but does not exist, replaced by a fixed one
-
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy
-10.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fon
-ts/type1/urw/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helv
-etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
-</usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/ur
-w/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 211249 byte
-s).
+(see the transcript file for additional information){/usr/share/texmf-texlive/f
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (7 pages, 41326 bytes)
+.
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -73390,46 +73506,17 @@ tifier (name{page.ii}) has been already used, duplicate ignored
 l.113 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [3] [4]
-Chapter 2.
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [5] [6]
-Chapter 3.
-[7] [8]
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 485.
-
-[9] [10]
-Chapter 4.
-[11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 731--736
-[]\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
-s and sim-i-lar can be placed in files
-
-Underfull \hbox (badness 5359) in paragraph at lines 731--736
-\T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
-tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
-ee the sec-tion
-[13] [14] [15] [16] [17] [18]
-Chapter 5.
-[19] [20] [21] [22]
-Chapter 6.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
 No file DoconceDocumentOnceIncludeAnywhere.ind.
-[23] (./DoconceDocumentOnceIncludeAnywhere.aux) )
+[3] (./DoconceDocumentOnceIncludeAnywhere.aux) )
 (see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrro8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
-onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
-/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 224618 byte
-s).
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (7 pages, 50785 bytes)
+.
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -73539,46 +73626,17 @@ tifier (name{page.ii}) has been already used, duplicate ignored
 l.113 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [3] [4]
-Chapter 2.
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [5] [6]
-Chapter 3.
-[7] [8]
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 485.
-
-[9] [10]
-Chapter 4.
-[11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 731--736
-[]\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
-s and sim-i-lar can be placed in files
-
-Underfull \hbox (badness 5359) in paragraph at lines 731--736
-\T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
-tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
-ee the sec-tion
-[13] [14] [15] [16] [17] [18]
-Chapter 5.
-[19] [20] [21] [22]
-Chapter 6.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
 No file DoconceDocumentOnceIncludeAnywhere.ind.
-[23] (./DoconceDocumentOnceIncludeAnywhere.aux) )
+[3] (./DoconceDocumentOnceIncludeAnywhere.aux) )
 (see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrro8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
-onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
-/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 224618 byte
-s).
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (7 pages, 50785 bytes)
+.
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
 This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
@@ -73694,46 +73752,17 @@ tifier (name{page.ii}) has been already used, duplicate ignored
 l.113 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [3] [4]
-Chapter 2.
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [5] [6]
-Chapter 3.
-[7] [8]
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 485.
-
-[9] [10]
-Chapter 4.
-[11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 731--736
-[]\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
-s and sim-i-lar can be placed in files
-
-Underfull \hbox (badness 5359) in paragraph at lines 731--736
-\T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
-tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
-ee the sec-tion
-[13] [14] [15] [16] [17] [18]
-Chapter 5.
-[19] [20] [21] [22]
-Chapter 6.
-(./DoconceDocumentOnceIncludeAnywhere.ind) [23]
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
+(./DoconceDocumentOnceIncludeAnywhere.ind) [3]
 (./DoconceDocumentOnceIncludeAnywhere.aux) )
 (see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrro8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
-onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
-/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 224618 byte
-s).
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (7 pages, 50785 bytes)
+.
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -73843,46 +73872,17 @@ tifier (name{page.ii}) has been already used, duplicate ignored
 l.113 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [3] [4]
-Chapter 2.
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd) [5] [6]
-Chapter 3.
-[7] [8]
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 485.
-
-[9] [10]
-Chapter 4.
-[11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 731--736
-[]\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
-s and sim-i-lar can be placed in files
-
-Underfull \hbox (badness 5359) in paragraph at lines 731--736
-\T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
-tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
-ee the sec-tion
-[13] [14] [15] [16] [17] [18]
-Chapter 5.
-[19] [20] [21] [22]
-Chapter 6.
-(./DoconceDocumentOnceIncludeAnywhere.ind) [23]
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
+(./DoconceDocumentOnceIncludeAnywhere.ind) [3]
 (./DoconceDocumentOnceIncludeAnywhere.aux) )
 (see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrro8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
-onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
-/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 224618 byte
-s).
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (7 pages, 50785 bytes)
+.
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
 + cd ../../..
@@ -74188,7 +74188,7 @@ Overfull \hbox (65.00006pt too wide) in paragraph at lines 1092--1092
 
 Overfull \hbox (16.80876pt too wide) in paragraph at lines 1117--1123
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
-gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
+gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (6.80879pt too wide) in paragraph at lines 1155--1158
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
@@ -74441,14 +74441,16 @@ where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
 Title: Doconce Manual
 Author: HPL
-These Sphinx themes were found: slim-agogo, default, pylons, agogo, traditional, cbc, flask, scrolls, sphinxdoc, solarized, classy, redcloud, epub, fenics_minimal, vlinux-theme, haiku, jal, agni, cloud, basic, fenics, nature, pyramid, default
-
-'automake-sphinx.py' contains the steps to (re)compile the sphinx
-version. You may want to edit this file, or run the steps manually,
-or just run it by
-
-  python automake-sphinx.py
-
+These Sphinx themes were found: default, agni, agogo, basic, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, jal, nature, pylons, pyramid, redcloud, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme
+Traceback (most recent call last):
+  File "/usr/local/bin/doconce", line 2418, in <module>
+    main()
+  File "/usr/local/bin/doconce", line 2408, in main
+    eval(command + '()')
+  File "<string>", line 1, in <module>
+  File "/usr/local/bin/doconce", line 999, in sphinx_dir
+    os.chmod('make_themes.sh', 0755)
+OSError: [Errno 2] No such file or directory: 'make_themes.sh'
 + cp manual.rst manual.sphinx.rst
 + cp manual.rst sphinx-rootdir
 + cp -r figs sphinx-rootdir
@@ -74469,7 +74471,8 @@ reading sources... [100%] manual
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1267: SEVERE: Duplicate ID: "equation-myeq1".
 looking for now-outdated files... none found
 pickling environment... done
-checking consistency... done
+checking consistency... /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: document isn't included in any toctree
+done
 preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] manual
@@ -74483,7 +74486,7 @@ copying images... [100%] figs/streamtubes.png
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 5 warnings.
+build succeeded, 6 warnings.
 
 Build finished. The HTML pages are in _build/html.
 + make latex
@@ -74495,22 +74498,16 @@ loading pickled environment... done
 building [latex]: all documents
 updating environment: 0 added, 0 changed, 0 removed
 looking for now-outdated files... none found
-processing DoconceManual.tex... index manual 
+processing DoconceManual.tex... index 
 resolving references...
-None:None: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-None:None: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
-None:None: WARNING: undefined label: ... (if the link has no caption the label must precede a section header)
-writing... /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.do.txt
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.html
-done
-copying images... figs/streamtubes.png
+writing... done
 copying TeX support files... done
-build succeeded, 6 warnings.
+build succeeded, 1 warning.
 
 Build finished; the LaTeX files are in _build/latex.
 Run `make' in that directory to run these through (pdf)latex (use `make latexpdf' here to do that automatically).
 + doconce subst \.\* .pdf _build/latex/DoconceManual.tex
-\.\* replaced by .pdf in _build/latex/DoconceManual.tex
+no substitutions
 + pwd
 + ln -s /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/../figs _build/latex/figs
 + cd _build/latex
@@ -74623,163 +74620,492 @@ tifier (name{page.ii}) has been already used, duplicate ignored
 l.113 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
-[3] [4]
-Chapter 2.
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd)
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) [5] [6]
-Chapter 3.
-[7] [8] [9] [10]
-Chapter 4.
-[11] [12]
-
-LaTeX Warning: Hyper reference `manual:newcommands' on page 13 undefined on inp
-ut line 621.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 619--624
-[]\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
-s and sim-i-lar can be placed in files
-
-Underfull \hbox (badness 5359) in paragraph at lines 619--624
-\T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
-tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
-ee the sec-tion
-[13] [14] [15] [16] [17] [18]
-Chapter 5.
-[19] [20] [21] [22]
-Chapter 6.
-<streamtubes.png, id=169, 583.17876pt x 437.635pt> <use streamtubes.png>
-<use streamtubes.png> [23] [24 <./streamtubes.png>]
-
-LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 25 undefine
-d on input line 1419.
-
-[25]
-
-LaTeX Warning: Hyper reference `manual:doconce2formats' on page 26 undefined on
- input line 1568.
-
-
-LaTeX Warning: Hyper reference `manual:doconce2formats' on page 26 undefined on
- input line 1572.
-
-[26]
-
-LaTeX Warning: Hyper reference `manual:inline-tagging' on page 27 undefined on 
-input line 1605.
-
-
-LaTeX Warning: Hyper reference `manual:fig-viz' on page 27 undefined on input l
-ine 1660.
-
-
-LaTeX Warning: Hyper reference `manual:mathtext' on page 27 undefined on input 
-line 1662.
-
-
-LaTeX Warning: Hyper reference `manual:newcommands' on page 27 undefined on inp
-ut line 1662.
-
-[27]
-
-LaTeX Warning: Hyper reference `manual:inline-tagging' on page 28 undefined on 
-input line 1669.
-
-[28]
-
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 29 undefined o
-n input line 1766.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 29 undefined on input 
-line 1766.
-
-
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 29 undefined o
-n input line 1767.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 29 undefined on input 
-line 1767.
-
-[29] [30] [31] [32]
-! FancyVerb Error:
-  Empty verbatim environment
-.
-\FV@Error ... {FancyVerb Error:
-\space \space #1
-}
-                                                  
-l.2137 \end{Verbatim}
-                     
-? OK, entering \nonstopmode...
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2143.
-
-! Misplaced \omit.
-\math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
-                                                  \kern -\alignsep@ \iftag@ ...
-l.2143 \end{gather}
-                   
-! Misplaced \omit.
-\math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
-                                                  \kern -\alignsep@ \iftag@ ...
-l.2143 \end{gather}
-                   
-[33]
-Underfull \hbox (badness 10000) in paragraph at lines 2183--2189
-[]\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
-x.ext.mathjax' \T1/ptm/m/n/10 (en-abled by de-fault)
-
-Underfull \hbox (badness 10000) in paragraph at lines 2183--2189
-\T1/ptm/m/n/10 and \T1/pcr/m/n/10 'matplotlib.sphinxext.mathmpl' \T1/ptm/m/n/10
- (dis-abled by de-fault) lines, and un-com-ment the
-[34] [35]
-
-LaTeX Warning: Hyper reference `manual:doconce2formats' on page 36 undefined on
- input line 2331.
-
-[36] [37] [38]
-Chapter 7.
-[39] [40]
-
-LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 41 undefine
-d on input line 2693.
-
-[41] [42] [43] [44] [45] [46]
-Chapter 8.
-[47] [48]
-Chapter 9.
-[49] [50]
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
 No file DoconceManual.ind.
-[51] (./DoconceManual.aux)
-
-LaTeX Warning: There were undefined references.
-
+[3] (./DoconceManual.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
-(see the transcript file for additional information)pdfTeX warning (dest): name
-{??} has been referenced but does not exist, replaced by a fixed one
-
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-r7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
-r/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texl
-ive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/ur
-w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
-.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
-/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
-ri8a.pfb>
-Output written on DoconceManual.pdf (55 pages, 387740 bytes).
+(see the transcript file for additional information){/usr/share/texmf-texlive/f
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmri8a.pfb>
+Output written on DoconceManual.pdf (7 pages, 40748 bytes).
 Transcript written on DoconceManual.log.
-make: *** [DoconceManual.pdf] Error 1
+pdflatex  'DoconceManual.tex'
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./DoconceManual.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(./sphinxmanual.cls
+Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
+(/usr/share/texmf-texlive/tex/latex/base/report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo)))
+(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.def))
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def)))
+(/usr/share/texmf-texlive/tex/latex/psnfss/times.sty) (./fncychap.sty)
+(/usr/share/texmf-texlive/tex/latex/tools/longtable.sty) (./sphinx.sty
+(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.3 <2000/09/19> (tvz)
+) (/usr/share/texmf-texlive/tex/latex/titlesec/titlesec.sty) (./tabulary.sty
+(/usr/share/texmf-texlive/tex/latex/tools/array.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/framed.sty)
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def))
+(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz) (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty))
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/threeparttable.sty)
+(/usr/share/texmf-texlive/tex/latex/mdwtools/footnote.sty)
+(/usr/share/texmf-texlive/tex/latex/wrapfig/wrapfig.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/parskip.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)))
+(/usr/share/texmf-texlive/tex/plain/misc/pdfcolor.tex)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty))
+(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty))
+(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty))
+Implicit mode ON; LaTeX internals redefined
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty))
+*hyperref using default driver hpdftex*
+(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hypcap.sty))
+(/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty)
+Writing index file DoconceManual.idx
+(./DoconceManual.aux) (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1ptm.fd)
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty))
+(./DoconceManual.out) (./DoconceManual.out)
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fonts/ma
+p/pdftex/updmap/pdftex.map}] [2] (./DoconceManual.toc)
+Adding blank page after the table of contents.
+pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [1]pdfTeX warning (ext4): destination with the same iden
+tifier (name{page.ii}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [2] [1] [2]
+Chapter 1.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
+No file DoconceManual.ind.
+[3] (./DoconceManual.aux) )
+(see the transcript file for additional information){/usr/share/texmf-texlive/f
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceManual.pdf (7 pages, 50207 bytes).
+Transcript written on DoconceManual.log.
+pdflatex  'DoconceManual.tex'
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./DoconceManual.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(./sphinxmanual.cls
+Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
+(/usr/share/texmf-texlive/tex/latex/base/report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo)))
+(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.def))
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def)))
+(/usr/share/texmf-texlive/tex/latex/psnfss/times.sty) (./fncychap.sty)
+(/usr/share/texmf-texlive/tex/latex/tools/longtable.sty) (./sphinx.sty
+(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.3 <2000/09/19> (tvz)
+) (/usr/share/texmf-texlive/tex/latex/titlesec/titlesec.sty) (./tabulary.sty
+(/usr/share/texmf-texlive/tex/latex/tools/array.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/framed.sty)
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def))
+(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz) (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty))
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/threeparttable.sty)
+(/usr/share/texmf-texlive/tex/latex/mdwtools/footnote.sty)
+(/usr/share/texmf-texlive/tex/latex/wrapfig/wrapfig.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/parskip.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)))
+(/usr/share/texmf-texlive/tex/plain/misc/pdfcolor.tex)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty))
+(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty))
+(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty))
+Implicit mode ON; LaTeX internals redefined
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty))
+*hyperref using default driver hpdftex*
+(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hypcap.sty))
+(/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty)
+Writing index file DoconceManual.idx
+(./DoconceManual.aux) (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1ptm.fd)
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty))
+(./DoconceManual.out) (./DoconceManual.out)
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fonts/ma
+p/pdftex/updmap/pdftex.map}] [2] (./DoconceManual.toc)
+Adding blank page after the table of contents.
+pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [1]pdfTeX warning (ext4): destination with the same iden
+tifier (name{page.ii}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [2] [1] [2]
+Chapter 1.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd)
+No file DoconceManual.ind.
+[3] (./DoconceManual.aux) )
+(see the transcript file for additional information){/usr/share/texmf-texlive/f
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceManual.pdf (7 pages, 50207 bytes).
+Transcript written on DoconceManual.log.
+makeindex -s python.ist 'DoconceManual.idx'
+This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
+Scanning style file ./python.ist......done (6 attributes redefined, 0 ignored).
+Scanning input file DoconceManual.idx...done (0 entries accepted, 0 rejected).
+Nothing written in DoconceManual.ind.
+Transcript written in DoconceManual.ilg.
+pdflatex  'DoconceManual.tex'
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./DoconceManual.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(./sphinxmanual.cls
+Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
+(/usr/share/texmf-texlive/tex/latex/base/report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo)))
+(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.def))
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def)))
+(/usr/share/texmf-texlive/tex/latex/psnfss/times.sty) (./fncychap.sty)
+(/usr/share/texmf-texlive/tex/latex/tools/longtable.sty) (./sphinx.sty
+(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.3 <2000/09/19> (tvz)
+) (/usr/share/texmf-texlive/tex/latex/titlesec/titlesec.sty) (./tabulary.sty
+(/usr/share/texmf-texlive/tex/latex/tools/array.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/framed.sty)
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def))
+(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz) (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty))
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/threeparttable.sty)
+(/usr/share/texmf-texlive/tex/latex/mdwtools/footnote.sty)
+(/usr/share/texmf-texlive/tex/latex/wrapfig/wrapfig.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/parskip.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)))
+(/usr/share/texmf-texlive/tex/plain/misc/pdfcolor.tex)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty))
+(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty))
+(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty))
+Implicit mode ON; LaTeX internals redefined
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty))
+*hyperref using default driver hpdftex*
+(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hypcap.sty))
+(/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty)
+Writing index file DoconceManual.idx
+(./DoconceManual.aux) (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1ptm.fd)
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty))
+(./DoconceManual.out) (./DoconceManual.out)
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fonts/ma
+p/pdftex/updmap/pdftex.map}] [2] (./DoconceManual.toc)
+Adding blank page after the table of contents.
+pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [1]pdfTeX warning (ext4): destination with the same iden
+tifier (name{page.ii}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [2] [1] [2]
+Chapter 1.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) (./DoconceManual.ind)
+[3] (./DoconceManual.aux) )
+(see the transcript file for additional information){/usr/share/texmf-texlive/f
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceManual.pdf (7 pages, 50207 bytes).
+Transcript written on DoconceManual.log.
+pdflatex  'DoconceManual.tex'
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+entering extended mode
+(./DoconceManual.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(./sphinxmanual.cls
+Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
+(/usr/share/texmf-texlive/tex/latex/base/report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo)))
+(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu)
+(/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.def))
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def)))
+(/usr/share/texmf-texlive/tex/latex/psnfss/times.sty) (./fncychap.sty)
+(/usr/share/texmf-texlive/tex/latex/tools/longtable.sty) (./sphinx.sty
+(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.dfu)))
+(/usr/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.3 <2000/09/19> (tvz)
+) (/usr/share/texmf-texlive/tex/latex/titlesec/titlesec.sty) (./tabulary.sty
+(/usr/share/texmf-texlive/tex/latex/tools/array.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texmf-texlive/tex/latex/base/makeidx.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/framed.sty)
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def))
+(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz) (/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty))
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/threeparttable.sty)
+(/usr/share/texmf-texlive/tex/latex/mdwtools/footnote.sty)
+(/usr/share/texmf-texlive/tex/latex/wrapfig/wrapfig.sty)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/parskip.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty)
+(/etc/texmf/tex/latex/config/graphics.cfg)))
+(/usr/share/texmf-texlive/tex/plain/misc/pdfcolor.tex)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty))
+(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty))
+(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty))
+Implicit mode ON; LaTeX internals redefined
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty))
+*hyperref using default driver hpdftex*
+(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hypcap.sty))
+(/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty)
+Writing index file DoconceManual.idx
+(./DoconceManual.aux) (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1ptm.fd)
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty))
+(./DoconceManual.out) (./DoconceManual.out)
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fonts/ma
+p/pdftex/updmap/pdftex.map}] [2] (./DoconceManual.toc)
+Adding blank page after the table of contents.
+pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [1]pdfTeX warning (ext4): destination with the same iden
+tifier (name{page.ii}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.113 \tableofcontents
+                       [2] [1] [2]
+Chapter 1.
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd) (./DoconceManual.ind)
+[3] (./DoconceManual.aux) )
+(see the transcript file for additional information){/usr/share/texmf-texlive/f
+onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on DoconceManual.pdf (7 pages, 50207 bytes).
+Transcript written on DoconceManual.log.
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
 + cd ../../..
 + doconce format rst manual.do.txt --no-mako
@@ -75055,7 +75381,7 @@ Overfull \hbox (65.00006pt too wide) in paragraph at lines 1018--1018
 [10]
 Overfull \hbox (16.80876pt too wide) in paragraph at lines 1043--1049
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
-gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
+gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
 
 Overfull \hbox (6.80879pt too wide) in paragraph at lines 1081--1084
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
@@ -75683,7 +76009,7 @@ Overfull \hbox (65.00006pt too wide) in paragraph at lines 1018--1018
 [10]
 Overfull \hbox (16.80876pt too wide) in paragraph at lines 1043--1049
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
-gen-er-ates a script \T1/pcr/m/n/10 automake-sphinx.py
+gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
 
 Overfull \hbox (6.80879pt too wide) in paragraph at lines 1081--1084
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
@@ -76273,11 +76599,11 @@ latex-[]to-[]openofficeword .
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -76443,7 +76769,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (48 pages, 324994 bytes).
+Output written on manual.pdf (48 pages, 324992 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -76587,11 +76913,11 @@ latex-[]to-[]openofficeword .
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -76711,7 +77037,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (49 pages, 344832 bytes).
+Output written on manual.pdf (49 pages, 344830 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -76843,11 +77169,11 @@ latex-[]to-[]openofficeword .
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -76952,7 +77278,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (49 pages, 345553 bytes).
+Output written on manual.pdf (49 pages, 345551 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -77122,11 +77448,11 @@ Overfull \hbox (43.24687pt too wide) in paragraph at lines 750--751
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -77358,11 +77684,11 @@ Overfull \hbox (43.24687pt too wide) in paragraph at lines 750--751
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -77606,11 +77932,11 @@ Overfull \hbox (43.24687pt too wide) in paragraph at lines 750--751
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -77842,11 +78168,11 @@ Overfull \hbox (43.24687pt too wide) in paragraph at lines 750--751
 
 Overfull \hbox (6.8168pt too wide) in paragraph at lines 781--787
 []\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake-sphinx.py
+-mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
 
 Overfull \hbox (0.74806pt too wide) in paragraph at lines 788--806
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake-sphinx.py
+ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
 [12]
 Overfull \hbox (10.33038pt too wide) in paragraph at lines 816--819
 []\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
@@ -78369,58 +78695,28 @@ searching for TITLE in quickref.do.txt
 Using title "Doconce Quick Reference" from quickref.do.txt
 Title: Doconce Quick Reference
 Author: HPL
-These Sphinx themes were found: slim-agogo, default, pylons, agogo, traditional, cbc, flask, scrolls, sphinxdoc, solarized, classy, redcloud, epub, fenics_minimal, vlinux-theme, haiku, jal, agni, cloud, basic, fenics, nature, pyramid, default
-
-'automake-sphinx.py' contains the steps to (re)compile the sphinx
-version. You may want to edit this file, or run the steps manually,
-or just run it by
-
-  python automake-sphinx.py
-
-+ doconce replace doconce format sphinx %s doconce format sphinx %s --no-preprocess automake-sphinx.py
-replacing doconce format sphinx %s by doconce format sphinx %s --no-preprocess in automake-sphinx.py
-+ python automake-sphinx.py
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to sphinx
-copy complete file doconce_program.sh  (format: shpro)
-output in quickref.rst
-rm -rf _build/*
-sphinx-build -b html -d _build/doctrees   . _build/html
-Making output directory...
-Running Sphinx v1.1.3
-WARNING: extension 'sphinxjp.themes.solarized' has no setup() function; is it really a Sphinx extension module?
-loading pickled environment... not yet created
-building [html]: targets for 2 source files that are out of date
-updating environment: 2 added, 0 changed, 0 removed
-reading sources... [ 50%] index
-reading sources... [100%] quickref
-
-looking for now-outdated files... none found
-pickling environment... done
-checking consistency... done
-preparing documents... done
-writing output... [ 50%] index
-writing output... [100%] quickref
-
-writing additional files... (0 module code pages) genindex search
-copying static files... done
-dumping search index... done
-dumping object inventory... done
-build succeeded, 1 warning.
-
-Build finished. The HTML pages are in _build/html.
-
-
-
-running doconce format sphinx quickref --no-preprocess
-running doconce sphinxfix_localURLs quickref.rst
-running doconce guess_encoding quickref.rst
-/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir
-running make clean
-running make html
-
-google-chrome sphinx-rootdir/_build/html/index.html
-
+These Sphinx themes were found: default, agni, agogo, basic, cbc, classy, cloud, default, epub, fenics, fenics_minimal, flask, haiku, jal, nature, pylons, pyramid, redcloud, scrolls, slim-agogo, solarized, sphinxdoc, traditional, vlinux-theme
+Traceback (most recent call last):
+  File "/usr/local/bin/doconce", line 2418, in <module>
+    main()
+  File "/usr/local/bin/doconce", line 2408, in main
+    eval(command + '()')
+  File "<string>", line 1, in <module>
+  File "/usr/local/bin/doconce", line 999, in sphinx_dir
+    os.chmod('make_themes.sh', 0755)
+OSError: [Errno 2] No such file or directory: 'make_themes.sh'
++ doconce replace doconce format sphinx %s doconce format sphinx %s --no-preprocess automake_sphinx.py
+Traceback (most recent call last):
+  File "/usr/local/bin/doconce", line 2418, in <module>
+    main()
+  File "/usr/local/bin/doconce", line 2408, in main
+    eval(command + '()')
+  File "<string>", line 1, in <module>
+  File "/usr/local/bin/doconce", line 1384, in replace
+    f = open(filename, 'r')
+IOError: [Errno 2] No such file or directory: 'automake_sphinx.py'
++ python automake_sphinx.py
+python: can't open file 'automake_sphinx.py': [Errno 2] No such file or directory
 + cp quickref.rst quickref.sphinx.rst
 + doconce format rst quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
@@ -79054,6 +79350,7 @@ output in quickref.mkd
 + rm -rf demo
 + mkdir demo
 + cp -r quickref.do.txt quickref.html quickref.p.tex quickref.tex quickref.pdf quickref.rst quickref.xml quickref.rst.html quickref.rst.tex quickref.rst.pdf quickref.gwiki quickref.mwiki quickref.cwiki quickref.txt quickref.epytext quickref.st quickref.mkd sphinx-rootdir/_build/html demo
+cp: cannot stat `sphinx-rootdir/_build/html': No such file or directory
 + cd demo
 + cat
 + echo
