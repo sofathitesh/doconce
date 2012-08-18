@@ -487,13 +487,11 @@ around the = sign.</paragraph><paragraph>Note also that, like for <literal>TITLE
 related to a figure line <emphasis>must be written on the same line</emphasis>. Introducing
 newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as <literal>FIGURE:</literal> will be
-included in the formatted caption).</paragraph><target refid="fig-viz"/><figure ids="fig-viz" names="fig:viz"><image uri="figs/streamtubes.png" width="400"/><caption><emphasis>Streamtube visualization of a fluid flow</emphasis>  (fig:viz)</caption></figure><paragraph>Combining several image files into one can be done by the
-<literal>convert</literal> and <literal>montage</literal> programs from the ImageMagick suite:</paragraph><literal_block xml:space="preserve">montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png</literal_block><paragraph>Use <literal>+append</literal> for stacking left to right, <literal>-append</literal> for top to bottom.
-The positioning of the figures can be controlled by <literal>-gravity</literal>.</paragraph></section><section ids="movies" names="movies"><title>Movies</title><paragraph>Here is an example on the <literal>MOVIE:</literal> keyword for embedding movies. This
+included in the formatted caption).</paragraph><target refid="fig-viz"/><figure ids="fig-viz" names="fig:viz"><image uri="figs/streamtubes.png" width="400"/><caption><emphasis>Streamtube visualization of a fluid flow</emphasis>  (fig:viz)</caption></figure><paragraph>Combining several image files into one, in a table fashion, can be done by the
+<literal>montage</literal> program from the ImageMagick suite:</paragraph><literal_block xml:space="preserve">montage -background white -geometry 100% -tile 2x \
+        file1.png file2.png ... file4.png result.png</literal_block><paragraph>The option <literal>-tile XxY</literal> gives <literal>X</literal> figures in the horizontal direction and
+<literal>Y</literal> in the vertical direction (<literal>tile 2x</literal> means two figures per row
+and <literal>-tile x2</literal> means two rows).</paragraph></section><section ids="movies" names="movies"><title>Movies</title><paragraph>Here is an example on the <literal>MOVIE:</literal> keyword for embedding movies. This
 feature works well for the <literal>latex</literal>, <literal>html</literal>, <literal>rst</literal>, and <literal>sphinx</literal> formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie:</paragraph><literal_block xml:space="preserve">MOVIE: [filename, height=xxx width=yyy] possible caption</literal_block><comment xml:space="preserve">latex/PDF format can make use of the movie15 package for displaying movies,</comment><comment xml:space="preserve">or just plain \h`run: ...`_{...}</comment><raw format="html" xml:space="preserve">&lt;embed src=&quot;figs/mjolnir.mpeg&quot; width=600 height=470 autoplay=&quot;false&quot; loop=&quot;true&quot;&gt;&lt;/embed&gt;
@@ -1319,7 +1317,15 @@ For typesetting code, <literal>pygments</literal> is used (if installed) and can
 turned off by <literal>--no-pygments-html</literal> (leaving code in gray boxes).</paragraph><paragraph>The easiest way is to get fancy layouts in HTML is to
 use the <literal>sphinx</literal> format and one its many themes.</paragraph><paragraph>A third, more primitive alternative is to edit the style in the top of
 the HTML file (preferably done automatically via <literal>doconce replace</literal> and
-<literal>doconce subst</literal> in the script that generates the final documents).</paragraph></section></section><section ids="debugging" names="debugging"><title>Debugging</title><paragraph>Given a problem, extract a small portion of text surrounding the
+<literal>doconce subst</literal> in the script that generates the final documents).</paragraph></section><section ids="why-do-figures-look-ugly-when-using-html-templates" names="why\ do\ figures\ look\ ugly\ when\ using\ html\ templates?"><title>Why do figures look ugly when using HTML templates?</title><paragraph>The HTML header that Doconce generates contain special styles for
+figure captions and the horizontal rule above figures. When using
+templates these styles are not defined, resulting in a rule that
+spans the width and a centered caption. Changing the appearance
+of the rule and caption can either be done by inserting styles or
+simply by automatic editing of the HTML code in a little shell script:</paragraph><literal_block xml:space="preserve">doconce replace '&lt;p class=&quot;caption&quot;&gt;' \
+ '&lt;p style=&quot;width: 50%; font-style: italic; color: blue&quot;&gt;' mydoc.html
+doconce replace '&lt;hr class=&quot;figure&quot;&gt;' \
+ '&lt;hr style=&quot;width: 50%&quot;&gt;' mydoc.html</literal_block></section></section><section ids="debugging" names="debugging"><title>Debugging</title><paragraph>Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
 series of transformations of the text. The effect of each of these
 transformation steps are dumped to a logfile, named
@@ -1373,4 +1379,4 @@ the iterations.</paragraph></definition></definition_list_item></definition_list
 Springer, 2009.</paragraph></citation><citation backrefs="id7 id9" ids="osnes-98" names="osnes:98"><label>Osnes:98</label><paragraph>H. Osnes and H. P. Langtangen.
 An efficient probabilistic finite element method for stochastic
 groundwater flow.
-<emphasis>Advances in Water Resources</emphasis>, vol 22, 185-195, 1998.</paragraph></citation></section></section><section classes="system-messages"><title>Docutils System Messages</title><system_message backrefs="id11" ids="id10" level="3" line="1765" source="manual.rst" type="ERROR"><paragraph>Unknown target name: &quot;...&quot;.</paragraph></system_message></section></document>
+<emphasis>Advances in Water Resources</emphasis>, vol 22, 185-195, 1998.</paragraph></citation></section></section><section classes="system-messages"><title>Docutils System Messages</title><system_message backrefs="id11" ids="id10" level="3" line="1763" source="manual.rst" type="ERROR"><paragraph>Unknown target name: &quot;...&quot;.</paragraph></system_message></section></document>

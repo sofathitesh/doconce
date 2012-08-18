@@ -143,7 +143,13 @@ def html_figure(m):
 
     if caption:
        # Caption above figure and a horizontal rule (fine for anchoring):
-       return '<center><hr>\n<caption><i> %s </i></caption>\n<p><img src="%s" align="bottom" %s></p>\n</center>' % (caption, filename, opts)
+       return """
+<center> <! -- figure -->
+<hr class="figure">
+<center><p class="caption"> %s </p></center>
+<p><img src="%s" align="bottom" %s></p>
+</center>
+""" % (caption, filename, opts)
     else:
        # Just insert image file
        return '<center><p><img src="%s" align="bottom" %s></p></center>' % \
@@ -239,19 +245,37 @@ def html_movie(m):
 def html_author(authors_and_institutions, auth2index,
                 inst2index, index2inst, auth2email):
     text = '\n\n<! -- author(s) -->\n'
-    for author in auth2index:
-        email = auth2email[author]
-        if email is None:
+
+    def email(author):
+        address = auth2email[author]
+        if address is None:
             email_text = ''
         else:
-            name, adr = email.split('@')
-            email_text = ' (<tt>%s</tt> at <tt>%s</tt>)' % (name, adr)
+            name, place = address.split('@')
+            #email_text = ' (<tt>%s</tt> at <tt>%s</tt>)' % (name, place)
+            email_text = ' (<tt>%s at %s</tt>)' % (name, place)
+        return email_text
 
-        text += '\n<center>\n<b>%s</b> %s%s\n</center>\n' % \
-            (author, str(auth2index[author]), email_text)
-    text += '\n\n<p>\n<!-- institutions -->\n\n'
-    for index in index2inst:
-        text += '<center>[%d] <b>%s</b></center>\n' % (index, index2inst[index])
+    one_author_at_one_institution = False
+    if len(auth2index) == 1:
+        author = list(auth2index.keys())[0]
+        if len(auth2index[author]) == 1:
+            one_author_at_one_institution = True
+    if one_author_at_one_institution:
+        # drop index
+        author = list(auth2index.keys())[0]
+        text += '\n<center>\n<b>%s</b> %s\n</center>\n' % \
+            (author, email(author))
+        text += '\n\n<p>\n<!-- institution -->\n\n'
+        text += '<center><b>%s</b></center>\n' % (index2inst[1])
+    else:
+        for author in auth2index:
+            text += '\n<center>\n<b>%s</b> %s%s\n</center>\n' % \
+                (author, str(auth2index[author]), email(author))
+        text += '\n\n<p>\n<!-- institution(s) -->\n\n'
+        for index in index2inst:
+            text += '<center>[%d] <b>%s</b></center>\n' % \
+                    (index, index2inst[index])
     text += '\n\n'
     return text
 
@@ -279,10 +303,9 @@ def html_ref_and_label(section_label2title, format, filestr):
         filestr = filestr.replace('<a name="%s"></a>' % label, '')
         # make new anchor for this label (put in title):
         title = section_label2title[label]
-        title_pattern = r'(_{3,7}|={3,7})\s*%s\s*(_{3,7}|={3,7})' % re.escape(title)  # title may contain ? () etc. which fool next re.subn
-        filestr, n = re.subn(title_pattern,
-                     '\g<1> %s <a name="%s"></a> \g<2>' % (title, label),
-                     filestr)
+        title_pattern = r'(_{3,7}|={3,7})\s*%s\s*(_{3,7}|={3,7})' % re.escape(title)
+        title_new = '\g<1> %s <a name="%s"></a> \g<2>' % (title.replace('\\', '\\\\'), label)
+        filestr, n = re.subn(title_pattern, title_new, filestr)
         # (a little odd with mix of doconce title syntax and html NAME tag...)
         if n == 0:
             raise Exception('problem with substituting "%s"' % title)
@@ -302,19 +325,20 @@ def html_ref_and_label(section_label2title, format, filestr):
     # Number all figures, find all figure labels and replace their
     # references by the figure numbers
     # (note: figures are already handled!)
-    caption_pattern = r'^<caption><i>(.+?)</i>'
-    label_pattern = r'^<caption><i>.+?<a name="(.+?)">'
+    caption_start = '<p class="caption">'
+    caption_pattern = r'%s(.+?)</p>' % caption_start
+    label_pattern = r'%s.+?<a name="(.+?)">' % caption_start
     lines = filestr.splitlines()
     label2no = {}
     fig_no = 0
     for i in range(len(lines)):
-        if lines[i].startswith('<caption>'):
+        if caption_start in lines[i]:
             m = re.search(caption_pattern, lines[i])
             if m:
                 fig_no += 1
                 caption = m.group(1)
-                from_ = '<caption><i>' + caption
-                to_ = '<caption><i>Figure %d: ' % fig_no + caption
+                from_ = caption_start + caption
+                to_ = caption_start + 'Figure %d: ' % fig_no + caption
                 lines[i] = lines[i].replace(from_, to_)
 
             m = re.search(label_pattern, lines[i])
@@ -425,7 +449,7 @@ def define(FILENAME_EXTENSION,
         # keep math as is:
         'math':          r'\g<begin>\( \g<subst> \)\g<end>',
         #'math2':         r'\g<begin>\g<puretext>\g<end>',
-        'math2':         r'\g<begin>\( \g<latexmath> \)o\g<end>',
+        'math2':         r'\g<begin>\( \g<latexmath> \)\g<end>',
         'emphasize':     r'\g<begin><em>\g<subst></em>\g<end>',
         'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
         'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
@@ -446,9 +470,6 @@ def define(FILENAME_EXTENSION,
         'title':         r'\n<title>\g<subst></title>\n\n<center><h1>\g<subst></h1></center>  <! -- document title -->\n',
         'date':          r'<center><h4>\g<subst></h4></center> <!-- date -->',
         'author':        html_author,
-        #'figure':        r'<p><em>\g<caption></em></p><img src="\g<filename>" align="bottom" \g<options>>',
-        #'figure':        r'<img src="\g<filename>" align="bottom" \g<options>> <p><em>\g<caption></em></p>',
-        #'figure':        r'<center><img src="\g<filename>" align="bottom" \g<options>> <br><caption><i>\g<caption></i></caption></center>',
         'figure':        html_figure,
         'movie':         html_movie,
         'comment':       '<!-- %s -->',
@@ -513,7 +534,7 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
       font-family: Helvetica, Arial, FreeSans, san-serif;
       color: #000000;
     }
-    h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
+    h1 { font-size: 1.8em; color: #1e36ce; }
     h2 { font-size: 1.5em; color: #1e36ce; }
     h3 { color: #1e36ce; }
     a { color: #1e36ce; text-decoration:none; }
@@ -521,6 +542,8 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
     pre { background: #ededed; color: #000; padding: 15px;}
     p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 </style>
 
 <!-- Use MathJax to render mathematics -->
@@ -542,6 +565,7 @@ MathJax.Hub.Config({
 
 <body>
     """
+    # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
 
     newcommands_files = glob.glob('newcommands*[^p].tex')
     newcommands = ''

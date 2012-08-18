@@ -21,7 +21,7 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
       font-family: Helvetica, Arial, FreeSans, san-serif;
       color: #000000;
     }
-    h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
+    h1 { font-size: 1.8em; color: #1e36ce; }
     h2 { font-size: 1.5em; color: #1e36ce; }
     h3 { color: #1e36ce; }
     a { color: #1e36ce; text-decoration:none; }
@@ -29,6 +29,8 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
     pre { background: #ededed; color: #000; padding: 15px;}
     p { text-indent: 0px; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 </style>
 
 <!-- Use MathJax to render mathematics -->
@@ -74,7 +76,7 @@ $$
 
 
 <p>
-<!-- institutions -->
+<!-- institution(s) -->
 
 <center>[1] <b>Simula Research Laboratory</b></center>
 <center>[2] <b>University of Oslo</b></center>
@@ -1442,25 +1444,28 @@ part of the caption appearing on the same line as <tt>FIGURE:</tt> will be
 included in the formatted caption).
 
 <p>
-<center><hr>
-<caption><i>Figure 1:  Streamtube visualization of a fluid flow. <a name="fig:viz"></a> </i></caption>
+
+<p>
+<center> <! -- figure -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  Streamtube visualization of a fluid flow. <a name="fig:viz"></a> </p></center>
 <p><img src="figs/streamtubes.png" align="bottom" width=400></p>
 </center>
 
 <p>
-Combining several image files into one can be done by the
-<tt>convert</tt> and <tt>montage</tt> programs from the ImageMagick suite:
+
+<p>
+Combining several image files into one, in a table fashion, can be done by the
+<tt>montage</tt> program from the ImageMagick suite:
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
-montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png
+montage -background white -geometry 100% -tile 2x \
+        file1.png file2.png ... file4.png result.png
 </pre>
 </blockquote>   <! -- end verbatim block -->
-Use <tt>+append</tt> for stacking left to right, <tt>-append</tt> for top to bottom.
-The positioning of the figures can be controlled by <tt>-gravity</tt>.
+The option <tt>-tile XxY</tt> gives <tt>X</tt> figures in the horizontal direction and
+<tt>Y</tt> in the vertical direction (<tt>tile 2x</tt> means two figures per row
+and <tt>-tile x2</tt> means two rows).
 
 <p>
 
@@ -1552,7 +1557,7 @@ the section <a href="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> 
 <p>
 Doconce supports tags for <em>emphasized phrases</em>, <b>boldface phrases</b>,
 and <tt>verbatim text</tt> (also called type writer text, for inline code)
-plus LaTeX/TeX inline mathematics, such as \( \nu = \sin(x) \)o.
+plus LaTeX/TeX inline mathematics, such as \( \nu = \sin(x) \).
 
 <p>
 Emphasized text is typeset inside a pair of asterisk, and there should
@@ -1743,9 +1748,9 @@ dollar signs and separated by a pipe symbol, the expression to the
 left is used in formats with LaTeX support (<tt>latex</tt>, <tt>pdflatex</tt>, <tt>html</tt>,
 <tt>sphinx</tt>, <tt>mwiki</tt>), while the expression to the right is used for
 all other formats.  The above text is typeset as "Here is an example
-on a linear system \( {\bf A}{\bf x} = {\bf b} \)o, where \( \bf A \)o
-is an \( n\times n \)o matrix, and \( \bf x \)o and \( \bf b \)o
-are vectors of length \( n \)o."
+on a linear system \( {\bf A}{\bf x} = {\bf b} \), where \( \bf A \)
+is an \( n\times n \) matrix, and \( \bf x \) and \( \bf b \)
+are vectors of length \( n \)."
 
 <p>
 
@@ -3300,9 +3305,30 @@ the HTML file (preferably done automatically via <tt>doconce replace</tt> and
 
 <p>
 
+<h4>Why do figures look ugly when using HTML templates?  <a name="___sec83"></a></h4>
+<p>
+The HTML header that Doconce generates contain special styles for
+figure captions and the horizontal rule above figures. When using
+templates these styles are not defined, resulting in a rule that
+spans the width and a centered caption. Changing the appearance
+of the rule and caption can either be done by inserting styles or
+simply by automatic editing of the HTML code in a little shell script:
+
+<p>
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+doconce replace '&lt;p class="caption"&gt;' \
+ '&lt;p style="width: 50%; font-style: italic; color: blue"&gt;' mydoc.html
+doconce replace '&lt;hr class="figure"&gt;' \
+ '&lt;hr style="width: 50%"&gt;' mydoc.html
+</pre>
+</blockquote>   <! -- end verbatim block -->
+
 <p>
 
-<h3>Debugging  <a name="___sec83"></a></h3>
+<p>
+
+<h3>Debugging  <a name="___sec84"></a></h3>
 <p>
 Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
@@ -3320,7 +3346,7 @@ format, and you need to know these steps to make use of the logfile.
 
 <p>
 
-<h2>Basic Parsing Ideas  <a name="___sec84"></a></h2>
+<h2>Basic Parsing Ideas  <a name="___sec85"></a></h2>
 <p>
 <!-- avoid list here since we have code in between (never a good idea) -->
 
@@ -3377,7 +3403,7 @@ LaTeX, and work further on the document in this format.
 
 <p>
 
-<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec85"></a></h3>
+<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec86"></a></h3>
 <p>
 As part of comments (or doc strings) in computer code one often wishes
 to explain what a function takes of arguments and what the return

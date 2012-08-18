@@ -70,7 +70,7 @@ def syntax_check(filestr, format):
         sys.exit(1)
 
     # Code blocks cannot come directly after tables or headings.
-    # Remove idx{} and label{} since these will be move for rst.
+    # Remove idx{} and label{} since these will be moved for rst.
     # Also remove all comments since these are also "invisible"
     filestr2 = filestr
     for tag in 'label', 'idx':
@@ -1342,7 +1342,7 @@ def inline_tag_subst(filestr, format):
         #'figure',  # done separately
         'abstract',  # must become before sections since it tests on ===
         # important to do section, subsection, etc. BEFORE paragraph and bold:
-        'emphasize', 'math2', 'math',
+        'emphasize', 'math2', 'math',  # must come after sections
         'chapter', 'section', 'subsection', 'subsubsection',
         'bold',
         'inlinecomment',

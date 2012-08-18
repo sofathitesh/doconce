@@ -53,7 +53,7 @@
 \input{newcommands_keep}
 
 
-% ----------------- Title -------------------------
+% ----------------- title -------------------------
 
 \begin{center}
 {\LARGE\bf Doconce Description}
@@ -62,7 +62,7 @@
 
 
 
-% ----------------- Author(s) -------------------------
+% ----------------- author(s) -------------------------
 
 \begin{center}
 {\bf Hans Petter Langtangen${}^{1, 2}$} \\ [0mm]
@@ -73,16 +73,18 @@
 \centerline{{\small ${}^1$Simula Research Laboratory}}
 \centerline{{\small ${}^2$University of Oslo}}
 \end{center}
-% ----------------- End of author(s) -------------------------
+% ----------------- end author(s) -------------------------
 
 
 
-% ----------------- Date -------------------------
+% ----------------- date -------------------------
 
 
 \begin{center}
 Aug 18, 2012
 \end{center}
+
+\vspace{1cm}
 
 
 
@@ -1218,17 +1220,15 @@ included in the formatted caption).
 \end{figure}
 
 
-Combining several image files into one can be done by the
-{\fontsize{10pt}{10pt}\verb!convert!} and {\fontsize{10pt}{10pt}\verb!montage!} programs from the ImageMagick suite:
+Combining several image files into one, in a table fashion, can be done by the
+{\fontsize{10pt}{10pt}\verb!montage!} program from the ImageMagick suite:
 \begin{Verbatim}
-montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png
+montage -background white -geometry 100% -tile 2x \
+        file1.png file2.png ... file4.png result.png
 \end{Verbatim}
-Use {\fontsize{10pt}{10pt}\verb!+append!} for stacking left to right, {\fontsize{10pt}{10pt}\verb!-append!} for top to bottom.
-The positioning of the figures can be controlled by {\fontsize{10pt}{10pt}\verb!-gravity!}.
+The option {\fontsize{10pt}{10pt}\verb!-tile XxY!} gives {\fontsize{10pt}{10pt}\verb!X!} figures in the horizontal direction and
+{\fontsize{10pt}{10pt}\verb!Y!} in the vertical direction ({\fontsize{10pt}{10pt}\verb!tile 2x!} means two figures per row
+and {\fontsize{10pt}{10pt}\verb!-tile x2!} means two rows).
 
 \subsection{Movies}
 
@@ -2707,6 +2707,21 @@ use the {\fontsize{10pt}{10pt}\verb!sphinx!} format and one its many themes.
 A third, more primitive alternative is to edit the style in the top of
 the HTML file (preferably done automatically via {\fontsize{10pt}{10pt}\verb!doconce replace!} and
 {\fontsize{10pt}{10pt}\verb!doconce subst!} in the script that generates the final documents).
+
+\paragraph{Why do figures look ugly when using HTML templates?.}
+The HTML header that Doconce generates contain special styles for
+figure captions and the horizontal rule above figures. When using
+templates these styles are not defined, resulting in a rule that
+spans the width and a centered caption. Changing the appearance
+of the rule and caption can either be done by inserting styles or
+simply by automatic editing of the HTML code in a little shell script:
+
+\begin{Verbatim}
+doconce replace '<p class="caption">' \
+ '<p style="width: 50%; font-style: italic; color: blue">' mydoc.html
+doconce replace '<hr class="figure">' \
+ '<hr style="width: 50%">' mydoc.html
+\end{Verbatim}
 
 \subsection{Debugging}
 

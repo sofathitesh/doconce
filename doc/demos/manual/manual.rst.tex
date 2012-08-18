@@ -1572,20 +1572,18 @@ included in the formatted caption).
 \caption{\emph{Streamtube visualization of a fluid flow}  (fig:viz)}
 \end{figure}
 
-Combining several image files into one can be done by the
-\texttt{convert} and \texttt{montage} programs from the ImageMagick suite:
+Combining several image files into one, in a table fashion, can be done by the
+\texttt{montage} program from the ImageMagick suite:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-montage~file1~file2~...~file4~-geometry~+2+2~~result\\
-montage~file1~file2~-tile~x1~result\\
-montage~file1~file2~-tile~1x~result\\
-~\\
-convert~-background~white~file1~file2~+append~tmp
+montage~-background~white~-geometry~100\%~-tile~2x~\textbackslash{}\\
+~~~~~~~~file1~file2~...~file4~result
 }
 \end{quote}
 
-Use \texttt{+append} for stacking left to right, \texttt{-append} for top to bottom.
-The positioning of the figures can be controlled by \texttt{-gravity}.
+The option \texttt{-tile XxY} gives \texttt{X} figures in the horizontal direction and
+\texttt{Y} in the vertical direction (\texttt{tile 2x} means two figures per row
+and \texttt{-tile x2} means two rows).
 
 
 %___________________________________________________________________________
@@ -3707,6 +3705,30 @@ the HTML file (preferably done automatically via \texttt{doconce replace} and
 
 %___________________________________________________________________________
 
+\subsubsection*{\phantomsection%
+  Why do figures look ugly when using HTML templates?%
+  \addcontentsline{toc}{subsubsection}{Why do figures look ugly when using HTML templates?}%
+  \label{why-do-figures-look-ugly-when-using-html-templates}%
+}
+
+The HTML header that Doconce generates contain special styles for
+figure captions and the horizontal rule above figures. When using
+templates these styles are not defined, resulting in a rule that
+spans the width and a centered caption. Changing the appearance
+of the rule and caption can either be done by inserting styles or
+simply by automatic editing of the HTML code in a little shell script:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+doconce~replace~'<p~class="caption">'~\textbackslash{}\\
+~'<p~style="width:~50\%;~font-style:~italic;~color:~blue">'~mydoc.html\\
+doconce~replace~'<hr~class="figure">'~\textbackslash{}\\
+~'<hr~style="width:~50\%">'~mydoc.html
+}
+\end{quote}
+
+
+%___________________________________________________________________________
+
 \subsection*{\phantomsection%
   Debugging%
   \addcontentsline{toc}{subsection}{Debugging}%
@@ -3848,7 +3870,7 @@ groundwater flow.
 \DUtitle[system-message]{system-message}
 \raisebox{1em}{\hypertarget{id10}{}}
 
-{\color{red}ERROR/3} in \texttt{manual.rst}, line~1765
+{\color{red}ERROR/3} in \texttt{manual.rst}, line~1763
 
 \hyperlink{id11}{
 Unknown target name: ``...''.

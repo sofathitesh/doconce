@@ -1311,17 +1311,15 @@ included in the formatted caption).</p>
 <img alt="figs/streamtubes.png" src="figs/streamtubes.png" style="width: 400px;" />
 <p class="caption"><em>Streamtube visualization of a fluid flow</em>  (fig:viz)</p>
 </div>
-<p>Combining several image files into one can be done by the
-<tt class="docutils literal">convert</tt> and <tt class="docutils literal">montage</tt> programs from the ImageMagick suite:</p>
+<p>Combining several image files into one, in a table fashion, can be done by the
+<tt class="docutils literal">montage</tt> program from the ImageMagick suite:</p>
 <pre class="literal-block">
-montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png
+montage -background white -geometry 100% -tile 2x \
+        file1.png file2.png ... file4.png result.png
 </pre>
-<p>Use <tt class="docutils literal">+append</tt> for stacking left to right, <tt class="docutils literal"><span class="pre">-append</span></tt> for top to bottom.
-The positioning of the figures can be controlled by <tt class="docutils literal"><span class="pre">-gravity</span></tt>.</p>
+<p>The option <tt class="docutils literal"><span class="pre">-tile</span> XxY</tt> gives <tt class="docutils literal">X</tt> figures in the horizontal direction and
+<tt class="docutils literal">Y</tt> in the vertical direction (<tt class="docutils literal">tile 2x</tt> means two figures per row
+and <tt class="docutils literal"><span class="pre">-tile</span> x2</tt> means two rows).</p>
 </div>
 <div class="section" id="movies">
 <h2>Movies</h2>
@@ -2733,6 +2731,21 @@ use the <tt class="docutils literal">sphinx</tt> format and one its many themes.
 the HTML file (preferably done automatically via <tt class="docutils literal">doconce replace</tt> and
 <tt class="docutils literal">doconce subst</tt> in the script that generates the final documents).</p>
 </div>
+<div class="section" id="why-do-figures-look-ugly-when-using-html-templates">
+<h3>Why do figures look ugly when using HTML templates?</h3>
+<p>The HTML header that Doconce generates contain special styles for
+figure captions and the horizontal rule above figures. When using
+templates these styles are not defined, resulting in a rule that
+spans the width and a centered caption. Changing the appearance
+of the rule and caption can either be done by inserting styles or
+simply by automatic editing of the HTML code in a little shell script:</p>
+<pre class="literal-block">
+doconce replace '&lt;p class=&quot;caption&quot;&gt;' \
+ '&lt;p style=&quot;width: 50%; font-style: italic; color: blue&quot;&gt;' mydoc.html
+doconce replace '&lt;hr class=&quot;figure&quot;&gt;' \
+ '&lt;hr style=&quot;width: 50%&quot;&gt;' mydoc.html
+</pre>
+</div>
 </div>
 <div class="section" id="debugging">
 <h2>Debugging</h2>
@@ -2838,7 +2851,7 @@ groundwater flow.
 <div class="system-messages section">
 <h1>Docutils System Messages</h1>
 <div class="system-message" id="id10">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">manual.rst</tt>, line 1765); <em><a href="#id11">backlink</a></em></p>
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">manual.rst</tt>, line 1763); <em><a href="#id11">backlink</a></em></p>
 Unknown target name: &quot;...&quot;.</div>
 </div>
 </div>

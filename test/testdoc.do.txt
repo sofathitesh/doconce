@@ -112,6 +112,10 @@ there is a flow.
 
 FIGURE:[../doc/manual/figs/streamtubes, width=200] Visualization of flow by streamtubes. label{fig:impact}
 
+Figures without captions are allowed.
+
+FIGURE:[../doc/manual/figs/streamtubes, width=200]
+
 idx{movies}
 Test of movies.
 
