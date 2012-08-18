@@ -1026,17 +1026,15 @@ included in the formatted caption).</p>
 <img alt="_images/streamtubes.png" src="_images/streamtubes.png" style="width: 400px;" />
 <p class="caption"><em>Streamtube visualization of a fluid flow</em></p>
 </div>
-<p>Combining several image files into one can be done by the
-<tt class="docutils literal"><span class="pre">convert</span></tt> and <tt class="docutils literal"><span class="pre">montage</span></tt> programs from the ImageMagick suite:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">montage file1.png file2.png ... file4.png -geometry +2+2  result.png</span>
-<span class="go">montage file1.png file2.png -tile x1 result.png</span>
-<span class="go">montage file1.png file2.png -tile 1x result.png</span>
-
-<span class="go">convert -background white file1.png file2.png +append tmp.png</span>
+<p>Combining several image files into one, in a table fashion, can be done by the
+<tt class="docutils literal"><span class="pre">montage</span></tt> program from the ImageMagick suite:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">montage -background white -geometry 100% -tile 2x \</span>
+<span class="go">        file1.png file2.png ... file4.png result.png</span>
 </pre></div>
 </div>
-<p>Use <tt class="docutils literal"><span class="pre">+append</span></tt> for stacking left to right, <tt class="docutils literal"><span class="pre">-append</span></tt> for top to bottom.
-The positioning of the figures can be controlled by <tt class="docutils literal"><span class="pre">-gravity</span></tt>.</p>
+<p>The option <tt class="docutils literal"><span class="pre">-tile</span> <span class="pre">XxY</span></tt> gives <tt class="docutils literal"><span class="pre">X</span></tt> figures in the horizontal direction and
+<tt class="docutils literal"><span class="pre">Y</span></tt> in the vertical direction (<tt class="docutils literal"><span class="pre">tile</span> <span class="pre">2x</span></tt> means two figures per row
+and <tt class="docutils literal"><span class="pre">-tile</span> <span class="pre">x2</span></tt> means two rows).</p>
 </div>
 <div class="section" id="movies">
 <h2>Movies<a class="headerlink" href="#movies" title="Permalink to this headline">¶</a></h2>
@@ -2406,6 +2404,21 @@ use the <tt class="docutils literal"><span class="pre">sphinx</span></tt> format
 the HTML file (preferably done automatically via <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">replace</span></tt> and
 <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">subst</span></tt> in the script that generates the final documents).</p>
 </div>
+<div class="section" id="why-do-figures-look-ugly-when-using-html-templates">
+<h3>Why do figures look ugly when using HTML templates?<a class="headerlink" href="#why-do-figures-look-ugly-when-using-html-templates" title="Permalink to this headline">¶</a></h3>
+<p>The HTML header that Doconce generates contain special styles for
+figure captions and the horizontal rule above figures. When using
+templates these styles are not defined, resulting in a rule that
+spans the width and a centered caption. Changing the appearance
+of the rule and caption can either be done by inserting styles or
+simply by automatic editing of the HTML code in a little shell script:</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="n">doconce</span> <span class="n">replace</span> <span class="s">&#39;&lt;p class=&quot;caption&quot;&gt;&#39;</span> \
+ <span class="s">&#39;&lt;p style=&quot;width: 50%; font-style: italic; color: blue&quot;&gt;&#39;</span> <span class="n">mydoc</span><span class="o">.</span><span class="n">html</span>
+<span class="n">doconce</span> <span class="n">replace</span> <span class="s">&#39;&lt;hr class=&quot;figure&quot;&gt;&#39;</span> \
+ <span class="s">&#39;&lt;hr style=&quot;width: 50%&quot;&gt;&#39;</span> <span class="n">mydoc</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="debugging">
 <h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
@@ -2625,6 +2638,7 @@ groundwater flow.
 </li>
 <li><a class="reference internal" href="#problems-with-html-output">Problems with HTML Output</a><ul>
 <li><a class="reference internal" href="#how-can-i-change-the-layout-of-the-html-page">How can I change the layout of the HTML page?</a></li>
+<li><a class="reference internal" href="#why-do-figures-look-ugly-when-using-html-templates">Why do figures look ugly when using HTML templates?</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#debugging">Debugging</a></li>

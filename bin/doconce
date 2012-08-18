@@ -1692,10 +1692,11 @@ def ptex2tex():
 
     # Run preprocess
     if not preprocess_options:
-        preprocess_options = ['-DLATEX_HEADING=traditional']
+        #preprocess_options = ['-DLATEX_HEADING=traditional']
+        # We do not need -DMINTED here because the minted package
+        # is ensured below using the packages list
+        pass
 
-    # We do not need -DMINTED here because the minted package
-    # is ensured below using the packages list
 
     cmd = 'preprocess %s %s > %s' % \
           (' '.join(preprocess_options),

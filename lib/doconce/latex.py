@@ -229,7 +229,7 @@ def latex_title(m):
 
     text = fix_latex_command_regex(pattern=r"""
 
-%% ----------------- Title -------------------------
+%% ----------------- title -------------------------
 %% #if LATEX_HEADING == "traditional"
 
 \title{%s}
@@ -260,9 +260,31 @@ def latex_title(m):
 
 def latex_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):
+    def email(author, prefix='', parenthesis=True):
+        address = auth2email[author]
+        if address is None:
+            email_text = ''
+        else:
+            if parenthesis:
+                lp, rp = '(', ')'
+            else:
+                lp, rp = '', ''
+            address = address.replace('_', r'\_')
+            name, place = address.split('@')
+            #email_text = r'%s %s\texttt{%s} at \texttt{%s}%s' % (prefix, lp, name, place, rp)
+            email_text = r'%s %s\texttt{%s@%s}%s' % \
+                         (prefix, lp, name, place, rp)
+        return email_text
+
+    one_author_at_one_institution = False
+    if len(auth2index) == 1:
+        author = list(auth2index.keys())[0]
+        if len(auth2index[author]) == 1:
+            one_author_at_one_institution = True
+
     text = r"""
 
-% ----------------- Author(s) -------------------------
+% ----------------- author(s) -------------------------
 % #if LATEX_HEADING == "traditional"
 \author{"""
 
@@ -270,13 +292,7 @@ def latex_author(authors_and_institutions, auth2index,
     author_command = []
     for a, i, e in authors_and_institutions:
         a_text = a
-        if e is not None:
-            e = e.replace('_', r'\_')
-            name, adr = e.split('@')
-            #e_text = r'Email: \texttt{%s} at \texttt{%s}' % (name, adr)
-            e_text = r'Email: \texttt{%s@%s}' % (name, adr)
-        else:
-            e_text = ''
+        e_text = email(a, prefix='Email:', parenthesis=False)
         if i is not None:
             a_text += r'\footnote{'
             if len(i) == 1:
@@ -290,7 +306,9 @@ def latex_author(authors_and_institutions, auth2index,
                 a_text += e_text + '. ' + i_text
             else:
                 a_text += i_text
-            a_text += '.}'
+            if not a_text.endswith('.'):
+                a_text += '.'
+            a_text += '}'
         else: # Just email
             if e_text:
                 a_text += r'\footnote{%s.}' % e_text
@@ -303,25 +321,28 @@ def latex_author(authors_and_institutions, auth2index,
 % #elif LATEX_HEADING == "titlepage"
 \vspace{1.3cm}
 """
-    for author in auth2index: # correct order of authors
-        email = auth2email[author]
-        if email is None:
-            email_text = ''
-        else:
-            email = email.replace('_', r'\_')
-            name, adr = email.split('@')
-            #email_text = r' (\texttt{%s} at \texttt{%s})' % (name, adr)
-            email_text = r' (\texttt{%s@%s})' % (name, adr)
+    if one_author_at_one_institution:
+        author = list(auth2index.keys())[0]
+        email_text = email(author)
         text += r"""
-{\Large\textsf{%s${}^{%s}$%s}}\\ [3mm]
-""" % (author, str(auth2index[author])[1:-1], email_text)
+{\Large\textsf{%s%s}}\\ [3mm]
+""" % (author, email_text)
+    else:
+        for author in auth2index: # correct order of authors
+            email_text = email(author)
+            text += r"""
+    {\Large\textsf{%s${}^{%s}$%s}}\\ [3mm]
+    """ % (author, str(auth2index[author])[1:-1], email_text)
     text += r"""
 \ \\ [2mm]
 """
-    for index in index2inst:
+    if one_author_at_one_institution:
         text += r"""
-{\large\textsf{${}^%d$%s} \\ [1.5mm]}""" % \
-                (index, index2inst[index])
+{\large\textsf{%s} \\ [1.5mm]}""" % (index2inst[1])
+    else:
+        for index in index2inst:
+            text += r"""
+{\large\textsf{${}^%d$%s} \\ [1.5mm]}""" % (index, index2inst[index])
 
     text += r"""
 % #elif LATEX_HEADING == "Springer-collection"
@@ -346,16 +367,19 @@ def latex_author(authors_and_institutions, auth2index,
     text += r"""
 % #else
 """
-    for author in auth2index: # correct order of authors
-        email = auth2email[author]
-        if email is None:
-            email_text = ''
-        else:
-            email = email.replace('_', r'\_')
-            name, adr = email.split('@')
-            #email_text = r' (\texttt{%s} \emph{at} \texttt{%s})' % (name, adr)
-            email_text = r' (\texttt{%s@%s})' % (name, adr)
+    if one_author_at_one_institution:
+        author = list(auth2index.keys())[0]
+        email_text = email(author)
         text += r"""
+\begin{center}
+{\bf %s%s}
+\end{center}
+
+""" % (author, email_text)
+    else:
+        for author in auth2index: # correct order of authors
+            email_text = email(author)
+            text += r"""
 \begin{center}
 {\bf %s${}^{%s}$%s} \\ [0mm]
 \end{center}
@@ -363,13 +387,17 @@ def latex_author(authors_and_institutions, auth2index,
 """ % (author, str(auth2index[author])[1:-1], email_text)
 
     text += r'\begin{center}' + '\n' + '% List of all institutions:\n'
-    for index in index2inst:
-        text += r"""\centerline{{\small ${}^%d$%s}}""" % \
-                (index, index2inst[index]) + '\n'
+    if one_author_at_one_institution:
+        text += r"""\centerline{{\small %s}}""" % \
+                (index2inst[1]) + '\n'
+    else:
+        for index in index2inst:
+            text += r"""\centerline{{\small ${}^%d$%s}}""" % \
+                    (index, index2inst[index]) + '\n'
 
     text += r"""\end{center}
 % #endif
-% ----------------- End of author(s) -------------------------
+% ----------------- end author(s) -------------------------
 
 """
     return text
@@ -574,7 +602,7 @@ def define(FILENAME_EXTENSION,
         #'date':          r'\\date{\g<subst>}' ' \n\\maketitle\n\n',
         'date':          fix_latex_command_regex(pattern=r"""
 
-% ----------------- Date -------------------------
+% ----------------- date -------------------------
 
 % #if LATEX_HEADING == "traditional"
 
@@ -595,6 +623,8 @@ def define(FILENAME_EXTENSION,
 \begin{center}
 \g<subst>
 \end{center}
+
+\vspace{1cm}
 
 % #endif
 

@@ -362,9 +362,9 @@ class Doconce(_BaseWriter):
         self.file.write(s)
         self.paragraph_separator()
 
-    def heading(self, underscores, title, label=None):
-        underscores = '_'*underscores
-        self.file.write('\n%s%s%s\n\n' % (underscores, title, underscores))
+    def heading(self, level, title, label=None):
+        decoration = '='*level
+        self.file.write('\n%s %s %s\n\n' % (decoration, title, decoration))
 
     def section(self, title, label=None):
         self.heading(7, title, label)

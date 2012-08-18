@@ -215,13 +215,14 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
         pattern = r'(_{3,7}|={3,7})(\s*%s\s*)(_{3,7}|={3,7})\s*label\{%s\}' \
                   % (re.escape(title), label)
         # (title may contain ? () etc., that's why we take re.escape)
+        title_new = title.replace('\\', '\\\\')  # avoid trouble with \t, \n
         try:
-            new_title = adjusted_titles[(title,label)]
-            debugtext += 'Found an adjusted title: %s\n' % new_title
+            title_new = adjusted_titles[(title_new, label)]
+            debugtext += 'Found an adjusted title: %s\n' % title_new
         except KeyError:
-            new_title = title
+            pass
         replacement = '.. _%s:\n\n' % label + r'\g<1> %s \g<3>' % \
-                      new_title
+                      title_new
         filestr, n = re.subn(pattern, replacement, filestr)
         if n == 0:
             raise Exception('problem with substituting "%s"' % title)

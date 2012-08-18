@@ -1038,17 +1038,15 @@ googlecode repository) and substitute the line above with the URL.
 
 
 
-Combining several image files into one can be done by the
-`convert` and `montage` programs from the ImageMagick suite:
+Combining several image files into one, in a table fashion, can be done by the
+`montage` program from the ImageMagick suite:
 {{{
-montage file1.png file2.png ... file4.png -geometry +2+2  result.png
-montage file1.png file2.png -tile x1 result.png
-montage file1.png file2.png -tile 1x result.png
-
-convert -background white file1.png file2.png +append tmp.png
+montage -background white -geometry 100% -tile 2x \
+        file1.png file2.png ... file4.png result.png
 }}}
-Use `+append` for stacking left to right, `-append` for top to bottom.
-The positioning of the figures can be controlled by `-gravity`.
+The option `-tile XxY` gives `X` figures in the horizontal direction and
+`Y` in the vertical direction (`tile 2x` means two figures per row
+and `-tile x2` means two rows).
 
 ==== Movies ====
 
@@ -2487,6 +2485,22 @@ use the `sphinx` format and one its many themes.
 A third, more primitive alternative is to edit the style in the top of
 the HTML file (preferably done automatically via `doconce replace` and
 `doconce subst` in the script that generates the final documents).
+
+==== Why do figures look ugly when using HTML templates? ====
+
+The HTML header that Doconce generates contain special styles for
+figure captions and the horizontal rule above figures. When using
+templates these styles are not defined, resulting in a rule that
+spans the width and a centered caption. Changing the appearance
+of the rule and caption can either be done by inserting styles or
+simply by automatic editing of the HTML code in a little shell script:
+
+{{{
+doconce replace '<p class="caption">' \
+ '<p style="width: 50%; font-style: italic; color: blue">' mydoc.html
+doconce replace '<hr class="figure">' \
+ '<hr style="width: 50%">' mydoc.html
+}}}
 
 ==== Debugging ====
 

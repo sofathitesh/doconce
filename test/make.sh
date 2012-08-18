@@ -57,6 +57,10 @@ doconce format html html_template --html-template=template1.html --no-pygments-h
 cp html_template.html html_template1.html
 doconce format html html_template --html-template=template_inf1100.html
 
+# Test author special case
+doconce format html author1
+doconce format latex author1
+
 # Test encoding
 doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
 cp encoding1.do.txt tmp1.do.txt
