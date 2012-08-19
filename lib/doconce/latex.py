@@ -86,6 +86,11 @@ def latex_figure(m, includegraphics=True):
         includeline = r'\centerline{\psfig{figure=%s,width=%s\linewidth}}' % (filename, frac)
 
     caption = m.group('caption').strip()
+    m = re.sub(r'label\{(.+?)\}', caption)
+    if m:
+        label = m.group(1).strip()
+    else:
+        label = ''
     # `verbatim text` in backquotes does not work so we need to substitute
     # by \texttt{}, and underscores need a backslash
     verbatim_text = re.findall(r'(`[^`]+?`)', caption)
@@ -101,20 +106,20 @@ def latex_figure(m, includegraphics=True):
         caption = caption.replace(from_, to_)
     if caption:
         result = r"""
-\begin{figure}
+\begin{figure}[!ht]
   %s
   \caption{
   %s
   }
 \end{figure}
-""" % (includeline, caption)
+%%\clearpage %% flush figures %s
+""" % (includeline, caption, label)
     else:
-        # drop caption
+        # drop caption and place figure inline
         result = r"""
-\begin{figure}
+\begin{center}  %% inline figure
   %s
-  %%\caption{}
-\end{figure}
+\end{center}
 """ % (includeline)
     return result
 
@@ -757,6 +762,20 @@ def define(FILENAME_EXTENSION,
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
