@@ -87,7 +87,7 @@ def sphinx_figure(m):
             parts[0] = parts[0][:-1]
         parts[0] = parts[0].strip()
         # insert emphasize marks if not latex $ at the
-        # beginning or end (math subst does not work for *$I=1$*
+        # beginning or end (math subst does not work for *$I=1$*)
         if not parts[0].startswith('$') and \
            not parts[0].endswith('$'):
             parts[0] = '*' + parts[0] + '*'
@@ -96,6 +96,11 @@ def sphinx_figure(m):
         # contrary to rst_figure, we do not write label into caption
         # since we just want to remove the whole label as part of
         # the caption (otherwise done when handling ref and label)
+
+        # math is ignored in references to figures, test for math only
+        redcap = re.sub(r'\$.+?\$', '', caption).replace(',', '').replace('.', '').replace(';', '').replace(' ', '')
+        if not re.search(r'[A-Za-z]', redcap):
+            print 'Warning: math only in sphinx figure caption\n  %s\n' % caption
     else:
         if caption and caption[-1] == '.':
             caption = caption[:-1]
