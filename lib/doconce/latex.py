@@ -570,7 +570,7 @@ def define(FILENAME_EXTENSION,
         # with ptex2tex (the regex will not include the proper second }
         #'verbatim':      r'\g<begin>{\footnotesize{10pt}{10pt}\verb!\g<subst>!\g<end>',
         'citation':      r'~\\cite{\g<subst>}',
-        'linkURL':       r'\g<begin>\href{\g<url>}{\g<link>}\g<end>',
+        #'linkURL':       r'\g<begin>\href{\g<url>}{\g<link>}\g<end>',
         'linkURL2':      r'\href{{\g<url>}}{\g<link>}',
         'linkURL3':      r'\href{{\g<url>}}{\g<link>}',
         'linkURL2v':     r'\href{{\g<url>}}{\\nolinkurl{\g<link>}}',

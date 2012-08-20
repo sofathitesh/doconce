@@ -26,9 +26,9 @@ f.close()
 subst = dict(
 author=(r'\\author\{(?P<subst>.+)\}', r'# AUTHOR: \g<subst>'),
 title=(r'\\title\{(?P<subst>.+)\}', r'# TITLE: \g<subst>'),
-section=(r'\\section\{(?P<subst>.+)\}', r'======= \g<subst> ======='),
-subsection=(r'\\subsection\{(?P<subst>.+)\}', r'===== \g<subst> ====='),
-subsubsection=(r'\\subsubsection\{(?P<subst>.+)\}', r'=== \g<subst> ==='),
+section=(r'\\section\*?\{(?P<subst>.+)\}', r'======= \g<subst> ======='),
+subsection=(r'\\subsection\*?\{(?P<subst>.+)\}', r'===== \g<subst> ====='),
+subsubsection=(r'\\subsubsection\*?\{(?P<subst>.+)\}', r'=== \g<subst> ==='),
 paragraph=(r'\\paragraph\{(?P<subst>.+?)\}', r'__\g<subst>__'),
 para=(r'\\para\{(?P<subst>.+?)\}', r'__\g<subst>__'),
 emph=(r'\\emph\{(?P<subst>.+?)\}', r'*\g<subst>*'),

@@ -120,7 +120,7 @@ def define(FILENAME_EXTENSION,
         'figure':    None,
         'movie':     default_movie,
         'verbatim':  r'\g<begin>\g<subst>\g<end>',  # no ` chars
-        'linkURL':   r'\g<begin>\g<link> (\g<url>)\g<end>',
+        #'linkURL':   r'\g<begin>\g<link> (\g<url>)\g<end>',
         'linkURL2':  r'\g<link> (\g<url>)',
         'linkURL3':  r'\g<link> (\g<url>)',
         'linkURL2v': r'\g<link> (\g<url>)',
