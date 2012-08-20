@@ -86,7 +86,7 @@ def latex_figure(m, includegraphics=True):
         includeline = r'\centerline{\psfig{figure=%s,width=%s\linewidth}}' % (filename, frac)
 
     caption = m.group('caption').strip()
-    m = re.sub(r'label\{(.+?)\}', caption)
+    m = re.search(r'label\{(.+?)\}', caption)
     if m:
         label = m.group(1).strip()
     else:

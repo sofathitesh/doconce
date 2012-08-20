@@ -45,7 +45,59 @@ def supported_format_names():
 # include "latex.py"
 #----------------------------------------------------------------------------
 
+def fix(filestr, format, verbose=0):
+    """Fix issues with the text (correct wrong syntax)."""
+    # A special case: `!bc`, `!bt`, `!ec`, and `!et` at the beginning
+    # of a line gives wrong consistency checks for plaintext format,
+    # so we avoid having these at the beginning of a line.
+    if format == 'plain':
+        for directive in 'bc', 'ec', 'bt', 'et':
+            # could test for bsol, bhint, etc. as well...
+            cpattern = re.compile(r'^`!%s' % directive, re.MULTILINE)
+            filestr = cpattern.sub('  `!%s' % directive,
+                                   filestr)  # space avoids beg.of line
+
+    num_fixes = 0
+
+    # Fix figure and movie captions that span several lines (the
+    # replacement via re.sub works line by line so the caption *must*
+    # be on one line, but this might be forgotten by many writers...)
+    pattern = r'^\s*(?P<type>FIGURE|MOVIE):\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]\s*?(?P<caption>.*?)^\s*$'
+    figs = re.findall(pattern, filestr, flags=re.MULTILINE|re.DOTALL)
+
+    for fig in figs:
+        caption = fig[3]
+        if '\n' in caption.strip():  # multiline caption?
+            caption1 = caption.replace('\n', ' ') + '\n'
+            filestr = filestr.replace(caption, caption1)
+            num_fixes += 1
+            if verbose > 0:
+                print '\nFIX: multi-line caption\n\n%s\n-- fixed to one line' % caption
+
+    # Space before commands that should begin in 1st column at a line?
+    commands = 'FIGURE MOVIE TITLE AUTHOR DATE TOC BIBFILE !bt !et !bc !ec !bhint !ehint !bans !eans !bsol !esol !bsubex !esubex'.split()
+    for command in commands:
+        pattern = r'^ +' + command
+        m = re.search(pattern, filestr, flags=re.MULTILINE)
+        if m:
+            lines = '\n'.join(re.findall(r'^ +%s.*$' % command, filestr, flags=re.MULTILINE)) + '\n'
+            filestr, n = re.subn(pattern, command, filestr, flags=re.MULTILINE)
+            num_fixes += n
+
+            if verbose > 0:
+                print '\nFIX: %s not at the beginning of the line - %d fixes' % (command, n)
+                print lines
+
+    if verbose and num_fixes:
+        print '\n*** The total of %d fixes above should be incorporated in the file!\n\n' % num_fixes
+    return filestr
+
+
+
 def syntax_check(filestr, format):
+    """Check for common errors in the doconce syntax."""
+
+    filestr = fix(filestr, format, verbose=1)
 
     begin_end_consistency_checks(filestr, ['c', 't', 'ans', 'sol', 'hint'])
 
@@ -98,9 +150,8 @@ def syntax_check(filestr, format):
                              constructions[construction],
                              re.MULTILINE)
         m = pattern.search(filestr)
-        if m:
-            #and format in ('rst', 'sphinx'):
-            print '\nSyntax error: Line before list or !bc/!bt/@@@CODE block is a %s line\nwhich will "swallow" the block in reST format.\nInsert some extra line (text) to separate the two elements.' % construction
+        if m and format in ('rst', 'sphinx'):
+            print '\nSyntax error: Line before list, !bc, !bt or @@@CODE block is a %s line\nwhich will "swallow" the block in reST format.\nInsert some extra line (text) to separate the two elements.' % construction
             print filestr[m.start():m.start()+80]
             sys.exit(1)
 
@@ -306,14 +357,14 @@ def syntax_check(filestr, format):
         sys.exit(1)
 
     # Keywords at the beginning of the lines:
-    keywords = 'AUTHOR', 'TITLE', 'DATE', 'FIGURE', 'BIBFILE', 'MOVIE'
+    keywords = 'AUTHOR', 'TITLE', 'DATE', 'FIGURE', 'BIBFILE', 'MOVIE', 'TOC',
     for kw in keywords:
         pattern = '^ +' + kw
         cpattern = re.compile(pattern, re.MULTILINE)
         matches = cpattern.findall(filestr)
         if matches:
-            print '\nSyntax error in %s specification'\
-                  '\ninitial space(s) online before keyword' % kw
+            print '\nSyntax error in %s specification:'\
+                  '%s must appear at the beginning of the line!' % (kw,kw)
             print '\n'.join(matches)
             sys.exit(1)
 
@@ -351,6 +402,8 @@ specified if one of them is present."""
                 if not ma:
                     print 'AUTHOR is missing'
                 sys.exit(1)
+
+    return filestr  # fixes may have been performed
 
 def make_one_line_paragraphs(filestr, format):
     # THIS FUNCTION DOES NOT WORK WELL - it's difficult to make
@@ -1360,7 +1413,7 @@ def inline_tag_subst(filestr, format):
         debugpr('\n*************** Working with tag "%s"' % tag)
         tag_pattern = INLINE_TAGS[tag]
         #print 'working with tag "%s" = "%s"' % (tag, tag_pattern)
-        if tag in ('abstract',):
+        if tag in ('abstract', ):
             c = re.compile(tag_pattern, re.MULTILINE|re.DOTALL)
         else:
             c = re.compile(tag_pattern, re.MULTILINE)
@@ -1536,15 +1589,7 @@ def doconce2format4docstrings(filestr, format):
     return filestr
 
 def doconce2format(filestr, format):
-    # A special case: `!bc`, `!bt`, `!ec`, and `!et` at the beginning
-    # of a line gives wrong consistency checks for plaintext format,
-    # so we avoid having these at the beginning of a line.
-    if format == 'plain':
-        for directive in 'bc', 'ec', 'bt', 'et':
-            cpattern = re.compile(r'^`!%s' % directive, re.MULTILINE)
-            filestr = cpattern.sub('  `!%s' % directive,
-                                   filestr)  # space avoids beg.of line
-    syntax_check(filestr, format)
+    filestr = syntax_check(filestr, format)
 
 
     # -----------------------------------------------------------------

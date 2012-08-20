@@ -2,7 +2,7 @@
 <wiki:toc max_depth="2" />
 By **Hans Petter Langtangen**
 
-=== Aug 18, 2012 ===
+=== Aug 20, 2012 ===
 
 <wiki:comment> lines beginning with # are comment lines </wiki:comment>
 
@@ -1008,9 +1008,14 @@ __A Paragraph.__ The running text goes here.
 
 == Figures ==
 
+<wiki:comment> Note: need extra blank after FIGURE and MOVIE in !bc environments </wiki:comment>
+<wiki:comment> because doconce treats !ec as part of the caption and moves the </wiki:comment>
+<wiki:comment> !ec up to the caption line </wiki:comment>
+
 Figures are recognized by the special line syntax
 {{{
 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
+
 }}}
 The filename can be without extension, and Doconce will search for an
 appropriate file with the right extension. If the extension is wrong,
@@ -1050,6 +1055,7 @@ Other formats try to generate some HTML file and link to that file
 for showing the movie.
 {{{
 MOVIE: [filename, height=xxx width=yyy] possible caption
+
 }}}
 
 <wiki:comment> latex/PDF format can make use of the movie15 package for displaying movies, </wiki:comment>

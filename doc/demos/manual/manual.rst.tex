@@ -79,7 +79,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Aug 18, 2012
+Aug 20, 2012
 
 \end{DUfieldlist}
 
@@ -1542,6 +1542,12 @@ The~running~text~goes~here.\\
   \addcontentsline{toc}{subsection}{Figures}%
   \label{figures}%
 }
+
+% Note: need extra blank after FIGURE and MOVIE in !bc environments
+
+% because doconce treats !ec as part of the caption and moves the
+
+% !ec up to the caption line
 
 Figures are recognized by the special line syntax:
 %
@@ -3870,7 +3876,7 @@ groundwater flow.
 \DUtitle[system-message]{system-message}
 \raisebox{1em}{\hypertarget{id10}{}}
 
-{\color{red}ERROR/3} in \texttt{manual.rst}, line~1763
+{\color{red}ERROR/3} in \texttt{manual.rst}, line~1772
 
 \hyperlink{id11}{
 Unknown target name: ``...''.

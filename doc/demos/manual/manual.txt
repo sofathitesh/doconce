@@ -7,7 +7,7 @@ Hans Petter Langtangen [1, 2]
 [2] University of Oslo
 
 
-Date: Aug 18, 2012
+Date: Aug 20, 2012
 
 What Is Doconce?
 ================
@@ -1124,10 +1124,12 @@ Special Lines
 Figures
 -------
 
+
 Figures are recognized by the special line syntax::
 
 
         FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
+        
 
 The filename can be without extension, and Doconce will search for an
 appropriate file with the right extension. If the extension is wrong,
@@ -1169,6 +1171,7 @@ for showing the movie::
 
 
         MOVIE: [filename, height=xxx width=yyy] possible caption
+        
 
 
 

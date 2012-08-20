@@ -1046,6 +1046,7 @@ Figures are recognized by the special line syntax::
 
 
         FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
+        
 
 The filename can be without extension, and Doconce will search for an
 appropriate file with the right extension. If the extension is wrong,
@@ -1086,6 +1087,7 @@ for showing the movie::
 
 
         MOVIE: [filename, height=xxx width=yyy] possible caption
+        
 
 
 

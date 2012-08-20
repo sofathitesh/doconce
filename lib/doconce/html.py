@@ -9,7 +9,7 @@ def html_code(filestr, code_blocks, code_block_types,
                            c='c', cpp='c++', sh='bash', rst='rst',
                            m ='matlab', pl='perl', swig='c++',
                            latex='latex', html='html', js='js',
-                           sys='bash')
+                           sys='bash', xml='xml')
     try:
         import pygments as pygm
         from pygments.lexers import guess_lexer, get_lexer_by_name

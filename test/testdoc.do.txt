@@ -125,12 +125,46 @@ MOVIE: [../doc/manual/figs/mjolnir.mpeg, width=700 height=400] Mjolnir tsunami (
 
 MOVIE: [../doc/manual/figs/wavepacket.mpeg, width=700 height=400]
 
-MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).
+# Test wrong syntax and multi-line caption
+
+   MOVIE: [../doc/manual/figs/wavepacket_*.png, width=700 height=400] Movie
+based on collection of frames
+(here just a few frames compared with the full wavepacket.mpeg movie).
+label{mymov}
 
 # Check out the correct with and height of YouTube movies from the
 # embed command that the YouTube page can generate
 
 MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] Movies can be uploaded to YouTube and embedded as HTML or as a link.
+
+# Test multi-line caption in figure
+
+Here is figure ref{myfig} with a long multi-line caption
+and an extra space before the FIGURE keyword.
+
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long
+caption spanning
+several lines.
+label{myfig}
+
+Movie ref{mymov} has a similar problem.
+
+# Must be a blank line after MOVIE or FIGURE to detect this problem
+
+
+# Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
+
+===== The $\theta$ parameter (not $\nabla$?) =====
+label{decay:sec:theta}
+
+Functions do not always need to be advanced, here is one
+involving $\theta$:
+!bc
+def f(theta):
+    return theta**2
+!ec
+
+__More on $\theta$.__ Here is more text.
 
 ===== Custom Environments =====
 
@@ -342,10 +376,12 @@ let the program count the number of heads.
 Use `r = random.random()` and define head as `r <= 0.5`.
 !ehint
 
-!bhint
+# Test syntax error
+
+  !bhint
 Draw an integer among $\{1,2\}$ with
 `r = random.randint(1,2)` and define head when `r` is 1.
-!ehint
+  !ehint
 
 !bans
 If the `random.random()` function returns a number $<1/2$, let it be
