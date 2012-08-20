@@ -461,7 +461,7 @@ def define(FILENAME_EXTENSION,
         'bold':          r'\g<begin><b>\g<subst></b>\g<end>',
         'verbatim':      r'\g<begin><tt>\g<subst></tt>\g<end>',
         'citation':      '',  # no citations
-        'linkURL':       r'\g<begin><a href="\g<url>">\g<link></a>\g<end>',
+        #'linkURL':       r'\g<begin><a href="\g<url>">\g<link></a>\g<end>',
         'linkURL2':      r'<a href="\g<url>">\g<link></a>',
         'linkURL3':      r'<a href="\g<url>">\g<link></a>',
         'linkURL2v':     r'<a href="\g<url>"><tt>\g<link></tt></a>',
@@ -578,8 +578,10 @@ MathJax.Hub.Config({
     newcommands = ''
     for filename in newcommands_files:
         f = open(filename, 'r')
-        newcommands += '\n<!-- %s -->\n' % filename + '$$\n' + f.read() \
-                       + '\n$$\n\n'
+        text = f.read().strip()
+        if text:
+            newcommands += '\n<!-- %s -->\n' % filename + '$$\n' + text \
+                           + '\n$$\n\n'
     INTRO['html'] += newcommands
     INTRO['html'] += """
 
