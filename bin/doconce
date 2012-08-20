@@ -1601,7 +1601,8 @@ def ptex2tex():
                     languages = dict(py='python', cy='cython', f='fortran',
                                      c='c', cpp='c++', sh='bash', rst='rst',
                                      m ='matlab', pl='perl', swig='c++',
-                                     latex='latex', html='html', js='js',)
+                                     latex='latex', html='html', js='js',
+                                     xml='xml')
                     if envir == 'envir':
                         for lang in languages:
                             begin = '\\' + 'begin{minted}[fontsize=\\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{' \
@@ -1620,7 +1621,7 @@ def ptex2tex():
                     languages = dict(py='python', cy='python', f='fortran',
                                      cpp='c++', sh='bash', swig='swigcode',
                                      ufl='uflcode', m='matlab', c='c++',
-                                     latex='latexcode')
+                                     latex='latexcode', xml='xml')
                     if envir == 'envir':
                         for lang in languages:
                             language = languages[lang]

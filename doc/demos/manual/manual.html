@@ -82,7 +82,7 @@ $$
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Aug 18, 2012</h4></center> <!-- date -->
+<center><h4>Aug 20, 2012</h4></center> <!-- date -->
 <p>
 
 <p>
@@ -1418,10 +1418,16 @@ __A Paragraph.__ The running text goes here.
 
 <h3>Figures  <a name="___sec24"></a></h3>
 <p>
+<!-- Note: need extra blank after FIGURE and MOVIE in !bc environments -->
+<!-- because doconce treats !ec as part of the caption and moves the -->
+<!-- !ec up to the caption line -->
+
+<p>
 Figures are recognized by the special line syntax
 <blockquote>    <!-- begin verbatim block -->
 <pre>
 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
+
 </pre>
 </blockquote>   <! -- end verbatim block -->
 The filename can be without extension, and Doconce will search for an
@@ -1478,6 +1484,7 @@ for showing the movie.
 <blockquote>    <!-- begin verbatim block -->
 <pre>
 MOVIE: [filename, height=xxx width=yyy] possible caption
+
 </pre>
 </blockquote>   <! -- end verbatim block -->
 

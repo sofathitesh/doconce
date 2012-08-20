@@ -323,7 +323,7 @@ def doconce_exercise_output(exer,
                     s += '\n' + begin_solution
                     # Make sure we have a sentence after the heading
                     if subex['solution'].lstrip().startswith(_CODE_BLOCK):
-                        print '\nwarning: open solution in exercise "%s" with a line of text\nbefore the code! (Now "Code:" is inserted)' % exer['title'] + '\n'
+                        print '\nwarning: open solution in exercise "%s" with a line of text\nbefore the code! (Now "Code:" was inserted)' % exer['title'] + '\n'
                         s += 'Code:\n'
                     s += subex['solution'] + '\n' + end_solution + '\n'
 
@@ -489,8 +489,10 @@ INLINE_TAGS = {
     r'^DATE:\s*(?P<subst>.+)\s*$',
 
     # FIGURE:[filename, options] some caption text label{some:label}
+    # (until blank line ^\s*$)
     'figure':
     r'^FIGURE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]\s*?(?P<caption>.*)$',
+
     # MOVIE:[filename, options] some caption text label{some:label}
     'movie':
     r'^MOVIE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]\s*?(?P<caption>.*)$',

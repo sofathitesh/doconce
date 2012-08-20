@@ -2,7 +2,7 @@
 <wiki:toc max_depth="2" />
 By **Hans Petter Langtangen**
 
-=== Aug 18, 2012 ===
+=== Aug 20, 2012 ===
 
 <<TableOfContents>>
 
@@ -331,6 +331,7 @@ Figures and movies have almost equal syntax:
 FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+
 }}}
 Note the mandatory comma after the figure/movie file.
 

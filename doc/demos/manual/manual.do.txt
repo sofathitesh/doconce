@@ -280,9 +280,14 @@ __A Paragraph.__ The running text goes here.
 
 ===== Figures =====
 
+# Note: need extra blank after FIGURE and MOVIE in !bc environments
+# because doconce treats !ec as part of the caption and moves the
+# !ec up to the caption line
+
 Figures are recognized by the special line syntax
 !bc
 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
+
 !ec
 The filename can be without extension, and Doconce will search for an
 appropriate file with the right extension. If the extension is wrong,
@@ -321,6 +326,7 @@ Other formats try to generate some HTML file and link to that file
 for showing the movie.
 !bc
 MOVIE: [filename, height=xxx width=yyy] possible caption
+
 !ec
 
 # latex/PDF format can make use of the movie15 package for displaying movies,

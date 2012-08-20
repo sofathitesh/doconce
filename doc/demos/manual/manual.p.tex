@@ -79,6 +79,20 @@
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
@@ -163,13 +177,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Aug 18, 2012}
+\date{Aug 20, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Aug 18, 2012}}
+{\large\textsf{Aug 20, 2012}}
 
 \end{center}
 \vfill
@@ -178,7 +192,7 @@
 % #else
 
 \begin{center}
-Aug 18, 2012
+Aug 20, 2012
 \end{center}
 
 \vspace{1cm}
@@ -1289,9 +1303,14 @@ __A Paragraph.__ The running text goes here.
 
 \subsection{Figures}
 
+% Note: need extra blank after FIGURE and MOVIE in !bc environments
+% because doconce treats !ec as part of the caption and moves the
+% !ec up to the caption line
+
 Figures are recognized by the special line syntax
 \bccq
 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
+
 \eccq
 The filename can be without extension, and Doconce will search for an
 appropriate file with the right extension. If the extension is wrong,
@@ -1311,12 +1330,13 @@ part of the caption appearing on the same line as \code{FIGURE:} will be
 included in the formatted caption).
 
 
-\begin{figure}
+\begin{figure}[!ht]
   \centerline{\includegraphics[width=0.9\linewidth]{figs/streamtubes.eps}}
   \caption{
   Streamtube visualization of a fluid flow. \label{fig:viz}
   }
 \end{figure}
+%\clearpage % flush figures fig:viz
 
 
 Combining several image files into one, in a table fashion, can be done by the
@@ -1337,6 +1357,7 @@ Other formats try to generate some HTML file and link to that file
 for showing the movie.
 \bccq
 MOVIE: [filename, height=xxx width=yyy] possible caption
+
 \eccq
 
 % latex/PDF format can make use of the movie15 package for displaying movies,

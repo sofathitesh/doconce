@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Aug 18, 2012
+:Date: Aug 20, 2012
 
 .. lines beginning with # are comment lines
 
@@ -1269,12 +1269,20 @@ Special Lines
 Figures
 -------
 
+.. Note: need extra blank after FIGURE and MOVIE in !bc environments
+
+.. because doconce treats !ec as part of the caption and moves the
+
+.. !ec up to the caption line
+
+
 Figures are recognized by the special line syntax
 
 .. code-block:: py
 
 
         FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
+        
 
 The filename can be without extension, and Doconce will search for an
 appropriate file with the right extension. If the extension is wrong,
@@ -1326,6 +1334,7 @@ for showing the movie.
 
 
         MOVIE: [filename, height=xxx width=yyy] possible caption
+        
 
 
 .. latex/PDF format can make use of the movie15 package for displaying movies,
