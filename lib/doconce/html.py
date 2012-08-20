@@ -44,7 +44,13 @@ def html_code(filestr, code_blocks, code_block_types,
             formatter = HtmlFormatter(linenos=linenos, noclasses=True,
                                       style='emacs')
             result = highlight(code_blocks[i], lexer, formatter)
+
+            # Fix ugly error boxes
+            result = re.sub(r'<span style="border: 1px .*?">(.+?)</span>',
+                            '\g<1>', result)
+
             code_blocks[i] = result
+
         else:
             # Plain <pre>: This does not catch things like '<x ...<y>'
             #code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
@@ -382,6 +388,7 @@ def bibdict2htmllist(pyfile, citations):
     text = '\n\n<h1>Bibliography</h1>\n\n<ol>\n'
     for label in citations:
         if label in bibdict:
+            bibdict[label] = latin2html(bibdict[label])
             # remove newlines in reference data:
             text += '  <p><li><a name="%s"> ' % label + \
                     ' '.join(bibdict[label].splitlines()) + '\n'
