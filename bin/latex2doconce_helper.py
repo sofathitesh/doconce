@@ -33,6 +33,7 @@ paragraph=(r'\\paragraph\{(?P<subst>.+?)\}', r'__\g<subst>__'),
 para=(r'\\para\{(?P<subst>.+?)\}', r'__\g<subst>__'),
 emph=(r'\\emph\{(?P<subst>.+?)\}', r'*\g<subst>*'),
 em=(r'\{\\em\s+(?P<subst>.+?)\}', r'*\g<subst>*'),
+ep=(r'\\ep(\\|\s+|\n)', r'\thinspace . \g<1>*'),
 bf=(r'\{\\bf\s+(?P<subst>.+?)\}', r'_\g<subst>_'),
 code=(r'\\code\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
 emp=(r'\\emp\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
@@ -96,22 +97,12 @@ replace = [
     ("Tab.~", "Tab. "),
     ]
 
-replace_wfix = [
-    (r'\epsilon', r'\ep', r'\thinspace . '),
-    ]
-
 # Pure string replacements:
 for from_, to_ in replace:
     if from_ in filestr:
         if filestr != filestr.replace(from_, to_):
             filestr = filestr.replace(from_, to_)
             print '   ....replacing', from_
-for trouble, from_, to_ in replace_wfix:
-    if from_ in filestr:
-        filestr = filestr.replace(trouble, 'XXXXXXY')
-        filestr = filestr.replace(from_, to_)
-        filestr = filestr.replace('XXXXXXY', trouble)
-        print '   ....replacing', from_
 
 # problems:
 problems = [

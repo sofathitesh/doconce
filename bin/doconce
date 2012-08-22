@@ -1462,7 +1462,9 @@ _replace = [
 ]
 
 _regex_subst = [
-(r'\ep' + '\n', r'\thinspace .' + '\n'),
+(r'\ep\\\]', r'\thinspace . \]'),
+(r'\ep\\e', r'\thinspace . \e'),
+(r'\ep\n', r'\thinspace .\n'),
 ]
 """
 
@@ -1482,12 +1484,16 @@ def expand_commands():
     ]
 
     _regex_subst = [
-    (r'\ep' + '\n', r'\thinspace .' + '\n'),
+    (r'^\ep\n', r'\\thinspace .\n', re.MULTILINE),
+    (r'\ep\n', r' \\thinspace .\n'),
+    (r'\ep\\\]', r' \\thinspace . \]'),
+    (r'\ep\\e', r' \\thinspace . \e'),
+    (r'\\thinspace', 'thinspace'),
     ]
 
     expand_commands_file = '.expand_commands'
-    if os.path.isfile(strip_file):
-        execfile(strip_file)
+    if os.path.isfile(expand_commands_file):
+        execfile(expand_commands_file)
     else:
         replace = []
         regex_subst = []

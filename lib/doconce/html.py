@@ -58,13 +58,17 @@ def html_code(filestr, code_blocks, code_block_types,
             code_blocks[i] = code_blocks[i].replace('<', '&lt;')
             code_blocks[i] = code_blocks[i].replace('>', '&gt;')
 
+    from doconce import debugpr
+    debugpr('Hei1\n%s' % filestr)
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+    debugpr('Hei2\n%s' % filestr)
 
 
     if pygm:
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
         filestr = c.sub(r'<p>\n\n', filestr)
         filestr = re.sub(r'!ec\n', r'<p>\n', filestr)
+        debugpr('Hei3\n%s' % filestr)
     else:
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
         # Do not use <code> here, it gives an extra line at the top

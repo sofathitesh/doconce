@@ -244,7 +244,7 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
                                             '!bt\n%s!et' % tex)
                 break
 
-    filestr = '\n'.join(lines)  # will fail if ord(char) > 127
+    filestr = '\n'.join(lines) + '\n' # will fail if ord(char) > 127
     return filestr
 
 def doconce_exercise_output(exer,
