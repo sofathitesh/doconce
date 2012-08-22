@@ -216,6 +216,8 @@ def syntax_check(filestr, format):
                 pass
 
     commands = [
+        r'\[',
+        r'\]',
         'begin{equation}',
         'end{equation}',
         'begin{equation*}',
@@ -245,37 +247,32 @@ def syntax_check(filestr, format):
         'ealnn',
         'baln',
         'ealn',
+        'balns',
+        'ealns',
         'beq',
         'eeq',  # the simplest, contained in others, must come last...
         ]
     lines = filestr.splitlines()
+    inside_bt = False
+    inside_bt_i = 0
+    inside_bc = False
     for i in range(len(lines)):
-        for c in commands:
-            if c[0] == 'b':
-                if (c in lines[i] or r'\[' in lines[i]) and '`' not in lines[i]:
-                    # begin math, do we have !bt at the line before?
-                    prev_line = i-1
-                    while prev_line >= 0 and lines[prev_line].isspace():
-                        prev_line -= 1
-                    if not lines[prev_line].startswith('!bt'):
-                        # Must have !bt unless !bc block
-                        if not lines[prev_line].startswith('!bc'):
-                            print '\nWarning: forgot to precede math (%s) by !bt:' % c
-                            stop_line = i+2 if i+2 <+ len(lines)-1 else len(lines)-1
-                            for k in range(prev_line, stop_line):
-                                print lines[k]
-            elif c[0] == 'e':
-                # actually, the end part is never reached, because
-                # if the begin part is missing, program stops, and
-                # if the begin part is there, the whole block, incl
-                # an erroneous end part, is removed when this syntax
-                # check is performed...
-                pass
-            """
-                if c in lines[i] or r'\]' in lines[i]:
-                    # end math, do we have !et at the line after?
-                    ...
-            """
+        if lines[i].startswith('!bt'):
+            inside_bt = True
+            inside_bt_i = i
+        if lines[i].startswith('!et'):
+            inside_bt = False
+            inside_bt_i = 0
+        if lines[i].startswith('!bc'):
+            inside_bc = True
+        if lines[i].startswith('!ec'):
+            inside_bc = False
+        for command in commands:
+            if command in lines[i] and not inside_bt:
+                if '`' not in lines[i] and not inside_bc:  # not verbatim
+                    print '\nError: math equation\n%s\nis not inside !bt - !et eenvironment' % command
+                    print '\n'.join('lines[i-3:i+3]')
+                    sys.exit(1)
     """
     # This is better done in sphinx.py, or should we provide warnings
     # to enforce writers to stay away from a range of latex
@@ -1190,8 +1187,8 @@ def handle_figures(filestr, format):
 def handle_cross_referencing(filestr, format):
     # 1. find all section/chapter titles and corresponding labels
     #section_pattern = r'(_+|=+)([A-Za-z !.,;0-9]+)(_+|=+)\s*label\{(.+?)\}'
-    section_pattern = r'(_{3,7}|={3,7})(.+?)(_{3,7}|={3,7})\s*label\{(.+?)\}'
-    m = re.findall(section_pattern, filestr)
+    section_pattern = r'^\s*(_{3,7}|={3,7})(.+?)(_{3,7}|={3,7})\s*label\{(.+?)\}'
+    m = re.findall(section_pattern, filestr, flags=re.MULTILINE)
     #pprint.pprint(m)
     # Make sure sections appear in the right order
     # (in case rst.ref_and_label_commoncode has to assign numbers
@@ -1203,8 +1200,8 @@ def handle_cross_referencing(filestr, format):
 
     # 2. Make table of contents
     # TOC: on|off
-    section_pattern = r'(_{3,7}|={3,7})(.+?)(_{3,7}|={3,7})'
-    m = re.findall(section_pattern, filestr)
+    section_pattern = r'^\s*(_{3,7}|={3,7})(.+?)(_{3,7}|={3,7})'
+    m = re.findall(section_pattern, filestr, flags=re.MULTILINE)
     sections = []
     heading2section_type = {9: 0, 7: 1, 5: 2, 3: 3}
     for heading, title, dummy2 in m:
@@ -1594,9 +1591,9 @@ def doconce2format(filestr, format):
 
     # -----------------------------------------------------------------
 
-    # Step: check if ^#?TITLE: is present, and if so, header and footer
+    # Step: check if ^?TITLE: is present, and if so, header and footer
     # are to be included (later below):
-    if re.search(r'^#?TITLE:', filestr, re.MULTILINE):
+    if re.search(r'^TITLE:', filestr, re.MULTILINE):
         has_title = True
     else:
         has_title = False
