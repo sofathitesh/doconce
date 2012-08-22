@@ -110,9 +110,16 @@ def html_code(filestr, code_blocks, code_block_types,
     if template and not header:
         title = ''
         date = ''
-        m = re.search(r'<h\d>(.+?)<a name=', filestr)
+        # The first section heading or a #TITLE: ... line becomes the title
+        pattern = r'<!--\s+TITLE:\s*(.+?) -->'
+        m = re.search(pattern, filestr)
         if m:
             title = m.group(1).strip()
+            filestr = re.sub(pattern, '\n<h1>%s</h1>\n' % title, filestr)
+        else:
+            m = re.search(r'<h\d>(.+?)<a name=', filestr)
+            if m:
+                title = m.group(1).strip()
         pattern = r'<center><h\d>(.+?)</h\d></center>\s*<!-- date -->'
         m = re.search(pattern, filestr)
         if m:
