@@ -270,8 +270,8 @@ def syntax_check(filestr, format):
         for command in commands:
             if command in lines[i] and not inside_bt:
                 if '`' not in lines[i] and not inside_bc:  # not verbatim
-                    print '\nError: math equation\n%s\nis not inside !bt - !et eenvironment' % command
-                    print '\n'.join('lines[i-3:i+3]')
+                    print '\nError: math equation with \n%s\nis not inside !bt - !et environment' % command
+                    print '\n'.join(lines[i-3:i+3])
                     sys.exit(1)
     """
     # This is better done in sphinx.py, or should we provide warnings
