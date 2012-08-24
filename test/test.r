@@ -23532,7 +23532,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 25 Aug 2012 (01:37)
+DATE: Sat, 25 Aug 2012 (01:44)
 
 
 
@@ -23636,7 +23636,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 25 Aug 2012 (01:37)
+DATE: Sat, 25 Aug 2012 (01:44)
 
 
 
@@ -23750,7 +23750,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 25 Aug 2012 (01:37)</center>
+<center>Sat, 25 Aug 2012 (01:44)</center>
 
 
 
@@ -23881,7 +23881,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 25 Aug 2012 (01:37)</center>
+<center>Sat, 25 Aug 2012 (01:44)</center>
 
 
 
@@ -80224,47 +80224,13 @@ or just run it by
 + doconce replace doconce format sphinx %s doconce format sphinx %s --no-preprocess automake_sphinx.py
 replacing doconce format sphinx %s by doconce format sphinx %s --no-preprocess in automake_sphinx.py
 + python automake_sphinx.py
-Found preprocess-like statements, but --no-preprocess prevents running preprocess
-translating preprocessed doconce text in __tmp.do.txt to sphinx
-copy complete file doconce_program.sh  (format: shpro)
-output in quickref.rst
-rm -rf _build/*
-sphinx-build -b html -d _build/doctrees   . _build/html
-Making output directory...
-Running Sphinx v1.1.3
-WARNING: extension 'sphinxjp.themes.solarized' has no setup() function; is it really a Sphinx extension module?
-loading pickled environment... not yet created
-building [html]: targets for 2 source files that are out of date
-updating environment: 2 added, 0 changed, 0 removed
-reading sources... [ 50%] index
-reading sources... [100%] quickref
-
-looking for now-outdated files... none found
-pickling environment... done
-checking consistency... done
-preparing documents... done
-writing output... [ 50%] index
-writing output... [100%] quickref
-
-writing additional files... (0 module code pages) genindex search
-copying static files... done
-dumping search index... done
-dumping object inventory... done
-build succeeded, 1 warning.
-
-Build finished. The HTML pages are in _build/html.
 
 
 
-running doconce format sphinx quickref --no-preprocess
-running doconce sphinxfix_localURLs quickref.rst
-running doconce guess_encoding quickref.rst
-/home/hpl/vc/doconce/doc/quickref/sphinx-rootdir
-running make clean
-running make html
-
-google-chrome sphinx-rootdir/_build/html/index.html
-
+Traceback (most recent call last):
+  File "automake_sphinx.py", line 27, in <module>
+    for filename in filenamess:
+NameError: name 'filenamess' is not defined
 + cp quickref.rst quickref.sphinx.rst
 + doconce format rst quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
@@ -80898,6 +80864,7 @@ output in quickref.mkd
 + rm -rf demo
 + mkdir demo
 + cp -r quickref.do.txt quickref.html quickref.p.tex quickref.tex quickref.pdf quickref.rst quickref.xml quickref.rst.html quickref.rst.tex quickref.rst.pdf quickref.gwiki quickref.mwiki quickref.cwiki quickref.txt quickref.epytext quickref.st quickref.mkd sphinx-rootdir/_build/html demo
+cp: cannot stat `sphinx-rootdir/_build/html': No such file or directory
 + cd demo
 + cat
 + echo
