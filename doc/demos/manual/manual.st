@@ -346,7 +346,7 @@ If the Pygments package (including the 'pygmentize' program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument '--no-pygments-html'
 turns off the use of Pygments and makes code blocks appear with
-plain '<pre>' HTML tags. The option '--pygments-html-linenos' turns
+plain ('pre') HTML tags. The option '--pygments-html-linenos' turns
 on line numbers in Pygments-formatted code blocks.
 
 The HTML file can be embedded in a template if the Doconce document
@@ -1577,7 +1577,11 @@ format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem ref{...}"
+or "Project:" word, so that references like::
+
+
+        see Problem ref{...}
+
 works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
@@ -2671,3 +2675,4 @@ Bibliography
 
   1. H. P. Langtangen. *A Primer on Scientific Programming with Python*. Springer, 2009.
   2. H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. *Advances in Water Resources*, vol 22, 185-195, 1998.
+

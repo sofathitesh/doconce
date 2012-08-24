@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Aug 20, 2012 ====
+==== Aug 25, 2012 ====
 
 ''TOC'' <!--> Very preliminary -->
 
@@ -589,3 +589,4 @@ examine the Doconce source and the <code>doc/src/make.sh</code> script).
 
 <ul>
  <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"</ul>
+

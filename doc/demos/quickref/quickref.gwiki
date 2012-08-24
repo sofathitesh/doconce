@@ -2,7 +2,7 @@
 
 By *Hans Petter Langtangen*
 
-==== Aug 20, 2012 ====
+==== Aug 25, 2012 ====
 
 <wiki: toc max_depth="2" />
 
@@ -617,3 +617,4 @@ examine the Doconce source and the `doc/src/make.sh` script).
 ==== Resources ====
 
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+

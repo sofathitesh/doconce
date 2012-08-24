@@ -393,7 +393,7 @@ If the Pygments package (including the 'pygmentize' program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument '--no-pygments-html'
 turns off the use of Pygments and makes code blocks appear with
-plain '<pre>' HTML tags. The option '--pygments-html-linenos' turns
+plain ('pre') HTML tags. The option '--pygments-html-linenos' turns
 on line numbers in Pygments-formatted code blocks.
 
 The HTML file can be embedded in a template if the Doconce document
@@ -1094,3 +1094,4 @@ updates and bug fixes. For 'svn' directories, go to the directory,
 run 'svn update', and then 'sudo python setup.py install'. For
 Mercurial ('hg') directories, go to the directory, run
 'hg pull; hg update', and then 'sudo python setup.py install'.
+

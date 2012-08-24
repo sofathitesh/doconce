@@ -6,7 +6,7 @@ Doconce Quick Reference
 
 :Author: Hans Petter Langtangen
 
-:Date: Aug 20, 2012
+:Date: Aug 25, 2012
 
 .. contents:: Table of Contents
    :depth: 2
@@ -730,3 +730,4 @@ Resources
 ---------
 
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+

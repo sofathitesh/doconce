@@ -1676,7 +1676,8 @@ def doconce2format(filestr, format):
     if format not in ('latex', 'pdflatex', 'pandoc', 'html'):
         newcommand_files = glob.glob('newcommands*_replace.tex')
         if format == 'sphinx':  # replace all newcommands in sphinx
-            newcommand_files = glob.glob('newcommands*[^p].tex')
+            newcommand_files = [name for name in glob.glob('newcommands*.tex')
+                                if not name.endswith('.p.tex')]
             # note: could use substitutions (|newcommand|) in rst/sphinx,
             # but they don't allow arguments so expansion of \newcommand
             # is probably a better solution

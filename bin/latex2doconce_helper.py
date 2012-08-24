@@ -33,7 +33,12 @@ paragraph=(r'\\paragraph\{(?P<subst>.+?)\}', r'__\g<subst>__'),
 para=(r'\\para\{(?P<subst>.+?)\}', r'__\g<subst>__'),
 emph=(r'\\emph\{(?P<subst>.+?)\}', r'*\g<subst>*'),
 em=(r'\{\\em\s+(?P<subst>.+?)\}', r'*\g<subst>*'),
-ep=(r'\\ep(\\|\s+|\n)', r'\thinspace . \g<1>*'),
+#ep=(r'\\ep(\\|\s+|\n)', r'\thinspace . \g<1>*'), # gives tab hinspace .
+ep1=(r'^\ep\n', r'\\thinspace .\n', re.MULTILINE),
+ep2=(r'\ep\n', r' \\thinspace .\n'),
+ep3=(r'\ep\s*\\\]', r' \\thinspace . \]'),
+ep4=(r'\ep\s*\\e', r' \\thinspace . \e'),
+ep5=(r'\\thinspace', 'thinspace'),
 bf=(r'\{\\bf\s+(?P<subst>.+?)\}', r'_\g<subst>_'),
 code=(r'\\code\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
 emp=(r'\\emp\{(?P<subst>[^}]+)\}', r'`\g<subst>`'),
@@ -57,8 +62,12 @@ index=(r'\\index\{(?P<subst>.+?)\}', r'idx{\g<subst>}'),
 )
 
 for item in subst:
-    pattern, replacement = subst[item]
-    cpattern = re.compile(pattern)
+    if len(subst[item]) == 2:
+        pattern, replacement = subst[item]
+        cpattern = re.compile(pattern)
+    elif len(subst[item]) == 3:
+        pattern, replacement, flags = subst[item]
+        cpattern = re.compile(pattern, flags)
     if cpattern.search(filestr):
         print 'substituting', item, subst[item][0]
         filestr = cpattern.sub(replacement, filestr)
@@ -169,7 +178,7 @@ math_enders.append(r'\]')
 
 # add !bt before and !et after math environments:
 for e in math_starters:
-    filestr = filestr.replace(e, '!bt\n' + e)
+    filestr = filestr.replace(e, '\n!bt\n' + e)
 for e in math_enders:
     filestr = filestr.replace(e, e + '\n!et')
 
@@ -181,7 +190,7 @@ for language in 'py', 'f', 'c', 'cpp', 'sh', 'pl', 'm':
 
 for e in code_envirs:
     s = r'\b%s' % e
-    filestr = filestr.replace(s, '!bc ' + e)
+    filestr = filestr.replace(s, '\n!bc ' + e)
     s = r'\e%s' % e
     filestr = filestr.replace(s, '!ec')
 
@@ -211,9 +220,13 @@ for i in range(len(lines)-1, -1, -1):
                 pass
 filestr = '\n'.join(lines)
 
-# figures: psfig
+# figures: psfig, group1: filename, group2: caption
 pattern = re.compile(r'\\begin{figure}.*?\psfig\{.*?=([^,]+).*?\caption\{(.*?)\}\s*\\end{figure}', re.DOTALL)
 filestr = pattern.sub(r'FIGURE: [\g<1>, width=400] {{{{\g<2>}}}}', filestr)
+# figures: includegraphics, group1: width, group2: filename, group3: caption
+pattern = re.compile(r'\\begin{figure}.*?\includegraphics\[width=(.+?)\\linewidth\]\{(.+?)\}.*?\caption\{(.*?)\}\s*\\end{figure}', re.DOTALL)
+filestr = pattern.sub(r'FIGURE: [\g<2>, width=400, frac=\g<1>] {{{{\g<3>}}}}', filestr)
+
 captions = re.findall(r'\{\{\{\{(.*?)\}\}\}\}', filestr, flags=re.DOTALL)
 for caption in captions:
     orig_caption = caption

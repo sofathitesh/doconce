@@ -106,6 +106,7 @@
 % #endif
 
 \input{newcommands_keep}
+\input{newcommands_replace}
 
 
 % ----------------- title -------------------------
@@ -177,13 +178,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Aug 20, 2012}
+\date{Aug 25, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Aug 20, 2012}}
+{\large\textsf{Aug 25, 2012}}
 
 \end{center}
 \vfill
@@ -192,7 +193,7 @@
 % #else
 
 \begin{center}
-Aug 20, 2012
+Aug 25, 2012
 \end{center}
 
 \vspace{1cm}
@@ -573,7 +574,7 @@ If the Pygments package (including the \code{pygmentize} program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument \code{--no-pygments-html}
 turns off the use of Pygments and makes code blocks appear with
-plain \code{<pre>} HTML tags. The option \code{--pygments-html-linenos} turns
+plain (\code{pre}) HTML tags. The option \code{--pygments-html-linenos} turns
 on line numbers in Pygments-formatted code blocks.
 
 The HTML file can be embedded in a template if the Doconce document
@@ -1898,7 +1899,10 @@ format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in {\LaTeX}, for instance) or a link to the title of the section.
 The \emph{title} is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem~\ref{...}"
+or "Project:" word, so that references like
+\bccq
+see Problem ref{...}
+\eccq
 works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)

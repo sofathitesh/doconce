@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Aug 20, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Aug 25, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -375,7 +375,7 @@ is performed by</p>
 is installed, code blocks are typeset with
 aid of this package. The command-line argument <tt class="docutils literal"><span class="pre">--no-pygments-html</span></tt>
 turns off the use of Pygments and makes code blocks appear with
-plain <tt class="docutils literal"><span class="pre">&lt;pre&gt;</span></tt> HTML tags. The option <tt class="docutils literal"><span class="pre">--pygments-html-linenos</span></tt> turns
+plain (<tt class="docutils literal"><span class="pre">pre</span></tt>) HTML tags. The option <tt class="docutils literal"><span class="pre">--pygments-html-linenos</span></tt> turns
 on line numbers in Pygments-formatted code blocks.</p>
 <p>The HTML file can be embedded in a template if the Doconce document
 does not have a title (because then there will be
@@ -1492,8 +1492,11 @@ format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The <em>title</em> is typeset without any leading &#8220;Exercise:&#8221;, &#8220;Problem:&#8221;,
-or &#8220;Project:&#8221; word, so that references like &#8220;see Problem <em class="xref std std-ref">...</em>&#8221;
-works well in all formats.</p>
+or &#8220;Project:&#8221; word, so that references like</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="n">see</span> <span class="n">Problem</span> <span class="n">ref</span><span class="p">{</span><span class="o">...</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>works well in all formats.</p>
 <p>It is recommended to collect all exercises as subsetions (or subsubsections)
 under a section (or subsection) named &#8220;Exercises&#8221;, &#8220;Problems&#8221;, or
 &#8220;Projects&#8221;.</p>

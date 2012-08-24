@@ -1082,7 +1082,7 @@ def system(cmd, capture_output=False, echo=True):
     if echo:
         print 'running', cmd
     if capture_output:
-        failure, outtext = commands.getstatusoutput(cmd)
+        failure, outtext = commands.getstatusoutput(cmd) # Unix/Linux only
     else:
         failure = os.system(cmd)
     if failure:
@@ -1092,23 +1092,26 @@ def system(cmd, capture_output=False, echo=True):
         return outtext
 
 # Filter doconce format to sphinx format and copy to sphinx directory
-files = %(doconce_files_basename_pylist)s
+filenames = %(doconce_files_basename_pylist)s
 print """
 
 """
-for file in files:
-    system('doconce format sphinx %%s' %% file)
-    system('doconce sphinxfix_localURLs %%s.rst' %% file)
+for filename in filenamess:
+    system('doconce format sphinx %%s' %% filename)
 
-    enc = system('doconce guess_encoding %%s.rst' %% file, capture_output=True)
+    # Fix: links to local files, utf-8 encoding for non-English chars
+    system('doconce sphinxfix_localURLs %%s.rst' %% filename)
+
+    cmd = 'doconce guess_encoding %%s.rst' %% filename
+    enc = system(cmd, capture_output=True)
     if enc == "iso-8859-1":
         # sphinx does not like non-English characters in iso-8859-1
-        system('doconce change_encoding iso-8859-1 utf-8 %%s.rst' %% file)
+        system('doconce change_encoding iso-8859-1 utf-8 %%s.rst' %% filename)
 
-    shutil.copy('%%s.rst' %% file, sphinx_rootdir)
+    shutil.copy('%%s.rst' %% filename, sphinx_rootdir)
 
-# Copy figures
-figdirs = glob.glob('figs*')
+# Copy figures and movies directories
+figdirs = glob.glob('fig*') + glob.glob('mov*')
 for figdir in figdirs:
     destdir = os.path.join(sphinx_rootdir, figdir)
     if os.path.isdir(figdir) and not os.path.isdir(destdir):
@@ -1116,6 +1119,7 @@ for figdir in figdirs:
         shutil.copytree(figdir, destdir)
 
 # Copy linked local files, placed in _static*, to %(sphinx_rootdir)s/_static
+# (fixed by doconce sphinxfix_local_URLs above)
 staticdirs = glob.glob('_static*')
 for staticdir in staticdirs:
     # Copy files whose linkes were fixed by doconce sphinxfix_localURLs
@@ -1123,9 +1127,9 @@ for staticdir in staticdirs:
     system('cp -r %%s/* %(sphinx_rootdir)s/_static/' %% staticdir)
     # (Note: must do cp -r since shutil.copy/copytree cannot copy a la cp -r)
 
-# Note that HTML files in staticdirs may contain links to local HTML
+# (Note that HTML files in staticdirs may contain links to local HTML
 # files that must also be copied (sphinxfix_localURLs can only detect
-# the first link).
+# the first link).)
 
 # Compile web version of the sphinx document
 os.chdir(sphinx_rootdir)
@@ -1462,9 +1466,11 @@ _replace = [
 ]
 
 _regex_subst = [
-(r'\ep\\\]', r'\thinspace . \]'),
-(r'\ep\\e', r'\thinspace . \e'),
-(r'\ep\n', r'\thinspace .\n'),
+(r'^\ep\n', r'\\thinspace .\n', re.MULTILINE),
+(r'\ep\n', r' \\thinspace .\n'),
+(r'\ep\s*\\\]', r' \\thinspace . \]'),
+(r'\ep\s*\\e', r' \\thinspace . \e'),
+(r'\\thinspace', 'thinspace'),
 ]
 """
 
@@ -1486,8 +1492,8 @@ def expand_commands():
     _regex_subst = [
     (r'^\ep\n', r'\\thinspace .\n', re.MULTILINE),
     (r'\ep\n', r' \\thinspace .\n'),
-    (r'\ep\\\]', r' \\thinspace . \]'),
-    (r'\ep\\e', r' \\thinspace . \e'),
+    (r'\ep\s*\\\]', r' \\thinspace . \]'),
+    (r'\ep\s*\\e', r' \\thinspace . \e'),
     (r'\\thinspace', 'thinspace'),
     ]
 
@@ -2165,10 +2171,10 @@ def teamod():
         print 'directory %s exists, renamed to %s.old~~' % (name, name)
     os.mkdir(name)
     os.chdir(name)
-    os.mkdir('figs-%s' % name)
+    os.mkdir('fig-%s' % name)
     os.mkdir('src-%s' % name)
-    os.mkdir('lectures-%s' % name)
-    f = open('%s_wrap.do.txt' % name, 'w')
+    os.mkdir('lec-%s' % name)
+    f = open('wrap_%s.do.txt' % name, 'w')
     f.write("""# Wrapper file for teaching module "%s"
 
 TITLE: Here Goes The Title ...
@@ -2190,11 +2196,17 @@ label{mysubsec}
 __Paragraph.__ Running text...
 
 Some mathematics:
+
 !bt
 \begin{align}
 a &= b,  label{eq1}\\
 a &= b,  label{eq2}
 \end{align}
+!et
+or
+
+!bt
+\[ a = b, \quad c=d \]
 !et
 
 Some code:
@@ -2219,6 +2231,8 @@ def usage_assemble():
     print 'Usage: doconce assemble master.do.txt'
 
 def assemble():
+    # See 2DO and teamod.do.txt
+
     # Assume some master.do.txt including other .do.txt recursively.
     # search for all @@@CODE, FIGURE, MOVIE and archive in list/dict.
     # search for all #include ".+\.do\.txt", call recursively

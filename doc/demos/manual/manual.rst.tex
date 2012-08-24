@@ -5,7 +5,6 @@
 \usepackage{ifthen}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{color}
 \usepackage{float} % float configuration
 \floatplacement{figure}{H} % place figures here definitely
 \usepackage{graphicx}
@@ -23,34 +22,12 @@
 
 %%% Fallback definitions for Docutils-specific commands
 
-% admonition (specially marked topic)
-\providecommand{\DUadmonition}[2][class-arg]{%
-  % try \DUadmonition#1{#2}:
-  \ifcsname DUadmonition#1\endcsname%
-    \csname DUadmonition#1\endcsname{#2}%
-  \else
-    \begin{center}
-      \fbox{\parbox{0.9\textwidth}{#2}}
-    \end{center}
-  \fi
-}
-
 % fieldlist environment
 \ifthenelse{\isundefined{\DUfieldlist}}{
   \newenvironment{DUfieldlist}%
     {\quote\description}
     {\enddescription\endquote}
 }{}
-
-% title for topics, admonitions and sidebar
-\providecommand*{\DUtitle}[2][class-arg]{%
-  % call \DUtitle#1{#2} if it exists:
-  \ifcsname DUtitle#1\endcsname%
-    \csname DUtitle#1\endcsname{#2}%
-  \else
-    \smallskip\noindent\textbf{#2}\smallskip%
-  \fi
-}
 
 % hyperlinks:
 \ifthenelse{\isundefined{\hypersetup}}{
@@ -79,7 +56,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Aug 20, 2012
+Aug 25, 2012
 
 \end{DUfieldlist}
 
@@ -613,7 +590,7 @@ If the Pygments package (including the \texttt{pygmentize} program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument \texttt{-{}-no-pygments-html}
 turns off the use of Pygments and makes code blocks appear with
-plain \texttt{<pre>} HTML tags. The option \texttt{-{}-pygments-html-linenos} turns
+plain (\texttt{pre}) HTML tags. The option \texttt{-{}-pygments-html-linenos} turns
 on line numbers in Pygments-formatted code blocks.
 
 The HTML file can be embedded in a template if the Doconce document
@@ -2269,8 +2246,13 @@ format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The \emph{title} is typeset without any leading ``Exercise:'', ``Problem:'',
-or ``Project:'' word, so that references like ``see Problem %
-\raisebox{1em}{\hypertarget{id11}{}}\hyperlink{id10}{\textbf{\color{red}`...`\_}}''
+or ``Project:'' word, so that references like:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+see~Problem~ref\{...\}
+}
+\end{quote}
+
 works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
@@ -3863,23 +3845,5 @@ An efficient probabilistic finite element method for stochastic
 groundwater flow.
 \emph{Advances in Water Resources}, vol 22, 185-195, 1998.
 \end{figure}
-
-
-%___________________________________________________________________________
-
-\section*{\phantomsection%
-  \color{red}Docutils System Messages%
-  \addcontentsline{toc}{section}{Docutils System Messages}%
-}
-
-\DUadmonition[system-message]{
-\DUtitle[system-message]{system-message}
-\raisebox{1em}{\hypertarget{id10}{}}
-
-{\color{red}ERROR/3} in \texttt{manual.rst}, line~1772
-
-\hyperlink{id11}{
-Unknown target name: ``...''.
-}}
 
 \end{document}

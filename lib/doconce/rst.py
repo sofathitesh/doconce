@@ -118,11 +118,14 @@ def rst_code(filestr, code_blocks, code_block_types,
     filestr = filestr.replace('!et::', '')
 
     # Check
-    for envir in '!bt', '!et':
-        if envir in filestr:
-            print 'Still %s left after handling of code and tex blocks.' % envir
-            print 'Problem is probably that %s is not preceded by text' % envir
-            print 'which can be extended with :: (required).'
+    for pattern in '^!bt', '^!et':
+        c = re.compile(pattern, re.MULTILINE)
+        m = c.search(filestr)
+        if m:
+            print """
+Still %s left after handling of code and tex blocks. Problem is probably
+that %s is not preceded by text which can be extended with :: (required).
+""" % (pattern, pattern)
             print 'Abort!'
             sys.exit(1)
     return filestr

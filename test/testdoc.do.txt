@@ -250,16 +250,15 @@ one table:
 ===== URLs ======
 label{subsubsec:ex}
 
-Testing of URLs: hpl's home page "hpl":"http://folk.uio.no/hpl",
-or the entire URL if desired, "URL": "http://folk.uio.no/hpl".
-Here is a plain file link "URL": "testdoc.do.txt", or "url":"testdoc.do.txt",
-or URL: "testdoc.do.txt" or url : "testdoc.do.txt" or "a link
-with newline": "testdoc.do.txt". Can test spaces
-with the link with word too: "hpl": "http://folk.uio.no/hpl" or
-"hpl" : "http://folk.uio.no/hpl". The old syntax must also be
-tested: http://folk.uio.no/hpl<hpl's homepage>. Now also `file:///`
-works: "link to a file":"file:///home/hpl/vc/doconce/trunk/test/tmp_HTML.html"
-is fine to have.
+Testing of URLs: hpl's home page "hpl":"http://folk.uio.no/hpl", or
+the entire URL if desired, "URL": "http://folk.uio.no/hpl".  Here is a
+plain file link "URL": "testdoc.do.txt", or "url":"testdoc.do.txt", or
+URL: "testdoc.do.txt" or url : "testdoc.do.txt" or "a link with
+newline": "testdoc.do.txt". Can test spaces with the link with word
+too: "hpl": "http://folk.uio.no/hpl" or "hpl" :
+"http://folk.uio.no/hpl". Also `file:///` works: "link to a
+file":"file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" is
+fine to have.
 
 # Comments should be inserted outside paragraphs (because of reST):
 # note that when there is no http: or file:, it can be a file link

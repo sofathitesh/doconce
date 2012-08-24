@@ -827,7 +827,10 @@ format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The *title* is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem ref{...}"
+or "Project:" word, so that references like
+!bc
+see Problem ref{...}
+!ec
 works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
