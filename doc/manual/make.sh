@@ -4,6 +4,7 @@
 # This is both a test of Doconce and an example.
 
 ./clean.sh
+echo; echo # Make space in output after deleting many files...
 
 # The following packages must be installed for this script to run:
 # doconce, docutils, preprocess, sphinx
@@ -42,6 +43,7 @@ cd ../../..
 $d2f rst manual.do.txt --no-mako
 
 rst2html.py manual.rst > manual.rst.html
+
 rst2xml.py manual.rst > manual.xml
 
 rst2latex.py manual.rst > manual.rst.tex

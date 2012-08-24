@@ -57,7 +57,6 @@ $$
 \newcommand{\x}{\pmb{x}}
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
-
 $$
 
 
@@ -82,7 +81,7 @@ $$
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Aug 20, 2012</h4></center> <!-- date -->
+<center><h4>Aug 25, 2012</h4></center> <!-- date -->
 <p>
 
 <p>
@@ -563,7 +562,7 @@ If the Pygments package (including the <tt>pygmentize</tt> program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument <tt>--no-pygments-html</tt>
 turns off the use of Pygments and makes code blocks appear with
-plain <tt><pre></tt> HTML tags. The option <tt>--pygments-html-linenos</tt> turns
+plain (<tt>pre</tt>) HTML tags. The option <tt>--pygments-html-linenos</tt> turns
 on line numbers in Pygments-formatted code blocks.
 
 <p>
@@ -2096,7 +2095,12 @@ format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The <em>title</em> is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem ref{...}"
+or "Project:" word, so that references like
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+see Problem ref{...}
+</pre>
+</blockquote>   <! -- end verbatim block -->
 works well in all formats.
 
 <p>
@@ -3467,3 +3471,4 @@ and Sphinx just typeset the list as a list with keywords.
 </body>
 </html>
     
+

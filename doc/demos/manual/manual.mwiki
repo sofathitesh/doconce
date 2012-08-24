@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Aug 20, 2012 ====
+==== Aug 25, 2012 ====
 
 <!--> lines beginning with # are comment lines -->
 
@@ -321,7 +321,7 @@ If the Pygments package (including the <code>pygmentize</code> program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument <code>--no-pygments-html</code>
 turns off the use of Pygments and makes code blocks appear with
-plain <code><pre></code> HTML tags. The option <code>--pygments-html-linenos</code> turns
+plain (<code>pre</code>) HTML tags. The option <code>--pygments-html-linenos</code> turns
 on line numbers in Pygments-formatted code blocks.
 
 The HTML file can be embedded in a template if the Doconce document
@@ -582,7 +582,7 @@ Some links for going from LaTeX to Word are listed below.
 
 
 <ul>
- <li> [http://ubuntuforums.org/showthread.php?t=1033441  li] http://tug.org/utilities/texconv/textopc.html <li> [http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html /ul]
+ <li> http://ubuntuforums.org/showthread.php?t=1033441 <li> http://tug.org/utilities/texconv/textopc.html <li> http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</ul>
 
 ==== Sphinx ====
 
@@ -1504,7 +1504,10 @@ format). One must therefore refer to an exercise, problem, or project
 by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The ''title'' is typeset without any leading "Exercise:", "Problem:",
-or "Project:" word, so that references like "see Problem ..."
+or "Project:" word, so that references like
+<code>
+see Problem ref{...}
+</code>
 works well in all formats.
 
 It is recommended to collect all exercises as subsetions (or subsubsections)
@@ -2560,3 +2563,4 @@ and Sphinx just typeset the list as a list with keywords.
 
 <ol>
   <li> H. P. Langtangen. ''A Primer on Scientific Programming with Python''. Springer, 2009.  <li> H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. ''Advances in Water Resources'', vol 22, 185-195, 1998.</ol>
+

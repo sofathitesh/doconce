@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Aug 20, 2012 ====
+==== Aug 25, 2012 ====
 
 <ul>
  <li> When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format? <li> Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging? <li> Do you have the same information scattered around in different   documents in different typesetting formats? Would it be a good idea   to write things once, in one format, stored in one place, and   include it anywhere?</ul>
@@ -314,7 +314,7 @@ If the Pygments package (including the <code>pygmentize</code> program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument <code>--no-pygments-html</code>
 turns off the use of Pygments and makes code blocks appear with
-plain <code><pre></code> HTML tags. The option <code>--pygments-html-linenos</code> turns
+plain (<code>pre</code>) HTML tags. The option <code>--pygments-html-linenos</code> turns
 on line numbers in Pygments-formatted code blocks.
 
 The HTML file can be embedded in a template if the Doconce document
@@ -575,7 +575,7 @@ Some links for going from LaTeX to Word are listed below.
 
 
 <ul>
- <li> [http://ubuntuforums.org/showthread.php?t=1033441  li] http://tug.org/utilities/texconv/textopc.html <li> [http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html /ul]
+ <li> http://ubuntuforums.org/showthread.php?t=1033441 <li> http://tug.org/utilities/texconv/textopc.html <li> http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</ul>
 
 ==== Sphinx ====
 
@@ -975,3 +975,4 @@ updates and bug fixes. For <code>svn</code> directories, go to the directory,
 run <code>svn update</code>, and then <code>sudo python setup.py install</code>. For
 Mercurial (<code>hg</code>) directories, go to the directory, run
 <code>hg pull; hg update</code>, and then <code>sudo python setup.py install</code>.
+

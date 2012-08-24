@@ -112,7 +112,8 @@ def sphinx_figure(m):
     opts = m.group('options')
     if opts:
         info = [s.split('=') for s in opts.split()]
-        rst_info = ['   :%s: %s' % (option, value)  for option, value in info]
+        rst_info = ['   :%s: %s' % (option, value)
+                    for option, value in info if option not in ['frac']]
         result += '\n'.join(rst_info)
     if caption:
         result += '\n\n   ' + caption + '\n'
