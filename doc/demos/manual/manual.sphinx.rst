@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Aug 25, 2012
+:Date: Aug 26, 2012
 
 .. lines beginning with # are comment lines
 
@@ -1692,7 +1692,7 @@ By the way, here is an example on referencing Figure :ref:`fig:viz`
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections :ref:`mathtext` and :ref:`newcommands` are
 nice to demonstrate, as well as a reference to equations,
-say (:ref:`my:eq1`)--(:ref:`my:eq2`). A comparison of the output and
+say (:ref:`myeq1`)-(:ref:`myeq2`). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -2202,7 +2202,7 @@ line and followed by a newline.
 .. math::
         \begin{align}
         {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
         \end{align}
         
 
@@ -2210,10 +2210,9 @@ line and followed by a newline.
 Here is the result of the above ``!bt`` - ``!et`` block:
 
 .. math::
-   :label: myeq1
         
         {\partial u\over\partial t} &= \nabla^2 u + f, \\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
         
 
 
@@ -2329,10 +2328,9 @@ The LaTeX block
 will then be rendered to
 
 .. math::
-   :label: myeq1
         
         {\partial u\over\partial t} &= \nabla^2 u + f, \\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
         
 
 in the current format.

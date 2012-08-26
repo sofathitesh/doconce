@@ -56,7 +56,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Aug 25, 2012
+Aug 26, 2012
 
 \end{DUfieldlist}
 
@@ -1934,7 +1934,7 @@ By the way, here is an example on referencing Figure \hyperref[fig-viz]{fig:viz}
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections \hyperref[latex-blocks-of-mathematical-text]{LaTeX Blocks of Mathematical Text} and \hyperref[macros-newcommands]{Macros (Newcommands)} are
 nice to demonstrate, as well as a reference to equations,
-say Equation (my:eq1)-{}-Equation (my:eq2). A comparison of the output and
+say Equations (myeq1)-(myeq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -2495,7 +2495,7 @@ line and followed by a newline:
 !bt\\
 \textbackslash{}begin\{align\}\\
 \{\textbackslash{}partial~u\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textasciicircum{}2~u~+~f,~label\{myeq1\}\textbackslash{}\textbackslash{}\\
-\{\textbackslash{}partial~v\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textbackslash{}cdot(q(u)\textbackslash{}nabla~v)~+~g\\
+\{\textbackslash{}partial~v\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textbackslash{}cdot(q(u)\textbackslash{}nabla~v)~+~g.~label\{myeq2\}\\
 \textbackslash{}end\{align\}
 }
 \end{quote}
@@ -2505,7 +2505,7 @@ Here is the result of the above \texttt{!bt} - \texttt{!et} block:
 \begin{quote}{\ttfamily \raggedright \noindent
 \textbackslash{}begin\{align\}\\
 \{\textbackslash{}partial~u\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textasciicircum{}2~u~+~f,~label\{myeq1\}\textbackslash{}\textbackslash{}\\
-\{\textbackslash{}partial~v\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textbackslash{}cdot(q(u)\textbackslash{}nabla~v)~+~g\\
+\{\textbackslash{}partial~v\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textbackslash{}cdot(q(u)\textbackslash{}nabla~v)~+~g.~label\{myeq2\}\\
 \textbackslash{}end\{align\}
 }
 \end{quote}
@@ -2643,7 +2643,7 @@ will then be rendered to:
 \begin{quote}{\ttfamily \raggedright \noindent
 \textbackslash{}begin\{align\}\\
 \{\textbackslash{}partial~u\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textasciicircum{}2~u~+~f,~label\{myeq1\}\textbackslash{}\textbackslash{}\\
-\{\textbackslash{}partial~v\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textbackslash{}cdot(q(u)\textbackslash{}nabla~v)~+~g\\
+\{\textbackslash{}partial~v\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textbackslash{}cdot(q(u)\textbackslash{}nabla~v)~+~g.~label\{myeq2\}\\
 \textbackslash{}end\{align\}
 }
 \end{quote}

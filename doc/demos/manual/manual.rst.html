@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Aug 25, 2012</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Aug 26, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -1573,7 +1573,7 @@ By the way, here is an example on referencing Figure <a class="reference interna
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections <a class="reference internal" href="#latex-blocks-of-mathematical-text">LaTeX Blocks of Mathematical Text</a> and <a class="reference internal" href="#macros-newcommands">Macros (Newcommands)</a> are
 nice to demonstrate, as well as a reference to equations,
-say Equation (my:eq1)--Equation (my:eq2). A comparison of the output and
+say Equations (myeq1)-(myeq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.</p>
 <p>Hyperlinks to files or web addresses are handled as explained
@@ -1993,14 +1993,14 @@ line and followed by a newline:</p>
 !bt
 \begin{align}
 {\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 </pre>
 <p>Here is the result of the above <tt class="docutils literal">!bt</tt> - <tt class="docutils literal">!et</tt> block:</p>
 <pre class="literal-block">
 \begin{align}
 {\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 </pre>
 <p>The support of LaTeX mathematics varies among the formats.  Output
@@ -2096,7 +2096,7 @@ expressions).</p>
 <pre class="literal-block">
 \begin{align}
 {\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 </pre>
 <p>in the current format.</p>

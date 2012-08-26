@@ -96,7 +96,7 @@
 
 
 \begin{center}
-Aug 25, 2012
+Aug 26, 2012
 \end{center}
 
 \vspace{1cm}
@@ -1544,7 +1544,7 @@ By the way, here is an example on referencing Figure~\ref{fig:viz}
 (the label appears in the figure caption in the source code of this document).
 Additional references to Sections~\ref{mathtext} and~\ref{newcommands} are
 nice to demonstrate, as well as a reference to equations,
-say (\ref{my:eq1})--(\ref{my:eq2}). A comparison of the output and
+say (\ref{myeq1})-(\ref{myeq2}). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -1984,13 +1984,13 @@ line and followed by a newline.
 \begin{Verbatim}
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 \end{Verbatim}
 Here is the result of the above {\fontsize{10pt}{10pt}\verb!!bt!} - {\fontsize{10pt}{10pt}\verb!!et!} block:
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 
 The support of {\LaTeX} mathematics varies among the formats.  Output
@@ -2098,7 +2098,7 @@ The {\LaTeX} block
 will then be rendered to
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 in the current format.
 
