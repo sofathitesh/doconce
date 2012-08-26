@@ -23532,7 +23532,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 25 Aug 2012 (01:44)
+DATE: Sun, 26 Aug 2012 (14:54)
 
 
 
@@ -23636,7 +23636,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 25 Aug 2012 (01:44)
+DATE: Sun, 26 Aug 2012 (14:54)
 
 
 
@@ -23750,7 +23750,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 25 Aug 2012 (01:44)</center>
+<center>Sun, 26 Aug 2012 (14:54)</center>
 
 
 
@@ -23881,7 +23881,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 25 Aug 2012 (01:44)</center>
+<center>Sun, 26 Aug 2012 (14:54)</center>
 
 
 
@@ -24759,7 +24759,7 @@ By the way, here is an example on referencing Figure ref{fig:viz}
 (the label appears in the figure caption in the source code of this document).
 Additional references to Sections ref{mathtext} and ref{newcommands} are
 nice to demonstrate, as well as a reference to equations,
-say (ref{my:eq1})--(ref{my:eq2}). A comparison of the output and
+say (ref{myeq1})-(ref{myeq2}). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -25173,7 +25173,7 @@ line and followed by a newline.
 !bt
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 !et
 !ec
@@ -25181,7 +25181,7 @@ Here is the result of the above `!bt` - `!et` block:
 !bt
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 !et
 
@@ -27846,7 +27846,7 @@ By the way, here is an example on referencing Figure <a href="fig:viz">1</a>
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections <a href="#mathtext">LaTeX Blocks of Mathematical Text</a> and <a href="#newcommands">Macros (Newcommands)</a> are
 nice to demonstrate, as well as a reference to equations,
-say \eqref{my:eq1}--\eqref{my:eq2}. A comparison of the output and
+say \eqref{myeq1}-\eqref{myeq2}. A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -28364,7 +28364,7 @@ line and followed by a newline.
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 $$
 </pre>
@@ -28373,7 +28373,7 @@ Here is the result of the above <tt>!bt</tt> - <tt>!et</tt> block:
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 $$
 
@@ -28496,7 +28496,7 @@ will then be rendered to
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 $$
 in the current format.
@@ -31162,7 +31162,7 @@ By the way, here is an example on referencing Figure~\ref{fig:viz}
 (the label appears in the figure caption in the source code of this document).
 Additional references to Sections~\ref{mathtext} and~\ref{newcommands} are
 nice to demonstrate, as well as a reference to equations,
-say (\ref{my:eq1})--(\ref{my:eq2}). A comparison of the output and
+say (\ref{myeq1})-(\ref{myeq2}). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -31602,13 +31602,13 @@ line and followed by a newline.
 \bccq
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 \eccq
 Here is the result of the above \code{!bt} - \code{!et} block:
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 
 The support of {\LaTeX} mathematics varies among the formats.  Output
@@ -31717,7 +31717,7 @@ The {\LaTeX} block
 will then be rendered to
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 in the current format.
 
@@ -34007,7 +34007,7 @@ By the way, here is an example on referencing Figure `fig:viz`_
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections `LaTeX Blocks of Mathematical Text`_ and `Macros (Newcommands)`_ are
 nice to demonstrate, as well as a reference to equations,
-say Equation (my:eq1)--Equation (my:eq2). A comparison of the output and
+say Equations (myeq1)-(myeq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -34476,7 +34476,7 @@ line and followed by a newline::
         !bt
         \begin{align}
         {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
         \end{align}
         
 
@@ -34485,7 +34485,7 @@ Here is the result of the above ``!bt`` - ``!et`` block::
 
         \begin{align}
         {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
         \end{align}
 
 
@@ -34596,7 +34596,7 @@ will then be rendered to::
 
         \begin{align}
         {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
         \end{align}
 
 in the current format.
@@ -37155,7 +37155,7 @@ By the way, here is an example on referencing Figure :ref:`fig:viz`
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections :ref:`mathtext` and :ref:`newcommands` are
 nice to demonstrate, as well as a reference to equations,
-say (:ref:`my:eq1`)--(:ref:`my:eq2`). A comparison of the output and
+say (:ref:`myeq1`)-(:ref:`myeq2`). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -37665,7 +37665,7 @@ line and followed by a newline.
 .. math::
         \begin{align}
         {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
         \end{align}
         
 
@@ -37673,10 +37673,9 @@ line and followed by a newline.
 Here is the result of the above ``!bt`` - ``!et`` block:
 
 .. math::
-   :label: myeq1
         
         {\partial u\over\partial t} &= \nabla^2 u + f, \\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
         
 
 
@@ -37792,10 +37791,9 @@ The LaTeX block
 will then be rendered to
 
 .. math::
-   :label: myeq1
         
         {\partial u\over\partial t} &= \nabla^2 u + f, \\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
         
 
 in the current format.
@@ -40031,7 +40029,7 @@ By the way, here is an example on referencing Figure fig:viz
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections [#LaTeX_Blocks_of_Mathematical_Text] and [#Macros_(Newcommands)] are
 nice to demonstrate, as well as a reference to equations,
-say Equation (my:eq1)--Equation (my:eq2). A comparison of the output and
+say Equations (myeq1)-(myeq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -40461,7 +40459,7 @@ line and followed by a newline.
 {{{
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 }}}
 }}}
@@ -40469,7 +40467,7 @@ Here is the result of the above `!bt` - `!et` block:
 {{{
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 }}}
 
@@ -40557,7 +40555,7 @@ will then be rendered to
 {{{
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 }}}
 in the current format.
@@ -42604,7 +42602,7 @@ By the way, here is an example on referencing Figure fig:viz
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections [#LaTeX_Blocks_of_Mathematical_Text] and [#Macros_(Newcommands)] are
 nice to demonstrate, as well as a reference to equations,
-say Equation (my:eq1)--Equation (my:eq2). A comparison of the output and
+say Equations (myeq1)-(myeq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -43033,7 +43031,7 @@ line and followed by a newline.
 :<math>
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 </math>
 </code>
@@ -43041,7 +43039,7 @@ Here is the result of the above <code>!bt</code> - <code>!et</code> block:
 :<math>
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 </math>
 
@@ -43125,7 +43123,7 @@ will then be rendered to
 :<math>
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 </math>
 in the current format.
@@ -45210,7 +45208,7 @@ By the way, here is an example on referencing Figure fig:viz
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections [#LaTeX_Blocks_of_Mathematical_Text] and [#Macros_(Newcommands)] are
 nice to demonstrate, as well as a reference to equations,
-say Equation (my:eq1)--Equation (my:eq2). A comparison of the output and
+say Equations (myeq1)-(myeq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -45645,7 +45643,7 @@ line and followed by a newline.
 {{{
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 }}}
 }}}
@@ -45653,7 +45651,7 @@ Here is the result of the above {{{!bt}}} - {{{!et}}} block:
 {{{
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 }}}
 
@@ -45742,7 +45740,7 @@ will then be rendered to
 {{{
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 }}}
 in the current format.
@@ -47868,7 +47866,7 @@ By the way, here is an example on referencing Figure ref{fig:viz}
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections "LaTeX Blocks of Mathematical Text" and "Macros (Newcommands)" are
 nice to demonstrate, as well as a reference to equations,
-say Equation (my:eq1)--Equation (my:eq2). A comparison of the output and
+say Equations (myeq1)-(myeq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -48307,7 +48305,7 @@ line and followed by a newline::
         !bt
         \begin{align}
         {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
         \end{align}
         
 
@@ -48316,7 +48314,7 @@ Here is the result of the above '!bt' - '!et' block::
 
         \begin{align}
         {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
         \end{align}
 
 
@@ -48417,7 +48415,7 @@ will then be rendered to::
 
         \begin{align}
         {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
         \end{align}
 
 in the current format.
@@ -50608,7 +50606,7 @@ By the way, here is an example on referencing Figure ref{fig:viz}
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections "LaTeX Blocks of Mathematical Text" and "Macros (Newcommands)" are
 nice to demonstrate, as well as a reference to equations,
-say Equation (my:eq1)--Equation (my:eq2). A comparison of the output and
+say Equations (myeq1)-(myeq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -53442,7 +53440,7 @@ By the way, here is an example on referencing Figure ref{fig:viz}
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections "LaTeX Blocks of Mathematical Text" and "Macros (Newcommands)" are
 nice to demonstrate, as well as a reference to equations,
-say Equation (my:eq1)--Equation (my:eq2). A comparison of the output and
+say Equations (myeq1)-(myeq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -53887,7 +53885,7 @@ line and followed by a newline::
         !bt
         \begin{align}
         {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
         \end{align}
         
 
@@ -53896,7 +53894,7 @@ Here is the result of the above !bt - !et block::
 
         \begin{align}
         {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
         \end{align}
 
 
@@ -54005,7 +54003,7 @@ will then be rendered to::
 
         \begin{align}
         {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+        {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
         \end{align}
 
 in the current format.
@@ -56370,7 +56368,7 @@ By the way, here is an example on referencing Figure ref{fig:viz}
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections [LaTeX Blocks of Mathematical Text](#t) and [Macros (Newcommands)](#s)) are
 nice to demonstrate, as well as a reference to equations,
-say Equation (my:eq1)--Equation (my:eq2). A comparison of the output and
+say Equations (myeq1)-(myeq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -56833,7 +56831,7 @@ line and followed by a newline.
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 $$
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -56842,7 +56840,7 @@ Here is the result of the above `!bt` - `!et` block:
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 $$
 
@@ -56954,7 +56952,7 @@ will then be rendered to
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 $$
 in the current format.
@@ -58405,7 +58403,7 @@ xlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts
 ic/amsfonts/cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
 /cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pf
 b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (11 pages, 1419763 bytes).
+Output written on testdoc.pdf (11 pages, 1419815 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -61061,7 +61059,6 @@ updating environment: 2 added, 0 changed, 0 removed
 reading sources... [ 50%] index
 reading sources... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1267: SEVERE: Duplicate ID: "equation-myeq1".
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -61069,15 +61066,15 @@ preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1689: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1689: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1689: WARNING: undefined label: myeq1 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1689: WARNING: undefined label: myeq2 (if the link has no caption the label must precede a section header)
 writing additional files... (0 module code pages) genindex search
 copying images... [100%] figs/streamtubes.png
 
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 4 warnings.
+build succeeded, 3 warnings.
 
 Build finished. The HTML pages are in _build/html.
 + make latex
@@ -61091,8 +61088,8 @@ updating environment: 0 added, 0 changed, 0 removed
 looking for now-outdated files... none found
 processing DoconceManual.tex... index manual 
 resolving references...
-None:None: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-None:None: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+None:None: WARNING: undefined label: myeq1 (if the link has no caption the label must precede a section header)
+None:None: WARNING: undefined label: myeq2 (if the link has no caption the label must precede a section header)
 writing... /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.do.txt
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.html
 done
@@ -61370,7 +61367,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on DoconceManual.pdf (55 pages, 387773 bytes).
+Output written on DoconceManual.pdf (55 pages, 387113 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -61847,17 +61844,17 @@ Overfull \hbox (71.00006pt too wide) in paragraph at lines 2497--2497
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2498--2498
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
-
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2498--2498
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
 
 Overfull \hbox (71.00006pt too wide) in paragraph at lines 2507--2507
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2508--2508
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
-
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2508--2508
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
 
 Overfull \hbox (3.0pt too wide) in paragraph at lines 2524--2531
 \T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
@@ -61882,9 +61879,9 @@ Overfull \hbox (71.00006pt too wide) in paragraph at lines 2645--2645
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2646--2646
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
-
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2646--2646
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
 
 Overfull \hbox (16.79616pt too wide) in paragraph at lines 2662--2674
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
@@ -62034,7 +62031,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (44 pages, 193992 bytes).
+Output written on manual.rst.dvi (44 pages, 194024 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -62445,17 +62442,17 @@ Overfull \hbox (71.00006pt too wide) in paragraph at lines 2497--2497
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2498--2498
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
-
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2498--2498
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
 
 Overfull \hbox (71.00006pt too wide) in paragraph at lines 2507--2507
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2508--2508
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
-
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2508--2508
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
 
 Overfull \hbox (3.0pt too wide) in paragraph at lines 2524--2531
 \T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
@@ -62480,9 +62477,9 @@ Overfull \hbox (71.00006pt too wide) in paragraph at lines 2645--2645
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2646--2646
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
-
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2646--2646
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
 
 Overfull \hbox (16.79616pt too wide) in paragraph at lines 2662--2674
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
@@ -62616,7 +62613,7 @@ Overfull \hbox (113.00006pt too wide) in paragraph at lines 3815--3815
 ugging  
 [43] [44] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (44 pages, 203196 bytes).
+Output written on manual.rst.dvi (44 pages, 203228 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
@@ -62916,10 +62913,10 @@ LaTeX Warning: Reference `newcommands' on page 25 undefined on input line 1545.
 
 
 
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
+LaTeX Warning: Reference `myeq1' on page 25 undefined on input line 1547.
 
 
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
+LaTeX Warning: Reference `myeq2' on page 25 undefined on input line 1547.
 
 
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
@@ -63030,7 +63027,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (48 pages, 325193 bytes).
+Output written on manual.pdf (48 pages, 325230 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -63119,6 +63116,9 @@ Writing index file manual.idx
 
 LaTeX Warning: Label `myeq1' multiply defined.
 
+
+LaTeX Warning: Label `myeq2' multiply defined.
+
 ) (/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd)
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -63196,13 +63196,6 @@ Overfull \hbox (42.0102pt too wide) in paragraph at lines 1327--1330
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 1/cmtt/m/n/10 verbatim text
 [21] [22] [23] [24]
-
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
-
-
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
-
-
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
@@ -63294,7 +63287,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (49 pages, 345013 bytes).
+Output written on manual.pdf (49 pages, 345441 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -63370,6 +63363,9 @@ Writing index file manual.idx
 (./manual.aux
 
 LaTeX Warning: Label `myeq1' multiply defined.
+
+
+LaTeX Warning: Label `myeq2' multiply defined.
 
 ) (/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd)
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
@@ -63448,13 +63444,6 @@ Overfull \hbox (42.0102pt too wide) in paragraph at lines 1327--1330
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 1/cmtt/m/n/10 verbatim text
 [21] [22] [23] [24]
-
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
-
-
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
-
-
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
@@ -63514,9 +63503,6 @@ v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
 [47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  )
@@ -63531,7 +63517,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (49 pages, 345734 bytes).
+Output written on manual.pdf (49 pages, 346162 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -63643,6 +63629,9 @@ Writing index file manual.idx
 
 LaTeX Warning: Label `myeq1' multiply defined.
 
+
+LaTeX Warning: Label `myeq2' multiply defined.
+
 ) (/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd) (./manual.pyg)
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./manual.out)
@@ -63722,13 +63711,6 @@ Overfull \hbox (42.0102pt too wide) in paragraph at lines 1327--1330
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 1/cmtt/m/n/10 verbatim text
 [21] [22] [23] [24]
-
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
-
-
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
-
-
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
@@ -63792,14 +63774,11 @@ v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
 [47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (49 pages, 204812 bytes).
+Output written on manual.dvi (49 pages, 205320 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -63878,6 +63857,9 @@ Writing index file manual.idx
 
 LaTeX Warning: Label `myeq1' multiply defined.
 
+
+LaTeX Warning: Label `myeq2' multiply defined.
+
 ) (/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd) (./manual.pyg)
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./manual.out)
@@ -63953,13 +63935,6 @@ Overfull \hbox (42.0102pt too wide) in paragraph at lines 1327--1330
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 1/cmtt/m/n/10 verbatim text
 [21] [22] [23] [24]
-
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
-
-
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
-
-
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
@@ -64023,14 +63998,11 @@ v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
 [47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (49 pages, 204812 bytes).
+Output written on manual.dvi (49 pages, 205320 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -64121,6 +64093,9 @@ Writing index file manual.idx
 
 LaTeX Warning: Label `myeq1' multiply defined.
 
+
+LaTeX Warning: Label `myeq2' multiply defined.
+
 ) (/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd) (./manual.pyg)
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./manual.out)
@@ -64196,13 +64171,6 @@ Overfull \hbox (42.0102pt too wide) in paragraph at lines 1327--1330
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 1/cmtt/m/n/10 verbatim text
 [21] [22] [23] [24]
-
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
-
-
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
-
-
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
@@ -64266,14 +64234,11 @@ v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
 [47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (49 pages, 204812 bytes).
+Output written on manual.dvi (49 pages, 205320 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -64352,6 +64317,9 @@ Writing index file manual.idx
 
 LaTeX Warning: Label `myeq1' multiply defined.
 
+
+LaTeX Warning: Label `myeq2' multiply defined.
+
 ) (/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd) (./manual.pyg)
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./manual.out)
@@ -64427,13 +64395,6 @@ Overfull \hbox (42.0102pt too wide) in paragraph at lines 1327--1330
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 1/cmtt/m/n/10 verbatim text
 [21] [22] [23] [24]
-
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
-
-
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
-
-
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
@@ -64497,14 +64458,11 @@ v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
 [47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (49 pages, 204812 bytes).
+Output written on manual.dvi (49 pages, 205320 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt --no-mako
@@ -73687,7 +73645,7 @@ xlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts
 ic/amsfonts/cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
 /cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pf
 b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (11 pages, 1419763 bytes).
+Output written on testdoc.pdf (11 pages, 1419815 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -76343,7 +76301,6 @@ updating environment: 2 added, 0 changed, 0 removed
 reading sources... [ 50%] index
 reading sources... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1267: SEVERE: Duplicate ID: "equation-myeq1".
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -76351,15 +76308,15 @@ preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1689: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1689: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1689: WARNING: undefined label: myeq1 (if the link has no caption the label must precede a section header)
+/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1689: WARNING: undefined label: myeq2 (if the link has no caption the label must precede a section header)
 writing additional files... (0 module code pages) genindex search
 copying images... [100%] figs/streamtubes.png
 
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 4 warnings.
+build succeeded, 3 warnings.
 
 Build finished. The HTML pages are in _build/html.
 + make latex
@@ -76373,8 +76330,8 @@ updating environment: 0 added, 0 changed, 0 removed
 looking for now-outdated files... none found
 processing DoconceManual.tex... index manual 
 resolving references...
-None:None: WARNING: undefined label: my:eq1 (if the link has no caption the label must precede a section header)
-None:None: WARNING: undefined label: my:eq2 (if the link has no caption the label must precede a section header)
+None:None: WARNING: undefined label: myeq1 (if the link has no caption the label must precede a section header)
+None:None: WARNING: undefined label: myeq2 (if the link has no caption the label must precede a section header)
 writing... /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.do.txt
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.html
 done
@@ -76652,7 +76609,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on DoconceManual.pdf (55 pages, 387773 bytes).
+Output written on DoconceManual.pdf (55 pages, 387113 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -77129,17 +77086,17 @@ Overfull \hbox (71.00006pt too wide) in paragraph at lines 2497--2497
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2498--2498
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
-
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2498--2498
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
 
 Overfull \hbox (71.00006pt too wide) in paragraph at lines 2507--2507
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2508--2508
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
-
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2508--2508
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
 
 Overfull \hbox (3.0pt too wide) in paragraph at lines 2524--2531
 \T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
@@ -77164,9 +77121,9 @@ Overfull \hbox (71.00006pt too wide) in paragraph at lines 2645--2645
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2646--2646
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
-
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2646--2646
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
 
 Overfull \hbox (16.79616pt too wide) in paragraph at lines 2662--2674
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
@@ -77316,7 +77273,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (44 pages, 193992 bytes).
+Output written on manual.rst.dvi (44 pages, 194024 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -77727,17 +77684,17 @@ Overfull \hbox (71.00006pt too wide) in paragraph at lines 2497--2497
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2498--2498
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
-
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2498--2498
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
 
 Overfull \hbox (71.00006pt too wide) in paragraph at lines 2507--2507
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2508--2508
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
-
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2508--2508
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
 
 Overfull \hbox (3.0pt too wide) in paragraph at lines 2524--2531
 \T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
@@ -77762,9 +77719,9 @@ Overfull \hbox (71.00006pt too wide) in paragraph at lines 2645--2645
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 2646--2646
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g  
-
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2646--2646
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
 
 Overfull \hbox (16.79616pt too wide) in paragraph at lines 2662--2674
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
@@ -77898,7 +77855,7 @@ Overfull \hbox (113.00006pt too wide) in paragraph at lines 3815--3815
 ugging  
 [43] [44] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (44 pages, 203196 bytes).
+Output written on manual.rst.dvi (44 pages, 203228 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
@@ -78198,10 +78155,10 @@ LaTeX Warning: Reference `newcommands' on page 25 undefined on input line 1545.
 
 
 
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
+LaTeX Warning: Reference `myeq1' on page 25 undefined on input line 1547.
 
 
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
+LaTeX Warning: Reference `myeq2' on page 25 undefined on input line 1547.
 
 
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
@@ -78312,7 +78269,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (48 pages, 325193 bytes).
+Output written on manual.pdf (48 pages, 325230 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -78401,6 +78358,9 @@ Writing index file manual.idx
 
 LaTeX Warning: Label `myeq1' multiply defined.
 
+
+LaTeX Warning: Label `myeq2' multiply defined.
+
 ) (/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd)
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -78478,13 +78438,6 @@ Overfull \hbox (42.0102pt too wide) in paragraph at lines 1327--1330
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 1/cmtt/m/n/10 verbatim text
 [21] [22] [23] [24]
-
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
-
-
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
-
-
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
@@ -78576,7 +78529,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (49 pages, 345013 bytes).
+Output written on manual.pdf (49 pages, 345441 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -78652,6 +78605,9 @@ Writing index file manual.idx
 (./manual.aux
 
 LaTeX Warning: Label `myeq1' multiply defined.
+
+
+LaTeX Warning: Label `myeq2' multiply defined.
 
 ) (/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd)
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
@@ -78730,13 +78686,6 @@ Overfull \hbox (42.0102pt too wide) in paragraph at lines 1327--1330
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 1/cmtt/m/n/10 verbatim text
 [21] [22] [23] [24]
-
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
-
-
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
-
-
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
@@ -78796,9 +78745,6 @@ v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
 [47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  )
@@ -78813,7 +78759,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (49 pages, 345734 bytes).
+Output written on manual.pdf (49 pages, 346162 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -78925,6 +78871,9 @@ Writing index file manual.idx
 
 LaTeX Warning: Label `myeq1' multiply defined.
 
+
+LaTeX Warning: Label `myeq2' multiply defined.
+
 ) (/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd) (./manual.pyg)
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./manual.out)
@@ -79004,13 +78953,6 @@ Overfull \hbox (42.0102pt too wide) in paragraph at lines 1327--1330
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 1/cmtt/m/n/10 verbatim text
 [21] [22] [23] [24]
-
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
-
-
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
-
-
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
@@ -79074,14 +79016,11 @@ v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
 [47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (49 pages, 204812 bytes).
+Output written on manual.dvi (49 pages, 205320 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -79160,6 +79099,9 @@ Writing index file manual.idx
 
 LaTeX Warning: Label `myeq1' multiply defined.
 
+
+LaTeX Warning: Label `myeq2' multiply defined.
+
 ) (/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd) (./manual.pyg)
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./manual.out)
@@ -79235,13 +79177,6 @@ Overfull \hbox (42.0102pt too wide) in paragraph at lines 1327--1330
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 1/cmtt/m/n/10 verbatim text
 [21] [22] [23] [24]
-
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
-
-
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
-
-
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
@@ -79305,14 +79240,11 @@ v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
 [47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (49 pages, 204812 bytes).
+Output written on manual.dvi (49 pages, 205320 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -79403,6 +79335,9 @@ Writing index file manual.idx
 
 LaTeX Warning: Label `myeq1' multiply defined.
 
+
+LaTeX Warning: Label `myeq2' multiply defined.
+
 ) (/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd) (./manual.pyg)
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./manual.out)
@@ -79478,13 +79413,6 @@ Overfull \hbox (42.0102pt too wide) in paragraph at lines 1327--1330
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 1/cmtt/m/n/10 verbatim text
 [21] [22] [23] [24]
-
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
-
-
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
-
-
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
@@ -79548,14 +79476,11 @@ v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
 [47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (49 pages, 204812 bytes).
+Output written on manual.dvi (49 pages, 205320 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -79634,6 +79559,9 @@ Writing index file manual.idx
 
 LaTeX Warning: Label `myeq1' multiply defined.
 
+
+LaTeX Warning: Label `myeq2' multiply defined.
+
 ) (/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd) (./manual.pyg)
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty)) (./manual.out)
@@ -79709,13 +79637,6 @@ Overfull \hbox (42.0102pt too wide) in paragraph at lines 1327--1330
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 1/cmtt/m/n/10 verbatim text
 [21] [22] [23] [24]
-
-LaTeX Warning: Reference `my:eq1' on page 25 undefined on input line 1547.
-
-
-LaTeX Warning: Reference `my:eq2' on page 25 undefined on input line 1547.
-
-
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1541--1550
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
@@ -79779,14 +79700,11 @@ v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
 [47] (./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (49 pages, 204812 bytes).
+Output written on manual.dvi (49 pages, 205320 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt --no-mako

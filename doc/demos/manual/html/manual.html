@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Aug 25, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Aug 26, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -1268,7 +1268,7 @@ By the way, here is an example on referencing Figure <a class="reference interna
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections <a class="reference internal" href="#mathtext"><em>LaTeX Blocks of Mathematical Text</em></a> and <a class="reference internal" href="#newcommands"><em>Macros (Newcommands)</em></a> are
 nice to demonstrate, as well as a reference to equations,
-say (<em class="xref std std-ref">my:eq1</em>)&#8211;(<em class="xref std std-ref">my:eq2</em>). A comparison of the output and
+say (<em class="xref std std-ref">myeq1</em>)-(<em class="xref std std-ref">myeq2</em>). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.</p>
 <p>Hyperlinks to files or web addresses are handled as explained
@@ -1678,12 +1678,12 @@ line and followed by a newline.</p>
 <div class="math">
 \[\begin{split}\begin{align}
 {\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}\end{split}\]</div>
 <p>Here is the result of the above <tt class="docutils literal"><span class="pre">!bt</span></tt> - <tt class="docutils literal"><span class="pre">!et</span></tt> block:</p>
-<div class="math" id="equation-myeq1">
-<span class="eqno">(1)</span>\[\begin{split}     {\partial u\over\partial t} &amp;= \nabla^2 u + f, \\
-     {\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g\end{split}\]</div>
+<div class="math">
+\[\begin{split}{\partial u\over\partial t} &amp;= \nabla^2 u + f, \\
+{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g.\end{split}\]</div>
 <p>The support of LaTeX mathematics varies among the formats.  Output
 <tt class="docutils literal"><span class="pre">latex</span></tt> and <tt class="docutils literal"><span class="pre">pdflatex</span></tt> has of course full support. The <tt class="docutils literal"><span class="pre">html</span></tt> format
 supports single equations and multiple equations via the align
@@ -1774,9 +1774,9 @@ expressions).</p>
 </pre></div>
 </div>
 <p>will then be rendered to</p>
-<div class="math" id="equation-myeq1">
-<span class="eqno">(2)</span>\[\begin{split}     {\partial u\over\partial t} &amp;= \nabla^2 u + f, \\
-     {\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g\end{split}\]</div>
+<div class="math">
+\[\begin{split}{\partial u\over\partial t} &amp;= \nabla^2 u + f, \\
+{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g.\end{split}\]</div>
 <p>in the current format.</p>
 </div>
 <div class="section" id="preprocessing-steps">

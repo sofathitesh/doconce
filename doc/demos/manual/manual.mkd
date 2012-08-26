@@ -1,6 +1,6 @@
 % Doconce Description
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Aug 25, 2012
+% Aug 26, 2012
 
 What Is Doconce?
 ================
@@ -1506,7 +1506,7 @@ By the way, here is an example on referencing Figure ref{fig:viz}
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections [LaTeX Blocks of Mathematical Text](#t) and [Macros (Newcommands)](#s)) are
 nice to demonstrate, as well as a reference to equations,
-say Equation (my:eq1)--Equation (my:eq2). A comparison of the output and
+say Equations (myeq1)-(myeq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -1969,7 +1969,7 @@ line and followed by a newline.
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 $$
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1978,7 +1978,7 @@ Here is the result of the above `!bt` - `!et` block:
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 $$
 
@@ -2090,7 +2090,7 @@ will then be rendered to
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 $$
 in the current format.

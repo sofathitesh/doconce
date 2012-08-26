@@ -81,7 +81,7 @@ $$
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Aug 25, 2012</h4></center> <!-- date -->
+<center><h4>Aug 26, 2012</h4></center> <!-- date -->
 <p>
 
 <p>
@@ -1827,7 +1827,7 @@ By the way, here is an example on referencing Figure <a href="fig:viz">1</a>
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections <a href="#mathtext">LaTeX Blocks of Mathematical Text</a> and <a href="#newcommands">Macros (Newcommands)</a> are
 nice to demonstrate, as well as a reference to equations,
-say \eqref{my:eq1}--\eqref{my:eq2}. A comparison of the output and
+say \eqref{myeq1}-\eqref{myeq2}. A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -2345,7 +2345,7 @@ line and followed by a newline.
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 $$
 </pre>
@@ -2354,7 +2354,7 @@ Here is the result of the above <tt>!bt</tt> - <tt>!et</tt> block:
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 $$
 
@@ -2477,7 +2477,7 @@ will then be rendered to
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 $$
 in the current format.
