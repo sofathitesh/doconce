@@ -1470,7 +1470,7 @@ _regex_subst = [
 (r'\ep\n', r' \\thinspace .\n'),
 (r'\ep\s*\\\]', r' \\thinspace . \]'),
 (r'\ep\s*\\e', r' \\thinspace . \e'),
-(r'\\thinspace', 'thinspace'),
+(r' \\thinspace', 'thinspace'),
 ]
 """
 
@@ -1494,7 +1494,7 @@ def expand_commands():
     (r'\ep\n', r' \\thinspace .\n'),
     (r'\ep\s*\\\]', r' \\thinspace . \]'),
     (r'\ep\s*\\e', r' \\thinspace . \e'),
-    (r'\\thinspace', 'thinspace'),
+    (r' \\thinspace', 'thinspace'),
     ]
 
     expand_commands_file = '.expand_commands'
