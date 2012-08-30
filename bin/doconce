@@ -236,6 +236,50 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
     text = f.read()
     f.close()
 
+    # First check for double words
+
+    # Remove inline verbatim and !bc and !bt blocks
+    text2 = re.sub(r'`.+?`', '', text)  # remove inline verbatim
+    code = re.compile(r'^!bc(.*?)\n(.*?)^!ec *\n', re.DOTALL|re.MULTILINE)
+    text2 = code.sub('', text2)
+    tex = re.compile(r'^!bt\n(.*?)^!et *\n', re.DOTALL|re.MULTILINE)
+    text2 = tex.sub('', text2)
+
+    pattern = r"\b([\w'\-]+)(\s+\1)+\b"
+    found = False
+    offset = 30  # no of chars before and after double word to be printed
+    start = 0
+    while start < len(text2)-1:
+        m = re.search(pattern, text2[start:])
+        if m:
+            # Words only
+            word = m.group(0)
+            try:
+                [float(w) for w in word.split()]
+                is_word = False
+            except ValueError:
+                # Drop words with underscore, ...
+                #drop = ['_', '--',
+                is_word = '_' not in word
+
+            if is_word:
+                print "\ndouble words detected in %s (see inside [...]):\n------------------------" % filename
+                print "%s[%s]%s\n------------------------" % \
+                      (text2[max(0,start+m.start()-offset):start+m.start()],
+                       word,
+                       text2[start+m.end():min(start+m.end()+offset,
+                                               len(text2)-1)])
+                found = True
+            start += m.end()
+        else:
+            break
+    if found:
+        pass
+        #print '\nAbort because of double words.'
+        #sys.exit(1)
+
+    # Continue with spell checking
+
     if os.path.isfile(strip_file):
         execfile(strip_file)
     else:

@@ -621,7 +621,7 @@ def exercises(filestr, format):
     exer_end = False
     exer_counter = 0
 
-    exer_heading_pattern = re.compile(r'^\s*([_=]{3,5})\s*([Ee]xercise|[Pp]roblem|[Pp]roject):\s*(?P<title>[^ =-].+?)\s*[_=]+')
+    exer_heading_pattern = re.compile(r'^\s*([_=]{3,5})\s*([Ee]xercise|[Pp]roblem|[Pp]roject):\s*(?P<title>[^ =-].+?)\s*[_=]{3,5}')
     label_pattern = re.compile(r'label\{(.+?)\}')
     file_pattern = re.compile(r'file\s*=\s*([^\s]+)')
     solution_pattern = re.compile(r'solution\s*=\s*([^\s]+)')
