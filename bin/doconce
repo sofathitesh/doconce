@@ -239,7 +239,7 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
     # First check for double words
 
     # Remove inline verbatim and !bc and !bt blocks
-    text2 = re.sub(r'`.+?`', '', text)  # remove inline verbatim
+    text2 = re.sub(r'`.+?`', '`....`', text)  # remove inline verbatim
     code = re.compile(r'^!bc(.*?)\n(.*?)^!ec *\n', re.DOTALL|re.MULTILINE)
     text2 = code.sub('', text2)
     tex = re.compile(r'^!bt\n(.*?)^!et *\n', re.DOTALL|re.MULTILINE)
@@ -1140,7 +1140,7 @@ filenames = %(doconce_files_basename_pylist)s
 print """
 
 """
-for filename in filenamess:
+for filename in filenames:
     system('doconce format sphinx %%s' %% filename)
 
     # Fix: links to local files, utf-8 encoding for non-English chars
