@@ -41,10 +41,12 @@ def rst_figure(m):
     result += '\n.. figure:: ' + filename + '\n'  # utilize flexibility
     opts = m.group('options')
     if opts:
+        # opts: width=600 frac=0.5 align=center
+        # opts: width=600, frac=0.5, align=center
         info = [s.split('=') for s in opts.split()]
-        rst_info = ['   :%s: %s' % (option, value)
+        fig_info = ['   :%s: %s' % (option, value.replace(',', ''))
                     for option, value in info if option not in ['frac']]
-        result += '\n'.join(rst_info)
+        result += '\n'.join(fig_info)
     # remove final period in caption since caption is used as hyperlink
     # text to figures
     if caption and caption[-1] == '.':
