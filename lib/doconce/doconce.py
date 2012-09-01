@@ -1130,13 +1130,14 @@ def handle_figures(filestr, format):
         if not os.path.isfile(figfile):
             basepath, ext = os.path.splitext(figfile)
             if not ext:  # no extension?
-                # try to see if f + ext exists:
+                # try to see if figfile + ext exists:
                 for ext in extensions:
                     newname = figfile + ext
                     if os.path.isfile(newname):
                         print 'figure file %s:\n    can use %s for format %s' % \
                               (figfile, newname, format)
-                        filestr = filestr.replace(figfile, newname)
+                        filestr = re.sub(r'%s([,\]])' % figfile,
+                                         '%s\g<1>' % newname, filestr)
                         figfile = newname
                         file_found = True
                         break
