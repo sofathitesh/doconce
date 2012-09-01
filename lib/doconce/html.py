@@ -528,6 +528,68 @@ def define(FILENAME_EXTENSION,
     TOC['html'] = html_toc
 
     # document start:
+    if '--html-solarized' in sys.argv:
+        css = """\
+    body {
+      margin:5;
+      padding:0;
+      border:0;	/* Remove the border around the viewport in old versions of IE */
+      width:100%;
+      background: #fdf6e3;
+      min-width:600px;	/* Minimum width of layout - remove if not required */
+      font-family: Verdana, Helvetica, Arial, sans-serif;
+      font-size: 1.0em;
+      line-height: 1.3em;
+      color: #657b83;
+    }
+    a { color: #657b83; text-decoration:none; }
+    a:hover { color: #b58900; background: #eee8d5; text-decoration:none; }
+    h1, h2, h3 { margin:.8em 0 .2em 0; padding:0; }
+    h2 { font-variant: small-caps; }
+    pre {
+      background: #fdf6e3;
+      -webkit-box-shadow: inset 0 0 2px #000000;
+      -moz-box-shadow: inset 0 0 2px #000000;
+      box-shadow: inset 0 0 2px #000000;
+      color: #586e75;
+      margin-left: 0px;
+      font-family: 'Droid Sans Mono', monospace;
+      padding: 2px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+    }
+    tt { font-family: "Courier New", Courier; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p { text-indent: 0px; }
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+"""
+    else:
+        css = """\
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    pre { background: #ededed; color: #000; padding: 15px;}
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+"""
+    # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
+
+
     INTRO['html'] = """\
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
@@ -546,22 +608,7 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
 -->
 
 <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #ffffff;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
-    }
-    h1 { font-size: 1.8em; color: #1e36ce; }
-    h2 { font-size: 1.5em; color: #1e36ce; }
-    h3 { color: #1e36ce; }
-    a { color: #1e36ce; text-decoration:none; }
-    tt { font-family: "Courier New", Courier; }
-    pre { background: #ededed; color: #000; padding: 15px;}
-    p { text-indent: 0px; }
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    p.caption { width: 80%; font-style: normal; text-align: left; }
-    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+%s
 </style>
 
 <!-- Use MathJax to render mathematics -->
@@ -582,8 +629,7 @@ MathJax.Hub.Config({
 </head>
 
 <body>
-    """
-    # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
+    """ % css
 
     newcommands_files = glob.glob('newcommands*[^p].tex')
     newcommands = ''
@@ -596,12 +642,12 @@ MathJax.Hub.Config({
     INTRO['html'] += newcommands
     INTRO['html'] += """
 
-<!-- ---------------------------- main content ------------------------>
+<!-- ------------------- main content ------------------------>
 """
     # document ending:
     OUTRO['html'] = """
 
-<!-- ---------------------------- end of main content ----------------->
+<!-- ------------------- end of main content ----------------->
 </body>
 </html>
     """

@@ -273,7 +273,8 @@ def doconce_exercise_output(exer,
         s += '\n' + exer['text'] + '\n'
 
     if exer['file']:
-        s += '*Filename*: `%s`' % exer['file'] + '.\n'
+        s += 'Filename: `%s`' % exer['file'] + '.\n'
+        #s += '*Filename*: `%s`' % exer['file'] + '.\n'
         #s += '\n' + '*Filename*: `%s`' % exer['file'] + '.\n'
 
     if exer['hints']:
