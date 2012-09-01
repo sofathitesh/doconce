@@ -365,7 +365,7 @@ def html_ref_and_label(section_label2title, format, filestr):
 
     for label in label2no:
         filestr = filestr.replace('ref{%s}' % label,
-                                  '<a href="%s">%d</a>' %
+                                  '<a href="#%s">%d</a>' %
                                   (label, label2no[label]))
 
     # replace all other references ref{myname} by <a href="#myname">myname</a>:
