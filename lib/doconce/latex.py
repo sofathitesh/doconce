@@ -699,7 +699,7 @@ def define(FILENAME_EXTENSION,
     TABLE['latex'] = latex_table
     EXERCISE['latex'] = latex_exercise
     INDEX_BIB['latex'] = latex_index_bib
-    TOC['latex'] = lambda s: r'\\tableofcontents'
+    TOC['latex'] = lambda s: r'\tableofcontents'
 
     INTRO['latex'] = r"""%%
 %% Automatically generated ptex2tex (extended LaTeX) file

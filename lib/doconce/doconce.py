@@ -776,19 +776,17 @@ def exercises(filestr, format):
         f = open(exer_filename, 'w')
         f.write("""
 # Information about all exercises in the file %s.
-# The information can be loaded into a Python list of dicts
-# by the code (f is an open filehandle to the current file):
+# The information can be loaded into a Python list of dicts by
 #
-# for i in range(7): f.readline()  # skip comments in the top
+# f = open('%s', 'r')
 # exer = eval(f.read())
 #
-""" % filename)
+""" % (filename, exer_filename))
         f.write(pprint.pformat(all_exer))
         f.close()
         print 'found info about %d exercises, written to %s' % \
               (len(all_exer), exer_filename)
         debugpr('\n%s\n**** The file after interpreting exercises ***\n\n%s\n%s\n\n\n' % ('-'*80, filestr, '-'*80))
-
     else:
         debugpr('No exercises found.\n')
 
