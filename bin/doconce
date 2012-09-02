@@ -1519,22 +1519,23 @@ def latex_exercise_toc():
 \subsection*{%s}
 \\begin{tabular}{lrll}
 """ % heading
-
+    max_title_length = 45
     for ex in exer:
         if ex['label']:
             # Truncate long titles
             title = ex['title']
-            if len(title) > 55:
-               words = title.split()
-               title = []
-               for word in words:
-                   title.append(word)
-                   if len(' '.join(title)) > 50:
-                       title.append('...')
-                       break
-               title = ' '.join(title)
+            if len(title) > max_title_length:
+                words = title.split()
+                title = []
+                for word in words:
+                    title.append(word)
+                    if len(' '.join(title)) > max_title_length - 5:
+                        title.append('...')
+                        break
+                title = ' '.join(title)
             latex += ex['type'] + ' & ' + str(ex['no']) + ' & ' + title \
-            + r' & page \pageref{%s}' % ex['label'] + ' \\\\' + '\n'
+            + r' & p.~\pageref{%s}' % ex['label'] + ' \\\\\\\\' + '\n'
+            # (need 8 \ for \\ to survive because re.sub below eats them)
     latex += r"""\end{tabular}
 %\clearpage  % pagebreak after table of exercises
 

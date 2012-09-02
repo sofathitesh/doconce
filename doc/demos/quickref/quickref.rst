@@ -6,7 +6,7 @@ Doconce Quick Reference
 
 :Author: Hans Petter Langtangen
 
-:Date: Sep 1, 2012
+:Date: Sep 2, 2012
 
 .. contents:: Table of Contents
    :depth: 2
@@ -533,7 +533,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex expand_commands
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex expand_commands latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -579,6 +579,7 @@ list of capabilities::
                 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
         
         doconce expand_commands file1 file2 ...
+        doconce latex_exercise_toc doconcefile.do.txt
         doconce list_labels doconcefile.do.txt | latexfile.tex
         doconce teamod name
         doconce assemble name master.do.txt
