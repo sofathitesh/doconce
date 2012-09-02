@@ -3,6 +3,8 @@ doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized
 
 doconce format latex testdoc.do.txt
 doconce format pdflatex testdoc.do.txt
+doconce latex_exercise_toc testdoc
+doconce replace '%\clearpage  % pagebreak after table of exercises' '\clearpage  % pagebreak after table of exercises' testdoc.p.tex
 
 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]'
 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack testdoc.p.tex
@@ -14,7 +16,6 @@ ptex2tex -DMINTED -DMOVIE15 -DLATEX_HEADING=titlepage testdoc
 
 # test that pdflatex works
 pdflatex -shell-escape testdoc
-
 cp testdoc.tex testdoc.tex_ptex2tex
 
 # -DBOOK will not work for latex/pdflatex since we have an abstract,

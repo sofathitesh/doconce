@@ -55,8 +55,8 @@ def latex_code(filestr, code_blocks, code_block_types,
 
     if include_numbering_of_exercises:
         # Remove section numbers of exercise sections
-        filestr = re.sub(r'section\{(Exercise|Problem|Project)',
-                         r'section*{\g<1>', filestr)
+        filestr = re.sub(r'section\{(Exercise|Problem|Project):',
+                         r'section*{\g<1>:', filestr)
 
     # Add movie15 package if the file has a movie
     if r'\includemovie[' in filestr:
