@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Aug 26, 2012
+:Date: Sep 1, 2012
 
 .. lines beginning with # are comment lines
 
@@ -452,6 +452,11 @@ is performed by
         Terminal> doconce format html mydoc
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
+
+The HTML style is defined in the header of the file. The default style
+has blue section headings and white background. With the ``--html-solarized``
+command line argument, the `solarized <http://ethanschoonover.com/solarized>`_
+color palette is used.
 
 If the Pygments package (including the ``pygmentize`` program)
 is installed, code blocks are typeset with
@@ -1256,7 +1261,7 @@ Here are some examples:
         
         The running text goes here.
         
-        ===Example on a Subsubsection Heading===
+        === Example on a Subsubsection Heading ===
         
         The running text goes here.
         

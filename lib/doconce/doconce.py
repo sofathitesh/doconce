@@ -101,6 +101,14 @@ def syntax_check(filestr, format):
 
     begin_end_consistency_checks(filestr, ['c', 't', 'ans', 'sol', 'hint'])
 
+    # Check that headings have consistent use of = signs
+    for line in filestr.splitlines():
+        if line.strip().startswith('==='):
+            w = line.split()
+            if w[0] != w[-1]:
+                print '\ninconsistent no of = in heading:\n', line
+                sys.exit(1)
+
     pattern = re.compile(r'^ +![eb][ct]', re.MULTILINE)
     m = pattern.search(filestr)
     if m:
@@ -1878,7 +1886,7 @@ def main():
     options = ['--debug', '--skip_inline_comments', '--encoding=',
                '--oneline_paragraphs', '--no-mako', '--no-preprocess',
                '--no-pygments-html', '--pygments-html-linenos',
-
+               '--html-solarized',
                ]
 
     global _log, encoding, filename

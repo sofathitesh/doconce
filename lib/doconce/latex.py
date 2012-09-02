@@ -493,13 +493,27 @@ def latex_index_bib(filestr, index, citations, bibfile):
     return filestr
 
 
+def latex_exercise(exer):
+    begin_solution = '# --- begin solution of exercise\n\n__Solution.__\n'
+    end_solution = '\n# --- end solution of exercise'
+    begin_answer = '# --- begin short answer in exercise\n\n__Answer.__ '
+    end_answer = '\n# --- end short answer in exercise'
+    begin_hint = '__Hint.__ '
+    end_hint = ''
+    end_exercise = '# --- end of exercise'
+
+    return doconce_exercise_output(exer,
+                                   begin_answer, end_answer,
+                                   begin_solution, end_solution,
+                                   begin_hint, end_hint,
+                                   end_exercise,
+                                   include_numbering=False,
+                                   include_type=False)
+
+
 def latex_exercise_old(exer):
     # NOTE: this is the old exercise handler!!
     s = ''  # result string
-    if not 'heading' in exer:
-        print 'Wrong formatting of exercise, not a 3/5 === type heading'
-        print exer
-        sys.exit(1)
 
     # Reuse plain_exercise (std doconce formatting) where possible
     # and just make a few adjustments
@@ -520,21 +534,6 @@ def latex_exercise_old(exer):
         pass
     return s
 
-
-def latex_exercise(exer):
-    begin_solution = '# --- begin solution of exercise\n\n__Solution.__\n'
-    end_solution = '\n# --- end solution of exercise'
-    begin_answer = '# --- begin short answer in exercise\n\n__Answer.__ '
-    end_answer = '\n# --- end short answer in exercise'
-    begin_hint = '__Hint.__ '
-    end_hint = ''
-    end_exercise = '# --- end of exercise'
-
-    return doconce_exercise_output(exer,
-                                   begin_answer, end_answer,
-                                   begin_solution, end_solution,
-                                   begin_hint, end_hint,
-                                   end_exercise)
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,

@@ -389,6 +389,11 @@ is performed by::
 
 The resulting file 'mydoc.html' can be loaded into any web browser for viewing.
 
+The HTML style is defined in the header of the file. The default style
+has blue section headings and white background. With the '--html-solarized'
+command line argument, the "http://ethanschoonover.com/solarized":solarized
+color palette is used.
+
 If the Pygments package (including the 'pygmentize' program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument '--no-pygments-html'

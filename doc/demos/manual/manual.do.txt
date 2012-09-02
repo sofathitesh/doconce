@@ -269,7 +269,7 @@ The running text goes here.
 
 The running text goes here.
 
-===Example on a Subsubsection Heading===
+=== Example on a Subsubsection Heading ===
 
 The running text goes here.
 
@@ -540,7 +540,7 @@ on a linear system ${\bf A}{\bf x} = {\bf b}$|$Ax=b$, where $\bf A$|$A$
 is an $n\times n$|$nxn$ matrix, and $\bf x$|$x$ and $\bf b$|$b$
 are vectors of length $n$|$n$."
 
-===== Comments ======
+===== Comments =====
 
 Comments intended to be visible in the output document and read by
 readers are known as *inline comments* in Doconce and described
@@ -1323,7 +1323,7 @@ hardly any time to work on debugging the code, but the software works
 well for his diverse applications of it.
 
 
-===== General Problems ======
+===== General Problems =====
 
 === Something goes wrong in the preprocessing step ===
 
@@ -1480,7 +1480,7 @@ and that the rest of the non-LaTeX surrounding text is correctly indented.
 Using paragraphs instead of list items is a good idea also here.
 
 
-===== Problems with reST/Sphinx Output ======
+===== Problems with reST/Sphinx Output =====
 
 === Lists do not appear in .rst files ===
 
@@ -1515,7 +1515,7 @@ interactive sessions are automatically handled. If this is not
 appropriate, shift to `!bc cod` or another specification of the
 verbatim environment.
 
-===== Problems with LaTeX Output ======
+===== Problems with LaTeX Output =====
 
 === Error when running latex: You must have 'pygmentize' installed ===
 
@@ -1703,7 +1703,7 @@ two ways out of it:
    others. That file is not used for LaTeX output, but
    replaced by the hand-written LaTeX "top" file.
 
-===== Problems with gwiki Output ======
+===== Problems with gwiki Output =====
 
 === Strange nested lists in gwiki ===
 
@@ -1719,7 +1719,7 @@ output looks somewhat ugly. The good thing is that this gwiki source
 is seldom to be looked at - it is the Doconce source that one edits
 further.
 
-===== Problems with HTML Output ======
+===== Problems with HTML Output =====
 
 === How can I change the layout of the HTML page? ===
 

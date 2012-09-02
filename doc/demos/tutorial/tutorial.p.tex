@@ -172,13 +172,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Aug 26, 2012}
+\date{Sep 1, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Aug 26, 2012}}
+{\large\textsf{Sep 1, 2012}}
 
 \end{center}
 \vfill
@@ -187,7 +187,7 @@
 % #else
 
 \begin{center}
-Aug 26, 2012
+Sep 1, 2012
 \end{center}
 
 \vspace{1cm}
@@ -642,6 +642,11 @@ is performed by
 Terminal> doconce format html mydoc
 \esys
 The resulting file \code{mydoc.html} can be loaded into any web browser for viewing.
+
+The HTML style is defined in the header of the file. The default style
+has blue section headings and white background. With the \code{--html-solarized}
+command line argument, the \href{{http://ethanschoonover.com/solarized}}{solarized}
+color palette is used.
 
 If the Pygments package (including the \code{pygmentize} program)
 is installed, code blocks are typeset with

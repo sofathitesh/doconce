@@ -1,5 +1,5 @@
 #!/bin/sh -x
-doconce format html testdoc.do.txt --pygments-html-linenos
+doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized
 
 doconce format latex testdoc.do.txt
 doconce format pdflatex testdoc.do.txt
