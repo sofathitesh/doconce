@@ -31,6 +31,7 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
 </style>
 
 <!-- Use MathJax to render mathematics -->
@@ -53,7 +54,7 @@ MathJax.Hub.Config({
 <body>
     
 
-<!-- ---------------------------- main content ------------------------>
+<!-- ------------------- main content ------------------------>
 
 <title>Doconce: Document Once, Include Anywhere</title>
 
@@ -73,7 +74,7 @@ MathJax.Hub.Config({
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Aug 26, 2012</h4></center> <!-- date -->
+<center><h4>Sep 1, 2012</h4></center> <!-- date -->
 <p>
 
 <p>
@@ -554,6 +555,12 @@ Terminal&gt; doconce format html mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
 The resulting file <tt>mydoc.html</tt> can be loaded into any web browser for viewing.
+
+<p>
+The HTML style is defined in the header of the file. The default style
+has blue section headings and white background. With the <tt>--html-solarized</tt>
+command line argument, the <a href="http://ethanschoonover.com/solarized">solarized</a>
+color palette is used.
 
 <p>
 If the Pygments package (including the <tt>pygmentize</tt> program)
@@ -1423,7 +1430,7 @@ run <tt>svn update</tt>, and then <tt>sudo python setup.py install</tt>. For
 Mercurial (<tt>hg</tt>) directories, go to the directory, run
 <tt>hg pull; hg update</tt>, and then <tt>sudo python setup.py install</tt>.
 
-<!-- ---------------------------- end of main content ----------------->
+<!-- ------------------- end of main content ----------------->
 </body>
 </html>
     

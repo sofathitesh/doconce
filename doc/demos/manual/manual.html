@@ -31,6 +31,7 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
 </style>
 
 <!-- Use MathJax to render mathematics -->
@@ -61,7 +62,7 @@ $$
 
 
 
-<!-- ---------------------------- main content ------------------------>
+<!-- ------------------- main content ------------------------>
 
 <title>Doconce Description</title>
 
@@ -81,7 +82,7 @@ $$
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Aug 26, 2012</h4></center> <!-- date -->
+<center><h4>Sep 1, 2012</h4></center> <!-- date -->
 <p>
 
 <p>
@@ -556,6 +557,12 @@ Terminal&gt; doconce format html mydoc
 </pre>
 </blockquote>   <! -- end verbatim block -->
 The resulting file <tt>mydoc.html</tt> can be loaded into any web browser for viewing.
+
+<p>
+The HTML style is defined in the header of the file. The default style
+has blue section headings and white background. With the <tt>--html-solarized</tt>
+command line argument, the <a href="http://ethanschoonover.com/solarized">solarized</a>
+color palette is used.
 
 <p>
 If the Pygments package (including the <tt>pygmentize</tt> program)
@@ -1402,7 +1409,7 @@ The running text goes here.
 
 The running text goes here.
 
-===Example on a Subsubsection Heading===
+=== Example on a Subsubsection Heading ===
 
 The running text goes here.
 
@@ -1823,7 +1830,7 @@ these commands work as usual in LaTeX.
 <p>
 It is, in general, recommended to use labels and references for
 (sub)sections, equations, and figures only.
-By the way, here is an example on referencing Figure <a href="fig:viz">1</a>
+By the way, here is an example on referencing Figure <a href="#fig:viz">1</a>
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections <a href="#mathtext">LaTeX Blocks of Mathematical Text</a> and <a href="#newcommands">Macros (Newcommands)</a> are
 nice to demonstrate, as well as a reference to equations,
@@ -3467,7 +3474,7 @@ and Sphinx just typeset the list as a list with keywords.
 
 <p>
 
-<!-- ---------------------------- end of main content ----------------->
+<!-- ------------------- end of main content ----------------->
 </body>
 </html>
     

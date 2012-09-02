@@ -251,20 +251,22 @@ def doconce_exercise_output(exer,
                             begin_answer, end_answer,
                             begin_solution, end_solution,
                             begin_hint, end_hint,
-                            end_exercise):
+                            end_exercise,
+                            include_numbering=True,
+                            include_type=True):
     """
     Write exercise in Doconce format. This output can be
     reused in most formats.
     """
-    s = ''  # result string
-
-    if not 'heading' in exer:
-        print 'Wrong formatting of exercise, not a 3/5 === type heading'
-        print exer
-        sys.exit(1)
-
-    #s += exer['heading'] + ' ' + exer['type'] + ' ' + exer['no'] + ': ' + exer['title'] + ' ' + exer['heading'] + '\n'
-    s += exer['heading'] + ' ' + exer['title'] + ' ' + exer['heading'] + '\n'
+    s = exer['heading']  # result string
+    if include_numbering and not include_type:
+        include_type = True
+    if include_type:
+        s += ' ' + exer['type']
+        if include_numbering:
+            s += ' ' + str(exer['no'])
+        s += ':'
+    s += ' ' + exer['title'] + ' ' + exer['heading'] + '\n'
 
     if exer['label']:
         s += 'label{%s}' % exer['label'] + '\n'
@@ -347,7 +349,8 @@ def plain_exercise(exer):
                                    begin_answer, end_answer,
                                    begin_solution, end_solution,
                                    begin_hint, end_hint,
-                                   end_exercise)
+                                   end_exercise,
+                                   True, True)
 
 BLANKLINE = {}
 FILENAME_EXTENSION = {}
