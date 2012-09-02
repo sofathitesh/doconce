@@ -1224,7 +1224,8 @@ def handle_cross_referencing(filestr, format):
         value = m.group(1)
         if value == 'on':
             toc = TOC[format](sections)
-            filestr = pattern.sub('\n%s\n\n' % toc, filestr)
+            toc_fixed = toc.replace('\\', '\\\\') # re.sub swallows backslashes
+            filestr = pattern.sub('\n%s\n\n' % toc_fixed, filestr)
         else:
             filestr = pattern.sub('', filestr)
 
