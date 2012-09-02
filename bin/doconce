@@ -1912,7 +1912,8 @@ def grab():
 
     # Treat --to
 
-    # impossible text (has newlines) that will never be found:
+    # impossible text (has newlines) that will never be found
+    # is used as to-text if this is not specified
     impossible_text = '@\n\n@'
     try:
         to_included = sys.argv[3] == '--to'
@@ -1947,6 +1948,74 @@ def grab():
         print 'Could not find match for to   regex "%s"' % to_text
         sys.exit(1)
     print ''.join(lines).rstrip()
+
+def usage_remove():
+    print 'Usage: doconce remove --from[-] from-text [--to[-] to-text] file'
+
+def remove():
+    """
+    Remove a portion of text from a file, starting with from-text
+    (included if specified as --from, not included if specified
+    via --from-) up to the first occurence of to-text (--to implies
+    that the last line is included, --to- excludes the last line).
+    If --to[-] is not specified, all text up to the end of the file
+    is returned.
+
+    from-text and to-text are specified as regular expressions.
+    """
+    if len(sys.argv) < 4:
+        usage_replace()
+        sys.exit(1)
+
+    filename = sys.argv[-1]
+    if not sys.argv[1].startswith('--from'):
+        print 'missing --from fromtext or --from- fromtext option on the command line'
+        sys.exit(1)
+    from_included = sys.argv[1] == '--from'
+    from_text = sys.argv[2]
+
+    # Treat --to
+
+    # impossible text (has newlines) that will never be found
+    # is used as to-text if this is not specified
+    impossible_text = '@\n\n@'
+    try:
+        to_included = sys.argv[3] == '--to'
+        to_text = sys.argv[4]
+    except IndexError:
+        to_included = True
+        to_text = impossible_text
+
+    from_found = False
+    to_found = False
+    remove = False
+    lines = []  # survived lines
+    f = open(filename, 'r')
+    filestr = f.read()
+    f.close()
+    lines =
+    for line in filestr.splitlines():
+        m_from = re.search(from_text, line)
+        m_to = re.search(to_text, line)
+        if m_from and not from_found:
+            remove = True
+            from_found = True
+            if not from_included:
+                lines.append(line)
+        elif m_to:
+            copy = False
+            to_found = True
+            if not to_included:
+                lines.append(line)
+        elif not remove:
+            lines.append(line)
+    if not from_found:
+        print 'Could not find match for from regex "%s"' % from_text
+        sys.exit(1)
+    if not to_found and to_text != impossible_text:
+        print 'Could not find match for to   regex "%s"' % to_text
+        sys.exit(1)
+    print ''.join(lines).rstrip() + '\n'
 
 
 def clean():
@@ -2453,7 +2522,7 @@ def analyzer():
 
 # -----------------------------------------------------------------------
 
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex expand_commands latex_exercise_toc'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove spellcheck ptex2tex expand_commands latex_exercise_toc'.split()
 
 # -----------------------------------------------------------------------
 
@@ -2497,7 +2566,8 @@ doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 
-doconce grab --from[-] from-text [--to[-] to-text] somefile
+doconce grab   --from[-] from-text [--to[-] to-text] somefile
+doconce remove --from[-] from-text [--to[-] to-text] somefile
 doconce spellcheck [-d .mydict.txt] *.do.txt
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
