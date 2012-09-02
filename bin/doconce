@@ -1492,6 +1492,71 @@ def replace_from_file():
             f.write(text)
             f.close()
 
+def usage_latex_exercise_toc():
+    print 'Usage: doconce latex_exercise_toc myfile.do.txt ["List of exercises"]'
+
+def latex_exercise_toc():
+    if len(sys.argv) < 2:
+        usage_replace()
+        sys.exit(1)
+    dofile = sys.argv[1]
+    if dofile.endswith('.do.txt'):
+        dofile = dofile[:-7]
+    exerfile = '.' + dofile + '.exerinfo'
+    if not os.path.isfile(exerfile):
+        print 'no file %s found' % exerfile
+        return
+
+    f = open(exerfile, 'r')
+    exer = eval(f.read())
+    f.close()
+
+    try:
+        heading = sys.argv[2]
+    except IndexError:
+        heading = "List of Exercises"
+    latex = r"""
+\subsection*{%s}
+\\begin{tabular}{lrll}
+""" % heading
+
+    for ex in exer:
+        if ex['label']:
+            # Truncate long titles
+            title = ex['title']
+            if len(title) > 55:
+               words = title.split()
+               title = []
+               for word in words:
+                   title.append(word)
+                   if len(' '.join(title)) > 50:
+                       title.append('...')
+                       break
+               title = ' '.join(title)
+            latex += ex['type'] + ' & ' + str(ex['no']) + ' & ' + title \
+            + r' & page \pageref{%s}' % ex['label'] + '\n'
+    latex += r"""\end{tabular}
+%\clearpage  % pagebreak after table of exercises
+
+"""
+    ptexfile = dofile + '.p.tex'
+    f = open(ptexfile, 'r')
+    shutil.copy(ptexfile, ptexfile + '.old~~')
+    filestr = f.read()
+    f.close()
+    if r'\tableofcontents' in filestr:
+        # Insert table of exercises on the next line
+        filestr = re.sub(r'(tableofcontents.*$)', '\g<1>\n' + latex,
+                         filestr, flags=re.MULTILINE)
+        f = open(ptexfile, 'w')
+        f.write(filestr)
+        print 'table of exercises inserted in', ptexfile
+        f.close()
+    else:
+        print 'cannot insert table of exercises because there is no'
+        print 'table of contents requested in the', dofile, 'document'
+
+
 def usage_expand_commands():
     print 'Usage: doconce expand_commands file1 file2 ...'
     print """
@@ -2387,7 +2452,7 @@ def analyzer():
 
 # -----------------------------------------------------------------------
 
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex expand_commands'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab spellcheck ptex2tex expand_commands latex_exercise_toc'.split()
 
 # -----------------------------------------------------------------------
 
@@ -2437,6 +2502,7 @@ doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce expand_commands file1 file2 ...
+doconce latex_exercise_toc doconcefile.do.txt
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
 doconce assemble name master.do.txt
