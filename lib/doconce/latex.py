@@ -5,6 +5,9 @@ from common import plain_exercise, table_analysis, \
      _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
+include_numbering_of_exercises = True
+
+
 def latex_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
     # labels inside tex envirs must have backslash \label:
@@ -48,7 +51,12 @@ def latex_code(filestr, code_blocks, code_block_types,
         if envir and envir not in envirs:
             print 'Warning: found "!bc %s", but %s is not a standard predefined ptex2tex environment' % (envir, envir)
 
-    # Final fixes for latex format
+    # --- Final fixes for latex format ---
+
+    if include_numbering_of_exercises:
+        # Remove section numbers of exercise sections
+        filestr = re.sub(r'section\{(Exercise|Problem|Project)',
+                         r'section*{\g<1>', filestr)
 
     # Add movie15 package if the file has a movie
     if r'\includemovie[' in filestr:
@@ -502,13 +510,20 @@ def latex_exercise(exer):
     end_hint = ''
     end_exercise = '# --- end of exercise'
 
-    return doconce_exercise_output(exer,
-                                   begin_answer, end_answer,
-                                   begin_solution, end_solution,
-                                   begin_hint, end_hint,
-                                   end_exercise,
-                                   include_numbering=False,
-                                   include_type=False)
+    # if include_numbering_of_exercises, we could generate a toc for
+    # the exercises, based in the exer list of dicts, and store this
+    # in a file for later use in latex_code, for instance.
+    # This can also be done by a doconce latex_exercise_toc feature
+    # that reads the .filename.exerinfo file.
+
+    return doconce_exercise_output(
+        exer,
+        begin_answer, end_answer,
+        begin_solution, end_solution,
+        begin_hint, end_hint,
+        end_exercise,
+        include_numbering=include_numbering_of_exercises,
+        include_type=include_numbering_of_exercises)
 
 
 def latex_exercise_old(exer):
