@@ -358,7 +358,11 @@ Testing eqnarray:
 !et
 % endif
 
-More mathematical typesetting is demonstrated in the exercises below.
+More mathematical typesetting is demonstrated in the coming exercises.
+
+Below, we have Problem ref{demo:ex:1} and Project ref{demo:ex:2},
+as well as Projects ref{proj:circle1} and ref{exer:you}, and in
+between there we have Exercise ref{exer:some:formula}.
 
 ======= Exercises =======
 
@@ -401,7 +405,7 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 !esol
 
 
-===== Exercise: Compute a Probability =====
+===== Project: Compute a Probability =====
 
 # Minimalistic exercise
 
@@ -481,5 +485,30 @@ Let $R$ and $(x_0,y_0)$ be normally distributed.
 !esubex
 
 
+======= Here goes another section =======
+
+With some text, before we continue with exercises.
+
+======= More Exercises =======
+
+===== Exercise: Make references to projects and problems =====
+
+label{exer:some:formula}
+file=verify_formula.py
+
+Pick a statement from Project ref{proj:circle1} or Problem ref{demo:ex:1}
+and verify it.
 
 
+% if FORMAT in ('rst', 'sphinx', 'html'):
+===== Project: References in a headings do not work well in ${FORMAT} =====
+% else:
+===== Project: References to Project ref{demo:ex:2} in a heading works for ${FORMAT} =====
+% endif
+
+label{exer:you}
+file=selc_composed.pdf
+
+Refer to the previous exercise as Exercise ref{exer:some:formula},
+the two before that as Projects ref{demo:ex:2} and ref{proj:circle1},
+and this one as Project ref{exer:you}.

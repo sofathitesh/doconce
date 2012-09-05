@@ -193,7 +193,11 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
     pattern = r'([.?!])\s+the (sections?|captions?)\s+ref'
     replacement = r'\g<1> The \g<2> ref'
     filestr = re.sub(pattern, replacement, filestr)
-
+    # Remove Exercise, Project, Problem in references since those words
+    # are used in the title of the section too
+    pattern = r'(the\s*)?([Ee]xercises?|[Pp]rojects?|[Pp]roblems?)\s+ref\{'
+    replacement = r' ref{'
+    filestr = re.sub(pattern, replacement, filestr)
 
     # Deal with the problem of identical titles, which makes problem
     # with non-unique links in reST: add a counter to the title
@@ -238,7 +242,8 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
                       title_new
         filestr, n = re.subn(pattern, replacement, filestr)
         if n == 0:
-            raise Exception('problem with substituting "%s"' % title)
+            #raise Exception('problem with substituting "%s"' % title)
+            pass
     # Update label2title mapping with new titles
     for title, label in adjusted_titles:
         section_label2title[label] = adjusted_titles[(title,label)]

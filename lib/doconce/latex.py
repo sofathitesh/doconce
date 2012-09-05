@@ -55,8 +55,8 @@ def latex_code(filestr, code_blocks, code_block_types,
 
     if include_numbering_of_exercises:
         # Remove section numbers of exercise sections
-        filestr = re.sub(r'section\{(Exercise|Problem|Project):',
-                         r'section*{\g<1>:', filestr)
+        filestr = re.sub(r'section\{(Exercise|Problem|Project)( +[^}])',
+                         r'section*{\g<1>\g<2>', filestr)
 
     # Add movie15 package if the file has a movie
     if r'\includemovie[' in filestr:
@@ -502,13 +502,14 @@ def latex_index_bib(filestr, index, citations, bibfile):
 
 
 def latex_exercise(exer):
+    begin_exercise = '# --- begin exercise\n' + r'\begin{exercise}' + '\n' + r'\refstepcounter{exerno}' + '\n'
+    end_exercise = '\n' + r'\end{exercise}' + '\n# --- end of exercise'
     begin_solution = '# --- begin solution of exercise\n\n__Solution.__\n'
     end_solution = '\n# --- end solution of exercise'
     begin_answer = '# --- begin short answer in exercise\n\n__Answer.__ '
     end_answer = '\n# --- end short answer in exercise'
     begin_hint = '__Hint.__ '
     end_hint = ''
-    end_exercise = '# --- end of exercise'
 
     # if include_numbering_of_exercises, we could generate a toc for
     # the exercises, based in the exer list of dicts, and store this
@@ -518,10 +519,10 @@ def latex_exercise(exer):
 
     return doconce_exercise_output(
         exer,
+        begin_exercise, end_exercise,
         begin_answer, end_answer,
         begin_solution, end_solution,
         begin_hint, end_hint,
-        end_exercise,
         include_numbering=include_numbering_of_exercises,
         include_type=include_numbering_of_exercises)
 
@@ -699,7 +700,7 @@ def define(FILENAME_EXTENSION,
     TABLE['latex'] = latex_table
     EXERCISE['latex'] = latex_exercise
     INDEX_BIB['latex'] = latex_index_bib
-    TOC['latex'] = lambda s: r'\tableofcontents'
+    TOC['latex'] = lambda s: r'\tableofcontents' + '\n\n' + r'\vspace{1cm} % after toc' + '\n\n'
 
     INTRO['latex'] = r"""%%
 %% Automatically generated ptex2tex (extended LaTeX) file
@@ -791,6 +792,9 @@ def define(FILENAME_EXTENSION,
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
 
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments

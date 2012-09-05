@@ -89,6 +89,9 @@
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
+\newenvironment{exercise}{}{}
+\newcounter{exerno}
+
 \newcommand{\inlinecomment}[2]{  ({\bf #1}: \emph{#2})  }
 %\newcommand{\inlinecomment}[2]{}  % turn off inline comments
 
@@ -172,13 +175,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Sep 2, 2012}
+\date{Sep 5, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Sep 2, 2012}}
+{\large\textsf{Sep 5, 2012}}
 
 \end{center}
 \vfill
@@ -187,7 +190,7 @@
 % #else
 
 \begin{center}
-Sep 2, 2012
+Sep 5, 2012
 \end{center}
 
 \vspace{1cm}

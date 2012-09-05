@@ -7,6 +7,11 @@ except ImportError:
     # citations is then lost)
     OrderedDict = dict
 
+def _abort():
+    print 'Abort!'
+    sys.exit(1)
+
+
 def debugpr(out):
     """Add the text in string `out` to the log file (name in _log variable)."""
     if '--debug' in sys.argv:
@@ -107,27 +112,27 @@ def syntax_check(filestr, format):
             w = line.split()
             if w[0] != w[-1]:
                 print '\ninconsistent no of = in heading:\n', line
-                sys.exit(1)
+                _abort()
 
     pattern = re.compile(r'^ +![eb][ct]', re.MULTILINE)
     m = pattern.search(filestr)
     if m:
         print '\nSyntax error: !bc/!bt/!ec/!et does not start at the beginning of the line'
         print repr(filestr[m.start():m.start()+80])
-        sys.exit(1)
+        _abort()
     pattern = re.compile(r'^ +![eb](hint|ans|sol)', re.MULTILINE)
     m = pattern.search(filestr)
     if m:
         print '\nSyntax error: !bhint/!ehint/!bans/!eans/!bsol/!esol does not start at the beginning of the line'
         print repr(filestr[m.start():m.start()+80])
-        sys.exit(1)
+        _abort()
 
     pattern = re.compile(r'[^\n:.?!,]^(!b[ct]|@@@CODE)', re.MULTILINE)
     m = pattern.search(filestr)
     if m:
         print '\nSyntax error: Line before !bc/!bt/@@@CODE block\nends with wrong character (must be among [\\n:.?!, ]):'
         print repr(filestr[m.start():m.start()+80])
-        sys.exit(1)
+        _abort()
 
     # Code blocks cannot come directly after tables or headings.
     # Remove idx{} and label{} since these will be moved for rst.
@@ -144,7 +149,7 @@ def syntax_check(filestr, format):
         if m and format in ('rst', 'plain', 'epytext', 'st'):
             print '\nSyntax error: Must have a plain sentence before\na code block like !bc/!bt/@@@CODE, not a section/paragraph heading,\ntable, or comment:'
             print filestr2[m.start():m.start()+80]
-            sys.exit(1)
+            _abort()
 
     # Code/tex blocks cannot have a comment, table, figure, etc.
     # right before them
@@ -161,7 +166,7 @@ def syntax_check(filestr, format):
         if m and format in ('rst', 'sphinx'):
             print '\nSyntax error: Line before list, !bc, !bt or @@@CODE block is a %s line\nwhich will "swallow" the block in reST format.\nInsert some extra line (text) to separate the two elements.' % construction
             print filestr[m.start():m.start()+80]
-            sys.exit(1)
+            _abort()
 
     matches = re.findall(r'\\cite\{.+?\}', filestr)
     if matches:
@@ -172,7 +177,7 @@ def syntax_check(filestr, format):
     if matches:
         print '\nWarning: found \\idx{...} (indx{...} has no backslash)'
         print '\n'.join(matches)
-        sys.exit(1)
+        _abort()
 
     matches = re.findall(r'\\index\{.+?\}', filestr)
     if matches:
@@ -280,7 +285,8 @@ def syntax_check(filestr, format):
                 if '`' not in lines[i] and not inside_bc:  # not verbatim
                     print '\nError: math equation with \n%s\nis not inside !bt - !et environment' % command
                     print '\n'.join(lines[i-3:i+3])
-                    sys.exit(1)
+                    _abort()
+
     """
     # This is better done in sphinx.py, or should we provide warnings
     # to enforce writers to stay away from a range of latex
@@ -327,7 +333,7 @@ def syntax_check(filestr, format):
     if matches:
         print '\nSyntax error: Wrong paragraphs'
         print '\n'.join(matches)
-        sys.exit(1)
+        _abort()
 
     pattern = re.compile(r'^__[A-Za-z0-9,: ]+?__', re.MULTILINE)
     matches = pattern.findall(filestr)
@@ -349,7 +355,7 @@ def syntax_check(filestr, format):
         print '\nSyntax error in FIGURE specification'\
               '\nmissing comma after filename, before options'
         print '\n'.join(matches)
-        sys.exit(1)
+        _abort()
 
     # Movie without comma between filename and options? Or initial spaces?
     pattern = r'^MOVIE:\s*\[[^,\]]+ +[^\]]*\]'
@@ -359,7 +365,7 @@ def syntax_check(filestr, format):
         print '\nSyntax error in MOVIE specification'\
               '\nmissing comma after filename, before options'
         print '\n'.join(matches)
-        sys.exit(1)
+        _abort()
 
     # Keywords at the beginning of the lines:
     keywords = 'AUTHOR', 'TITLE', 'DATE', 'FIGURE', 'BIBFILE', 'MOVIE', 'TOC',
@@ -371,7 +377,7 @@ def syntax_check(filestr, format):
             print '\nSyntax error in %s specification:'\
                   '%s must appear at the beginning of the line!' % (kw,kw)
             print '\n'.join(matches)
-            sys.exit(1)
+            _abort()
 
     # Keywords without colon:
     for kw in keywords:
@@ -382,7 +388,7 @@ def syntax_check(filestr, format):
             print '\nSyntax error in %s: specification'\
                   '\nmissing colon after keyword' % kw
             print '\n'.join(matches)
-            sys.exit(1)
+            _abort()
 
     if format == "latex":
         # if TITLE is given, AUTHOR and DATE must also be present
@@ -405,8 +411,8 @@ specified if one of them is present."""
                 if not mt:
                     print 'TITLE is missing'
                 if not ma:
-                    print 'AUTHOR is missing'
-                sys.exit(1)
+                    print 'AUTHOR is missing '
+                _abort()
 
     return filestr  # fixes may have been performed
 
@@ -478,7 +484,7 @@ def insert_code_from_file(filestr, format):
                     codefile = open(filename, 'r')
                 else:
                     print e
-                    sys.exit(1)
+                    _abort()
 
             # Determine code environment from filename extension
             filetype = os.path.splitext(filename)[1][1:]  # drop dot
@@ -592,8 +598,7 @@ def insert_code_from_file(filestr, format):
                         print 'Could not find regex "%s".' % to_,
                     if from_found and to_found:
                         print '"From" and "to" regex match at the same line - empty text.',
-                    print '\nAbort!'
-                    sys.exit(1)
+                    _abort()
                 print ' lines %d-%d' % (from_line, to_line),
             codefile.close()
 
@@ -875,12 +880,11 @@ def typeset_tables(filestr, format):
                     print 'Syntax error: horizontal rule in table '\
                           'contains | between columns - remove these.'
                     print line
-                    sys.exit(1)
+                    _abort()
                 for char in align:
                     if char not in ('|', 'r', 'l', 'c'):
                         print 'illegal alignment character in table:', char
-                        sys.exit(1)
-
+                        _abort()
                 if len(table['rows']) == 0:
                     # first horizontal rule, align concern headings
                     table['headings_align'] = align
@@ -1160,8 +1164,7 @@ def handle_figures(filestr, format):
         if not os.path.isfile(figfile):
             #raise ValueError('file %s does not exist' % figfile)
             print 'Figure file %s does not exist' % figfile
-            sys.exit(1)
-
+            _abort()
         basepath, ext = os.path.splitext(figfile)
         if not ext in extensions:
             # use convert from ImageMagick to convert to proper format:
@@ -1203,6 +1206,8 @@ def handle_cross_referencing(filestr, format):
     section_label2title = OrderedDict()
     for dummy1, title, dummy2, label in m:
         section_label2title[label] = title.strip()
+        if 'ref{' in title and format in ('rst', 'sphinx', 'html'):
+            print 'Warning: reference in title\n  %s\nwill come out wrong in format %s' % (title, format)
     #pprint.pprint(section_label2title)
 
     # 2. Make table of contents
@@ -1255,7 +1260,7 @@ def handle_index_and_bib(filestr, format, has_title):
                     bibfile['py'] = filename
                 else:
                     print '\nUnknown extension of BIBFILE:', filename
-                    sys.exit(1)
+                    _abort()
         else:
             index_words = re.findall(r'idx\{(.+?)\}', line)
             if index_words:
@@ -1321,7 +1326,7 @@ def interpret_authors(filestr, format):
                 a, i = line.split(' at ')
             except ValueError:
                 print 'Wrong syntax of author(s) and institution(s): too many "at":\n', line, '\nauthor at inst1, adr1 and inst2, adr2a, adr2b and inst3, adr3'
-                sys.exit(1)
+                _abort()
             a = a.strip()
             if ' and ' in i:
                 i = [w.strip() for w in i.split(' and ')]
@@ -1460,7 +1465,7 @@ def inline_tag_subst(filestr, format):
                         #raise Exception(e)
                         # Raising exception is misleading since the
                         # error occured in the replacement function
-                        sys.exit(1)
+                        _abort()
                     lines[i] = re.sub(tag_pattern, replacement_str, lines[i])
                     occurences += 1
             filestr = '\n'.join(lines)
@@ -1537,7 +1542,7 @@ def file2file(in_filename, format, out_filename):
             print 'Problem with character when writing to file:', filestr[pos]
             print filestr[pos-40:pos], '|', filestr[pos], '|', filestr[pos+1:pos+40]
             print 'Fix character or try --encoding=utf-8 or --encoding=iso-8859-15'
-            sys.exit(1)
+            _abort()
     f.close()
 
 
@@ -1752,8 +1757,7 @@ def preprocess(filename, format, preprocessor_options=[]):
                 print '\nSyntax error in preprocess directives: missing # '\
                       'before directive'
                 print pattern
-                sys.exit(1)
-
+                _abort()
         try:
             import preprocess
         except ImportError:
@@ -1763,7 +1767,7 @@ the preprocess program to be installed (see code.google.com/p/preprocess).
 On Debian systems, preprocess can be installed through the
 preprocess package (sudo apt-get install preprocess).
 """ % filename
-            sys.exit(1)
+            _abort()
 
         if '--no-preprocess' in sys.argv:
             print 'Found preprocess-like statements, but --no-preprocess prevents running preprocess'
@@ -1776,7 +1780,7 @@ preprocess package (sudo apt-get install preprocess).
             if failure:
                 print 'Could not run preprocessor:\n%s' % cmd
                 print outtext
-                sys.exit(1)
+                _abort()
             # Make filestr the result of preprocess in case mako shall be run
             f = open(resultfile, 'r'); filestr = f.read(); f.close()
 
@@ -1814,7 +1818,7 @@ to be installed (www.makotemplates.org).
 On Debian systems, mako can easily be installed through the
 python-mako package (sudo apt-get install python-mako).
 """ % filename
-            sys.exit(1)
+            _abort()
 
         print 'running mako on', filename, 'to make', resultfile
         # add a space after \\ at the end of lines (otherwise mako
@@ -1841,7 +1845,7 @@ python-mako package (sudo apt-get install python-mako).
                     key, value = option.split('=')
                 except ValueError:
                     print 'command line argument "%s" not recognized' % option
-                    sys.exit(1)
+                    _abort()
                 # Try eval(value), if it fails, assume string
                 try:
                     kwargs[key] = eval(value)
@@ -1855,12 +1859,12 @@ python-mako package (sudo apt-get install python-mako).
             if "'Undefined' object is not callable" in str(e):
                 calls = '\n'.join(re.findall(r'(\$\{[A-Za-z0-9_ ]+?\()[^}]+?\}', filestr))
                 print '${func(...)} calls undefined function "func",\ncheck all ${...} calls in the file(s) for possible typos and lack of includes!\n%s' % calls
-                sys.exit(1)
+                _abort()
         except NameError, e:
             if "Undefined" in str(e):
                 variables = '\n'.join(re.findall(r'\$\{[A-Za-z0-9_]+?\}', filestr))
                 print 'One or more ${var} variables are undefined, check all!\n%s' % variables
-                sys.exit(1)
+                _abort()
 
         f.close()
         if preprocessor_options:
@@ -1902,12 +1906,12 @@ def main():
         print 'formats:', str(supported_format_names())[1:-1]
         print '\n-DFORMAT=format is always defined when running preprocess'
         print 'Other -Dvar preprocess options can be added'
-        sys.exit(1)
+        _abort()
 
     names = supported_format_names()
     if format not in names:
         print '%s is not among the supported formats:\n%s' % (format, names)
-        sys.exit(1)
+        _abort()
 
     encoding = ''
     for arg in sys.argv[1:]:
@@ -1935,7 +1939,7 @@ def main():
         filename = filename + '.do.txt'
         if not os.path.isfile(filename):
             print 'No such Doconce file: %s' % (filename[:-7])
-            sys.exit(1)
+            _abort()
     else:
         basename = filename[:-7]
 

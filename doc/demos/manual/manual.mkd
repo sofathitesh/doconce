@@ -1,6 +1,6 @@
 % Doconce Description
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Sep 2, 2012
+% Sep 5, 2012
 
 What Is Doconce?
 ================

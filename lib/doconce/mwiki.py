@@ -106,34 +106,10 @@ def mwiki_author(authors_and_institutions, auth2index,
     # we skip institutions in mwiki
     return text
 
+from gwiki import wiki_ref_and_label_common
+
 def mwiki_ref_and_label(section_label2title, format, filestr):
-    # .... see section ref{my:sec} is replaced by
-    # see the section "...section heading..."
-    pattern = r'[Ss]ection(s?)\s+ref\{'
-    replacement = r'the section\g<1> ref{'
-    filestr = re.sub(pattern, replacement, filestr)
-    pattern = r'[Cc]hapter(s?)\s+ref\{'
-    replacement = r'the chapter\g<1> ref{'
-    filestr = re.sub(pattern, replacement, filestr)
-
-    # remove label{...} from output
-    filestr = re.sub(r'label\{.+?\}', '', filestr)  # all the remaining
-
-    # anchors in titles do not work...
-
-    # replace all references to sections:
-    for label in section_label2title:
-        title = section_label2title[label]
-        filestr = filestr.replace('ref{%s}' % label,
-                                  '[#%s]' % title.replace(' ', '_'))
-
-    from common import ref2equations
-    filestr = ref2equations(filestr)
-
-    # replace remaining ref{x} as x
-    filestr = re.sub(r'ref\{(.+?)\}', '\g<1>', filestr)
-
-    return filestr
+    return wiki_ref_and_label_common(section_label2title, format, filestr)
 
 
 def define(FILENAME_EXTENSION,
