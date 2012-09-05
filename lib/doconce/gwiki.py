@@ -125,7 +125,7 @@ def gwiki_author(authors_and_institutions, auth2index,
     # we skip institutions in gwiki
     return text
 
-def gwiki_ref_and_label(section_label2title, format, filestr):
+def wiki_ref_and_label_common(section_label2title, format, filestr):
     # .... see section ref{my:sec} is replaced by
     # see the section "...section heading..."
     pattern = r'[Ss]ection(s?)\s+ref\{'
@@ -133,6 +133,11 @@ def gwiki_ref_and_label(section_label2title, format, filestr):
     filestr = re.sub(pattern, replacement, filestr)
     pattern = r'[Cc]hapter(s?)\s+ref\{'
     replacement = r'the chapter\g<1> ref{'
+    filestr = re.sub(pattern, replacement, filestr)
+    # Remove Exercise, Project, Problem in references since those words
+    # are used in the title of the section too
+    pattern = r'(the\s*)?([Ee]xercises?|[Pp]rojects?|[Pp]roblems?)\s+ref\{'
+    replacement = r' ref{'
     filestr = re.sub(pattern, replacement, filestr)
 
     # remove label{...} from output
@@ -154,6 +159,8 @@ def gwiki_ref_and_label(section_label2title, format, filestr):
 
     return filestr
 
+def gwiki_ref_and_label(section_label2title, format, filestr):
+    return wiki_ref_and_label_common(section_label2title, format, filestr)
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,

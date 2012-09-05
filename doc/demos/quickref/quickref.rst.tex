@@ -55,7 +55,7 @@
 \textbf{Author}: &
 	Hans Petter Langtangen \\
 \textbf{Date}: &
-	Sep 2, 2012 \\
+	Sep 5, 2012 \\
 \end{tabularx}
 \end{center}
 
@@ -821,7 +821,7 @@ list of capabilities:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Usage:~doconce~command~{[}optional~arguments{]}\\
-commands:~format~insertdocstr~old2new\_format~gwiki\_figsubst~remove\_inline\_comments~latin2html~sphinx\_dir~subst~replace~replace\_from\_file~clean~help~latex\_header~latex\_footer~guess\_encoding~change\_encoding~bbl2rst~split\_rst~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~grab~spellcheck~ptex2tex~expand\_commands~latex\_exercise\_toc\\
+commands:~format~insertdocstr~old2new\_format~gwiki\_figsubst~remove\_inline\_comments~latin2html~sphinx\_dir~subst~replace~replace\_from\_file~clean~help~latex\_header~latex\_footer~guess\_encoding~change\_encoding~bbl2rst~split\_rst~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~grab~remove~remove\_exercise\_answers~spellcheck~ptex2tex~expand\_commands~latex\_exercise\_toc\\
 ~\\
 doconce~format~html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext~file.do.txt\\
 ~\\
@@ -861,7 +861,9 @@ doconce~bbl2rst~file.bbl\\
 doconce~split\_rst~complete\_file.rst\\
 doconce~sphinxfix\_local\_URLs~file.rst\\
 ~\\
-doconce~grab~-{}-from{[}-{]}~from-text~{[}-{}-to{[}-{]}~to-text{]}~somefile\\
+doconce~grab~~~-{}-from{[}-{]}~from-text~{[}-{}-to{[}-{]}~to-text{]}~somefile\\
+doconce~remove~-{}-from{[}-{]}~from-text~{[}-{}-to{[}-{]}~to-text{]}~somefile\\
+doconce~remove\_exercise\_answers~file\_in\_some\_format\\
 doconce~spellcheck~{[}-d~.mydict.txt{]}~*.do.txt\\
 doconce~ptex2tex~mydoc~-DMINTED~pycod=minted~sys=Verbatim~\textbackslash{}\\
 ~~~~~~~~dat=\textbackslash{}begin\{quote\}\textbackslash{}begin\{verbatim\};\textbackslash{}end\{verbatim\}\textbackslash{}end\{quote\}\\

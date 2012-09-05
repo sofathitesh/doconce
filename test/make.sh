@@ -1,10 +1,11 @@
 #!/bin/sh -x
 doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized
+doconce remove_exercise_answers testdoc.html
 
 doconce format latex testdoc.do.txt
 doconce format pdflatex testdoc.do.txt
 doconce latex_exercise_toc testdoc
-doconce replace '%\clearpage  % pagebreak after table of exercises' '\clearpage  % pagebreak after table of exercises' testdoc.p.tex
+doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc.p.tex
 
 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[section]'
 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack testdoc.p.tex

@@ -1533,11 +1533,12 @@ def latex_exercise_toc():
                         title.append('...')
                         break
                 title = ' '.join(title)
+                title = title.replace('\\', '\\\\') # re.sub later swallows \
             latex += ex['type'] + ' & ' + str(ex['no']) + ' & ' + title \
             + r' & p.~\pageref{%s}' % ex['label'] + ' \\\\\\\\' + '\n'
             # (need 8 \ for \\ to survive because re.sub below eats them)
     latex += r"""\end{tabular}
-%\clearpage  % pagebreak after table of exercises
+% --- end of table of exercises
 
 """
     ptexfile = dofile + '.p.tex'
@@ -1949,6 +1950,35 @@ def grab():
         sys.exit(1)
     print ''.join(lines).rstrip()
 
+def remove_text(filestr, from_text, from_included, to_text, to_included):
+    """
+    Remove a portion of text from the string filestr.
+    See remove() for explanation of arguments.
+    """
+    impossible_text = '@\n\n@'  # must be compatible with remove()
+
+    from_found = False
+    to_found = False
+    remove = False
+    lines = []  # survived lines
+    for line in filestr.splitlines():
+        m_from = re.search(from_text, line)
+        m_to = re.search(to_text, line)
+        if m_from:
+            remove = True
+            from_found = True
+            if not from_included:
+                lines.append(line)
+        elif m_to:
+            remove = False
+            to_found = True
+            if not to_included:
+                lines.append(line)
+        elif not remove:
+            lines.append(line)
+
+    return '\n'.join(lines).rstrip() + '\n', from_found, to_found
+
 def usage_remove():
     print 'Usage: doconce remove --from[-] from-text [--to[-] to-text] file'
 
@@ -1964,10 +1994,14 @@ def remove():
     from-text and to-text are specified as regular expressions.
     """
     if len(sys.argv) < 4:
-        usage_replace()
+        usage_remove()
         sys.exit(1)
 
     filename = sys.argv[-1]
+    f = open(filename, 'r')
+    filestr = f.read()
+    f.close()
+
     if not sys.argv[1].startswith('--from'):
         print 'missing --from fromtext or --from- fromtext option on the command line'
         sys.exit(1)
@@ -1986,36 +2020,49 @@ def remove():
         to_included = True
         to_text = impossible_text
 
-    from_found = False
-    to_found = False
-    remove = False
-    lines = []  # survived lines
-    f = open(filename, 'r')
-    filestr = f.read()
-    f.close()
-    lines =
-    for line in filestr.splitlines():
-        m_from = re.search(from_text, line)
-        m_to = re.search(to_text, line)
-        if m_from and not from_found:
-            remove = True
-            from_found = True
-            if not from_included:
-                lines.append(line)
-        elif m_to:
-            copy = False
-            to_found = True
-            if not to_included:
-                lines.append(line)
-        elif not remove:
-            lines.append(line)
+    filestr, from_found, to_found = remove_text(
+        filestr, from_text, from_included, to_text, to_included)
+
     if not from_found:
         print 'Could not find match for from regex "%s"' % from_text
         sys.exit(1)
     if not to_found and to_text != impossible_text:
         print 'Could not find match for to   regex "%s"' % to_text
         sys.exit(1)
-    print ''.join(lines).rstrip() + '\n'
+
+    os.rename(filename, filename + '.old~~')
+    f = open(filename, 'w')
+    f.write(filestr)
+    f.close()
+
+def usage_remove_exercise_answers():
+    print 'Usage: doconce remove_exercise_answers file_in_some_format'
+
+def remove_exercise_answers():
+    if len(sys.argv) < 2:
+        usage_remove_exercise_answers()
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    f = open(filename, 'r')
+    filestr = f.read()
+    f.close()
+
+    envirs = ['solution of exercise', 'short answer in exercise']
+    from_texts = [r'--- begin ' + envir for envir in envirs]
+    to_texts = [r'--- end ' + envir for envir in envirs]
+    for from_text, to_text in zip(from_texts, to_texts):
+        filestr, from_found, to_found = remove_text(
+            filestr, from_text, True, to_text, True)
+    if from_found and to_found:
+        pass
+    else:
+        print 'no answers/solutions to exercises found in', filename
+
+    os.rename(filename, filename + '.old~~')
+    f = open(filename, 'w')
+    f.write(filestr)
+    f.close()
 
 
 def clean():
@@ -2522,7 +2569,7 @@ def analyzer():
 
 # -----------------------------------------------------------------------
 
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove spellcheck ptex2tex expand_commands latex_exercise_toc'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc'.split()
 
 # -----------------------------------------------------------------------
 
@@ -2568,6 +2615,7 @@ doconce sphinxfix_local_URLs file.rst
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
 doconce remove --from[-] from-text [--to[-] to-text] somefile
+doconce remove_exercise_answers file_in_some_format
 doconce spellcheck [-d .mydict.txt] *.do.txt
 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}

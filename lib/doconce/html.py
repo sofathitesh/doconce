@@ -306,6 +306,11 @@ def html_ref_and_label(section_label2title, format, filestr):
     pattern = r'[Cc]hapter(s?)\s+ref\{'
     replacement = r'the chapter\g<1> ref{'
     filestr = re.sub(pattern, replacement, filestr)
+    # Remove Exercise, Project, Problem in references since those words
+    # are used in the title of the section too
+    pattern = r'(the\s*)?([Ee]xercises?|[Pp]rojects?|[Pp]roblems?)\s+ref\{'
+    replacement = r' ref{'
+    filestr = re.sub(pattern, replacement, filestr)
 
     # extract the labels in the text (filestr is now without
     # mathematics and those labels)
@@ -325,7 +330,8 @@ def html_ref_and_label(section_label2title, format, filestr):
         filestr, n = re.subn(title_pattern, title_new, filestr)
         # (a little odd with mix of doconce title syntax and html NAME tag...)
         if n == 0:
-            raise Exception('problem with substituting "%s"' % title)
+            #raise Exception('problem with substituting "%s"' % title)
+            pass
 
     # replace all references to sections by section titles:
     for label in section_label2title:

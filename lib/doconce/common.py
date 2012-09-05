@@ -248,17 +248,18 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
     return filestr
 
 def doconce_exercise_output(exer,
+                            begin_exercise, end_exercise,
                             begin_answer, end_answer,
                             begin_solution, end_solution,
                             begin_hint, end_hint,
-                            end_exercise,
                             include_numbering=True,
                             include_type=True):
     """
     Write exercise in Doconce format. This output can be
     reused in most formats.
     """
-    s = exer['heading']  # result string
+    s = '\n\n' + begin_exercise + '\n\n'
+    s += exer['heading']  # result string
     if include_numbering and not include_type:
         include_type = True
     if include_type:
@@ -337,19 +338,20 @@ def doconce_exercise_output(exer,
     return s
 
 def plain_exercise(exer):
+    begin_exercise = '# --- begin exercise'
+    end_exercise = '# --- end of exercise'
     begin_solution = '# --- begin solution of exercise\n\n__Solution.__\n'
     end_solution = '\n# --- end solution of exercise'
     begin_answer = '# --- begin short answer in exercise\n\n__Answer.__ '
     end_answer = '\n# --- end short answer in exercise'
     begin_hint = '__Hint.__ '
     end_hint = ''
-    end_exercise = '# --- end of exercise'
 
     return doconce_exercise_output(exer,
+                                   begin_exercise, end_exercise,
                                    begin_answer, end_answer,
                                    begin_solution, end_solution,
                                    begin_hint, end_hint,
-                                   end_exercise,
                                    True, True)
 
 BLANKLINE = {}
