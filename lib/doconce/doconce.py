@@ -869,13 +869,16 @@ def typeset_tables(filestr, format):
     table = {'rows': []}  # init new table
     inside_table = False
     for line in filestr.splitlines():
-        lin = line.lstrip()
+        lin = line.strip()
         # horisontal table rule?
-        if lin.startswith('|--') and lin.endswith('-|'):
+        if lin.startswith('|-') and lin.endswith('-|'):
             table['rows'].append(['horizontal rule'])
-            # see if there is c-l-r alignments:
+
+            # See if there is c-l-r alignments:
             align = lin[1:-1].replace('-', '') # keep | in align spec.
             if align:
+                # Non-empty string contains lrc letters for alignment
+                # (can be alignmend of heading or of columns)
                 if align == '|'*len(align):  # Just '|||'?
                     print 'Syntax error: horizontal rule in table '\
                           'contains | between columns - remove these.'
@@ -886,13 +889,13 @@ def typeset_tables(filestr, format):
                         print 'illegal alignment character in table:', char
                         _abort()
                 if len(table['rows']) == 0:
-                    # first horizontal rule, align concern headings
+                    # first horizontal rule, align spec concern headings
                     table['headings_align'] = align
                 else:
-                    # align concerns column alignment
+                    # align spec concerns column alignment
                     table['columns_align'] = align
             continue  # continue with next line
-        if lin.startswith('|') and not lin.startswith('|--'):
+        if lin.startswith('|') and not lin.startswith('|-'):
             # row in table:
             if not inside_table:
                 inside_table = True
@@ -900,6 +903,14 @@ def typeset_tables(filestr, format):
             # remove empty columns and extra white space:
             #columns = [c.strip() for c in columns if c]
             columns = [c.strip() for c in columns if c.strip()]
+            # substitute math (may expand columns significantly)
+            for tag in 'math', 'math2':
+                replacement = INLINE_TAGS_SUBST[format][tag]
+                if replacement is not None:
+                    for i in range(len(columns)):
+                        columns[i] = re.sub(INLINE_TAGS[tag],
+                                            replacement,
+                                            columns[i])
             table['rows'].append(columns)
         elif lin.startswith('#') and inside_table:
             continue  # just skip commented table lines

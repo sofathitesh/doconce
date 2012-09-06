@@ -136,6 +136,9 @@ that %s is not preceded by text which can be extended with :: (required).
 def rst_table(table):
     # Note: rst and sphinx do not offer alignment of cell
     # entries, everything is always left-adjusted (Nov. 2011)
+
+    # Math in column headings may be significantly expanded and
+    # this must be done first
     column_width = table_analysis(table['rows'])
     ncolumns = len(column_width)
     column_spec = table.get('columns_align', 'c'*ncolumns).replace('|', '')
@@ -196,7 +199,7 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
     # Remove Exercise, Project, Problem in references since those words
     # are used in the title of the section too
     pattern = r'(the\s*)?([Ee]xercises?|[Pp]rojects?|[Pp]roblems?)\s+ref\{'
-    replacement = r' ref{'
+    replacement = r'ref{'
     filestr = re.sub(pattern, replacement, filestr)
 
     # Deal with the problem of identical titles, which makes problem
