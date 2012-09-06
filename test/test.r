@@ -249,6 +249,21 @@ one table:
   | 3.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
 
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+|-------------------------------|
+|$i$ | $h_i$|$\bar T_i$ |$L_i$  |
+|-l-----r---------r---------r---|
+|0   |0     |288        |-0.0065|
+|1   |11,000|216        |0.0	|
+|2   |20,000|216        |0.001	|
+|3   |32,000|228        |0.0028	|
+|4   |47,000|270        |0.0	|
+|5   |51,000|270        |-0.0028|
+|6   |71,000|214        |-0.002	|
+|-------------------------------|
+
 ===== URLs =====
 label{subsubsec:ex}
 
@@ -1074,6 +1089,21 @@ one table:
 <tr><td align="left">   3.0             </td> <td align="left">   1.1E+1          </td> <td align="left">   14.717624       </td> </tr>
 </table>
 <p>
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+<p>
+<table border="1">
+<tr><td align="center"><b>   \( i \)    </b></td> <td align="center"><b>  \( h_i \)   </b></td> <td align="center"><b>\( \bar T_i \)</b></td> <td align="center"><b>  \( L_i \)   </b></td> </tr>
+<tr><td align="left">   0                 </td> <td align="right">   0                 </td> <td align="right">   288               </td> <td align="right">   -0.0065           </td> </tr>
+<tr><td align="left">   1                 </td> <td align="right">   11,000            </td> <td align="right">   216               </td> <td align="right">   0.0               </td> </tr>
+<tr><td align="left">   2                 </td> <td align="right">   20,000            </td> <td align="right">   216               </td> <td align="right">   0.001             </td> </tr>
+<tr><td align="left">   3                 </td> <td align="right">   32,000            </td> <td align="right">   228               </td> <td align="right">   0.0028            </td> </tr>
+<tr><td align="left">   4                 </td> <td align="right">   47,000            </td> <td align="right">   270               </td> <td align="right">   0.0               </td> </tr>
+<tr><td align="left">   5                 </td> <td align="right">   51,000            </td> <td align="right">   270               </td> <td align="right">   -0.0028           </td> </tr>
+<tr><td align="left">   6                 </td> <td align="right">   71,000            </td> <td align="right">   214               </td> <td align="right">   -0.002            </td> </tr>
+</table>
+<p>
 
 <h3>URLs <a name="subsubsec:ex"></a>  <a name="___sec6"></a></h3>
 <p>
@@ -1185,9 +1215,9 @@ $$
 More mathematical typesetting is demonstrated in the coming exercises.
 
 <p>
-Below, we have  <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and  <a href="#demo:ex:2">Project 2: Compute a Probability</a>,
-as well as  <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 5: References in a headings do not work well in html</a>, and in
-between there we have  <a href="#exer:some:formula">Exercise 4: Make references to projects and problems</a>.
+Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#demo:ex:2">Project 2: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 5: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 4: Make references to projects and problems</a>.
 
 <p>
 
@@ -1365,7 +1395,7 @@ With some text, before we continue with exercises.
 <p>
 
 <p>
-Pick a statement from  <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> or  <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
+Pick a statement from <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
 Filename: <tt>verify_formula.py</tt>.
 
@@ -1387,9 +1417,9 @@ Filename: <tt>verify_formula.py</tt>.
 <p>
 
 <p>
-Refer to the previous exercise as  <a href="#exer:some:formula">Exercise 4: Make references to projects and problems</a>,
-the two before that as  <a href="#demo:ex:2">Project 2: Compute a Probability</a> and <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a>,
-and this one as  <a href="#exer:you">Project 5: References in a headings do not work well in html</a>.
+Refer to the previous exercise as <a href="#exer:some:formula">Exercise 4: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 2: Compute a Probability</a> and <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 5: References in a headings do not work well in html</a>.
 Filename: <tt>selc_composed.pdf</tt>.
 
 <p>
@@ -2037,6 +2067,25 @@ one table:
 0.0          & 1.4186       & -5.01        \\
 1.0          & 1.376512     & 11.919       \\
 3.0          & 1.1E+1       & 14.717624    \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+
+\begin{quote}\begin{tabular}{lrrr}
+\hline
+\multicolumn{1}{c}{$i$} & \multicolumn{1}{c}{$h_i$} & \multicolumn{1}{c}{$\bar T_i$} & \multicolumn{1}{c}{$L_i$} \\
+\hline
+0          & 0          & 288        & -0.0065    \\
+1          & 11,000     & 216        & 0.0        \\
+2          & 20,000     & 216        & 0.001      \\
+3          & 32,000     & 228        & 0.0028     \\
+4          & 47,000     & 270        & 0.0        \\
+5          & 51,000     & 270        & -0.0028    \\
+6          & 71,000     & 214        & -0.002     \\
 \hline
 \end{tabular}\end{quote}
 
@@ -2841,6 +2890,25 @@ one table:
 \end{tabular}\end{quote}
 
 \noindent
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+
+\begin{quote}\begin{tabular}{lrrr}
+\hline
+\multicolumn{1}{c}{$i$} & \multicolumn{1}{c}{$h_i$} & \multicolumn{1}{c}{$\bar T_i$} & \multicolumn{1}{c}{$L_i$} \\
+\hline
+0          & 0          & 288        & -0.0065    \\
+1          & 11,000     & 216        & 0.0        \\
+2          & 20,000     & 216        & 0.001      \\
+3          & 32,000     & 228        & 0.0028     \\
+4          & 47,000     & 270        & 0.0        \\
+5          & 51,000     & 270        & -0.0028    \\
+6          & 71,000     & 214        & -0.002     \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
 
 \subsection{URLs}
 
@@ -3614,6 +3682,25 @@ one table:
 \end{tabular}\end{quote}
 
 \noindent
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+
+\begin{quote}\begin{tabular}{lrrr}
+\hline
+\multicolumn{1}{c}{$i$} & \multicolumn{1}{c}{$h_i$} & \multicolumn{1}{c}{$\bar T_i$} & \multicolumn{1}{c}{$L_i$} \\
+\hline
+0          & 0          & 288        & -0.0065    \\
+1          & 11,000     & 216        & 0.0        \\
+2          & 20,000     & 216        & 0.001      \\
+3          & 32,000     & 228        & 0.0028     \\
+4          & 47,000     & 270        & 0.0        \\
+5          & 51,000     & 270        & -0.0028    \\
+6          & 71,000     & 214        & -0.002     \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
 
 \subsection{URLs}
 
@@ -4236,6 +4323,21 @@ one table:
 3.0           1.1E+1        14.717624     
 ============  ============  ============  
 
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+========  ========  ========  ========  
+   i        h_i     \bar T_i    L_i     
+========  ========  ========  ========  
+0                0       288   -0.0065  
+1           11,000       216       0.0  
+2           20,000       216     0.001  
+3           32,000       228    0.0028  
+4           47,000       270       0.0  
+5           51,000       270   -0.0028  
+6           71,000       214    -0.002  
+========  ========  ========  ========  
+
 .. _subsubsec:ex:
 
 URLs
@@ -4285,9 +4387,9 @@ Here is a system without equation numbers, using the align-astrisk environment::
 
 More mathematical typesetting is demonstrated in the coming exercises.
 
-Below, we have  `Problem 1: Flip a Coin`_ and  `Project 2: Compute a Probability`_,
-as well as  `Project 3: Explore Distributions of Random Circles`_ and `Project 5: References in a headings do not work well in rst`_, and in
-between there we have  `Exercise 4: Make references to projects and problems`_.
+Below, we have `Problem 1: Flip a Coin`_ and `Project 2: Compute a Probability`_,
+as well as `Project 3: Explore Distributions of Random Circles`_ and `Project 5: References in a headings do not work well in rst`_, and in
+between there we have `Exercise 4: Make references to projects and problems`_.
 
 Exercises
 =========
@@ -4466,7 +4568,7 @@ More Exercises
 Exercise 4: Make references to projects and problems
 ----------------------------------------------------
 
-Pick a statement from  `Project 3: Explore Distributions of Random Circles`_ or  `Problem 1: Flip a Coin`_
+Pick a statement from `Project 3: Explore Distributions of Random Circles`_ or `Problem 1: Flip a Coin`_
 and verify it.
 Filename: ``verify_formula.py``.
 
@@ -4484,9 +4586,9 @@ Filename: ``verify_formula.py``.
 Project 5: References in a headings do not work well in rst
 -----------------------------------------------------------
 
-Refer to the previous exercise as  `Exercise 4: Make references to projects and problems`_,
-the two before that as  `Project 2: Compute a Probability`_ and `Project 3: Explore Distributions of Random Circles`_,
-and this one as  `Project 5: References in a headings do not work well in rst`_.
+Refer to the previous exercise as `Exercise 4: Make references to projects and problems`_,
+the two before that as `Project 2: Compute a Probability`_ and `Project 3: Explore Distributions of Random Circles`_,
+and this one as `Project 5: References in a headings do not work well in rst`_.
 Filename: ``selc_composed.pdf``.
 
 .. --- end of exercise
@@ -4846,6 +4948,21 @@ one table:
 3.0           1.1E+1        14.717624     
 ============  ============  ============  
 
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+================  ================  ================  ================  
+   :math:`i`        :math:`h_i`     :math:`\bar T_i`    :math:`L_i`     
+================  ================  ================  ================  
+0                                0               288           -0.0065  
+1                           11,000               216               0.0  
+2                           20,000               216             0.001  
+3                           32,000               228            0.0028  
+4                           47,000               270               0.0  
+5                           51,000               270           -0.0028  
+6                           71,000               214            -0.002  
+================  ================  ================  ================  
+
 .. _subsubsec:ex:
 
 URLs
@@ -4962,9 +5079,9 @@ Testing eqnarray:
 
 More mathematical typesetting is demonstrated in the coming exercises.
 
-Below, we have  :ref:`demo:ex:1` and  :ref:`demo:ex:2`,
-as well as  :ref:`proj:circle1` and :ref:`exer:you`, and in
-between there we have  :ref:`exer:some:formula`.
+Below, we have :ref:`demo:ex:1` and :ref:`demo:ex:2`,
+as well as :ref:`proj:circle1` and :ref:`exer:you`, and in
+between there we have :ref:`exer:some:formula`.
 
 Exercises
 =========
@@ -5146,7 +5263,7 @@ More Exercises
 Exercise 4: Make references to projects and problems
 ----------------------------------------------------
 
-Pick a statement from  :ref:`proj:circle1` or  :ref:`demo:ex:1`
+Pick a statement from :ref:`proj:circle1` or :ref:`demo:ex:1`
 and verify it.
 Filename: ``verify_formula.py``.
 
@@ -5164,9 +5281,9 @@ Filename: ``verify_formula.py``.
 Project 5: References in a headings do not work well in sphinx
 --------------------------------------------------------------
 
-Refer to the previous exercise as  :ref:`exer:some:formula`,
-the two before that as  :ref:`demo:ex:2` and :ref:`proj:circle1`,
-and this one as  :ref:`exer:you`.
+Refer to the previous exercise as :ref:`exer:some:formula`,
+the two before that as :ref:`demo:ex:2` and :ref:`proj:circle1`,
+and this one as :ref:`exer:you`.
 Filename: ``selc_composed.pdf``.
 
 .. --- end of exercise
@@ -5462,6 +5579,20 @@ one table:
  ||  1.0              ||  1.376512         ||  11.919           ||
  ||  3.0              ||  1.1E+1           ||  14.717624        ||
 
+
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+
+ ||     _`i`_       ||    _`h_i`_      ||  _`\bar T_i`_   ||    _`L_i`_      ||
+ ||  0              ||  0              ||  288            ||  -0.0065        ||
+ ||  1              ||  11,000         ||  216            ||  0.0            ||
+ ||  2              ||  20,000         ||  216            ||  0.001          ||
+ ||  3              ||  32,000         ||  228            ||  0.0028         ||
+ ||  4              ||  47,000         ||  270            ||  0.0            ||
+ ||  5              ||  51,000         ||  270            ||  -0.0028        ||
+ ||  6              ||  71,000         ||  214            ||  -0.002         ||
+
 ==== URLs ====
 
 Testing of URLs: hpl's home page [http://folk.uio.no/hpl hpl], or
@@ -5503,9 +5634,9 @@ b &= \nabla^2 u + \nabla^4 v
 
 More mathematical typesetting is demonstrated in the coming exercises.
 
-Below, we have  [#Problem_1:_Flip_a_Coin] and  [#Project_2:_Compute_a_Probability],
-as well as  [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki], and in
-between there we have  [#Exercise_4:_Make_references_to_projects_and_problems].
+Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_2:_Compute_a_Probability],
+as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki], and in
+between there we have [#Exercise_4:_Make_references_to_projects_and_problems].
 
 
 
@@ -5648,7 +5779,7 @@ With some text, before we continue with exercises.
 
 ==== Exercise 4: Make references to projects and problems ====
 
-Pick a statement from  [#Project_3:_Explore_Distributions_of_Random_Circles] or  [#Problem_1:_Flip_a_Coin]
+Pick a statement from [#Project_3:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
 and verify it.
 Filename: `verify_formula.py`.
 
@@ -5659,11 +5790,11 @@ Filename: `verify_formula.py`.
 
 <wiki:comment> --- begin exercise </wiki:comment>
 
-==== Project 5: References to  [#Project_2:_Compute_a_Probability] in a heading works for gwiki ====
+==== Project 5: References to [#Project_2:_Compute_a_Probability] in a heading works for gwiki ====
 
-Refer to the previous exercise as  [#Exercise_4:_Make_references_to_projects_and_problems],
-the two before that as  [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
-and this one as  [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki].
+Refer to the previous exercise as [#Exercise_4:_Make_references_to_projects_and_problems],
+the two before that as [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
+and this one as [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki].
 Filename: `selc_composed.pdf`.
 
 <wiki:comment> --- end of exercise </wiki:comment>
@@ -5914,6 +6045,19 @@ one table:
 <tr><td align="left">   1.0             </td> <td align="left">   1.376512        </td> <td align="left">   11.919          </td> </tr>
 <tr><td align="left">   3.0             </td> <td align="left">   1.1E+1          </td> <td align="left">   14.717624       </td> </tr>
 </table>
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+<table border="1">
+<tr><td align="center"><b>    <math>i</math>   </b></td> <td align="center"><b>   <math>h_i</math>  </b></td> <td align="center"><b><math>\bar T_i</math></b></td> <td align="center"><b>   <math>L_i</math>  </b></td> </tr>
+<tr><td align="left">   0                        </td> <td align="right">   0                        </td> <td align="right">   288                      </td> <td align="right">   -0.0065                  </td> </tr>
+<tr><td align="left">   1                        </td> <td align="right">   11,000                   </td> <td align="right">   216                      </td> <td align="right">   0.0                      </td> </tr>
+<tr><td align="left">   2                        </td> <td align="right">   20,000                   </td> <td align="right">   216                      </td> <td align="right">   0.001                    </td> </tr>
+<tr><td align="left">   3                        </td> <td align="right">   32,000                   </td> <td align="right">   228                      </td> <td align="right">   0.0028                   </td> </tr>
+<tr><td align="left">   4                        </td> <td align="right">   47,000                   </td> <td align="right">   270                      </td> <td align="right">   0.0                      </td> </tr>
+<tr><td align="left">   5                        </td> <td align="right">   51,000                   </td> <td align="right">   270                      </td> <td align="right">   -0.0028                  </td> </tr>
+<tr><td align="left">   6                        </td> <td align="right">   71,000                   </td> <td align="right">   214                      </td> <td align="right">   -0.002                   </td> </tr>
+</table>
 
 ==== URLs ====
 
@@ -5956,9 +6100,9 @@ b &= \nabla^2 u + \nabla^4 v
 
 More mathematical typesetting is demonstrated in the coming exercises.
 
-Below, we have  [#Problem_1:_Flip_a_Coin] and  [#Project_2:_Compute_a_Probability],
-as well as  [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki], and in
-between there we have  [#Exercise_4:_Make_references_to_projects_and_problems].
+Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_2:_Compute_a_Probability],
+as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki], and in
+between there we have [#Exercise_4:_Make_references_to_projects_and_problems].
 
 
 
@@ -6101,7 +6245,7 @@ With some text, before we continue with exercises.
 
 ==== Exercise 4: Make references to projects and problems ====
 
-Pick a statement from  [#Project_3:_Explore_Distributions_of_Random_Circles] or  [#Problem_1:_Flip_a_Coin]
+Pick a statement from [#Project_3:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
 and verify it.
 Filename: <code>verify_formula.py</code>.
 
@@ -6112,11 +6256,11 @@ Filename: <code>verify_formula.py</code>.
 
 <!--> --- begin exercise -->
 
-==== Project 5: References to  [#Project_2:_Compute_a_Probability] in a heading works for mwiki ====
+==== Project 5: References to [#Project_2:_Compute_a_Probability] in a heading works for mwiki ====
 
-Refer to the previous exercise as  [#Exercise_4:_Make_references_to_projects_and_problems],
-the two before that as  [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
-and this one as  [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki].
+Refer to the previous exercise as [#Exercise_4:_Make_references_to_projects_and_problems],
+the two before that as [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
+and this one as [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki].
 Filename: <code>selc_composed.pdf</code>.
 
 <!--> --- end of exercise -->
@@ -6376,6 +6520,20 @@ one table:
  |  3.0              |  1.1E+1           |  14.717624        |
 
 
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+
+ | ={{{i}}}            | ={{{h_i}}}          | ={{{\bar T_i}}}     | ={{{L_i}}}          |
+ |  0                  |  0                  |  288                |  -0.0065            |
+ |  1                  |  11,000             |  216                |  0.0                |
+ |  2                  |  20,000             |  216                |  0.001              |
+ |  3                  |  32,000             |  228                |  0.0028             |
+ |  4                  |  47,000             |  270                |  0.0                |
+ |  5                  |  51,000             |  270                |  -0.0028            |
+ |  6                  |  71,000             |  214                |  -0.002             |
+
+
 == URLs ==
 
 Testing of URLs: hpl's home page [[http://folk.uio.no/hpl|hpl]], or
@@ -6418,9 +6576,9 @@ b &= \nabla^2 u + \nabla^4 v
 
 More mathematical typesetting is demonstrated in the coming exercises.
 
-Below, we have  [#Problem_1:_Flip_a_Coin] and  [#Project_2:_Compute_a_Probability],
-as well as  [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki], and in
-between there we have  [#Exercise_4:_Make_references_to_projects_and_problems].
+Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_2:_Compute_a_Probability],
+as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki], and in
+between there we have [#Exercise_4:_Make_references_to_projects_and_problems].
 
 
 
@@ -6567,7 +6725,7 @@ With some text, before we continue with exercises.
 
 == Exercise 4: Make references to projects and problems ==
 
-Pick a statement from  [#Project_3:_Explore_Distributions_of_Random_Circles] or  [#Problem_1:_Flip_a_Coin]
+Pick a statement from [#Project_3:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
 and verify it.
 Filename: {{{verify_formula.py}}}.
 
@@ -6579,11 +6737,11 @@ Filename: {{{verify_formula.py}}}.
 <wiki:comment> --- begin exercise </wiki:comment>
 
 
-== Project 5: References to  [#Project_2:_Compute_a_Probability] in a heading works for cwiki ==
+== Project 5: References to [#Project_2:_Compute_a_Probability] in a heading works for cwiki ==
 
-Refer to the previous exercise as  [#Exercise_4:_Make_references_to_projects_and_problems],
-the two before that as  [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
-and this one as  [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki].
+Refer to the previous exercise as [#Exercise_4:_Make_references_to_projects_and_problems],
+the two before that as [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
+and this one as [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki].
 Filename: {{{selc_composed.pdf}}}.
 
 <wiki:comment> --- end of exercise </wiki:comment>
@@ -6820,6 +6978,21 @@ one table:
 1.0           1.376512      11.919        
 3.0           1.1E+1        14.717624     
 ============  ============  ============  
+
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+========  ========  ========  ========  
+   i        h_i     \bar T_i    L_i     
+========  ========  ========  ========  
+0                0       288   -0.0065  
+1           11,000       216       0.0  
+2           20,000       216     0.001  
+3           32,000       228    0.0028  
+4           47,000       270       0.0  
+5           51,000       270   -0.0028  
+6           71,000       214    -0.002  
+========  ========  ========  ========  
 
 URLs
 
@@ -7224,6 +7397,21 @@ one table:
 1.0           1.376512      11.919        
 3.0           1.1E+1        14.717624     
 ============  ============  ============  
+
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+===========  ===========  ===========  ===========  
+    M{i}        M{h_i}    M{\bar T_i}     M{L_i}    
+===========  ===========  ===========  ===========  
+0                      0          288      -0.0065  
+1                 11,000          216          0.0  
+2                 20,000          216        0.001  
+3                 32,000          228       0.0028  
+4                 47,000          270          0.0  
+5                 51,000          270      -0.0028  
+6                 71,000          214       -0.002  
+===========  ===========  ===========  ===========  
 
 URLs
 ----
@@ -7706,6 +7894,21 @@ one table:
 3.0           1.1E+1        14.717624     
 ============  ============  ============  
 
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+========  ========  ========  ========  
+   i        h_i     \bar T_i    L_i     
+========  ========  ========  ========  
+0                0       288   -0.0065  
+1           11,000       216       0.0  
+2           20,000       216     0.001  
+3           32,000       228    0.0028  
+4           47,000       270       0.0  
+5           51,000       270   -0.0028  
+6           71,000       214    -0.002  
+========  ========  ========  ========  
+
 URLs
 ----
 
@@ -8163,6 +8366,21 @@ one table:
 0.0           1.4186        -5.01         
 1.0           1.376512      11.919        
 3.0           1.1E+1        14.717624     
+
+
+And one with math headings (that are expanded and must be treated
+accordingly):
+
+
+   $i$        $h_i$     $\bar T_i$    $L_i$     
+----------  ----------  ----------  ----------  
+0                    0         288     -0.0065  
+1               11,000         216         0.0  
+2               20,000         216       0.001  
+3               32,000         228      0.0028  
+4               47,000         270         0.0  
+5               51,000         270     -0.0028  
+6               71,000         214      -0.002  
 
 
 URLs
@@ -8718,6 +8936,63 @@ output2</code></pre>
 </tr>
 </tbody>
 </table>
+<p>And one with math headings (that are expanded and must be treated accordingly):</p>
+</blockquote>
+<blockquote>
+<table>
+<thead>
+<tr class="header">
+<th align="left">1c\(i\)</th>
+<th align="right">1c\(h_i\)</th>
+<th align="right">1c\(\bar T_i\)</th>
+<th align="right">1c\(L_i\)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0</td>
+<td align="right">0</td>
+<td align="right">288</td>
+<td align="right">-0.0065</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">11,000</td>
+<td align="right">216</td>
+<td align="right">0.0</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="right">20,000</td>
+<td align="right">216</td>
+<td align="right">0.001</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="right">32,000</td>
+<td align="right">228</td>
+<td align="right">0.0028</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="right">47,000</td>
+<td align="right">270</td>
+<td align="right">0.0</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="right">51,000</td>
+<td align="right">270</td>
+<td align="right">-0.0028</td>
+</tr>
+<tr class="odd">
+<td align="left">6</td>
+<td align="right">71,000</td>
+<td align="right">214</td>
+<td align="right">-0.002</td>
+</tr>
+</tbody>
+</table>
 <h2>URLs</h2>
 </blockquote>
 <p>[subsubsec:ex]</p>
@@ -9054,6 +9329,61 @@ output2</code></pre>
 <td align="center">3.0</td>
 <td align="center">1.1E+1</td>
 <td align="left">14.717624</td>
+</tr>
+</tbody>
+</table>
+<p>And one with math headings (that are expanded and must be treated accordingly):</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">\(i\)</th>
+<th align="center">\(h_i\)</th>
+<th align="left">\(\bar T_i\)</th>
+<th align="center">\(L_i\)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="left">288</td>
+<td align="center">-0.0065</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">11,000</td>
+<td align="left">216</td>
+<td align="center">0.0</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">20,000</td>
+<td align="left">216</td>
+<td align="center">0.001</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">32,000</td>
+<td align="left">228</td>
+<td align="center">0.0028</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">47,000</td>
+<td align="left">270</td>
+<td align="center">0.0</td>
+</tr>
+<tr class="even">
+<td align="center">5</td>
+<td align="center">51,000</td>
+<td align="left">270</td>
+<td align="center">-0.0028</td>
+</tr>
+<tr class="odd">
+<td align="center">6</td>
+<td align="center">71,000</td>
+<td align="left">214</td>
+<td align="center">-0.002</td>
 </tr>
 </tbody>
 </table>
@@ -24515,7 +24845,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 05 Sep 2012 (12:37)
+DATE: Thu, 06 Sep 2012 (07:31)
 
 
 
@@ -24619,7 +24949,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 05 Sep 2012 (12:37)
+DATE: Thu, 06 Sep 2012 (07:31)
 
 
 
@@ -24733,7 +25063,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 05 Sep 2012 (12:37)</center>
+<center>Thu, 06 Sep 2012 (07:31)</center>
 
 
 
@@ -24864,7 +25194,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 05 Sep 2012 (12:37)</center>
+<center>Thu, 06 Sep 2012 (07:31)</center>
 
 
 
@@ -59398,89 +59728,91 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 404.
 
-[6] [7<<../doc/manual/figs/mjolnir.mpeg>>] [8<<../doc/manual/figs/wavepacket.mp
-eg>>]
+[6] [7<<../doc/manual/figs/mjolnir.mpeg>>]
+Underfull \vbox (badness 10000) has occurred while \output is active [8<<../doc
+/manual/figs/wavepacket.mpeg>>] [9 <../doc/manual/figs/wavepacket_0001.png (PNG
+ copy)>]
 
-LaTeX Warning: Reference `my:eq1' on page 9 undefined on input line 524.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 543.
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 526.
+(amsmath)                 on input line 545.
 
 
-LaTeX Warning: Reference `my:eq1' on page 9 undefined on input line 528.
-
-[9 <../doc/manual/figs/wavepacket_0001.png (PNG copy)>]
-
-LaTeX Warning: Reference `eq1' on page 10 undefined on input line 542.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 547.
 
 
-LaTeX Warning: Reference `eq2' on page 10 undefined on input line 542.
+LaTeX Warning: Reference `eq1' on page 10 undefined on input line 561.
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 10 undefined on input line 55
-9.
+LaTeX Warning: Reference `eq2' on page 10 undefined on input line 561.
 
 
-LaTeX Warning: Reference `eq1' on page 10 undefined on input line 572.
+LaTeX Warning: Reference `split:envir:eq' on page 10 undefined on input line 57
+8.
 
 
-LaTeX Warning: Reference `eq2' on page 10 undefined on input line 572.
+LaTeX Warning: Reference `eq1' on page 10 undefined on input line 591.
 
 
-LaTeX Warning: Reference `eq1a' on page 10 undefined on input line 573.
+LaTeX Warning: Reference `eq2' on page 10 undefined on input line 591.
 
 
-LaTeX Warning: Reference `eq2a' on page 10 undefined on input line 573.
+LaTeX Warning: Reference `eq1a' on page 10 undefined on input line 592.
 
 
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 573.
+LaTeX Warning: Reference `eq2a' on page 10 undefined on input line 592.
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 10 undefined on input line 583.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 592.
+
+[10]
+
+LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 602.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 10 undefined on input line 583.
+LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 602.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 10 undefined on input line 584.
-
-
-
-LaTeX Warning: Reference `exer:you' on page 10 undefined on input line 584.
-
-
-LaTeX Warning: Reference `exer:some:formula' on page 10 undefined on input line
- 585.
-
-[10] (./testdoc.out.pyg) (./testdoc.out.pyg [11])
-
-LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 758.
+LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 603.
 
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 12 undefined on input line 758.
+LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 603.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 12 undefined on input line 773.
+LaTeX Warning: Reference `exer:some:formula' on page 11 undefined on input line
+ 604.
+
+(./testdoc.out.pyg) [11] (./testdoc.out.pyg)
+
+LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 777.
+
+
+
+LaTeX Warning: Reference `demo:ex:1' on page 12 undefined on input line 777.
+
+
+LaTeX Warning: Reference `demo:ex:2' on page 12 undefined on input line 792.
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 12 undefined on input line
- 777.
+ 796.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 12 undefined on input line 778.
+LaTeX Warning: Reference `demo:ex:2' on page 12 undefined on input line 797.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 778.
+LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 797.
 
 
 
-LaTeX Warning: Reference `exer:you' on page 12 undefined on input line 779.
+LaTeX Warning: Reference `exer:you' on page 12 undefined on input line 798.
 
 No file testdoc.ind.
-[12]
+[12] [13]
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
@@ -59501,17 +59833,18 @@ onts/cm/cmbx8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx
 9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmitt10.pfb></us
 r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
 mf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/
-fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
-ts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pf
-b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts
-/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/publ
-ic/amsfonts/cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pf
-b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (12 pages, 1424290 bytes).
+fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/
+public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.p
+fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/shar
+e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-tex
+live/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/shar
+e/texmf-texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on testdoc.pdf (13 pages, 1434434 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -74752,89 +75085,91 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 404.
 
-[6] [7<<../doc/manual/figs/mjolnir.mpeg>>] [8<<../doc/manual/figs/wavepacket.mp
-eg>>]
+[6] [7<<../doc/manual/figs/mjolnir.mpeg>>]
+Underfull \vbox (badness 10000) has occurred while \output is active [8<<../doc
+/manual/figs/wavepacket.mpeg>>] [9 <../doc/manual/figs/wavepacket_0001.png (PNG
+ copy)>]
 
-LaTeX Warning: Reference `my:eq1' on page 9 undefined on input line 524.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 543.
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 526.
+(amsmath)                 on input line 545.
 
 
-LaTeX Warning: Reference `my:eq1' on page 9 undefined on input line 528.
-
-[9 <../doc/manual/figs/wavepacket_0001.png (PNG copy)>]
-
-LaTeX Warning: Reference `eq1' on page 10 undefined on input line 542.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 547.
 
 
-LaTeX Warning: Reference `eq2' on page 10 undefined on input line 542.
+LaTeX Warning: Reference `eq1' on page 10 undefined on input line 561.
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 10 undefined on input line 55
-9.
+LaTeX Warning: Reference `eq2' on page 10 undefined on input line 561.
 
 
-LaTeX Warning: Reference `eq1' on page 10 undefined on input line 572.
+LaTeX Warning: Reference `split:envir:eq' on page 10 undefined on input line 57
+8.
 
 
-LaTeX Warning: Reference `eq2' on page 10 undefined on input line 572.
+LaTeX Warning: Reference `eq1' on page 10 undefined on input line 591.
 
 
-LaTeX Warning: Reference `eq1a' on page 10 undefined on input line 573.
+LaTeX Warning: Reference `eq2' on page 10 undefined on input line 591.
 
 
-LaTeX Warning: Reference `eq2a' on page 10 undefined on input line 573.
+LaTeX Warning: Reference `eq1a' on page 10 undefined on input line 592.
 
 
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 573.
+LaTeX Warning: Reference `eq2a' on page 10 undefined on input line 592.
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 10 undefined on input line 583.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 592.
+
+[10]
+
+LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 602.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 10 undefined on input line 583.
+LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 602.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 10 undefined on input line 584.
-
-
-
-LaTeX Warning: Reference `exer:you' on page 10 undefined on input line 584.
-
-
-LaTeX Warning: Reference `exer:some:formula' on page 10 undefined on input line
- 585.
-
-[10] (./testdoc.out.pyg) (./testdoc.out.pyg [11])
-
-LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 758.
+LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 603.
 
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 12 undefined on input line 758.
+LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 603.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 12 undefined on input line 773.
+LaTeX Warning: Reference `exer:some:formula' on page 11 undefined on input line
+ 604.
+
+(./testdoc.out.pyg) [11] (./testdoc.out.pyg)
+
+LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 777.
+
+
+
+LaTeX Warning: Reference `demo:ex:1' on page 12 undefined on input line 777.
+
+
+LaTeX Warning: Reference `demo:ex:2' on page 12 undefined on input line 792.
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 12 undefined on input line
- 777.
+ 796.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 12 undefined on input line 778.
+LaTeX Warning: Reference `demo:ex:2' on page 12 undefined on input line 797.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 778.
+LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 797.
 
 
 
-LaTeX Warning: Reference `exer:you' on page 12 undefined on input line 779.
+LaTeX Warning: Reference `exer:you' on page 12 undefined on input line 798.
 
 No file testdoc.ind.
-[12]
+[12] [13]
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
@@ -74855,17 +75190,18 @@ onts/cm/cmbx8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx
 9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmitt10.pfb></us
 r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
 mf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/
-fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
-ts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pf
-b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts
-/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/publ
-ic/amsfonts/cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pf
-b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (12 pages, 1424290 bytes).
+fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/
+public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.p
+fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/shar
+e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-tex
+live/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/shar
+e/texmf-texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on testdoc.pdf (13 pages, 1434434 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
