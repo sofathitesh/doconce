@@ -137,7 +137,7 @@ def wiki_ref_and_label_common(section_label2title, format, filestr):
     # Remove Exercise, Project, Problem in references since those words
     # are used in the title of the section too
     pattern = r'(the\s*)?([Ee]xercises?|[Pp]rojects?|[Pp]roblems?)\s+ref\{'
-    replacement = r' ref{'
+    replacement = r'ref{'
     filestr = re.sub(pattern, replacement, filestr)
 
     # remove label{...} from output
