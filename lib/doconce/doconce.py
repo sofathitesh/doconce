@@ -899,7 +899,7 @@ def typeset_tables(filestr, format):
             # row in table:
             if not inside_table:
                 inside_table = True
-            columns = line.strip().split('|')
+            columns = line.strip().split('|')  # does not work with math2 syntax
             # remove empty columns and extra white space:
             #columns = [c.strip() for c in columns if c]
             columns = [c.strip() for c in columns if c.strip()]
