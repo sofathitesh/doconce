@@ -10,6 +10,25 @@ include_numbering_of_exercises = True
 
 def latex_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
+
+    # References to external documents (done before !bc blocks in
+    # case such blocks explain the syntax of the external doc. feature)
+    pattern = r'^%\s*[Ee]xternaldocuments?:\s*(.+)$'
+    m = re.search(pattern, filestr, re.MULTILINE)
+    #filestr = re.sub(pattern, '', filestr, flags=re.MULTILINE)
+    if m:
+        commands = [r'\externaldocument{%s}' % name.strip()
+                    for name in m.group(1).split(',')]
+        new_text = r"""
+
+%% References to labels in external documents:
+\usepackage{xr}
+%s
+
+%% insert custom LaTeX commands...
+""" % ('\n'.join(commands))
+        filestr = filestr.replace('% insert custom LaTeX commands...', new_text)
+
     # labels inside tex envirs must have backslash \label:
     for i in range(len(tex_blocks)):
         tex_blocks[i] = re.sub(r'([^\\])label', r'\g<1>\\label',

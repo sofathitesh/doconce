@@ -228,11 +228,11 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
         title = section_label2title[label]
         # Problem: one title can be common to many sections and different
         # labels, making this first regex
-        #pattern = r'(_{3,7}|={3,7})(\s*%s\s*)(_{3,7}|={3,7})' % title
+        #pattern = r'(_{3,9}|={3,9})(\s*%s\s*)(_{3,9}|={3,9})' % title
         # lead to several rst labels for a title. The remedy consists of
         # two steps: a pattern regex that matches the label too, and
         # adding a counter to titles with the same name (done above)
-        pattern = r'(_{3,7}|={3,7})(\s*%s\s*)(_{3,7}|={3,7})\s*label\{%s\}' \
+        pattern = r'(_{3,9}|={3,9})(\s*%s\s*)(_{3,9}|={3,9})\s*label\{%s\}' \
                   % (re.escape(title), label)
         # (title may contain ? () etc., that's why we take re.escape)
         title_new = title.replace('\\', '\\\\')  # avoid trouble with \t, \n
