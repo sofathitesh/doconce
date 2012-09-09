@@ -900,11 +900,15 @@ def typeset_tables(filestr, format):
             if not inside_table:
                 inside_table = True
             columns = line.strip().split('|')  # does not work with math2 syntax
+            # Possible fix so that | $\bar T$|$T$ | $...$ | ... is possible:
+            # .split(' | '), but need to make sure the syntax and no of columns
+            # are correct
+
             # remove empty columns and extra white space:
             #columns = [c.strip() for c in columns if c]
             columns = [c.strip() for c in columns if c.strip()]
             # substitute math (may expand columns significantly)
-            for tag in 'math', 'math2':
+            for tag in ['math']:  #, 'math2']:
                 replacement = INLINE_TAGS_SUBST[format][tag]
                 if replacement is not None:
                     for i in range(len(columns)):
@@ -1208,27 +1212,31 @@ def handle_figures(filestr, format):
 def handle_cross_referencing(filestr, format):
     # 1. find all section/chapter titles and corresponding labels
     #section_pattern = r'(_+|=+)([A-Za-z !.,;0-9]+)(_+|=+)\s*label\{(.+?)\}'
-    section_pattern = r'^\s*(_{3,7}|={3,7})(.+?)(_{3,7}|={3,7})\s*label\{(.+?)\}'
+    section_pattern = r'^\s*(_{3,9}|={3,9})(.+?)(_{3,9}|={3,9})\s*label\{(.+?)\}'
     m = re.findall(section_pattern, filestr, flags=re.MULTILINE)
     #pprint.pprint(m)
     # Make sure sections appear in the right order
     # (in case rst.ref_and_label_commoncode has to assign numbers
     # to section titles that are identical)
     section_label2title = OrderedDict()
+    section_title2label = OrderedDict()
     for dummy1, title, dummy2, label in m:
         section_label2title[label] = title.strip()
+        section_title2label[title] = label
         if 'ref{' in title and format in ('rst', 'sphinx', 'html'):
             print 'Warning: reference in title\n  %s\nwill come out wrong in format %s' % (title, format)
     #pprint.pprint(section_label2title)
 
     # 2. Make table of contents
     # TOC: on|off
-    section_pattern = r'^\s*(_{3,7}|={3,7})(.+?)(_{3,7}|={3,7})'
+    section_pattern = r'^\s*(_{3,9}|={3,9})(.+?)(_{3,9}|={3,9})'
     m = re.findall(section_pattern, filestr, flags=re.MULTILINE)
     sections = []
     heading2section_type = {9: 0, 7: 1, 5: 2, 3: 3}
     for heading, title, dummy2 in m:
-        sections.append((title, heading2section_type[len(heading)]))
+        label = None if not title in section_title2label \
+                else section_title2label[title]
+        sections.append((title, heading2section_type[len(heading)], label))
     #print 'sections:'
     #import pprint; pprint.pprint(sections)
 
@@ -1243,7 +1251,31 @@ def handle_cross_referencing(filestr, format):
         else:
             filestr = pattern.sub('', filestr)
 
-    # 3. Perform format-specific editing of ref{...} and label{...}
+    # 3. Handle references that can be internal or external
+    #    ref[internal][cite][external-HTML]
+    internal_labels = re.findall(r'label\{(.+?)\}', filestr)
+    ref_pattern = r'ref\[([^\]]*?)\]\[([^\]]*?)\]\[([^\]]*?)\]'
+    general_refs = re.findall(ref_pattern, filestr)
+    for internal, cite, external in general_refs:
+        ref_text = 'ref[%s][%s][%s]' % (internal, cite, external)
+        if not internal and not external:
+            print ref_text, 'has empty fields'
+            _abort()
+        ref2labels = re.findall(r'ref\{(.+?)\}', internal)
+        refs_to_this_doc = [label for label in ref2labels
+                            if label in internal_labels]
+        if len(refs_to_this_doc) == len(ref2labels):
+            # All refs to labels in this doc
+            filestr = filestr.replace(ref_text, internal)
+        elif format in ('latex', 'pdflatex'):
+            replacement = internal
+            if cite:
+                replacement += ' ' + cite
+            filestr = filestr.replace(ref_text, replacement)
+        else:
+            filestr = filestr.replace(ref_text, external)
+
+    # 4. Perform format-specific editing of ref{...} and label{...}
     filestr = CROSS_REFS[format](section_label2title, format, filestr)
 
     return filestr

@@ -94,7 +94,7 @@ def plain_toc(sections):
             tp_min = tp
 
     s = 'Table of contents:\n\n'
-    for title, tp in sections:
+    for title, tp, label in sections:
         s += ' '*(2*(tp-tp_min)) + title + '\n'
     return s
 

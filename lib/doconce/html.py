@@ -325,7 +325,7 @@ def html_ref_and_label(section_label2title, format, filestr):
         filestr = filestr.replace('<a name="%s"></a>' % label, '')
         # make new anchor for this label (put in title):
         title = section_label2title[label]
-        title_pattern = r'(_{3,7}|={3,7})\s*%s\s*(_{3,7}|={3,7})' % re.escape(title)
+        title_pattern = r'(_{3,9}|={3,9})\s*%s\s*(_{3,9}|={3,9})' % re.escape(title)
         title_new = '\g<1> %s <a name="%s"></a> \g<2>' % (title.replace('\\', '\\\\'), label)
         filestr, n = re.subn(title_pattern, title_new, filestr)
         # (a little odd with mix of doconce title syntax and html NAME tag...)
@@ -379,16 +379,16 @@ def html_ref_and_label(section_label2title, format, filestr):
         filestr = filestr.replace('ref{%s}' % label,
                                   '<a href="#%s">%s</a>' % (label, label))
 
-    # insert enumerated anchors in all section headings in case we
-    # want a table of contents with linkes to each section
-    section_pattern = r'(_{3,7}|={3,7})(.+?)(_{3,7}|={3,7})'
+    # insert enumerated anchors in all section headings without label
+    # anchors, in case we want a table of contents with linkes to each section
+    section_pattern = r'(_{3,9}|={3,9})(.+?)(_{3,9}|={3,9})'
     m = re.findall(section_pattern, filestr)
     for i in range(len(m)):
         heading1, title, heading2 = m[i]
-        newtitle = title + ' <a name="___sec%d"></a>' % i
-        filestr = filestr.replace(heading1 + title + heading2,
-                                  heading1 + newtitle + heading2)
-
+        if not '<a name="' in title:
+            newtitle = title + ' <a name="___sec%d"></a>' % i
+            filestr = filestr.replace(heading1 + title + heading2,
+                                      heading1 + newtitle + heading2)
 
     return filestr
 
@@ -444,9 +444,10 @@ def html_toc(sections):
     hr = ''
     s = '<h2>Table of contents</h2>\n\n%s\n' % hr
     for i in range(len(sections)):
-        title, tp = sections[i]
+        title, tp, label = sections[i]
+        href = label if label is not None else '___sec%d' % i
         s += '&nbsp; '*(3*(tp-tp_min)) + \
-             '<a href="#___sec%d">%s</a>' % (i, title ) + '<br>\n'
+             '<a href="#%s">%s</a>' % (href, title ) + '<br>\n'
     s += '%s\n<p>\n' % hr
     return s
 
