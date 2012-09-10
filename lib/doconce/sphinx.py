@@ -488,14 +488,32 @@ def sphinx_index_bib(filestr, index, citations, bibfile):
     filestr = rst_bib(filestr, citations, bibfile)
 
     for word in index:
-        word2 = word.replace('`', '')  # drop verbatim in index
-        if not '!' in word:
-            filestr = filestr.replace('idx{%s}' % word,
-                                      '\n.. index:: ' + word2 + '\n')
+        # Drop verbatim and math in index
+        word2 = word.replace('`', '')
+        word2 = word2.replace('$', '').replace('\\', '')
+        if '!' not in word and ',' not in word:
+            # .. index:: keyword
+            filestr = filestr.replace(
+                'idx{%s}' % word,
+                '\n.. index:: ' + word2 + '\n')
+        elif '!' not in word:
+            # .. index::
+            #    single: keyword with comma
+            filestr = filestr.replace(
+                'idx{%s}' % word,
+                '\n.. index::\n   single: ' + word2 + '\n')
         else:
+            # .. index::
+            #    single: keyword; subentry
             word3 = word2.replace('!', '; ')
-            filestr = filestr.replace('idx{%s}' % word,
-                                      '\n.. index::\n   pair: ' + word3 + '\n')
+            filestr = filestr.replace(
+                'idx{%s}' % word,
+                '\n.. index::\n   single: ' + word3 + '\n')
+
+            # Symmetric keyword; subentry and subentry; keyword
+            #filestr = filestr.replace(
+            #    'idx{%s}' % word,
+            #    '\n.. index::\n   pair: ' + word3 + '\n')
     return filestr
 
 

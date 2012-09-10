@@ -74,7 +74,7 @@ MathJax.Hub.Config({
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Sep 6, 2012</h4></center> <!-- date -->
+<center><h4>Sep 9, 2012</h4></center> <!-- date -->
 <p>
 <h2>Table of contents</h2>
 
@@ -83,7 +83,7 @@ MathJax.Hub.Config({
 <p>
 <a href="#___sec0"> Supported Formats </a><br>
 <a href="#___sec1"> Title, Authors, and Date </a><br>
-<a href="#___sec2"> Section Types </a><br>
+<a href="#quick:sections"> Section Types </a><br>
 <a href="#___sec3"> Inline Formatting </a><br>
 <a href="#___sec4"> Lists </a><br>
 <a href="#___sec5"> Comments </a><br>
@@ -182,7 +182,7 @@ The table of contents is removed by writing <tt>TOC: off</tt>.
 
 <p>
 
-<h3>Section Types <a name="quick:sections"></a>  <a name="___sec2"></a></h3>
+<h3>Section Types <a name="quick:sections"></a></h3>
 <p>
 
 <p>
@@ -656,6 +656,35 @@ the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
 bibliography, and '.py' a Python list of dictionaries for specifying
 the entries in the bibliography. The bibliography (as read from file)
 is inserted where the <tt>BIBFILE</tt> keyword appears.
+
+<p>
+There is a <em>generalized referencing</em> feature in Doconce that allows
+a reference with <tt>ref</tt> to have one formulation if the label is
+in the same document and another formulation if the reference is
+to an item in an external document. The syntax of a generalized
+reference is
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+ref[internal][cite][external]
+
+# Example:
+As explained in
+ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
+"testdoc.html#___sec2" in the document
+"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
+Doconce documents may include movies.
+</pre>
+</blockquote>   <! -- end verbatim block -->
+The output from a generalized reference is the text <tt>internal</tt> if all
+<tt>ref{label}</tt> references in <tt>internal</tt> are references to labels in the
+present document. Otherwise, if cite is non-empty and the format is
+<tt>latex</tt> or <tt>pdflatex</tt> one assumes that the references in <tt>internal</tt>
+are to external documents declared by a comment line <tt>#
+Externaldocuments: testdoc, mydoc</tt> (usually after the title, authors,
+and date). In this case the output text is <tt>internal cite</tt> and the
+LaTeX package <tt>xr</tt> is used to handle the labels in the external
+documents.  If none of the two situations above applies, the
+<tt>external</tt> text will be the output.
 
 <p>
 Doconce supports creating an index of keywords. A certain keyword

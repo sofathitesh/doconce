@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Sep 6, 2012 ====
+==== Sep 9, 2012 ====
 
 <!--> lines beginning with # are comment lines -->
 
@@ -1291,6 +1291,48 @@ are handled by the format in question.
 
 Hyperlinks to files or web addresses are handled as explained
 in the section [#Inline_Tagging].
+
+
+
+== Generalized Cross-Referencing ==
+
+Sometimes a series of individual documents may be assembled to one
+large document. The assembly impacts how references to sections
+are written: when referring to a section in the same document, a label
+can be used, while references to sections in other documents are
+written differently, sometimes involving a link (URL) and a citation.
+Especially if both the individual documents and the large assembly document
+are to exist side by side, a flexible way of referencing is needed.
+For this purpose, Doconce offers ''generalized references'' which allows
+a reference to have two different formulations, one for internal
+references and one for external references. Since LaTeX supports
+references to labels in external documents via the <code>xr</code> package,
+the generalized references in Doconce has a syntax that may utilize
+the <code>xr</code> feature in LaTeX.
+
+The syntax of generalized references reads
+<code>
+ref[internal][cite][external]
+</code>
+If all <code>label</code> references in the text <code>internal</code> are references
+to labels in the present document, the above <code>ref</code> command is replaced
+by the text <code>internal</code>. Otherwise, if cite is non-empty and the format
+is <code>latex</code> or <code>pdflatex</code> one assumes that the references in <code>internal</code>
+are to external documents declared by a comment line <code>#
+Externaldocuments: testdoc, mydoc</code> (usually after the title, authors,
+and date). In this case the output text is <code>internal cite</code> and the
+LaTeX package <code>xr</code> is used to handle the labels in the external documents.
+If none of the two situations above applies, the <code>external</code>
+text will be the output.
+
+Here is an example on a specific generalized reference:
+<code>
+As explained in
+ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
+"testdoc.html#___sec2" in the document
+"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
+Doconce documents may include movies.
+</code>
 
 ==== Index and Bibliography ====
 

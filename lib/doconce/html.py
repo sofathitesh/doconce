@@ -436,7 +436,7 @@ def html_index_bib(filestr, index, citations, bibfile):
 def html_toc(sections):
     # Find minimum section level
     tp_min = 4
-    for title, tp in sections:
+    for title, tp, label in sections:
         if tp < tp_min:
             tp_min = tp
 

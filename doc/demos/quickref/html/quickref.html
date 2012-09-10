@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Sep 6, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Sep 9, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -502,6 +502,31 @@ the bibliography: &#8216;.bib&#8217; indicates a BibTeX file, &#8216;.rst&#8217;
 bibliography, and &#8216;.py&#8217; a Python list of dictionaries for specifying
 the entries in the bibliography. The bibliography (as read from file)
 is inserted where the <tt class="docutils literal"><span class="pre">BIBFILE</span></tt> keyword appears.</p>
+<p>There is a <em>generalized referencing</em> feature in Doconce that allows
+a reference with <tt class="docutils literal"><span class="pre">ref</span></tt> to have one formulation if the label is
+in the same document and another formulation if the reference is
+to an item in an external document. The syntax of a generalized
+reference is</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="n">ref</span><span class="p">[</span><span class="n">internal</span><span class="p">][</span><span class="n">cite</span><span class="p">][</span><span class="n">external</span><span class="p">]</span>
+
+<span class="c"># Example:</span>
+<span class="n">As</span> <span class="n">explained</span> <span class="ow">in</span>
+<span class="n">ref</span><span class="p">[</span><span class="n">Section</span> <span class="n">ref</span><span class="p">{</span><span class="n">subsec</span><span class="p">:</span><span class="n">ex</span><span class="p">}][</span><span class="ow">in</span> <span class="n">cite</span><span class="p">{</span><span class="n">testdoc</span><span class="p">:</span><span class="mi">12</span><span class="p">}][</span><span class="n">a</span> <span class="s">&quot;section&quot;</span><span class="p">:</span>
+<span class="s">&quot;testdoc.html#___sec2&quot;</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">document</span>
+<span class="s">&quot;A Document for Testing Doconce&quot;</span><span class="p">:</span> <span class="s">&quot;testdoc.html&quot;</span> <span class="n">cite</span><span class="p">{</span><span class="n">testdoc</span><span class="p">:</span><span class="mi">12</span><span class="p">}],</span>
+<span class="n">Doconce</span> <span class="n">documents</span> <span class="n">may</span> <span class="n">include</span> <span class="n">movies</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>The output from a generalized reference is the text <tt class="docutils literal"><span class="pre">internal</span></tt> if all
+<cite>:ref:`label`</cite> references in <tt class="docutils literal"><span class="pre">internal</span></tt> are references to labels in the
+present document. Otherwise, if cite is non-empty and the format is
+<tt class="docutils literal"><span class="pre">latex</span></tt> or <tt class="docutils literal"><span class="pre">pdflatex</span></tt> one assumes that the references in <tt class="docutils literal"><span class="pre">internal</span></tt>
+are to external documents declared by a comment line <tt class="docutils literal"><span class="pre">#</span>
+<span class="pre">Externaldocuments:</span> <span class="pre">testdoc,</span> <span class="pre">mydoc</span></tt> (usually after the title, authors,
+and date). In this case the output text is <tt class="docutils literal"><span class="pre">internal</span> <span class="pre">cite</span></tt> and the
+LaTeX package <tt class="docutils literal"><span class="pre">xr</span></tt> is used to handle the labels in the external
+documents.  If none of the two situations above applies, the
+<tt class="docutils literal"><span class="pre">external</span></tt> text will be the output.</p>
 <p>Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)</p>

@@ -11,9 +11,7 @@ thisdir = os.getcwd()
 logfilename = os.path.join(thisdir, 'test.v')
 log = open(logfilename, 'w')
 log.close()  # just touch the file
-outputfilename = os.path.join(thisdir, 'test.output')
-f = open(outputfilename, 'w')  # touch
-f.close()
+system_output = []
 
 def add(filename, logfile):
     print '...adding file', filename
@@ -35,7 +33,7 @@ def clean_and_make(append=True):
         raise OSError('Could not run clean.sh successfully')
     print '\n\nRunning make.sh...............................\nin', os.getcwd()
     failure, output = commands.getstatusoutput('sh -x make.sh')
-    f = open(outputfilename, 'a');  f.write(output);  f.close()
+    system_output.append(output)
     if failure:
         where = os.getcwd()
         raise OSError('Could not run %s/make.sh successfully!\nRerun manually (go to %s and run ./make.sh' % (where, where))
@@ -46,7 +44,7 @@ clean_and_make(append=False)
 
 log = open(logfilename, 'a')
 files = '.do.txt', '.html', '.p.tex', '.tex_ptex2tex', '.tex_doconce_ptex2tex', '.rst', '.sphinx.rst', '.gwiki', '.mwiki', '.cwiki', '.st', '.epytext', '.txt', '.mkd', '.tmp'
-files = ['testdoc' + ext for ext in files] + ['.testdoc.exerinfo', 'tmp_encodings.txt', 'testdoc_pnd_l2h.html', 'testdoc_pnd_d2h.html', 'html_template.do.txt', 'html_template1.html', 'html_template.html', 'template1.html', 'author1.html', 'author1.p.tex']
+files = ['testdoc' + ext for ext in files] + ['.testdoc.exerinfo', 'tmp_encodings.txt', 'testdoc_pnd_l2h.html', 'testdoc_pnd_d2h.html', 'html_template.do.txt', 'html_template1.html', 'html_template.html', 'template1.html', 'author1.html', 'author1.p.tex', 'author1.rst', 'author1.txt']
 for f in files:
     add(f, log)
 add('make.sh', log)
@@ -105,10 +103,9 @@ files = ['manual' + ext for ext in files]
 for f in files:
     add(f, log)
 add('install.do.txt', log)
+log.close()
 
 os.chdir(thisdir)
-add(outputfilename, log)
-log.close()
 
 # test quickref:
 quickdir = os.path.join(os.pardir, 'doc', 'quickref')
@@ -123,10 +120,9 @@ files = '.do.txt', '.html', '.p.tex', '.rst', '.sphinx.rst', '.gwiki', '.mwiki',
 files = ['quickref' + ext for ext in files]
 for f in files:
     add(f, log)
+log.close()
 
 os.chdir(thisdir)
-add(outputfilename, log)
-log.close()
 
 # Subst date by some dummy date so we don't need to have differences
 # because of the date
@@ -136,5 +132,6 @@ log.close()
 text = text.replace(date, 'Jan 32, 2100')
 log = open(logfilename, 'w')
 log.write(text)
+log.write('\n\n'.join(system_output))
 log.close()
 
