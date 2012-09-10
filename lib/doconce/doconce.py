@@ -344,7 +344,7 @@ def syntax_check(filestr, format):
     pattern = r'idx\{[^}]*?\\_[^}]*?\}'
     matches = re.findall(pattern, filestr)
     if matches:
-        print 'Warning: Backslash before underscore(s) in idx'
+        print 'Warning: Backslash before underscore(s) in idx (remove backslash)'
         print matches
 
     # Figure without comma between filename and options? Or initial spaces?

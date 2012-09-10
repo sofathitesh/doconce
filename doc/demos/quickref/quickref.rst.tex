@@ -55,7 +55,7 @@
 \textbf{Author}: &
 	Hans Petter Langtangen \\
 \textbf{Date}: &
-	Sep 6, 2012 \\
+	Sep 9, 2012 \\
 \end{tabularx}
 \end{center}
 
@@ -789,6 +789,35 @@ the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
 bibliography, and '.py' a Python list of dictionaries for specifying
 the entries in the bibliography. The bibliography (as read from file)
 is inserted where the \texttt{BIBFILE} keyword appears.
+
+There is a \emph{generalized referencing} feature in Doconce that allows
+a reference with \texttt{ref} to have one formulation if the label is
+in the same document and another formulation if the reference is
+to an item in an external document. The syntax of a generalized
+reference is:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+ref{[}internal{]}{[}cite{]}{[}external{]}\\
+~\\
+\#~Example:\\
+As~explained~in\\
+ref{[}Section~ref\{subsec:ex\}{]}{[}in~cite\{testdoc:12\}{]}{[}a~"section":\\
+"testdoc.html\#\_\_\_sec2"~in~the~document\\
+"A~Document~for~Testing~Doconce":~"testdoc.html"~cite\{testdoc:12\}{]},\\
+Doconce~documents~may~include~movies.
+}
+\end{quote}
+
+The output from a generalized reference is the text \texttt{internal} if all
+\texttt{label`\_` references in `{}`internal} are references to labels in the
+present document. Otherwise, if cite is non-empty and the format is
+\texttt{latex} or \texttt{pdflatex} one assumes that the references in \texttt{internal}
+are to external documents declared by a comment line \texttt{\#
+Externaldocuments: testdoc, mydoc} (usually after the title, authors,
+and date). In this case the output text is \texttt{internal cite} and the
+LaTeX package \texttt{xr} is used to handle the labels in the external
+documents.  If none of the two situations above applies, the
+\texttt{external} text will be the output.
 
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no

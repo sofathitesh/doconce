@@ -499,9 +499,14 @@ def latex_index_bib(filestr, index, citations, bibfile):
     for word in index:
         pattern = 'idx{%s}' % word
         if '`' in word:
-            # verbatim typesetting:
-            word = re.sub(r'^(.*)`([^`]+)`(.*)$',
+            # Verbatim typesetting
+            # Replace first `...` with texttt and ensure right sorting
+            word = re.sub(r'^(.*?)`([^`]+?)`(.*)$',  # subst first `...`
             fix_latex_command_regex(r'\g<1>\g<2>@\g<1>{\rm\texttt{\g<2>}}\g<3>',
+                                    application='replacement'), word)
+            # Subst remaining `...`
+            word = re.sub(r'`(.+?)`',  # subst first `...`
+            fix_latex_command_regex(r'{\rm\texttt{\g<1>}}',
                                     application='replacement'), word)
             # fix underscores:
             word = word.replace('_', r'\_')

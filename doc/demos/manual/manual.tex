@@ -99,7 +99,7 @@
 
 
 \begin{center}
-Sep 6, 2012
+Sep 9, 2012
 \end{center}
 
 \vspace{1cm}
@@ -1558,6 +1558,48 @@ are handled by the format in question.
 
 Hyperlinks to files or web addresses are handled as explained
 in Section~\ref{inline:tagging}.
+
+
+\section{Generalized Cross-Referencing}
+
+\label{manual:genrefs}
+
+Sometimes a series of individual documents may be assembled to one
+large document. The assembly impacts how references to sections
+are written: when referring to a section in the same document, a label
+can be used, while references to sections in other documents are
+written differently, sometimes involving a link (URL) and a citation.
+Especially if both the individual documents and the large assembly document
+are to exist side by side, a flexible way of referencing is needed.
+For this purpose, Doconce offers \emph{generalized references} which allows
+a reference to have two different formulations, one for internal
+references and one for external references. Since {\LaTeX} supports
+references to labels in external documents via the {\fontsize{10pt}{10pt}\verb!xr!} package,
+the generalized references in Doconce has a syntax that may utilize
+the {\fontsize{10pt}{10pt}\verb!xr!} feature in {\LaTeX}.
+
+The syntax of generalized references reads
+\begin{Verbatim}
+ref[internal][cite][external]
+\end{Verbatim}
+If all {\fontsize{10pt}{10pt}\verb!ref{label}!} references in the text {\fontsize{10pt}{10pt}\verb!internal!} are references
+to labels in the present document, the above {\fontsize{10pt}{10pt}\verb!ref!} command is replaced
+by the text {\fontsize{10pt}{10pt}\verb!internal!}. Otherwise, if cite is non-empty and the format
+is {\fontsize{10pt}{10pt}\verb!latex!} or {\fontsize{10pt}{10pt}\verb!pdflatex!} one assumes that the references in {\fontsize{10pt}{10pt}\verb!internal!}
+are to external documents declared by a comment line {\fontsize{10pt}{10pt}\verb!# Externaldocuments: testdoc, mydoc!} (usually after the title, authors,
+and date). In this case the output text is {\fontsize{10pt}{10pt}\verb!internal cite!} and the
+{\LaTeX} package {\fontsize{10pt}{10pt}\verb!xr!} is used to handle the labels in the external documents.
+If none of the two situations above applies, the {\fontsize{10pt}{10pt}\verb!external!}
+text will be the output.
+
+Here is an example on a specific generalized reference:
+\begin{Verbatim}
+As explained in
+ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
+"testdoc.html#___sec2" in the document
+"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
+Doconce documents may include movies.
+\end{Verbatim}
 
 \subsection{Index and Bibliography}
 

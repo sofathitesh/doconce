@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Sep 6, 2012</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Sep 9, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -1583,6 +1583,44 @@ are handled by the format in question.</p>
 <p>Hyperlinks to files or web addresses are handled as explained
 in the section <a class="reference internal" href="#id4">Inline Tagging</a>.</p>
 </div>
+</div>
+<div class="section" id="generalized-cross-referencing">
+<span id="manual-genrefs"></span><h1>Generalized Cross-Referencing</h1>
+<p>Sometimes a series of individual documents may be assembled to one
+large document. The assembly impacts how references to sections
+are written: when referring to a section in the same document, a label
+can be used, while references to sections in other documents are
+written differently, sometimes involving a link (URL) and a citation.
+Especially if both the individual documents and the large assembly document
+are to exist side by side, a flexible way of referencing is needed.
+For this purpose, Doconce offers <em>generalized references</em> which allows
+a reference to have two different formulations, one for internal
+references and one for external references. Since LaTeX supports
+references to labels in external documents via the <tt class="docutils literal">xr</tt> package,
+the generalized references in Doconce has a syntax that may utilize
+the <tt class="docutils literal">xr</tt> feature in LaTeX.</p>
+<p>The syntax of generalized references reads:</p>
+<pre class="literal-block">
+ref[internal][cite][external]
+</pre>
+<p>If all <tt class="docutils literal">label`_` references in the text ``internal</tt> are references
+to labels in the present document, the above <tt class="docutils literal">ref</tt> command is replaced
+by the text <tt class="docutils literal">internal</tt>. Otherwise, if cite is non-empty and the format
+is <tt class="docutils literal">latex</tt> or <tt class="docutils literal">pdflatex</tt> one assumes that the references in <tt class="docutils literal">internal</tt>
+are to external documents declared by a comment line <tt class="docutils literal">#
+Externaldocuments: testdoc, mydoc</tt> (usually after the title, authors,
+and date). In this case the output text is <tt class="docutils literal">internal cite</tt> and the
+LaTeX package <tt class="docutils literal">xr</tt> is used to handle the labels in the external documents.
+If none of the two situations above applies, the <tt class="docutils literal">external</tt>
+text will be the output.</p>
+<p>Here is an example on a specific generalized reference:</p>
+<pre class="literal-block">
+As explained in
+ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
+&quot;testdoc.html#___sec2&quot; in the document
+&quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
+Doconce documents may include movies.
+</pre>
 <div class="section" id="index-and-bibliography">
 <h2>Index and Bibliography</h2>
 <p>An index can be created for the <tt class="docutils literal">latex</tt>, <tt class="docutils literal">rst</tt>, and <tt class="docutils literal">sphinx</tt> formats

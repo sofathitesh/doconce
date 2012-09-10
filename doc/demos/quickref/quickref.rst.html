@@ -6,7 +6,7 @@
 <meta name="generator" content="Docutils 0.9: http://docutils.sourceforge.net/" />
 <title>Doconce Quick Reference</title>
 <meta name="author" content="Hans Petter Langtangen" />
-<meta name="date" content="Sep 6, 2012" />
+<meta name="date" content="Sep 9, 2012" />
 <style type="text/css">
 
 /*
@@ -325,7 +325,7 @@ ul.auto-toc {
 <tr><th class="docinfo-name">Author:</th>
 <td>Hans Petter Langtangen</td></tr>
 <tr><th class="docinfo-name">Date:</th>
-<td>Sep 6, 2012</td></tr>
+<td>Sep 9, 2012</td></tr>
 </tbody>
 </table>
 <!-- Automatically generated reST file from Doconce source
@@ -800,6 +800,31 @@ the bibliography: '.bib' indicates a BibTeX file, '.rst' a reST-style
 bibliography, and '.py' a Python list of dictionaries for specifying
 the entries in the bibliography. The bibliography (as read from file)
 is inserted where the <tt class="docutils literal">BIBFILE</tt> keyword appears.</p>
+<p>There is a <em>generalized referencing</em> feature in Doconce that allows
+a reference with <tt class="docutils literal">ref</tt> to have one formulation if the label is
+in the same document and another formulation if the reference is
+to an item in an external document. The syntax of a generalized
+reference is:</p>
+<pre class="literal-block">
+ref[internal][cite][external]
+
+# Example:
+As explained in
+ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
+&quot;testdoc.html#___sec2&quot; in the document
+&quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
+Doconce documents may include movies.
+</pre>
+<p>The output from a generalized reference is the text <tt class="docutils literal">internal</tt> if all
+<tt class="docutils literal">label`_` references in ``internal</tt> are references to labels in the
+present document. Otherwise, if cite is non-empty and the format is
+<tt class="docutils literal">latex</tt> or <tt class="docutils literal">pdflatex</tt> one assumes that the references in <tt class="docutils literal">internal</tt>
+are to external documents declared by a comment line <tt class="docutils literal">#
+Externaldocuments: testdoc, mydoc</tt> (usually after the title, authors,
+and date). In this case the output text is <tt class="docutils literal">internal cite</tt> and the
+LaTeX package <tt class="docutils literal">xr</tt> is used to handle the labels in the external
+documents.  If none of the two situations above applies, the
+<tt class="docutils literal">external</tt> text will be the output.</p>
 <p>Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!):</p>

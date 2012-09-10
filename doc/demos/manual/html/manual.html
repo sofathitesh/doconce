@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Sep 6, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Sep 9, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -1277,6 +1277,44 @@ the source of this document illustrates how labels and references
 are handled by the format in question.</p>
 <p>Hyperlinks to files or web addresses are handled as explained
 in the section <a class="reference internal" href="#inline-tagging"><em>Inline Tagging</em></a>.</p>
+</div>
+</div>
+<div class="section" id="generalized-cross-referencing">
+<span id="manual-genrefs"></span><h1>Generalized Cross-Referencing<a class="headerlink" href="#generalized-cross-referencing" title="Permalink to this headline">¶</a></h1>
+<p>Sometimes a series of individual documents may be assembled to one
+large document. The assembly impacts how references to sections
+are written: when referring to a section in the same document, a label
+can be used, while references to sections in other documents are
+written differently, sometimes involving a link (URL) and a citation.
+Especially if both the individual documents and the large assembly document
+are to exist side by side, a flexible way of referencing is needed.
+For this purpose, Doconce offers <em>generalized references</em> which allows
+a reference to have two different formulations, one for internal
+references and one for external references. Since LaTeX supports
+references to labels in external documents via the <tt class="docutils literal"><span class="pre">xr</span></tt> package,
+the generalized references in Doconce has a syntax that may utilize
+the <tt class="docutils literal"><span class="pre">xr</span></tt> feature in LaTeX.</p>
+<p>The syntax of generalized references reads</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="n">ref</span><span class="p">[</span><span class="n">internal</span><span class="p">][</span><span class="n">cite</span><span class="p">][</span><span class="n">external</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>If all <cite>:ref:`label`</cite> references in the text <tt class="docutils literal"><span class="pre">internal</span></tt> are references
+to labels in the present document, the above <tt class="docutils literal"><span class="pre">ref</span></tt> command is replaced
+by the text <tt class="docutils literal"><span class="pre">internal</span></tt>. Otherwise, if cite is non-empty and the format
+is <tt class="docutils literal"><span class="pre">latex</span></tt> or <tt class="docutils literal"><span class="pre">pdflatex</span></tt> one assumes that the references in <tt class="docutils literal"><span class="pre">internal</span></tt>
+are to external documents declared by a comment line <tt class="docutils literal"><span class="pre">#</span>
+<span class="pre">Externaldocuments:</span> <span class="pre">testdoc,</span> <span class="pre">mydoc</span></tt> (usually after the title, authors,
+and date). In this case the output text is <tt class="docutils literal"><span class="pre">internal</span> <span class="pre">cite</span></tt> and the
+LaTeX package <tt class="docutils literal"><span class="pre">xr</span></tt> is used to handle the labels in the external documents.
+If none of the two situations above applies, the <tt class="docutils literal"><span class="pre">external</span></tt>
+text will be the output.</p>
+<p>Here is an example on a specific generalized reference:</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="n">As</span> <span class="n">explained</span> <span class="ow">in</span>
+<span class="n">ref</span><span class="p">[</span><span class="n">Section</span> <span class="n">ref</span><span class="p">{</span><span class="n">subsec</span><span class="p">:</span><span class="n">ex</span><span class="p">}][</span><span class="ow">in</span> <span class="n">cite</span><span class="p">{</span><span class="n">testdoc</span><span class="p">:</span><span class="mi">12</span><span class="p">}][</span><span class="n">a</span> <span class="s">&quot;section&quot;</span><span class="p">:</span>
+<span class="s">&quot;testdoc.html#___sec2&quot;</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">document</span>
+<span class="s">&quot;A Document for Testing Doconce&quot;</span><span class="p">:</span> <span class="s">&quot;testdoc.html&quot;</span> <span class="n">cite</span><span class="p">{</span><span class="n">testdoc</span><span class="p">:</span><span class="mi">12</span><span class="p">}],</span>
+<span class="n">Doconce</span> <span class="n">documents</span> <span class="n">may</span> <span class="n">include</span> <span class="n">movies</span><span class="o">.</span>
+</pre></div>
 </div>
 <div class="section" id="index-and-bibliography">
 <h2>Index and Bibliography<a class="headerlink" href="#index-and-bibliography" title="Permalink to this headline">¶</a></h2>
@@ -2578,6 +2616,9 @@ groundwater flow.
 <li><a class="reference internal" href="#inline-tagging">Inline Tagging</a></li>
 <li><a class="reference internal" href="#comments">Comments</a></li>
 <li><a class="reference internal" href="#cross-referencing">Cross-Referencing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#generalized-cross-referencing">Generalized Cross-Referencing</a><ul>
 <li><a class="reference internal" href="#index-and-bibliography">Index and Bibliography</a></li>
 <li><a class="reference internal" href="#tables">Tables</a></li>
 <li><a class="reference internal" href="#exercises-problems-or-projects">Exercises, Problems, or Projects</a></li>
