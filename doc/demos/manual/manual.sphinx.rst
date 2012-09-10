@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Sep 9, 2012
+:Date: Sep 10, 2012
 
 .. lines beginning with # are comment lines
 
@@ -18,7 +18,7 @@ What Is Doconce?
 ================
 
 .. index::
-   pair: doconce; short explanation
+   single: doconce; short explanation
 
 
 Doconce is two things:

@@ -201,8 +201,14 @@ achievement.
 ===== Tables =====
 label{subsec:table}
 
-Let us take this table from the manual:
 idx{test index with `verbatim text` which is possible}
+idx{test `two` (separate) `verbatim expressions` which is also possible}
+idx{index with!subindex}
+
+# index with comma could fool sphinx
+idx{index, with comma, and one more}
+
+Let us take this table from the manual:
 
 % if FORMAT in ("latex", "pdflatex"):
 \begin{table}
