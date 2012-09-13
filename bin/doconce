@@ -1141,7 +1141,7 @@ print """
 
 """
 for filename in filenames:
-    system('doconce format sphinx %%s' %% filename)
+    system('doconce format sphinx %%s --skip_inline_comments' %% filename)
 
     # Fix: links to local files, utf-8 encoding for non-English chars
     system('doconce sphinxfix_localURLs %%s.rst' %% filename)
@@ -1576,13 +1576,7 @@ _replace = [
 (r'\eeq', r'\end{equation}'),
 ]
 
-_regex_subst = [
-(r'^\ep\n', r'\\thinspace .\n', re.MULTILINE),
-(r'\ep\n', r' \\thinspace .\n'),
-(r'\ep\s*\\\]', r' \\thinspace . \]'),
-(r'\ep\s*\\e', r' \\thinspace . \e'),
-(r' \\thinspace', 'thinspace'),
-]
+_regex_subst = []
 """
 
 def expand_commands():
@@ -1600,6 +1594,7 @@ def expand_commands():
     (r'\eeq', r'\end{equation}'),
     ]
 
+    # These \ep subst don't work properly
     _regex_subst = [
     (r'^\ep\n', r'\\thinspace .\n', re.MULTILINE),
     (r'\ep\n', r' \\thinspace .\n'),
@@ -1607,6 +1602,7 @@ def expand_commands():
     (r'\ep\s*\\e', r' \\thinspace . \e'),
     (r' \\thinspace', 'thinspace'),
     ]
+    _regex_subst = []
 
     expand_commands_file = '.expand_commands'
     if os.path.isfile(expand_commands_file):

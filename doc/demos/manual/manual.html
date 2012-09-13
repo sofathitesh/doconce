@@ -82,7 +82,7 @@ $$
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Sep 10, 2012</h4></center> <!-- date -->
+<center><h4>Sep 13, 2012</h4></center> <!-- date -->
 <p>
 
 <p>
@@ -1885,10 +1885,65 @@ Here is an example on a specific generalized reference:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
 As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-"testdoc.html#___sec2" in the document
-"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-Doconce documents may include movies.
+ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+"http://code.google.com/p/doconce/wiki/Description"
+cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+the document "A Document for Testing Doconce": "testdoc.html"
+cite{testdoc:12}], Doconce documents may include movies.
+</pre>
+</blockquote>   <! -- end verbatim block -->
+In LaTeX, this becomes
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+As explained in
+Section~\ref{subsec:ex} in
+\href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+\cite{testdoc:12}, Doconce documents may include movies.
+</pre>
+</blockquote>   <! -- end verbatim block -->
+Note that there is a specific numbered reference to an external
+document, if <tt>subsec:ex</tt> is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).
+
+<p>
+Translation to Sphinx or reStructuredText results in
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+As explained in
+a `section &lt;testdoc.html#___sec2&gt;`_ in
+the document `A Document for Testing Doconce &lt;testdoc.html&gt;`_
+[testdoc:12]_, Doconce documents may include movies.
+</pre>
+</blockquote>   <! -- end verbatim block -->
+In plain HTML, this becomes
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+As explained in
+a &lt;a href="testdoc.html#___sec2"&gt;section&lt;/a&gt; in
+the document &lt;a href="testdoc.html"&gt;A Document for Testing Doconce&lt;/a&gt;
+&lt;a href="#testdoc:12"&gt;[1]&lt;/a&gt;, Doconce documents may include movies.
+</pre>
+</blockquote>   <! -- end verbatim block -->
+The plain text format reads
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+As explained in
+a section (testdoc.html#___sec2) in
+the document A Document for Testing Doconce (testdoc.html)
+[1], Doconce documents may include movies.
+</pre>
+</blockquote>   <! -- end verbatim block -->
+And in Pandoc-exteded Markdown we have
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+As explained in
+a [section](testdoc.html#___sec2) in
+the document [A Document for Testing Doconce](testdoc.html)
+@testdoc:12, Doconce documents may include movies.
 </pre>
 </blockquote>   <! -- end verbatim block -->
 

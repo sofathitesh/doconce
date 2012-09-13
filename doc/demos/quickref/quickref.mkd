@@ -1,6 +1,6 @@
 % Doconce Quick Reference
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Sep 10, 2012
+% Sep 13, 2012
 
 _WARNING: This quick reference is very incomplete!_
 

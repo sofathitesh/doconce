@@ -10568,17 +10568,18 @@ Here is a specific example on a generalized reference:
 <p>
 
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
-&quot;testdoc.html#___sec2&quot; in the document
-&quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
-Doconce documents may include movies.
+ref[Section ref{subsec:ex}][in &quot;Langtangen, 2012&quot;:
+&quot;http://code.google.com/p/doconce/wiki/Description&quot;
+cite{testdoc:12}][a &quot;section&quot;: &quot;testdoc.html#___sec2&quot; in
+the document &quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot;
+cite{testdoc:12}], Doconce documents may include movies.
 </pre></div>
 <p>
-This is rendered to
-"As explained in
-a <a href="testdoc.html#___sec2">section</a> in the document
-<a href="testdoc.html">A Document for Testing Doconce</a> <a href="#testdoc:12">[1]</a>,
-Doconce documents may include movies."
+This is rendered to the following text:
+As explained in
+a <a href="testdoc.html#___sec2">section</a> in
+the document <a href="testdoc.html">A Document for Testing Doconce</a>
+<a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
 
 <p>
 And here is another example with internal references only:
@@ -10842,15 +10843,16 @@ text will be the output.
 Here is a specific example on a generalized reference:
 \bccq
 As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-"testdoc.html#___sec2" in the document
-"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-Doconce documents may include movies.
+ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+"http://code.google.com/p/doconce/wiki/Description"
+cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+the document "A Document for Testing Doconce": "testdoc.html"
+cite{testdoc:12}], Doconce documents may include movies.
 \eccq
-This is rendered to
-"As explained in
-Section~\ref{subsec:ex} in \cite{testdoc:12},
-Doconce documents may include movies."
+This is rendered to the following text:
+As explained in
+Section~\ref{subsec:ex} in \href{{http://code.google.com/p/doconce/wiki/Description}}{Langtangen, 2012}
+\cite{testdoc:12}, Doconce documents may include movies.
 
 And here is another example with internal references only:
 \bccq
@@ -10923,16 +10925,17 @@ Here is a specific example on a generalized reference:
 
 
         As explained in
-        ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-        "testdoc.html#___sec2" in the document
-        "A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-        Doconce documents may include movies.
+        ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+        "http://code.google.com/p/doconce/wiki/Description"
+        cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+        the document "A Document for Testing Doconce": "testdoc.html"
+        cite{testdoc:12}], Doconce documents may include movies.
 
-This is rendered to
-"As explained in
-a `section <testdoc.html#___sec2>`_ in the document
-`A Document for Testing Doconce <testdoc.html>`_ [testdoc:12]_,
-Doconce documents may include movies."
+This is rendered to the following text:
+As explained in
+a `section <testdoc.html#___sec2>`_ in
+the document `A Document for Testing Doconce <testdoc.html>`_
+[testdoc:12]_, Doconce documents may include movies.
 
 And here is another example with internal references only:
 
@@ -10994,16 +10997,17 @@ Here is a specific example on a generalized reference::
 
 
         As explained in
-        ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-        "testdoc.html#___sec2" in the document
-        "A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-        Doconce documents may include movies.
+        ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+        "http://code.google.com/p/doconce/wiki/Description"
+        cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+        the document "A Document for Testing Doconce": "testdoc.html"
+        cite{testdoc:12}], Doconce documents may include movies.
 
-This is rendered to
-"As explained in
-a section (testdoc.html#___sec2) in the document
-A Document for Testing Doconce (testdoc.html) [1],
-Doconce documents may include movies."
+This is rendered to the following text:
+As explained in
+a section (testdoc.html#___sec2) in
+the document A Document for Testing Doconce (testdoc.html)
+[1], Doconce documents may include movies.
 
 And here is another example with internal references only::
 
@@ -25188,7 +25192,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Mon, 10 Sep 2012 (11:08)
+DATE: Thu, 13 Sep 2012 (13:36)
 
 
 
@@ -25292,7 +25296,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Mon, 10 Sep 2012 (11:08)
+DATE: Thu, 13 Sep 2012 (13:36)
 
 
 
@@ -25406,7 +25410,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 10 Sep 2012 (11:08)</center>
+<center>Thu, 13 Sep 2012 (13:36)</center>
 
 
 
@@ -25537,7 +25541,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 10 Sep 2012 (11:08)</center>
+<center>Thu, 13 Sep 2012 (13:36)</center>
 
 
 
@@ -26457,10 +26461,54 @@ text will be the output.
 Here is an example on a specific generalized reference:
 !bc
 As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-"testdoc.html#___sec2" in the document
-"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-Doconce documents may include movies.
+ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+"http://code.google.com/p/doconce/wiki/Description"
+cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+the document "A Document for Testing Doconce": "testdoc.html"
+cite{testdoc:12}], Doconce documents may include movies.
+!ec
+In LaTeX, this becomes
+!bc
+As explained in
+Section~\ref{subsec:ex} in
+\href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+\cite{testdoc:12}, Doconce documents may include movies.
+!ec
+Note that there is a specific numbered reference to an external
+document, if `subsec:ex` is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).
+
+Translation to Sphinx or reStructuredText results in
+!bc
+As explained in
+a `section <testdoc.html#___sec2>`_ in
+the document `A Document for Testing Doconce <testdoc.html>`_
+[testdoc:12]_, Doconce documents may include movies.
+!ec
+In plain HTML, this becomes
+!bc
+As explained in
+a <a href="testdoc.html#___sec2">section</a> in
+the document <a href="testdoc.html">A Document for Testing Doconce</a>
+<a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
+!ec
+The plain text format reads
+!bc
+As explained in
+a section (testdoc.html#___sec2) in
+the document A Document for Testing Doconce (testdoc.html)
+[1], Doconce documents may include movies.
+!ec
+And in Pandoc-exteded Markdown we have
+!bc
+As explained in
+a [section](testdoc.html#___sec2) in
+the document [A Document for Testing Doconce](testdoc.html)
+@testdoc:12, Doconce documents may include movies.
 !ec
 
 ===== Index and Bibliography =====
@@ -29601,10 +29649,65 @@ Here is an example on a specific generalized reference:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
 As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-"testdoc.html#___sec2" in the document
-"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-Doconce documents may include movies.
+ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+"http://code.google.com/p/doconce/wiki/Description"
+cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+the document "A Document for Testing Doconce": "testdoc.html"
+cite{testdoc:12}], Doconce documents may include movies.
+</pre>
+</blockquote>   <! -- end verbatim block -->
+In LaTeX, this becomes
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+As explained in
+Section~\ref{subsec:ex} in
+\href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+\cite{testdoc:12}, Doconce documents may include movies.
+</pre>
+</blockquote>   <! -- end verbatim block -->
+Note that there is a specific numbered reference to an external
+document, if <tt>subsec:ex</tt> is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).
+
+<p>
+Translation to Sphinx or reStructuredText results in
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+As explained in
+a `section &lt;testdoc.html#___sec2&gt;`_ in
+the document `A Document for Testing Doconce &lt;testdoc.html&gt;`_
+[testdoc:12]_, Doconce documents may include movies.
+</pre>
+</blockquote>   <! -- end verbatim block -->
+In plain HTML, this becomes
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+As explained in
+a &lt;a href="testdoc.html#___sec2"&gt;section&lt;/a&gt; in
+the document &lt;a href="testdoc.html"&gt;A Document for Testing Doconce&lt;/a&gt;
+&lt;a href="#testdoc:12"&gt;[1]&lt;/a&gt;, Doconce documents may include movies.
+</pre>
+</blockquote>   <! -- end verbatim block -->
+The plain text format reads
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+As explained in
+a section (testdoc.html#___sec2) in
+the document A Document for Testing Doconce (testdoc.html)
+[1], Doconce documents may include movies.
+</pre>
+</blockquote>   <! -- end verbatim block -->
+And in Pandoc-exteded Markdown we have
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+As explained in
+a [section](testdoc.html#___sec2) in
+the document [A Document for Testing Doconce](testdoc.html)
+@testdoc:12, Doconce documents may include movies.
 </pre>
 </blockquote>   <! -- end verbatim block -->
 
@@ -32968,10 +33071,54 @@ text will be the output.
 Here is an example on a specific generalized reference:
 \bccq
 As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-"testdoc.html#___sec2" in the document
-"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-Doconce documents may include movies.
+ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+"http://code.google.com/p/doconce/wiki/Description"
+cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+the document "A Document for Testing Doconce": "testdoc.html"
+cite{testdoc:12}], Doconce documents may include movies.
+\eccq
+In {\LaTeX}, this becomes
+\bccq
+As explained in
+Section~\ref{subsec:ex} in
+\href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+\cite{testdoc:12}, Doconce documents may include movies.
+\eccq
+Note that there is a specific numbered reference to an external
+document, if \code{subsec:ex} is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference ({\LaTeX} cannot
+have links to local files, so a complete URL must be used).
+
+Translation to Sphinx or reStructuredText results in
+\bccq
+As explained in
+a `section <testdoc.html#___sec2>`_ in
+the document `A Document for Testing Doconce <testdoc.html>`_
+[testdoc:12]_, Doconce documents may include movies.
+\eccq
+In plain HTML, this becomes
+\bccq
+As explained in
+a <a href="testdoc.html#___sec2">section</a> in
+the document <a href="testdoc.html">A Document for Testing Doconce</a>
+<a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
+\eccq
+The plain text format reads
+\bccq
+As explained in
+a section (testdoc.html#___sec2) in
+the document A Document for Testing Doconce (testdoc.html)
+[1], Doconce documents may include movies.
+\eccq
+And in Pandoc-exteded Markdown we have
+\bccq
+As explained in
+a [section](testdoc.html#___sec2) in
+the document [A Document for Testing Doconce](testdoc.html)
+@testdoc:12, Doconce documents may include movies.
 \eccq
 
 \subsection{Index and Bibliography}
@@ -35863,10 +36010,59 @@ Here is an example on a specific generalized reference::
 
 
         As explained in
-        ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-        "testdoc.html#___sec2" in the document
-        "A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-        Doconce documents may include movies.
+        ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+        "http://code.google.com/p/doconce/wiki/Description"
+        cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+        the document "A Document for Testing Doconce": "testdoc.html"
+        cite{testdoc:12}], Doconce documents may include movies.
+
+In LaTeX, this becomes::
+
+
+        As explained in
+        Section~\ref{subsec:ex} in
+        \href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+        \cite{testdoc:12}, Doconce documents may include movies.
+
+Note that there is a specific numbered reference to an external
+document, if ``subsec:ex`` is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).
+
+Translation to Sphinx or reStructuredText results in::
+
+
+        As explained in
+        a `section <testdoc.html#___sec2>`_ in
+        the document `A Document for Testing Doconce <testdoc.html>`_
+        [testdoc:12]_, Doconce documents may include movies.
+
+In plain HTML, this becomes::
+
+
+        As explained in
+        a <a href="testdoc.html#___sec2">section</a> in
+        the document <a href="testdoc.html">A Document for Testing Doconce</a>
+        <a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
+
+The plain text format reads::
+
+
+        As explained in
+        a section (testdoc.html#___sec2) in
+        the document A Document for Testing Doconce (testdoc.html)
+        [1], Doconce documents may include movies.
+
+And in Pandoc-exteded Markdown we have::
+
+
+        As explained in
+        a [section](testdoc.html#___sec2) in
+        the document [A Document for Testing Doconce](testdoc.html)
+        @testdoc:12, Doconce documents may include movies.
 
 
 Index and Bibliography
@@ -39065,10 +39261,69 @@ Here is an example on a specific generalized reference:
 
 
         As explained in
-        ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-        "testdoc.html#___sec2" in the document
-        "A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-        Doconce documents may include movies.
+        ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+        "http://code.google.com/p/doconce/wiki/Description"
+        cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+        the document "A Document for Testing Doconce": "testdoc.html"
+        cite{testdoc:12}], Doconce documents may include movies.
+
+In LaTeX, this becomes
+
+.. code-block:: py
+
+
+        As explained in
+        Section~\ref{subsec:ex} in
+        \href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+        \cite{testdoc:12}, Doconce documents may include movies.
+
+Note that there is a specific numbered reference to an external
+document, if ``subsec:ex`` is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).
+
+Translation to Sphinx or reStructuredText results in
+
+.. code-block:: py
+
+
+        As explained in
+        a `section <testdoc.html#___sec2>`_ in
+        the document `A Document for Testing Doconce <testdoc.html>`_
+        [testdoc:12]_, Doconce documents may include movies.
+
+In plain HTML, this becomes
+
+.. code-block:: py
+
+
+        As explained in
+        a <a href="testdoc.html#___sec2">section</a> in
+        the document <a href="testdoc.html">A Document for Testing Doconce</a>
+        <a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
+
+The plain text format reads
+
+.. code-block:: py
+
+
+        As explained in
+        a section (testdoc.html#___sec2) in
+        the document A Document for Testing Doconce (testdoc.html)
+        [1], Doconce documents may include movies.
+
+And in Pandoc-exteded Markdown we have
+
+.. code-block:: py
+
+
+        As explained in
+        a [section](testdoc.html#___sec2) in
+        the document [A Document for Testing Doconce](testdoc.html)
+        @testdoc:12, Doconce documents may include movies.
 
 
 Index and Bibliography
@@ -41986,10 +42241,54 @@ text will be the output.
 Here is an example on a specific generalized reference:
 {{{
 As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-"testdoc.html#___sec2" in the document
-"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-Doconce documents may include movies.
+ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+"http://code.google.com/p/doconce/wiki/Description"
+cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+the document "A Document for Testing Doconce": "testdoc.html"
+cite{testdoc:12}], Doconce documents may include movies.
+}}}
+In LaTeX, this becomes
+{{{
+As explained in
+Section~\ref{subsec:ex} in
+\href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+\cite{testdoc:12}, Doconce documents may include movies.
+}}}
+Note that there is a specific numbered reference to an external
+document, if `subsec:ex` is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).
+
+Translation to Sphinx or reStructuredText results in
+{{{
+As explained in
+a `section <testdoc.html#___sec2>`_ in
+the document `A Document for Testing Doconce <testdoc.html>`_
+[testdoc:12]_, Doconce documents may include movies.
+}}}
+In plain HTML, this becomes
+{{{
+As explained in
+a <a href="testdoc.html#___sec2">section</a> in
+the document <a href="testdoc.html">A Document for Testing Doconce</a>
+<a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
+}}}
+The plain text format reads
+{{{
+As explained in
+a section (testdoc.html#___sec2) in
+the document A Document for Testing Doconce (testdoc.html)
+[1], Doconce documents may include movies.
+}}}
+And in Pandoc-exteded Markdown we have
+{{{
+As explained in
+a [section](testdoc.html#___sec2) in
+the document [A Document for Testing Doconce](testdoc.html)
+@testdoc:12, Doconce documents may include movies.
 }}}
 
 ==== Index and Bibliography ====
@@ -44606,10 +44905,54 @@ text will be the output.
 Here is an example on a specific generalized reference:
 <code>
 As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-"testdoc.html#___sec2" in the document
-"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-Doconce documents may include movies.
+ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+"http://code.google.com/p/doconce/wiki/Description"
+cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+the document "A Document for Testing Doconce": "testdoc.html"
+cite{testdoc:12}], Doconce documents may include movies.
+</code>
+In LaTeX, this becomes
+<code>
+As explained in
+Section~\ref{subsec:ex} in
+\href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+\cite{testdoc:12}, Doconce documents may include movies.
+</code>
+Note that there is a specific numbered reference to an external
+document, if <code>subsec:ex</code> is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).
+
+Translation to Sphinx or reStructuredText results in
+<code>
+As explained in
+a `section <testdoc.html#___sec2>`_ in
+the document `A Document for Testing Doconce <testdoc.html>`_
+[testdoc:12]_, Doconce documents may include movies.
+</code>
+In plain HTML, this becomes
+<code>
+As explained in
+a <a href="testdoc.html#___sec2">section</a> in
+the document <a href="testdoc.html">A Document for Testing Doconce</a>
+<a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
+</code>
+The plain text format reads
+<code>
+As explained in
+a section (testdoc.html#___sec2) in
+the document A Document for Testing Doconce (testdoc.html)
+[1], Doconce documents may include movies.
+</code>
+And in Pandoc-exteded Markdown we have
+<code>
+As explained in
+a [section](testdoc.html#___sec2) in
+the document [A Document for Testing Doconce](testdoc.html)
+@testdoc:12, Doconce documents may include movies.
 </code>
 
 ==== Index and Bibliography ====
@@ -47259,10 +47602,54 @@ text will be the output.
 Here is an example on a specific generalized reference:
 {{{
 As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-"testdoc.html#___sec2" in the document
-"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-Doconce documents may include movies.
+ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+"http://code.google.com/p/doconce/wiki/Description"
+cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+the document "A Document for Testing Doconce": "testdoc.html"
+cite{testdoc:12}], Doconce documents may include movies.
+}}}
+In LaTeX, this becomes
+{{{
+As explained in
+Section~\ref{subsec:ex} in
+\href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+\cite{testdoc:12}, Doconce documents may include movies.
+}}}
+Note that there is a specific numbered reference to an external
+document, if {{{subsec:ex}}} is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).
+
+Translation to Sphinx or reStructuredText results in
+{{{
+As explained in
+a `section <testdoc.html#___sec2>`_ in
+the document `A Document for Testing Doconce <testdoc.html>`_
+[testdoc:12]_, Doconce documents may include movies.
+}}}
+In plain HTML, this becomes
+{{{
+As explained in
+a <a href="testdoc.html#___sec2">section</a> in
+the document <a href="testdoc.html">A Document for Testing Doconce</a>
+<a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
+}}}
+The plain text format reads
+{{{
+As explained in
+a section (testdoc.html#___sec2) in
+the document A Document for Testing Doconce (testdoc.html)
+[1], Doconce documents may include movies.
+}}}
+And in Pandoc-exteded Markdown we have
+{{{
+As explained in
+a [section](testdoc.html#___sec2) in
+the document [A Document for Testing Doconce](testdoc.html)
+@testdoc:12, Doconce documents may include movies.
 }}}
 
 
@@ -49964,10 +50351,59 @@ Here is an example on a specific generalized reference::
 
 
         As explained in
-        ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-        "testdoc.html#___sec2" in the document
-        "A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-        Doconce documents may include movies.
+        ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+        "http://code.google.com/p/doconce/wiki/Description"
+        cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+        the document "A Document for Testing Doconce": "testdoc.html"
+        cite{testdoc:12}], Doconce documents may include movies.
+
+In LaTeX, this becomes::
+
+
+        As explained in
+        Section~\ref{subsec:ex} in
+        \href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+        \cite{testdoc:12}, Doconce documents may include movies.
+
+Note that there is a specific numbered reference to an external
+document, if 'subsec:ex' is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).
+
+Translation to Sphinx or reStructuredText results in::
+
+
+        As explained in
+        a `section <testdoc.html#___sec2>`_ in
+        the document `A Document for Testing Doconce <testdoc.html>`_
+        [testdoc:12]_, Doconce documents may include movies.
+
+In plain HTML, this becomes::
+
+
+        As explained in
+        a <a href="testdoc.html#___sec2">section</a> in
+        the document <a href="testdoc.html">A Document for Testing Doconce</a>
+        <a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
+
+The plain text format reads::
+
+
+        As explained in
+        a section (testdoc.html#___sec2) in
+        the document A Document for Testing Doconce (testdoc.html)
+        [1], Doconce documents may include movies.
+
+And in Pandoc-exteded Markdown we have::
+
+
+        As explained in
+        a [section](testdoc.html#___sec2) in
+        the document [A Document for Testing Doconce](testdoc.html)
+        @testdoc:12, Doconce documents may include movies.
 
 
 Index and Bibliography
@@ -52752,10 +53188,59 @@ Here is an example on a specific generalized reference::
 
 
         As explained in
-        ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-        "testdoc.html#___sec2" in the document
-        "A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-        Doconce documents may include movies.
+        ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+        "http://code.google.com/p/doconce/wiki/Description"
+        cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+        the document "A Document for Testing Doconce": "testdoc.html"
+        cite{testdoc:12}], Doconce documents may include movies.
+
+In LaTeX, this becomes::
+
+
+        As explained in
+        Section~\ref{subsec:ex} in
+        \href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+        \cite{testdoc:12}, Doconce documents may include movies.
+
+Note that there is a specific numbered reference to an external
+document, if C{subsec:ex} is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).
+
+Translation to Sphinx or reStructuredText results in::
+
+
+        As explained in
+        a `section <testdoc.html#___sec2>`_ in
+        the document `A Document for Testing Doconce <testdoc.html>`_
+        [testdoc:12]_, Doconce documents may include movies.
+
+In plain HTML, this becomes::
+
+
+        As explained in
+        a <a href="testdoc.html#___sec2">section</a> in
+        the document <a href="testdoc.html">A Document for Testing Doconce</a>
+        <a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
+
+The plain text format reads::
+
+
+        As explained in
+        a section (testdoc.html#___sec2) in
+        the document A Document for Testing Doconce (testdoc.html)
+        [1], Doconce documents may include movies.
+
+And in Pandoc-exteded Markdown we have::
+
+
+        As explained in
+        a [section](testdoc.html#___sec2) in
+        the document [A Document for Testing Doconce](testdoc.html)
+        @testdoc:12, Doconce documents may include movies.
 
 
 Index and Bibliography
@@ -55634,10 +56119,59 @@ Here is an example on a specific generalized reference::
 
 
         As explained in
-        ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-        "testdoc.html#___sec2" in the document
-        "A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-        Doconce documents may include movies.
+        ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+        "http://code.google.com/p/doconce/wiki/Description"
+        cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+        the document "A Document for Testing Doconce": "testdoc.html"
+        cite{testdoc:12}], Doconce documents may include movies.
+
+In LaTeX, this becomes::
+
+
+        As explained in
+        Section~\ref{subsec:ex} in
+        \href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+        \cite{testdoc:12}, Doconce documents may include movies.
+
+Note that there is a specific numbered reference to an external
+document, if subsec:ex is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).
+
+Translation to Sphinx or reStructuredText results in::
+
+
+        As explained in
+        a `section <testdoc.html#___sec2>`_ in
+        the document `A Document for Testing Doconce <testdoc.html>`_
+        [testdoc:12]_, Doconce documents may include movies.
+
+In plain HTML, this becomes::
+
+
+        As explained in
+        a <a href="testdoc.html#___sec2">section</a> in
+        the document <a href="testdoc.html">A Document for Testing Doconce</a>
+        <a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
+
+The plain text format reads::
+
+
+        As explained in
+        a section (testdoc.html#___sec2) in
+        the document A Document for Testing Doconce (testdoc.html)
+        [1], Doconce documents may include movies.
+
+And in Pandoc-exteded Markdown we have::
+
+
+        As explained in
+        a [section](testdoc.html#___sec2) in
+        the document [A Document for Testing Doconce](testdoc.html)
+        @testdoc:12, Doconce documents may include movies.
 
 
 Index and Bibliography
@@ -58611,10 +59145,64 @@ Here is an example on a specific generalized reference:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-"testdoc.html#___sec2" in the document
-"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-Doconce documents may include movies.
+ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+"http://code.google.com/p/doconce/wiki/Description"
+cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+the document "A Document for Testing Doconce": "testdoc.html"
+cite{testdoc:12}], Doconce documents may include movies.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In LaTeX, this becomes
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+As explained in
+Section~\ref{subsec:ex} in
+\href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+\cite{testdoc:12}, Doconce documents may include movies.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Note that there is a specific numbered reference to an external
+document, if `subsec:ex` is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).
+
+Translation to Sphinx or reStructuredText results in
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+As explained in
+a `section <testdoc.html#___sec2>`_ in
+the document `A Document for Testing Doconce <testdoc.html>`_
+[testdoc:12]_, Doconce documents may include movies.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In plain HTML, this becomes
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+As explained in
+a <a href="testdoc.html#___sec2">section</a> in
+the document <a href="testdoc.html">A Document for Testing Doconce</a>
+<a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The plain text format reads
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+As explained in
+a section (testdoc.html#___sec2) in
+the document A Document for Testing Doconce (testdoc.html)
+[1], Doconce documents may include movies.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+And in Pandoc-exteded Markdown we have
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+As explained in
+a [section](testdoc.html#___sec2) in
+the document [A Document for Testing Doconce](testdoc.html)
+@testdoc:12, Doconce documents may include movies.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Index and Bibliography
@@ -69774,7 +70362,7 @@ c/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
 cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pf
 b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/shar
 e/texmf-texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (13 pages, 1434253 bytes).
+Output written on testdoc.pdf (13 pages, 1434404 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -72324,11 +72912,17 @@ running preprocess -DFORMAT=html -D--no-mako -D--no-pygments-html manual.do.txt 
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to html
 
+Warning: found \cite{...} (cite{...} has no backslash)
+\cite{testdoc:12}
+
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 
 Warning: found \label{...} (label{...} has no backslash)
 \label{theorem:fundamental1}
+
+Warning: found \ref{...} (ref{...} has no backslash)
+\ref{subsec:ex}
 copy complete file __testcode.f  (format: fpro)
 copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
@@ -72344,11 +72938,17 @@ running preprocess -DFORMAT=sphinx -D--no-mako manual.do.txt > __tmp.do.txt
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to sphinx
 
+Warning: found \cite{...} (cite{...} has no backslash)
+\cite{testdoc:12}
+
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 
 Warning: found \label{...} (label{...} has no backslash)
 \label{theorem:fundamental1}
+
+Warning: found \ref{...} (ref{...} has no backslash)
+\ref{subsec:ex}
 
 Warning:
 Not recommended for sphinx output: math environment beqa
@@ -72663,24 +73263,24 @@ input line 1674.
 
 [28]
 Chapter 7.
-[29]
+[29] [30]
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 30 undefined o
-n input line 1815.
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 30 undefined on input 
-line 1815.
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 31 undefined o
+n input line 1869.
 
 
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 30 undefined o
-n input line 1816.
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 31 undefined on input 
+line 1869.
 
 
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 30 undefined on input 
-line 1816.
+LaTeX Warning: Hyper reference `manual:python-primer-09' on page 31 undefined o
+n input line 1870.
 
-[30] [31] [32] [33] [34]
+
+LaTeX Warning: Hyper reference `manual:osnes-98' on page 31 undefined on input 
+line 1870.
+
+[31] [32] [33] [34] [35]
 ! FancyVerb Error:
   Empty verbatim environment
 .
@@ -72688,43 +73288,43 @@ line 1816.
 \space \space #1
 }
                                                   
-l.2191 \end{Verbatim}
+l.2245 \end{Verbatim}
                      
 ? OK, entering \nonstopmode...
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2197.
+(amsmath)                 on input line 2251.
 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2197 \end{gather}
+l.2251 \end{gather}
                    
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2197 \end{gather}
+l.2251 \end{gather}
                    
 
-Underfull \hbox (badness 10000) in paragraph at lines 2237--2243
+Underfull \hbox (badness 10000) in paragraph at lines 2291--2297
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax' \T1/ptm/m/n/10 (en-abled by de-fault)
 
-Underfull \hbox (badness 10000) in paragraph at lines 2237--2243
+Underfull \hbox (badness 10000) in paragraph at lines 2291--2297
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 'matplotlib.sphinxext.mathmpl' \T1/ptm/m/n/10
  (dis-abled by de-fault) lines, and un-com-ment the
-[35] [36]
+[36] [37]
 
-LaTeX Warning: Hyper reference `manual:doconce2formats' on page 37 undefined on
- input line 2385.
+LaTeX Warning: Hyper reference `manual:doconce2formats' on page 38 undefined on
+ input line 2439.
 
-[37] [38] [39] [40]
+[38] [39] [40]
 Chapter 8.
 [41] [42]
 
 LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 43 undefine
-d on input line 2747.
+d on input line 2801.
 
 [43] [44] [45] [46] [47] [48]
 Chapter 9.
@@ -72755,7 +73355,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on DoconceManual.pdf (57 pages, 391463 bytes).
+Output written on DoconceManual.pdf (57 pages, 393059 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -72765,11 +73365,17 @@ running preprocess -DFORMAT=rst -D--no-mako manual.do.txt > __tmp.do.txt
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to rst
 
+Warning: found \cite{...} (cite{...} has no backslash)
+\cite{testdoc:12}
+
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 
 Warning: found \label{...} (label{...} has no backslash)
 \label{theorem:fundamental1}
+
+Warning: found \ref{...} (ref{...} has no backslash)
+\ref{subsec:ex}
 copy complete file __testcode.f  (format: fpro)
 copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
@@ -73186,240 +73792,283 @@ Overfull \hbox (27.01674pt too wide) in paragraph at lines 1946--1948
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 [22]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1995--1995
-[]\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section": 
+Overfull \hbox (5.00006pt too wide) in paragraph at lines 1995--1995
+[]\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in "Langtangen, 2012":  
+
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1996--1996
+[]\T1/pcr/m/n/10 "http://code.google.com/p/doconce/wiki/Description"  
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1997--1997
+[]\T1/pcr/m/n/10 cite{testdoc:12}][a "section": "testdoc.html#___sec2" in  
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1998--1998
+[]\T1/pcr/m/n/10 the document "A Document for Testing Doconce": "testdoc.html" 
  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1997--1997
-[]\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
-12}],  
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1999--2001
+[]\T1/pcr/m/n/10 cite{testdoc:12}], Doconce documents may include movies. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2024--2027
+Overfull \hbox (263.00006pt too wide) in paragraph at lines 2008--2008
+[]\T1/pcr/m/n/10 \href{{http://code.google.com/p/doconce/source/browse/test/tes
+tdoc.do.txt}}{Langtangen, 2012}  
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2009--2011
+[]\T1/pcr/m/n/10 \cite{testdoc:12}, Doconce documents may include movies. 
+
+Overfull \hbox (19.41716pt too wide) in paragraph at lines 2013--2020
+[]\T1/ptm/m/n/10 Note that there is a spe-cific num-bered ref-er-ence to an ex-
+ter-nal doc-u-ment, if \T1/pcr/m/n/10 subsec:ex
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2026--2026
+[]\T1/pcr/m/n/10 the document `A Document for Testing Doconce <testdoc.html>`_ 
+ 
+
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2027--2029
+[]\T1/pcr/m/n/10 [testdoc:12]_, Doconce documents may include movies. 
+
+Overfull \hbox (125.00006pt too wide) in paragraph at lines 2036--2036
+[]\T1/pcr/m/n/10 the document <a href="testdoc.html">A Document for Testing Doc
+once</a>  
+
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2037--2039
+[]\T1/pcr/m/n/10 <a href="#testdoc:12">[1]</a>, Doconce documents may include m
+ovies. 
+
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 2046--2046
+[]\T1/pcr/m/n/10 the document A Document for Testing Doconce (testdoc.html)  
+
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2056--2056
+[]\T1/pcr/m/n/10 the document [A Document for Testing Doconce](testdoc.html)  
+
+Overfull \hbox (5.00006pt too wide) in paragraph at lines 2057--2059
+[]\T1/pcr/m/n/10 @testdoc:12, Doconce documents may include movies. 
+[23]
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2083--2086
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2042--2045
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2101--2104
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
-[23]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2073--2073
+
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2132--2132
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2074--2074
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2133--2133
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
-
-Overfull \hbox (7.29897pt too wide) in paragraph at lines 2092--2100
+[24]
+Overfull \hbox (7.29897pt too wide) in paragraph at lines 2151--2159
 \T1/ptm/m/n/10 ther by man-ual edit-ing of \T1/pcr/m/n/10 myfile.bbl \T1/ptm/m/
 n/10 or us-ing \T1/pcr/m/n/10 doconce bbl2rst myfile.bbl
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 2105--2107
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 2164--2166
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 2108--2111
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 2167--2170
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-[24]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2225--2226
+[25]
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2284--2285
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 
-Overfull \hbox (21.27702pt too wide) in paragraph at lines 2247--2252
+Overfull \hbox (21.27702pt too wide) in paragraph at lines 2306--2311
 []\T1/ptm/m/n/10 The so-lu-tion en-vi-ron-ment al-lows in-line so-lu-tion as an
  al-ter-na-tive to the \T1/pcr/m/n/10 solution=...
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2255--2256
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2314--2315
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
-[25] [26]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2356--2359
+[26] [27]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2415--2418
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[27]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2438--2440
-[]\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
 [28]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2555--2555
-[]\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
- 
-
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2556--2556
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
-label{myeq2}  
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2565--2565
-[]\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
- 
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2497--2499
+[]\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
 [29]
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2566--2566
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2614--2614
+[]\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
+ 
+
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2615--2615
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
 
-Overfull \hbox (3.0pt too wide) in paragraph at lines 2582--2589
-\T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2624--2624
+[]\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
+ 
 
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2616--2622
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2625--2625
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
+
+Overfull \hbox (3.0pt too wide) in paragraph at lines 2641--2648
+\T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
+[30]
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2675--2681
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2616--2622
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2675--2681
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2616--2622
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2675--2681
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[30]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2668--2671
+
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2727--2730
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2703--2703
+[31]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2762--2762
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2704--2704
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2763--2763
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2720--2732
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2779--2791
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[31]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2745--2746
+
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2804--2805
 \T1/pcr/m/n/10 # If PNGFIGS is defined, PNG files are used, otherwise Encapsula
 ted  
-
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2755--2755
+[32]
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2814--2814
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2757--2757
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2816--2816
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001.eps}}  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2761--2761
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2820--2820
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2763--2763
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2822--2822
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010.eps}}  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2773--2773
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2832--2832
 []\T1/pcr/m/n/10 # Use default Doconce figure handling for all other formats  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2775--2775
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2834--2834
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0001, width=400] Wavepacket at time 0.
 1 s.  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2777--2777
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2836--2836
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0010, width=400] Wavepacket at time 0.
 2 s.  
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 32 undef
-ined on input line 2784.
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 33 undef
+ined on input line 2843.
 
-[32]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2832--2832
-[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [33]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2918--2920
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2891--2891
+[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
+[34]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2977--2979
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
-[34]
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2980--2982
+[35]
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 3039--3041
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[35]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 3102--3105
+[36]
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 3161--3164
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 3119--3122
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 3178--3181
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3126--3129
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3185--3188
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3165--3166
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3224--3225
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3168--3170
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3227--3229
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[36] [37]
+[37] [38]
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 38 un
-defined on input line 3309.
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 39 un
+defined on input line 3368.
 
-[38]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3476--3476
+[39]
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3535--3535
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3480--3480
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3539--3539
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-[39]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3498--3498
+[40]
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3557--3557
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
-Overfull \hbox (131.00006pt too wide) in paragraph at lines 3518--3518
+Overfull \hbox (131.00006pt too wide) in paragraph at lines 3577--3577
 []\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
 section]'  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3519--3519
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3578--3578
 []\T1/pcr/m/n/10 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $
 file  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3520--3520
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3579--3579
 []\T1/pcr/m/n/10 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3521--3521
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3580--3580
 []\T1/pcr/m/n/10 doconce replace '% begin theorem' '\begin{theorem}' $file  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3522--3524
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3581--3583
 []\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3548--3548
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3607--3607
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[40]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3593--3594
+[41]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3652--3653
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3595--3595
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3654--3654
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3598--3598
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3657--3657
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[41] [42]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3769--3769
+[42] [43]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3828--3828
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3816--3819
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3875--3878
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[43]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3868--3868
+[44]
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3927--3927
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3870--3870
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3929--3929
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3871--3871
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3930--3930
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3872--3872
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3931--3931
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3873--3873
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3932--3932
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[44] [45] (./manual.rst.aux)
+[45] [46] (./manual.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -73428,7 +74077,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (45 pages, 197884 bytes).
+Output written on manual.rst.dvi (46 pages, 200604 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -73792,233 +74441,276 @@ Overfull \hbox (27.01674pt too wide) in paragraph at lines 1946--1948
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
 [22]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 1995--1995
-[]\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section": 
+Overfull \hbox (5.00006pt too wide) in paragraph at lines 1995--1995
+[]\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in "Langtangen, 2012":  
+
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1996--1996
+[]\T1/pcr/m/n/10 "http://code.google.com/p/doconce/wiki/Description"  
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1997--1997
+[]\T1/pcr/m/n/10 cite{testdoc:12}][a "section": "testdoc.html#___sec2" in  
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 1998--1998
+[]\T1/pcr/m/n/10 the document "A Document for Testing Doconce": "testdoc.html" 
  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1997--1997
-[]\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
-12}],  
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1999--2001
+[]\T1/pcr/m/n/10 cite{testdoc:12}], Doconce documents may include movies. 
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2024--2027
+Overfull \hbox (263.00006pt too wide) in paragraph at lines 2008--2008
+[]\T1/pcr/m/n/10 \href{{http://code.google.com/p/doconce/source/browse/test/tes
+tdoc.do.txt}}{Langtangen, 2012}  
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2009--2011
+[]\T1/pcr/m/n/10 \cite{testdoc:12}, Doconce documents may include movies. 
+
+Overfull \hbox (19.41716pt too wide) in paragraph at lines 2013--2020
+[]\T1/ptm/m/n/10 Note that there is a spe-cific num-bered ref-er-ence to an ex-
+ter-nal doc-u-ment, if \T1/pcr/m/n/10 subsec:ex
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2026--2026
+[]\T1/pcr/m/n/10 the document `A Document for Testing Doconce <testdoc.html>`_ 
+ 
+
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 2027--2029
+[]\T1/pcr/m/n/10 [testdoc:12]_, Doconce documents may include movies. 
+
+Overfull \hbox (125.00006pt too wide) in paragraph at lines 2036--2036
+[]\T1/pcr/m/n/10 the document <a href="testdoc.html">A Document for Testing Doc
+once</a>  
+
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 2037--2039
+[]\T1/pcr/m/n/10 <a href="#testdoc:12">[1]</a>, Doconce documents may include m
+ovies. 
+
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 2046--2046
+[]\T1/pcr/m/n/10 the document A Document for Testing Doconce (testdoc.html)  
+
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2056--2056
+[]\T1/pcr/m/n/10 the document [A Document for Testing Doconce](testdoc.html)  
+
+Overfull \hbox (5.00006pt too wide) in paragraph at lines 2057--2059
+[]\T1/pcr/m/n/10 @testdoc:12, Doconce documents may include movies. 
+[23]
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2083--2086
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2042--2045
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2101--2104
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
-[23]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2073--2073
+
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2132--2132
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 2074--2074
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 2133--2133
 []\T1/pcr/m/n/10 URL:"http://some.where.net/nielsen/comments", 1999.  
-
-Overfull \hbox (7.29897pt too wide) in paragraph at lines 2092--2100
+[24]
+Overfull \hbox (7.29897pt too wide) in paragraph at lines 2151--2159
 \T1/ptm/m/n/10 ther by man-ual edit-ing of \T1/pcr/m/n/10 myfile.bbl \T1/ptm/m/
 n/10 or us-ing \T1/pcr/m/n/10 doconce bbl2rst myfile.bbl
 
-Overfull \hbox (13.43625pt too wide) in paragraph at lines 2105--2107
+Overfull \hbox (13.43625pt too wide) in paragraph at lines 2164--2166
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
 
-Overfull \hbox (24.53633pt too wide) in paragraph at lines 2108--2111
+Overfull \hbox (24.53633pt too wide) in paragraph at lines 2167--2170
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-[24]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2225--2226
+[25]
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2284--2285
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
 
-Overfull \hbox (21.27702pt too wide) in paragraph at lines 2247--2252
+Overfull \hbox (21.27702pt too wide) in paragraph at lines 2306--2311
 []\T1/ptm/m/n/10 The so-lu-tion en-vi-ron-ment al-lows in-line so-lu-tion as an
  al-ter-na-tive to the \T1/pcr/m/n/10 solution=...
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 2255--2256
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2314--2315
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
-[25] [26]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2356--2359
+[26] [27]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2415--2418
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[27]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2438--2440
-[]\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
 [28]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2555--2555
-[]\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
- 
-
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2556--2556
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
-label{myeq2}  
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2565--2565
-[]\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
- 
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2497--2499
+[]\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
 [29]
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2566--2566
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2614--2614
+[]\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
+ 
+
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2615--2615
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
 
-Overfull \hbox (3.0pt too wide) in paragraph at lines 2582--2589
-\T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2624--2624
+[]\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
+ 
 
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2616--2622
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2625--2625
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
+
+Overfull \hbox (3.0pt too wide) in paragraph at lines 2641--2648
+\T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
+[30]
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2675--2681
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2616--2622
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2675--2681
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2616--2622
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2675--2681
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[30]
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2668--2671
+
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2727--2730
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2703--2703
+[31]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2762--2762
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2704--2704
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2763--2763
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2720--2732
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2779--2791
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[31]
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2745--2746
+
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2804--2805
 \T1/pcr/m/n/10 # If PNGFIGS is defined, PNG files are used, otherwise Encapsula
 ted  
-
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2755--2755
+[32]
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2814--2814
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2757--2757
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2816--2816
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001.eps}}  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2761--2761
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2820--2820
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2763--2763
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2822--2822
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010.eps}}  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2773--2773
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2832--2832
 []\T1/pcr/m/n/10 # Use default Doconce figure handling for all other formats  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2775--2775
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2834--2834
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0001, width=400] Wavepacket at time 0.
 1 s.  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2777--2777
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2836--2836
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0010, width=400] Wavepacket at time 0.
 2 s.  
-[32]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2832--2832
-[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [33]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2918--2920
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2891--2891
+[]  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
+[34]
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 2977--2979
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
-[34]
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 2980--2982
+[35]
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 3039--3041
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
-[35]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 3102--3105
+[36]
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 3161--3164
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 3119--3122
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 3178--3181
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3126--3129
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3185--3188
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3165--3166
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3224--3225
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3168--3170
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3227--3229
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[36] [37] [38]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3476--3476
+[37] [38] [39]
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3535--3535
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3480--3480
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3539--3539
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-[39]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3498--3498
+[40]
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3557--3557
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
-Overfull \hbox (131.00006pt too wide) in paragraph at lines 3518--3518
+Overfull \hbox (131.00006pt too wide) in paragraph at lines 3577--3577
 []\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
 section]'  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3519--3519
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3578--3578
 []\T1/pcr/m/n/10 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $
 file  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3520--3520
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3579--3579
 []\T1/pcr/m/n/10 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3521--3521
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3580--3580
 []\T1/pcr/m/n/10 doconce replace '% begin theorem' '\begin{theorem}' $file  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3522--3524
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3581--3583
 []\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3548--3548
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3607--3607
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[40]
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3593--3594
+[41]
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3652--3653
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3595--3595
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3654--3654
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3598--3598
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3657--3657
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[41] [42]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3769--3769
+[42] [43]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3828--3828
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
 
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3816--3819
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3875--3878
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[43]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3868--3868
+[44]
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3927--3927
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3870--3870
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3929--3929
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3871--3871
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3930--3930
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3872--3872
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3931--3931
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3873--3873
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3932--3932
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[44] [45] (./manual.rst.aux) )
+[45] [46] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (45 pages, 207192 bytes).
+Output written on manual.rst.dvi (46 pages, 209912 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
@@ -74026,11 +74718,17 @@ running preprocess -DFORMAT=plain -D--skip_inline_comments -D--no-mako manual.do
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to plain
 
+Warning: found \cite{...} (cite{...} has no backslash)
+\cite{testdoc:12}
+
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 
 Warning: found \label{...} (label{...} has no backslash)
 \label{theorem:fundamental1}
+
+Warning: found \ref{...} (ref{...} has no backslash)
+\ref{subsec:ex}
 copy complete file __testcode.f  (format: fpro)
 copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
@@ -74044,11 +74742,17 @@ running preprocess -DFORMAT=epytext -D--no-mako manual.do.txt > __tmp.do.txt
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to epytext
 
+Warning: found \cite{...} (cite{...} has no backslash)
+\cite{testdoc:12}
+
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 
 Warning: found \label{...} (label{...} has no backslash)
 \label{theorem:fundamental1}
+
+Warning: found \ref{...} (ref{...} has no backslash)
+\ref{subsec:ex}
 copy complete file __testcode.f  (format: fpro)
 copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
@@ -74062,11 +74766,17 @@ running preprocess -DFORMAT=st -D--no-mako manual.do.txt > __tmp.do.txt
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to st
 
+Warning: found \cite{...} (cite{...} has no backslash)
+\cite{testdoc:12}
+
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 
 Warning: found \label{...} (label{...} has no backslash)
 \label{theorem:fundamental1}
+
+Warning: found \ref{...} (ref{...} has no backslash)
+\ref{subsec:ex}
 copy complete file __testcode.f  (format: fpro)
 copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
@@ -74080,11 +74790,17 @@ running preprocess -DFORMAT=pandoc -D--no-mako manual.do.txt > __tmp.do.txt
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to pandoc
 
+Warning: found \cite{...} (cite{...} has no backslash)
+\cite{testdoc:12}
+
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 
 Warning: found \label{...} (label{...} has no backslash)
 \label{theorem:fundamental1}
+
+Warning: found \ref{...} (ref{...} has no backslash)
+\ref{subsec:ex}
 copy complete file __testcode.f  (format: fpro)
 copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
@@ -74108,11 +74824,17 @@ running preprocess -DFORMAT=pdflatex -D--no-mako manual.do.txt > __tmp.do.txt
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to pdflatex
 
+Warning: found \cite{...} (cite{...} has no backslash)
+\cite{testdoc:12}
+
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 
 Warning: found \label{...} (label{...} has no backslash)
 \label{theorem:fundamental1}
+
+Warning: found \ref{...} (ref{...} has no backslash)
+\ref{subsec:ex}
 copy complete file __testcode.f  (format: fpro)
 copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
@@ -74331,86 +75053,85 @@ nces for (sub)sections,
 LaTeX Warning: Reference `inline:tagging' on page 25 undefined on input line 15
 60.
 
-[25] [26]
+[25] [26] [27]
 
-LaTeX Warning: Citation `Python:Primer:09' on page 27 undefined on input line 1
-691.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 27 undefined on input line 1691.
+LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
+735.
 
 
-LaTeX Warning: Citation `Python:Primer:09' on page 27 undefined on input line 1
-692.
+LaTeX Warning: Citation `Osnes:98' on page 28 undefined on input line 1735.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 27 undefined on input line 1692.
+LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
+736.
 
-[27] [28] [29] [30] [31] [32]
+
+LaTeX Warning: Citation `Osnes:98' on page 28 undefined on input line 1736.
+
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2044.
+(amsmath)                 on input line 2088.
 
 
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2057--2063
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2101--2107
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[33]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2102--2120
+[34]
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2122--2124
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2166--2168
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[34]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2157--2169
+[35]
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2201--2213
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
 
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2174--2181
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2218--2225
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[35]
+[36]
 
-LaTeX Warning: Reference `doconce2formats' on page 36 undefined on input line 2
-220.
+LaTeX Warning: Reference `doconce2formats' on page 37 undefined on input line 2
+264.
 
-[36] [37]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2312--2317
+[37] [38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2312--2317
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[38] [39] [40] [41]
+[39] [40] [41] [42]
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 42 undefined on input li
-ne 2523.
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 43 undefined on input li
+ne 2567.
 
-[42] [43] [44] [45] [46]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2787--2793
+[43] [44] [45] [46] [47]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2831--2837
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[47]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2859--2869
+[48]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2903--2913
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[48]
 No file manual.bbl.
 No file manual.ind.
 [49] (./manual.aux)
@@ -74432,7 +75153,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (49 pages, 328160 bytes).
+Output written on manual.pdf (49 pages, 329395 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -74604,76 +75325,76 @@ s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1549--1558
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26]
+[25] [26] [27]
 
-LaTeX Warning: Citation `Python:Primer:09' on page 27 undefined on input line 1
-691.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 27 undefined on input line 1691.
+LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
+735.
 
 
-LaTeX Warning: Citation `Python:Primer:09' on page 27 undefined on input line 1
-692.
+LaTeX Warning: Citation `Osnes:98' on page 28 undefined on input line 1735.
 
 
-LaTeX Warning: Citation `Osnes:98' on page 27 undefined on input line 1692.
+LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
+736.
 
-[27] [28] [29] [30] [31] [32]
+
+LaTeX Warning: Citation `Osnes:98' on page 28 undefined on input line 1736.
+
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2044.
+(amsmath)                 on input line 2088.
 
 
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2057--2063
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2101--2107
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[33]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2102--2120
+[34]
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2122--2124
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2166--2168
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[34]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2157--2169
+[35]
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2201--2213
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
 
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2174--2181
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2218--2225
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[35] [36] [37]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2312--2317
+[36] [37] [38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2312--2317
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[38] [39] [40] [41] [42] [43] [44] [45] [46]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2787--2793
+[39] [40] [41] [42] [43] [44] [45] [46] [47]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2831--2837
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[47]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2859--2869
+[48]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2903--2913
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
+(./manual.bbl [49]) (./manual.ind [50] [51]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -74692,7 +75413,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (50 pages, 348653 bytes).
+Output written on manual.pdf (51 pages, 350425 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -74852,61 +75573,61 @@ s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1549--1558
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26] [27] [28] [29] [30] [31] [32]
+[25] [26] [27] [28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2044.
+(amsmath)                 on input line 2088.
 
 
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2057--2063
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2101--2107
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[33]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2102--2120
+[34]
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2122--2124
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2166--2168
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[34]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2157--2169
+[35]
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2201--2213
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
 
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2174--2181
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2218--2225
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[35] [36] [37]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2312--2317
+[36] [37] [38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2312--2317
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[38] [39] [40] [41] [42] [43] [44] [45] [46]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2787--2793
+[39] [40] [41] [42] [43] [44] [45] [46] [47]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2831--2837
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[47]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2859--2869
+[48]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2903--2913
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
+(./manual.bbl [49]) (./manual.ind [50] [51]) (./manual.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -74922,7 +75643,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (50 pages, 349366 bytes).
+Output written on manual.pdf (51 pages, 351142 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -74930,11 +75651,17 @@ running preprocess -DFORMAT=latex -D--no-mako manual.do.txt > __tmp.do.txt
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to latex
 
+Warning: found \cite{...} (cite{...} has no backslash)
+\cite{testdoc:12}
+
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 
 Warning: found \label{...} (label{...} has no backslash)
 \label{theorem:fundamental1}
+
+Warning: found \ref{...} (ref{...} has no backslash)
+\ref{subsec:ex}
 copy complete file __testcode.f  (format: fpro)
 copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
@@ -75119,71 +75846,71 @@ s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1549--1558
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26]
-Overfull \hbox (47.74467pt too wide) in paragraph at lines 1687--1689
+[25] [26] [27]
+Overfull \hbox (47.74467pt too wide) in paragraph at lines 1731--1733
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[27] [28] [29] [30] [31] [32]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2044.
+(amsmath)                 on input line 2088.
 
 
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2057--2063
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2101--2107
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[33]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2102--2120
+[34]
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2122--2124
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2166--2168
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[34]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2157--2169
+[35]
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2201--2213
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
 
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2174--2181
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2218--2225
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[35] [36] [37]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2312--2317
+[36] [37] [38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2312--2317
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[38] [39] [40] [41] [42] [43] [44] [45] [46]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2787--2793
+[39] [40] [41] [42] [43] [44] [45] [46] [47]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2831--2837
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[47]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2859--2869
+[48]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2903--2913
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
+(./manual.bbl [49]) (./manual.ind [50] [51]) (./manual.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (50 pages, 209248 bytes).
+Output written on manual.dvi (51 pages, 211952 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -75343,71 +76070,71 @@ s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1549--1558
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26]
-Overfull \hbox (47.74467pt too wide) in paragraph at lines 1687--1689
+[25] [26] [27]
+Overfull \hbox (47.74467pt too wide) in paragraph at lines 1731--1733
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[27] [28] [29] [30] [31] [32]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2044.
+(amsmath)                 on input line 2088.
 
 
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2057--2063
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2101--2107
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[33]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2102--2120
+[34]
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2122--2124
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2166--2168
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[34]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2157--2169
+[35]
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2201--2213
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
 
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2174--2181
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2218--2225
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[35] [36] [37]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2312--2317
+[36] [37] [38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2312--2317
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[38] [39] [40] [41] [42] [43] [44] [45] [46]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2787--2793
+[39] [40] [41] [42] [43] [44] [45] [46] [47]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2831--2837
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[47]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2859--2869
+[48]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2903--2913
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
+(./manual.bbl [49]) (./manual.ind [50] [51]) (./manual.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (50 pages, 209248 bytes).
+Output written on manual.dvi (51 pages, 211952 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -75579,71 +76306,71 @@ s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1549--1558
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26]
-Overfull \hbox (47.74467pt too wide) in paragraph at lines 1687--1689
+[25] [26] [27]
+Overfull \hbox (47.74467pt too wide) in paragraph at lines 1731--1733
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[27] [28] [29] [30] [31] [32]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2044.
+(amsmath)                 on input line 2088.
 
 
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2057--2063
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2101--2107
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[33]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2102--2120
+[34]
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2122--2124
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2166--2168
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[34]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2157--2169
+[35]
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2201--2213
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
 
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2174--2181
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2218--2225
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[35] [36] [37]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2312--2317
+[36] [37] [38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2312--2317
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[38] [39] [40] [41] [42] [43] [44] [45] [46]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2787--2793
+[39] [40] [41] [42] [43] [44] [45] [46] [47]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2831--2837
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[47]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2859--2869
+[48]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2903--2913
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
+(./manual.bbl [49]) (./manual.ind [50] [51]) (./manual.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (50 pages, 209248 bytes).
+Output written on manual.dvi (51 pages, 211952 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -75803,71 +76530,71 @@ s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1549--1558
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26]
-Overfull \hbox (47.74467pt too wide) in paragraph at lines 1687--1689
+[25] [26] [27]
+Overfull \hbox (47.74467pt too wide) in paragraph at lines 1731--1733
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[27] [28] [29] [30] [31] [32]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2044.
+(amsmath)                 on input line 2088.
 
 
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2057--2063
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2101--2107
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[33]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2102--2120
+[34]
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2102--2120
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2146--2164
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
 
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2122--2124
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2166--2168
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[34]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2157--2169
+[35]
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2201--2213
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
 
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2174--2181
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2218--2225
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[35] [36] [37]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2312--2317
+[36] [37] [38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2312--2317
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2356--2361
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[38] [39] [40] [41] [42] [43] [44] [45] [46]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2787--2793
+[39] [40] [41] [42] [43] [44] [45] [46] [47]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2831--2837
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[47]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2859--2869
+[48]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2903--2913
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
+(./manual.bbl [49]) (./manual.ind [50] [51]) (./manual.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (50 pages, 209248 bytes).
+Output written on manual.dvi (51 pages, 211952 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt --no-mako
@@ -75875,11 +76602,17 @@ running preprocess -DFORMAT=gwiki -D--no-mako manual.do.txt > __tmp.do.txt
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to gwiki
 
+Warning: found \cite{...} (cite{...} has no backslash)
+\cite{testdoc:12}
+
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 
 Warning: found \label{...} (label{...} has no backslash)
 \label{theorem:fundamental1}
+
+Warning: found \ref{...} (ref{...} has no backslash)
+\ref{subsec:ex}
 copy complete file __testcode.f  (format: fpro)
 copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
@@ -75903,11 +76636,17 @@ running preprocess -DFORMAT=cwiki -D--no-mako manual.do.txt > __tmp.do.txt
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to cwiki
 
+Warning: found \cite{...} (cite{...} has no backslash)
+\cite{testdoc:12}
+
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 
 Warning: found \label{...} (label{...} has no backslash)
 \label{theorem:fundamental1}
+
+Warning: found \ref{...} (ref{...} has no backslash)
+\ref{subsec:ex}
 copy complete file __testcode.f  (format: fpro)
 copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
@@ -75923,11 +76662,17 @@ running preprocess -DFORMAT=mwiki -D--no-mako manual.do.txt > __tmp.do.txt
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
 translating preprocessed doconce text in __tmp.do.txt to mwiki
 
+Warning: found \cite{...} (cite{...} has no backslash)
+\cite{testdoc:12}
+
 Warning: found \index{...} (index is written idx{...})
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}
 
 Warning: found \label{...} (label{...} has no backslash)
 \label{theorem:fundamental1}
+
+Warning: found \ref{...} (ref{...} has no backslash)
+\ref{subsec:ex}
 copy complete file __testcode.f  (format: fpro)
 copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
@@ -76340,7 +77085,7 @@ Build finished. The HTML pages are in _build/html.
 
 
 
-running doconce format sphinx quickref --no-preprocess
+running doconce format sphinx quickref --no-preprocess --skip_inline_comments
 running doconce sphinxfix_localURLs quickref.rst
 running doconce guess_encoding quickref.rst
 /home/hpl/vc/doconce/doc/quickref/sphinx-rootdir

@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Sep 10, 2012
+:Date: Sep 13, 2012
 
 .. lines beginning with # are comment lines
 
@@ -1747,10 +1747,69 @@ Here is an example on a specific generalized reference:
 
 
         As explained in
-        ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-        "testdoc.html#___sec2" in the document
-        "A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
-        Doconce documents may include movies.
+        ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+        "http://code.google.com/p/doconce/wiki/Description"
+        cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
+        the document "A Document for Testing Doconce": "testdoc.html"
+        cite{testdoc:12}], Doconce documents may include movies.
+
+In LaTeX, this becomes
+
+.. code-block:: py
+
+
+        As explained in
+        Section~\ref{subsec:ex} in
+        \href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+        \cite{testdoc:12}, Doconce documents may include movies.
+
+Note that there is a specific numbered reference to an external
+document, if ``subsec:ex`` is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the "external" part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).
+
+Translation to Sphinx or reStructuredText results in
+
+.. code-block:: py
+
+
+        As explained in
+        a `section <testdoc.html#___sec2>`_ in
+        the document `A Document for Testing Doconce <testdoc.html>`_
+        [testdoc:12]_, Doconce documents may include movies.
+
+In plain HTML, this becomes
+
+.. code-block:: py
+
+
+        As explained in
+        a <a href="testdoc.html#___sec2">section</a> in
+        the document <a href="testdoc.html">A Document for Testing Doconce</a>
+        <a href="#testdoc:12">[1]</a>, Doconce documents may include movies.
+
+The plain text format reads
+
+.. code-block:: py
+
+
+        As explained in
+        a section (testdoc.html#___sec2) in
+        the document A Document for Testing Doconce (testdoc.html)
+        [1], Doconce documents may include movies.
+
+And in Pandoc-exteded Markdown we have
+
+.. code-block:: py
+
+
+        As explained in
+        a [section](testdoc.html#___sec2) in
+        the document [A Document for Testing Doconce](testdoc.html)
+        @testdoc:12, Doconce documents may include movies.
 
 
 Index and Bibliography
