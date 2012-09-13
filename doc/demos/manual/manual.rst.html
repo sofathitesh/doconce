@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Sep 10, 2012</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Sep 13, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -1616,10 +1616,53 @@ text will be the output.</p>
 <p>Here is an example on a specific generalized reference:</p>
 <pre class="literal-block">
 As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
-&quot;testdoc.html#___sec2&quot; in the document
-&quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
-Doconce documents may include movies.
+ref[Section ref{subsec:ex}][in &quot;Langtangen, 2012&quot;:
+&quot;http://code.google.com/p/doconce/wiki/Description&quot;
+cite{testdoc:12}][a &quot;section&quot;: &quot;testdoc.html#___sec2&quot; in
+the document &quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot;
+cite{testdoc:12}], Doconce documents may include movies.
+</pre>
+<p>In LaTeX, this becomes:</p>
+<pre class="literal-block">
+As explained in
+Section~\ref{subsec:ex} in
+\href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+\cite{testdoc:12}, Doconce documents may include movies.
+</pre>
+<p>Note that there is a specific numbered reference to an external
+document, if <tt class="docutils literal">subsec:ex</tt> is not a label in the present document,
+and that we add a citation in the usual way, but also include
+a link to the document using the name of the other or some other
+relevant link text. The link can be the same or different from
+links used in the &quot;external&quot; part of the reference (LaTeX cannot
+have links to local files, so a complete URL must be used).</p>
+<p>Translation to Sphinx or reStructuredText results in:</p>
+<pre class="literal-block">
+As explained in
+a `section &lt;testdoc.html#___sec2&gt;`_ in
+the document `A Document for Testing Doconce &lt;testdoc.html&gt;`_
+[testdoc:12]_, Doconce documents may include movies.
+</pre>
+<p>In plain HTML, this becomes:</p>
+<pre class="literal-block">
+As explained in
+a &lt;a href=&quot;testdoc.html#___sec2&quot;&gt;section&lt;/a&gt; in
+the document &lt;a href=&quot;testdoc.html&quot;&gt;A Document for Testing Doconce&lt;/a&gt;
+&lt;a href=&quot;#testdoc:12&quot;&gt;[1]&lt;/a&gt;, Doconce documents may include movies.
+</pre>
+<p>The plain text format reads:</p>
+<pre class="literal-block">
+As explained in
+a section (testdoc.html#___sec2) in
+the document A Document for Testing Doconce (testdoc.html)
+[1], Doconce documents may include movies.
+</pre>
+<p>And in Pandoc-exteded Markdown we have:</p>
+<pre class="literal-block">
+As explained in
+a [section](testdoc.html#___sec2) in
+the document [A Document for Testing Doconce](testdoc.html)
+&#64;testdoc:12, Doconce documents may include movies.
 </pre>
 <div class="section" id="index-and-bibliography">
 <h2>Index and Bibliography</h2>
