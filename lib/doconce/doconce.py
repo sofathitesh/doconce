@@ -1182,17 +1182,35 @@ def handle_figures(filestr, format):
             _abort()
         basepath, ext = os.path.splitext(figfile)
         if not ext in extensions:
-            # use convert from ImageMagick to convert to proper format:
+            # convert to proper format
             for e in extensions:
                 converted_file = basepath + e
                 if not os.path.isfile(converted_file):
                     # ext might be empty, in that case we cannot convert
                     # anything:
                     if ext:
-                        failure = os.system('convert %s %s' % (figfile, converted_file))
+                        print 'figure', figfile, 'must have extension(s)', \
+                              extensions
+                        # use ps2pdf and pdf2ps for vector graphics
+                        # and only convert if to/from png/jpg/gif
+                        if ext.endswith('ps') and e == '.pdf':
+                            cmd = 'ps2pdf -dEPSCrop %s %s' % \
+                                  (figfile, converted_file)
+                        elif ext == '.pdf' and ext.endswith('ps'):
+                            cmd = 'pdf2ps %s %s' % \
+                                  (figfile, converted_file)
+                        else:
+                            cmd = 'convert %s %s' % (figfile, converted_file)
+                            if e in ('.ps', '.eps', '.pdf') and \
+                               ext in ('.png', '.jpg', '.jpeg', '.gif'):
+                                print """\
+Warning: need to convert from %s to %s
+using ImageMagick's convert program, but the result will
+be loss of quality. Generate a proper %s file.""" % \
+                                (figfile, converted_file, converted_file)
+                        failure = os.system(cmd)
                         if not failure:
-                            print 'Figure', figfile, 'must have extension(s)', extensions
-                            print '....converted %s to %s' % (figfile, converted_file)
+                            print '....image conversion:', cmd
                             filestr = filestr.replace(figfile, converted_file)
                             break  # jump out of inner e loop
                 else:  # right file exists:
