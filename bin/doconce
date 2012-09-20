@@ -1494,6 +1494,17 @@ def replace_from_file():
 
 def usage_latex_exercise_toc():
     print 'Usage: doconce latex_exercise_toc myfile.do.txt ["List of exercises"]'
+    print """
+Can insert
+# Short: My own short title
+in the text of an exercise and this defines a short version of the
+title of the exercise to be used in the toc table.
+This is convenient when the automatic truncation of (long) titles
+fails (happens if truncated in the middle of mathematical $...$
+constructions). Any short title is appearing in the table exactly
+how it is written, so this is also a method to avoid truncating
+a title.
+"""
 
 def latex_exercise_toc():
     if len(sys.argv) < 2:
@@ -1522,18 +1533,27 @@ def latex_exercise_toc():
     max_title_length = 45
     for ex in exer:
         if ex['label']:
-            # Truncate long titles
             title = ex['title']
-            if len(title) > max_title_length:
-                words = title.split()
-                title = []
-                for word in words:
-                    title.append(word)
-                    if len(' '.join(title)) > max_title_length - 5:
-                        title.append('...')
-                        break
-                title = ' '.join(title)
-                title = title.replace('\\', '\\\\') # re.sub later swallows \
+            # Short title?
+            short = ''
+            for line in ex['text'].splitlines():
+                m = re.search(r'#\s*[Ss]hort:\s*(.+)', line)
+                if m:
+                    short = m.group(1).strip()
+                    title = short
+                    break
+            if not short:
+                # Truncate long titles
+                if len(title) > max_title_length:
+                    words = title.split()
+                    title = []
+                    for word in words:
+                        title.append(word)
+                        if len(' '.join(title)) > max_title_length - 5:
+                            title.append('...')
+                            break
+                    title = ' '.join(title)
+            title = title.replace('\\', '\\\\') # re.sub later swallows \
             latex += ex['type'] + ' & ' + str(ex['no']) + ' & ' + title \
             + r' & p.~\pageref{%s}' % ex['label'] + ' \\\\\\\\' + '\n'
             # (need 8 \ for \\ to survive because re.sub below eats them)

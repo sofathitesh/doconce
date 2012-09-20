@@ -1194,6 +1194,8 @@ def handle_figures(filestr, format):
                         # use ps2pdf and pdf2ps for vector graphics
                         # and only convert if to/from png/jpg/gif
                         if ext.endswith('ps') and e == '.pdf':
+                            #cmd = 'epstopdf %s %s' % \
+                            #      (figfile, converted_file)
                             cmd = 'ps2pdf -dEPSCrop %s %s' % \
                                   (figfile, converted_file)
                         elif ext == '.pdf' and ext.endswith('ps'):
