@@ -174,6 +174,11 @@ def begin_end_consistency_checks(filestr, envirs):
                     for j in range(begin_ends[k-1][1], begin_ends[k][1]+1):
                         print lines[j]
                     sys.exit(1)
+            if begin_ends[-1][0].startswith('!b'):
+                print 'Missing %s after final %s' % \
+                      (begin_ends[-1][0].replace('!b', '!e'),
+                       begin_ends[-1][0])
+                sys.exit(1)
 
 
 def remove_code_and_tex(filestr):

@@ -367,8 +367,8 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
         f = open('new_dictionary.txt~', 'w')
         f.writelines(union)
         f.close()
-        if len(newdict_add) > 0:
-            print '%s: %d, %s: %d items' % (newdict, len(newdict_add), 'new_dictionary.txt~', len(union))
+        #if len(newdict_add) > 0:
+        #    print '%s: %d, %s: %d items' % (newdict, len(newdict_add), 'new_dictionary.txt~', len(union))
 
 
 def _spellcheck_all(**kwargs):
@@ -1515,7 +1515,7 @@ def latex_exercise_toc():
         dofile = dofile[:-7]
     exerfile = '.' + dofile + '.exerinfo'
     if not os.path.isfile(exerfile):
-        print 'no file %s found' % exerfile
+        print 'no file %s with exercises from %s found' % (exerfile, dofile)
         return
 
     f = open(exerfile, 'r')

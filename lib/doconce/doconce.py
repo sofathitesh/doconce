@@ -281,7 +281,7 @@ def syntax_check(filestr, format):
         if lines[i].startswith('!ec'):
             inside_bc = False
         for command in commands:
-            if command in lines[i] and not inside_bt:
+            if '\\' + command in lines[i] and not inside_bt:
                 if '`' not in lines[i] and not inside_bc:  # not verbatim
                     print '\nError: math equation with \n%s\nis not inside !bt - !et environment' % command
                     print '\n'.join(lines[i-3:i+3])
@@ -635,7 +635,7 @@ def exercises(filestr, format):
     exer_counter = 0
 
     exer_heading_pattern = re.compile(r'^\s*([_=]{3,5})\s*([Ee]xercise|[Pp]roblem|[Pp]roject):\s*(?P<title>[^ =-].+?)\s*[_=]{3,5}')
-    label_pattern = re.compile(r'label\{(.+?)\}')
+    label_pattern = re.compile(r'^\s*label\{(.+?)\}')
     file_pattern = re.compile(r'file\s*=\s*([^\s]+)')
     solution_pattern = re.compile(r'solution\s*=\s*([^\s]+)')
 
@@ -684,6 +684,7 @@ def exercises(filestr, format):
             m_label = label_pattern.search(line)
             m_file = file_pattern.search(line)
             m_solution_file = solution_pattern.search(line)
+
             if m_label:
                 exer['label'] = m_label.group(1)
             elif m_file and not inside_subex:
@@ -725,6 +726,7 @@ def exercises(filestr, format):
                     exer['hints'].append([])
             elif line.startswith(hint_pattern_end):
                 inside_hint = False
+
             else:
                 instruction_line = False
 
