@@ -1602,6 +1602,25 @@ verbatim environment.
 
 ===== Problems with LaTeX Output =====
 
+=== LaTeX does not like underscores in URLs ===
+
+Suppose you have a URL reference like
+
+!bc
+..which can be found in the file "my_file.txt":
+"http://some.where.net/web/dir/my_file.txt".
+!ec
+LaTeX will stop with a message about a missing dollar sign. The reason
+is that underscores in link texts need to be preceded by a backslash.
+However, this is incovenient to do in the Doconce source since the
+underscore is misleading in other formats.
+The remedy is to format the link text with inline verbatim tags (backticks):
+!bt
+..which can be found in the file "`my_file.txt`":
+"http://some.where.net/web/dir/my_file.txt".
+!ec
+Verbatim text in links works fine with underscores.
+
 === Error when running latex: You must have 'pygmentize' installed ===
 
 This message points to the use of the minted style for typesetting verbatim
