@@ -142,6 +142,10 @@ can be placed in files `newcommands.tex`, `newcommands_keep.tex`, or
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
 
+An option `--latex-printed` makes some adjustments for documents
+aimed at being printed. For example, links to web resources are
+associated with a footnote listing the complete web address (URL).
+
 __Step 2.__ Run `ptex2tex` (if you have it) to make a standard LaTeX file,
 !bc sys
 Terminal> ptex2tex mydoc
