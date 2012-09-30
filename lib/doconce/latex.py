@@ -77,6 +77,18 @@ def latex_code(filestr, code_blocks, code_block_types,
         filestr = re.sub(r'section\{(Exercise|Problem|Project)( +[^}])',
                          r'section*{\g<1>\g<2>', filestr)
 
+    if '--latex-printed' in sys.argv:
+        # Make adjustments for printed versions of the PDF document.
+        # Fix links so that the complete URL is in a footnote
+        pattern = r'\\href\{\{(.+?)\}\}\{(.+)\}'
+        matches = re.findall(pattern, filestr)
+        for url, text in matches:
+            if not ('http' in text or '\\nolinkurl{' in text):
+                filestr = filestr.replace(
+                    '\\href{{%s}}{%s}' % (url, text),
+                    '\\href{{%s}}{%s}' % (url, text) +
+                    '\\footnote{\\texttt{%s}}' % url.replace('_', '\\_'))
+
     # Add movie15 package if the file has a movie
     if r'\includemovie[' in filestr:
         filestr = filestr.replace('usepackage{ptex2tex}', """\

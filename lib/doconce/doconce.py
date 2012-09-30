@@ -1954,7 +1954,7 @@ def main():
     options = ['--debug', '--skip_inline_comments', '--encoding=',
                '--oneline_paragraphs', '--no-mako', '--no-preprocess',
                '--no-pygments-html', '--pygments-html-linenos',
-               '--html-solarized',
+               '--html-solarized', '--latex-printed'
                ]
 
     global _log, encoding, filename
