@@ -635,9 +635,12 @@ def exercises(filestr, format):
     exer_counter = 0
 
     exer_heading_pattern = re.compile(r'^\s*([_=]{3,5})\s*([Ee]xercise|[Pp]roblem|[Pp]roject):\s*(?P<title>[^ =-].+?)\s*[_=]{3,5}')
+
     label_pattern = re.compile(r'^\s*label\{(.+?)\}')
-    file_pattern = re.compile(r'file\s*=\s*([^\s]+)')
-    solution_pattern = re.compile(r'solution\s*=\s*([^\s]+)')
+    # We accept file and solution to be comment lines
+    file_pattern = re.compile(r'^#?\s*file\s*=\s*([^\s]+)')
+    solution_pattern = re.compile(r'^#?\s*solution\s*=\s*([^\s]+)')
+    keywords_pattern = re.compile(r'^#?\s*(keywords|kw)\s*=\s*([^\s]+)')
 
     hint_pattern_begin = '!bhint'
     hint_pattern_end = '!ehint'
@@ -668,6 +671,7 @@ def exercises(filestr, format):
             exer['label'] = None
             exer['solution_file'] = None
             exer['file'] = None
+            exer['keywords'] = None
             exer.update(dict(text=[], hints=[], answer=[],
                              solution=[], subex=[]))
 
@@ -684,15 +688,18 @@ def exercises(filestr, format):
             m_label = label_pattern.search(line)
             m_file = file_pattern.search(line)
             m_solution_file = solution_pattern.search(line)
+            m_keywords = keywords_pattern.search(line)
 
             if m_label:
                 exer['label'] = m_label.group(1)
+            elif m_keywords:
+                exer['keywords'] = m_label.group(1).split(';')
             elif m_file and not inside_subex:
-                exer['file'] = m_file.group(1)
+                exer['file'] = m_file.group(1).split(',')
             elif m_file and inside_subex:
                 subex['file'] = m_file.group(1)
             elif m_solution_file:
-                exer['solution_file'] = m_solution_file.group(1)
+                exer['solution_file'] = m_solution_file.group(1).split(',')
 
             elif line.startswith(subex_pattern_begin):
                 inside_subex = True
