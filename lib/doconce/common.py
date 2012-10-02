@@ -277,11 +277,17 @@ def doconce_exercise_output(exer,
     if exer['label']:
         s += 'label{%s}' % exer['label'] + '\n'
 
+    if exer['keywords']:
+        s += '# keywords = ' % '; '.join(exer['keywords']) + '\n'
+
     if exer['text']:
         s += '\n' + exer['text'] + '\n'
 
     if exer['file']:
-        s += 'Filename: `%s`' % exer['file'] + '.\n'
+        if len(exer['file']) == 1:
+            s += 'Filename: `%s`' % exer['file'][0] + '.\n'
+        else:
+            s += 'Filenames: `%s`' % ', '.join(exer['file']) + '.\n'
         #s += '*Filename*: `%s`' % exer['file'] + '.\n'
         #s += '\n' + '*Filename*: `%s`' % exer['file'] + '.\n'
 
@@ -337,7 +343,10 @@ def doconce_exercise_output(exer,
                     s += subex['solution'] + '\n' + end_solution + '\n'
 
     if exer['solution_file']:
-        s += '# solution file: %s\n' % exer['solution_file']
+        if len(exer['solution_file']) == 1:
+            s += '# solution file: %s\n' % exer['solution_file'][0]
+        else:
+            s += '# solution files: %s\n' % ', '.join(exer['solution_file'])
 
     s += end_exercise + '\n\n'
     return s
