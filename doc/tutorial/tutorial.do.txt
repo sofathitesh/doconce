@@ -113,10 +113,11 @@ References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
 Section ref{my:first:sec}.
 
-Doconce also allows inline comments such as [hpl: here I will make
-some remarks to the text] for allowing authors to make notes. Inline
-comments can be removed from the output by a command-line argument
-(see Section ref{doconce2formats} for an example).
+Doconce also allows inline comments of the form [name: comment] (with
+a space after `name:`), e.g., such as [hpl: here I will make some
+remarks to the text]. Inline comments can be removed from the output
+by a command-line argument (see Section ref{doconce2formats} for an
+example).
 
 Tables are also supperted, e.g.,
 

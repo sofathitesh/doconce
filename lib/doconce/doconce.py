@@ -1550,7 +1550,7 @@ def inline_tag_subst(filestr, format):
 
 def subst_away_inline_comments(filestr):
     # inline comments: [hpl: this is a comment]
-    pattern = r'\[(?P<name>[A-Za-z0-9_ ,.@]+?):(?P<comment>[^\]]*?)\]\s*'
+    pattern = r'\[(?P<name>[A-Za-z0-9_ ,.@]+?): +(?P<comment>[^\]]*?)\]\s*'
     filestr = re.sub(pattern, '', filestr)
     return filestr
 

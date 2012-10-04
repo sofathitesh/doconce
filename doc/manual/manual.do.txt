@@ -502,18 +502,18 @@ Doconce also supports inline comments in the text:
 [name: comment]
 !ec
 where `name` is the name of the author of the command, and `comment` is a
-plain text text. [hpl: Note that there must be a space after the colon,
+plain text text. Note that there must be a space after the colon,
 otherwise the comment is not recognized. Inline comments
 can span
 several lines,
-if desired.]
+if desired.
 The name and comment are visible in the output unless `doconce format`
 is run with a command-line argument `--skip_inline_comments`
-(see Chapter ref{doconce2formats} for an example). Inline comments
+(see Section ref{doconce2formats} for an example). Inline comments
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the `.do.txt` file
-(see Chapter ref{doconce2formats}).
+(see Section ref{doconce2formats}).
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
