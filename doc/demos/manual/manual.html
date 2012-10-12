@@ -58,6 +58,7 @@ $$
 \newcommand{\x}{\pmb{x}}
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\half}{\frac{1}{2}}
 $$
 
 
@@ -82,7 +83,7 @@ $$
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Sep 13, 2012</h4></center> <!-- date -->
+<center><h4>Oct 12, 2012</h4></center> <!-- date -->
 <p>
 
 <p>
@@ -675,6 +676,11 @@ can be placed in files <tt>newcommands.tex</tt>, <tt>newcommands_keep.tex</tt>, 
 <tt>newcommands_replace.tex</tt> (see the section <a href="#newcommands">Macros (Newcommands)</a>).
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
+
+<p>
+An option <tt>--latex-printed</tt> makes some adjustments for documents
+aimed at being printed. For example, links to web resources are
+associated with a footnote listing the complete web address (URL).
 
 <p>
 <b>Step 2.</b> Run <tt>ptex2tex</tt> (if you have it) to make a standard LaTeX file,
@@ -1723,18 +1729,18 @@ Doconce also supports inline comments in the text:
 </pre>
 </blockquote>   <! -- end verbatim block -->
 where <tt>name</tt> is the name of the author of the command, and <tt>comment</tt> is a
-plain text text. [<b>hpl</b>: <em>Note that there must be a space after the colon,
+plain text text. Note that there must be a space after the colon,
 otherwise the comment is not recognized. Inline comments
 can span
 several lines,
-if desired.</em>]
+if desired.
 The name and comment are visible in the output unless <tt>doconce format</tt>
 is run with a command-line argument <tt>--skip_inline_comments</tt>
-(see the chapter <a href="#doconce2formats">From Doconce to Other Formats</a> for an example). Inline comments
+(see the section <a href="#doconce2formats">From Doconce to Other Formats</a> for an example). Inline comments
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the <tt>.do.txt</tt> file
-(see the chapter <a href="#doconce2formats">From Doconce to Other Formats</a>).
+(see the section <a href="#doconce2formats">From Doconce to Other Formats</a>).
 
 <p>
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
@@ -2572,6 +2578,7 @@ and these in <tt>newcommands_keep.tex</tt>:
 \newcommand{\x}{\pmb{x}}
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\half}{\frac{1}{2}}
 </pre>
 </blockquote>   <! -- end verbatim block -->
 
@@ -3154,7 +3161,33 @@ verbatim environment.
 <h3>Problems with LaTeX Output  <a name="___sec71"></a></h3>
 <p>
 
-<h4>Error when running latex: You must have 'pygmentize' installed  <a name="___sec72"></a></h4>
+<h4>LaTeX does not like underscores in URLs  <a name="___sec72"></a></h4>
+<p>
+Suppose you have a URL reference like
+
+<p>
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+..which can be found in the file "my_file.txt":
+"http://some.where.net/web/dir/my_file.txt".
+</pre>
+</blockquote>   <! -- end verbatim block -->
+LaTeX will stop with a message about a missing dollar sign. The reason
+is that underscores in link texts need to be preceded by a backslash.
+However, this is incovenient to do in the Doconce source since the
+underscore is misleading in other formats.
+The remedy is to format the link text with inline verbatim tags (backticks):
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+..which can be found in the file "`my_file.txt`":
+"http://some.where.net/web/dir/my_file.txt".
+</pre>
+</blockquote>   <! -- end verbatim block -->
+Verbatim text in links works fine with underscores.
+
+<p>
+
+<h4>Error when running latex: You must have 'pygmentize' installed  <a name="___sec73"></a></h4>
 <p>
 This message points to the use of the minted style for typesetting verbatim
 code. You need to include the <tt>-shell-escape</tt> command-line argument when
@@ -3173,7 +3206,7 @@ When this package is included, <tt>latex</tt> or <tt>pdflatex</tt> runs the
 
 <p>
 
-<h4>How can I use my fancy LaTeX environments?  <a name="___sec73"></a></h4>
+<h4>How can I use my fancy LaTeX environments?  <a name="___sec74"></a></h4>
 <p>
 Doconce supports only basic formatting elements (headings, paragraphs,
 lists, etc.), while LaTeX users are used to fancy environments for, e.g.,
@@ -3292,7 +3325,7 @@ the <tt>ptex2tex</tt> program with all its flexibility for choosing environments
 
 <p>
 
-<h4>The LaTeX file does not compile  <a name="___sec74"></a></h4>
+<h4>The LaTeX file does not compile  <a name="___sec75"></a></h4>
 <p>
 If the problem is undefined control sequence involving
 <blockquote>    <!-- begin verbatim block -->
@@ -3306,7 +3339,7 @@ that all inline verbatim text appears on the same line.
 
 <p>
 
-<h4>Inline verbatim gives error   <a name="___sec75"></a></h4>
+<h4>Inline verbatim gives error   <a name="___sec76"></a></h4>
 <p>
 Check if the inline verbatim contains typical LaTeX commands, e.g.,
 <blockquote>    <!-- begin verbatim block -->
@@ -3330,7 +3363,7 @@ blocks - that is safe.
 
 <p>
 
-<h4>Errors in figure captions  <a name="___sec76"></a></h4>
+<h4>Errors in figure captions  <a name="___sec77"></a></h4>
 <p>
 Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
@@ -3343,7 +3376,7 @@ inside figure captions) and precede underscores by backslash.)
 
 <p>
 
-<h4>Chapters are ignored  <a name="___sec77"></a></h4>
+<h4>Chapters are ignored  <a name="___sec78"></a></h4>
 <p>
 The default LaTeX style is "article". If you chapters in the Doconce file,
 you need to run <tt>ptex2tex</tt> with the option <tt>-DBOOK</tt> to set the LaTeX
@@ -3351,7 +3384,7 @@ documentstyle to "book".
 
 <p>
 
-<h4>I want to tune the top of the LaTeX file  <a name="___sec78"></a></h4>
+<h4>I want to tune the top of the LaTeX file  <a name="___sec79"></a></h4>
 <p>
 The top of the LaTeX file, as generated by Doconce, is very simple.
 If this LaTeX code is not sufficient for your needs, there are
@@ -3378,17 +3411,17 @@ two ways out of it:
    replaced by the hand-written LaTeX "top" file.
 </ol>
 
-<h3>Problems with gwiki Output  <a name="___sec79"></a></h3>
+<h3>Problems with gwiki Output  <a name="___sec80"></a></h3>
 <p>
 
-<h4>Strange nested lists in gwiki  <a name="___sec80"></a></h4>
+<h4>Strange nested lists in gwiki  <a name="___sec81"></a></h4>
 <p>
 Doconce cannot handle nested lists correctly in the gwiki format.
 Use nonnested lists or edit the <tt>.gwiki</tt> file directly.
 
 <p>
 
-<h4>Lists in gwiki look ugly in the gwiki source  <a name="___sec81"></a></h4>
+<h4>Lists in gwiki look ugly in the gwiki source  <a name="___sec82"></a></h4>
 <p>
 Because the Google Code wiki format requires all text of a list item to
 be on one line, Doconce simply concatenates lines in that format,
@@ -3399,10 +3432,10 @@ further.
 
 <p>
 
-<h3>Problems with HTML Output  <a name="___sec82"></a></h3>
+<h3>Problems with HTML Output  <a name="___sec83"></a></h3>
 <p>
 
-<h4>How can I change the layout of the HTML page?  <a name="___sec83"></a></h4>
+<h4>How can I change the layout of the HTML page?  <a name="___sec84"></a></h4>
 <p>
 The standard of way of controlling the HTML format is to use an
 HTML template. The Doconce source is then the body of text (leave
@@ -3428,7 +3461,7 @@ the HTML file (preferably done automatically via <tt>doconce replace</tt> and
 
 <p>
 
-<h4>Why do figures look ugly when using HTML templates?  <a name="___sec84"></a></h4>
+<h4>Why do figures look ugly when using HTML templates?  <a name="___sec85"></a></h4>
 <p>
 The HTML header that Doconce generates contain special styles for
 figure captions and the horizontal rule above figures. When using
@@ -3451,7 +3484,7 @@ doconce replace '&lt;hr class="figure"&gt;' \
 
 <p>
 
-<h3>Debugging  <a name="___sec85"></a></h3>
+<h3>Debugging  <a name="___sec86"></a></h3>
 <p>
 Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
@@ -3469,7 +3502,7 @@ format, and you need to know these steps to make use of the logfile.
 
 <p>
 
-<h2>Basic Parsing Ideas  <a name="___sec86"></a></h2>
+<h2>Basic Parsing Ideas  <a name="___sec87"></a></h2>
 <p>
 <!-- avoid list here since we have code in between (never a good idea) -->
 
@@ -3526,7 +3559,7 @@ LaTeX, and work further on the document in this format.
 
 <p>
 
-<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec87"></a></h3>
+<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec88"></a></h3>
 <p>
 As part of comments (or doc strings) in computer code one often wishes
 to explain what a function takes of arguments and what the return

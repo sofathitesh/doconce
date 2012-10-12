@@ -328,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Sep 13, 2012</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Oct 12, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -503,10 +503,11 @@ References to sections may use logical names as labels (e.g., a
 &quot;label&quot; command right after the section title), as in the reference to
 Section ref{my:first:sec}.
 
-Doconce also allows inline comments such as [hpl: here I will make
-some remarks to the text] for allowing authors to make notes. Inline
-comments can be removed from the output by a command-line argument
-(see Section ref{doconce2formats} for an example).
+Doconce also allows inline comments of the form [name: comment] (with
+a space after `name:`), e.g., such as [hpl: here I will make some
+remarks to the text]. Inline comments can be removed from the output
+by a command-line argument (see Section ref{doconce2formats} for an
+example).
 
 Tables are also supperted, e.g.,
 
@@ -819,6 +820,9 @@ can be placed in files <tt class="docutils literal">newcommands.tex</tt>, <tt cl
 <tt class="docutils literal">newcommands_replace.tex</tt> (see the section <a class="reference internal" href="#macros-newcommands-cross-references-index-and-bibliography">Macros (Newcommands), Cross-References, Index, and Bibliography</a>).
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.</p>
+<p>An option <tt class="docutils literal"><span class="pre">--latex-printed</span></tt> makes some adjustments for documents
+aimed at being printed. For example, links to web resources are
+associated with a footnote listing the complete web address (URL).</p>
 <p><em>Step 2.</em> Run <tt class="docutils literal">ptex2tex</tt> (if you have it) to make a standard LaTeX file:</p>
 <pre class="literal-block">
 Terminal&gt; ptex2tex mydoc
@@ -1327,7 +1331,7 @@ using ReportLab instead of LaTeX. The enabling software is
 or clone the svn repository, go to the <tt class="docutils literal">rst2pdf</tt> directory and
 run the usual <tt class="docutils literal">sudo python setup.py install</tt>.</p>
 <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 1014); <em><a href="#id5">backlink</a></em></p>
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">tutorial.rst</tt>, line 1019); <em><a href="#id5">backlink</a></em></p>
 Duplicate explicit target name: &quot;sphinx&quot;.</div>
 <p>Output to <tt class="docutils literal">sphinx</tt> requires of course <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a>,
 installed by:</p>

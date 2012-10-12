@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Sep 13, 2012 ====
+==== Oct 12, 2012 ====
 
 <ul>
  <li> When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format? <li> Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging? <li> Do you have the same information scattered around in different   documents in different typesetting formats? Would it be a good idea   to write things once, in one format, stored in one place, and   include it anywhere?</ul>
@@ -86,10 +86,11 @@ References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
 Section ref{my:first:sec}.
 
-Doconce also allows inline comments such as [hpl: here I will make
-some remarks to the text] for allowing authors to make notes. Inline
-comments can be removed from the output by a command-line argument
-(see Section ref{doconce2formats} for an example).
+Doconce also allows inline comments of the form [name: comment] (with
+a space after `name:`), e.g., such as [hpl: here I will make some
+remarks to the text]. Inline comments can be removed from the output
+by a command-line argument (see Section ref{doconce2formats} for an
+example).
 
 Tables are also supperted, e.g.,
 
@@ -402,6 +403,10 @@ can be placed in files <code>newcommands.tex</code>, <code>newcommands_keep.tex<
 <code>newcommands_replace.tex</code> (see the section [#Macros_(Newcommands),_Cross-References,_Index,_and_Bibliography]).
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
+
+An option <code>--latex-printed</code> makes some adjustments for documents
+aimed at being printed. For example, links to web resources are
+associated with a footnote listing the complete web address (URL).
 
 ''Step 2.'' Run <code>ptex2tex</code> (if you have it) to make a standard LaTeX file,
 <syntaxhighlight lang="bash">

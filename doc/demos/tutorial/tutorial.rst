@@ -6,7 +6,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Sep 13, 2012
+:Date: Oct 12, 2012
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -202,10 +202,11 @@ Here is an example of some simple text written in the Doconce format::
         "label" command right after the section title), as in the reference to
         Section ref{my:first:sec}.
         
-        Doconce also allows inline comments such as [hpl: here I will make
-        some remarks to the text] for allowing authors to make notes. Inline
-        comments can be removed from the output by a command-line argument
-        (see Section ref{doconce2formats} for an example).
+        Doconce also allows inline comments of the form [name: comment] (with
+        a space after `name:`), e.g., such as [hpl: here I will make some
+        remarks to the text]. Inline comments can be removed from the output
+        by a command-line argument (see Section ref{doconce2formats} for an
+        example).
         
         Tables are also supperted, e.g.,
         
@@ -561,6 +562,10 @@ can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
 ``newcommands_replace.tex`` (see the section `Macros (Newcommands), Cross-References, Index, and Bibliography`_).
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
+
+An option ``--latex-printed`` makes some adjustments for documents
+aimed at being printed. For example, links to web resources are
+associated with a footnote listing the complete web address (URL).
 
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file::
 

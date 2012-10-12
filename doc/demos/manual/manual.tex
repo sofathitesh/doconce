@@ -99,7 +99,7 @@
 
 
 \begin{center}
-Sep 13, 2012
+Oct 12, 2012
 \end{center}
 
 \vspace{1cm}
@@ -567,6 +567,10 @@ can be placed in files {\fontsize{10pt}{10pt}\verb!newcommands.tex!}, {\fontsize
 {\fontsize{10pt}{10pt}\verb!newcommands_replace.tex!} (see Section~\ref{newcommands}).
 If these files are present, they are included in the {\LaTeX} document
 so that your commands are defined.
+
+An option {\fontsize{10pt}{10pt}\verb!--latex-printed!} makes some adjustments for documents
+aimed at being printed. For example, links to web resources are
+associated with a footnote listing the complete web address (URL).
 
 \paragraph{Step 2.}
 Run {\fontsize{10pt}{10pt}\verb!ptex2tex!} (if you have it) to make a standard {\LaTeX} file,
@@ -1457,18 +1461,18 @@ Doconce also supports inline comments in the text:
 [name: comment]
 \end{Verbatim}
 where {\fontsize{10pt}{10pt}\verb!name!} is the name of the author of the command, and {\fontsize{10pt}{10pt}\verb!comment!} is a
-plain text text. \inlinecomment{hpl}{Note that there must be a space after the colon,
+plain text text. Note that there must be a space after the colon,
 otherwise the comment is not recognized. Inline comments
 can span
 several lines,
-if desired.}
+if desired.
 The name and comment are visible in the output unless {\fontsize{10pt}{10pt}\verb!doconce format!}
 is run with a command-line argument {\fontsize{10pt}{10pt}\verb!--skip_inline_comments!}
-(see Chapter~\ref{doconce2formats} for an example). Inline comments
+(see Section~\ref{doconce2formats} for an example). Inline comments
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the {\fontsize{10pt}{10pt}\verb!.do.txt!} file
-(see Chapter~\ref{doconce2formats}).
+(see Section~\ref{doconce2formats}).
 
 Inline mathematics is written as in {\LaTeX}, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -2180,6 +2184,7 @@ and these in {\fontsize{10pt}{10pt}\verb!newcommands_keep.tex!}:
 \newcommand{\x}{\pmb{x}}
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\half}{\frac{1}{2}}
 \end{Verbatim}
 
 The {\LaTeX} block
@@ -2608,6 +2613,24 @@ appropriate, shift to {\fontsize{10pt}{10pt}\verb!!bc cod!} or another specifica
 verbatim environment.
 
 \subsection{Problems with {\LaTeX} Output}
+
+\paragraph{{\LaTeX} does not like underscores in URLs.}
+Suppose you have a URL reference like
+
+\begin{Verbatim}
+..which can be found in the file "my_file.txt":
+"http://some.where.net/web/dir/my_file.txt".
+\end{Verbatim}
+{\LaTeX} will stop with a message about a missing dollar sign. The reason
+is that underscores in link texts need to be preceded by a backslash.
+However, this is incovenient to do in the Doconce source since the
+underscore is misleading in other formats.
+The remedy is to format the link text with inline verbatim tags (backticks):
+\begin{Verbatim}
+..which can be found in the file "`my_file.txt`":
+"http://some.where.net/web/dir/my_file.txt".
+\end{Verbatim}
+Verbatim text in links works fine with underscores.
 
 \paragraph{Error when running latex: You must have 'pygmentize' installed.}
 This message points to the use of the minted style for typesetting verbatim
