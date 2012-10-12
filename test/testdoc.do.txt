@@ -164,7 +164,18 @@ def f(theta):
     return theta**2
 !ec
 
-__More on $\theta$.__ Here is more text.
+__More on $\theta$.__ Here is more text following headline with math.
+
+Newcommands must also be tested: $\half$, $\x$, $\Ddt{u}$,
+both inline and in block:
+
+!bt
+\begin{align*}
+\Ddt{u} &= 0\\
+\half &= 1/2\\
+\x &= \normalvec
+\end{align*}
+!et
 
 ===== Custom Environments =====
 

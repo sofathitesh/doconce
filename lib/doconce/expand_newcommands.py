@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # NOTE: all newcommands can only span *one line*!
-# (necessary requirement since a findall with re.DOTALL will 
+# (necessary requirement since a findall with re.DOTALL will
 # not catch the final } of a command, real parsing is then neeeded)
 
 import shutil, re, sys, os
@@ -9,7 +9,7 @@ import shutil, re, sys, os
 def process_newcommand(line):
     line = line.replace('renewcommand', 'newcommand') # make syntax uniform
     # newcommand without arguments:
-    pattern1 = r'\\newcommand\{(.+)\}\s*\{(.*)\}'
+    pattern1 = r'\\newcommand\{(.+?)\}\s*\{(.*)\}'
     found = False
     m = re.search(pattern1, line)
     if m:
@@ -94,7 +94,7 @@ def substitute(source, newcommands):
             #    print 'matching', pattern, 'groups:',m.groups()
             text, n = re.subn(pattern, replacement, text)
             #print 'replacing', repr(pattern), 'with', repr(replacement), n, 'times'
-    
+
     if os.path.isfile(source):
         f = open(source, 'w')
         f.write(text)
