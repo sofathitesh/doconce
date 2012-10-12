@@ -1615,7 +1615,7 @@ is that underscores in link texts need to be preceded by a backslash.
 However, this is incovenient to do in the Doconce source since the
 underscore is misleading in other formats.
 The remedy is to format the link text with inline verbatim tags (backticks):
-!bt
+!bc
 ..which can be found in the file "`my_file.txt`":
 "http://some.where.net/web/dir/my_file.txt".
 !ec

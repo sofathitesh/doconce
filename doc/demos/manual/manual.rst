@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Sep 13, 2012
+:Date: Oct 12, 2012
 
 .. lines beginning with # are comment lines
 
@@ -517,6 +517,10 @@ can be placed in files ``newcommands.tex``, ``newcommands_keep.tex``, or
 ``newcommands_replace.tex`` (see the section `Macros (Newcommands)`_).
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
+
+An option ``--latex-printed`` makes some adjustments for documents
+aimed at being printed. For example, links to web resources are
+associated with a footnote listing the complete web address (URL).
 
 *Step 2.* Run ``ptex2tex`` (if you have it) to make a standard LaTeX file::
 
@@ -1440,18 +1444,18 @@ Doconce also supports inline comments in the text::
         [name: comment]
 
 where ``name`` is the name of the author of the command, and ``comment`` is a
-plain text text. (**hpl**: Note that there must be a space after the colon,
+plain text text. Note that there must be a space after the colon,
 otherwise the comment is not recognized. Inline comments
 can span
 several lines,
-if desired.)
+if desired.
 The name and comment are visible in the output unless ``doconce format``
 is run with a command-line argument ``--skip_inline_comments``
-(see the chapter `From Doconce to Other Formats`_ for an example). Inline comments
+(see the section `From Doconce to Other Formats`_ for an example). Inline comments
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the ``.do.txt`` file
-(see the chapter `From Doconce to Other Formats`_).
+(see the section `From Doconce to Other Formats`_).
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -2207,6 +2211,7 @@ and these in ``newcommands_keep.tex``::
         \newcommand{\x}{\pmb{x}}
         \newcommand{\normalvec}{\pmb{n}}
         \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+        \newcommand{\half}{\frac{1}{2}}
 
 
 The LaTeX block::
@@ -2712,6 +2717,27 @@ verbatim environment.
 
 Problems with LaTeX Output
 --------------------------
+
+LaTeX does not like underscores in URLs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Suppose you have a URL reference like::
+
+
+        ..which can be found in the file "my_file.txt":
+        "http://some.where.net/web/dir/my_file.txt".
+
+LaTeX will stop with a message about a missing dollar sign. The reason
+is that underscores in link texts need to be preceded by a backslash.
+However, this is incovenient to do in the Doconce source since the
+underscore is misleading in other formats.
+The remedy is to format the link text with inline verbatim tags (backticks)::
+
+
+        ..which can be found in the file "`my_file.txt`":
+        "http://some.where.net/web/dir/my_file.txt".
+
+Verbatim text in links works fine with underscores.
 
 Error when running latex: You must have 'pygmentize' installed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

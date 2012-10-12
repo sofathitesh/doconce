@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Sep 13, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Oct 12, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -455,6 +455,9 @@ can be placed in files <tt class="docutils literal"><span class="pre">newcommand
 <tt class="docutils literal"><span class="pre">newcommands_replace.tex</span></tt> (see the section <a class="reference internal" href="#newcommands"><em>Macros (Newcommands)</em></a>).
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.</p>
+<p>An option <tt class="docutils literal"><span class="pre">--latex-printed</span></tt> makes some adjustments for documents
+aimed at being printed. For example, links to web resources are
+associated with a footnote listing the complete web address (URL).</p>
 <p><em>Step 2.</em> Run <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> (if you have it) to make a standard LaTeX file,</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; ptex2tex mydoc</span>
 </pre></div>
@@ -1186,18 +1189,18 @@ before the address enclosed in double quotes:</p>
 </pre></div>
 </div>
 <p>where <tt class="docutils literal"><span class="pre">name</span></tt> is the name of the author of the command, and <tt class="docutils literal"><span class="pre">comment</span></tt> is a
-plain text text. (<strong>hpl</strong>: Note that there must be a space after the colon,
+plain text text. Note that there must be a space after the colon,
 otherwise the comment is not recognized. Inline comments
 can span
 several lines,
-if desired.)
+if desired.
 The name and comment are visible in the output unless <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span></tt>
 is run with a command-line argument <tt class="docutils literal"><span class="pre">--skip_inline_comments</span></tt>
-(see the chapter <a class="reference internal" href="#doconce2formats"><em>From Doconce to Other Formats</em></a> for an example). Inline comments
+(see the section <a class="reference internal" href="#doconce2formats"><em>From Doconce to Other Formats</em></a> for an example). Inline comments
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the <tt class="docutils literal"><span class="pre">.do.txt</span></tt> file
-(see the chapter <a class="reference internal" href="#doconce2formats"><em>From Doconce to Other Formats</em></a>).</p>
+(see the section <a class="reference internal" href="#doconce2formats"><em>From Doconce to Other Formats</em></a>).</p>
 <p>Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
 hence nice math formatting is only obtained in LaTeX, HTML, MediaWiki,
@@ -1849,6 +1852,7 @@ expressions).</p>
 <div class="highlight-python"><div class="highlight"><pre>\<span class="n">newcommand</span><span class="p">{</span>\<span class="n">x</span><span class="p">}{</span>\<span class="n">pmb</span><span class="p">{</span><span class="n">x</span><span class="p">}}</span>
 \<span class="n">newcommand</span><span class="p">{</span>\<span class="n">normalvec</span><span class="p">}{</span>\<span class="n">pmb</span><span class="p">{</span><span class="n">n</span><span class="p">}}</span>
 \<span class="n">newcommand</span><span class="p">{</span>\<span class="n">Ddt</span><span class="p">}[</span><span class="mi">1</span><span class="p">]{</span>\<span class="n">frac</span><span class="p">{</span><span class="n">D</span><span class="c">#1}{dt}}</span>
+\<span class="n">newcommand</span><span class="p">{</span>\<span class="n">half</span><span class="p">}{</span>\<span class="n">frac</span><span class="p">{</span><span class="mi">1</span><span class="p">}{</span><span class="mi">2</span><span class="p">}}</span>
 </pre></div>
 </div>
 <p>The LaTeX block</p>
@@ -2281,6 +2285,24 @@ verbatim environment.</p>
 </div>
 <div class="section" id="problems-with-latex-output">
 <h2>Problems with LaTeX Output<a class="headerlink" href="#problems-with-latex-output" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="latex-does-not-like-underscores-in-urls">
+<h3>LaTeX does not like underscores in URLs<a class="headerlink" href="#latex-does-not-like-underscores-in-urls" title="Permalink to this headline">¶</a></h3>
+<p>Suppose you have a URL reference like</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="o">..</span><span class="n">which</span> <span class="n">can</span> <span class="n">be</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">file</span> <span class="s">&quot;my_file.txt&quot;</span><span class="p">:</span>
+<span class="s">&quot;http://some.where.net/web/dir/my_file.txt&quot;</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>LaTeX will stop with a message about a missing dollar sign. The reason
+is that underscores in link texts need to be preceded by a backslash.
+However, this is incovenient to do in the Doconce source since the
+underscore is misleading in other formats.
+The remedy is to format the link text with inline verbatim tags (backticks):</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="o">..</span><span class="n">which</span> <span class="n">can</span> <span class="n">be</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">file</span> <span class="s">&quot;`my_file.txt`&quot;</span><span class="p">:</span>
+<span class="s">&quot;http://some.where.net/web/dir/my_file.txt&quot;</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Verbatim text in links works fine with underscores.</p>
+</div>
 <div class="section" id="error-when-running-latex-you-must-have-pygmentize-installed">
 <h3>Error when running latex: You must have &#8216;pygmentize&#8217; installed<a class="headerlink" href="#error-when-running-latex-you-must-have-pygmentize-installed" title="Permalink to this headline">¶</a></h3>
 <p>This message points to the use of the minted style for typesetting verbatim
@@ -2713,6 +2735,7 @@ groundwater flow.
 </ul>
 </li>
 <li><a class="reference internal" href="#problems-with-latex-output">Problems with LaTeX Output</a><ul>
+<li><a class="reference internal" href="#latex-does-not-like-underscores-in-urls">LaTeX does not like underscores in URLs</a></li>
 <li><a class="reference internal" href="#error-when-running-latex-you-must-have-pygmentize-installed">Error when running latex: You must have &#8216;pygmentize&#8217; installed</a></li>
 <li><a class="reference internal" href="#how-can-i-use-my-fancy-latex-environments">How can I use my fancy LaTeX environments?</a></li>
 <li><a class="reference internal" href="#the-latex-file-does-not-compile">The LaTeX file does not compile</a></li>

@@ -175,13 +175,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Sep 13, 2012}
+\date{Oct 12, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Sep 13, 2012}}
+{\large\textsf{Oct 12, 2012}}
 
 \end{center}
 \vfill
@@ -190,7 +190,7 @@
 % #else
 
 \begin{center}
-Sep 13, 2012
+Oct 12, 2012
 \end{center}
 
 \vspace{1cm}
@@ -403,10 +403,11 @@ References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
 Section ref{my:first:sec}.
 
-Doconce also allows inline comments such as [hpl: here I will make
-some remarks to the text] for allowing authors to make notes. Inline
-comments can be removed from the output by a command-line argument
-(see Section ref{doconce2formats} for an example).
+Doconce also allows inline comments of the form [name: comment] (with
+a space after `name:`), e.g., such as [hpl: here I will make some
+remarks to the text]. Inline comments can be removed from the output
+by a command-line argument (see Section ref{doconce2formats} for an
+example).
 
 Tables are also supperted, e.g.,
 
@@ -739,6 +740,10 @@ can be placed in files \code{newcommands.tex}, \code{newcommands_keep.tex}, or
 \code{newcommands_replace.tex} (see Section~\ref{newcommands}).
 If these files are present, they are included in the {\LaTeX} document
 so that your commands are defined.
+
+An option \code{--latex-printed} makes some adjustments for documents
+aimed at being printed. For example, links to web resources are
+associated with a footnote listing the complete web address (URL).
 
 \paragraph{Step 2.}
 Run \code{ptex2tex} (if you have it) to make a standard {\LaTeX} file,

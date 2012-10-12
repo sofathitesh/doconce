@@ -56,7 +56,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Sep 13, 2012
+Oct 12, 2012
 
 \end{DUfieldlist}
 
@@ -711,6 +711,10 @@ can be placed in files \texttt{newcommands.tex}, \texttt{newcommands\_keep.tex},
 \texttt{newcommands\_replace.tex} (see the section \hyperref[macros-newcommands]{Macros (Newcommands)}).
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.
+
+An option \texttt{-{}-latex-printed} makes some adjustments for documents
+aimed at being printed. For example, links to web resources are
+associated with a footnote listing the complete web address (URL).
 
 \emph{Step 2.} Run \texttt{ptex2tex} (if you have it) to make a standard LaTeX file:
 %
@@ -1824,18 +1828,18 @@ Doconce also supports inline comments in the text:
 \end{quote}
 
 where \texttt{name} is the name of the author of the command, and \texttt{comment} is a
-plain text text. (\textbf{hpl}: Note that there must be a space after the colon,
+plain text text. Note that there must be a space after the colon,
 otherwise the comment is not recognized. Inline comments
 can span
 several lines,
-if desired.)
+if desired.
 The name and comment are visible in the output unless \texttt{doconce format}
 is run with a command-line argument \texttt{-{}-skip\_inline\_comments}
-(see the chapter \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats} for an example). Inline comments
+(see the section \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats} for an example). Inline comments
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the \texttt{.do.txt} file
-(see the chapter \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats}).
+(see the section \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats}).
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -2741,7 +2745,8 @@ and these in \texttt{newcommands\_keep.tex}:
 \begin{quote}{\ttfamily \raggedright \noindent
 \textbackslash{}newcommand\{\textbackslash{}x\}\{\textbackslash{}pmb\{x\}\}\\
 \textbackslash{}newcommand\{\textbackslash{}normalvec\}\{\textbackslash{}pmb\{n\}\}\\
-\textbackslash{}newcommand\{\textbackslash{}Ddt\}{[}1{]}\{\textbackslash{}frac\{D\#1\}\{dt\}\}
+\textbackslash{}newcommand\{\textbackslash{}Ddt\}{[}1{]}\{\textbackslash{}frac\{D\#1\}\{dt\}\}\\
+\textbackslash{}newcommand\{\textbackslash{}half\}\{\textbackslash{}frac\{1\}\{2\}\}
 }
 \end{quote}
 
@@ -3471,6 +3476,37 @@ verbatim environment.
   \addcontentsline{toc}{subsection}{Problems with LaTeX Output}%
   \label{problems-with-latex-output}%
 }
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  LaTeX does not like underscores in URLs%
+  \addcontentsline{toc}{subsubsection}{LaTeX does not like underscores in URLs}%
+  \label{latex-does-not-like-underscores-in-urls}%
+}
+
+Suppose you have a URL reference like:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+..which~can~be~found~in~the~file~"my\_file.txt":\\
+"http://some.where.net/web/dir/my\_file.txt".
+}
+\end{quote}
+
+LaTeX will stop with a message about a missing dollar sign. The reason
+is that underscores in link texts need to be preceded by a backslash.
+However, this is incovenient to do in the Doconce source since the
+underscore is misleading in other formats.
+The remedy is to format the link text with inline verbatim tags (backticks):
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+..which~can~be~found~in~the~file~"`my\_file.txt`":\\
+"http://some.where.net/web/dir/my\_file.txt".
+}
+\end{quote}
+
+Verbatim text in links works fine with underscores.
 
 
 %___________________________________________________________________________

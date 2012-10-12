@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Sep 13, 2012</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Oct 12, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -740,6 +740,9 @@ can be placed in files <tt class="docutils literal">newcommands.tex</tt>, <tt cl
 <tt class="docutils literal">newcommands_replace.tex</tt> (see the section <a class="reference internal" href="#macros-newcommands">Macros (Newcommands)</a>).
 If these files are present, they are included in the LaTeX document
 so that your commands are defined.</p>
+<p>An option <tt class="docutils literal"><span class="pre">--latex-printed</span></tt> makes some adjustments for documents
+aimed at being printed. For example, links to web resources are
+associated with a footnote listing the complete web address (URL).</p>
 <p><em>Step 2.</em> Run <tt class="docutils literal">ptex2tex</tt> (if you have it) to make a standard LaTeX file:</p>
 <pre class="literal-block">
 Terminal&gt; ptex2tex mydoc
@@ -1490,18 +1493,18 @@ Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.
 [name: comment]
 </pre>
 <p>where <tt class="docutils literal">name</tt> is the name of the author of the command, and <tt class="docutils literal">comment</tt> is a
-plain text text. (<strong>hpl</strong>: Note that there must be a space after the colon,
+plain text text. Note that there must be a space after the colon,
 otherwise the comment is not recognized. Inline comments
 can span
 several lines,
-if desired.)
+if desired.
 The name and comment are visible in the output unless <tt class="docutils literal">doconce format</tt>
 is run with a command-line argument <tt class="docutils literal"><span class="pre">--skip_inline_comments</span></tt>
-(see the chapter <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a> for an example). Inline comments
+(see the section <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a> for an example). Inline comments
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the <tt class="docutils literal">.do.txt</tt> file
-(see the chapter <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a>).</p>
+(see the section <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a>).</p>
 <p>Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
 hence nice math formatting is only obtained in LaTeX, HTML, MediaWiki,
@@ -2169,6 +2172,7 @@ expressions).</p>
 \newcommand{\x}{\pmb{x}}
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\half}{\frac{1}{2}}
 </pre>
 <p>The LaTeX block:</p>
 <pre class="literal-block">
@@ -2605,6 +2609,24 @@ verbatim environment.</p>
 </div>
 <div class="section" id="problems-with-latex-output">
 <h2>Problems with LaTeX Output</h2>
+<div class="section" id="latex-does-not-like-underscores-in-urls">
+<h3>LaTeX does not like underscores in URLs</h3>
+<p>Suppose you have a URL reference like:</p>
+<pre class="literal-block">
+..which can be found in the file &quot;my_file.txt&quot;:
+&quot;http://some.where.net/web/dir/my_file.txt&quot;.
+</pre>
+<p>LaTeX will stop with a message about a missing dollar sign. The reason
+is that underscores in link texts need to be preceded by a backslash.
+However, this is incovenient to do in the Doconce source since the
+underscore is misleading in other formats.
+The remedy is to format the link text with inline verbatim tags (backticks):</p>
+<pre class="literal-block">
+..which can be found in the file &quot;`my_file.txt`&quot;:
+&quot;http://some.where.net/web/dir/my_file.txt&quot;.
+</pre>
+<p>Verbatim text in links works fine with underscores.</p>
+</div>
 <div class="section" id="error-when-running-latex-you-must-have-pygmentize-installed">
 <h3>Error when running latex: You must have 'pygmentize' installed</h3>
 <p>This message points to the use of the minted style for typesetting verbatim

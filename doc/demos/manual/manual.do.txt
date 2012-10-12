@@ -502,18 +502,18 @@ Doconce also supports inline comments in the text:
 [name: comment]
 !ec
 where `name` is the name of the author of the command, and `comment` is a
-plain text text. [hpl: Note that there must be a space after the colon,
+plain text text. Note that there must be a space after the colon,
 otherwise the comment is not recognized. Inline comments
 can span
 several lines,
-if desired.]
+if desired.
 The name and comment are visible in the output unless `doconce format`
 is run with a command-line argument `--skip_inline_comments`
-(see Chapter ref{doconce2formats} for an example). Inline comments
+(see Section ref{doconce2formats} for an example). Inline comments
 are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the `.do.txt` file
-(see Chapter ref{doconce2formats}).
+(see Section ref{doconce2formats}).
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -1601,6 +1601,25 @@ appropriate, shift to `!bc cod` or another specification of the
 verbatim environment.
 
 ===== Problems with LaTeX Output =====
+
+=== LaTeX does not like underscores in URLs ===
+
+Suppose you have a URL reference like
+
+!bc
+..which can be found in the file "my_file.txt":
+"http://some.where.net/web/dir/my_file.txt".
+!ec
+LaTeX will stop with a message about a missing dollar sign. The reason
+is that underscores in link texts need to be preceded by a backslash.
+However, this is incovenient to do in the Doconce source since the
+underscore is misleading in other formats.
+The remedy is to format the link text with inline verbatim tags (backticks):
+!bc
+..which can be found in the file "`my_file.txt`":
+"http://some.where.net/web/dir/my_file.txt".
+!ec
+Verbatim text in links works fine with underscores.
 
 === Error when running latex: You must have 'pygmentize' installed ===
 
