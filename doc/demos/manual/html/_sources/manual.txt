@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Oct 12, 2012
+:Date: Oct 13, 2012
 
 .. lines beginning with # are comment lines
 
@@ -1502,15 +1502,15 @@ However, linking to local files like this needs caution:
     a ``\hyperbaseurl`` command and the linked files are located correctly
     relative to this URL. Otherwise full URL must be used in links.
 
-  * In the ``sphinx`` format, local files to which there are links should only be
-    located in a ``_static`` or ``_static-name`` subdirectory.
+  * In the ``sphinx`` format, links to local files do not work unless the
+    files reside in a ``_static`` directory (a warning is issued about this).
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a ``_static`` or ``_static-name`` directory and makes links to
 files in this directory only (``name`` is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the ``html`` format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend

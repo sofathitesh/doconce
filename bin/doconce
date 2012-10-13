@@ -1079,7 +1079,6 @@ Indices and tables
 files="%(doconce_files_basename_list)s"
 for file in $files; do
   doconce format sphinx $file
-  doconce sphinxfix_localURLs $file.rst
 
   enc=`doconce guess_encoding $file.rst`
   if [ $enc = "iso-8859-1" ]; then
@@ -1097,8 +1096,7 @@ fi
 done
 
 if [ -d _static ]; then
-  # _static is made if there are local URLs in a file
-  # Copy files whose linkes were fixed by doconce sphinxfix_localURLs
+  # _static must be used if there are local URLs in a file
   cp -r _static/* %(sphinx_rootdir)s/_static/
 fi
 
@@ -1143,9 +1141,7 @@ print """
 for filename in filenames:
     system('doconce format sphinx %%s --skip_inline_comments' %% filename)
 
-    # Fix: links to local files, utf-8 encoding for non-English chars
-    system('doconce sphinxfix_localURLs %%s.rst' %% filename)
-
+    # Fix: utf-8 encoding for non-English chars
     cmd = 'doconce guess_encoding %%s.rst' %% filename
     enc = system(cmd, capture_output=True)
     if enc == "iso-8859-1":
@@ -1163,17 +1159,10 @@ for figdir in figdirs:
         shutil.copytree(figdir, destdir)
 
 # Copy linked local files, placed in _static*, to %(sphinx_rootdir)s/_static
-# (fixed by doconce sphinxfix_local_URLs above)
 staticdirs = glob.glob('_static*')
 for staticdir in staticdirs:
-    # Copy files whose linkes were fixed by doconce sphinxfix_localURLs
-    # or files stored explicitly in staticdir by the user
     system('cp -r %%s/* %(sphinx_rootdir)s/_static/' %% staticdir)
     # (Note: must do cp -r since shutil.copy/copytree cannot copy a la cp -r)
-
-# (Note that HTML files in staticdirs may contain links to local HTML
-# files that must also be copied (sphinxfix_localURLs can only detect
-# the first link).)
 
 # Compile web version of the sphinx document
 os.chdir(sphinx_rootdir)

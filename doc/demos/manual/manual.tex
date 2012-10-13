@@ -99,7 +99,7 @@
 
 
 \begin{center}
-Oct 12, 2012
+Oct 13, 2012
 \end{center}
 
 \vspace{1cm}
@@ -1399,8 +1399,8 @@ However, linking to local files like this needs caution:
     a {\fontsize{10pt}{10pt}\verb!\hyperbaseurl!} command and the linked files are located correctly
     relative to this URL. Otherwise full URL must be used in links.
 
-  \item In the {\fontsize{10pt}{10pt}\verb!sphinx!} format, local files to which there are links should only be
-    located in a {\fontsize{10pt}{10pt}\verb!_static!} or {\fontsize{10pt}{10pt}\verb!_static-name!} subdirectory.
+  \item In the {\fontsize{10pt}{10pt}\verb!sphinx!} format, links to local files do not work unless the
+    files reside in a {\fontsize{10pt}{10pt}\verb!_static!} directory (a warning is issued about this).
 \end{itemize}
 
 \noindent
@@ -1408,8 +1408,8 @@ As a consequence, we strongly recommend that one copies the relevant
 files to a {\fontsize{10pt}{10pt}\verb!_static!} or {\fontsize{10pt}{10pt}\verb!_static-name!} directory and makes links to
 files in this directory only ({\fontsize{10pt}{10pt}\verb!name!} is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the {\fontsize{10pt}{10pt}\verb!html!} format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend

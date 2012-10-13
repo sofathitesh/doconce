@@ -83,7 +83,7 @@ $$
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Oct 12, 2012</h4></center> <!-- date -->
+<center><h4>Oct 13, 2012</h4></center> <!-- date -->
 <p>
 
 <p>
@@ -1653,16 +1653,16 @@ However, linking to local files like this needs caution:
     will unless the <tt>.tex</tt> file has a full URL specified through
     a <tt>\hyperbaseurl</tt> command and the linked files are located correctly
     relative to this URL. Otherwise full URL must be used in links.
-  <li> In the <tt>sphinx</tt> format, local files to which there are links should only be
-    located in a <tt>_static</tt> or <tt>_static-name</tt> subdirectory.
+  <li> In the <tt>sphinx</tt> format, links to local files do not work unless the
+    files reside in a <tt>_static</tt> directory (a warning is issued about this).
 </ul>
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a <tt>_static</tt> or <tt>_static-name</tt> directory and makes links to
 files in this directory only (<tt>name</tt> is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the <tt>html</tt> format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 <p>
 If you want a link to a local source code file and have it
