@@ -390,7 +390,7 @@ def syntax_check(filestr, format):
             print '\n'.join(matches)
             _abort()
 
-    if format == "latex":
+    if format in ('latex', 'pdflatex'):
         # if TITLE is given, AUTHOR and DATE must also be present
         #md = re.search(r'^DATE:', filestr, flags=re.MULTILINE)
         #mt = re.search(r'^TITLE:', filestr, flags=re.MULTILINE)
@@ -413,6 +413,25 @@ specified if one of them is present."""
                 if not ma:
                     print 'AUTHOR is missing '
                 _abort()
+
+    if format == "sphinx":
+        # Check that local URLs are in _static directory
+        links = []
+        for link_tp in 'linkURL2', 'linkURL3', 'linkURL2v', 'linkURL3v', \
+                'plainURL':
+            links.extend(re.findall(INLINE_TAGS[link_tp], filestr))
+        import sets
+        links = list(sets.Set([link[1] for link in links]))
+        links2local = []
+        for link in links:
+            if not (link.startswith('http') or link.startswith('file:/') or \
+                    link.startswith('_static')):
+                links2local.append(link)
+        for link in links2local:
+            print 'Warning: hyperlink to URL %s is to a local file,\n  - should be _static/%s for sphinx.' % (link, link)
+        if links2local:
+            print 'Move files to _static and change URLs!'
+            #_abort()  # no abort since some documentation has local URLs for illustration
 
     return filestr  # fixes may have been performed
 

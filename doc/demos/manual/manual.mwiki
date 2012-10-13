@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Oct 12, 2012 ====
+==== Oct 13, 2012 ====
 
 <!--> lines beginning with # are comment lines -->
 
@@ -1137,14 +1137,14 @@ However, linking to local files like this needs caution:
 
 
 <ul>
-  <li> In the <code>html</code> format the links work well if the files are    supplied with the <code>.html</code> with the same relative location.  <li> In the <code>latex</code> and <code>pdflatex</code> formats, such links in PDF files    will unless the <code>.tex</code> file has a full URL specified through    a <code>\hyperbaseurl</code> command and the linked files are located correctly    relative to this URL. Otherwise full URL must be used in links.  <li> In the <code>sphinx</code> format, local files to which there are links should only be    located in a <code>_static</code> or <code>_static-name</code> subdirectory.</ul>
+  <li> In the <code>html</code> format the links work well if the files are    supplied with the <code>.html</code> with the same relative location.  <li> In the <code>latex</code> and <code>pdflatex</code> formats, such links in PDF files    will unless the <code>.tex</code> file has a full URL specified through    a <code>\hyperbaseurl</code> command and the linked files are located correctly    relative to this URL. Otherwise full URL must be used in links.  <li> In the <code>sphinx</code> format, links to local files do not work unless the    files reside in a <code>_static</code> directory (a warning is issued about this).</ul>
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a <code>_static</code> or <code>_static-name</code> directory and makes links to
 files in this directory only (<code>name</code> is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the <code>html</code> format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend

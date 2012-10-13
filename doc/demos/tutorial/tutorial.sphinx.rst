@@ -6,7 +6,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Oct 12, 2012
+:Date: Oct 13, 2012
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -198,7 +198,7 @@ Here is an example of some simple text written in the Doconce format:
         
         URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
         If the word is URL, the URL itself becomes the link name,
-        as in "URL":"tutorial.do.txt".
+        as in "URL": "tutorial.do.txt".
         
         References to sections may use logical names as labels (e.g., a
         "label" command right after the section title), as in the reference to

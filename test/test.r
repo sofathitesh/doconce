@@ -11538,7 +11538,7 @@ Lists can also have automatically numbered items instead of bullets,
 
 URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
 If the word is URL, the URL itself becomes the link name,
-as in "URL":"tutorial.do.txt".
+as in "URL": "tutorial.do.txt".
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
@@ -11584,7 +11584,7 @@ Lists can also have numbered items instead of bullets, just use an `o`
 
 URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
 If the word is URL, the URL itself becomes the link name,
-as in "URL":"tutorial.do.txt".
+as in "URL": "tutorial.do.txt".
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
@@ -12018,7 +12018,7 @@ Lists can also have automatically numbered items instead of bullets,
 
 URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
 If the word is URL, the URL itself becomes the link name,
-as in "URL":"tutorial.do.txt".
+as in "URL": "tutorial.do.txt".
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
@@ -13595,7 +13595,7 @@ Lists can also have automatically numbered items instead of bullets,
 
 URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
 If the word is URL, the URL itself becomes the link name,
-as in "URL":"tutorial.do.txt".
+as in "URL": "tutorial.do.txt".
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
@@ -14755,7 +14755,7 @@ Here is an example of some simple text written in the Doconce format::
         
         URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
         If the word is URL, the URL itself becomes the link name,
-        as in "URL":"tutorial.do.txt".
+        as in "URL": "tutorial.do.txt".
         
         References to sections may use logical names as labels (e.g., a
         "label" command right after the section title), as in the reference to
@@ -15975,7 +15975,7 @@ Here is an example of some simple text written in the Doconce format:
         
         URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
         If the word is URL, the URL itself becomes the link name,
-        as in "URL":"tutorial.do.txt".
+        as in "URL": "tutorial.do.txt".
         
         References to sections may use logical names as labels (e.g., a
         "label" command right after the section title), as in the reference to
@@ -17170,7 +17170,7 @@ Lists can also have automatically numbered items instead of bullets,
 
 URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
 If the word is URL, the URL itself becomes the link name,
-as in "URL":"tutorial.do.txt".
+as in "URL": "tutorial.do.txt".
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
@@ -18168,7 +18168,7 @@ Lists can also have automatically numbered items instead of bullets,
 
 URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
 If the word is URL, the URL itself becomes the link name,
-as in "URL":"tutorial.do.txt".
+as in "URL": "tutorial.do.txt".
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
@@ -19179,7 +19179,7 @@ Lists can also have automatically numbered items instead of bullets,
 
 URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
 If the word is URL, the URL itself becomes the link name,
-as in "URL":"tutorial.do.txt".
+as in "URL": "tutorial.do.txt".
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
@@ -20271,7 +20271,7 @@ Here is an example of some simple text written in the Doconce format::
         
         URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
         If the word is URL, the URL itself becomes the link name,
-        as in "URL":"tutorial.do.txt".
+        as in "URL": "tutorial.do.txt".
         
         References to sections may use logical names as labels (e.g., a
         "label" command right after the section title), as in the reference to
@@ -21385,7 +21385,7 @@ Here is an example of some simple text written in the Doconce format::
         
         URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
         If the word is URL, the URL itself becomes the link name,
-        as in "URL":"tutorial.do.txt".
+        as in "URL": "tutorial.do.txt".
         
         References to sections may use logical names as labels (e.g., a
         "label" command right after the section title), as in the reference to
@@ -22570,7 +22570,7 @@ Here is an example of some simple text written in the Doconce format::
         
         URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
         If the word is URL, the URL itself becomes the link name,
-        as in "URL":"tutorial.do.txt".
+        as in "URL": "tutorial.do.txt".
         
         References to sections may use logical names as labels (e.g., a
         "label" command right after the section title), as in the reference to
@@ -23758,7 +23758,7 @@ Lists can also have automatically numbered items instead of bullets,
 
 URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
 If the word is URL, the URL itself becomes the link name,
-as in "URL":"tutorial.do.txt".
+as in "URL": "tutorial.do.txt".
 
 References to sections may use logical names as labels (e.g., a
 "label" command right after the section title), as in the reference to
@@ -25423,7 +25423,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Fri, 12 Oct 2012 (12:04)
+DATE: Sat, 13 Oct 2012 (10:15)
 
 
 
@@ -25527,7 +25527,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Fri, 12 Oct 2012 (12:04)
+DATE: Sat, 13 Oct 2012 (10:15)
 
 
 
@@ -25641,7 +25641,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 12 Oct 2012 (12:04)</center>
+<center>Sat, 13 Oct 2012 (10:15)</center>
 
 
 
@@ -25772,7 +25772,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 12 Oct 2012 (12:04)</center>
+<center>Sat, 13 Oct 2012 (10:15)</center>
 
 
 
@@ -26495,15 +26495,15 @@ However, linking to local files like this needs caution:
     will unless the `.tex` file has a full URL specified through
     a `\hyperbaseurl` command and the linked files are located correctly
     relative to this URL. Otherwise full URL must be used in links.
-  * In the `sphinx` format, local files to which there are links should only be
-    located in a `_static` or `_static-name` subdirectory.
+  * In the `sphinx` format, links to local files do not work unless the
+    files reside in a `_static` directory (a warning is issued about this).
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a `_static` or `_static-name` directory and makes links to
 files in this directory only (`name` is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the `html` format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend
@@ -29667,16 +29667,16 @@ However, linking to local files like this needs caution:
     will unless the <tt>.tex</tt> file has a full URL specified through
     a <tt>\hyperbaseurl</tt> command and the linked files are located correctly
     relative to this URL. Otherwise full URL must be used in links.
-  <li> In the <tt>sphinx</tt> format, local files to which there are links should only be
-    located in a <tt>_static</tt> or <tt>_static-name</tt> subdirectory.
+  <li> In the <tt>sphinx</tt> format, links to local files do not work unless the
+    files reside in a <tt>_static</tt> directory (a warning is issued about this).
 </ul>
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a <tt>_static</tt> or <tt>_static-name</tt> directory and makes links to
 files in this directory only (<tt>name</tt> is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the <tt>html</tt> format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 <p>
 If you want a link to a local source code file and have it
@@ -33157,8 +33157,8 @@ However, linking to local files like this needs caution:
     a \code{\hyperbaseurl} command and the linked files are located correctly
     relative to this URL. Otherwise full URL must be used in links.
 
-  \item In the \code{sphinx} format, local files to which there are links should only be
-    located in a \code{_static} or \code{_static-name} subdirectory.
+  \item In the \code{sphinx} format, links to local files do not work unless the
+    files reside in a \code{_static} directory (a warning is issued about this).
 \end{itemize}
 
 \noindent
@@ -33166,8 +33166,8 @@ As a consequence, we strongly recommend that one copies the relevant
 files to a \code{_static} or \code{_static-name} directory and makes links to
 files in this directory only (\code{name} is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the \code{html} format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend
@@ -36098,15 +36098,15 @@ However, linking to local files like this needs caution:
     a ``\hyperbaseurl`` command and the linked files are located correctly
     relative to this URL. Otherwise full URL must be used in links.
 
-  * In the ``sphinx`` format, local files to which there are links should only be
-    located in a ``_static`` or ``_static-name`` subdirectory.
+  * In the ``sphinx`` format, links to local files do not work unless the
+    files reside in a ``_static`` directory (a warning is issued about this).
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a ``_static`` or ``_static-name`` directory and makes links to
 files in this directory only (``name`` is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the ``html`` format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend
@@ -39348,15 +39348,15 @@ However, linking to local files like this needs caution:
     a ``\hyperbaseurl`` command and the linked files are located correctly
     relative to this URL. Otherwise full URL must be used in links.
 
-  * In the ``sphinx`` format, local files to which there are links should only be
-    located in a ``_static`` or ``_static-name`` subdirectory.
+  * In the ``sphinx`` format, links to local files do not work unless the
+    files reside in a ``_static`` directory (a warning is issued about this).
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a ``_static`` or ``_static-name`` directory and makes links to
 files in this directory only (``name`` is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the ``html`` format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend
@@ -42413,14 +42413,14 @@ However, linking to local files like this needs caution:
 
   * In the `html` format the links work well if the files are    supplied with the `.html` with the same relative location.
   * In the `latex` and `pdflatex` formats, such links in PDF files    will unless the `.tex` file has a full URL specified through    a `\hyperbaseurl` command and the linked files are located correctly    relative to this URL. Otherwise full URL must be used in links.
-  * In the `sphinx` format, local files to which there are links should only be    located in a `_static` or `_static-name` subdirectory.
+  * In the `sphinx` format, links to local files do not work unless the    files reside in a `_static` directory (a warning is issued about this).
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a `_static` or `_static-name` directory and makes links to
 files in this directory only (`name` is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the `html` format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend
@@ -45101,14 +45101,14 @@ However, linking to local files like this needs caution:
 
 
 <ul>
-  <li> In the <code>html</code> format the links work well if the files are    supplied with the <code>.html</code> with the same relative location.  <li> In the <code>latex</code> and <code>pdflatex</code> formats, such links in PDF files    will unless the <code>.tex</code> file has a full URL specified through    a <code>\hyperbaseurl</code> command and the linked files are located correctly    relative to this URL. Otherwise full URL must be used in links.  <li> In the <code>sphinx</code> format, local files to which there are links should only be    located in a <code>_static</code> or <code>_static-name</code> subdirectory.</ul>
+  <li> In the <code>html</code> format the links work well if the files are    supplied with the <code>.html</code> with the same relative location.  <li> In the <code>latex</code> and <code>pdflatex</code> formats, such links in PDF files    will unless the <code>.tex</code> file has a full URL specified through    a <code>\hyperbaseurl</code> command and the linked files are located correctly    relative to this URL. Otherwise full URL must be used in links.  <li> In the <code>sphinx</code> format, links to local files do not work unless the    files reside in a <code>_static</code> directory (a warning is issued about this).</ul>
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a <code>_static</code> or <code>_static-name</code> directory and makes links to
 files in this directory only (<code>name</code> is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the <code>html</code> format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend
@@ -47820,14 +47820,14 @@ However, linking to local files like this needs caution:
 
   * In the {{{html}}} format the links work well if the files are    supplied with the {{{.html}}} with the same relative location.
   * In the {{{latex}}} and {{{pdflatex}}} formats, such links in PDF files    will unless the {{{.tex}}} file has a full URL specified through    a {{{\hyperbaseurl}}} command and the linked files are located correctly    relative to this URL. Otherwise full URL must be used in links.
-  * In the {{{sphinx}}} format, local files to which there are links should only be    located in a {{{_static}}} or {{{_static-name}}} subdirectory.
+  * In the {{{sphinx}}} format, links to local files do not work unless the    files reside in a {{{_static}}} directory (a warning is issued about this).
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a {{{_static}}} or {{{_static-name}}} directory and makes links to
 files in this directory only ({{{name}}} is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the {{{html}}} format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend
@@ -50601,15 +50601,15 @@ However, linking to local files like this needs caution:
     will unless the '.tex' file has a full URL specified through
     a '\hyperbaseurl' command and the linked files are located correctly
     relative to this URL. Otherwise full URL must be used in links.
-  - In the 'sphinx' format, local files to which there are links should only be
-    located in a '_static' or '_static-name' subdirectory.
+  - In the 'sphinx' format, links to local files do not work unless the
+    files reside in a '_static' directory (a warning is issued about this).
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a '_static' or '_static-name' directory and makes links to
 files in this directory only ('name' is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the 'html' format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend
@@ -53457,15 +53457,15 @@ However, linking to local files like this needs caution:
     will unless the C{.tex} file has a full URL specified through
     a C{\hyperbaseurl} command and the linked files are located correctly
     relative to this URL. Otherwise full URL must be used in links.
-  - In the C{sphinx} format, local files to which there are links should only be
-    located in a C{_static} or C{_static-name} subdirectory.
+  - In the C{sphinx} format, links to local files do not work unless the
+    files reside in a C{_static} directory (a warning is issued about this).
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a C{_static} or C{_static-name} directory and makes links to
 files in this directory only (C{name} is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the C{html} format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend
@@ -56419,15 +56419,15 @@ However, linking to local files like this needs caution:
     a \hyperbaseurl command and the linked files are located correctly
     relative to this URL. Otherwise full URL must be used in links.
 
-  * In the sphinx format, local files to which there are links should only be
-    located in a _static or _static-name subdirectory.
+  * In the sphinx format, links to local files do not work unless the
+    files reside in a _static directory (a warning is issued about this).
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a _static or _static-name directory and makes links to
 files in this directory only (name is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the html format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend
@@ -59461,15 +59461,15 @@ However, linking to local files like this needs caution:
     a `\hyperbaseurl` command and the linked files are located correctly
     relative to this URL. Otherwise full URL must be used in links.
 
-  * In the `sphinx` format, local files to which there are links should only be
-    located in a `_static` or `_static-name` subdirectory.
+  * In the `sphinx` format, links to local files do not work unless the
+    files reside in a `_static` directory (a warning is issued about this).
 
 As a consequence, we strongly recommend that one copies the relevant
 files to a `_static` or `_static-name` directory and makes links to
 files in this directory only (`name` is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the `html` format is of relevance).
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.
 
 If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend
@@ -70907,7 +70907,7 @@ ic/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
 pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/sh
 are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (13 pages, 1444110 bytes).
+Output written on testdoc.pdf (13 pages, 1444261 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -71072,6 +71072,9 @@ Not recommended for sphinx output: math environment {eqnarray}
 (use equation, \[ \], or align/align*)
 Not recommended for sphinx output: math environment {multline}
 Not recommended for sphinx output: math environment {gather}
+Warning: hyperlink to URL testdoc.do.txt is to a local file,
+  - should be _static/testdoc.do.txt for sphinx.
+Move files to _static and change URLs!
 copying from regex "subroutine" until ""
      file: ../doc/manual/__testcode.f,  lines 3-16  (format: fcod)
 copying after regex "a comment" until "^C\s+END1"
@@ -71613,6 +71616,11 @@ translating doconce text in author1.do.txt to latex
 output in author1.p.tex
 + doconce format sphinx author1
 translating doconce text in author1.do.txt to sphinx
+Warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
+  - should be _static/testdoc.html#___sec2 for sphinx.
+Warning: hyperlink to URL testdoc.html is to a local file,
+  - should be _static/testdoc.html for sphinx.
+Move files to _static and change URLs!
 output in author1.rst
 + doconce format plain author1
 translating doconce text in author1.do.txt to plain
@@ -72104,6 +72112,9 @@ Transcript written on tutorial.log.
 + doconce format sphinx tutorial
 running preprocess -DFORMAT=sphinx  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to sphinx
+Warning: hyperlink to URL tutorial.do.txt is to a local file,
+  - should be _static/tutorial.do.txt for sphinx.
+Move files to _static and change URLs!
 output in tutorial.rst
 + rm -rf sphinx-rootdir
 + doconce sphinx_dir tutorial
@@ -72394,7 +72405,7 @@ etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 </usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-te
 xlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 213393 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 213394 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -72543,7 +72554,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226602 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226603 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -72692,7 +72703,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226602 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226603 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -72847,7 +72858,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226602 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226603 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -72996,7 +73007,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226602 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226603 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -73362,7 +73373,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.rst.dvi (18 pages, 86924 bytes).
+Output written on tutorial.rst.dvi (18 pages, 86928 bytes).
 Transcript written on tutorial.rst.log.
 + dvipdf tutorial.rst.dvi
 + doconce format plain tutorial.do.txt
@@ -73507,6 +73518,19 @@ Warning: found \ref{...} (ref{...} has no backslash)
 Warning:
 Not recommended for sphinx output: math environment beqa
 (use equation, \[ \], or align/align*)
+Warning: hyperlink to URL src/examples/index.html is to a local file,
+  - should be _static/src/examples/index.html for sphinx.
+Warning: hyperlink to URL manual.do.txt is to a local file,
+  - should be _static/manual.do.txt for sphinx.
+Warning: hyperlink to URL testdoc.html is to a local file,
+  - should be _static/testdoc.html for sphinx.
+Warning: hyperlink to URL src/myprog.py is to a local file,
+  - should be _static/src/myprog.py for sphinx.
+Warning: hyperlink to URL manual.html is to a local file,
+  - should be _static/manual.html for sphinx.
+Warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
+  - should be _static/testdoc.html#___sec2 for sphinx.
+Move files to _static and change URLs!
 copy complete file __testcode.f  (format: fpro)
 copying from regex "subroutine\s+test" until "^C\s{5}END1"
      file: __testcode.f,  lines 3-11  (format: fcod)
@@ -73909,7 +73933,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on DoconceManual.pdf (59 pages, 395550 bytes).
+Output written on DoconceManual.pdf (59 pages, 395542 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -74631,7 +74655,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (46 pages, 202032 bytes).
+Output written on manual.rst.dvi (46 pages, 202060 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -75264,7 +75288,7 @@ Overfull \hbox (113.00006pt too wide) in paragraph at lines 3968--3968
 ugging  
 [45] [46] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (46 pages, 211460 bytes).
+Output written on manual.rst.dvi (46 pages, 211488 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
@@ -75712,7 +75736,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (50 pages, 330444 bytes).
+Output written on manual.pdf (50 pages, 330483 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -75976,7 +76000,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (51 pages, 350964 bytes).
+Output written on manual.pdf (51 pages, 351003 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -76210,7 +76234,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (51 pages, 351681 bytes).
+Output written on manual.pdf (51 pages, 351720 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -76481,7 +76505,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (51 pages, 213320 bytes).
+Output written on manual.dvi (51 pages, 213368 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -76709,7 +76733,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (51 pages, 213320 bytes).
+Output written on manual.dvi (51 pages, 213368 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -76949,7 +76973,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (51 pages, 213320 bytes).
+Output written on manual.dvi (51 pages, 213368 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -77177,7 +77201,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (51 pages, 213320 bytes).
+Output written on manual.dvi (51 pages, 213368 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt --no-mako
@@ -77564,6 +77588,11 @@ Transcript written on quickref.log.
 + doconce format sphinx quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to sphinx
+Warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
+  - should be _static/testdoc.html#___sec2 for sphinx.
+Warning: hyperlink to URL testdoc.html is to a local file,
+  - should be _static/testdoc.html for sphinx.
+Move files to _static and change URLs!
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.rst
 + rm -rf sphinx-rootdir
@@ -77638,6 +77667,11 @@ replacing doconce format sphinx %s by doconce format sphinx %s --no-preprocess i
 + python automake_sphinx.py
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to sphinx
+Warning: hyperlink to URL testdoc.html#___sec2 is to a local file,
+  - should be _static/testdoc.html#___sec2 for sphinx.
+Warning: hyperlink to URL testdoc.html is to a local file,
+  - should be _static/testdoc.html for sphinx.
+Move files to _static and change URLs!
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.rst
 rm -rf _build/*
@@ -77669,7 +77703,6 @@ Build finished. The HTML pages are in _build/html.
 
 
 running doconce format sphinx quickref --no-preprocess --skip_inline_comments
-running doconce sphinxfix_localURLs quickref.rst
 running doconce guess_encoding quickref.rst
 /home/hpl/vc/doconce/doc/quickref/sphinx-rootdir
 running make clean

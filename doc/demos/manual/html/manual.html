@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Oct 12, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Oct 13, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -1145,16 +1145,16 @@ supplied with the <tt class="docutils literal"><span class="pre">.html</span></t
 will unless the <tt class="docutils literal"><span class="pre">.tex</span></tt> file has a full URL specified through
 a <tt class="docutils literal"><span class="pre">\hyperbaseurl</span></tt> command and the linked files are located correctly
 relative to this URL. Otherwise full URL must be used in links.</li>
-<li>In the <tt class="docutils literal"><span class="pre">sphinx</span></tt> format, local files to which there are links should only be
-located in a <tt class="docutils literal"><span class="pre">_static</span></tt> or <tt class="docutils literal"><span class="pre">_static-name</span></tt> subdirectory.</li>
+<li>In the <tt class="docutils literal"><span class="pre">sphinx</span></tt> format, links to local files do not work unless the
+files reside in a <tt class="docutils literal"><span class="pre">_static</span></tt> directory (a warning is issued about this).</li>
 </ul>
 </div></blockquote>
 <p>As a consequence, we strongly recommend that one copies the relevant
 files to a <tt class="docutils literal"><span class="pre">_static</span></tt> or <tt class="docutils literal"><span class="pre">_static-name</span></tt> directory and makes links to
 files in this directory only (<tt class="docutils literal"><span class="pre">name</span></tt> is the nickname of the Doconce
 document, usually the name of the parent directory or main document).
-Other links to files should use the full URL (unless one knows that
-only the <tt class="docutils literal"><span class="pre">html</span></tt> format is of relevance).</p>
+Other links to files should use the full URL. If Doconce is used
+for HTML output only, then plain links to local files work fine.</p>
 <p>If you want a link to a local source code file and have it
 viewed in the browser rather than being downloaded, we recommend
 to transform the source code file to HTML format by running
