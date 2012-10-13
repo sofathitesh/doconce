@@ -1824,6 +1824,9 @@ def ptex2tex():
         # is ensured below using the packages list
         pass
 
+    if not os.path.isfile(filename + '.p.tex'):
+        print 'No file %s' % (filename + '.p.tex')
+        sys.exit(1)
 
     cmd = 'preprocess %s %s > %s' % \
           (' '.join(preprocess_options),
@@ -1836,7 +1839,7 @@ Could not run
     %s
 preprocess failed or is not installed.
 Download preprocess from http://code.google.com/p/preprocess
-"""
+""" % cmd
         sys.exit(1)
 
     # Mimic ptex2tex by replacing all code environments by

@@ -544,3 +544,14 @@ file=selc_composed.pdf
 Refer to the previous exercise as Exercise ref{exer:some:formula},
 the two before that as Projects ref{demo:ex:2} and ref{proj:circle1},
 and this one as Project ref{exer:you}.
+
+======= Appendix: Just for testing; part I =======
+
+This is the first appendix.
+
+===== A subsection within an appendix =====
+
+======= Appendix: Just for testing; part II =======
+
+This is more stuff for an appendix.
+
