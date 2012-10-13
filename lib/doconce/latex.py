@@ -72,6 +72,12 @@ def latex_code(filestr, code_blocks, code_block_types,
 
     # --- Final fixes for latex format ---
 
+    appendix_pattern = r'\\(chapter|section\*?)\{Appendix:\s+'
+    filestr = re.sub(appendix_pattern,
+                     '\n\n\\\\appendix\n\n' + r'\\\g<1>{', filestr,  # the first
+                     count=1)
+    filestr = re.sub(appendix_pattern, r'\\\g<1>{', filestr) # all others
+
     if include_numbering_of_exercises:
         # Remove section numbers of exercise sections
         filestr = re.sub(r'section\{(Exercise|Problem|Project)( +[^}])',

@@ -103,6 +103,10 @@ Note that abstracts are recognized by starting with ``__Abstract.__`` at
 the beginning of a line and ending with three or more ``=`` signs of the
 next heading.
 
+Appendix is supported: just let the heading start with "Appendix: "
+(this affects only ``latex`` output, where the appendix formatting
+is used - all other formats just leave the heading as it is written).
+
 Inline Formatting
 -----------------
 
