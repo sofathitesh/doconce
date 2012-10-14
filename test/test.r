@@ -267,10 +267,10 @@ one table:
   |--------------------------------|
 
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 |-------------------------------|
-|$i$ | $h_i$|$\bar T_i$ |$L_i$  |
+|$i$ | $h_i$|$\bar T_i$ | `L_i` |
 |-l-----r---------r---------r---|
 |0   |0     |288        |-0.0065|
 |1   |11,000|216        |0.0	|
@@ -278,7 +278,7 @@ accordingly):
 |3   |32,000|228        |0.0028	|
 |4   |47,000|270        |0.0	|
 |5   |51,000|270        |-0.0028|
-|6   |71,000|214        |-0.002	|
+|6   |71,000|214        |`NaN`	|
 |-------------------------------|
 
 ===== URLs =====
@@ -1099,7 +1099,7 @@ Let us take this table from the manual:
 
 <p>
 <table border="1">
-<tr><td align="center"><b>    time    </b></td> <td align="center"><b>  velocity  </b></td> <td align="center"><b>acceleration</b></td> </tr>
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
 <tr><td align="left">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
 <tr><td align="left">   2.0             </td> <td align="right">   1.376512        </td> <td align="right">   11.919          </td> </tr>
 <tr><td align="left">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
@@ -1132,25 +1132,25 @@ one table:
 
 <p>
 <table border="1">
-<tr><td align="center"><b>    time    </b></td> <td align="center"><b>  velocity  </b></td> <td align="center"><b>acceleration</b></td> </tr>
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
 <tr><td align="left">   0.0             </td> <td align="left">   1.4186          </td> <td align="left">   -5.01           </td> </tr>
 <tr><td align="left">   1.0             </td> <td align="left">   1.376512        </td> <td align="left">   11.919          </td> </tr>
 <tr><td align="left">   3.0             </td> <td align="left">   1.1E+1          </td> <td align="left">   14.717624       </td> </tr>
 </table>
 <p>
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 <p>
 <table border="1">
-<tr><td align="center"><b>   \( i \)    </b></td> <td align="center"><b>  \( h_i \)   </b></td> <td align="center"><b>\( \bar T_i \)</b></td> <td align="center"><b>  \( L_i \)   </b></td> </tr>
+<tr><td align="center"><b>    \( i \)     </b></td> <td align="center"><b>   \( h_i \)    </b></td> <td align="center"><b> \( \bar T_i \) </b></td> <td align="center"><b>     <tt>L_i</tt>      </b></td> </tr>
 <tr><td align="left">   0                 </td> <td align="right">   0                 </td> <td align="right">   288               </td> <td align="right">   -0.0065           </td> </tr>
 <tr><td align="left">   1                 </td> <td align="right">   11,000            </td> <td align="right">   216               </td> <td align="right">   0.0               </td> </tr>
 <tr><td align="left">   2                 </td> <td align="right">   20,000            </td> <td align="right">   216               </td> <td align="right">   0.001             </td> </tr>
 <tr><td align="left">   3                 </td> <td align="right">   32,000            </td> <td align="right">   228               </td> <td align="right">   0.0028            </td> </tr>
 <tr><td align="left">   4                 </td> <td align="right">   47,000            </td> <td align="right">   270               </td> <td align="right">   0.0               </td> </tr>
 <tr><td align="left">   5                 </td> <td align="right">   51,000            </td> <td align="right">   270               </td> <td align="right">   -0.0028           </td> </tr>
-<tr><td align="left">   6                 </td> <td align="right">   71,000            </td> <td align="right">   214               </td> <td align="right">   -0.002            </td> </tr>
+<tr><td align="left">   6                 </td> <td align="right">   71,000            </td> <td align="right">   214               </td> <td align="right">   <tt>NaN</tt>             </td> </tr>
 </table>
 <p>
 
@@ -2116,7 +2116,7 @@ with the preprocessor.
 
 \begin{quote}\begin{tabular}{lrr}
 \hline
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{ time } & \multicolumn{1}{c}{ velocity } & \multicolumn{1}{c}{ acceleration } \\
 \hline
 0.0          & 1.4186       & -5.01        \\
 2.0          & 1.376512     & 11.919       \\
@@ -2144,7 +2144,7 @@ one table:
 
 \begin{quote}\begin{tabular}{lll}
 \hline
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{ time } & \multicolumn{1}{c}{ velocity } & \multicolumn{1}{c}{ acceleration } \\
 \hline
 0.0          & 1.4186       & -5.01        \\
 1.0          & 1.376512     & 11.919       \\
@@ -2154,12 +2154,12 @@ one table:
 
 \noindent
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 
 \begin{quote}\begin{tabular}{lrrr}
 \hline
-\multicolumn{1}{c}{$i$} & \multicolumn{1}{c}{$h_i$} & \multicolumn{1}{c}{$\bar T_i$} & \multicolumn{1}{c}{$L_i$} \\
+\multicolumn{1}{c}{ $i$ } & \multicolumn{1}{c}{ $h_i$ } & \multicolumn{1}{c}{ $\bar T_i$ } & \multicolumn{1}{c}{ \texttt{L\_i} } \\
 \hline
 0          & 0          & 288        & -0.0065    \\
 1          & 11,000     & 216        & 0.0        \\
@@ -2167,7 +2167,7 @@ accordingly):
 3          & 32,000     & 228        & 0.0028     \\
 4          & 47,000     & 270        & 0.0        \\
 5          & 51,000     & 270        & -0.0028    \\
-6          & 71,000     & 214        & -0.002     \\
+6          & 71,000     & 214        & \code{NaN}      \\
 \hline
 \end{tabular}\end{quote}
 
@@ -2964,7 +2964,7 @@ with the preprocessor.
 
 \begin{quote}\begin{tabular}{lrr}
 \hline
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{ time } & \multicolumn{1}{c}{ velocity } & \multicolumn{1}{c}{ acceleration } \\
 \hline
 0.0          & 1.4186       & -5.01        \\
 2.0          & 1.376512     & 11.919       \\
@@ -2994,7 +2994,7 @@ one table:
 
 \begin{quote}\begin{tabular}{lll}
 \hline
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{ time } & \multicolumn{1}{c}{ velocity } & \multicolumn{1}{c}{ acceleration } \\
 \hline
 0.0          & 1.4186       & -5.01        \\
 1.0          & 1.376512     & 11.919       \\
@@ -3004,12 +3004,12 @@ one table:
 
 \noindent
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 
 \begin{quote}\begin{tabular}{lrrr}
 \hline
-\multicolumn{1}{c}{$i$} & \multicolumn{1}{c}{$h_i$} & \multicolumn{1}{c}{$\bar T_i$} & \multicolumn{1}{c}{$L_i$} \\
+\multicolumn{1}{c}{ $i$ } & \multicolumn{1}{c}{ $h_i$ } & \multicolumn{1}{c}{ $\bar T_i$ } & \multicolumn{1}{c}{ \texttt{L\_i} } \\
 \hline
 0          & 0          & 288        & -0.0065    \\
 1          & 11,000     & 216        & 0.0        \\
@@ -3017,7 +3017,7 @@ accordingly):
 3          & 32,000     & 228        & 0.0028     \\
 4          & 47,000     & 270        & 0.0        \\
 5          & 51,000     & 270        & -0.0028    \\
-6          & 71,000     & 214        & -0.002     \\
+6          & 71,000     & 214        & {\fontsize{10pt}{10pt}\verb!NaN!}      \\
 \hline
 \end{tabular}\end{quote}
 
@@ -3787,7 +3787,7 @@ with the preprocessor.
 
 \begin{quote}\begin{tabular}{lrr}
 \hline
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{ time } & \multicolumn{1}{c}{ velocity } & \multicolumn{1}{c}{ acceleration } \\
 \hline
 0.0          & 1.4186       & -5.01        \\
 2.0          & 1.376512     & 11.919       \\
@@ -3817,7 +3817,7 @@ one table:
 
 \begin{quote}\begin{tabular}{lll}
 \hline
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{ time } & \multicolumn{1}{c}{ velocity } & \multicolumn{1}{c}{ acceleration } \\
 \hline
 0.0          & 1.4186       & -5.01        \\
 1.0          & 1.376512     & 11.919       \\
@@ -3827,12 +3827,12 @@ one table:
 
 \noindent
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 
 \begin{quote}\begin{tabular}{lrrr}
 \hline
-\multicolumn{1}{c}{$i$} & \multicolumn{1}{c}{$h_i$} & \multicolumn{1}{c}{$\bar T_i$} & \multicolumn{1}{c}{$L_i$} \\
+\multicolumn{1}{c}{ $i$ } & \multicolumn{1}{c}{ $h_i$ } & \multicolumn{1}{c}{ $\bar T_i$ } & \multicolumn{1}{c}{ \texttt{L\_i} } \\
 \hline
 0          & 0          & 288        & -0.0065    \\
 1          & 11,000     & 216        & 0.0        \\
@@ -3840,7 +3840,7 @@ accordingly):
 3          & 32,000     & 228        & 0.0028     \\
 4          & 47,000     & 270        & 0.0        \\
 5          & 51,000     & 270        & -0.0028    \\
-6          & 71,000     & 214        & -0.002     \\
+6          & 71,000     & 214        & {\fontsize{10pt}{10pt}\verb!NaN!}      \\
 \hline
 \end{tabular}\end{quote}
 
@@ -4497,10 +4497,10 @@ one table:
 ============  ============  ============  
 
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 ========  ========  ========  ========  
-   i        h_i     \bar T_i    L_i     
+   i        h_i     \bar T_i   ``L_i``    
 ========  ========  ========  ========  
 0                0       288   -0.0065  
 1           11,000       216       0.0  
@@ -4508,7 +4508,7 @@ accordingly):
 3           32,000       228    0.0028  
 4           47,000       270       0.0  
 5           51,000       270   -0.0028  
-6           71,000       214    -0.002  
+6           71,000       214     ``NaN``  
 ========  ========  ========  ========  
 
 .. _subsubsec:ex:
@@ -5164,10 +5164,10 @@ one table:
 ============  ============  ============  
 
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 ================  ================  ================  ================  
-   :math:`i`        :math:`h_i`     :math:`\bar T_i`    :math:`L_i`     
+   :math:`i`        :math:`h_i`     :math:`\bar T_i`       ``L_i``        
 ================  ================  ================  ================  
 0                                0               288           -0.0065  
 1                           11,000               216               0.0  
@@ -5175,7 +5175,7 @@ accordingly):
 3                           32,000               228            0.0028  
 4                           47,000               270               0.0  
 5                           51,000               270           -0.0028  
-6                           71,000               214            -0.002  
+6                           71,000               214             ``NaN``  
 ================  ================  ================  ================  
 
 .. _subsubsec:ex:
@@ -5824,7 +5824,7 @@ one table:
 
 
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 
  ||     _`i`_       ||    _`h_i`_      ||  _`\bar T_i`_   ||    _`L_i`_      ||
@@ -5834,7 +5834,7 @@ accordingly):
  ||  3              ||  32,000         ||  228            ||  0.0028         ||
  ||  4              ||  47,000         ||  270            ||  0.0            ||
  ||  5              ||  51,000         ||  270            ||  -0.0028        ||
- ||  6              ||  71,000         ||  214            ||  -0.002         ||
+ ||  6              ||  71,000         ||  214            ||  `NaN`          ||
 
 ==== URLs ====
 
@@ -6287,7 +6287,7 @@ Let us take this table from the manual:
 
 
 <table border="1">
-<tr><td align="center"><b>    time    </b></td> <td align="center"><b>  velocity  </b></td> <td align="center"><b>acceleration</b></td> </tr>
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
 <tr><td align="left">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
 <tr><td align="left">   2.0             </td> <td align="right">   1.376512        </td> <td align="right">   11.919          </td> </tr>
 <tr><td align="left">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
@@ -6308,23 +6308,23 @@ Here is yet another table to test that we can handle more than
 one table:
 
 <table border="1">
-<tr><td align="center"><b>    time    </b></td> <td align="center"><b>  velocity  </b></td> <td align="center"><b>acceleration</b></td> </tr>
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
 <tr><td align="left">   0.0             </td> <td align="left">   1.4186          </td> <td align="left">   -5.01           </td> </tr>
 <tr><td align="left">   1.0             </td> <td align="left">   1.376512        </td> <td align="left">   11.919          </td> </tr>
 <tr><td align="left">   3.0             </td> <td align="left">   1.1E+1          </td> <td align="left">   14.717624       </td> </tr>
 </table>
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 <table border="1">
-<tr><td align="center"><b>    <math>i</math>   </b></td> <td align="center"><b>   <math>h_i</math>  </b></td> <td align="center"><b><math>\bar T_i</math></b></td> <td align="center"><b>   <math>L_i</math>  </b></td> </tr>
+<tr><td align="center"><b>     <math>i</math>    </b></td> <td align="center"><b>    <math>h_i</math>   </b></td> <td align="center"><b> <math>\bar T_i</math> </b></td> <td align="center"><b>         <code>L_i</code>         </b></td> </tr>
 <tr><td align="left">   0                        </td> <td align="right">   0                        </td> <td align="right">   288                      </td> <td align="right">   -0.0065                  </td> </tr>
 <tr><td align="left">   1                        </td> <td align="right">   11,000                   </td> <td align="right">   216                      </td> <td align="right">   0.0                      </td> </tr>
 <tr><td align="left">   2                        </td> <td align="right">   20,000                   </td> <td align="right">   216                      </td> <td align="right">   0.001                    </td> </tr>
 <tr><td align="left">   3                        </td> <td align="right">   32,000                   </td> <td align="right">   228                      </td> <td align="right">   0.0028                   </td> </tr>
 <tr><td align="left">   4                        </td> <td align="right">   47,000                   </td> <td align="right">   270                      </td> <td align="right">   0.0                      </td> </tr>
 <tr><td align="left">   5                        </td> <td align="right">   51,000                   </td> <td align="right">   270                      </td> <td align="right">   -0.0028                  </td> </tr>
-<tr><td align="left">   6                        </td> <td align="right">   71,000                   </td> <td align="right">   214                      </td> <td align="right">   -0.002                   </td> </tr>
+<tr><td align="left">   6                        </td> <td align="right">   71,000                   </td> <td align="right">   214                      </td> <td align="right">   <code>NaN</code>                    </td> </tr>
 </table>
 
 ==== URLs ====
@@ -6814,17 +6814,17 @@ one table:
 
 
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 
- | ={{{i}}}            | ={{{h_i}}}          | ={{{\bar T_i}}}     | ={{{L_i}}}          |
+ | ={{{i}}}            | ={{{h_i}}}          | ={{{\bar T_i}}}     | =`L_i`              |
  |  0                  |  0                  |  288                |  -0.0065            |
  |  1                  |  11,000             |  216                |  0.0                |
  |  2                  |  20,000             |  216                |  0.001              |
  |  3                  |  32,000             |  228                |  0.0028             |
  |  4                  |  47,000             |  270                |  0.0                |
  |  5                  |  51,000             |  270                |  -0.0028            |
- |  6                  |  71,000             |  214                |  -0.002             |
+ |  6                  |  71,000             |  214                |  {{{NaN}}}              |
 
 
 == URLs ==
@@ -7296,10 +7296,10 @@ one table:
 ============  ============  ============  
 
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 ========  ========  ========  ========  
-   i        h_i     \bar T_i    L_i     
+   i        h_i     \bar T_i   'L_i'    
 ========  ========  ========  ========  
 0                0       288   -0.0065  
 1           11,000       216       0.0  
@@ -7307,7 +7307,7 @@ accordingly):
 3           32,000       228    0.0028  
 4           47,000       270       0.0  
 5           51,000       270   -0.0028  
-6           71,000       214    -0.002  
+6           71,000       214     'NaN'  
 ========  ========  ========  ========  
 
 URLs
@@ -7736,10 +7736,10 @@ one table:
 ============  ============  ============  
 
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 ===========  ===========  ===========  ===========  
-    M{i}        M{h_i}    M{\bar T_i}     M{L_i}    
+    M{i}        M{h_i}    M{\bar T_i}     C{L_i}     
 ===========  ===========  ===========  ===========  
 0                      0          288      -0.0065  
 1                 11,000          216          0.0  
@@ -7747,7 +7747,7 @@ accordingly):
 3                 32,000          228       0.0028  
 4                 47,000          270          0.0  
 5                 51,000          270      -0.0028  
-6                 71,000          214       -0.002  
+6                 71,000          214        C{NaN}  
 ===========  ===========  ===========  ===========  
 
 URLs
@@ -8262,10 +8262,10 @@ one table:
 ============  ============  ============  
 
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 ========  ========  ========  ========  
-   i        h_i     \bar T_i    L_i     
+   i        h_i     \bar T_i   L_i    
 ========  ========  ========  ========  
 0                0       288   -0.0065  
 1           11,000       216       0.0  
@@ -8273,7 +8273,7 @@ accordingly):
 3           32,000       228    0.0028  
 4           47,000       270       0.0  
 5           51,000       270   -0.0028  
-6           71,000       214    -0.002  
+6           71,000       214     NaN  
 ========  ========  ========  ========  
 
 URLs
@@ -8764,10 +8764,10 @@ one table:
 
 
 And one with math headings (that are expanded and must be treated
-accordingly):
+accordingly) and verbatim heading and entry:
 
 
-   $i$        $h_i$     $\bar T_i$    $L_i$     
+   $i$        $h_i$     $\bar T_i$    `L_i`     
 ----------  ----------  ----------  ----------  
 0                    0         288     -0.0065  
 1               11,000         216         0.0  
@@ -8775,7 +8775,7 @@ accordingly):
 3               32,000         228      0.0028  
 4               47,000         270         0.0  
 5               51,000         270     -0.0028  
-6               71,000         214      -0.002  
+6               71,000         214       `NaN`  
 
 
 URLs
@@ -9295,9 +9295,9 @@ output2</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="left">1ctime</th>
-<th align="right">1cvelocity</th>
-<th align="right">1cacceleration</th>
+<th align="left">1c time</th>
+<th align="right">1c velocity</th>
+<th align="right">1c acceleration</th>
 </tr>
 </thead>
 <tbody>
@@ -9334,9 +9334,9 @@ output2</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="left">1ctime</th>
-<th align="left">1cvelocity</th>
-<th align="left">1cacceleration</th>
+<th align="left">1c time</th>
+<th align="left">1c velocity</th>
+<th align="left">1c acceleration</th>
 </tr>
 </thead>
 <tbody>
@@ -9357,16 +9357,16 @@ output2</code></pre>
 </tr>
 </tbody>
 </table>
-<p>And one with math headings (that are expanded and must be treated accordingly):</p>
+<p>And one with math headings (that are expanded and must be treated accordingly) and verbatim heading and entry:</p>
 </blockquote>
 <blockquote>
 <table>
 <thead>
 <tr class="header">
-<th align="left">1c\(i\)</th>
-<th align="right">1c\(h_i\)</th>
-<th align="right">1c\(\bar T_i\)</th>
-<th align="right">1c\(L_i\)</th>
+<th align="left">1c \(i\)</th>
+<th align="right">1c \(h_i\)</th>
+<th align="right">1c \(\bar T_i\)</th>
+<th align="right">1c <code>L_i</code></th>
 </tr>
 </thead>
 <tbody>
@@ -9410,7 +9410,7 @@ output2</code></pre>
 <td align="left">6</td>
 <td align="right">71,000</td>
 <td align="right">214</td>
-<td align="right">-0.002</td>
+<td align="right">10pt10pt<code>NaN</code></td>
 </tr>
 </tbody>
 </table>
@@ -9766,14 +9766,14 @@ output2</code></pre>
 </tr>
 </tbody>
 </table>
-<p>And one with math headings (that are expanded and must be treated accordingly):</p>
+<p>And one with math headings (that are expanded and must be treated accordingly) and verbatim heading and entry:</p>
 <table>
 <thead>
 <tr class="header">
 <th align="center">\(i\)</th>
 <th align="center">\(h_i\)</th>
 <th align="left">\(\bar T_i\)</th>
-<th align="center">\(L_i\)</th>
+<th align="center"><code>L_i</code></th>
 </tr>
 </thead>
 <tbody>
@@ -9817,7 +9817,7 @@ output2</code></pre>
 <td align="center">6</td>
 <td align="center">71,000</td>
 <td align="left">214</td>
-<td align="center">-0.002</td>
+<td align="center"><code>NaN</code></td>
 </tr>
 </tbody>
 </table>
@@ -12304,7 +12304,7 @@ Tables are also supperted, e.g.,
 
 <p>
 <table border="1">
-<tr><td align="center"><b>    time    </b></td> <td align="center"><b>  velocity  </b></td> <td align="center"><b>acceleration</b></td> </tr>
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
 <tr><td align="right">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
 <tr><td align="right">   2.0             </td> <td align="right">   1.376512        </td> <td align="right">   11.919          </td> </tr>
 <tr><td align="right">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
@@ -13878,7 +13878,7 @@ Tables are also supperted, e.g.,
 
 \begin{quote}\begin{tabular}{rrr}
 \hline
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{ time } & \multicolumn{1}{c}{ velocity } & \multicolumn{1}{c}{ acceleration } \\
 \hline
 0.0          & 1.4186       & -5.01        \\
 2.0          & 1.376512     & 11.919       \\
@@ -18437,7 +18437,7 @@ comments can be removed from the output by a command-line argument
 Tables are also supperted, e.g.,
 
 <table border="1">
-<tr><td align="center"><b>    time    </b></td> <td align="center"><b>  velocity  </b></td> <td align="center"><b>acceleration</b></td> </tr>
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
 <tr><td align="right">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
 <tr><td align="right">   2.0             </td> <td align="right">   1.376512        </td> <td align="right">   11.919          </td> </tr>
 <tr><td align="right">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
@@ -25633,7 +25633,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 13 Oct 2012 (10:41)
+DATE: Sun, 14 Oct 2012 (15:40)
 
 
 
@@ -25737,7 +25737,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 13 Oct 2012 (10:41)
+DATE: Sun, 14 Oct 2012 (15:40)
 
 
 
@@ -25851,7 +25851,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 13 Oct 2012 (10:41)</center>
+<center>Sun, 14 Oct 2012 (15:40)</center>
 
 
 
@@ -25982,7 +25982,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 13 Oct 2012 (10:41)</center>
+<center>Sun, 14 Oct 2012 (15:40)</center>
 
 
 
@@ -30306,7 +30306,7 @@ A table like
 
 <p>
 <table border="1">
-<tr><td align="center"><b>    time    </b></td> <td align="center"><b>  velocity  </b></td> <td align="center"><b>acceleration</b></td> </tr>
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
 <tr><td align="right">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
 <tr><td align="right">   2.0             </td> <td align="right">   1.376512        </td> <td align="right">   11.919          </td> </tr>
 <tr><td align="right">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
@@ -33730,7 +33730,7 @@ A table like
 
 \begin{quote}\begin{tabular}{rrr}
 \hline
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{ time } & \multicolumn{1}{c}{ velocity } & \multicolumn{1}{c}{ acceleration } \\
 \hline
 0.0          & 1.4186       & -5.01        \\
 2.0          & 1.376512     & 11.919       \\
@@ -45680,7 +45680,7 @@ is a special feature of doconce :-) ]
 A table like
 
 <table border="1">
-<tr><td align="center"><b>    time    </b></td> <td align="center"><b>  velocity  </b></td> <td align="center"><b>acceleration</b></td> </tr>
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
 <tr><td align="right">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
 <tr><td align="right">   2.0             </td> <td align="right">   1.376512        </td> <td align="right">   11.919          </td> </tr>
 <tr><td align="right">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
@@ -62568,7 +62568,7 @@ The table of contents is removed by writing <tt>TOC: off</tt>.
 
 <p>
 <table border="1">
-<tr><td align="center"><b>                        Section type                       </b></td> <td align="center"><b>                           Syntax                          </b></td> </tr>
+<tr><td align="center"><b>                         Section type                        </b></td> <td align="center"><b>                            Syntax                           </b></td> </tr>
 <tr><td align="left">   chapter                                                        </td> <td align="left">   <tt>========= Heading  <a name="___sec3"></a>========</tt> (9 <tt>=</tt>)    </td> </tr>
 <tr><td align="left">   section                                                        </td> <td align="left">   <tt>======= Heading  <a name="___sec4"></a>=======</tt>    (7 <tt>=</tt>)    </td> </tr>
 <tr><td align="left">   subsection                                                     </td> <td align="left">   <tt>===== Heading  <a name="___sec5"></a>=====</tt>        (5 <tt>=</tt>)    </td> </tr>
@@ -63600,7 +63600,7 @@ The table of contents is removed by writing \code{TOC: off}.
 
 \begin{quote}\begin{tabular}{ll}
 \hline
-\multicolumn{1}{c}{Section type} & \multicolumn{1}{c}{Syntax} \\
+\multicolumn{1}{c}{ Section type } & \multicolumn{1}{c}{ Syntax } \\
 \hline
 chapter                              & \code{========= Heading ========} (9 \code{=}) \\
 section                              & \code{======= Heading =======}    (7 \code{=}) \\
@@ -66568,7 +66568,7 @@ The table of contents is removed by writing <code>TOC: off</code>.
 ==== Section Types ====
 
 <table border="1">
-<tr><td align="center"><b>            Section type            </b></td> <td align="center"><b>               Syntax               </b></td> </tr>
+<tr><td align="center"><b>             Section type             </b></td> <td align="center"><b>                Syntax                </b></td> </tr>
 <tr><td align="left">   chapter                                 </td> <td align="left">   <code>========= Heading ========</code> (9 <code>=</code>)    </td> </tr>
 <tr><td align="left">   section                                 </td> <td align="left">   <code>======= Heading =======</code>    (7 <code>=</code>)    </td> </tr>
 <tr><td align="left">   subsection                              </td> <td align="left">   <code>===== Heading =====</code>        (5 <code>=</code>)    </td> </tr>
@@ -71215,7 +71215,7 @@ ic/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
 pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/sh
 are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (13 pages, 1445848 bytes).
+Output written on testdoc.pdf (13 pages, 1445747 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
