@@ -896,10 +896,22 @@ def typeset_tables(filestr, format):
     # table is a dict with keys rows, headings_align, columns_align
     table = {'rows': []}  # init new table
     inside_table = False
-    for line in filestr.splitlines():
+
+    horizontal_rule_pattern = r'^\|[\-lrc]+\|'
+    lines = filestr.splitlines()
+    # Fix: add blank line if document ends with a table (otherwise we
+    # cannot see the end of the table)
+    if re.search(horizontal_rule_pattern, lines[-1]):
+        lines.append('\n')
+
+    for line in lines:
         lin = line.strip()
         # horisontal table rule?
-        if lin.startswith('|-') and lin.endswith('-|'):
+        if re.search(horizontal_rule_pattern, lin):
+            horizontal_rule = True
+        else:
+            horizontal_rule = False
+        if horizontal_rule:
             table['rows'].append(['horizontal rule'])
 
             # See if there is c-l-r alignments:
@@ -923,7 +935,7 @@ def typeset_tables(filestr, format):
                     # align spec concerns column alignment
                     table['columns_align'] = align
             continue  # continue with next line
-        if lin.startswith('|') and not lin.startswith('|-'):
+        if lin.startswith('|') and not horizontal_rule:
             # row in table:
             if not inside_table:
                 inside_table = True
