@@ -261,7 +261,17 @@ def latex_table(table):
                 headline = False
 
             if headline:
-                row = [r'\multicolumn{1}{%s}{%s}' % (a, r) \
+                # First fix verbatim inside multicolumn
+                verbatim_pattern = r'`(.+?)`'
+                for i in range(len(row)):
+                    m = re.search(verbatim_pattern, row[i])
+                    if m:
+                        row[i] = re.sub(verbatim_pattern,
+                                        r'\\texttt{%s}' % m.group(1),
+                                        row[i])
+                        row[i] = row[i].replace('_', '\\_')
+
+                row = [r'\multicolumn{1}{%s}{ %s }' % (a, r) \
                        for r, a in zip(row, heading_spec)]
             else:
                 row = [r.ljust(w) for r, w in zip(row, column_width)]

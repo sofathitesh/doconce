@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Oct 13, 2012 ====
+==== Oct 14, 2012 ====
 
 ''TOC'' <!--> Very preliminary -->
 
@@ -52,7 +52,7 @@ The table of contents is removed by writing <code>TOC: off</code>.
 ==== Section Types ====
 
 <table border="1">
-<tr><td align="center"><b>            Section type            </b></td> <td align="center"><b>               Syntax               </b></td> </tr>
+<tr><td align="center"><b>             Section type             </b></td> <td align="center"><b>                Syntax                </b></td> </tr>
 <tr><td align="left">   chapter                                 </td> <td align="left">   <code>========= Heading ========</code> (9 <code>=</code>)    </td> </tr>
 <tr><td align="left">   section                                 </td> <td align="left">   <code>======= Heading =======</code>    (7 <code>=</code>)    </td> </tr>
 <tr><td align="left">   subsection                              </td> <td align="left">   <code>===== Heading =====</code>        (5 <code>=</code>)    </td> </tr>

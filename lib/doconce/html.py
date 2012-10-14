@@ -194,7 +194,7 @@ def html_table(table):
         for column, w, ha, ca in \
                 zip(row, column_width, heading_spec, column_spec):
             if headline:
-                s += '<td align="%s"><b>%s</b></td> ' % \
+                s += '<td align="%s"><b> %s </b></td> ' % \
                      (a2html[ha], column.center(w))
             else:
                 s += '<td align="%s">   %s    </td> ' % \

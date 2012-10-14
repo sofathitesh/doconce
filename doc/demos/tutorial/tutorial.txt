@@ -7,7 +7,7 @@ Hans Petter Langtangen [1, 2]
 [2] University of Oslo
 
 
-Date: Oct 13, 2012
+Date: Oct 14, 2012
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
