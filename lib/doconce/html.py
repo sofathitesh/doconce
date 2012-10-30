@@ -316,22 +316,24 @@ def html_ref_and_label(section_label2title, format, filestr):
     # mathematics and those labels)
     running_text_labels = re.findall(r'label\{(.+?)\}', filestr)
 
-    # turn label{myname} to anchors <a name="myname"></a>
-    filestr = re.sub(r'label\{(.+?)\}', r'<a name="\g<1>"></a>', filestr)
-
     # make special anchors for all the section titles with labels:
     for label in section_label2title:
-        # first remove the anchor with this label as created above:
+        # first remove the anchor with this label as created above
+        # because it shall not appear after a heading when it is
+        # associated with the heading
         filestr = filestr.replace('<a name="%s"></a>' % label, '')
         # make new anchor for this label (put in title):
         title = section_label2title[label]
-        title_pattern = r'(_{3,9}|={3,9})\s*%s\s*(_{3,9}|={3,9})' % re.escape(title)
+        title_pattern = r'(_{3,9}|={3,9})\s*%s\s*(_{3,9}|={3,9})\s*label\{%s\}' % (re.escape(title), label)
         title_new = '\g<1> %s <a name="%s"></a> \g<2>' % (title.replace('\\', '\\\\'), label)
         filestr, n = re.subn(title_pattern, title_new, filestr)
         # (a little odd with mix of doconce title syntax and html NAME tag...)
         if n == 0:
             #raise Exception('problem with substituting "%s"' % title)
             pass
+
+    # turn label{myname} to anchors <a name="myname"></a>
+    filestr = re.sub(r'label\{(.+?)\}', r'<a name="\g<1>"></a>', filestr)
 
     # replace all references to sections by section titles:
     for label in section_label2title:

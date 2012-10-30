@@ -93,7 +93,8 @@ def latex_code(filestr, code_blocks, code_block_types,
                 filestr = filestr.replace(
                     '\\href{{%s}}{%s}' % (url, text),
                     '\\href{{%s}}{%s}' % (url, text) +
-                    '\\footnote{\\texttt{%s}}' % url.replace('_', '\\_'))
+                    '\\footnote{\\texttt{%s}}' %
+                    url.replace('_', '\\_').replace('%', '\\%').replace('#', '\\#'))
 
     # Add movie15 package if the file has a movie
     if r'\includemovie[' in filestr:

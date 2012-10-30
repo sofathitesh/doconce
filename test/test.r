@@ -742,8 +742,6 @@ is part of the abstract.
 
 <h2>Section 1 <a name="sec1"></a></h2>
 <p>
-
-<p>
 Here is a nested list:
 
 <p>
@@ -925,8 +923,6 @@ like <tt>\begin</tt> and <tt>\end</tt> in inline verbatim text.
 
 <h3>Subsection 2 <a name="subsec:ex"></a></h3>
 <p>
-
-<p>
 Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
 there is a flow.
 
@@ -1019,8 +1015,6 @@ Movie <a href="#mymov">mymov</a> has a similar problem.
 
 <h3>The \( \theta \) parameter (not \( \nabla \)?) <a name="decay:sec:theta"></a></h3>
 <p>
-
-<p>
 Functions do not always need to be advanced, here is one
 involving \( \theta \):
 <p>
@@ -1085,8 +1079,6 @@ achievement.
 <p>
 
 <h3>Tables <a name="subsec:table"></a></h3>
-<p>
-
 <p>
 
 <p>
@@ -1155,8 +1147,6 @@ accordingly) and verbatim heading and entry:
 <p>
 
 <h3>URLs <a name="subsubsec:ex"></a></h3>
-<p>
-
 <p>
 Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or
 the entire URL if desired, <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>.  Here is a
@@ -1282,8 +1272,6 @@ between there we have <a href="#exer:some:formula">Exercise 4: Make references t
 
 <h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
 <p>
-
-<p>
 Make a program that simulates flipping a coin \( N \) times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
@@ -1322,8 +1310,6 @@ Filename: <tt>flip_coin.py</tt>.
 
 <h3>Project 2: Compute a Probability <a name="demo:ex:2"></a></h3>
 <p>
-
-<p>
 <!-- Minimalistic exercise -->
 
 <p>
@@ -1353,8 +1339,6 @@ compute the probability as \( M/N \).
 <p>
 
 <h3>Project 3: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
-<p>
-
 <p>
 The formula for a circle is given by
 $$
@@ -1442,8 +1426,6 @@ With some text, before we continue with exercises.
 
 <h3>Exercise 4: Make references to projects and problems <a name="exer:some:formula"></a></h3>
 <p>
-
-<p>
 Pick a statement from <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
 Filename: <tt>verify_formula.py</tt>.
@@ -1463,8 +1445,6 @@ Filename: <tt>verify_formula.py</tt>.
 <p>
 
 <h3>Project 5: References in a headings do not work well in html <a name="exer:you"></a></h3>
-<p>
-
 <p>
 Refer to the previous exercise as <a href="#exer:some:formula">Exercise 4: Make references to projects and problems</a>,
 the two before that as <a href="#demo:ex:2">Project 2: Compute a Probability</a> and <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a>,
@@ -10908,8 +10888,6 @@ MathJax.Hub.Config({
 
 <h2>Generalized References <a name="genrefs"></a></h2>
 <p>
-
-<p>
 Sometimes a series of individual documents may be assembled to one
 large document. The assembly impacts how references to sections
 are written: when referring to a section in the same document, a label
@@ -12259,8 +12237,6 @@ The Doconce text above results in the following little document:
 
 <h3>A Subsection with Sample Text <a name="my:first:sec"></a></h3>
 <p>
-
-<p>
 Ordinary text looks like ordinary text, and the tags used for
 <b>boldface</b> words, <em>emphasized</em> words, and <tt>computer</tt> words look
 natural in plain text.  Lists are typeset as you would do in an email,
@@ -12409,8 +12385,6 @@ right writing enviroment for plain text.
 
 <h3>Macros (Newcommands), Cross-References, Index, and Bibliography <a name="newcommands"></a></h3>
 <p>
-
-<p>
 Doconce supports a type of macros via a LaTeX-style <em>newcommand</em>
 construction.  The newcommands defined in a file with name
 <tt>newcommand_replace.tex</tt> are expanded when Doconce is filtered to
@@ -12454,8 +12428,6 @@ for various formats of this document).
 <p>
 
 <h2>From Doconce to Other Formats <a name="doconce2formats"></a></h2>
-<p>
-
 <p>
 Transformation of a Doconce document <tt>mydoc.do.txt</tt> to various other
 formats applies the script <tt>doconce format</tt>:
@@ -25633,7 +25605,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sun, 14 Oct 2012 (15:40)
+DATE: Wed, 31 Oct 2012 (00:43)
 
 
 
@@ -25737,7 +25709,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sun, 14 Oct 2012 (15:40)
+DATE: Wed, 31 Oct 2012 (00:43)
 
 
 
@@ -25851,7 +25823,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 14 Oct 2012 (15:40)</center>
+<center>Wed, 31 Oct 2012 (00:43)</center>
 
 
 
@@ -25982,7 +25954,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 14 Oct 2012 (15:40)</center>
+<center>Wed, 31 Oct 2012 (00:43)</center>
 
 
 
@@ -28323,8 +28295,6 @@ $$
 
 <h2>What Is Doconce? <a name="what:is:doconce"></a></h2>
 <p>
-
-<p>
 Doconce is two things:
 
 <p>
@@ -28721,8 +28691,6 @@ of the results.
 <p>
 
 <h2>From Doconce to Other Formats <a name="doconce2formats"></a></h2>
-<p>
-
 <p>
 Transformation of a Doconce document <tt>mydoc.do.txt</tt> to various other
 formats applies the script <tt>doconce format</tt>:
@@ -29804,8 +29772,6 @@ the section <a href="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> 
 
 <h3>Inline Tagging <a name="inline:tagging"></a></h3>
 <p>
-
-<p>
 Doconce supports tags for <em>emphasized phrases</em>, <b>boldface phrases</b>,
 and <tt>verbatim text</tt> (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as \( \nu = \sin(x) \).
@@ -30083,8 +30049,6 @@ in the section <a href="#inline:tagging">Inline Tagging</a>.
 <p>
 
 <h2>Generalized Cross-Referencing <a name="manual:genrefs"></a></h2>
-<p>
-
 <p>
 Sometimes a series of individual documents may be assembled to one
 large document. The assembly impacts how references to sections
@@ -30464,8 +30428,6 @@ under a section (or subsection) named "Exercises", "Problems", or
 
 <h3>Blocks of Verbatim Computer Code <a name="sec:verbatim:blocks"></a></h3>
 <p>
-
-<p>
 Blocks of computer code, to be typeset verbatim, must appear inside a
 "begin code" <tt>!bc</tt> keyword and an "end code" <tt>!ec</tt> keyword. Both
 keywords must be on a single line and <em>start at the beginning of the
@@ -30684,8 +30646,6 @@ file.)
 
 <h3>LaTeX Blocks of Mathematical Text <a name="mathtext"></a></h3>
 <p>
-
-<p>
 Blocks of mathematical text are like computer code blocks, but
 the opening tag is <tt>!bt</tt> (begin TeX) and the closing tag is
 <tt>!et</tt>. It is important that <tt>!bt</tt> and <tt>!et</tt> appear on the beginning of the
@@ -30764,8 +30724,6 @@ use with PowerPoint or OpenOffice presentations.
 </ol>
 
 <h3>Macros (Newcommands) <a name="newcommands"></a></h3>
-<p>
-
 <p>
 Doconce supports a type of macros via a LaTeX-style <em>newcommand</em>
 construction.  The newcommands defined in a file with name
@@ -62565,8 +62523,6 @@ The table of contents is removed by writing <tt>TOC: off</tt>.
 
 <h3>Section Types <a name="quick:sections"></a></h3>
 <p>
-
-<p>
 <table border="1">
 <tr><td align="center"><b>                         Section type                        </b></td> <td align="center"><b>                            Syntax                           </b></td> </tr>
 <tr><td align="left">   chapter                                                        </td> <td align="left">   <tt>========= Heading  <a name="___sec3"></a>========</tt> (9 <tt>=</tt>)    </td> </tr>
@@ -63100,7 +63056,7 @@ list of capabilities:
 <blockquote>    <!-- begin verbatim block  shpro-->
 <pre>
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -63148,6 +63104,7 @@ doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce expand_commands file1 file2 ...
+doconce combine_images image1 image2 ... output_file
 doconce latex_exercise_toc doconcefile.do.txt
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
@@ -64069,7 +64026,7 @@ list of capabilities:
 
 \bshpro
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -64117,6 +64074,7 @@ doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce expand_commands file1 file2 ...
+doconce combine_images image1 image2 ... output_file
 doconce latex_exercise_toc doconcefile.do.txt
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
@@ -64844,7 +64802,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -64892,6 +64850,7 @@ list of capabilities::
                 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
         
         doconce expand_commands file1 file2 ...
+        doconce combine_images image1 image2 ... output_file
         doconce latex_exercise_toc doconcefile.do.txt
         doconce list_labels doconcefile.do.txt | latexfile.tex
         doconce teamod name
@@ -65649,7 +65608,7 @@ list of capabilities:
 .. code-block:: bash
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -65697,6 +65656,7 @@ list of capabilities:
                 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
         
         doconce expand_commands file1 file2 ...
+        doconce combine_images image1 image2 ... output_file
         doconce latex_exercise_toc doconcefile.do.txt
         doconce list_labels doconcefile.do.txt | latexfile.tex
         doconce teamod name
@@ -66328,7 +66288,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -66376,6 +66336,7 @@ doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce expand_commands file1 file2 ...
+doconce combine_images image1 image2 ... output_file
 doconce latex_exercise_toc doconcefile.do.txt
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
@@ -66961,7 +66922,7 @@ list of capabilities:
 
 <syntaxhighlight lang="bash">
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -67009,6 +66970,7 @@ doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce expand_commands file1 file2 ...
+doconce combine_images image1 image2 ... output_file
 doconce latex_exercise_toc doconcefile.do.txt
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
@@ -67622,7 +67584,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -67670,6 +67632,7 @@ doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce expand_commands file1 file2 ...
+doconce combine_images image1 image2 ... output_file
 doconce latex_exercise_toc doconcefile.do.txt
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
@@ -68319,7 +68282,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -68367,6 +68330,7 @@ list of capabilities::
                 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
         
         doconce expand_commands file1 file2 ...
+        doconce combine_images image1 image2 ... output_file
         doconce latex_exercise_toc doconcefile.do.txt
         doconce list_labels doconcefile.do.txt | latexfile.tex
         doconce teamod name
@@ -69034,7 +68998,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -69082,6 +69046,7 @@ list of capabilities::
                 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
         
         doconce expand_commands file1 file2 ...
+        doconce combine_images image1 image2 ... output_file
         doconce latex_exercise_toc doconcefile.do.txt
         doconce list_labels doconcefile.do.txt | latexfile.tex
         doconce teamod name
@@ -69781,7 +69746,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -69829,6 +69794,7 @@ list of capabilities::
                 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
         
         doconce expand_commands file1 file2 ...
+        doconce combine_images image1 image2 ... output_file
         doconce latex_exercise_toc doconcefile.do.txt
         doconce list_labels doconcefile.do.txt | latexfile.tex
         doconce teamod name
@@ -70551,7 +70517,7 @@ list of capabilities:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -70599,6 +70565,7 @@ doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce expand_commands file1 file2 ...
+doconce combine_images image1 image2 ... output_file
 doconce latex_exercise_toc doconcefile.do.txt
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
@@ -71215,7 +71182,7 @@ ic/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
 pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/sh
 are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (13 pages, 1445747 bytes).
+Output written on testdoc.pdf (13 pages, 1445791 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -77787,17 +77754,17 @@ thor2_YYYY\OT1/phv/m/n/10 ,
 Overfull \hbox (88.21638pt too wide) in paragraph at lines 600--607
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib, name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
-[9] [10] [11]
-Overfull \hbox (2.40855pt too wide) in paragraph at lines 801--806
+[9] [10] [11] [12]
+Overfull \hbox (2.40855pt too wide) in paragraph at lines 802--807
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther []\
 OT1/cmtt/m/n/10 preprocess \OT1/phv/m/n/10 and/or []\OT1/cmtt/m/n/10 mako\OT1/p
 hv/m/n/10 .
-[12]
-Overfull \hbox (0.18839pt too wide) in paragraph at lines 807--811
+
+Overfull \hbox (0.18839pt too wide) in paragraph at lines 808--812
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing []\OT1/cmtt/m/n/10 prep
 rocess \OT1/phv/m/n/10 to in-clude an-other doc-u-ment, "com-
 
-Overfull \hbox (87.48466pt too wide) in paragraph at lines 851--852
+Overfull \hbox (87.48466pt too wide) in paragraph at lines 852--853
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 [13]
@@ -77811,7 +77778,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (14 pages, 47084 bytes).
+Output written on quickref.dvi (14 pages, 47168 bytes).
 Transcript written on quickref.log.
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -77913,22 +77880,22 @@ Overfull \hbox (88.21638pt too wide) in paragraph at lines 600--607
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib, name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
 [9] [10] [11] [12]
-Overfull \hbox (2.40855pt too wide) in paragraph at lines 801--806
+Overfull \hbox (2.40855pt too wide) in paragraph at lines 802--807
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther []\
 OT1/cmtt/m/n/10 preprocess \OT1/phv/m/n/10 and/or []\OT1/cmtt/m/n/10 mako\OT1/p
 hv/m/n/10 .
 
-Overfull \hbox (0.18839pt too wide) in paragraph at lines 807--811
+Overfull \hbox (0.18839pt too wide) in paragraph at lines 808--812
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing []\OT1/cmtt/m/n/10 prep
 rocess \OT1/phv/m/n/10 to in-clude an-other doc-u-ment, "com-
 [13]
-Overfull \hbox (87.48466pt too wide) in paragraph at lines 851--852
+Overfull \hbox (87.48466pt too wide) in paragraph at lines 852--853
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
 [14] (./quickref.aux) )
 (see the transcript file for additional information)
-Output written on quickref.dvi (14 pages, 58116 bytes).
+Output written on quickref.dvi (14 pages, 58196 bytes).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no-preprocess
@@ -78278,12 +78245,13 @@ Overfull \hbox (107.00006pt too wide) in paragraph at lines 810--810
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
 [8]
-Overfull \hbox (1955.00006pt too wide) in paragraph at lines 857--857
+Overfull \hbox (2045.00006pt too wide) in paragraph at lines 857--857
 []\T1/pcr/m/n/10 commands: format insertdocstr old2new_format gwiki_figsubst re
 move_inline_comments latin2html sphinx_dir subst replace replace_from_file clea
 n help latex_header latex_footer guess_encoding change_encoding bbl2rst split_r
 st list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove re
-move_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc  
+move_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_
+exercise_toc  
 
 Overfull \hbox (299.00006pt too wide) in paragraph at lines 859--859
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -78335,39 +78303,42 @@ Overfull \hbox (107.00006pt too wide) in paragraph at lines 902--902
 []        \T1/pcr/m/n/10 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{q
 uote}  
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 906--906
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 905--905
+[]\T1/pcr/m/n/10 doconce combine_images image1 image2 ... output_file  
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 907--907
 []\T1/pcr/m/n/10 doconce list_labels doconcefile.do.txt | latexfile.tex  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 957--958
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 958--959
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 963--963
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 964--964
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 964--964
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 965--965
 []\T1/pcr/m/n/10 the area under a curve that defines half of the allipse.  
 [10]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 972--972
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 973--973
 []\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 981--982
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 982--983
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 985--985
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 986--986
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
 [11]
-Overfull \hbox (263.00006pt too wide) in paragraph at lines 1056--1056
+Overfull \hbox (263.00006pt too wide) in paragraph at lines 1057--1057
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
 
-Overfull \hbox (4.19656pt too wide) in paragraph at lines 1080--1084
+Overfull \hbox (4.19656pt too wide) in paragraph at lines 1081--1085
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
 
-Overfull \hbox (114.855pt too wide) in paragraph at lines 1098--1099
+Overfull \hbox (114.855pt too wide) in paragraph at lines 1099--1100
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
 [12] (./quickref.rst.aux)
@@ -78379,7 +78350,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (12 pages, 48252 bytes).
+Output written on quickref.rst.dvi (12 pages, 48332 bytes).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -78582,12 +78553,13 @@ Overfull \hbox (107.00006pt too wide) in paragraph at lines 810--810
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
 
-Overfull \hbox (1955.00006pt too wide) in paragraph at lines 857--857
+Overfull \hbox (2045.00006pt too wide) in paragraph at lines 857--857
 []\T1/pcr/m/n/10 commands: format insertdocstr old2new_format gwiki_figsubst re
 move_inline_comments latin2html sphinx_dir subst replace replace_from_file clea
 n help latex_header latex_footer guess_encoding change_encoding bbl2rst split_r
 st list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove re
-move_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc  
+move_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_
+exercise_toc  
 
 Overfull \hbox (299.00006pt too wide) in paragraph at lines 859--859
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -78639,39 +78611,42 @@ Overfull \hbox (107.00006pt too wide) in paragraph at lines 902--902
 []        \T1/pcr/m/n/10 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{q
 uote}  
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 906--906
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 905--905
+[]\T1/pcr/m/n/10 doconce combine_images image1 image2 ... output_file  
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 907--907
 []\T1/pcr/m/n/10 doconce list_labels doconcefile.do.txt | latexfile.tex  
 [10]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 957--958
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 958--959
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 963--963
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 964--964
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 964--964
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 965--965
 []\T1/pcr/m/n/10 the area under a curve that defines half of the allipse.  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 972--972
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 973--973
 []\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 981--982
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 982--983
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 985--985
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 986--986
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
 [11]
-Overfull \hbox (263.00006pt too wide) in paragraph at lines 1056--1056
+Overfull \hbox (263.00006pt too wide) in paragraph at lines 1057--1057
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
 [12]
-Overfull \hbox (4.19656pt too wide) in paragraph at lines 1080--1084
+Overfull \hbox (4.19656pt too wide) in paragraph at lines 1081--1085
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
 
-Overfull \hbox (114.855pt too wide) in paragraph at lines 1098--1099
+Overfull \hbox (114.855pt too wide) in paragraph at lines 1099--1100
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
 [13] (./quickref.rst.aux)
@@ -78680,7 +78655,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (13 pages, 54528 bytes).
+Output written on quickref.rst.dvi (13 pages, 54604 bytes).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref --no-preprocess
