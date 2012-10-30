@@ -55,7 +55,7 @@
 \textbf{Author}: &
 	Hans Petter Langtangen \\
 \textbf{Date}: &
-	Oct 14, 2012 \\
+	Oct 31, 2012 \\
 \end{tabularx}
 \end{center}
 
@@ -854,7 +854,7 @@ list of capabilities:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 Usage:~doconce~command~{[}optional~arguments{]}\\
-commands:~format~insertdocstr~old2new\_format~gwiki\_figsubst~remove\_inline\_comments~latin2html~sphinx\_dir~subst~replace~replace\_from\_file~clean~help~latex\_header~latex\_footer~guess\_encoding~change\_encoding~bbl2rst~split\_rst~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~grab~remove~remove\_exercise\_answers~spellcheck~ptex2tex~expand\_commands~latex\_exercise\_toc\\
+commands:~format~insertdocstr~old2new\_format~gwiki\_figsubst~remove\_inline\_comments~latin2html~sphinx\_dir~subst~replace~replace\_from\_file~clean~help~latex\_header~latex\_footer~guess\_encoding~change\_encoding~bbl2rst~split\_rst~list\_labels~teamod~sphinxfix\_localURLs~make\_figure\_code\_links~grab~remove~remove\_exercise\_answers~spellcheck~ptex2tex~expand\_commands~combine\_images~latex\_exercise\_toc\\
 ~\\
 doconce~format~html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext~file.do.txt\\
 ~\\
@@ -902,6 +902,7 @@ doconce~ptex2tex~mydoc~-DMINTED~pycod=minted~sys=Verbatim~\textbackslash{}\\
 ~~~~~~~~dat=\textbackslash{}begin\{quote\}\textbackslash{}begin\{verbatim\};\textbackslash{}end\{verbatim\}\textbackslash{}end\{quote\}\\
 ~\\
 doconce~expand\_commands~file1~file2~...\\
+doconce~combine\_images~image1~image2~...~output\_file\\
 doconce~latex\_exercise\_toc~doconcefile.do.txt\\
 doconce~list\_labels~doconcefile.do.txt~|~latexfile.tex\\
 doconce~teamod~name\\

@@ -73,6 +73,8 @@ _latex_environments = [
     ]
 
 _replacements = [
+    # General
+    (r'cf.', ''),
     # Doconce
     (r"^#.*$", "", re.MULTILINE),
     (r"(idx|label|ref)\{.*?\}", ""),
@@ -85,6 +87,7 @@ _replacements = [
     (r'\[[A-Za-z]+:\s+[^\]]*?\]', ''),  # inline comment
     (r'^\s*file=[A-Za-z_0-9.]+\s*$', '', re.MULTILINE),
     (r"^@@@CODE.*$",    "", re.MULTILINE),
+    (r"^\s*(FIGURE|MOVIE):\s*\[.+?\]",    "", re.MULTILINE),
     # Preprocess
     (r"^#.*ifn?def.*$", "", re.MULTILINE),
     (r"^#.*else.*$", "", re.MULTILINE),
@@ -1568,6 +1571,58 @@ def latex_exercise_toc():
         print 'table of contents requested in the', dofile, 'document'
 
 
+def usage_combine_images():
+    print 'Usage: doconce combine_images image1 image2 ... output_file'
+    print 'Use montage if not PDF or EPS images, else use'
+    print 'pdftk, pdfnup and pdfcrop.'
+
+def combine_images():
+
+    if len(sys.argv) < 3:
+        usage_combine_images()
+        sys.exit(1)
+
+    imagefiles = sys.argv[1:-1]
+    output_file = sys.argv[-1]
+    ext = [os.path.splitext(f)[1] for f in imagefiles]
+    formats = '.png', '.tif.', '.tiff', '.gif', '.jpeg', 'jpg'
+    montage = False
+    # If one of the formats in formats: montage = True
+    for format in formats:
+        if format in ext:
+            montage = True
+
+    cmds = []
+    if montage:
+        cmds.append('montage -background white -geometry 100%% -tile 2x %s %s' % \
+                    (' '.join(imagefiles), output_file))
+    else:
+        # Assume all are .pdf or .eps
+        # Convert EPS to PDF
+        for i in range(len(imagefiles)):
+            f = imagefiles[i]
+            if '.eps' in f:
+                cmds.append('ps2pdf -DEPSCrop %s' % f)
+                imagefiles[i] = f.replace('.eps', '.pdf')
+
+        # Combine PDF images
+        rows = int(round(len(imagefiles)/2.))
+        cmds.append('pdftk %s output tmp.pdf' % ' '.join(imagefiles))
+        cmds.append('pdfnup --nup 2x%d tmp.pdf' % rows)
+        cmds.append('pdfcrop tmp-nup.pdf')
+        cmds.append('cp tmp-nup-crop.pdf %s' % output_file)
+        cmds.append('rm -f tmp.pdf tmp-nup.pdf tmp-nup-crop.pdf')
+    print
+    for cmd in cmds:
+        failure = os.system(cmd)
+        if failure:
+            print 'Could not run\n  ', cmd
+            sys.exit(1)
+        else:
+            print cmd
+    print 'Output in', output_file
+
+
 def usage_expand_commands():
     print 'Usage: doconce expand_commands file1 file2 ...'
     print """
@@ -2577,7 +2632,7 @@ def analyzer():
 
 # -----------------------------------------------------------------------
 
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands latex_exercise_toc'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc'.split()
 
 # -----------------------------------------------------------------------
 
@@ -2629,6 +2684,7 @@ doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
         dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote}
 
 doconce expand_commands file1 file2 ...
+doconce combine_images image1 image2 ... output_file
 doconce latex_exercise_toc doconcefile.do.txt
 doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name

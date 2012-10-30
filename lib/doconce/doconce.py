@@ -1279,23 +1279,23 @@ def handle_cross_referencing(filestr, format):
     # (in case rst.ref_and_label_commoncode has to assign numbers
     # to section titles that are identical)
     section_label2title = OrderedDict()
-    section_title2label = OrderedDict()
     for dummy1, title, dummy2, label in m:
         section_label2title[label] = title.strip()
-        section_title2label[title] = label
         if 'ref{' in title and format in ('rst', 'sphinx', 'html'):
             print 'Warning: reference in title\n  %s\nwill come out wrong in format %s' % (title, format)
     #pprint.pprint(section_label2title)
 
+
     # 2. Make table of contents
     # TOC: on|off
-    section_pattern = r'^\s*(_{3,9}|={3,9})(.+?)(_{3,9}|={3,9})'
+    #section_pattern = r'^\s*(_{3,9}|={3,9})(.+?)(_{3,9}|={3,9})'
+    section_pattern = r'^\s*(_{3,9}|={3,9})(.+?)(_{3,9}|={3,9})(\s*label\{(.+?)\})?'
     m = re.findall(section_pattern, filestr, flags=re.MULTILINE)
     sections = []
     heading2section_type = {9: 0, 7: 1, 5: 2, 3: 3}
-    for heading, title, dummy2 in m:
-        label = None if not title in section_title2label \
-                else section_title2label[title]
+    for heading, title, dummy2, dummy3, label in m:
+        if label == '':
+            label = None
         sections.append((title, heading2section_type[len(heading)], label))
     #print 'sections:'
     #import pprint; pprint.pprint(sections)
