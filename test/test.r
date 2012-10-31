@@ -294,6 +294,12 @@ too: "hpl": "http://folk.uio.no/hpl" or "hpl" :
 file":"file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" is
 fine to have.
 
+Here are some tough tests of URLs, especially for the `latex` format:
+"Newton-Cotes":
+"http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" formulas
+and a "good book":
+"http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1".
+
 # Comments should be inserted outside paragraphs (because of reST):
 # note that when there is no http: or file:, it can be a file link
 # if the link name is URL, url, "URL", or "url".
@@ -1177,6 +1183,11 @@ newline</a>. Can test spaces with the link with word
 too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <tt>file:///</tt> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a
 file</a> is
 fine to have.
+
+<p>
+Here are some tough tests of URLs, especially for the <tt>latex</tt> format:
+<a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas
+and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>.
 
 <p>
 <!-- Comments should be inserted outside paragraphs (because of reST): -->
@@ -2211,6 +2222,10 @@ too: \href{{http://folk.uio.no/hpl}}{hpl} or \href{{http://folk.uio.no/hpl}}{hpl
 file} is
 fine to have.
 
+Here are some tough tests of URLs, especially for the \code{latex} format:
+\href{{http://en.wikipedia.org/wiki/Newton%E2\%80\%93Cotes_formulas}}{Newton-Cotes} formulas
+and a \href{{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}.
+
 % Comments should be inserted outside paragraphs (because of reST):
 % note that when there is no http: or file:, it can be a file link
 % if the link name is URL, url, "URL", or "url".
@@ -3072,14 +3087,18 @@ accordingly) and verbatim heading and entry:
 
 \label{subsubsec:ex}
 
-Testing of URLs: hpl's home page \href{{http://folk.uio.no/hpl}}{hpl}, or
+Testing of URLs: hpl's home page \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}, or
 the entire URL if desired, \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}.  Here is a
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
 \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{a link with
 newline}. Can test spaces with the link with word
-too: \href{{http://folk.uio.no/hpl}}{hpl} or \href{{http://folk.uio.no/hpl}}{hpl}. Also {\fontsize{10pt}{10pt}\verb!file:///!} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}}{link to a
+too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also {\fontsize{10pt}{10pt}\verb!file:///!} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}}{link to a
 file} is
 fine to have.
+
+Here are some tough tests of URLs, especially for the {\fontsize{10pt}{10pt}\verb!latex!} format:
+\href{{http://en.wikipedia.org/wiki/Newton%E2\%80\%93Cotes_formulas}}{Newton-Cotes}\footnote{\texttt{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes\_formulas}} formulas
+and a \href{{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}\footnote{\texttt{http://www.springer.com/mathematics/computational+science+\%26+engineering/book/978-3-642-23098-1}}.
 
 % Comments should be inserted outside paragraphs (because of reST):
 % note that when there is no http: or file:, it can be a file link
@@ -3915,14 +3934,18 @@ accordingly) and verbatim heading and entry:
 
 \label{subsubsec:ex}
 
-Testing of URLs: hpl's home page \href{{http://folk.uio.no/hpl}}{hpl}, or
+Testing of URLs: hpl's home page \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}, or
 the entire URL if desired, \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}.  Here is a
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
 \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{a link with
 newline}. Can test spaces with the link with word
-too: \href{{http://folk.uio.no/hpl}}{hpl} or \href{{http://folk.uio.no/hpl}}{hpl}. Also {\fontsize{10pt}{10pt}\verb!file:///!} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}}{link to a
+too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also {\fontsize{10pt}{10pt}\verb!file:///!} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}}{link to a
 file} is
 fine to have.
+
+Here are some tough tests of URLs, especially for the {\fontsize{10pt}{10pt}\verb!latex!} format:
+\href{{http://en.wikipedia.org/wiki/Newton%E2\%80\%93Cotes_formulas}}{Newton-Cotes}\footnote{\texttt{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes\_formulas}} formulas
+and a \href{{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}\footnote{\texttt{http://www.springer.com/mathematics/computational+science+\%26+engineering/book/978-3-642-23098-1}}.
 
 % Comments should be inserted outside paragraphs (because of reST):
 % note that when there is no http: or file:, it can be a file link
@@ -4609,6 +4632,10 @@ newline <testdoc.do.txt>`_. Can test spaces with the link with word
 too: `hpl <http://folk.uio.no/hpl>`_ or `hpl <http://folk.uio.no/hpl>`_. Also ``file:///`` works: `link to a
 file <file:///home/hpl/vc/doconce/doc/demos/manual/manual.html>`_ is
 fine to have.
+
+Here are some tough tests of URLs, especially for the ``latex`` format:
+`Newton-Cotes <http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_ formulas
+and a `good book <http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1>`_.
 
 .. Comments should be inserted outside paragraphs (because of reST):
 
@@ -5301,6 +5328,10 @@ too: `hpl <http://folk.uio.no/hpl>`_ or `hpl <http://folk.uio.no/hpl>`_. Also ``
 file <file:///home/hpl/vc/doconce/doc/demos/manual/manual.html>`_ is
 fine to have.
 
+Here are some tough tests of URLs, especially for the ``latex`` format:
+`Newton-Cotes <http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_ formulas
+and a `good book <http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1>`_.
+
 .. Comments should be inserted outside paragraphs (because of reST):
 
 .. note that when there is no http: or file:, it can be a file link
@@ -5980,6 +6011,10 @@ too: [http://folk.uio.no/hpl hpl] or [http://folk.uio.no/hpl hpl]. Also `file://
 file] is
 fine to have.
 
+Here are some tough tests of URLs, especially for the `latex` format:
+[http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas Newton-Cotes] formulas
+and a [http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1 good book].
+
 <wiki:comment> Comments should be inserted outside paragraphs (because of reST): </wiki:comment>
 <wiki:comment> note that when there is no http: or file:, it can be a file link </wiki:comment>
 <wiki:comment> if the link name is URL, url, "URL", or "url". </wiki:comment>
@@ -6486,6 +6521,10 @@ newline]. Can test spaces with the link with word
 too: [http://folk.uio.no/hpl hpl] or [http://folk.uio.no/hpl hpl]. Also <code>file:///</code> works: [file:///home/hpl/vc/doconce/doc/demos/manual/manual.html link to a
 file] is
 fine to have.
+
+Here are some tough tests of URLs, especially for the <code>latex</code> format:
+[http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas Newton-Cotes] formulas
+and a [http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1 good book].
 
 <!--> Comments should be inserted outside paragraphs (because of reST): -->
 <!--> note that when there is no http: or file:, it can be a file link -->
@@ -7003,6 +7042,10 @@ too: [[http://folk.uio.no/hpl|hpl]] or [[http://folk.uio.no/hpl|hpl]]. Also {{{f
 file]] is
 fine to have.
 
+Here are some tough tests of URLs, especially for the {{{latex}}} format:
+[[http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas|Newton-Cotes]] formulas
+and a [[http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1|good book]].
+
 <wiki:comment> Comments should be inserted outside paragraphs (because of reST): </wiki:comment>
 <wiki:comment> note that when there is no http: or file:, it can be a file link </wiki:comment>
 <wiki:comment> if the link name is URL, url, "URL", or "url". </wiki:comment>
@@ -7506,6 +7549,10 @@ too: "http://folk.uio.no/hpl":hpl or "http://folk.uio.no/hpl":hpl. Also 'file://
 file is
 fine to have.
 
+Here are some tough tests of URLs, especially for the 'latex' format:
+"http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas":Newton-Cotes formulas
+and a "http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1":good book.
+
 LaTeX Mathematics
 
 Here is an equation without label using backslash-bracket environment::
@@ -7962,6 +8009,10 @@ newline<testdoc.do.txt>}. Can test spaces with the link with word
 too: U{hpl<http://folk.uio.no/hpl>} or U{hpl<http://folk.uio.no/hpl>}. Also C{file:///} works: U{link to a
 file<file:///home/hpl/vc/doconce/doc/demos/manual/manual.html>} is
 fine to have.
+
+Here are some tough tests of URLs, especially for the C{latex} format:
+U{Newton-Cotes<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>} formulas
+and a U{good book<http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1>}.
 
 
 
@@ -8513,6 +8564,10 @@ too: hpl (http://folk.uio.no/hpl) or hpl (http://folk.uio.no/hpl). Also file:///
 file (file:///home/hpl/vc/doconce/doc/demos/manual/manual.html) is
 fine to have.
 
+Here are some tough tests of URLs, especially for the latex format:
+Newton-Cotes (http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas) formulas
+and a good book (http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1).
+
 
 
 LaTeX Mathematics
@@ -9034,6 +9089,10 @@ newline](testdoc.do.txt). Can test spaces with the link with word
 too: [hpl](http://folk.uio.no/hpl) or [hpl](http://folk.uio.no/hpl). Also `file:///` works: [link to a
 file](file:///home/hpl/vc/doconce/doc/demos/manual/manual.html) is
 fine to have.
+
+Here are some tough tests of URLs, especially for the `latex` format:
+[Newton-Cotes](http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas) formulas
+and a [good book](http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1).
 
 
 
@@ -9683,6 +9742,7 @@ output2</code></pre>
 </blockquote>
 <p>[subsubsec:ex]</p>
 <p>Testing of URLs: hpl’s home page <a href="{http://folk.uio.no/hpl}">hpl</a>, or the entire URL if desired, <a href="{http://folk.uio.no/hpl}">http://folk.uio.no/hpl</a>. Here is a plain file link <a href="{testdoc.do.txt}">testdoc.do.txt</a>, or <a href="{testdoc.do.txt}">testdoc.do.txt</a>, or <a href="{testdoc.do.txt}">testdoc.do.txt</a> or <a href="{testdoc.do.txt}">testdoc.do.txt</a> or <a href="{testdoc.do.txt}">a link with newline</a>. Can test spaces with the link with word too: <a href="{http://folk.uio.no/hpl}">hpl</a> or <a href="{http://folk.uio.no/hpl}">hpl</a>. Also 10pt10pt<code>file:///</code> works: <a href="{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}">link to a file</a> is fine to have.</p>
+<p>Here are some tough tests of URLs, especially for the 10pt10pt<code>latex</code> format: <a href="{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}">Newton-Cotes</a> formulas and a <a href="{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}">good book</a>.</p>
 <h2 id="test-of-some-latex-fixes">Test of Some LaTeX Fixes</h2>
 <p>Let’s check abbr. of some common kind, e.g. the well-known i.e. expression as an example. Moreover, Dr. Tang and Prof. Monsen, or maybe also prof. Ting, will go to the Dept. of Science to test how Mr. Hansen is doing together with Ms. Larsen. A sentence containing &quot;refines lines&quot; could easily fool a regex substitution with only i.e. since the dot matches anything. Also, look at Fig. 4 to see how the data compares with Tab. [mytab].</p>
 <h2 id="latex-mathematics">LaTeX Mathematics</h2>
@@ -10098,6 +10158,7 @@ output2</code></pre>
 </table>
 <h2 id="urls">URLs</h2>
 <p>Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or the entire URL if desired, <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>. Here is a plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or <testdoc.do.txt> or <testdoc.do.txt> or <a href="testdoc.do.txt">a link with newline</a>. Can test spaces with the link with word too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a file</a> is fine to have.</p>
+<p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>.</p>
 <h2 id="latex-mathematics">LaTeX Mathematics</h2>
 <p>Here is an equation without label using backslash-bracket environment: \[ a = b + c \] or with number and label, as in Equation (my:eq1), using the equation environment: \[
 \begin{equation}
@@ -11686,7 +11747,7 @@ doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized
 doconce remove_exercise_answers testdoc.html
 
 doconce format latex testdoc.do.txt
-doconce format pdflatex testdoc.do.txt
+doconce format pdflatex testdoc.do.txt --latex-printed
 doconce latex_exercise_toc testdoc
 doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc.p.tex
 
@@ -25908,7 +25969,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 31 Oct 2012 (17:40)
+DATE: Thu, 01 Nov 2012 (00:40)
 
 
 
@@ -26012,7 +26073,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 31 Oct 2012 (17:40)
+DATE: Thu, 01 Nov 2012 (00:40)
 
 
 
@@ -26126,7 +26187,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 31 Oct 2012 (17:40)</center>
+<center>Thu, 01 Nov 2012 (00:40)</center>
 
 
 
@@ -26257,7 +26318,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 31 Oct 2012 (17:40)</center>
+<center>Thu, 01 Nov 2012 (00:40)</center>
 
 
 
@@ -71135,8 +71196,9 @@ found info about 5 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
 output in testdoc.p.tex
-+ doconce format pdflatex testdoc.do.txt
++ doconce format pdflatex testdoc.do.txt --latex-printed
 running mako on testdoc.do.txt to make __tmp.do.txt
+mako variables: {'FORMAT': 'pdflatex'}
 translating preprocessed doconce text in __tmp.do.txt to pdflatex
 
 FIX: multi-line caption
@@ -71370,87 +71432,92 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 405.
 
 [6] [7<<../doc/manual/figs/mjolnir.mpeg>>] [8<<../doc/manual/figs/wavepacket.mp
-eg>>] [9 <../doc/manual/figs/wavepacket_0001.png (PNG copy)>]
-
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 559.
-
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 561.
-
+eg>>]
+Underfull \vbox (badness 10000) has occurred while \output is active [9 <../doc
+/manual/figs/wavepacket_0001.png (PNG copy)>]
+Overfull \hbox (78.30609pt too wide) in paragraph at lines 553--553
+[][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
++%26+engineering/book/978-3-642-23098-1| 
 
 LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 563.
 
 
-LaTeX Warning: Reference `eq1' on page 10 undefined on input line 577.
+Package amsmath Warning: Foreign command \over;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 565.
 
 
-LaTeX Warning: Reference `eq2' on page 10 undefined on input line 577.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 567.
+
+
+LaTeX Warning: Reference `eq1' on page 10 undefined on input line 581.
+
+
+LaTeX Warning: Reference `eq2' on page 10 undefined on input line 581.
 
 
 LaTeX Warning: Reference `split:envir:eq' on page 10 undefined on input line 59
-4.
-
-
-LaTeX Warning: Reference `eq1' on page 10 undefined on input line 607.
-
-
-LaTeX Warning: Reference `eq2' on page 10 undefined on input line 607.
-
-
-LaTeX Warning: Reference `eq1a' on page 10 undefined on input line 608.
-
-
-LaTeX Warning: Reference `eq2a' on page 10 undefined on input line 608.
-
-
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 608.
+8.
 
 [10]
 
-LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 618.
+LaTeX Warning: Reference `eq1' on page 11 undefined on input line 611.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 618.
+LaTeX Warning: Reference `eq2' on page 11 undefined on input line 611.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 619.
+LaTeX Warning: Reference `eq1a' on page 11 undefined on input line 612.
+
+
+LaTeX Warning: Reference `eq2a' on page 11 undefined on input line 612.
+
+
+LaTeX Warning: Reference `my:eq1' on page 11 undefined on input line 612.
+
+
+LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 622.
+
+
+LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 622.
+
+
+LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 623.
 
 
 
-LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 619.
+LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 623.
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 11 undefined on input line
- 620.
+ 624.
 
 (./testdoc.out.pyg) [11] (./testdoc.out.pyg)
 
-LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 793.
+LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 797.
 
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 12 undefined on input line 793.
-
-
-LaTeX Warning: Reference `demo:ex:2' on page 12 undefined on input line 808.
-
-
-LaTeX Warning: Reference `exer:some:formula' on page 12 undefined on input line
- 812.
-
-
-LaTeX Warning: Reference `demo:ex:2' on page 12 undefined on input line 813.
-
-
-LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 813.
-
-
-
-LaTeX Warning: Reference `exer:you' on page 12 undefined on input line 814.
+LaTeX Warning: Reference `demo:ex:1' on page 12 undefined on input line 797.
 
 [12]
+
+LaTeX Warning: Reference `demo:ex:2' on page 13 undefined on input line 812.
+
+
+LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
+ 816.
+
+
+LaTeX Warning: Reference `demo:ex:2' on page 13 undefined on input line 817.
+
+
+LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 817.
+
+
+
+LaTeX Warning: Reference `exer:you' on page 13 undefined on input line 818.
+
 No file testdoc.ind.
 [13]
 
@@ -71476,16 +71543,17 @@ xmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive
 /fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type
 1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
 fonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr
-7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/s
-hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-texlive/fonts
-/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/publ
-ic/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/sh
-are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (13 pages, 1446391 bytes).
+6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/s
+hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/t
+ype1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-texlive/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-tex
+live/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/t
+ype1/public/amsfonts/symbols/msam10.pfb>
+Output written on testdoc.pdf (13 pages, 1462216 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -72521,7 +72589,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (22 pages, 96144 bytes).
+Output written on tutorial.dvi (22 pages, 96148 bytes).
 Transcript written on tutorial.log.
 + latex tutorial.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -72983,7 +73051,7 @@ etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 </usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-te
 xlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 213394 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 213403 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -73132,7 +73200,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226603 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226611 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -73281,7 +73349,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226603 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226611 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -73436,7 +73504,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226603 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226611 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -73585,7 +73653,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226603 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226611 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -74511,7 +74579,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on DoconceManual.pdf (59 pages, 395813 bytes).
+Output written on DoconceManual.pdf (59 pages, 395820 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -75245,7 +75313,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (46 pages, 202304 bytes).
+Output written on manual.rst.dvi (46 pages, 202308 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -75890,7 +75958,7 @@ Overfull \hbox (113.00006pt too wide) in paragraph at lines 3972--3972
 ugging  
 [45] [46] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (46 pages, 211740 bytes).
+Output written on manual.rst.dvi (46 pages, 211744 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
@@ -76340,7 +76408,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (50 pages, 330251 bytes).
+Output written on manual.pdf (50 pages, 330253 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -76606,7 +76674,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (51 pages, 350764 bytes).
+Output written on manual.pdf (51 pages, 350766 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -76842,7 +76910,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (51 pages, 351484 bytes).
+Output written on manual.pdf (51 pages, 351486 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -78081,7 +78149,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (14 pages, 47168 bytes).
+Output written on quickref.dvi (14 pages, 47172 bytes).
 Transcript written on quickref.log.
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -78198,7 +78266,7 @@ Overfull \hbox (87.48466pt too wide) in paragraph at lines 852--853
 No file quickref.ind.
 [14] (./quickref.aux) )
 (see the transcript file for additional information)
-Output written on quickref.dvi (14 pages, 58196 bytes).
+Output written on quickref.dvi (14 pages, 58200 bytes).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no-preprocess
@@ -78958,7 +79026,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (13 pages, 54604 bytes).
+Output written on quickref.rst.dvi (13 pages, 54608 bytes).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref --no-preprocess
