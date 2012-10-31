@@ -318,10 +318,12 @@ def html_ref_and_label(section_label2title, format, filestr):
 
     # make special anchors for all the section titles with labels:
     for label in section_label2title:
+        """[[[
         # first remove the anchor with this label as created above
         # because it shall not appear after a heading when it is
         # associated with the heading
         filestr = filestr.replace('<a name="%s"></a>' % label, '')
+        """
         # make new anchor for this label (put in title):
         title = section_label2title[label]
         title_pattern = r'(_{3,9}|={3,9})\s*%s\s*(_{3,9}|={3,9})\s*label\{%s\}' % (re.escape(title), label)
@@ -390,7 +392,8 @@ def html_ref_and_label(section_label2title, format, filestr):
         if not '<a name="' in title:
             newtitle = title + ' <a name="___sec%d"></a>' % i
             filestr = filestr.replace(heading1 + title + heading2,
-                                      heading1 + newtitle + heading2)
+                                      heading1 + newtitle + heading2,
+                                      1) # count=1: only the first!
 
     return filestr
 

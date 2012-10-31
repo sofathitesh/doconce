@@ -204,6 +204,55 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
 
     # Deal with the problem of identical titles, which makes problem
     # with non-unique links in reST: add a counter to the title
+    debugtext = ''
+    section_pattern = r'^\s*(_{3,9}|={3,9})(.+?)(_{3,9}|={3,9})(\s*label\{(.+?)\})?'
+    m = re.findall(section_pattern, filestr, flags=re.MULTILINE)
+    # First count the no of titles with the same wording
+    titles = {}
+    for heading, title, dummy2, dummy3, label in m:
+        entry = None if label == '' else label
+        if title in titles:
+            titles[title].append(entry)
+        else:
+            titles[title] = [entry]
+    # Make new titles
+    title_counter = {}   # count repeated titles
+    sections = []
+    for heading, title, dummy2, dummy3, label in m:
+        label = None if label == '' else label
+        if len(titles[title]) > 1:
+            if title in title_counter:
+                title_counter[title] += 1
+            else:
+                title_counter[title] = 1
+            new_title = title + ' (%d) ' % title_counter[title]
+            sections.append((heading, new_title, label, title))
+            if label in section_label2title:
+                section_label2title[label] = new_title
+        else:
+            sections.append((heading, title, label, title))
+    # Make replacements
+    for heading, title, label, old_title in sections:
+        if title != old_title:
+            debugtext += '\nchanged title: %s -> %s\n' % (old_title, title)
+        # Avoid trouble with \t, \n in replacement
+        title = title.replace('\\', '\\\\')
+        # The substitution depends on whether we have a label or not
+        if label is not None:
+            title_pattern = r'%s\s*%s\s*%s\s*label\{%s\}' % (heading, re.escape(old_title), heading, label)
+            # title may contain ? () etc., that's why we take re.escape
+            replacement = '.. _%s:\n\n' % label + r'%s %s %s' % \
+                          (heading, title, heading)
+        else:
+            title_pattern = r'%s\s*%s\s*%s' % (heading, re.escape(old_title), heading)
+            replacement = r'%s %s %s' % (heading, title, heading)
+        filestr, n = re.subn(title_pattern, replacement, filestr, count=1)
+        if n > 1:
+            raise ValueError('Replaced more than one title. BUG!')
+
+    """[[[
+    # Deal with the problem of identical titles, which makes problem
+    # with non-unique links in reST: add a counter to the title
     title2label = {}
     for label in section_label2title:
         title = section_label2title[label]
@@ -250,6 +299,7 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
     # Update label2title mapping with new titles
     for title, label in adjusted_titles:
         section_label2title[label] = adjusted_titles[(title,label)]
+    """
 
     # remove label{...} from output
     #filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
