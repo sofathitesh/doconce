@@ -292,6 +292,12 @@ too: "hpl": "http://folk.uio.no/hpl" or "hpl" :
 file":"file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" is
 fine to have.
 
+Here are some tough tests of URLs, especially for the `latex` format:
+"Newton-Cotes":
+"http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" formulas
+and a "good book":
+"http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1".
+
 # Comments should be inserted outside paragraphs (because of reST):
 # note that when there is no http: or file:, it can be a file link
 # if the link name is URL, url, "URL", or "url".

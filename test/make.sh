@@ -3,7 +3,7 @@ doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized
 doconce remove_exercise_answers testdoc.html
 
 doconce format latex testdoc.do.txt
-doconce format pdflatex testdoc.do.txt
+doconce format pdflatex testdoc.do.txt --latex-printed
 doconce latex_exercise_toc testdoc
 doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc.p.tex
 
