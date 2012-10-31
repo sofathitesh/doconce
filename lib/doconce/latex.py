@@ -90,11 +90,13 @@ def latex_code(filestr, code_blocks, code_block_types,
         matches = re.findall(pattern, filestr)
         for url, text in matches:
             if not ('http' in text or '\\nolinkurl{' in text):
+                texttt_url = url.replace('_', '\\_').replace('#', '\\#')
+                # fix % without backslash
+                texttt_url = re.sub(r'([^\\])\%', r'\g<1>\\%', texttt_url)
                 filestr = filestr.replace(
                     '\\href{{%s}}{%s}' % (url, text),
                     '\\href{{%s}}{%s}' % (url, text) +
-                    '\\footnote{\\texttt{%s}}' %
-                    url.replace('_', '\\_').replace('%', '\\%').replace('#', '\\#'))
+                    '\\footnote{\\texttt{%s}}' % texttt_url)
 
     # Add movie15 package if the file has a movie
     if r'\includemovie[' in filestr:
