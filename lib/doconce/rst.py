@@ -250,57 +250,6 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
         if n > 1:
             raise ValueError('Replaced more than one title. BUG!')
 
-    """[[[
-    # Deal with the problem of identical titles, which makes problem
-    # with non-unique links in reST: add a counter to the title
-    title2label = {}
-    for label in section_label2title:
-        title = section_label2title[label]
-        if title in title2label:
-            title2label[title].append(label)
-        else:
-            title2label[title] = [label]
-    problematic_titles = [title for title in title2label \
-                          if len(title2label[title]) > 1]
-    adjusted_titles = {}
-    for title in problematic_titles:
-        counter = 1
-        for label in title2label[title]:
-            # Add counter to non-unique titles (only for rst and sphinx)
-            adjusted_titles[(title,label)] = title + ' (%d)' % counter
-            counter += 1
-    debugtext = '\nProblematic multiple titles:\n%s\nAdjusted titles:\n%s' %\
-                (problematic_titles, adjusted_titles)
-
-    # Insert labels before all section headings: (not necessary, but ok)
-    for label in section_label2title:
-        title = section_label2title[label]
-        # Problem: one title can be common to many sections and different
-        # labels, making this first regex
-        #pattern = r'(_{3,9}|={3,9})(\s*%s\s*)(_{3,9}|={3,9})' % title
-        # lead to several rst labels for a title. The remedy consists of
-        # two steps: a pattern regex that matches the label too, and
-        # adding a counter to titles with the same name (done above)
-        pattern = r'(_{3,9}|={3,9})(\s*%s\s*)(_{3,9}|={3,9})\s*label\{%s\}' \
-                  % (re.escape(title), label)
-        # (title may contain ? () etc., that's why we take re.escape)
-        title_new = title.replace('\\', '\\\\')  # avoid trouble with \t, \n
-        try:
-            title_new = adjusted_titles[(title_new, label)]
-            debugtext += 'Found an adjusted title: %s\n' % title_new
-        except KeyError:
-            pass
-        replacement = '.. _%s:\n\n' % label + r'\g<1> %s \g<3>' % \
-                      title_new
-        filestr, n = re.subn(pattern, replacement, filestr)
-        if n == 0:
-            #raise Exception('problem with substituting "%s"' % title)
-            pass
-    # Update label2title mapping with new titles
-    for title, label in adjusted_titles:
-        section_label2title[label] = adjusted_titles[(title,label)]
-    """
-
     # remove label{...} from output
     #filestr = re.sub(r'^label\{.+?\}\s*$', '', filestr, flags=re.MULTILINE)
     cpattern = re.compile(r'^label\{[^}]+?\}\s*$', flags=re.MULTILINE)
