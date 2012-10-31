@@ -555,3 +555,20 @@ This is the first appendix.
 
 This is more stuff for an appendix.
 
+===== Appendix: Testing identical titles =====
+
+Without label.
+
+===== Appendix: Testing identical titles =====
+label{test:title:id1}
+
+With label.
+
+===== Appendix: Testing identical titles =====
+label{test:title:id2}
+
+With label.
+
+===== Appendix: Testing identical titles =====
+
+Without label.

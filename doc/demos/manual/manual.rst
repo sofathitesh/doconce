@@ -1047,8 +1047,8 @@ The result becomes
      if there are multiple
      lines)
 
-Special Lines
--------------
+Special Lines  (1)
+------------------
 
 The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
@@ -1168,8 +1168,8 @@ Here are some examples::
         __A Paragraph.__ The running text goes here.
 
 
-Special Lines
-=============
+Special Lines  (2)
+==================
 
 Figures
 -------

@@ -426,7 +426,7 @@ by a keyword followed by a colon:</paragraph><literal_block xml:space="preserve"
   lines)</literal_block><paragraph>The result becomes</paragraph><block_quote><definition_list><definition_list_item><term>keyword1:</term><definition><paragraph>explanation of keyword1</paragraph></definition></definition_list_item><definition_list_item><term>keyword2:</term><definition><paragraph>explanation
 of keyword2 (remember to indent properly
 if there are multiple
-lines)</paragraph></definition></definition_list_item></definition_list></block_quote></section><section dupnames="special\ lines" ids="special-lines"><title>Special Lines</title><paragraph>The Doconce markup language has a concept called <emphasis>special lines</emphasis>.
+lines)</paragraph></definition></definition_list_item></definition_list></block_quote></section><section ids="special-lines-1" names="special\ lines\ (1)"><title>Special Lines  (1)</title><paragraph>The Doconce markup language has a concept called <emphasis>special lines</emphasis>.
 Such lines starts with a markup at the very beginning of the
 line and are used to mark document title, authors, date,
 sections, subsections, paragraphs., figures, movies, etc.</paragraph><paragraph><emphasis>Heading with Title and Author(s).</emphasis> Lines starting with <literal>TITLE:</literal>, <literal>AUTHOR:</literal>, and <literal>DATE:</literal> are optional and used
@@ -485,7 +485,7 @@ The running text goes here.
 
 The running text goes here.
 
-__A Paragraph.__ The running text goes here.</literal_block></section></section><section dupnames="special\ lines" ids="id3"><title>Special Lines</title><section ids="figures" names="figures"><title>Figures</title><comment xml:space="preserve">Note: need extra blank after FIGURE and MOVIE in !bc environments</comment><comment xml:space="preserve">because doconce treats !ec as part of the caption and moves the</comment><comment xml:space="preserve">!ec up to the caption line</comment><paragraph>Figures are recognized by the special line syntax:</paragraph><literal_block xml:space="preserve">FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption</literal_block><paragraph>The filename can be without extension, and Doconce will search for an
+__A Paragraph.__ The running text goes here.</literal_block></section></section><section ids="special-lines-2" names="special\ lines\ (2)"><title>Special Lines  (2)</title><section ids="figures" names="figures"><title>Figures</title><comment xml:space="preserve">Note: need extra blank after FIGURE and MOVIE in !bc environments</comment><comment xml:space="preserve">because doconce treats !ec as part of the caption and moves the</comment><comment xml:space="preserve">!ec up to the caption line</comment><paragraph>Figures are recognized by the special line syntax:</paragraph><literal_block xml:space="preserve">FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption</literal_block><paragraph>The filename can be without extension, and Doconce will search for an
 appropriate file with the right extension. If the extension is wrong,
 say <literal>.eps</literal> when requesting an HTML format, Doconce tries to find another
 file, and if not, the given file is converted to a proper format
@@ -527,7 +527,7 @@ You should equip the <literal>MOVIE:</literal> command with the right width and 
 of embedded YouTube movies (the parameters appear when you request
 the embedded HTML code for the movie on the YouTube page).</paragraph></section><section ids="copying-computer-code-from-source-files" names="copying\ computer\ code\ from\ source\ files"><title>Copying Computer Code from Source Files</title><paragraph>Another type of special lines starts with <literal>@@@CODE</literal> and enables copying
 of computer code from a file directly into a verbatim environment, see
-the section <reference name="Blocks of Verbatim Computer Code" refid="blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</reference> below.</paragraph><target refid="inline-tagging"/></section><section ids="id4 inline-tagging" names="inline\ tagging inline:tagging"><title>Inline Tagging</title><paragraph>Doconce supports tags for <emphasis>emphasized phrases</emphasis>, <strong>boldface phrases</strong>,
+the section <reference name="Blocks of Verbatim Computer Code" refid="blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</reference> below.</paragraph><target refid="inline-tagging"/></section><section ids="id3 inline-tagging" names="inline\ tagging inline:tagging"><title>Inline Tagging</title><paragraph>Doconce supports tags for <emphasis>emphasized phrases</emphasis>, <strong>boldface phrases</strong>,
 and <literal>verbatim text</literal> (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as v = sin(x).</paragraph><paragraph>Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in:</paragraph><literal_block xml:space="preserve">*emphasized words*</literal_block><paragraph>Boldface font is recognized by an underscore instead of an asterisk:</paragraph><literal_block xml:space="preserve">_several words in boldface_ followed by *ephasized text*.</literal_block><paragraph>The line above gets typeset as
@@ -569,7 +569,7 @@ software and the document links to <literal>_static/myprog.py</literal>:</paragr
 <emphasis>the filename as link text</emphasis>. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:</paragraph><literal_block xml:space="preserve">URL: &quot;manual.html&quot;</literal_block><paragraph>resulting in the link <reference name="manual.html" refuri="manual.html">manual.html</reference><target ids="manual-html" names="manual.html" refuri="manual.html"/>.</paragraph><comment xml:space="preserve">This is now automatically carried out by the autogenerated</comment><comment xml:space="preserve">script for sphinx:</comment><comment xml:space="preserve">For such local links to</comment><comment xml:space="preserve">work with the ``sphinx`` format, the ``.rst`` file needs a fix, carried</comment><comment xml:space="preserve">out by</comment><comment xml:space="preserve">!bc sys</comment><comment xml:space="preserve">doconce sphinxfix_localURLs mydoc.rst</comment><comment xml:space="preserve"/><comment xml:space="preserve">(The files, such as ``manual.html``, are then copied to a subdirectory</comment><comment xml:space="preserve">``_static``, which must be manually copied to the Sphinx directory's</comment><comment xml:space="preserve">``_static`` directory - links in the ``.rst`` files are automatically</comment><comment xml:space="preserve">adjusted.)</comment><paragraph>Similarly, to have the URL address itself as link text, put an &quot;URL&quot; or URL
-before the address enclosed in double quotes:</paragraph><literal_block xml:space="preserve">Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.</literal_block><paragraph>resulting in Click on this link: <reference name="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce">http://code.google.com/p/doconce</reference><target dupnames="http://code.google.com/p/doconce" ids="id5" refuri="http://code.google.com/p/doconce"/>.</paragraph><paragraph>Doconce also supports inline comments in the text:</paragraph><literal_block xml:space="preserve">[name: comment]</literal_block><paragraph>where <literal>name</literal> is the name of the author of the command, and <literal>comment</literal> is a
+before the address enclosed in double quotes:</paragraph><literal_block xml:space="preserve">Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.</literal_block><paragraph>resulting in Click on this link: <reference name="http://code.google.com/p/doconce" refuri="http://code.google.com/p/doconce">http://code.google.com/p/doconce</reference><target dupnames="http://code.google.com/p/doconce" ids="id4" refuri="http://code.google.com/p/doconce"/>.</paragraph><paragraph>Doconce also supports inline comments in the text:</paragraph><literal_block xml:space="preserve">[name: comment]</literal_block><paragraph>where <literal>name</literal> is the name of the author of the command, and <literal>comment</literal> is a
 plain text text. Note that there must be a space after the colon,
 otherwise the comment is not recognized. Inline comments
 can span
@@ -601,7 +601,7 @@ on a linear system Ax=b, where A
 is an nxn matrix, and x and b
 are vectors of length n.&quot;</paragraph></section><section ids="comments" names="comments"><title>Comments</title><paragraph>Comments intended to be visible in the output document and read by
 readers are known as <emphasis>inline comments</emphasis> in Doconce and described
-in the section <reference name="Inline Tagging" refid="id4">Inline Tagging</reference>.</paragraph><paragraph>Here we address comments in the Doconce source file that are not
+in the section <reference name="Inline Tagging" refid="id3">Inline Tagging</reference>.</paragraph><paragraph>Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
 lines start with the hash <literal>#</literal>:</paragraph><literal_block xml:space="preserve">#
 # Here are some comment lines that do not affect any formatting.
@@ -635,7 +635,7 @@ nice to demonstrate, as well as a reference to equations,
 say Equations (myeq1)-(myeq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.</paragraph><paragraph>Hyperlinks to files or web addresses are handled as explained
-in the section <reference name="Inline Tagging" refid="id4">Inline Tagging</reference>.</paragraph><target refid="manual-genrefs"/></section></section><section ids="generalized-cross-referencing manual-genrefs" names="generalized\ cross-referencing manual:genrefs"><title>Generalized Cross-Referencing</title><paragraph>Sometimes a series of individual documents may be assembled to one
+in the section <reference name="Inline Tagging" refid="id3">Inline Tagging</reference>.</paragraph><target refid="manual-genrefs"/></section></section><section ids="generalized-cross-referencing manual-genrefs" names="generalized\ cross-referencing manual:genrefs"><title>Generalized Cross-Referencing</title><paragraph>Sometimes a series of individual documents may be assembled to one
 large document. The assembly impacts how references to sections
 are written: when referring to a section in the same document, a label
 can be used, while references to sections in other documents are
@@ -731,8 +731,8 @@ of <literal>myfile.bbl</literal> or using <literal>doconce bbl2rst myfile.bbl</l
 this editing. From the <literal>myfile.rst</literal> file it is easy to create <literal>myfile.py</literal>
 with the dictionary version of the references.</paragraph><comment xml:space="preserve">see ketch/tex2rst for nice bibtex to rst converter which could</comment><comment xml:space="preserve">be used here</comment><paragraph>Conversion of BibTeX databases to reST format can be
 done by the <reference name="bibliograph.parsing" refuri="http://pypi.python.org/pypi/bibliograph.parsing/">bibliograph.parsing</reference><target ids="bibliograph-parsing" names="bibliograph.parsing" refuri="http://pypi.python.org/pypi/bibliograph.parsing/"/> tool.</paragraph><paragraph>Finally, we here test the citation command and bibliography by
-citing a book <citation_reference ids="id6" refid="python-primer-09">Python:Primer:09</citation_reference>, a paper <citation_reference ids="id7" refid="osnes-98">Osnes:98</citation_reference>,
-and both of them simultaneously <citation_reference ids="id8" refid="python-primer-09">Python:Primer:09</citation_reference> <citation_reference ids="id9" refid="osnes-98">Osnes:98</citation_reference>.</paragraph><paragraph>(<strong>somereader</strong>: comments, citations, and references in the latex style
+citing a book <citation_reference ids="id5" refid="python-primer-09">Python:Primer:09</citation_reference>, a paper <citation_reference ids="id6" refid="osnes-98">Osnes:98</citation_reference>,
+and both of them simultaneously <citation_reference ids="id7" refid="python-primer-09">Python:Primer:09</citation_reference> <citation_reference ids="id8" refid="osnes-98">Osnes:98</citation_reference>.</paragraph><paragraph>(<strong>somereader</strong>: comments, citations, and references in the latex style
 is a special feature of doconce :-) )</paragraph></section><section ids="tables" names="tables"><title>Tables</title><paragraph>A table like</paragraph><table><tgroup cols="3"><colspec colwidth="12"/><colspec colwidth="12"/><colspec colwidth="12"/><thead><row><entry><paragraph>time</paragraph></entry><entry><paragraph>velocity</paragraph></entry><entry><paragraph>acceleration</paragraph></entry></row></thead><tbody><row><entry><paragraph>0.0</paragraph></entry><entry><paragraph>1.4186</paragraph></entry><entry><paragraph>-5.01</paragraph></entry></row><row><entry><paragraph>2.0</paragraph></entry><entry><paragraph>1.376512</paragraph></entry><entry><paragraph>11.919</paragraph></entry></row><row><entry><paragraph>4.0</paragraph></entry><entry><paragraph>1.1E+1</paragraph></entry><entry><paragraph>14.717624</paragraph></entry></row></tbody></tgroup></table><paragraph>is built up of pipe symbols and dashes:</paragraph><literal_block xml:space="preserve">|--------------------------------|
 |time  | velocity | acceleration |
 |--------------------------------|
@@ -1436,9 +1436,9 @@ arguments and variables are nicely formatted:</paragraph><literal_block xml:spac
   (bool variable).</literal_block><paragraph>The result depends on the output format: all formats except Epytext
 and Sphinx just typeset the list as a list with keywords.</paragraph><block_quote><definition_list><definition_list_item><term>module variable x:</term><definition><paragraph>x value (float),
 which must be a positive number.</paragraph></definition></definition_list_item><definition_list_item><term>module variable tolerance:</term><definition><paragraph>tolerance (float) for stopping
-the iterations.</paragraph></definition></definition_list_item></definition_list></block_quote><citation backrefs="id6 id8" ids="python-primer-09" names="python:primer:09"><label>Python:Primer:09</label><paragraph>H. P. Langtangen.
+the iterations.</paragraph></definition></definition_list_item></definition_list></block_quote><citation backrefs="id5 id7" ids="python-primer-09" names="python:primer:09"><label>Python:Primer:09</label><paragraph>H. P. Langtangen.
 <emphasis>A Primer on Scientific Programming with Python</emphasis>.
-Springer, 2009.</paragraph></citation><citation backrefs="id7 id9" ids="osnes-98" names="osnes:98"><label>Osnes:98</label><paragraph>H. Osnes and H. P. Langtangen.
+Springer, 2009.</paragraph></citation><citation backrefs="id6 id8" ids="osnes-98" names="osnes:98"><label>Osnes:98</label><paragraph>H. Osnes and H. P. Langtangen.
 An efficient probabilistic finite element method for stochastic
 groundwater flow.
 <emphasis>Advances in Water Resources</emphasis>, vol 22, 185-195, 1998.</paragraph></citation></section></section></document>

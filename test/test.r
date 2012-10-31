@@ -557,6 +557,23 @@ This is the first appendix.
 
 This is more stuff for an appendix.
 
+===== Appendix: Testing identical titles =====
+
+Without label.
+
+===== Appendix: Testing identical titles =====
+label{test:title:id1}
+
+With label.
+
+===== Appendix: Testing identical titles =====
+label{test:title:id2}
+
+With label.
+
+===== Appendix: Testing identical titles =====
+
+Without label.
 
 ************** File: testdoc.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
@@ -709,6 +726,10 @@ MathJax.Hub.Config({
 <a href="#___sec16"> Appendix: Just for testing; part I </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#___sec17"> A subsection within an appendix </a><br>
 <a href="#___sec18"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec19"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#test:title:id1"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#test:title:id2"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec22"> Appendix: Testing identical titles </a><br>
 
 <p>
 <p>
@@ -1470,6 +1491,30 @@ This is the first appendix.
 <h2>Appendix: Just for testing; part II  <a name="___sec18"></a></h2>
 <p>
 This is more stuff for an appendix.
+
+<p>
+
+<h3>Appendix: Testing identical titles  <a name="___sec19"></a></h3>
+<p>
+Without label.
+
+<p>
+
+<h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
+<p>
+With label.
+
+<p>
+
+<h3>Appendix: Testing identical titles <a name="test:title:id2"></a></h3>
+<p>
+With label.
+
+<p>
+
+<h3>Appendix: Testing identical titles  <a name="___sec22"></a></h3>
+<p>
+Without label.
 
 <!-- ------------------- end of main content ----------------->
 </body>
@@ -2459,6 +2504,26 @@ This is the first appendix.
 
 This is more stuff for an appendix.
 
+\subsection{Appendix: Testing identical titles}
+
+Without label.
+
+\subsection{Appendix: Testing identical titles}
+
+\label{test:title:id1}
+
+With label.
+
+\subsection{Appendix: Testing identical titles}
+
+\label{test:title:id2}
+
+With label.
+
+\subsection{Appendix: Testing identical titles}
+
+Without label.
+
 % #ifdef PREAMBLE
 \printindex
 
@@ -3301,6 +3366,26 @@ This is the first appendix.
 
 This is more stuff for an appendix.
 
+\subsection{Appendix: Testing identical titles}
+
+Without label.
+
+\subsection{Appendix: Testing identical titles}
+
+\label{test:title:id1}
+
+With label.
+
+\subsection{Appendix: Testing identical titles}
+
+\label{test:title:id2}
+
+With label.
+
+\subsection{Appendix: Testing identical titles}
+
+Without label.
+
 \printindex
 
 \end{document}
@@ -4122,6 +4207,26 @@ This is the first appendix.
 
 This is more stuff for an appendix.
 
+\subsection{Appendix: Testing identical titles}
+
+Without label.
+
+\subsection{Appendix: Testing identical titles}
+
+\label{test:title:id1}
+
+With label.
+
+\subsection{Appendix: Testing identical titles}
+
+\label{test:title:id2}
+
+With label.
+
+\subsection{Appendix: Testing identical titles}
+
+Without label.
+
 \printindex
 
 \end{document}
@@ -4760,6 +4865,30 @@ Appendix: Just for testing; part II
 ===================================
 
 This is more stuff for an appendix.
+
+Appendix: Testing identical titles  (1)
+---------------------------------------
+
+Without label.
+
+.. _test:title:id1:
+
+Appendix: Testing identical titles  (2)
+---------------------------------------
+
+With label.
+
+.. _test:title:id2:
+
+Appendix: Testing identical titles  (3)
+---------------------------------------
+
+With label.
+
+Appendix: Testing identical titles  (4)
+---------------------------------------
+
+Without label.
 
 
 ************** File: testdoc.sphinx.rst *****************
@@ -5498,6 +5627,30 @@ Appendix: Just for testing; part II
 
 This is more stuff for an appendix.
 
+Appendix: Testing identical titles  (1)
+---------------------------------------
+
+Without label.
+
+.. _test:title:id1:
+
+Appendix: Testing identical titles  (2)
+---------------------------------------
+
+With label.
+
+.. _test:title:id2:
+
+Appendix: Testing identical titles  (3)
+---------------------------------------
+
+With label.
+
+Appendix: Testing identical titles  (4)
+---------------------------------------
+
+Without label.
+
 
 ************** File: testdoc.gwiki *****************
 
@@ -6034,6 +6187,22 @@ This is the first appendix.
 
 This is more stuff for an appendix.
 
+==== Appendix: Testing identical titles ====
+
+Without label.
+
+==== Appendix: Testing identical titles ====
+
+With label.
+
+==== Appendix: Testing identical titles ====
+
+With label.
+
+==== Appendix: Testing identical titles ====
+
+Without label.
+
 
 ************** File: testdoc.mwiki *****************
 
@@ -6524,6 +6693,22 @@ This is the first appendix.
 == Appendix: Just for testing; part II ==
 
 This is more stuff for an appendix.
+
+==== Appendix: Testing identical titles ====
+
+Without label.
+
+==== Appendix: Testing identical titles ====
+
+With label.
+
+==== Appendix: Testing identical titles ====
+
+With label.
+
+==== Appendix: Testing identical titles ====
+
+Without label.
 
 
 ************** File: testdoc.cwiki *****************
@@ -7033,6 +7218,26 @@ This is the first appendix.
 This is more stuff for an appendix.
 
 
+== Appendix: Testing identical titles ==
+
+Without label.
+
+
+== Appendix: Testing identical titles ==
+
+With label.
+
+
+== Appendix: Testing identical titles ==
+
+With label.
+
+
+== Appendix: Testing identical titles ==
+
+Without label.
+
+
 ************** File: testdoc.st *****************
 
 
@@ -7453,6 +7658,22 @@ A subsection within an appendix
 Appendix: Just for testing; part II
 
 This is more stuff for an appendix.
+
+Appendix: Testing identical titles
+
+Without label.
+
+Appendix: Testing identical titles
+
+With label.
+
+Appendix: Testing identical titles
+
+With label.
+
+Appendix: Testing identical titles
+
+Without label.
 
 
 ************** File: testdoc.epytext *****************
@@ -7937,6 +8158,26 @@ Appendix: Just for testing; part II
 
 This is more stuff for an appendix.
 
+Appendix: Testing identical titles
+----------------------------------
+
+Without label.
+
+Appendix: Testing identical titles
+----------------------------------
+
+With label.
+
+Appendix: Testing identical titles
+----------------------------------
+
+With label.
+
+Appendix: Testing identical titles
+----------------------------------
+
+Without label.
+
 
 ************** File: testdoc.txt *****************
 
@@ -7982,6 +8223,10 @@ Table of contents:
  Appendix: Just for testing; part I 
    A subsection within an appendix 
  Appendix: Just for testing; part II 
+   Appendix: Testing identical titles 
+   Appendix: Testing identical titles 
+   Appendix: Testing identical titles 
+   Appendix: Testing identical titles 
 
 
 
@@ -8461,6 +8706,26 @@ Appendix: Just for testing; part II
 ===================================
 
 This is more stuff for an appendix.
+
+Appendix: Testing identical titles
+----------------------------------
+
+Without label.
+
+Appendix: Testing identical titles
+----------------------------------
+
+With label.
+
+Appendix: Testing identical titles
+----------------------------------
+
+With label.
+
+Appendix: Testing identical titles
+----------------------------------
+
+Without label.
 
 
 ************** File: testdoc.mkd *****************
@@ -9010,6 +9275,26 @@ Appendix: Just for testing; part II
 
 This is more stuff for an appendix.
 
+Appendix: Testing identical titles
+----------------------------------
+
+Without label.
+
+Appendix: Testing identical titles
+----------------------------------
+
+With label.
+
+Appendix: Testing identical titles
+----------------------------------
+
+With label.
+
+Appendix: Testing identical titles
+----------------------------------
+
+Without label.
+
 
 ************** File: testdoc.tmp *****************
 Could not find match for from regex "={9}"
@@ -9516,6 +9801,16 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <h2 id="a-subsection-within-an-appendix">A subsection within an appendix</h2>
 <h1 id="just-for-testing-part-ii">Just for testing; part II</h1>
 <p>This is more stuff for an appendix.</p>
+<h2 id="appendix-testing-identical-titles">Appendix: Testing identical titles</h2>
+<p>Without label.</p>
+<h2 id="appendix-testing-identical-titles-1">Appendix: Testing identical titles</h2>
+<p>[test:title:id1]</p>
+<p>With label.</p>
+<h2 id="appendix-testing-identical-titles-2">Appendix: Testing identical titles</h2>
+<p>[test:title:id2]</p>
+<p>With label.</p>
+<h2 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h2>
+<p>Without label.</p>
 </body>
 </html>
 
@@ -9910,6 +10205,14 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <h2 id="a-subsection-within-an-appendix">A subsection within an appendix</h2>
 <h1 id="appendix-just-for-testing-part-ii">Appendix: Just for testing; part II</h1>
 <p>This is more stuff for an appendix.</p>
+<h2 id="appendix-testing-identical-titles">Appendix: Testing identical titles</h2>
+<p>Without label.</p>
+<h2 id="appendix-testing-identical-titles-1">Appendix: Testing identical titles</h2>
+<p>With label.</p>
+<h2 id="appendix-testing-identical-titles-2">Appendix: Testing identical titles</h2>
+<p>With label.</p>
+<h2 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h2>
+<p>Without label.</p>
 </body>
 </html>
 
@@ -25605,7 +25908,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 31 Oct 2012 (00:43)
+DATE: Wed, 31 Oct 2012 (17:40)
 
 
 
@@ -25709,7 +26012,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 31 Oct 2012 (00:43)
+DATE: Wed, 31 Oct 2012 (17:40)
 
 
 
@@ -25823,7 +26126,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 31 Oct 2012 (00:43)</center>
+<center>Wed, 31 Oct 2012 (17:40)</center>
 
 
 
@@ -25954,7 +26257,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 31 Oct 2012 (00:43)</center>
+<center>Wed, 31 Oct 2012 (17:40)</center>
 
 
 
@@ -29625,7 +29928,7 @@ __A Paragraph.__ The running text goes here.
 
 <p>
 
-<h2>Special Lines  <a name="___sec22"></a></h2>
+<h2>Special Lines  <a name="___sec23"></a></h2>
 <p>
 
 <h3>Figures  <a name="___sec24"></a></h3>
@@ -35959,8 +36262,8 @@ The result becomes
      if there are multiple
      lines)
 
-Special Lines
--------------
+Special Lines  (1)
+------------------
 
 The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
@@ -36080,8 +36383,8 @@ Here are some examples::
         __A Paragraph.__ The running text goes here.
 
 
-Special Lines
-=============
+Special Lines  (2)
+==================
 
 Figures
 -------
@@ -39158,8 +39461,8 @@ The result becomes
      if there are multiple
      lines)
 
-Special Lines
--------------
+Special Lines  (1)
+------------------
 
 The Doconce markup language has a concept called *special lines*.
 Such lines starts with a markup at the very beginning of the
@@ -39306,8 +39609,8 @@ Here are some examples:
         __A Paragraph.__ The running text goes here.
 
 
-Special Lines
-=============
+Special Lines  (2)
+==================
 
 Figures
 -------
@@ -71182,7 +71485,7 @@ ic/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
 pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/sh
 are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (13 pages, 1445791 bytes).
+Output written on testdoc.pdf (13 pages, 1446391 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -74208,7 +74511,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on DoconceManual.pdf (59 pages, 395783 bytes).
+Output written on DoconceManual.pdf (59 pages, 395813 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -74620,7 +74923,7 @@ Overfull \hbox (23.00006pt too wide) in paragraph at lines 1861--1861
 Overfull \hbox (53.00006pt too wide) in paragraph at lines 1862--1864
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-LaTeX Warning: Hyper reference `id4' on page 21 undefined on input line 1886.
+LaTeX Warning: Hyper reference `id3' on page 21 undefined on input line 1886.
 
 
 Overfull \hbox (89.00006pt too wide) in paragraph at lines 1894--1894
@@ -74650,7 +74953,7 @@ ut line 1948.
 Overfull \hbox (21.44621pt too wide) in paragraph at lines 1944--1953
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
-LaTeX Warning: Hyper reference `id4' on page 22 undefined on input line 1955.
+LaTeX Warning: Hyper reference `id3' on page 22 undefined on input line 1955.
 
 
 Overfull \hbox (27.01674pt too wide) in paragraph at lines 1954--1956
@@ -74942,7 +75245,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (46 pages, 202296 bytes).
+Output written on manual.rst.dvi (46 pages, 202304 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -75587,7 +75890,7 @@ Overfull \hbox (113.00006pt too wide) in paragraph at lines 3972--3972
 ugging  
 [45] [46] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (46 pages, 211720 bytes).
+Output written on manual.rst.dvi (46 pages, 211740 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
