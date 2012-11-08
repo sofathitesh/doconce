@@ -43,11 +43,11 @@ doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a st
 doconce format latex testdoc.do.txt
 doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
 #doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
-pandoc -f latex -t markdown -o testdoc.mkd testdoc.tex
-pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.mkd
+pandoc -f latex -t markdown -o testdoc.md testdoc.tex
+pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 
 doconce format pandoc testdoc.do.txt
-pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.mkd
+pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 
 # Test grab
 doconce grab --from- '={9}' --to 'subroutine@' testdoc.do.txt > testdoc.tmp

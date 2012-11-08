@@ -302,7 +302,7 @@ def doconce_exercise_output(exer,
             s += 'Code:\n'
         s += exer['solution'] + '\n' + end_solution + '\n'
 
-    if 'subex' in exer:
+    if exer['subex']:
         s += '\n'
         import string
         for i, subex in enumerate(exer['subex']):
@@ -335,7 +335,7 @@ def doconce_exercise_output(exer,
                     s += subex['solution'] + '\n' + end_solution + '\n'
 
     if exer['file']:
-        if 'subex' in exer:
+        if exer['subex']:
             # Place Filename: ... as a list paragraph if subexercises,
             # otherwise let it proceed at the end of the exercise text.
             s += '\n'
@@ -347,13 +347,17 @@ def doconce_exercise_output(exer,
         #s += '*Filename*: `%s`' % exer['file'] + '.\n'
         #s += '\n' + '*Filename*: `%s`' % exer['file'] + '.\n'
 
+    if exer['closing_remarks']:
+        s += '\n# Closing remarks for this %s\n\n=== Remarks ===\n\n' % \
+             exer['type'] + exer['closing_remarks'] + '\n\n'
+
     if exer['solution_file']:
         if len(exer['solution_file']) == 1:
             s += '# solution file: %s\n' % exer['solution_file'][0]
         else:
             s += '# solution files: %s\n' % ', '.join(exer['solution_file'])
 
-    s += end_exercise + '\n\n'
+    s += '\n' + end_exercise + '\n\n'
     return s
 
 def plain_exercise(exer):

@@ -670,6 +670,8 @@ def exercises(filestr, format):
     solution_pattern_end = '!esol'
     subex_pattern_begin = '!bsubex'
     subex_pattern_end = '!esubex'
+    closing_remarks_pattern_begin = '!bremarks'
+    closing_remarks_pattern_end = '!eremarks'
 
     lines = filestr.splitlines()
     newlines = []  # lines in resulting file
@@ -693,7 +695,7 @@ def exercises(filestr, format):
             exer['file'] = None
             exer['keywords'] = None
             exer.update(dict(text=[], hints=[], answer=[],
-                             solution=[], subex=[]))
+                             solution=[], subex=[], closing_remarks=[]))
 
             exer_end = False
 
@@ -701,6 +703,7 @@ def exercises(filestr, format):
             inside_subex = False
             inside_answer = False
             inside_solution = False
+            inside_closing_remarks = False
 
         elif inside_exer:
             instruction_line = True
@@ -759,6 +762,11 @@ def exercises(filestr, format):
             elif line.startswith(hint_pattern_end):
                 inside_hint = False
 
+            elif line.startswith(closing_remarks_pattern_begin):
+                inside_closing_remarks = True
+            elif line.startswith(closing_remarks_pattern_end):
+                inside_closing_remarks = False
+
             else:
                 instruction_line = False
 
@@ -779,6 +787,8 @@ def exercises(filestr, format):
                     exer['solution'].append(lines[i])
                 elif inside_hint:
                     exer['hints'][-1].append(lines[i])
+                elif inside_closing_remarks:
+                    exer['closing_remarks'].append(lines[i])
                 else:
                     # ordinary text line
                     exer['text'].append(lines[i])
@@ -797,6 +807,7 @@ def exercises(filestr, format):
             exer['text'] = '\n'.join(exer['text']).strip()
             exer['answer'] = '\n'.join(exer['answer']).strip()
             exer['solution'] = '\n'.join(exer['solution']).strip()
+            exer['closing_remarks'] = '\n'.join(exer['closing_remarks']).strip()
             for i in range(len(exer['hints'])):
                 exer['hints'][i] = '\n'.join(exer['hints'][i]).strip()
 
@@ -1801,8 +1812,8 @@ def doconce2format(filestr, format):
             split_comment = comment_action % command
         elif callable(comment_action):
             split_comment = comment_action(command)
-    cpattern = re.compile('^%s\s*$' % command, re.MULTILINE)
-    filestr = cpattern.sub(split_comment, filestr)
+        cpattern = re.compile('^%s\s*$' % command, re.MULTILINE)
+        filestr = cpattern.sub(split_comment, filestr)
 
     # Next step: substitute latex-style newcommands in filestr and tex_blocks
     # (not in code_blocks)

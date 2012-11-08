@@ -475,6 +475,7 @@ label{proj:circle1}
 file=circles.pdf
 
 The formula for a circle is given by
+
 !bt
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\
@@ -485,6 +486,7 @@ where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ is a point on the circle.
 The formula can be used to generate `n` points on a circle:
+
 !bc pypro
 import numpy as np
 
@@ -531,6 +533,58 @@ file=norm.py  # test local filename for subexercise
 !bsubex
 Let $R$ and $(x_0,y_0)$ be normally distributed.
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+!eremarks
+
+===== Exercise: Determine some Distance =====
+label{exer:dist}
+
+Intro to this exercise. Questions are in subexercises below.
+
+!bsubex
+Subexercises are numbered a), b), etc.
+
+file=subexer_a.pdf
+
+!bans
+Short answer to subexercise a).
+!eans
+
+!bhint
+First hint to subexercise a).
+!ehint
+
+!bhint
+Second hint to subexercise a).
+!ehint
+!esubex
+
+!bsubex
+Here goes the text for subexercise b).
+
+file=subexer_b.pdf
+
+!bhint
+A hint for this subexercise.
+!ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
+!esubex
+
+!bremarks
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
 
 
 ======= Here goes another section =======
@@ -733,17 +787,20 @@ MathJax.Hub.Config({
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:1"> Problem 1: Flip a Coin </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 2: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 3: Explore Distributions of Random Circles </a><br>
-<a href="#___sec12"> Here goes another section </a><br>
-<a href="#___sec13"> More Exercises </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 4: Make references to projects and problems </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 5: References in a headings do not work well in html </a><br>
-<a href="#___sec16"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec17"> A subsection within an appendix </a><br>
-<a href="#___sec18"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec19"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec12"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 4: Determine some Distance </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec14"> Remarks </a><br>
+<a href="#___sec15"> Here goes another section </a><br>
+<a href="#___sec16"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 5: Make references to projects and problems </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 6: References in a headings do not work well in html </a><br>
+<a href="#___sec19"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec20"> A subsection within an appendix </a><br>
+<a href="#___sec21"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec22"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec22"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#___sec25"> Appendix: Testing identical titles </a><br>
 
 <p>
 <p>
@@ -1300,8 +1357,8 @@ More mathematical typesetting is demonstrated in the coming exercises.
 
 <p>
 Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#demo:ex:2">Project 2: Compute a Probability</a>,
-as well as <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 5: References in a headings do not work well in html</a>, and in
-between there we have <a href="#exer:some:formula">Exercise 4: Make references to projects and problems</a>.
+as well as <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 6: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 5: Make references to projects and problems</a>.
 
 <p>
 
@@ -1328,7 +1385,6 @@ let the program count the number of heads.
 
 <p>
 <!-- Test syntax error -->
-Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
 
 <p>
 <b>Hint 1.</b> Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
@@ -1340,9 +1396,10 @@ Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
 <p>
 
 <p>
+Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
+<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
 
 <p>
-<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
 <!-- --- end of exercise -->
 
 <p>
@@ -1389,6 +1446,8 @@ compute the probability as \( M/N \).
 <h3>Project 3: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
 <p>
 The formula for a circle is given by
+
+<p>
 $$
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\ 
@@ -1399,6 +1458,8 @@ where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the
 center point, and \( t \) is a parameter in the unit interval \( [0,1] \).
 For any \( t \), \( (x,y) \) is a point on the circle.
 The formula can be used to generate <tt>n</tt> points on a circle:
+
+<p>
 <p>
 
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
@@ -1429,7 +1490,6 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 The goal of this project is to draw \( N \) circles with random
 center and radius. Plot each circle using the <tt>circle</tt> function
 above.
-Filename: <tt>circles.pdf</tt>.
 
 <p>
 
@@ -1450,19 +1510,27 @@ Filename: <tt>circles.pdf</tt>.
 
 <p>
 <b>c)</b> Let \( R \) and \( (x_0,y_0) \) be normally distributed.
+
+<p>
+Filename: <tt>circles.pdf</tt>.
+
+<p>
+<!-- Closing remarks for this Project -->
+
+<p>
+
+<h4>Remarks  <a name="___sec12"></a></h4>
+<p>
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+<p>
+
+<p>
 <!-- --- end of exercise -->
 
 <p>
 
-<p>
-
-<h2>Here goes another section  <a name="___sec12"></a></h2>
-<p>
-With some text, before we continue with exercises.
-
-<p>
-
-<h2>More Exercises  <a name="___sec13"></a></h2>
 <p>
 
 <p>
@@ -1472,7 +1540,72 @@ With some text, before we continue with exercises.
 
 <p>
 
-<h3>Exercise 4: Make references to projects and problems <a name="exer:some:formula"></a></h3>
+<h3>Exercise 4: Determine some Distance <a name="exer:dist"></a></h3>
+<p>
+Intro to this exercise. Questions are in subexercises below.
+
+<p>
+
+<p>
+
+<p>
+<b>a)</b> Subexercises are numbered a), b), etc.
+
+<p>
+<b>Hint 1.</b> First hint to subexercise a).
+
+<p>
+<b>Hint 2.</b> Second hint to subexercise a).
+<em>Filename</em>: <tt>subexer_a.pdf</tt>.
+
+<p>
+
+<p>
+<b>b)</b> Here goes the text for subexercise b).
+
+<p>
+<b>Hint.</b> A hint for this subexercise.
+<em>Filename</em>: <tt>subexer_b.pdf</tt>.
+
+<p>
+
+<p>
+<!-- Closing remarks for this Exercise -->
+
+<p>
+
+<h4>Remarks  <a name="___sec14"></a></h4>
+<p>
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+<p>
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+<p>
+
+<h2>Here goes another section  <a name="___sec15"></a></h2>
+<p>
+With some text, before we continue with exercises.
+
+<p>
+
+<h2>More Exercises  <a name="___sec16"></a></h2>
+<p>
+
+<p>
+
+<p>
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Exercise 5: Make references to projects and problems <a name="exer:some:formula"></a></h3>
 <p>
 Pick a statement from <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
 and verify it.
@@ -1492,11 +1625,11 @@ Filename: <tt>verify_formula.py</tt>.
 
 <p>
 
-<h3>Project 5: References in a headings do not work well in html <a name="exer:you"></a></h3>
+<h3>Project 6: References in a headings do not work well in html <a name="exer:you"></a></h3>
 <p>
-Refer to the previous exercise as <a href="#exer:some:formula">Exercise 4: Make references to projects and problems</a>,
+Refer to the previous exercise as <a href="#exer:some:formula">Exercise 5: Make references to projects and problems</a>,
 the two before that as <a href="#demo:ex:2">Project 2: Compute a Probability</a> and <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a>,
-and this one as <a href="#exer:you">Project 5: References in a headings do not work well in html</a>.
+and this one as <a href="#exer:you">Project 6: References in a headings do not work well in html</a>.
 Filename: <tt>selc_composed.pdf</tt>.
 
 <p>
@@ -1506,22 +1639,22 @@ Filename: <tt>selc_composed.pdf</tt>.
 
 <p>
 
-<h2>Appendix: Just for testing; part I  <a name="___sec16"></a></h2>
+<h2>Appendix: Just for testing; part I  <a name="___sec19"></a></h2>
 <p>
 This is the first appendix.
 
 <p>
 
-<h3>A subsection within an appendix  <a name="___sec17"></a></h3>
+<h3>A subsection within an appendix  <a name="___sec20"></a></h3>
 <p>
 
-<h2>Appendix: Just for testing; part II  <a name="___sec18"></a></h2>
+<h2>Appendix: Just for testing; part II  <a name="___sec21"></a></h2>
 <p>
 This is more stuff for an appendix.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec19"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec22"></a></h3>
 <p>
 Without label.
 
@@ -1539,7 +1672,7 @@ With label.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec22"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec25"></a></h3>
 <p>
 Without label.
 
@@ -2343,7 +2476,6 @@ let the program count the number of heads.
 
 
 % Test syntax error
-Filenames: \code{flip_coin.py}, \code{flip_coin.pdf}.
 
 \paragraph{Hint 1.}
 Use \code{r = random.random()} and define head as \code{r <= 0.5}.
@@ -2375,8 +2507,9 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 \epycod
 
 % --- end solution of exercise
-
+Filenames: \code{flip_coin.py}, \code{flip_coin.pdf}.
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
+
 
 \end{exercise}
 % --- end of exercise
@@ -2420,6 +2553,7 @@ compute the probability as $M/N$.
 \label{proj:circle1}
 
 The formula for a circle is given by
+
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\ 
 y &= y_0 + R\sin 2\pi t,
@@ -2428,6 +2562,7 @@ where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ is a point on the circle.
 The formula can be used to generate \code{n} points on a circle:
+
 \bpypro
 import numpy as np
 
@@ -2446,7 +2581,6 @@ x, y = circle(2.0, 0, 0)
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the \code{circle} function
 above.
-Filename: \code{circles.pdf}.
 
 
 \paragraph{a)}
@@ -2476,6 +2610,79 @@ Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
 \paragraph{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
 
+Filename: \code{circles.pdf}.
+
+% Closing remarks for this Project
+
+\paragraph{Remarks.}
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+
+
+\end{exercise}
+% --- end of exercise
+
+
+
+
+% --- begin exercise
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection*{Exercise 4: Determine some Distance}
+
+\label{exer:dist}
+
+Intro to this exercise. Questions are in subexercises below.
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+Here goes a full solution of the whole exercise.
+
+% --- end solution of exercise
+
+
+\paragraph{a)}
+Subexercises are numbered a), b), etc.
+
+\paragraph{Hint 1.}
+First hint to subexercise a).
+
+\paragraph{Hint 2.}
+Second hint to subexercise a).
+\emph{Filename}: \code{subexer_a.pdf}.
+
+% --- begin short answer in exercise
+
+\paragraph{Answer.}
+Short answer to subexercise a).
+% --- end short answer in exercise
+
+\paragraph{b)}
+Here goes the text for subexercise b).
+
+\paragraph{Hint.}
+A hint for this subexercise.
+\emph{Filename}: \code{subexer_b.pdf}.
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+Here goes the solution of this subexercise.
+
+% --- end solution of exercise
+
+% Closing remarks for this Exercise
+
+\paragraph{Remarks.}
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+
+
 \end{exercise}
 % --- end of exercise
 
@@ -2491,7 +2698,7 @@ With some text, before we continue with exercises.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Exercise 4: Make references to projects and problems}
+\subsection*{Exercise 5: Make references to projects and problems}
 
 \label{exer:some:formula}
 
@@ -2510,7 +2717,7 @@ Filename: \code{verify_formula.py}.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 5: References to Project~\ref{demo:ex:2} in a heading works for latex}
+\subsection*{Project 6: References to Project~\ref{demo:ex:2} in a heading works for latex}
 
 \label{exer:you}
 
@@ -2694,8 +2901,9 @@ Without label.
 Problem & 1 & Flip a Coin & p.~\pageref{demo:ex:1} \\
 Project & 2 & Compute a Probability & p.~\pageref{demo:ex:2} \\
 Project & 3 & Explore Distributions of Random Circles & p.~\pageref{proj:circle1} \\
-Exercise & 4 & Make references to projects and problems & p.~\pageref{exer:some:formula} \\
-Project & 5 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:you} \\
+Exercise & 4 & Determine some Distance & p.~\pageref{exer:dist} \\
+Exercise & 5 & Make references to projects and problems & p.~\pageref{exer:some:formula} \\
+Project & 6 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:you} \\
 \end{tabular}
 % --- end of table of exercises
 
@@ -3210,7 +3418,6 @@ let the program count the number of heads.
 
 
 % Test syntax error
-Filenames: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}, {\fontsize{10pt}{10pt}\verb!flip_coin.pdf!}.
 
 \paragraph{Hint 1.}
 Use {\fontsize{10pt}{10pt}\verb!r = random.random()!} and define head as {\fontsize{10pt}{10pt}\verb!r <= 0.5!}.
@@ -3243,8 +3450,9 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 \noindent
 
 % --- end solution of exercise
-
+Filenames: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}, {\fontsize{10pt}{10pt}\verb!flip_coin.pdf!}.
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
+
 
 \end{exercise}
 % --- end of exercise
@@ -3288,6 +3496,7 @@ compute the probability as $M/N$.
 \label{proj:circle1}
 
 The formula for a circle is given by
+
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\ 
 y &= y_0 + R\sin 2\pi t,
@@ -3296,6 +3505,7 @@ where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ is a point on the circle.
 The formula can be used to generate {\fontsize{10pt}{10pt}\verb!n!} points on a circle:
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import numpy as np
 
@@ -3315,7 +3525,6 @@ x, y = circle(2.0, 0, 0)
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the {\fontsize{10pt}{10pt}\verb!circle!} function
 above.
-Filename: {\fontsize{10pt}{10pt}\verb!circles.pdf!}.
 
 
 \paragraph{a)}
@@ -3345,6 +3554,79 @@ Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
 \paragraph{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
 
+Filename: {\fontsize{10pt}{10pt}\verb!circles.pdf!}.
+
+% Closing remarks for this Project
+
+\paragraph{Remarks.}
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+
+
+\end{exercise}
+% --- end of exercise
+
+
+
+
+% --- begin exercise
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection*{Exercise 4: Determine some Distance}
+
+\label{exer:dist}
+
+Intro to this exercise. Questions are in subexercises below.
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+Here goes a full solution of the whole exercise.
+
+% --- end solution of exercise
+
+
+\paragraph{a)}
+Subexercises are numbered a), b), etc.
+
+\paragraph{Hint 1.}
+First hint to subexercise a).
+
+\paragraph{Hint 2.}
+Second hint to subexercise a).
+\emph{Filename}: {\fontsize{10pt}{10pt}\verb!subexer_a.pdf!}.
+
+% --- begin short answer in exercise
+
+\paragraph{Answer.}
+Short answer to subexercise a).
+% --- end short answer in exercise
+
+\paragraph{b)}
+Here goes the text for subexercise b).
+
+\paragraph{Hint.}
+A hint for this subexercise.
+\emph{Filename}: {\fontsize{10pt}{10pt}\verb!subexer_b.pdf!}.
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+Here goes the solution of this subexercise.
+
+% --- end solution of exercise
+
+% Closing remarks for this Exercise
+
+\paragraph{Remarks.}
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+
+
 \end{exercise}
 % --- end of exercise
 
@@ -3360,7 +3642,7 @@ With some text, before we continue with exercises.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Exercise 4: Make references to projects and problems}
+\subsection*{Exercise 5: Make references to projects and problems}
 
 \label{exer:some:formula}
 
@@ -3379,7 +3661,7 @@ Filename: {\fontsize{10pt}{10pt}\verb!verify_formula.py!}.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 5: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
+\subsection*{Project 6: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
 
 \label{exer:you}
 
@@ -3572,8 +3854,9 @@ Jan 32, 2100
 Problem & 1 & Flip a Coin & p.~\pageref{demo:ex:1} \\
 Project & 2 & Compute a Probability & p.~\pageref{demo:ex:2} \\
 Project & 3 & Explore Distributions of Random Circles & p.~\pageref{proj:circle1} \\
-Exercise & 4 & Make references to projects and problems & p.~\pageref{exer:some:formula} \\
-Project & 5 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:you} \\
+Exercise & 4 & Determine some Distance & p.~\pageref{exer:dist} \\
+Exercise & 5 & Make references to projects and problems & p.~\pageref{exer:some:formula} \\
+Project & 6 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:you} \\
 \end{tabular}
 % --- end of table of exercises
 
@@ -4060,7 +4343,6 @@ let the program count the number of heads.
 
 
 % Test syntax error
-Filenames: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}, {\fontsize{10pt}{10pt}\verb!flip_coin.pdf!}.
 
 \paragraph{Hint 1.}
 Use {\fontsize{10pt}{10pt}\verb!r = random.random()!} and define head as {\fontsize{10pt}{10pt}\verb!r <= 0.5!}.
@@ -4092,8 +4374,9 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 \end{minted}
 
 % --- end solution of exercise
-
+Filenames: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}, {\fontsize{10pt}{10pt}\verb!flip_coin.pdf!}.
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
+
 
 \end{exercise}
 % --- end of exercise
@@ -4137,6 +4420,7 @@ compute the probability as $M/N$.
 \label{proj:circle1}
 
 The formula for a circle is given by
+
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\ 
 y &= y_0 + R\sin 2\pi t,
@@ -4145,6 +4429,7 @@ where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ is a point on the circle.
 The formula can be used to generate {\fontsize{10pt}{10pt}\verb!n!} points on a circle:
+
 \begin{python:nt}
 import numpy as np
 
@@ -4163,7 +4448,6 @@ x, y = circle(2.0, 0, 0)
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the {\fontsize{10pt}{10pt}\verb!circle!} function
 above.
-Filename: {\fontsize{10pt}{10pt}\verb!circles.pdf!}.
 
 
 \paragraph{a)}
@@ -4193,6 +4477,79 @@ Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
 \paragraph{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
 
+Filename: {\fontsize{10pt}{10pt}\verb!circles.pdf!}.
+
+% Closing remarks for this Project
+
+\paragraph{Remarks.}
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+
+
+\end{exercise}
+% --- end of exercise
+
+
+
+
+% --- begin exercise
+\begin{exercise}
+\refstepcounter{exerno}
+
+\subsection*{Exercise 4: Determine some Distance}
+
+\label{exer:dist}
+
+Intro to this exercise. Questions are in subexercises below.
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+Here goes a full solution of the whole exercise.
+
+% --- end solution of exercise
+
+
+\paragraph{a)}
+Subexercises are numbered a), b), etc.
+
+\paragraph{Hint 1.}
+First hint to subexercise a).
+
+\paragraph{Hint 2.}
+Second hint to subexercise a).
+\emph{Filename}: {\fontsize{10pt}{10pt}\verb!subexer_a.pdf!}.
+
+% --- begin short answer in exercise
+
+\paragraph{Answer.}
+Short answer to subexercise a).
+% --- end short answer in exercise
+
+\paragraph{b)}
+Here goes the text for subexercise b).
+
+\paragraph{Hint.}
+A hint for this subexercise.
+\emph{Filename}: {\fontsize{10pt}{10pt}\verb!subexer_b.pdf!}.
+
+% --- begin solution of exercise
+
+\paragraph{Solution.}
+Here goes the solution of this subexercise.
+
+% --- end solution of exercise
+
+% Closing remarks for this Exercise
+
+\paragraph{Remarks.}
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+
+
 \end{exercise}
 % --- end of exercise
 
@@ -4208,7 +4565,7 @@ With some text, before we continue with exercises.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Exercise 4: Make references to projects and problems}
+\subsection*{Exercise 5: Make references to projects and problems}
 
 \label{exer:some:formula}
 
@@ -4227,7 +4584,7 @@ Filename: {\fontsize{10pt}{10pt}\verb!verify_formula.py!}.
 \begin{exercise}
 \refstepcounter{exerno}
 
-\subsection*{Project 5: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
+\subsection*{Project 6: References to Project~\ref{demo:ex:2} in a heading works for pdflatex}
 
 \label{exer:you}
 
@@ -4702,8 +5059,8 @@ Here is a system without equation numbers, using the align-astrisk environment::
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have `Problem 1: Flip a Coin`_ and `Project 2: Compute a Probability`_,
-as well as `Project 3: Explore Distributions of Random Circles`_ and `Project 5: References in a headings do not work well in rst`_, and in
-between there we have `Exercise 4: Make references to projects and problems`_.
+as well as `Project 3: Explore Distributions of Random Circles`_ and `Project 6: References in a headings do not work well in rst`_, and in
+between there we have `Exercise 5: Make references to projects and problems`_.
 
 Exercises
 =========
@@ -4728,7 +5085,6 @@ let the program count the number of heads.
 
 .. Test syntax error
 
-Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
 
 *Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
 
@@ -4761,8 +5117,9 @@ head, otherwise tail. Repeat this N number of times.
 
 .. --- end solution of exercise
 
-
+Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
 .. solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
+
 
 .. --- end of exercise
 
@@ -4836,7 +5193,6 @@ The formula can be used to generate ``n`` points on a circle::
 The goal of this project is to draw N circles with random
 center and radius. Plot each circle using the ``circle`` function
 above.
-Filename: ``circles.pdf``.
 
 
 *a)* Let R be normally distributed and (x_0,y_0) uniformly distributed.
@@ -4863,6 +5219,82 @@ x_0, y_0, and R quantities.
 *Filename*: ``norm.py  ``.
 
 *c)* Let R and (x_0,y_0) be normally distributed.
+
+Filename: ``circles.pdf``.
+
+.. Closing remarks for this Project
+
+
+Remarks  (1)
+~~~~~~~~~~~~
+
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+
+.. --- end of exercise
+
+
+
+
+
+.. --- begin exercise
+
+
+.. _exer:dist:
+
+Exercise 4: Determine some Distance
+-----------------------------------
+
+Intro to this exercise. Questions are in subexercises below.
+
+.. --- begin solution of exercise
+
+
+*Solution.* Here goes a full solution of the whole exercise.
+
+.. --- end solution of exercise
+
+
+
+*a)* Subexercises are numbered a), b), etc.
+
+*Hint 1.* First hint to subexercise a).
+
+*Hint 2.* Second hint to subexercise a).
+*Filename*: ``subexer_a.pdf``.
+
+.. --- begin short answer in exercise
+
+
+*Answer.* Short answer to subexercise a).
+.. --- end short answer in exercise
+
+
+*b)* Here goes the text for subexercise b).
+
+*Hint.* A hint for this subexercise.
+*Filename*: ``subexer_b.pdf``.
+
+.. --- begin solution of exercise
+
+
+*Solution.* Here goes the solution of this subexercise.
+
+.. --- end solution of exercise
+
+
+.. Closing remarks for this Exercise
+
+
+Remarks  (2)
+~~~~~~~~~~~~
+
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+
 .. --- end of exercise
 
 
@@ -4882,7 +5314,7 @@ More Exercises
 
 .. _exer:some:formula:
 
-Exercise 4: Make references to projects and problems
+Exercise 5: Make references to projects and problems
 ----------------------------------------------------
 
 Pick a statement from `Project 3: Explore Distributions of Random Circles`_ or `Problem 1: Flip a Coin`_
@@ -4900,12 +5332,12 @@ Filename: ``verify_formula.py``.
 
 .. _exer:you:
 
-Project 5: References in a headings do not work well in rst
+Project 6: References in a headings do not work well in rst
 -----------------------------------------------------------
 
-Refer to the previous exercise as `Exercise 4: Make references to projects and problems`_,
+Refer to the previous exercise as `Exercise 5: Make references to projects and problems`_,
 the two before that as `Project 2: Compute a Probability`_ and `Project 3: Explore Distributions of Random Circles`_,
-and this one as `Project 5: References in a headings do not work well in rst`_.
+and this one as `Project 6: References in a headings do not work well in rst`_.
 Filename: ``selc_composed.pdf``.
 
 .. --- end of exercise
@@ -5497,7 +5929,6 @@ let the program count the number of heads.
 
 .. Test syntax error
 
-Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
 
 *Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
 
@@ -5531,8 +5962,9 @@ head, otherwise tail. Repeat this :math:`N` number of times.
 
 .. --- end solution of exercise
 
-
+Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
 .. solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
+
 
 .. --- end of exercise
 
@@ -5576,6 +6008,7 @@ Project 3: Explore Distributions of Random Circles
 
 The formula for a circle is given by
 
+
 .. math::
         
         x &= x_0 + R\cos 2\pi t,\\ 
@@ -5586,6 +6019,7 @@ where :math:`R` is the radius of the circle, :math:`(x_0,y_0)` is the
 center point, and :math:`t` is a parameter in the unit interval :math:`[0,1]`.
 For any :math:`t`, :math:`(x,y)` is a point on the circle.
 The formula can be used to generate ``n`` points on a circle:
+
 
 .. code-block:: python
 
@@ -5608,7 +6042,6 @@ The formula can be used to generate ``n`` points on a circle:
 The goal of this project is to draw :math:`N` circles with random
 center and radius. Plot each circle using the ``circle`` function
 above.
-Filename: ``circles.pdf``.
 
 
 *a)* Let :math:`R` be normally distributed and :math:`(x_0,y_0)` uniformly distributed.
@@ -5635,6 +6068,82 @@ Filename: ``circles.pdf``.
 *Filename*: ``norm.py  ``.
 
 *c)* Let :math:`R` and :math:`(x_0,y_0)` be normally distributed.
+
+Filename: ``circles.pdf``.
+
+.. Closing remarks for this Project
+
+
+Remarks  (1)
+~~~~~~~~~~~~
+
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+
+.. --- end of exercise
+
+
+
+
+
+.. --- begin exercise
+
+
+.. _exer:dist:
+
+Exercise 4: Determine some Distance
+-----------------------------------
+
+Intro to this exercise. Questions are in subexercises below.
+
+.. --- begin solution of exercise
+
+
+*Solution.* Here goes a full solution of the whole exercise.
+
+.. --- end solution of exercise
+
+
+
+*a)* Subexercises are numbered a), b), etc.
+
+*Hint 1.* First hint to subexercise a).
+
+*Hint 2.* Second hint to subexercise a).
+*Filename*: ``subexer_a.pdf``.
+
+.. --- begin short answer in exercise
+
+
+*Answer.* Short answer to subexercise a).
+.. --- end short answer in exercise
+
+
+*b)* Here goes the text for subexercise b).
+
+*Hint.* A hint for this subexercise.
+*Filename*: ``subexer_b.pdf``.
+
+.. --- begin solution of exercise
+
+
+*Solution.* Here goes the solution of this subexercise.
+
+.. --- end solution of exercise
+
+
+.. Closing remarks for this Exercise
+
+
+Remarks  (2)
+~~~~~~~~~~~~
+
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+
 .. --- end of exercise
 
 
@@ -5654,7 +6163,7 @@ More Exercises
 
 .. _exer:some:formula:
 
-Exercise 4: Make references to projects and problems
+Exercise 5: Make references to projects and problems
 ----------------------------------------------------
 
 Pick a statement from :ref:`proj:circle1` or :ref:`demo:ex:1`
@@ -5672,7 +6181,7 @@ Filename: ``verify_formula.py``.
 
 .. _exer:you:
 
-Project 5: References in a headings do not work well in sphinx
+Project 6: References in a headings do not work well in sphinx
 --------------------------------------------------------------
 
 Refer to the previous exercise as :ref:`exer:some:formula`,
@@ -6089,8 +6598,8 @@ b &= \nabla^2 u + \nabla^4 v
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_2:_Compute_a_Probability],
-as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki], and in
-between there we have [#Exercise_4:_Make_references_to_projects_and_problems].
+as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_6:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki], and in
+between there we have [#Exercise_5:_Make_references_to_projects_and_problems].
 
 
 
@@ -6108,7 +6617,6 @@ let the program count the number of heads.
 
 
 <wiki:comment> Test syntax error </wiki:comment>
-Filenames: `flip_coin.py`, `flip_coin.pdf`.
 
 *Hint 1.* Use `r = random.random()` and define head as `r <= 0.5`.
 
@@ -6136,8 +6644,9 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 }}}
 
 <wiki:comment> --- end solution of exercise </wiki:comment>
-
+Filenames: `flip_coin.py`, `flip_coin.pdf`.
 <wiki:comment> solution files: mysol.txt, mysol_flip_coin.py, yet_another.file </wiki:comment>
+
 <wiki:comment> --- end of exercise </wiki:comment>
 
 
@@ -6168,6 +6677,7 @@ compute the probability as `M/N`.
 ==== Project 3: Explore Distributions of Random Circles ====
 
 The formula for a circle is given by
+
 {{{
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\ 
@@ -6178,6 +6688,7 @@ where `R` is the radius of the circle, `(x_0,y_0)` is the
 center point, and `t` is a parameter in the unit interval `[0,1]`.
 For any `t`, `(x,y)` is a point on the circle.
 The formula can be used to generate `n` points on a circle:
+
 {{{
 import numpy as np
 
@@ -6196,7 +6707,6 @@ x, y = circle(2.0, 0, 0)
 The goal of this project is to draw `N` circles with random
 center and radius. Plot each circle using the `circle` function
 above.
-Filename: `circles.pdf`.
 
 
 *a)* Let `R` be normally distributed and `(x_0,y_0)` uniformly distributed.
@@ -6219,6 +6729,67 @@ Filename: `circles.pdf`.
 *Filename*: `norm.py  `.
 
 *c)* Let `R` and `(x_0,y_0)` be normally distributed.
+
+Filename: `circles.pdf`.
+
+<wiki:comment> Closing remarks for this Project </wiki:comment>
+
+==== Remarks ====
+
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+
+<wiki:comment> --- end of exercise </wiki:comment>
+
+
+
+
+<wiki:comment> --- begin exercise </wiki:comment>
+
+==== Exercise 4: Determine some Distance ====
+
+Intro to this exercise. Questions are in subexercises below.
+
+<wiki:comment> --- begin solution of exercise </wiki:comment>
+
+*Solution.* Here goes a full solution of the whole exercise.
+
+<wiki:comment> --- end solution of exercise </wiki:comment>
+
+
+*a)* Subexercises are numbered a), b), etc.
+
+*Hint 1.* First hint to subexercise a).
+
+*Hint 2.* Second hint to subexercise a).
+*Filename*: `subexer_a.pdf`.
+
+<wiki:comment> --- begin short answer in exercise </wiki:comment>
+
+*Answer.* Short answer to subexercise a).
+<wiki:comment> --- end short answer in exercise </wiki:comment>
+
+*b)* Here goes the text for subexercise b).
+
+*Hint.* A hint for this subexercise.
+*Filename*: `subexer_b.pdf`.
+
+<wiki:comment> --- begin solution of exercise </wiki:comment>
+
+*Solution.* Here goes the solution of this subexercise.
+
+<wiki:comment> --- end solution of exercise </wiki:comment>
+
+<wiki:comment> Closing remarks for this Exercise </wiki:comment>
+
+==== Remarks ====
+
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+
 <wiki:comment> --- end of exercise </wiki:comment>
 
 
@@ -6233,7 +6804,7 @@ With some text, before we continue with exercises.
 
 <wiki:comment> --- begin exercise </wiki:comment>
 
-==== Exercise 4: Make references to projects and problems ====
+==== Exercise 5: Make references to projects and problems ====
 
 Pick a statement from [#Project_3:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
 and verify it.
@@ -6246,11 +6817,11 @@ Filename: `verify_formula.py`.
 
 <wiki:comment> --- begin exercise </wiki:comment>
 
-==== Project 5: References to [#Project_2:_Compute_a_Probability] in a heading works for gwiki ====
+==== Project 6: References to [#Project_2:_Compute_a_Probability] in a heading works for gwiki ====
 
-Refer to the previous exercise as [#Exercise_4:_Make_references_to_projects_and_problems],
+Refer to the previous exercise as [#Exercise_5:_Make_references_to_projects_and_problems],
 the two before that as [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
-and this one as [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki].
+and this one as [#Project_6:_References_to_Project_demo:ex:2_in_a_heading_works_for_gwiki].
 Filename: `selc_composed.pdf`.
 
 <wiki:comment> --- end of exercise </wiki:comment>
@@ -6293,8 +6864,11 @@ By '''Hans Petter Langtangen''' (hpl at simula.no), '''Kaare Dump''', '''A. Dumm
 
 ==== Jan 32, 2100 ====
 
-''TOC'' !split
+__TOC__
 
+
+
+<!--> !split -->
 The format of this document is
 mwiki
 
@@ -6605,8 +7179,8 @@ b &= \nabla^2 u + \nabla^4 v
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_2:_Compute_a_Probability],
-as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki], and in
-between there we have [#Exercise_4:_Make_references_to_projects_and_problems].
+as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_6:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki], and in
+between there we have [#Exercise_5:_Make_references_to_projects_and_problems].
 
 
 
@@ -6624,7 +7198,6 @@ let the program count the number of heads.
 
 
 <!--> Test syntax error -->
-Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 
 ''Hint 1.'' Use <code>r = random.random()</code> and define head as <code>r <= 0.5</code>.
 
@@ -6652,8 +7225,9 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 </code>
 
 <!--> --- end solution of exercise -->
-
+Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 <!--> solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
+
 <!--> --- end of exercise -->
 
 
@@ -6684,6 +7258,7 @@ compute the probability as <math>M/N</math>.
 ==== Project 3: Explore Distributions of Random Circles ====
 
 The formula for a circle is given by
+
 :<math>
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\ 
@@ -6694,6 +7269,7 @@ where <math>R</math> is the radius of the circle, <math>(x_0,y_0)</math> is the
 center point, and <math>t</math> is a parameter in the unit interval <math>[0,1]</math>.
 For any <math>t</math>, <math>(x,y)</math> is a point on the circle.
 The formula can be used to generate <code>n</code> points on a circle:
+
 <syntaxhighlight lang="python">
 import numpy as np
 
@@ -6712,7 +7288,6 @@ x, y = circle(2.0, 0, 0)
 The goal of this project is to draw <math>N</math> circles with random
 center and radius. Plot each circle using the <code>circle</code> function
 above.
-Filename: <code>circles.pdf</code>.
 
 
 ''a)'' Let <math>R</math> be normally distributed and <math>(x_0,y_0)</math> uniformly distributed.
@@ -6735,6 +7310,67 @@ Filename: <code>circles.pdf</code>.
 ''Filename'': <code>norm.py  </code>.
 
 ''c)'' Let <math>R</math> and <math>(x_0,y_0)</math> be normally distributed.
+
+Filename: <code>circles.pdf</code>.
+
+<!--> Closing remarks for this Project -->
+
+==== Remarks ====
+
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+
+<!--> --- end of exercise -->
+
+
+
+
+<!--> --- begin exercise -->
+
+==== Exercise 4: Determine some Distance ====
+
+Intro to this exercise. Questions are in subexercises below.
+
+<!--> --- begin solution of exercise -->
+
+''Solution.'' Here goes a full solution of the whole exercise.
+
+<!--> --- end solution of exercise -->
+
+
+''a)'' Subexercises are numbered a), b), etc.
+
+''Hint 1.'' First hint to subexercise a).
+
+''Hint 2.'' Second hint to subexercise a).
+''Filename'': <code>subexer_a.pdf</code>.
+
+<!--> --- begin short answer in exercise -->
+
+''Answer.'' Short answer to subexercise a).
+<!--> --- end short answer in exercise -->
+
+''b)'' Here goes the text for subexercise b).
+
+''Hint.'' A hint for this subexercise.
+''Filename'': <code>subexer_b.pdf</code>.
+
+<!--> --- begin solution of exercise -->
+
+''Solution.'' Here goes the solution of this subexercise.
+
+<!--> --- end solution of exercise -->
+
+<!--> Closing remarks for this Exercise -->
+
+==== Remarks ====
+
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+
 <!--> --- end of exercise -->
 
 
@@ -6749,7 +7385,7 @@ With some text, before we continue with exercises.
 
 <!--> --- begin exercise -->
 
-==== Exercise 4: Make references to projects and problems ====
+==== Exercise 5: Make references to projects and problems ====
 
 Pick a statement from [#Project_3:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
 and verify it.
@@ -6762,11 +7398,11 @@ Filename: <code>verify_formula.py</code>.
 
 <!--> --- begin exercise -->
 
-==== Project 5: References to [#Project_2:_Compute_a_Probability] in a heading works for mwiki ====
+==== Project 6: References to [#Project_2:_Compute_a_Probability] in a heading works for mwiki ====
 
-Refer to the previous exercise as [#Exercise_4:_Make_references_to_projects_and_problems],
+Refer to the previous exercise as [#Exercise_5:_Make_references_to_projects_and_problems],
 the two before that as [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
-and this one as [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki].
+and this one as [#Project_6:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki].
 Filename: <code>selc_composed.pdf</code>.
 
 <!--> --- end of exercise -->
@@ -7131,8 +7767,8 @@ b &= \nabla^2 u + \nabla^4 v
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have [#Problem_1:_Flip_a_Coin] and [#Project_2:_Compute_a_Probability],
-as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki], and in
-between there we have [#Exercise_4:_Make_references_to_projects_and_problems].
+as well as [#Project_3:_Explore_Distributions_of_Random_Circles] and [#Project_6:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki], and in
+between there we have [#Exercise_5:_Make_references_to_projects_and_problems].
 
 
 
@@ -7151,7 +7787,6 @@ let the program count the number of heads.
 
 
 <wiki:comment> Test syntax error </wiki:comment>
-Filenames: {{{flip_coin.py}}}, {{{flip_coin.pdf}}}.
 
 //Hint 1.// Use {{{r = random.random()}}} and define head as {{{r <= 0.5}}}.
 
@@ -7179,8 +7814,9 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 }}}
 
 <wiki:comment> --- end solution of exercise </wiki:comment>
-
+Filenames: {{{flip_coin.py}}}, {{{flip_coin.pdf}}}.
 <wiki:comment> solution files: mysol.txt, mysol_flip_coin.py, yet_another.file </wiki:comment>
+
 <wiki:comment> --- end of exercise </wiki:comment>
 
 
@@ -7213,6 +7849,7 @@ compute the probability as {{{M/N}}}.
 == Project 3: Explore Distributions of Random Circles ==
 
 The formula for a circle is given by
+
 {{{
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\ 
@@ -7223,6 +7860,7 @@ where {{{R}}} is the radius of the circle, {{{(x_0,y_0)}}} is the
 center point, and {{{t}}} is a parameter in the unit interval {{{[0,1]}}}.
 For any {{{t}}}, {{{(x,y)}}} is a point on the circle.
 The formula can be used to generate {{{n}}} points on a circle:
+
 {{{
 import numpy as np
 
@@ -7241,7 +7879,6 @@ x, y = circle(2.0, 0, 0)
 The goal of this project is to draw {{{N}}} circles with random
 center and radius. Plot each circle using the {{{circle}}} function
 above.
-Filename: {{{circles.pdf}}}.
 
 
 //a)// Let {{{R}}} be normally distributed and {{{(x_0,y_0)}}} uniformly distributed.
@@ -7264,6 +7901,68 @@ Filename: {{{circles.pdf}}}.
 //Filename//: {{{norm.py  }}}.
 
 //c)// Let {{{R}}} and {{{(x_0,y_0)}}} be normally distributed.
+
+Filename: {{{circles.pdf}}}.
+
+<wiki:comment> Closing remarks for this Project </wiki:comment>
+
+=== Remarks ===
+
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+
+<wiki:comment> --- end of exercise </wiki:comment>
+
+
+
+
+<wiki:comment> --- begin exercise </wiki:comment>
+
+
+== Exercise 4: Determine some Distance ==
+
+Intro to this exercise. Questions are in subexercises below.
+
+<wiki:comment> --- begin solution of exercise </wiki:comment>
+
+//Solution.// Here goes a full solution of the whole exercise.
+
+<wiki:comment> --- end solution of exercise </wiki:comment>
+
+
+//a)// Subexercises are numbered a), b), etc.
+
+//Hint 1.// First hint to subexercise a).
+
+//Hint 2.// Second hint to subexercise a).
+//Filename//: {{{subexer_a.pdf}}}.
+
+<wiki:comment> --- begin short answer in exercise </wiki:comment>
+
+//Answer.// Short answer to subexercise a).
+<wiki:comment> --- end short answer in exercise </wiki:comment>
+
+//b)// Here goes the text for subexercise b).
+
+//Hint.// A hint for this subexercise.
+//Filename//: {{{subexer_b.pdf}}}.
+
+<wiki:comment> --- begin solution of exercise </wiki:comment>
+
+//Solution.// Here goes the solution of this subexercise.
+
+<wiki:comment> --- end solution of exercise </wiki:comment>
+
+<wiki:comment> Closing remarks for this Exercise </wiki:comment>
+
+=== Remarks ===
+
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+
 <wiki:comment> --- end of exercise </wiki:comment>
 
 
@@ -7279,7 +7978,7 @@ With some text, before we continue with exercises.
 <wiki:comment> --- begin exercise </wiki:comment>
 
 
-== Exercise 4: Make references to projects and problems ==
+== Exercise 5: Make references to projects and problems ==
 
 Pick a statement from [#Project_3:_Explore_Distributions_of_Random_Circles] or [#Problem_1:_Flip_a_Coin]
 and verify it.
@@ -7293,11 +7992,11 @@ Filename: {{{verify_formula.py}}}.
 <wiki:comment> --- begin exercise </wiki:comment>
 
 
-== Project 5: References to [#Project_2:_Compute_a_Probability] in a heading works for cwiki ==
+== Project 6: References to [#Project_2:_Compute_a_Probability] in a heading works for cwiki ==
 
-Refer to the previous exercise as [#Exercise_4:_Make_references_to_projects_and_problems],
+Refer to the previous exercise as [#Exercise_5:_Make_references_to_projects_and_problems],
 the two before that as [#Project_2:_Compute_a_Probability] and [#Project_3:_Explore_Distributions_of_Random_Circles],
-and this one as [#Project_5:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki].
+and this one as [#Project_6:_References_to_Project_demo:ex:2_in_a_heading_works_for_cwiki].
 Filename: {{{selc_composed.pdf}}}.
 
 <wiki:comment> --- end of exercise </wiki:comment>
@@ -7638,8 +8337,8 @@ Here is a system without equation numbers, using the align-astrisk environment::
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have  "Problem 1: Flip a Coin" and  "Project 2: Compute a Probability",
-as well as  "Project 3: Explore Distributions of Random Circles" and "Project 5: References to Project ref{demo:ex:2} in a heading works for st", and in
-between there we have  "Exercise 4: Make references to projects and problems".
+as well as  "Project 3: Explore Distributions of Random Circles" and "Project 6: References to Project ref{demo:ex:2} in a heading works for st", and in
+between there we have  "Exercise 5: Make references to projects and problems".
 
 Exercises
 
@@ -7650,7 +8349,6 @@ Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
-Filenames: 'flip_coin.py', 'flip_coin.pdf'.
 
 *Hint 1.* Use 'r = random.random()' and define head as 'r <= 0.5'.
 
@@ -7674,6 +8372,8 @@ head, otherwise tail. Repeat this N number of times.
                 heads += 1
         print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
+
+Filenames: 'flip_coin.py', 'flip_coin.pdf'.
 
 Project 2: Compute a Probability
 
@@ -7715,7 +8415,6 @@ The formula can be used to generate 'n' points on a circle::
 The goal of this project is to draw N circles with random
 center and radius. Plot each circle using the 'circle' function
 above.
-Filename: 'circles.pdf'.
 
 
 *a)* Let R be normally distributed and (x_0,y_0) uniformly distributed.
@@ -7735,23 +8434,63 @@ x_0, y_0, and R quantities.
 
 *c)* Let R and (x_0,y_0) be normally distributed.
 
+Filename: 'circles.pdf'.
+
+Remarks
+
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+Exercise 4: Determine some Distance
+
+Intro to this exercise. Questions are in subexercises below.
+
+
+*Solution.* Here goes a full solution of the whole exercise.
+
+
+
+*a)* Subexercises are numbered a), b), etc.
+
+*Hint 1.* First hint to subexercise a).
+
+*Hint 2.* Second hint to subexercise a).
+*Filename*: 'subexer_a.pdf'.
+
+
+*Answer.* Short answer to subexercise a).
+
+*b)* Here goes the text for subexercise b).
+
+*Hint.* A hint for this subexercise.
+*Filename*: 'subexer_b.pdf'.
+
+
+*Solution.* Here goes the solution of this subexercise.
+
+Remarks
+
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
 Here goes another section
 
 With some text, before we continue with exercises.
 
 More Exercises
 
-Exercise 4: Make references to projects and problems
+Exercise 5: Make references to projects and problems
 
 Pick a statement from  "Project 3: Explore Distributions of Random Circles" or  "Problem 1: Flip a Coin"
 and verify it.
 Filename: 'verify_formula.py'.
 
-Project 5: References to  "Project 2: Compute a Probability" in a heading works for st
+Project 6: References to  "Project 2: Compute a Probability" in a heading works for st
 
-Refer to the previous exercise as  "Exercise 4: Make references to projects and problems",
+Refer to the previous exercise as  "Exercise 5: Make references to projects and problems",
 the two before that as  "Project 2: Compute a Probability" and "Project 3: Explore Distributions of Random Circles",
-and this one as  "Project 5: References to Project ref{demo:ex:2} in a heading works for st".
+and this one as  "Project 6: References to Project ref{demo:ex:2} in a heading works for st".
 Filename: 'selc_composed.pdf'.
 
 Appendix: Just for testing; part I
@@ -8105,8 +8844,8 @@ Here is a system without equation numbers, using the align-astrisk environment::
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have  "Problem 1: Flip a Coin" and  "Project 2: Compute a Probability",
-as well as  "Project 3: Explore Distributions of Random Circles" and "Project 5: References to Project ref{demo:ex:2} in a heading works for epytext", and in
-between there we have  "Exercise 4: Make references to projects and problems".
+as well as  "Project 3: Explore Distributions of Random Circles" and "Project 6: References to Project ref{demo:ex:2} in a heading works for epytext", and in
+between there we have  "Exercise 5: Make references to projects and problems".
 
 Exercises
 =========
@@ -8123,7 +8862,6 @@ Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
-Filenames: C{flip_coin.py}, C{flip_coin.pdf}.
 
 I{Hint 1.} Use C{r = random.random()} and define head as C{r <= 0.5}.
 
@@ -8148,6 +8886,7 @@ I{Solution.} Code::
         print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
 
+Filenames: C{flip_coin.py}, C{flip_coin.pdf}.
 
 
 
@@ -8203,7 +8942,6 @@ The formula can be used to generate C{n} points on a circle::
 The goal of this project is to draw M{N} circles with random
 center and radius. Plot each circle using the C{circle} function
 above.
-Filename: C{circles.pdf}.
 
 
 I{a)} Let M{R} be normally distributed and M{(x_0,y_0)} uniformly distributed.
@@ -8223,6 +8961,60 @@ I{Filename}: C{norm.py  }.
 
 I{c)} Let M{R} and M{(x_0,y_0)} be normally distributed.
 
+Filename: C{circles.pdf}.
+
+
+Remarks
+~~~~~~~
+
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+
+
+
+
+
+
+Exercise 4: Determine some Distance
+-----------------------------------
+
+Intro to this exercise. Questions are in subexercises below.
+
+
+I{Solution.} Here goes a full solution of the whole exercise.
+
+
+
+I{a)} Subexercises are numbered a), b), etc.
+
+I{Hint 1.} First hint to subexercise a).
+
+I{Hint 2.} Second hint to subexercise a).
+I{Filename}: C{subexer_a.pdf}.
+
+
+I{Answer.} Short answer to subexercise a).
+
+I{b)} Here goes the text for subexercise b).
+
+I{Hint.} A hint for this subexercise.
+I{Filename}: C{subexer_b.pdf}.
+
+
+I{Solution.} Here goes the solution of this subexercise.
+
+
+
+Remarks
+~~~~~~~
+
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+
+
 
 Here goes another section
 =========================
@@ -8235,7 +9027,7 @@ More Exercises
 
 
 
-Exercise 4: Make references to projects and problems
+Exercise 5: Make references to projects and problems
 ----------------------------------------------------
 
 Pick a statement from  "Project 3: Explore Distributions of Random Circles" or  "Problem 1: Flip a Coin"
@@ -8247,12 +9039,12 @@ Filename: C{verify_formula.py}.
 
 
 
-Project 5: References to  "Project 2: Compute a Probability" in a heading works for epytext
+Project 6: References to  "Project 2: Compute a Probability" in a heading works for epytext
 -------------------------------------------------------------------------------------------
 
-Refer to the previous exercise as  "Exercise 4: Make references to projects and problems",
+Refer to the previous exercise as  "Exercise 5: Make references to projects and problems",
 the two before that as  "Project 2: Compute a Probability" and "Project 3: Explore Distributions of Random Circles",
-and this one as  "Project 5: References to Project ref{demo:ex:2} in a heading works for epytext".
+and this one as  "Project 6: References to Project ref{demo:ex:2} in a heading works for epytext".
 Filename: C{selc_composed.pdf}.
 
 
@@ -8328,10 +9120,13 @@ Table of contents:
    Problem 1: Flip a Coin 
    Project 2: Compute a Probability 
    Project 3: Explore Distributions of Random Circles 
+     Remarks 
+   Exercise 4: Determine some Distance 
+     Remarks 
  Here goes another section 
  More Exercises 
-   Exercise 4: Make references to projects and problems 
-   Project 5: References to  "Project 2: Compute a Probability" in a heading works for plain 
+   Exercise 5: Make references to projects and problems 
+   Project 6: References to  "Project 2: Compute a Probability" in a heading works for plain 
  Appendix: Just for testing; part I 
    A subsection within an appendix 
  Appendix: Just for testing; part II 
@@ -8661,8 +9456,8 @@ Here is a system without equation numbers, using the align-astrisk environment::
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have  "Problem 1: Flip a Coin" and  "Project 2: Compute a Probability",
-as well as  "Project 3: Explore Distributions of Random Circles" and "Project 5: References to Project ref{demo:ex:2} in a heading works for plain", and in
-between there we have  "Exercise 4: Make references to projects and problems".
+as well as  "Project 3: Explore Distributions of Random Circles" and "Project 6: References to Project ref{demo:ex:2} in a heading works for plain", and in
+between there we have  "Exercise 5: Make references to projects and problems".
 
 Exercises
 =========
@@ -8679,7 +9474,6 @@ Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
-Filenames: flip_coin.py, flip_coin.pdf.
 
 *Hint 1.* Use r = random.random() and define head as r <= 0.5.
 
@@ -8704,6 +9498,7 @@ head, otherwise tail. Repeat this N number of times.
         print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
 
+Filenames: flip_coin.py, flip_coin.pdf.
 
 
 
@@ -8759,7 +9554,6 @@ The formula can be used to generate n points on a circle::
 The goal of this project is to draw N circles with random
 center and radius. Plot each circle using the circle function
 above.
-Filename: circles.pdf.
 
 
 *a)* Let R be normally distributed and (x_0,y_0) uniformly distributed.
@@ -8779,6 +9573,60 @@ x_0, y_0, and R quantities.
 
 *c)* Let R and (x_0,y_0) be normally distributed.
 
+Filename: circles.pdf.
+
+
+Remarks
+~~~~~~~
+
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+
+
+
+
+
+
+Exercise 4: Determine some Distance
+-----------------------------------
+
+Intro to this exercise. Questions are in subexercises below.
+
+
+*Solution.* Here goes a full solution of the whole exercise.
+
+
+
+*a)* Subexercises are numbered a), b), etc.
+
+*Hint 1.* First hint to subexercise a).
+
+*Hint 2.* Second hint to subexercise a).
+*Filename*: subexer_a.pdf.
+
+
+*Answer.* Short answer to subexercise a).
+
+*b)* Here goes the text for subexercise b).
+
+*Hint.* A hint for this subexercise.
+*Filename*: subexer_b.pdf.
+
+
+*Solution.* Here goes the solution of this subexercise.
+
+
+
+Remarks
+~~~~~~~
+
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+
+
 
 Here goes another section
 =========================
@@ -8791,7 +9639,7 @@ More Exercises
 
 
 
-Exercise 4: Make references to projects and problems
+Exercise 5: Make references to projects and problems
 ----------------------------------------------------
 
 Pick a statement from  "Project 3: Explore Distributions of Random Circles" or  "Problem 1: Flip a Coin"
@@ -8803,12 +9651,12 @@ Filename: verify_formula.py.
 
 
 
-Project 5: References to  "Project 2: Compute a Probability" in a heading works for plain
+Project 6: References to  "Project 2: Compute a Probability" in a heading works for plain
 -----------------------------------------------------------------------------------------
 
-Refer to the previous exercise as  "Exercise 4: Make references to projects and problems",
+Refer to the previous exercise as  "Exercise 5: Make references to projects and problems",
 the two before that as  "Project 2: Compute a Probability" and "Project 3: Explore Distributions of Random Circles",
-and this one as  "Project 5: References to Project ref{demo:ex:2} in a heading works for plain".
+and this one as  "Project 6: References to Project ref{demo:ex:2} in a heading works for plain".
 Filename: selc_composed.pdf.
 
 
@@ -8847,14 +9695,16 @@ Appendix: Testing identical titles
 Without label.
 
 
-************** File: testdoc.mkd *****************
-
-
+************** File: testdoc.md *****************
 % A Document for Testing Doconce
 % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo;  Kaare Dump at Segfault Inc, Cyberspace;  A. Dummy Author;  I. S. Overworked at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and Fourth Inst;  J. Doe
 % Jan 32, 2100
 
-# !split
+<!-- Table of contents: Run pandoc with --toc option -->
+
+
+
+<!-- !split -->
 The format of this document is
 pandoc
 *Abstract.* This is a document with many test constructions for doconce syntax.
@@ -8864,6 +9714,8 @@ numerous constructions, also special and less common cases.
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
 
+<!-- Cannot demonstrate chapter headings since abstract and chapter -->
+<!-- is mutually exclusive in LaTeX -->
 
 
 
@@ -8894,7 +9746,7 @@ Here is a nested list:
       continuing on a new line
 
 
-# !split
+<!-- !split -->
 Subsection 1
 ------------
 
@@ -8966,6 +9818,7 @@ cpdef f(double x):
     return x + 1
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+<!-- This one tests a + before a code environment -->
 C++:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Cpp}
@@ -9016,6 +9869,7 @@ Test of movies.
 </p>
 
 
+<!-- Test empty caption: -->
 
 
 <embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
@@ -9024,16 +9878,20 @@ Test of movies.
 </p>
 
 
+<!-- Test wrong syntax and multi-line caption -->
 
 
 <p><a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
 <em> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie).  </em></p>
 
+<!-- Check out the correct with and height of YouTube movies from the -->
+<!-- embed command that the YouTube page can generate -->
 
 
 <iframe width="420" height="315" src="http://www.youtube.com/watch?v=_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
 
 
+<!-- Test multi-line caption in figure -->
 
 Here is figure ref{myfig} with a long multi-line caption
 and an extra space before the FIGURE keyword.
@@ -9042,8 +9900,10 @@ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spann
 
 Movie ref{mymov} has a similar problem.
 
+<!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
 
+<!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 
 The $\theta$ parameter (not $\nabla$?)
 --------------------------------------
@@ -9079,11 +9939,15 @@ Should look nice in most formats!
 
 
 
+<!-- begin theorem -->
 
 *Theorem 5.* Let $a=1$ and $b=2$. Then $c=3$.
+<!-- end theorem -->
 
+<!-- begin proof -->
 *Proof.* Since $c=a+b$, the result follows from straightforward addition.
 $\Diamond$
+<!-- end proof -->
 
 As we see, the proof of Theorem 5 is a modest
 achievement.
@@ -9093,6 +9957,7 @@ Tables
 ------
 
 
+<!-- index with comma could fool sphinx -->
 
 Let us take this table from the manual:
 
@@ -9160,6 +10025,9 @@ Here are some tough tests of URLs, especially for the `latex` format:
 [Newton-Cotes](http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas) formulas
 and a [good book](http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1).
 
+<!-- Comments should be inserted outside paragraphs (because of reST): -->
+<!-- note that when there is no http: or file:, it can be a file link -->
+<!-- if the link name is URL, url, "URL", or "url". -->
 
 
 LaTeX Mathematics
@@ -9243,35 +10111,40 @@ $$
 More mathematical typesetting is demonstrated in the coming exercises.
 
 Below, we have  [Problem 1: Flip a Coin](#n) and  [Project 2: Compute a Probability](#y),
-as well as  [Project 3: Explore Distributions of Random Circles](#s) and [Project 5: References to Project ref{demo:ex:2} in a heading works for pandoc](#c), and in
-between there we have  [Exercise 4: Make references to projects and problems](#s).
+as well as  [Project 3: Explore Distributions of Random Circles](#s) and [Project 6: References to Project ref{demo:ex:2} in a heading works for pandoc](#c), and in
+between there we have  [Exercise 5: Make references to projects and problems](#s).
 
 Exercises
 =========
 
 
 
+<!-- --- begin exercise -->
 
 Problem 1: Flip a Coin
 ----------------------
 
+<!-- Torture tests -->
 
 Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
-Filenames: `flip_coin.py`, `flip_coin.pdf`.
+<!-- Test syntax error -->
 
 *Hint 1.* Use `r = random.random()` and define head as `r <= 0.5`.
 
 *Hint 2.* Draw an integer among $\{1,2\}$ with
 `r = random.randint(1,2)` and define head when `r` is 1.
 
+<!-- --- begin short answer in exercise -->
 
 *Answer.* If the `random.random()` function returns a number $<1/2$, let it be
 head, otherwise tail. Repeat this $N$ number of times.
+<!-- --- end short answer in exercise -->
 
+<!-- --- begin solution of exercise -->
 
 *Solution.* Code:
 
@@ -9286,9 +10159,21 @@ for i in range(N):
 print 'Flipping a coin %d times gave %d heads' % (N, heads)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+<!-- --- end solution of exercise -->
+Filenames: `flip_coin.py`, `flip_coin.pdf`.
+<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
+
+<!-- --- end of exercise -->
+
+
+
+
+<!-- --- begin exercise -->
+
 Project 2: Compute a Probability
 --------------------------------
 
+<!-- Minimalistic exercise -->
 
 
 What is the probability of getting a number between 0.5 and 0.6 when
@@ -9299,15 +10184,18 @@ draw $N$ such random numbers using Python's standard `random` module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
 compute the probability as $M/N$.
 
+<!-- --- end of exercise -->
 
 
 
 
+<!-- --- begin exercise -->
 
 Project 3: Explore Distributions of Random Circles
 --------------------------------------------------
 
 The formula for a circle is given by
+
 $$
 \begin{align}
 x &= x_0 + R\cos 2\pi t,\\ 
@@ -9318,6 +10206,7 @@ where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ is a point on the circle.
 The formula can be used to generate `n` points on a circle:
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
 import numpy as np
@@ -9331,10 +10220,12 @@ def circle(R, x0, y0, n=501):
 x, y = circle(2.0, 0, 0)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+<!-- Often in an exercise we have some comments about the solution -->
+<!-- which we normally want to keep where they are. -->
+
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the `circle` function
 above.
-Filename: `circles.pdf`.
 
 
 *a)* Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
@@ -9342,17 +10233,86 @@ Filename: `circles.pdf`.
 *Hint.* Use the `numpy.random` module to draw the
 $x_0$, $y_0$, and $R$ quantities.
 
+<!-- --- begin short answer in exercise -->
 
 *Answer.* Here goes the short answer to part a).
+<!-- --- end short answer in exercise -->
 
+<!-- --- begin solution of exercise -->
 
 *Solution.* Here goes a full solution to part a).
 
+<!-- --- end solution of exercise -->
 
 *b)* Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
 *Filename*: `norm.py  `.
 
 *c)* Let $R$ and $(x_0,y_0)$ be normally distributed.
+
+Filename: `circles.pdf`.
+
+<!-- Closing remarks for this Project -->
+
+Remarks
+~~~~~~~
+
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+
+<!-- --- end of exercise -->
+
+
+
+
+<!-- --- begin exercise -->
+
+Exercise 4: Determine some Distance
+-----------------------------------
+
+Intro to this exercise. Questions are in subexercises below.
+
+<!-- --- begin solution of exercise -->
+
+*Solution.* Here goes a full solution of the whole exercise.
+
+<!-- --- end solution of exercise -->
+
+
+*a)* Subexercises are numbered a), b), etc.
+
+*Hint 1.* First hint to subexercise a).
+
+*Hint 2.* Second hint to subexercise a).
+*Filename*: `subexer_a.pdf`.
+
+<!-- --- begin short answer in exercise -->
+
+*Answer.* Short answer to subexercise a).
+<!-- --- end short answer in exercise -->
+
+*b)* Here goes the text for subexercise b).
+
+*Hint.* A hint for this subexercise.
+*Filename*: `subexer_b.pdf`.
+
+<!-- --- begin solution of exercise -->
+
+*Solution.* Here goes the solution of this subexercise.
+
+<!-- --- end solution of exercise -->
+
+<!-- Closing remarks for this Exercise -->
+
+Remarks
+~~~~~~~
+
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+
+<!-- --- end of exercise -->
 
 
 Here goes another section
@@ -9365,27 +10325,31 @@ More Exercises
 
 
 
+<!-- --- begin exercise -->
 
-Exercise 4: Make references to projects and problems
+Exercise 5: Make references to projects and problems
 ----------------------------------------------------
 
 Pick a statement from  [Project 3: Explore Distributions of Random Circles](#s) or  [Problem 1: Flip a Coin](#n)
 and verify it.
 Filename: `verify_formula.py`.
 
+<!-- --- end of exercise -->
 
 
 
 
+<!-- --- begin exercise -->
 
-Project 5: References to  [Project 2: Compute a Probability](#y) in a heading works for pandoc
+Project 6: References to  [Project 2: Compute a Probability](#y) in a heading works for pandoc
 ----------------------------------------------------------------------------------------------
 
-Refer to the previous exercise as  [Exercise 4: Make references to projects and problems](#s),
+Refer to the previous exercise as  [Exercise 5: Make references to projects and problems](#s),
 the two before that as  [Project 2: Compute a Probability](#y) and [Project 3: Explore Distributions of Random Circles](#s),
-and this one as  [Project 5: References to Project ref{demo:ex:2} in a heading works for pandoc](#c).
+and this one as  [Project 6: References to Project ref{demo:ex:2} in a heading works for pandoc](#c).
 Filename: `selc_composed.pdf`.
 
+<!-- --- end of exercise -->
 
 
 Appendix: Just for testing; part I
@@ -9442,6 +10406,7 @@ Could not find match for from regex "\*\s+\$.+normally"
 # exer = eval(f.read())
 #
 [{'answer': 'If the `random.random()` function returns a number $<1/2$, let it be\nhead, otherwise tail. Repeat this $N$ number of times.',
+  'closing_remarks': '',
   'file': ['flip_coin.py', 'flip_coin.pdf'],
   'heading': '=====',
   'hints': ['Use `r = random.random()` and define head as `r <= 0.5`.',
@@ -9456,6 +10421,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'title': 'Flip a Coin',
   'type': 'Problem'},
  {'answer': '',
+  'closing_remarks': '',
   'file': None,
   'heading': '=====',
   'hints': ["To answer this question empirically, let a program\ndraw $N$ such random numbers using Python's standard `random` module,\ncount how many of them, $M$, that fall in the interval $(0.5,0.6)$, and\ncompute the probability as $M/N$."],
@@ -9469,6 +10435,7 @@ Could not find match for from regex "\*\s+\$.+normally"
   'title': 'Compute a Probability',
   'type': 'Project'},
  {'answer': '',
+  'closing_remarks': 'At the very end of the exercise it may be appropriate to summarize\nand give some perspectives.',
   'file': ['circles.pdf'],
   'heading': '=====',
   'hints': [],
@@ -9492,16 +10459,41 @@ Could not find match for from regex "\*\s+\$.+normally"
              'hints': [],
              'solution': '',
              'text': 'Let $R$ and $(x_0,y_0)$ be normally distributed.'}],
-  'text': 'The formula for a circle is given by\n<<<!!MATH_BLOCK\nwhere $R$ is the radius of the circle, $(x_0,y_0)$ is the\ncenter point, and $t$ is a parameter in the unit interval $[0,1]$.\nFor any $t$, $(x,y)$ is a point on the circle.\nThe formula can be used to generate `n` points on a circle:\n<<<!!CODE_BLOCK  pypro\n\n# Often in an exercise we have some comments about the solution\n# which we normally want to keep where they are.\n\nThe goal of this project is to draw $N$ circles with random\ncenter and radius. Plot each circle using the `circle` function\nabove.',
+  'text': 'The formula for a circle is given by\n\n<<<!!MATH_BLOCK\nwhere $R$ is the radius of the circle, $(x_0,y_0)$ is the\ncenter point, and $t$ is a parameter in the unit interval $[0,1]$.\nFor any $t$, $(x,y)$ is a point on the circle.\nThe formula can be used to generate `n` points on a circle:\n\n<<<!!CODE_BLOCK  pypro\n\n# Often in an exercise we have some comments about the solution\n# which we normally want to keep where they are.\n\nThe goal of this project is to draw $N$ circles with random\ncenter and radius. Plot each circle using the `circle` function\nabove.',
   'title': 'Explore Distributions of Random Circles',
   'type': 'Project'},
  {'answer': '',
+  'closing_remarks': 'Some final closing remarks, e.g., summarizing the main findings\nand their implications in other problems can be made. These\nremarks will appear at the end of the typeset exercise.',
+  'file': None,
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': 'exer:dist',
+  'no': 4,
+  'solution': 'Here goes a full solution of the whole exercise.',
+  'solution_file': None,
+  'subex': [{'answer': 'Short answer to subexercise a).',
+             'file': 'subexer_a.pdf',
+             'hints': ['First hint to subexercise a).',
+                       'Second hint to subexercise a).'],
+             'solution': '',
+             'text': 'Subexercises are numbered a), b), etc.'},
+            {'answer': '',
+             'file': 'subexer_b.pdf',
+             'hints': ['A hint for this subexercise.'],
+             'solution': 'Here goes the solution of this subexercise.',
+             'text': 'Here goes the text for subexercise b).'}],
+  'text': 'Intro to this exercise. Questions are in subexercises below.',
+  'title': 'Determine some Distance',
+  'type': 'Exercise'},
+ {'answer': '',
+  'closing_remarks': '',
   'file': ['verify_formula.py'],
   'heading': '=====',
   'hints': [],
   'keywords': None,
   'label': 'exer:some:formula',
-  'no': 4,
+  'no': 5,
   'solution': '',
   'solution_file': None,
   'subex': [],
@@ -9509,12 +10501,13 @@ Could not find match for from regex "\*\s+\$.+normally"
   'title': 'Make references to projects and problems',
   'type': 'Exercise'},
  {'answer': '',
+  'closing_remarks': '',
   'file': ['selc_composed.pdf'],
   'heading': '=====',
   'hints': [],
   'keywords': None,
   'label': 'exer:you',
-  'no': 5,
+  'no': 6,
   'solution': '',
   'solution_file': None,
   'subex': [],
@@ -9855,7 +10848,6 @@ b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}\end{aligned*}\]</
 <h2 id="problem-1-flip-a-coin">Problem 1: Flip a Coin</h2>
 <p>[demo:ex:1]</p>
 <p>Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
-<p>Filenames: 10pt10pt<code>flip_coin.py</code>, 10pt10pt<code>flip_coin.pdf</code>.</p>
 <h4 id="hint-1.">Hint 1.</h4>
 <p>Use 10pt10pt<code>r = random.random()</code> and define head as 10pt10pt<code>r &lt;= 0.5</code>.</p>
 <h4 id="hint-2.">Hint 2.</h4>
@@ -9874,6 +10866,7 @@ for i in range(N):
         heads += 1
 print &#39;Flipping a coin %d times gave %d heads&#39; % (N, heads)</code></pre>
 </blockquote>
+<p>Filenames: 10pt10pt<code>flip_coin.py</code>, 10pt10pt<code>flip_coin.pdf</code>.</p>
 <p>exerno</p>
 <h2 id="project-2-compute-a-probability">Project 2: Compute a Probability</h2>
 <p>[demo:ex:2]</p>
@@ -9899,7 +10892,7 @@ def circle(R, x0, y0, n=501):
 
 x, y = circle(2.0, 0, 0)</code></pre>
 </blockquote>
-<p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the 10pt10pt<code>circle</code> function above. Filename: 10pt10pt<code>circles.pdf</code>.</p>
+<p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the 10pt10pt<code>circle</code> function above.</p>
 <h4 id="a">a)</h4>
 <p>Let \(R\) be normally distributed and \((x_0,y_0)\) uniformly distributed.</p>
 <h4 id="hint.-1">Hint.</h4>
@@ -9912,15 +10905,40 @@ x, y = circle(2.0, 0, 0)</code></pre>
 <p>Let \(R\) be uniformly distributed and \((x_0,y_0)\) normally distributed. <em>Filename</em>: 10pt10pt<code>norm.py</code>.</p>
 <h4 id="c">c)</h4>
 <p>Let \(R\) and \((x_0,y_0)\) be normally distributed.</p>
+<p>Filename: 10pt10pt<code>circles.pdf</code>.</p>
+<h4 id="remarks.">Remarks.</h4>
+<p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
+<p>exerno</p>
+<h2 id="exercise-4-determine-some-distance">Exercise 4: Determine some Distance</h2>
+<p>[exer:dist]</p>
+<p>Intro to this exercise. Questions are in subexercises below.</p>
+<h4 id="solution.-2">Solution.</h4>
+<p>Here goes a full solution of the whole exercise.</p>
+<h4 id="a-1">a)</h4>
+<p>Subexercises are numbered a), b), etc.</p>
+<h4 id="hint-1.-1">Hint 1.</h4>
+<p>First hint to subexercise a).</p>
+<h4 id="hint-2.-1">Hint 2.</h4>
+<p>Second hint to subexercise a). <em>Filename</em>: 10pt10pt<code>subexer_a.pdf</code>.</p>
+<h4 id="answer.-2">Answer.</h4>
+<p>Short answer to subexercise a).</p>
+<h4 id="b-1">b)</h4>
+<p>Here goes the text for subexercise b).</p>
+<h4 id="hint.-2">Hint.</h4>
+<p>A hint for this subexercise. <em>Filename</em>: 10pt10pt<code>subexer_b.pdf</code>.</p>
+<h4 id="solution.-3">Solution.</h4>
+<p>Here goes the solution of this subexercise.</p>
+<h4 id="remarks.-1">Remarks.</h4>
+<p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
 <h1 id="here-goes-another-section">Here goes another section</h1>
 <p>With some text, before we continue with exercises.</p>
 <h1 id="more-exercises">More Exercises</h1>
 <p>exerno</p>
-<h2 id="exercise-4-make-references-to-projects-and-problems">Exercise 4: Make references to projects and problems</h2>
+<h2 id="exercise-5-make-references-to-projects-and-problems">Exercise 5: Make references to projects and problems</h2>
 <p>[exer:some:formula]</p>
 <p>Pick a statement from Project [proj:circle1] or Problem [demo:ex:1] and verify it. Filename: 10pt10pt<code>verify_formula.py</code>.</p>
 <p>exerno</p>
-<h2 id="project-5-references-to-projectdemoex2-in-a-heading-works-for-latex">Project 5: References to Project [demo:ex:2] in a heading works for latex</h2>
+<h2 id="project-6-references-to-projectdemoex2-in-a-heading-works-for-latex">Project 6: References to Project [demo:ex:2] in a heading works for latex</h2>
 <p>[exer:you]</p>
 <p>Refer to the previous exercise as Exercise [exer:some:formula], the two before that as Projects [demo:ex:2] and [proj:circle1], and this one as Project [exer:you]. Filename: 10pt10pt<code>selc_composed.pdf</code>.</p>
 <h1 id="just-for-testing-part-i">Just for testing; part I</h1>
@@ -9948,7 +10966,12 @@ x, y = circle(2.0, 0, 0)</code></pre>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <title></title>
+  <meta name="author" content="Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo" />
+  <meta name="author" content="Kaare Dump at Segfault Inc, Cyberspace" />
+  <meta name="author" content="A. Dummy Author" />
+  <meta name="author" content="I. S. Overworked at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and Fourth Inst" />
+  <meta name="author" content="J. Doe" />
+  <title>A Document for Testing Doconce</title>
   <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
@@ -9971,10 +10994,27 @@ code > span.er { color: #ff0000; font-weight: bold; }
   <script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </head>
 <body>
-<p>% A Document for Testing Doconce % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo; Kaare Dump at Segfault Inc, Cyberspace; A. Dummy Author; I. S. Overworked at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and Fourth Inst; J. Doe % Jan 32, 2100</p>
-<h1 id="split">!split</h1>
+<div id="header">
+<h1 class="title">A Document for Testing Doconce</h1>
+<h2 class="author">Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo</h2>
+<h2 class="author">Kaare Dump at Segfault Inc, Cyberspace</h2>
+<h2 class="author">A. Dummy Author</h2>
+<h2 class="author">I. S. Overworked at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and Fourth Inst</h2>
+<h2 class="author">J. Doe</h2>
+<h3 class="date">Jan 32, 2100</h3>
+</div>
+<!-- Table of contents: Run pandoc with --toc option -->
+
+
+
+<!-- !split -->
 <p>The format of this document is pandoc <em>Abstract.</em> This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.</p>
 <p>And exactly for test purposes we have an extra line here, which is part of the abstract.</p>
+<!-- Cannot demonstrate chapter headings since abstract and chapter -->
+<!-- is mutually exclusive in LaTeX -->
+
+
+
 <h1 id="section-1">Section 1</h1>
 <p>Here is a nested list:</p>
 <ul>
@@ -9992,8 +11032,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><p>first item</p></li>
 <li><p>second item, continuing on a new line</p></li>
 </ol>
-<h1 id="split-1">!split</h1>
-<h2 id="subsection-1">Subsection 1</h2>
+<p><!-- !split --> Subsection 1 ------------</p>
 <p>More text, with a reference back to the section <a href="#n-1">Section 1</a> and further to the section <a href="#s">URLs</a>. Let's do some copying from files too. First from subroutine up to the very end,</p>
 <pre class="sourceCode Fortran"><code class="sourceCode fortran">      <span class="kw">subroutine</span>    test()
       <span class="dt">integer</span> i
@@ -10039,7 +11078,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>Then Cython:</p>
 <pre><code>cpdef f(double x):
     return x + 1</code></pre>
-<p>C++:</p>
+<p><!-- This one tests a + before a code environment --> C++:</p>
 <pre class="sourceCode Cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;iostream&gt;</span>
 
 <span class="dt">int</span> main()
@@ -10066,6 +11105,7 @@ output2</code></pre>
 </p>
 
 
+<!-- Test empty caption: -->
 
 
 <embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
@@ -10074,21 +11114,30 @@ output2</code></pre>
 </p>
 
 
+<!-- Test wrong syntax and multi-line caption -->
 
 
 <p>
 <a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a> <em> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). </em>
 </p>
 
+<!-- Check out the correct with and height of YouTube movies from the -->
+<!-- embed command that the YouTube page can generate -->
 
 
 <iframe width="420" height="315" src="http://www.youtube.com/watch?v=_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
 
 
+<!-- Test multi-line caption in figure -->
 
 <p>Here is figure ref{myfig} with a long multi-line caption and an extra space before the FIGURE keyword.</p>
 <p>FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. {myfig}</p>
 <p>Movie ref{mymov} has a similar problem.</p>
+<!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
+
+
+<!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
+
 <h2 id="the-theta-parameter-not-nabla">The \(\theta\) parameter (not \(\nabla\)?)</h2>
 <p>Functions do not always need to be advanced, here is one involving \(\theta\):</p>
 <pre><code>def f(theta):
@@ -10104,10 +11153,14 @@ output2</code></pre>
 \]</p>
 <h2 id="custom-environments">Custom Environments</h2>
 <p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the <code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!</p>
-<p><em>Theorem 5.</em> Let \(a=1\) and \(b=2\). Then \(c=3\).</p>
-<p><em>Proof.</em> Since \(c=a+b\), the result follows from straightforward addition. \(\Diamond\)</p>
+<!-- begin theorem -->
+
+<p><em>Theorem 5.</em> Let \(a=1\) and \(b=2\). Then \(c=3\). <!-- end theorem --></p>
+<p><!-- begin proof --> <em>Proof.</em> Since \(c=a+b\), the result follows from straightforward addition. \(\Diamond\) <!-- end proof --></p>
 <p>As we see, the proof of Theorem 5 is a modest achievement.</p>
 <h2 id="tables">Tables</h2>
+<!-- index with comma could fool sphinx -->
+
 <p>Let us take this table from the manual:</p>
 <table>
 <thead>
@@ -10228,6 +11281,11 @@ output2</code></pre>
 <h2 id="urls">URLs</h2>
 <p>Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or the entire URL if desired, <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>. Here is a plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or <testdoc.do.txt> or <testdoc.do.txt> or <a href="testdoc.do.txt">a link with newline</a>. Can test spaces with the link with word too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a file</a> is fine to have.</p>
 <p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>.</p>
+<!-- Comments should be inserted outside paragraphs (because of reST): -->
+<!-- note that when there is no http: or file:, it can be a file link -->
+<!-- if the link name is URL, url, "URL", or "url". -->
+
+
 <h2 id="latex-mathematics">LaTeX Mathematics</h2>
 <p>Here is an equation without label using backslash-bracket environment: \[ a = b + c \] or with number and label, as in Equation (my:eq1), using the equation environment: \[
 \begin{equation}
@@ -10280,14 +11338,23 @@ b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}
 \end{eqnarray}
 \]</p>
 <p>More mathematical typesetting is demonstrated in the coming exercises.</p>
-<p>Below, we have <a href="#n">Problem 1: Flip a Coin</a> and <a href="#y">Project 2: Compute a Probability</a>, as well as <a href="#s">Project 3: Explore Distributions of Random Circles</a> and <a href="#c">Project 5: References to Project ref{demo:ex:2} in a heading works for pandoc</a>, and in between there we have <a href="#s">Exercise 4: Make references to projects and problems</a>.</p>
+<p>Below, we have <a href="#n">Problem 1: Flip a Coin</a> and <a href="#y">Project 2: Compute a Probability</a>, as well as <a href="#s">Project 3: Explore Distributions of Random Circles</a> and <a href="#c">Project 6: References to Project ref{demo:ex:2} in a heading works for pandoc</a>, and in between there we have <a href="#s">Exercise 5: Make references to projects and problems</a>.</p>
 <h1 id="exercises">Exercises</h1>
+<!-- --- begin exercise -->
+
 <h2 id="problem-1-flip-a-coin">Problem 1: Flip a Coin</h2>
+<!-- Torture tests -->
+
 <p>Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
-<p>Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.</p>
+<!-- Test syntax error -->
+
 <p><em>Hint 1.</em> Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
 <p><em>Hint 2.</em> Draw an integer among \(\{1,2\}\) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.</p>
-<p><em>Answer.</em> If the <code>random.random()</code> function returns a number \(&lt;1/2\), let it be head, otherwise tail. Repeat this \(N\) number of times.</p>
+<!-- --- begin short answer in exercise -->
+
+<p><em>Answer.</em> If the <code>random.random()</code> function returns a number \(&lt;1/2\), let it be head, otherwise tail. Repeat this \(N\) number of times. <!-- --- end short answer in exercise --></p>
+<!-- --- begin solution of exercise -->
+
 <p><em>Solution.</em> Code:</p>
 <pre class="sourceCode Python"><code class="sourceCode python"><span class="ch">import</span> sys, random
 N = <span class="dt">int</span>(sys.argv[<span class="dv">1</span>])
@@ -10297,11 +11364,30 @@ heads = <span class="dv">0</span>
     <span class="kw">if</span> r &lt;= <span class="fl">0.5</span>:
         heads += <span class="dv">1</span>
 <span class="kw">print</span> <span class="st">&#39;Flipping a coin </span><span class="ot">%d</span><span class="st"> times gave </span><span class="ot">%d</span><span class="st"> heads&#39;</span> % (N, heads)</code></pre>
+<p><!-- --- end solution of exercise --> Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>. <!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file --></p>
+<!-- --- end of exercise -->
+
+
+
+
+<!-- --- begin exercise -->
+
 <h2 id="project-2-compute-a-probability">Project 2: Compute a Probability</h2>
+<!-- Minimalistic exercise -->
+
+
 <p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \([0,1)\)?</p>
 <p><em>Hint.</em> To answer this question empirically, let a program draw \(N\) such random numbers using Python's standard <code>random</code> module, count how many of them, \(M\), that fall in the interval \((0.5,0.6)\), and compute the probability as \(M/N\).</p>
+<!-- --- end of exercise -->
+
+
+
+
+<!-- --- begin exercise -->
+
 <h2 id="project-3-explore-distributions-of-random-circles">Project 3: Explore Distributions of Random Circles</h2>
-<p>The formula for a circle is given by \[
+<p>The formula for a circle is given by</p>
+<p>\[
 \begin{align}
 x &amp;= x_0 + R\cos 2\pi t,\\ 
 y &amp;= y_0 + R\sin 2\pi t,
@@ -10316,20 +11402,81 @@ y &amp;= y_0 + R\sin 2\pi t,
     <span class="kw">return</span> x, y
 
 x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</code></pre>
-<p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the <code>circle</code> function above. Filename: <code>circles.pdf</code>.</p>
+<!-- Often in an exercise we have some comments about the solution -->
+<!-- which we normally want to keep where they are. -->
+
+<p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the <code>circle</code> function above.</p>
 <p><em>a)</em> Let \(R\) be normally distributed and \((x_0,y_0)\) uniformly distributed.</p>
 <p><em>Hint.</em> Use the <code>numpy.random</code> module to draw the \(x_0\), \(y_0\), and \(R\) quantities.</p>
-<p><em>Answer.</em> Here goes the short answer to part a).</p>
+<!-- --- begin short answer in exercise -->
+
+<p><em>Answer.</em> Here goes the short answer to part a). <!-- --- end short answer in exercise --></p>
+<!-- --- begin solution of exercise -->
+
 <p><em>Solution.</em> Here goes a full solution to part a).</p>
+<!-- --- end solution of exercise -->
+
 <p><em>b)</em> Let \(R\) be uniformly distributed and \((x_0,y_0)\) normally distributed. <em>Filename</em>: <code>norm.py</code>.</p>
 <p><em>c)</em> Let \(R\) and \((x_0,y_0)\) be normally distributed.</p>
+<p>Filename: <code>circles.pdf</code>.</p>
+<!-- Closing remarks for this Project -->
+
+<p>Remarks <sub><sub><sub>~</sub></sub></sub></p>
+<p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
+<!-- --- end of exercise -->
+
+
+
+
+<!-- --- begin exercise -->
+
+<h2 id="exercise-4-determine-some-distance">Exercise 4: Determine some Distance</h2>
+<p>Intro to this exercise. Questions are in subexercises below.</p>
+<!-- --- begin solution of exercise -->
+
+<p><em>Solution.</em> Here goes a full solution of the whole exercise.</p>
+<!-- --- end solution of exercise -->
+
+
+<p><em>a)</em> Subexercises are numbered a), b), etc.</p>
+<p><em>Hint 1.</em> First hint to subexercise a).</p>
+<p><em>Hint 2.</em> Second hint to subexercise a). <em>Filename</em>: <code>subexer_a.pdf</code>.</p>
+<!-- --- begin short answer in exercise -->
+
+<p><em>Answer.</em> Short answer to subexercise a). <!-- --- end short answer in exercise --></p>
+<p><em>b)</em> Here goes the text for subexercise b).</p>
+<p><em>Hint.</em> A hint for this subexercise. <em>Filename</em>: <code>subexer_b.pdf</code>.</p>
+<!-- --- begin solution of exercise -->
+
+<p><em>Solution.</em> Here goes the solution of this subexercise.</p>
+<!-- --- end solution of exercise -->
+
+<!-- Closing remarks for this Exercise -->
+
+<p>Remarks <sub><sub><sub>~</sub></sub></sub></p>
+<p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
+<!-- --- end of exercise -->
+
+
 <h1 id="here-goes-another-section">Here goes another section</h1>
 <p>With some text, before we continue with exercises.</p>
 <h1 id="more-exercises">More Exercises</h1>
-<h2 id="exercise-4-make-references-to-projects-and-problems">Exercise 4: Make references to projects and problems</h2>
+<!-- --- begin exercise -->
+
+<h2 id="exercise-5-make-references-to-projects-and-problems">Exercise 5: Make references to projects and problems</h2>
 <p>Pick a statement from <a href="#s">Project 3: Explore Distributions of Random Circles</a> or <a href="#n">Problem 1: Flip a Coin</a> and verify it. Filename: <code>verify_formula.py</code>.</p>
-<h2 id="project-5-references-to-project-2-compute-a-probability-in-a-heading-works-for-pandoc">Project 5: References to <a href="#y">Project 2: Compute a Probability</a> in a heading works for pandoc</h2>
-<p>Refer to the previous exercise as <a href="#s">Exercise 4: Make references to projects and problems</a>, the two before that as <a href="#y">Project 2: Compute a Probability</a> and <a href="#s">Project 3: Explore Distributions of Random Circles</a>, and this one as <a href="#c">Project 5: References to Project ref{demo:ex:2} in a heading works for pandoc</a>. Filename: <code>selc_composed.pdf</code>.</p>
+<!-- --- end of exercise -->
+
+
+
+
+<!-- --- begin exercise -->
+
+<h2 id="project-6-references-to-project-2-compute-a-probability-in-a-heading-works-for-pandoc">Project 6: References to <a href="#y">Project 2: Compute a Probability</a> in a heading works for pandoc</h2>
+<p>Refer to the previous exercise as <a href="#s">Exercise 5: Make references to projects and problems</a>, the two before that as <a href="#y">Project 2: Compute a Probability</a> and <a href="#s">Project 3: Explore Distributions of Random Circles</a>, and this one as <a href="#c">Project 6: References to Project ref{demo:ex:2} in a heading works for pandoc</a>. Filename: <code>selc_composed.pdf</code>.</p>
+<!-- --- end of exercise -->
+
+
 <h1 id="appendix-just-for-testing-part-i">Appendix: Just for testing; part I</h1>
 <p>This is the first appendix.</p>
 <h2 id="a-subsection-within-an-appendix">A subsection within an appendix</h2>
@@ -11856,11 +13003,11 @@ doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a st
 doconce format latex testdoc.do.txt
 doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
 #doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
-pandoc -f latex -t markdown -o testdoc.mkd testdoc.tex
-pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.mkd
+pandoc -f latex -t markdown -o testdoc.md testdoc.tex
+pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 
 doconce format pandoc testdoc.do.txt
-pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.mkd
+pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 
 # Test grab
 doconce grab --from- '={9}' --to 'subroutine@' testdoc.do.txt > testdoc.tmp
@@ -11974,8 +13121,8 @@ $a2ps_plain -1 -o tutorial.cwiki.ps tutorial.cwiki
 ps2pdf tutorial.cwiki.ps
 $a2ps_plain -1 -o tutorial.mwiki.ps tutorial.mwiki
 ps2pdf tutorial.mwiki.ps
-$a2ps_plain -1 -o tutorial.mkd.ps tutorial.mkd
-ps2pdf tutorial.mkd.ps
+$a2ps_plain -1 -o tutorial.md.ps tutorial.md
+ps2pdf tutorial.md.ps
 $a2ps_plain -1 -o tutorial.xml.ps tutorial.xml
 ps2pdf tutorial.xml.ps
 
@@ -11984,11 +13131,11 @@ rm -f *.ps
 #wkhtmltopdf tutorial.rst.html tutorial.rst.html.pdf
 #wkhtmltopdf tutorial.html tutorial.html.pdf
 
-pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.mkd.pdf tutorial.sphinx.pdf tutorial.xml.pdf  cat output collection_of_results.pdf
+pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.md.pdf tutorial.sphinx.pdf tutorial.xml.pdf  cat output collection_of_results.pdf
 
 rm -rf demo
 mkdir demo
-cp -r tutorial.do.txt tutorial.html tutorial.p.tex tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.gwiki tutorial.mwiki tutorial.cwiki tutorial.txt tutorial.epytext tutorial.st tutorial.mkd collection_of_results.pdf sphinx-rootdir/_build/html demo
+cp -r tutorial.do.txt tutorial.html tutorial.p.tex tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.gwiki tutorial.mwiki tutorial.cwiki tutorial.txt tutorial.epytext tutorial.st tutorial.md collection_of_results.pdf sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -12030,7 +13177,7 @@ Doconce can also be converted to
 <a href="tutorial.gwiki">Googlecode wiki</a>,
 <a href="tutorial.cwiki">Creole wiki</a>,
 <a href="tutorial.mwiki">MediaWiki wiki</a>,
-<a href="tutorial.mkd">Markdown</a> (Pandoc extension),
+<a href="tutorial.md">Markdown</a> (Pandoc extension),
 <a href="tutorial.st">Structured Text</a>,
 <a href="tutorial.epytext">Epytext</a>,
 and maybe the most important format of all:
@@ -24180,7 +25327,7 @@ Mercurial (hg) directories, go to the directory, run
 hg pull; hg update, and then sudo python setup.py install.
 
 
-************** File: tutorial.mkd *****************
+************** File: tutorial.md *****************
 % Doconce: Document Once, Include Anywhere
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
 % Jan 32, 2100
@@ -24512,6 +25659,10 @@ while `xpro` and `xcod` are computer language specific for `x`
 in `f` (Fortran), `c` (C), `cpp` (C++), `pl` (Perl), `m` (Matlab),
 `sh` (Unix shells), `cy` (Cython), and `py` (Python).
 
+<!-- (Any sphinx code-block comment, whether inside verbatim code -->
+<!-- blocks or outside, yields a mapping between bc arguments -->
+<!-- and computer languages. In case of muliple definitions, the -->
+<!-- first one is used.) -->
 
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
@@ -24565,6 +25716,7 @@ syntax we refer to the `doc/manual/manual.do.txt` file (see the
 for various formats of this document).
 
 
+<!-- Example on including another Doconce file (using preprocess): -->
 
 
 From Doconce to Other Formats
@@ -24719,6 +25871,9 @@ LaTeX
 -----
 
 Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
+<!-- Note: putting code blocks inside a list is not successful in many -->
+<!-- formats - the text may be messed up. A better choice is a paragraph -->
+<!-- environment, as used here. -->
 
 *Step 1.* Filter the doconce text to a pre-LaTeX form `mydoc.p.tex` for
 the `ptex2tex` program (or `doconce ptex2tex`):
@@ -25340,6 +26495,7 @@ use of the minted style requires the `-shell-escape` command-line
 argument when running LaTeX, i.e., `latex -shell-escape` or `pdflatex
 -shell-escape`.
 
+<!-- Say something about anslistings.sty -->
 
 reStructuredText (reST) Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -26038,7 +27194,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 07 Nov 2012 (18:35)
+DATE: Thu, 08 Nov 2012 (10:40)
 
 
 
@@ -26142,7 +27298,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 07 Nov 2012 (18:35)
+DATE: Thu, 08 Nov 2012 (10:40)
 
 
 
@@ -26256,7 +27412,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 07 Nov 2012 (18:35)</center>
+<center>Thu, 08 Nov 2012 (10:40)</center>
 
 
 
@@ -26387,7 +27543,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 07 Nov 2012 (18:35)</center>
+<center>Thu, 08 Nov 2012 (10:40)</center>
 
 
 
@@ -26605,7 +27761,7 @@ rm -f *.ps
 
 rm -rf demo
 mkdir demo
-cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.mkd sphinx-rootdir/_build/html demo
+cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.md sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -26647,7 +27803,7 @@ Doconce can also be converted to
 <a href="manual.gwiki">Googlecode wiki</a>,
 <a href="manual.cwiki">Creole wiki</a>,
 <a href="manual.mwiki">MediaWiki</a>,
-<a href="manual.mkd">Markdown</a> (Pandoc extended version),
+<a href="manual.md">Markdown</a> (Pandoc extended version),
 <a href="manual.st">Structured Text</a>,
 <a href="manual.epytext">Epytext</a>,
 and maybe the most important format of all:
@@ -27538,7 +28694,7 @@ A full exercise set-up can be sketched as follows:
 label{exer:moondist}
 file=earth2moon.pdf
 
-Here goes the running text of the project....
+Here goes main body of text describing the exercise...
 
 !bsubex
 Subexercises are numbered a), b), etc.
@@ -27562,12 +28718,32 @@ Here goes the text for subexercise b).
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
 !ec
 
-The various elements of exercises are collected in a special
-data structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
-if `mydoc.do.txt` is the name of the Doconce file.
+The various elements of exercises are collected in a special data
+structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
+if `mydoc.do.txt` is the name of the Doconce file.  The file contains
+a list of dictionaries, where keys in the dictionary corresponds to
+elements in the exercise: filename, solution file, answer, label, list
+of hints, list of subexercises, closing remarks, and the main body of
+text. From this data structure it is easy to generate stand-alone
+documents with exercises, problems, and projects with or without
+short answers and full solutions.
 
 Tailored formatting of exercises in special output formats can make
 use of the elements in an exercise.  For example, one can image web
@@ -30792,7 +31968,7 @@ A full exercise set-up can be sketched as follows:
 \label{exer:moondist}
 file=earth2moon.pdf
 
-Here goes the running text of the project....
+Here goes main body of text describing the exercise...
 
 !bsubex
 Subexercises are numbered a), b), etc.
@@ -30816,14 +31992,34 @@ Here goes the text for subexercise b).
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
 </pre>
 </blockquote>   <! -- end verbatim block -->
 
 <p>
-The various elements of exercises are collected in a special
-data structure (list of dictionaries) stored in a file <tt>.mydoc.exerinfo</tt>,
-if <tt>mydoc.do.txt</tt> is the name of the Doconce file.
+The various elements of exercises are collected in a special data
+structure (list of dictionaries) stored in a file <tt>.mydoc.exerinfo</tt>,
+if <tt>mydoc.do.txt</tt> is the name of the Doconce file.  The file contains
+a list of dictionaries, where keys in the dictionary corresponds to
+elements in the exercise: filename, solution file, answer, label, list
+of hints, list of subexercises, closing remarks, and the main body of
+text. From this data structure it is easy to generate stand-alone
+documents with exercises, problems, and projects with or without
+short answers and full solutions.
 
 <p>
 Tailored formatting of exercises in special output formats can make
@@ -34200,7 +35396,7 @@ A full exercise set-up can be sketched as follows:
 label{exer:moondist}
 file=earth2moon.pdf
 
-Here goes the running text of the project....
+Here goes main body of text describing the exercise...
 
 !bsubex
 Subexercises are numbered a), b), etc.
@@ -34224,12 +35420,32 @@ Here goes the text for subexercise b).
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
 \eccq
 
-The various elements of exercises are collected in a special
-data structure (list of dictionaries) stored in a file \code{.mydoc.exerinfo},
-if \code{mydoc.do.txt} is the name of the Doconce file.
+The various elements of exercises are collected in a special data
+structure (list of dictionaries) stored in a file \code{.mydoc.exerinfo},
+if \code{mydoc.do.txt} is the name of the Doconce file.  The file contains
+a list of dictionaries, where keys in the dictionary corresponds to
+elements in the exercise: filename, solution file, answer, label, list
+of hints, list of subexercises, closing remarks, and the main body of
+text. From this data structure it is easy to generate stand-alone
+documents with exercises, problems, and projects with or without
+short answers and full solutions.
 
 Tailored formatting of exercises in special output formats can make
 use of the elements in an exercise.  For example, one can image web
@@ -37181,7 +38397,7 @@ A full exercise set-up can be sketched as follows::
         label{exer:moondist}
         file=earth2moon.pdf
         
-        Here goes the running text of the project....
+        Here goes main body of text describing the exercise...
         
         !bsubex
         Subexercises are numbered a), b), etc.
@@ -37205,12 +38421,32 @@ A full exercise set-up can be sketched as follows::
         !bhint
         A hint for this subexercise.
         !ehint
+        
+        !bsol
+        Here goes the solution of this subexercise.
+        !esol
         !esubex
+        
+        !bremarks
+        At the very end of the exercise it may be appropriate to summarize
+        and give some perspectives. The text inside the !bremarks-!eremarks
+        directives is always typeset at the end of the exercise.
+        !eremarks
+        
+        !bsol
+        Here goes a full solution of the whole exercise.
+        !esol
 
 
-The various elements of exercises are collected in a special
-data structure (list of dictionaries) stored in a file ``.mydoc.exerinfo``,
-if ``mydoc.do.txt`` is the name of the Doconce file.
+The various elements of exercises are collected in a special data
+structure (list of dictionaries) stored in a file ``.mydoc.exerinfo``,
+if ``mydoc.do.txt`` is the name of the Doconce file.  The file contains
+a list of dictionaries, where keys in the dictionary corresponds to
+elements in the exercise: filename, solution file, answer, label, list
+of hints, list of subexercises, closing remarks, and the main body of
+text. From this data structure it is easy to generate stand-alone
+documents with exercises, problems, and projects with or without
+short answers and full solutions.
 
 Tailored formatting of exercises in special output formats can make
 use of the elements in an exercise.  For example, one can image web
@@ -40495,7 +41731,7 @@ A full exercise set-up can be sketched as follows:
         label{exer:moondist}
         file=earth2moon.pdf
         
-        Here goes the running text of the project....
+        Here goes main body of text describing the exercise...
         
         !bsubex
         Subexercises are numbered a), b), etc.
@@ -40519,12 +41755,32 @@ A full exercise set-up can be sketched as follows:
         !bhint
         A hint for this subexercise.
         !ehint
+        
+        !bsol
+        Here goes the solution of this subexercise.
+        !esol
         !esubex
+        
+        !bremarks
+        At the very end of the exercise it may be appropriate to summarize
+        and give some perspectives. The text inside the !bremarks-!eremarks
+        directives is always typeset at the end of the exercise.
+        !eremarks
+        
+        !bsol
+        Here goes a full solution of the whole exercise.
+        !esol
 
 
-The various elements of exercises are collected in a special
-data structure (list of dictionaries) stored in a file ``.mydoc.exerinfo``,
-if ``mydoc.do.txt`` is the name of the Doconce file.
+The various elements of exercises are collected in a special data
+structure (list of dictionaries) stored in a file ``.mydoc.exerinfo``,
+if ``mydoc.do.txt`` is the name of the Doconce file.  The file contains
+a list of dictionaries, where keys in the dictionary corresponds to
+elements in the exercise: filename, solution file, answer, label, list
+of hints, list of subexercises, closing remarks, and the main body of
+text. From this data structure it is easy to generate stand-alone
+documents with exercises, problems, and projects with or without
+short answers and full solutions.
 
 Tailored formatting of exercises in special output formats can make
 use of the elements in an exercise.  For example, one can image web
@@ -43455,7 +44711,7 @@ A full exercise set-up can be sketched as follows:
 label{exer:moondist}
 file=earth2moon.pdf
 
-Here goes the running text of the project....
+Here goes main body of text describing the exercise...
 
 !bsubex
 Subexercises are numbered a), b), etc.
@@ -43479,12 +44735,32 @@ Here goes the text for subexercise b).
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
 }}}
 
-The various elements of exercises are collected in a special
-data structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
-if `mydoc.do.txt` is the name of the Doconce file.
+The various elements of exercises are collected in a special data
+structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
+if `mydoc.do.txt` is the name of the Doconce file.  The file contains
+a list of dictionaries, where keys in the dictionary corresponds to
+elements in the exercise: filename, solution file, answer, label, list
+of hints, list of subexercises, closing remarks, and the main body of
+text. From this data structure it is easy to generate stand-alone
+documents with exercises, problems, and projects with or without
+short answers and full solutions.
 
 Tailored formatting of exercises in special output formats can make
 use of the elements in an exercise.  For example, one can image web
@@ -46146,7 +47422,7 @@ A full exercise set-up can be sketched as follows:
 label{exer:moondist}
 file=earth2moon.pdf
 
-Here goes the running text of the project....
+Here goes main body of text describing the exercise...
 
 !bsubex
 Subexercises are numbered a), b), etc.
@@ -46170,12 +47446,32 @@ Here goes the text for subexercise b).
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
 </code>
 
-The various elements of exercises are collected in a special
-data structure (list of dictionaries) stored in a file <code>.mydoc.exerinfo</code>,
-if <code>mydoc.do.txt</code> is the name of the Doconce file.
+The various elements of exercises are collected in a special data
+structure (list of dictionaries) stored in a file <code>.mydoc.exerinfo</code>,
+if <code>mydoc.do.txt</code> is the name of the Doconce file.  The file contains
+a list of dictionaries, where keys in the dictionary corresponds to
+elements in the exercise: filename, solution file, answer, label, list
+of hints, list of subexercises, closing remarks, and the main body of
+text. From this data structure it is easy to generate stand-alone
+documents with exercises, problems, and projects with or without
+short answers and full solutions.
 
 Tailored formatting of exercises in special output formats can make
 use of the elements in an exercise.  For example, one can image web
@@ -48875,7 +50171,7 @@ A full exercise set-up can be sketched as follows:
 label{exer:moondist}
 file=earth2moon.pdf
 
-Here goes the running text of the project....
+Here goes main body of text describing the exercise...
 
 !bsubex
 Subexercises are numbered a), b), etc.
@@ -48899,12 +50195,32 @@ Here goes the text for subexercise b).
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
 }}}
 
-The various elements of exercises are collected in a special
-data structure (list of dictionaries) stored in a file {{{.mydoc.exerinfo}}},
-if {{{mydoc.do.txt}}} is the name of the Doconce file.
+The various elements of exercises are collected in a special data
+structure (list of dictionaries) stored in a file {{{.mydoc.exerinfo}}},
+if {{{mydoc.do.txt}}} is the name of the Doconce file.  The file contains
+a list of dictionaries, where keys in the dictionary corresponds to
+elements in the exercise: filename, solution file, answer, label, list
+of hints, list of subexercises, closing remarks, and the main body of
+text. From this data structure it is easy to generate stand-alone
+documents with exercises, problems, and projects with or without
+short answers and full solutions.
 
 Tailored formatting of exercises in special output formats can make
 use of the elements in an exercise.  For example, one can image web
@@ -51661,7 +52977,7 @@ A full exercise set-up can be sketched as follows::
         label{exer:moondist}
         file=earth2moon.pdf
         
-        Here goes the running text of the project....
+        Here goes main body of text describing the exercise...
         
         !bsubex
         Subexercises are numbered a), b), etc.
@@ -51685,12 +53001,32 @@ A full exercise set-up can be sketched as follows::
         !bhint
         A hint for this subexercise.
         !ehint
+        
+        !bsol
+        Here goes the solution of this subexercise.
+        !esol
         !esubex
+        
+        !bremarks
+        At the very end of the exercise it may be appropriate to summarize
+        and give some perspectives. The text inside the !bremarks-!eremarks
+        directives is always typeset at the end of the exercise.
+        !eremarks
+        
+        !bsol
+        Here goes a full solution of the whole exercise.
+        !esol
 
 
-The various elements of exercises are collected in a special
-data structure (list of dictionaries) stored in a file '.mydoc.exerinfo',
-if 'mydoc.do.txt' is the name of the Doconce file.
+The various elements of exercises are collected in a special data
+structure (list of dictionaries) stored in a file '.mydoc.exerinfo',
+if 'mydoc.do.txt' is the name of the Doconce file.  The file contains
+a list of dictionaries, where keys in the dictionary corresponds to
+elements in the exercise: filename, solution file, answer, label, list
+of hints, list of subexercises, closing remarks, and the main body of
+text. From this data structure it is easy to generate stand-alone
+documents with exercises, problems, and projects with or without
+short answers and full solutions.
 
 Tailored formatting of exercises in special output formats can make
 use of the elements in an exercise.  For example, one can image web
@@ -54533,7 +55869,7 @@ A full exercise set-up can be sketched as follows::
         label{exer:moondist}
         file=earth2moon.pdf
         
-        Here goes the running text of the project....
+        Here goes main body of text describing the exercise...
         
         !bsubex
         Subexercises are numbered a), b), etc.
@@ -54557,12 +55893,32 @@ A full exercise set-up can be sketched as follows::
         !bhint
         A hint for this subexercise.
         !ehint
+        
+        !bsol
+        Here goes the solution of this subexercise.
+        !esol
         !esubex
+        
+        !bremarks
+        At the very end of the exercise it may be appropriate to summarize
+        and give some perspectives. The text inside the !bremarks-!eremarks
+        directives is always typeset at the end of the exercise.
+        !eremarks
+        
+        !bsol
+        Here goes a full solution of the whole exercise.
+        !esol
 
 
-The various elements of exercises are collected in a special
-data structure (list of dictionaries) stored in a file C{.mydoc.exerinfo},
-if C{mydoc.do.txt} is the name of the Doconce file.
+The various elements of exercises are collected in a special data
+structure (list of dictionaries) stored in a file C{.mydoc.exerinfo},
+if C{mydoc.do.txt} is the name of the Doconce file.  The file contains
+a list of dictionaries, where keys in the dictionary corresponds to
+elements in the exercise: filename, solution file, answer, label, list
+of hints, list of subexercises, closing remarks, and the main body of
+text. From this data structure it is easy to generate stand-alone
+documents with exercises, problems, and projects with or without
+short answers and full solutions.
 
 Tailored formatting of exercises in special output formats can make
 use of the elements in an exercise.  For example, one can image web
@@ -57494,7 +58850,7 @@ A full exercise set-up can be sketched as follows::
         label{exer:moondist}
         file=earth2moon.pdf
         
-        Here goes the running text of the project....
+        Here goes main body of text describing the exercise...
         
         !bsubex
         Subexercises are numbered a), b), etc.
@@ -57518,12 +58874,32 @@ A full exercise set-up can be sketched as follows::
         !bhint
         A hint for this subexercise.
         !ehint
+        
+        !bsol
+        Here goes the solution of this subexercise.
+        !esol
         !esubex
+        
+        !bremarks
+        At the very end of the exercise it may be appropriate to summarize
+        and give some perspectives. The text inside the !bremarks-!eremarks
+        directives is always typeset at the end of the exercise.
+        !eremarks
+        
+        !bsol
+        Here goes a full solution of the whole exercise.
+        !esol
 
 
-The various elements of exercises are collected in a special
-data structure (list of dictionaries) stored in a file .mydoc.exerinfo,
-if mydoc.do.txt is the name of the Doconce file.
+The various elements of exercises are collected in a special data
+structure (list of dictionaries) stored in a file .mydoc.exerinfo,
+if mydoc.do.txt is the name of the Doconce file.  The file contains
+a list of dictionaries, where keys in the dictionary corresponds to
+elements in the exercise: filename, solution file, answer, label, list
+of hints, list of subexercises, closing remarks, and the main body of
+text. From this data structure it is easy to generate stand-alone
+documents with exercises, problems, and projects with or without
+short answers and full solutions.
 
 Tailored formatting of exercises in special output formats can make
 use of the elements in an exercise.  For example, one can image web
@@ -58747,10 +60123,13 @@ Bibliography
   2. H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. *Advances in Water Resources*, vol 22, 185-195, 1998.
 
 
-************** File: manual.mkd *****************
+************** File: manual.md *****************
 % Doconce Description
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
 % Jan 32, 2100
+
+<!-- lines beginning with # are comment lines -->
+
 
 What Is Doconce?
 ================
@@ -58978,6 +60357,7 @@ use of the minted style requires the `-shell-escape` command-line
 argument when running LaTeX, i.e., `latex -shell-escape` or `pdflatex
 -shell-escape`.
 
+<!-- Say something about anslistings.sty -->
 
 reStructuredText (reST) Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59053,6 +60433,18 @@ Mercurial (`hg`) directories, go to the directory, run
 `hg pull; hg update`, and then `sudo python setup.py install`.
 
 
+<!--  -->
+<!-- Here are some comment lines that do not affect any formatting -->
+<!-- these lines are converted to comments in the output format. -->
+<!-- This may have some side effects, especially in rst and sphinx -->
+<!-- where lines following the comment may be taken as part of -->
+<!-- the comment if there are no blank lines after the comment. -->
+<!--  -->
+<!-- One can use ## and the mako preprocessor to remove comments -->
+<!-- *before* doconce sees the text. That can be useful when -->
+<!-- doconce comments interferes with formatting. -->
+<!-- The mako tool also supports <%doc> .. </%doc> -->
+<!--  -->
 
 
 Demos
@@ -59085,6 +60477,7 @@ lot of formats, with a corresponding
 [web demo](https://doconce.googlecode.com/hg/doc/demos/tutorial/index.html)
 of the results.
 
+<!-- Example on including another Doconce file: -->
 
 
 From Doconce to Other Formats
@@ -59239,6 +60632,9 @@ LaTeX
 -----
 
 Making a LaTeX file `mydoc.tex` from `mydoc.do.txt` is done in two steps:
+<!-- Note: putting code blocks inside a list is not successful in many -->
+<!-- formats - the text may be messed up. A better choice is a paragraph -->
+<!-- environment, as used here. -->
 
 *Step 1.* Filter the doconce text to a pre-LaTeX form `mydoc.p.tex` for
 the `ptex2tex` program (or `doconce ptex2tex`):
@@ -59934,6 +61330,9 @@ Special Lines
 Figures
 -------
 
+<!-- Note: need extra blank after FIGURE and MOVIE in !bc environments -->
+<!-- because doconce treats !ec as part of the caption and moves the -->
+<!-- !ec up to the caption line -->
 
 Figures are recognized by the special line syntax
 
@@ -59986,13 +61385,19 @@ MOVIE: [filename, height=xxx width=yyy] possible caption
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+<!-- latex/PDF format can make use of the movie15 package for displaying movies, -->
+<!-- or just plain \href{run: ...}{...} -->
+
+
 <embed src="figs/mjolnir.mpeg" width=600 height=470 autoplay="false" loop="true"></embed>
 <p>
 <em></em>
 </p>
 
 
+<!-- MOVIE: [figs/wavepacket.gif, width=600 height=470] -->
 
+<!-- MOVIE: [figs/wavepacket2.mpeg, width=600 height=470] -->
 
 The LaTeX format results in a file that can either make use of
 the movie15 package (requires the PDF to be shown in Acrobat Reader)
@@ -60150,6 +61555,18 @@ URL: "manual.html"
 
 resulting in the link <manual.html>.
 
+<!-- This is now automatically carried out by the autogenerated -->
+<!-- script for sphinx: -->
+<!-- For such local links to -->
+<!-- work with the `sphinx` format, the `.rst` file needs a fix, carried -->
+<!-- out by -->
+<!-- !bc sys -->
+<!-- doconce sphinxfix_localURLs mydoc.rst -->
+<!-- !ec -->
+<!-- (The files, such as `manual.html`, are then copied to a subdirectory -->
+<!-- `_static`, which must be manually copied to the Sphinx directory's -->
+<!-- `_static` directory - links in the `.rst` files are automatically -->
+<!-- adjusted.) -->
 
 Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
@@ -60462,6 +61879,8 @@ of `myfile.bbl` or using `doconce bbl2rst myfile.bbl` to automate (most of)
 this editing. From the `myfile.rst` file it is easy to create `myfile.py`
 with the dictionary version of the references.
 
+<!-- see ketch/tex2rst for nice bibtex to rst converter which could -->
+<!-- be used here -->
 
 Conversion of BibTeX databases to reST format can be
 done by the [bibliograph.parsing](http://pypi.python.org/pypi/bibliograph.parsing/) tool.
@@ -60565,7 +61984,7 @@ A full exercise set-up can be sketched as follows:
 \label{exer:moondist}
 file=earth2moon.pdf
 
-Here goes the running text of the project....
+Here goes main body of text describing the exercise...
 
 !bsubex
 Subexercises are numbered a), b), etc.
@@ -60589,12 +62008,32 @@ Here goes the text for subexercise b).
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The various elements of exercises are collected in a special
-data structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
-if `mydoc.do.txt` is the name of the Doconce file.
+The various elements of exercises are collected in a special data
+structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
+if `mydoc.do.txt` is the name of the Doconce file.  The file contains
+a list of dictionaries, where keys in the dictionary corresponds to
+elements in the exercise: filename, solution file, answer, label, list
+of hints, list of subexercises, closing remarks, and the main body of
+text. From this data structure it is easy to generate stand-alone
+documents with exercises, problems, and projects with or without
+short answers and full solutions.
 
 Tailored formatting of exercises in special output formats can make
 use of the elements in an exercise.  For example, one can image web
@@ -60679,6 +62118,10 @@ definitions of the arguments after `!bc` can be redefined in the
 `sphinx code-blocks` comments for Sphinx. Support for other languages
 is easily added.
 
+<!-- (Any sphinx code-block comment, whether inside verbatim code -->
+<!-- blocks or outside, yields a mapping between bc arguments -->
+<!-- and computer languages. In case of muliple definitions, the -->
+<!-- first one is used.) -->
 
 The enclosing `!ec` tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
@@ -60716,6 +62159,8 @@ void myfunc(double* x, const double& myarr) {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+<!-- When showing copy from file in !bc envir, intent a character - otherwise -->
+<!-- ptex2tex is confused and starts copying... -->
 Computer code can be copied directly from a file, if desired. The syntax
 is then
 
@@ -61640,6 +63085,8 @@ capture the second }
 The remedy is to place verbatim LaTeX commands in verbatim
 blocks - that is safe.
 
+<!-- Could have doconce configure file where inline verbatim is -->
+<!-- configured to be \fontsize... directly, not via ptex2tex \code{}. -->
 
 
 Errors in figure captions
@@ -61765,6 +63212,7 @@ format, and you need to know these steps to make use of the logfile.
 Basic Parsing Ideas
 ===================
 
+<!-- avoid list here since we have code in between (never a good idea) -->
 
 The (parts of) files with computer code to be directly included in
 the document are first copied into verbatim blocks.
@@ -61846,6 +63294,7 @@ and Sphinx just typeset the list as a list with keywords.
   :    
       tolerance (float) for stopping
       the iterations.
+<!-- References -->
 
 
 ************** File: install.do.txt *****************
@@ -62081,7 +63530,7 @@ doconce format pandoc quickref --no-preprocess
 
 rm -rf demo
 mkdir demo
-cp -r quickref.do.txt quickref.html quickref.p.tex quickref.tex quickref.pdf quickref.rst quickref.xml quickref.rst.html quickref.rst.tex quickref.rst.pdf quickref.gwiki quickref.mwiki quickref.cwiki quickref.txt quickref.epytext quickref.st quickref.mkd sphinx-rootdir/_build/html demo
+cp -r quickref.do.txt quickref.html quickref.p.tex quickref.tex quickref.pdf quickref.rst quickref.xml quickref.rst.html quickref.rst.tex quickref.rst.pdf quickref.gwiki quickref.mwiki quickref.cwiki quickref.txt quickref.epytext quickref.st quickref.md sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -62123,7 +63572,7 @@ Doconce can also be converted to
 <a href="quickref.gwiki">Googlecode wiki</a>,
 <a href="quickref.mwiki">MediaWiki</a>,
 <a href="quickref.cwiki">Creole wiki</a>,
-<a href="quickref.mkd">a Pandoc</a>,
+<a href="quickref.md">a Pandoc</a>,
 <a href="quickref.st">Structured Text</a>,
 <a href="quickref.epytext">Epytext</a>,
 and maybe the most important format of all:
@@ -62677,6 +64126,7 @@ compute the integral.
 !ec
 An exercise with subproblems, answers and full solutions has this
 setup-up:
+
 !bc
 ===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
@@ -62709,9 +64159,25 @@ file=subexer_b.pdf
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
+
 !ec
 By default, answers, solutions, and hints are typeset as paragraphs.
+
 
 ===== Labels, Index, and Citations =====
 
@@ -63597,6 +65063,8 @@ compute the integral.
 </blockquote>   <! -- end verbatim block -->
 An exercise with subproblems, answers and full solutions has this
 setup-up:
+
+<p>
 <blockquote>    <!-- begin verbatim block -->
 <pre>
 ===== Exercise: Determine the Distance to the Moon =====
@@ -63630,10 +65098,27 @@ file=subexer_b.pdf
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
+
 </pre>
 </blockquote>   <! -- end verbatim block -->
 By default, answers, solutions, and hints are typeset as paragraphs.
+
+<p>
 
 <p>
 
@@ -64571,6 +66056,7 @@ compute the integral.
 \eccq
 An exercise with subproblems, answers and full solutions has this
 setup-up:
+
 \bccq
 ===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
@@ -64603,7 +66089,22 @@ file=subexer_b.pdf
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
+
 \eccq
 By default, answers, solutions, and hints are typeset as paragraphs.
 
@@ -65381,9 +66882,25 @@ setup-up::
         !bhint
         A hint for this subexercise.
         !ehint
+        
+        !bsol
+        Here goes the solution of this subexercise.
+        !esol
         !esubex
+        
+        !bremarks
+        At the very end of the exercise it may be appropriate to summarize
+        and give some perspectives. The text inside the !bremarks-!eremarks
+        directives is always typeset at the end of the exercise.
+        !eremarks
+        
+        !bsol
+        Here goes a full solution of the whole exercise.
+        !esol
+        
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+
 
 Labels, Index, and Citations
 ----------------------------
@@ -66159,6 +67676,7 @@ A typical sketch of a a problem without subexercises goes as follows:
 An exercise with subproblems, answers and full solutions has this
 setup-up:
 
+
 .. code-block:: py
 
 
@@ -66193,9 +67711,25 @@ setup-up:
         !bhint
         A hint for this subexercise.
         !ehint
+        
+        !bsol
+        Here goes the solution of this subexercise.
+        !esol
         !esubex
+        
+        !bremarks
+        At the very end of the exercise it may be appropriate to summarize
+        and give some perspectives. The text inside the !bremarks-!eremarks
+        directives is always typeset at the end of the exercise.
+        !eremarks
+        
+        !bsol
+        Here goes a full solution of the whole exercise.
+        !esol
+        
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+
 
 Labels, Index, and Citations
 ----------------------------
@@ -66825,6 +68359,7 @@ compute the integral.
 }}}
 An exercise with subproblems, answers and full solutions has this
 setup-up:
+
 {{{
 ===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
@@ -66857,7 +68392,22 @@ file=subexer_b.pdf
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
+
 }}}
 By default, answers, solutions, and hints are typeset as paragraphs.
 
@@ -66924,7 +68474,11 @@ By '''Hans Petter Langtangen'''
 
 ==== Jan 32, 2100 ====
 
-''TOC'' <!--> Very preliminary -->
+__TOC__
+
+
+
+<!--> Very preliminary -->
 
 '''WARNING: This quick reference is very incomplete!'''
 
@@ -67454,6 +69008,7 @@ compute the integral.
 </code>
 An exercise with subproblems, answers and full solutions has this
 setup-up:
+
 <code>
 ===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
@@ -67486,7 +69041,22 @@ file=subexer_b.pdf
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
+
 </code>
 By default, answers, solutions, and hints are typeset as paragraphs.
 
@@ -68126,6 +69696,7 @@ compute the integral.
 }}}
 An exercise with subproblems, answers and full solutions has this
 setup-up:
+
 {{{
 ===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
@@ -68158,7 +69729,22 @@ file=subexer_b.pdf
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
+
 }}}
 By default, answers, solutions, and hints are typeset as paragraphs.
 
@@ -68862,7 +70448,22 @@ setup-up::
         !bhint
         A hint for this subexercise.
         !ehint
+        
+        !bsol
+        Here goes the solution of this subexercise.
+        !esol
         !esubex
+        
+        !bremarks
+        At the very end of the exercise it may be appropriate to summarize
+        and give some perspectives. The text inside the !bremarks-!eremarks
+        directives is always typeset at the end of the exercise.
+        !eremarks
+        
+        !bsol
+        Here goes a full solution of the whole exercise.
+        !esol
+        
 
 By default, answers, solutions, and hints are typeset as paragraphs.
 
@@ -69581,9 +71182,25 @@ setup-up::
         !bhint
         A hint for this subexercise.
         !ehint
+        
+        !bsol
+        Here goes the solution of this subexercise.
+        !esol
         !esubex
+        
+        !bremarks
+        At the very end of the exercise it may be appropriate to summarize
+        and give some perspectives. The text inside the !bremarks-!eremarks
+        directives is always typeset at the end of the exercise.
+        !eremarks
+        
+        !bsol
+        Here goes a full solution of the whole exercise.
+        !esol
+        
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+
 
 Labels, Index, and Citations
 ----------------------------
@@ -70339,9 +71956,25 @@ setup-up::
         !bhint
         A hint for this subexercise.
         !ehint
+        
+        !bsol
+        Here goes the solution of this subexercise.
+        !esol
         !esubex
+        
+        !bremarks
+        At the very end of the exercise it may be appropriate to summarize
+        and give some perspectives. The text inside the !bremarks-!eremarks
+        directives is always typeset at the end of the exercise.
+        !eremarks
+        
+        !bsol
+        Here goes a full solution of the whole exercise.
+        !esol
+        
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+
 
 Labels, Index, and Citations
 ----------------------------
@@ -70402,10 +72035,16 @@ Resources
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
 
-************** File: quickref.mkd *****************
+************** File: quickref.md *****************
 % Doconce Quick Reference
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
 % Jan 32, 2100
+
+<!-- Table of contents: Run pandoc with --toc option -->
+
+
+
+<!-- Very preliminary -->
 
 _WARNING: This quick reference is very incomplete!_
 
@@ -70674,6 +72313,8 @@ The `xxx` specifier has only effect for `latex` and
 `sphinx` output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
+<!-- When showing copy from file in !bc envir, intent a character - otherwise -->
+<!-- ptex2tex is confused and starts copying... -->
 Computer code can also be copied from a file:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71081,6 +72722,7 @@ compute the integral.
 An exercise with subproblems, answers and full solutions has this
 setup-up:
 
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ===== Exercise: Determine the Distance to the Moon =====
 \label{exer:moondist}
@@ -71113,10 +72755,26 @@ file=subexer_b.pdf
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+
 
 Labels, Index, and Citations
 ----------------------------
@@ -71228,7 +72886,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 output in testdoc.html
@@ -71283,7 +72941,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
 output in testdoc.p.tex
@@ -71338,7 +72996,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format pdflatex
 output in testdoc.p.tex
@@ -71461,156 +73119,159 @@ LaTeX Warning: Reference `demo:ex:2' on page 2 undefined on input line 128.
 LaTeX Warning: Reference `proj:circle1' on page 2 undefined on input line 129.
 
 
+LaTeX Warning: Reference `exer:dist' on page 2 undefined on input line 130.
+
+
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-130.
+131.
 
 
-LaTeX Warning: Reference `exer:you' on page 2 undefined on input line 131.
+LaTeX Warning: Reference `exer:you' on page 2 undefined on input line 132.
 
 [2] (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd)
 
-LaTeX Warning: Reference `sec1' on page 3 undefined on input line 201.
+LaTeX Warning: Reference `sec1' on page 3 undefined on input line 202.
 
 
-LaTeX Warning: Reference `subsubsec:ex' on page 3 undefined on input line 202.
+LaTeX Warning: Reference `subsubsec:ex' on page 3 undefined on input line 203.
 
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg)
-Overfull \hbox (43.91478pt too wide) in paragraph at lines 291--295
+Overfull \hbox (43.91478pt too wide) in paragraph at lines 292--296
 []\OT1/cmr/m/n/10 It is time to test []\OT1/cmtt/m/n/10 verbatim inline font \O
 T1/cmr/m/n/10 es-pe-cially with []\OT1/cmtt/m/n/10 a newline inside the text
 
-LaTeX Warning: Reference `fig:impact' on page 4 undefined on input line 301.
+LaTeX Warning: Reference `fig:impact' on page 4 undefined on input line 302.
 
 <../doc/manual/figs/streamtubes.png, id=35, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png> [4]
 <use ../doc/manual/figs/streamtubes.png>
 Underfull \vbox (badness 10000) has occurred while \output is active [5 <../doc
 /manual/figs/streamtubes.png>]
-Overfull \hbox (47.04507pt too wide) in paragraph at lines 376--377
+Overfull \hbox (47.04507pt too wide) in paragraph at lines 377--378
 \OT1/cmr/m/n/10 the full wavepacket.mpeg movie). [](Movie of files []\OT1/cmtt/
 m/n/10 ../doc/manual/figs/wavepacket_*.png
 
-LaTeX Warning: Reference `myfig' on page 6 undefined on input line 386.
+LaTeX Warning: Reference `myfig' on page 6 undefined on input line 387.
 
 <../doc/manual/figs/wavepacket_0001.png, id=83, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
 
-LaTeX Warning: Reference `mymov' on page 6 undefined on input line 399.
+LaTeX Warning: Reference `mymov' on page 6 undefined on input line 400.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 406.
+(hyperref)                removing `math shift' on input line 407.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\theta' on input line 406.
+(hyperref)                removing `\theta' on input line 407.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 406.
+(hyperref)                removing `math shift' on input line 407.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 406.
+(hyperref)                removing `math shift' on input line 407.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\nabla' on input line 406.
+(hyperref)                removing `\nabla' on input line 407.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 406.
+(hyperref)                removing `math shift' on input line 407.
 
 [6] [7<<../doc/manual/figs/mjolnir.mpeg>>] [8<<../doc/manual/figs/wavepacket.mp
 eg>>]
 Underfull \vbox (badness 10000) has occurred while \output is active [9 <../doc
 /manual/figs/wavepacket_0001.png (PNG copy)>]
-Overfull \hbox (78.30609pt too wide) in paragraph at lines 554--554
+Overfull \hbox (78.30609pt too wide) in paragraph at lines 555--555
 [][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
 +%26+engineering/book/978-3-642-23098-1| 
 
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 564.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 565.
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 566.
+(amsmath)                 on input line 567.
 
 
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 568.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 569.
 
 
-LaTeX Warning: Reference `eq1' on page 10 undefined on input line 582.
+LaTeX Warning: Reference `eq1' on page 10 undefined on input line 583.
 
 
-LaTeX Warning: Reference `eq2' on page 10 undefined on input line 582.
+LaTeX Warning: Reference `eq2' on page 10 undefined on input line 583.
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 10 undefined on input line 59
-9.
+LaTeX Warning: Reference `split:envir:eq' on page 10 undefined on input line 60
+0.
 
 [10]
 
-LaTeX Warning: Reference `eq1' on page 11 undefined on input line 612.
+LaTeX Warning: Reference `eq1' on page 11 undefined on input line 613.
 
 
-LaTeX Warning: Reference `eq2' on page 11 undefined on input line 612.
+LaTeX Warning: Reference `eq2' on page 11 undefined on input line 613.
 
 
-LaTeX Warning: Reference `eq1a' on page 11 undefined on input line 613.
+LaTeX Warning: Reference `eq1a' on page 11 undefined on input line 614.
 
 
-LaTeX Warning: Reference `eq2a' on page 11 undefined on input line 613.
+LaTeX Warning: Reference `eq2a' on page 11 undefined on input line 614.
 
 
-LaTeX Warning: Reference `my:eq1' on page 11 undefined on input line 613.
+LaTeX Warning: Reference `my:eq1' on page 11 undefined on input line 614.
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 623.
+LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 624.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 623.
+LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 624.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 624.
+LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 625.
 
 
 
-LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 624.
+LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 625.
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 11 undefined on input line
- 625.
+ 626.
 
-(./testdoc.out.pyg) [11] (./testdoc.out.pyg)
+(./testdoc.out.pyg) [11] (./testdoc.out.pyg) [12]
 
-LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 800.
+LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 875.
 
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 12 undefined on input line 800.
+LaTeX Warning: Reference `demo:ex:1' on page 13 undefined on input line 875.
 
-[12]
 
-LaTeX Warning: Reference `demo:ex:2' on page 13 undefined on input line 815.
+LaTeX Warning: Reference `demo:ex:2' on page 13 undefined on input line 890.
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 819.
+ 894.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 13 undefined on input line 820.
+LaTeX Warning: Reference `demo:ex:2' on page 13 undefined on input line 895.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 820.
+LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 895.
 
 
 
-LaTeX Warning: Reference `exer:you' on page 13 undefined on input line 821.
+LaTeX Warning: Reference `exer:you' on page 13 undefined on input line 896.
 
-No file testdoc.ind.
 [13]
+No file testdoc.ind.
+[14]
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
@@ -71644,7 +73305,7 @@ b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (13 pages, 1462337 bytes).
+Output written on testdoc.pdf (14 pages, 1466047 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -71708,7 +73369,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 output in testdoc.txt
 + doconce format st testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -71760,7 +73421,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 output in testdoc.st
 + doconce format sphinx testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -71821,7 +73482,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format sphinx
 
@@ -71884,7 +73545,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format rst
 output in testdoc.rst
@@ -71938,7 +73599,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 output in testdoc.epytext
 + doconce format pandoc testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -71990,7 +73651,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{multline} does not work well
@@ -72003,7 +73664,7 @@ Warning: latex envir \begin{eqnarray} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
-output in testdoc.mkd
+output in testdoc.md
 + doconce format mwiki testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to mwiki
@@ -72054,7 +73715,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format mwiki
 
@@ -72120,7 +73781,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format cwiki
 output in testdoc.cwiki
@@ -72175,7 +73836,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format gwiki
 
@@ -72247,7 +73908,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
 output in testdoc.p.tex
@@ -72268,8 +73929,8 @@ output in testdoc.p.tex
 \begin{verbatim}
 \bccq (!bc ccq) -> \begin{quote}
 \begin{verbatim}
-+ pandoc -f latex -t markdown -o testdoc.mkd testdoc.tex
-+ pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.mkd
++ pandoc -f latex -t markdown -o testdoc.md testdoc.tex
++ pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 + doconce format pandoc testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
@@ -72320,7 +73981,7 @@ copy complete file ../doc/manual/__testcode.f  (format: fpro)
 warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
-found info about 5 exercises, written to .testdoc.exerinfo
+found info about 6 exercises, written to .testdoc.exerinfo
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{multline} does not work well
@@ -72333,8 +73994,8 @@ Warning: latex envir \begin{eqnarray} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
-output in testdoc.mkd
-+ pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.mkd
+output in testdoc.md
++ pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 + doconce grab --from- ={9} --to subroutine@ testdoc.do.txt
 + doconce grab --from Compute a Probability --to- drawing uniformly testdoc.do.txt
 + doconce grab --from- \*\s+\$.+normally testdoc.do.txt
@@ -74144,7 +75805,7 @@ Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{quote} does not work well
          pandoc extended markdown syntax handles only single equations
-output in tutorial.mkd
+output in tutorial.md
 + a2ps_plain=a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer=''
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.do.ps tutorial.do.txt
 [tutorial.do.txt (plain): 6 pages on 6 sheets]
@@ -74176,21 +75837,21 @@ output in tutorial.mkd
 [Total: 20 pages on 20 sheets] saved into the file `tutorial.mwiki.ps'
 [186 lines wrapped]
 + ps2pdf tutorial.mwiki.ps
-+ a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mkd.ps tutorial.mkd
-[tutorial.mkd (plain): 22 pages on 22 sheets]
-[Total: 22 pages on 22 sheets] saved into the file `tutorial.mkd.ps'
-[11 lines wrapped]
-+ ps2pdf tutorial.mkd.ps
++ a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.md.ps tutorial.md
+[tutorial.md (Modula 2): 22 pages on 22 sheets]
+[Total: 22 pages on 22 sheets] saved into the file `tutorial.md.ps'
+[8 lines wrapped]
++ ps2pdf tutorial.md.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
 [tutorial.xml (plain): 19 pages on 19 sheets]
 [Total: 19 pages on 19 sheets] saved into the file `tutorial.xml.ps'
 [534 lines wrapped]
 + ps2pdf tutorial.xml.ps
-+ rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.mkd.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
-+ pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.mkd.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
++ rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.md.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
++ pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.md.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
 + rm -rf demo
 + mkdir demo
-+ cp -r tutorial.do.txt tutorial.html tutorial.p.tex tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.gwiki tutorial.mwiki tutorial.cwiki tutorial.txt tutorial.epytext tutorial.st tutorial.mkd collection_of_results.pdf sphinx-rootdir/_build/html demo
++ cp -r tutorial.do.txt tutorial.html tutorial.p.tex tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.gwiki tutorial.mwiki tutorial.cwiki tutorial.txt tutorial.epytext tutorial.st tutorial.md collection_of_results.pdf sphinx-rootdir/_build/html demo
 + cd demo
 + cat
 + echo
@@ -74603,51 +76264,51 @@ line 1878.
 \space \space #1
 }
                                                   
-l.2253 \end{Verbatim}
+l.2273 \end{Verbatim}
                      
 ? OK, entering \nonstopmode...
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2259.
+(amsmath)                 on input line 2279.
 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2259 \end{gather}
+l.2279 \end{gather}
                    
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2259 \end{gather}
+l.2279 \end{gather}
                    
 
-Underfull \hbox (badness 10000) in paragraph at lines 2299--2305
+Underfull \hbox (badness 10000) in paragraph at lines 2319--2325
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax' \T1/ptm/m/n/10 (en-abled by de-fault)
 
-Underfull \hbox (badness 10000) in paragraph at lines 2299--2305
+Underfull \hbox (badness 10000) in paragraph at lines 2319--2325
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 'matplotlib.sphinxext.mathmpl' \T1/ptm/m/n/10
  (dis-abled by de-fault) lines, and un-com-ment the
 [36] [37]
 
 LaTeX Warning: Hyper reference `manual:doconce2formats' on page 38 undefined on
- input line 2448.
+ input line 2468.
 
-[38] [39] [40]
+[38] [39] [40] [41] [42]
 Chapter 8.
-[41] [42]
+[43] [44]
 
-LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 43 undefine
-d on input line 2810.
+LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 45 undefine
+d on input line 2830.
 
-[43] [44] [45] [46] [47] [48] [49] [50]
+[45] [46] [47] [48] [49] [50] [51] [52]
 Chapter 9.
-[51] [52]
-Chapter 10.
 [53] [54]
+Chapter 10.
+[55] [56]
 No file DoconceManual.ind.
-[55] (./DoconceManual.aux)
+[57] (./DoconceManual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -74670,7 +76331,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on DoconceManual.pdf (59 pages, 395820 bytes).
+Output written on DoconceManual.pdf (61 pages, 397952 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -75205,197 +76866,211 @@ Overfull \hbox (21.27702pt too wide) in paragraph at lines 2314--2319
 
 Overfull \hbox (41.00006pt too wide) in paragraph at lines 2322--2323
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
-[26] [27]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2423--2426
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2327--2327
+[]\T1/pcr/m/n/10 Here goes main body of text describing the exercise...  
+[26]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2358--2358
+[]\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
+rize  
+
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2359--2359
+[]\T1/pcr/m/n/10 and give some perspectives. The text inside the !bremarks-!ere
+marks  
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2360--2360
+[]\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
+[27]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2443--2446
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
 [28]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2505--2507
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2525--2527
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
 [29]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2622--2622
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2642--2642
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2623--2623
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2643--2643
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2632--2632
-[]\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
- 
-
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2633--2633
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
-label{myeq2}  
-
-Overfull \hbox (3.0pt too wide) in paragraph at lines 2649--2656
-\T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
 [30]
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2683--2689
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2652--2652
+[]\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
+ 
+
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2653--2653
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
+
+Overfull \hbox (3.0pt too wide) in paragraph at lines 2669--2676
+\T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
+
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2703--2709
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2683--2689
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2703--2709
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2683--2689
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2703--2709
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2735--2738
+[31]
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2755--2758
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-[31]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2771--2771
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2791--2791
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2772--2772
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2792--2792
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2788--2800
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2808--2820
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2813--2814
+[32]
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2833--2834
 \T1/pcr/m/n/10 # If PNGFIGS is defined, PNG files are used, otherwise Encapsula
 ted  
-[32]
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2823--2823
+
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2843--2843
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2825--2825
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2845--2845
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001.eps}}  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2829--2829
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2849--2849
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2831--2831
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2851--2851
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010.eps}}  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2841--2841
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2861--2861
 []\T1/pcr/m/n/10 # Use default Doconce figure handling for all other formats  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2843--2843
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2863--2863
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0001, width=400] Wavepacket at time 0.
 1 s.  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2845--2845
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2865--2865
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0010, width=400] Wavepacket at time 0.
 2 s.  
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 33 undef
-ined on input line 2852.
+ined on input line 2872.
 
 [33]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2900--2900
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2920--2920
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [34]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2986--2988
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3006--3008
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 [35]
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 3048--3050
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 3068--3070
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
 [36]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 3170--3173
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 3190--3193
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 3187--3190
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 3207--3210
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3194--3197
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3214--3217
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3233--3234
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3253--3254
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3236--3238
+[37]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3256--3258
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[37] [38]
+[38]
 
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 39 un
-defined on input line 3377.
+defined on input line 3397.
 
 [39] [40]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3575--3575
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3595--3595
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3579--3579
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3599--3599
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3597--3597
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3617--3617
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
-Overfull \hbox (131.00006pt too wide) in paragraph at lines 3617--3617
+[41]
+Overfull \hbox (131.00006pt too wide) in paragraph at lines 3637--3637
 []\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
 section]'  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3618--3618
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3638--3638
 []\T1/pcr/m/n/10 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $
 file  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3619--3619
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3639--3639
 []\T1/pcr/m/n/10 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3620--3620
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3640--3640
 []\T1/pcr/m/n/10 doconce replace '% begin theorem' '\begin{theorem}' $file  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3621--3623
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3641--3643
 []\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-[41]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3647--3647
+
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3667--3667
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3692--3693
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3712--3713
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3694--3694
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3714--3714
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
-
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3697--3697
+[42]
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3717--3717
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[42] [43]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3868--3868
+[43]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3888--3888
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3915--3918
+[44]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3935--3938
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[44]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3967--3967
+
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3987--3987
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3969--3969
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3989--3989
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3970--3970
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3990--3990
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3971--3971
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3991--3991
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3972--3972
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3992--3992
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[45] [46] (./manual.rst.aux)
+[45] [46] [47] (./manual.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -75404,7 +77079,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (46 pages, 202308 bytes).
+Output written on manual.rst.dvi (47 pages, 203612 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -75866,190 +77541,204 @@ Overfull \hbox (21.27702pt too wide) in paragraph at lines 2314--2319
 
 Overfull \hbox (41.00006pt too wide) in paragraph at lines 2322--2323
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
-[26] [27]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 2423--2426
+
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2327--2327
+[]\T1/pcr/m/n/10 Here goes main body of text describing the exercise...  
+[26]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2358--2358
+[]\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
+rize  
+
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2359--2359
+[]\T1/pcr/m/n/10 and give some perspectives. The text inside the !bremarks-!ere
+marks  
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 2360--2360
+[]\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
+[27]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 2443--2446
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
 [28]
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 2505--2507
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 2525--2527
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
 [29]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2622--2622
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2642--2642
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2623--2623
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2643--2643
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2632--2632
-[]\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
- 
-
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2633--2633
-[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
-label{myeq2}  
-
-Overfull \hbox (3.0pt too wide) in paragraph at lines 2649--2656
-\T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
 [30]
-Overfull \hbox (26.7087pt too wide) in paragraph at lines 2683--2689
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2652--2652
+[]\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
+ 
+
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2653--2653
+[]\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
+label{myeq2}  
+
+Overfull \hbox (3.0pt too wide) in paragraph at lines 2669--2676
+\T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
+
+Overfull \hbox (26.7087pt too wide) in paragraph at lines 2703--2709
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
 
-Overfull \hbox (26.46936pt too wide) in paragraph at lines 2683--2689
+Overfull \hbox (26.46936pt too wide) in paragraph at lines 2703--2709
 \T1/ptm/m/n/10 (en-abled by de-fault) and \T1/pcr/m/n/10 'matplotlib.sphinxext.
 mathmpl'
 
-Overfull \hbox (31.34828pt too wide) in paragraph at lines 2683--2689
+Overfull \hbox (31.34828pt too wide) in paragraph at lines 2703--2709
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-
-Overfull \hbox (24.36848pt too wide) in paragraph at lines 2735--2738
+[31]
+Overfull \hbox (24.36848pt too wide) in paragraph at lines 2755--2758
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
-[31]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 2771--2771
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 2791--2791
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2772--2772
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2792--2792
 []\T1/pcr/m/n/10 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. 
 label{myeq2}  
 
-Overfull \hbox (16.79616pt too wide) in paragraph at lines 2788--2800
+Overfull \hbox (16.79616pt too wide) in paragraph at lines 2808--2820
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 2813--2814
+[32]
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 2833--2834
 \T1/pcr/m/n/10 # If PNGFIGS is defined, PNG files are used, otherwise Encapsula
 ted  
-[32]
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2823--2823
+
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2843--2843
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2825--2825
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2845--2845
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0001.eps}}  
 
-Overfull \hbox (149.00006pt too wide) in paragraph at lines 2829--2829
+Overfull \hbox (149.00006pt too wide) in paragraph at lines 2849--2849
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010}}  
 
-Overfull \hbox (173.00006pt too wide) in paragraph at lines 2831--2831
+Overfull \hbox (173.00006pt too wide) in paragraph at lines 2851--2851
 []\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
 acket_0010.eps}}  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 2841--2841
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 2861--2861
 []\T1/pcr/m/n/10 # Use default Doconce figure handling for all other formats  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2843--2843
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2863--2863
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0001, width=400] Wavepacket at time 0.
 1 s.  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 2845--2845
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 2865--2865
 []\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0010, width=400] Wavepacket at time 0.
 2 s.  
 [33]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 2900--2900
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 2920--2920
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
 [34]
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 2986--2988
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3006--3008
 []          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
  
 [35]
-Overfull \hbox (167.00006pt too wide) in paragraph at lines 3048--3050
+Overfull \hbox (167.00006pt too wide) in paragraph at lines 3068--3070
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
 to-mode-alist)) 
 [36]
-Overfull \hbox (35.00006pt too wide) in paragraph at lines 3170--3173
+Overfull \hbox (35.00006pt too wide) in paragraph at lines 3190--3193
 []\T1/pcr/m/n/10 see the "examples directory": "src/examples/index.html" 
 
-Overfull \hbox (53.00006pt too wide) in paragraph at lines 3187--3190
+Overfull \hbox (53.00006pt too wide) in paragraph at lines 3207--3210
 []\T1/pcr/m/n/10 see the directory "`examples`": "src/examples/index.html". 
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3194--3197
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3214--3217
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3233--3234
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3253--3254
 \T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
-
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3236--3238
+[37]
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 3256--3258
 []\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
 
-[37] [38] [39] [40]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3575--3575
+[38] [39] [40]
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3595--3595
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 3579--3579
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 3599--3599
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
 
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3597--3597
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3617--3617
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
-Overfull \hbox (131.00006pt too wide) in paragraph at lines 3617--3617
+[41]
+Overfull \hbox (131.00006pt too wide) in paragraph at lines 3637--3637
 []\T1/pcr/m/n/10 thpack='\\usepackage{theorem}\n\\newtheorem{theorem}{Theorem}[
 section]'  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3618--3618
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3638--3638
 []\T1/pcr/m/n/10 doconce subst '% insert custom LaTeX commands\.\.\.' $thpack $
 file  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3619--3619
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3639--3639
 []\T1/pcr/m/n/10 doconce subst '\\paragraph\{Theorem \d+\.\}' '' $file  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3620--3620
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3640--3640
 []\T1/pcr/m/n/10 doconce replace '% begin theorem' '\begin{theorem}' $file  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 3621--3623
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 3641--3643
 []\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-[41]
-Overfull \hbox (89.00006pt too wide) in paragraph at lines 3647--3647
+
+Overfull \hbox (89.00006pt too wide) in paragraph at lines 3667--3667
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
-Overfull \hbox (47.00006pt too wide) in paragraph at lines 3692--3693
+Overfull \hbox (47.00006pt too wide) in paragraph at lines 3712--3713
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3694--3694
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3714--3714
 []\T1/pcr/m/n/10 ptex2tex will replace this by \code{\usepackage{mypack}} and  
 
-
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3697--3697
+[42]
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 3717--3717
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[42] [43]
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3868--3868
+[43]
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3888--3888
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-
-Overfull \hbox (143.00006pt too wide) in paragraph at lines 3915--3918
+[44]
+Overfull \hbox (143.00006pt too wide) in paragraph at lines 3935--3938
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[44]
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 3967--3967
+
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 3987--3987
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
 
-Overfull \hbox (119.00006pt too wide) in paragraph at lines 3969--3969
+Overfull \hbox (119.00006pt too wide) in paragraph at lines 3989--3989
 []\T1/pcr/m/n/10 - return: the root of the equation (float), if found, otherwis
 e None.  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 3970--3970
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 3990--3990
 []\T1/pcr/m/n/10 - instance variable eta: surface elevation (array).  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 3971--3971
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 3991--3991
 []\T1/pcr/m/n/10 - class variable items: the total number of MyClass objects (i
 nt).  
 
-Overfull \hbox (113.00006pt too wide) in paragraph at lines 3972--3972
+Overfull \hbox (113.00006pt too wide) in paragraph at lines 3992--3992
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[45] [46] (./manual.rst.aux) )
+[45] [46] [47] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (46 pages, 211744 bytes).
+Output written on manual.rst.dvi (47 pages, 213052 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
@@ -76157,7 +77846,7 @@ Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{theorem} does not work well
          pandoc extended markdown syntax handles only single equations
-output in manual.mkd
+output in manual.md
 + doconce format pdflatex manual.do.txt --no-mako
 running preprocess -DFORMAT=pdflatex -D--no-mako manual.do.txt > __tmp.do.txt
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
@@ -76411,73 +78100,70 @@ LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 28 undefined on input line 1744.
 
-[28] [29]
-Underfull \vbox (badness 6396) has occurred while \output is active [30]
-[31] [32] [33]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2096.
+(amsmath)                 on input line 2116.
 
-
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2109--2115
+[34]
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2129--2135
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[34]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2154--2172
+
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2174--2176
+[35]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2194--2196
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[35]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2210--2222
+
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2230--2242
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2227--2234
+[36]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2247--2254
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[36]
+[37]
 
-LaTeX Warning: Reference `doconce2formats' on page 37 undefined on input line 2
-273.
+LaTeX Warning: Reference `doconce2formats' on page 38 undefined on input line 2
+293.
 
-[37] [38]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2365--2370
+[38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2365--2370
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
 [39] [40] [41] [42]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 43 undefined on input li
-ne 2576.
+ne 2596.
 
-[43] [44] [45] [46] [47]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2858--2864
+[43] [44] [45] [46] [47] [48]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2878--2884
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[48]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2930--2940
+[49]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2950--2960
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[49]
 No file manual.bbl.
 No file manual.ind.
 [50] (./manual.aux)
@@ -76499,7 +78185,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (50 pages, 330253 bytes).
+Output written on manual.pdf (50 pages, 331059 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -76690,63 +78376,61 @@ LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
 
 LaTeX Warning: Citation `Osnes:98' on page 28 undefined on input line 1744.
 
-[28] [29]
-Underfull \vbox (badness 6396) has occurred while \output is active [30]
-[31] [32] [33]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2096.
+(amsmath)                 on input line 2116.
 
-
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2109--2115
+[34]
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2129--2135
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[34]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2154--2172
+
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2174--2176
+[35]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2194--2196
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[35]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2210--2222
+
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2230--2242
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2227--2234
+[36]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2247--2254
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[36] [37] [38]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2365--2370
+[37] [38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2365--2370
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[39] [40] [41] [42] [43] [44] [45] [46] [47]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2858--2864
+[39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2878--2884
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[48]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2930--2940
+[49]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2950--2960
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
+(./manual.bbl [50]) (./manual.ind [51] [52]) (./manual.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -76765,7 +78449,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (51 pages, 350766 bytes).
+Output written on manual.pdf (52 pages, 352144 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -76929,63 +78613,61 @@ s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
 Overfull \hbox (4.37044pt too wide) in paragraph at lines 1557--1566
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26] [27] [28] [29]
-Underfull \vbox (badness 6396) has occurred while \output is active [30]
-[31] [32] [33]
+[25] [26] [27] [28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2096.
+(amsmath)                 on input line 2116.
 
-
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2109--2115
+[34]
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2129--2135
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[34]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2154--2172
+
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2174--2176
+[35]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2194--2196
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[35]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2210--2222
+
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2230--2242
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2227--2234
+[36]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2247--2254
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[36] [37] [38]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2365--2370
+[37] [38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2365--2370
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[39] [40] [41] [42] [43] [44] [45] [46] [47]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2858--2864
+[39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2878--2884
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[48]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2930--2940
+[49]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2950--2960
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
+(./manual.bbl [50]) (./manual.ind [51] [52]) (./manual.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -77001,7 +78683,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (51 pages, 351486 bytes).
+Output written on manual.pdf (52 pages, 352864 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -77212,69 +78894,67 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) in paragraph at lines 1739--1741
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[28] [29]
-Underfull \vbox (badness 6396) has occurred while \output is active [30]
-[31] [32] [33]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2096.
+(amsmath)                 on input line 2116.
 
-
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2109--2115
+[34]
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2129--2135
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[34]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2154--2172
+
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2174--2176
+[35]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2194--2196
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[35]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2210--2222
+
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2230--2242
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2227--2234
+[36]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2247--2254
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[36] [37] [38]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2365--2370
+[37] [38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2365--2370
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[39] [40] [41] [42] [43] [44] [45] [46] [47]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2858--2864
+[39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2878--2884
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[48]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2930--2940
+[49]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2950--2960
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
+(./manual.bbl [50]) (./manual.ind [51] [52]) (./manual.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (51 pages, 213528 bytes).
+Output written on manual.dvi (52 pages, 215304 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -77442,69 +79122,67 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) in paragraph at lines 1739--1741
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[28] [29]
-Underfull \vbox (badness 6396) has occurred while \output is active [30]
-[31] [32] [33]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2096.
+(amsmath)                 on input line 2116.
 
-
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2109--2115
+[34]
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2129--2135
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[34]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2154--2172
+
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2174--2176
+[35]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2194--2196
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[35]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2210--2222
+
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2230--2242
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2227--2234
+[36]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2247--2254
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[36] [37] [38]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2365--2370
+[37] [38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2365--2370
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[39] [40] [41] [42] [43] [44] [45] [46] [47]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2858--2864
+[39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2878--2884
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[48]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2930--2940
+[49]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2950--2960
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
+(./manual.bbl [50]) (./manual.ind [51] [52]) (./manual.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (51 pages, 213528 bytes).
+Output written on manual.dvi (52 pages, 215304 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -77684,69 +79362,67 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) in paragraph at lines 1739--1741
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[28] [29]
-Underfull \vbox (badness 6396) has occurred while \output is active [30]
-[31] [32] [33]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2096.
+(amsmath)                 on input line 2116.
 
-
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2109--2115
+[34]
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2129--2135
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[34]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2154--2172
+
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2174--2176
+[35]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2194--2196
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[35]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2210--2222
+
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2230--2242
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2227--2234
+[36]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2247--2254
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[36] [37] [38]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2365--2370
+[37] [38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2365--2370
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[39] [40] [41] [42] [43] [44] [45] [46] [47]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2858--2864
+[39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2878--2884
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[48]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2930--2940
+[49]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2950--2960
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
+(./manual.bbl [50]) (./manual.ind [51] [52]) (./manual.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (51 pages, 213528 bytes).
+Output written on manual.dvi (52 pages, 215304 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -77914,69 +79590,67 @@ nces for (sub)sections,
 Overfull \hbox (47.74467pt too wide) in paragraph at lines 1739--1741
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[28] [29]
-Underfull \vbox (badness 6396) has occurred while \output is active [30]
-[31] [32] [33]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 2096.
+(amsmath)                 on input line 2116.
 
-
-Overfull \hbox (56.23628pt too wide) in paragraph at lines 2109--2115
+[34]
+Overfull \hbox (56.23628pt too wide) in paragraph at lines 2129--2135
 \OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
 html", "sphinx", "mwiki", "pandoc")
-[34]
-Overfull \hbox (45.00818pt too wide) in paragraph at lines 2154--2172
+
+Overfull \hbox (45.00818pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []\OT1/cmtt/m/n/10 newcommands.tex
 
-Overfull \hbox (11.08636pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (11.08636pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
 T1/cmtt/m/n/10 newcommands_replace.tex
 
-Overfull \hbox (33.35646pt too wide) in paragraph at lines 2154--2172
+Overfull \hbox (33.35646pt too wide) in paragraph at lines 2174--2192
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []\OT1/cmtt/m/n/10 newcommands*.tex
-
-Overfull \hbox (24.63646pt too wide) in paragraph at lines 2174--2176
+[35]
+Overfull \hbox (24.63646pt too wide) in paragraph at lines 2194--2196
  \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
-[35]
-Overfull \hbox (6.36638pt too wide) in paragraph at lines 2210--2222
+
+Overfull \hbox (6.36638pt too wide) in paragraph at lines 2230--2242
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-
-Overfull \hbox (1.76395pt too wide) in paragraph at lines 2227--2234
+[36]
+Overfull \hbox (1.76395pt too wide) in paragraph at lines 2247--2254
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
 m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
 mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
 1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[36] [37] [38]
-Overfull \hbox (88.39946pt too wide) in paragraph at lines 2365--2370
+[37] [38]
+Overfull \hbox (88.39946pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
 n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
 
-Overfull \hbox (9.3464pt too wide) in paragraph at lines 2365--2370
+Overfull \hbox (9.3464pt too wide) in paragraph at lines 2385--2390
 \OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
 n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
 /m/n/10 doconce subst
-[39] [40] [41] [42] [43] [44] [45] [46] [47]
-Overfull \hbox (4.78592pt too wide) in paragraph at lines 2858--2864
+[39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+Overfull \hbox (4.78592pt too wide) in paragraph at lines 2878--2884
  \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
 /phv/m/n/10 The HTML header
-[48]
-Overfull \hbox (1.82755pt too wide) in paragraph at lines 2930--2940
+[49]
+Overfull \hbox (1.82755pt too wide) in paragraph at lines 2950--2960
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
 /n/10 keyword argument\OT1/phv/m/n/10 ,
-[49] (./manual.bbl) (./manual.ind [50] [51]) (./manual.aux)
+(./manual.bbl [50]) (./manual.ind [51] [52]) (./manual.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (51 pages, 213528 bytes).
+Output written on manual.dvi (52 pages, 215304 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt --no-mako
@@ -78072,7 +79746,7 @@ output in manual.mwiki
 + rm -f *.ps
 + rm -rf demo
 + mkdir demo
-+ cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.mkd sphinx-rootdir/_build/html demo
++ cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.md sphinx-rootdir/_build/html demo
 + cd demo
 + cat
 + cd ..
@@ -78217,16 +79891,16 @@ Overfull \hbox (88.21638pt too wide) in paragraph at lines 600--607
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib, name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
 [9] [10] [11] [12]
-Overfull \hbox (2.40855pt too wide) in paragraph at lines 804--809
+Overfull \hbox (2.40855pt too wide) in paragraph at lines 820--825
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther []\
 OT1/cmtt/m/n/10 preprocess \OT1/phv/m/n/10 and/or []\OT1/cmtt/m/n/10 mako\OT1/p
 hv/m/n/10 .
 
-Overfull \hbox (0.18839pt too wide) in paragraph at lines 810--814
+Overfull \hbox (0.18839pt too wide) in paragraph at lines 826--830
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing []\OT1/cmtt/m/n/10 prep
 rocess \OT1/phv/m/n/10 to in-clude an-other doc-u-ment, "com-
 [13]
-Overfull \hbox (87.48466pt too wide) in paragraph at lines 854--855
+Overfull \hbox (87.48466pt too wide) in paragraph at lines 870--871
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
@@ -78239,7 +79913,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (14 pages, 47336 bytes).
+Output written on quickref.dvi (14 pages, 47808 bytes).
 Transcript written on quickref.log.
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -78341,22 +80015,22 @@ Overfull \hbox (88.21638pt too wide) in paragraph at lines 600--607
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib, name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
 [9] [10] [11] [12]
-Overfull \hbox (2.40855pt too wide) in paragraph at lines 804--809
+Overfull \hbox (2.40855pt too wide) in paragraph at lines 820--825
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther []\
 OT1/cmtt/m/n/10 preprocess \OT1/phv/m/n/10 and/or []\OT1/cmtt/m/n/10 mako\OT1/p
 hv/m/n/10 .
 
-Overfull \hbox (0.18839pt too wide) in paragraph at lines 810--814
+Overfull \hbox (0.18839pt too wide) in paragraph at lines 826--830
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing []\OT1/cmtt/m/n/10 prep
 rocess \OT1/phv/m/n/10 to in-clude an-other doc-u-ment, "com-
 [13]
-Overfull \hbox (87.48466pt too wide) in paragraph at lines 854--855
+Overfull \hbox (87.48466pt too wide) in paragraph at lines 870--871
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
 [14] (./quickref.aux) )
 (see the transcript file for additional information)
-Output written on quickref.dvi (14 pages, 58344 bytes).
+Output written on quickref.dvi (14 pages, 58832 bytes).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no-preprocess
@@ -78794,18 +80468,29 @@ Overfull \hbox (65.00006pt too wide) in paragraph at lines 988--988
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
 [11]
-Overfull \hbox (263.00006pt too wide) in paragraph at lines 1059--1059
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1023--1023
+[]\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
+rize  
+
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1024--1024
+[]\T1/pcr/m/n/10 and give some perspectives. The text inside the !bremarks-!ere
+marks  
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1025--1025
+[]\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
+
+Overfull \hbox (263.00006pt too wide) in paragraph at lines 1073--1073
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
-
-Overfull \hbox (4.19656pt too wide) in paragraph at lines 1083--1087
+[12]
+Overfull \hbox (4.19656pt too wide) in paragraph at lines 1097--1101
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
 
-Overfull \hbox (114.855pt too wide) in paragraph at lines 1101--1102
+Overfull \hbox (114.855pt too wide) in paragraph at lines 1115--1116
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
-[12] (./quickref.rst.aux)
+[13] (./quickref.rst.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -78814,7 +80499,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (12 pages, 48468 bytes).
+Output written on quickref.rst.dvi (13 pages, 49524 bytes).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -79104,16 +80789,27 @@ Overfull \hbox (41.00006pt too wide) in paragraph at lines 984--985
 Overfull \hbox (65.00006pt too wide) in paragraph at lines 988--988
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
-[11] [12]
-Overfull \hbox (263.00006pt too wide) in paragraph at lines 1059--1059
+[11]
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1023--1023
+[]\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
+rize  
+
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1024--1024
+[]\T1/pcr/m/n/10 and give some perspectives. The text inside the !bremarks-!ere
+marks  
+
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1025--1025
+[]\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
+[12]
+Overfull \hbox (263.00006pt too wide) in paragraph at lines 1073--1073
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
 
-Overfull \hbox (4.19656pt too wide) in paragraph at lines 1083--1087
+Overfull \hbox (4.19656pt too wide) in paragraph at lines 1097--1101
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
 
-Overfull \hbox (114.855pt too wide) in paragraph at lines 1101--1102
+Overfull \hbox (114.855pt too wide) in paragraph at lines 1115--1116
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
 [13] (./quickref.rst.aux)
@@ -79122,7 +80818,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (13 pages, 54748 bytes).
+Output written on quickref.rst.dvi (13 pages, 55140 bytes).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref --no-preprocess
@@ -79159,10 +80855,10 @@ output in quickref.epytext
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to pandoc
 copy complete file doconce_program.sh  (format: shpro)
-output in quickref.mkd
+output in quickref.md
 + rm -rf demo
 + mkdir demo
-+ cp -r quickref.do.txt quickref.html quickref.p.tex quickref.tex quickref.pdf quickref.rst quickref.xml quickref.rst.html quickref.rst.tex quickref.rst.pdf quickref.gwiki quickref.mwiki quickref.cwiki quickref.txt quickref.epytext quickref.st quickref.mkd sphinx-rootdir/_build/html demo
++ cp -r quickref.do.txt quickref.html quickref.p.tex quickref.tex quickref.pdf quickref.rst quickref.xml quickref.rst.html quickref.rst.tex quickref.rst.pdf quickref.gwiki quickref.mwiki quickref.cwiki quickref.txt quickref.epytext quickref.st quickref.md sphinx-rootdir/_build/html demo
 + cd demo
 + cat
 + echo
