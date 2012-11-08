@@ -15,6 +15,8 @@ DATE: today
 
 TOC: on
 
+!split
+
 The format of this document is
 % if FORMAT == 'html':
 plain, homemade HTML (from Doconce).
@@ -54,6 +56,8 @@ Here is a nested list:
     o first item
     o second item,
       continuing on a new line
+
+!split
 
 ===== Subsection 1 =====
 
@@ -408,8 +412,12 @@ between there we have Exercise ref{exer:some:formula}.
 
 ===== Problem: Flip a Coin =====
 label{demo:ex:1}
-file = flip_coin.py
-solution = mysol.txt
+files = flip_coin.py, flip_coin.pdf
+solutions = mysol.txt, mysol_flip_coin.py
+
+# Torture tests
+file=myfile_should_be_a_part_of_the_text
+solutions = mysol.txt, mysol_flip_coin.py, yet_another.file
 
 Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and
@@ -747,6 +755,8 @@ MathJax.Hub.Config({
 <p>
 
 <p>
+<!-- !split -->
+<p>
 The format of this document is
 plain, homemade HTML (from Doconce).
 
@@ -794,6 +804,9 @@ Here is a nested list:
 </ol>
 
 </ul>
+
+<!-- !split -->
+<p>
 
 <h3>Subsection 1  <a name="___sec1"></a></h3>
 <p>
@@ -1304,6 +1317,9 @@ between there we have <a href="#exer:some:formula">Exercise 4: Make references t
 
 <h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
 <p>
+<!-- Torture tests -->
+
+<p>
 Make a program that simulates flipping a coin \( N \) times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
@@ -1312,7 +1328,7 @@ let the program count the number of heads.
 
 <p>
 <!-- Test syntax error -->
-Filename: <tt>flip_coin.py</tt>.
+Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
 
 <p>
 <b>Hint 1.</b> Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
@@ -1326,7 +1342,7 @@ Filename: <tt>flip_coin.py</tt>.
 <p>
 
 <p>
-<!-- solution file: mysol.txt -->
+<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
 <!-- --- end of exercise -->
 
 <p>
@@ -1430,7 +1446,7 @@ Filename: <tt>circles.pdf</tt>.
 
 <p>
 <b>b)</b> Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
-<em>Filename</em>: <tt>norm.py</tt>.
+<em>Filename</em>: <tt>norm.py  </tt>.
 
 <p>
 <b>c)</b> Let \( R \) and \( (x_0,y_0) \) be normally distributed.
@@ -1789,6 +1805,7 @@ Jan 32, 2100
 
 
 
+% !split
 The format of this document is
 plain, homemade {\LaTeX} (from Doconce).
 
@@ -1851,7 +1868,7 @@ Here is a nested list:
 \end{itemize}
 
 \noindent
-
+% !split
 \subsection{Subsection 1}
 
 More text, with a reference back to Section~\ref{sec1} and further
@@ -2318,13 +2335,15 @@ between there we have Exercise~\ref{exer:some:formula}.
 
 \label{demo:ex:1}
 
+% Torture tests
+
 Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
 % Test syntax error
-Filename: \code{flip_coin.py}.
+Filenames: \code{flip_coin.py}, \code{flip_coin.pdf}.
 
 \paragraph{Hint 1.}
 Use \code{r = random.random()} and define head as \code{r <= 0.5}.
@@ -2357,7 +2376,7 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
 % --- end solution of exercise
 
-% solution file: mysol.txt
+% solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
 \end{exercise}
 % --- end of exercise
@@ -2452,7 +2471,7 @@ Here goes a full solution to part a).
 
 \paragraph{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
-\emph{Filename}: \code{norm.py}.
+\emph{Filename}: \code{norm.py  }.
 
 \paragraph{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
@@ -2688,6 +2707,7 @@ Project & 5 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:y
 
 
 
+% !split
 The format of this document is
 plain, homemade \textsc{pdf}{\LaTeX} (from Doconce).
 
@@ -2742,7 +2762,7 @@ Here is a nested list:
 \end{itemize}
 
 \noindent
-
+% !split
 \subsection{Subsection 1}
 
 More text, with a reference back to Section~\ref{sec1} and further
@@ -3182,13 +3202,15 @@ between there we have Exercise~\ref{exer:some:formula}.
 
 \label{demo:ex:1}
 
+% Torture tests
+
 Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
 % Test syntax error
-Filename: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}.
+Filenames: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}, {\fontsize{10pt}{10pt}\verb!flip_coin.pdf!}.
 
 \paragraph{Hint 1.}
 Use {\fontsize{10pt}{10pt}\verb!r = random.random()!} and define head as {\fontsize{10pt}{10pt}\verb!r <= 0.5!}.
@@ -3222,7 +3244,7 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
 % --- end solution of exercise
 
-% solution file: mysol.txt
+% solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
 \end{exercise}
 % --- end of exercise
@@ -3318,7 +3340,7 @@ Here goes a full solution to part a).
 
 \paragraph{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
-\emph{Filename}: {\fontsize{10pt}{10pt}\verb!norm.py!}.
+\emph{Filename}: {\fontsize{10pt}{10pt}\verb!norm.py  !}.
 
 \paragraph{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
@@ -3563,6 +3585,7 @@ Project & 5 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:y
 
 
 
+% !split
 The format of this document is
 plain, homemade \textsc{pdf}{\LaTeX} (from Doconce).
 
@@ -3617,7 +3640,7 @@ Here is a nested list:
 \end{itemize}
 
 \noindent
-
+% !split
 \subsection{Subsection 1}
 
 More text, with a reference back to Section~\ref{sec1} and further
@@ -4029,13 +4052,15 @@ between there we have Exercise~\ref{exer:some:formula}.
 
 \label{demo:ex:1}
 
+% Torture tests
+
 Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
 % Test syntax error
-Filename: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}.
+Filenames: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}, {\fontsize{10pt}{10pt}\verb!flip_coin.pdf!}.
 
 \paragraph{Hint 1.}
 Use {\fontsize{10pt}{10pt}\verb!r = random.random()!} and define head as {\fontsize{10pt}{10pt}\verb!r <= 0.5!}.
@@ -4068,7 +4093,7 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
 % --- end solution of exercise
 
-% solution file: mysol.txt
+% solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
 \end{exercise}
 % --- end of exercise
@@ -4163,7 +4188,7 @@ Here goes a full solution to part a).
 
 \paragraph{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
-\emph{Filename}: {\fontsize{10pt}{10pt}\verb!norm.py!}.
+\emph{Filename}: {\fontsize{10pt}{10pt}\verb!norm.py  !}.
 
 \paragraph{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
@@ -4272,6 +4297,8 @@ A Document for Testing Doconce
 
 
 
+.. !split
+
 The format of this document is
 rst
 
@@ -4316,6 +4343,8 @@ Here is a nested list:
    2. second item,
       continuing on a new line
 
+
+.. !split
 
 Subsection 1
 ------------
@@ -4689,6 +4718,9 @@ Exercises
 Problem 1: Flip a Coin
 ----------------------
 
+.. Torture tests
+
+
 Make a program that simulates flipping a coin N times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
@@ -4696,7 +4728,7 @@ let the program count the number of heads.
 
 .. Test syntax error
 
-Filename: ``flip_coin.py``.
+Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
 
 *Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
 
@@ -4730,7 +4762,7 @@ head, otherwise tail. Repeat this N number of times.
 .. --- end solution of exercise
 
 
-.. solution file: mysol.txt
+.. solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
 .. --- end of exercise
 
@@ -4828,7 +4860,7 @@ x_0, y_0, and R quantities.
 
 
 *b)* Let R be uniformly distributed and (x_0,y_0) normally distributed.
-*Filename*: ``norm.py``.
+*Filename*: ``norm.py  ``.
 
 *c)* Let R and (x_0,y_0) be normally distributed.
 .. --- end of exercise
@@ -4931,6 +4963,8 @@ A Document for Testing Doconce
 
 :Date: Jan 32, 2100
 
+.. !split
+
 The format of this document is
 sphinx
 
@@ -4975,6 +5009,8 @@ Here is a nested list:
    2. second item,
       continuing on a new line
 
+
+.. !split
 
 Subsection 1
 ------------
@@ -5451,6 +5487,9 @@ Exercises
 Problem 1: Flip a Coin
 ----------------------
 
+.. Torture tests
+
+
 Make a program that simulates flipping a coin :math:`N` times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
@@ -5458,7 +5497,7 @@ let the program count the number of heads.
 
 .. Test syntax error
 
-Filename: ``flip_coin.py``.
+Filenames: ``flip_coin.py``, ``flip_coin.pdf``.
 
 *Hint 1.* Use ``r = random.random()`` and define head as ``r <= 0.5``.
 
@@ -5493,7 +5532,7 @@ head, otherwise tail. Repeat this :math:`N` number of times.
 .. --- end solution of exercise
 
 
-.. solution file: mysol.txt
+.. solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
 .. --- end of exercise
 
@@ -5593,7 +5632,7 @@ Filename: ``circles.pdf``.
 
 
 *b)* Let :math:`R` be uniformly distributed and :math:`(x_0,y_0)` normally distributed.
-*Filename*: ``norm.py``.
+*Filename*: ``norm.py  ``.
 
 *c)* Let :math:`R` and :math:`(x_0,y_0)` be normally distributed.
 .. --- end of exercise
@@ -5696,6 +5735,7 @@ By *Hans Petter Langtangen* (hpl at simula.no), *Kaare Dump*, *A. Dummy Author*,
 
 
 
+<wiki:comment> !split </wiki:comment>
 The format of this document is
 gwiki
 
@@ -5730,6 +5770,9 @@ Here is a nested list:
    # first item
    # second item,      continuing on a new line
 
+
+
+<wiki:comment> !split </wiki:comment>
 ==== Subsection 1 ====
 
 More text, with a reference back to the section [#Section_1] and further
@@ -6057,13 +6100,15 @@ between there we have [#Exercise_4:_Make_references_to_projects_and_problems].
 
 ==== Problem 1: Flip a Coin ====
 
+<wiki:comment> Torture tests </wiki:comment>
+
 Make a program that simulates flipping a coin `N` times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
 <wiki:comment> Test syntax error </wiki:comment>
-Filename: `flip_coin.py`.
+Filenames: `flip_coin.py`, `flip_coin.pdf`.
 
 *Hint 1.* Use `r = random.random()` and define head as `r <= 0.5`.
 
@@ -6092,7 +6137,7 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
 <wiki:comment> --- end solution of exercise </wiki:comment>
 
-<wiki:comment> solution file: mysol.txt </wiki:comment>
+<wiki:comment> solution files: mysol.txt, mysol_flip_coin.py, yet_another.file </wiki:comment>
 <wiki:comment> --- end of exercise </wiki:comment>
 
 
@@ -6171,7 +6216,7 @@ Filename: `circles.pdf`.
 <wiki:comment> --- end solution of exercise </wiki:comment>
 
 *b)* Let `R` be uniformly distributed and `(x_0,y_0)` normally distributed.
-*Filename*: `norm.py`.
+*Filename*: `norm.py  `.
 
 *c)* Let `R` and `(x_0,y_0)` be normally distributed.
 <wiki:comment> --- end of exercise </wiki:comment>
@@ -6248,7 +6293,9 @@ By '''Hans Petter Langtangen''' (hpl at simula.no), '''Kaare Dump''', '''A. Dumm
 
 ==== Jan 32, 2100 ====
 
-''TOC'' The format of this document is
+''TOC'' !split
+
+The format of this document is
 mwiki
 
 ''Abstract.'' This is a document with many test constructions for doconce syntax.
@@ -6279,6 +6326,7 @@ Here is a nested list:
 
 </ul>
 
+<!--> !split -->
 ==== Subsection 1 ====
 
 More text, with a reference back to the section [#Section_1] and further
@@ -6568,13 +6616,15 @@ between there we have [#Exercise_4:_Make_references_to_projects_and_problems].
 
 ==== Problem 1: Flip a Coin ====
 
+<!--> Torture tests -->
+
 Make a program that simulates flipping a coin <math>N</math> times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
 <!--> Test syntax error -->
-Filename: <code>flip_coin.py</code>.
+Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 
 ''Hint 1.'' Use <code>r = random.random()</code> and define head as <code>r <= 0.5</code>.
 
@@ -6603,7 +6653,7 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
 <!--> --- end solution of exercise -->
 
-<!--> solution file: mysol.txt -->
+<!--> solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
 <!--> --- end of exercise -->
 
 
@@ -6682,7 +6732,7 @@ Filename: <code>circles.pdf</code>.
 <!--> --- end solution of exercise -->
 
 ''b)'' Let <math>R</math> be uniformly distributed and <math>(x_0,y_0)</math> normally distributed.
-''Filename'': <code>norm.py</code>.
+''Filename'': <code>norm.py  </code>.
 
 ''c)'' Let <math>R</math> and <math>(x_0,y_0)</math> be normally distributed.
 <!--> --- end of exercise -->
@@ -6763,6 +6813,7 @@ By **Hans Petter Langtangen** (hpl at simula.no), **Kaare Dump**, **A. Dummy Aut
 
 
 
+<wiki:comment> !split </wiki:comment>
 The format of this document is
 cwiki
 
@@ -6798,6 +6849,8 @@ Here is a nested list:
    ## second item,      continuing on a new line
 
 
+
+<wiki:comment> !split </wiki:comment>
 == Subsection 1 ==
 
 More text, with a reference back to the section [#Section_1] and further
@@ -7090,13 +7143,15 @@ between there we have [#Exercise_4:_Make_references_to_projects_and_problems].
 
 == Problem 1: Flip a Coin ==
 
+<wiki:comment> Torture tests </wiki:comment>
+
 Make a program that simulates flipping a coin {{{N}}} times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
 <wiki:comment> Test syntax error </wiki:comment>
-Filename: {{{flip_coin.py}}}.
+Filenames: {{{flip_coin.py}}}, {{{flip_coin.pdf}}}.
 
 //Hint 1.// Use {{{r = random.random()}}} and define head as {{{r <= 0.5}}}.
 
@@ -7125,7 +7180,7 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 
 <wiki:comment> --- end solution of exercise </wiki:comment>
 
-<wiki:comment> solution file: mysol.txt </wiki:comment>
+<wiki:comment> solution files: mysol.txt, mysol_flip_coin.py, yet_another.file </wiki:comment>
 <wiki:comment> --- end of exercise </wiki:comment>
 
 
@@ -7206,7 +7261,7 @@ Filename: {{{circles.pdf}}}.
 <wiki:comment> --- end solution of exercise </wiki:comment>
 
 //b)// Let {{{R}}} be uniformly distributed and {{{(x_0,y_0)}}} normally distributed.
-//Filename//: {{{norm.py}}}.
+//Filename//: {{{norm.py  }}}.
 
 //c)// Let {{{R}}} and {{{(x_0,y_0)}}} be normally distributed.
 <wiki:comment> --- end of exercise </wiki:comment>
@@ -7292,6 +7347,7 @@ BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Lab
 
 
 
+# !split
 The format of this document is
 st
 *Abstract.* This is a document with many test constructions for doconce syntax.
@@ -7318,6 +7374,8 @@ Here is a nested list:
    2. second item,
       continuing on a new line
 
+
+# !split
 Subsection 1
 
 More text, with a reference back to the section "Section 1" and further
@@ -7592,7 +7650,7 @@ Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
-Filename: 'flip_coin.py'.
+Filenames: 'flip_coin.py', 'flip_coin.pdf'.
 
 *Hint 1.* Use 'r = random.random()' and define head as 'r <= 0.5'.
 
@@ -7673,7 +7731,7 @@ x_0, y_0, and R quantities.
 
 
 *b)* Let R be uniformly distributed and (x_0,y_0) normally distributed.
-*Filename*: 'norm.py'.
+*Filename*: 'norm.py  '.
 
 *c)* Let R and (x_0,y_0) be normally distributed.
 
@@ -7735,6 +7793,7 @@ BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Lab
 
 
 
+# !split
 The format of this document is
 epytext
 
@@ -7766,6 +7825,7 @@ Here is a nested list:
       continuing on a new line
 
 
+# !split
 Subsection 1
 ------------
 
@@ -8057,12 +8117,13 @@ Exercises
 Problem 1: Flip a Coin
 ----------------------
 
+
 Make a program that simulates flipping a coin M{N} times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
-Filename: C{flip_coin.py}.
+Filenames: C{flip_coin.py}, C{flip_coin.pdf}.
 
 I{Hint 1.} Use C{r = random.random()} and define head as C{r <= 0.5}.
 
@@ -8158,7 +8219,7 @@ I{Solution.} Here goes a full solution to part a).
 
 
 I{b)} Let M{R} be uniformly distributed and M{(x_0,y_0)} normally distributed.
-I{Filename}: C{norm.py}.
+I{Filename}: C{norm.py  }.
 
 I{c)} Let M{R} and M{(x_0,y_0)} be normally distributed.
 
@@ -8282,6 +8343,7 @@ Table of contents:
 
 
 
+# !split
 The format of this document is
 plain
 
@@ -8320,6 +8382,7 @@ Here is a nested list:
       continuing on a new line
 
 
+# !split
 Subsection 1
 ------------
 
@@ -8610,12 +8673,13 @@ Exercises
 Problem 1: Flip a Coin
 ----------------------
 
+
 Make a program that simulates flipping a coin N times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
-Filename: flip_coin.py.
+Filenames: flip_coin.py, flip_coin.pdf.
 
 *Hint 1.* Use r = random.random() and define head as r <= 0.5.
 
@@ -8711,7 +8775,7 @@ x_0, y_0, and R quantities.
 
 
 *b)* Let R be uniformly distributed and (x_0,y_0) normally distributed.
-*Filename*: norm.py.
+*Filename*: norm.py  .
 
 *c)* Let R and (x_0,y_0) be normally distributed.
 
@@ -8790,6 +8854,7 @@ Without label.
 % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo;  Kaare Dump at Segfault Inc, Cyberspace;  A. Dummy Author;  I. S. Overworked at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and Fourth Inst;  J. Doe
 % Jan 32, 2100
 
+# !split
 The format of this document is
 pandoc
 *Abstract.* This is a document with many test constructions for doconce syntax.
@@ -8829,6 +8894,7 @@ Here is a nested list:
       continuing on a new line
 
 
+# !split
 Subsection 1
 ------------
 
@@ -9189,12 +9255,13 @@ Exercises
 Problem 1: Flip a Coin
 ----------------------
 
+
 Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and
 let the program count the number of heads.
 
 
-Filename: `flip_coin.py`.
+Filenames: `flip_coin.py`, `flip_coin.pdf`.
 
 *Hint 1.* Use `r = random.random()` and define head as `r <= 0.5`.
 
@@ -9283,7 +9350,7 @@ $x_0$, $y_0$, and $R$ quantities.
 
 
 *b)* Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
-*Filename*: `norm.py`.
+*Filename*: `norm.py  `.
 
 *c)* Let $R$ and $(x_0,y_0)$ be normally distributed.
 
@@ -9375,7 +9442,7 @@ Could not find match for from regex "\*\s+\$.+normally"
 # exer = eval(f.read())
 #
 [{'answer': 'If the `random.random()` function returns a number $<1/2$, let it be\nhead, otherwise tail. Repeat this $N$ number of times.',
-  'file': ['flip_coin.py'],
+  'file': ['flip_coin.py', 'flip_coin.pdf'],
   'heading': '=====',
   'hints': ['Use `r = random.random()` and define head as `r <= 0.5`.',
             'Draw an integer among $\\{1,2\\}$ with\n`r = random.randint(1,2)` and define head when `r` is 1.'],
@@ -9383,9 +9450,9 @@ Could not find match for from regex "\*\s+\$.+normally"
   'label': 'demo:ex:1',
   'no': 1,
   'solution': '<<<!!CODE_BLOCK  pycod',
-  'solution_file': ['mysol.txt'],
+  'solution_file': ['mysol.txt', 'mysol_flip_coin.py', 'yet_another.file'],
   'subex': [],
-  'text': 'Make a program that simulates flipping a coin $N$ times.\nPrint out "tail" or "head" for each flip and\nlet the program count the number of heads.\n\n\n# Test syntax error',
+  'text': '# Torture tests\n\nMake a program that simulates flipping a coin $N$ times.\nPrint out "tail" or "head" for each flip and\nlet the program count the number of heads.\n\n\n# Test syntax error',
   'title': 'Flip a Coin',
   'type': 'Problem'},
  {'answer': '',
@@ -9416,7 +9483,7 @@ Could not find match for from regex "\*\s+\$.+normally"
              'solution': 'Here goes a full solution to part a).',
              'text': 'Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.'},
             {'answer': '',
-             'file': 'norm.py',
+             'file': 'norm.py  ',
              'hints': [],
              'solution': '',
              'text': 'Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.'},
@@ -9788,7 +9855,7 @@ b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}\end{aligned*}\]</
 <h2 id="problem-1-flip-a-coin">Problem 1: Flip a Coin</h2>
 <p>[demo:ex:1]</p>
 <p>Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
-<p>Filename: 10pt10pt<code>flip_coin.py</code>.</p>
+<p>Filenames: 10pt10pt<code>flip_coin.py</code>, 10pt10pt<code>flip_coin.pdf</code>.</p>
 <h4 id="hint-1.">Hint 1.</h4>
 <p>Use 10pt10pt<code>r = random.random()</code> and define head as 10pt10pt<code>r &lt;= 0.5</code>.</p>
 <h4 id="hint-2.">Hint 2.</h4>
@@ -9905,6 +9972,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </head>
 <body>
 <p>% A Document for Testing Doconce % Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo; Kaare Dump at Segfault Inc, Cyberspace; A. Dummy Author; I. S. Overworked at Inst1 and Inst2, Somewhere and Third Inst, Elsewhere and Fourth Inst; J. Doe % Jan 32, 2100</p>
+<h1 id="split">!split</h1>
 <p>The format of this document is pandoc <em>Abstract.</em> This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.</p>
 <p>And exactly for test purposes we have an extra line here, which is part of the abstract.</p>
 <h1 id="section-1">Section 1</h1>
@@ -9924,6 +9992,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><p>first item</p></li>
 <li><p>second item, continuing on a new line</p></li>
 </ol>
+<h1 id="split-1">!split</h1>
 <h2 id="subsection-1">Subsection 1</h2>
 <p>More text, with a reference back to the section <a href="#n-1">Section 1</a> and further to the section <a href="#s">URLs</a>. Let's do some copying from files too. First from subroutine up to the very end,</p>
 <pre class="sourceCode Fortran"><code class="sourceCode fortran">      <span class="kw">subroutine</span>    test()
@@ -10215,7 +10284,7 @@ b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}
 <h1 id="exercises">Exercises</h1>
 <h2 id="problem-1-flip-a-coin">Problem 1: Flip a Coin</h2>
 <p>Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
-<p>Filename: <code>flip_coin.py</code>.</p>
+<p>Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.</p>
 <p><em>Hint 1.</em> Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
 <p><em>Hint 2.</em> Draw an integer among \(\{1,2\}\) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.</p>
 <p><em>Answer.</em> If the <code>random.random()</code> function returns a number \(&lt;1/2\), let it be head, otherwise tail. Repeat this \(N\) number of times.</p>
@@ -25969,7 +26038,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Thu, 01 Nov 2012 (00:40)
+DATE: Wed, 07 Nov 2012 (18:35)
 
 
 
@@ -26073,7 +26142,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Thu, 01 Nov 2012 (00:40)
+DATE: Wed, 07 Nov 2012 (18:35)
 
 
 
@@ -26187,7 +26256,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Thu, 01 Nov 2012 (00:40)</center>
+<center>Wed, 07 Nov 2012 (18:35)</center>
 
 
 
@@ -26318,7 +26387,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Thu, 01 Nov 2012 (00:40)</center>
+<center>Wed, 07 Nov 2012 (18:35)</center>
 
 
 
@@ -63420,7 +63489,7 @@ list of capabilities:
 <blockquote>    <!-- begin verbatim block  shpro-->
 <pre>
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -63459,6 +63528,8 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
+doconce split_html complete_file.html
+doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
 doconce remove --from[-] from-text [--to[-] to-text] somefile
@@ -64390,7 +64461,7 @@ list of capabilities:
 
 \bshpro
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -64429,6 +64500,8 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
+doconce split_html complete_file.html
+doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
 doconce remove --from[-] from-text [--to[-] to-text] somefile
@@ -65166,7 +65239,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -65205,6 +65278,8 @@ list of capabilities::
         doconce bbl2rst file.bbl
         doconce split_rst complete_file.rst
         doconce sphinxfix_local_URLs file.rst
+        doconce split_html complete_file.html
+        doconce html_colorbullets file1.html file2.html ...
         
         doconce grab   --from[-] from-text [--to[-] to-text] somefile
         doconce remove --from[-] from-text [--to[-] to-text] somefile
@@ -65972,7 +66047,7 @@ list of capabilities:
 .. code-block:: bash
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -66011,6 +66086,8 @@ list of capabilities:
         doconce bbl2rst file.bbl
         doconce split_rst complete_file.rst
         doconce sphinxfix_local_URLs file.rst
+        doconce split_html complete_file.html
+        doconce html_colorbullets file1.html file2.html ...
         
         doconce grab   --from[-] from-text [--to[-] to-text] somefile
         doconce remove --from[-] from-text [--to[-] to-text] somefile
@@ -66652,7 +66729,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -66691,6 +66768,8 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
+doconce split_html complete_file.html
+doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
 doconce remove --from[-] from-text [--to[-] to-text] somefile
@@ -67286,7 +67365,7 @@ list of capabilities:
 
 <syntaxhighlight lang="bash">
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -67325,6 +67404,8 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
+doconce split_html complete_file.html
+doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
 doconce remove --from[-] from-text [--to[-] to-text] somefile
@@ -67948,7 +68029,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -67987,6 +68068,8 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
+doconce split_html complete_file.html
+doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
 doconce remove --from[-] from-text [--to[-] to-text] somefile
@@ -68646,7 +68729,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -68685,6 +68768,8 @@ list of capabilities::
         doconce bbl2rst file.bbl
         doconce split_rst complete_file.rst
         doconce sphinxfix_local_URLs file.rst
+        doconce split_html complete_file.html
+        doconce html_colorbullets file1.html file2.html ...
         
         doconce grab   --from[-] from-text [--to[-] to-text] somefile
         doconce remove --from[-] from-text [--to[-] to-text] somefile
@@ -69362,7 +69447,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -69401,6 +69486,8 @@ list of capabilities::
         doconce bbl2rst file.bbl
         doconce split_rst complete_file.rst
         doconce sphinxfix_local_URLs file.rst
+        doconce split_html complete_file.html
+        doconce html_colorbullets file1.html file2.html ...
         
         doconce grab   --from[-] from-text [--to[-] to-text] somefile
         doconce remove --from[-] from-text [--to[-] to-text] somefile
@@ -70110,7 +70197,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -70149,6 +70236,8 @@ list of capabilities::
         doconce bbl2rst file.bbl
         doconce split_rst complete_file.rst
         doconce sphinxfix_local_URLs file.rst
+        doconce split_html complete_file.html
+        doconce html_colorbullets file1.html file2.html ...
         
         doconce grab   --from[-] from-text [--to[-] to-text] somefile
         doconce remove --from[-] from-text [--to[-] to-text] somefile
@@ -70881,7 +70970,7 @@ list of capabilities:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -70920,6 +71009,8 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
+doconce split_html complete_file.html
+doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
 doconce remove --from[-] from-text [--to[-] to-text] somefile
@@ -71378,145 +71469,145 @@ LaTeX Warning: Reference `exer:you' on page 2 undefined on input line 131.
 
 [2] (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd)
 
-LaTeX Warning: Reference `sec1' on page 3 undefined on input line 200.
+LaTeX Warning: Reference `sec1' on page 3 undefined on input line 201.
 
 
-LaTeX Warning: Reference `subsubsec:ex' on page 3 undefined on input line 201.
+LaTeX Warning: Reference `subsubsec:ex' on page 3 undefined on input line 202.
 
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg)
-Overfull \hbox (43.91478pt too wide) in paragraph at lines 290--294
+Overfull \hbox (43.91478pt too wide) in paragraph at lines 291--295
 []\OT1/cmr/m/n/10 It is time to test []\OT1/cmtt/m/n/10 verbatim inline font \O
 T1/cmr/m/n/10 es-pe-cially with []\OT1/cmtt/m/n/10 a newline inside the text
 
-LaTeX Warning: Reference `fig:impact' on page 4 undefined on input line 300.
+LaTeX Warning: Reference `fig:impact' on page 4 undefined on input line 301.
 
 <../doc/manual/figs/streamtubes.png, id=35, 583.17876pt x 437.635pt>
 <use ../doc/manual/figs/streamtubes.png> [4]
 <use ../doc/manual/figs/streamtubes.png>
 Underfull \vbox (badness 10000) has occurred while \output is active [5 <../doc
 /manual/figs/streamtubes.png>]
-Overfull \hbox (47.04507pt too wide) in paragraph at lines 375--376
+Overfull \hbox (47.04507pt too wide) in paragraph at lines 376--377
 \OT1/cmr/m/n/10 the full wavepacket.mpeg movie). [](Movie of files []\OT1/cmtt/
 m/n/10 ../doc/manual/figs/wavepacket_*.png
 
-LaTeX Warning: Reference `myfig' on page 6 undefined on input line 385.
+LaTeX Warning: Reference `myfig' on page 6 undefined on input line 386.
 
 <../doc/manual/figs/wavepacket_0001.png, id=83, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
 
-LaTeX Warning: Reference `mymov' on page 6 undefined on input line 398.
+LaTeX Warning: Reference `mymov' on page 6 undefined on input line 399.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 405.
+(hyperref)                removing `math shift' on input line 406.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\theta' on input line 405.
+(hyperref)                removing `\theta' on input line 406.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 405.
+(hyperref)                removing `math shift' on input line 406.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 405.
+(hyperref)                removing `math shift' on input line 406.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\nabla' on input line 405.
+(hyperref)                removing `\nabla' on input line 406.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 405.
+(hyperref)                removing `math shift' on input line 406.
 
 [6] [7<<../doc/manual/figs/mjolnir.mpeg>>] [8<<../doc/manual/figs/wavepacket.mp
 eg>>]
 Underfull \vbox (badness 10000) has occurred while \output is active [9 <../doc
 /manual/figs/wavepacket_0001.png (PNG copy)>]
-Overfull \hbox (78.30609pt too wide) in paragraph at lines 553--553
+Overfull \hbox (78.30609pt too wide) in paragraph at lines 554--554
 [][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
 +%26+engineering/book/978-3-642-23098-1| 
 
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 563.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 564.
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 565.
+(amsmath)                 on input line 566.
 
 
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 567.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 568.
 
 
-LaTeX Warning: Reference `eq1' on page 10 undefined on input line 581.
+LaTeX Warning: Reference `eq1' on page 10 undefined on input line 582.
 
 
-LaTeX Warning: Reference `eq2' on page 10 undefined on input line 581.
+LaTeX Warning: Reference `eq2' on page 10 undefined on input line 582.
 
 
 LaTeX Warning: Reference `split:envir:eq' on page 10 undefined on input line 59
-8.
+9.
 
 [10]
 
-LaTeX Warning: Reference `eq1' on page 11 undefined on input line 611.
+LaTeX Warning: Reference `eq1' on page 11 undefined on input line 612.
 
 
-LaTeX Warning: Reference `eq2' on page 11 undefined on input line 611.
+LaTeX Warning: Reference `eq2' on page 11 undefined on input line 612.
 
 
-LaTeX Warning: Reference `eq1a' on page 11 undefined on input line 612.
+LaTeX Warning: Reference `eq1a' on page 11 undefined on input line 613.
 
 
-LaTeX Warning: Reference `eq2a' on page 11 undefined on input line 612.
+LaTeX Warning: Reference `eq2a' on page 11 undefined on input line 613.
 
 
-LaTeX Warning: Reference `my:eq1' on page 11 undefined on input line 612.
+LaTeX Warning: Reference `my:eq1' on page 11 undefined on input line 613.
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 622.
+LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 623.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 622.
+LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 623.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 623.
+LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 624.
 
 
 
-LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 623.
+LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 624.
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 11 undefined on input line
- 624.
+ 625.
 
 (./testdoc.out.pyg) [11] (./testdoc.out.pyg)
 
-LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 797.
+LaTeX Warning: Reference `proj:circle1' on page 12 undefined on input line 800.
 
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 12 undefined on input line 797.
+LaTeX Warning: Reference `demo:ex:1' on page 12 undefined on input line 800.
 
 [12]
 
-LaTeX Warning: Reference `demo:ex:2' on page 13 undefined on input line 812.
+LaTeX Warning: Reference `demo:ex:2' on page 13 undefined on input line 815.
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 816.
+ 819.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 13 undefined on input line 817.
+LaTeX Warning: Reference `demo:ex:2' on page 13 undefined on input line 820.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 817.
+LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 820.
 
 
 
-LaTeX Warning: Reference `exer:you' on page 13 undefined on input line 818.
+LaTeX Warning: Reference `exer:you' on page 13 undefined on input line 821.
 
 No file testdoc.ind.
 [13]
@@ -71553,7 +71644,7 @@ b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (13 pages, 1462216 bytes).
+Output written on testdoc.pdf (13 pages, 1462337 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -73051,7 +73142,7 @@ etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 </usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-te
 xlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 213403 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 213404 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -73200,7 +73291,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226611 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226613 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -73349,7 +73440,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226611 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226613 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -73504,7 +73595,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226611 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226613 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -73653,7 +73744,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226611 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226613 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -78126,19 +78217,18 @@ Overfull \hbox (88.21638pt too wide) in paragraph at lines 600--607
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib, name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
 [9] [10] [11] [12]
-Overfull \hbox (2.40855pt too wide) in paragraph at lines 802--807
+Overfull \hbox (2.40855pt too wide) in paragraph at lines 804--809
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther []\
 OT1/cmtt/m/n/10 preprocess \OT1/phv/m/n/10 and/or []\OT1/cmtt/m/n/10 mako\OT1/p
 hv/m/n/10 .
 
-Overfull \hbox (0.18839pt too wide) in paragraph at lines 808--812
+Overfull \hbox (0.18839pt too wide) in paragraph at lines 810--814
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing []\OT1/cmtt/m/n/10 prep
 rocess \OT1/phv/m/n/10 to in-clude an-other doc-u-ment, "com-
-
-Overfull \hbox (87.48466pt too wide) in paragraph at lines 852--853
+[13]
+Overfull \hbox (87.48466pt too wide) in paragraph at lines 854--855
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
-[13]
 No file quickref.ind.
 [14] (./quickref.aux)
 
@@ -78149,7 +78239,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (14 pages, 47172 bytes).
+Output written on quickref.dvi (14 pages, 47336 bytes).
 Transcript written on quickref.log.
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -78251,22 +78341,22 @@ Overfull \hbox (88.21638pt too wide) in paragraph at lines 600--607
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib, name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
 [9] [10] [11] [12]
-Overfull \hbox (2.40855pt too wide) in paragraph at lines 802--807
+Overfull \hbox (2.40855pt too wide) in paragraph at lines 804--809
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther []\
 OT1/cmtt/m/n/10 preprocess \OT1/phv/m/n/10 and/or []\OT1/cmtt/m/n/10 mako\OT1/p
 hv/m/n/10 .
 
-Overfull \hbox (0.18839pt too wide) in paragraph at lines 808--812
+Overfull \hbox (0.18839pt too wide) in paragraph at lines 810--814
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing []\OT1/cmtt/m/n/10 prep
 rocess \OT1/phv/m/n/10 to in-clude an-other doc-u-ment, "com-
 [13]
-Overfull \hbox (87.48466pt too wide) in paragraph at lines 852--853
+Overfull \hbox (87.48466pt too wide) in paragraph at lines 854--855
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
 [14] (./quickref.aux) )
 (see the transcript file for additional information)
-Output written on quickref.dvi (14 pages, 58200 bytes).
+Output written on quickref.dvi (14 pages, 58344 bytes).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no-preprocess
@@ -78616,13 +78706,13 @@ Overfull \hbox (107.00006pt too wide) in paragraph at lines 810--810
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
 [8]
-Overfull \hbox (2045.00006pt too wide) in paragraph at lines 857--857
+Overfull \hbox (2219.00006pt too wide) in paragraph at lines 857--857
 []\T1/pcr/m/n/10 commands: format insertdocstr old2new_format gwiki_figsubst re
 move_inline_comments latin2html sphinx_dir subst replace replace_from_file clea
 n help latex_header latex_footer guess_encoding change_encoding bbl2rst split_r
-st list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove re
-move_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_
-exercise_toc  
+st split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_fig
+ure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_c
+ommands combine_images latex_exercise_toc  
 
 Overfull \hbox (299.00006pt too wide) in paragraph at lines 859--859
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -78656,60 +78746,63 @@ Overfull \hbox (29.00006pt too wide) in paragraph at lines 876--876
 Overfull \hbox (47.00006pt too wide) in paragraph at lines 885--885
 []\T1/pcr/m/n/10 (remove all files that the doconce format can regenerate)  
 [9]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 897--897
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 897--897
+[]\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 899--899
 []\T1/pcr/m/n/10 doconce grab   --from[-] from-text [--to[-] to-text] somefile 
  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 898--898
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 900--900
 []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] somefile 
  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 899--899
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 901--901
 []\T1/pcr/m/n/10 doconce remove_exercise_answers file_in_some_format  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 901--901
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 903--903
 []\T1/pcr/m/n/10 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 902--902
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 904--904
 []        \T1/pcr/m/n/10 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{q
 uote}  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 905--905
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 907--907
 []\T1/pcr/m/n/10 doconce combine_images image1 image2 ... output_file  
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 907--907
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 909--909
 []\T1/pcr/m/n/10 doconce list_labels doconcefile.do.txt | latexfile.tex  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 958--959
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 960--961
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 964--964
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 966--966
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 965--965
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 967--967
 []\T1/pcr/m/n/10 the area under a curve that defines half of the allipse.  
 [10]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 973--973
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 975--975
 []\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 982--983
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 984--985
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 986--986
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 988--988
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
 [11]
-Overfull \hbox (263.00006pt too wide) in paragraph at lines 1057--1057
+Overfull \hbox (263.00006pt too wide) in paragraph at lines 1059--1059
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
 
-Overfull \hbox (4.19656pt too wide) in paragraph at lines 1081--1085
+Overfull \hbox (4.19656pt too wide) in paragraph at lines 1083--1087
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
 
-Overfull \hbox (114.855pt too wide) in paragraph at lines 1099--1100
+Overfull \hbox (114.855pt too wide) in paragraph at lines 1101--1102
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
 [12] (./quickref.rst.aux)
@@ -78721,7 +78814,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (12 pages, 48332 bytes).
+Output written on quickref.rst.dvi (12 pages, 48468 bytes).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -78924,13 +79017,13 @@ Overfull \hbox (107.00006pt too wide) in paragraph at lines 810--810
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
 
-Overfull \hbox (2045.00006pt too wide) in paragraph at lines 857--857
+Overfull \hbox (2219.00006pt too wide) in paragraph at lines 857--857
 []\T1/pcr/m/n/10 commands: format insertdocstr old2new_format gwiki_figsubst re
 move_inline_comments latin2html sphinx_dir subst replace replace_from_file clea
 n help latex_header latex_footer guess_encoding change_encoding bbl2rst split_r
-st list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove re
-move_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_
-exercise_toc  
+st split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_fig
+ure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_c
+ommands combine_images latex_exercise_toc  
 
 Overfull \hbox (299.00006pt too wide) in paragraph at lines 859--859
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -78964,60 +79057,63 @@ Overfull \hbox (29.00006pt too wide) in paragraph at lines 876--876
 Overfull \hbox (47.00006pt too wide) in paragraph at lines 885--885
 []\T1/pcr/m/n/10 (remove all files that the doconce format can regenerate)  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 897--897
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 897--897
+[]\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
+
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 899--899
 []\T1/pcr/m/n/10 doconce grab   --from[-] from-text [--to[-] to-text] somefile 
  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 898--898
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 900--900
 []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] somefile 
  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 899--899
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 901--901
 []\T1/pcr/m/n/10 doconce remove_exercise_answers file_in_some_format  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 901--901
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 903--903
 []\T1/pcr/m/n/10 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 902--902
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 904--904
 []        \T1/pcr/m/n/10 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{q
 uote}  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 905--905
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 907--907
 []\T1/pcr/m/n/10 doconce combine_images image1 image2 ... output_file  
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 907--907
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 909--909
 []\T1/pcr/m/n/10 doconce list_labels doconcefile.do.txt | latexfile.tex  
 [10]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 958--959
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 960--961
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 964--964
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 966--966
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 965--965
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 967--967
 []\T1/pcr/m/n/10 the area under a curve that defines half of the allipse.  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 973--973
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 975--975
 []\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 982--983
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 984--985
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 986--986
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 988--988
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
-[11]
-Overfull \hbox (263.00006pt too wide) in paragraph at lines 1057--1057
+[11] [12]
+Overfull \hbox (263.00006pt too wide) in paragraph at lines 1059--1059
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
-[12]
-Overfull \hbox (4.19656pt too wide) in paragraph at lines 1081--1085
+
+Overfull \hbox (4.19656pt too wide) in paragraph at lines 1083--1087
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
 
-Overfull \hbox (114.855pt too wide) in paragraph at lines 1099--1100
+Overfull \hbox (114.855pt too wide) in paragraph at lines 1101--1102
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
 [13] (./quickref.rst.aux)
@@ -79026,7 +79122,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (13 pages, 54608 bytes).
+Output written on quickref.rst.dvi (13 pages, 54748 bytes).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref --no-preprocess

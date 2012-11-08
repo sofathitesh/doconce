@@ -10,9 +10,7 @@ __acknowledgemets__ = 'Johannes H. Ring',
 
 from distutils.core import setup
 
-import os, sys
-import gzip
-import tempfile
+import os, sys, glob, gzip, tempfile
 
 # Make sure we import from doconce in this package, not an installed one:
 # (need this for extracting the version below)
@@ -63,7 +61,7 @@ setup(
     #              #'doconce.pandoc',
     #             'doconce.expand_newcommands',
     #             ],
-    package_data = {'': ['sphinx_themes.zip']},
+    package_data = {'': ['sphinx_themes.zip', 'html_images.zip']},
     scripts = [os.path.join('bin', f) for f in ['doconce']],
     data_files=[(os.path.join("share", "man", "man1"),[man_filename,]),],
     )

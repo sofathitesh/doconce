@@ -657,9 +657,10 @@ def exercises(filestr, format):
 
     label_pattern = re.compile(r'^\s*label\{(.+?)\}')
     # We accept file and solution to be comment lines
-    file_pattern = re.compile(r'^#?\s*file\s*=\s*([^\s]+)')
-    solution_pattern = re.compile(r'^#?\s*solution\s*=\s*([^\s]+)')
-    keywords_pattern = re.compile(r'^#?\s*(keywords|kw)\s*=\s*([^\s]+)')
+    #file_pattern = re.compile(r'^#?\s*file\s*=\s*([^\s]+)')
+    file_pattern = re.compile(r'^#?\s*files?\s*=\s*([A-Za-z0-9\-._, ]+)')
+    solution_pattern = re.compile(r'^#?\s*solutions?\s*=\s*([A-Za-z0-9\-._, ]+)')
+    keywords_pattern = re.compile(r'^#?\s*(keywords|kw)\s*=\s*([A-Za-z0-9\-._;, ]+)')
 
     hint_pattern_begin = '!bhint'
     hint_pattern_end = '!ehint'
@@ -710,15 +711,20 @@ def exercises(filestr, format):
             m_keywords = keywords_pattern.search(line)
 
             if m_label:
-                exer['label'] = m_label.group(1)
+                if exer['label'] is None:
+                    exer['label'] = m_label.group(1)
             elif m_keywords:
-                exer['keywords'] = m_label.group(1).split(';')
+                exer['keywords'] = [name.strip() for name in
+                                    m_label.group(1).split(';')]
             elif m_file and not inside_subex:
-                exer['file'] = m_file.group(1).split(',')
+                if exer['file'] is None:  # only the first counts
+                    exer['file'] = [name.strip() for name in
+                                    m_file.group(1).split(',')]
             elif m_file and inside_subex:
                 subex['file'] = m_file.group(1)
             elif m_solution_file:
-                exer['solution_file'] = m_solution_file.group(1).split(',')
+                exer['solution_file'] = [name.strip() for name in
+                                         m_solution_file.group(1).split(',')]
 
             elif line.startswith(subex_pattern_begin):
                 inside_subex = True
@@ -1785,6 +1791,18 @@ def doconce2format(filestr, format):
     filestr = inline_tag_subst(filestr, format)
 
     debugpr('%s\n**** The file after all inline substitutions:\n\n%s\n\n' % ('*'*80, filestr))
+
+    # Next step: deal with various commands to be put as comments
+    # (they must be commands, as comments they may appear inside lists)
+    commands = ['!split', '!bpop', '!epop']
+    for command in commands:
+        comment_action = INLINE_TAGS_SUBST[format].get('comment', '# %s')
+        if isinstance(comment_action, str):
+            split_comment = comment_action % command
+        elif callable(comment_action):
+            split_comment = comment_action(command)
+    cpattern = re.compile('^%s\s*$' % command, re.MULTILINE)
+    filestr = cpattern.sub(split_comment, filestr)
 
     # Next step: substitute latex-style newcommands in filestr and tex_blocks
     # (not in code_blocks)

@@ -2135,8 +2135,9 @@ def clean():
 
     For example, if ``d1.do.txt`` and ``d2.do.txt`` are found,
     all files ``d1.*`` and ``d1.*`` are deleted, except when ``*``
-    is ``.do.txt`` or ``.sh``. The subdirectory ``sphinx-rootdir``
-    is also removed, as well as ``*~`` and ``tmp*`` files.
+    is ``.do.txt`` or ``.sh``. The subdirectories ``sphinx-rootdir``
+    and ``html_images`` are also removed, as well as all ``._part*.html``,
+    ``*~`` and ``tmp*`` files.
     """
     if os.path.isdir('Trash'):
         print
@@ -2161,10 +2162,12 @@ def clean():
                 generated_files.remove(filename)
         for f in generated_files:
             removed.append(f)
-    removed.extend(glob.glob('*~') + glob.glob('tmp*'))
-    sphinx_rootdir = 'sphinx-rootdir'
-    if os.path.isdir(sphinx_rootdir):
-        removed.append(sphinx_rootdir)
+    removed.extend(glob.glob('*~') + glob.glob('tmp*') +
+                   glob.glob('._part*.html'))
+    directories = ['sphinx-rootdir', 'html_images']
+    for d in directories:
+        if os.path.isdir(d):
+            removed.append(d)
     if removed:
         print 'Remove:', ' '.join(removed), '(-> Trash)'
         os.mkdir('Trash')
@@ -2314,6 +2317,173 @@ def bbl2rst():
     print 'Python bibliography in', outfile
 
 
+html_images = 'html_images.zip'
+
+def html_imagefile(imagename):
+    filename = os.path.join(html_images[:-4], '._' + imagename + '.gif')
+    return filename
+
+
+def usage_html_colorbullets():
+    print 'Usage: doconce html_colorbullets mydoc.html'
+
+def html_colorbullets():
+    """
+    """
+    if len(sys.argv) <= 1:
+        usage_html_collorbullets()
+        sys.exit(1)
+
+    red_bullet = 'red_bullet2'
+    green_bullet = 'green_bullet2'
+    #red_bullet = 'red_bullet1'
+    #green_bullet = 'green_bullet1'
+    import doconce
+    doconce_dir = os.path.dirname(doconce.__file__)
+    doconce_html_images = os.path.join(doconce_dir, html_images)
+
+    filenames = sys.argv[1:]
+    for filename in filenames:
+        f = open(filename, 'r')
+        lines = f.readlines()
+        f.close()
+        f = open(filename, 'w')
+        level = 0
+        for line in lines:
+            linel = line.lower()
+            if '<ul>' in linel:
+                level += 1
+                line = '<table>\n'
+            if '</ul>' in linel:
+                line = '</td></tr></table>\n'
+                level -= 1
+            if '<li>' in linel:
+                line = line.replace('<li>', """</tr><p><tr><td valign='top'><img src="BULLET"></td><td>""")
+                if level == 1:
+                    image_filename = html_imagefile(red_bullet)
+                elif level >= 2:
+                    image_filename = html_imagefile(green_bullet)
+                line = line.replace('BULLET', image_filename)
+                if not os.path.isfile(image_filename):
+                    shutil.copy(doconce_html_images, os.curdir)
+                    import zipfile
+                    zipfile.ZipFile(html_images).extractall()
+                    os.remove(html_images)
+            f.write(line)
+        f.close()
+
+def usage_split_html():
+    print 'Usage: doconce split_html mydoc.html'
+
+def split_html():
+    """
+    """
+    # Overview of HTML-based slideshow tools: http://www.impressivewebs.com/html-slidedeck-toolkits/
+    # http://leaverou.github.com/CSSS/
+    # http://lab.hakim.se/reveal-js/ (easy and fancy)
+    # http://paulrouget.com/dzslides/ (easy and fancy, Keynote like)
+    # http://imakewebthings.com/deck.js/ (also easy)
+    # http://code.google.com/p/html5slides/ (also easy)
+    # (could have #!bpop, #!epop for lists and paragraphs that "build",
+    # but all such builds seem to require <li></li> and <p></p>:
+    # </li> can be inserted by regex <li>...<li> and checking that there
+    # is no </ul> in between, while <p></p> is easy with #!bpop and #!epop)
+    # http://slides.seld.be/?file=2010-05-30+Example.html#1 (also easy)
+    # http://www.w3.org/Talks/Tools/Slidy2/#(1) (also easy)
+    # http://johnpolacek.github.com/scrolldeck.js/ (inspired by reveal.js)
+    # http://meyerweb.com/eric/tools/s5/ (easy)
+    # https://github.com/mbostock/stack (very easy)
+    # https://github.com/markdalgleish/fathom
+    # https://github.com/bartaz/impress.js/
+
+    # Fancy and instructive demo:
+    # http://yihui.name/slides/2011-r-dev-lessons.html
+    # (view the source code)
+
+    # pandoc can make dzslides and embeds all javascript (no other files needed)
+    # pandoc -s -S -i -t dzslides --mathjax my.md -o my.html
+
+
+    if len(sys.argv) <= 1:
+        usage_split_html()
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    if not filename.endswith('.html'):
+        basename = filename
+        filename += '.html'
+    else:
+        basename = filename[:-5]
+
+    header = []
+    footer = []
+    parts = [[]]
+    loc = 'header'
+    f = open(filename, 'r')
+    for line in f:
+        if re.search(r'^<!-- -+ main content -+>', line):
+            loc = 'body'
+        if re.search(r'^<!-- !split\s*-+>', line):
+            parts.append([])
+        if re.search(r'^<!-- -+ end of main content -+>', line):
+            loc = 'footer'
+        if loc == 'header':
+            header.append(line)
+        elif loc == 'body':
+            parts[-1].append(line)
+        elif loc == 'footer':
+            footer.append(line)
+    f.close()
+    doconce_html_split(header, parts, footer, basename, filename)
+
+
+def doconce_html_split(header, parts, footer, basename, filename):
+    """Native doconce style splitting of HTML file into parts."""
+    prev_part = 'prev_slide1'
+    next_part = 'next_slide1'
+    header_part_line = 'colorline'
+
+    import doconce
+    doconce_dir = os.path.dirname(doconce.__file__)
+    doconce_html_images = os.path.join(doconce_dir, html_images)
+
+    # Drop internal links for now...
+
+    prev_filename = html_imagefile(prev_part)
+    next_filename = html_imagefile(next_part)
+    if not os.path.isfile(prev_filename):
+        shutil.copy(doconce_html_images, os.curdir)
+        import zipfile
+        zipfile.ZipFile(html_images).extractall()
+        os.remove(html_images)
+
+    for pn, part in enumerate(parts):
+        lines = header[:]  # copy is important!
+        lines.append('<A NAME="PART%04d"></A>\n' % pn)
+        if header_part_line:
+            header_part_line_filename = html_imagefile(header_part_line)
+            lines.append("""
+<p><br><img src="%s"><p><br><p>
+""" % header_part_line_filename)
+        lines += part
+        part_filename = '._part%04d_%s.html' % (pn, basename)
+        prev_part_filename = '._part%04d_%s.html' % (pn-1, basename)
+        next_part_filename = '._part%04d_%s.html' % (pn+1, basename)
+        lines.append('<p>\n')
+        if pn > 0:
+            lines.append("""
+<a href="%s"><img src="%s" border=0 alt="previous"></a>
+""" % (prev_part_filename, prev_filename))
+        if pn < len(parts)-1:
+            lines.append("""
+<a href="%s"><img src="%s" border=0 alt="next"></a>
+""" % (next_part_filename, next_filename))
+        lines += footer
+        f = open(part_filename, 'w')
+        f.write(''.join(lines))
+        f.close()
+        if pn == 0:
+            shutil.copy(part_filename, filename)
 
 def usage_split_rst():
     print 'Usage: doconce split_rst complete_file.rst'
@@ -2356,9 +2526,8 @@ def split_rst():
     SOLUTION: Use #>>> Part: mypart >>> for an include mypart/mypart.do.txt.
     All parts are then split into files in the top directory.
 
-    fig dirs must be copied..., but that can be easily done if the fig
-    dir name is of the right form.  Can also skip all the
-    non-.gif/.jp*g/.png files in fig dirs.
+    fig dirs must be copied, but that can be easily done automatically
+    if the fig dir name is of the right form.
     """
 
     if len(sys.argv) <= 1:
@@ -2632,7 +2801,7 @@ def analyzer():
 
 # -----------------------------------------------------------------------
 
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc'.split()
 
 # -----------------------------------------------------------------------
 
@@ -2675,6 +2844,8 @@ doconce guess_encoding filename
 doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
+doconce split_html complete_file.html
+doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
 doconce remove --from[-] from-text [--to[-] to-text] somefile
