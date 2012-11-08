@@ -870,7 +870,7 @@ A full exercise set-up can be sketched as follows:
 label{exer:moondist}
 file=earth2moon.pdf
 
-Here goes the running text of the project....
+Here goes main body of text describing the exercise...
 
 !bsubex
 Subexercises are numbered a), b), etc.
@@ -894,12 +894,32 @@ Here goes the text for subexercise b).
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
 !ec
 
-The various elements of exercises are collected in a special
-data structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
-if `mydoc.do.txt` is the name of the Doconce file.
+The various elements of exercises are collected in a special data
+structure (list of dictionaries) stored in a file `.mydoc.exerinfo`,
+if `mydoc.do.txt` is the name of the Doconce file.  The file contains
+a list of dictionaries, where keys in the dictionary corresponds to
+elements in the exercise: filename, solution file, answer, label, list
+of hints, list of subexercises, closing remarks, and the main body of
+text. From this data structure it is easy to generate stand-alone
+documents with exercises, problems, and projects with or without
+short answers and full solutions.
 
 Tailored formatting of exercises in special output formats can make
 use of the elements in an exercise.  For example, one can image web

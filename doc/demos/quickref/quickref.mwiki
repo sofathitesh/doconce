@@ -2,9 +2,13 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Nov 7, 2012 ====
+==== Nov 8, 2012 ====
 
-''TOC'' <!--> Very preliminary -->
+__TOC__
+
+
+
+<!--> Very preliminary -->
 
 '''WARNING: This quick reference is very incomplete!'''
 
@@ -534,6 +538,7 @@ compute the integral.
 </code>
 An exercise with subproblems, answers and full solutions has this
 setup-up:
+
 <code>
 ===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
@@ -566,7 +571,22 @@ file=subexer_b.pdf
 !bhint
 A hint for this subexercise.
 !ehint
+
+!bsol
+Here goes the solution of this subexercise.
+!esol
 !esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives. The text inside the !bremarks-!eremarks
+directives is always typeset at the end of the exercise.
+!eremarks
+
+!bsol
+Here goes a full solution of the whole exercise.
+!esol
+
 </code>
 By default, answers, solutions, and hints are typeset as paragraphs.
 

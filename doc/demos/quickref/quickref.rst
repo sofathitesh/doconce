@@ -6,7 +6,7 @@ Doconce Quick Reference
 
 :Author: Hans Petter Langtangen
 
-:Date: Nov 7, 2012
+:Date: Nov 8, 2012
 
 .. contents:: Table of Contents
    :depth: 2
@@ -706,9 +706,25 @@ setup-up::
         !bhint
         A hint for this subexercise.
         !ehint
+        
+        !bsol
+        Here goes the solution of this subexercise.
+        !esol
         !esubex
+        
+        !bremarks
+        At the very end of the exercise it may be appropriate to summarize
+        and give some perspectives. The text inside the !bremarks-!eremarks
+        directives is always typeset at the end of the exercise.
+        !eremarks
+        
+        !bsol
+        Here goes a full solution of the whole exercise.
+        !esol
+        
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+
 
 Labels, Index, and Citations
 ----------------------------

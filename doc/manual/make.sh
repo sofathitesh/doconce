@@ -98,7 +98,7 @@ rm -f *.ps
 
 rm -rf demo
 mkdir demo
-cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.mkd sphinx-rootdir/_build/html demo
+cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.md sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -140,7 +140,7 @@ Doconce can also be converted to
 <a href="manual.gwiki">Googlecode wiki</a>,
 <a href="manual.cwiki">Creole wiki</a>,
 <a href="manual.mwiki">MediaWiki</a>,
-<a href="manual.mkd">Markdown</a> (Pandoc extended version),
+<a href="manual.md">Markdown</a> (Pandoc extended version),
 <a href="manual.st">Structured Text</a>,
 <a href="manual.epytext">Epytext</a>,
 and maybe the most important format of all:

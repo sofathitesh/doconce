@@ -377,6 +377,9 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
 def _spellcheck_all(**kwargs):
     for filename in glob.glob('tmp_misspelled*~') + glob.glob('misspellings.txt~*'):
         os.remove(filename)
+    for filename in ['__tmp.do.txt']:
+        if filename in sys.argv:
+            os.remove(filename)
     for filename in sys.argv[1:]:
         if not filename.startswith('tmp_stripped_'):
             _spellcheck(filename, **kwargs)
@@ -2403,6 +2406,10 @@ def split_html():
     # pandoc can make dzslides and embeds all javascript (no other files needed)
     # pandoc -s -S -i -t dzslides --mathjax my.md -o my.html
 
+    # Could introduce !btabXY to define elements in a slide that will
+    # appear in position XY in a table! Works after split_html on a
+    # page by page basis (split is more general and should be factored out).
+    # Figures without caption must not have number (think that is in place).
 
     if len(sys.argv) <= 1:
         usage_split_html()

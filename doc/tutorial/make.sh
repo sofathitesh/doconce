@@ -60,8 +60,8 @@ $a2ps_plain -1 -o tutorial.cwiki.ps tutorial.cwiki
 ps2pdf tutorial.cwiki.ps
 $a2ps_plain -1 -o tutorial.mwiki.ps tutorial.mwiki
 ps2pdf tutorial.mwiki.ps
-$a2ps_plain -1 -o tutorial.mkd.ps tutorial.mkd
-ps2pdf tutorial.mkd.ps
+$a2ps_plain -1 -o tutorial.md.ps tutorial.md
+ps2pdf tutorial.md.ps
 $a2ps_plain -1 -o tutorial.xml.ps tutorial.xml
 ps2pdf tutorial.xml.ps
 
@@ -70,11 +70,11 @@ rm -f *.ps
 #wkhtmltopdf tutorial.rst.html tutorial.rst.html.pdf
 #wkhtmltopdf tutorial.html tutorial.html.pdf
 
-pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.mkd.pdf tutorial.sphinx.pdf tutorial.xml.pdf  cat output collection_of_results.pdf
+pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.md.pdf tutorial.sphinx.pdf tutorial.xml.pdf  cat output collection_of_results.pdf
 
 rm -rf demo
 mkdir demo
-cp -r tutorial.do.txt tutorial.html tutorial.p.tex tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.gwiki tutorial.mwiki tutorial.cwiki tutorial.txt tutorial.epytext tutorial.st tutorial.mkd collection_of_results.pdf sphinx-rootdir/_build/html demo
+cp -r tutorial.do.txt tutorial.html tutorial.p.tex tutorial.tex tutorial.pdf tutorial.rst tutorial.sphinx.rst tutorial.sphinx.pdf tutorial.xml tutorial.rst.html tutorial.rst.tex tutorial.rst.pdf tutorial.gwiki tutorial.mwiki tutorial.cwiki tutorial.txt tutorial.epytext tutorial.st tutorial.md collection_of_results.pdf sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -116,7 +116,7 @@ Doconce can also be converted to
 <a href="tutorial.gwiki">Googlecode wiki</a>,
 <a href="tutorial.cwiki">Creole wiki</a>,
 <a href="tutorial.mwiki">MediaWiki wiki</a>,
-<a href="tutorial.mkd">Markdown</a> (Pandoc extension),
+<a href="tutorial.md">Markdown</a> (Pandoc extension),
 <a href="tutorial.st">Structured Text</a>,
 <a href="tutorial.epytext">Epytext</a>,
 and maybe the most important format of all:
