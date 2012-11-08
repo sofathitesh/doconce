@@ -13,6 +13,8 @@ DATE: today
 
 TOC: on
 
+!split
+
 The format of this document is
 % if FORMAT == 'html':
 plain, homemade HTML (from Doconce).
@@ -52,6 +54,8 @@ Here is a nested list:
     o first item
     o second item,
       continuing on a new line
+
+!split
 
 ===== Subsection 1 =====
 
@@ -406,8 +410,12 @@ between there we have Exercise ref{exer:some:formula}.
 
 ===== Problem: Flip a Coin =====
 label{demo:ex:1}
-file = flip_coin.py
-solution = mysol.txt
+files = flip_coin.py, flip_coin.pdf
+solutions = mysol.txt, mysol_flip_coin.py
+
+# Torture tests
+file=myfile_should_be_a_part_of_the_text
+solutions = mysol.txt, mysol_flip_coin.py, yet_another.file
 
 Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and

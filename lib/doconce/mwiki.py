@@ -42,6 +42,13 @@ def mwiki_code(filestr, code_blocks, code_block_types,
     c = re.compile(r'^!bt\n', re.MULTILINE)
     filestr = c.sub(':<math>\n', filestr)
     filestr = re.sub(r'!et\n', '</math>\n', filestr)
+
+    # Final fix of MediaWiki file
+
+    # __TOC__ syntax is misinterpretated as paragraph heading, so we
+    # use <<<TOC>>> instead and replace to right syntax here at the end.
+    filestr = filestr.replace('<<<TOC>>>', '__TOC__')
+
     return filestr
 
 
@@ -189,7 +196,7 @@ def define(FILENAME_EXTENSION,
     from plaintext import plain_index_bib
     EXERCISE['mwiki'] = plain_exercise
     INDEX_BIB['mwiki'] = plain_index_bib
-    TOC['mwiki'] = lambda s: '__TOC__'
+    TOC['mwiki'] = lambda s: '<<<TOC>>>'  # __TOC__ will be wrongly translated to paragraph headline and needs a fix
 
     # document start:
     INTRO['mwiki'] = ''

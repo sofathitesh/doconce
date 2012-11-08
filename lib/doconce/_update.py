@@ -5,8 +5,9 @@ if __name__ == '__main__':
     # the insertdocstr script is part of the Doconce package
     os.system('python ../../bin/doconce insertdocstr plain . ')
 
-    # pack sphinx_themes.zip
+    # pack zip files distributed as data with doconce
     os.system('zip -r shpinx_themes.zip sphinx_themes')
+    os.system('zip -r html_images.zip html_images')
 
     # remove files that are to be regenerated:
     os.chdir(os.path.join(os.pardir, os.pardir))

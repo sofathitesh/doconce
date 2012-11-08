@@ -283,14 +283,6 @@ def doconce_exercise_output(exer,
     if exer['text']:
         s += '\n' + exer['text'] + '\n'
 
-    if exer['file']:
-        if len(exer['file']) == 1:
-            s += 'Filename: `%s`' % exer['file'][0] + '.\n'
-        else:
-            s += 'Filenames: `%s`' % ', '.join(exer['file']) + '.\n'
-        #s += '*Filename*: `%s`' % exer['file'] + '.\n'
-        #s += '\n' + '*Filename*: `%s`' % exer['file'] + '.\n'
-
     if exer['hints']:
         for i, hint in enumerate(exer['hints']):
             if len(exer['hints']) == 1 and i == 0:
@@ -341,6 +333,19 @@ def doconce_exercise_output(exer,
                         print '\nwarning: open solution in exercise "%s" with a line of text\nbefore the code! (Now "Code:" was inserted)' % exer['title'] + '\n'
                         s += 'Code:\n'
                     s += subex['solution'] + '\n' + end_solution + '\n'
+
+    if exer['file']:
+        if 'subex' in exer:
+            # Place Filename: ... as a list paragraph if subexercises,
+            # otherwise let it proceed at the end of the exercise text.
+            s += '\n'
+        if len(exer['file']) == 1:
+            s += 'Filename: `%s`' % exer['file'][0] + '.\n'
+        else:
+            s += 'Filenames: %s' % \
+                 ', '.join(['`%s`' % f for f in exer['file']]) + '.\n'
+        #s += '*Filename*: `%s`' % exer['file'] + '.\n'
+        #s += '\n' + '*Filename*: `%s`' % exer['file'] + '.\n'
 
     if exer['solution_file']:
         if len(exer['solution_file']) == 1:

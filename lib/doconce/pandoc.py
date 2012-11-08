@@ -77,6 +77,12 @@ def pandoc_code(filestr, code_blocks, code_block_types,
     filestr = cpattern.sub('\\label{', filestr)
 
     filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
+
+    # Final fixes
+
+    # Seems that title and author must appear on the very first lines
+    filestr = filestr.lstrip()
+
     return filestr
 
 def pandoc_table(table):
@@ -237,7 +243,8 @@ def define(FILENAME_EXTENSION,
         'subsection':    lambda m: r'\g<subst>\n%s' % ('-'*len(m.group('subst').decode('utf-8'))),
         'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('utf-8'))),
         'paragraph':     r'*\g<subst>* ',  # extra blank
-        'abstract':     r'*\g<type>.* \g<text>\n\n\g<rest>'
+        'abstract':      r'*\g<type>.* \g<text>\n\n\g<rest>',
+        'comment':       '<!-- %s -->',
         }
 
     CODE['pandoc'] = pandoc_code
