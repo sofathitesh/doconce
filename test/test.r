@@ -720,7 +720,17 @@ MathJax.Hub.Config({
 
 <body>
     
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\half}{\frac{1}{2}}
+$$
 
+
+
+<A NAME="PART0000"></A>
 <!-- ------------------- main content ------------------------>
 
 <p>
@@ -775,32 +785,32 @@ MathJax.Hub.Config({
 <p>
 
 <p>
-<a href="#sec1"> Section 1 </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec1"> Subsection 1 </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#subsec:ex"> Subsection 2 </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec4"> Custom Environments </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#subsec:table"> Tables </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec7"> LaTeX Mathematics </a><br>
-<a href="#___sec8"> Exercises </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#demo:ex:1"> Problem 1: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 2: Compute a Probability </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 3: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec12"> Remarks </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 4: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#___sec14"> Remarks </a><br>
-<a href="#___sec15"> Here goes another section </a><br>
-<a href="#___sec16"> More Exercises </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 5: Make references to projects and problems </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 6: References in a headings do not work well in html </a><br>
-<a href="#___sec19"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec20"> A subsection within an appendix </a><br>
-<a href="#___sec21"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec22"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#test:title:id1"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec25"> Appendix: Testing identical titles </a><br>
+<a href="._part0001_testdoc.html#sec1"> Section 1 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec1"> Subsection 1 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:ex"> Subsection 2 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec4"> Custom Environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:table"> Tables </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsubsec:ex"> URLs </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec7"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc.html#___sec8"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:2"> Project 2: Compute a Probability </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#proj:circle1"> Project 3: Explore Distributions of Random Circles </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec12"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 4: Determine some Distance </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec14"> Remarks </a><br>
+<a href="._part0002_testdoc.html#___sec15"> Here goes another section </a><br>
+<a href="._part0002_testdoc.html#___sec16"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 5: Make references to projects and problems </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 6: References in a headings do not work well in html </a><br>
+<a href="._part0002_testdoc.html#___sec19"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec20"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc.html#___sec21"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec22"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id1"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id2"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec25"> Appendix: Testing identical titles </a><br>
 
 <p>
 <p>
@@ -812,870 +822,9 @@ MathJax.Hub.Config({
 <p>
 
 <p>
-<!-- !split -->
 <p>
-The format of this document is
-plain, homemade HTML (from Doconce).
 
-<p>
-
-<p>
-<b>Abstract.</b> This is a document with many test constructions for doconce syntax.
-It was used heavily for the development and kept for testing
-numerous constructions, also special and less common cases.
-
-<p>
-And exactly for test purposes we have an extra line here, which
-is part of the abstract.
-
-<p>
-<!-- Cannot demonstrate chapter headings since abstract and chapter -->
-<!-- is mutually exclusive in LaTeX -->
-
-<p>
-
-<h2>Section 1 <a name="sec1"></a></h2>
-<p>
-Here is a nested list:
-
-<p>
-
-<ul>
-  <li> item1</li>
-  <li> item2</li>
-  <li> item3 which continues
-    on the next line to test that feature</li>
-  <li> and a sublist</li>
-
-<ul>
-    <li> with indented subitem1</li>
-    <li> and a subitem2</li>
-</ul>
-
-  <li> and perhaps an ordered sublist</li>
-
-<ol>
-   <li> first item</li>
-   <li> second item,
-      continuing on a new line</li>
-</ol>
-
-</ul>
-
-<!-- !split -->
-<p>
-
-<h3>Subsection 1  <a name="___sec1"></a></h3>
-<p>
-More text, with a reference back to the section <a href="#sec1">Section 1</a> and further
-to the section <a href="#subsubsec:ex">URLs</a>. 
-Let's do some copying from files too. First from subroutine up to the very end,
-
-<p>
-<p>
-
-<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #AA22FF; font-weight: bold">subroutine    </span><span style="color: #B8860B">test</span>()
-      <span style="color: #00BB00; font-weight: bold">integer </span><span style="color: #B8860B">i</span>
-      <span style="color: #00BB00; font-weight: bold">real</span><span style="color: #666666">*8</span> <span style="color: #B8860B">r</span>
-      <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
-      <span style="color: #AA22FF; font-weight: bold">do </span><span style="color: #B8860B">i</span> <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #B8860B">i</span>
-         <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #B8860B">r</span> <span style="color: #666666">+</span> <span style="color: #B8860B">i</span>
-      <span style="color: #AA22FF; font-weight: bold">end do</span>
-<span style="color: #AA22FF; font-weight: bold">      return</span>
-<span style="color: #B8860B">C</span>     <span style="color: #B8860B">END1</span>
-
-      <span style="color: #AA22FF; font-weight: bold">program </span><span style="color: #B8860B">testme</span>
-      <span style="color: #AA22FF; font-weight: bold">call </span><span style="color: #B8860B">test</span>()
-      <span style="color: #AA22FF; font-weight: bold">return</span>
-</pre></div>
-</td></tr></table><p>
-and then just the subroutine,
-<p>
-
-<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #AA22FF; font-weight: bold">subroutine    </span><span style="color: #B8860B">test</span>()
-      <span style="color: #00BB00; font-weight: bold">integer </span><span style="color: #B8860B">i</span>
-      <span style="color: #00BB00; font-weight: bold">real</span><span style="color: #666666">*8</span> <span style="color: #B8860B">r</span>
-      <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
-      <span style="color: #AA22FF; font-weight: bold">do </span><span style="color: #B8860B">i</span> <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #B8860B">i</span>
-         <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #B8860B">r</span> <span style="color: #666666">+</span> <span style="color: #B8860B">i</span>
-      <span style="color: #AA22FF; font-weight: bold">end do</span>
-<span style="color: #AA22FF; font-weight: bold">      return</span>
-</pre></div>
-</td></tr></table><p>
-and finally the complete file:
-<p>
-
-<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B8860B">C</span>     <span style="color: #B8860B">a</span> <span style="color: #B8860B">comment</span>
-
-      <span style="color: #AA22FF; font-weight: bold">subroutine    </span><span style="color: #B8860B">test</span>()
-      <span style="color: #00BB00; font-weight: bold">integer </span><span style="color: #B8860B">i</span>
-      <span style="color: #00BB00; font-weight: bold">real</span><span style="color: #666666">*8</span> <span style="color: #B8860B">r</span>
-      <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
-      <span style="color: #AA22FF; font-weight: bold">do </span><span style="color: #B8860B">i</span> <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #B8860B">i</span>
-         <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #B8860B">r</span> <span style="color: #666666">+</span> <span style="color: #B8860B">i</span>
-      <span style="color: #AA22FF; font-weight: bold">end do</span>
-<span style="color: #AA22FF; font-weight: bold">      return</span>
-<span style="color: #B8860B">C</span>     <span style="color: #B8860B">END1</span>
-
-      <span style="color: #AA22FF; font-weight: bold">program </span><span style="color: #B8860B">testme</span>
-      <span style="color: #AA22FF; font-weight: bold">call </span><span style="color: #B8860B">test</span>()
-      <span style="color: #AA22FF; font-weight: bold">return</span>
-</pre></div>
-</td></tr></table><p>
-
-<p>
-Testing other code environments. First Python:
-<p>
-
-<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">f</span>(x):
-    <span style="color: #AA22FF; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
-</pre></div>
-</td></tr></table><p>
-Then Cython:
-<p>
-
-<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">cpdef</span> <span style="color: #00A000">f</span>(double x):
-    <span style="color: #AA22FF; font-weight: bold">return</span> x <span style="color: #666666">+</span> <span style="color: #666666">1</span>
-</pre></div>
-</td></tr></table><p>
-
-<p>
-<!-- This one tests a + before a code environment -->
-C++:
-<p>
-
-<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008800">#include &lt;iostream&gt;</span>
-
-<span style="color: #00BB00; font-weight: bold">int</span> main()
-{
-   std<span style="color: #666666">::</span>cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BB4444">&quot;Sample output&quot;</span> <span style="color: #666666">&lt;&lt;</span> std<span style="color: #666666">::</span>endl;
-   <span style="color: #AA22FF; font-weight: bold">return</span> <span style="color: #666666">0</span>
-}
-</pre></div>
-</td></tr></table><p>
-System call:
-<p>
-
-<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; mkdir <span style="color: #AA22FF">test</span>
-Terminal&gt; <span style="color: #AA22FF">cd test</span>
-Terminal&gt; myprog -f
-output1
-output2
-</pre></div>
-</td></tr></table><p>
-
-<p>
-It is time to test <tt>verbatim inline font</tt> especially with <tt>a newline
-inside the text</tt> and an exclamation mark at the end: <tt>BEGIN</tt>! The
-exclamation mark inside the verbatim text is not smart for latex as
-we use ! in the <tt>verb</tt> typesetting... Also test backslashes
-like <tt>\begin</tt> and <tt>\end</tt> in inline verbatim text.
-
-<p>
-
-<h3>Subsection 2 <a name="subsec:ex"></a></h3>
-<p>
-Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
-there is a flow.
-
-<p>
-
-<p>
-<center> <! -- figure -->
-<hr class="figure">
-<center><p class="caption">Figure 1:  Visualization of flow by streamtubes. <a name="fig:impact"></a> </p></center>
-<p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p>
-</center>
-
-<p>
-
-<p>
-Figures without captions are allowed.
-
-<p>
-<center><p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p></center>
-
-<p>
-Test of movies.
-
-<p>
-
-<embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p>
-<em> Mjolnir tsunami (by Sylfest Glimsdal).</em>
-</p>
-
-
-<p>
-<!-- Test empty caption: -->
-
-<p>
-
-<embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
-<p>
-<em></em>
-</p>
-
-
-<p>
-<!-- Test wrong syntax and multi-line caption -->
-
-<p>
-
-<p><a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
-<em> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). <a name="mymov"></a> </em></p>
-
-<p>
-<!-- Check out the correct with and height of YouTube movies from the -->
-<!-- embed command that the YouTube page can generate -->
-
-<p>
-
-<iframe width="420" height="315" src="http://www.youtube.com/watch?v=_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
-
-
-<p>
-<!-- Test multi-line caption in figure -->
-
-<p>
-Here is figure <a href="#myfig">2</a> with a long multi-line caption
-and an extra space before the FIGURE keyword.
-
-<p>
-
-<p>
-<center> <! -- figure -->
-<hr class="figure">
-<center><p class="caption">Figure 2:  A long caption spanning several lines. <a name="myfig"></a> </p></center>
-<p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" width=500></p>
-</center>
-
-<p>
-
-<p>
-Movie <a href="#mymov">mymov</a> has a similar problem.
-
-<p>
-<!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
-
-<p>
-
-<p>
-<!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
-
-<p>
-
-<h3>The \( \theta \) parameter (not \( \nabla \)?) <a name="decay:sec:theta"></a></h3>
-<p>
-Functions do not always need to be advanced, here is one
-involving \( \theta \):
-<p>
-
-<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def f(theta):
-    return theta**2
-</pre></div>
-</td></tr></table><p>
-
-<p>
-<b>More on \( \theta \).</b> Here is more text following headline with math.
-
-<p>
-Newcommands must also be tested: \( \half \), \( \x \), \( \Ddt{u} \),
-both inline and in block:
-
-<p>
-$$
-\begin{align*}
-\Ddt{u} &= 0\\ 
-\half &= 1/2\\ 
-\x &= \normalvec
-\end{align*}
-$$
-
-<p>
-
-<h3>Custom Environments  <a name="___sec4"></a></h3>
-<p>
-Here is an attempt to create a theorem environment via Mako
-(for counting theorems) and comment lines to help replacing lines in
-the <tt>.tex</tt> by proper begin-end LaTeX environments for theorems.
-Should look nice in most formats!
-
-<p>
-
-<p>
-
-<p>
-<!-- begin theorem -->
-<a name="theorem:fundamental1"></a>
-
-<p>
-
-<p>
-<b>Theorem 5.</b> Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
-<!-- end theorem -->
-
-<p>
-<!-- begin proof -->
-<b>Proof.</b> Since \( c=a+b \), the result follows from straightforward addition.
-\( \Diamond \)
-<!-- end proof -->
-
-<p>
-As we see, the proof of Theorem 5 is a modest
-achievement.
-
-<p>
-
-<p>
-
-<h3>Tables <a name="subsec:table"></a></h3>
-<p>
-
-<p>
-<!-- index with comma could fool sphinx -->
-
-<p>
-Let us take this table from the manual:
-
-<p>
-
-<p>
-<table border="1">
-<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
-<tr><td align="left">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
-<tr><td align="left">   2.0             </td> <td align="right">   1.376512        </td> <td align="right">   11.919          </td> </tr>
-<tr><td align="left">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
-</table>
-<p>
-
-<p>
-The Doconce source code reads
-<p>
-
-<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  |--------------------------------|
-  |time  | velocity | acceleration |
-  |--l--------r-----------r--------|
-  | 0.0  | 1.4186   | -5.01        |
-  | 2.0  | 1.376512 | 11.919       |
-  | 4.0  | 1.1E+1   | 14.717624    |
-  |--------------------------------|
-</pre></div>
-</td></tr></table><p>
-
-<p>
-Here is yet another table to test that we can handle more than
-one table:
-
-<p>
-<table border="1">
-<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
-<tr><td align="left">   0.0             </td> <td align="left">   1.4186          </td> <td align="left">   -5.01           </td> </tr>
-<tr><td align="left">   1.0             </td> <td align="left">   1.376512        </td> <td align="left">   11.919          </td> </tr>
-<tr><td align="left">   3.0             </td> <td align="left">   1.1E+1          </td> <td align="left">   14.717624       </td> </tr>
-</table>
-<p>
-And one with math headings (that are expanded and must be treated
-accordingly) and verbatim heading and entry:
-
-<p>
-<table border="1">
-<tr><td align="center"><b>    \( i \)     </b></td> <td align="center"><b>   \( h_i \)    </b></td> <td align="center"><b> \( \bar T_i \) </b></td> <td align="center"><b>     <tt>L_i</tt>      </b></td> </tr>
-<tr><td align="left">   0                 </td> <td align="right">   0                 </td> <td align="right">   288               </td> <td align="right">   -0.0065           </td> </tr>
-<tr><td align="left">   1                 </td> <td align="right">   11,000            </td> <td align="right">   216               </td> <td align="right">   0.0               </td> </tr>
-<tr><td align="left">   2                 </td> <td align="right">   20,000            </td> <td align="right">   216               </td> <td align="right">   0.001             </td> </tr>
-<tr><td align="left">   3                 </td> <td align="right">   32,000            </td> <td align="right">   228               </td> <td align="right">   0.0028            </td> </tr>
-<tr><td align="left">   4                 </td> <td align="right">   47,000            </td> <td align="right">   270               </td> <td align="right">   0.0               </td> </tr>
-<tr><td align="left">   5                 </td> <td align="right">   51,000            </td> <td align="right">   270               </td> <td align="right">   -0.0028           </td> </tr>
-<tr><td align="left">   6                 </td> <td align="right">   71,000            </td> <td align="right">   214               </td> <td align="right">   <tt>NaN</tt>             </td> </tr>
-</table>
-<p>
-
-<h3>URLs <a name="subsubsec:ex"></a></h3>
-<p>
-Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or
-the entire URL if desired, <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>.  Here is a
-plain file link <a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a>, or
-<a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt">a link with
-newline</a>. Can test spaces with the link with word
-too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <tt>file:///</tt> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a
-file</a> is
-fine to have.
-
-<p>
-Here are some tough tests of URLs, especially for the <tt>latex</tt> format:
-<a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas
-and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>.
-
-<p>
-<!-- Comments should be inserted outside paragraphs (because of reST): -->
-<!-- note that when there is no http: or file:, it can be a file link -->
-<!-- if the link name is URL, url, "URL", or "url". -->
-
-<p>
-
-<p>
-
-<h3>LaTeX Mathematics  <a name="___sec7"></a></h3>
-<p>
-Here is an equation without label using backslash-bracket environment:
-$$ a = b + c $$
-or with number and label, as in \eqref{my:eq1}, using the equation environment:
-$$
-\begin{equation}
-{\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
-\end{equation}
-$$
-We can refer to this equation by \eqref{my:eq1}.
-
-<p>
-Here is a system without equation numbers, using the align-astrisk environment:
-$$
-\begin{align*}
-\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
-b &= \nabla^2 u + \nabla^4 v
-\end{align*}
-$$
-
-<p>
-
-<p>
-And here is a system of equations with labels in an align environment:
-$$
-\begin{align}
-a &= q + 4 + 5+ 6 \label{eq1} \\ 
-b &= \nabla^2 u + \nabla^4 x \label{eq2}
-\end{align}
-$$
-We can refer to \eqref{eq1}-\eqref{eq2}.
-
-<p>
-Many of the next environments will fail in non-latex formats.
-Testing multiline:
-$$
-\begin{multline}
-a = b = q + \\ 
-  f + \nabla\cdot\nabla u
-\label{multiline:eq1}
-\end{multline}
-$$
-Testing split:
-$$
-\begin{equation}
-\label{split:envir:eq}
-\begin{split}
-a = b = q &+ \\ 
-  & f + \nabla\cdot\nabla u
-\end{split}
-\end{equation}
-$$
-We can refer to the last equation by \eqref{split:envir:eq}.
-
-<p>
-Testing gather:
-$$
-\begin{gather}
-a = b \\ 
-c = d + 7 + 9
-\end{gather}
-$$
-
-<p>
-Testing alignat:
-$$
-\begin{alignat}{2}
-a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\ 
-b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
-\end{alignat}
-$$
-Let us refer to \eqref{eq1}-\eqref{eq2} again, and to the
-alignat variant \eqref{eq1a}-\eqref{eq2a}, and to \eqref{my:eq1}.
-
-<p>
-Testing eqnarray:
-$$
-\begin{eqnarray}
-{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\ 
-{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
-\end{eqnarray}
-$$
-
-<p>
-More mathematical typesetting is demonstrated in the coming exercises.
-
-<p>
-Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#demo:ex:2">Project 2: Compute a Probability</a>,
-as well as <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 6: References in a headings do not work well in html</a>, and in
-between there we have <a href="#exer:some:formula">Exercise 5: Make references to projects and problems</a>.
-
-<p>
-
-<h2>Exercises  <a name="___sec8"></a></h2>
-<p>
-
-<p>
-
-<p>
-<!-- --- begin exercise -->
-
-<p>
-
-<h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
-<p>
-<!-- Torture tests -->
-
-<p>
-Make a program that simulates flipping a coin \( N \) times.
-Print out "tail" or "head" for each flip and
-let the program count the number of heads.
-
-<p>
-
-<p>
-<!-- Test syntax error -->
-
-<p>
-<b>Hint 1.</b> Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
-
-<p>
-<b>Hint 2.</b> Draw an integer among \( \{1,2\} \) with
-<tt>r = random.randint(1,2)</tt> and define head when <tt>r</tt> is 1.
-
-<p>
-
-<p>
-Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
-<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
-
-<p>
-<!-- --- end of exercise -->
-
-<p>
-
-<p>
-
-<p>
-
-<p>
-<!-- --- begin exercise -->
-
-<p>
-
-<h3>Project 2: Compute a Probability <a name="demo:ex:2"></a></h3>
-<p>
-<!-- Minimalistic exercise -->
-
-<p>
-
-<p>
-What is the probability of getting a number between 0.5 and 0.6 when
-drawing uniformly distributed random numbers from the interval \( [0,1) \)?
-
-<p>
-<b>Hint.</b> To answer this question empirically, let a program
-draw \( N \) such random numbers using Python's standard <tt>random</tt> module,
-count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
-compute the probability as \( M/N \).
-
-<p>
-<!-- --- end of exercise -->
-
-<p>
-
-<p>
-
-<p>
-
-<p>
-<!-- --- begin exercise -->
-
-<p>
-
-<h3>Project 3: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
-<p>
-The formula for a circle is given by
-
-<p>
-$$
-\begin{align}
-x &= x_0 + R\cos 2\pi t,\\ 
-y &= y_0 + R\sin 2\pi t,
-\end{align}
-$$
-where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the
-center point, and \( t \) is a parameter in the unit interval \( [0,1] \).
-For any \( t \), \( (x,y) \) is a point on the circle.
-The formula can be used to generate <tt>n</tt> points on a circle:
-
-<p>
-<p>
-
-<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #AA22FF; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
-
-<span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">circle</span>(R, x0, y0, n<span style="color: #666666">=501</span>):
-    t <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>, n)
-    x <span style="color: #666666">=</span> x0 <span style="color: #666666">+</span> R<span style="color: #666666">*</span>np<span style="color: #666666">.</span>cos(<span style="color: #666666">2*</span>np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>t)
-    y <span style="color: #666666">=</span> y0 <span style="color: #666666">+</span> R<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(<span style="color: #666666">2*</span>np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>t)
-    <span style="color: #AA22FF; font-weight: bold">return</span> x, y
-
-x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2.0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>)
-</pre></div>
-</td></tr></table><p>
-
-<p>
-<!-- Often in an exercise we have some comments about the solution -->
-<!-- which we normally want to keep where they are. -->
-
-<p>
-The goal of this project is to draw \( N \) circles with random
-center and radius. Plot each circle using the <tt>circle</tt> function
-above.
-
-<p>
-
-<p>
-<b>a)</b> Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
-
-<p>
-<b>Hint.</b> Use the <tt>numpy.random</tt> module to draw the
-\( x_0 \), \( y_0 \), and \( R \) quantities.
-
-<p>
-
-<p>
-
-<p>
-<b>b)</b> Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
-<em>Filename</em>: <tt>norm.py  </tt>.
-
-<p>
-<b>c)</b> Let \( R \) and \( (x_0,y_0) \) be normally distributed.
-
-<p>
-Filename: <tt>circles.pdf</tt>.
-
-<p>
-<!-- Closing remarks for this Project -->
-
-<p>
-
-<h4>Remarks  <a name="___sec12"></a></h4>
-<p>
-At the very end of the exercise it may be appropriate to summarize
-and give some perspectives.
-
-<p>
-
-<p>
-<!-- --- end of exercise -->
-
-<p>
-
-<p>
-
-<p>
-
-<p>
-<!-- --- begin exercise -->
-
-<p>
-
-<h3>Exercise 4: Determine some Distance <a name="exer:dist"></a></h3>
-<p>
-Intro to this exercise. Questions are in subexercises below.
-
-<p>
-
-<p>
-
-<p>
-<b>a)</b> Subexercises are numbered a), b), etc.
-
-<p>
-<b>Hint 1.</b> First hint to subexercise a).
-
-<p>
-<b>Hint 2.</b> Second hint to subexercise a).
-<em>Filename</em>: <tt>subexer_a.pdf</tt>.
-
-<p>
-
-<p>
-<b>b)</b> Here goes the text for subexercise b).
-
-<p>
-<b>Hint.</b> A hint for this subexercise.
-<em>Filename</em>: <tt>subexer_b.pdf</tt>.
-
-<p>
-
-<p>
-<!-- Closing remarks for this Exercise -->
-
-<p>
-
-<h4>Remarks  <a name="___sec14"></a></h4>
-<p>
-Some final closing remarks, e.g., summarizing the main findings
-and their implications in other problems can be made. These
-remarks will appear at the end of the typeset exercise.
-
-<p>
-
-<p>
-<!-- --- end of exercise -->
-
-<p>
-
-<p>
-
-<h2>Here goes another section  <a name="___sec15"></a></h2>
-<p>
-With some text, before we continue with exercises.
-
-<p>
-
-<h2>More Exercises  <a name="___sec16"></a></h2>
-<p>
-
-<p>
-
-<p>
-<!-- --- begin exercise -->
-
-<p>
-
-<h3>Exercise 5: Make references to projects and problems <a name="exer:some:formula"></a></h3>
-<p>
-Pick a statement from <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
-and verify it.
-Filename: <tt>verify_formula.py</tt>.
-
-<p>
-<!-- --- end of exercise -->
-
-<p>
-
-<p>
-
-<p>
-
-<p>
-<!-- --- begin exercise -->
-
-<p>
-
-<h3>Project 6: References in a headings do not work well in html <a name="exer:you"></a></h3>
-<p>
-Refer to the previous exercise as <a href="#exer:some:formula">Exercise 5: Make references to projects and problems</a>,
-the two before that as <a href="#demo:ex:2">Project 2: Compute a Probability</a> and <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a>,
-and this one as <a href="#exer:you">Project 6: References in a headings do not work well in html</a>.
-Filename: <tt>selc_composed.pdf</tt>.
-
-<p>
-<!-- --- end of exercise -->
-
-<p>
-
-<p>
-
-<h2>Appendix: Just for testing; part I  <a name="___sec19"></a></h2>
-<p>
-This is the first appendix.
-
-<p>
-
-<h3>A subsection within an appendix  <a name="___sec20"></a></h3>
-<p>
-
-<h2>Appendix: Just for testing; part II  <a name="___sec21"></a></h2>
-<p>
-This is more stuff for an appendix.
-
-<p>
-
-<h3>Appendix: Testing identical titles  <a name="___sec22"></a></h3>
-<p>
-Without label.
-
-<p>
-
-<h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
-<p>
-With label.
-
-<p>
-
-<h3>Appendix: Testing identical titles <a name="test:title:id2"></a></h3>
-<p>
-With label.
-
-<p>
-
-<h3>Appendix: Testing identical titles  <a name="___sec25"></a></h3>
-<p>
-Without label.
-
+<a href="._part0001_testdoc.html"><img src="html_images/._next_slide1.gif" border=0 alt="next"></a>
 <!-- ------------------- end of main content ----------------->
 </body>
 </html>
@@ -12440,6 +11589,15 @@ MathJax.Hub.Config({
 
 <body>
     
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\half}{\frac{1}{2}}
+$$
+
+
 
 <!-- ------------------- main content ------------------------>
 
@@ -12957,10 +12115,1253 @@ The text is rendered to "Generalized references are described in
 the section "Generalized References"."
 
 
+************** File: ._part0000_testdoc.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<!--
+Color definitions:  http://www.december.com/html/spec/color0.html
+CSS examples:       http://www.w3schools.com/css/css_examples.asp
+-->
+
+<style type="text/css">
+    body {
+      margin:5;
+      padding:0;
+      border:0;	/* Remove the border around the viewport in old versions of IE */
+      width:100%;
+      background: #fdf6e3;
+      min-width:600px;	/* Minimum width of layout - remove if not required */
+      font-family: Verdana, Helvetica, Arial, sans-serif;
+      font-size: 1.0em;
+      line-height: 1.3em;
+      color: #657b83;
+    }
+    a { color: #657b83; text-decoration:none; }
+    a:hover { color: #b58900; background: #eee8d5; text-decoration:none; }
+    h1, h2, h3 { margin:.8em 0 .2em 0; padding:0; }
+    h2 { font-variant: small-caps; }
+    pre {
+      background: #fdf6e3;
+      -webkit-box-shadow: inset 0 0 2px #000000;
+      -moz-box-shadow: inset 0 0 2px #000000;
+      box-shadow: inset 0 0 2px #000000;
+      color: #586e75;
+      margin-left: 0px;
+      font-family: 'Droid Sans Mono', monospace;
+      padding: 2px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+    }
+    tt { font-family: "Courier New", Courier; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p { text-indent: 0px; }
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+</style>
+
+<!-- Use MathJax to render mathematics -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+</head>
+
+<body>
+    
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\half}{\frac{1}{2}}
+$$
+
+
+
+<A NAME="PART0000"></A>
+<!-- ------------------- main content ------------------------>
+
+<p>
+
+<p>
+
+<title>A Document for Testing Doconce</title>
+
+<center><h1>A Document for Testing Doconce</h1></center>  <! -- document title -->
+
+<! -- author(s) -->
+
+<center>
+<b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
+</center>
+
+<center>
+<b>Kaare Dump</b> [3]
+</center>
+
+<center>
+<b>A. Dummy Author</b> 
+</center>
+
+<center>
+<b>I. S. Overworked</b> [4, 5, 6, 7]
+</center>
+
+<center>
+<b>J. Doe</b>  (<tt>j_doe at cyberspace.com</tt>)
+</center>
+
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
+<center>[2] <b>Department of Informatics, University of Oslo</b></center>
+<center>[3] <b>Segfault Inc, Cyberspace</b></center>
+<center>[4] <b>Inst1</b></center>
+<center>[5] <b>Inst2, Somewhere</b></center>
+<center>[6] <b>Third Inst, Elsewhere</b></center>
+<center>[7] <b>Fourth Inst</b></center>
+
+
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+
+<p>
+<h2>Table of contents</h2>
+
+<p>
+
+<p>
+<a href="._part0001_testdoc.html#sec1"> Section 1 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec1"> Subsection 1 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:ex"> Subsection 2 </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec4"> Custom Environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:table"> Tables </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsubsec:ex"> URLs </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec7"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc.html#___sec8"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:2"> Project 2: Compute a Probability </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#proj:circle1"> Project 3: Explore Distributions of Random Circles </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec12"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 4: Determine some Distance </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec14"> Remarks </a><br>
+<a href="._part0002_testdoc.html#___sec15"> Here goes another section </a><br>
+<a href="._part0002_testdoc.html#___sec16"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 5: Make references to projects and problems </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 6: References in a headings do not work well in html </a><br>
+<a href="._part0002_testdoc.html#___sec19"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec20"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc.html#___sec21"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec22"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id1"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id2"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec25"> Appendix: Testing identical titles </a><br>
+
+<p>
+<p>
+
+<p>
+
+<p>
+
+<p>
+
+<p>
+<p>
+
+<a href="._part0001_testdoc.html"><img src="html_images/._next_slide1.gif" border=0 alt="next"></a>
+<!-- ------------------- end of main content ----------------->
+</body>
+</html>
+
+************** File: ._part0001_testdoc.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<!--
+Color definitions:  http://www.december.com/html/spec/color0.html
+CSS examples:       http://www.w3schools.com/css/css_examples.asp
+-->
+
+<style type="text/css">
+    body {
+      margin:5;
+      padding:0;
+      border:0;	/* Remove the border around the viewport in old versions of IE */
+      width:100%;
+      background: #fdf6e3;
+      min-width:600px;	/* Minimum width of layout - remove if not required */
+      font-family: Verdana, Helvetica, Arial, sans-serif;
+      font-size: 1.0em;
+      line-height: 1.3em;
+      color: #657b83;
+    }
+    a { color: #657b83; text-decoration:none; }
+    a:hover { color: #b58900; background: #eee8d5; text-decoration:none; }
+    h1, h2, h3 { margin:.8em 0 .2em 0; padding:0; }
+    h2 { font-variant: small-caps; }
+    pre {
+      background: #fdf6e3;
+      -webkit-box-shadow: inset 0 0 2px #000000;
+      -moz-box-shadow: inset 0 0 2px #000000;
+      box-shadow: inset 0 0 2px #000000;
+      color: #586e75;
+      margin-left: 0px;
+      font-family: 'Droid Sans Mono', monospace;
+      padding: 2px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+    }
+    tt { font-family: "Courier New", Courier; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p { text-indent: 0px; }
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+</style>
+
+<!-- Use MathJax to render mathematics -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+</head>
+
+<body>
+    
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\half}{\frac{1}{2}}
+$$
+
+
+
+<A NAME="PART0001"></A>
+<!-- !split -->
+<p>
+The format of this document is
+plain, homemade HTML (from Doconce).
+
+<p>
+
+<p>
+<b>Abstract.</b> This is a document with many test constructions for doconce syntax.
+It was used heavily for the development and kept for testing
+numerous constructions, also special and less common cases.
+
+<p>
+And exactly for test purposes we have an extra line here, which
+is part of the abstract.
+
+<p>
+<!-- Cannot demonstrate chapter headings since abstract and chapter -->
+<!-- is mutually exclusive in LaTeX -->
+
+<p>
+
+<h2>Section 1 <a name="sec1"></a></h2>
+<p>
+Here is a nested list:
+
+<p>
+
+<ul>
+  <li> item1</li>
+  <li> item2</li>
+  <li> item3 which continues
+    on the next line to test that feature</li>
+  <li> and a sublist</li>
+
+<ul>
+    <li> with indented subitem1</li>
+    <li> and a subitem2</li>
+</ul>
+
+  <li> and perhaps an ordered sublist</li>
+
+<ol>
+   <li> first item</li>
+   <li> second item,
+      continuing on a new line</li>
+</ol>
+
+</ul>
+
+<p>
+
+<a href="._part0000_testdoc.html"><img src="html_images/._prev_slide1.gif" border=0 alt="previous"></a>
+
+<a href="._part0002_testdoc.html"><img src="html_images/._next_slide1.gif" border=0 alt="next"></a>
+<!-- ------------------- end of main content ----------------->
+</body>
+</html>
+
+************** File: ._part0002_testdoc.html *****************
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Automatically generated HTML file from Doconce source
+(http://code.google.com/p/doconce/)
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<!--
+Color definitions:  http://www.december.com/html/spec/color0.html
+CSS examples:       http://www.w3schools.com/css/css_examples.asp
+-->
+
+<style type="text/css">
+    body {
+      margin:5;
+      padding:0;
+      border:0;	/* Remove the border around the viewport in old versions of IE */
+      width:100%;
+      background: #fdf6e3;
+      min-width:600px;	/* Minimum width of layout - remove if not required */
+      font-family: Verdana, Helvetica, Arial, sans-serif;
+      font-size: 1.0em;
+      line-height: 1.3em;
+      color: #657b83;
+    }
+    a { color: #657b83; text-decoration:none; }
+    a:hover { color: #b58900; background: #eee8d5; text-decoration:none; }
+    h1, h2, h3 { margin:.8em 0 .2em 0; padding:0; }
+    h2 { font-variant: small-caps; }
+    pre {
+      background: #fdf6e3;
+      -webkit-box-shadow: inset 0 0 2px #000000;
+      -moz-box-shadow: inset 0 0 2px #000000;
+      box-shadow: inset 0 0 2px #000000;
+      color: #586e75;
+      margin-left: 0px;
+      font-family: 'Droid Sans Mono', monospace;
+      padding: 2px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+    }
+    tt { font-family: "Courier New", Courier; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p { text-indent: 0px; }
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+</style>
+
+<!-- Use MathJax to render mathematics -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+</head>
+
+<body>
+    
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\x}{\pmb{x}}
+\newcommand{\normalvec}{\pmb{n}}
+\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\half}{\frac{1}{2}}
+$$
+
+
+
+<A NAME="PART0002"></A>
+<!-- !split -->
+<p>
+
+<h3>Subsection 1  <a name="___sec1"></a></h3>
+<p>
+More text, with a reference back to the section <a href="._part0001_testdoc.html#sec1">Section 1</a> and further
+to the section <a href="#subsubsec:ex">URLs</a>. 
+Let's do some copying from files too. First from subroutine up to the very end,
+
+<p>
+<p>
+
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #AA22FF; font-weight: bold">subroutine    </span><span style="color: #B8860B">test</span>()
+      <span style="color: #00BB00; font-weight: bold">integer </span><span style="color: #B8860B">i</span>
+      <span style="color: #00BB00; font-weight: bold">real</span><span style="color: #666666">*8</span> <span style="color: #B8860B">r</span>
+      <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+      <span style="color: #AA22FF; font-weight: bold">do </span><span style="color: #B8860B">i</span> <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #B8860B">i</span>
+         <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #B8860B">r</span> <span style="color: #666666">+</span> <span style="color: #B8860B">i</span>
+      <span style="color: #AA22FF; font-weight: bold">end do</span>
+<span style="color: #AA22FF; font-weight: bold">      return</span>
+<span style="color: #B8860B">C</span>     <span style="color: #B8860B">END1</span>
+
+      <span style="color: #AA22FF; font-weight: bold">program </span><span style="color: #B8860B">testme</span>
+      <span style="color: #AA22FF; font-weight: bold">call </span><span style="color: #B8860B">test</span>()
+      <span style="color: #AA22FF; font-weight: bold">return</span>
+</pre></div>
+</td></tr></table><p>
+and then just the subroutine,
+<p>
+
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #AA22FF; font-weight: bold">subroutine    </span><span style="color: #B8860B">test</span>()
+      <span style="color: #00BB00; font-weight: bold">integer </span><span style="color: #B8860B">i</span>
+      <span style="color: #00BB00; font-weight: bold">real</span><span style="color: #666666">*8</span> <span style="color: #B8860B">r</span>
+      <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+      <span style="color: #AA22FF; font-weight: bold">do </span><span style="color: #B8860B">i</span> <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #B8860B">i</span>
+         <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #B8860B">r</span> <span style="color: #666666">+</span> <span style="color: #B8860B">i</span>
+      <span style="color: #AA22FF; font-weight: bold">end do</span>
+<span style="color: #AA22FF; font-weight: bold">      return</span>
+</pre></div>
+</td></tr></table><p>
+and finally the complete file:
+<p>
+
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B8860B">C</span>     <span style="color: #B8860B">a</span> <span style="color: #B8860B">comment</span>
+
+      <span style="color: #AA22FF; font-weight: bold">subroutine    </span><span style="color: #B8860B">test</span>()
+      <span style="color: #00BB00; font-weight: bold">integer </span><span style="color: #B8860B">i</span>
+      <span style="color: #00BB00; font-weight: bold">real</span><span style="color: #666666">*8</span> <span style="color: #B8860B">r</span>
+      <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+      <span style="color: #AA22FF; font-weight: bold">do </span><span style="color: #B8860B">i</span> <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #B8860B">i</span>
+         <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #B8860B">r</span> <span style="color: #666666">+</span> <span style="color: #B8860B">i</span>
+      <span style="color: #AA22FF; font-weight: bold">end do</span>
+<span style="color: #AA22FF; font-weight: bold">      return</span>
+<span style="color: #B8860B">C</span>     <span style="color: #B8860B">END1</span>
+
+      <span style="color: #AA22FF; font-weight: bold">program </span><span style="color: #B8860B">testme</span>
+      <span style="color: #AA22FF; font-weight: bold">call </span><span style="color: #B8860B">test</span>()
+      <span style="color: #AA22FF; font-weight: bold">return</span>
+</pre></div>
+</td></tr></table><p>
+
+<p>
+Testing other code environments. First Python:
+<p>
+
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">f</span>(x):
+    <span style="color: #AA22FF; font-weight: bold">return</span> x<span style="color: #666666">+1</span>
+</pre></div>
+</td></tr></table><p>
+Then Cython:
+<p>
+
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">cpdef</span> <span style="color: #00A000">f</span>(double x):
+    <span style="color: #AA22FF; font-weight: bold">return</span> x <span style="color: #666666">+</span> <span style="color: #666666">1</span>
+</pre></div>
+</td></tr></table><p>
+
+<p>
+<!-- This one tests a + before a code environment -->
+C++:
+<p>
+
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008800">#include &lt;iostream&gt;</span>
+
+<span style="color: #00BB00; font-weight: bold">int</span> main()
+{
+   std<span style="color: #666666">::</span>cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BB4444">&quot;Sample output&quot;</span> <span style="color: #666666">&lt;&lt;</span> std<span style="color: #666666">::</span>endl;
+   <span style="color: #AA22FF; font-weight: bold">return</span> <span style="color: #666666">0</span>
+}
+</pre></div>
+</td></tr></table><p>
+System call:
+<p>
+
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; mkdir <span style="color: #AA22FF">test</span>
+Terminal&gt; <span style="color: #AA22FF">cd test</span>
+Terminal&gt; myprog -f
+output1
+output2
+</pre></div>
+</td></tr></table><p>
+
+<p>
+It is time to test <tt>verbatim inline font</tt> especially with <tt>a newline
+inside the text</tt> and an exclamation mark at the end: <tt>BEGIN</tt>! The
+exclamation mark inside the verbatim text is not smart for latex as
+we use ! in the <tt>verb</tt> typesetting... Also test backslashes
+like <tt>\begin</tt> and <tt>\end</tt> in inline verbatim text.
+
+<p>
+
+<h3>Subsection 2 <a name="subsec:ex"></a></h3>
+<p>
+Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
+there is a flow.
+
+<p>
+
+<p>
+<center> <! -- figure -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  Visualization of flow by streamtubes. <a name="fig:impact"></a> </p></center>
+<p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p>
+</center>
+
+<p>
+
+<p>
+Figures without captions are allowed.
+
+<p>
+<center><p><img src="../doc/manual/figs/streamtubes.png" align="bottom" width=200></p></center>
+
+<p>
+Test of movies.
+
+<p>
+
+<embed src="../doc/manual/figs/mjolnir.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
+<p>
+<em> Mjolnir tsunami (by Sylfest Glimsdal).</em>
+</p>
+
+
+<p>
+<!-- Test empty caption: -->
+
+<p>
+
+<embed src="../doc/manual/figs/wavepacket.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
+<p>
+<em></em>
+</p>
+
+
+<p>
+<!-- Test wrong syntax and multi-line caption -->
+
+<p>
+
+<p><a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
+<em> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). <a name="mymov"></a> </em></p>
+
+<p>
+<!-- Check out the correct with and height of YouTube movies from the -->
+<!-- embed command that the YouTube page can generate -->
+
+<p>
+
+<iframe width="420" height="315" src="http://www.youtube.com/watch?v=_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
+
+
+<p>
+<!-- Test multi-line caption in figure -->
+
+<p>
+Here is figure <a href="#myfig">2</a> with a long multi-line caption
+and an extra space before the FIGURE keyword.
+
+<p>
+
+<p>
+<center> <! -- figure -->
+<hr class="figure">
+<center><p class="caption">Figure 2:  A long caption spanning several lines. <a name="myfig"></a> </p></center>
+<p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" width=500></p>
+</center>
+
+<p>
+
+<p>
+Movie <a href="#mymov">mymov</a> has a similar problem.
+
+<p>
+<!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
+
+<p>
+
+<p>
+<!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
+
+<p>
+
+<h3>The \( \theta \) parameter (not \( \nabla \)?) <a name="decay:sec:theta"></a></h3>
+<p>
+Functions do not always need to be advanced, here is one
+involving \( \theta \):
+<p>
+
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">def f(theta):
+    return theta**2
+</pre></div>
+</td></tr></table><p>
+
+<p>
+<b>More on \( \theta \).</b> Here is more text following headline with math.
+
+<p>
+Newcommands must also be tested: \( \half \), \( \x \), \( \Ddt{u} \),
+both inline and in block:
+
+<p>
+$$
+\begin{align*}
+\Ddt{u} &= 0\\ 
+\half &= 1/2\\ 
+\x &= \normalvec
+\end{align*}
+$$
+
+<p>
+
+<h3>Custom Environments  <a name="___sec4"></a></h3>
+<p>
+Here is an attempt to create a theorem environment via Mako
+(for counting theorems) and comment lines to help replacing lines in
+the <tt>.tex</tt> by proper begin-end LaTeX environments for theorems.
+Should look nice in most formats!
+
+<p>
+
+<p>
+
+<p>
+<!-- begin theorem -->
+<a name="theorem:fundamental1"></a>
+
+<p>
+
+<p>
+<b>Theorem 5.</b> Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
+<!-- end theorem -->
+
+<p>
+<!-- begin proof -->
+<b>Proof.</b> Since \( c=a+b \), the result follows from straightforward addition.
+\( \Diamond \)
+<!-- end proof -->
+
+<p>
+As we see, the proof of Theorem 5 is a modest
+achievement.
+
+<p>
+
+<p>
+
+<h3>Tables <a name="subsec:table"></a></h3>
+<p>
+
+<p>
+<!-- index with comma could fool sphinx -->
+
+<p>
+Let us take this table from the manual:
+
+<p>
+
+<p>
+<table border="1">
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
+<tr><td align="left">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
+<tr><td align="left">   2.0             </td> <td align="right">   1.376512        </td> <td align="right">   11.919          </td> </tr>
+<tr><td align="left">   4.0             </td> <td align="right">   1.1E+1          </td> <td align="right">   14.717624       </td> </tr>
+</table>
+<p>
+
+<p>
+The Doconce source code reads
+<p>
+
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  |--------------------------------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+</pre></div>
+</td></tr></table><p>
+
+<p>
+Here is yet another table to test that we can handle more than
+one table:
+
+<p>
+<table border="1">
+<tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
+<tr><td align="left">   0.0             </td> <td align="left">   1.4186          </td> <td align="left">   -5.01           </td> </tr>
+<tr><td align="left">   1.0             </td> <td align="left">   1.376512        </td> <td align="left">   11.919          </td> </tr>
+<tr><td align="left">   3.0             </td> <td align="left">   1.1E+1          </td> <td align="left">   14.717624       </td> </tr>
+</table>
+<p>
+And one with math headings (that are expanded and must be treated
+accordingly) and verbatim heading and entry:
+
+<p>
+<table border="1">
+<tr><td align="center"><b>    \( i \)     </b></td> <td align="center"><b>   \( h_i \)    </b></td> <td align="center"><b> \( \bar T_i \) </b></td> <td align="center"><b>     <tt>L_i</tt>      </b></td> </tr>
+<tr><td align="left">   0                 </td> <td align="right">   0                 </td> <td align="right">   288               </td> <td align="right">   -0.0065           </td> </tr>
+<tr><td align="left">   1                 </td> <td align="right">   11,000            </td> <td align="right">   216               </td> <td align="right">   0.0               </td> </tr>
+<tr><td align="left">   2                 </td> <td align="right">   20,000            </td> <td align="right">   216               </td> <td align="right">   0.001             </td> </tr>
+<tr><td align="left">   3                 </td> <td align="right">   32,000            </td> <td align="right">   228               </td> <td align="right">   0.0028            </td> </tr>
+<tr><td align="left">   4                 </td> <td align="right">   47,000            </td> <td align="right">   270               </td> <td align="right">   0.0               </td> </tr>
+<tr><td align="left">   5                 </td> <td align="right">   51,000            </td> <td align="right">   270               </td> <td align="right">   -0.0028           </td> </tr>
+<tr><td align="left">   6                 </td> <td align="right">   71,000            </td> <td align="right">   214               </td> <td align="right">   <tt>NaN</tt>             </td> </tr>
+</table>
+<p>
+
+<h3>URLs <a name="subsubsec:ex"></a></h3>
+<p>
+Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or
+the entire URL if desired, <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>.  Here is a
+plain file link <a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a>, or
+<a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt">a link with
+newline</a>. Can test spaces with the link with word
+too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <tt>file:///</tt> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a
+file</a> is
+fine to have.
+
+<p>
+Here are some tough tests of URLs, especially for the <tt>latex</tt> format:
+<a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas
+and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>.
+
+<p>
+<!-- Comments should be inserted outside paragraphs (because of reST): -->
+<!-- note that when there is no http: or file:, it can be a file link -->
+<!-- if the link name is URL, url, "URL", or "url". -->
+
+<p>
+
+<p>
+
+<h3>LaTeX Mathematics  <a name="___sec7"></a></h3>
+<p>
+Here is an equation without label using backslash-bracket environment:
+$$ a = b + c $$
+or with number and label, as in \eqref{my:eq1}, using the equation environment:
+$$
+\begin{equation}
+{\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
+\end{equation}
+$$
+We can refer to this equation by \eqref{my:eq1}.
+
+<p>
+Here is a system without equation numbers, using the align-astrisk environment:
+$$
+\begin{align*}
+\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+b &= \nabla^2 u + \nabla^4 v
+\end{align*}
+$$
+
+<p>
+
+<p>
+And here is a system of equations with labels in an align environment:
+$$
+\begin{align}
+a &= q + 4 + 5+ 6 \label{eq1} \\ 
+b &= \nabla^2 u + \nabla^4 x \label{eq2}
+\end{align}
+$$
+We can refer to \eqref{eq1}-\eqref{eq2}.
+
+<p>
+Many of the next environments will fail in non-latex formats.
+Testing multiline:
+$$
+\begin{multline}
+a = b = q + \\ 
+  f + \nabla\cdot\nabla u
+\label{multiline:eq1}
+\end{multline}
+$$
+Testing split:
+$$
+\begin{equation}
+\label{split:envir:eq}
+\begin{split}
+a = b = q &+ \\ 
+  & f + \nabla\cdot\nabla u
+\end{split}
+\end{equation}
+$$
+We can refer to the last equation by \eqref{split:envir:eq}.
+
+<p>
+Testing gather:
+$$
+\begin{gather}
+a = b \\ 
+c = d + 7 + 9
+\end{gather}
+$$
+
+<p>
+Testing alignat:
+$$
+\begin{alignat}{2}
+a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\ 
+b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
+\end{alignat}
+$$
+Let us refer to \eqref{eq1}-\eqref{eq2} again, and to the
+alignat variant \eqref{eq1a}-\eqref{eq2a}, and to \eqref{my:eq1}.
+
+<p>
+Testing eqnarray:
+$$
+\begin{eqnarray}
+{\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\ 
+{\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
+\end{eqnarray}
+$$
+
+<p>
+More mathematical typesetting is demonstrated in the coming exercises.
+
+<p>
+Below, we have <a href="#demo:ex:1">Problem 1: Flip a Coin</a> and <a href="#demo:ex:2">Project 2: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 6: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 5: Make references to projects and problems</a>.
+
+<p>
+
+<h2>Exercises  <a name="___sec8"></a></h2>
+<p>
+
+<p>
+
+<p>
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Problem 1: Flip a Coin <a name="demo:ex:1"></a></h3>
+<p>
+<!-- Torture tests -->
+
+<p>
+Make a program that simulates flipping a coin \( N \) times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
+
+<p>
+
+<p>
+<!-- Test syntax error -->
+
+<p>
+<b>Hint 1.</b> Use <tt>r = random.random()</tt> and define head as <tt>r <= 0.5</tt>.
+
+<p>
+<b>Hint 2.</b> Draw an integer among \( \{1,2\} \) with
+<tt>r = random.randint(1,2)</tt> and define head when <tt>r</tt> is 1.
+
+<p>
+
+<p>
+Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
+<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+<p>
+
+<p>
+
+<p>
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Project 2: Compute a Probability <a name="demo:ex:2"></a></h3>
+<p>
+<!-- Minimalistic exercise -->
+
+<p>
+
+<p>
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval \( [0,1) \)?
+
+<p>
+<b>Hint.</b> To answer this question empirically, let a program
+draw \( N \) such random numbers using Python's standard <tt>random</tt> module,
+count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
+compute the probability as \( M/N \).
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+<p>
+
+<p>
+
+<p>
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Project 3: Explore Distributions of Random Circles <a name="proj:circle1"></a></h3>
+<p>
+The formula for a circle is given by
+
+<p>
+$$
+\begin{align}
+x &= x_0 + R\cos 2\pi t,\\ 
+y &= y_0 + R\sin 2\pi t,
+\end{align}
+$$
+where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the
+center point, and \( t \) is a parameter in the unit interval \( [0,1] \).
+For any \( t \), \( (x,y) \) is a point on the circle.
+The formula can be used to generate <tt>n</tt> points on a circle:
+
+<p>
+<p>
+
+<table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #AA22FF; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+
+<span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">circle</span>(R, x0, y0, n<span style="color: #666666">=501</span>):
+    t <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>, n)
+    x <span style="color: #666666">=</span> x0 <span style="color: #666666">+</span> R<span style="color: #666666">*</span>np<span style="color: #666666">.</span>cos(<span style="color: #666666">2*</span>np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>t)
+    y <span style="color: #666666">=</span> y0 <span style="color: #666666">+</span> R<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(<span style="color: #666666">2*</span>np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>t)
+    <span style="color: #AA22FF; font-weight: bold">return</span> x, y
+
+x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2.0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>)
+</pre></div>
+</td></tr></table><p>
+
+<p>
+<!-- Often in an exercise we have some comments about the solution -->
+<!-- which we normally want to keep where they are. -->
+
+<p>
+The goal of this project is to draw \( N \) circles with random
+center and radius. Plot each circle using the <tt>circle</tt> function
+above.
+
+<p>
+
+<p>
+<b>a)</b> Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
+
+<p>
+<b>Hint.</b> Use the <tt>numpy.random</tt> module to draw the
+\( x_0 \), \( y_0 \), and \( R \) quantities.
+
+<p>
+
+<p>
+
+<p>
+<b>b)</b> Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
+<em>Filename</em>: <tt>norm.py  </tt>.
+
+<p>
+<b>c)</b> Let \( R \) and \( (x_0,y_0) \) be normally distributed.
+
+<p>
+Filename: <tt>circles.pdf</tt>.
+
+<p>
+<!-- Closing remarks for this Project -->
+
+<p>
+
+<h4>Remarks  <a name="___sec12"></a></h4>
+<p>
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+<p>
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+<p>
+
+<p>
+
+<p>
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Exercise 4: Determine some Distance <a name="exer:dist"></a></h3>
+<p>
+Intro to this exercise. Questions are in subexercises below.
+
+<p>
+
+<p>
+
+<p>
+<b>a)</b> Subexercises are numbered a), b), etc.
+
+<p>
+<b>Hint 1.</b> First hint to subexercise a).
+
+<p>
+<b>Hint 2.</b> Second hint to subexercise a).
+<em>Filename</em>: <tt>subexer_a.pdf</tt>.
+
+<p>
+
+<p>
+<b>b)</b> Here goes the text for subexercise b).
+
+<p>
+<b>Hint.</b> A hint for this subexercise.
+<em>Filename</em>: <tt>subexer_b.pdf</tt>.
+
+<p>
+
+<p>
+<!-- Closing remarks for this Exercise -->
+
+<p>
+
+<h4>Remarks  <a name="___sec14"></a></h4>
+<p>
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+<p>
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+<p>
+
+<h2>Here goes another section  <a name="___sec15"></a></h2>
+<p>
+With some text, before we continue with exercises.
+
+<p>
+
+<h2>More Exercises  <a name="___sec16"></a></h2>
+<p>
+
+<p>
+
+<p>
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Exercise 5: Make references to projects and problems <a name="exer:some:formula"></a></h3>
+<p>
+Pick a statement from <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 1: Flip a Coin</a>
+and verify it.
+Filename: <tt>verify_formula.py</tt>.
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+<p>
+
+<p>
+
+<p>
+<!-- --- begin exercise -->
+
+<p>
+
+<h3>Project 6: References in a headings do not work well in html <a name="exer:you"></a></h3>
+<p>
+Refer to the previous exercise as <a href="#exer:some:formula">Exercise 5: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 2: Compute a Probability</a> and <a href="#proj:circle1">Project 3: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 6: References in a headings do not work well in html</a>.
+Filename: <tt>selc_composed.pdf</tt>.
+
+<p>
+<!-- --- end of exercise -->
+
+<p>
+
+<p>
+
+<h2>Appendix: Just for testing; part I  <a name="___sec19"></a></h2>
+<p>
+This is the first appendix.
+
+<p>
+
+<h3>A subsection within an appendix  <a name="___sec20"></a></h3>
+<p>
+
+<h2>Appendix: Just for testing; part II  <a name="___sec21"></a></h2>
+<p>
+This is more stuff for an appendix.
+
+<p>
+
+<h3>Appendix: Testing identical titles  <a name="___sec22"></a></h3>
+<p>
+Without label.
+
+<p>
+
+<h3>Appendix: Testing identical titles <a name="test:title:id1"></a></h3>
+<p>
+With label.
+
+<p>
+
+<h3>Appendix: Testing identical titles <a name="test:title:id2"></a></h3>
+<p>
+With label.
+
+<p>
+
+<h3>Appendix: Testing identical titles  <a name="___sec25"></a></h3>
+<p>
+Without label.
+
+<p>
+
+<a href="._part0001_testdoc.html"><img src="html_images/._prev_slide1.gif" border=0 alt="previous"></a>
+<!-- ------------------- end of main content ----------------->
+</body>
+</html>
+
 ************** File: make.sh *****************
 #!/bin/sh -x
 doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized
 doconce remove_exercise_answers testdoc.html
+doconce split_html testdoc.html
 
 doconce format latex testdoc.do.txt
 doconce format pdflatex testdoc.do.txt --latex-printed
@@ -27194,7 +27595,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sun, 11 Nov 2012 (14:33)
+DATE: Sun, 11 Nov 2012 (15:33)
 
 
 
@@ -27298,7 +27699,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sun, 11 Nov 2012 (14:33)
+DATE: Sun, 11 Nov 2012 (15:33)
 
 
 
@@ -27412,7 +27813,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 11 Nov 2012 (14:33)</center>
+<center>Sun, 11 Nov 2012 (15:33)</center>
 
 
 
@@ -27543,7 +27944,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 11 Nov 2012 (14:33)</center>
+<center>Sun, 11 Nov 2012 (15:33)</center>
 
 
 
@@ -29868,6 +30269,16 @@ $$
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
 \newcommand{\half}{\frac{1}{2}}
+$$
+
+
+<!-- newcommands_replace.tex -->
+$$
+\newcommand{\beqa}{\begin{eqnarray}}
+\newcommand{\eeqa}{\end{eqnarray}}
+\newcommand{\ep}{\thinspace . }
+\newcommand{\uvec}{\vec u}
+\newcommand{\Q}{\pmb{Q}}
 $$
 
 
@@ -72891,6 +73302,7 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 output in testdoc.html
 + doconce remove_exercise_answers testdoc.html
++ doconce split_html testdoc.html
 + doconce format latex testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to latex
