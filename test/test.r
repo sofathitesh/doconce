@@ -841,23 +841,23 @@ Here is a nested list:
 <p>
 
 <ul>
-  <li> item1
-  <li> item2
+  <li> item1</li>
+  <li> item2</li>
   <li> item3 which continues
-    on the next line to test that feature
-  <li> and a sublist
+    on the next line to test that feature</li>
+  <li> and a sublist</li>
 
 <ul>
-    <li> with indented subitem1
-    <li> and a subitem2
+    <li> with indented subitem1</li>
+    <li> and a subitem2</li>
 </ul>
 
-  <li> and perhaps an ordered sublist
+  <li> and perhaps an ordered sublist</li>
 
 <ol>
-   <li> first item
+   <li> first item</li>
    <li> second item,
-      continuing on a new line
+      continuing on a new line</li>
 </ol>
 
 </ul>
@@ -13607,16 +13607,16 @@ MathJax.Hub.Config({
    reStructuredText, Sphinx, XML, etc.  Would it be convenient to
    start with some very simple text-like format that easily converts
    to the formats listed above, and then at some later stage
-   eventually go with a particular format?
+   eventually go with a particular format?</li>
  <li> Do you need to write documents in varying formats but find it
    difficult to remember all the typesetting details of various
    formats like <a href="http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf">LaTeX</a>, <a href="http://www.htmlcodetutorial.com/">HTML</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html">reStructuredText</a>, <a href="http://sphinx.pocoo.org/contents.html">Sphinx</a>, and <a href="http://code.google.com/p/support/wiki/WikiSyntax">wiki</a>? Would it be convenient
    to generate the typesetting details of a particular format from a
-   very simple text-like format with minimal tagging?
+   very simple text-like format with minimal tagging?</li>
  <li> Do you have the same information scattered around in different
    documents in different typesetting formats? Would it be a good idea
    to write things once, in one format, stored in one place, and
-   include it anywhere?
+   include it anywhere?</li>
 </ul>
 
 If any of these questions are of interest, you should keep on reading.
@@ -13643,13 +13643,13 @@ Doconce is two things:
     RTF, numerous MS Word formats (including MS Office Open XML),
     DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
     Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.
+    Texinfo, MediaWiki, RTF, Groff, and other formats.</li>
  <li> Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
     a number of different destinations of diverse type (software
     source code, manuals, tutorials, books, wikis, memos, emails, etc.).
     The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".
+    The slogan is: "Write once, include anywhere".</li>
 </ol>
 
 Here are some Doconce features:
@@ -13659,24 +13659,24 @@ Here are some Doconce features:
 <ul>
   <li> Doconce markup does include tags, so the format is more tagged than
     Markdown and Pandoc, but less than reST, and very much less than
-    LaTeX and HTML.
+    LaTeX and HTML.</li>
   <li> Doconce can be converted to plain <em>untagged</em> text,
-    often desirable for computer programs and email.
+    often desirable for computer programs and email.</li>
   <li> Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
-    for the start and end lines.
+    for the start and end lines.</li>
   <li> Doconce has full support for LaTeX math and integrates well
-    with big LaTeX projects (books).
+    with big LaTeX projects (books).</li>
   <li> Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
     as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.
+    is just to make the initial versions of a Sphinx or wiki document.</li>
   <li> Contrary to the similar (and superior) Pandoc translator, Doconce
     supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
     lots of computer code environments in LaTeX, and a special exercise
     syntax. Doconce also also runs preprocessors (including Mako)
     such that the author can mix ordinary text with programming
-    construction for generating parts of the text.
+    construction for generating parts of the text.</li>
 </ul>
 
 Doconce was particularly written for the following sample applications:
@@ -13686,14 +13686,14 @@ Doconce was particularly written for the following sample applications:
 <ul>
   <li> Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.</li>
   <li> Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as LaTeX integrated in, e.g., a thesis.
+    web sites, and as LaTeX integrated in, e.g., a thesis.</li>
   <li> Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
-    Sphinx web pages, MS Word documents, or in wikis.
+    Sphinx web pages, MS Word documents, or in wikis.</li>
 </ul>
 
 History: Doconce was developed in 2006 at a time when most popular
@@ -13728,40 +13728,40 @@ som examples.
 <p>
 
 <ul>
-  <li> Bullet lists arise from lines starting with an asterisk.
-  <li> <em>Emphasized words</em> are surrounded by asterisks.
-  <li> <b>Words in boldface</b> are surrounded by underscores.
+  <li> Bullet lists arise from lines starting with an asterisk.</li>
+  <li> <em>Emphasized words</em> are surrounded by asterisks.</li>
+  <li> <b>Words in boldface</b> are surrounded by underscores.</li>
   <li> Words from computer code are enclosed in back quotes and
-    then typeset <tt>verbatim (in a monospace font)</tt>.
+    then typeset <tt>verbatim (in a monospace font)</tt>.</li>
   <li> Section headings are recognied by equality (<tt>=</tt>) signs before
     and after the title, and the number of <tt>=</tt> signs indicates the
     level of the section: 7 for main section, 5 for subsection, and
-    3 for subsubsection.
+    3 for subsubsection.</li>
   <li> Paragraph headings are recognized by a double underscore
-    before and after the heading.
+    before and after the heading.</li>
   <li> The abstract of a document starts with <em>Abstract</em> as paragraph
-    heading, and all text up to the next heading makes up the abstract,
+    heading, and all text up to the next heading makes up the abstract,</li>
   <li> Blocks of computer code can easily be included by placing
     <tt>!bc</tt> (begin code) and <tt>!ec</tt> (end code) commands at separate lines
-    before and after the code block.
-  <li> Blocks of computer code can also be imported from source files.
+    before and after the code block.</li>
+  <li> Blocks of computer code can also be imported from source files.</li>
   <li> Blocks of LaTeX mathematics can easily be included by placing
     <tt>!bt</tt> (begin TeX) and <tt>!et</tt> (end TeX) commands at separate lines
-    before and after the math block.
-  <li> There is support for both LaTeX and text-like inline mathematics.
+    before and after the math block.</li>
+  <li> There is support for both LaTeX and text-like inline mathematics.</li>
   <li> Figures and movies with captions, simple tables,
-    URLs with links, index list, labels and references are supported.
+    URLs with links, index list, labels and references are supported.</li>
   <li> Invisible comments in the output format can be inserted throughout
-    the text.
+    the text.</li>
   <li> Visible comments can be inserted so that authors and readers can
     comment upon the text (and at any time turn on/off output of such
-    comments).
-  <li> There is special support for advanced exercises features.
+    comments).</li>
+  <li> There is special support for advanced exercises features.</li>
   <li> With a simple preprocessor, Preprocess or Mako, one can include
     other documents (files) and large portions of text can be defined
-    in or out of the text.
+    in or out of the text.</li>
   <li> With the Mako preprocessor one can even embed Python
-    code and use this to steer generation of Doconce text.
+    code and use this to steer generation of Doconce text.</li>
 </ul>
 
 Here is an example of some simple text written in the Doconce format:
@@ -13824,9 +13824,9 @@ natural in plain text.  Lists are typeset as you would do in an email,
 <p>
 
 <ul>
-  <li> item 1
-  <li> item 2
-  <li> item 3
+  <li> item 1</li>
+  <li> item 2</li>
+  <li> item 3</li>
 </ul>
 
 Lists can also have numbered items instead of bullets, just use an <tt>o</tt>
@@ -13835,9 +13835,9 @@ Lists can also have numbered items instead of bullets, just use an <tt>o</tt>
 <p>
 
 <ol>
- <li> item 1
- <li> item 2
- <li> item 3
+ <li> item 1</li>
+ <li> item 2</li>
+ <li> item 3</li>
 </ol>
 
 URLs with a link word are possible, as in <a href="http://folk.uio.no/hpl">hpl</a>.
@@ -14234,16 +14234,16 @@ Preprocessor variables to be defined or undefined are
 
 <ul>
  <li> <tt>BOOK</tt> for the "book" documentclass rather than the standard
-   "article" class (necessary if you apply chapter headings)
- <li> <tt>PALATINO</tt> for the Palatino font
- <li> <tt>HELVETIA</tt> for the Helvetica font
- <li> <tt>A4PAPER</tt> for A4 paper size
- <li> <tt>A6PAPER</tt> for A6 paper size (suitable for reading on small devices)
- <li> <tt>MOVIE15</tt> for using the movie15 LaTeX package to display movies
+   "article" class (necessary if you apply chapter headings)</li>
+ <li> <tt>PALATINO</tt> for the Palatino font</li>
+ <li> <tt>HELVETIA</tt> for the Helvetica font</li>
+ <li> <tt>A4PAPER</tt> for A4 paper size</li>
+ <li> <tt>A6PAPER</tt> for A6 paper size (suitable for reading on small devices)</li>
+ <li> <tt>MOVIE15</tt> for using the movie15 LaTeX package to display movies</li>
  <li> <tt>PREAMBLE</tt> to turn the LaTeX preamble on or off (i.e., complete document
-   or document to be included elsewhere)
+   or document to be included elsewhere)</li>
  <li> <tt>MINTED</tt> for inclusion of the minted package (which requires <tt>latex</tt>
-   or <tt>pdflatex</tt> to be run with the <tt>-shell-escape</tt> option)
+   or <tt>pdflatex</tt> to be run with the <tt>-shell-escape</tt> option)</li>
 </ul>
 
 The <tt>ptex2tex</tt> tool makes it possible to easily switch between many
@@ -14433,9 +14433,9 @@ Some links for going from LaTeX to Word are listed below.
 <p>
 
 <ul>
- <li> <a href="http://ubuntuforums.org/showthread.php?t=1033441"><tt>http://ubuntuforums.org/showthread.php?t=1033441</tt></a>
- <li> <a href="http://tug.org/utilities/texconv/textopc.html"><tt>http://tug.org/utilities/texconv/textopc.html</tt></a>
- <li> <a href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"><tt>http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</tt></a>
+ <li> <a href="http://ubuntuforums.org/showthread.php?t=1033441"><tt>http://ubuntuforums.org/showthread.php?t=1033441</tt></a></li>
+ <li> <a href="http://tug.org/utilities/texconv/textopc.html"><tt>http://tug.org/utilities/texconv/textopc.html</tt></a></li>
+ <li> <a href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"><tt>http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</tt></a></li>
 </ul>
 
 <h3>Sphinx  <a name="___sec12"></a></h3>
@@ -27194,7 +27194,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Thu, 08 Nov 2012 (10:40)
+DATE: Sun, 11 Nov 2012 (14:33)
 
 
 
@@ -27298,7 +27298,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Thu, 08 Nov 2012 (10:40)
+DATE: Sun, 11 Nov 2012 (14:33)
 
 
 
@@ -27412,7 +27412,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Thu, 08 Nov 2012 (10:40)</center>
+<center>Sun, 11 Nov 2012 (14:33)</center>
 
 
 
@@ -27543,7 +27543,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Thu, 08 Nov 2012 (10:40)</center>
+<center>Sun, 11 Nov 2012 (14:33)</center>
 
 
 
@@ -29920,13 +29920,13 @@ Doconce is two things:
     RTF, numerous MS Word formats (including MS Office Open XML),
     DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
     Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.
+    Texinfo, MediaWiki, RTF, Groff, and other formats.</li>
  <li> Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
     a number of different destinations of diverse type (software
     source code, manuals, tutorials, books, wikis, memos, emails, etc.).
     The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".
+    The slogan is: "Write once, include anywhere".</li>
 </ol>
 
 Here are some Doconce features:
@@ -29936,24 +29936,24 @@ Here are some Doconce features:
 <ul>
   <li> Doconce markup does include tags, so the format is more tagged than
     Markdown and Pandoc, but less than reST, and very much less than
-    LaTeX and HTML.
+    LaTeX and HTML.</li>
   <li> Doconce can be converted to plain <em>untagged</em> text,
-    often desirable for computer programs and email.
+    often desirable for computer programs and email.</li>
   <li> Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
-    for the start and end lines.
+    for the start and end lines.</li>
   <li> Doconce has full support for LaTeX math and integrates well
-    with big LaTeX projects (books).
+    with big LaTeX projects (books).</li>
   <li> Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
     as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.
+    is just to make the initial versions of a Sphinx or wiki document.</li>
   <li> Contrary to the similar (and superior) Pandoc translator, Doconce
     supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
     lots of computer code environments in LaTeX, and a special exercise
     syntax. Doconce also also runs preprocessors (including Mako)
     such that the author can mix ordinary text with programming
-    construction for generating parts of the text.
+    construction for generating parts of the text.</li>
 </ul>
 
 Doconce was particularly written for the following sample applications:
@@ -29963,14 +29963,14 @@ Doconce was particularly written for the following sample applications:
 <ul>
   <li> Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.</li>
   <li> Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as LaTeX integrated in, e.g., a thesis.
+    web sites, and as LaTeX integrated in, e.g., a thesis.</li>
   <li> Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
-    Sphinx web pages, MS Word documents, or in wikis.
+    Sphinx web pages, MS Word documents, or in wikis.</li>
 </ul>
 
 History: Doconce was developed in 2006 at a time when most popular
@@ -30526,16 +30526,16 @@ Preprocessor variables to be defined or undefined are
 
 <ul>
  <li> <tt>BOOK</tt> for the "book" documentclass rather than the standard
-   "article" class (necessary if you apply chapter headings)
- <li> <tt>PALATINO</tt> for the Palatino font
- <li> <tt>HELVETIA</tt> for the Helvetica font
- <li> <tt>A4PAPER</tt> for A4 paper size
- <li> <tt>A6PAPER</tt> for A6 paper size (suitable for reading on small devices)
- <li> <tt>MOVIE15</tt> for using the movie15 LaTeX package to display movies
+   "article" class (necessary if you apply chapter headings)</li>
+ <li> <tt>PALATINO</tt> for the Palatino font</li>
+ <li> <tt>HELVETIA</tt> for the Helvetica font</li>
+ <li> <tt>A4PAPER</tt> for A4 paper size</li>
+ <li> <tt>A6PAPER</tt> for A6 paper size (suitable for reading on small devices)</li>
+ <li> <tt>MOVIE15</tt> for using the movie15 LaTeX package to display movies</li>
  <li> <tt>PREAMBLE</tt> to turn the LaTeX preamble on or off (i.e., complete document
-   or document to be included elsewhere)
+   or document to be included elsewhere)</li>
  <li> <tt>MINTED</tt> for inclusion of the minted package (which requires <tt>latex</tt>
-   or <tt>pdflatex</tt> to be run with the <tt>-shell-escape</tt> option)
+   or <tt>pdflatex</tt> to be run with the <tt>-shell-escape</tt> option)</li>
 </ul>
 
 The <tt>ptex2tex</tt> tool makes it possible to easily switch between many
@@ -30725,9 +30725,9 @@ Some links for going from LaTeX to Word are listed below.
 <p>
 
 <ul>
- <li> <a href="http://ubuntuforums.org/showthread.php?t=1033441"><tt>http://ubuntuforums.org/showthread.php?t=1033441</tt></a>
- <li> <a href="http://tug.org/utilities/texconv/textopc.html"><tt>http://tug.org/utilities/texconv/textopc.html</tt></a>
- <li> <a href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"><tt>http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</tt></a>
+ <li> <a href="http://ubuntuforums.org/showthread.php?t=1033441"><tt>http://ubuntuforums.org/showthread.php?t=1033441</tt></a></li>
+ <li> <a href="http://tug.org/utilities/texconv/textopc.html"><tt>http://tug.org/utilities/texconv/textopc.html</tt></a></li>
+ <li> <a href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"><tt>http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</tt></a></li>
 </ul>
 
 <h3>Sphinx  <a name="___sec17"></a></h3>
@@ -31013,18 +31013,18 @@ This list gets typeset as
 <p>
 
 <ul>
-   <li> item 1
-   <li> item 2
+   <li> item 1</li>
+   <li> item 2</li>
 
 <ul>
      <li> subitem 1, if there are more
        lines, each line must
-       be intended as shown here
+       be intended as shown here</li>
      <li> subitem 2,
-       also spans two lines
+       also spans two lines</li>
 </ul>
 
-   <li> item 3
+   <li> item 3</li>
 </ul>
 
 In an ordered list, each item starts with an <tt>o</tt> (as the first letter
@@ -31051,15 +31051,15 @@ resulting in
 <p>
 
 <ol>
-  <li> item 1
-  <li> item 2
+  <li> item 1</li>
+  <li> item 2</li>
 
 <ul>
-     <li> subitem 1
-     <li> subitem 2
+     <li> subitem 1</li>
+     <li> subitem 2</li>
 </ul>
 
-  <li> item 3
+  <li> item 3</li>
 </ol>
 
 Ordered lists cannot have an ordered sublist, i.e., the ordering
@@ -31182,12 +31182,12 @@ or equal signs (=):
 <p>
 
 <ul>
-   <li> 9 <tt>=</tt> characters for chapters
-   <li> 7 for sections
-   <li> 5 for subsections
-   <li> 3 for subsubsections
+   <li> 9 <tt>=</tt> characters for chapters</li>
+   <li> 7 for sections</li>
+   <li> 5 for subsections</li>
+   <li> 3 for subsubsections</li>
    <li> 2 <em>underscrores</em> (only! - it looks best) for paragraphs
-     (paragraph heading will be inlined)
+     (paragraph heading will be inlined)</li>
 </ul>
 
 Headings can be surrounded by as many blanks as desired.
@@ -31455,13 +31455,13 @@ However, linking to local files like this needs caution:
 
 <ul>
   <li> In the <tt>html</tt> format the links work well if the files are
-    supplied with the <tt>.html</tt> with the same relative location.
+    supplied with the <tt>.html</tt> with the same relative location.</li>
   <li> In the <tt>latex</tt> and <tt>pdflatex</tt> formats, such links in PDF files
     will unless the <tt>.tex</tt> file has a full URL specified through
     a <tt>\hyperbaseurl</tt> command and the linked files are located correctly
-    relative to this URL. Otherwise full URL must be used in links.
+    relative to this URL. Otherwise full URL must be used in links.</li>
   <li> In the <tt>sphinx</tt> format, links to local files do not work unless the
-    files reside in a <tt>_static</tt> directory (a warning is issued about this).
+    files reside in a <tt>_static</tt> directory (a warning is issued about this).</li>
 </ul>
 
 As a consequence, we strongly recommend that one copies the relevant
@@ -32331,25 +32331,25 @@ use with PowerPoint or OpenOffice presentations.
 <p>
 
 <ol>
- <li> Make a Sphinx version of the Doconce file.
+ <li> Make a Sphinx version of the Doconce file.</li>
  <li> Go to the Sphinx directory and load the <tt>conf.py</tt> file into
-    a browser.
+    a browser.</li>
  <li> Search for "math" and comment out the
     <tt>'sphinx.ext.mathjax'</tt> (enabled by default) and
     <tt>'matplotlib.sphinxext.mathmpl'</tt> (disabled by default)
     lines, and uncomment the <tt>'sphinx.ext.pngmath'</tt> package.
     This is the package that generates small PNG pictures
-    of the mathematics.
+    of the mathematics.</li>
  <li> Uncomment the line with <tt>pngmath_dvipng_args =</tt> and
     set the PNG resolution to <tt>-D 200</tt> when the purpose is to
-    generate mathematics pictures for slides.
- <li> Run <tt>make html</tt>.
+    generate mathematics pictures for slides.</li>
+ <li> Run <tt>make html</tt>.</li>
  <li> Look at the HTML source file in the <tt>_build/html</tt>
     directory: all mathematics are in <tt>img</tt> tags with <tt>src=</tt>
     pointing to a PNG file and <tt>alt=</tt> pointing to the LaTeX
     source for the formula in question. This makes it very
     easy to find the PNG file that corresponding to a particular
-    mathematical expression.
+    mathematical expression.</li>
 </ol>
 
 <h3>Macros (Newcommands) <a name="newcommands"></a></h3>
@@ -33215,7 +33215,7 @@ two ways out of it:
 <li> Make a little Bash script that performs a series of
    <tt>doconce subst</tt> (regular expressions) or <tt>doconce replace</tt> (regular text)
    substitutions to change the text automatically (you probably have to
-   repeat these edits so automating them is a good idea).
+   repeat these edits so automating them is a good idea).</li>
 <li> Place the title, author(s), and date of the Doconce file in a separate
    file and use the preprocessor to include the rest. The rest is then
    one or more Doconce files without title, author(s), and date. This
@@ -33227,7 +33227,7 @@ two ways out of it:
    To make the LaTeX document, you compile all Doconce files
    into LaTeX code, except the "top" Doconce file that includes the
    others. That file is not used for LaTeX output, but
-   replaced by the hand-written LaTeX "top" file.
+   replaced by the hand-written LaTeX "top" file.</li>
 </ol>
 
 <h3>Problems with gwiki Output  <a name="___sec80"></a></h3>
@@ -33426,7 +33426,7 @@ and Sphinx just typeset the list as a list with keywords.
 <p>
 <ol>
   <p><li><a name="Python:Primer:09">  H. P. Langtangen. <em>A Primer on Scientific Programming with Python</em>. Springer, 2009.
-  <p><li><a name="Osnes:98">  H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. <em>Advances in Water Resources</em>, vol 22, 185-195, 1998.
+  <p><li><a name="Osnes:98">  H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. <em>Advances in Water Resources</em>, vol 22, 185-195, 1998.</li>
 </ol>
 
 <p>
@@ -64362,17 +64362,17 @@ Doconce currently translates files to the following formats:
 <p>
 
 <ul>
- <li> LaTeX (format <tt>latex</tt> and <tt>pdflatex</tt>)
- <li> HTML (format <tt>html</tt>)
- <li> reStructuredText (format <tt>rst</tt>)
- <li> plain (untagged) ASCII (format <tt>plain</tt>)
- <li> Sphinx (format <tt>sphinx</tt>)
- <li> (Pandoc extended) Markdown (format <tt>pandoc</tt>)
- <li> Googlecode wiki (format <tt>gwiki</tt>)
- <li> MediaWiki for Wikipedia and Wikibooks (format <tt>mwiki</tt>)
- <li> Creoloe wiki (format <tt>cwiki</tt>)
- <li> Epydoc (format <tt>epydoc</tt>)
- <li> StructuredText (format <tt>st</tt>)
+ <li> LaTeX (format <tt>latex</tt> and <tt>pdflatex</tt>)</li>
+ <li> HTML (format <tt>html</tt>)</li>
+ <li> reStructuredText (format <tt>rst</tt>)</li>
+ <li> plain (untagged) ASCII (format <tt>plain</tt>)</li>
+ <li> Sphinx (format <tt>sphinx</tt>)</li>
+ <li> (Pandoc extended) Markdown (format <tt>pandoc</tt>)</li>
+ <li> Googlecode wiki (format <tt>gwiki</tt>)</li>
+ <li> MediaWiki for Wikipedia and Wikibooks (format <tt>mwiki</tt>)</li>
+ <li> Creoloe wiki (format <tt>cwiki</tt>)</li>
+ <li> Epydoc (format <tt>epydoc</tt>)</li>
+ <li> StructuredText (format <tt>st</tt>)</li>
 </ul>
 
 The best supported formats are <tt>latex</tt>, <tt>sphinx</tt>, <tt>html</tt>, and <tt>plain</tt>.
@@ -64498,15 +64498,15 @@ Here is a bullet list:
 <p>
 
 <ul>
- <li> item1
- <li> item2
+ <li> item1</li>
+ <li> item2</li>
 
 <ul>
-  <li> subitem1 of item2
-  <li> subitem2 of item2
+  <li> subitem1 of item2</li>
+  <li> subitem2 of item2</li>
 </ul>
 
- <li> item3
+ <li> item3</li>
 </ul>
 
 Note that sublists are indented.
@@ -64515,17 +64515,17 @@ Here is an enumeration list:
 <p>
 
 <ol>
-<li> item1
+<li> item1</li>
 <li> item2
    may appear on
-   multiple lines
+   multiple lines</li>
 
 <ol>
- <li> subitem1 of item2
- <li> subitem2 of item2
+ <li> subitem1 of item2</li>
+ <li> subitem2 of item2</li>
 </ol>
 
-<li> item3
+<li> item3</li>
 </ol>
 
 And finally a description list:
@@ -64667,10 +64667,10 @@ Important warnings:
 <ul>
  <li> A code block must come after some plain sentence (at least for successful
    output in reStructredText), not directly after a section/paragraph heading,
-   table, comment, figure, or movie.
+   table, comment, figure, or movie.</li>
  <li> Verbatim code blocks inside lists can be ugly typeset in some
    output formats. A more robust approach is to replace the list by
-   paragraphs with headings.
+   paragraphs with headings.</li>
 </ul>
 
 <h3>LaTeX Mathematics  <a name="___sec11"></a></h3>
@@ -64737,11 +64737,11 @@ the following rules are recommended:
 
 <ul>
   <li> Use only the equation environments <tt>\[</tt>, <tt>\]</tt>,
-    <tt>equation</tt>, <tt>equation*</tt>, <tt>align</tt>, and <tt>align*</tt>.
+    <tt>equation</tt>, <tt>equation*</tt>, <tt>align</tt>, and <tt>align*</tt>.</li>
   <li> Labels in multiple equation environments such as <tt>align</tt> are
     not (yet) handled by <tt>sphinx</tt> and <tt>pandoc</tt>, so avoid inserting
     labels and referring  to equation labels in <tt>align</tt> environments.
-    Actually, <tt>align*</tt> is the preferred environment for multiple equations.
+    Actually, <tt>align*</tt> is the preferred environment for multiple equations.</li>
   <li> LaTeX supports lots of fancy formatting, for example, multiple
     plots in the same figure, footnotes, margin notes, etc.
     Allowing other output formats, such as <tt>sphinx</tt>, makes it necessary
@@ -64751,7 +64751,7 @@ the following rules are recommended:
     include special code for <tt>latex</tt> and <tt>pdflatex</tt> output and more
     straightforward typesetting for other formats. In this way, one can
     also allow advanced LaTeX features and fine tuning of resulting
-    PDF document.
+    PDF document.</li>
 </ul>
 
 <b>LaTeX Newcommands.</b> Text missing...
@@ -64827,20 +64827,20 @@ Note that
 <p>
 
 <ul>
- <li> Each line begins and ends with a vertical bar (pipe symbol).
- <li> Column data are separated by a vertical bar (pipe symbol).
+ <li> Each line begins and ends with a vertical bar (pipe symbol).</li>
+ <li> Column data are separated by a vertical bar (pipe symbol).</li>
  <li> There may be horizontal rules, i.e., lines with dashes for
    indicating the heading and the end of the table, and these may
    contain characters 'c', 'l', or 'r' for how to align headings or
    columns. The first horizontal rule may indicate how to align
    headings (center, left, right), and the horizontal rule after the
    heading line may indicate how to align the data in the columns
-   (center, left, right).
+   (center, left, right).</li>
  <li> If the horizontal rules are without alignment information there should
    be no vertical bar (pipe symbol) between the columns. Otherwise, such
-   a bar indicates a vertical bar between columns in LaTeX.
+   a bar indicates a vertical bar between columns in LaTeX.</li>
  <li> Many output formats are so primitive that heading and column alignment
-   have no effect.
+   have no effect.</li>
 </ul>
 
 <h3>Labels, References, Citations, and Index  <a name="___sec14"></a></h3>
@@ -65026,17 +65026,17 @@ An exercise, problem, or project sections contains certain <em>elements</em>:
 <ul>
   <li> a headline at the level of a subsection or subsubsection,
     containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title (required)
-  <li> a label (optional)
-  <li> a solution file (optional)
-  <li> name of file with a student solution (optional)
-  <li> main exercise text (required)
-  <li> a short answer (optional)
-  <li> a full solution (optional)
-  <li> one or more hints (optional)
+    "Project:", followed by a title (required)</li>
+  <li> a label (optional)</li>
+  <li> a solution file (optional)</li>
+  <li> name of file with a student solution (optional)</li>
+  <li> main exercise text (required)</li>
+  <li> a short answer (optional)</li>
+  <li> a full solution (optional)</li>
+  <li> one or more hints (optional)</li>
   <li> one or more subexercises (subproblems, subprojects), which can also
     contain a text, a short answer, a full solution, name student file
-    to be handed in, and one or more hints (optional)
+    to be handed in, and one or more hints (optional)</li>
 </ul>
 
 A typical sketch of a a problem without subexercises goes as follows:
@@ -65185,7 +65185,7 @@ examine the Doconce source and the <tt>doc/src/make.sh</tt> script).
 <p>
 
 <ul>
- <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+ <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"</li>
 </ul>
 
 
@@ -73107,9 +73107,6 @@ No file testdoc.aux.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fonts/m
 ap/pdftex/updmap/pdftex.map}]
 
-Package hyperref Warning: old toc file detected, not used; run LaTeX again.
-
-
 LaTeX Warning: Reference `demo:ex:1' on page 2 undefined on input line 127.
 
 
@@ -73305,7 +73302,7 @@ b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (14 pages, 1466047 bytes).
+Output written on testdoc.pdf (14 pages, 1465882 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -74504,7 +74501,7 @@ hv/m/n/10 .
 No file tutorial.ind.
 [21] [22] (./tutorial.aux) )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (22 pages, 98748 bytes).
+Output written on tutorial.dvi (22 pages, 98752 bytes).
 Transcript written on tutorial.log.
 + dvipdf tutorial.dvi
 + doconce format sphinx tutorial
@@ -74803,7 +74800,7 @@ etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 </usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-te
 xlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 213404 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 213403 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -74952,7 +74949,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226613 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226612 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -75101,7 +75098,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226613 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226612 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -75256,7 +75253,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226613 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226612 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -75405,7 +75402,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226613 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226612 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -76331,7 +76328,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on DoconceManual.pdf (61 pages, 397952 bytes).
+Output written on DoconceManual.pdf (61 pages, 397953 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -77079,7 +77076,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (47 pages, 203612 bytes).
+Output written on manual.rst.dvi (47 pages, 203616 bytes).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -78185,7 +78182,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (50 pages, 331059 bytes).
+Output written on manual.pdf (50 pages, 331060 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -78449,7 +78446,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (52 pages, 352144 bytes).
+Output written on manual.pdf (52 pages, 352145 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -78683,7 +78680,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (52 pages, 352864 bytes).
+Output written on manual.pdf (52 pages, 352865 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -78954,7 +78951,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (52 pages, 215304 bytes).
+Output written on manual.dvi (52 pages, 215308 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -79182,7 +79179,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (52 pages, 215304 bytes).
+Output written on manual.dvi (52 pages, 215308 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -79422,7 +79419,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (52 pages, 215304 bytes).
+Output written on manual.dvi (52 pages, 215308 bytes).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -79650,7 +79647,7 @@ LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (52 pages, 215304 bytes).
+Output written on manual.dvi (52 pages, 215308 bytes).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt --no-mako
@@ -80499,7 +80496,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (13 pages, 49524 bytes).
+Output written on quickref.rst.dvi (13 pages, 49528 bytes).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)

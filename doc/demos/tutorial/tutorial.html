@@ -74,7 +74,7 @@ MathJax.Hub.Config({
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Nov 8, 2012</h4></center> <!-- date -->
+<center><h4>Nov 11, 2012</h4></center> <!-- date -->
 <p>
 
 <p>
@@ -86,16 +86,16 @@ MathJax.Hub.Config({
    reStructuredText, Sphinx, XML, etc.  Would it be convenient to
    start with some very simple text-like format that easily converts
    to the formats listed above, and then at some later stage
-   eventually go with a particular format?
+   eventually go with a particular format?</li>
  <li> Do you need to write documents in varying formats but find it
    difficult to remember all the typesetting details of various
    formats like <a href="http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf">LaTeX</a>, <a href="http://www.htmlcodetutorial.com/">HTML</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html">reStructuredText</a>, <a href="http://sphinx.pocoo.org/contents.html">Sphinx</a>, and <a href="http://code.google.com/p/support/wiki/WikiSyntax">wiki</a>? Would it be convenient
    to generate the typesetting details of a particular format from a
-   very simple text-like format with minimal tagging?
+   very simple text-like format with minimal tagging?</li>
  <li> Do you have the same information scattered around in different
    documents in different typesetting formats? Would it be a good idea
    to write things once, in one format, stored in one place, and
-   include it anywhere?
+   include it anywhere?</li>
 </ul>
 
 If any of these questions are of interest, you should keep on reading.
@@ -122,13 +122,13 @@ Doconce is two things:
     RTF, numerous MS Word formats (including MS Office Open XML),
     DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
     Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.
+    Texinfo, MediaWiki, RTF, Groff, and other formats.</li>
  <li> Doconce is a working strategy for never duplicating information.
     Text is written in a single place and then transformed to
     a number of different destinations of diverse type (software
     source code, manuals, tutorials, books, wikis, memos, emails, etc.).
     The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".
+    The slogan is: "Write once, include anywhere".</li>
 </ol>
 
 Here are some Doconce features:
@@ -138,24 +138,24 @@ Here are some Doconce features:
 <ul>
   <li> Doconce markup does include tags, so the format is more tagged than
     Markdown and Pandoc, but less than reST, and very much less than
-    LaTeX and HTML.
+    LaTeX and HTML.</li>
   <li> Doconce can be converted to plain <em>untagged</em> text,
-    often desirable for computer programs and email.
+    often desirable for computer programs and email.</li>
   <li> Doconce has good support for copying in parts of computer code
     directly from the source code files via regular expressions
-    for the start and end lines.
+    for the start and end lines.</li>
   <li> Doconce has full support for LaTeX math and integrates well
-    with big LaTeX projects (books).
+    with big LaTeX projects (books).</li>
   <li> Doconce is almost self-explanatory and is a handy starting point
     for generating documents in more complicated markup languages, such
     as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.
+    is just to make the initial versions of a Sphinx or wiki document.</li>
   <li> Contrary to the similar (and superior) Pandoc translator, Doconce
     supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
     lots of computer code environments in LaTeX, and a special exercise
     syntax. Doconce also also runs preprocessors (including Mako)
     such that the author can mix ordinary text with programming
-    construction for generating parts of the text.
+    construction for generating parts of the text.</li>
 </ul>
 
 Doconce was particularly written for the following sample applications:
@@ -165,14 +165,14 @@ Doconce was particularly written for the following sample applications:
 <ul>
   <li> Large books written in LaTeX, but where many pieces (computer demos,
     projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
+    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.</li>
   <li> Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
     for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as LaTeX integrated in, e.g., a thesis.
+    web sites, and as LaTeX integrated in, e.g., a thesis.</li>
   <li> Quick memos, which start as plain text in email, then some small
     amount of Doconce tagging is added, before the memos can appear as
-    Sphinx web pages, MS Word documents, or in wikis.
+    Sphinx web pages, MS Word documents, or in wikis.</li>
 </ul>
 
 History: Doconce was developed in 2006 at a time when most popular
@@ -207,40 +207,40 @@ som examples.
 <p>
 
 <ul>
-  <li> Bullet lists arise from lines starting with an asterisk.
-  <li> <em>Emphasized words</em> are surrounded by asterisks.
-  <li> <b>Words in boldface</b> are surrounded by underscores.
+  <li> Bullet lists arise from lines starting with an asterisk.</li>
+  <li> <em>Emphasized words</em> are surrounded by asterisks.</li>
+  <li> <b>Words in boldface</b> are surrounded by underscores.</li>
   <li> Words from computer code are enclosed in back quotes and
-    then typeset <tt>verbatim (in a monospace font)</tt>.
+    then typeset <tt>verbatim (in a monospace font)</tt>.</li>
   <li> Section headings are recognied by equality (<tt>=</tt>) signs before
     and after the title, and the number of <tt>=</tt> signs indicates the
     level of the section: 7 for main section, 5 for subsection, and
-    3 for subsubsection.
+    3 for subsubsection.</li>
   <li> Paragraph headings are recognized by a double underscore
-    before and after the heading.
+    before and after the heading.</li>
   <li> The abstract of a document starts with <em>Abstract</em> as paragraph
-    heading, and all text up to the next heading makes up the abstract,
+    heading, and all text up to the next heading makes up the abstract,</li>
   <li> Blocks of computer code can easily be included by placing
     <tt>!bc</tt> (begin code) and <tt>!ec</tt> (end code) commands at separate lines
-    before and after the code block.
-  <li> Blocks of computer code can also be imported from source files.
+    before and after the code block.</li>
+  <li> Blocks of computer code can also be imported from source files.</li>
   <li> Blocks of LaTeX mathematics can easily be included by placing
     <tt>!bt</tt> (begin TeX) and <tt>!et</tt> (end TeX) commands at separate lines
-    before and after the math block.
-  <li> There is support for both LaTeX and text-like inline mathematics.
+    before and after the math block.</li>
+  <li> There is support for both LaTeX and text-like inline mathematics.</li>
   <li> Figures and movies with captions, simple tables,
-    URLs with links, index list, labels and references are supported.
+    URLs with links, index list, labels and references are supported.</li>
   <li> Invisible comments in the output format can be inserted throughout
-    the text.
+    the text.</li>
   <li> Visible comments can be inserted so that authors and readers can
     comment upon the text (and at any time turn on/off output of such
-    comments).
-  <li> There is special support for advanced exercises features.
+    comments).</li>
+  <li> There is special support for advanced exercises features.</li>
   <li> With a simple preprocessor, Preprocess or Mako, one can include
     other documents (files) and large portions of text can be defined
-    in or out of the text.
+    in or out of the text.</li>
   <li> With the Mako preprocessor one can even embed Python
-    code and use this to steer generation of Doconce text.
+    code and use this to steer generation of Doconce text.</li>
 </ul>
 
 Here is an example of some simple text written in the Doconce format:
@@ -303,9 +303,9 @@ natural in plain text.  Lists are typeset as you would do in an email,
 <p>
 
 <ul>
-  <li> item 1
-  <li> item 2
-  <li> item 3
+  <li> item 1</li>
+  <li> item 2</li>
+  <li> item 3</li>
 </ul>
 
 Lists can also have numbered items instead of bullets, just use an <tt>o</tt>
@@ -314,9 +314,9 @@ Lists can also have numbered items instead of bullets, just use an <tt>o</tt>
 <p>
 
 <ol>
- <li> item 1
- <li> item 2
- <li> item 3
+ <li> item 1</li>
+ <li> item 2</li>
+ <li> item 3</li>
 </ol>
 
 URLs with a link word are possible, as in <a href="http://folk.uio.no/hpl">hpl</a>.
@@ -713,16 +713,16 @@ Preprocessor variables to be defined or undefined are
 
 <ul>
  <li> <tt>BOOK</tt> for the "book" documentclass rather than the standard
-   "article" class (necessary if you apply chapter headings)
- <li> <tt>PALATINO</tt> for the Palatino font
- <li> <tt>HELVETIA</tt> for the Helvetica font
- <li> <tt>A4PAPER</tt> for A4 paper size
- <li> <tt>A6PAPER</tt> for A6 paper size (suitable for reading on small devices)
- <li> <tt>MOVIE15</tt> for using the movie15 LaTeX package to display movies
+   "article" class (necessary if you apply chapter headings)</li>
+ <li> <tt>PALATINO</tt> for the Palatino font</li>
+ <li> <tt>HELVETIA</tt> for the Helvetica font</li>
+ <li> <tt>A4PAPER</tt> for A4 paper size</li>
+ <li> <tt>A6PAPER</tt> for A6 paper size (suitable for reading on small devices)</li>
+ <li> <tt>MOVIE15</tt> for using the movie15 LaTeX package to display movies</li>
  <li> <tt>PREAMBLE</tt> to turn the LaTeX preamble on or off (i.e., complete document
-   or document to be included elsewhere)
+   or document to be included elsewhere)</li>
  <li> <tt>MINTED</tt> for inclusion of the minted package (which requires <tt>latex</tt>
-   or <tt>pdflatex</tt> to be run with the <tt>-shell-escape</tt> option)
+   or <tt>pdflatex</tt> to be run with the <tt>-shell-escape</tt> option)</li>
 </ul>
 
 The <tt>ptex2tex</tt> tool makes it possible to easily switch between many
@@ -912,9 +912,9 @@ Some links for going from LaTeX to Word are listed below.
 <p>
 
 <ul>
- <li> <a href="http://ubuntuforums.org/showthread.php?t=1033441"><tt>http://ubuntuforums.org/showthread.php?t=1033441</tt></a>
- <li> <a href="http://tug.org/utilities/texconv/textopc.html"><tt>http://tug.org/utilities/texconv/textopc.html</tt></a>
- <li> <a href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"><tt>http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</tt></a>
+ <li> <a href="http://ubuntuforums.org/showthread.php?t=1033441"><tt>http://ubuntuforums.org/showthread.php?t=1033441</tt></a></li>
+ <li> <a href="http://tug.org/utilities/texconv/textopc.html"><tt>http://tug.org/utilities/texconv/textopc.html</tt></a></li>
+ <li> <a href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"><tt>http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</tt></a></li>
 </ul>
 
 <h3>Sphinx  <a name="___sec12"></a></h3>

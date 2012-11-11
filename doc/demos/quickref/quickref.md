@@ -1,6 +1,6 @@
 % Doconce Quick Reference
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Nov 8, 2012
+% Nov 11, 2012
 
 <!-- Table of contents: Run pandoc with --toc option -->
 
