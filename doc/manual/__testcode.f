@@ -1,6 +1,6 @@
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0

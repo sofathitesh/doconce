@@ -1,6 +1,7 @@
 #!/bin/sh -x
 doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized
 doconce remove_exercise_answers testdoc.html
+doconce split_html testdoc.html
 
 doconce format latex testdoc.do.txt
 doconce format pdflatex testdoc.do.txt --latex-printed
