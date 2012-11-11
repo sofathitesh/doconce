@@ -7,7 +7,7 @@ Hans Petter Langtangen [1, 2]
 [2] University of Oslo
 
 
-Date: Nov 8, 2012
+Date: Nov 11, 2012
 
 Table of contents:
 

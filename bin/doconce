@@ -2380,6 +2380,8 @@ def usage_split_html():
 
 def split_html():
     """
+    Split html file into parts. Use !split command as separator between
+    parts.
     """
     # Overview of HTML-based slideshow tools: http://www.impressivewebs.com/html-slidedeck-toolkits/
     # http://leaverou.github.com/CSSS/
@@ -2422,6 +2424,59 @@ def split_html():
     else:
         basename = filename[:-5]
 
+    header, parts, footer = get_html_header_parts_footer(filename)
+    doconce_html_split(header, parts, footer, basename, filename)
+
+def slides_html():
+    """
+    Split html file into slides and typeset slides using
+    various tools. Use !split command as slide separator.
+    """
+    # Overview of HTML-based slideshow tools: http://www.impressivewebs.com/html-slidedeck-toolkits/
+    # http://leaverou.github.com/CSSS/
+    # http://lab.hakim.se/reveal-js/ (easy and fancy)
+    # http://paulrouget.com/dzslides/ (easy and fancy, Keynote like)
+    # http://imakewebthings.com/deck.js/ (also easy)
+    # http://code.google.com/p/html5slides/ (also easy)
+    # (could have #!bpop, #!epop for lists and paragraphs that "build",
+    # but all such builds seem to require <li></li> and <p></p>:
+    # </li> can be inserted by regex <li>...<li> and checking that there
+    # is no </ul> in between, while <p></p> is easy with #!bpop and #!epop)
+    # http://slides.seld.be/?file=2010-05-30+Example.html#1 (also easy)
+    # http://www.w3.org/Talks/Tools/Slidy2/#(1) (also easy)
+    # http://johnpolacek.github.com/scrolldeck.js/ (inspired by reveal.js)
+    # http://meyerweb.com/eric/tools/s5/ (easy)
+    # https://github.com/mbostock/stack (very easy)
+    # https://github.com/markdalgleish/fathom
+    # https://github.com/bartaz/impress.js/
+
+    # Fancy and instructive demo:
+    # http://yihui.name/slides/2011-r-dev-lessons.html
+    # (view the source code)
+
+    # pandoc can make dzslides and embeds all javascript (no other files needed)
+    # pandoc -s -S -i -t dzslides --mathjax my.md -o my.html
+
+    # Could introduce !btabXY to define elements in a slide that will
+    # appear in position XY in a table! Works after split_html on a
+    # page by page basis (split is more general and should be factored out).
+    # Figures without caption must not have number (think that is in place).
+
+    if len(sys.argv) <= 1:
+        usage_split_html()
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    if not filename.endswith('.html'):
+        filename += '.html'
+
+    header, parts, footer = get_html_header_parts_footer(filename)
+    #doconce_html_split(header, parts, footer, basename, filename)
+    #nothing is yet done here...
+
+
+def get_html_header_parts_footer(filename):
+    """Return list of lines for header, parts split by !split, and footer."""
     header = []
     footer = []
     parts = [[]]
@@ -2441,8 +2496,7 @@ def split_html():
         elif loc == 'footer':
             footer.append(line)
     f.close()
-    doconce_html_split(header, parts, footer, basename, filename)
-
+    return header, parts, footer
 
 def doconce_html_split(header, parts, footer, basename, filename):
     """Native doconce style splitting of HTML file into parts."""
@@ -2454,7 +2508,7 @@ def doconce_html_split(header, parts, footer, basename, filename):
     doconce_dir = os.path.dirname(doconce.__file__)
     doconce_html_images = os.path.join(doconce_dir, html_images)
 
-    # Drop internal links for now...
+    # Make internal links global links
 
     prev_filename = html_imagefile(prev_part)
     next_filename = html_imagefile(next_part)

@@ -74,7 +74,7 @@ MathJax.Hub.Config({
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Nov 8, 2012</h4></center> <!-- date -->
+<center><h4>Nov 11, 2012</h4></center> <!-- date -->
 <p>
 <h2>Table of contents</h2>
 
@@ -124,17 +124,17 @@ Doconce currently translates files to the following formats:
 <p>
 
 <ul>
- <li> LaTeX (format <tt>latex</tt> and <tt>pdflatex</tt>)
- <li> HTML (format <tt>html</tt>)
- <li> reStructuredText (format <tt>rst</tt>)
- <li> plain (untagged) ASCII (format <tt>plain</tt>)
- <li> Sphinx (format <tt>sphinx</tt>)
- <li> (Pandoc extended) Markdown (format <tt>pandoc</tt>)
- <li> Googlecode wiki (format <tt>gwiki</tt>)
- <li> MediaWiki for Wikipedia and Wikibooks (format <tt>mwiki</tt>)
- <li> Creoloe wiki (format <tt>cwiki</tt>)
- <li> Epydoc (format <tt>epydoc</tt>)
- <li> StructuredText (format <tt>st</tt>)
+ <li> LaTeX (format <tt>latex</tt> and <tt>pdflatex</tt>)</li>
+ <li> HTML (format <tt>html</tt>)</li>
+ <li> reStructuredText (format <tt>rst</tt>)</li>
+ <li> plain (untagged) ASCII (format <tt>plain</tt>)</li>
+ <li> Sphinx (format <tt>sphinx</tt>)</li>
+ <li> (Pandoc extended) Markdown (format <tt>pandoc</tt>)</li>
+ <li> Googlecode wiki (format <tt>gwiki</tt>)</li>
+ <li> MediaWiki for Wikipedia and Wikibooks (format <tt>mwiki</tt>)</li>
+ <li> Creoloe wiki (format <tt>cwiki</tt>)</li>
+ <li> Epydoc (format <tt>epydoc</tt>)</li>
+ <li> StructuredText (format <tt>st</tt>)</li>
 </ul>
 
 The best supported formats are <tt>latex</tt>, <tt>sphinx</tt>, <tt>html</tt>, and <tt>plain</tt>.
@@ -260,15 +260,15 @@ Here is a bullet list:
 <p>
 
 <ul>
- <li> item1
- <li> item2
+ <li> item1</li>
+ <li> item2</li>
 
 <ul>
-  <li> subitem1 of item2
-  <li> subitem2 of item2
+  <li> subitem1 of item2</li>
+  <li> subitem2 of item2</li>
 </ul>
 
- <li> item3
+ <li> item3</li>
 </ul>
 
 Note that sublists are indented.
@@ -277,17 +277,17 @@ Here is an enumeration list:
 <p>
 
 <ol>
-<li> item1
+<li> item1</li>
 <li> item2
    may appear on
-   multiple lines
+   multiple lines</li>
 
 <ol>
- <li> subitem1 of item2
- <li> subitem2 of item2
+ <li> subitem1 of item2</li>
+ <li> subitem2 of item2</li>
 </ol>
 
-<li> item3
+<li> item3</li>
 </ol>
 
 And finally a description list:
@@ -429,10 +429,10 @@ Important warnings:
 <ul>
  <li> A code block must come after some plain sentence (at least for successful
    output in reStructredText), not directly after a section/paragraph heading,
-   table, comment, figure, or movie.
+   table, comment, figure, or movie.</li>
  <li> Verbatim code blocks inside lists can be ugly typeset in some
    output formats. A more robust approach is to replace the list by
-   paragraphs with headings.
+   paragraphs with headings.</li>
 </ul>
 
 <h3>LaTeX Mathematics  <a name="___sec11"></a></h3>
@@ -499,11 +499,11 @@ the following rules are recommended:
 
 <ul>
   <li> Use only the equation environments <tt>\[</tt>, <tt>\]</tt>,
-    <tt>equation</tt>, <tt>equation*</tt>, <tt>align</tt>, and <tt>align*</tt>.
+    <tt>equation</tt>, <tt>equation*</tt>, <tt>align</tt>, and <tt>align*</tt>.</li>
   <li> Labels in multiple equation environments such as <tt>align</tt> are
     not (yet) handled by <tt>sphinx</tt> and <tt>pandoc</tt>, so avoid inserting
     labels and referring  to equation labels in <tt>align</tt> environments.
-    Actually, <tt>align*</tt> is the preferred environment for multiple equations.
+    Actually, <tt>align*</tt> is the preferred environment for multiple equations.</li>
   <li> LaTeX supports lots of fancy formatting, for example, multiple
     plots in the same figure, footnotes, margin notes, etc.
     Allowing other output formats, such as <tt>sphinx</tt>, makes it necessary
@@ -513,7 +513,7 @@ the following rules are recommended:
     include special code for <tt>latex</tt> and <tt>pdflatex</tt> output and more
     straightforward typesetting for other formats. In this way, one can
     also allow advanced LaTeX features and fine tuning of resulting
-    PDF document.
+    PDF document.</li>
 </ul>
 
 <b>LaTeX Newcommands.</b> Text missing...
@@ -589,20 +589,20 @@ Note that
 <p>
 
 <ul>
- <li> Each line begins and ends with a vertical bar (pipe symbol).
- <li> Column data are separated by a vertical bar (pipe symbol).
+ <li> Each line begins and ends with a vertical bar (pipe symbol).</li>
+ <li> Column data are separated by a vertical bar (pipe symbol).</li>
  <li> There may be horizontal rules, i.e., lines with dashes for
    indicating the heading and the end of the table, and these may
    contain characters 'c', 'l', or 'r' for how to align headings or
    columns. The first horizontal rule may indicate how to align
    headings (center, left, right), and the horizontal rule after the
    heading line may indicate how to align the data in the columns
-   (center, left, right).
+   (center, left, right).</li>
  <li> If the horizontal rules are without alignment information there should
    be no vertical bar (pipe symbol) between the columns. Otherwise, such
-   a bar indicates a vertical bar between columns in LaTeX.
+   a bar indicates a vertical bar between columns in LaTeX.</li>
  <li> Many output formats are so primitive that heading and column alignment
-   have no effect.
+   have no effect.</li>
 </ul>
 
 <h3>Labels, References, Citations, and Index  <a name="___sec14"></a></h3>
@@ -788,17 +788,17 @@ An exercise, problem, or project sections contains certain <em>elements</em>:
 <ul>
   <li> a headline at the level of a subsection or subsubsection,
     containing one of the words "Exercise:", "Problem:", or
-    "Project:", followed by a title (required)
-  <li> a label (optional)
-  <li> a solution file (optional)
-  <li> name of file with a student solution (optional)
-  <li> main exercise text (required)
-  <li> a short answer (optional)
-  <li> a full solution (optional)
-  <li> one or more hints (optional)
+    "Project:", followed by a title (required)</li>
+  <li> a label (optional)</li>
+  <li> a solution file (optional)</li>
+  <li> name of file with a student solution (optional)</li>
+  <li> main exercise text (required)</li>
+  <li> a short answer (optional)</li>
+  <li> a full solution (optional)</li>
+  <li> one or more hints (optional)</li>
   <li> one or more subexercises (subproblems, subprojects), which can also
     contain a text, a short answer, a full solution, name student file
-    to be handed in, and one or more hints (optional)
+    to be handed in, and one or more hints (optional)</li>
 </ul>
 
 A typical sketch of a a problem without subexercises goes as follows:
@@ -947,7 +947,7 @@ examine the Doconce source and the <tt>doc/src/make.sh</tt> script).
 <p>
 
 <ul>
- <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+ <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"</li>
 </ul>
 
 

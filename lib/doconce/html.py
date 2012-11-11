@@ -98,8 +98,29 @@ def html_code(filestr, code_blocks, code_block_types,
 
     # Final fixes for html format
 
-    #print filestr
-    #print '========================================================='
+
+    # Add </li> in lists
+    cpattern = re.compile('<li>(.+?)(\s+)<li>', re.DOTALL)
+    def find_list_items(match):
+        """Return replacement from match of <li> tags."""
+        # Does the match run out of the list?
+        if re.search(r'</?(ul|ol)>', match.group(1)):
+            return '<li>' + match.group(1) + match.group(2)
+        else:
+            return '<li>' + match.group(1) + '</li>' + match.group(2)
+
+    # cpattern can only detect every two list item because it cannot work
+    # with overlapping patterns. Remedy: have two <li> to avoid overlap,
+    # fix that after all replacements are done.
+    filestr = filestr.replace('<li>', '<li><li>')
+    filestr = cpattern.sub(find_list_items, filestr)
+    # Fix things that go wrong with cpattern: list items that go
+    # through end of lists over to next list item.
+    cpattern = re.compile('<li>(.+?)(\s+)(</?ol>|</?ul>)', re.DOTALL)
+    filestr = cpattern.sub('<li>\g<1></li>\g<2>\g<3>', filestr)
+    filestr = filestr.replace('<li><li>', '<li>')  # fix
+
+    # Add header from external template
     header = '<title>' in filestr  # will the html file get a header?
     template = ''
     for arg in sys.argv:
