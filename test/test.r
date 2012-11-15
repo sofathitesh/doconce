@@ -172,14 +172,15 @@ def f(theta):
 
 __More on $\theta$.__ Here is more text following headline with math.
 
-Newcommands must also be tested: $\half$, $\x$, $\Ddt{u}$,
+Newcommands must also be tested in this \report:
+$\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
 
 !bt
 \begin{align*}
 \Ddt{u} &= 0\\
-\half &= 1/2\\
-\x &= \normalvec
+\half &= \halfi\\
+\half\x &= \normalvec
 \end{align*}
 !et
 
@@ -725,12 +726,14 @@ $$
 \newcommand{\x}{\pmb{x}}
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
 \newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
 $$
 
 
 
-<A NAME="PART0000"></A>
+<a name="part0000"></a>
 <!-- ------------------- main content ------------------------>
 
 <p>
@@ -1159,7 +1162,7 @@ to Section~\ref{subsubsec:ex}. \index{somefunc@{\rm\texttt{somefunc}} function}
 Let's do some copying from files too. First from subroutine up to the very end,
 
 \bfcod
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -1176,7 +1179,7 @@ C     END1
 and then just the subroutine,
 \bfcod
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -1189,7 +1192,7 @@ and finally the complete file:
 \bfpro
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -1393,13 +1396,14 @@ def f(theta):
 \paragraph{More on $\theta$.}
 Here is more text following headline with math.
 
-Newcommands must also be tested: $\half$, $\x$, $\Ddt{u}$,
+Newcommands must also be tested in this \report:
+$\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
 
 \begin{align*}
 \Ddt{u} &= 0\\ 
-\half &= 1/2\\ 
-\x &= \normalvec
+\half &= \halfi\\ 
+\half\x &= \normalvec
 \end{align*}
 
 \subsection{Custom Environments}
@@ -2128,7 +2132,7 @@ to Section~\ref{subsubsec:ex}. \index{somefunc@{\rm\texttt{somefunc}} function}
 Let's do some copying from files too. First from subroutine up to the very end,
 
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -2146,7 +2150,7 @@ C     END1
 and then just the subroutine,
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -2160,7 +2164,7 @@ and finally the complete file:
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -2343,13 +2347,14 @@ def f(theta):
 \paragraph{More on $\theta$.}
 Here is more text following headline with math.
 
-Newcommands must also be tested: $\half$, $\x$, $\Ddt{u}$,
+Newcommands must also be tested in this \report:
+$\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
 
 \begin{align*}
 \Ddt{u} &= 0\\ 
-\half &= 1/2\\ 
-\x &= \normalvec
+\half &= \halfi\\ 
+\half\x &= \normalvec
 \end{align*}
 
 \subsection{Custom Environments}
@@ -3081,7 +3086,7 @@ to Section~\ref{subsubsec:ex}. \index{somefunc@{\rm\texttt{somefunc}} function}
 Let's do some copying from files too. First from subroutine up to the very end,
 
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -3098,7 +3103,7 @@ C     END1
 and then just the subroutine,
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -3111,7 +3116,7 @@ and finally the complete file:
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -3268,13 +3273,14 @@ def f(theta):
 \paragraph{More on $\theta$.}
 Here is more text following headline with math.
 
-Newcommands must also be tested: $\half$, $\x$, $\Ddt{u}$,
+Newcommands must also be tested in this \report:
+$\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
 
 \begin{align*}
 \Ddt{u} &= 0\\ 
-\half &= 1/2\\ 
-\x &= \normalvec
+\half &= \halfi\\ 
+\half\x &= \normalvec
 \end{align*}
 
 \subsection{Custom Environments}
@@ -3860,7 +3866,7 @@ to the section `URLs`_.
 Let's do some copying from files too. First from subroutine up to the very end::
 
 
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -3878,7 +3884,7 @@ and then just the subroutine::
 
 
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -3892,7 +3898,7 @@ and finally the complete file::
 
         C     a comment
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -4057,13 +4063,14 @@ involving \theta::
 
 *More on \theta.* Here is more text following headline with math.
 
-Newcommands must also be tested: \frac{1}{2}, \pmb{x}, \frac{Du}{dt},
+Newcommands must also be tested in this test report:
+\frac{1}{2}, {1/2}, \pmb{x}, \frac{Du}{dt},
 both inline and in block::
 
         \begin{align*}
         \frac{Du}{dt} &= 0\\ 
-        \frac{1}{2} &= 1/2\\ 
-        \pmb{x} &= \pmb{n}
+        \frac{1}{2} &= {1/2}\\ 
+        \frac{1}{2}\pmb{x} &= \pmb{n}
         \end{align*}
 
 
@@ -4606,7 +4613,7 @@ Let's do some copying from files too. First from subroutine up to the very end,
 
 .. code-block:: fortran
 
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -4624,7 +4631,7 @@ and then just the subroutine,
 
 .. code-block:: fortran
 
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -4639,7 +4646,7 @@ and finally the complete file:
 
         C     a comment
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -4816,15 +4823,16 @@ involving :math:`\theta`:
 
 *More on :math:`\theta`.* Here is more text following headline with math.
 
-Newcommands must also be tested: :math:`\frac{1}{2}`, :math:`\pmb{x}`, :math:`\frac{Du}{dt}`,
+Newcommands must also be tested in this test report:
+:math:`\frac{1}{2}`, :math:`{1/2}`, :math:`\pmb{x}`, :math:`\frac{Du}{dt}`,
 both inline and in block:
 
 
 .. math::
         
         \frac{Du}{dt} &= 0\\ 
-        \frac{1}{2} &= 1/2\\ 
-        \pmb{x} &= \pmb{n}
+        \frac{1}{2} &= {1/2}\\ 
+        \frac{1}{2}\pmb{x} &= \pmb{n}
         
 
 
@@ -5438,7 +5446,7 @@ to the section [#URLs].
 Let's do some copying from files too. First from subroutine up to the very end,
 
 {{{
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -5455,7 +5463,7 @@ C     END1
 and then just the subroutine,
 {{{
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -5468,7 +5476,7 @@ and finally the complete file:
 {{{
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -5617,14 +5625,15 @@ def f(theta):
 
 *More on `\theta`.* Here is more text following headline with math.
 
-Newcommands must also be tested: `\frac{1}{2}`, `\pmb{x}`, `\frac{Du}{dt}`,
+Newcommands must also be tested in this test report:
+`\frac{1}{2}`, `{1/2}`, `\pmb{x}`, `\frac{Du}{dt}`,
 both inline and in block:
 
 {{{
 \begin{align*}
 \frac{Du}{dt} &= 0\\ 
-\frac{1}{2} &= 1/2\\ 
-\pmb{x} &= \pmb{n}
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
 \end{align*}
 }}}
 
@@ -6057,7 +6066,7 @@ to the section [#URLs].
 Let's do some copying from files too. First from subroutine up to the very end,
 
 <syntaxhighlight lang="fortran">
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -6073,7 +6082,7 @@ C     END1
 </code>
 and then just the subroutine,
 <syntaxhighlight lang="fortran">
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -6086,7 +6095,7 @@ and finally the complete file:
 <syntaxhighlight lang="fortran">
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -6199,14 +6208,15 @@ def f(theta):
 
 ''More on <math>\theta</math>.'' Here is more text following headline with math.
 
-Newcommands must also be tested: <math>\frac{1}{2}</math>, <math>\pmb{x}</math>, <math>\frac{Du}{dt}</math>,
+Newcommands must also be tested in this test report:
+<math>\frac{1}{2}</math>, <math>{1/2}</math>, <math>\pmb{x}</math>, <math>\frac{Du}{dt}</math>,
 both inline and in block:
 
 :<math>
 \begin{align*}
 \frac{Du}{dt} &= 0\\ 
-\frac{1}{2} &= 1/2\\ 
-\pmb{x} &= \pmb{n}
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
 \end{align*}
 </math>
 
@@ -6643,7 +6653,7 @@ to the section [#URLs].
 Let's do some copying from files too. First from subroutine up to the very end,
 
 {{{
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -6660,7 +6670,7 @@ C     END1
 and then just the subroutine,
 {{{
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -6673,7 +6683,7 @@ and finally the complete file:
 {{{
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -6782,14 +6792,15 @@ def f(theta):
 
 //More on {{{\theta}}}.// Here is more text following headline with math.
 
-Newcommands must also be tested: {{{\frac{1}{2}}}}, {{{\pmb{x}}}}, {{{\frac{Du}{dt}}}},
+Newcommands must also be tested in this test report:
+{{{\frac{1}{2}}}}, {{{{1/2}}}}, {{{\pmb{x}}}}, {{{\frac{Du}{dt}}}},
 both inline and in block:
 
 {{{
 \begin{align*}
 \frac{Du}{dt} &= 0\\ 
-\frac{1}{2} &= 1/2\\ 
-\pmb{x} &= \pmb{n}
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
 \end{align*}
 }}}
 
@@ -7231,7 +7242,7 @@ to the section "URLs".
 Let's do some copying from files too. First from subroutine up to the very end::
 
 
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -7249,7 +7260,7 @@ and then just the subroutine::
 
 
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -7263,7 +7274,7 @@ and finally the complete file::
 
         C     a comment
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -7364,13 +7375,14 @@ involving \theta::
 
 *More on \theta.* Here is more text following headline with math.
 
-Newcommands must also be tested: \frac{1}{2}, \pmb{x}, \frac{Du}{dt},
+Newcommands must also be tested in this test report:
+\frac{1}{2}, {1/2}, \pmb{x}, \frac{Du}{dt},
 both inline and in block::
 
         \begin{align*}
         \frac{Du}{dt} &= 0\\ 
-        \frac{1}{2} &= 1/2\\ 
-        \pmb{x} &= \pmb{n}
+        \frac{1}{2} &= {1/2}\\ 
+        \frac{1}{2}\pmb{x} &= \pmb{n}
         \end{align*}
 
 
@@ -7722,7 +7734,7 @@ to the section "URLs".
 Let's do some copying from files too. First from subroutine up to the very end::
 
 
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -7740,7 +7752,7 @@ and then just the subroutine::
 
 
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -7754,7 +7766,7 @@ and finally the complete file::
 
         C     a comment
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -7861,13 +7873,14 @@ involving M{\theta}::
 
 I{More on M{\theta}.} Here is more text following headline with math.
 
-Newcommands must also be tested: M{\frac{1}{2}}, M{\pmb{x}}, M{\frac{Du}{dt}},
+Newcommands must also be tested in this test report:
+M{\frac{1}{2}}, M{{1/2}}, M{\pmb{x}}, M{\frac{Du}{dt}},
 both inline and in block::
 
         \begin{align*}
         \frac{Du}{dt} &= 0\\ 
-        \frac{1}{2} &= 1/2\\ 
-        \pmb{x} &= \pmb{n}
+        \frac{1}{2} &= {1/2}\\ 
+        \frac{1}{2}\pmb{x} &= \pmb{n}
         \end{align*}
 
 
@@ -8335,7 +8348,7 @@ to the section "URLs".
 Let's do some copying from files too. First from subroutine up to the very end::
 
 
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -8353,7 +8366,7 @@ and then just the subroutine::
 
 
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -8367,7 +8380,7 @@ and finally the complete file::
 
         C     a comment
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -8474,13 +8487,14 @@ involving \theta::
 
 *More on \theta.* Here is more text following headline with math.
 
-Newcommands must also be tested: \frac{1}{2}, \pmb{x}, \frac{Du}{dt},
+Newcommands must also be tested in this test report:
+\frac{1}{2}, {1/2}, \pmb{x}, \frac{Du}{dt},
 both inline and in block::
 
         \begin{align*}
         \frac{Du}{dt} &= 0\\ 
-        \frac{1}{2} &= 1/2\\ 
-        \pmb{x} &= \pmb{n}
+        \frac{1}{2} &= {1/2}\\ 
+        \frac{1}{2}\pmb{x} &= \pmb{n}
         \end{align*}
 
 
@@ -8905,7 +8919,7 @@ Let's do some copying from files too. First from subroutine up to the very end,
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Fortran}
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -8923,7 +8937,7 @@ C     END1
 and then just the subroutine,
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Fortran}
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -8938,7 +8952,7 @@ and finally the complete file:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Fortran}
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -9067,14 +9081,15 @@ def f(theta):
 
 *More on $\theta$.* Here is more text following headline with math.
 
-Newcommands must also be tested: $\half$, $\x$, $\Ddt{u}$,
+Newcommands must also be tested in this \report:
+$\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
 
 $$
 \begin{align*}
 \Ddt{u} &= 0\\ 
-\half &= 1/2\\ 
-\x &= \normalvec
+\half &= \halfi\\ 
+\half\x &= \normalvec
 \end{align*}
 $$
 
@@ -9707,7 +9722,7 @@ iso-8859-1
 <p>More text, with a reference back to Section [sec1] and further to Section [subsubsec:ex].</p>
 <p>Let’s do some copying from files too. First from subroutine up to the very end,</p>
 <blockquote>
-<pre><code>      subroutine    test()
+<pre><code>      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -9724,7 +9739,7 @@ C     END1
 <p>and then just the subroutine,</p>
 <blockquote>
 <pre><code>
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -9737,7 +9752,7 @@ C     END1
 <blockquote>
 <pre><code>C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -9808,11 +9823,11 @@ output2</code></pre>
 </blockquote>
 <h4 id="more-on-theta.">More on \(\theta\).</h4>
 <p>Here is more text following headline with math.</p>
-<p>Newcommands must also be tested: \(\half\), \(\x\), \(\Ddt{u}\), both inline and in block:</p>
+<p>Newcommands must also be tested in this : \(\half\), \(\halfi\), \(\x\), \(\Ddt{u}\), both inline and in block:</p>
 <p>\[\begin{aligned*}
 \Ddt{u} &amp;= 0\\ 
-\half &amp;= 1/2\\ 
-\x &amp;= \normalvec\end{aligned*}\]</p>
+\half &amp;= \halfi\\ 
+\half\x &amp;= \normalvec\end{aligned*}\]</p>
 <h2 id="custom-environments">Custom Environments</h2>
 <p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the 10pt10pt<code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!</p>
 <p>[theorem:fundamental1]</p>
@@ -10183,7 +10198,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </ol>
 <p><!-- !split --> Subsection 1 ------------</p>
 <p>More text, with a reference back to the section <a href="#n-1">Section 1</a> and further to the section <a href="#s">URLs</a>. Let's do some copying from files too. First from subroutine up to the very end,</p>
-<pre class="sourceCode Fortran"><code class="sourceCode fortran">      <span class="kw">subroutine</span>    test()
+<pre class="sourceCode Fortran"><code class="sourceCode fortran">      <span class="kw">subroutine</span> test()
       <span class="dt">integer</span> i
       <span class="dt">real*8</span> r
       r <span class="kw">=</span> <span class="dv">0</span>
@@ -10197,7 +10212,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
       <span class="kw">call</span> test()
       <span class="kw">return</span></code></pre>
 <p>and then just the subroutine,</p>
-<pre class="sourceCode Fortran"><code class="sourceCode fortran">      <span class="kw">subroutine</span>    test()
+<pre class="sourceCode Fortran"><code class="sourceCode fortran">      <span class="kw">subroutine</span> test()
       <span class="dt">integer</span> i
       <span class="dt">real*8</span> r
       r <span class="kw">=</span> <span class="dv">0</span>
@@ -10208,7 +10223,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>and finally the complete file:</p>
 <pre class="sourceCode Fortran"><code class="sourceCode fortran"><span class="co">C     a comment</span>
 
-      <span class="kw">subroutine</span>    test()
+      <span class="kw">subroutine</span> test()
       <span class="dt">integer</span> i
       <span class="dt">real*8</span> r
       r <span class="kw">=</span> <span class="dv">0</span>
@@ -10292,12 +10307,12 @@ output2</code></pre>
 <pre><code>def f(theta):
     return theta**2</code></pre>
 <p><em>More on \(\theta\).</em> Here is more text following headline with math.</p>
-<p>Newcommands must also be tested: \(\half\), \(\x\), \(\Ddt{u}\), both inline and in block:</p>
+<p>Newcommands must also be tested in this : \(\half\), \(\halfi\), \(\x\), \(\Ddt{u}\), both inline and in block:</p>
 <p>\[
 \begin{align*}
 \Ddt{u} &amp;= 0\\ 
-\half &amp;= 1/2\\ 
-\x &amp;= \normalvec
+\half &amp;= \halfi\\ 
+\half\x &amp;= \normalvec
 \end{align*}
 \]</p>
 <h2 id="custom-environments">Custom Environments</h2>
@@ -11594,7 +11609,9 @@ $$
 \newcommand{\x}{\pmb{x}}
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
 \newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
 $$
 
 
@@ -12197,12 +12214,14 @@ $$
 \newcommand{\x}{\pmb{x}}
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
 \newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
 $$
 
 
 
-<A NAME="PART0000"></A>
+<a name="part0000"></a>
 <!-- ------------------- main content ------------------------>
 
 <p>
@@ -12383,12 +12402,14 @@ $$
 \newcommand{\x}{\pmb{x}}
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
 \newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
 $$
 
 
 
-<A NAME="PART0001"></A>
+<a name="part0001"></a>
 <!-- !split -->
 <p>
 The format of this document is
@@ -12530,12 +12551,14 @@ $$
 \newcommand{\x}{\pmb{x}}
 \newcommand{\normalvec}{\pmb{n}}
 \newcommand{\Ddt}[1]{\frac{D#1}{dt}}
+\newcommand{\halfi}{1/2}
 \newcommand{\half}{\frac{1}{2}}
+\newcommand{\report}{test report}
 $$
 
 
 
-<A NAME="PART0002"></A>
+<a name="part0002"></a>
 <!-- !split -->
 <p>
 
@@ -12560,7 +12583,7 @@ Let's do some copying from files too. First from subroutine up to the very end,
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #AA22FF; font-weight: bold">subroutine    </span><span style="color: #B8860B">test</span>()
+13</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #AA22FF; font-weight: bold">subroutine </span><span style="color: #B8860B">test</span>()
       <span style="color: #00BB00; font-weight: bold">integer </span><span style="color: #B8860B">i</span>
       <span style="color: #00BB00; font-weight: bold">real</span><span style="color: #666666">*8</span> <span style="color: #B8860B">r</span>
       <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
@@ -12585,7 +12608,7 @@ and then just the subroutine,
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #AA22FF; font-weight: bold">subroutine    </span><span style="color: #B8860B">test</span>()
+8</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #AA22FF; font-weight: bold">subroutine </span><span style="color: #B8860B">test</span>()
       <span style="color: #00BB00; font-weight: bold">integer </span><span style="color: #B8860B">i</span>
       <span style="color: #00BB00; font-weight: bold">real</span><span style="color: #666666">*8</span> <span style="color: #B8860B">r</span>
       <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
@@ -12614,7 +12637,7 @@ and finally the complete file:
 14
 15</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B8860B">C</span>     <span style="color: #B8860B">a</span> <span style="color: #B8860B">comment</span>
 
-      <span style="color: #AA22FF; font-weight: bold">subroutine    </span><span style="color: #B8860B">test</span>()
+      <span style="color: #AA22FF; font-weight: bold">subroutine </span><span style="color: #B8860B">test</span>()
       <span style="color: #00BB00; font-weight: bold">integer </span><span style="color: #B8860B">i</span>
       <span style="color: #00BB00; font-weight: bold">real</span><span style="color: #666666">*8</span> <span style="color: #B8860B">r</span>
       <span style="color: #B8860B">r</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>
@@ -12800,15 +12823,16 @@ involving \( \theta \):
 <b>More on \( \theta \).</b> Here is more text following headline with math.
 
 <p>
-Newcommands must also be tested: \( \half \), \( \x \), \( \Ddt{u} \),
+Newcommands must also be tested in this \report:
+\( \half \), \( \halfi \), \( \x \), \( \Ddt{u} \),
 both inline and in block:
 
 <p>
 $$
 \begin{align*}
 \Ddt{u} &= 0\\ 
-\half &= 1/2\\ 
-\x &= \normalvec
+\half &= \halfi\\ 
+\half\x &= \normalvec
 \end{align*}
 $$
 
@@ -27595,7 +27619,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sun, 11 Nov 2012 (15:33)
+DATE: Wed, 14 Nov 2012 (19:59)
 
 
 
@@ -27699,7 +27723,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sun, 11 Nov 2012 (15:33)
+DATE: Wed, 14 Nov 2012 (19:59)
 
 
 
@@ -27813,7 +27837,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 11 Nov 2012 (15:33)</center>
+<center>Wed, 14 Nov 2012 (19:59)</center>
 
 
 
@@ -27944,7 +27968,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 11 Nov 2012 (15:33)</center>
+<center>Wed, 14 Nov 2012 (19:59)</center>
 
 
 
@@ -32605,7 +32629,7 @@ Let us copy a whole file (the first line above):
 <pre>
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -32628,7 +32652,7 @@ directive above:
 <p>
 <blockquote>    <!-- begin verbatim block  fcod-->
 <pre>
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -36006,7 +36030,7 @@ Let us copy a whole file (the first line above):
 \bfpro
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -36025,7 +36049,7 @@ Let us then copy just a piece in the middle as indicated by the \code{fromto:}
 directive above:
 
 \bfcod
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -39020,7 +39044,7 @@ Let us copy a whole file (the first line above)::
 
         C     a comment
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -39039,7 +39063,7 @@ Let us then copy just a piece in the middle as indicated by the ``fromto:``
 directive above::
 
 
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -42364,7 +42388,7 @@ Let us copy a whole file (the first line above):
 
         C     a comment
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -42385,7 +42409,7 @@ directive above:
 
 .. code-block:: fortran
 
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -45319,7 +45343,7 @@ Let us copy a whole file (the first line above):
 {{{
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -45338,7 +45362,7 @@ Let us then copy just a piece in the middle as indicated by the `fromto:`
 directive above:
 
 {{{
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -48030,7 +48054,7 @@ Let us copy a whole file (the first line above):
 <syntaxhighlight lang="fortran">
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -48049,7 +48073,7 @@ Let us then copy just a piece in the middle as indicated by the <code>fromto:</c
 directive above:
 
 <syntaxhighlight lang="fortran">
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -50780,7 +50804,7 @@ Let us copy a whole file (the first line above):
 {{{
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -50799,7 +50823,7 @@ Let us then copy just a piece in the middle as indicated by the {{{fromto:}}}
 directive above:
 
 {{{
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -53584,7 +53608,7 @@ Let us copy a whole file (the first line above)::
 
         C     a comment
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -53603,7 +53627,7 @@ Let us then copy just a piece in the middle as indicated by the 'fromto:'
 directive above::
 
 
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -56478,7 +56502,7 @@ Let us copy a whole file (the first line above)::
 
         C     a comment
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -56497,7 +56521,7 @@ Let us then copy just a piece in the middle as indicated by the C{fromto:}
 directive above::
 
 
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -59459,7 +59483,7 @@ Let us copy a whole file (the first line above)::
 
         C     a comment
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -59478,7 +59502,7 @@ Let us then copy just a piece in the middle as indicated by the fromto:
 directive above::
 
 
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -62604,7 +62628,7 @@ Let us copy a whole file (the first line above):
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Fortran}
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -62624,7 +62648,7 @@ directive above:
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Fortran}
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -73596,89 +73620,89 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 eg>>]
 Underfull \vbox (badness 10000) has occurred while \output is active [9 <../doc
 /manual/figs/wavepacket_0001.png (PNG copy)>]
-Overfull \hbox (78.30609pt too wide) in paragraph at lines 555--555
+Overfull \hbox (78.30609pt too wide) in paragraph at lines 556--556
 [][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
 +%26+engineering/book/978-3-642-23098-1| 
 
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 565.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 566.
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 567.
+(amsmath)                 on input line 568.
 
 
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 569.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 570.
 
 
-LaTeX Warning: Reference `eq1' on page 10 undefined on input line 583.
+LaTeX Warning: Reference `eq1' on page 10 undefined on input line 584.
 
 
-LaTeX Warning: Reference `eq2' on page 10 undefined on input line 583.
-
-
-LaTeX Warning: Reference `split:envir:eq' on page 10 undefined on input line 60
-0.
+LaTeX Warning: Reference `eq2' on page 10 undefined on input line 584.
 
 [10]
 
-LaTeX Warning: Reference `eq1' on page 11 undefined on input line 613.
+LaTeX Warning: Reference `split:envir:eq' on page 11 undefined on input line 60
+1.
 
 
-LaTeX Warning: Reference `eq2' on page 11 undefined on input line 613.
+LaTeX Warning: Reference `eq1' on page 11 undefined on input line 614.
 
 
-LaTeX Warning: Reference `eq1a' on page 11 undefined on input line 614.
+LaTeX Warning: Reference `eq2' on page 11 undefined on input line 614.
 
 
-LaTeX Warning: Reference `eq2a' on page 11 undefined on input line 614.
+LaTeX Warning: Reference `eq1a' on page 11 undefined on input line 615.
 
 
-LaTeX Warning: Reference `my:eq1' on page 11 undefined on input line 614.
+LaTeX Warning: Reference `eq2a' on page 11 undefined on input line 615.
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 624.
+LaTeX Warning: Reference `my:eq1' on page 11 undefined on input line 615.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 624.
+LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 625.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 625.
+LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 625.
+
+
+LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 626.
 
 
 
-LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 625.
+LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 626.
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 11 undefined on input line
- 626.
+ 627.
 
-(./testdoc.out.pyg) [11] (./testdoc.out.pyg) [12]
+(./testdoc.out.pyg [11]) (./testdoc.out.pyg) [12]
 
-LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 875.
-
-
-
-LaTeX Warning: Reference `demo:ex:1' on page 13 undefined on input line 875.
-
-
-LaTeX Warning: Reference `demo:ex:2' on page 13 undefined on input line 890.
-
-
-LaTeX Warning: Reference `exer:some:formula' on page 13 undefined on input line
- 894.
-
-
-LaTeX Warning: Reference `demo:ex:2' on page 13 undefined on input line 895.
-
-
-LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 895.
+LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 876.
 
 
 
-LaTeX Warning: Reference `exer:you' on page 13 undefined on input line 896.
+LaTeX Warning: Reference `demo:ex:1' on page 13 undefined on input line 876.
 
 [13]
+
+LaTeX Warning: Reference `demo:ex:2' on page 14 undefined on input line 891.
+
+
+LaTeX Warning: Reference `exer:some:formula' on page 14 undefined on input line
+ 895.
+
+
+LaTeX Warning: Reference `demo:ex:2' on page 14 undefined on input line 896.
+
+
+LaTeX Warning: Reference `proj:circle1' on page 14 undefined on input line 896.
+
+
+
+LaTeX Warning: Reference `exer:you' on page 14 undefined on input line 897.
+
 No file testdoc.ind.
 [14]
 
@@ -73714,7 +73738,7 @@ b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (14 pages, 1465882 bytes).
+Output written on testdoc.pdf (14 pages, 1466081 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -76740,7 +76764,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on DoconceManual.pdf (61 pages, 397953 bytes).
+Output written on DoconceManual.pdf (61 pages, 397954 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -78594,7 +78618,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (50 pages, 331060 bytes).
+Output written on manual.pdf (50 pages, 331055 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -78858,7 +78882,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (52 pages, 352145 bytes).
+Output written on manual.pdf (52 pages, 352140 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -79092,7 +79116,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (52 pages, 352865 bytes).
+Output written on manual.pdf (52 pages, 352860 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako

@@ -1,6 +1,6 @@
 % Doconce Description
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Nov 11, 2012
+% Nov 14, 2012
 
 <!-- lines beginning with # are comment lines -->
 
@@ -2067,7 +2067,7 @@ Let us copy a whole file (the first line above):
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Fortran}
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -2087,7 +2087,7 @@ directive above:
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Fortran}
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0

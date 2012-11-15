@@ -170,14 +170,15 @@ def f(theta):
 
 __More on $\theta$.__ Here is more text following headline with math.
 
-Newcommands must also be tested: $\half$, $\x$, $\Ddt{u}$,
+Newcommands must also be tested in this \report:
+$\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
 
 !bt
 \begin{align*}
 \Ddt{u} &= 0\\
-\half &= 1/2\\
-\x &= \normalvec
+\half &= \halfi\\
+\half\x &= \normalvec
 \end{align*}
 !et
 

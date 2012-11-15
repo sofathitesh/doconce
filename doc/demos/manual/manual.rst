@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Nov 11, 2012
+:Date: Nov 14, 2012
 
 .. lines beginning with # are comment lines
 
@@ -2048,7 +2048,7 @@ Let us copy a whole file (the first line above)::
 
         C     a comment
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -2067,7 +2067,7 @@ Let us then copy just a piece in the middle as indicated by the ``fromto:``
 directive above::
 
 
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
