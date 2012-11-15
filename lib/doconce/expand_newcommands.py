@@ -18,7 +18,12 @@ def process_newcommand(line):
         # but avoided - the idea is to use the regex (\x)([^A-Za-z])
         end_pattern = r'([^A-Za-z])'
         pattern = m.group(1) + end_pattern
-        replacement = m.group(2) + r'\g<1>'  # \g<1> is the end_pattern
+        text = m.group(2)
+        if not text.endswith('}'):
+            # Do not encapsulate plain words in {}
+            if not re.search(r'[A-Za-z ,.]{%d}' % len(text), text):
+                text = '{' + text + '}'
+        replacement = text + r'\g<1>'  # \g<1> is the end_pattern
         # could also use a lookahead pattern: (?=[^A-Za-z]), not tested
         #pattern = m.group(1) + r'(?=[^A-Za-z])'
         #replacement = m.group(2)
@@ -32,6 +37,10 @@ def process_newcommand(line):
         args = r'\{(.+?)\}'*nargs
         pattern = m.group(1) + args
         replacement = m.group(3)
+        if not replacement.endswith('}'):
+            # Do not encapsulate plain words in {}
+            if not re.search(r'[A-Za-z ,.]{%d}' % len(replacement), replacement):
+                replacement = '{' + replacement + '}'
         for i in range(1, nargs+1):
             replacement = replacement.replace('#%d' % i, r'\g<%d>' % i)
         found = True

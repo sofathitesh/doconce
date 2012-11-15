@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Nov 11, 2012 ====
+==== Nov 14, 2012 ====
 
 <!--> lines beginning with # are comment lines -->
 
@@ -1754,7 +1754,7 @@ Let us copy a whole file (the first line above):
 <syntaxhighlight lang="fortran">
 C     a comment
 
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0
@@ -1773,7 +1773,7 @@ Let us then copy just a piece in the middle as indicated by the <code>fromto:</c
 directive above:
 
 <syntaxhighlight lang="fortran">
-      subroutine    test()
+      subroutine test()
       integer i
       real*8 r
       r = 0

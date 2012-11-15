@@ -1831,7 +1831,7 @@ Let us copy a whole file (the first line above)::
 
         C     a comment
         
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
@@ -1850,7 +1850,7 @@ Let us then copy just a piece in the middle as indicated by the 'fromto:'
 directive above::
 
 
-              subroutine    test()
+              subroutine test()
               integer i
               real*8 r
               r = 0
