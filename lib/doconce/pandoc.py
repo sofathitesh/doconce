@@ -200,6 +200,13 @@ def pandoc_index_bib(filestr, index, citations, bibfile):
     filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)
     return filestr
 
+def pandoc_quote(block, format):
+    # block quotes in pandoc start with "> "
+    lines = []
+    for line in block.splitlines():
+        lines.append('> ' + line)
+    return '\n'.join(lines) + '\n\n'
+
 def define(FILENAME_EXTENSION,
            BLANKLINE,
            INLINE_TAGS_SUBST,
@@ -245,6 +252,7 @@ def define(FILENAME_EXTENSION,
         'paragraph':     r'*\g<subst>* ',  # extra blank
         'abstract':      r'*\g<type>.* \g<text>\n\n\g<rest>',
         'comment':       '<!-- %s -->',
+        '!quote':        pandoc_quote,
         }
 
     CODE['pandoc'] = pandoc_code

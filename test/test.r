@@ -57,7 +57,12 @@ Here is a nested list:
     o second item,
       continuing on a new line
 
-!split
+!bquote
+Here are two lines that make up
+a block quote.
+!equote
+
+!split and check if these extra words are included properly
 
 ===== Subsection 1 =====
 
@@ -1091,6 +1096,7 @@ Jan 32, 2100
 
 
 % !split
+
 The format of this document is
 plain, homemade {\LaTeX} (from Doconce).
 
@@ -1153,7 +1159,13 @@ Here is a nested list:
 \end{itemize}
 
 \noindent
+
+\begin{quote}
+    Here are two lines that make up
+    a block quote.
+\end{quote}
 % !split
+
 \subsection{Subsection 1}
 
 More text, with a reference back to Section~\ref{sec1} and further
@@ -2069,6 +2081,7 @@ Project & 6 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:y
 
 
 % !split
+
 The format of this document is
 plain, homemade \textsc{pdf}{\LaTeX} (from Doconce).
 
@@ -2123,7 +2136,13 @@ Here is a nested list:
 \end{itemize}
 
 \noindent
+
+\begin{quote}
+    Here are two lines that make up
+    a block quote.
+\end{quote}
 % !split
+
 \subsection{Subsection 1}
 
 More text, with a reference back to Section~\ref{sec1} and further
@@ -3023,6 +3042,7 @@ Project & 6 & References to Project ref{demo:ex:2} in a ... & p.~\pageref{exer:y
 
 
 % !split
+
 The format of this document is
 plain, homemade \textsc{pdf}{\LaTeX} (from Doconce).
 
@@ -3077,7 +3097,13 @@ Here is a nested list:
 \end{itemize}
 
 \noindent
+
+\begin{quote}
+    Here are two lines that make up
+    a block quote.
+\end{quote}
 % !split
+
 \subsection{Subsection 1}
 
 More text, with a reference back to Section~\ref{sec1} and further
@@ -3811,6 +3837,7 @@ A Document for Testing Doconce
 
 .. !split
 
+
 The format of this document is
 rst
 
@@ -3856,7 +3883,14 @@ Here is a nested list:
       continuing on a new line
 
 
+
+..
+
+    Here are two lines that make up
+    a block quote.
+
 .. !split
+
 
 Subsection 1
 ------------
@@ -4553,6 +4587,7 @@ A Document for Testing Doconce
 
 .. !split
 
+
 The format of this document is
 sphinx
 
@@ -4598,7 +4633,14 @@ Here is a nested list:
       continuing on a new line
 
 
+
+..
+
+    Here are two lines that make up
+    a block quote.
+
 .. !split
+
 
 Subsection 1
 ------------
@@ -5402,6 +5444,7 @@ By *Hans Petter Langtangen* (hpl at simula.no), *Kaare Dump*, *A. Dummy Author*,
 
 
 <wiki:comment> !split </wiki:comment>
+
 The format of this document is
 gwiki
 
@@ -5438,7 +5481,11 @@ Here is a nested list:
 
 
 
+    Here are two lines that make up
+    a block quote.
+
 <wiki:comment> !split </wiki:comment>
+
 ==== Subsection 1 ====
 
 More text, with a reference back to the section [#Section_1] and further
@@ -6027,6 +6074,7 @@ __TOC__
 
 
 <!--> !split -->
+
 The format of this document is
 mwiki
 
@@ -6058,7 +6106,11 @@ Here is a nested list:
 
 </ul>
 
+    Here are two lines that make up
+    a block quote.
+
 <!--> !split -->
+
 ==== Subsection 1 ====
 
 More text, with a reference back to the section [#Section_1] and further
@@ -6609,6 +6661,7 @@ By **Hans Petter Langtangen** (hpl at simula.no), **Kaare Dump**, **A. Dummy Aut
 
 
 <wiki:comment> !split </wiki:comment>
+
 The format of this document is
 cwiki
 
@@ -6645,7 +6698,12 @@ Here is a nested list:
 
 
 
+    Here are two lines that make up
+    a block quote.
+
 <wiki:comment> !split </wiki:comment>
+
+
 == Subsection 1 ==
 
 More text, with a reference back to the section [#Section_1] and further
@@ -7207,6 +7265,7 @@ BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Lab
 
 
 # !split
+
 The format of this document is
 st
 *Abstract.* This is a document with many test constructions for doconce syntax.
@@ -7234,7 +7293,11 @@ Here is a nested list:
       continuing on a new line
 
 
+    Here are two lines that make up
+    a block quote.
+
 # !split
+
 Subsection 1
 
 More text, with a reference back to the section "Section 1" and further
@@ -7694,6 +7757,7 @@ BY: Hans Petter Langtangen (Center for Biomedical Computing, Simula Research Lab
 
 
 # !split
+
 The format of this document is
 epytext
 
@@ -7725,7 +7789,11 @@ Here is a nested list:
       continuing on a new line
 
 
+    Here are two lines that make up
+    a block quote.
+
 # !split
+
 Subsection 1
 ------------
 
@@ -8301,6 +8369,7 @@ Table of contents:
 
 
 # !split
+
 The format of this document is
 plain
 
@@ -8339,7 +8408,11 @@ Here is a nested list:
       continuing on a new line
 
 
+    Here are two lines that make up
+    a block quote.
+
 # !split
+
 Subsection 1
 ------------
 
@@ -8868,6 +8941,7 @@ Without label.
 
 
 <!-- !split -->
+
 The format of this document is
 pandoc
 *Abstract.* This is a document with many test constructions for doconce syntax.
@@ -8909,7 +8983,11 @@ Here is a nested list:
       continuing on a new line
 
 
+    Here are two lines that make up
+    a block quote.
+
 <!-- !split -->
+
 Subsection 1
 ------------
 
@@ -9718,6 +9796,9 @@ iso-8859-1
 <li><p>second item, continuing on a new line</p></li>
 </ol></li>
 </ul>
+<blockquote>
+<p>Here are two lines that make up a block quote.</p>
+</blockquote>
 <h2 id="subsection-1">Subsection 1</h2>
 <p>More text, with a reference back to Section [sec1] and further to Section [subsubsec:ex].</p>
 <p>Let’s do some copying from files too. First from subroutine up to the very end,</p>
@@ -10172,6 +10253,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 
 
 <!-- !split -->
+
 <p>The format of this document is pandoc <em>Abstract.</em> This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.</p>
 <p>And exactly for test purposes we have an extra line here, which is part of the abstract.</p>
 <!-- Cannot demonstrate chapter headings since abstract and chapter -->
@@ -10194,9 +10276,12 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </ul>
 <ol style="list-style-type: decimal">
 <li><p>first item</p></li>
-<li><p>second item, continuing on a new line</p></li>
+<li><p>second item, continuing on a new line</p>
+<p>Here are two lines that make up a block quote.</p></li>
 </ol>
-<p><!-- !split --> Subsection 1 ------------</p>
+<!-- !split -->
+
+<h2 id="subsection-1">Subsection 1</h2>
 <p>More text, with a reference back to the section <a href="#n-1">Section 1</a> and further to the section <a href="#s">URLs</a>. Let's do some copying from files too. First from subroutine up to the very end,</p>
 <pre class="sourceCode Fortran"><code class="sourceCode fortran">      <span class="kw">subroutine</span> test()
       <span class="dt">integer</span> i
@@ -12411,6 +12496,7 @@ $$
 
 <a name="part0001"></a>
 <!-- !split -->
+
 <p>
 The format of this document is
 plain, homemade HTML (from Doconce).
@@ -12460,6 +12546,11 @@ Here is a nested list:
 
 </ul>
 
+<blockquote>
+    Here are two lines that make up
+    a block quote.
+</blockquote>
+<p>
 <p>
 
 <a href="._part0000_testdoc.html"><img src="html_images/._prev_slide1.gif" border=0 alt="previous"></a>
@@ -12560,6 +12651,7 @@ $$
 
 <a name="part0002"></a>
 <!-- !split -->
+
 <p>
 
 <h3>Subsection 1  <a name="___sec1"></a></h3>
@@ -14275,8 +14367,12 @@ References to sections may use logical names as labels (e.g., a
 the section <a href="#my:first:sec">A Subsection with Sample Text</a>.
 
 <p>
-Doconce also allows inline comments such as [<b>hpl</b>: <em>here I will make
-some remarks to the text</em>] for allowing authors to make notes. Inline
+Doconce also allows inline comments such as 
+<!-- begin inline comment -->
+[<b>hpl</b>: <em>here I will make
+some remarks to the text</em>]
+<!-- end inline comment -->
+ for allowing authors to make notes. Inline
 comments can be removed from the output by a command-line argument
 (see the section <a href="#doconce2formats">From Doconce to Other Formats</a> for an example).
 
@@ -27619,7 +27715,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 14 Nov 2012 (19:59)
+DATE: Fri, 16 Nov 2012 (07:03)
 
 
 
@@ -27723,7 +27819,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Wed, 14 Nov 2012 (19:59)
+DATE: Fri, 16 Nov 2012 (07:03)
 
 
 
@@ -27837,7 +27933,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 14 Nov 2012 (19:59)</center>
+<center>Fri, 16 Nov 2012 (07:03)</center>
 
 
 
@@ -27968,7 +28064,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 14 Nov 2012 (19:59)</center>
+<center>Fri, 16 Nov 2012 (07:03)</center>
 
 
 
@@ -32301,8 +32397,12 @@ citing a book <a href="#Python:Primer:09">[1]</a>, a paper <a href="#Osnes:98">[
 and both of them simultaneously <a href="#Python:Primer:09">[1]</a> <a href="#Osnes:98">[2]</a>.
 
 <p>
+
+<!-- begin inline comment -->
 [<b>somereader</b>: <em>comments, citations, and references in the latex style
 is a special feature of doconce :-) </em>]
+<!-- end inline comment -->
+
 
 <p>
 
@@ -73563,145 +73663,146 @@ LaTeX Warning: Reference `exer:you' on page 2 undefined on input line 132.
 
 [2] (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd)
 
-LaTeX Warning: Reference `sec1' on page 3 undefined on input line 202.
+LaTeX Warning: Reference `sec1' on page 3 undefined on input line 209.
 
 
-LaTeX Warning: Reference `subsubsec:ex' on page 3 undefined on input line 203.
+LaTeX Warning: Reference `subsubsec:ex' on page 3 undefined on input line 210.
 
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg)
-Overfull \hbox (43.91478pt too wide) in paragraph at lines 292--296
+Overfull \hbox (43.91478pt too wide) in paragraph at lines 299--303
 []\OT1/cmr/m/n/10 It is time to test []\OT1/cmtt/m/n/10 verbatim inline font \O
 T1/cmr/m/n/10 es-pe-cially with []\OT1/cmtt/m/n/10 a newline inside the text
+[4]
 
-LaTeX Warning: Reference `fig:impact' on page 4 undefined on input line 302.
+LaTeX Warning: Reference `fig:impact' on page 5 undefined on input line 309.
 
-<../doc/manual/figs/streamtubes.png, id=35, 583.17876pt x 437.635pt>
-<use ../doc/manual/figs/streamtubes.png> [4]
+<../doc/manual/figs/streamtubes.png, id=41, 583.17876pt x 437.635pt>
+<use ../doc/manual/figs/streamtubes.png>
 <use ../doc/manual/figs/streamtubes.png>
 Underfull \vbox (badness 10000) has occurred while \output is active [5 <../doc
 /manual/figs/streamtubes.png>]
-Overfull \hbox (47.04507pt too wide) in paragraph at lines 377--378
+Overfull \hbox (47.04507pt too wide) in paragraph at lines 384--385
 \OT1/cmr/m/n/10 the full wavepacket.mpeg movie). [](Movie of files []\OT1/cmtt/
 m/n/10 ../doc/manual/figs/wavepacket_*.png
 
-LaTeX Warning: Reference `myfig' on page 6 undefined on input line 387.
+LaTeX Warning: Reference `myfig' on page 6 undefined on input line 394.
 
 <../doc/manual/figs/wavepacket_0001.png, id=83, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
 
-LaTeX Warning: Reference `mymov' on page 6 undefined on input line 400.
+LaTeX Warning: Reference `mymov' on page 6 undefined on input line 407.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 407.
+(hyperref)                removing `math shift' on input line 414.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\theta' on input line 407.
+(hyperref)                removing `\theta' on input line 414.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 407.
+(hyperref)                removing `math shift' on input line 414.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 407.
+(hyperref)                removing `math shift' on input line 414.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\nabla' on input line 407.
+(hyperref)                removing `\nabla' on input line 414.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 407.
+(hyperref)                removing `math shift' on input line 414.
 
 [6] [7<<../doc/manual/figs/mjolnir.mpeg>>] [8<<../doc/manual/figs/wavepacket.mp
 eg>>]
 Underfull \vbox (badness 10000) has occurred while \output is active [9 <../doc
 /manual/figs/wavepacket_0001.png (PNG copy)>]
-Overfull \hbox (78.30609pt too wide) in paragraph at lines 556--556
+Overfull \hbox (78.30609pt too wide) in paragraph at lines 563--563
 [][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
 +%26+engineering/book/978-3-642-23098-1| 
 
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 566.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 573.
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 568.
+(amsmath)                 on input line 575.
 
 
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 570.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 577.
 
 
-LaTeX Warning: Reference `eq1' on page 10 undefined on input line 584.
+LaTeX Warning: Reference `eq1' on page 10 undefined on input line 591.
 
 
-LaTeX Warning: Reference `eq2' on page 10 undefined on input line 584.
+LaTeX Warning: Reference `eq2' on page 10 undefined on input line 591.
 
 [10]
 
 LaTeX Warning: Reference `split:envir:eq' on page 11 undefined on input line 60
-1.
+8.
 
 
-LaTeX Warning: Reference `eq1' on page 11 undefined on input line 614.
+LaTeX Warning: Reference `eq1' on page 11 undefined on input line 621.
 
 
-LaTeX Warning: Reference `eq2' on page 11 undefined on input line 614.
+LaTeX Warning: Reference `eq2' on page 11 undefined on input line 621.
 
 
-LaTeX Warning: Reference `eq1a' on page 11 undefined on input line 615.
+LaTeX Warning: Reference `eq1a' on page 11 undefined on input line 622.
 
 
-LaTeX Warning: Reference `eq2a' on page 11 undefined on input line 615.
+LaTeX Warning: Reference `eq2a' on page 11 undefined on input line 622.
 
 
-LaTeX Warning: Reference `my:eq1' on page 11 undefined on input line 615.
+LaTeX Warning: Reference `my:eq1' on page 11 undefined on input line 622.
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 625.
+LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 632.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 625.
+LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 632.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 626.
+LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 633.
 
 
 
-LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 626.
+LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 633.
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 11 undefined on input line
- 627.
+ 634.
 
 (./testdoc.out.pyg [11]) (./testdoc.out.pyg) [12]
 
-LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 876.
+LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 883.
 
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 13 undefined on input line 876.
+LaTeX Warning: Reference `demo:ex:1' on page 13 undefined on input line 883.
 
 [13]
 
-LaTeX Warning: Reference `demo:ex:2' on page 14 undefined on input line 891.
+LaTeX Warning: Reference `demo:ex:2' on page 14 undefined on input line 898.
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 14 undefined on input line
- 895.
+ 902.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 14 undefined on input line 896.
+LaTeX Warning: Reference `demo:ex:2' on page 14 undefined on input line 903.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 14 undefined on input line 896.
+LaTeX Warning: Reference `proj:circle1' on page 14 undefined on input line 903.
 
 
 
-LaTeX Warning: Reference `exer:you' on page 14 undefined on input line 897.
+LaTeX Warning: Reference `exer:you' on page 14 undefined on input line 904.
 
 No file testdoc.ind.
 [14]
@@ -73738,7 +73839,7 @@ b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (14 pages, 1466081 bytes).
+Output written on testdoc.pdf (14 pages, 1466151 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -73803,6 +73904,7 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 6 exercises, written to .testdoc.exerinfo
+default quote
 output in testdoc.txt
 + doconce format st testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -73855,6 +73957,7 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 6 exercises, written to .testdoc.exerinfo
+default quote
 output in testdoc.st
 + doconce format sphinx testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -74033,6 +74136,7 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 6 exercises, written to .testdoc.exerinfo
+default quote
 output in testdoc.epytext
 + doconce format pandoc testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -74085,6 +74189,7 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 6 exercises, written to .testdoc.exerinfo
+default quote
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{multline} does not work well
@@ -74163,6 +74268,7 @@ NOTE: Upload image file ../doc/manual/figs/streamtubes.png to the Wiki* site
 NOTE: Upload image file ../doc/manual/figs/wavepacket_0001.png to the Wiki* site
       (see http://en.wikipedia.org/wiki/Special:Upload for Wikipedia)
 
+default quote
 output in testdoc.mwiki
 + doconce format cwiki testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -74217,6 +74323,7 @@ text before the code! (Now "Code:" is inserted)
 found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format cwiki
+default quote
 output in testdoc.cwiki
 + doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -74290,6 +74397,7 @@ NOTE: Place ../doc/manual/figs/wavepacket_0001.png at some place on the web and 
       or use the doconce script:
       doconce gwiki_figsubst.py mydoc.gwiki URL
 
+default quote
 output in testdoc.gwiki
 + doconce format latex testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -74415,6 +74523,7 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 6 exercises, written to .testdoc.exerinfo
+default quote
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{multline} does not work well
@@ -74455,6 +74564,7 @@ Move files to _static and change URLs!
 output in author1.rst
 + doconce format plain author1
 translating doconce text in author1.do.txt to plain
+default quote
 output in author1.txt
 + doconce guess_encoding encoding1.do.txt
 + cp encoding1.do.txt tmp1.do.txt
@@ -76210,30 +76320,37 @@ Transcript written on tutorial.rst.log.
 + doconce format plain tutorial.do.txt
 running preprocess -DFORMAT=plain  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to plain
+default quote
 output in tutorial.txt
 + doconce format gwiki tutorial.do.txt
 running preprocess -DFORMAT=gwiki  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to gwiki
+default quote
 output in tutorial.gwiki
 + doconce format cwiki tutorial.do.txt
 running preprocess -DFORMAT=cwiki  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to cwiki
+default quote
 output in tutorial.cwiki
 + doconce format mwiki tutorial.do.txt
 running preprocess -DFORMAT=mwiki  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to mwiki
+default quote
 output in tutorial.mwiki
 + doconce format st tutorial.do.txt
 running preprocess -DFORMAT=st  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to st
+default quote
 output in tutorial.st
 + doconce format epytext tutorial.do.txt
 running preprocess -DFORMAT=epytext  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to epytext
+default quote
 output in tutorial.epytext
 + doconce format pandoc tutorial.do.txt
 running preprocess -DFORMAT=pandoc  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
+default quote
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{quote} does not work well
@@ -78197,6 +78314,7 @@ copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
+default quote
 output in manual.txt
 + doconce format epytext manual.do.txt --no-mako
 running preprocess -DFORMAT=epytext -D--no-mako manual.do.txt > __tmp.do.txt
@@ -78221,6 +78339,7 @@ copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
+default quote
 output in manual.epytext
 + doconce format st manual.do.txt --no-mako
 running preprocess -DFORMAT=st -D--no-mako manual.do.txt > __tmp.do.txt
@@ -78245,6 +78364,7 @@ copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
+default quote
 output in manual.st
 + doconce format pandoc manual.do.txt --no-mako
 running preprocess -DFORMAT=pandoc -D--no-mako manual.do.txt > __tmp.do.txt
@@ -78269,6 +78389,7 @@ copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
+default quote
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{align} does not work well
@@ -80117,6 +80238,7 @@ NOTE: Place figs/streamtubes.png at some place on the web and edit the
       or use the doconce script:
       doconce gwiki_figsubst.py mydoc.gwiki URL
 
+default quote
 output in manual.gwiki
 + doconce subst \(the URL of the image file figs/streamtubes.png must be inserted here\) https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png manual.gwiki
 \(the URL of the image file figs/streamtubes.png must be inserted here\) replaced by https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png in manual.gwiki
@@ -80145,6 +80267,7 @@ copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
 figure file figs/streamtubes:
     can use figs/streamtubes.png for format cwiki
+default quote
 output in manual.cwiki
 + doconce format mwiki manual.do.txt --no-mako
 running preprocess -DFORMAT=mwiki -D--no-mako manual.do.txt > __tmp.do.txt
@@ -80175,6 +80298,7 @@ figure file figs/streamtubes:
 NOTE: Upload image file figs/streamtubes.png to the Wiki* site
       (see http://en.wikipedia.org/wiki/Special:Upload for Wikipedia)
 
+default quote
 output in manual.mwiki
 + rm -f *.ps
 + rm -rf demo
@@ -80188,6 +80312,7 @@ output in manual.mwiki
 + cp manual.gwiki ../../../doconce.wiki/Description.wiki
 + doconce format gwiki install
 translating doconce text in install.do.txt to gwiki
+default quote
 output in install.gwiki
 + cp install.gwiki ../../../doconce.wiki/Installation1.wiki
 + echo
@@ -81258,36 +81383,43 @@ Transcript written on quickref.rst.log.
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to plain
 copy complete file doconce_program.sh  (format: shpro)
+default quote
 output in quickref.txt
 + doconce format gwiki quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to gwiki
 copy complete file doconce_program.sh  (format: shpro)
+default quote
 output in quickref.gwiki
 + doconce format mwiki quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to mwiki
 copy complete file doconce_program.sh  (format: shpro)
+default quote
 output in quickref.mwiki
 + doconce format cwiki quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to cwiki
 copy complete file doconce_program.sh  (format: shpro)
+default quote
 output in quickref.cwiki
 + doconce format st quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to st
 copy complete file doconce_program.sh  (format: shpro)
+default quote
 output in quickref.st
 + doconce format epytext quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to epytext
 copy complete file doconce_program.sh  (format: shpro)
+default quote
 output in quickref.epytext
 + doconce format pandoc quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to pandoc
 copy complete file doconce_program.sh  (format: shpro)
+default quote
 output in quickref.md
 + rm -rf demo
 + mkdir demo
