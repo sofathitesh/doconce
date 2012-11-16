@@ -1,6 +1,6 @@
 % Doconce Description
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Nov 14, 2012
+% Nov 16, 2012
 
 <!-- lines beginning with # are comment lines -->
 

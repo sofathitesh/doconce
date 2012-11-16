@@ -1,5 +1,6 @@
 import re, os, glob, sys, glob
-from common import table_analysis, plain_exercise, insert_code_and_tex
+from common import table_analysis, plain_exercise, insert_code_and_tex, \
+     indent_lines
 
 # how to replace code and LaTeX blocks by html (<pre>) environment:
 def html_code(filestr, code_blocks, code_block_types,
@@ -471,6 +472,13 @@ def html_toc(sections):
     s += '%s\n<p>\n' % hr
     return s
 
+def html_quote(block, format):
+    return """\
+<blockquote>
+%s
+</blockquote>
+""" % (indent_lines(block, format, ' '*4))
+
 def define(FILENAME_EXTENSION,
            BLANKLINE,
            INLINE_TAGS_SUBST,
@@ -505,7 +513,7 @@ def define(FILENAME_EXTENSION,
         'linkURL2v':     r'<a href="\g<url>"><tt>\g<link></tt></a>',
         'linkURL3v':     r'<a href="\g<url>"><tt>\g<link></tt></a>',
         'plainURL':      r'<a href="\g<url>"><tt>\g<url></tt></a>',
-        'inlinecomment': r'[<b>\g<name></b>: <em>\g<comment></em>]',
+        'inlinecomment': r'\n<!-- begin inline comment -->\n[<b>\g<name></b>: <em>\g<comment></em>]\n<!-- end inline comment -->\n',
         'chapter':       r'\n<h1>\g<subst></h1>',
         'section':       r'\n<h2>\g<subst></h2>',
         'subsection':    r'\n<h3>\g<subst></h3>',
@@ -518,6 +526,7 @@ def define(FILENAME_EXTENSION,
         'figure':        html_figure,
         'movie':         html_movie,
         'comment':       '<!-- %s -->',
+        '!quote':        html_quote,
         }
 
     CODE['html'] = html_code

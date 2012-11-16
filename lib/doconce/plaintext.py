@@ -98,6 +98,7 @@ def plain_toc(sections):
         s += ' '*(2*(tp-tp_min)) + title + '\n'
     return s
 
+
 def define(FILENAME_EXTENSION,
            BLANKLINE,
            INLINE_TAGS_SUBST,

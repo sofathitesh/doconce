@@ -55,7 +55,12 @@ Here is a nested list:
     o second item,
       continuing on a new line
 
-!split
+!bquote
+Here are two lines that make up
+a block quote.
+!equote
+
+!split and check if these extra words are included properly in the comment
 
 ===== Subsection 1 =====
 

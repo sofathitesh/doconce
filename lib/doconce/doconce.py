@@ -986,6 +986,27 @@ def typeset_tables(filestr, format):
                 result.write(line + '\n')
     return result.getvalue()
 
+def typeset_envirs(filestr, format):
+    envirs = ['quote',]
+
+    for envir in envirs:
+        tag = '!'+envir
+        if tag in INLINE_TAGS_SUBST[format]:
+            def subst(m):  # m: match object from re.sub
+                return INLINE_TAGS_SUBST[format][tag](m.group(1), format)
+        else:
+            # default handling
+            if envir == 'quote':
+                def subst(m):
+                    return indent_lines(m.group(1), format, ' '*4) + '\n\n'
+
+        pattern = r'^!b%s\s*(.+?)\s*^!e%s\s*' % (envir, envir)
+        cpattern = re.compile(pattern, re.DOTALL | re.MULTILINE)
+        filestr = cpattern.sub(subst, filestr)
+    return filestr
+
+
+
 def typeset_lists(filestr, format, debug_info=[]):
     """
     Go through filestr and parse all lists and typeset them correctly.
@@ -1211,6 +1232,10 @@ def handle_figures(filestr, format):
         file_found = False
         if not os.path.isfile(figfile):
             basepath, ext = os.path.splitext(figfile)
+            # Avoid ext = '.05' etc from numbers in the filename
+            if not ext.lower() in ['.eps', '.pdf', '.png', '.jpg', 'jpeg',
+                                   '.gif', '.tif', '.tiff']:
+                ext = ''
             if not ext:  # no extension?
                 # try to see if figfile + ext exists:
                 for ext in extensions:
@@ -1798,6 +1823,9 @@ def doconce2format(filestr, format):
     debugpr('%s\n**** The file after typesetting of tables:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
+    # Next step: deal with !b... !e... environments
+    filestr = typeset_envirs(filestr, format)
+
     # Next step: do substitutions:
     filestr = inline_tag_subst(filestr, format)
 
@@ -1809,10 +1837,10 @@ def doconce2format(filestr, format):
     for command in commands:
         comment_action = INLINE_TAGS_SUBST[format].get('comment', '# %s')
         if isinstance(comment_action, str):
-            split_comment = comment_action % command
+            split_comment = comment_action % (command + r'\g<1>')
         elif callable(comment_action):
-            split_comment = comment_action(command)
-        cpattern = re.compile('^%s\s*$' % command, re.MULTILINE)
+            split_comment = comment_action((command + r'\g<1>'))
+        cpattern = re.compile('^%s( *| +.*)$' % command, re.MULTILINE)
         filestr = cpattern.sub(split_comment, filestr)
 
     # Next step: substitute latex-style newcommands in filestr and tex_blocks

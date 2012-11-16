@@ -295,6 +295,15 @@ def rst_index_bib(filestr, index, citations, bibfile):
 
     return filestr
 
+def rst_quote(block, format):
+    # Insert empty comment to distinguish from possibly
+    # previous list, code, etc.
+    return """
+..
+
+%s
+
+""" % (indent_lines(block, format, ' '*4))
 
 
 def define(FILENAME_EXTENSION,
@@ -354,7 +363,8 @@ def define(FILENAME_EXTENSION,
         'movie':         rst_movie,
         #'comment':       '.. %s',  # rst does not like empty comment lines:
         # so therefore we introduce a function to remove empty comment lines
-        'comment':       lambda c: '' if c.isspace() or c == '' else '.. %s\n' % c
+        'comment':       lambda c: '' if c.isspace() or c == '' else '.. %s\n' % c,
+        '!quote':        rst_quote,
         }
 
     CODE['rst'] = rst_code  # function for typesetting code

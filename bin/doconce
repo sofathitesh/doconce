@@ -378,8 +378,9 @@ def _spellcheck_all(**kwargs):
     for filename in glob.glob('tmp_misspelled*~') + glob.glob('misspellings.txt~*'):
         os.remove(filename)
     for filename in ['__tmp.do.txt']:
-        if filename in sys.argv:
+        if filename in sys.argv[1:]:  # iterate over copy
             os.remove(filename)
+            del sys.argv[sys.argv.find(filename)]
     for filename in sys.argv[1:]:
         if not filename.startswith('tmp_stripped_'):
             _spellcheck(filename, **kwargs)
@@ -2383,36 +2384,6 @@ def split_html():
     Split html file into parts. Use !split command as separator between
     parts.
     """
-    # Overview of HTML-based slideshow tools: http://www.impressivewebs.com/html-slidedeck-toolkits/
-    # http://leaverou.github.com/CSSS/
-    # http://lab.hakim.se/reveal-js/ (easy and fancy)
-    # http://paulrouget.com/dzslides/ (easy and fancy, Keynote like)
-    # http://imakewebthings.com/deck.js/ (also easy)
-    # http://code.google.com/p/html5slides/ (also easy)
-    # (could have #!bpop, #!epop for lists and paragraphs that "build",
-    # but all such builds seem to require <li></li> and <p></p>:
-    # </li> can be inserted by regex <li>...<li> and checking that there
-    # is no </ul> in between, while <p></p> is easy with #!bpop and #!epop)
-    # http://slides.seld.be/?file=2010-05-30+Example.html#1 (also easy)
-    # http://www.w3.org/Talks/Tools/Slidy2/#(1) (also easy)
-    # http://johnpolacek.github.com/scrolldeck.js/ (inspired by reveal.js)
-    # http://meyerweb.com/eric/tools/s5/ (easy)
-    # https://github.com/mbostock/stack (very easy)
-    # https://github.com/markdalgleish/fathom
-    # https://github.com/bartaz/impress.js/
-
-    # Fancy and instructive demo:
-    # http://yihui.name/slides/2011-r-dev-lessons.html
-    # (view the source code)
-
-    # pandoc can make dzslides and embeds all javascript (no other files needed)
-    # pandoc -s -S -i -t dzslides --mathjax my.md -o my.html
-
-    # Could introduce !btabXY to define elements in a slide that will
-    # appear in position XY in a table! Works after split_html on a
-    # page by page basis (split is more general and should be factored out).
-    # Figures without caption must not have number (think that is in place).
-
     if len(sys.argv) <= 1:
         usage_split_html()
         sys.exit(1)
@@ -2427,6 +2398,10 @@ def split_html():
     header, parts, footer = get_html_header_parts_footer(filename)
     doconce_html_split(header, parts, footer, basename, filename)
 
+def usage_slides_html():
+    print 'Usage: doconce slides_html slide_type mydoc.html'
+    print 'slide_types: reveal|reveal.js '
+
 def slides_html():
     """
     Split html file into slides and typeset slides using
@@ -2440,8 +2415,6 @@ def slides_html():
     # http://code.google.com/p/html5slides/ (also easy)
     # (could have #!bpop, #!epop for lists and paragraphs that "build",
     # but all such builds seem to require <li></li> and <p></p>:
-    # </li> can be inserted by regex <li>...<li> and checking that there
-    # is no </ul> in between, while <p></p> is easy with #!bpop and #!epop)
     # http://slides.seld.be/?file=2010-05-30+Example.html#1 (also easy)
     # http://www.w3.org/Talks/Tools/Slidy2/#(1) (also easy)
     # http://johnpolacek.github.com/scrolldeck.js/ (inspired by reveal.js)
@@ -2462,17 +2435,32 @@ def slides_html():
     # page by page basis (split is more general and should be factored out).
     # Figures without caption must not have number (think that is in place).
 
-    if len(sys.argv) <= 1:
-        usage_split_html()
+    if len(sys.argv) <= 2:
+        usage_slides_html()
         sys.exit(1)
 
     filename = sys.argv[1]
     if not filename.endswith('.html'):
         filename += '.html'
+    basename = os.path.basename(filename)
 
+    slide_type = sys.argv[2]
     header, parts, footer = get_html_header_parts_footer(filename)
-    #doconce_html_split(header, parts, footer, basename, filename)
-    #nothing is yet done here...
+
+    filestr = None
+    if slide_type == 'doconce':
+        doconce_html_split(header, parts, footer, basename, filename)
+    elif slide_type.startswith('reveal'):
+        filestr = reveal_slides(header, parts, footer, basename, filename)
+    else:
+        print 'unknown slide type "%s"' % slide_type
+
+    if filestr is not None:
+        f = open(filename, 'w')
+        f.write(filestr)
+        f.close()
+        print 'slides written to', filename
+
 
 
 def get_html_header_parts_footer(filename):
@@ -2485,7 +2473,7 @@ def get_html_header_parts_footer(filename):
     for line in f:
         if re.search(r'^<!-- -+ main content -+>', line):
             loc = 'body'
-        if re.search(r'^<!-- !split\s*-+>', line):
+        if re.search(r'^<!-- !split.*?-+>', line):
             parts.append([])
         if re.search(r'^<!-- -+ end of main content -+>', line):
             loc = 'footer'
@@ -2566,6 +2554,87 @@ def doconce_html_split(header, parts, footer, basename, filename):
         f.close()
         if pn == 0:
             shutil.copy(part_filename, filename)
+
+
+def reveal_slides(header, parts, footer, basename, filename):
+    if '--html-reveal-theme' in sys.argv:
+        theme = sys.argv[sys.argv.find('--html-reveal-theme')+1]
+    else:
+        theme = 'beige'
+
+    m = re.search(r'<title>(.*?)</title>', footer)
+    if m:
+        title = m.group(1).strip()
+    else:
+        title = ''
+
+    slides = """
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<title>%s</title>
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<link rel="stylesheet" href="css/reveal.min.css">
+<link rel="stylesheet" href="css/theme/%s.css" id="theme">
+<!--
+<link rel="stylesheet" href="css/theme/default.css" id="theme">
+<link rel="stylesheet" href="css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="css/theme/night.css" id="theme">
+<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+-->
+
+<!-- Use MathJax to render mathematics -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+<script>
+document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+</script>
+
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+""" % (title, theme)
+    cinline_comment_pattern = re.compile(r'<!-- begin inline comment -->\s*\[<b>.+?</b>:\s*<em>(.+?)</em>]\s*<!-- end inline comment -->', re.DOTALL)
+    for part in parts:
+        part = cinline_comment_pattern.sub('<aside class="notes">\n\g<1>\n</aside>', part)
+        slides += """
+<section>
+%s
+</section>
+
+""" % (part)
+    slides += """
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+</body>
+</html>
+"""
+    return slides
 
 def usage_split_rst():
     print 'Usage: doconce split_rst complete_file.rst'

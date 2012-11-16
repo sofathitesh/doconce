@@ -2,7 +2,7 @@
 
 import os, commands, re, sys, glob
 from common import plain_exercise, table_analysis, \
-     _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output
+     _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output, indent_lines
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
 include_numbering_of_exercises = True
@@ -609,6 +609,13 @@ def latex_exercise_old(exer):
         pass
     return s
 
+def latex_quote(block, format):
+    return r"""
+\begin{quote}
+%s
+\end{quote}
+""" % (indent_lines(block, format, ' '*4))
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -712,6 +719,7 @@ def define(FILENAME_EXTENSION,
         'figure':        latex_figure,
         'movie':         latex_movie,
         'comment':       '%% %s',
+        '!quote':        latex_quote,
         }
     # should be configureable:
     # [tex]
