@@ -8,6 +8,12 @@ if __name__ == '__main__':
     # pack zip files distributed as data with doconce
     os.system('zip -r shpinx_themes.zip sphinx_themes')
     os.system('zip -r html_images.zip html_images')
+    if not os.path.isdir('reveal.js'):
+        os.system('git clone git://github.com/hakimel/reveal.js.git')
+    else:
+        os.system('cd reveal.js; git pull origin master; cd ..')
+    os.system('zip -r reveal.js.zip reveal.js')
+    os.system('zip -d .git reveal.js.zip')
 
     # remove files that are to be regenerated:
     os.chdir(os.path.join(os.pardir, os.pardir))

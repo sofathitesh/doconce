@@ -61,7 +61,7 @@ setup(
     #              #'doconce.pandoc',
     #             'doconce.expand_newcommands',
     #             ],
-    package_data = {'': ['sphinx_themes.zip', 'html_images.zip']},
+    package_data = {'': ['sphinx_themes.zip', 'html_images.zip', 'reveal.js.zip']},
     scripts = [os.path.join('bin', f) for f in ['doconce']],
     data_files=[(os.path.join("share", "man", "man1"),[man_filename,]),],
     )

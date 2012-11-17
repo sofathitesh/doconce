@@ -1833,7 +1833,7 @@ def doconce2format(filestr, format):
 
     # Next step: deal with various commands to be put as comments
     # (they must be commands, as comments they may appear inside lists)
-    commands = ['!split', '!bpop', '!epop']
+    commands = ['!split', '!bpop', '!epop', '!bslidecell', '!eslidecell']
     for command in commands:
         comment_action = INLINE_TAGS_SUBST[format].get('comment', '# %s')
         if isinstance(comment_action, str):
