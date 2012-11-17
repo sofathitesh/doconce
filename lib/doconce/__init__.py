@@ -84,6 +84,8 @@ Documentation of Doconce is found in
   * There is web access to the tutorial (http://doconce.googlecode.com/hg/doc/demos/tutorial/index.html) and the manual (http://doconce.googlecode.com/hg/doc/demos/manual/index.html)
 
 Both directories contain a make.sh file for creating various formats.
+
+
 '''
 
 __version__ = '0.7.3'

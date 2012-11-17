@@ -2,7 +2,7 @@
 <wiki:toc max_depth="2" />
 By **Hans Petter Langtangen**
 
-=== Nov 16, 2012 ===
+=== Nov 17, 2012 ===
 
 <<TableOfContents>>
 
@@ -479,7 +479,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -519,6 +519,7 @@ doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 doconce split_html complete_file.html
+doconce slides_html slide_type complete_file.html
 doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile

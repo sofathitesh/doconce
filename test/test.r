@@ -62,7 +62,7 @@ Here are two lines that make up
 a block quote.
 !equote
 
-!split and check if these extra words are included properly
+!split and check if these extra words are included properly in the comment
 
 ===== Subsection 1 =====
 
@@ -1164,7 +1164,7 @@ Here is a nested list:
     Here are two lines that make up
     a block quote.
 \end{quote}
-% !split
+% !split and check if these extra words are included properly in the comment
 
 \subsection{Subsection 1}
 
@@ -2141,7 +2141,7 @@ Here is a nested list:
     Here are two lines that make up
     a block quote.
 \end{quote}
-% !split
+% !split and check if these extra words are included properly in the comment
 
 \subsection{Subsection 1}
 
@@ -3102,7 +3102,7 @@ Here is a nested list:
     Here are two lines that make up
     a block quote.
 \end{quote}
-% !split
+% !split and check if these extra words are included properly in the comment
 
 \subsection{Subsection 1}
 
@@ -3889,7 +3889,7 @@ Here is a nested list:
     Here are two lines that make up
     a block quote.
 
-.. !split
+.. !split and check if these extra words are included properly in the comment
 
 
 Subsection 1
@@ -4639,7 +4639,7 @@ Here is a nested list:
     Here are two lines that make up
     a block quote.
 
-.. !split
+.. !split and check if these extra words are included properly in the comment
 
 
 Subsection 1
@@ -5484,7 +5484,7 @@ Here is a nested list:
     Here are two lines that make up
     a block quote.
 
-<wiki:comment> !split </wiki:comment>
+<wiki:comment> !split and check if these extra words are included properly in the comment </wiki:comment>
 
 ==== Subsection 1 ====
 
@@ -6109,7 +6109,7 @@ Here is a nested list:
     Here are two lines that make up
     a block quote.
 
-<!--> !split -->
+<!--> !split and check if these extra words are included properly in the comment -->
 
 ==== Subsection 1 ====
 
@@ -6701,7 +6701,7 @@ Here is a nested list:
     Here are two lines that make up
     a block quote.
 
-<wiki:comment> !split </wiki:comment>
+<wiki:comment> !split and check if these extra words are included properly in the comment </wiki:comment>
 
 
 == Subsection 1 ==
@@ -7296,7 +7296,7 @@ Here is a nested list:
     Here are two lines that make up
     a block quote.
 
-# !split
+# !split and check if these extra words are included properly in the comment
 
 Subsection 1
 
@@ -7792,7 +7792,7 @@ Here is a nested list:
     Here are two lines that make up
     a block quote.
 
-# !split
+# !split and check if these extra words are included properly in the comment
 
 Subsection 1
 ------------
@@ -8411,7 +8411,7 @@ Here is a nested list:
     Here are two lines that make up
     a block quote.
 
-# !split
+# !split and check if these extra words are included properly in the comment
 
 Subsection 1
 ------------
@@ -8983,10 +8983,10 @@ Here is a nested list:
       continuing on a new line
 
 
-    Here are two lines that make up
-    a block quote.
+> Here are two lines that make up
+> a block quote.
 
-<!-- !split -->
+<!-- !split and check if these extra words are included properly in the comment -->
 
 Subsection 1
 ------------
@@ -10276,10 +10276,12 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </ul>
 <ol style="list-style-type: decimal">
 <li><p>first item</p></li>
-<li><p>second item, continuing on a new line</p>
-<p>Here are two lines that make up a block quote.</p></li>
+<li><p>second item, continuing on a new line</p></li>
 </ol>
-<!-- !split -->
+<blockquote>
+<p>Here are two lines that make up a block quote.</p>
+</blockquote>
+<!-- !split and check if these extra words are included properly in the comment -->
 
 <h2 id="subsection-1">Subsection 1</h2>
 <p>More text, with a reference back to the section <a href="#n-1">Section 1</a> and further to the section <a href="#s">URLs</a>. Let's do some copying from files too. First from subroutine up to the very end,</p>
@@ -12524,27 +12526,31 @@ Here is a nested list:
 
 <p>
 
-<ul>
-  <li> item1</li>
-  <li> item2</li>
-  <li> item3 which continues
+<table>
+
+  </tr><p><tr><td valign='top'><img src="html_images/._red_bullet2.gif"></td><td> item1</li>
+  </tr><p><tr><td valign='top'><img src="html_images/._red_bullet2.gif"></td><td> item2</li>
+  </tr><p><tr><td valign='top'><img src="html_images/._red_bullet2.gif"></td><td> item3 which continues
     on the next line to test that feature</li>
-  <li> and a sublist</li>
+  </tr><p><tr><td valign='top'><img src="html_images/._red_bullet2.gif"></td><td> and a sublist</li>
 
-<ul>
-    <li> with indented subitem1</li>
-    <li> and a subitem2</li>
-</ul>
+<table>
 
-  <li> and perhaps an ordered sublist</li>
+    </tr><p><tr><td valign='top'><img src="html_images/._green_bullet2.gif"></td><td> with indented subitem1</li>
+    </tr><p><tr><td valign='top'><img src="html_images/._green_bullet2.gif"></td><td> and a subitem2</li>
+</td></tr></table>
+
+
+  </tr><p><tr><td valign='top'><img src="html_images/._red_bullet2.gif"></td><td> and perhaps an ordered sublist</li>
 
 <ol>
-   <li> first item</li>
-   <li> second item,
+   </tr><p><tr><td valign='top'><img src="html_images/._red_bullet2.gif"></td><td> first item</li>
+   </tr><p><tr><td valign='top'><img src="html_images/._red_bullet2.gif"></td><td> second item,
       continuing on a new line</li>
 </ol>
 
-</ul>
+</td></tr></table>
+
 
 <blockquote>
     Here are two lines that make up
@@ -12650,7 +12656,7 @@ $$
 
 
 <a name="part0002"></a>
-<!-- !split -->
+<!-- !split and check if these extra words are included properly in the comment -->
 
 <p>
 
@@ -13473,10 +13479,292 @@ Without label.
 </body>
 </html>
 
+************** File: slides.do.txt *****************
+TITLE: On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
+AUTHOR: Hans Petter Langtangen
+DATE: Today
+
+!split
+
+===== Figure and bullet list =====
+
+!bslidecell 00
+!bpop
+
+  * Here is a *wave packet*
+  * It can move
+  * But here it is just a figure
+
+!epop
+!eslidecell
+
+!bslidecell 01
+FIGURE: [../doc/manual/figs/wavepacket_0001.png]
+!eslidecell
+
+!bpop highlight-red
+Here we have a paragraph to pop up in red.
+And a line more
+!epop
+
+!split
+
+===== Scientific writing needs to address many new media =====
+
+!bpop
+
+ * Old days (1985-2005): mostly black-and-white documents aimed at printing
+ * Now: also color PDF, web pages, wikis - for paper, PC, iPad, ...
+ * LaTeX writing may be very different from writing in other formats
+ * Main problem:
+    * LaTeX provide all sorts of fancy packages, but
+    * PDF in browsers has limited capabilities (design, navigation)
+      compared to native HTML formats
+ * Conclusion: We need more than LaTeX
+
+!epop
+
+!split
+
+===== Some computer code =====
+
+!bc pycod
+import numpy as np
+
+def f(x, y, t):
+    return np.exp(-x*t)*np.sin(np.pi*y)
+
+class Fancy:
+    pass
+!ec
+
+
+
+************** File: slides_reveal.html *****************
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<title></title>
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<!--
+<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+-->
+
+<script>
+document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+</script>
+
+
+<!-- Use MathJax to render mathematics -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+</head>
+
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+
+
+<section>
+<!-- ------------------- main content ------------------------>
+
+<title>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</title>
+
+<center><h1>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</h1></center>  <! -- document title -->
+
+<! -- author(s) -->
+
+<center>
+<b>Hans Petter Langtangen</b> 
+</center>
+
+
+<p>
+<!-- institution(s) -->
+
+
+
+<center><h4>Jan 32, 2100</h4></center> <!-- date -->
+<p>
+
+</section>
+
+
+<section>
+
+<p>
+
+<h3>Figure and bullet list  <a name="___sec0"></a></h3>
+<p>
+
+<table>
+<tr>
+<td> 
+
+
+<p>
+
+<ul>
+  <li class="fragment"> Here is a <em>wave packet</em></li>
+  <li class="fragment"> It can move</li>
+  <li class="fragment"> But here it is just a figure</li>
+</ul>
+
+
+ </td>
+<td> 
+<center><p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" ></p></center>
+ </td>
+</tr>
+</table>
+
+
+<p>
+
+
+<p>
+
+<p class="fragment">
+
+<span class="fragment highlight-red">
+
+Here we have a paragraph to pop up in red.
+And a line more
+
+</span>
+
+</p>
+
+
+<p>
+
+</section>
+
+
+<section>
+
+<p>
+
+<h3>Scientific writing needs to address many new media  <a name="___sec1"></a></h3>
+<p>
+
+
+<p>
+
+<ul>
+ <li class="fragment"> Old days (1985-2005): mostly black-and-white documents aimed at printing</li>
+ <li class="fragment"> Now: also color PDF, web pages, wikis - for paper, PC, iPad, ...</li>
+ <li class="fragment"> LaTeX writing may be very different from writing in other formats</li>
+ <li class="fragment"> Main problem:</li>
+
+<ul>
+    <li class="fragment"> LaTeX provide all sorts of fancy packages, but</li>
+    <li class="fragment"> PDF in browsers has limited capabilities (design, navigation)
+      compared to native HTML formats</li>
+</ul>
+
+ <li class="fragment"> Conclusion: We need more than LaTeX</li>
+</ul>
+
+
+
+<p>
+
+</section>
+
+
+<section>
+
+<p>
+
+<h3>Some computer code  <a name="___sec2"></a></h3>
+<p>
+<p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #AA22FF; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+
+<span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">f</span>(x, y, t):
+    <span style="color: #AA22FF; font-weight: bold">return</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>x<span style="color: #666666">*</span>t)<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>y)
+
+<span style="color: #AA22FF; font-weight: bold">class</span> <span style="color: #0000FF">Fancy</span>:
+    <span style="color: #AA22FF; font-weight: bold">pass</span>
+</pre></div>
+<p>
+
+
+</section>
+
+
+
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+heme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+// { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]
+});
+</script>
+
+
+</body>
+</html>
+
 ************** File: make.sh *****************
 #!/bin/sh -x
+rm -rf html_images reveal.js
+
 doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized
 doconce remove_exercise_answers testdoc.html
+doconce html_colorbullets testdoc.html
 doconce split_html testdoc.html
 
 doconce format latex testdoc.do.txt
@@ -13525,6 +13813,11 @@ pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 
 doconce format pandoc testdoc.do.txt
 pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
+
+# Test slides
+doconce format html slides
+doconce slides_html slides reveal
+mv -f slides.html slides_reveal.html
 
 # Test grab
 doconce grab --from- '={9}' --to 'subroutine@' testdoc.do.txt > testdoc.tmp
@@ -27715,7 +28008,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Fri, 16 Nov 2012 (07:03)
+DATE: Sat, 17 Nov 2012 (08:55)
 
 
 
@@ -27819,7 +28112,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Fri, 16 Nov 2012 (07:03)
+DATE: Sat, 17 Nov 2012 (08:55)
 
 
 
@@ -27933,7 +28226,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 16 Nov 2012 (07:03)</center>
+<center>Sat, 17 Nov 2012 (08:55)</center>
 
 
 
@@ -28064,7 +28357,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Fri, 16 Nov 2012 (07:03)</center>
+<center>Sat, 17 Nov 2012 (08:55)</center>
 
 
 
@@ -65490,7 +65783,7 @@ list of capabilities:
 <blockquote>    <!-- begin verbatim block  shpro-->
 <pre>
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -65530,6 +65823,7 @@ doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 doconce split_html complete_file.html
+doconce slides_html slide_type complete_file.html
 doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
@@ -66481,7 +66775,7 @@ list of capabilities:
 
 \bshpro
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -66521,6 +66815,7 @@ doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 doconce split_html complete_file.html
+doconce slides_html slide_type complete_file.html
 doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
@@ -67275,7 +67570,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -67315,6 +67610,7 @@ list of capabilities::
         doconce split_rst complete_file.rst
         doconce sphinxfix_local_URLs file.rst
         doconce split_html complete_file.html
+        doconce slides_html slide_type complete_file.html
         doconce html_colorbullets file1.html file2.html ...
         
         doconce grab   --from[-] from-text [--to[-] to-text] somefile
@@ -68099,7 +68395,7 @@ list of capabilities:
 .. code-block:: bash
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -68139,6 +68435,7 @@ list of capabilities:
         doconce split_rst complete_file.rst
         doconce sphinxfix_local_URLs file.rst
         doconce split_html complete_file.html
+        doconce slides_html slide_type complete_file.html
         doconce html_colorbullets file1.html file2.html ...
         
         doconce grab   --from[-] from-text [--to[-] to-text] somefile
@@ -68798,7 +69095,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -68838,6 +69135,7 @@ doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 doconce split_html complete_file.html
+doconce slides_html slide_type complete_file.html
 doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
@@ -69454,7 +69752,7 @@ list of capabilities:
 
 <syntaxhighlight lang="bash">
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -69494,6 +69792,7 @@ doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 doconce split_html complete_file.html
+doconce slides_html slide_type complete_file.html
 doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
@@ -70134,7 +70433,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -70174,6 +70473,7 @@ doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 doconce split_html complete_file.html
+doconce slides_html slide_type complete_file.html
 doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
@@ -70850,7 +71150,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -70890,6 +71190,7 @@ list of capabilities::
         doconce split_rst complete_file.rst
         doconce sphinxfix_local_URLs file.rst
         doconce split_html complete_file.html
+        doconce slides_html slide_type complete_file.html
         doconce html_colorbullets file1.html file2.html ...
         
         doconce grab   --from[-] from-text [--to[-] to-text] somefile
@@ -71583,7 +71884,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -71623,6 +71924,7 @@ list of capabilities::
         doconce split_rst complete_file.rst
         doconce sphinxfix_local_URLs file.rst
         doconce split_html complete_file.html
+        doconce slides_html slide_type complete_file.html
         doconce html_colorbullets file1.html file2.html ...
         
         doconce grab   --from[-] from-text [--to[-] to-text] somefile
@@ -72349,7 +72651,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
         
         doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
         
@@ -72389,6 +72691,7 @@ list of capabilities::
         doconce split_rst complete_file.rst
         doconce sphinxfix_local_URLs file.rst
         doconce split_html complete_file.html
+        doconce slides_html slide_type complete_file.html
         doconce html_colorbullets file1.html file2.html ...
         
         doconce grab   --from[-] from-text [--to[-] to-text] somefile
@@ -73146,7 +73449,7 @@ list of capabilities:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
@@ -73186,6 +73489,7 @@ doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 doconce split_html complete_file.html
+doconce slides_html slide_type complete_file.html
 doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile
@@ -73370,6 +73674,7 @@ Resources
 
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
++ rm -rf html_images reveal.js
 + doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized
 running mako on testdoc.do.txt to make __tmp.do.txt
 mako variables: {'FORMAT': 'html'}
@@ -73426,6 +73731,7 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format html
 output in testdoc.html
 + doconce remove_exercise_answers testdoc.html
++ doconce html_colorbullets testdoc.html
 + doconce split_html testdoc.html
 + doconce format latex testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -73839,7 +74145,7 @@ b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (14 pages, 1466151 bytes).
+Output written on testdoc.pdf (14 pages, 1466068 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -73904,7 +74210,6 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 6 exercises, written to .testdoc.exerinfo
-default quote
 output in testdoc.txt
 + doconce format st testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -73957,7 +74262,6 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 6 exercises, written to .testdoc.exerinfo
-default quote
 output in testdoc.st
 + doconce format sphinx testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -74136,7 +74440,6 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 6 exercises, written to .testdoc.exerinfo
-default quote
 output in testdoc.epytext
 + doconce format pandoc testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -74189,7 +74492,6 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 6 exercises, written to .testdoc.exerinfo
-default quote
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{multline} does not work well
@@ -74268,7 +74570,6 @@ NOTE: Upload image file ../doc/manual/figs/streamtubes.png to the Wiki* site
 NOTE: Upload image file ../doc/manual/figs/wavepacket_0001.png to the Wiki* site
       (see http://en.wikipedia.org/wiki/Special:Upload for Wikipedia)
 
-default quote
 output in testdoc.mwiki
 + doconce format cwiki testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -74323,7 +74624,6 @@ text before the code! (Now "Code:" is inserted)
 found info about 6 exercises, written to .testdoc.exerinfo
 figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.png for format cwiki
-default quote
 output in testdoc.cwiki
 + doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2=a string
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -74397,7 +74697,6 @@ NOTE: Place ../doc/manual/figs/wavepacket_0001.png at some place on the web and 
       or use the doconce script:
       doconce gwiki_figsubst.py mydoc.gwiki URL
 
-default quote
 output in testdoc.gwiki
 + doconce format latex testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -74523,7 +74822,6 @@ warning: open solution in exercise "Flip a Coin" with a line of
 text before the code! (Now "Code:" is inserted)
 
 found info about 6 exercises, written to .testdoc.exerinfo
-default quote
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{multline} does not work well
@@ -74538,6 +74836,12 @@ Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 output in testdoc.md
 + pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
++ doconce format html slides
+translating doconce text in slides.do.txt to html
+output in slides.html
++ doconce slides_html slides reveal
+slides written to slides.html
++ mv -f slides.html slides_reveal.html
 + doconce grab --from- ={9} --to subroutine@ testdoc.do.txt
 + doconce grab --from Compute a Probability --to- drawing uniformly testdoc.do.txt
 + doconce grab --from- \*\s+\$.+normally testdoc.do.txt
@@ -74564,7 +74868,6 @@ Move files to _static and change URLs!
 output in author1.rst
 + doconce format plain author1
 translating doconce text in author1.do.txt to plain
-default quote
 output in author1.txt
 + doconce guess_encoding encoding1.do.txt
 + cp encoding1.do.txt tmp1.do.txt
@@ -76320,37 +76623,30 @@ Transcript written on tutorial.rst.log.
 + doconce format plain tutorial.do.txt
 running preprocess -DFORMAT=plain  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to plain
-default quote
 output in tutorial.txt
 + doconce format gwiki tutorial.do.txt
 running preprocess -DFORMAT=gwiki  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to gwiki
-default quote
 output in tutorial.gwiki
 + doconce format cwiki tutorial.do.txt
 running preprocess -DFORMAT=cwiki  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to cwiki
-default quote
 output in tutorial.cwiki
 + doconce format mwiki tutorial.do.txt
 running preprocess -DFORMAT=mwiki  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to mwiki
-default quote
 output in tutorial.mwiki
 + doconce format st tutorial.do.txt
 running preprocess -DFORMAT=st  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to st
-default quote
 output in tutorial.st
 + doconce format epytext tutorial.do.txt
 running preprocess -DFORMAT=epytext  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to epytext
-default quote
 output in tutorial.epytext
 + doconce format pandoc tutorial.do.txt
 running preprocess -DFORMAT=pandoc  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to pandoc
-default quote
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{quote} does not work well
@@ -78314,7 +78610,6 @@ copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
-default quote
 output in manual.txt
 + doconce format epytext manual.do.txt --no-mako
 running preprocess -DFORMAT=epytext -D--no-mako manual.do.txt > __tmp.do.txt
@@ -78339,7 +78634,6 @@ copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
-default quote
 output in manual.epytext
 + doconce format st manual.do.txt --no-mako
 running preprocess -DFORMAT=st -D--no-mako manual.do.txt > __tmp.do.txt
@@ -78364,7 +78658,6 @@ copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
-default quote
 output in manual.st
 + doconce format pandoc manual.do.txt --no-mako
 running preprocess -DFORMAT=pandoc -D--no-mako manual.do.txt > __tmp.do.txt
@@ -78389,7 +78682,6 @@ copy complete file newcommands_replace.tex  (format: pro)
 copy complete file newcommands_keep.tex  (format: pro)
 copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
-default quote
 Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{align} does not work well
@@ -80238,7 +80530,6 @@ NOTE: Place figs/streamtubes.png at some place on the web and edit the
       or use the doconce script:
       doconce gwiki_figsubst.py mydoc.gwiki URL
 
-default quote
 output in manual.gwiki
 + doconce subst \(the URL of the image file figs/streamtubes.png must be inserted here\) https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png manual.gwiki
 \(the URL of the image file figs/streamtubes.png must be inserted here\) replaced by https://doconce.googlecode.com/hg/doc/manual/figs/streamtubes.png in manual.gwiki
@@ -80267,7 +80558,6 @@ copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
 figure file figs/streamtubes:
     can use figs/streamtubes.png for format cwiki
-default quote
 output in manual.cwiki
 + doconce format mwiki manual.do.txt --no-mako
 running preprocess -DFORMAT=mwiki -D--no-mako manual.do.txt > __tmp.do.txt
@@ -80298,7 +80588,6 @@ figure file figs/streamtubes:
 NOTE: Upload image file figs/streamtubes.png to the Wiki* site
       (see http://en.wikipedia.org/wiki/Special:Upload for Wikipedia)
 
-default quote
 output in manual.mwiki
 + rm -f *.ps
 + rm -rf demo
@@ -80312,7 +80601,6 @@ output in manual.mwiki
 + cp manual.gwiki ../../../doconce.wiki/Description.wiki
 + doconce format gwiki install
 translating doconce text in install.do.txt to gwiki
-default quote
 output in install.gwiki
 + cp install.gwiki ../../../doconce.wiki/Installation1.wiki
 + echo
@@ -80449,16 +80737,16 @@ Overfull \hbox (88.21638pt too wide) in paragraph at lines 600--607
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib, name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
 [9] [10] [11] [12]
-Overfull \hbox (2.40855pt too wide) in paragraph at lines 820--825
+Overfull \hbox (2.40855pt too wide) in paragraph at lines 821--826
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther []\
 OT1/cmtt/m/n/10 preprocess \OT1/phv/m/n/10 and/or []\OT1/cmtt/m/n/10 mako\OT1/p
 hv/m/n/10 .
 
-Overfull \hbox (0.18839pt too wide) in paragraph at lines 826--830
+Overfull \hbox (0.18839pt too wide) in paragraph at lines 827--831
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing []\OT1/cmtt/m/n/10 prep
 rocess \OT1/phv/m/n/10 to in-clude an-other doc-u-ment, "com-
 [13]
-Overfull \hbox (87.48466pt too wide) in paragraph at lines 870--871
+Overfull \hbox (87.48466pt too wide) in paragraph at lines 871--872
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
@@ -80471,7 +80759,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (14 pages, 47808 bytes).
+Output written on quickref.dvi (14 pages, 47900 bytes).
 Transcript written on quickref.log.
 + latex -shell-escape quickref.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -80573,22 +80861,22 @@ Overfull \hbox (88.21638pt too wide) in paragraph at lines 600--607
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
 /10 BIBFILE: name_bib.bib, name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
 [9] [10] [11] [12]
-Overfull \hbox (2.40855pt too wide) in paragraph at lines 820--825
+Overfull \hbox (2.40855pt too wide) in paragraph at lines 821--826
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther []\
 OT1/cmtt/m/n/10 preprocess \OT1/phv/m/n/10 and/or []\OT1/cmtt/m/n/10 mako\OT1/p
 hv/m/n/10 .
-
-Overfull \hbox (0.18839pt too wide) in paragraph at lines 826--830
+[13]
+Overfull \hbox (0.18839pt too wide) in paragraph at lines 827--831
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing []\OT1/cmtt/m/n/10 prep
 rocess \OT1/phv/m/n/10 to in-clude an-other doc-u-ment, "com-
-[13]
-Overfull \hbox (87.48466pt too wide) in paragraph at lines 870--871
+
+Overfull \hbox (87.48466pt too wide) in paragraph at lines 871--872
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
 [14] (./quickref.aux) )
 (see the transcript file for additional information)
-Output written on quickref.dvi (14 pages, 58832 bytes).
+Output written on quickref.dvi (14 pages, 58912 bytes).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no-preprocess
@@ -80938,13 +81226,13 @@ Overfull \hbox (107.00006pt too wide) in paragraph at lines 810--810
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
 [8]
-Overfull \hbox (2219.00006pt too wide) in paragraph at lines 857--857
+Overfull \hbox (2291.00006pt too wide) in paragraph at lines 857--857
 []\T1/pcr/m/n/10 commands: format insertdocstr old2new_format gwiki_figsubst re
 move_inline_comments latin2html sphinx_dir subst replace replace_from_file clea
 n help latex_header latex_footer guess_encoding change_encoding bbl2rst split_r
-st split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_fig
-ure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_c
-ommands combine_images latex_exercise_toc  
+st split_html slides_html html_colorbullets list_labels teamod sphinxfix_localU
+RLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2
+tex expand_commands combine_images latex_exercise_toc  
 
 Overfull \hbox (299.00006pt too wide) in paragraph at lines 859--859
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -80978,74 +81266,74 @@ Overfull \hbox (29.00006pt too wide) in paragraph at lines 876--876
 Overfull \hbox (47.00006pt too wide) in paragraph at lines 885--885
 []\T1/pcr/m/n/10 (remove all files that the doconce format can regenerate)  
 [9]
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 897--897
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 898--898
 []\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 899--899
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 900--900
 []\T1/pcr/m/n/10 doconce grab   --from[-] from-text [--to[-] to-text] somefile 
  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 900--900
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 901--901
 []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] somefile 
  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 901--901
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 902--902
 []\T1/pcr/m/n/10 doconce remove_exercise_answers file_in_some_format  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 903--903
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 904--904
 []\T1/pcr/m/n/10 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 904--904
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 905--905
 []        \T1/pcr/m/n/10 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{q
 uote}  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 907--907
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 908--908
 []\T1/pcr/m/n/10 doconce combine_images image1 image2 ... output_file  
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 909--909
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 910--910
 []\T1/pcr/m/n/10 doconce list_labels doconcefile.do.txt | latexfile.tex  
 
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 960--961
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 961--962
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 966--966
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 967--967
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 967--967
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 968--968
 []\T1/pcr/m/n/10 the area under a curve that defines half of the allipse.  
 [10]
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 975--975
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 976--976
 []\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 984--985
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 985--986
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 988--988
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 989--989
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
 [11]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1023--1023
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1024--1024
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1024--1024
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1025--1025
 []\T1/pcr/m/n/10 and give some perspectives. The text inside the !bremarks-!ere
 marks  
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1025--1025
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1026--1026
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
 
-Overfull \hbox (263.00006pt too wide) in paragraph at lines 1073--1073
+Overfull \hbox (263.00006pt too wide) in paragraph at lines 1074--1074
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
 [12]
-Overfull \hbox (4.19656pt too wide) in paragraph at lines 1097--1101
+Overfull \hbox (4.19656pt too wide) in paragraph at lines 1098--1102
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
 
-Overfull \hbox (114.855pt too wide) in paragraph at lines 1115--1116
+Overfull \hbox (114.855pt too wide) in paragraph at lines 1116--1117
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
 [13] (./quickref.rst.aux)
@@ -81057,7 +81345,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (13 pages, 49528 bytes).
+Output written on quickref.rst.dvi (13 pages, 49596 bytes).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -81260,13 +81548,13 @@ Overfull \hbox (107.00006pt too wide) in paragraph at lines 810--810
 []\T1/pcr/m/n/10 "A Document for Testing Doconce": "testdoc.html" cite{testdoc:
 12}],  
 
-Overfull \hbox (2219.00006pt too wide) in paragraph at lines 857--857
+Overfull \hbox (2291.00006pt too wide) in paragraph at lines 857--857
 []\T1/pcr/m/n/10 commands: format insertdocstr old2new_format gwiki_figsubst re
 move_inline_comments latin2html sphinx_dir subst replace replace_from_file clea
 n help latex_header latex_footer guess_encoding change_encoding bbl2rst split_r
-st split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_fig
-ure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_c
-ommands combine_images latex_exercise_toc  
+st split_html slides_html html_colorbullets list_labels teamod sphinxfix_localU
+RLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2
+tex expand_commands combine_images latex_exercise_toc  
 
 Overfull \hbox (299.00006pt too wide) in paragraph at lines 859--859
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -81300,74 +81588,74 @@ Overfull \hbox (29.00006pt too wide) in paragraph at lines 876--876
 Overfull \hbox (47.00006pt too wide) in paragraph at lines 885--885
 []\T1/pcr/m/n/10 (remove all files that the doconce format can regenerate)  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 897--897
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 898--898
 []\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 899--899
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 900--900
 []\T1/pcr/m/n/10 doconce grab   --from[-] from-text [--to[-] to-text] somefile 
  
 
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 900--900
+Overfull \hbox (71.00006pt too wide) in paragraph at lines 901--901
 []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] somefile 
  
 
-Overfull \hbox (11.00006pt too wide) in paragraph at lines 901--901
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 902--902
 []\T1/pcr/m/n/10 doconce remove_exercise_answers file_in_some_format  
 
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 903--903
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 904--904
 []\T1/pcr/m/n/10 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 904--904
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 905--905
 []        \T1/pcr/m/n/10 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{q
 uote}  
 
-Overfull \hbox (17.00006pt too wide) in paragraph at lines 907--907
+Overfull \hbox (17.00006pt too wide) in paragraph at lines 908--908
 []\T1/pcr/m/n/10 doconce combine_images image1 image2 ... output_file  
 
-Overfull \hbox (29.00006pt too wide) in paragraph at lines 909--909
+Overfull \hbox (29.00006pt too wide) in paragraph at lines 910--910
 []\T1/pcr/m/n/10 doconce list_labels doconcefile.do.txt | latexfile.tex  
 [10]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 960--961
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 961--962
 \T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse ===
 ==  
 
-Overfull \hbox (77.00006pt too wide) in paragraph at lines 966--966
+Overfull \hbox (77.00006pt too wide) in paragraph at lines 967--967
 []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integrating
   
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 967--967
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 968--968
 []\T1/pcr/m/n/10 the area under a curve that defines half of the allipse.  
 
-Overfull \hbox (23.00006pt too wide) in paragraph at lines 975--975
+Overfull \hbox (23.00006pt too wide) in paragraph at lines 976--976
 []\T1/pcr/m/n/10 "Wolframalpha": "http://wolframalpha.com" can perhaps  
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 984--985
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 985--986
 \T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====  
 
-Overfull \hbox (65.00006pt too wide) in paragraph at lines 988--988
+Overfull \hbox (65.00006pt too wide) in paragraph at lines 989--989
 []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.  
 
 [11]
-Overfull \hbox (101.00006pt too wide) in paragraph at lines 1023--1023
+Overfull \hbox (101.00006pt too wide) in paragraph at lines 1024--1024
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
 
-Overfull \hbox (107.00006pt too wide) in paragraph at lines 1024--1024
+Overfull \hbox (107.00006pt too wide) in paragraph at lines 1025--1025
 []\T1/pcr/m/n/10 and give some perspectives. The text inside the !bremarks-!ere
 marks  
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 1025--1025
+Overfull \hbox (41.00006pt too wide) in paragraph at lines 1026--1026
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
 [12]
-Overfull \hbox (263.00006pt too wide) in paragraph at lines 1073--1073
+Overfull \hbox (263.00006pt too wide) in paragraph at lines 1074--1074
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
 
-Overfull \hbox (4.19656pt too wide) in paragraph at lines 1097--1101
+Overfull \hbox (4.19656pt too wide) in paragraph at lines 1098--1102
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
 
-Overfull \hbox (114.855pt too wide) in paragraph at lines 1115--1116
+Overfull \hbox (114.855pt too wide) in paragraph at lines 1116--1117
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
  
 [13] (./quickref.rst.aux)
@@ -81376,50 +81664,43 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (13 pages, 55140 bytes).
+Output written on quickref.rst.dvi (13 pages, 55216 bytes).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to plain
 copy complete file doconce_program.sh  (format: shpro)
-default quote
 output in quickref.txt
 + doconce format gwiki quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to gwiki
 copy complete file doconce_program.sh  (format: shpro)
-default quote
 output in quickref.gwiki
 + doconce format mwiki quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to mwiki
 copy complete file doconce_program.sh  (format: shpro)
-default quote
 output in quickref.mwiki
 + doconce format cwiki quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to cwiki
 copy complete file doconce_program.sh  (format: shpro)
-default quote
 output in quickref.cwiki
 + doconce format st quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to st
 copy complete file doconce_program.sh  (format: shpro)
-default quote
 output in quickref.st
 + doconce format epytext quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to epytext
 copy complete file doconce_program.sh  (format: shpro)
-default quote
 output in quickref.epytext
 + doconce format pandoc quickref --no-preprocess
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to pandoc
 copy complete file doconce_program.sh  (format: shpro)
-default quote
 output in quickref.md
 + rm -rf demo
 + mkdir demo

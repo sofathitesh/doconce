@@ -2322,10 +2322,36 @@ def bbl2rst():
 
 
 html_images = 'html_images.zip'
+reveal_files = 'reveal.js.zip'
 
 def html_imagefile(imagename):
     filename = os.path.join(html_images[:-4], '._' + imagename + '.gif')
     return filename
+
+def copy_datafiles(datafile):
+    """
+    Get a doconce datafile, ``files.zip`` or ``files.tar.gz``, to
+    the current directory and pack it out unless the subdirectory
+    ``files`` exists.
+    """
+    if datafile.endswith('.zip'):
+        subdir = datafile[:-4]
+        import zipfile
+        uncompressor = zipfile.ZipFile
+    elif datafile.endswith('.tar.gz'):
+        subdir = datafile[:-7]
+        import tarfile
+        uncompressor = tarfile.TarFile
+    if not os.path.isdir(subdir):
+        import doconce
+        doconce_dir = os.path.dirname(doconce.__file__)
+        doconce_datafile = os.path.join(doconce_dir, datafile)
+        shutil.copy(doconce_datafile, os.curdir)
+        uncompressor(datafile).extractall()
+        os.remove(datafile)
+        return True
+    else:
+        return False
 
 
 def usage_html_colorbullets():
@@ -2333,6 +2359,9 @@ def usage_html_colorbullets():
 
 def html_colorbullets():
     """
+    Replace unordered lists by a table, in order to replace
+    ``<li>`` tags (and the default bullets) by
+    images of balls with colors.
     """
     if len(sys.argv) <= 1:
         usage_html_collorbullets()
@@ -2342,15 +2371,15 @@ def html_colorbullets():
     green_bullet = 'green_bullet2'
     #red_bullet = 'red_bullet1'
     #green_bullet = 'green_bullet1'
-    import doconce
-    doconce_dir = os.path.dirname(doconce.__file__)
-    doconce_html_images = os.path.join(doconce_dir, html_images)
 
     filenames = sys.argv[1:]
     for filename in filenames:
         f = open(filename, 'r')
-        lines = f.readlines()
+        text = f.read()
         f.close()
+        if '<li>' in text:
+            copy_datafiles(html_images)  # copy html_images subdir if needed
+        lines = text.splitlines()
         f = open(filename, 'w')
         level = 0
         for line in lines:
@@ -2368,12 +2397,7 @@ def html_colorbullets():
                 elif level >= 2:
                     image_filename = html_imagefile(green_bullet)
                 line = line.replace('BULLET', image_filename)
-                if not os.path.isfile(image_filename):
-                    shutil.copy(doconce_html_images, os.curdir)
-                    import zipfile
-                    zipfile.ZipFile(html_images).extractall()
-                    os.remove(html_images)
-            f.write(line)
+            f.write(line + '\n')
         f.close()
 
 def usage_split_html():
@@ -2413,8 +2437,6 @@ def slides_html():
     # http://paulrouget.com/dzslides/ (easy and fancy, Keynote like)
     # http://imakewebthings.com/deck.js/ (also easy)
     # http://code.google.com/p/html5slides/ (also easy)
-    # (could have #!bpop, #!epop for lists and paragraphs that "build",
-    # but all such builds seem to require <li></li> and <p></p>:
     # http://slides.seld.be/?file=2010-05-30+Example.html#1 (also easy)
     # http://www.w3.org/Talks/Tools/Slidy2/#(1) (also easy)
     # http://johnpolacek.github.com/scrolldeck.js/ (inspired by reveal.js)
@@ -2446,12 +2468,14 @@ def slides_html():
 
     slide_type = sys.argv[2]
     header, parts, footer = get_html_header_parts_footer(filename)
+    parts = tablify(parts)
 
     filestr = None
     if slide_type == 'doconce':
         doconce_html_split(header, parts, footer, basename, filename)
-    elif slide_type.startswith('reveal'):
-        filestr = reveal_slides(header, parts, footer, basename, filename)
+    elif slide_type in ('reveal', 'csss'):
+        filestr = generate_slides(header, parts, footer, basename, filename,
+                                  slide_type)
     else:
         print 'unknown slide type "%s"' % slide_type
 
@@ -2461,6 +2485,50 @@ def slides_html():
         f.close()
         print 'slides written to', filename
 
+
+def tablify(parts):
+    """
+    Detect !bslidecell XY and !eslidecell environments and typeset
+    elements of a part (slide page) as a table.
+    """
+    for i in range(len(parts)):
+        part = ''.join(parts[i])
+        if '<!-- !bslidecell' in part:
+            pattern = r'<!-- !bslidecell +(\d\d) +-->(.+?)<!-- !eslidecell +-->'
+            cpattern = re.compile(pattern, re.DOTALL)
+            cells = cpattern.findall(part)
+            #import pprint; pprint.pprint(cells)
+            data = []
+            row_max = 0
+            col_max = 0
+            for pos, entry in cells:
+                ypos = int(pos[0])
+                xpos = int(pos[1])
+                if ypos > row_max:
+                    row_max += 1
+                if xpos > col_max:
+                    col_max += 1
+                data.append(((ypos, xpos), entry))
+            table = [['']*(col_max+1) for j in range(row_max+1)]
+            for pos, body in data:
+                table[pos[0]][pos[1]] = body
+
+            # typeset table in html
+            ht = '\n<table>\n'
+            for row in table:
+                ht += '<tr>\n'
+                for column in row:
+                    ht += '<td> %s </td>\n' % (column)
+                ht += '</tr>\n'
+            ht += '</table>\n'
+
+            pattern00 = r'<!-- !bslidecell +00 +-->(.+?)<!-- !eslidecell +-->'
+            cpattern00 = re.compile(pattern00, re.DOTALL)
+            part = cpattern00.sub(ht, part)
+            part = cpattern.sub('', part)
+            part = [line + '\n' for line in part.splitlines()]
+            parts[i] = part
+    return parts
 
 
 def get_html_header_parts_footer(filename):
@@ -2486,16 +2554,15 @@ def get_html_header_parts_footer(filename):
     f.close()
     return header, parts, footer
 
+
 def doconce_html_split(header, parts, footer, basename, filename):
     """Native doconce style splitting of HTML file into parts."""
+    copy_datafiles(html_images)  # copy html_images subdir if needed
+
     prev_part = 'prev_slide1'
     next_part = 'next_slide1'
     header_part_line = 'colorline'
     header_part_line = ''
-
-    import doconce
-    doconce_dir = os.path.dirname(doconce.__file__)
-    doconce_html_images = os.path.join(doconce_dir, html_images)
 
     # Deal with internal links
     name_pattern = r'<a name="(.+?)">'
@@ -2521,11 +2588,6 @@ def doconce_html_split(header, parts, footer, basename, filename):
 
     prev_filename = html_imagefile(prev_part)
     next_filename = html_imagefile(next_part)
-    if not os.path.isfile(prev_filename):
-        shutil.copy(doconce_html_images, os.curdir)
-        import zipfile
-        zipfile.ZipFile(html_images).extractall()
-        os.remove(html_images)
 
     for pn, part in enumerate(parts):
         lines = header[:]
@@ -2556,38 +2618,146 @@ def doconce_html_split(header, parts, footer, basename, filename):
             shutil.copy(part_filename, filename)
 
 
-def reveal_slides(header, parts, footer, basename, filename):
-    if '--html-reveal-theme' in sys.argv:
-        theme = sys.argv[sys.argv.find('--html-reveal-theme')+1]
-    else:
-        theme = 'beige'
+def generate_slides(header, parts, footer, basename, filename,
+                    slide_tp='reveal'):
+    copy_datafiles(eval(slide_tp + '_files'))  # copy to subdir if needed
 
-    m = re.search(r'<title>(.*?)</title>', footer)
+    slide_syntax = dict(
+        reveal=dict(
+            default_theme='beige',
+            slide_envir_begin='<section>',
+            slide_envir_end='</section>',
+            notes='<aside class="notes">\n\g<1>\n</aside>',
+            pop='fragment',
+            head_header="""
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+<link rel="stylesheet" href="reveal.js/css/theme/%(theme)s.css" id="theme">
+<!--
+<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+-->
+
+<script>
+document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+</script>
+""",
+            body_header="""\
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+""",
+            footer="""
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+heme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+// { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]
+});
+</script>
+""",
+            theme=None,
+            title=None,
+            ),
+        csss=dict(
+            default_theme='theme',
+            slide_envir_begin='<section class="slide">',
+            slide_envir_end='</section>',
+            notes='<p class="presenter-notes">\n\g<1>\n</p>',
+            pop='delayed',
+            head_header="""
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link href="csss/slideshow.css" rel="stylesheet" />
+<link href="csss/theme.css" rel="stylesheet" />
+<link href="csss/talk.css" rel="stylesheet" />
+<script src="csss/prefixfree.min.js"></script>
+""",
+            body_header="""\
+<body data-duration="10">
+""",
+            footer="""
+<script src="csss/slideshow.js"></script>
+<script src="csss/plugins/css-edit.js"></script>
+<script src="csss/plugins/css-snippets.js"></script>
+<script src="csss/plugins/css-controls.js"></script>
+<script src="csss/plugins/code-highlight.js"></script>
+<script>
+var slideshow = new SlideShow();
+
+var snippets = document.querySelectorAll('.snippet');
+for(var i=0; i<snippets.length; i++) {
+	new CSSSnippet(snippets[i]);
+}
+
+var cssControls = document.querySelectorAll('.css-control');
+for(var i=0; i<cssControls.length; i++) {
+	new CSSControl(cssControls[i]);
+}
+</script>
+""",
+            theme=None,
+            title=None,
+            ),
+        )
+
+    if '--html-slide-theme' in sys.argv:
+        theme = sys.argv[sys.argv.find('--html-slide-theme')+1]
+    else:
+        theme = 'default'
+
+    m = re.search(r'<title>(.*?)</title>', ''.join(header))
     if m:
         title = m.group(1).strip()
     else:
         title = ''
+    slide_syntax[slide_tp]['title'] = title
+    slide_syntax[slide_tp]['theme'] = slide_syntax[slide_tp]['default_theme'] \
+                                      if theme == 'default' else theme
 
-    slides = """
+    # Fill in theme etc.
+    slide_syntax[slide_tp]['head_header'] = \
+           slide_syntax[slide_tp]['head_header'] % slide_syntax[slide_tp]
+
+    slides = """\
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 
-<title>%s</title>
-
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-<link rel="stylesheet" href="css/reveal.min.css">
-<link rel="stylesheet" href="css/theme/%s.css" id="theme">
-<!--
-<link rel="stylesheet" href="css/theme/default.css" id="theme">
-<link rel="stylesheet" href="css/theme/beige.css" id="theme">
-<link rel="stylesheet" href="css/theme/night.css" id="theme">
-<link rel="stylesheet" href="css/theme/simple.css" id="theme">
-<link rel="stylesheet" href="css/theme/sky.css" id="theme">
--->
+<title>%(title)s</title>
+%(head_header)s
 
 <!-- Use MathJax to render mathematics -->
 <script type="text/x-mathjax-config">
@@ -2604,36 +2774,67 @@ MathJax.Hub.Config({
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-<script>
-document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-</script>
-
 </head>
 
-<body>
+%(body_header)s
+""" % slide_syntax[slide_tp]
 
-<div class="reveal">
-
-<!-- Any section element inside the <div class="slides"> container
-     is displayed as a slide -->
-
-<div class="slides">
-""" % (title, theme)
     cinline_comment_pattern = re.compile(r'<!-- begin inline comment -->\s*\[<b>.+?</b>:\s*<em>(.+?)</em>]\s*<!-- end inline comment -->', re.DOTALL)
     for part in parts:
-        part = cinline_comment_pattern.sub('<aside class="notes">\n\g<1>\n</aside>', part)
-        slides += """
-<section>
-%s
-</section>
+        part = ''.join(part)
+        part = cinline_comment_pattern.sub(
+                  slide_syntax[slide_tp]['notes'], part)
+        # Fragments
+        if '<!-- !bpop' in part:
+            pattern = r'<!-- !bpop (.*?)-->(.+?)<!-- !epop.*?-->'
+            cpattern = re.compile(pattern, re.DOTALL)
+            #import pprint;pprint.pprint(cpattern.findall(part))
+            def subst(m):  # m is match object
+                arg = m.group(1).strip()
+                if arg:
+                    arg = ' ' + arg
 
-""" % (part)
+                class_tp = slide_syntax[slide_tp]['pop']
+                body = m.group(2)
+                if '<ol>' in body or '<ul>' in body:
+                    for tag in '<ol>', '<ul>':
+                        if tag in body:
+                            #body = body.replace(tag, '%s class="%s%s">' % (tag[:-1], class_tp, arg))
+                            body = body.replace('<li>', '<li class="%s">' % class_tp)
+                else:
+                    # treat whole block as paragraph
+                    body2 = '\n<p class="%s">\n' % class_tp
+                    if arg:
+                        args = arg.split()
+                        for arg in args:
+                            if arg:
+                                body2 += '\n<span class="%s %s">\n' % (class_tp, arg)
+                        body2 += body
+                        for arg in args:
+                            if arg:
+                                body2 += '\n</span>\n'
+                    body2 += '\n</p>\n'
+                    body = body2
+
+                return body
+
+            part = cpattern.sub(subst, part)
+
+        slides += """
+%s
+%s
+%s
+
+""" % (slide_syntax[slide_tp]['slide_envir_begin'],
+       part,
+       slide_syntax[slide_tp]['slide_envir_end'])
     slides += """
-</div> <!-- class="slides" -->
-</div> <!-- class="reveal" -->
+%s
+
 </body>
 </html>
-"""
+""" % (slide_syntax[slide_tp]['footer'])
+    slides = re.sub(r'<!-- !split .*-->\n', '', slides)
     return slides
 
 def usage_split_rst():
@@ -2952,7 +3153,7 @@ def analyzer():
 
 # -----------------------------------------------------------------------
 
-commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc'.split()
+commands = 'format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc'.split()
 
 # -----------------------------------------------------------------------
 
@@ -2996,6 +3197,7 @@ doconce bbl2rst file.bbl
 doconce split_rst complete_file.rst
 doconce sphinxfix_local_URLs file.rst
 doconce split_html complete_file.html
+doconce slides_html slide_type complete_file.html
 doconce html_colorbullets file1.html file2.html ...
 
 doconce grab   --from[-] from-text [--to[-] to-text] somefile

@@ -1,6 +1,9 @@
 #!/bin/sh -x
+rm -rf html_images reveal.js
+
 doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized
 doconce remove_exercise_answers testdoc.html
+doconce html_colorbullets testdoc.html
 doconce split_html testdoc.html
 
 doconce format latex testdoc.do.txt
@@ -49,6 +52,11 @@ pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 
 doconce format pandoc testdoc.do.txt
 pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
+
+# Test slides
+doconce format html slides
+doconce slides_html slides reveal
+mv -f slides.html slides_reveal.html
 
 # Test grab
 doconce grab --from- '={9}' --to 'subroutine@' testdoc.do.txt > testdoc.tmp
