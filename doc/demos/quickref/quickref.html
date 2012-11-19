@@ -74,13 +74,12 @@ MathJax.Hub.Config({
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Nov 17, 2012</h4></center> <!-- date -->
+<center><h4>Nov 19, 2012</h4></center> <!-- date -->
 <p>
 <h2>Table of contents</h2>
 
 <p>
 
-<p>
 <a href="#___sec0"> Supported Formats </a><br>
 <a href="#___sec1"> Title, Authors, and Date </a><br>
 <a href="#quick:sections"> Section Types </a><br>
@@ -99,15 +98,8 @@ MathJax.Hub.Config({
 <a href="#___sec15"> Resources </a><br>
 
 <p>
-<p>
 
-<p>
 
-<p>
-
-<p>
-
-<p>
 <!-- Very preliminary -->
 
 <p>
@@ -115,7 +107,6 @@ MathJax.Hub.Config({
 
 <p>
 
-<p>
 
 <h3>Supported Formats  <a name="___sec0"></a></h3>
 <p>
@@ -180,7 +171,6 @@ The table of contents is removed by writing <tt>TOC: off</tt>.
 
 <p>
 
-<p>
 
 <h3>Section Types <a name="quick:sections"></a></h3>
 <p>
@@ -468,8 +458,8 @@ For example,
 <pre>
 $$
 \begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
+\nabla\cdot u &amp;= 0,\\
+\nabla\times u &amp; 0.
 \end{align*}
 $$
 </pre>
@@ -520,7 +510,6 @@ the following rules are recommended:
 
 <p>
 
-<p>
 
 <h3>Figures and Movies  <a name="___sec12"></a></h3>
 <p>
@@ -563,7 +552,6 @@ The positioning of the figures can be controlled by <tt>-gravity</tt>.
 
 <p>
 
-<p>
 
 <h3>Tables  <a name="___sec13"></a></h3>
 <p>
@@ -672,9 +660,9 @@ ref[internal][cite][external]
 
 # Example:
 As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-"testdoc.html#___sec2" in the document
-"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
+ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
+&quot;testdoc.html#___sec2&quot; in the document
+&quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
 Doconce documents may include movies.
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -819,7 +807,7 @@ Wikipedia has the formula for the curve.
 !ehint
 
 !bhint
-"Wolframalpha": "http://wolframalpha.com" can perhaps
+&quot;Wolframalpha&quot;: &quot;http://wolframalpha.com&quot; can perhaps
 compute the integral.
 !ehint
 </pre>
@@ -883,7 +871,6 @@ By default, answers, solutions, and hints are typeset as paragraphs.
 
 <p>
 
-<p>
 
 <h3>Labels, Index, and Citations  <a name="___sec17"></a></h3>
 <p>
@@ -905,18 +892,18 @@ constructions:
 <p>
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-# #include "myotherdoc.do.txt"
+# #include &quot;myotherdoc.do.txt&quot;
 
-# #if FORMAT in ("latex", "pdflatex")
+# #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)
 \begin{table}
 \caption{Some words... \label{mytab}}
 \begin{tabular}{lrr}
 \hline\noalign{\smallskip}
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{time} &amp; \multicolumn{1}{c}{velocity} &amp; \multicolumn{1}{c}{acceleration} \\
 \hline
-0.0          & 1.4186       & -5.01        \\
-2.0          & 1.376512     & 11.919       \\
-4.0          & 1.1E+1       & 14.717624    \\
+0.0          &amp; 1.4186       &amp; -5.01        \\
+2.0          &amp; 1.376512     &amp; 11.919       \\
+4.0          &amp; 1.1E+1       &amp; 14.717624    \\
 \hline
 \end{tabular}
 \end{table}
