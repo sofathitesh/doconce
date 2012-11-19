@@ -58,6 +58,8 @@ def html_code(filestr, code_blocks, code_block_types,
             #                        '&lt;\g<2>&gt;', code_blocks[i])
             code_blocks[i] = code_blocks[i].replace('<', '&lt;')
             code_blocks[i] = code_blocks[i].replace('>', '&gt;')
+            code_blocks[i] = code_blocks[i].replace('"', '&quot;')
+            code_blocks[i] = code_blocks[i].replace('&', '&amp;')
 
     from doconce import debugpr
     debugpr('Hei1\n%s' % filestr)
