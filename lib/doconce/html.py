@@ -56,15 +56,18 @@ def html_code(filestr, code_blocks, code_block_types,
             # Plain <pre>: This does not catch things like '<x ...<y>'
             #code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
             #                        '&lt;\g<2>&gt;', code_blocks[i])
+            # Substitute & first, otherwise & in &quot; becomes &amp;quot;
+            code_blocks[i] = code_blocks[i].replace('&', '&amp;')
             code_blocks[i] = code_blocks[i].replace('<', '&lt;')
             code_blocks[i] = code_blocks[i].replace('>', '&gt;')
             code_blocks[i] = code_blocks[i].replace('"', '&quot;')
-            code_blocks[i] = code_blocks[i].replace('&', '&amp;')
 
     from doconce import debugpr
-    debugpr('Hei1\n%s' % filestr)
+    debugpr('File before call to insert_code_and_tex (format html)\n%s'
+            % filestr)
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
-    debugpr('Hei2\n%s' % filestr)
+    debugpr('File after call to isnert_code_and tex (format html)\n%s'
+            % filestr)
 
 
     if pygm:
@@ -122,6 +125,12 @@ def html_code(filestr, code_blocks, code_block_types,
     cpattern = re.compile('<li>(.+?)(\s+)(</?ol>|</?ul>)', re.DOTALL)
     filestr = cpattern.sub('<li>\g<1></li>\g<2>\g<3>', filestr)
     filestr = filestr.replace('<li><li>', '<li>')  # fix
+
+    # Strip multiple <p> tags in sequence down to one (must be repeated)
+    pattern = r'(<p>\s+<p>)+'
+    filestr = re.sub(pattern, '<p>\n', filestr)
+    filestr = re.sub(pattern, '<p>\n', filestr)
+    filestr = re.sub(pattern, '<p>\n', filestr)
 
     # Add header from external template
     header = '<title>' in filestr  # will the html file get a header?

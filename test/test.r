@@ -743,7 +743,6 @@ $$
 
 <p>
 
-<p>
 
 <title>A Document for Testing Doconce</title>
 
@@ -787,12 +786,10 @@ $$
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
 
-<p>
 <h2>Table of contents</h2>
 
 <p>
 
-<p>
 <a href="._part0001_testdoc.html#sec1"> Section 1 </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec1"> Subsection 1 </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:ex"> Subsection 2 </a><br>
@@ -821,15 +818,8 @@ $$
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec25"> Appendix: Testing identical titles </a><br>
 
 <p>
-<p>
 
-<p>
 
-<p>
-
-<p>
-
-<p>
 <p>
 
 <a href="._part0001_testdoc.html"><img src="html_images/._next_slide1.gif" border=0 alt="next"></a>
@@ -11099,7 +11089,6 @@ Here is some code:
 </pre></div>
 <p>
 
-<p>
 
 <h3>This is a 5 heading  <a name="___sec2"></a></h3>
 <p>
@@ -12313,7 +12302,6 @@ $$
 
 <p>
 
-<p>
 
 <title>A Document for Testing Doconce</title>
 
@@ -12357,12 +12345,10 @@ $$
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
 
-<p>
 <h2>Table of contents</h2>
 
 <p>
 
-<p>
 <a href="._part0001_testdoc.html#sec1"> Section 1 </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec1"> Subsection 1 </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:ex"> Subsection 2 </a><br>
@@ -12391,15 +12377,8 @@ $$
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec25"> Appendix: Testing identical titles </a><br>
 
 <p>
-<p>
 
-<p>
 
-<p>
-
-<p>
-
-<p>
 <p>
 
 <a href="._part0001_testdoc.html"><img src="html_images/._next_slide1.gif" border=0 alt="next"></a>
@@ -12505,7 +12484,6 @@ plain, homemade HTML (from Doconce).
 
 <p>
 
-<p>
 <b>Abstract.</b> This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
@@ -12667,7 +12645,7 @@ to the section <a href="#subsubsec:ex">URLs</a>.
 Let's do some copying from files too. First from subroutine up to the very end,
 
 <p>
-<p>
+
 
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
  2
@@ -12751,7 +12729,6 @@ and finally the complete file:
 </pre></div>
 </td></tr></table><p>
 
-<p>
 Testing other code environments. First Python:
 <p>
 
@@ -12769,7 +12746,6 @@ Then Cython:
 </pre></div>
 </td></tr></table><p>
 
-<p>
 <!-- This one tests a + before a code environment -->
 C++:
 <p>
@@ -12804,7 +12780,6 @@ output2
 </pre></div>
 </td></tr></table><p>
 
-<p>
 It is time to test <tt>verbatim inline font</tt> especially with <tt>a newline
 inside the text</tt> and an exclamation mark at the end: <tt>BEGIN</tt>! The
 exclamation mark inside the verbatim text is not smart for latex as
@@ -12820,7 +12795,6 @@ there is a flow.
 
 <p>
 
-<p>
 <center> <! -- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 1:  Visualization of flow by streamtubes. <a name="fig:impact"></a> </p></center>
@@ -12829,7 +12803,6 @@ there is a flow.
 
 <p>
 
-<p>
 Figures without captions are allowed.
 
 <p>
@@ -12861,8 +12834,7 @@ Test of movies.
 <!-- Test wrong syntax and multi-line caption -->
 
 <p>
-
-<p><a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
+<a href="wavepacket_0001.html">Movie of files <tt>../doc/manual/figs/wavepacket_*.png</tt></a>
 <em> Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). <a name="mymov"></a> </em></p>
 
 <p>
@@ -12883,7 +12855,6 @@ and an extra space before the FIGURE keyword.
 
 <p>
 
-<p>
 <center> <! -- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 2:  A long caption spanning several lines. <a name="myfig"></a> </p></center>
@@ -12892,7 +12863,6 @@ and an extra space before the FIGURE keyword.
 
 <p>
 
-<p>
 Movie <a href="#mymov">mymov</a> has a similar problem.
 
 <p>
@@ -12900,7 +12870,6 @@ Movie <a href="#mymov">mymov</a> has a similar problem.
 
 <p>
 
-<p>
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 
 <p>
@@ -12917,7 +12886,6 @@ involving \( \theta \):
 </pre></div>
 </td></tr></table><p>
 
-<p>
 <b>More on \( \theta \).</b> Here is more text following headline with math.
 
 <p>
@@ -12945,15 +12913,11 @@ Should look nice in most formats!
 
 <p>
 
-<p>
-
-<p>
 <!-- begin theorem -->
 <a name="theorem:fundamental1"></a>
 
 <p>
 
-<p>
 <b>Theorem 5.</b> Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
 <!-- end theorem -->
 
@@ -12969,12 +12933,10 @@ achievement.
 
 <p>
 
-<p>
 
 <h3>Tables <a name="subsec:table"></a></h3>
 <p>
 
-<p>
 <!-- index with comma could fool sphinx -->
 
 <p>
@@ -12982,7 +12944,6 @@ Let us take this table from the manual:
 
 <p>
 
-<p>
 <table border="1">
 <tr><td align="center"><b>     time     </b></td> <td align="center"><b>   velocity   </b></td> <td align="center"><b> acceleration </b></td> </tr>
 <tr><td align="left">   0.0             </td> <td align="right">   1.4186          </td> <td align="right">   -5.01           </td> </tr>
@@ -12991,7 +12952,6 @@ Let us take this table from the manual:
 </table>
 <p>
 
-<p>
 The Doconce source code reads
 <p>
 
@@ -13011,7 +12971,6 @@ The Doconce source code reads
 </pre></div>
 </td></tr></table><p>
 
-<p>
 Here is yet another table to test that we can handle more than
 one table:
 
@@ -13062,7 +13021,6 @@ and a <a href="http://www.springer.com/mathematics/computational+science+%26+eng
 
 <p>
 
-<p>
 
 <h3>LaTeX Mathematics  <a name="___sec7"></a></h3>
 <p>
@@ -13087,7 +13045,6 @@ $$
 
 <p>
 
-<p>
 And here is a system of equations with labels in an align environment:
 $$
 \begin{align}
@@ -13161,9 +13118,6 @@ between there we have <a href="#exer:some:formula">Exercise 5: Make references t
 <h2>Exercises  <a name="___sec8"></a></h2>
 <p>
 
-<p>
-
-<p>
 <!-- --- begin exercise -->
 
 <p>
@@ -13179,7 +13133,6 @@ let the program count the number of heads.
 
 <p>
 
-<p>
 <!-- Test syntax error -->
 
 <p>
@@ -13200,11 +13153,7 @@ Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
 
 <p>
 
-<p>
 
-<p>
-
-<p>
 <!-- --- begin exercise -->
 
 <p>
@@ -13215,7 +13164,6 @@ Filenames: <tt>flip_coin.py</tt>, <tt>flip_coin.pdf</tt>.
 
 <p>
 
-<p>
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval \( [0,1) \)?
 
@@ -13230,11 +13178,7 @@ compute the probability as \( M/N \).
 
 <p>
 
-<p>
 
-<p>
-
-<p>
 <!-- --- begin exercise -->
 
 <p>
@@ -13256,7 +13200,7 @@ For any \( t \), \( (x,y) \) is a point on the circle.
 The formula can be used to generate <tt>n</tt> points on a circle:
 
 <p>
-<p>
+
 
 <table class="highlighttable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
 2
@@ -13278,7 +13222,6 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 </pre></div>
 </td></tr></table><p>
 
-<p>
 <!-- Often in an exercise we have some comments about the solution -->
 <!-- which we normally want to keep where they are. -->
 
@@ -13289,7 +13232,6 @@ above.
 
 <p>
 
-<p>
 <b>a)</b> Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
 
 <p>
@@ -13322,16 +13264,11 @@ and give some perspectives.
 
 <p>
 
-<p>
 <!-- --- end of exercise -->
 
 <p>
 
-<p>
 
-<p>
-
-<p>
 <!-- --- begin exercise -->
 
 <p>
@@ -13344,7 +13281,6 @@ Intro to this exercise. Questions are in subexercises below.
 
 <p>
 
-<p>
 <b>a)</b> Subexercises are numbered a), b), etc.
 
 <p>
@@ -13378,12 +13314,10 @@ remarks will appear at the end of the typeset exercise.
 
 <p>
 
-<p>
 <!-- --- end of exercise -->
 
 <p>
 
-<p>
 
 <h2>Here goes another section  <a name="___sec15"></a></h2>
 <p>
@@ -13394,9 +13328,6 @@ With some text, before we continue with exercises.
 <h2>More Exercises  <a name="___sec16"></a></h2>
 <p>
 
-<p>
-
-<p>
 <!-- --- begin exercise -->
 
 <p>
@@ -13412,11 +13343,7 @@ Filename: <tt>verify_formula.py</tt>.
 
 <p>
 
-<p>
 
-<p>
-
-<p>
 <!-- --- begin exercise -->
 
 <p>
@@ -13433,7 +13360,6 @@ Filename: <tt>selc_composed.pdf</tt>.
 
 <p>
 
-<p>
 
 <h2>Appendix: Just for testing; part I  <a name="___sec19"></a></h2>
 <p>
@@ -13526,7 +13452,12 @@ And a line more
 
 !split
 
-===== Some computer code =====
+===== Some math and computer code =====
+
+!bt
+\[ f(x,y,t) = e^{-xt}\sin\pi y \]
+!et
+Python implementation:
 
 !bc pycod
 import numpy as np
@@ -13535,18 +13466,32 @@ def f(x, y, t):
     return np.exp(-x*t)*np.sin(np.pi*y)
 
 class Fancy:
-    pass
+    def __init__(self):
+        pass
+
+    def __call__(self, x, y, t):
+        return f(x, y, t)
+
+f2 = Fancy()
 !ec
 
 
 
 ************** File: slides_reveal.html *****************
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
+<!--
+    Automatically translated from Doconce source.
+    http://code.google.com/p/doconce
+-->
+
 <head>
 <meta charset="utf-8">
 
 <title></title>
+
+<!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
 
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -13704,9 +13649,13 @@ And a line more
 
 <p>
 
-<h3>Some computer code  <a name="___sec2"></a></h3>
+<h3>Some math and computer code  <a name="___sec2"></a></h3>
 <p>
+$$ f(x,y,t) = e^{-xt}\sin\pi y $$
+Python implementation:
+
 <p>
+
 
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #AA22FF; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #AA22FF; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 
@@ -13714,7 +13663,13 @@ And a line more
     <span style="color: #AA22FF; font-weight: bold">return</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>x<span style="color: #666666">*</span>t)<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>y)
 
 <span style="color: #AA22FF; font-weight: bold">class</span> <span style="color: #0000FF">Fancy</span>:
-    <span style="color: #AA22FF; font-weight: bold">pass</span>
+    <span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">__init__</span>(<span style="color: #AA22FF">self</span>):
+        <span style="color: #AA22FF; font-weight: bold">pass</span>
+
+    <span style="color: #AA22FF; font-weight: bold">def</span> <span style="color: #00A000">__call__</span>(<span style="color: #AA22FF">self</span>, x, y, t):
+        <span style="color: #AA22FF; font-weight: bold">return</span> f(x, y, t)
+
+f2 <span style="color: #666666">=</span> Fancy()
 </pre></div>
 <p>
 
@@ -14408,7 +14363,6 @@ MathJax.Hub.Config({
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
 
-<p>
 
 <ul>
  <li> When writing a note, report, manual, etc., do you find it difficult
@@ -14433,7 +14387,6 @@ If any of these questions are of interest, you should keep on reading.
 
 <p>
 
-<p>
 
 <h2>The Doconce Concept   <a name="___sec0"></a></h2>
 <p>
@@ -14525,9 +14478,6 @@ formats.
 
 <p>
 
-<p>
-
-<p>
 
 <h2>What Does Doconce Look Like?  <a name="___sec1"></a></h2>
 <p>
@@ -14594,12 +14544,12 @@ Lists can also have automatically numbered items instead of bullets,
   o item 2
   o item 3
 
-URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
+URLs with a link word are possible, as in &quot;hpl&quot;:&quot;http://folk.uio.no/hpl&quot;.
 If the word is URL, the URL itself becomes the link name,
-as in "URL": "tutorial.do.txt".
+as in &quot;URL&quot;: &quot;tutorial.do.txt&quot;.
 
 References to sections may use logical names as labels (e.g., a
-"label" command right after the section title), as in the reference to
+&quot;label&quot; command right after the section title), as in the reference to
 Section ref{my:first:sec}.
 
 Doconce also allows inline comments of the form [name: comment] (with
@@ -14775,7 +14725,6 @@ right writing enviroment for plain text.
 
 <p>
 
-<p>
 
 <h3>Macros (Newcommands), Cross-References, Index, and Bibliography <a name="newcommands"></a></h3>
 <p>
@@ -14814,12 +14763,10 @@ for various formats of this document).
 
 <p>
 
-<p>
 <!-- Example on including another Doconce file (using preprocess): -->
 
 <p>
 
-<p>
 
 <h2>From Doconce to Other Formats <a name="doconce2formats"></a></h2>
 <p>
@@ -14873,7 +14820,6 @@ and comments by different authors should be removed.
 
 <p>
 
-<p>
 
 <h3>HTML  <a name="___sec6"></a></h3>
 <p>
@@ -14981,7 +14927,6 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 <p>
 
-<p>
 
 <h3>LaTeX  <a name="___sec8"></a></h3>
 <p>
@@ -15077,7 +15022,7 @@ of code environments as well. Here is an example:
 <pre>
 Terminal&gt; doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
           -DPALATINO -DA6PAPER \
-          "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
+          &quot;sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}&quot; \
           fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -15093,7 +15038,6 @@ and <tt>\end{verbatim}</tt> used.
 
 <p>
 
-<p>
 <b>Step 2b (optional).</b> Edit the <tt>mydoc.tex</tt> file to your needs.
 For example, you may want to substitute <tt>section</tt> by <tt>section*</tt> to
 avoid numbering of sections, you may want to insert linebreaks
@@ -15158,7 +15102,6 @@ included so there is no need for the <tt>-DMINTED</tt> option.
 
 <p>
 
-<p>
 
 <h3>PDFLaTeX  <a name="___sec9"></a></h3>
 <p>
@@ -15258,8 +15201,8 @@ Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <tt>doconce sphinx_dir</tt> command:
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
-Terminal&gt; doconce sphinx_dir author="authors' names" \
-          title="some title" version=1.0 dirname=sphinxdir \
+Terminal&gt; doconce sphinx_dir author=&quot;authors' names&quot; \
+          title=&quot;some title&quot; version=1.0 dirname=sphinxdir \
           theme=mytheme file1 file2 file3 ...
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -15380,7 +15323,6 @@ are included.
 
 <p>
 
-<p>
 <b>Step 3.</b> Copy the <tt>mydoc.rst</tt> file to the Sphinx root directory:
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
@@ -15439,7 +15381,6 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 
 <p>
 
-<p>
 
 <h3>Wiki Formats  <a name="___sec13"></a></h3>
 <p>
@@ -15477,7 +15418,6 @@ standard LaTeX book or a Sphinx web document.
 
 <p>
 
-<p>
 
 <h3>Tweaking the Doconce Output  <a name="___sec14"></a></h3>
 <p>
@@ -15495,7 +15435,6 @@ constitute comprehensive examples on how such scripts can be made.
 
 <p>
 
-<p>
 
 <h3>Demos  <a name="___sec15"></a></h3>
 <p>
@@ -15712,7 +15651,6 @@ run the usual <tt>sudo python setup.py install</tt>.
 
 <p>
 
-<p>
 Output to <tt>sphinx</tt> requires of course <a href="http://sphinx.pocoo.org">Sphinx</a>,
 installed by
 <blockquote>    <!-- begin verbatim block  sys-->
@@ -28008,7 +27946,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 17 Nov 2012 (08:55)
+DATE: Mon, 19 Nov 2012 (17:46)
 
 
 
@@ -28112,7 +28050,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Sat, 17 Nov 2012 (08:55)
+DATE: Mon, 19 Nov 2012 (17:46)
 
 
 
@@ -28226,7 +28164,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 17 Nov 2012 (08:55)</center>
+<center>Mon, 19 Nov 2012 (17:46)</center>
 
 
 
@@ -28357,7 +28295,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sat, 17 Nov 2012 (08:55)</center>
+<center>Mon, 19 Nov 2012 (17:46)</center>
 
 
 
@@ -30719,12 +30657,10 @@ $$
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
 
-<p>
 <!-- lines beginning with # are comment lines -->
 
 <p>
 
-<p>
 
 <h2>What Is Doconce? <a name="what:is:doconce"></a></h2>
 <p>
@@ -30816,9 +30752,6 @@ formats.
 
 <p>
 
-<p>
-
-<p>
 
 <h2>Installation of Doconce and its Dependencies  <a name="___sec1"></a></h2>
 <p>
@@ -31011,7 +30944,6 @@ run the usual <tt>sudo python setup.py install</tt>.
 
 <p>
 
-<p>
 Output to <tt>sphinx</tt> requires of course <a href="http://sphinx.pocoo.org">Sphinx</a>,
 installed by
 <blockquote>    <!-- begin verbatim block  sys-->
@@ -31066,7 +30998,6 @@ Mercurial (<tt>hg</tt>) directories, go to the directory, run
 
 <p>
 
-<p>
 <!--  -->
 <!-- Here are some comment lines that do not affect any formatting -->
 <!-- these lines are converted to comments in the output format. -->
@@ -31082,12 +31013,10 @@ Mercurial (<tt>hg</tt>) directories, go to the directory, run
 
 <p>
 
-<p>
 
 <h3>Demos  <a name="___sec9"></a></h3>
 <p>
 
-<p>
 The current text is generated from a Doconce format stored in the
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
@@ -31121,7 +31050,6 @@ of the results.
 
 <p>
 
-<p>
 
 <h2>From Doconce to Other Formats <a name="doconce2formats"></a></h2>
 <p>
@@ -31175,7 +31103,6 @@ and comments by different authors should be removed.
 
 <p>
 
-<p>
 
 <h3>HTML  <a name="___sec11"></a></h3>
 <p>
@@ -31283,7 +31210,6 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 <p>
 
-<p>
 
 <h3>LaTeX  <a name="___sec13"></a></h3>
 <p>
@@ -31379,7 +31305,7 @@ of code environments as well. Here is an example:
 <pre>
 Terminal&gt; doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
           -DPALATINO -DA6PAPER \
-          "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
+          &quot;sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}&quot; \
           fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -31395,7 +31321,6 @@ and <tt>\end{verbatim}</tt> used.
 
 <p>
 
-<p>
 <b>Step 2b (optional).</b> Edit the <tt>mydoc.tex</tt> file to your needs.
 For example, you may want to substitute <tt>section</tt> by <tt>section*</tt> to
 avoid numbering of sections, you may want to insert linebreaks
@@ -31460,7 +31385,6 @@ included so there is no need for the <tt>-DMINTED</tt> option.
 
 <p>
 
-<p>
 
 <h3>PDFLaTeX  <a name="___sec14"></a></h3>
 <p>
@@ -31560,8 +31484,8 @@ Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <tt>doconce sphinx_dir</tt> command:
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
-Terminal&gt; doconce sphinx_dir author="authors' names" \
-          title="some title" version=1.0 dirname=sphinxdir \
+Terminal&gt; doconce sphinx_dir author=&quot;authors' names&quot; \
+          title=&quot;some title&quot; version=1.0 dirname=sphinxdir \
           theme=mytheme file1 file2 file3 ...
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -31682,7 +31606,6 @@ are included.
 
 <p>
 
-<p>
 <b>Step 3.</b> Copy the <tt>mydoc.rst</tt> file to the Sphinx root directory:
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
@@ -31741,7 +31664,6 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 
 <p>
 
-<p>
 
 <h3>Wiki Formats  <a name="___sec18"></a></h3>
 <p>
@@ -31779,7 +31701,6 @@ standard LaTeX book or a Sphinx web document.
 
 <p>
 
-<p>
 
 <h3>Tweaking the Doconce Output  <a name="___sec19"></a></h3>
 <p>
@@ -31797,9 +31718,6 @@ constitute comprehensive examples on how such scripts can be made.
 
 <p>
 
-<p>
-
-<p>
 
 <h2>The Doconce Markup Language  <a name="___sec20"></a></h2>
 <p>
@@ -31929,7 +31847,6 @@ sections, subsections, paragraphs., figures, movies, etc.
 
 <p>
 
-<p>
 <b>Heading with Title and Author(s).</b> Lines starting with <tt>TITLE:</tt>, <tt>AUTHOR:</tt>, and <tt>DATE:</tt> are optional and used
 to identify a title of the document, the authors, and the date. The
 title is treated as the rest of the line, so is the date, but the
@@ -31985,7 +31902,6 @@ The current date can be specified as <tt>today</tt>.
 
 <p>
 
-<p>
 <b>Table of Contents.</b> A table of contents can be generated by the line
 <blockquote>    <!-- begin verbatim block -->
 <pre>
@@ -31997,7 +31913,6 @@ A value <tt>off</tt> turns off the table of contents.
 
 <p>
 
-<p>
 <b>Section Headings.</b> Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
@@ -32023,14 +31938,13 @@ section heading is taken as part of the text of the abstract).
 
 <p>
 
-<p>
 Here are some examples:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
 __Abstract.__ The following text just attempts to exemplify
 various section headings.
 
-Appendix is supported too: just let the heading start with "Appendix: "
+Appendix is supported too: just let the heading start with &quot;Appendix: &quot;
 (this affects only `latex` output, where the appendix formatting
 is used - all other formats just leave the heading as it is written).
 
@@ -32096,7 +32010,6 @@ included in the formatted caption).
 
 <p>
 
-<p>
 <center> <! -- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 1:  Streamtube visualization of a fluid flow. <a name="fig:viz"></a> </p></center>
@@ -32105,7 +32018,6 @@ included in the formatted caption).
 
 <p>
 
-<p>
 Combining several image files into one, in a table fashion, can be done by the
 <tt>montage</tt> program from the ImageMagick suite:
 <blockquote>    <!-- begin verbatim block  sys-->
@@ -32189,9 +32101,6 @@ the embedded HTML code for the movie on the YouTube page).
 
 <p>
 
-<p>
-
-<p>
 
 <h3>Copying Computer Code from Source Files  <a name="___sec26"></a></h3>
 <p>
@@ -32201,7 +32110,6 @@ the section <a href="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> 
 
 <p>
 
-<p>
 
 <h3>Inline Tagging <a name="inline:tagging"></a></h3>
 <p>
@@ -32258,7 +32166,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-some URL like "Doconce": "http://code.google.com/p/doconce"
+some URL like &quot;Doconce&quot;: &quot;http://code.google.com/p/doconce&quot;
 </pre>
 </blockquote>   <! -- end verbatim block -->
 which appears as some URL like <a href="http://google.com">Search Google</a>.
@@ -32269,7 +32177,7 @@ Links to files ending in <tt>.txt</tt>, <tt>.html</tt>, <tt>.pdf</tt>, <tt>.py</
 setup:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-see the "Doconce Manual": "manual.do.txt".
+see the &quot;Doconce Manual&quot;: &quot;manual.do.txt&quot;.
 </pre>
 </blockquote>   <! -- end verbatim block -->
 which appears as see the <a href="manual.do.txt">Doconce Manual</a>.
@@ -32312,7 +32220,7 @@ has the file available as <tt>src/myprog.py</tt> in her
 software and the document links to <tt>_static/myprog.py</tt>:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-See the code URL:"src/myprog.py" ("view: "_static/myprog.py.html").
+See the code URL:&quot;src/myprog.py&quot; (&quot;view: &quot;_static/myprog.py.html&quot;).
 </pre>
 </blockquote>   <! -- end verbatim block -->
 
@@ -32323,7 +32231,7 @@ the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-URL: "manual.html"
+URL: &quot;manual.html&quot;
 </pre>
 </blockquote>   <! -- end verbatim block -->
 resulting in the link <a href="manual.html"><tt>manual.html</tt></a>.
@@ -32347,7 +32255,7 @@ Similarly, to have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-Click on this link: URL:"http://code.google.com/p/doconce".
+Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.
 </pre>
 </blockquote>   <! -- end verbatim block -->
 resulting in Click on this link: <a href="http://code.google.com/p/doconce"><tt>http://code.google.com/p/doconce</tt></a>.
@@ -32441,7 +32349,6 @@ comments to be in the source code of the output document.
 
 <p>
 
-<p>
 
 <h3>Cross-Referencing  <a name="___sec29"></a></h3>
 <p>
@@ -32520,10 +32427,10 @@ Here is an example on a specific generalized reference:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
 As explained in
-ref[Section ref{subsec:ex}][in "Langtangen, 2012":
-"http://code.google.com/p/doconce/wiki/Description"
-cite{testdoc:12}][a "section": "testdoc.html#___sec2" in
-the document "A Document for Testing Doconce": "testdoc.html"
+ref[Section ref{subsec:ex}][in &quot;Langtangen, 2012&quot;:
+&quot;http://code.google.com/p/doconce/wiki/Description&quot;
+cite{testdoc:12}][a &quot;section&quot;: &quot;testdoc.html#___sec2&quot; in
+the document &quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot;
 cite{testdoc:12}], Doconce documents may include movies.
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -32558,9 +32465,9 @@ In plain HTML, this becomes
 <blockquote>    <!-- begin verbatim block -->
 <pre>
 As explained in
-a &lt;a href="testdoc.html#___sec2"&gt;section&lt;/a&gt; in
-the document &lt;a href="testdoc.html"&gt;A Document for Testing Doconce&lt;/a&gt;
-&lt;a href="#testdoc:12"&gt;[1]&lt;/a&gt;, Doconce documents may include movies.
+a &lt;a href=&quot;testdoc.html#___sec2&quot;&gt;section&lt;/a&gt; in
+the document &lt;a href=&quot;testdoc.html&quot;&gt;A Document for Testing Doconce&lt;/a&gt;
+&lt;a href=&quot;#testdoc:12&quot;&gt;[1]&lt;/a&gt;, Doconce documents may include movies.
 </pre>
 </blockquote>   <! -- end verbatim block -->
 The plain text format reads
@@ -32645,15 +32552,15 @@ in the bibliography. Doconce markup can be used in this text, e.g.,
 <blockquote>    <!-- begin verbatim block -->
 <pre>
 {
-'Nielsen_Kjeldstrup_1999': """
+'Nielsen_Kjeldstrup_1999': &quot;&quot;&quot;
 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languages*.
-URL:"http://some.where.net/nielsen/comments", 1999.
-""",
+URL:&quot;http://some.where.net/nielsen/comments&quot;, 1999.
+&quot;&quot;&quot;,
 'Larsen_1986':
-"""
+&quot;&quot;&quot;
 O. B. Larsen. On Markup and Generality.
 *Personal Press*. 1986.
-"""
+&quot;&quot;&quot;
 }
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -32699,7 +32606,6 @@ is a special feature of doconce :-) </em>]
 
 <p>
 
-<p>
 
 <h3>Tables  <a name="___sec32"></a></h3>
 <p>
@@ -32741,9 +32647,6 @@ the format and insert format-specific code for tables.
 
 <p>
 
-<p>
-
-<p>
 
 <h3>Exercises, Problems, or Projects  <a name="___sec33"></a></h3>
 <p>
@@ -32881,7 +32784,6 @@ under a section (or subsection) named "Exercises", "Problems", or
 
 <p>
 
-<p>
 
 <h3>Blocks of Verbatim Computer Code <a name="sec:verbatim:blocks"></a></h3>
 <p>
@@ -32977,7 +32879,7 @@ INLINE_TAGS = {
 And here is a C++ code snippet (<tt>cppcod</tt> style):
 <blockquote>    <!-- begin verbatim block  cppcod-->
 <pre>
-void myfunc(double* x, const double& myarr) {
+void myfunc(double* x, const double&amp; myarr) {
     for (int i = 1; i &lt; myarr.size(); i++) {
         myarr[i] = myarr[i] - x[i]*myarr[i-1]
     }
@@ -33099,7 +33001,6 @@ file.)
 
 <p>
 
-<p>
 
 <h3>LaTeX Blocks of Mathematical Text <a name="mathtext"></a></h3>
 <p>
@@ -33111,8 +33012,8 @@ line and followed by a newline.
 <pre>
 $$
 \begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
+{\partial u\over\partial t} &amp;= \nabla^2 u + f, \label{myeq1}\\
+{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g. \label{myeq2}
 \end{align}
 $$
 </pre>
@@ -33148,7 +33049,6 @@ typesetting.
 
 <p>
 
-<p>
 
 <h4>Mathematics for PowerPoint/OpenOffice  <a name="___sec36"></a></h4>
 <p>
@@ -33234,8 +33134,8 @@ The LaTeX block
 <blockquote>    <!-- begin verbatim block -->
 <pre>
 \beqa
-\x\cdot\normalvec &=& 0, \label{my:eq1}\\
-\Ddt{\uvec} &=& \Q \ep   \label{my:eq2}
+\x\cdot\normalvec &amp;=&amp; 0, \label{my:eq1}\\
+\Ddt{\uvec} &amp;=&amp; \Q \ep   \label{my:eq2}
 \eeqa
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -33285,7 +33185,7 @@ a separate figure for each plot. Below is an example:
 # If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
 # PostScript files are used.
 
-# #if FORMAT == "latex"
+# #if FORMAT == &quot;latex&quot;
 # Use latex with subfigures (a) and (b)
 \begin{figure}
 \label{fig:wavepackets}
@@ -33329,9 +33229,6 @@ the writing of parts of the document.
 
 <p>
 
-<p>
-
-<p>
 
 <h3>Splitting Documents into Smaller Pieces  <a name="___sec39"></a></h3>
 <p>
@@ -33392,7 +33289,6 @@ variable <tt>files</tt> above.
 
 <p>
 
-<p>
 
 <h3>Missing Features  <a name="___sec40"></a></h3>
 <p>
@@ -33406,10 +33302,10 @@ if a sophisticated table is desired in LaTeX output, do something line
 <p>
 <blockquote>    <!-- begin verbatim block  pro-->
 <pre>
-# #if FORMAT in ("latex", "pdflatex")
+# #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)
 # insert native LaTeX code for fancy table
 # #else
-# insert a Doconce-formatted "inline" table
+# insert a Doconce-formatted &quot;inline&quot; table
 # #endif
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -33483,7 +33379,6 @@ are included, otherwise not.
 
 <p>
 
-<p>
 
 <h3>Emacs Doconce Formatter  <a name="___sec42"></a></h3>
 <p>
@@ -33512,8 +33407,8 @@ cp misc/.doconce-mode.el $HOME
 <b>Step 3.</b> Add these lines to <tt>$HOME/.emacs</tt>:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-(load-file "~/hg/.doconce-mode.el")
-(setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) auto-mode-alist))
+(load-file &quot;~/hg/.doconce-mode.el&quot;)
+(setq auto-mode-alist(cons '(&quot;\\.do\\.txt$&quot; . doconce-mode) auto-mode-alist))
 </pre>
 </blockquote>   <! -- end verbatim block -->
 Emacs will now recognize files with extension <tt>.do.txt</tt> and enter
@@ -33521,7 +33416,6 @@ the Doconce Editing Mode.
 
 <p>
 
-<p>
 
 <h2>Troubleshooting  <a name="___sec43"></a></h2>
 <p>
@@ -33546,7 +33440,6 @@ well for his diverse applications of it.
 
 <p>
 
-<p>
 
 <h3>General Problems  <a name="___sec45"></a></h3>
 <p>
@@ -33591,13 +33484,13 @@ correctly. Merge them into one common expression.
 Links of the type
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-see the "examples directory": "src/examples"
+see the &quot;examples directory&quot;: &quot;src/examples&quot;
 </pre>
 </blockquote>   <! -- end verbatim block -->
 do not work well. You need to link to a specific HTML file:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-see the "examples directory": "src/examples/index.html"
+see the &quot;examples directory&quot;: &quot;src/examples/index.html&quot;
 </pre>
 </blockquote>   <! -- end verbatim block -->
 
@@ -33609,13 +33502,13 @@ Not all formats will allow formatting of the links. Verbatim words
 in links are allowed if the whole link is typeset in verbatim:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-see the directory "`examples`": "src/examples/index.html".
+see the directory &quot;`examples`&quot;: &quot;src/examples/index.html&quot;.
 </pre>
 </blockquote>   <! -- end verbatim block -->
 However, the following will not be typeset correctly:
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-see the "`examples` directory": "src/examples/index.html"
+see the &quot;`examples` directory&quot;: &quot;src/examples/index.html&quot;
 </pre>
 </blockquote>   <! -- end verbatim block -->
 The back-ticks must be removed, or the text can be reformulated as
@@ -33623,7 +33516,6 @@ in the line above it.
 
 <p>
 
-<p>
 
 <h4>Inline verbatim code is not detected  <a name="___sec52"></a></h4>
 <p>
@@ -33674,7 +33566,6 @@ proceeding text before some section heading.
 
 <p>
 
-<p>
 
 <h4>Found !bt but no tex blocks extracted (BUG)  <a name="___sec57"></a></h4>
 <p>
@@ -33757,7 +33648,6 @@ Using paragraphs instead of list items is a good idea also here.
 
 <p>
 
-<p>
 
 <h3>Problems with reST/Sphinx Output  <a name="___sec65"></a></h3>
 <p>
@@ -33815,8 +33705,8 @@ Suppose you have a URL reference like
 <p>
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-..which can be found in the file "my_file.txt":
-"http://some.where.net/web/dir/my_file.txt".
+..which can be found in the file &quot;my_file.txt&quot;:
+&quot;http://some.where.net/web/dir/my_file.txt&quot;.
 </pre>
 </blockquote>   <! -- end verbatim block -->
 LaTeX will stop with a message about a missing dollar sign. The reason
@@ -33826,8 +33716,8 @@ underscore is misleading in other formats.
 The remedy is to format the link text with inline verbatim tags (backticks):
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-..which can be found in the file "`my_file.txt`":
-"http://some.where.net/web/dir/my_file.txt".
+..which can be found in the file &quot;`my_file.txt`&quot;:
+&quot;http://some.where.net/web/dir/my_file.txt&quot;.
 </pre>
 </blockquote>   <! -- end verbatim block -->
 Verbatim text in links works fine with underscores.
@@ -33970,7 +33860,6 @@ the <tt>ptex2tex</tt> program with all its flexibility for choosing environments
 
 <p>
 
-<p>
 
 <h4>The LaTeX file does not compile  <a name="___sec75"></a></h4>
 <p>
@@ -34008,7 +33897,6 @@ blocks - that is safe.
 
 <p>
 
-<p>
 
 <h4>Errors in figure captions  <a name="___sec77"></a></h4>
 <p>
@@ -34097,7 +33985,6 @@ turned off by <tt>--no-pygments-html</tt> (leaving code in gray boxes).
 
 <p>
 
-<p>
 The easiest way is to get fancy layouts in HTML is to
 use the <tt>sphinx</tt> format and one its many themes.
 
@@ -34120,16 +34007,15 @@ simply by automatic editing of the HTML code in a little shell script:
 <p>
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-doconce replace '&lt;p class="caption"&gt;' \
- '&lt;p style="width: 50%; font-style: italic; color: blue"&gt;' mydoc.html
-doconce replace '&lt;hr class="figure"&gt;' \
- '&lt;hr style="width: 50%"&gt;' mydoc.html
+doconce replace '&lt;p class=&quot;caption&quot;&gt;' \
+ '&lt;p style=&quot;width: 50%; font-style: italic; color: blue&quot;&gt;' mydoc.html
+doconce replace '&lt;hr class=&quot;figure&quot;&gt;' \
+ '&lt;hr style=&quot;width: 50%&quot;&gt;' mydoc.html
 </pre>
 </blockquote>   <! -- end verbatim block -->
 
 <p>
 
-<p>
 
 <h3>Debugging  <a name="___sec86"></a></h3>
 <p>
@@ -34145,9 +34031,6 @@ format, and you need to know these steps to make use of the logfile.
 
 <p>
 
-<p>
-
-<p>
 
 <h2>Basic Parsing Ideas  <a name="___sec87"></a></h2>
 <p>
@@ -34204,7 +34087,6 @@ LaTeX, and work further on the document in this format.
 
 <p>
 
-<p>
 
 <h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec88"></a></h3>
 <p>
@@ -65146,7 +65028,6 @@ MathJax.Hub.Config({
 
 <p>
 
-<p>
 <a href="#___sec0"> Supported Formats </a><br>
 <a href="#___sec1"> Title, Authors, and Date </a><br>
 <a href="#quick:sections"> Section Types </a><br>
@@ -65165,15 +65046,8 @@ MathJax.Hub.Config({
 <a href="#___sec15"> Resources </a><br>
 
 <p>
-<p>
 
-<p>
 
-<p>
-
-<p>
-
-<p>
 <!-- Very preliminary -->
 
 <p>
@@ -65181,7 +65055,6 @@ MathJax.Hub.Config({
 
 <p>
 
-<p>
 
 <h3>Supported Formats  <a name="___sec0"></a></h3>
 <p>
@@ -65246,7 +65119,6 @@ The table of contents is removed by writing <tt>TOC: off</tt>.
 
 <p>
 
-<p>
 
 <h3>Section Types <a name="quick:sections"></a></h3>
 <p>
@@ -65534,8 +65406,8 @@ For example,
 <pre>
 $$
 \begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
+\nabla\cdot u &amp;= 0,\\
+\nabla\times u &amp; 0.
 \end{align*}
 $$
 </pre>
@@ -65586,7 +65458,6 @@ the following rules are recommended:
 
 <p>
 
-<p>
 
 <h3>Figures and Movies  <a name="___sec12"></a></h3>
 <p>
@@ -65629,7 +65500,6 @@ The positioning of the figures can be controlled by <tt>-gravity</tt>.
 
 <p>
 
-<p>
 
 <h3>Tables  <a name="___sec13"></a></h3>
 <p>
@@ -65738,9 +65608,9 @@ ref[internal][cite][external]
 
 # Example:
 As explained in
-ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
-"testdoc.html#___sec2" in the document
-"A Document for Testing Doconce": "testdoc.html" cite{testdoc:12}],
+ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
+&quot;testdoc.html#___sec2&quot; in the document
+&quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
 Doconce documents may include movies.
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -65885,7 +65755,7 @@ Wikipedia has the formula for the curve.
 !ehint
 
 !bhint
-"Wolframalpha": "http://wolframalpha.com" can perhaps
+&quot;Wolframalpha&quot;: &quot;http://wolframalpha.com&quot; can perhaps
 compute the integral.
 !ehint
 </pre>
@@ -65949,7 +65819,6 @@ By default, answers, solutions, and hints are typeset as paragraphs.
 
 <p>
 
-<p>
 
 <h3>Labels, Index, and Citations  <a name="___sec17"></a></h3>
 <p>
@@ -65971,18 +65840,18 @@ constructions:
 <p>
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-# #include "myotherdoc.do.txt"
+# #include &quot;myotherdoc.do.txt&quot;
 
-# #if FORMAT in ("latex", "pdflatex")
+# #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)
 \begin{table}
 \caption{Some words... \label{mytab}}
 \begin{tabular}{lrr}
 \hline\noalign{\smallskip}
-\multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\
+\multicolumn{1}{c}{time} &amp; \multicolumn{1}{c}{velocity} &amp; \multicolumn{1}{c}{acceleration} \\
 \hline
-0.0          & 1.4186       & -5.01        \\
-2.0          & 1.376512     & 11.919       \\
-4.0          & 1.1E+1       & 14.717624    \\
+0.0          &amp; 1.4186       &amp; -5.01        \\
+2.0          &amp; 1.376512     &amp; 11.919       \\
+4.0          &amp; 1.1E+1       &amp; 14.717624    \\
 \hline
 \end{tabular}
 \end{table}
@@ -73732,6 +73601,7 @@ figure file ../doc/manual/figs/streamtubes:
 output in testdoc.html
 + doconce remove_exercise_answers testdoc.html
 + doconce html_colorbullets testdoc.html
+made subdirectory html_images
 + doconce split_html testdoc.html
 + doconce format latex testdoc.do.txt
 running mako on testdoc.do.txt to make __tmp.do.txt
@@ -74145,7 +74015,7 @@ b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (14 pages, 1466068 bytes).
+Output written on testdoc.pdf (14 pages, 1466149 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -74840,6 +74710,7 @@ output in testdoc.md
 translating doconce text in slides.do.txt to html
 output in slides.html
 + doconce slides_html slides reveal
+made subdirectory reveal.js
 slides written to slides.html
 + mv -f slides.html slides_reveal.html
 + doconce grab --from- ={9} --to subroutine@ testdoc.do.txt

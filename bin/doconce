@@ -2348,6 +2348,7 @@ def copy_datafiles(datafile):
         doconce_datafile = os.path.join(doconce_dir, datafile)
         shutil.copy(doconce_datafile, os.curdir)
         uncompressor(datafile).extractall()
+        print 'made subdirectory', subdir
         os.remove(datafile)
         return True
     else:
@@ -2631,7 +2632,7 @@ def generate_slides(header, parts, footer, basename, filename,
             slide_envir_begin='<section>',
             slide_envir_end='</section>',
             notes='<aside class="notes">\n\g<1>\n</aside>',
-            pop=('fragment', 'li')
+            pop=('fragment', 'li'),
             head_header="""
 <!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
 
@@ -2701,7 +2702,7 @@ dependencies: [
             slide_envir_begin='<section class="slide">',
             slide_envir_end='</section>',
             notes='<p class="presenter-notes">\n\g<1>\n</p>',
-            pop=('delayed', 'li')
+            pop=('delayed', 'li'),
             head_header="""
 <!-- CSSS: http://leaverou.github.com/CSSS/ -->
 
@@ -2895,7 +2896,7 @@ for(var i=0; i<cssControls.length; i++) {
 #
 #     __  __  __       .  __   ___  __
 #    |  \  / /__` |    | |  \ |__  /__`
-#    |__/ /_ .__/ |___ | |__/ |___ .__/ core :€
+#    |__/ /_ .__/ |___ | |__/ |___ .__/ core
 #
 #
 # The following block of code is not supposed to be edited.
@@ -3374,7 +3375,7 @@ for(var i=0; i<cssControls.length; i++) {
             slide_envir_begin='<section class="slide">',
             slide_envir_end='</section>',
             notes='<!-- \g<1> -->',  # no support of notes
-            pop=('slide', 'li')
+            pop=('slide', 'li'),
             head_header="""
 <!-- deck.js: https://github.com/imakewebthings/deck.js -->
 
@@ -3535,7 +3536,7 @@ git://github.com/barraq/deck.ext.js.git
             slide_envir_begin='<section>',
             slide_envir_end='</section>',
             notes='<aside class="notes">\n\g<1>\n</aside>',
-            pop=('fragment', 'li')
+            pop=('fragment', 'li'),
             head_header="""
 <!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
 """,

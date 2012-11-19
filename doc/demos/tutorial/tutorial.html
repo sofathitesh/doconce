@@ -74,10 +74,9 @@ MathJax.Hub.Config({
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Nov 17, 2012</h4></center> <!-- date -->
+<center><h4>Nov 19, 2012</h4></center> <!-- date -->
 <p>
 
-<p>
 
 <ul>
  <li> When writing a note, report, manual, etc., do you find it difficult
@@ -102,7 +101,6 @@ If any of these questions are of interest, you should keep on reading.
 
 <p>
 
-<p>
 
 <h2>The Doconce Concept   <a name="___sec0"></a></h2>
 <p>
@@ -194,9 +192,6 @@ formats.
 
 <p>
 
-<p>
-
-<p>
 
 <h2>What Does Doconce Look Like?  <a name="___sec1"></a></h2>
 <p>
@@ -263,12 +258,12 @@ Lists can also have automatically numbered items instead of bullets,
   o item 2
   o item 3
 
-URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
+URLs with a link word are possible, as in &quot;hpl&quot;:&quot;http://folk.uio.no/hpl&quot;.
 If the word is URL, the URL itself becomes the link name,
-as in "URL": "tutorial.do.txt".
+as in &quot;URL&quot;: &quot;tutorial.do.txt&quot;.
 
 References to sections may use logical names as labels (e.g., a
-"label" command right after the section title), as in the reference to
+&quot;label&quot; command right after the section title), as in the reference to
 Section ref{my:first:sec}.
 
 Doconce also allows inline comments of the form [name: comment] (with
@@ -444,7 +439,6 @@ right writing enviroment for plain text.
 
 <p>
 
-<p>
 
 <h3>Macros (Newcommands), Cross-References, Index, and Bibliography <a name="newcommands"></a></h3>
 <p>
@@ -483,12 +477,10 @@ for various formats of this document).
 
 <p>
 
-<p>
 <!-- Example on including another Doconce file (using preprocess): -->
 
 <p>
 
-<p>
 
 <h2>From Doconce to Other Formats <a name="doconce2formats"></a></h2>
 <p>
@@ -542,7 +534,6 @@ and comments by different authors should be removed.
 
 <p>
 
-<p>
 
 <h3>HTML  <a name="___sec6"></a></h3>
 <p>
@@ -650,7 +641,6 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
 <p>
 
-<p>
 
 <h3>LaTeX  <a name="___sec8"></a></h3>
 <p>
@@ -746,7 +736,7 @@ of code environments as well. Here is an example:
 <pre>
 Terminal&gt; doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
           -DPALATINO -DA6PAPER \
-          "sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}" \
+          &quot;sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}&quot; \
           fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -762,7 +752,6 @@ and <tt>\end{verbatim}</tt> used.
 
 <p>
 
-<p>
 <b>Step 2b (optional).</b> Edit the <tt>mydoc.tex</tt> file to your needs.
 For example, you may want to substitute <tt>section</tt> by <tt>section*</tt> to
 avoid numbering of sections, you may want to insert linebreaks
@@ -827,7 +816,6 @@ included so there is no need for the <tt>-DMINTED</tt> option.
 
 <p>
 
-<p>
 
 <h3>PDFLaTeX  <a name="___sec9"></a></h3>
 <p>
@@ -927,8 +915,8 @@ Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <tt>doconce sphinx_dir</tt> command:
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
-Terminal&gt; doconce sphinx_dir author="authors' names" \
-          title="some title" version=1.0 dirname=sphinxdir \
+Terminal&gt; doconce sphinx_dir author=&quot;authors' names&quot; \
+          title=&quot;some title&quot; version=1.0 dirname=sphinxdir \
           theme=mytheme file1 file2 file3 ...
 </pre>
 </blockquote>   <! -- end verbatim block -->
@@ -1049,7 +1037,6 @@ are included.
 
 <p>
 
-<p>
 <b>Step 3.</b> Copy the <tt>mydoc.rst</tt> file to the Sphinx root directory:
 <blockquote>    <!-- begin verbatim block  sys-->
 <pre>
@@ -1108,7 +1095,6 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 
 <p>
 
-<p>
 
 <h3>Wiki Formats  <a name="___sec13"></a></h3>
 <p>
@@ -1146,7 +1132,6 @@ standard LaTeX book or a Sphinx web document.
 
 <p>
 
-<p>
 
 <h3>Tweaking the Doconce Output  <a name="___sec14"></a></h3>
 <p>
@@ -1164,7 +1149,6 @@ constitute comprehensive examples on how such scripts can be made.
 
 <p>
 
-<p>
 
 <h3>Demos  <a name="___sec15"></a></h3>
 <p>
@@ -1381,7 +1365,6 @@ run the usual <tt>sudo python setup.py install</tt>.
 
 <p>
 
-<p>
 Output to <tt>sphinx</tt> requires of course <a href="http://sphinx.pocoo.org">Sphinx</a>,
 installed by
 <blockquote>    <!-- begin verbatim block  sys-->
