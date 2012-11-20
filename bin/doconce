@@ -2323,6 +2323,8 @@ def bbl2rst():
 
 html_images = 'html_images.zip'
 reveal_files = 'reveal.js.zip'
+csss_files = 'csss.zip'
+deck_files = 'deck.js.zip'
 
 def html_imagefile(imagename):
     filename = os.path.join(html_images[:-4], '._' + imagename + '.gif')
@@ -2424,8 +2426,8 @@ def split_html():
     doconce_html_split(header, parts, footer, basename, filename)
 
 def usage_slides_html():
-    print 'Usage: doconce slides_html slide_type mydoc.html'
-    print 'slide_types: reveal|reveal.js '
+    print 'Usage: doconce slides_html mydoc.html slide_type --html-slide-theme=themename [--reveal-left-adjusted]'
+    print 'slide_types: reveal|reveal.js deck|deck.js csss dzslides'
 
 def slides_html():
     """
@@ -2476,7 +2478,7 @@ def slides_html():
     filestr = None
     if slide_type == 'doconce':
         doconce_html_split(header, parts, footer, basename, filename)
-    elif slide_type in ('reveal', 'csss', 'dzslides'):
+    elif slide_type in ('reveal', 'csss', 'dzslides', 'deck'):
         filestr = generate_slides(header, parts, footer, basename, filename,
                                   slide_type)
     else:
@@ -3550,10 +3552,15 @@ git://github.com/barraq/deck.ext.js.git
             ),
         )
 
-    if '--html-slide-theme' in sys.argv:
-        theme = sys.argv[sys.argv.find('--html-slide-theme')+1]
-    else:
-        theme = 'default'
+    theme = 'default'
+    for arg in sys.argv:
+        if arg.startswith('--html-slide-theme='):
+            theme = arg.split('=')[1]
+        if arg == '--reveal-left-adjusted':
+            os.system('doconce replace "text-align:center" "text-align:left" reveal.js/css/reveal.min.css')
+            os.system('doconce replace "text-align: center" "text-align: left" reveal.js/css/reveal.css')
+            os.system('doconce replace ".reveal h6 {" ".reveal h6 { text-align: left;" reveal.js/css/theme/*.css')
+
 
     m = re.search(r'<title>(.*?)</title>', ''.join(header))
     if m:
@@ -3649,6 +3656,9 @@ MathJax.Hub.Config({
         if slide_tp == 'deck':
             part = part.replace('<pre>', '<pre><code>')
             part = part.replace('</pre>', '</code></pre>')
+
+        part = part.replace('</ul>', '</ul>\n<p>')
+        part = part.replace('</ol>', '</ol>\n<p>')
 
         slides += """
 %s
