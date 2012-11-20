@@ -55,17 +55,18 @@ idx{finite difference scheme}
 
  * Mesh in time: $0= t_0< t_1 \cdots < t_N=T$
  * Assume constant $\Delta t = t_{n}-t_{n-1}$
- * Let $u^n$ be the numerical approximation to the exact solution at $t_n$.
- * The $\theta$-rule is used to solve (ref{ode}) numerically:
+ * $u^n$: numerical approx to the exact solution at $t_n$
+ * Numerical scheme:
 !bt
    \[
    u^{n+1} = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n,
+   \quad n=0,1,\ldots,N-1
    \]
 !et
-for $n=0,1,\ldots,N-1$. This scheme corresponds to
-  * The Forward Euler scheme when $\theta=0$
-  * The Backward Euler scheme when $\theta=1$
-  * The Crank-Nicolson scheme when $\theta=1/2$
+
+ * The Forward Euler scheme when $\theta=0$
+ * The Backward Euler scheme when $\theta=1$
+ * The Crank-Nicolson scheme when $\theta=1/2$
 
 !split
 

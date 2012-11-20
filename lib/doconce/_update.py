@@ -27,8 +27,8 @@ if __name__ == '__main__':
         system('git clone git://github.com/hakimel/reveal.js.git')
     else:
         system('cd reveal.js; git pull origin master; cd ..')
-    os.system('cp reveal_doconce/css/reveal*.css reveal.js/css/')
-    os.system('cp reveal_doconce/css/theme/*.css reveal.js/css/theme/')
+    os.system('cp doconce_modifications/reveal/css/reveal*.css reveal.js/css/')
+    os.system('cp doconce_modifications/reveal/css/theme/*.css reveal.js/css/theme/')
     zip_dir('reveal.js')
     if not os.path.isdir('csss'):
         system('git clone git://github.com/LeaVerou/csss.git')
