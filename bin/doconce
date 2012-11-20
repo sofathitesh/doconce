@@ -2426,8 +2426,9 @@ def split_html():
     doconce_html_split(header, parts, footer, basename, filename)
 
 def usage_slides_html():
-    print 'Usage: doconce slides_html mydoc.html slide_type --html-slide-theme=themename [--reveal-left-adjusted]'
+    print 'Usage: doconce slides_html mydoc.html slide_type --html-slide-theme=themename [--reveal-doconce]'
     print 'slide_types: reveal|reveal.js deck|deck.js csss dzslides'
+    print '--reveal-doconce applies doconce versions of themes (left-adjusted)'
 
 def slides_html():
     """
@@ -2631,6 +2632,8 @@ def generate_slides(header, parts, footer, basename, filename,
     slide_syntax = dict(
         reveal=dict(
             default_theme='beige',
+            #main_style='reveal.min',
+            main_style='reveal',
             slide_envir_begin='<section>',
             slide_envir_end='</section>',
             notes='<aside class="notes">\n\g<1>\n</aside>',
@@ -2641,14 +2644,25 @@ def generate_slides(header, parts, footer, basename, filename,
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+<link rel="stylesheet" href="reveal.js/css/%(main_style)s.css">
 <link rel="stylesheet" href="reveal.js/css/theme/%(theme)s.css" id="theme">
 <!--
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
 <link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+
+*_do.css have left-adjusted header and text:
+<link rel="stylesheet" href="reveal.js/css/reveal_do.css">
+<link rel="stylesheet" href="reveal.js/css/reveal.min_do.css">
+<link rel="stylesheet" href="reveal.js/css/theme/default_do.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beige_do.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night_do.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple_do.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky_do.css" id="theme">
 -->
 
 <script>
@@ -3553,14 +3567,12 @@ git://github.com/barraq/deck.ext.js.git
         )
 
     theme = 'default'
+    theme_doconce_modification = ''
     for arg in sys.argv:
         if arg.startswith('--html-slide-theme='):
             theme = arg.split('=')[1]
-        if arg == '--reveal-left-adjusted':
-            os.system('doconce replace "text-align:center" "text-align:left" reveal.js/css/reveal.min.css')
-            os.system('doconce replace "text-align: center" "text-align: left" reveal.js/css/reveal.css')
-            os.system('doconce replace ".reveal h6 {" ".reveal h6 { text-align: left;" reveal.js/css/theme/*.css')
-
+        if arg == '--reveal-doconce':
+            theme_doconce_modification = '_do'
 
     m = re.search(r'<title>(.*?)</title>', ''.join(header))
     if m:
@@ -3570,6 +3582,7 @@ git://github.com/barraq/deck.ext.js.git
     slide_syntax[slide_tp]['title'] = title
     slide_syntax[slide_tp]['theme'] = slide_syntax[slide_tp]['default_theme'] \
                                       if theme == 'default' else theme
+    slide_syntax[slide_tp]['theme'] += theme_doconce_modification # '_do'
 
     # Fill in theme etc.
     slide_syntax[slide_tp]['head_header'] = \
