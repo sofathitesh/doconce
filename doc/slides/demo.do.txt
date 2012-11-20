@@ -3,6 +3,8 @@ TITLE: Experiments with Schemes for Exponential Decay
 AUTHOR: Hans Petter Langtangen Email:hpl@simula.no at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo.
 DATE: today
 
+!split
+
 ===== Goal =====
 
 The primary goal of this demo talk
@@ -14,6 +16,8 @@ schemes for the ordinary differential equation $u'=-au$ with the
 aid of numerical experiments. Numerical artifacts are in particular
 demonstrated.
 
+
+!split
 
 # Comments explain various doconce constructs for common
 # elements in talks about math and code.
@@ -39,6 +43,7 @@ where
  * $a$, $I$, and $T$ are prescribed parameters
  * $u(t)$ is the unknown function
 
+!split
 
 # Purpose: section with single-line equation and a bullet list.
 
@@ -51,19 +56,18 @@ idx{finite difference scheme}
  * Mesh in time: $0= t_0< t_1 \cdots < t_N=T$
  * Assume constant $\Delta t = t_{n}-t_{n-1}$
  * Let $u^n$ be the numerical approximation to the exact solution at $t_n$.
-
-The $\theta$-rule is used to solve (ref{ode}) numerically:
-
+ * The $\theta$-rule is used to solve (ref{ode}) numerically:
 !bt
-\[
-u^{n+1} = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n,
-\]
+   \[
+   u^{n+1} = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n,
+   \]
 !et
 for $n=0,1,\ldots,N-1$. This scheme corresponds to
-
   * The Forward Euler scheme when $\theta=0$
   * The Backward Euler scheme when $\theta=1$
   * The Crank-Nicolson scheme when $\theta=1/2$
+
+!split
 
 # Purpose: section with computer code taken from a part of
 # a file. The fromto: f@t syntax copies from the regular
@@ -76,6 +80,8 @@ The numerical method is implemented in a Python function:
 
 @@@CODE src/dc_mod.py  fromto: def solver@def verify_three
 
+!split
+
 # Purpose: section with figures.
 
 ======= Numerical experiments =======
@@ -87,6 +93,7 @@ idx{numerical experiments}
 
 Here: $I=1$, $a=2$, $\Delta t = 1.25, 0.75, 0.5, 0.1$.
 
+!split
 
 # Purpose: subsection with inline figure (figure without caption).
 
@@ -97,6 +104,7 @@ idx{BE}
 FIGURE: [fig/BE.png, width=800]
 
 
+!split
 
 # Purpose: subsection with inline figure (figure without caption).
 
@@ -107,6 +115,7 @@ idx{CN}
 FIGURE: [fig/CN.png, width=800]
 
 
+!split
 
 # Purpose: subsection with inline figure (figure without caption).
 
@@ -117,6 +126,7 @@ idx{FE}
 FIGURE: [fig/FE.png, width=800]
 
 
+!split
 
 # Purpose: exemplify referring to a figure with label and caption.
 
@@ -124,10 +134,11 @@ FIGURE: [fig/FE.png, width=800]
 
 idx{error vs time step}
 
-How $E$ varies with $\Delta t$ for $\theta=0,0.5,1$
-is shown in Figure ref{fig:E}.
+How $E$ varies with $\Delta t$ for $\theta=0,0.5,1$:
 
-FIGURE: [fig/error, width=400] Error versus time step. label{fig:E}
+FIGURE: [fig/error, width=400]
+
+!split
 
 ===== The artifacts can be explained by some theory =====
 
