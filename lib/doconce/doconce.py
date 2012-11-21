@@ -965,7 +965,7 @@ def typeset_tables(filestr, format):
             #columns = [c.strip() for c in columns if c]
             columns = [c.strip() for c in columns if c.strip()]
             # substitute math (may expand columns significantly)
-            for tag in ['math']:  #, 'math2']:
+            for tag in ['math', 'verbatim']:  #, 'math2']:
                 replacement = INLINE_TAGS_SUBST[format][tag]
                 if replacement is not None:
                     for i in range(len(columns)):
@@ -980,6 +980,7 @@ def typeset_tables(filestr, format):
                 # not a table line anymore, but we were just inside a table
                 # so the table is ended
                 inside_table = False
+                #import pprint; pprint.pprint(table)
                 result.write(TABLE[format](table))   # typeset table
                 table = {'rows': []}  # init new table
             else:

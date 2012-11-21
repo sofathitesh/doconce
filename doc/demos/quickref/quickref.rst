@@ -6,7 +6,7 @@ Doconce Quick Reference
 
 :Author: Hans Petter Langtangen
 
-:Date: Nov 19, 2012
+:Date: Nov 21, 2012
 
 .. contents:: Table of Contents
    :depth: 2
@@ -88,16 +88,16 @@ The table of contents is removed by writing ``TOC: off``.
 Section Types
 -------------
 
-====================================  ====================================  
-            Section type                             Syntax                 
-====================================  ====================================  
-chapter                               ``========= Heading ========`` (9 ``=``)  
-section                               ``======= Heading =======``    (7 ``=``)  
-subsection                            ``===== Heading =====``        (5 ``=``)  
-subsubsection                         ``=== Heading ===``            (3 ``=``)  
-paragraph                             ``__Heading.__``               (2 ``_``)  
-abstract                              ``__Abstract.__`` Running text...       
-====================================  ====================================  
+========================================  ========================================  
+              Section type                                 Syntax                   
+========================================  ========================================  
+chapter                                   ``========= Heading ========`` (9 ``=``)  
+section                                   ``======= Heading =======``    (7 ``=``)  
+subsection                                ``===== Heading =====``        (5 ``=``)  
+subsubsection                             ``=== Heading ===``            (3 ``=``)  
+paragraph                                 ``__Heading.__``               (2 ``_``)  
+abstract                                  ``__Abstract.__`` Running text...         
+========================================  ========================================  
 
 Note that abstracts are recognized by starting with ``__Abstract.__`` at
 the beginning of a line and ending with three or more ``=`` signs of the
@@ -784,4 +784,3 @@ Resources
 ---------
 
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
-

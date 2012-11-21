@@ -1,6 +1,6 @@
 % Doconce Description
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Nov 19, 2012
+% Nov 21, 2012
 
 <!-- lines beginning with # are comment lines -->
 
@@ -1364,7 +1364,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-some URL like "Doconce": "http://code.google.com/p/doconce"
+some URL like "Search Google": "http://google.com".
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 which appears as some URL like [Search Google](http://google.com).
@@ -2624,16 +2624,16 @@ Check the encoding of the `.do.txt` file with the Unix `file` command
 or with
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Unix> doconce guess_encoding myfile.do.txt
+Terminal> doconce guess_encoding myfile.do.txt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Wrong Norwegian charcters

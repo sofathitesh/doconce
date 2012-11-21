@@ -1147,4 +1147,3 @@ updates and bug fixes. For C{svn} directories, go to the directory,
 run C{svn update}, and then C{sudo python setup.py install}. For
 Mercurial (C{hg}) directories, go to the directory, run
 C{hg pull; hg update}, and then C{sudo python setup.py install}.
-

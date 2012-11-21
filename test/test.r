@@ -291,6 +291,18 @@ accordingly) and verbatim heading and entry:
 |6   |71,000|214        |`NaN`	|
 |-------------------------------|
 
+And add one with verbatim headings and rows starting with `|-` because
+of a negative number...
+
+|-----------------------------------------|
+| exact | `sympy` | `numpy32` | `numpy64` |
+|---r--------r---------r-----------r------|
+|9      | 9.62    | 5.57      |  8.98     |
+|-20    | -23.39  | -7.65     | -19.93    |
+|10     | 17.74   | -4.50     |  9.96     |
+|0      | -9.19   | 4.13      | -0.26     |
+|-----------------------------------------|
+
 ===== URLs =====
 label{subsubsec:ex}
 
@@ -310,9 +322,19 @@ Here are some tough tests of URLs, especially for the `latex` format:
 and a "good book":
 "http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1".
 
-# Comments should be inserted outside paragraphs (because of reST):
-# note that when there is no http: or file:, it can be a file link
-# if the link name is URL, url, "URL", or "url".
+# Comments should be inserted outside paragraphs (because in the rst
+# format extra blanks make a paragraph break).
+
+# Note that when there is no http: or file:, it can be a file link
+# if the link name is URL, url, "URL", or "url". Such files should,
+# if rst output is desired, but placed in a `_static*` folder.
+
+More tough tests: repeated URLs whose footnotes when using the
+`--latex-printed` option must be correct. We have
+"google": "http://google.com", "google": "http://google.com", and
+"google": "http://google.com", which should result in exactly three
+footnotes.
+
 
 % if FORMAT == "latex":
 
@@ -1508,7 +1530,23 @@ accordingly) and verbatim heading and entry:
 3          & 32,000     & 228        & 0.0028     \\
 4          & 47,000     & 270        & 0.0        \\
 5          & 51,000     & 270        & -0.0028    \\
-6          & 71,000     & 214        & \code{NaN}      \\
+6          & 71,000     & 214        & \code{NaN} \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+And add one with verbatim headings and rows starting with \code{|-} because
+of a negative number...
+
+
+\begin{quote}\begin{tabular}{rrrr}
+\hline
+\multicolumn{1}{c}{ exact } & \multicolumn{1}{c}{ \texttt{sympy} } & \multicolumn{1}{c}{ \texttt{numpy32} } & \multicolumn{1}{c}{ \texttt{numpy64} } \\
+\hline
+9              & 9.62           & 5.57           & 8.98           \\
+-20            & -23.39         & -7.65          & -19.93         \\
+10             & 17.74          & -4.50          & 9.96           \\
+0              & -9.19          & 4.13           & -0.26          \\
 \hline
 \end{tabular}\end{quote}
 
@@ -1531,9 +1569,18 @@ Here are some tough tests of URLs, especially for the \code{latex} format:
 \href{{http://en.wikipedia.org/wiki/Newton%E2\%80\%93Cotes_formulas}}{Newton-Cotes} formulas
 and a \href{{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}.
 
-% Comments should be inserted outside paragraphs (because of reST):
-% note that when there is no http: or file:, it can be a file link
-% if the link name is URL, url, "URL", or "url".
+% Comments should be inserted outside paragraphs (because in the rst
+% format extra blanks make a paragraph break).
+
+% Note that when there is no http: or file:, it can be a file link
+% if the link name is URL, url, "URL", or "url". Such files should,
+% if rst output is desired, but placed in a \code{_static*} folder.
+
+More tough tests: repeated URLs whose footnotes when using the
+\code{--latex-printed} option must be correct. We have
+\href{{http://google.com}}{google}, \href{{http://google.com}}{google}, and
+\href{{http://google.com}}{google}, which should result in exactly three
+footnotes.
 
 \subsection{Test of Some {\LaTeX} Fixes}
 
@@ -2468,7 +2515,23 @@ accordingly) and verbatim heading and entry:
 3          & 32,000     & 228        & 0.0028     \\
 4          & 47,000     & 270        & 0.0        \\
 5          & 51,000     & 270        & -0.0028    \\
-6          & 71,000     & 214        & {\fontsize{10pt}{10pt}\verb!NaN!}      \\
+6          & 71,000     & 214        & {\fontsize{10pt}{10pt}\verb!NaN!} \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+And add one with verbatim headings and rows starting with {\fontsize{10pt}{10pt}\verb!|-!} because
+of a negative number...
+
+
+\begin{quote}\begin{tabular}{rrrr}
+\hline
+\multicolumn{1}{c}{ exact } & \multicolumn{1}{c}{ \texttt{sympy} } & \multicolumn{1}{c}{ \texttt{numpy32} } & \multicolumn{1}{c}{ \texttt{numpy64} } \\
+\hline
+9              & 9.62           & 5.57           & 8.98           \\
+-20            & -23.39         & -7.65          & -19.93         \\
+10             & 17.74          & -4.50          & 9.96           \\
+0              & -9.19          & 4.13           & -0.26          \\
 \hline
 \end{tabular}\end{quote}
 
@@ -2491,9 +2554,18 @@ Here are some tough tests of URLs, especially for the {\fontsize{10pt}{10pt}\ver
 \href{{http://en.wikipedia.org/wiki/Newton%E2\%80\%93Cotes_formulas}}{Newton-Cotes}\footnote{\texttt{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes\_formulas}} formulas
 and a \href{{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}\footnote{\texttt{http://www.springer.com/mathematics/computational+science+\%26+engineering/book/978-3-642-23098-1}}.
 
-% Comments should be inserted outside paragraphs (because of reST):
-% note that when there is no http: or file:, it can be a file link
-% if the link name is URL, url, "URL", or "url".
+% Comments should be inserted outside paragraphs (because in the rst
+% format extra blanks make a paragraph break).
+
+% Note that when there is no http: or file:, it can be a file link
+% if the link name is URL, url, "URL", or "url". Such files should,
+% if rst output is desired, but placed in a {\fontsize{10pt}{10pt}\verb!_static*!} folder.
+
+More tough tests: repeated URLs whose footnotes when using the
+{\fontsize{10pt}{10pt}\verb!--latex-printed!} option must be correct. We have
+\href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, and
+\href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, which should result in exactly three
+footnotes.
 
 \subsection{{\LaTeX} Mathematics}
 
@@ -3401,7 +3473,23 @@ accordingly) and verbatim heading and entry:
 3          & 32,000     & 228        & 0.0028     \\
 4          & 47,000     & 270        & 0.0        \\
 5          & 51,000     & 270        & -0.0028    \\
-6          & 71,000     & 214        & {\fontsize{10pt}{10pt}\verb!NaN!}      \\
+6          & 71,000     & 214        & {\fontsize{10pt}{10pt}\verb!NaN!} \\
+\hline
+\end{tabular}\end{quote}
+
+\noindent
+And add one with verbatim headings and rows starting with {\fontsize{10pt}{10pt}\verb!|-!} because
+of a negative number...
+
+
+\begin{quote}\begin{tabular}{rrrr}
+\hline
+\multicolumn{1}{c}{ exact } & \multicolumn{1}{c}{ \texttt{sympy} } & \multicolumn{1}{c}{ \texttt{numpy32} } & \multicolumn{1}{c}{ \texttt{numpy64} } \\
+\hline
+9              & 9.62           & 5.57           & 8.98           \\
+-20            & -23.39         & -7.65          & -19.93         \\
+10             & 17.74          & -4.50          & 9.96           \\
+0              & -9.19          & 4.13           & -0.26          \\
 \hline
 \end{tabular}\end{quote}
 
@@ -3424,9 +3512,18 @@ Here are some tough tests of URLs, especially for the {\fontsize{10pt}{10pt}\ver
 \href{{http://en.wikipedia.org/wiki/Newton%E2\%80\%93Cotes_formulas}}{Newton-Cotes}\footnote{\texttt{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes\_formulas}} formulas
 and a \href{{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}\footnote{\texttt{http://www.springer.com/mathematics/computational+science+\%26+engineering/book/978-3-642-23098-1}}.
 
-% Comments should be inserted outside paragraphs (because of reST):
-% note that when there is no http: or file:, it can be a file link
-% if the link name is URL, url, "URL", or "url".
+% Comments should be inserted outside paragraphs (because in the rst
+% format extra blanks make a paragraph break).
+
+% Note that when there is no http: or file:, it can be a file link
+% if the link name is URL, url, "URL", or "url". Such files should,
+% if rst output is desired, but placed in a {\fontsize{10pt}{10pt}\verb!_static*!} folder.
+
+More tough tests: repeated URLs whose footnotes when using the
+{\fontsize{10pt}{10pt}\verb!--latex-printed!} option must be correct. We have
+\href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, and
+\href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, which should result in exactly three
+footnotes.
 
 \subsection{{\LaTeX} Mathematics}
 
@@ -4174,7 +4271,7 @@ And one with math headings (that are expanded and must be treated
 accordingly) and verbatim heading and entry:
 
 ========  ========  ========  ========  
-   i        h_i     \bar T_i   ``L_i``    
+   i        h_i     \bar T_i  ``L_i``   
 ========  ========  ========  ========  
 0                0       288   -0.0065  
 1           11,000       216       0.0  
@@ -4182,8 +4279,20 @@ accordingly) and verbatim heading and entry:
 3           32,000       228    0.0028  
 4           47,000       270       0.0  
 5           51,000       270   -0.0028  
-6           71,000       214     ``NaN``  
+6           71,000       214   ``NaN``  
 ========  ========  ========  ========  
+
+And add one with verbatim headings and rows starting with ``|-`` because
+of a negative number...
+
+===========  ===========  ===========  ===========  
+   exact      ``sympy``   ``numpy32``  ``numpy64``  
+===========  ===========  ===========  ===========  
+          9         9.62         5.57         8.98  
+        -20       -23.39        -7.65       -19.93  
+         10        17.74        -4.50         9.96  
+          0        -9.19         4.13        -0.26  
+===========  ===========  ===========  ===========  
 
 .. _subsubsec:ex:
 
@@ -4203,11 +4312,23 @@ Here are some tough tests of URLs, especially for the ``latex`` format:
 `Newton-Cotes <http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_ formulas
 and a `good book <http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1>`_.
 
-.. Comments should be inserted outside paragraphs (because of reST):
+.. Comments should be inserted outside paragraphs (because in the rst
 
-.. note that when there is no http: or file:, it can be a file link
+.. format extra blanks make a paragraph break).
 
-.. if the link name is URL, url, "URL", or "url".
+
+.. Note that when there is no http: or file:, it can be a file link
+
+.. if the link name is URL, url, "URL", or "url". Such files should,
+
+.. if rst output is desired, but placed in a ``_static*`` folder.
+
+
+More tough tests: repeated URLs whose footnotes when using the
+``--latex-printed`` option must be correct. We have
+`google <http://google.com>`_, `google <http://google.com>`_, and
+`google <http://google.com>`_, which should result in exactly three
+footnotes.
 
 
 
@@ -4560,7 +4681,6 @@ Appendix: Testing identical titles  (4)
 ---------------------------------------
 
 Without label.
-
 
 ************** File: testdoc.sphinx.rst *****************
 .. Automatically generated reST file from Doconce source
@@ -4960,7 +5080,7 @@ And one with math headings (that are expanded and must be treated
 accordingly) and verbatim heading and entry:
 
 ================  ================  ================  ================  
-   :math:`i`        :math:`h_i`     :math:`\bar T_i`       ``L_i``        
+   :math:`i`        :math:`h_i`     :math:`\bar T_i`      ``L_i``       
 ================  ================  ================  ================  
 0                                0               288           -0.0065  
 1                           11,000               216               0.0  
@@ -4968,8 +5088,20 @@ accordingly) and verbatim heading and entry:
 3                           32,000               228            0.0028  
 4                           47,000               270               0.0  
 5                           51,000               270           -0.0028  
-6                           71,000               214             ``NaN``  
+6                           71,000               214           ``NaN``  
 ================  ================  ================  ================  
+
+And add one with verbatim headings and rows starting with ``|-`` because
+of a negative number...
+
+===========  ===========  ===========  ===========  
+   exact      ``sympy``   ``numpy32``  ``numpy64``  
+===========  ===========  ===========  ===========  
+          9         9.62         5.57         8.98  
+        -20       -23.39        -7.65       -19.93  
+         10        17.74        -4.50         9.96  
+          0        -9.19         4.13        -0.26  
+===========  ===========  ===========  ===========  
 
 .. _subsubsec:ex:
 
@@ -4989,11 +5121,23 @@ Here are some tough tests of URLs, especially for the ``latex`` format:
 `Newton-Cotes <http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_ formulas
 and a `good book <http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1>`_.
 
-.. Comments should be inserted outside paragraphs (because of reST):
+.. Comments should be inserted outside paragraphs (because in the rst
 
-.. note that when there is no http: or file:, it can be a file link
+.. format extra blanks make a paragraph break).
 
-.. if the link name is URL, url, "URL", or "url".
+
+.. Note that when there is no http: or file:, it can be a file link
+
+.. if the link name is URL, url, "URL", or "url". Such files should,
+
+.. if rst output is desired, but placed in a ``_static*`` folder.
+
+
+More tough tests: repeated URLs whose footnotes when using the
+``--latex-printed`` option must be correct. We have
+`google <http://google.com>`_, `google <http://google.com>`_, and
+`google <http://google.com>`_, which should result in exactly three
+footnotes.
 
 
 
@@ -5033,7 +5177,7 @@ And here is a system of equations with labels in an align environment:
         b &= \nabla^2 u + \nabla^4 x 
         
 
-We can refer to (:ref:`eq1`)-(:ref:`eq2`).
+We can refer to :eq:`eq1`-:eq:`eq2`.
 
 Many of the next environments will fail in non-latex formats.
 Testing multiline:
@@ -5077,8 +5221,8 @@ Testing alignat:
         b &= \nabla^2 u + \nabla^4 x & x\in\Omega 
         \end{alignat}
 
-Let us refer to (:ref:`eq1`)-(:ref:`eq2`) again, and to the
-alignat variant (:ref:`eq1a`)-(:ref:`eq2a`), and to :eq:`my:eq1`.
+Let us refer to :eq:`eq1`-:eq:`eq2` again, and to the
+alignat variant :eq:`eq1a`-:eq:`eq2a`, and to :eq:`my:eq1`.
 
 Testing eqnarray:
 
@@ -5419,7 +5563,6 @@ Appendix: Testing identical titles  (4)
 
 Without label.
 
-
 ************** File: testdoc.gwiki *****************
 
 
@@ -5747,6 +5890,17 @@ accordingly) and verbatim heading and entry:
  ||  5              ||  51,000         ||  270            ||  -0.0028        ||
  ||  6              ||  71,000         ||  214            ||  `NaN`          ||
 
+
+And add one with verbatim headings and rows starting with `|-` because
+of a negative number...
+
+
+ ||    *exact*     ||   _`sympy`_    ||  _`numpy32`_   ||  _`numpy64`_   ||
+ ||  9             ||  9.62          ||  5.57          ||  8.98          ||
+ ||  -20           ||  -23.39        ||  -7.65         ||  -19.93        ||
+ ||  10            ||  17.74         ||  -4.50         ||  9.96          ||
+ ||  0             ||  -9.19         ||  4.13          ||  -0.26         ||
+
 ==== URLs ====
 
 Testing of URLs: hpl's home page [http://folk.uio.no/hpl hpl], or
@@ -5762,9 +5916,18 @@ Here are some tough tests of URLs, especially for the `latex` format:
 [http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas Newton-Cotes] formulas
 and a [http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1 good book].
 
-<wiki:comment> Comments should be inserted outside paragraphs (because of reST): </wiki:comment>
-<wiki:comment> note that when there is no http: or file:, it can be a file link </wiki:comment>
-<wiki:comment> if the link name is URL, url, "URL", or "url". </wiki:comment>
+<wiki:comment> Comments should be inserted outside paragraphs (because in the rst </wiki:comment>
+<wiki:comment> format extra blanks make a paragraph break). </wiki:comment>
+
+<wiki:comment> Note that when there is no http: or file:, it can be a file link </wiki:comment>
+<wiki:comment> if the link name is URL, url, "URL", or "url". Such files should, </wiki:comment>
+<wiki:comment> if rst output is desired, but placed in a `_static*` folder. </wiki:comment>
+
+More tough tests: repeated URLs whose footnotes when using the
+`--latex-printed` option must be correct. We have
+[http://google.com google], [http://google.com google], and
+[http://google.com google], which should result in exactly three
+footnotes.
 
 ==== LaTeX Mathematics ====
 
@@ -6324,14 +6487,24 @@ And one with math headings (that are expanded and must be treated
 accordingly) and verbatim heading and entry:
 
 <table border="1">
-<tr><td align="center"><b>     <math>i</math>    </b></td> <td align="center"><b>    <math>h_i</math>   </b></td> <td align="center"><b> <math>\bar T_i</math> </b></td> <td align="center"><b>         <code>L_i</code>         </b></td> </tr>
+<tr><td align="center"><b>     <math>i</math>    </b></td> <td align="center"><b>    <math>h_i</math>   </b></td> <td align="center"><b> <math>\bar T_i</math> </b></td> <td align="center"><b>    <code>L_i</code>   </b></td> </tr>
 <tr><td align="left">   0                        </td> <td align="right">   0                        </td> <td align="right">   288                      </td> <td align="right">   -0.0065                  </td> </tr>
 <tr><td align="left">   1                        </td> <td align="right">   11,000                   </td> <td align="right">   216                      </td> <td align="right">   0.0                      </td> </tr>
 <tr><td align="left">   2                        </td> <td align="right">   20,000                   </td> <td align="right">   216                      </td> <td align="right">   0.001                    </td> </tr>
 <tr><td align="left">   3                        </td> <td align="right">   32,000                   </td> <td align="right">   228                      </td> <td align="right">   0.0028                   </td> </tr>
 <tr><td align="left">   4                        </td> <td align="right">   47,000                   </td> <td align="right">   270                      </td> <td align="right">   0.0                      </td> </tr>
 <tr><td align="left">   5                        </td> <td align="right">   51,000                   </td> <td align="right">   270                      </td> <td align="right">   -0.0028                  </td> </tr>
-<tr><td align="left">   6                        </td> <td align="right">   71,000                   </td> <td align="right">   214                      </td> <td align="right">   <code>NaN</code>                    </td> </tr>
+<tr><td align="left">   6                        </td> <td align="right">   71,000                   </td> <td align="right">   214                      </td> <td align="right">   <code>NaN</code>         </td> </tr>
+</table>
+And add one with verbatim headings and rows starting with <code>|-</code> because
+of a negative number...
+
+<table border="1">
+<tr><td align="center"><b>        exact         </b></td> <td align="center"><b>  <code>sympy</code>  </b></td> <td align="center"><b> <code>numpy32</code> </b></td> <td align="center"><b> <code>numpy64</code> </b></td> </tr>
+<tr><td align="right">   9                       </td> <td align="right">   9.62                    </td> <td align="right">   5.57                    </td> <td align="right">   8.98                    </td> </tr>
+<tr><td align="right">   -20                     </td> <td align="right">   -23.39                  </td> <td align="right">   -7.65                   </td> <td align="right">   -19.93                  </td> </tr>
+<tr><td align="right">   10                      </td> <td align="right">   17.74                   </td> <td align="right">   -4.50                   </td> <td align="right">   9.96                    </td> </tr>
+<tr><td align="right">   0                       </td> <td align="right">   -9.19                   </td> <td align="right">   4.13                    </td> <td align="right">   -0.26                   </td> </tr>
 </table>
 
 ==== URLs ====
@@ -6349,9 +6522,18 @@ Here are some tough tests of URLs, especially for the <code>latex</code> format:
 [http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas Newton-Cotes] formulas
 and a [http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1 good book].
 
-<!--> Comments should be inserted outside paragraphs (because of reST): -->
-<!--> note that when there is no http: or file:, it can be a file link -->
-<!--> if the link name is URL, url, "URL", or "url". -->
+<!--> Comments should be inserted outside paragraphs (because in the rst -->
+<!--> format extra blanks make a paragraph break). -->
+
+<!--> Note that when there is no http: or file:, it can be a file link -->
+<!--> if the link name is URL, url, "URL", or "url". Such files should, -->
+<!--> if rst output is desired, but placed in a <code>_static*</code> folder. -->
+
+More tough tests: repeated URLs whose footnotes when using the
+<code>--latex-printed</code> option must be correct. We have
+[http://google.com google], [http://google.com google], and
+[http://google.com google], which should result in exactly three
+footnotes.
 
 ==== LaTeX Mathematics ====
 
@@ -6918,14 +7100,25 @@ And one with math headings (that are expanded and must be treated
 accordingly) and verbatim heading and entry:
 
 
- | ={{{i}}}            | ={{{h_i}}}          | ={{{\bar T_i}}}     | =`L_i`              |
+ | ={{{i}}}            | ={{{h_i}}}          | ={{{\bar T_i}}}     | ={{{L_i}}}          |
  |  0                  |  0                  |  288                |  -0.0065            |
  |  1                  |  11,000             |  216                |  0.0                |
  |  2                  |  20,000             |  216                |  0.001              |
  |  3                  |  32,000             |  228                |  0.0028             |
  |  4                  |  47,000             |  270                |  0.0                |
  |  5                  |  51,000             |  270                |  -0.0028            |
- |  6                  |  71,000             |  214                |  {{{NaN}}}              |
+ |  6                  |  71,000             |  214                |  {{{NaN}}}          |
+
+
+And add one with verbatim headings and rows starting with {{{|-}}} because
+of a negative number...
+
+
+ | =exact             | ={{{sympy}}}       | ={{{numpy32}}}     | ={{{numpy64}}}     |
+ |  9                 |  9.62              |  5.57              |  8.98              |
+ |  -20               |  -23.39            |  -7.65             |  -19.93            |
+ |  10                |  17.74             |  -4.50             |  9.96              |
+ |  0                 |  -9.19             |  4.13              |  -0.26             |
 
 
 == URLs ==
@@ -6943,9 +7136,18 @@ Here are some tough tests of URLs, especially for the {{{latex}}} format:
 [[http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas|Newton-Cotes]] formulas
 and a [[http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1|good book]].
 
-<wiki:comment> Comments should be inserted outside paragraphs (because of reST): </wiki:comment>
-<wiki:comment> note that when there is no http: or file:, it can be a file link </wiki:comment>
-<wiki:comment> if the link name is URL, url, "URL", or "url". </wiki:comment>
+<wiki:comment> Comments should be inserted outside paragraphs (because in the rst </wiki:comment>
+<wiki:comment> format extra blanks make a paragraph break). </wiki:comment>
+
+<wiki:comment> Note that when there is no http: or file:, it can be a file link </wiki:comment>
+<wiki:comment> if the link name is URL, url, "URL", or "url". Such files should, </wiki:comment>
+<wiki:comment> if rst output is desired, but placed in a {{{_static*}}} folder. </wiki:comment>
+
+More tough tests: repeated URLs whose footnotes when using the
+{{{--latex-printed}}} option must be correct. We have
+[[http://google.com|google]], [[http://google.com|google]], and
+[[http://google.com|google]], which should result in exactly three
+footnotes.
 
 
 == LaTeX Mathematics ==
@@ -7509,6 +7711,18 @@ accordingly) and verbatim heading and entry:
 6           71,000       214     'NaN'  
 ========  ========  ========  ========  
 
+And add one with verbatim headings and rows starting with '|-' because
+of a negative number...
+
+=========  =========  =========  =========  
+  exact     'sympy'   'numpy32'  'numpy64'  
+=========  =========  =========  =========  
+        9       9.62       5.57       8.98  
+      -20     -23.39      -7.65     -19.93  
+       10      17.74      -4.50       9.96  
+        0      -9.19       4.13      -0.26  
+=========  =========  =========  =========  
+
 URLs
 
 Testing of URLs: hpl's home page "http://folk.uio.no/hpl":hpl, or
@@ -7523,6 +7737,14 @@ fine to have.
 Here are some tough tests of URLs, especially for the 'latex' format:
 "http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas":Newton-Cotes formulas
 and a "http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1":good book.
+
+
+
+More tough tests: repeated URLs whose footnotes when using the
+'--latex-printed' option must be correct. We have
+"http://google.com":google, "http://google.com":google, and
+"http://google.com":google, which should result in exactly three
+footnotes.
 
 LaTeX Mathematics
 
@@ -7732,7 +7954,6 @@ With label.
 Appendix: Testing identical titles
 
 Without label.
-
 
 ************** File: testdoc.epytext *****************
 
@@ -8006,7 +8227,7 @@ And one with math headings (that are expanded and must be treated
 accordingly) and verbatim heading and entry:
 
 ===========  ===========  ===========  ===========  
-    M{i}        M{h_i}    M{\bar T_i}     C{L_i}     
+    M{i}        M{h_i}    M{\bar T_i}     C{L_i}    
 ===========  ===========  ===========  ===========  
 0                      0          288      -0.0065  
 1                 11,000          216          0.0  
@@ -8014,8 +8235,20 @@ accordingly) and verbatim heading and entry:
 3                 32,000          228       0.0028  
 4                 47,000          270          0.0  
 5                 51,000          270      -0.0028  
-6                 71,000          214        C{NaN}  
+6                 71,000          214       C{NaN}  
 ===========  ===========  ===========  ===========  
+
+And add one with verbatim headings and rows starting with C{|-} because
+of a negative number...
+
+==========  ==========  ==========  ==========  
+  exact      C{sympy}   C{numpy32}  C{numpy64}  
+==========  ==========  ==========  ==========  
+         9        9.62        5.57        8.98  
+       -20      -23.39       -7.65      -19.93  
+        10       17.74       -4.50        9.96  
+         0       -9.19        4.13       -0.26  
+==========  ==========  ==========  ==========  
 
 URLs
 ----
@@ -8032,6 +8265,14 @@ fine to have.
 Here are some tough tests of URLs, especially for the C{latex} format:
 U{Newton-Cotes<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>} formulas
 and a U{good book<http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1>}.
+
+
+
+More tough tests: repeated URLs whose footnotes when using the
+C{--latex-printed} option must be correct. We have
+U{google<http://google.com>}, U{google<http://google.com>}, and
+U{google<http://google.com>}, which should result in exactly three
+footnotes.
 
 
 
@@ -8301,7 +8542,6 @@ Appendix: Testing identical titles
 ----------------------------------
 
 Without label.
-
 
 ************** File: testdoc.txt *****************
 
@@ -8625,7 +8865,7 @@ And one with math headings (that are expanded and must be treated
 accordingly) and verbatim heading and entry:
 
 ========  ========  ========  ========  
-   i        h_i     \bar T_i   L_i    
+   i        h_i     \bar T_i    L_i     
 ========  ========  ========  ========  
 0                0       288   -0.0065  
 1           11,000       216       0.0  
@@ -8633,8 +8873,20 @@ accordingly) and verbatim heading and entry:
 3           32,000       228    0.0028  
 4           47,000       270       0.0  
 5           51,000       270   -0.0028  
-6           71,000       214     NaN  
+6           71,000       214       NaN  
 ========  ========  ========  ========  
+
+And add one with verbatim headings and rows starting with |- because
+of a negative number...
+
+=======  =======  =======  =======  
+ exact    sympy   numpy32  numpy64  
+=======  =======  =======  =======  
+      9     9.62     5.57     8.98  
+    -20   -23.39    -7.65   -19.93  
+     10    17.74    -4.50     9.96  
+      0    -9.19     4.13    -0.26  
+=======  =======  =======  =======  
 
 URLs
 ----
@@ -8651,6 +8903,14 @@ fine to have.
 Here are some tough tests of URLs, especially for the latex format:
 Newton-Cotes (http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas) formulas
 and a good book (http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1).
+
+
+
+More tough tests: repeated URLs whose footnotes when using the
+--latex-printed option must be correct. We have
+google (http://google.com), google (http://google.com), and
+google (http://google.com), which should result in exactly three
+footnotes.
 
 
 
@@ -8919,7 +9179,6 @@ Appendix: Testing identical titles
 ----------------------------------
 
 Without label.
-
 
 ************** File: testdoc.md *****************
 % A Document for Testing Doconce
@@ -9241,6 +9500,18 @@ accordingly) and verbatim heading and entry:
 6               71,000         214       `NaN`  
 
 
+And add one with verbatim headings and rows starting with `|-` because
+of a negative number...
+
+
+  exact     `sympy`   `numpy32`  `numpy64`  
+---------  ---------  ---------  ---------  
+        9       9.62       5.57       8.98  
+      -20     -23.39      -7.65     -19.93  
+       10      17.74      -4.50       9.96  
+        0      -9.19       4.13      -0.26  
+
+
 URLs
 ----
 
@@ -9257,9 +9528,19 @@ Here are some tough tests of URLs, especially for the `latex` format:
 [Newton-Cotes](http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas) formulas
 and a [good book](http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1).
 
-<!-- Comments should be inserted outside paragraphs (because of reST): -->
-<!-- note that when there is no http: or file:, it can be a file link -->
-<!-- if the link name is URL, url, "URL", or "url". -->
+<!-- Comments should be inserted outside paragraphs (because in the rst -->
+<!-- format extra blanks make a paragraph break). -->
+
+<!-- Note that when there is no http: or file:, it can be a file link -->
+<!-- if the link name is URL, url, "URL", or "url". Such files should, -->
+<!-- if rst output is desired, but placed in a `_static*` folder. -->
+
+More tough tests: repeated URLs whose footnotes when using the
+`--latex-printed` option must be correct. We have
+[google](http://google.com), [google](http://google.com), and
+[google](http://google.com), which should result in exactly three
+footnotes.
+
 
 
 LaTeX Mathematics
@@ -10033,11 +10314,51 @@ output2</code></pre>
 </tr>
 </tbody>
 </table>
+<p>And add one with verbatim headings and rows starting with 10pt10pt<code>|-</code> because of a negative number...</p>
+</blockquote>
+<blockquote>
+<table>
+<thead>
+<tr class="header">
+<th align="right">1c exact</th>
+<th align="right">1c <code>sympy</code></th>
+<th align="right">1c <code>numpy32</code></th>
+<th align="right">1c <code>numpy64</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">9.62</td>
+<td align="right">5.57</td>
+<td align="right">8.98</td>
+</tr>
+<tr class="even">
+<td align="right">-20</td>
+<td align="right">-23.39</td>
+<td align="right">-7.65</td>
+<td align="right">-19.93</td>
+</tr>
+<tr class="odd">
+<td align="right">10</td>
+<td align="right">17.74</td>
+<td align="right">-4.50</td>
+<td align="right">9.96</td>
+</tr>
+<tr class="even">
+<td align="right">0</td>
+<td align="right">-9.19</td>
+<td align="right">4.13</td>
+<td align="right">-0.26</td>
+</tr>
+</tbody>
+</table>
 <h2>URLs</h2>
 </blockquote>
 <p>[subsubsec:ex]</p>
 <p>Testing of URLs: hpl’s home page <a href="{http://folk.uio.no/hpl}">hpl</a>, or the entire URL if desired, <a href="{http://folk.uio.no/hpl}">http://folk.uio.no/hpl</a>. Here is a plain file link <a href="{testdoc.do.txt}">testdoc.do.txt</a>, or <a href="{testdoc.do.txt}">testdoc.do.txt</a>, or <a href="{testdoc.do.txt}">testdoc.do.txt</a> or <a href="{testdoc.do.txt}">testdoc.do.txt</a> or <a href="{testdoc.do.txt}">a link with newline</a>. Can test spaces with the link with word too: <a href="{http://folk.uio.no/hpl}">hpl</a> or <a href="{http://folk.uio.no/hpl}">hpl</a>. Also 10pt10pt<code>file:///</code> works: <a href="{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}">link to a file</a> is fine to have.</p>
 <p>Here are some tough tests of URLs, especially for the 10pt10pt<code>latex</code> format: <a href="{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}">Newton-Cotes</a> formulas and a <a href="{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}">good book</a>.</p>
+<p>More tough tests: repeated URLs whose footnotes when using the 10pt10pt<code>--latex-printed</code> option must be correct. We have <a href="{http://google.com}">google</a>, <a href="{http://google.com}">google</a>, and <a href="{http://google.com}">google</a>, which should result in exactly three footnotes.</p>
 <h2 id="test-of-some-latex-fixes">Test of Some LaTeX Fixes</h2>
 <p>Let’s check abbr. of some common kind, e.g. the well-known i.e. expression as an example. Moreover, Dr. Tang and Prof. Monsen, or maybe also prof. Ting, will go to the Dept. of Science to test how Mr. Hansen is doing together with Ms. Larsen. A sentence containing &quot;refines lines&quot; could easily fool a regex substitution with only i.e. since the dot matches anything. Also, look at Fig. 4 to see how the data compares with Tab. [mytab].</p>
 <h2 id="latex-mathematics">LaTeX Mathematics</h2>
@@ -10519,14 +10840,54 @@ output2</code></pre>
 </tr>
 </tbody>
 </table>
+<p>And add one with verbatim headings and rows starting with <code>|-</code> because of a negative number...</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">exact</th>
+<th align="center"><code>sympy</code></th>
+<th align="left"><code>numpy32</code></th>
+<th align="left"><code>numpy64</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">9</td>
+<td align="center">9.62</td>
+<td align="left">5.57</td>
+<td align="left">8.98</td>
+</tr>
+<tr class="even">
+<td align="center">-20</td>
+<td align="center">-23.39</td>
+<td align="left">-7.65</td>
+<td align="left">-19.93</td>
+</tr>
+<tr class="odd">
+<td align="center">10</td>
+<td align="center">17.74</td>
+<td align="left">-4.50</td>
+<td align="left">9.96</td>
+</tr>
+<tr class="even">
+<td align="center">0</td>
+<td align="center">-9.19</td>
+<td align="left">4.13</td>
+<td align="left">-0.26</td>
+</tr>
+</tbody>
+</table>
 <h2 id="urls">URLs</h2>
 <p>Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or the entire URL if desired, <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>. Here is a plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or <testdoc.do.txt> or <testdoc.do.txt> or <a href="testdoc.do.txt">a link with newline</a>. Can test spaces with the link with word too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a file</a> is fine to have.</p>
 <p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>.</p>
-<!-- Comments should be inserted outside paragraphs (because of reST): -->
-<!-- note that when there is no http: or file:, it can be a file link -->
-<!-- if the link name is URL, url, "URL", or "url". -->
+<!-- Comments should be inserted outside paragraphs (because in the rst -->
+<!-- format extra blanks make a paragraph break). -->
 
+<!-- Note that when there is no http: or file:, it can be a file link -->
+<!-- if the link name is URL, url, "URL", or "url". Such files should, -->
+<!-- if rst output is desired, but placed in a `_static*` folder. -->
 
+<p>More tough tests: repeated URLs whose footnotes when using the <code>--latex-printed</code> option must be correct. We have <a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and <a href="http://google.com">google</a>, which should result in exactly three footnotes.</p>
 <h2 id="latex-mathematics">LaTeX Mathematics</h2>
 <p>Here is an equation without label using backslash-bracket environment: \[ a = b + c \] or with number and label, as in Equation (my:eq1), using the equation environment: \[
 \begin{equation}
@@ -12137,7 +12498,6 @@ And here is another example with internal references only:
 The text is rendered to "Generalized references are described in
 the section :ref:`genrefs`."
 
-
 ************** File: author1.txt *****************
 Test of one author at one institution
 =====================================
@@ -12206,7 +12566,6 @@ And here is another example with internal references only::
 
 The text is rendered to "Generalized references are described in
 the section "Generalized References"."
-
 
 ************** File: ._part0000_testdoc.html *****************
 <?xml version="1.0" encoding="utf-8" ?>
@@ -12987,14 +13346,26 @@ accordingly) and verbatim heading and entry:
 
 <p>
 <table border="1">
-<tr><td align="center"><b>    \( i \)     </b></td> <td align="center"><b>   \( h_i \)    </b></td> <td align="center"><b> \( \bar T_i \) </b></td> <td align="center"><b>     <tt>L_i</tt>      </b></td> </tr>
+<tr><td align="center"><b>    \( i \)     </b></td> <td align="center"><b>   \( h_i \)    </b></td> <td align="center"><b> \( \bar T_i \) </b></td> <td align="center"><b>  <tt>L_i</tt>  </b></td> </tr>
 <tr><td align="left">   0                 </td> <td align="right">   0                 </td> <td align="right">   288               </td> <td align="right">   -0.0065           </td> </tr>
 <tr><td align="left">   1                 </td> <td align="right">   11,000            </td> <td align="right">   216               </td> <td align="right">   0.0               </td> </tr>
 <tr><td align="left">   2                 </td> <td align="right">   20,000            </td> <td align="right">   216               </td> <td align="right">   0.001             </td> </tr>
 <tr><td align="left">   3                 </td> <td align="right">   32,000            </td> <td align="right">   228               </td> <td align="right">   0.0028            </td> </tr>
 <tr><td align="left">   4                 </td> <td align="right">   47,000            </td> <td align="right">   270               </td> <td align="right">   0.0               </td> </tr>
 <tr><td align="left">   5                 </td> <td align="right">   51,000            </td> <td align="right">   270               </td> <td align="right">   -0.0028           </td> </tr>
-<tr><td align="left">   6                 </td> <td align="right">   71,000            </td> <td align="right">   214               </td> <td align="right">   <tt>NaN</tt>             </td> </tr>
+<tr><td align="left">   6                 </td> <td align="right">   71,000            </td> <td align="right">   214               </td> <td align="right">   <tt>NaN</tt>      </td> </tr>
+</table>
+<p>
+And add one with verbatim headings and rows starting with <tt>|-</tt> because
+of a negative number...
+
+<p>
+<table border="1">
+<tr><td align="center"><b>      exact       </b></td> <td align="center"><b>  <tt>sympy</tt>  </b></td> <td align="center"><b> <tt>numpy32</tt> </b></td> <td align="center"><b> <tt>numpy64</tt> </b></td> </tr>
+<tr><td align="right">   9                   </td> <td align="right">   9.62                </td> <td align="right">   5.57                </td> <td align="right">   8.98                </td> </tr>
+<tr><td align="right">   -20                 </td> <td align="right">   -23.39              </td> <td align="right">   -7.65               </td> <td align="right">   -19.93              </td> </tr>
+<tr><td align="right">   10                  </td> <td align="right">   17.74               </td> <td align="right">   -4.50               </td> <td align="right">   9.96                </td> </tr>
+<tr><td align="right">   0                   </td> <td align="right">   -9.19               </td> <td align="right">   4.13                </td> <td align="right">   -0.26               </td> </tr>
 </table>
 <p>
 
@@ -13015,9 +13386,20 @@ Here are some tough tests of URLs, especially for the <tt>latex</tt> format:
 and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>.
 
 <p>
-<!-- Comments should be inserted outside paragraphs (because of reST): -->
-<!-- note that when there is no http: or file:, it can be a file link -->
-<!-- if the link name is URL, url, "URL", or "url". -->
+<!-- Comments should be inserted outside paragraphs (because in the rst -->
+<!-- format extra blanks make a paragraph break). -->
+
+<p>
+<!-- Note that when there is no http: or file:, it can be a file link -->
+<!-- if the link name is URL, url, "URL", or "url". Such files should, -->
+<!-- if rst output is desired, but placed in a <tt>_static*</tt> folder. -->
+
+<p>
+More tough tests: repeated URLs whose footnotes when using the
+<tt>--latex-printed</tt> option must be correct. We have
+<a href="http://google.com">google</a>, <a href="http://google.com">google</a>, and
+<a href="http://google.com">google</a>, which should result in exactly three
+footnotes.
 
 <p>
 
@@ -13496,14 +13878,25 @@ f2 = Fancy()
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
 <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
 <!--
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
 <link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+
+*_do.css have left-adjusted header and text:
+<link rel="stylesheet" href="reveal.js/css/reveal_do.css">
+<link rel="stylesheet" href="reveal.js/css/reveal.min_do.css">
+<link rel="stylesheet" href="reveal.js/css/theme/default_do.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beige_do.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night_do.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple_do.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky_do.css" id="theme">
 -->
 
 <script>
@@ -13581,6 +13974,7 @@ MathJax.Hub.Config({
   <li class="fragment"> It can move</li>
   <li class="fragment"> But here it is just a figure</li>
 </ul>
+<p>
 
 
  </td>
@@ -13634,9 +14028,11 @@ And a line more
     <li class="fragment"> PDF in browsers has limited capabilities (design, navigation)
       compared to native HTML formats</li>
 </ul>
+<p>
 
  <li class="fragment"> Conclusion: We need more than LaTeX</li>
 </ul>
+<p>
 
 
 
@@ -18287,7 +18683,6 @@ run ``svn update``, and then ``sudo python setup.py install``. For
 Mercurial (``hg``) directories, go to the directory, run
 ``hg pull; hg update``, and then ``sudo python setup.py install``.
 
-
 ************** File: tutorial.sphinx.rst *****************
 .. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)
@@ -19578,7 +19973,6 @@ updates and bug fixes. For ``svn`` directories, go to the directory,
 run ``svn update``, and then ``sudo python setup.py install``. For
 Mercurial (``hg``) directories, go to the directory, run
 ``hg pull; hg update``, and then ``sudo python setup.py install``.
-
 
 ************** File: tutorial.gwiki *****************
 #summary Doconce: Document Once, Include Anywhere
@@ -23731,7 +24125,6 @@ run 'svn update', and then 'sudo python setup.py install'. For
 Mercurial ('hg') directories, go to the directory, run
 'hg pull; hg update', and then 'sudo python setup.py install'.
 
-
 ************** File: tutorial.epytext *****************
 TITLE: Doconce: Document Once, Include Anywhere
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
@@ -24882,7 +25275,6 @@ updates and bug fixes. For C{svn} directories, go to the directory,
 run C{svn update}, and then C{sudo python setup.py install}. For
 Mercurial (C{hg}) directories, go to the directory, run
 C{hg pull; hg update}, and then C{sudo python setup.py install}.
-
 
 ************** File: tutorial.txt *****************
 Doconce: Document Once, Include Anywhere
@@ -26077,7 +26469,6 @@ updates and bug fixes. For svn directories, go to the directory,
 run svn update, and then sudo python setup.py install. For
 Mercurial (hg) directories, go to the directory, run
 hg pull; hg update, and then sudo python setup.py install.
-
 
 ************** File: tutorial.md *****************
 % Doconce: Document Once, Include Anywhere
@@ -27946,7 +28337,7 @@ constitute comprehensive examples on how such scripts can be made.
 
 TITLE: My Test of Class Doconce
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Mon, 19 Nov 2012 (17:46)
+DATE: Wed, 21 Nov 2012 (11:41)
 
 
 
@@ -28050,7 +28441,7 @@ And here is a table:
 
 TITLE: My Test of Class DocWriter
 AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
-DATE: Mon, 19 Nov 2012 (17:46)
+DATE: Wed, 21 Nov 2012 (11:41)
 
 
 
@@ -28164,7 +28555,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 19 Nov 2012 (17:46)</center>
+<center>Wed, 21 Nov 2012 (11:41)</center>
 
 
 
@@ -28295,7 +28686,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 19 Nov 2012 (17:46)</center>
+<center>Wed, 21 Nov 2012 (11:41)</center>
 
 
 
@@ -29002,7 +29393,7 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 !bc
-some URL like "Doconce": "http://code.google.com/p/doconce"
+some URL like "Search Google": "http://google.com".
 !ec
 which appears as some URL like "Search Google": "http://google.com".
 The space after colon is optional.
@@ -30072,14 +30463,14 @@ Make sure there is a space before the first back-tick.
 Check the encoding of the `.do.txt` file with the Unix `file` command
 or with
 !bc
-Unix> doconce guess_encoding myfile.do.txt
+Terminal> doconce guess_encoding myfile.do.txt
 !ec
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
 !bc
-Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 !ec
 
 === Wrong Norwegian charcters ===
@@ -32166,7 +32557,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-some URL like &quot;Doconce&quot;: &quot;http://code.google.com/p/doconce&quot;
+some URL like &quot;Search Google&quot;: &quot;http://google.com&quot;.
 </pre>
 </blockquote>   <! -- end verbatim block -->
 which appears as some URL like <a href="http://google.com">Search Google</a>.
@@ -33529,16 +33920,16 @@ Check the encoding of the <tt>.do.txt</tt> file with the Unix <tt>file</tt> comm
 or with
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-Unix&gt; doconce guess_encoding myfile.do.txt
+Terminal&gt; doconce guess_encoding myfile.do.txt
 </pre>
 </blockquote>   <! -- end verbatim block -->
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-Unix&gt; doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-Unix&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 </pre>
 </blockquote>   <! -- end verbatim block -->
 
@@ -35653,7 +36044,7 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 \bccq
-some URL like "Doconce": "http://code.google.com/p/doconce"
+some URL like "Search Google": "http://google.com".
 \eccq
 which appears as some URL like \href{{http://google.com}}{Search Google}.
 The space after colon is optional.
@@ -36800,14 +37191,14 @@ Make sure there is a space before the first back-tick.
 Check the encoding of the \code{.do.txt} file with the Unix \code{file} command
 or with
 \bccq
-Unix> doconce guess_encoding myfile.do.txt
+Terminal> doconce guess_encoding myfile.do.txt
 \eccq
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
 \bccq
-Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 \eccq
 
 \paragraph{Wrong Norwegian charcters.}
@@ -38618,7 +39009,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as::
 
 
-        some URL like "Doconce": "http://code.google.com/p/doconce"
+        some URL like "Search Google": "http://google.com".
 
 which appears as some URL like `Search Google <http://google.com>`_.
 The space after colon is optional.
@@ -39864,15 +40255,15 @@ Check the encoding of the ``.do.txt`` file with the Unix ``file`` command
 or with::
 
 
-        Unix> doconce guess_encoding myfile.do.txt
+        Terminal> doconce guess_encoding myfile.do.txt
 
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands::
 
 
-        Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+        Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
         
-        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+        Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 
 
 Wrong Norwegian charcters
@@ -40404,7 +40795,6 @@ and Sphinx just typeset the list as a list with keywords.
    An efficient probabilistic finite element method for stochastic 
    groundwater flow.
    *Advances in Water Resources*, vol 22, 185-195, 1998.
-
 
 ************** File: manual.sphinx.rst *****************
 .. Automatically generated reST file from Doconce source
@@ -41890,7 +42280,7 @@ Web addresses with links are typeset as
 .. code-block:: py
 
 
-        some URL like "Doconce": "http://code.google.com/p/doconce"
+        some URL like "Search Google": "http://google.com".
 
 which appears as some URL like `Search Google <http://google.com>`_.
 The space after colon is optional.
@@ -42114,7 +42504,7 @@ By the way, here is an example on referencing Figure :ref:`fig:viz`
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections :ref:`mathtext` and :ref:`newcommands` are
 nice to demonstrate, as well as a reference to equations,
-say (:ref:`myeq1`)-(:ref:`myeq2`). A comparison of the output and
+say :eq:`myeq1`-:eq:`myeq2`. A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -43249,7 +43639,7 @@ or with
 .. code-block:: py
 
 
-        Unix> doconce guess_encoding myfile.do.txt
+        Terminal> doconce guess_encoding myfile.do.txt
 
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
@@ -43257,9 +43647,9 @@ the Unix commands
 .. code-block:: py
 
 
-        Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+        Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
         
-        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+        Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 
 
 Wrong Norwegian charcters
@@ -43818,7 +44208,6 @@ and Sphinx just typeset the list as a list with keywords.
    An efficient probabilistic finite element method for stochastic 
    groundwater flow.
    *Advances in Water Resources*, vol 22, 185-195, 1998.
-
 
 ************** File: manual.gwiki *****************
 #summary Doconce Description
@@ -44987,7 +45376,7 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 {{{
-some URL like "Doconce": "http://code.google.com/p/doconce"
+some URL like "Search Google": "http://google.com".
 }}}
 which appears as some URL like [http://google.com Search Google].
 The space after colon is optional.
@@ -46100,14 +46489,14 @@ Make sure there is a space before the first back-tick.
 Check the encoding of the `.do.txt` file with the Unix `file` command
 or with
 {{{
-Unix> doconce guess_encoding myfile.do.txt
+Terminal> doconce guess_encoding myfile.do.txt
 }}}
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
 {{{
-Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 }}}
 
 ==== Wrong Norwegian charcters ====
@@ -47700,7 +48089,7 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 <code>
-some URL like "Doconce": "http://code.google.com/p/doconce"
+some URL like "Search Google": "http://google.com".
 </code>
 which appears as some URL like [http://google.com Search Google].
 The space after colon is optional.
@@ -48807,14 +49196,14 @@ Make sure there is a space before the first back-tick.
 Check the encoding of the <code>.do.txt</code> file with the Unix <code>file</code> command
 or with
 <code>
-Unix> doconce guess_encoding myfile.do.txt
+Terminal> doconce guess_encoding myfile.do.txt
 </code>
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
 <code>
-Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 </code>
 
 ==== Wrong Norwegian charcters ====
@@ -50442,7 +50831,7 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 {{{
-some URL like "Doconce": "http://code.google.com/p/doconce"
+some URL like "Search Google": "http://google.com".
 }}}
 which appears as some URL like [[http://google.com|Search Google]].
 The space after colon is optional.
@@ -51570,14 +51959,14 @@ Make sure there is a space before the first back-tick.
 Check the encoding of the {{{.do.txt}}} file with the Unix {{{file}}} command
 or with
 {{{
-Unix> doconce guess_encoding myfile.do.txt
+Terminal> doconce guess_encoding myfile.do.txt
 }}}
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
 {{{
-Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 }}}
 
 === Wrong Norwegian charcters ===
@@ -53243,7 +53632,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as::
 
 
-        some URL like "Doconce": "http://code.google.com/p/doconce"
+        some URL like "Search Google": "http://google.com".
 
 which appears as some URL like "http://google.com":Search Google.
 The space after colon is optional.
@@ -54390,15 +54779,15 @@ Check the encoding of the '.do.txt' file with the Unix 'file' command
 or with::
 
 
-        Unix> doconce guess_encoding myfile.do.txt
+        Terminal> doconce guess_encoding myfile.do.txt
 
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands::
 
 
-        Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+        Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
         
-        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+        Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 
 
 Wrong Norwegian charcters
@@ -54872,7 +55261,6 @@ Bibliography
 
   1. H. P. Langtangen. *A Primer on Scientific Programming with Python*. Springer, 2009.
   2. H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. *Advances in Water Resources*, vol 22, 185-195, 1998.
-
 
 ************** File: manual.epytext *****************
 TITLE: Doconce Description
@@ -56123,7 +56511,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as::
 
 
-        some URL like "Doconce": "http://code.google.com/p/doconce"
+        some URL like "Search Google": "http://google.com".
 
 which appears as some URL like U{Search Google<http://google.com>}.
 The space after colon is optional.
@@ -57311,15 +57699,15 @@ Check the encoding of the C{.do.txt} file with the Unix C{file} command
 or with::
 
 
-        Unix> doconce guess_encoding myfile.do.txt
+        Terminal> doconce guess_encoding myfile.do.txt
 
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands::
 
 
-        Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+        Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
         
-        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+        Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 
 
 Wrong Norwegian charcters
@@ -57821,7 +58209,6 @@ Bibliography
 
   1. H. P. Langtangen. I{A Primer on Scientific Programming with Python}. Springer, 2009.
   2. H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. I{Advances in Water Resources}, vol 22, 185-195, 1998.
-
 
 ************** File: manual.txt *****************
 Doconce Description
@@ -59107,7 +59494,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as::
 
 
-        some URL like "Doconce": "http://code.google.com/p/doconce"
+        some URL like "Search Google": "http://google.com".
 
 which appears as some URL like Search Google (http://google.com).
 The space after colon is optional.
@@ -60299,15 +60686,15 @@ Check the encoding of the .do.txt file with the Unix file command
 or with::
 
 
-        Unix> doconce guess_encoding myfile.do.txt
+        Terminal> doconce guess_encoding myfile.do.txt
 
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands::
 
 
-        Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+        Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
         
-        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+        Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 
 
 Wrong Norwegian charcters
@@ -60831,7 +61218,6 @@ Bibliography
   1. H. P. Langtangen. *A Primer on Scientific Programming with Python*. Springer, 2009.
 
   2. H. Osnes and H. P. Langtangen. An efficient probabilistic finite element method for stochastic  groundwater flow. *Advances in Water Resources*, vol 22, 185-195, 1998.
-
 
 ************** File: manual.md *****************
 % Doconce Description
@@ -62200,7 +62586,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-some URL like "Doconce": "http://code.google.com/p/doconce"
+some URL like "Search Google": "http://google.com".
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 which appears as some URL like [Search Google](http://google.com).
@@ -63460,16 +63846,16 @@ Check the encoding of the `.do.txt` file with the Unix `file` command
 or with
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Unix> doconce guess_encoding myfile.do.txt
+Terminal> doconce guess_encoding myfile.do.txt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Wrong Norwegian charcters
@@ -65123,13 +65509,13 @@ The table of contents is removed by writing <tt>TOC: off</tt>.
 <h3>Section Types <a name="quick:sections"></a></h3>
 <p>
 <table border="1">
-<tr><td align="center"><b>                         Section type                        </b></td> <td align="center"><b>                            Syntax                           </b></td> </tr>
-<tr><td align="left">   chapter                                                        </td> <td align="left">   <tt>========= Heading  <a name="___sec3"></a>========</tt> (9 <tt>=</tt>)    </td> </tr>
-<tr><td align="left">   section                                                        </td> <td align="left">   <tt>======= Heading  <a name="___sec4"></a>=======</tt>    (7 <tt>=</tt>)    </td> </tr>
-<tr><td align="left">   subsection                                                     </td> <td align="left">   <tt>===== Heading  <a name="___sec5"></a>=====</tt>        (5 <tt>=</tt>)    </td> </tr>
-<tr><td align="left">   subsubsection                                                  </td> <td align="left">   <tt>=== Heading  <a name="___sec6"></a>===</tt>            (3 <tt>=</tt>)    </td> </tr>
-<tr><td align="left">   paragraph                                                      </td> <td align="left">   <tt>__Heading.__</tt>               (2 <tt>_</tt>)                           </td> </tr>
-<tr><td align="left">   abstract                                                       </td> <td align="left">   <tt>__Abstract.__</tt> Running text...                                </td> </tr>
+<tr><td align="center"><b>                                Section type                               </b></td> <td align="center"><b>                                   Syntax                                  </b></td> </tr>
+<tr><td align="left">   chapter                                                                      </td> <td align="left">   <tt>========= Heading  <a name="___sec3"></a>========</tt> (9 <tt>=</tt>)    </td> </tr>
+<tr><td align="left">   section                                                                      </td> <td align="left">   <tt>======= Heading  <a name="___sec4"></a>=======</tt>    (7 <tt>=</tt>)    </td> </tr>
+<tr><td align="left">   subsection                                                                   </td> <td align="left">   <tt>===== Heading  <a name="___sec5"></a>=====</tt>        (5 <tt>=</tt>)    </td> </tr>
+<tr><td align="left">   subsubsection                                                                </td> <td align="left">   <tt>=== Heading  <a name="___sec6"></a>===</tt>            (3 <tt>=</tt>)    </td> </tr>
+<tr><td align="left">   paragraph                                                                    </td> <td align="left">   <tt>__Heading.__</tt>               (2 <tt>_</tt>)                           </td> </tr>
+<tr><td align="left">   abstract                                                                     </td> <td align="left">   <tt>__Abstract.__</tt> Running text...                                       </td> </tr>
 </table>
 <p>
 Note that abstracts are recognized by starting with <tt>__Abstract.__</tt> at
@@ -66177,12 +66563,12 @@ The table of contents is removed by writing \code{TOC: off}.
 \hline
 \multicolumn{1}{c}{ Section type } & \multicolumn{1}{c}{ Syntax } \\
 \hline
-chapter                              & \code{========= Heading ========} (9 \code{=}) \\
-section                              & \code{======= Heading =======}    (7 \code{=}) \\
-subsection                           & \code{===== Heading =====}        (5 \code{=}) \\
-subsubsection                        & \code{=== Heading ===}            (3 \code{=}) \\
-paragraph                            & \code{__Heading.__}               (2 \code{_}) \\
-abstract                             & \code{__Abstract.__} Running text...      \\
+chapter                                        & \code{========= Heading ========} (9 \code{=}) \\
+section                                        & \code{======= Heading =======}    (7 \code{=}) \\
+subsection                                     & \code{===== Heading =====}        (5 \code{=}) \\
+subsubsection                                  & \code{=== Heading ===}            (3 \code{=}) \\
+paragraph                                      & \code{__Heading.__}               (2 \code{_}) \\
+abstract                                       & \code{__Abstract.__} Running text...           \\
 \hline
 \end{tabular}\end{quote}
 
@@ -66963,16 +67349,16 @@ The table of contents is removed by writing ``TOC: off``.
 Section Types
 -------------
 
-====================================  ====================================  
-            Section type                             Syntax                 
-====================================  ====================================  
-chapter                               ``========= Heading ========`` (9 ``=``)  
-section                               ``======= Heading =======``    (7 ``=``)  
-subsection                            ``===== Heading =====``        (5 ``=``)  
-subsubsection                         ``=== Heading ===``            (3 ``=``)  
-paragraph                             ``__Heading.__``               (2 ``_``)  
-abstract                              ``__Abstract.__`` Running text...       
-====================================  ====================================  
+========================================  ========================================  
+              Section type                                 Syntax                   
+========================================  ========================================  
+chapter                                   ``========= Heading ========`` (9 ``=``)  
+section                                   ``======= Heading =======``    (7 ``=``)  
+subsection                                ``===== Heading =====``        (5 ``=``)  
+subsubsection                             ``=== Heading ===``            (3 ``=``)  
+paragraph                                 ``__Heading.__``               (2 ``_``)  
+abstract                                  ``__Abstract.__`` Running text...         
+========================================  ========================================  
 
 Note that abstracts are recognized by starting with ``__Abstract.__`` at
 the beginning of a line and ending with three or more ``=`` signs of the
@@ -67660,7 +68046,6 @@ Resources
 
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
-
 ************** File: quickref.sphinx.rst *****************
 .. Automatically generated reST file from Doconce source
    (http://code.google.com/p/doconce/)
@@ -67751,16 +68136,16 @@ The table of contents is removed by writing ``TOC: off``.
 Section Types
 -------------
 
-====================================  ====================================  
-            Section type                             Syntax                 
-====================================  ====================================  
-chapter                               ``========= Heading ========`` (9 ``=``)  
-section                               ``======= Heading =======``    (7 ``=``)  
-subsection                            ``===== Heading =====``        (5 ``=``)  
-subsubsection                         ``=== Heading ===``            (3 ``=``)  
-paragraph                             ``__Heading.__``               (2 ``_``)  
-abstract                              ``__Abstract.__`` Running text...       
-====================================  ====================================  
+========================================  ========================================  
+              Section type                                 Syntax                   
+========================================  ========================================  
+chapter                                   ``========= Heading ========`` (9 ``=``)  
+section                                   ``======= Heading =======``    (7 ``=``)  
+subsection                                ``===== Heading =====``        (5 ``=``)  
+subsubsection                             ``=== Heading ===``            (3 ``=``)  
+paragraph                                 ``__Heading.__``               (2 ``_``)  
+abstract                                  ``__Abstract.__`` Running text...         
+========================================  ========================================  
 
 Note that abstracts are recognized by starting with ``__Abstract.__`` at
 the beginning of a line and ending with three or more ``=`` signs of the
@@ -68492,7 +68877,6 @@ Resources
 ---------
 
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
-
 
 ************** File: quickref.gwiki *****************
 #summary Doconce Quick Reference
@@ -69228,13 +69612,13 @@ The table of contents is removed by writing <code>TOC: off</code>.
 ==== Section Types ====
 
 <table border="1">
-<tr><td align="center"><b>             Section type             </b></td> <td align="center"><b>                Syntax                </b></td> </tr>
-<tr><td align="left">   chapter                                 </td> <td align="left">   <code>========= Heading ========</code> (9 <code>=</code>)    </td> </tr>
-<tr><td align="left">   section                                 </td> <td align="left">   <code>======= Heading =======</code>    (7 <code>=</code>)    </td> </tr>
-<tr><td align="left">   subsection                              </td> <td align="left">   <code>===== Heading =====</code>        (5 <code>=</code>)    </td> </tr>
-<tr><td align="left">   subsubsection                           </td> <td align="left">   <code>=== Heading ===</code>            (3 <code>=</code>)    </td> </tr>
-<tr><td align="left">   paragraph                               </td> <td align="left">   <code>__Heading.__</code>               (2 <code>_</code>)    </td> </tr>
-<tr><td align="left">   abstract                                </td> <td align="left">   <code>__Abstract.__</code> Running text...         </td> </tr>
+<tr><td align="center"><b>                        Section type                        </b></td> <td align="center"><b>                           Syntax                           </b></td> </tr>
+<tr><td align="left">   chapter                                                       </td> <td align="left">   <code>========= Heading ========</code> (9 <code>=</code>)    </td> </tr>
+<tr><td align="left">   section                                                       </td> <td align="left">   <code>======= Heading =======</code>    (7 <code>=</code>)    </td> </tr>
+<tr><td align="left">   subsection                                                    </td> <td align="left">   <code>===== Heading =====</code>        (5 <code>=</code>)    </td> </tr>
+<tr><td align="left">   subsubsection                                                 </td> <td align="left">   <code>=== Heading ===</code>            (3 <code>=</code>)    </td> </tr>
+<tr><td align="left">   paragraph                                                     </td> <td align="left">   <code>__Heading.__</code>               (2 <code>_</code>)    </td> </tr>
+<tr><td align="left">   abstract                                                      </td> <td align="left">   <code>__Abstract.__</code> Running text...                    </td> </tr>
 </table>
 Note that abstracts are recognized by starting with <code>__Abstract.__</code> at
 the beginning of a line and ending with three or more <code>=</code> signs of the
@@ -69890,13 +70274,13 @@ The table of contents is removed by writing {{{TOC: off}}}.
 
 == Section Types ==
 
- | =Section type                             | =Syntax                                   |
- |  chapter                                  |  {{{========= Heading ========}}} (9 {{{=}}})     |
- |  section                                  |  {{{======= Heading =======}}}    (7 {{{=}}})     |
- |  subsection                               |  {{{===== Heading =====}}}        (5 {{{=}}})     |
- |  subsubsection                            |  {{{=== Heading ===}}}            (3 {{{=}}})     |
- |  paragraph                                |  {{{__Heading.__}}}               (2 {{{_}}})     |
- |  abstract                                 |  {{{__Abstract.__}}} Running text...          |
+ | =Section type                                     | =Syntax                                           |
+ |  chapter                                          |  {{{========= Heading ========}}} (9 {{{=}}})     |
+ |  section                                          |  {{{======= Heading =======}}}    (7 {{{=}}})     |
+ |  subsection                                       |  {{{===== Heading =====}}}        (5 {{{=}}})     |
+ |  subsubsection                                    |  {{{=== Heading ===}}}            (3 {{{=}}})     |
+ |  paragraph                                        |  {{{__Heading.__}}}               (2 {{{_}}})     |
+ |  abstract                                         |  {{{__Abstract.__}}} Running text...              |
 
 
 Note that abstracts are recognized by starting with {{{__Abstract.__}}} at
@@ -71227,7 +71611,6 @@ Resources
 
  - Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
-
 ************** File: quickref.epytext *****************
 TITLE: Doconce Quick Reference
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
@@ -71298,16 +71681,16 @@ The table of contents is removed by writing C{TOC: off}.
 Section Types
 -------------
 
-====================================  ====================================  
-            Section type                             Syntax                 
-====================================  ====================================  
-chapter                               C{========= Heading ========} (9 C{=})  
-section                               C{======= Heading =======}    (7 C{=})  
-subsection                            C{===== Heading =====}        (5 C{=})  
-subsubsection                         C{=== Heading ===}            (3 C{=})  
-paragraph                             C{__Heading.__}               (2 C{_})  
-abstract                              C{__Abstract.__} Running text...       
-====================================  ====================================  
+======================================  ======================================  
+             Section type                               Syntax                  
+======================================  ======================================  
+chapter                                 C{========= Heading ========} (9 C{=})  
+section                                 C{======= Heading =======}    (7 C{=})  
+subsection                              C{===== Heading =====}        (5 C{=})  
+subsubsection                           C{=== Heading ===}            (3 C{=})  
+paragraph                               C{__Heading.__}               (2 C{_})  
+abstract                                C{__Abstract.__} Running text...        
+======================================  ======================================  
 
 Note that abstracts are recognized by starting with C{__Abstract.__} at
 the beginning of a line and ending with three or more C{=} signs of the
@@ -71942,7 +72325,6 @@ Resources
 
  - Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
 
-
 ************** File: quickref.txt *****************
 Doconce Quick Reference
 =======================
@@ -72048,16 +72430,16 @@ The table of contents is removed by writing TOC: off.
 Section Types
 -------------
 
-====================================  ====================================  
-            Section type                             Syntax                 
-====================================  ====================================  
-chapter                               ========= Heading ======== (9 =)  
-section                               ======= Heading =======    (7 =)  
-subsection                            ===== Heading =====        (5 =)  
-subsubsection                         === Heading ===            (3 =)  
-paragraph                             __Heading.__               (2 _)  
-abstract                              __Abstract.__ Running text...       
-====================================  ====================================  
+================================  ================================  
+          Section type                         Syntax               
+================================  ================================  
+chapter                           ========= Heading ======== (9 =)  
+section                           ======= Heading =======    (7 =)  
+subsection                        ===== Heading =====        (5 =)  
+subsubsection                     === Heading ===            (3 =)  
+paragraph                         __Heading.__               (2 _)  
+abstract                          __Abstract.__ Running text...     
+================================  ================================  
 
 Note that abstracts are recognized by starting with __Abstract.__ at
 the beginning of a line and ending with three or more = signs of the
@@ -72740,7 +73122,6 @@ Resources
 ---------
 
  * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
-
 
 ************** File: quickref.md *****************
 % Doconce Quick Reference
@@ -73897,91 +74278,95 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 eg>>]
 Underfull \vbox (badness 10000) has occurred while \output is active [9 <../doc
 /manual/figs/wavepacket_0001.png (PNG copy)>]
-Overfull \hbox (78.30609pt too wide) in paragraph at lines 563--563
+Overfull \hbox (78.30609pt too wide) in paragraph at lines 579--579
 [][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
 +%26+engineering/book/978-3-642-23098-1| 
 
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 573.
+Overfull \hbox (31.36086pt too wide) in paragraph at lines 588--593
+[]\OT1/cmr/m/n/10 More tough tests: re-peated URLs whose foot-notes when us-ing
+ the []\OT1/cmtt/m/n/10 --latex-printed
+
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 598.
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 575.
+(amsmath)                 on input line 600.
 
 
-LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 577.
-
-
-LaTeX Warning: Reference `eq1' on page 10 undefined on input line 591.
-
-
-LaTeX Warning: Reference `eq2' on page 10 undefined on input line 591.
+LaTeX Warning: Reference `my:eq1' on page 10 undefined on input line 602.
 
 [10]
 
-LaTeX Warning: Reference `split:envir:eq' on page 11 undefined on input line 60
-8.
+LaTeX Warning: Reference `eq1' on page 11 undefined on input line 616.
 
 
-LaTeX Warning: Reference `eq1' on page 11 undefined on input line 621.
+LaTeX Warning: Reference `eq2' on page 11 undefined on input line 616.
 
 
-LaTeX Warning: Reference `eq2' on page 11 undefined on input line 621.
+LaTeX Warning: Reference `split:envir:eq' on page 11 undefined on input line 63
+3.
 
 
-LaTeX Warning: Reference `eq1a' on page 11 undefined on input line 622.
+LaTeX Warning: Reference `eq1' on page 11 undefined on input line 646.
 
 
-LaTeX Warning: Reference `eq2a' on page 11 undefined on input line 622.
+LaTeX Warning: Reference `eq2' on page 11 undefined on input line 646.
 
 
-LaTeX Warning: Reference `my:eq1' on page 11 undefined on input line 622.
+LaTeX Warning: Reference `eq1a' on page 11 undefined on input line 647.
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 632.
+LaTeX Warning: Reference `eq2a' on page 11 undefined on input line 647.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 632.
+LaTeX Warning: Reference `my:eq1' on page 11 undefined on input line 647.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 633.
+LaTeX Warning: Reference `demo:ex:1' on page 11 undefined on input line 657.
+
+
+LaTeX Warning: Reference `demo:ex:2' on page 11 undefined on input line 657.
+
+
+LaTeX Warning: Reference `proj:circle1' on page 11 undefined on input line 658.
 
 
 
-LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 633.
+LaTeX Warning: Reference `exer:you' on page 11 undefined on input line 658.
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 11 undefined on input line
- 634.
+ 659.
 
-(./testdoc.out.pyg [11]) (./testdoc.out.pyg) [12]
+[11] (./testdoc.out.pyg) (./testdoc.out.pyg [12]) [13]
 
-LaTeX Warning: Reference `proj:circle1' on page 13 undefined on input line 883.
+LaTeX Warning: Reference `proj:circle1' on page 14 undefined on input line 908.
 
 
 
-LaTeX Warning: Reference `demo:ex:1' on page 13 undefined on input line 883.
+LaTeX Warning: Reference `demo:ex:1' on page 14 undefined on input line 908.
 
-[13]
 
-LaTeX Warning: Reference `demo:ex:2' on page 14 undefined on input line 898.
+LaTeX Warning: Reference `demo:ex:2' on page 14 undefined on input line 923.
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 14 undefined on input line
- 902.
+ 927.
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 14 undefined on input line 903.
+LaTeX Warning: Reference `demo:ex:2' on page 14 undefined on input line 928.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 14 undefined on input line 903.
+LaTeX Warning: Reference `proj:circle1' on page 14 undefined on input line 928.
 
 
 
-LaTeX Warning: Reference `exer:you' on page 14 undefined on input line 904.
+LaTeX Warning: Reference `exer:you' on page 14 undefined on input line 929.
 
-No file testdoc.ind.
 [14]
+No file testdoc.ind.
+[15]
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
@@ -74015,7 +74400,7 @@ b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on testdoc.pdf (14 pages, 1466149 bytes).
+Output written on testdoc.pdf (15 pages, 1470487 bytes).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
 + doconce ptex2tex testdoc -DBOOK -DPALATINO sys=begin{quote}begin{Verbatim}@end{Verbatim}end{quote} pypro=ans:nt envir=minted
@@ -74202,6 +74587,14 @@ Warning: the "alignat" environment will give errors in Sphinx:
         a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0  \\ 
         b &= \nabla^2 u + \nabla^4 x & x\in\Omega 
         \end{alignat} 
+
+
+Detected equation systems with multiple labels
+(that Sphinx will not handle - they will be removed
+and references to them will be empty):
+eq1 eq2
+eq1a eq2a
+myeq1 myeq2
 
 output in testdoc.rst
 + mv -f testdoc.rst testdoc.sphinx.rst
@@ -75520,7 +75913,7 @@ etic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 </usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-te
 xlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 213403 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 213402 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -75669,7 +76062,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226612 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226611 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -75818,7 +76211,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226612 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226611 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -75973,7 +76366,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226612 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226611 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -76122,7 +76515,7 @@ a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/f
 onts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226612 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 226611 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -76655,6 +77048,14 @@ copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
 figure file figs/streamtubes:
     can use figs/streamtubes.png for format sphinx
+
+Detected equation systems with multiple labels
+(that Sphinx will not handle - they will be removed
+and references to them will be empty):
+myeq1 myeq2
+myeq1 myeq2
+my:eq1 my:eq2
+
 output in manual.rst
 + rm -rf sphinx-rootdir
 + doconce sphinx_dir author=HPL title=Doconce Manual version=0.6 manual.do.txt
@@ -76745,15 +77146,13 @@ preparing documents... done
 writing output... [ 50%] index
 writing output... [100%] manual
 
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1702: WARNING: undefined label: myeq1 (if the link has no caption the label must precede a section header)
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:1702: WARNING: undefined label: myeq2 (if the link has no caption the label must precede a section header)
 writing additional files... (0 module code pages) genindex search
 copying images... [100%] figs/streamtubes.png
 
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 3 warnings.
+build succeeded, 1 warning.
 
 Build finished. The HTML pages are in _build/html.
 + make latex
@@ -76767,14 +77166,12 @@ updating environment: 0 added, 0 changed, 0 removed
 looking for now-outdated files... none found
 processing DoconceManual.tex... index manual 
 resolving references...
-None:None: WARNING: undefined label: myeq1 (if the link has no caption the label must precede a section header)
-None:None: WARNING: undefined label: myeq2 (if the link has no caption the label must precede a section header)
 writing... /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.do.txt
 /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.html
 done
 copying images... figs/streamtubes.png
 copying TeX support files... done
-build succeeded, 5 warnings.
+build succeeded, 3 warnings.
 
 Build finished; the LaTeX files are in _build/latex.
 Run `make' in that directory to run these through (pdf)latex (use `make latexpdf' here to do that automatically).
@@ -76949,12 +77346,19 @@ line 1675.
 LaTeX Warning: Hyper reference `manual:newcommands' on page 27 undefined on inp
 ut line 1675.
 
-[27]
 
-LaTeX Warning: Hyper reference `manual:inline-tagging' on page 28 undefined on 
+LaTeX Warning: Reference `manual-myeq1' on page 27 undefined on input line 1677
+.
+
+
+LaTeX Warning: Reference `manual-myeq2' on page 27 undefined on input line 1677
+.
+
+
+LaTeX Warning: Hyper reference `manual:inline-tagging' on page 27 undefined on 
 input line 1682.
 
-[28]
+[27] [28]
 Chapter 7.
 [29] [30]
 
@@ -77048,7 +77452,7 @@ w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
 /texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
 /type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on DoconceManual.pdf (61 pages, 397954 bytes).
+Output written on DoconceManual.pdf (61 pages, 398591 bytes).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
 + cp DoconceManual.pdf ../../../manual.sphinx.pdf
@@ -77420,8 +77824,8 @@ Overfull \hbox (47.00006pt too wide) in paragraph at lines 1680--1683
 Overfull \hbox (17.00006pt too wide) in paragraph at lines 1693--1695
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 [19]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1714--1717
-[]\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1714--1717
+[]\T1/pcr/m/n/10 some URL like "Search Google": "http://google.com". 
 
 Overfull \hbox (22.65768pt too wide) in paragraph at lines 1741--1745
 \T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
@@ -77706,12 +78110,12 @@ Overfull \hbox (53.00006pt too wide) in paragraph at lines 3207--3210
 Overfull \hbox (47.00006pt too wide) in paragraph at lines 3214--3217
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3253--3254
-\T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3253--3254
+\T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 [37]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3256--3258
-[]\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
-
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 3256--3258
+[]\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
+ile 
 [38]
 
 LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 39 un
@@ -78122,8 +78526,8 @@ Overfull \hbox (47.00006pt too wide) in paragraph at lines 1680--1683
 Overfull \hbox (17.00006pt too wide) in paragraph at lines 1693--1695
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 [19]
-Overfull \hbox (59.00006pt too wide) in paragraph at lines 1714--1717
-[]\T1/pcr/m/n/10 some URL like "Doconce": "http://code.google.com/p/doconce" 
+Overfull \hbox (11.00006pt too wide) in paragraph at lines 1714--1717
+[]\T1/pcr/m/n/10 some URL like "Search Google": "http://google.com". 
 
 Overfull \hbox (22.65768pt too wide) in paragraph at lines 1741--1745
 \T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
@@ -78377,12 +78781,12 @@ Overfull \hbox (53.00006pt too wide) in paragraph at lines 3207--3210
 Overfull \hbox (47.00006pt too wide) in paragraph at lines 3214--3217
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
 
-Overfull \hbox (41.00006pt too wide) in paragraph at lines 3253--3254
-\T1/pcr/m/n/10 Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt  
+Overfull \hbox (59.00006pt too wide) in paragraph at lines 3253--3254
+\T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 [37]
-Overfull \hbox (71.00006pt too wide) in paragraph at lines 3256--3258
-[]\T1/pcr/m/n/10 Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile 
-
+Overfull \hbox (95.00006pt too wide) in paragraph at lines 3256--3258
+[]\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
+ile 
 [38] [39] [40]
 Overfull \hbox (89.00006pt too wide) in paragraph at lines 3595--3595
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
@@ -78455,7 +78859,7 @@ Overfull \hbox (113.00006pt too wide) in paragraph at lines 3992--3992
 ugging  
 [45] [46] [47] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (47 pages, 213052 bytes).
+Output written on manual.rst.dvi (47 pages, 213056 bytes).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
@@ -78902,7 +79306,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (50 pages, 331055 bytes).
+Output written on manual.pdf (50 pages, 331058 bytes).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
@@ -79166,7 +79570,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (52 pages, 352140 bytes).
+Output written on manual.pdf (52 pages, 352143 bytes).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -79400,7 +79804,7 @@ amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
 ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (52 pages, 352860 bytes).
+Output written on manual.pdf (52 pages, 352863 bytes).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -80973,6 +81377,24 @@ Overfull \hbox (71.00006pt too wide) in paragraph at lines 145--148
 []\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 and institution2 
 
 [1]
+Overfull \hbox (4.50082pt too wide) in alignment at lines 174--182
+ [] [] 
+
+Overfull \hbox (4.50082pt too wide) in alignment at lines 182--190
+ [] [] 
+
+Overfull \hbox (4.50082pt too wide) in alignment at lines 190--192
+ [] [] 
+
+Overfull \hbox (4.50082pt too wide) in alignment at lines 192--193
+ [] [] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--199
+[]|\T1/pcr/m/n/10 ========= Heading ========
+
+Overfull \hbox (4.50082pt too wide) in alignment at lines 193--230
+ [] [] 
+
 Overfull \hbox (27.20697pt too wide) in paragraph at lines 249--252
 \T1/ptm/m/it/10 sized words\T1/ptm/m/n/10 . Sim-i-larly, an un-der-score sur-ro
 unds words that ap-pear in bold-face: \T1/pcr/m/n/10 _boldface_
@@ -81216,7 +81638,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (13 pages, 49596 bytes).
+Output written on quickref.rst.dvi (13 pages, 49504 bytes).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
@@ -81298,6 +81720,24 @@ rspace Inc.
 Overfull \hbox (71.00006pt too wide) in paragraph at lines 145--148
 []\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 and institution2 
 
+
+Overfull \hbox (4.50082pt too wide) in alignment at lines 174--182
+ [] [] 
+
+Overfull \hbox (4.50082pt too wide) in alignment at lines 182--190
+ [] [] 
+
+Overfull \hbox (4.50082pt too wide) in alignment at lines 190--192
+ [] [] 
+
+Overfull \hbox (4.50082pt too wide) in alignment at lines 192--193
+ [] [] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--199
+[]|\T1/pcr/m/n/10 ========= Heading ========
+
+Overfull \hbox (4.50082pt too wide) in alignment at lines 193--230
+ [] [] 
 [2]
 Overfull \hbox (27.20697pt too wide) in paragraph at lines 249--252
 \T1/ptm/m/it/10 sized words\T1/ptm/m/n/10 . Sim-i-larly, an un-der-score sur-ro
@@ -81535,7 +81975,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.rst.dvi (13 pages, 55216 bytes).
+Output written on quickref.rst.dvi (13 pages, 55188 bytes).
 Transcript written on quickref.rst.log.
 + dvipdf quickref.rst.dvi
 + doconce format plain quickref --no-preprocess
