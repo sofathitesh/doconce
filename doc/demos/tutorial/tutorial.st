@@ -1104,4 +1104,3 @@ updates and bug fixes. For 'svn' directories, go to the directory,
 run 'svn update', and then 'sudo python setup.py install'. For
 Mercurial ('hg') directories, go to the directory, run
 'hg pull; hg update', and then 'sudo python setup.py install'.
-

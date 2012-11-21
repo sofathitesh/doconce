@@ -130,8 +130,26 @@ that %s is not preceded by text which can be extended with :: (required).
 """ % (pattern, pattern)
             print 'Abort!'
             sys.exit(1)
+
+    # Final fixes
+    filestr = fix_underlines_in_headings(filestr)
+
     return filestr
 
+def fix_underlines_in_headings(filestr):
+    """
+    Expansion of math, verbatim, etc. in headings might lead to
+    wrong number of characters in the line under headings.
+    """
+    lines = filestr.splitlines()
+    for i in range(1, len(lines)-1):
+        section_markers = '===', '---', '~~~'
+        for section_marker in section_markers:
+            if lines[i+1].startswith(section_marker) and ' ' not in lines[i+1]:
+                if len(lines[i+1]) != len(lines[i]):
+                    lines[i+1] = section_marker[0]*len(lines[i])
+    filestr = '\n'.join(lines)
+    return filestr
 
 def rst_table(table):
     # Note: rst and sphinx do not offer alignment of cell

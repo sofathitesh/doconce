@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Nov 19, 2012
+:Date: Nov 21, 2012
 
 .. lines beginning with # are comment lines
 
@@ -1481,7 +1481,7 @@ Web addresses with links are typeset as
 .. code-block:: py
 
 
-        some URL like "Doconce": "http://code.google.com/p/doconce"
+        some URL like "Search Google": "http://google.com".
 
 which appears as some URL like `Search Google <http://google.com>`_.
 The space after colon is optional.
@@ -1705,7 +1705,7 @@ By the way, here is an example on referencing Figure :ref:`fig:viz`
 (the label appears in the figure caption in the source code of this document).
 Additional references to the sections :ref:`mathtext` and :ref:`newcommands` are
 nice to demonstrate, as well as a reference to equations,
-say (:ref:`myeq1`)-(:ref:`myeq2`). A comparison of the output and
+say :eq:`myeq1`-:eq:`myeq2`. A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.
 
@@ -2840,7 +2840,7 @@ or with
 .. code-block:: py
 
 
-        Unix> doconce guess_encoding myfile.do.txt
+        Terminal> doconce guess_encoding myfile.do.txt
 
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
@@ -2848,9 +2848,9 @@ the Unix commands
 .. code-block:: py
 
 
-        Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+        Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
         
-        Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+        Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 
 
 Wrong Norwegian charcters
@@ -3409,4 +3409,3 @@ and Sphinx just typeset the list as a list with keywords.
    An efficient probabilistic finite element method for stochastic 
    groundwater flow.
    *Advances in Water Resources*, vol 22, 185-195, 1998.
-

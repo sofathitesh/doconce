@@ -99,7 +99,7 @@
 
 
 \begin{center}
-Nov 19, 2012
+Nov 21, 2012
 \end{center}
 
 \vspace{1cm}
@@ -1380,7 +1380,7 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 \begin{Verbatim}
-some URL like "Doconce": "http://code.google.com/p/doconce"
+some URL like "Search Google": "http://google.com".
 \end{Verbatim}
 which appears as some URL like \href{{http://google.com}}{Search Google}.
 The space after colon is optional.
@@ -2525,14 +2525,14 @@ Make sure there is a space before the first back-tick.
 Check the encoding of the {\fontsize{10pt}{10pt}\verb!.do.txt!} file with the Unix {\fontsize{10pt}{10pt}\verb!file!} command
 or with
 \begin{Verbatim}
-Unix> doconce guess_encoding myfile.do.txt
+Terminal> doconce guess_encoding myfile.do.txt
 \end{Verbatim}
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
 \begin{Verbatim}
-Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 \end{Verbatim}
 
 \paragraph{Wrong Norwegian charcters.}

@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Nov 19, 2012</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Nov 21, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -1420,7 +1420,7 @@ becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).</p>
 <p>Web addresses with links are typeset as:</p>
 <pre class="literal-block">
-some URL like &quot;Doconce&quot;: &quot;http://code.google.com/p/doconce&quot;
+some URL like &quot;Search Google&quot;: &quot;http://google.com&quot;.
 </pre>
 <p>which appears as some URL like <a class="reference external" href="http://google.com">Search Google</a>.
 The space after colon is optional.
@@ -2503,14 +2503,14 @@ in the line above it.</p>
 <p>Check the encoding of the <tt class="docutils literal">.do.txt</tt> file with the Unix <tt class="docutils literal">file</tt> command
 or with:</p>
 <pre class="literal-block">
-Unix&gt; doconce guess_encoding myfile.do.txt
+Terminal&gt; doconce guess_encoding myfile.do.txt
 </pre>
 <p>If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands:</p>
 <pre class="literal-block">
-Unix&gt; doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-Unix&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 </pre>
 </div>
 <div class="section" id="wrong-norwegian-charcters">

@@ -86,10 +86,11 @@ def latex_code(filestr, code_blocks, code_block_types,
     if '--latex-printed' in sys.argv:
         # Make adjustments for printed versions of the PDF document.
         # Fix links so that the complete URL is in a footnote
-        pattern = r'\\href\{\{(.+?)\}\}\{(.+)\}'
+        pattern = r'\\href\{\{(.+?)\}\}\{(.+?)\}'
         def subst(m):  # m is match object
             url = m.group(1).strip()
             text = m.group(2).strip()
+            #print 'url:', url, 'text:', text
             if not ('http' in text or '\\nolinkurl{' in text):
                 texttt_url = url.replace('_', '\\_').replace('#', '\\#')
                 # fix % without backslash
@@ -267,12 +268,14 @@ def latex_table(table):
 
             if headline:
                 # First fix verbatim inside multicolumn
-                verbatim_pattern = r'`(.+?)`'
+                # (recall that doconce.py table preparations
+                # translates `...` to \code{...})
+                verbatim_pattern = r'code\{(.+?)\}'
                 for i in range(len(row)):
                     m = re.search(verbatim_pattern, row[i])
                     if m:
                         row[i] = re.sub(verbatim_pattern,
-                                        r'\\texttt{%s}' % m.group(1),
+                                        r'texttt{%s}' % m.group(1),
                                         row[i])
                         row[i] = row[i].replace('_', '\\_')
 

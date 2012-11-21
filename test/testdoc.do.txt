@@ -289,6 +289,18 @@ accordingly) and verbatim heading and entry:
 |6   |71,000|214        |`NaN`	|
 |-------------------------------|
 
+And add one with verbatim headings and rows starting with `|-` because
+of a negative number...
+
+|-----------------------------------------|
+| exact | `sympy` | `numpy32` | `numpy64` |
+|---r--------r---------r-----------r------|
+|9      | 9.62    | 5.57      |  8.98     |
+|-20    | -23.39  | -7.65     | -19.93    |
+|10     | 17.74   | -4.50     |  9.96     |
+|0      | -9.19   | 4.13      | -0.26     |
+|-----------------------------------------|
+
 ===== URLs =====
 label{subsubsec:ex}
 
@@ -308,9 +320,19 @@ Here are some tough tests of URLs, especially for the `latex` format:
 and a "good book":
 "http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1".
 
-# Comments should be inserted outside paragraphs (because of reST):
-# note that when there is no http: or file:, it can be a file link
-# if the link name is URL, url, "URL", or "url".
+# Comments should be inserted outside paragraphs (because in the rst
+# format extra blanks make a paragraph break).
+
+# Note that when there is no http: or file:, it can be a file link
+# if the link name is URL, url, "URL", or "url". Such files should,
+# if rst output is desired, but placed in a `_static*` folder.
+
+More tough tests: repeated URLs whose footnotes when using the
+`--latex-printed` option must be correct. We have
+"google": "http://google.com", "google": "http://google.com", and
+"google": "http://google.com", which should result in exactly three
+footnotes.
+
 
 % if FORMAT == "latex":
 

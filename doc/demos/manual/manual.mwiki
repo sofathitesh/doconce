@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Nov 19, 2012 ====
+==== Nov 21, 2012 ====
 
 <!--> lines beginning with # are comment lines -->
 
@@ -1125,7 +1125,7 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 <code>
-some URL like "Doconce": "http://code.google.com/p/doconce"
+some URL like "Search Google": "http://google.com".
 </code>
 which appears as some URL like [http://google.com Search Google].
 The space after colon is optional.
@@ -2232,14 +2232,14 @@ Make sure there is a space before the first back-tick.
 Check the encoding of the <code>.do.txt</code> file with the Unix <code>file</code> command
 or with
 <code>
-Unix> doconce guess_encoding myfile.do.txt
+Terminal> doconce guess_encoding myfile.do.txt
 </code>
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
 <code>
-Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 </code>
 
 ==== Wrong Norwegian charcters ====

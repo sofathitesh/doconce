@@ -712,4 +712,3 @@ examine the Doconce source and the 'doc/src/make.sh' script).
 Resources
 
  - Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
-

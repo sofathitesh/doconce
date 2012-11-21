@@ -181,13 +181,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Nov 19, 2012}
+\date{Nov 21, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Nov 19, 2012}}
+{\large\textsf{Nov 21, 2012}}
 
 \end{center}
 \vfill
@@ -196,7 +196,7 @@
 % #else
 
 \begin{center}
-Nov 19, 2012
+Nov 21, 2012
 \end{center}
 
 \vspace{1cm}
@@ -1503,7 +1503,7 @@ very simple formatting usually avoids such problems).
 
 Web addresses with links are typeset as
 \bccq
-some URL like "Doconce": "http://code.google.com/p/doconce"
+some URL like "Search Google": "http://google.com".
 \eccq
 which appears as some URL like \href{{http://google.com}}{Search Google}.
 The space after colon is optional.
@@ -2650,14 +2650,14 @@ Make sure there is a space before the first back-tick.
 Check the encoding of the \code{.do.txt} file with the Unix \code{file} command
 or with
 \bccq
-Unix> doconce guess_encoding myfile.do.txt
+Terminal> doconce guess_encoding myfile.do.txt
 \eccq
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
 \bccq
-Unix> doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 \eccq
 
 \paragraph{Wrong Norwegian charcters.}

@@ -370,6 +370,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
     # generate other labels that we cannot refer to.
     #
     math_labels = []
+    multiple_math_labels = []  # sphinx has problems with multiple math labels
     for i in range(len(tex_blocks)):
         tex_blocks[i] = indent_lines(tex_blocks[i], format)
         # extract all \label{}s inside tex blocks and typeset them
@@ -379,8 +380,11 @@ def sphinx_code(filestr, code_blocks, code_block_types,
         for label_regex in (label_regex1, label_regex2):
             labels = re.findall(label_regex, tex_blocks[i])
             if len(labels) == 1:
-                math_labels.extend(labels)
                 tex_blocks[i] = '   :label: %s\n' % labels[0] + tex_blocks[i]
+            elif len(labels) > 1:
+                multiple_math_labels.append(labels)
+            if len(labels) > 0:
+                math_labels.extend(labels)
             tex_blocks[i] = re.sub(label_regex, '', tex_blocks[i])
 
         # fix latex constructions that do not work with sphinx math
@@ -431,6 +435,12 @@ def sphinx_code(filestr, code_blocks, code_block_types,
     for label in math_labels:
         filestr = filestr.replace('(:ref:`%s`)' % label, ':eq:`%s`' % label)
 
+    if multiple_math_labels:
+        print '\nDetected equation systems with multiple labels\n(that Sphinx will not handle - they will be removed\nand references to them will be empty):'
+        for labels in multiple_math_labels:
+            print ' '.join(labels)
+        print
+
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
 
     # Remove all !bc ipy since interactive sessions are automatically
@@ -465,6 +475,8 @@ def sphinx_code(filestr, code_blocks, code_block_types,
     #filestr = re.sub(r'!ec\n', '', filestr)
     filestr = re.sub(r'!bt *\n', '\n.. math::\n', filestr)
     filestr = re.sub(r'!et *\n', '\n\n', filestr)
+
+    filestr = fix_underlines_in_headings(filestr)
 
     return filestr
 

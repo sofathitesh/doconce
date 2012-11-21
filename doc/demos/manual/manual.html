@@ -93,7 +93,7 @@ $$
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Nov 19, 2012</h4></center> <!-- date -->
+<center><h4>Nov 21, 2012</h4></center> <!-- date -->
 <p>
 
 <!-- lines beginning with # are comment lines -->
@@ -1605,7 +1605,7 @@ very simple formatting usually avoids such problems).
 Web addresses with links are typeset as
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-some URL like &quot;Doconce&quot;: &quot;http://code.google.com/p/doconce&quot;
+some URL like &quot;Search Google&quot;: &quot;http://google.com&quot;.
 </pre>
 </blockquote>   <! -- end verbatim block -->
 which appears as some URL like <a href="http://google.com">Search Google</a>.
@@ -2968,16 +2968,16 @@ Check the encoding of the <tt>.do.txt</tt> file with the Unix <tt>file</tt> comm
 or with
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-Unix&gt; doconce guess_encoding myfile.do.txt
+Terminal&gt; doconce guess_encoding myfile.do.txt
 </pre>
 </blockquote>   <! -- end verbatim block -->
 If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands
 <blockquote>    <!-- begin verbatim block -->
 <pre>
-Unix&gt; doconce change_encoding utf-8 LATIN1 myfile.do.txt
+Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-Unix&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+Terminal&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 </pre>
 </blockquote>   <! -- end verbatim block -->
 
