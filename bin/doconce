@@ -397,6 +397,7 @@ def _spellcheck_all(**kwargs):
             _spellcheck(filename, **kwargs)
     tmp_misspelled = glob.glob('tmp_misspelled*~')
     if len(tmp_misspelled) > 0:
+        print
         if len(sys.argv[1:]) == 1:
             print 'See misspellings.txt~ for all misspelled words found.'
         else:
