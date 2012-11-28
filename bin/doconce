@@ -33,10 +33,10 @@ _environments = [
     # Doconce
     ("!bc",                 "!ec"),  # could have side effect if in text, but that's only in Doconce manuals...
     ("!bt",                 "!et"),
-    ("!bhint",              "!ehint"),
-    ("!bans",               "!eans"),
-    ("!bsol",               "!esol"),
-    ("!bsubex",             "!esubex"),
+    #("!bhint",              "!ehint"),  # will not remove the environment
+    #("!bans",               "!eans"),
+    #("!bsol",               "!esol"),
+    #("!bsubex",             "!esubex"),
     # Mako
     ("<%doc>",              "</%doc>"),
     # hpl tex stuff
@@ -88,6 +88,15 @@ _replacements = [
     (r'^\s*file=[A-Za-z_0-9.]+\s*$', '', re.MULTILINE),
     (r"^@@@CODE.*$",    "", re.MULTILINE),
     (r"^\s*(FIGURE|MOVIE):\s*\[.+?\]",    "", re.MULTILINE),
+    (r"^\s*TOC:\s+(on|off)", "", re.MULTILINE),
+    ('!split', ''),
+    (r'![be]slidecell', ''),
+    (r'![be]ans', ''),
+    (r'![be]sol', ''),
+    (r'![be]subex', ''),
+    (r'![be]hint', ''),
+    (r'![be]notes', ''),
+    (r'![be]pop', ''),
     # Preprocess
     (r"^#.*ifn?def.*$", "", re.MULTILINE),
     (r"^#.*else.*$", "", re.MULTILINE),
@@ -129,6 +138,8 @@ _latex_replacements = [
     ]
 
 _common_typos = [
+    '!bsubsex',
+    '!esubsex',
     'hiearchy',
     'hieararchy',
     'statment',
@@ -324,7 +335,7 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
             personal_dictionaries += f.readlines()
             f.close()
         else:
-            print 'Dictionary file %s does not exist!' % dictionary
+            print 'Dictionary file %s does not exist.' % dictionary
 
     personal_dictionaries = list(sets.Set(personal_dictionaries))
     misspellings = 'tmp_misspelled_' + filename + '~'
@@ -386,16 +397,14 @@ def _spellcheck_all(**kwargs):
             _spellcheck(filename, **kwargs)
     tmp_misspelled = glob.glob('tmp_misspelled*~')
     if len(tmp_misspelled) > 0:
-        print '\nFound misspellings!'
         if len(sys.argv[1:]) == 1:
-            print 'See misspellings.txt~.'
+            print 'See misspellings.txt~ for all misspelled words found.'
         else:
-            print 'See tmp_misspelled* for errors in individual files:'
             for name in tmp_misspelled:
-                print '  ', name
+                print 'See', name, 'for misspellings in', name.replace('tmp_misspelled_', '')[:-1]
         dictfile = kwargs.get('dictionary', '.dict4spell.txt')
         print 'When all misspellings are acceptable, cp new_dictionary.txt~',\
-              dictfile
+              dictfile, '\n'
         sys.exit(1)
     else:
         sys.exit(0)
