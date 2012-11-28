@@ -104,7 +104,9 @@ def syntax_check(filestr, format):
 
     filestr = fix(filestr, format, verbose=1)
 
-    begin_end_consistency_checks(filestr, ['c', 't', 'ans', 'sol', 'hint'])
+    envirs = ['c', 't', 'ans', 'sol', 'hint', 'subex', 'notes',
+              'pop', 'slidecell']
+    begin_end_consistency_checks(filestr, envirs)
 
     # Check that headings have consistent use of = signs
     for line in filestr.splitlines():
@@ -114,17 +116,12 @@ def syntax_check(filestr, format):
                 print '\ninconsistent no of = in heading:\n', line
                 _abort()
 
-    pattern = re.compile(r'^ +![eb][ct]', re.MULTILINE)
-    m = pattern.search(filestr)
-    if m:
-        print '\nSyntax error: !bc/!bt/!ec/!et does not start at the beginning of the line'
-        print repr(filestr[m.start():m.start()+80])
-        _abort()
-    pattern = re.compile(r'^ +![eb](hint|ans|sol)', re.MULTILINE)
-    m = pattern.search(filestr)
-    if m:
-        print '\nSyntax error: !bhint/!ehint/!bans/!eans/!bsol/!esol does not start at the beginning of the line'
-        print repr(filestr[m.start():m.start()+80])
+    for envir in envirs:
+        pattern = re.compile(r'^ +![eb]%s' % envir, re.MULTILINE)
+        m = pattern.search(filestr)
+        if m:
+            print '\nSyntax error: !b%s and/or !e%s not at the beginning of the line' % (envir, envir)
+        print repr(filestr[m.start():m.start()+120])
         _abort()
 
     pattern = re.compile(r'[^\n:.?!,]^(!b[ct]|@@@CODE)', re.MULTILINE)
@@ -135,8 +132,9 @@ def syntax_check(filestr, format):
         _abort()
 
     # Code blocks cannot come directly after tables or headings.
-    # Remove idx{} and label{} since these will be moved for rst.
-    # Also remove all comments since these are also "invisible"
+    # Remove idx{} and label{} before checking
+    # since these will be moved for rst.
+    # Also remove all comments since these are also "invisible".
     filestr2 = filestr
     for tag in 'label', 'idx':
         filestr2 = re.sub('%s\{.+?\}' % tag, '', filestr2)
