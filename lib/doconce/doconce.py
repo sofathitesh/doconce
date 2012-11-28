@@ -121,8 +121,8 @@ def syntax_check(filestr, format):
         m = pattern.search(filestr)
         if m:
             print '\nSyntax error: !b%s and/or !e%s not at the beginning of the line' % (envir, envir)
-        print repr(filestr[m.start():m.start()+120])
-        _abort()
+            print repr(filestr[m.start():m.start()+120])
+            _abort()
 
     pattern = re.compile(r'[^\n:.?!,]^(!b[ct]|@@@CODE)', re.MULTILINE)
     m = pattern.search(filestr)
