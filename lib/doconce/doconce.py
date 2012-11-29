@@ -105,7 +105,7 @@ def syntax_check(filestr, format):
     filestr = fix(filestr, format, verbose=1)
 
     envirs = ['c', 't', 'ans', 'sol', 'hint', 'subex', 'notes',
-              'pop', 'slidecell']
+              'pop', 'slidecell', 'remarks']
     begin_end_consistency_checks(filestr, envirs)
 
     # Check that headings have consistent use of = signs

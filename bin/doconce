@@ -391,7 +391,7 @@ def _spellcheck_all(**kwargs):
     for filename in ['__tmp.do.txt']:
         if filename in sys.argv[1:]:  # iterate over copy
             os.remove(filename)
-            del sys.argv[sys.argv.find(filename)]
+            del sys.argv[sys.argv.index(filename)]
     for filename in sys.argv[1:]:
         if not filename.startswith('tmp_stripped_'):
             _spellcheck(filename, **kwargs)
@@ -1610,6 +1610,8 @@ def combine_images():
     if montage:
         cmds.append('montage -background white -geometry 100%% -tile 2x %s %s' % \
                     (' '.join(imagefiles), output_file))
+        cmds.append('convert -trim %s %s' % (output_file, output_file))
+
     else:
         # Assume all are .pdf or .eps
         # Convert EPS to PDF
