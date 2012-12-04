@@ -2179,7 +2179,7 @@ def clean():
         for f in generated_files:
             removed.append(f)
     removed.extend(glob.glob('*~') + glob.glob('tmp*') +
-                   glob.glob('._part*.html'))
+                   glob.glob('._part*.html') + glob.glob('.*.exerinfo'))
     directories = ['sphinx-rootdir', 'html_images']
     for d in directories:
         if os.path.isdir(d):
@@ -3482,7 +3482,7 @@ git://github.com/barraq/deck.ext.js.git
 
 <!-- Transition theme. More available in /themes/transition/ or create your own. -->
 <link rel="stylesheet" href="deck.js/themes/transition/horizontal-slide.css">
-<! --
+<!--
 <link rel="stylesheet" href="deck.js/themes/transition/fade.css">
 <link rel="stylesheet" href="deck.js/themes/transition/vertical-slide.css">
 <link rel="stylesheet" href="deck.js/themes/transition/horizontal-slide.css">
@@ -3545,8 +3545,9 @@ git://github.com/barraq/deck.ext.js.git
 <!-- From https://github.com/stvnwrgs/presenterview -->
 <script type="text/javascript" src="deck.js/extensions/presenterview/deck.presenterview.js"></script>
 
-<!-- From https://github.com/nemec/deck.annotate.js -->
+<!-- From https://github.com/nemec/deck.annotate.js
 <script type="text/javascript" src="deck.js/extensions/deck.annotate.js/deck.annotate.js"></script>
+-->
 
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
@@ -3583,8 +3584,9 @@ git://github.com/barraq/deck.ext.js.git
     for arg in sys.argv:
         if arg.startswith('--html-slide-theme='):
             theme = arg.split('=')[1]
-        if arg == '--reveal-doconce':
-            theme_doconce_modification = '_do'
+        if slide_tp == 'reveal':
+            if arg == '--reveal-doconce':
+                theme_doconce_modification = '_do'
 
     m = re.search(r'<title>(.*?)</title>', ''.join(header))
     if m:
@@ -3592,9 +3594,12 @@ git://github.com/barraq/deck.ext.js.git
     else:
         title = ''
     slide_syntax[slide_tp]['title'] = title
-    slide_syntax[slide_tp]['theme'] = slide_syntax[slide_tp]['default_theme'] \
-                                      if theme == 'default' else theme
-    slide_syntax[slide_tp]['theme'] += theme_doconce_modification # '_do'
+    slide_syntax[slide_tp]['theme'] = \
+       slide_syntax[slide_tp]['default_theme'] if theme == 'default' else theme
+    if slide_syntax[slide_tp]['theme']:
+        slide_syntax[slide_tp]['theme'] += theme_doconce_modification # '_do'
+    if 'main_style' in slide_syntax[slide_tp]:
+        slide_syntax[slide_tp]['main_style'] += theme_doconce_modification
 
     # Fill in theme etc.
     slide_syntax[slide_tp]['head_header'] = \
@@ -3640,7 +3645,8 @@ MathJax.Hub.Config({
         part = ''.join(part)
         part = cinline_comment_pattern.sub(
                   slide_syntax[slide_tp]['notes'], part)
-        # Fragments
+        part = part.replace('<li>', '<p><li>')  # more space between bullets
+        # Pieces to pop up item by item as the user is clicking
         if '<!-- !bpop' in part:
             pattern = r'<!-- !bpop (.*?)-->(.+?)<!-- !epop.*?-->'
             cpattern = re.compile(pattern, re.DOTALL)
