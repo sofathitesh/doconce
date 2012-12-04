@@ -18,11 +18,13 @@ themes = dict(
     dzslides=None,
     )
 
+system('sh clean.sh')
+
 for slide_system in themes:
     if themes[slide_system] is not None:
         for theme in themes[slide_system]:
             system('doconce format html demo')
-            system('doconce slides_html demo %s --html-slide-theme=%s' %
+            system('doconce slides_html demo %s --html-slide-theme=%s --reveal-doconce' %
                       (slide_system, theme))
             shutil.copy('demo.html', 'demo_%s_%s.html' % (slide_system, theme))
             #sys.exit(0)

@@ -1,5 +1,5 @@
 
-TITLE: Experiments with Schemes for Exponential Decay
+TITLE: On Schemes for Exponential Decay
 AUTHOR: Hans Petter Langtangen Email:hpl@simula.no at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo.
 DATE: today
 
@@ -38,6 +38,7 @@ u(0)  &= I,
 label{initial:value}
 \end{align}
 !et
+
 where
 
  * $a$, $I$, and $T$ are prescribed parameters
@@ -56,7 +57,8 @@ idx{finite difference scheme}
  * Mesh in time: $0= t_0< t_1 \cdots < t_N=T$
  * Assume constant $\Delta t = t_{n}-t_{n-1}$
  * $u^n$: numerical approx to the exact solution at $t_n$
- * Numerical scheme:
+
+Numerical scheme:
 !bt
    \[
    u^{n+1} = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n,
@@ -64,9 +66,9 @@ idx{finite difference scheme}
    \]
 !et
 
- * The Forward Euler scheme when $\theta=0$
- * The Backward Euler scheme when $\theta=1$
- * The Crank-Nicolson scheme when $\theta=1/2$
+ * The Forward Euler scheme: $\theta=0$
+ * The Backward Euler scheme: $\theta=1$
+ * The Crank-Nicolson scheme: $\theta=1/2$
 
 !split
 
@@ -102,7 +104,7 @@ Here: $I=1$, $a=2$, $\Delta t = 1.25, 0.75, 0.5, 0.1$.
 
 idx{BE}
 
-FIGURE: [fig/BE.png, width=800]
+FIGURE: [fig/BE.png, width=600]
 
 
 !split
@@ -113,7 +115,7 @@ FIGURE: [fig/BE.png, width=800]
 
 idx{CN}
 
-FIGURE: [fig/CN.png, width=800]
+FIGURE: [fig/CN.png, width=600]
 
 
 !split
@@ -124,7 +126,7 @@ FIGURE: [fig/CN.png, width=800]
 
 idx{FE}
 
-FIGURE: [fig/FE.png, width=800]
+FIGURE: [fig/FE.png, width=600]
 
 
 !split
@@ -135,9 +137,7 @@ FIGURE: [fig/FE.png, width=800]
 
 idx{error vs time step}
 
-How $E$ varies with $\Delta t$ for $\theta=0,0.5,1$:
-
-FIGURE: [fig/error, width=400]
+FIGURE: [fig/e_vs_dt, width=600]
 
 !split
 
@@ -155,8 +155,7 @@ Observations:
  * The exact solution is monotone and decreasing
  * Stability requires $|A| < 1$
  * $A<0$ gives oscillatory solutions
- * $0<A<1$:
+ * Decaying, non-oscillatory solutions:
     * always for Backward Euler ($\theta=1$)
     * $\Delta t < 1/a$ for Forward Euler ($\theta=0$)
-    * $\Delta t < 2/a$ for Crank-Nicolson ($\theta=1/2$), but
-      $|A|<1$ is always guaranteed
+    * $\Delta t < 2/a$ for Crank-Nicolson ($\theta=1/2$)
