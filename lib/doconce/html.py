@@ -253,6 +253,9 @@ def html_movie(m):
         if opt.startswith('height') or opt.startswith('HEIGHT'):
             kwargs['height'] = int(opt.split('=')[1])
 
+    if 'youtu.be' in filename:
+        filename = filename.replace('youtu.be', 'youtube.com')
+
     if '*' in filename:
         # Glob files and use DocWriter.html_movie to make a separate
         # html page for viewing the set of files
