@@ -7,9 +7,11 @@ DATE: today
 
 ===== Goal =====
 
-The primary goal of this demo talk
-is to demonstrate how to write talks with doconce
-and get them rendered in numerous HTML formats.
+The primary goal of this demo talk is to demonstrate how to write
+talks with doconce and get them rendered in numerous HTML formats.
+
+The current HTML format is csss, with d theme and
+pygments code style default.
 
 The talk investigates the accuracy of three finite difference
 schemes for the ordinary differential equation $u'=-au$ with the

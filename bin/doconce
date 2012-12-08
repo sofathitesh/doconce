@@ -1944,7 +1944,7 @@ Download preprocess from http://code.google.com/p/preprocess
     if packages:
         filestr = filestr.replace(r'\usepackage{ptex2tex}',
            r'\usepackage{%s} %% packages needed for verbatim environments' %
-                                          (','.join(packages))
+                                          (','.join(packages)))
     else:
         filestr = filestr.replace(r'\usepackage{ptex2tex}', '')
 
