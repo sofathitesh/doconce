@@ -323,6 +323,43 @@ def rst_quote(block, format):
 
 """ % (indent_lines(block, format, ' '*4))
 
+def rst_notes(block, format):
+    # Set notes in comments
+    return """
+%s
+""" % (indent_lines(block, format, '..  '))
+
+
+def rst_warning(block, format):
+    return """
+.. warning::
+%s
+""" % (indent_lines(block, format, ' '*4))
+
+def rst_tip(block, format):
+    return """
+.. tip::
+%s
+""" % (indent_lines(block, format, ' '*3))
+
+def rst_hint(block, format):
+    return """
+.. hint::
+%s
+""" % (indent_lines(block, format, ' '*3))
+
+def rst_notice(block, format):
+    return """
+.. note::
+%s
+""" % (indent_lines(block, format, ' '*3))
+
+def rst_important(block, format):
+    return """
+.. important::
+%s
+""" % (indent_lines(block, format, ' '*3))
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -336,6 +373,7 @@ def define(FILENAME_EXTENSION,
            CROSS_REFS,
            INDEX_BIB,
            TOC,
+           ENVIRS,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -382,7 +420,16 @@ def define(FILENAME_EXTENSION,
         #'comment':       '.. %s',  # rst does not like empty comment lines:
         # so therefore we introduce a function to remove empty comment lines
         'comment':       lambda c: '' if c.isspace() or c == '' else '.. %s\n' % c,
-        '!quote':        rst_quote,
+        }
+
+    ENVIRS['rst'] = {
+        'quote':         rst_quote,
+        'warning':       rst_warning,
+        'tip':           rst_tip,
+        'notice':        rst_notice,
+        'hint':          rst_hint,
+        'important':     rst_important,
+        'notes':         rst_notes,
         }
 
     CODE['rst'] = rst_code  # function for typesetting code

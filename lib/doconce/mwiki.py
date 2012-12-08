@@ -118,6 +118,8 @@ from gwiki import wiki_ref_and_label_common
 def mwiki_ref_and_label(section_label2title, format, filestr):
     return wiki_ref_and_label_common(section_label2title, format, filestr)
 
+def mwiki_warning(block, format):
+    return '{{warning|%s}}' % block
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -131,6 +133,7 @@ def define(FILENAME_EXTENSION,
            CROSS_REFS,
            INDEX_BIB,
            TOC,
+           ENVIRS,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -169,6 +172,9 @@ def define(FILENAME_EXTENSION,
     CODE['mwiki'] = mwiki_code
     from html import html_table
     TABLE['mwiki'] = html_table
+    ENVIRS['mwiki'] = {
+        'warning':  mwiki_warning,
+        }
 
     # native list:
     LIST['mwiki'] = {

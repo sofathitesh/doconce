@@ -541,6 +541,7 @@ def define(FILENAME_EXTENSION,
            CROSS_REFS,
            INDEX_BIB,
            TOC,
+           ENVIRS,
            INTRO,
            OUTRO):
     if not 'rst' in BLANKLINE:
@@ -567,6 +568,7 @@ def define(FILENAME_EXTENSION,
     TABLE['sphinx'] = TABLE['rst']
     EXERCISE['sphinx'] = EXERCISE['rst']
     INTRO['sphinx'] = INTRO['rst']
+    ENVIRS['sphinx'] = ENVIRS['rst']
 
     # make true copy of INLINE_TAGS_SUBST:
     INLINE_TAGS_SUBST['sphinx'] = {}

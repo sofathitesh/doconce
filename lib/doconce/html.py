@@ -511,6 +511,39 @@ def html_quote(block, format):
 </blockquote>
 """ % (indent_lines(block, format, ' '*4))
 
+def html_notes(block, format):
+    # Set notes in comments
+    return r"""
+
+<!-- Notes:
+%s
+-->
+
+""" % block
+
+
+for _admon in ['warning', 'tip', 'hint', 'notice', 'important']:
+    _Admon = _admon[0].upper() + _admon[1:]  # upper first char
+    _text = '''
+def html_%s(block, format):
+    return """
+<table width="95%%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/lyx_%s.png" hspace="5" alt="%s"></td>
+<th align="left" valign="middle"><b>%s</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>%%s</p>
+</td>
+</tr>
+</table>
+""" %% block
+''' % (_admon, _admon, _Admon, _Admon)
+    exec(_text)
+
 def define(FILENAME_EXTENSION,
            BLANKLINE,
            INLINE_TAGS_SUBST,
@@ -523,6 +556,7 @@ def define(FILENAME_EXTENSION,
            CROSS_REFS,
            INDEX_BIB,
            TOC,
+           ENVIRS,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -558,8 +592,17 @@ def define(FILENAME_EXTENSION,
         'figure':        html_figure,
         'movie':         html_movie,
         'comment':       '<!-- %s -->',
-        '!quote':        html_quote,
         }
+
+    ENVIRS['html'] = {
+        'quote':         html_quote,
+        'warning':       html_warning,
+        'tip':           html_tip,
+        'notice':        html_notice,
+        'hint':          html_hint,
+        'important':     html_important,
+        'notes':         html_notes,
+    }
 
     CODE['html'] = html_code
 

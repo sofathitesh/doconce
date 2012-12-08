@@ -13,6 +13,7 @@ def define(FILENAME_EXTENSION,
            CROSS_REFS,
            INDEX_BIB,
            TOC,
+           ENVIRS,
            INTRO,
            OUTRO):
 
@@ -34,10 +35,11 @@ def define(FILENAME_EXTENSION,
            INTRO,
            OUTRO)
 
-    # The *big* difference between pdflatex and latex is the image formats
+    # The big difference between pdflatex and latex is the image formats
     FIGURE_EXT['pdflatex'] = ('.pdf', '.png', '.jpg', '.jpeg', '.tif', '.tiff')
 
     # The rest is copy
+    ENVIRS['pdflatex'] = ENVIRS['latex']
     FILENAME_EXTENSION['pdflatex'] = FILENAME_EXTENSION['latex']
     BLANKLINE['pdflatex'] = BLANKLINE['latex']
     CODE['pdflatex'] = CODE['latex']

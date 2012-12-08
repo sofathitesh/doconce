@@ -28,9 +28,6 @@ system('sh clean.sh')
 def generate(name, many_pygments=False):
     for slide_system in themes:
         for theme in themes[slide_system]:
-            shutil.copy('%s.do.txt' % name, 'tmp1.do.txt')
-            system('doconce replace XXX %s tmp1.do.txt' % (slide_system))
-            system('doconce replace YYY %s tmp1.do.txt' % (theme))
             if theme in dark_styles:
                 pygm_styles = dark_pygments
             else:
@@ -40,6 +37,9 @@ def generate(name, many_pygments=False):
 
             pygm_styles += ['none']  # plain <pre> too for code
             for pygm_style in pygm_styles:
+                shutil.copy('%s.do.txt' % name, 'tmp1.do.txt')
+                system('doconce replace XXX %s tmp1.do.txt' % (slide_system))
+                system('doconce replace YYY %s tmp1.do.txt' % (theme))
                 system('doconce replace ZZZ %s tmp1.do.txt' % (pygm_style))
 
                 system('doconce format html tmp1 --pygments-html-style=%s' %
