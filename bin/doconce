@@ -3605,13 +3605,9 @@ git://github.com/barraq/deck.ext.js.git
         )
 
     theme = 'default'
-    theme_doconce_modification = ''
     for arg in sys.argv:
         if arg.startswith('--html-slide-theme='):
             theme = arg.split('=')[1]
-        if slide_tp == 'reveal':
-            if arg == '--reveal-doconce':
-                theme_doconce_modification = '_do'
 
     m = re.search(r'<title>(.*?)</title>', ''.join(header))
     if m:
@@ -3621,10 +3617,6 @@ git://github.com/barraq/deck.ext.js.git
     slide_syntax[slide_tp]['title'] = title
     slide_syntax[slide_tp]['theme'] = \
        slide_syntax[slide_tp]['default_theme'] if theme == 'default' else theme
-    if slide_syntax[slide_tp]['theme']:
-        slide_syntax[slide_tp]['theme'] += theme_doconce_modification # '_do'
-    if 'main_style' in slide_syntax[slide_tp]:
-        slide_syntax[slide_tp]['main_style'] += theme_doconce_modification
 
     # Fill in theme etc.
     slide_syntax[slide_tp]['head_header'] = \

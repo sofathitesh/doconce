@@ -15,7 +15,7 @@ def zip_dir(dirname):
 
 if __name__ == '__main__':
     # (important to not execute anything for epydoc)
-    import os
+    import os, shutil
     # the insertdocstr script is part of the Doconce package
     ##system('python ../../bin/doconce insertdocstr plain . ')
 
@@ -24,62 +24,40 @@ if __name__ == '__main__':
     software_dir = 'misc_software'
     os.chdir(software_dir)
     system('zip -r html_images.zip html_images')
-    if not os.path.isdir('reveal.js'):
-        system('git clone git://github.com/hakimel/reveal.js.git')
-    else:
-        system('cd reveal.js; git pull origin master; cd ..')
+    shutil.rmtree('reveal.js')
+    system('git clone git://github.com/hakimel/reveal.js.git')
     os.system('cp doconce_modifications/reveal/css/reveal*.css reveal.js/css/')
     os.system('cp doconce_modifications/reveal/css/theme/*.css reveal.js/css/theme/')
     zip_dir('reveal.js')
 
-    if not os.path.isdir('csss'):
-        system('git clone git://github.com/LeaVerou/csss.git')
-    else:
-        system('cd csss; git pull origin master; cd ..')
+    shutil.rmtree('csss')
+    system('git clone git://github.com/LeaVerou/csss.git')
     zip_dir('csss')
 
-    if not os.path.isdir('deck.js'):
-        system('git clone git://github.com/imakewebthings/deck.js.git')
-    else:
-        system('cd deck.js; git pull origin master; cd ..')
-    if not os.path.isdir('mnml'):
-        system('git clone git://github.com/duijf/mnml.git')
-    else:
-        system('cd mnml; git pull origin master; cd ..')
+    shutil.rmtree('deck.js')
+    system('git clone git://github.com/imakewebthings/deck.js.git')
+    shutil.rmtree('mnml')
+    system('git clone git://github.com/duijf/mnml.git')
     system('cp mnml/mnml.css deck.js/themes/style')
-    if not os.path.isdir('deckjs-theme-mozilla'):
-        system('git clone git://github.com/groovecoder/deckjs-theme-mozilla.git')
-    else:
-        system('cd deckjs-theme-mozilla; git pull origin master; cd ..')
+    shutil.rmtree('deckjs-theme-mozilla')
+    system('git clone git://github.com/groovecoder/deckjs-theme-mozilla.git')
     system('cp deckjs-theme-mozilla/*.*css deck.js/themes/style')
-    if not os.path.isdir('deck.js-codemirror'):
-        system('git clone git://github.com/iros/deck.js-codemirror.git')
-    else:
-        system('cd deck.js-codemirror; git pull origin master; cd ..')
-    if not os.path.isdir('deck.js/extensions/codemirror'):
-        os.mkdir('deck.js/extensions/codemirror')
+    shutil.rmtree('deck.js-codemirror')
+    system('git clone git://github.com/iros/deck.js-codemirror.git')
+    os.mkdir('deck.js/extensions/codemirror')
     system('cp -r deck.js-codemirror/* deck.js/extensions/codemirror/')
-    if not os.path.isdir('deck.ext.js'):
-        system('git clone git://github.com/barraq/deck.ext.js.git')
-    else:
-        system('cd deck.ext.js; git pull origin master; cd ..')
+    shutil.rmtree('deck.ext.js')
+    system('git clone git://github.com/barraq/deck.ext.js.git')
     system('cp -r deck.ext.js/themes/style/*.*css deck.js/themes/style/')
-    if not os.path.isdir('deck.pointer.js'):
-        system('git clone git://github.com/mikeharris100/deck.pointer.js.git')
-    else:
-        system('cd deck.pointer.js; git pull origin master; cd ..')
-    if not os.path.isdir('deck.js/extensions/pointer'):
-        os.mkdir('deck.js/extensions/pointer')
+    shutil.rmtree('deck.pointer.js')
+    system('git clone git://github.com/mikeharris100/deck.pointer.js.git')
+    os.mkdir('deck.js/extensions/pointer')
     system('cp -r deck.pointer.js/deck.pointer.* deck.js/extensions/pointer/')
-    if not os.path.isdir('presenterview'):
-        system('git clone git://github.com/stvnwrgs/presenterview.git')
-    else:
-        system('cd presenterview; git pull origin master; cd ..')
+    shutil.rmtree('presenterview')
+    system('git clone git://github.com/stvnwrgs/presenterview.git')
     system('cp -r presenterview/ deck.js/extensions/')
-    if not os.path.isdir('deck.annotate.js'):
-        system('git clone git://github.com/nemec/deck.annotate.js.git')
-    else:
-        system('cd deck.annotate.js; git pull origin master; cd ..')
+    shutil.rmtree('deck.annotate.js')
+    system('git clone git://github.com/nemec/deck.annotate.js.git')
     system('cp -r deck.annotate.js deck.js/extensions/')
 
     os.system('cp doconce_modifications/deck/core/*.css deck.js/core/')
@@ -105,6 +83,7 @@ if __name__ == '__main__':
     os.chdir(os.pardir)
 
     # remove files that are to be regenerated:
+    #system('sh clean.sh')
     os.chdir(os.path.join(os.pardir, os.pardir))
     thisdir = os.getcwd()
     os.chdir(os.path.join('lib', 'doconce', 'docstrings'))
