@@ -1890,10 +1890,9 @@ def ptex2tex():
 
     # Run preprocess
     if not preprocess_options:
-        #preprocess_options = ['-DLATEX_HEADING=traditional']
-        # We do not need -DMINTED here because the minted package
-        # is ensured below using the packages list
-        pass
+        #preprocess_options += ['-DLATEX_HEADING=traditional']
+        if 'minted' in packages:
+            preprocess_options += ['-DMINTED']
 
     if not os.path.isfile(filename + '.p.tex'):
         print 'No file %s' % (filename + '.p.tex')
@@ -1945,11 +1944,37 @@ Download preprocess from http://code.google.com/p/preprocess
     if packages:
         filestr = filestr.replace(r'\usepackage{ptex2tex}',
            r'\usepackage{%s} %% packages needed for verbatim environments' %
-                                                          ','.join(packages))
+                                          (','.join(packages))
     else:
         filestr = filestr.replace(r'\usepackage{ptex2tex}', '')
 
-    # Treat the \code{} commands
+    import commands
+    for style in ['minted', 'anslistings']:
+        if style in packages:
+            failure, output = commands.getstatusoutput('kpsewhich %s.sty' % style)
+            if output == '':
+                # Copy style.sty to current dir
+                filename = style + '.sty'
+                datafile = latexstyle_files  # global variable (latex_styles.zip)
+                if not os.path.isfile(filename):
+                    cmd = 'unzip %s %s' % (datafile, filename)
+                    import doconce
+                    doconce_dir = os.path.dirname(doconce.__file__)
+                    doconce_datafile = os.path.join(doconce_dir, datafile)
+                    shutil.copy(doconce_datafile, os.curdir)
+                    import zipfile
+                    zipfile.ZipFile(datafile).extract(filename)
+                    os.remove(datafile)
+
+    if 'minted' in packages:
+        failure, output = commands.getstatusoutput('pygments')
+        if failure:
+            print 'You have requested the minted latex style, but this'
+            print 'requires the pygments package to be installed. On Debian/Ubuntu:'
+            print 'Terminal> sudo apt-get install python-pygments'
+            sys.exit(1)
+
+    # --- Treat the \code{} commands ---
 
     # remove one newline (two implies far too long inline verbatim)
     pattern = re.compile(r'\\code\{([^\n}]*?)\n(.*?)\}', re.DOTALL)
@@ -2337,9 +2362,10 @@ html_images = 'html_images.zip'
 reveal_files = 'reveal.js.zip'
 csss_files = 'csss.zip'
 deck_files = 'deck.js.zip'
+latexstyle_files = 'latex_styles.zip'
 
 def html_imagefile(imagename):
-    filename = os.path.join(html_images[:-4], '._' + imagename + '.gif')
+    filename = os.path.join(html_images[:-4], imagename + '.png')
     return filename
 
 def copy_datafiles(datafile):
@@ -2577,12 +2603,11 @@ def doconce_html_split(header, parts, footer, basename, filename):
     """Native doconce style splitting of HTML file into parts."""
     copy_datafiles(html_images)  # copy html_images subdir if needed
 
-    prev_part = 'prev_slide1'
-    next_part = 'next_slide1'
-    header_part_line = 'colorline'
-    header_part_line = ''
+    prev_part = 'prev1'  # "Knob_Left"
+    next_part = 'next1'  # "Knob_Forward"
+    header_part_line = ''  # 'colorline'
 
-    # Deal with internal links
+    # Fix internal links to point to the right splitted file
     name_pattern = r'<a name="(.+?)">'
     href_pattern = r'<a href="#(.+?)">'
     parts_name = [re.findall(name_pattern, ''.join(part)) for part in parts]

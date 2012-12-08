@@ -16,12 +16,24 @@ def html_code(filestr, code_blocks, code_block_types,
         from pygments.lexers import guess_lexer, get_lexer_by_name
         from pygments.formatters import HtmlFormatter
         from pygments import highlight
+        from pygments.styles import get_all_styles
     except ImportError:
         pygm = None
     # Can turn off pygments on the cmd line
     if '--no-pygments-html' in sys.argv:
         pygm = None
     if pygm is not None:
+        pygm_style = 'emacs'  # default
+        pygm_style = 'default'  # default
+        for arg in sys.argv[1:]:
+            if arg.startswith('--pygments-html-style='):
+                pygm_style = arg.split('=')[1]
+                legal_styles = list(get_all_styles())
+                if pygm_style not in legal_styles:
+                    print 'pygments style "%s" is not legal, must be among\n%s' % (', '.join(legal_styles))
+                    print 'will use the default style...'
+                    pygm_style = 'default'
+
         linenos = '--pygments-html-linenos' in sys.argv
 
     # For html we should make replacements of < and > in code_blocks,
@@ -43,7 +55,7 @@ def html_code(filestr, code_blocks, code_block_types,
                 language = 'text'
             lexer = get_lexer_by_name(language)
             formatter = HtmlFormatter(linenos=linenos, noclasses=True,
-                                      style='emacs')
+                                      style=pygm_style)
             result = highlight(code_blocks[i], lexer, formatter)
 
             # Fix ugly error boxes
@@ -297,7 +309,7 @@ def html_movie(m):
 
 def html_author(authors_and_institutions, auth2index,
                 inst2index, index2inst, auth2email):
-    text = '\n\n<! -- author(s) -->\n'
+    text = '\n\n<p>\n<! -- author(s) -->\n'
 
     def email(author):
         address = auth2email[author]
@@ -535,7 +547,7 @@ def define(FILENAME_EXTENSION,
         'paragraph':     r'<b>\g<subst></b> ',
         'abstract':      r'<b>\g<type>.</b> \g<text>\n\g<rest>',
         'title':         r'\n<title>\g<subst></title>\n\n<center><h1>\g<subst></h1></center>  <! -- document title -->\n',
-        'date':          r'<center><h4>\g<subst></h4></center> <!-- date -->',
+        'date':          r'<p>\n<center><h4>\g<subst></h4></center> <!-- date -->',
         'author':        html_author,
         'figure':        html_figure,
         'movie':         html_movie,

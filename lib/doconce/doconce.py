@@ -517,7 +517,7 @@ def insert_code_from_file(filestr, format):
             elif filetype in ('csh', 'ksh', 'zsh', 'tcsh'):
                 filetype = 'sh'
             if filetype in ('py', 'f', 'c', 'cpp', 'sh',
-                            'm', 'pl', 'cy'):
+                            'm', 'pl', 'cy', 'rst'):
                 code_envir = filetype
             else:
                 code_envir = ''
@@ -2047,7 +2047,8 @@ def main():
 
     options = ['--debug', '--skip_inline_comments', '--encoding=',
                '--oneline_paragraphs', '--no-mako', '--no-preprocess',
-               '--no-pygments-html', '--pygments-html-linenos',
+               '--no-pygments-html', '--minted-latex-style=',
+               '--pygments-html-style=', '--pygments-html-linenos',
                '--html-solarized', '--latex-printed'
                ]
 
