@@ -53,6 +53,7 @@ def define(FILENAME_EXTENSION,
            CROSS_REFS,
            INDEX_BIB,
            TOC,
+           ENVIRS,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)

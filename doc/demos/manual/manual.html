@@ -79,6 +79,7 @@ $$
 
 <center><h1>Doconce Description</h1></center>  <! -- document title -->
 
+<p>
 <! -- author(s) -->
 
 <center>
@@ -93,7 +94,8 @@ $$
 <center>[2] <b>University of Oslo</b></center>
 
 
-<center><h4>Nov 21, 2012</h4></center> <!-- date -->
+<p>
+<center><h4>Dec 9, 2012</h4></center> <!-- date -->
 <p>
 
 <!-- lines beginning with # are comment lines -->
@@ -1532,11 +1534,30 @@ That is, a simple "movie viewer" for the frames is made.
 
 <p>
 Many publish their scientific movies on YouTube, and Doconce recognizes
-YouTube URLs as movies. When the output is an HTML file, the movie will
+YouTube URLs as movies. When the output from Doconce
+is an HTML file, the movie will
 be embedded, otherwise a URL to the YouTube page is inserted.
 You should equip the <tt>MOVIE:</tt> command with the right width and height
-of embedded YouTube movies (the parameters appear when you request
-the embedded HTML code for the movie on the YouTube page).
+of <em>embedded</em> YouTube movies. The recipe goes as follows:
+
+<p>
+
+<ol>
+<li> click on <em>Share</em> and then <em>Embed</em></li>
+<li> copy the URL for the embedded movie</li>
+<li> note the height and width of the embedded movie</li>
+</ol>
+
+A typical <tt>MOVIE</tt> command with a YouTube movie is then
+
+<p>
+<blockquote>    <!-- begin verbatim block -->
+<pre>
+MOVIE: [http://www.youtube.com/embed/sI2uCHH3qIM, width=420 height=315]
+</pre>
+</blockquote>   <! -- end verbatim block -->
+Doconce will be able to embed standard YouTube URLs also, but then
+the width and height might be inappropriate.
 
 <p>
 

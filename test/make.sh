@@ -1,7 +1,7 @@
 #!/bin/sh -x
 rm -rf html_images reveal.js
 
-doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized
+doconce format html testdoc.do.txt --pygments-html-linenos --html-solarized --pygments-html-style=emacs
 doconce remove_exercise_answers testdoc.html
 doconce html_colorbullets testdoc.html
 doconce split_html testdoc.html
@@ -25,8 +25,9 @@ cp testdoc.tex testdoc.tex_ptex2tex
 
 # -DBOOK will not work for latex/pdflatex since we have an abstract,
 # but here we just use the translated text for testing, not latex compiling
-doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\end{Verbatim}\end{quote} pypro=ans:nt envir=minted
-cp testdoc.tex testdoc.tex_doconce_ptex2tex
+doconce ptex2tex testdoc -DBOOK -DPALATINO sys=\begin{quote}\begin{Verbatim}@\end{Verbatim}\end{quote} pypro=ans:nt envir=minted > testdoc.tex_doconce_ptex2tex
+echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.tex_doconce_ptex2tex
+cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 
 doconce format plain testdoc.do.txt
 doconce format st testdoc.do.txt
@@ -54,7 +55,7 @@ doconce format pandoc testdoc.do.txt
 pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 
 # Test slides
-doconce format html slides
+doconce format html slides --pygments-html-style=emacs
 doconce slides_html slides reveal
 mv -f slides.html slides_reveal.html
 
@@ -66,7 +67,7 @@ doconce grab --from- '\*\s+\$.+normally' testdoc.do.txt >> testdoc.tmp
 # Test html templates
 doconce format html html_template --html-template=template1.html --no-pygments-html
 cp html_template.html html_template1.html
-doconce format html html_template --html-template=template_inf1100.html
+doconce format html html_template --html-template=template_inf1100.html  --pygments-html-style=emacs
 
 # Test author special case and generalized references
 doconce format html author1

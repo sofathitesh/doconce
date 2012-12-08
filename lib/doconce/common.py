@@ -399,6 +399,7 @@ INTRO = {}
 OUTRO = {}
 EXERCISE = {}
 TOC = {}
+ENVIRS = {}
 
 
 # regular expressions for inline tags:

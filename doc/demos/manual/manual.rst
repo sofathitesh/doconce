@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Nov 21, 2012
+:Date: Dec 9, 2012
 
 .. lines beginning with # are comment lines
 
@@ -1282,12 +1282,25 @@ is generated, and a link to this file is inserted in the output document.
 That is, a simple "movie viewer" for the frames is made.
 
 Many publish their scientific movies on YouTube, and Doconce recognizes
-YouTube URLs as movies. When the output is an HTML file, the movie will
+YouTube URLs as movies. When the output from Doconce
+is an HTML file, the movie will
 be embedded, otherwise a URL to the YouTube page is inserted.
 You should equip the ``MOVIE:`` command with the right width and height
-of embedded YouTube movies (the parameters appear when you request
-the embedded HTML code for the movie on the YouTube page).
+of *embedded* YouTube movies. The recipe goes as follows:
 
+1. click on *Share* and then *Embed*
+
+2. copy the URL for the embedded movie
+
+3. note the height and width of the embedded movie
+
+A typical ``MOVIE`` command with a YouTube movie is then::
+
+
+        MOVIE: [http://www.youtube.com/embed/sI2uCHH3qIM, width=420 height=315]
+
+Doconce will be able to embed standard YouTube URLs also, but then
+the width and height might be inappropriate.
 
 
 Copying Computer Code from Source Files

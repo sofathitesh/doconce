@@ -1867,7 +1867,7 @@ def ptex2tex():
                 latexenvir2package[latexenvir] = package
         else: # str
             latexenvir2package[package2envir[package]] = package
-    #print 'envir_user_spec:'
+    #print 'envir_user_spec:' #
     #import pprint; pprint.pprint(envir_user_spec)
     #print 'latex2envir2package:'; pprint.pprint(latexenvir2package)
     # Run through user's specifications and grab latexenvir from
@@ -1928,10 +1928,8 @@ Download preprocess from http://code.google.com/p/preprocess
             print '%s (!bc %s) -> %s' % (ptex2tex_begin, envir, begin)
 
     # Replace other known ptex2tex environments by a default choice
-    begin = r"""\begin{quote}
-\begin{verbatim}"""
-    end = r"""\end{verbatim}
-\end{quote}"""
+    begin = r"""\begin{quote}\begin{verbatim}"""
+    end = r"""\end{verbatim}\end{quote}"""
     for envir in envirs:
         ptex2tex_begin = '\\' + 'b' + envir
         ptex2tex_end = '\\' + 'e' + envir
@@ -1967,7 +1965,7 @@ Download preprocess from http://code.google.com/p/preprocess
                     os.remove(datafile)
 
     if 'minted' in packages:
-        failure, output = commands.getstatusoutput('pygments')
+        failure, output = commands.getstatusoutput('pygmentize')
         if failure:
             print 'You have requested the minted latex style, but this'
             print 'requires the pygments package to be installed. On Debian/Ubuntu:'

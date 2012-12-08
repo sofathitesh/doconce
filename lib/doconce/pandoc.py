@@ -219,6 +219,7 @@ def define(FILENAME_EXTENSION,
            CROSS_REFS,
            INDEX_BIB,
            TOC,
+           ENVIRS,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -252,10 +253,13 @@ def define(FILENAME_EXTENSION,
         'paragraph':     r'*\g<subst>* ',  # extra blank
         'abstract':      r'*\g<type>.* \g<text>\n\n\g<rest>',
         'comment':       '<!-- %s -->',
-        '!quote':        pandoc_quote,
         }
 
     CODE['pandoc'] = pandoc_code
+    ENVIRS['pandoc'] = {
+        'quote':        pandoc_quote,
+        }
+
     from common import DEFAULT_ARGLIST
     ARGLIST['pandoc'] = DEFAULT_ARGLIST
     LIST['pandoc'] = {

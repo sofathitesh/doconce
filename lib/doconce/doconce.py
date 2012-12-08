@@ -37,11 +37,18 @@ for module in html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki,
                   CROSS_REFS,
                   INDEX_BIB,
                   TOC,
+                  ENVIRS,
                   INTRO,
                   OUTRO)
 
 def supported_format_names():
     return 'html', 'latex', 'pdflatex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'mwiki', 'cwiki', 'pandoc'
+
+def doconce_envirs():
+    return ['c', 't',  # verbatim and tex blocks
+            'ans', 'sol', 'subex', 'pop', 'slidecell',
+            'quote', 'notes', 'hint', 'remarks', 'notice',
+            'important', 'warning', 'tip']
 
 #----------------------------------------------------------------------------
 # Translators: (do not include, use import as shown above)
@@ -72,15 +79,18 @@ def fix(filestr, format, verbose=0):
 
     for fig in figs:
         caption = fig[3]
-        if '\n' in caption.strip():  # multiline caption?
-            caption1 = caption.replace('\n', ' ') + '\n'
-            filestr = filestr.replace(caption, caption1)
-            num_fixes += 1
-            if verbose > 0:
-                print '\nFIX: multi-line caption\n\n%s\n-- fixed to one line' % caption
+        if '\n' in caption.strip():   # multiline caption?
+            if not '!ec' in caption:  # avoid verbatim block...
+                caption1 = caption.replace('\n', ' ') + '\n'
+                filestr = filestr.replace(caption, caption1)
+                num_fixes += 1
+                if verbose > 0:
+                    print '\nFIX: multi-line caption\n\n%s\n-- fixed to one line' % caption
 
     # Space before commands that should begin in 1st column at a line?
-    commands = 'FIGURE MOVIE TITLE AUTHOR DATE TOC BIBFILE !bt !et !bc !ec !bhint !ehint !bans !eans !bsol !esol !bsubex !esubex'.split()
+    commands = 'FIGURE MOVIE TITLE AUTHOR DATE TOC BIBFILE'.split()
+    commands += ['!b' + envir for envir in doconce_envirs()]
+    commands += ['!e' + envir for envir in doconce_envirs()]
     for command in commands:
         pattern = r'^ +' + command
         m = re.search(pattern, filestr, flags=re.MULTILINE)
@@ -104,9 +114,7 @@ def syntax_check(filestr, format):
 
     filestr = fix(filestr, format, verbose=1)
 
-    envirs = ['c', 't', 'ans', 'sol', 'hint', 'subex', 'notes',
-              'pop', 'slidecell', 'remarks']
-    begin_end_consistency_checks(filestr, envirs)
+    begin_end_consistency_checks(filestr, doconce_envirs())
 
     # Check that headings have consistent use of = signs
     for line in filestr.splitlines():
@@ -116,7 +124,7 @@ def syntax_check(filestr, format):
                 print '\ninconsistent no of = in heading:\n', line
                 _abort()
 
-    for envir in envirs:
+    for envir in doconce_envirs():
         pattern = re.compile(r'^ +![eb]%s' % envir, re.MULTILINE)
         m = pattern.search(filestr)
         if m:
@@ -986,18 +994,29 @@ def typeset_tables(filestr, format):
     return result.getvalue()
 
 def typeset_envirs(filestr, format):
-    envirs = ['quote',]
+    # Note: exercises are done (and translated to doconce syntax)
+    # before this function is called
+    envirs = doconce_envirs()[7:]
 
     for envir in envirs:
-        tag = '!'+envir
-        if tag in INLINE_TAGS_SUBST[format]:
+        if format in ENVIRS and envir in ENVIRS[format]:
             def subst(m):  # m: match object from re.sub
-                return INLINE_TAGS_SUBST[format][tag](m.group(1), format)
+                return ENVIRS[format][envir](m.group(1), format)
         else:
-            # default handling
+            # subst functions for default handling
             if envir == 'quote':
                 def subst(m):
                     return indent_lines(m.group(1), format, ' '*4) + '\n\n'
+            elif envir in ['warning', 'tip', 'hint', 'notice', 'important',
+                           'remarks']:
+                # Just a plan paragraph with paragraph heading
+                def subst(m):
+                    return '\n\n__%s.__ %s\n' % (envir[0].upper() + envir[1:],
+                                                 m.group(1))
+            elif envir == 'notes':
+                # Remove all text in notes
+                def subst(m):
+                    return ''
 
         pattern = r'^!b%s\s*(.+?)\s*^!e%s\s*' % (envir, envir)
         cpattern = re.compile(pattern, re.DOTALL | re.MULTILINE)

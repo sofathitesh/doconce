@@ -621,6 +621,47 @@ def latex_quote(block, format):
 \end{quote}
 """ % (indent_lines(block, format, ' '*4))
 
+def latex_notes(block, format):
+    # Set notes in comments
+    return r"""
+%s
+""" % (indent_lines(block, format, '% '))
+
+def _latex_admonition(admon, admon_name, figname, rgb):
+    if isinstance(rgb[0], (float,int)):
+        rgb = [str(v) for v in rgb]
+    text = '''
+def latex_%s(block, format):
+    # Extract graphics file from latex_figs.zip
+    ext = '.eps' if format == 'latex' else '.png'
+    figname = figname + ext
+    return r"""
+\definecolor{%sbackground}{rgb}{%s}
+\setlength{\fboxrule}{2pt}
+\begin{center}
+\fcolorbox{black}{%sbackground}{
+\begin{minipage}{0.8\textwidth}
+\includegraphics[height=0.3in]{%s}
+\vskip-0.3in\hskip1.5in{\large\bf %s} \\[0.2cm]
+%%s
+\end{minipage}}
+\end{center}
+\setlength{\fboxrule}{0.4pt} %% Back to default
+""" %% block
+''' % (admon, admon, ', '.join(rgb), admon, figname, admon_name)
+    return text
+
+_admon2rgb = dict(warning=(1.0, 0.8235294, 0.8235294),   # pink
+                  tip=(0.87843, 0.95686, 1.0),           # light blue
+                  notice=(0.988235, 0.964706, 0.862745),
+                  important=(1.0, 0.8235294, 0.8235294), # pink
+                  hint=(0.87843, 0.95686, 1.0),          # light blue
+                  )
+for _admon in ['warning', 'tip', 'hint', 'notice', 'important']:
+    exec(_latex_admonition(_admon, _admon.upper(),
+                           _admon, _admon2rgb[_admon]))
+# figures are not yet done...[[[
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -634,6 +675,7 @@ def define(FILENAME_EXTENSION,
            CROSS_REFS,
            INDEX_BIB,
            TOC,
+           ENVIRS,
            INTRO,
            OUTRO):
     # all arguments are dicts and accept in-place modifications (extensions)
@@ -724,12 +766,21 @@ def define(FILENAME_EXTENSION,
         'figure':        latex_figure,
         'movie':         latex_movie,
         'comment':       '%% %s',
-        '!quote':        latex_quote,
         }
     # should be configureable:
     # [tex]
     # verbatim = \code{, }
     # verbatim = \verb!, !
+
+    ENVIRS['latex'] = {
+        'quote':         latex_quote,
+        'warning':       latex_warning,
+        'tip':           latex_tip,
+        'notice':        latex_notice,
+        'hint':          latex_hint,
+        'important':     latex_important,
+        'notes':         latex_notes,
+       }
 
     ending = '\n'
     ending = '\n\n\\noindent\n'
