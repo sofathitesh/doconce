@@ -821,6 +821,7 @@ def define(FILENAME_EXTENSION,
 \usepackage{ptex2tex}
 % #ifdef MINTED
 \usepackage{minted}  % requires latex/pdflatex -shell-escape (to run pygments)
+\usemintedstyle{default}
 % #endif
 
 % #ifdef HELVETICA
@@ -881,6 +882,13 @@ def define(FILENAME_EXTENSION,
 % #endif
 
 """
+    pygm_style = 'default'
+    for arg in sys.argv[1:]:
+        if arg.startswith('--minted-latex-style='):
+           pygm_style = arg.split('=')[1]
+           INTRO['latex'] = INTRO['latex'].replace('usemintedstyle{default}',
+                                           'usemintedstyle{%s}' % pygm_style)
+
     newcommands_files = [name for name in glob.glob('newcommands*.tex')
                          if not name.endswith('.p.tex')]
     for filename in newcommands_files:

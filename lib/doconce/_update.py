@@ -9,9 +9,9 @@ def system(cmd):
 def zip_dir(dirname):
     if not os.path.isdir('tmp'):
         os.mkdir('tmp')
-    system('mv -f %s/.git tmp/' % dirname)
+    os.system('mv -f %s/.git tmp/' % dirname)  # tolerate failure if no .git
     system('zip -r %s.zip %s' % (dirname, dirname))
-    system('mv tmp/.git %s/' % dirname)
+    os.system('mv -f tmp/.git %s/' % dirname)  # tolerate failure if no .git
 
 if __name__ == '__main__':
     # (important to not execute anything for epydoc)
@@ -21,7 +21,8 @@ if __name__ == '__main__':
 
     # pack zip files distributed as data with doconce
     ##system('zip -r sphinx_themes.zip sphinx_themes')
-    os.chdir('html_software')
+    software_dir = 'misc_software'
+    os.chdir(software_dir)
     system('zip -r html_images.zip html_images')
     if not os.path.isdir('reveal.js'):
         system('git clone git://github.com/hakimel/reveal.js.git')
@@ -30,11 +31,13 @@ if __name__ == '__main__':
     os.system('cp doconce_modifications/reveal/css/reveal*.css reveal.js/css/')
     os.system('cp doconce_modifications/reveal/css/theme/*.css reveal.js/css/theme/')
     zip_dir('reveal.js')
+
     if not os.path.isdir('csss'):
         system('git clone git://github.com/LeaVerou/csss.git')
     else:
         system('cd csss; git pull origin master; cd ..')
     zip_dir('csss')
+
     if not os.path.isdir('deck.js'):
         system('git clone git://github.com/imakewebthings/deck.js.git')
     else:
@@ -79,8 +82,15 @@ if __name__ == '__main__':
         system('cd deck.annotate.js; git pull origin master; cd ..')
     system('cp -r deck.annotate.js deck.js/extensions/')
 
+    os.system('cp doconce_modifications/deck/core/*.css deck.js/core/')
+    #os.system('cp doconce_modifications/deck/themes/style/*.css deck.js/themes/style/')
+
     system("find deck.js/extensions -name '.git' -exec rm -rf {} \;")
     zip_dir('deck.js')
+
+    # minted.sty and anslistings.sty are not copied every time, get
+    # the latest versions from ptex2tex (manually)
+    zip_dir('latex_styles')
 
     """
     # No need to pack these - the styles and scripts are embedded
