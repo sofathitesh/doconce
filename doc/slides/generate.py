@@ -25,23 +25,29 @@ light_pygments = ['default', 'manni', 'autumn', 'perldoc', 'emacs']
 
 system('sh clean.sh')
 
-def generate(name):
+def generate(name, many_pygments=False):
     for slide_system in themes:
         for theme in themes[slide_system]:
+            shutil.copy('%s.do.txt' % name, 'tmp1.do.txt')
+            system('doconce replace XXX %s tmp1.do.txt' % (slide_system))
+            system('doconce replace YYY %s tmp1.do.txt' % (theme))
             if theme in dark_styles:
-                pygm_style = dark_pygments[0]
+                pygm_styles = dark_pygments
             else:
-                pygm_style = 'default'
-            system('doconce replace XXX %s %s.do.txt' % (slide_system, name))
-            system('doconce replace YYY %s %s.do.txt' % (theme, name))
-            system('doconce replace ZZZ %s %s.do.txt' % (pygm_style, name))
+                pygm_styles = light_pygments
+            if not many_pygments:
+                pygm_styles = pygm_styles[:1]
 
-            system('doconce format html %s --pygments-html-style=%s' %
-                   (name, pygm_style))
-            system('doconce slides_html %s %s --html-slide-theme=%s' %
-                   (name, slide_system, theme))
-            shutil.copy('%s.html' % name, '%s_%s_%s_%s.html' %
-                        (name, slide_system, theme, pygm_style))
+            pygm_styles += ['none']  # plain <pre> too for code
+            for pygm_style in pygm_styles:
+                system('doconce replace ZZZ %s tmp1.do.txt' % (pygm_style))
+
+                system('doconce format html tmp1 --pygments-html-style=%s' %
+                       (pygm_style))
+                system('doconce slides_html tmp1 %s --html-slide-theme=%s' %
+                       (slide_system, theme))
+                shutil.copy('tmp1.html', '%s_%s_%s_%s.html' %
+                            (name, slide_system, theme, pygm_style))
             #sys.exit(0)
 
 generate('demo')

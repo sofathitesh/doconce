@@ -29,10 +29,14 @@ def html_code(filestr, code_blocks, code_block_types,
             if arg.startswith('--pygments-html-style='):
                 pygm_style = arg.split('=')[1]
                 legal_styles = list(get_all_styles())
+                legal_styles += ['no', 'none']
                 if pygm_style not in legal_styles:
-                    print 'pygments style "%s" is not legal, must be among\n%s' % (', '.join(legal_styles))
-                    print 'will use the default style...'
+                    print 'pygments style "%s" is not legal, must be among\n%s' % (pygm_style, ', '.join(legal_styles))
+                    #sys.exit(1)
+                    print 'using the default style...'
                     pygm_style = 'default'
+                if pygm_style in ['no', 'none']:
+                    pygm = None
 
         linenos = '--pygments-html-linenos' in sys.argv
 
@@ -58,6 +62,8 @@ def html_code(filestr, code_blocks, code_block_types,
                                       style=pygm_style)
             result = highlight(code_blocks[i], lexer, formatter)
 
+            result = '<!-- code typeset with pygments style "%s" -->\n' \
+                     % pygm_style + result
             # Fix ugly error boxes
             result = re.sub(r'<span style="border: 1px .*?">(.+?)</span>',
                             '\g<1>', result)
@@ -86,7 +92,7 @@ def html_code(filestr, code_blocks, code_block_types,
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
         filestr = c.sub(r'<p>\n\n', filestr)
         filestr = re.sub(r'!ec\n', r'<p>\n', filestr)
-        debugpr('Hei3\n%s' % filestr)
+        debugpr('\n\nAfter replacement of !bc and !ec\n%s' % filestr)
     else:
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
         # Do not use <code> here, it gives an extra line at the top
