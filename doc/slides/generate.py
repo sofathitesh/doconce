@@ -18,13 +18,20 @@ themes = dict(
     dzslides=None,
     )
 
+dark_deck_styles = dict(
+    dark_deck=['neon', 'sandstone.aurora', 'sandstone.dark',
+               'sandstone.mdn', 'sandstone.nightly'],
+    dark_pygments=['monokai', 'fruity', 'native'])
+
+light_pygments = ['default', 'manni', 'autumn', 'perldoc', 'emacs']
+
 system('sh clean.sh')
 
 for slide_system in themes:
     if themes[slide_system] is not None:
         for theme in themes[slide_system]:
-            system('doconce format html demo')
-            system('doconce slides_html demo %s --html-slide-theme=%s --reveal-doconce' %
+            system('doconce format html demo --pygments-html-style=default')
+            system('doconce slides_html demo %s --html-slide-theme=%s' %
                       (slide_system, theme))
             shutil.copy('demo.html', 'demo_%s_%s.html' % (slide_system, theme))
             #sys.exit(0)
