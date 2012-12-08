@@ -14,29 +14,34 @@ themes = dict(
           'sandstone.dark', 'sandstone.default', 'sandstone.firefox',
           'sandstone.light', 'sandstone.mdn', 'sandstone.nightly',
           'beamer'],
-    csss=None,
-    dzslides=None,
+    csss=['default'],
+    dzslides=['default'],
     )
 
-dark_deck_styles = dict(
-    dark_deck=['neon', 'sandstone.aurora', 'sandstone.dark',
-               'sandstone.mdn', 'sandstone.nightly'],
-    dark_pygments=['monokai', 'fruity', 'native'])
-
+dark_styles = ['night', 'neon', 'sandstone.aurora', 'sandstone.dark',
+               'sandstone.mdn', 'sandstone.nightly']
+dark_pygments=['monokai', 'fruity', 'native']
 light_pygments = ['default', 'manni', 'autumn', 'perldoc', 'emacs']
 
 system('sh clean.sh')
 
-for slide_system in themes:
-    if themes[slide_system] is not None:
+def generate(name):
+    for slide_system in themes:
         for theme in themes[slide_system]:
-            system('doconce format html demo --pygments-html-style=default')
-            system('doconce slides_html demo %s --html-slide-theme=%s' %
-                      (slide_system, theme))
-            shutil.copy('demo.html', 'demo_%s_%s.html' % (slide_system, theme))
-            #sys.exit(0)
-    else:
-        system('doconce format html demo')
-        system('doconce slides_html demo %s' % slide_system)
-        shutil.copy('demo.html', 'demo_%s.html' % slide_system)
+            if theme in dark_styles:
+                pygm_style = dark_pygments[0]
+            else:
+                pygm_style = 'default'
+            system('doconce replace XXX %s %s.do.txt' % (slide_system, name))
+            system('doconce replace YYY %s %s.do.txt' % (theme, name))
+            system('doconce replace ZZZ %s %s.do.txt' % (pygm_style, name))
 
+            system('doconce format html %s --pygments-html-style=%s' %
+                   (name, pygm_style))
+            system('doconce slides_html %s %s --html-slide-theme=%s' %
+                   (name, slide_system, theme))
+            shutil.copy('%s.html' % name, '%s_%s_%s_%s.html' %
+                        (name, slide_system, theme, pygm_style))
+            #sys.exit(0)
+
+generate('demo')
