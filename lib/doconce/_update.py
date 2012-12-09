@@ -7,11 +7,8 @@ def system(cmd):
         print 'could not run\n%s\in%s' % (cmd, os.getcwd())
 
 def zip_dir(dirname):
-    if not os.path.isdir('tmp'):
-        os.mkdir('tmp')
-    os.system('mv -f %s/.git tmp/' % dirname)  # tolerate failure if no .git
+    os.system('rm -rf %s/.git' % dirname)  # remove .git, all will be removed...
     system('zip -r %s.zip %s' % (dirname, dirname))
-    os.system('mv -f tmp/.git %s/' % dirname)  # tolerate failure if no .git
 
 if __name__ == '__main__':
     # (important to not execute anything for epydoc)
@@ -32,6 +29,7 @@ if __name__ == '__main__':
 
     shutil.rmtree('csss')
     system('git clone git://github.com/LeaVerou/csss.git')
+    os.system('cp doconce_modifications/csss/*.css csss/')
     zip_dir('csss')
 
     shutil.rmtree('deck.js')

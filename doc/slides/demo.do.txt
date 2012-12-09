@@ -1,6 +1,6 @@
 
 TITLE: On Schemes for Exponential Decay
-AUTHOR: Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo.
+AUTHOR: Hans Petter Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
 DATE: today
 
 !split
@@ -71,11 +71,6 @@ Numerical scheme:
 !et
 !epop
 
-!bpop
-$\theta=0$: Forward Euler, $\theta=1$: Backward Euler,
-$\theta=1/2$: Crank-Nicolson
-!epop
-
 !split
 
 # Purpose: section with computer code taken from a part of
@@ -92,29 +87,6 @@ The numerical method is implemented in a Python function:
 (pygments style "ZZZ")
 !split
 
-# Purpose: section with figures.
-
-======= Numerical experiments =======
-
-idx{numerical experiments}
-
-  * $I$, $a$, and $T$ are fixed
-  * $\Delta t$ and $\theta$ are varied
-
-Here: $I=1$, $a=2$, $\Delta t = 1.25, 0.75, 0.5, 0.1$.
-
-!split
-
-# Purpose: subsection with inline figure (figure without caption).
-
-===== The Backward Euler method =====
-
-idx{BE}
-
-FIGURE: [fig/BE.png, width=600]
-
-
-!split
 
 # Purpose: subsection with inline figure (figure without caption).
 
@@ -124,27 +96,6 @@ idx{CN}
 
 FIGURE: [fig/CN.png, width=600]
 
-
-!split
-
-# Purpose: subsection with inline figure (figure without caption).
-
-===== The Forward Euler method =====
-
-idx{FE}
-
-FIGURE: [fig/FE.png, width=600]
-
-
-!split
-
-# Purpose: exemplify referring to a figure with label and caption.
-
-===== Error vs $\Delta t$ =====
-
-idx{error vs time step}
-
-FIGURE: [fig/e_vs_dt, width=600]
 
 !split
 

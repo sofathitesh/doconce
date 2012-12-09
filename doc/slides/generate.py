@@ -26,8 +26,8 @@ light_pygments = ['default', 'manni', 'autumn', 'perldoc', 'emacs']
 system('sh clean.sh')
 
 def generate(name, many_pygments=False):
-    for slide_system in themes:
-        for theme in themes[slide_system]:
+    for slide_system in ['deck']: # themes:
+        for theme in dark_styles[1:]:  #themes[slide_system]:
             if theme in dark_styles:
                 pygm_styles = dark_pygments
             else:
@@ -50,4 +50,4 @@ def generate(name, many_pygments=False):
                             (name, slide_system, theme, pygm_style))
             #sys.exit(0)
 
-generate('demo')
+generate('demo', True)
