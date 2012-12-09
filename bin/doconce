@@ -2460,10 +2460,12 @@ def split_html():
     header, parts, footer = get_html_header_parts_footer(filename)
     doconce_html_split(header, parts, footer, basename, filename)
 
+
 def usage_slides_html():
     print 'Usage: doconce slides_html mydoc.html slide_type --html-slide-theme=themename [--reveal-doconce]'
     print 'slide_types: reveal|reveal.js deck|deck.js csss dzslides'
     print '--reveal-doconce applies doconce versions of themes (left-adjusted)'
+    print 'or:    doconce slides_html mydoc.html all  (generate a lot)'
 
 def slides_html():
     """
@@ -2506,6 +2508,7 @@ def slides_html():
     if not filename.endswith('.html'):
         filename += '.html'
     basename = os.path.basename(filename)
+    filestem = os.path.splitext(basename)[0]
 
     slide_type = sys.argv[2]
     header, parts, footer = get_html_header_parts_footer(filename)
@@ -2517,6 +2520,19 @@ def slides_html():
     elif slide_type in ('reveal', 'csss', 'dzslides', 'deck'):
         filestr = generate_slides(header, parts, footer, basename, filename,
                                   slide_type)
+    elif slide_type == 'all':
+         from doconce.misc import recommended_html_styles_and_pygments_styles
+         r = recommended_html_styles_and_pygments_styles()
+         f = open('tmp_slides_html_all.sh', 'w')
+         f.write('#!/bin/sh\n\n')
+         for sl_tp in r:
+             for style in r[sl_tp]:
+                 pygm_style = r[sl_tp][style][0]
+                 f.write('doconce format html %s --html-pygments-style=%s\ndoconce slides_html %s %s --html-slide-type=%s\ncp %s.html %s_%s_%s.html\n\n' % (filestem, pygm_style, filestem, sl_tp, style, filestem, filestem, sl_tp, style.replace('.', '_')))
+         f.write('echo "Here are the slide shows:"\n/bin/ls %s_*_*.html\n' % filestem)
+         print 'run\n  sh tmp_slides_html_all.sh\nto generate the slides'
+         #print 'names:', ' '.join(glob.glob('%s_*_*.html' % filestem))
+         return
     else:
         print 'unknown slide type "%s"' % slide_type
 
@@ -2683,8 +2699,8 @@ def generate_slides(header, parts, footer, basename, filename,
 <!--
 <link rel="stylesheet" href="reveal.js/css/reveal.css">
 <link rel="stylesheet" href="reveal.js/css/reveal.min.css">
-<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beigesmall.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
@@ -2748,7 +2764,7 @@ dependencies: [
             title=None,
             ),
         csss=dict(
-            default_theme='theme',
+            default_theme='csss_default',
             slide_envir_begin='<section class="slide">',
             slide_envir_end='</section>',
             notes='<p class="presenter-notes">\n\g<1>\n</p>',
@@ -2789,7 +2805,7 @@ for(var i=0; i<cssControls.length; i++) {
             title=None,
             ),
         dzslides=dict(
-            default_theme=None,  # just one theme in dzslides
+            default_theme='dzslides_default',  # just one theme in dzslides
             slide_envir_begin='<section>',
             slide_envir_end='</section>',
             #notes='<div role="note">\n\g<1>\n</div>',
@@ -3611,19 +3627,43 @@ git://github.com/barraq/deck.ext.js.git
             theme=None,
             title=None,
             ),
-        sometool2=dict(
-            default_theme='beige',
-            slide_envir_begin='<section>',
-            slide_envir_end='</section>',
-            notes='<aside class="notes">\n\g<1>\n</aside>',
-            pop=('fragment', 'li'),
+        html5slide=dict(
+            default_theme='template-default',  # template-io2011
+            slide_envir_begin='<article>',
+            slide_envir_end='</article>',
+            notes='',
+            pop=('build', 'ul'),
             head_header="""
-<!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
+<!-- Google HTML5 Slides:
+     http://code.google.com/p/html5slides/
+-->
+
+<meta charset='utf-8'>
+<script
+   src='http://html5slides.googlecode.com/svn/trunk/slides.js'>
+</script>
+
+</head>
+
+<style>
+/* Your individual styles here... */
+</style>
 """,
             body_header="""\
-<body>
+ <body style='display: none'>
+
+<!-- See http://code.google.com/p/html5slides/source/browse/trunk/styles.css
+     for definition of template-default and other styles -->
+
+<section class='slides layout-regular %(theme)s'>
+<!-- <section class='slides layout-regular template-io2011'> -->
+<!-- <section class='slides layout-regular template-default'> -->
+
+<!-- Slides are in <article> tags -->
+
 """,
             footer="""
+</section>
 """,
             theme=None,
             title=None,
@@ -3642,7 +3682,7 @@ git://github.com/barraq/deck.ext.js.git
         title = ''
     slide_syntax[slide_tp]['title'] = title
     slide_syntax[slide_tp]['theme'] = \
-       slide_syntax[slide_tp]['default_theme'] if theme == 'default' else theme
+       slide_syntax[slide_tp]['default_theme'] if theme.endswith('default') else theme
 
     # Fill in theme etc.
     slide_syntax[slide_tp]['head_header'] = \
@@ -3688,8 +3728,26 @@ MathJax.Hub.Config({
         part = ''.join(part)
         part = cinline_comment_pattern.sub(
                   slide_syntax[slide_tp]['notes'], part)
-        #if slide_tp not in ['dzslides']:
         part = part.replace('<li>', '<p><li>')  # more space between bullets
+
+        # Find pygments style
+        m = re.search(r'typeset with pygments style "(.+?)"', part)
+        pygm_style = m.group(1) if m else 'plain <pre>'
+        html_style = slide_syntax[slide_tp]['theme']
+        from doconce.misc import recommended_html_styles_and_pygments_styles
+        combinations = recommended_html_styles_and_pygments_styles()[slide_tp]
+        if html_style in combinations:
+            if not pygm_style in combinations[html_style]:
+                print 'WARNING: the pygments style "%s" is not recommended for "%s"!' % (pygm_style, html_style)
+                print "recommended styles are %s" % (', '.join(combinations[html_style]))
+
+        # Fix styles: native should have black background for neon and night
+        if slide_syntax[slide_tp]['theme'] in ['neon', 'night']:
+                if style == 'native':
+                    # Change to black background
+                    part = part.replace('background: #202020',
+                                        'background: #000000')
+
         # Pieces to pop up item by item as the user is clicking
         if '<!-- !bpop' in part:
             pattern = r'<!-- !bpop (.*?)-->(.+?)<!-- !epop.*?-->'

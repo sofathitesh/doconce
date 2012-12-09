@@ -3,11 +3,16 @@
 
 	@author Lea Verou
 	@version 1.0
+
+Modifications by Hans Petter Langtangen, hpl@simula.no.
 */
 
 /**
  * Variables
  */
+.slide h1 {
+        font-size: 200%;
+}
 .slide h2,
 section > header.slide > h1 {
 	font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -32,7 +37,8 @@ section > header.slide > h1 {
 }
 
 html {
-	background: black url(img/rainbow-wood.jpg) bottom center;
+	/** background: black url(img/rainbow-wood.jpg) bottom center;*/
+	background: black bottom center;
 	background-size: cover;
 }
 
@@ -112,20 +118,23 @@ strong, b {
 	.slide h2 {
 		font-family: 'Helvetica Neue', Helvetica, sans-serif;
 		font-weight: 100;
-		font-size: 1.8em;
+		font-size: 50px;
 	}
 
 	.slide h3 {
 		font-family: 'Helvetica Neue', Helvetica, sans-serif;
 		font-weight: 100;
-		font-size: 1.6em;
+		font-size: 40px;
 	}
 
 	.slide p,
 	.slide li {
-		font-weight: bold;
-		letter-spacing: -.03em;
+	        letter-spacing: -.03em;
+                font-size: 27px;
 	}
+        .slide p {
+                margin-top: 20px;
+        }
 
 	.slide > ul {
 		list-style:none;
