@@ -2539,7 +2539,7 @@ def slides_html():
     filestr = None
     if slide_type == 'doconce':
         doconce_html_split(header, parts, footer, basename, filename)
-    elif slide_type in ('reveal', 'csss', 'dzslides', 'deck'):
+    elif slide_type in ('reveal', 'csss', 'dzslides', 'deck', 'html5slides'):
         filestr = generate_slides(header, parts, footer, basename, filename,
                                   slide_type)
     else:
@@ -2685,7 +2685,7 @@ def doconce_html_split(header, parts, footer, basename, filename):
 
 def generate_slides(header, parts, footer, basename, filename,
                     slide_tp='reveal'):
-    if slide_tp not in ['dzslides',]:
+    if slide_tp not in ['dzslides', 'html5slides']:
         copy_datafiles(eval(slide_tp + '_files'))  # copy to subdir if needed
 
     slide_syntax = dict(
@@ -3636,7 +3636,7 @@ git://github.com/barraq/deck.ext.js.git
             theme=None,
             title=None,
             ),
-        html5slide=dict(
+        html5slides=dict(
             default_theme='template-default',  # template-io2011
             slide_envir_begin='<article>',
             slide_envir_end='</article>',
@@ -3696,6 +3696,8 @@ git://github.com/barraq/deck.ext.js.git
     # Fill in theme etc.
     slide_syntax[slide_tp]['head_header'] = \
            slide_syntax[slide_tp]['head_header'] % slide_syntax[slide_tp]
+    slide_syntax[slide_tp]['body_header'] = \
+           slide_syntax[slide_tp]['body_header'] % slide_syntax[slide_tp]
 
     slides = """\
 <!DOCTYPE html>
