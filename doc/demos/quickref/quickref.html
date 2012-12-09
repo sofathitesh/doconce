@@ -139,7 +139,7 @@ The best supported formats are <tt>latex</tt>, <tt>sphinx</tt>, <tt>html</tt>, a
 A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
 reads
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 TITLE: On an Ultimate Markup Language
 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
@@ -148,14 +148,14 @@ AUTHOR: A. Dummy Author
 DATE: today
 TOC: on
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The entire title must appear on a single line.
 The author syntax is
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 name Email: somename@adr.net at institution1 and institution2
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 where the email is optional, the "at" keyword is required if one or
 more institutions are to be specified, and the "and" keyword
 separates the institutions. Each author specification must appear
@@ -212,7 +212,7 @@ with <tt>*</tt>, <em>enumeration lists</em>, where each item starts with <tt>o</
 consqutive numbers,
 and <em>description</em> lists, where each item starts with <tt>-</tt> followed
 by a keyword and a colon.
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 Here is a bullet list:
 
@@ -243,7 +243,7 @@ And finally a description list:
    followed by text on the next line
  - keyword3: and its description may fit on one line
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The code above follows.
 
 <p>
@@ -317,19 +317,19 @@ inside the comment directives <tt>%<doc></tt> (beginning) and <tt><%doc/></tt> (
 Inline comments, in the text, that are meant as messages or notes to readers
 (authors in particular)
 are often useful and enabled by the syntax
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 [name: running text]
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 where <tt>name</tt> is the name or ID of an author or reader making the comment,
 and <tt>running text</tt> is the comment. There must be a space after the colon.
 Running
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 doconce format html mydoc.do.txt --skip_inline_comments
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 removes all such inline comments from the output. This feature makes it easy
 to turn on and off notes to readers and is frequently used while writing
 a document.
@@ -337,11 +337,11 @@ a document.
 <p>
 All inline comments to readers can also be physically
 removed from the Doconce source if desired:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 doconce remove_inline_comments mydoc.do.txt
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 This action is appropriate when all issues with such comments are resolved.
 
 <p>
@@ -349,11 +349,11 @@ This action is appropriate when all issues with such comments are resolved.
 <h3>Verbatim/Computer Code  <a name="___sec10"></a></h3>
 <p>
 Inline verbatim code is typeset within back-ticks, as in
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 Some sentence with `words in verbatim style`.
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 resulting in Some sentence with <tt>words in verbatim style</tt>.
 
 <p>
@@ -371,11 +371,11 @@ in programming <tt>X</tt>, where <tt>X</tt> may be <tt>py</tt> for Python,
 <tt>pl</tt> for Perl. For output in <tt>latex</tt> one can let <tt>xxx</tt> reflect any
 defined verbatim environment in the <tt>ptex2tex</tt> configuration file
 (<tt>.ptex2tex.cfg</tt>). For <tt>sphinx</tt> output one can insert a comment
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 that maps environments (<tt>xxx</tt>) onto valid language types for
 Pygments (which is what <tt>sphinx</tt> applies to typeset computer code).
 
@@ -388,13 +388,13 @@ kinds of verbatim output.
 <!-- When showing copy from file in !bc envir, intent a character - otherwise -->
 <!-- ptex2tex is confused and starts copying... -->
 Computer code can also be copied from a file:
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
  @@@CODE doconce_program.sh
  @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
  @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The <tt>@@@CODE</tt> identifier must appear at the very beginning of the line.
 The first specification copies the complete file <tt>doconce_program.sh</tt>.
 The second specification copies from the first line matching the <em>regular
@@ -440,11 +440,11 @@ LaTeX way with the mathematics surrounded by dollar signs, as in
 \( Ax=b \). To help increase readability in other formats than <tt>sphinx</tt>,
 <tt>latex</tt>, and <tt>pdflatex</tt>, inline mathematics may have a more human
 readable companion expression. The syntax is like
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 $\sin(\norm{\bf u})$|$sin(||u||)$
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
 expressions are surrounded by dollar signs. Plain text formats and HTML
@@ -456,7 +456,7 @@ Blocks of LaTeX mathematics are written within
 and
 <tt>!et</tt> ("begin/end TeX") directives.
 For example,
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 $$
 \begin{align*}
@@ -465,7 +465,7 @@ $$
 \end{align*}
 $$
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 will appear as
 $$
 \begin{align*}
@@ -516,14 +516,14 @@ the following rules are recommended:
 <h3>Figures and Movies  <a name="___sec12"></a></h3>
 <p>
 Figures and movies have almost equal syntax:
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
 
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 Note the mandatory comma after the figure/movie file.
 
 <p>
@@ -540,7 +540,7 @@ will display the individual frame files as a movie.
 <p>
 Combining several image files into one can be done by the
 <tt>convert</tt> and <tt>montage</tt> programs from the ImageMagick suite:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 montage file1.png file2.png ... file4.png -geometry +2+2  result.png
 montage file1.png file2.png -tile x1 result.png
@@ -548,7 +548,7 @@ montage file1.png file2.png -tile 1x result.png
 
 convert -background white file1.png file2.png +append tmp.png
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 Use <tt>+append</tt> for stacking left to right, <tt>-append</tt> for top to bottom.
 The positioning of the figures can be controlled by <tt>-gravity</tt>.
 
@@ -559,7 +559,7 @@ The positioning of the figures can be controlled by <tt>-gravity</tt>.
 <p>
 The table in the section <a href="#quick:sections">Section Types</a> was written with this
 syntax:
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 |----------------c--------|------------------c--------------------|
 |      Section type       |        Syntax                         |
@@ -571,7 +571,7 @@ syntax:
 | paragraph               | `__Heading.__`               (2 `_`)  |
 |-----------------------------------------------------------------|
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 Note that
@@ -600,11 +600,11 @@ Note that
 The notion of labels, references, citations, and an index is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 \label{name}
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 with no backslash
 preceding the label keyword! It is common practice to choose <tt>name</tt>
 as some hierarchical name, say <tt>a:b:c</tt>, where <tt>a</tt> and <tt>b</tt> indicate
@@ -613,20 +613,20 @@ some abbreviations for a section and/or subsection for the topic and
 
 <p>
 A reference to the label <tt>name</tt> is written as
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 ref{name}
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 again with no backslash before <tt>ref</tt>.
 
 <p>
 Single citations are written as
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 cite{name}
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 where <tt>name</tt> is a logical name
 of the reference (again, LaTeX writers must not insert a backslash).
 Bibliography citations often have <tt>name</tt> on the form
@@ -634,11 +634,11 @@ Bibliography citations often have <tt>name</tt> on the form
 <tt>YYYY</tt> is the year of the publication.
 Multiple citations at once is possible by separating the logical names
 by comma:
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 cite{name1,name2,name3}
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 The bibliography is specified by a line <tt>BIBFILE: name_bib.bib,
@@ -656,7 +656,7 @@ a reference with <tt>ref</tt> to have one formulation if the label is
 in the same document and another formulation if the reference is
 to an item in an external document. The syntax of a generalized
 reference is
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 ref[internal][cite][external]
 
@@ -667,7 +667,7 @@ ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
 &quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
 Doconce documents may include movies.
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The output from a generalized reference is the text <tt>internal</tt> if all
 <tt>ref{label}</tt> references in <tt>internal</tt> are references to labels in the
 present document. Otherwise, if cite is non-empty and the format is
@@ -683,11 +683,11 @@ documents.  If none of the two situations above applies, the
 Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 index{name}
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 It is recommended to place any index of this type outside
 running text, i.e., after (sub)section titles and in the space between
 paragraphs. Index specifications placed right before paragraphs also
@@ -704,7 +704,7 @@ transforming a <tt>.do.txt</tt> file to some format. Here is the
 list of capabilities:
 
 <p>
-<blockquote>    <!-- begin verbatim block  shpro-->
+<!-- begin verbatim block  shpro-->
 <pre>
 Usage: doconce command [optional arguments]
 commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
@@ -764,7 +764,7 @@ doconce list_labels doconcefile.do.txt | latexfile.tex
 doconce teamod name
 doconce assemble name master.do.txt
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 
@@ -793,7 +793,7 @@ An exercise, problem, or project sections contains certain <em>elements</em>:
 </ul>
 
 A typical sketch of a a problem without subexercises goes as follows:
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
 \label{problem:ellipsearea1}
@@ -813,12 +813,12 @@ Wikipedia has the formula for the curve.
 compute the integral.
 !ehint
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 An exercise with subproblems, answers and full solutions has this
 setup-up:
 
 <p>
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 ===== Exercise: Determine the Distance to the Moon =====
 \label{exer:moondist}
@@ -868,7 +868,7 @@ Here goes a full solution of the whole exercise.
 !esol
 
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 By default, answers, solutions, and hints are typeset as paragraphs.
 
 <p>
@@ -892,7 +892,7 @@ document, "comment out" a large portion of text, and to write format-specific
 constructions:
 
 <p>
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 # #include &quot;myotherdoc.do.txt&quot;
 
@@ -923,7 +923,7 @@ constructions:
 ....large portions of text...
 # #endif
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 With the <tt>mako</tt> preprocessor the if-else tests have slightly different syntax.
