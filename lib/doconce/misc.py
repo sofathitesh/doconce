@@ -6,7 +6,6 @@ def recommended_html_styles_and_pygments_styles():
     combinations = {
         'deck': {
         'neon': ['fruity', 'native'],
-        'night': ['fruity', 'native'],
         'sandstone.aurora': ['fruity'],
         'sandstone.dark': ['native', 'fruity'],
         'sandstone.mdn': ['fruity'],
@@ -24,12 +23,18 @@ def recommended_html_styles_and_pygments_styles():
         'beigesmall': ['perldoc',],
         'simple': ['autumn', 'default', 'perldoc'],
         'sky': ['default'],
+        'night': ['fruity', 'native'],
+        'darkgrey': ['native', 'monokai'],
         },
         'csss': {
         'csss_default': ['monokai'],
         },
         'dzslides': {
         'dzslides_default': ['autumn', 'default'],
+        },
+        'html5slides': {
+        'template-default': ['autumn', 'default'],
+        'template-io2011': ['autumn', 'default'],
         }
         }
     return combinations
