@@ -2511,6 +2511,28 @@ def slides_html():
     filestem = os.path.splitext(basename)[0]
 
     slide_type = sys.argv[2]
+
+    # Treat the special case of generating a script for generating
+    # all the different slide versions that are supported
+    if slide_type == 'all':
+         from doconce.misc import recommended_html_styles_and_pygments_styles
+         r = recommended_html_styles_and_pygments_styles()
+         f = open('tmp_slides_html_all.sh', 'w')
+         f.write('#!/bin/sh\n\n')
+         f.write('doconce format html %s\ndoconce slides_html %s doconce\n\n' %
+                 (filestem, filestem))
+         for sl_tp in r:
+             for style in r[sl_tp]:
+                 pygm_style = r[sl_tp][style][0]
+                 f.write('doconce format html %s --html-pygments-style=%s\ndoconce slides_html %s %s --html-slide-type=%s\ncp %s.html %s_%s_%s.html\n\n' % (filestem, pygm_style, filestem, sl_tp, style, filestem, filestem, sl_tp, style.replace('.', '_')))
+         f.write('echo "Here are the slide shows:"\n/bin/ls %s_*_*.html\n' % filestem)
+         print 'run\n  sh tmp_slides_html_all.sh\nto generate the slides'
+         #print 'names:', ' '.join(glob.glob('%s_*_*.html' % filestem))
+         return
+
+
+    # Create a slide presentation from the HTML file
+
     header, parts, footer = get_html_header_parts_footer(filename)
     parts = tablify(parts)
 
@@ -2520,19 +2542,6 @@ def slides_html():
     elif slide_type in ('reveal', 'csss', 'dzslides', 'deck'):
         filestr = generate_slides(header, parts, footer, basename, filename,
                                   slide_type)
-    elif slide_type == 'all':
-         from doconce.misc import recommended_html_styles_and_pygments_styles
-         r = recommended_html_styles_and_pygments_styles()
-         f = open('tmp_slides_html_all.sh', 'w')
-         f.write('#!/bin/sh\n\n')
-         for sl_tp in r:
-             for style in r[sl_tp]:
-                 pygm_style = r[sl_tp][style][0]
-                 f.write('doconce format html %s --html-pygments-style=%s\ndoconce slides_html %s %s --html-slide-type=%s\ncp %s.html %s_%s_%s.html\n\n' % (filestem, pygm_style, filestem, sl_tp, style, filestem, filestem, sl_tp, style.replace('.', '_')))
-         f.write('echo "Here are the slide shows:"\n/bin/ls %s_*_*.html\n' % filestem)
-         print 'run\n  sh tmp_slides_html_all.sh\nto generate the slides'
-         #print 'names:', ' '.join(glob.glob('%s_*_*.html' % filestem))
-         return
     else:
         print 'unknown slide type "%s"' % slide_type
 
@@ -3737,7 +3746,8 @@ MathJax.Hub.Config({
         from doconce.misc import recommended_html_styles_and_pygments_styles
         combinations = recommended_html_styles_and_pygments_styles()[slide_tp]
         if html_style in combinations:
-            if not pygm_style in combinations[html_style]:
+            if pygm_style != 'plain <pre>' and \
+               not pygm_style in combinations[html_style]:
                 print 'WARNING: the pygments style "%s" is not recommended for "%s"!' % (pygm_style, html_style)
                 print "recommended styles are %s" % (', '.join(combinations[html_style]))
 
