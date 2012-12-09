@@ -13913,8 +13913,8 @@ f2 = Fancy()
 <!--
 <link rel="stylesheet" href="reveal.js/css/reveal.css">
 <link rel="stylesheet" href="reveal.js/css/reveal.min.css">
-<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beigesmall.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
 <link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
@@ -14142,6 +14142,91 @@ dependencies: [
 </body>
 </html>
 
+************** File: tmp_slides_html_all.sh *****************
+#!/bin/sh
+
+doconce format html slides
+doconce slides_html slides doconce
+
+doconce format html slides --html-pygments-style=monokai
+doconce slides_html slides csss --html-slide-type=csss_default
+cp slides.html slides_csss_csss_default.html
+
+doconce format html slides --html-pygments-style=autumn
+doconce slides_html slides reveal --html-slide-type=simple
+cp slides.html slides_reveal_simple.html
+
+doconce format html slides --html-pygments-style=default
+doconce slides_html slides reveal --html-slide-type=sky
+cp slides.html slides_reveal_sky.html
+
+doconce format html slides --html-pygments-style=perldoc
+doconce slides_html slides reveal --html-slide-type=beige
+cp slides.html slides_reveal_beige.html
+
+doconce format html slides --html-pygments-style=perldoc
+doconce slides_html slides reveal --html-slide-type=beigesmall
+cp slides.html slides_reveal_beigesmall.html
+
+doconce format html slides --html-pygments-style=autumn
+doconce slides_html slides dzslides --html-slide-type=dzslides_default
+cp slides.html slides_dzslides_dzslides_default.html
+
+doconce format html slides --html-pygments-style=fruity
+doconce slides_html slides deck --html-slide-type=sandstone.mightly
+cp slides.html slides_deck_sandstone_mightly.html
+
+doconce format html slides --html-pygments-style=fruity
+doconce slides_html slides deck --html-slide-type=neon
+cp slides.html slides_deck_neon.html
+
+doconce format html slides --html-pygments-style=perldoc
+doconce slides_html slides deck --html-slide-type=sandstone.default
+cp slides.html slides_deck_sandstone_default.html
+
+doconce format html slides --html-pygments-style=native
+doconce slides_html slides deck --html-slide-type=sandstone.dark
+cp slides.html slides_deck_sandstone_dark.html
+
+doconce format html slides --html-pygments-style=default
+doconce slides_html slides deck --html-slide-type=sandstone.firefox
+cp slides.html slides_deck_sandstone_firefox.html
+
+doconce format html slides --html-pygments-style=emacs
+doconce slides_html slides deck --html-slide-type=sandstone.light
+cp slides.html slides_deck_sandstone_light.html
+
+doconce format html slides --html-pygments-style=fruity
+doconce slides_html slides deck --html-slide-type=sandstone.mdn
+cp slides.html slides_deck_sandstone_mdn.html
+
+doconce format html slides --html-pygments-style=default
+doconce slides_html slides deck --html-slide-type=mnml
+cp slides.html slides_deck_mnml.html
+
+doconce format html slides --html-pygments-style=autumn
+doconce slides_html slides deck --html-slide-type=web-2.0
+cp slides.html slides_deck_web-2_0.html
+
+doconce format html slides --html-pygments-style=fruity
+doconce slides_html slides deck --html-slide-type=night
+cp slides.html slides_deck_night.html
+
+doconce format html slides --html-pygments-style=autumn
+doconce slides_html slides deck --html-slide-type=swiss
+cp slides.html slides_deck_swiss.html
+
+doconce format html slides --html-pygments-style=fruity
+doconce slides_html slides deck --html-slide-type=sandstone.aurora
+cp slides.html slides_deck_sandstone_aurora.html
+
+doconce format html slides --html-pygments-style=autumn
+doconce slides_html slides deck --html-slide-type=beamer
+cp slides.html slides_deck_beamer.html
+
+echo "Here are the slide shows:"
+/bin/ls slides_*_*.html
+
 ************** File: make.sh *****************
 #!/bin/sh -x
 rm -rf html_images reveal.js
@@ -14201,8 +14286,9 @@ pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 
 # Test slides
 doconce format html slides --pygments-html-style=emacs
-doconce slides_html slides reveal
+doconce slides_html slides reveal --html-slide-type=beigesmall
 mv -f slides.html slides_reveal.html
+doconce slides_html slides all
 
 # Test grab
 doconce grab --from- '={9}' --to 'subroutine@' testdoc.do.txt > testdoc.tmp
@@ -28592,7 +28678,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 09 Dec 2012 (00:59)</center>
+<center>Sun, 09 Dec 2012 (17:11)</center>
 
 
 
@@ -28723,7 +28809,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 09 Dec 2012 (00:59)</center>
+<center>Sun, 09 Dec 2012 (17:11)</center>
 
 
 
@@ -75294,10 +75380,16 @@ output in testdoc.md
 + doconce format html slides --pygments-html-style=emacs
 translating doconce text in slides.do.txt to html
 output in slides.html
-+ doconce slides_html slides reveal
++ doconce slides_html slides reveal --html-slide-type=beigesmall
 made subdirectory reveal.js
+WARNING: the pygments style "emacs" is not recommended for "beige"!
+recommended styles are perldoc
 slides written to slides.html
 + mv -f slides.html slides_reveal.html
++ doconce slides_html slides all
+run
+  sh tmp_slides_html_all.sh
+to generate the slides
 + doconce grab --from- ={9} --to subroutine@ testdoc.do.txt
 + doconce grab --from Compute a Probability --to- drawing uniformly testdoc.do.txt
 + doconce grab --from- \*\s+\$.+normally testdoc.do.txt
