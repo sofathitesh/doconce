@@ -96,9 +96,9 @@ def html_code(filestr, code_blocks, code_block_types,
     else:
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
         # Do not use <code> here, it gives an extra line at the top
-        filestr = c.sub(r'<blockquote>    <!-- begin verbatim block \g<1>-->\n<pre>\n', filestr)
+        filestr = c.sub(r'<!-- begin verbatim block \g<1>-->\n<pre>\n', filestr)
         filestr = re.sub(r'!ec\n',
-                r'</pre>\n</blockquote>   <! -- end verbatim block -->\n',
+                r'</pre>\n<! -- end verbatim block -->\n',
                 filestr)
 
     MATH_TYPESETTING = 'MathJax'

@@ -1955,7 +1955,6 @@ Download preprocess from http://code.google.com/p/preprocess
                 filename = style + '.sty'
                 datafile = latexstyle_files  # global variable (latex_styles.zip)
                 if not os.path.isfile(filename):
-                    cmd = 'unzip %s %s' % (datafile, filename)
                     import doconce
                     doconce_dir = os.path.dirname(doconce.__file__)
                     doconce_datafile = os.path.join(doconce_dir, datafile)

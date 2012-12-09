@@ -627,14 +627,26 @@ def latex_notes(block, format):
 %s
 """ % (indent_lines(block, format, '% '))
 
+def _get_admon_figs(filename):
+    # Extract graphics file from latex_styles.zip, when needed
+    datafile = 'latex_styles.zip'
+    if not os.path.isfile(filename):
+        import doconce
+        doconce_dir = os.path.dirname(doconce.__file__)
+        doconce_datafile = os.path.join(doconce_dir, datafile)
+        shutil.copy(doconce_datafile, os.curdir)
+        import zipfile
+        zipfile.ZipFile(datafile).extract(filename)
+        os.remove(datafile)
+
 def _latex_admonition(admon, admon_name, figname, rgb):
     if isinstance(rgb[0], (float,int)):
         rgb = [str(v) for v in rgb]
     text = '''
 def latex_%s(block, format):
-    # Extract graphics file from latex_figs.zip
-    ext = '.eps' if format == 'latex' else '.png'
+    ext = '.eps' if format == 'latex' else '.pdf'
     figname = figname + ext
+    _get_admon_figs(figname)
     return r"""
 \definecolor{%sbackground}{rgb}{%s}
 \setlength{\fboxrule}{2pt}

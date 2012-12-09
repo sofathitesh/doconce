@@ -241,7 +241,7 @@ som examples.
 </ul>
 
 Here is an example of some simple text written in the Doconce format:
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 ===== A Subsection with Sample Text =====
 \label{my:first:sec}
@@ -286,7 +286,7 @@ Tables are also supperted, e.g.,
 
 # lines beginning with # are comment lines
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The Doconce text above results in the following little document:
 
 <p>
@@ -355,11 +355,11 @@ This results in a professional LaTeX typesetting, but in other formats
 the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like \( \nu = \sin(x) \) is
 typeset as
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 $\nu = \sin(x)$|$v = sin(x)$
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
 version of the formula.
 
@@ -382,7 +382,7 @@ for those who can read LaTeX syntax.
 <p>
 You can have blocks of computer code, starting and ending with
 <tt>!bc</tt> and <tt>!ec</tt> instructions, respectively. Such blocks look like
-<blockquote>    <!-- begin verbatim block  cod-->
+<!-- begin verbatim block  cod-->
 <pre>
 from math import sin, pi
 def myfunc(x):
@@ -391,7 +391,7 @@ def myfunc(x):
 import integrate
 I = integrate.trapezoidal(myfunc, 0, pi, 100)
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 A code block must come after some plain sentence (at least for successful
 output to <tt>sphinx</tt>, <tt>rst</tt>, and ASCII-close formats),
 not directly after a section/paragraph heading or a table.
@@ -406,11 +406,11 @@ configuration file <tt>.ptext2tex.cfg</tt>, while when filtering
 to Sphinx, one can have a comment line in the Doconce file for
 mapping the identifiers to legal language names for Sphinx (which equals
 the legal language names for Pygments):
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 By default, <tt>pro</tt> and <tt>cod</tt> are <tt>python</tt>, <tt>sys</tt> is <tt>console</tt>,
 while <tt>xpro</tt> and <tt>xcod</tt> are computer language specific for <tt>x</tt>
 in <tt>f</tt> (Fortran), <tt>c</tt> (C), <tt>cpp</tt> (C++), <tt>pl</tt> (Perl), <tt>m</tt> (Matlab),
@@ -488,26 +488,26 @@ for various formats of this document).
 <p>
 Transformation of a Doconce document <tt>mydoc.do.txt</tt> to various other
 formats applies the script <tt>doconce format</tt>:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format format mydoc.do.txt
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 or just
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format format mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The <tt>mako</tt> or <tt>preprocess</tt> programs are always used to preprocess the
 file first, and options to <tt>mako</tt> or <tt>preprocess</tt> can be added after the
 filename. For example,
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
 Terminal&gt; doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The variable <tt>FORMAT</tt> is always defined as the current format when
 running <tt>preprocess</tt>. That is, in the last example, <tt>FORMAT</tt> is
 defined as <tt>latex</tt>. Inside the Doconce document one can then perform
@@ -519,18 +519,18 @@ running <tt>preprocess</tt> and <tt>mako</tt>, respectively.
 
 <p>
 Inline comments in the text are removed from the output by
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format latex mydoc --skip_inline_comments
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 One can also remove all such comments from the original Doconce
 file by running:
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 Terminal&gt; doconce remove_inline_comments mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.
 
@@ -541,11 +541,11 @@ and comments by different authors should be removed.
 <p>
 Making an HTML version of a Doconce file <tt>mydoc.do.txt</tt>
 is performed by
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format html mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The resulting file <tt>mydoc.html</tt> can be loaded into any web browser for viewing.
 
 <p>
@@ -575,29 +575,29 @@ the text in the look and feel of a website. The template can be extracted
 from the source code of a page at the site; just insert <tt>%(title)s</tt> and
 <tt>%(date)s</tt> at appropriate places and replace the main bod of text
 by <tt>%(main)s</tt>. Here is an example:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 
 <h3>Pandoc and Markdown  <a name="___sec7"></a></h3>
 <p>
 Output in Pandoc's extended Markdown format results from
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format pandoc mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The name of the output file is <tt>mydoc.mkd</tt>.
 From this format one can go to numerous other formats:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 Pandoc supports <tt>latex</tt>, <tt>html</tt>, <tt>odt</tt> (OpenOffice), <tt>docx</tt> (Microsoft
 Word), <tt>rtf</tt>, <tt>texinfo</tt>, to mention some. The <tt>-R</tt> option makes
 Pandoc pass raw HTML or LaTeX to the output format instead of ignoring it,
@@ -612,13 +612,13 @@ There are two ways (experiment to find the best one for your document):
 <tt>doconce format latex</tt>, and then going from LaTeX to the desired format
 using <tt>pandoc</tt>.
 Here is an example on the latter strategy:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format latex mydoc
 Terminal&gt; doconce ptex2tex mydoc
 Terminal&gt; pandoc -f latex -t docx -o mydoc.docx mydoc.tex
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 When we go through <tt>pandoc</tt>, only single equations or <tt>align*</tt>
 environments are well understood.
 
@@ -632,12 +632,12 @@ Pandoc, it can be advantageous to go via LaTeX.
 Here is an example where we take a Doconce snippet (without title, author,
 and date), maybe with some unnumbered equations, and quickly generate
 HTML with mathematics displayed my MathJax:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format pandoc mydoc
 Terminal&gt; pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The <tt>-s</tt> option adds a proper header and footer to the <tt>mydoc.html</tt> file.
 This recipe is a quick way of makeing HTML notes with (some) mathematics.
 
@@ -654,11 +654,11 @@ Making a LaTeX file <tt>mydoc.tex</tt> from <tt>mydoc.do.txt</tt> is done in two
 <p>
 <b>Step 1.</b> Filter the doconce text to a pre-LaTeX form <tt>mydoc.p.tex</tt> for
 the <tt>ptex2tex</tt> program (or <tt>doconce ptex2tex</tt>):
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format latex mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 LaTeX-specific commands ("newcommands") in math formulas and similar
 can be placed in files <tt>newcommands.tex</tt>, <tt>newcommands_keep.tex</tt>, or
 <tt>newcommands_replace.tex</tt> (see the section <a href="#newcommands">Macros (Newcommands), Cross-References, Index, and Bibliography</a>).
@@ -672,29 +672,29 @@ associated with a footnote listing the complete web address (URL).
 
 <p>
 <b>Step 2.</b> Run <tt>ptex2tex</tt> (if you have it) to make a standard LaTeX file,
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; ptex2tex mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 In case you do not have <tt>ptex2tex</tt>, you may run a (very) simplified version:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce ptex2tex mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 Note that Doconce generates a <tt>.p.tex</tt> file with some preprocessor macros
 that can be used to steer certain properties of the LaTeX document.
 For example, to turn on the Helvetica font instead of the standard
 Computer Modern font, run
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; ptex2tex -DHELVETICA mydoc
 Terminal&gt; doconce ptex2tex mydoc -DHELVETICA  # alternative
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The title, authors, and date are by default typeset in a non-standard
 way to enable a nicer treatment of multiple authors having
 institutions in common. However, the standard LaTeX "maketitle" heading
@@ -734,14 +734,14 @@ new ones.
 Also the <tt>doconce ptex2tex</tt> command supports preprocessor directives
 for processing the <tt>.p.tex</tt> file. The command allows specifications
 of code environments as well. Here is an example:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce ptex2tex mydoc -DLATEX_HEADING=traditional \
           -DPALATINO -DA6PAPER \
           &quot;sys=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote}&quot; \
           fpro=minted fcod=minted shcod=Verbatim envir=ans:nt
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 Note that <tt>@</tt> must be used to separate the begin and end LaTeX
 commands, unless only the environment name is given (such as <tt>minted</tt>
 above, which implies <tt>\begin{minted}{fortran}</tt> and <tt>\end{minted}</tt> as
@@ -762,13 +762,13 @@ edited with the aid of the <tt>doconce replace</tt> and <tt>doconce subst</tt>
 commands. The former works with substituting text directly, while the
 latter performs substitutions using regular expressions.
 Here are two examples:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce replace 'section{' 'section*{' mydoc.tex
 Terminal&gt; doconce subst 'title\{(.+)Using (.+)\}' \
           'title{\g&lt;1&gt; \\\\ [1.5mm] Using \g&lt;2&gt;' mydoc.tex
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 A lot of tailored fixes to the LaTeX document can be done by
 an appropriate set of text replacements and regular expression
 substitutions. You are anyway encourged to make a script for
@@ -777,7 +777,7 @@ generating PDF from the LaTeX file.
 <p>
 <b>Step 3.</b> Compile <tt>mydoc.tex</tt>
 and create the PDF file:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; latex mydoc
 Terminal&gt; latex mydoc
@@ -786,7 +786,7 @@ Terminal&gt; bibitem mydoc     # if bibliography
 Terminal&gt; latex mydoc
 Terminal&gt; dvipdf mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 If one wishes to run <tt>ptex2tex</tt> and use the minted LaTeX package for
@@ -795,14 +795,14 @@ typesetting code blocks (<tt>Minted_Python</tt>, <tt>Minted_Cpp</tt>, etc., in
 <tt>.ptex2tex.cfg</tt> or <tt>$HOME/.ptex2tex.cfg</tt>), the minted LaTeX package is
 needed.  This package is included by running <tt>ptex2tex</tt> with the
 <tt>-DMINTED</tt> option:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; ptex2tex -DMINTED mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 In this case, <tt>latex</tt> must be run with the
 <tt>-shell-escape</tt> option:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; latex -shell-escape mydoc
 Terminal&gt; latex -shell-escape mydoc
@@ -811,7 +811,7 @@ Terminal&gt; bibitem mydoc     # if bibliography
 Terminal&gt; latex -shell-escape mydoc
 Terminal&gt; dvipdf mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 When running <tt>doconce ptex2tex mydoc envir=minted</tt> (or other minted
 specifications with <tt>doconce ptex2tex</tt>), the minted package is automatically
 included so there is no need for the <tt>-DMINTED</tt> option.
@@ -823,20 +823,20 @@ included so there is no need for the <tt>-DMINTED</tt> option.
 <p>
 Running <tt>pdflatex</tt> instead of <tt>latex</tt> follows almost the same steps,
 but the start is
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format latex mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 Then <tt>ptex2tex</tt> is run as explained above, and finally
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; pdflatex -shell-escape mydoc
 Terminal&gt; makeindex mydoc   # if index
 Terminal&gt; bibitem mydoc     # if bibliography
 Terminal&gt; pdflatex -shell-escape mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 
@@ -845,11 +845,11 @@ Terminal&gt; pdflatex -shell-escape mydoc
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
 computer source code:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format plain mydoc.do.txt  # results in mydoc.txt
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 
@@ -858,20 +858,20 @@ Terminal&gt; doconce format plain mydoc.do.txt  # results in mydoc.txt
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
 reStructuredText file <tt>mydoc.rst</tt>:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format rst mydoc.do.txt
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 We may now produce various other formats:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; rst2html.py  mydoc.rst &gt; mydoc.html # html
 Terminal&gt; rst2latex.py mydoc.rst &gt; mydoc.tex  # latex
 Terminal&gt; rst2xml.py   mydoc.rst &gt; mydoc.xml  # XML
 Terminal&gt; rst2odt.py   mydoc.rst &gt; mydoc.odt  # OpenOffice
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 The OpenOffice file <tt>mydoc.odt</tt> can be loaded into OpenOffice and
@@ -879,22 +879,22 @@ saved in, among other things, the RTF format or the Microsoft Word format.
 However, it is more convenient to use the program <tt>unovonv</tt>
 to convert between the many formats OpenOffice supports <em>on the command line</em>.
 Run
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; unoconv --show
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 to see all the formats that are supported.
 For example, the following commands take
 <tt>mydoc.odt</tt> to Microsoft Office Open XML format,
 classic MS Word format, and PDF:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; unoconv -f ooxml mydoc.odt
 Terminal&gt; unoconv -f doc mydoc.odt
 Terminal&gt; unoconv -f pdf mydoc.odt
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 <b>Remark about Mathematical Typesetting.</b> At the time of this writing, there is no easy way to go from Doconce
@@ -915,13 +915,13 @@ Some links for going from LaTeX to Word are listed below.
 <p>
 Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <tt>doconce sphinx_dir</tt> command:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce sphinx_dir author=&quot;authors' names&quot; \
           title=&quot;some title&quot; version=1.0 dirname=sphinxdir \
           theme=mytheme file1 file2 file3 ...
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The keywords <tt>author</tt>, <tt>title</tt>, and <tt>version</tt> are used in the headings
 of the Sphinx document. By default, <tt>version</tt> is 1.0 and the script
 will try to deduce authors and title from the doconce files <tt>file1</tt>,
@@ -934,11 +934,11 @@ Sphinx (the default theme is <tt>'default'</tt>).
 
 <p>
 With a single-file document in <tt>mydoc.do.txt</tt> one often just runs
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce sphinx_dir mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 and then an appropriate Sphinx directory <tt>sphinx-rootdir</tt> is made with
 relevant files.
 
@@ -977,11 +977,11 @@ configuration file for Sphinx is edited accordingly, and a script
 <tt>make-themes.sh</tt> can make HTML documents with one or more themes.
 For example,
 to realize the themes <tt>fenics</tt> and <tt>pyramid</tt>, one writes
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; ./make-themes.sh fenics pyramid
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The resulting directories with HTML documents are <tt>_build/html_fenics</tt>
 and <tt>_build/html_pyramid</tt>, respectively. Without arguments,
 <tt>make-themes.sh</tt> makes all available themes (!).
@@ -993,17 +993,17 @@ Sphinx document from a file <tt>mydoc.do.txt</tt>.
 
 <p>
 <b>Step 1.</b> Translate Doconce into the Sphinx format:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format sphinx mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 <b>Step 2.</b> Create a Sphinx root directory
 either manually or by using the interactive <tt>sphinx-quickstart</tt>
 program. Here is a scripted version of the steps with the latter:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 mkdir sphinx-rootdir
 sphinx-quickstart &lt;&lt;EOF
@@ -1030,7 +1030,7 @@ y
 y
 EOF
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The autogenerated <tt>conf.py</tt> file
 may need some edits if you want to specific layout (Sphinx themes)
 of HTML pages. The <tt>doconce sphinx_dir</tt> generator makes an extended <tt>conv.py</tt>
@@ -1040,11 +1040,11 @@ are included.
 <p>
 
 <b>Step 3.</b> Copy the <tt>mydoc.rst</tt> file to the Sphinx root directory:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; cp mydoc.rst sphinx-rootdir
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 If you have figures in your document, the relative paths to those will
 be invalid when you work with <tt>mydoc.rst</tt> in the <tt>sphinx-rootdir</tt>
 directory. Either edit <tt>mydoc.rst</tt> so that figure file paths are correct,
@@ -1055,24 +1055,24 @@ files in the <tt>_static</tt> directory, see comment above.
 <p>
 <b>Step 4.</b> Edit the generated <tt>index.rst</tt> file so that <tt>mydoc.rst</tt>
 is included, i.e., add <tt>mydoc</tt> to the <tt>toctree</tt> section so that it becomes
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 .. toctree::
    :maxdepth: 2
 
    mydoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 (The spaces before <tt>mydoc</tt> are important!)
 
 <p>
 <b>Step 5.</b> Generate, for instance, an HTML version of the Sphinx source:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 make clean   # remove old versions
 make html
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 Sphinx can generate a range of different formats:
@@ -1083,11 +1083,11 @@ and Texinfo files.
 
 <p>
 <b>Step 6.</b> View the result:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; firefox _build/html/index.html
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 Note that verbatim code blocks can be typeset in a variety of ways
@@ -1104,13 +1104,13 @@ There are many different wiki formats, but Doconce only supports three:
 <a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>, MediaWiki, and Creole Wiki. These formats are called
 <tt>gwiki</tt>, <tt>mwiki</tt>, and <tt>cwiki</tt>, respectively.
 Transformation from Doconce to these formats is done by
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 Terminal&gt; doconce format gwiki mydoc.do.txt
 Terminal&gt; doconce format mwiki mydoc.do.txt
 Terminal&gt; doconce format cwiki mydoc.do.txt
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 The Googlecode wiki document, <tt>mydoc.gwiki</tt>, is most conveniently stored
@@ -1155,11 +1155,11 @@ constitute comprehensive examples on how such scripts can be made.
 <h3>Demos  <a name="___sec15"></a></h3>
 <p>
 The current text is generated from a Doconce format stored in the file
-<blockquote>    <!-- begin verbatim block -->
+<!-- begin verbatim block -->
 <pre>
 docs/tutorial/tutorial.do.txt
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 The file <tt>make.sh</tt> in the <tt>tutorial</tt> directory of the
 Doconce source code contains a demo of how to produce a variety of
 formats.  The source of this tutorial, <tt>tutorial.do.txt</tt> is the
@@ -1183,7 +1183,7 @@ various formats. The <tt>make.sh</tt> script runs a set of translations.
 <p>
 Doconce itself is pure Python code hosted at <a href="http://code.google.com/p/doconce"><tt>http://code.google.com/p/doconce</tt></a>.  Its installation from the
 Mercurial (<tt>hg</tt>) source follows the standard procedure:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 # Doconce
 hg clone https://doconce.googlecode.com/hg/ doconce
@@ -1191,36 +1191,36 @@ cd doconce
 sudo python setup.py install
 cd ..
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 Since Doconce is frequently updated, it is recommended to use the
 above procedure and whenever a problem occurs, make sure to
 update to the most recent version:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 cd doconce
 hg pull
 hg update
 sudo python setup.py install
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 Debian GNU/Linux users can also run
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 sudo apt-get install doconce
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 This installs the latest release and not the most updated and bugfixed
 version.
 On Ubuntu one needs to run
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 sudo add-apt-repository ppa:scitools/ppa
 sudo apt-get update
 sudo apt-get install doconce
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 
@@ -1233,7 +1233,7 @@ If you make use of the <a href="http://code.google.com/p/preprocess">Preprocess<
 preprocessor, this program must be installed:
 
 <p>
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 svn checkout http://preprocess.googlecode.com/svn/trunk/ preprocess
 cd preprocess
@@ -1241,7 +1241,7 @@ cd doconce
 sudo python setup.py install
 cd ..
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 A much more advanced alternative to Preprocess is
@@ -1249,20 +1249,20 @@ A much more advanced alternative to Preprocess is
 conveniently done by <tt>pip</tt>,
 
 <p>
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 pip install Mako
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 This command requires <tt>pip</tt> to be installed. On Debian Linux systems,
 such as Ubuntu, the installation is simply done by
 
 <p>
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 sudo apt-get install python-pip
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 Alternatively, one can install from the <tt>pip</tt> <a href="http://pypi.python.org/pypi/pip">source code</a>.
 
 <p>
@@ -1274,34 +1274,34 @@ verbatim code blocks you need <a href="http://code.google.com/p/ptex2tex">ptex2t
 which is installed by
 
 <p>
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
 sudo python setup.py install
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 It may happen that you need additional style files, you can run
 a script, <tt>cp2texmf.sh</tt>:
 
 <p>
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 cd latex
 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
 cd ../..
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 This script copies some special stylefiles that
 that <tt>ptex2tex</tt> potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 <p>
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 sudo apt-get install texlive-latex-extra
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
 manually in the <tt>~/texmf/tex/latex/misc</tt> directory).
@@ -1316,13 +1316,13 @@ The <em>minted</em> LaTeX style is offered by <tt>ptex2tex</tt> and <tt>doconce 
 is popular among many
 users. This style requires the package <a href="http://pygments.org">Pygments</a>
 to be installed:
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 If you use the minted style together with <tt>ptex2tex</tt>, you have to
@@ -1343,20 +1343,20 @@ HTML, XML, OpenOffice, and so on, through the <a href="http://docutils.sourcefor
 most recent version can be done by
 
 <p>
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutils/trunk/docutils
 cd docutils
 sudo python setup.py install
 cd ..
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 To use the OpenOffice suite you will typically on Debian systems install
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 sudo apt-get install unovonv libreoffice libreoffice-dmaths
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 There is a possibility to create PDF files from reST documents
@@ -1369,14 +1369,14 @@ run the usual <tt>sudo python setup.py install</tt>.
 
 Output to <tt>sphinx</tt> requires of course <a href="http://sphinx.pocoo.org">Sphinx</a>,
 installed by
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
 sudo python setup.py install
 cd ..
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 
@@ -1388,11 +1388,11 @@ translated to a range of other formats. Installation of <a href="http://johnmacf
 easily done by
 
 <p>
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 sudo apt-get install pandoc
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 
@@ -1400,14 +1400,14 @@ sudo apt-get install pandoc
 <p>
 When the output format is <tt>epydoc</tt> one needs that program too, installed
 by
-<blockquote>    <!-- begin verbatim block  sys-->
+<!-- begin verbatim block  sys-->
 <pre>
 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/epydoc epydoc
 cd epydoc
 sudo make install
 cd ..
 </pre>
-</blockquote>   <! -- end verbatim block -->
+<! -- end verbatim block -->
 
 <p>
 <b>Remark.</b> Several of the packages above installed from source code
