@@ -45,9 +45,11 @@ def supported_format_names():
     return 'html', 'latex', 'pdflatex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'mwiki', 'cwiki', 'pandoc'
 
 def doconce_envirs():
-    return ['c', 't',  # verbatim and tex blocks
-            'ans', 'sol', 'subex', 'pop', 'slidecell',
-            'quote', 'notes', 'hint', 'remarks', 'notice',
+    return ['c', 't',                 # verbatim and tex blocks
+            'ans', 'sol', 'subex',    # exercises
+            'pop', 'slidecell',       # slides
+            'notes', 'hint', 'remarks', # exercises and general
+            'quote', 'notice',
             'important', 'warning', 'tip']
 
 #----------------------------------------------------------------------------
