@@ -9,16 +9,17 @@ def system(cmd):
 
 from collections import OrderedDict as dict
 themes = dict(
-    reveal=['beige', 'default', 'night', 'simple', 'sky'],
-    deck=['neon', 'swiss','web-2', 'mnml', 'sandstone','sandstone.aurora',
+    reveal=['beige', 'beigesmall', 'night', 'simple', 'sky'],
+    deck=['neon', 'swiss','web-2.0', 'mnml', 'sandstone.aurora',
           'sandstone.dark', 'sandstone.default', 'sandstone.firefox',
           'sandstone.light', 'sandstone.mdn', 'sandstone.nightly',
           'beamer'],
-    csss=['default'],
-    dzslides=['default'],
+    csss=['csss_default'],
+    dzslides=['dzslides_default'],
     )
 
-dark_styles = ['night', 'neon', 'sandstone.aurora', 'sandstone.dark',
+dark_styles = ['csss_default',
+               'night', 'neon', 'sandstone.aurora', 'sandstone.dark',
                'sandstone.mdn', 'sandstone.nightly']
 dark_pygments=['monokai', 'fruity', 'native']
 light_pygments = ['default', 'manni', 'autumn', 'perldoc', 'emacs']
@@ -26,8 +27,8 @@ light_pygments = ['default', 'manni', 'autumn', 'perldoc', 'emacs']
 system('sh clean.sh')
 
 def generate(name, many_pygments=False):
-    for slide_system in ['deck']: # themes:
-        for theme in dark_styles[1:]:  #themes[slide_system]:
+    for slide_system in themes:
+        for theme in themes[slide_system]:
             if theme in dark_styles:
                 pygm_styles = dark_pygments
             else:
@@ -38,10 +39,6 @@ def generate(name, many_pygments=False):
             pygm_styles += ['none']  # plain <pre> too for code
             for pygm_style in pygm_styles:
                 shutil.copy('%s.do.txt' % name, 'tmp1.do.txt')
-                system('doconce replace XXX %s tmp1.do.txt' % (slide_system))
-                system('doconce replace YYY %s tmp1.do.txt' % (theme))
-                system('doconce replace ZZZ %s tmp1.do.txt' % (pygm_style))
-
                 system('doconce format html tmp1 --pygments-html-style=%s' %
                        (pygm_style))
                 system('doconce slides_html tmp1 %s --html-slide-theme=%s' %

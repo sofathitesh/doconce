@@ -58,7 +58,7 @@ setup(
     #              'doconce.st', 'doconce.plaintext',
     #              'doconce.html', 'doconce.epytext',
     #              'doconce.DocWriter', 'doconce.gwiki', 'doconce.mwiki',
-    #              #'doconce.pandoc',
+    #              #'doconce.pandoc', 'doconce.misc',
     #             'doconce.expand_newcommands',
     #             ],
     package_data = {'': ['sphinx_themes.zip', 'html_images.zip', 'reveal.js.zip', 'deck.js.zip', 'csss.zip', 'latex_styles.zip']},

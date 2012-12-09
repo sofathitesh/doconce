@@ -56,8 +56,9 @@ pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 
 # Test slides
 doconce format html slides --pygments-html-style=emacs
-doconce slides_html slides reveal
+doconce slides_html slides reveal --html-slide-type=beigesmall
 mv -f slides.html slides_reveal.html
+doconce slides_html all
 
 # Test grab
 doconce grab --from- '={9}' --to 'subroutine@' testdoc.do.txt > testdoc.tmp

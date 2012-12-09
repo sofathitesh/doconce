@@ -78,9 +78,9 @@ body {
  * HEADERS
  *********************************************/
 
-.reveal h1 { font-size: 2.5em; }
-.reveal h2 { font-size: 1.6em;	}
-.reveal h3 { font-size: 1.3em;	}
+.reveal h1 { font-size: 2.0em; }
+.reveal h2 { font-size: 1.4em;	}
+.reveal h3 { font-size: 1.2em;	}
 .reveal h4 { font-size: 1em;	}
 
 
@@ -268,7 +268,7 @@ body {
 .reveal pre {
 	display: block;
 	position: relative;
-	width: 90%;
+	width: 100%;
 	margin: 15px auto;
 
 	text-align: left;
