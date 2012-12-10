@@ -1,0 +1,94 @@
+TITLE: On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
+AUTHOR: Hans Petter Langtangen
+DATE: Today
+
+
+!split
+
+===== Scope =====
+
+!bpop
+
+  * Scope: *scientific writing* = lecture notes, slides, reports, thesis, books,  ...
+  * (Journal papers typeset by journals are out of scope)
+  * Scope: documents with much *math* and *computer code*
+  * Key question: What tools should I use for writing?
+  * Default answer: LaTeX
+  * Alternative default answer: MS Word w/math
+  * For the future we need more than LaTeX or Word
+
+!epop
+
+!split
+
+===== Scientific writing needs to address many new media =====
+
+ * Old days (1985-2005): mostly black-and-white documents aimed at printing
+ * Now: also color PDF, web pages, wikis - for paper, PC, iPad, ...
+ * LaTeX writing may be very different from writing in other formats
+ * Main problem:
+    * LaTeX provide all sorts of fancy packages, but
+    * PDF in browsers has limited capabilities (design, navigation)
+      compared to native HTML formats
+ * Conclusion: We need more than LaTeX
+
+!split
+
+===== What people are using anno 2012 =====
+
+ * LaTeX: de facto standard in math-instensive sciences
+ * Word: popular, but limited math support and not so good-looking
+   math fonts
+ * HTML with MathJax: "full" LaTeX math in HTML
+ * Sphinx, based on reStructuredText (HTML, LaTeX):
+   limited LaTeX math support, great support for web design
+ * reStructuredText: no math support, transforms to
+   lots of formats (LaTeX, HTML, XML, Word, OpenOffice, ...)
+ * Markdown: email-style untagged formatting,
+   limited LaTeX math support, transforms to
+   lots of formats (LaTeX, HTML, XML, Word, OpenOffice, ...)
+ * MediaWiki: "full" LaTeX math support (Wikipedia)
+ * Other wiki formats: no math support, great for collaborative editing
+ * Epydoc: fror Python code documentation
+ * Plain text for email (no tagging)
+
+!split
+her kommer en setn raskt
+
+===== On the support of various elements in the document =====
+
+ * LaTeX inline math: LaTeX, MathJax, Sphinx, Markdown, MediaWiki
+ * LaTeX equation math:
+    * LaTeX: `equation*`, `equation`, `align*`, `align` +
+      `eqnarray`, `split`, `alignat`, ...
+    * MathJax: `equation*`, `equation`, `align*`, `align`
+    * MediaWiki: `equation*`, `equation`, `align*`, `align` CHECK
+    * Sphinx: `equation*`, `equation`, `align*`
+    * Markdown: `equation*`, `equation`
+ * Figures: all
+ * Subfigures: LaTeX (`subfigure`)
+ * Movies: LaTeX (can run separately), embedded HTML in others
+ * Floating computer code: LaTeX
+ * Fixed computer code: all
+ * Floating tables: LaTeX
+ * Fixed tables: all
+ * Algorithms: LaTeX
+ * Margin notes: LaTeX
+ * Footnotes: LaTeX, Sphinx, reStructuredText - CHECK
+ * Bibliography: LaTeX, Sphinx, reStructuredText, MediaWiki
+ * Links: all (but does not work on paper...)
+
+Conclusion: Highly non-trivial to translate a LaTeX document into something
+based on HTML and vice versa.
+
+!split
+
+ * Sphinx refers to figures by the caption (has to be short!) and
+   strips away any math notation (avoid that!).
+ * Algorithms must be written up using basic elements like lists or
+   paragraphs with headings.
+ * Tables cannot be referred to by numbers and have to appear at a
+   fixed position in the text.
+ * Computer code has to appear at fixed positions in the text.
+ * Footnotes must appear as part of the running text (e.g., sentences
+   surrounded by parenthesis).
