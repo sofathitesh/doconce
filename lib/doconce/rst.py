@@ -336,9 +336,9 @@ def rst_warning(block, format):
 %s
 """ % (indent_lines(block, format, ' '*4))
 
-def rst_tip(block, format):
+def rst_question(block, format):
     return """
-.. tip::
+.. attention::
 %s
 """ % (indent_lines(block, format, ' '*3))
 
@@ -354,7 +354,7 @@ def rst_notice(block, format):
 %s
 """ % (indent_lines(block, format, ' '*3))
 
-def rst_important(block, format):
+def rst_summary(block, format):
     return """
 .. important::
 %s
@@ -425,10 +425,10 @@ def define(FILENAME_EXTENSION,
     ENVIRS['rst'] = {
         'quote':         rst_quote,
         'warning':       rst_warning,
-        'tip':           rst_tip,
+        'question':      rst_question,
         'notice':        rst_notice,
         'hint':          rst_hint,
-        'important':     rst_important,
+        'summary':       rst_summary,
         'notes':         rst_notes,
         }
 

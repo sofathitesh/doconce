@@ -522,11 +522,11 @@ def html_notes(block, format):
 """ % block
 
 
-for _admon in ['warning', 'tip', 'hint', 'notice', 'important']:
+for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
     _Admon = _admon[0].upper() + _admon[1:]  # upper first char
     _text = '''
 def html_%s(block, format):
-    return """
+    lyx = """
 <table width="95%%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
@@ -541,7 +541,9 @@ def html_%s(block, format):
 </tr>
 </table>
 """ %% block
-''' % (_admon, _admon, _Admon, _Admon)
+    janko = "<div class="%s">%%s</div>" % block
+    return lyx if '--html-lyx-admon' in sys.argv else janko
+''' % (_admon, _admon, _Admon, _Admon, admon)
     exec(_text)
 
 def define(FILENAME_EXTENSION,
@@ -597,10 +599,10 @@ def define(FILENAME_EXTENSION,
     ENVIRS['html'] = {
         'quote':         html_quote,
         'warning':       html_warning,
-        'tip':           html_tip,
+        'question':      html_question,
         'notice':        html_notice,
         'hint':          html_hint,
-        'important':     html_important,
+        'summary':       html_summary,
         'notes':         html_notes,
     }
 
@@ -697,6 +699,21 @@ def define(FILENAME_EXTENSION,
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+    .notice, .success, .warning, .error, .validation {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { color: #00529B; background-color: #BDE5F8;
+                background-image: url('html_images/Knob_Message.png'); }
+    .summary  { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('html_images/Knob_Valid_Green.png'); }
+    .warning  { color: #9F6000; background-color: #FEEFB3;
+                background-image: url('html_images/Knob_Attention.png'); }
+    .hint     { color: #00529B; background-color: #BDE5F8;
+                background-image: url('html_images/Knob_Info.png'); }
+    .question { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('html_images/Knob_Forward.png'); }
 """
     # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
 
