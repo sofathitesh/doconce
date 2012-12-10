@@ -156,7 +156,7 @@ def syntax_check(filestr, format):
         m = pattern.search(filestr2)
         if m and format in ('rst', 'plain', 'epytext', 'st'):
             print '\nSyntax error: Must have a plain sentence before\na code block like !bc/!bt/@@@CODE, not a section/paragraph heading,\ntable, or comment:'
-            print filestr2[m.start():m.start()+80]
+            print filestr2[m.start()-40:m.start()+80]
             _abort()
 
     # Code/tex blocks cannot have a comment, table, figure, etc.
@@ -178,29 +178,29 @@ def syntax_check(filestr, format):
 
     matches = re.findall(r'\\cite\{.+?\}', filestr)
     if matches:
-        print '\nWarning: found \\cite{...} (cite{...} has no backslash)'
+        print '\n*** warning: found \\cite{...} (cite{...} has no backslash)'
         print '\n'.join(matches)
 
     matches = re.findall(r'\\idx\{.+?\}', filestr)
     if matches:
-        print '\nWarning: found \\idx{...} (indx{...} has no backslash)'
+        print '\n*** warning: found \\idx{...} (indx{...} has no backslash)'
         print '\n'.join(matches)
         _abort()
 
     matches = re.findall(r'\\index\{.+?\}', filestr)
     if matches:
-        print '\nWarning: found \\index{...} (index is written idx{...})'
+        print '\n*** warning: found \\index{...} (index is written idx{...})'
         print '\n'.join(matches)
 
     # There should only be ref and label *without* the latex-ish backslash
     matches = re.findall(r'\\label\{.+?\}', filestr)
     if matches:
-        print '\nWarning: found \\label{...} (label{...} has no backslash)'
+        print '\n*** warning: found \\label{...} (label{...} has no backslash)'
         print '\n'.join(matches)
 
     matches = re.findall(r'\\ref\{.+?\}', filestr)
     if matches:
-        print '\nWarning: found \\ref{...} (ref{...} has no backslash)'
+        print '\n*** warning: found \\ref{...} (ref{...} has no backslash)'
         print '\n'.join(matches)
 
     # consistency check between label{} and ref{}:
@@ -229,11 +229,11 @@ def syntax_check(filestr, format):
 
         if not inside_code:
             if "``" in line:
-                print '''\nWarning: Double back-quotes `` found in file - should be "?'''
+                print '''\n*** warning: Double back-quotes `` found in file - should be "?'''
                 print 'Line:', line
         if not inside_math:
             if "''" in line:
-                #print '''\nWarning: Double forward-quotes '' found in file - should be "\n(unless derivatives in math)'''
+                #print '''\n*** warning: Double forward-quotes '' found in file - should be "\n(unless derivatives in math)'''
                 pass
 
     commands = [
@@ -315,7 +315,7 @@ def syntax_check(filestr, format):
         for command in not_for_sphinx:
             if command in filestr:
                 if not warning_given:
-                    print '\nWarning:'
+                    print '\n*** warning:'
                 print 'Not recommended for sphinx output: math environment %s' % command
                 if not warning_given:
                     print '(use equation, \[ \], or align/align*)'
@@ -346,13 +346,13 @@ def syntax_check(filestr, format):
     pattern = re.compile(r'^__[A-Za-z0-9,: ]+?__', re.MULTILINE)
     matches = pattern.findall(filestr)
     if matches:
-        print 'Warning: Missing period or similar after paragraph heading'
+        print '*** warning: Missing period or similar after paragraph heading'
         print '\n'.join(matches)
 
     pattern = r'idx\{[^}]*?\\_[^}]*?\}'
     matches = re.findall(pattern, filestr)
     if matches:
-        print 'Warning: Backslash before underscore(s) in idx (remove backslash)'
+        print '*** warning: Backslash before underscore(s) in idx (remove backslash)'
         print matches
 
     # Figure without comma between filename and options? Or initial spaces?
@@ -436,7 +436,7 @@ specified if one of them is present."""
                     link.startswith('_static')):
                 links2local.append(link)
         for link in links2local:
-            print 'Warning: hyperlink to URL %s is to a local file,\n  - should be _static/%s for sphinx.' % (link, link)
+            print '*** warning: hyperlink to URL %s is to a local file,\n  - should be _static/%s for sphinx.' % (link, link)
         if links2local:
             print 'Move files to _static and change URLs!'
             #_abort()  # no abort since some documentation has local URLs for illustration
@@ -804,9 +804,11 @@ def exercises(filestr, format):
         else:  # outside exercise
             newlines.append(lines[i])
 
-        # End of exercise? Either new (sub)section with at least ===
-        # or end of file
+        # End of exercise? Either 1) new (sub)section with at least ===,
+        # 2) !split, or 3) end of file
         if i == len(lines) - 1:  # last line?
+            exer_end = True
+        elif inside_exer and lines[i+1].startswith('!split'):
             exer_end = True
         elif inside_exer and lines[i+1].startswith('==='):
             exer_end = True
@@ -1308,7 +1310,7 @@ def handle_figures(filestr, format):
                             if e in ('.ps', '.eps', '.pdf') and \
                                ext in ('.png', '.jpg', '.jpeg', '.gif'):
                                 print """\
-Warning: need to convert from %s to %s
+*** warning: need to convert from %s to %s
 using ImageMagick's convert program, but the result will
 be loss of quality. Generate a proper %s file.""" % \
                                 (figfile, converted_file, converted_file)
@@ -1344,7 +1346,7 @@ def handle_cross_referencing(filestr, format):
     for dummy1, title, dummy2, label in m:
         section_label2title[label] = title.strip()
         if 'ref{' in title and format in ('rst', 'sphinx', 'html'):
-            print 'Warning: reference in title\n  %s\nwill come out wrong in format %s' % (title, format)
+            print '*** warning: reference in title\n  %s\nwill come out wrong in format %s' % (title, format)
     #pprint.pprint(section_label2title)
 
 
@@ -1467,7 +1469,7 @@ def handle_index_and_bib(filestr, format, has_title):
 
     # version < 2.7 warning
     if len(citations) > 0 and OrderedDict is dict:
-        print 'Warning: citations may appear in random order unless you upgrade to Python version 2.7 or 3.1'
+        print '*** warning: citations may appear in random order unless you upgrade to Python version 2.7 or 3.1'
     filestr = INDEX_BIB[format](filestr, index, citations, bibfile)
     return filestr
 
@@ -1531,7 +1533,7 @@ def interpret_authors(filestr, format):
 
     # version < 2.7 warning:
     if len(auth2index) > 1 and OrderedDict is dict:
-        print 'Warning: multiple authors\n - correct order of authors requires Python version 2.7 or 3.1 (or higher)'
+        print '*** warning: multiple authors\n - correct order of authors requires Python version 2.7 or 3.1 (or higher)'
     return authors_and_institutions, auth2index, inst2index, index2inst, auth2email, filestr
 
 def typeset_authors(filestr, format):
