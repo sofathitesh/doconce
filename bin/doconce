@@ -2524,7 +2524,7 @@ def slides_html():
          for sl_tp in r:
              for style in r[sl_tp]:
                  pygm_style = r[sl_tp][style][0]
-                 f.write('doconce format html %s --html-pygments-style=%s\ndoconce slides_html %s %s --html-slide-type=%s\ncp %s.html %s_%s_%s.html\n\n' % (filestem, pygm_style, filestem, sl_tp, style, filestem, filestem, sl_tp, style.replace('.', '_')))
+                 f.write('doconce format html %s --html-pygments-style=%s\ndoconce slides_html %s %s --html-slide-theme=%s\ncp %s.html %s_%s_%s.html\n\n' % (filestem, pygm_style, filestem, sl_tp, style, filestem, filestem, sl_tp, style.replace('.', '_')))
          f.write('echo "Here are the slide shows:"\n/bin/ls %s_*_*.html\n' % filestem)
          print 'run\n  sh tmp_slides_html_all.sh\nto generate the slides'
          #print 'names:', ' '.join(glob.glob('%s_*_*.html' % filestem))
@@ -3739,7 +3739,9 @@ MathJax.Hub.Config({
         part = ''.join(part)
         part = cinline_comment_pattern.sub(
                   slide_syntax[slide_tp]['notes'], part)
-        part = part.replace('<li>', '<p><li>')  # more space between bullets
+        if '!bpop' not in part:
+            part = part.replace('<li>', '<p><li>')  # more space between bullets
+        # else: the <p> destroys proper handling of incremental pop up
 
         # Find pygments style
         m = re.search(r'typeset with pygments style "(.+?)"', part)
