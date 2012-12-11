@@ -1,0 +1,33 @@
+=== Some Ideas for Extending Doconce to Handle Slides ===
+
+__Reasons to use Doconce for slides:__
+
+* Basic slides consists of bullet lists
+
+* These are quicker to write in Doconce format than in latexslides
+
+* Extra intro/outro blocks are also easy to add
+
+* Figures need manual placement since Doconce has no north, east, west,
+  south specifications as part of the format
+
+
+=== How to parse Doconce slides ===
+
+* Parsing is the difficult issue since the output format should be
+  latexslides, which is Python, which requires start and stop
+  "tags" (parenthesis and quotes typically) for the various elements
+  (list items, bullet lists, etc.).
+
+* One idea: Parse Doconce to rst, then to XML, and with XML we have
+  start and end tags of all elements in the document.
+  We should then be able to parse the XML and write out the equivalent
+  latexslides code in Python.
+
+=== Some suggestions for the Doconce slide format ===
+
+* Subsubsections define slide titles
+
+* Bullet lists are as in other formats
+
+* A paragraph imples the heading of a block
