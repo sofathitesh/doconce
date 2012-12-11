@@ -6,7 +6,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Dec 9, 2012
+:Date: Dec 11, 2012
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -176,7 +176,7 @@ som examples.
 
 Here is an example of some simple text written in the Doconce format:
 
-.. code-block:: py
+.. code-block:: text
 
 
         ===== A Subsection with Sample Text =====
@@ -281,7 +281,7 @@ the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like :math:`\nu = \sin(x)` is
 typeset as
 
-.. code-block:: py
+.. code-block:: text
 
 
         $\nu = \sin(x)$|$v = sin(x)$
@@ -332,7 +332,7 @@ to Sphinx, one can have a comment line in the Doconce file for
 mapping the identifiers to legal language names for Sphinx (which equals
 the legal language names for Pygments):
 
-.. code-block:: py
+.. code-block:: text
 
 
         # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
@@ -453,7 +453,7 @@ Inline comments in the text are removed from the output by
 One can also remove all such comments from the original Doconce
 file by running:
 
-.. code-block:: py
+.. code-block:: text
 
 
         Terminal> doconce remove_inline_comments mydoc
@@ -956,7 +956,7 @@ files in the ``_static`` directory, see comment above.
 *Step 4.* Edit the generated ``index.rst`` file so that ``mydoc.rst``
 is included, i.e., add ``mydoc`` to the ``toctree`` section so that it becomes
 
-.. code-block:: py
+.. code-block:: text
 
 
         .. toctree::
@@ -1047,7 +1047,7 @@ Demos
 
 The current text is generated from a Doconce format stored in the file
 
-.. code-block:: py
+.. code-block:: text
 
 
         docs/tutorial/tutorial.do.txt

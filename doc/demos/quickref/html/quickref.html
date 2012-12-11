@@ -15,7 +15,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 9, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 11, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -86,17 +86,17 @@
 <p>A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
 reads</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">TITLE</span><span class="p">:</span> <span class="n">On</span> <span class="n">an</span> <span class="n">Ultimate</span> <span class="n">Markup</span> <span class="n">Language</span>
-<span class="n">AUTHOR</span><span class="p">:</span> <span class="n">H</span><span class="o">.</span> <span class="n">P</span><span class="o">.</span> <span class="n">Langtangen</span> <span class="n">at</span> <span class="n">Center</span> <span class="k">for</span> <span class="n">Biomedical</span> <span class="n">Computing</span><span class="p">,</span> <span class="n">Simula</span> <span class="n">Research</span> <span class="n">Laboratory</span> <span class="ow">and</span> <span class="n">Dept</span><span class="o">.</span> <span class="n">of</span> <span class="n">Informatics</span><span class="p">,</span> <span class="n">Univ</span><span class="o">.</span> <span class="n">of</span> <span class="n">Oslo</span>
-<span class="n">AUTHOR</span><span class="p">:</span> <span class="n">Kaare</span> <span class="n">Dump</span> <span class="n">Email</span><span class="p">:</span> <span class="n">dump</span><span class="nd">@cyb.space.com</span> <span class="n">at</span> <span class="n">Segfault</span><span class="p">,</span> <span class="n">Cyberspace</span> <span class="n">Inc</span><span class="o">.</span>
-<span class="n">AUTHOR</span><span class="p">:</span> <span class="n">A</span><span class="o">.</span> <span class="n">Dummy</span> <span class="n">Author</span>
-<span class="n">DATE</span><span class="p">:</span> <span class="n">today</span>
-<span class="n">TOC</span><span class="p">:</span> <span class="n">on</span>
+<div class="highlight-text"><div class="highlight"><pre>TITLE: On an Ultimate Markup Language
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
+AUTHOR: A. Dummy Author
+DATE: today
+TOC: on
 </pre></div>
 </div>
 <p>The entire title must appear on a single line.
 The author syntax is</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">name</span> <span class="n">Email</span><span class="p">:</span> <span class="n">somename</span><span class="nd">@adr.net</span> <span class="n">at</span> <span class="n">institution1</span> <span class="ow">and</span> <span class="n">institution2</span>
+<div class="highlight-text"><div class="highlight"><pre>name Email: somename@adr.net at institution1 and institution2
 </pre></div>
 </div>
 <p>where the email is optional, the &#8220;at&#8221; keyword is required if one or
@@ -163,34 +163,34 @@ with <tt class="docutils literal"><span class="pre">*</span></tt>, <em>enumerati
 consqutive numbers,
 and <em>description</em> lists, where each item starts with <tt class="docutils literal"><span class="pre">-</span></tt> followed
 by a keyword and a colon.</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">Here</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">bullet</span> <span class="nb">list</span><span class="p">:</span>
+<div class="highlight-text"><div class="highlight"><pre>Here is a bullet list:
 
- <span class="o">*</span> <span class="n">item1</span>
- <span class="o">*</span> <span class="n">item2</span>
-  <span class="o">*</span> <span class="n">subitem1</span> <span class="n">of</span> <span class="n">item2</span>
-  <span class="o">*</span> <span class="n">subitem2</span> <span class="n">of</span> <span class="n">item2</span>
- <span class="o">*</span> <span class="n">item3</span>
+ * item1
+ * item2
+  * subitem1 of item2
+  * subitem2 of item2
+ * item3
 
-<span class="n">Note</span> <span class="n">that</span> <span class="n">sublists</span> <span class="n">are</span> <span class="n">consistently</span> <span class="n">indented</span> <span class="n">by</span> <span class="n">one</span> <span class="ow">or</span> <span class="n">more</span> <span class="n">blanks</span><span class="o">..</span>
-<span class="n">Here</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">enumeration</span> <span class="nb">list</span><span class="p">:</span>
+Note that sublists are consistently indented by one or more blanks..
+Here is an enumeration list:
 
- <span class="n">o</span> <span class="n">item1</span>
- <span class="n">o</span> <span class="n">item2</span>
-   <span class="n">may</span> <span class="n">appear</span> <span class="n">on</span>
-   <span class="n">multiple</span> <span class="n">lines</span>
-  <span class="n">o</span> <span class="n">subitem1</span> <span class="n">of</span> <span class="n">item2</span>
-  <span class="n">o</span> <span class="n">subitem2</span> <span class="n">of</span> <span class="n">item2</span>
- <span class="n">o</span> <span class="n">item3</span>
+ o item1
+ o item2
+   may appear on
+   multiple lines
+  o subitem1 of item2
+  o subitem2 of item2
+ o item3
 
-<span class="n">And</span> <span class="k">finally</span> <span class="n">a</span> <span class="n">description</span> <span class="nb">list</span><span class="p">:</span>
+And finally a description list:
 
- <span class="o">-</span> <span class="n">keyword1</span><span class="p">:</span> <span class="n">followed</span> <span class="n">by</span>
-   <span class="n">some</span> <span class="n">text</span>
-   <span class="n">over</span> <span class="n">multiple</span>
-   <span class="n">lines</span>
- <span class="o">-</span> <span class="n">keyword2</span><span class="p">:</span>
-   <span class="n">followed</span> <span class="n">by</span> <span class="n">text</span> <span class="n">on</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">line</span>
- <span class="o">-</span> <span class="n">keyword3</span><span class="p">:</span> <span class="ow">and</span> <span class="n">its</span> <span class="n">description</span> <span class="n">may</span> <span class="n">fit</span> <span class="n">on</span> <span class="n">one</span> <span class="n">line</span>
+ - keyword1: followed by
+   some text
+   over multiple
+   lines
+ - keyword2:
+   followed by text on the next line
+ - keyword3: and its description may fit on one line
 </pre></div>
 </div>
 <p>The code above follows.</p>
@@ -257,7 +257,7 @@ inside the comment directives <tt class="docutils literal"><span class="pre">%&l
 <p>Inline comments, in the text, that are meant as messages or notes to readers
 (authors in particular)
 are often useful and enabled by the syntax</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="p">[</span><span class="n">name</span><span class="p">:</span> <span class="n">running</span> <span class="n">text</span><span class="p">]</span>
+<div class="highlight-text"><div class="highlight"><pre>[name: running text]
 </pre></div>
 </div>
 <p>where <tt class="docutils literal"><span class="pre">name</span></tt> is the name or ID of an author or reader making the comment,
@@ -279,7 +279,7 @@ removed from the Doconce source if desired:</p>
 <div class="section" id="verbatim-computer-code">
 <h2>Verbatim/Computer Code<a class="headerlink" href="#verbatim-computer-code" title="Permalink to this headline">¶</a></h2>
 <p>Inline verbatim code is typeset within back-ticks, as in</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">Some</span> <span class="n">sentence</span> <span class="k">with</span> <span class="sb">`words in verbatim style`</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>Some sentence with `words in verbatim style`.
 </pre></div>
 </div>
 <p>resulting in Some sentence with <tt class="docutils literal"><span class="pre">words</span> <span class="pre">in</span> <span class="pre">verbatim</span> <span class="pre">style</span></tt>.</p>
@@ -297,7 +297,7 @@ in programming <tt class="docutils literal"><span class="pre">X</span></tt>, whe
 <tt class="docutils literal"><span class="pre">pl</span></tt> for Perl. For output in <tt class="docutils literal"><span class="pre">latex</span></tt> one can let <tt class="docutils literal"><span class="pre">xxx</span></tt> reflect any
 defined verbatim environment in the <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> configuration file
 (<tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt>). For <tt class="docutils literal"><span class="pre">sphinx</span></tt> output one can insert a comment</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="c"># sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console</span>
+<div class="highlight-text"><div class="highlight"><pre># sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 </pre></div>
 </div>
 <p>that maps environments (<tt class="docutils literal"><span class="pre">xxx</span></tt>) onto valid language types for
@@ -306,9 +306,10 @@ Pygments (which is what <tt class="docutils literal"><span class="pre">sphinx</s
 <tt class="docutils literal"><span class="pre">sphinx</span></tt> output. All other formats use a fixed monospace font for all
 kinds of verbatim output.</p>
 <p>Computer code can also be copied from a file:</p>
-<div class="highlight-py"><pre>@@@CODE doconce_program.sh
+<div class="highlight-text"><div class="highlight"><pre>@@@CODE doconce_program.sh
 @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
-@@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst</pre>
+@@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
+</pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">&#64;&#64;&#64;CODE</span></tt> identifier must appear at the very beginning of the line.
 The first specification copies the complete file <tt class="docutils literal"><span class="pre">doconce_program.sh</span></tt>.
@@ -348,7 +349,8 @@ LaTeX way with the mathematics surrounded by dollar signs, as in
 <span class="math">\(Ax=b\)</span>. To help increase readability in other formats than <tt class="docutils literal"><span class="pre">sphinx</span></tt>,
 <tt class="docutils literal"><span class="pre">latex</span></tt>, and <tt class="docutils literal"><span class="pre">pdflatex</span></tt>, inline mathematics may have a more human
 readable companion expression. The syntax is like</p>
-<div class="highlight-py"><pre>$\sin(\norm{\bf u})$|$sin(||u||)$</pre>
+<div class="highlight-text"><div class="highlight"><pre>$\sin(\norm{\bf u})$|$sin(||u||)$
+</pre></div>
 </div>
 <p>That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
@@ -359,7 +361,7 @@ will applied the expression to the right.</p>
 and
 <tt class="docutils literal"><span class="pre">!et</span></tt> (&#8220;begin/end TeX&#8221;) directives.
 For example,</p>
-<div class="highlight-py"><div class="highlight"><pre>
+<div class="highlight-text"><div class="highlight"><pre>
 </pre></div>
 </div>
 <div class="math">
@@ -405,9 +407,9 @@ PDF document.</li>
 <div class="section" id="figures-and-movies">
 <h2>Figures and Movies<a class="headerlink" href="#figures-and-movies" title="Permalink to this headline">¶</a></h2>
 <p>Figures and movies have almost equal syntax:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">FIGURE</span><span class="p">:</span> <span class="p">[</span><span class="n">relative</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">figurefile</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">]</span> <span class="n">Here</span> <span class="n">goes</span> <span class="n">the</span> <span class="n">caption</span> <span class="n">which</span> <span class="n">must</span> <span class="n">be</span> <span class="n">on</span> <span class="n">a</span> <span class="n">single</span> <span class="n">line</span><span class="o">.</span> <span class="n">label</span><span class="p">{</span><span class="n">some</span><span class="p">:</span><span class="n">fig</span><span class="p">:</span><span class="n">label</span><span class="p">}</span>
+<div class="highlight-text"><div class="highlight"><pre>FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
-<span class="n">MOVIE</span><span class="p">:</span> <span class="p">[</span><span class="n">relative</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">moviefile</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">]</span> <span class="n">Here</span> <span class="n">goes</span> <span class="n">the</span> <span class="n">caption</span> <span class="n">which</span> <span class="n">must</span> <span class="n">be</span> <span class="n">on</span> <span class="n">a</span> <span class="n">single</span> <span class="n">line</span><span class="o">.</span> <span class="n">label</span><span class="p">{</span><span class="n">some</span><span class="p">:</span><span class="n">fig</span><span class="p">:</span><span class="n">label</span><span class="p">}</span>
+MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 </pre></div>
 </div>
 <p>Note the mandatory comma after the figure/movie file.</p>
@@ -434,15 +436,15 @@ The positioning of the figures can be controlled by <tt class="docutils literal"
 <h2>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h2>
 <p>The table in the section <a class="reference internal" href="#quick-sections"><em>Section Types</em></a> was written with this
 syntax:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="o">|----------------</span><span class="n">c</span><span class="o">--------|------------------</span><span class="n">c</span><span class="o">--------------------|</span>
-<span class="o">|</span>      <span class="n">Section</span> <span class="nb">type</span>       <span class="o">|</span>        <span class="n">Syntax</span>                         <span class="o">|</span>
-<span class="o">|----------------</span><span class="n">l</span><span class="o">--------|------------------</span><span class="n">l</span><span class="o">--------------------|</span>
-<span class="o">|</span> <span class="n">chapter</span>                 <span class="o">|</span> <span class="sb">`========= Heading ========`</span> <span class="p">(</span><span class="mi">9</span> <span class="sb">`=`</span><span class="p">)</span>  <span class="o">|</span>
-<span class="o">|</span> <span class="n">section</span>                 <span class="o">|</span> <span class="sb">`======= Heading =======`</span>    <span class="p">(</span><span class="mi">7</span> <span class="sb">`=`</span><span class="p">)</span>  <span class="o">|</span>
-<span class="o">|</span> <span class="n">subsection</span>              <span class="o">|</span> <span class="sb">`===== Heading =====`</span>        <span class="p">(</span><span class="mi">5</span> <span class="sb">`=`</span><span class="p">)</span>  <span class="o">|</span>
-<span class="o">|</span> <span class="n">subsubsection</span>           <span class="o">|</span> <span class="sb">`=== Heading ===`</span>            <span class="p">(</span><span class="mi">3</span> <span class="sb">`=`</span><span class="p">)</span>  <span class="o">|</span>
-<span class="o">|</span> <span class="n">paragraph</span>               <span class="o">|</span> <span class="sb">`__Heading.__`</span>               <span class="p">(</span><span class="mi">2</span> <span class="sb">`_`</span><span class="p">)</span>  <span class="o">|</span>
-<span class="o">|-----------------------------------------------------------------|</span>
+<div class="highlight-text"><div class="highlight"><pre>|----------------c--------|------------------c--------------------|
+|      Section type       |        Syntax                         |
+|----------------l--------|------------------l--------------------|
+| chapter                 | `========= Heading ========` (9 `=`)  |
+| section                 | `======= Heading =======`    (7 `=`)  |
+| subsection              | `===== Heading =====`        (5 `=`)  |
+| subsubsection           | `=== Heading ===`            (3 `=`)  |
+| paragraph               | `__Heading.__`               (2 `_`)  |
+|-----------------------------------------------------------------|
 </pre></div>
 </div>
 <p>Note that</p>
@@ -470,7 +472,7 @@ have no effect.</li>
 <p>The notion of labels, references, citations, and an index is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">label</span><span class="p">{</span><span class="n">name</span><span class="p">}</span>
+<div class="highlight-text"><div class="highlight"><pre>label{name}
 </pre></div>
 </div>
 <p>with no backslash
@@ -479,12 +481,12 @@ as some hierarchical name, say <tt class="docutils literal"><span class="pre">a:
 some abbreviations for a section and/or subsection for the topic and
 <tt class="docutils literal"><span class="pre">c</span></tt> is some name for the particular unit that has a label.</p>
 <p>A reference to the label <tt class="docutils literal"><span class="pre">name</span></tt> is written as</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">ref</span><span class="p">{</span><span class="n">name</span><span class="p">}</span>
+<div class="highlight-text"><div class="highlight"><pre>ref{name}
 </pre></div>
 </div>
 <p>again with no backslash before <tt class="docutils literal"><span class="pre">ref</span></tt>.</p>
 <p>Single citations are written as</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">cite</span><span class="p">{</span><span class="n">name</span><span class="p">}</span>
+<div class="highlight-text"><div class="highlight"><pre>cite{name}
 </pre></div>
 </div>
 <p>where <tt class="docutils literal"><span class="pre">name</span></tt> is a logical name
@@ -494,7 +496,7 @@ Bibliography citations often have <tt class="docutils literal"><span class="pre"
 <tt class="docutils literal"><span class="pre">YYYY</span></tt> is the year of the publication.
 Multiple citations at once is possible by separating the logical names
 by comma:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">cite</span><span class="p">{</span><span class="n">name1</span><span class="p">,</span><span class="n">name2</span><span class="p">,</span><span class="n">name3</span><span class="p">}</span>
+<div class="highlight-text"><div class="highlight"><pre>cite{name1,name2,name3}
 </pre></div>
 </div>
 <p>The bibliography is specified by a line <tt class="docutils literal"><span class="pre">BIBFILE:</span> <span class="pre">name_bib.bib,</span>
@@ -510,14 +512,14 @@ a reference with <tt class="docutils literal"><span class="pre">ref</span></tt> 
 in the same document and another formulation if the reference is
 to an item in an external document. The syntax of a generalized
 reference is</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">ref</span><span class="p">[</span><span class="n">internal</span><span class="p">][</span><span class="n">cite</span><span class="p">][</span><span class="n">external</span><span class="p">]</span>
+<div class="highlight-text"><div class="highlight"><pre>ref[internal][cite][external]
 
-<span class="c"># Example:</span>
-<span class="n">As</span> <span class="n">explained</span> <span class="ow">in</span>
-<span class="n">ref</span><span class="p">[</span><span class="n">Section</span> <span class="n">ref</span><span class="p">{</span><span class="n">subsec</span><span class="p">:</span><span class="n">ex</span><span class="p">}][</span><span class="ow">in</span> <span class="n">cite</span><span class="p">{</span><span class="n">testdoc</span><span class="p">:</span><span class="mi">12</span><span class="p">}][</span><span class="n">a</span> <span class="s">&quot;section&quot;</span><span class="p">:</span>
-<span class="s">&quot;testdoc.html#___sec2&quot;</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">document</span>
-<span class="s">&quot;A Document for Testing Doconce&quot;</span><span class="p">:</span> <span class="s">&quot;testdoc.html&quot;</span> <span class="n">cite</span><span class="p">{</span><span class="n">testdoc</span><span class="p">:</span><span class="mi">12</span><span class="p">}],</span>
-<span class="n">Doconce</span> <span class="n">documents</span> <span class="n">may</span> <span class="n">include</span> <span class="n">movies</span><span class="o">.</span>
+# Example:
+As explained in
+ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
+&quot;testdoc.html#___sec2&quot; in the document
+&quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
+Doconce documents may include movies.
 </pre></div>
 </div>
 <p>The output from a generalized reference is the text <tt class="docutils literal"><span class="pre">internal</span></tt> if all
@@ -533,7 +535,7 @@ documents.  If none of the two situations above applies, the
 <p>Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">index</span><span class="p">{</span><span class="n">name</span><span class="p">}</span>
+<div class="highlight-text"><div class="highlight"><pre>index{name}
 </pre></div>
 </div>
 <p>It is recommended to place any index of this type outside
@@ -631,7 +633,7 @@ to be handed in, and one or more hints (optional)</li>
 </ul>
 </div></blockquote>
 <p>A typical sketch of a a problem without subexercises goes as follows:</p>
-<div class="highlight-py"><pre>===== Problem: Derive the Formula for the Area of an Ellipse =====
+<div class="highlight-text"><div class="highlight"><pre>===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
 file=ellipse_area.pdf
 solution=ellipse_area1_sol.pdf
@@ -645,13 +647,14 @@ Wikipedia has the formula for the curve.
 !ehint
 
 !bhint
-"Wolframalpha": "http://wolframalpha.com" can perhaps
+&quot;Wolframalpha&quot;: &quot;http://wolframalpha.com&quot; can perhaps
 compute the integral.
-!ehint</pre>
+!ehint
+</pre></div>
 </div>
 <p>An exercise with subproblems, answers and full solutions has this
 setup-up:</p>
-<div class="highlight-py"><pre>===== Exercise: Determine the Distance to the Moon =====
+<div class="highlight-text"><div class="highlight"><pre>===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
 
 Intro to this exercise. Questions are in subexercises below.
@@ -696,7 +699,8 @@ directives is always typeset at the end of the exercise.
 
 !bsol
 Here goes a full solution of the whole exercise.
-!esol</pre>
+!esol
+</pre></div>
 </div>
 <p>By default, answers, solutions, and hints are typeset as paragraphs.</p>
 </div>
@@ -714,34 +718,34 @@ programming language, very similar to Python.</p>
 Here is a typical example on utilizing <tt class="docutils literal"><span class="pre">preprocess</span></tt> to include another
 document, &#8220;comment out&#8221; a large portion of text, and to write format-specific
 constructions:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="c"># #include &quot;myotherdoc.do.txt&quot;</span>
+<div class="highlight-text"><div class="highlight"><pre># #include &quot;myotherdoc.do.txt&quot;
 
-<span class="c"># #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)</span>
-\<span class="n">begin</span><span class="p">{</span><span class="n">table</span><span class="p">}</span>
-\<span class="n">caption</span><span class="p">{</span><span class="n">Some</span> <span class="n">words</span><span class="o">...</span> <span class="n">label</span><span class="p">{</span><span class="n">mytab</span><span class="p">}}</span>
-\<span class="n">begin</span><span class="p">{</span><span class="n">tabular</span><span class="p">}{</span><span class="n">lrr</span><span class="p">}</span>
-\<span class="n">hline</span>\<span class="n">noalign</span><span class="p">{</span>\<span class="n">smallskip</span><span class="p">}</span>
-\<span class="n">multicolumn</span><span class="p">{</span><span class="mi">1</span><span class="p">}{</span><span class="n">c</span><span class="p">}{</span><span class="n">time</span><span class="p">}</span> <span class="o">&amp;</span> \<span class="n">multicolumn</span><span class="p">{</span><span class="mi">1</span><span class="p">}{</span><span class="n">c</span><span class="p">}{</span><span class="n">velocity</span><span class="p">}</span> <span class="o">&amp;</span> \<span class="n">multicolumn</span><span class="p">{</span><span class="mi">1</span><span class="p">}{</span><span class="n">c</span><span class="p">}{</span><span class="n">acceleration</span><span class="p">}</span> \\
-\<span class="n">hline</span>
-<span class="mf">0.0</span>          <span class="o">&amp;</span> <span class="mf">1.4186</span>       <span class="o">&amp;</span> <span class="o">-</span><span class="mf">5.01</span>        \\
-<span class="mf">2.0</span>          <span class="o">&amp;</span> <span class="mf">1.376512</span>     <span class="o">&amp;</span> <span class="mf">11.919</span>       \\
-<span class="mf">4.0</span>          <span class="o">&amp;</span> <span class="mf">1.1E+1</span>       <span class="o">&amp;</span> <span class="mf">14.717624</span>    \\
-\<span class="n">hline</span>
-\<span class="n">end</span><span class="p">{</span><span class="n">tabular</span><span class="p">}</span>
-\<span class="n">end</span><span class="p">{</span><span class="n">table</span><span class="p">}</span>
-<span class="c"># #else</span>
-  <span class="o">|--------------------------------|</span>
-  <span class="o">|</span><span class="n">time</span>  <span class="o">|</span> <span class="n">velocity</span> <span class="o">|</span> <span class="n">acceleration</span> <span class="o">|</span>
-  <span class="o">|--</span><span class="n">l</span><span class="o">--------</span><span class="n">r</span><span class="o">-----------</span><span class="n">r</span><span class="o">--------|</span>
-  <span class="o">|</span> <span class="mf">0.0</span>  <span class="o">|</span> <span class="mf">1.4186</span>   <span class="o">|</span> <span class="o">-</span><span class="mf">5.01</span>        <span class="o">|</span>
-  <span class="o">|</span> <span class="mf">2.0</span>  <span class="o">|</span> <span class="mf">1.376512</span> <span class="o">|</span> <span class="mf">11.919</span>       <span class="o">|</span>
-  <span class="o">|</span> <span class="mf">4.0</span>  <span class="o">|</span> <span class="mf">1.1E+1</span>   <span class="o">|</span> <span class="mf">14.717624</span>    <span class="o">|</span>
-  <span class="o">|--------------------------------|</span>
-<span class="c"># #endif</span>
+# #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)
+\begin{table}
+\caption{Some words... label{mytab}}
+\begin{tabular}{lrr}
+\hline\noalign{\smallskip}
+\multicolumn{1}{c}{time} &amp; \multicolumn{1}{c}{velocity} &amp; \multicolumn{1}{c}{acceleration} \\
+\hline
+0.0          &amp; 1.4186       &amp; -5.01        \\
+2.0          &amp; 1.376512     &amp; 11.919       \\
+4.0          &amp; 1.1E+1       &amp; 14.717624    \\
+\hline
+\end{tabular}
+\end{table}
+# #else
+  |--------------------------------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+# #endif
 
-<span class="c"># #ifdef EXTRA_MATERIAL</span>
-<span class="o">....</span><span class="n">large</span> <span class="n">portions</span> <span class="n">of</span> <span class="n">text</span><span class="o">...</span>
-<span class="c"># #endif</span>
+# #ifdef EXTRA_MATERIAL
+....large portions of text...
+# #endif
 </pre></div>
 </div>
 <p>With the <tt class="docutils literal"><span class="pre">mako</span></tt> preprocessor the if-else tests have slightly different syntax.
@@ -827,7 +831,7 @@ examine the Doconce source and the <tt class="docutils literal"><span class="pre
     </div>
     <div class="footer">
         &copy; Copyright 2012, HPL.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2pre.
     </div>
   </body>
 </html>

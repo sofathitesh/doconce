@@ -157,7 +157,7 @@ def latex_figure(m, includegraphics=True):
         caption = caption.replace(from_, to_)
     if caption:
         result = r"""
-\begin{figure}[!ht]
+\begin{figure}[ht]
   %s
   \caption{
   %s

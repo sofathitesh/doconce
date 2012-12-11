@@ -87,22 +87,23 @@ def substitute(source, newcommands):
     else:
         text = source
 
+    from doconce import debugpr
     for pattern, replacement in newcommands:
-        m = re.search(pattern, text)
-        #if m:
-        #    print 'matching', pattern, 'groups:',m.groups()
         text, n = re.subn(pattern, replacement, text)
-        #print 'replacing', repr(pattern), 'with', repr(replacement), n, 'times'
+        if n:
+            debugpr('newcommand replacement: %s -> %s (%d times)'
+                    % (pattern, replacement, n))
 
     # newcommands can be nested, let's repeat
     depth = 2
     for i in range(depth):
         for pattern, replacement in newcommands:
             m = re.search(pattern, text)
-            #if m:
-            #    print 'matching', pattern, 'groups:',m.groups()
             text, n = re.subn(pattern, replacement, text)
-            #print 'replacing', repr(pattern), 'with', repr(replacement), n, 'times'
+            if n:
+                debugpr('newcommand replacement: %s -> %s (%d times)'
+                        % (pattern, replacement, n))
+
 
     if os.path.isfile(source):
         f = open(source, 'w')

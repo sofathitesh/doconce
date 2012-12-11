@@ -440,6 +440,7 @@ between there we have Exercise ref{exer:some:formula}.
 label{demo:ex:1}
 files = flip_coin.py, flip_coin.pdf
 solutions = mysol.txt, mysol_flip_coin.py
+keywords = random numbers; Monte Carlo simulation
 
 # Torture tests
 file=myfile_should_be_a_part_of_the_text

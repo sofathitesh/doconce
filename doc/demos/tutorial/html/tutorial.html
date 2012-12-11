@@ -15,7 +15,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -57,7 +57,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Dec 9, 2012</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Dec 11, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -206,7 +206,7 @@ code and use this to steer generation of Doconce text.</li>
 </ul>
 </div></blockquote>
 <p>Here is an example of some simple text written in the Doconce format:</p>
-<div class="highlight-py"><pre>===== A Subsection with Sample Text =====
+<div class="highlight-text"><div class="highlight"><pre>===== A Subsection with Sample Text =====
 label{my:first:sec}
 
 Ordinary text looks like ordinary text, and the tags used for
@@ -223,12 +223,12 @@ Lists can also have automatically numbered items instead of bullets,
   o item 2
   o item 3
 
-URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
+URLs with a link word are possible, as in &quot;hpl&quot;:&quot;http://folk.uio.no/hpl&quot;.
 If the word is URL, the URL itself becomes the link name,
-as in "URL": "tutorial.do.txt".
+as in &quot;URL&quot;: &quot;tutorial.do.txt&quot;.
 
 References to sections may use logical names as labels (e.g., a
-"label" command right after the section title), as in the reference to
+&quot;label&quot; command right after the section title), as in the reference to
 Section ref{my:first:sec}.
 
 Doconce also allows inline comments of the form [name: comment] (with
@@ -247,7 +247,8 @@ Tables are also supperted, e.g.,
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
 
-# lines beginning with # are comment lines</pre>
+# lines beginning with # are comment lines
+</pre></div>
 </div>
 <p>The Doconce text above results in the following little document:</p>
 <div class="section" id="a-subsection-with-sample-text">
@@ -318,7 +319,8 @@ This results in a professional LaTeX typesetting, but in other formats
 the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like <span class="math">\(\nu = \sin(x)\)</span> is
 typeset as</p>
-<div class="highlight-py"><pre>$\nu = \sin(x)$|$v = sin(x)$</pre>
+<div class="highlight-text"><div class="highlight"><pre>$\nu = \sin(x)$|$v = sin(x)$
+</pre></div>
 </div>
 <p>The pipe symbol acts as a delimiter between LaTeX code and the plain text
 version of the formula.</p>
@@ -355,7 +357,7 @@ configuration file <tt class="docutils literal"><span class="pre">.ptext2tex.cfg
 to Sphinx, one can have a comment line in the Doconce file for
 mapping the identifiers to legal language names for Sphinx (which equals
 the legal language names for Pygments):</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="c"># sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console</span>
+<div class="highlight-text"><div class="highlight"><pre># sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 </pre></div>
 </div>
 <p>By default, <tt class="docutils literal"><span class="pre">pro</span></tt> and <tt class="docutils literal"><span class="pre">cod</span></tt> are <tt class="docutils literal"><span class="pre">python</span></tt>, <tt class="docutils literal"><span class="pre">sys</span></tt> is <tt class="docutils literal"><span class="pre">console</span></tt>,
@@ -440,7 +442,7 @@ running <tt class="docutils literal"><span class="pre">preprocess</span></tt> an
 </div>
 <p>One can also remove all such comments from the original Doconce
 file by running:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">Terminal</span><span class="o">&gt;</span> <span class="n">doconce</span> <span class="n">remove_inline_comments</span> <span class="n">mydoc</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; doconce remove_inline_comments mydoc
 </pre></div>
 </div>
 <p>This action is convenient when a Doconce document reaches its final form
@@ -836,10 +838,10 @@ Links to local files in <tt class="docutils literal"><span class="pre">mydoc.rst
 files in the <tt class="docutils literal"><span class="pre">_static</span></tt> directory, see comment above.</p>
 <p><em>Step 4.</em> Edit the generated <tt class="docutils literal"><span class="pre">index.rst</span></tt> file so that <tt class="docutils literal"><span class="pre">mydoc.rst</span></tt>
 is included, i.e., add <tt class="docutils literal"><span class="pre">mydoc</span></tt> to the <tt class="docutils literal"><span class="pre">toctree</span></tt> section so that it becomes</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="o">..</span> <span class="n">toctree</span><span class="p">::</span>
-   <span class="p">:</span><span class="n">maxdepth</span><span class="p">:</span> <span class="mi">2</span>
+<div class="highlight-text"><div class="highlight"><pre>.. toctree::
+   :maxdepth: 2
 
-   <span class="n">mydoc</span>
+   mydoc
 </pre></div>
 </div>
 <p>(The spaces before <tt class="docutils literal"><span class="pre">mydoc</span></tt> are important!)</p>
@@ -905,7 +907,7 @@ constitute comprehensive examples on how such scripts can be made.</p>
 <div class="section" id="demos">
 <h2>Demos<a class="headerlink" href="#demos" title="Permalink to this headline">¶</a></h2>
 <p>The current text is generated from a Doconce format stored in the file</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">docs</span><span class="o">/</span><span class="n">tutorial</span><span class="o">/</span><span class="n">tutorial</span><span class="o">.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-text"><div class="highlight"><pre>docs/tutorial/tutorial.do.txt
 </pre></div>
 </div>
 <p>The file <tt class="docutils literal"><span class="pre">make.sh</span></tt> in the <tt class="docutils literal"><span class="pre">tutorial</span></tt> directory of the
@@ -1169,7 +1171,7 @@ Mercurial (<tt class="docutils literal"><span class="pre">hg</span></tt>) direct
     </div>
     <div class="footer">
         &copy; Copyright 2012, Hans Petter Langtangen.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2pre.
     </div>
   </body>
 </html>

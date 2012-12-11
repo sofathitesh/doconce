@@ -278,7 +278,7 @@ def doconce_exercise_output(exer,
         s += 'label{%s}' % exer['label'] + '\n'
 
     if exer['keywords']:
-        s += '# keywords = ' % '; '.join(exer['keywords']) + '\n'
+        s += '# keywords = %s' % '; '.join(exer['keywords']) + '\n'
 
     if exer['text']:
         s += '\n' + exer['text'] + '\n'
