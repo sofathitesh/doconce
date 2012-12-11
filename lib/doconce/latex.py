@@ -634,14 +634,19 @@ def _get_admon_figs(filename):
     datafile = 'latex_styles.zip'
     if not os.path.isdir(latexfigdir):
         os.mkdir(latexfigdir)
-    if not os.path.isfile(filename):
+    if not os.path.isfile(os.path.join(latexfigdir, filename)):
         os.chdir(latexfigdir)
-        import doconce
+        import doconce, shutil
         doconce_dir = os.path.dirname(doconce.__file__)
         doconce_datafile = os.path.join(doconce_dir, datafile)
+        print 'copying %s from %s to subdirectory %s' % \
+              (filename, doconce_datafile, latexfigdir)
         shutil.copy(doconce_datafile, os.curdir)
         import zipfile
-        zipfile.ZipFile(datafile).extract(filename)
+        path2filename = 'latex_styles/' + filename
+        zipfile.ZipFile(datafile).extract(path2filename)
+        os.rename(path2filename, filename)
+        shutil.rmtree('latex_styles')
         os.remove(datafile)
         os.chdir(os.pardir)
 
@@ -652,22 +657,21 @@ def _latex_admonition(admon, admon_name, figname, rgb):
     text = '''
 def latex_%s(block, format):
     ext = '.eps' if format == 'latex' else '.pdf'
-    figname = figname + ext
-    _get_admon_figs(figname)
+    _get_admon_figs('%s' + ext)
     return r"""
 \definecolor{%sbackground}{rgb}{%s}
-\setlength{\fboxrule}{2pt}
-\begin{center}
-\fcolorbox{black}{%sbackground}{
-\begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{%s/%s}
-\vskip-0.3in\hskip1.5in{\large\bf %s} \\[0.2cm]
+\setlength{\\fboxrule}{2pt}
+\\begin{center}
+\\fcolorbox{black}{%sbackground}{
+\\begin{minipage}{0.8\\textwidth}
+\includegraphics[height=0.3in]{%s/%s%%s}
+\\vskip-0.3in\hskip1.5in{\large\\bf %s} \\\\[0.4cm]
 %%s
 \end{minipage}}
 \end{center}
-\setlength{\fboxrule}{0.4pt} %% Back to default
-""" %% block
-''' % (admon, admon, ', '.join(rgb), admon, latexfigdir, figname, admon_name)
+\setlength{\\fboxrule}{0.4pt} %%%% Back to default
+""" %% (ext, block)
+''' % (admon, admon, admon, ', '.join(rgb), admon, latexfigdir, figname, admon_name)
     return text
 
 _admon2rgb = dict(warning=(1.0, 0.8235294, 0.8235294),   # pink
