@@ -657,7 +657,7 @@ def define(FILENAME_EXTENSION,
     }
     a { color: #657b83; text-decoration:none; }
     a:hover { color: #b58900; background: #eee8d5; text-decoration:none; }
-    h1, h2, h3 { margin:.8em 0 .2em 0; padding:0; }
+    h1, h2, h3 { margin:.8em 0 .2em 0; padding:0; line-height: 125%; }
     h2 { font-variant: small-caps; }
     pre {
       background: #fdf6e3;

@@ -464,11 +464,11 @@ def sphinx_code(filestr, code_blocks, code_block_types,
         filestr = cpattern.sub('\n.. code-block:: %s\n\n' % \
                                envir2lang[key], filestr)
 
-    # any !bc with/without argument becomes a py (python) block:
-    #filestr = re.sub(r'^!bc.+\n', '\n.. code-block:: py\n\n', filestr,
+    # any !bc with/without argument becomes a text block:
+    #filestr = re.sub(r'^!bc.+\n', '\n.. code-block:: text\n\n', filestr,
     #                 flags=re.MULTILINE)
     cpattern = re.compile(r'^!bc.*$', flags=re.MULTILINE)
-    filestr = cpattern.sub('\n.. code-block:: py\n\n', filestr)
+    filestr = cpattern.sub('\n.. code-block:: text\n\n', filestr)
 
     filestr = re.sub(r'!ec *\n', '\n\n', filestr)
     #filestr = re.sub(r'!ec\n', '\n', filestr)
