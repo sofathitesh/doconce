@@ -2396,6 +2396,8 @@ def usage_html_colorbullets():
     print 'Usage: doconce html_colorbullets mydoc.html'
 
 def html_colorbullets():
+    # A much better implementation, avoiding tables, is given
+    # here: http://www.eng.buffalo.edu/webguide/Bullet_Lists.html
     """
     Replace unordered lists by a table, in order to replace
     ``<li>`` tags (and the default bullets) by

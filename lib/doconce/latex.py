@@ -627,10 +627,15 @@ def latex_notes(block, format):
 %s
 """ % (indent_lines(block, format, '% '))
 
+latexfigdir = 'latex_figs'
+
 def _get_admon_figs(filename):
     # Extract graphics file from latex_styles.zip, when needed
     datafile = 'latex_styles.zip'
+    if not os.path.isdir(latexfigdir):
+        os.mkdir(latexfigdir)
     if not os.path.isfile(filename):
+        os.chdir(latexfigdir)
         import doconce
         doconce_dir = os.path.dirname(doconce.__file__)
         doconce_datafile = os.path.join(doconce_dir, datafile)
@@ -638,6 +643,8 @@ def _get_admon_figs(filename):
         import zipfile
         zipfile.ZipFile(datafile).extract(filename)
         os.remove(datafile)
+        os.chdir(os.pardir)
+
 
 def _latex_admonition(admon, admon_name, figname, rgb):
     if isinstance(rgb[0], (float,int)):
@@ -653,26 +660,25 @@ def latex_%s(block, format):
 \begin{center}
 \fcolorbox{black}{%sbackground}{
 \begin{minipage}{0.8\textwidth}
-\includegraphics[height=0.3in]{%s}
+\includegraphics[height=0.3in]{%s/%s}
 \vskip-0.3in\hskip1.5in{\large\bf %s} \\[0.2cm]
 %%s
 \end{minipage}}
 \end{center}
 \setlength{\fboxrule}{0.4pt} %% Back to default
 """ %% block
-''' % (admon, admon, ', '.join(rgb), admon, figname, admon_name)
+''' % (admon, admon, ', '.join(rgb), admon, latexfigdir, figname, admon_name)
     return text
 
 _admon2rgb = dict(warning=(1.0, 0.8235294, 0.8235294),   # pink
-                  tip=(0.87843, 0.95686, 1.0),           # light blue
-                  notice=(0.988235, 0.964706, 0.862745),
-                  important=(1.0, 0.8235294, 0.8235294), # pink
+                  question=(0.87843, 0.95686, 1.0),      # light blue
+                  notice=(0.988235, 0.964706, 0.862745), # light yellow
+                  summary=(0.988235, 0.964706, 0.862745), # light yellow
                   hint=(0.87843, 0.95686, 1.0),          # light blue
                   )
-for _admon in ['warning', 'tip', 'hint', 'notice', 'important']:
+for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
     exec(_latex_admonition(_admon, _admon.upper(),
                            _admon, _admon2rgb[_admon]))
-# figures are not yet done...[[[
 
 
 def define(FILENAME_EXTENSION,
@@ -790,7 +796,7 @@ def define(FILENAME_EXTENSION,
         'tip':           latex_tip,
         'notice':        latex_notice,
         'hint':          latex_hint,
-        'important':     latex_important,
+        'summary':     latex_summary,
         'notes':         latex_notes,
        }
 
@@ -1046,4 +1052,3 @@ def fix_latex_command_regex(pattern, application='match'):
         if problematic_pattern in pattern and not ok_pattern in pattern:
             pattern = pattern.replace(problematic_pattern, ok_pattern)
     return pattern
-

@@ -50,7 +50,7 @@ def doconce_envirs():
             'pop', 'slidecell',       # slides
             'notes', 'hint', 'remarks', # exercises and general
             'quote', 'notice',
-            'important', 'warning', 'tip']
+            'summary', 'warning', 'tip']
 
 #----------------------------------------------------------------------------
 # Translators: (do not include, use import as shown above)
