@@ -542,7 +542,7 @@ def html_%s(block, format):
 </table>
 """ %% block
     janko = '<div class="%s">%%s</div>' %% block
-    return lyx if '--html-lyx-admon' in sys.argv else janko
+    return janko if '--html-color-admon' in sys.argv else lyx
 ''' % (_admon, _admon, _Admon, _Admon, _admon)
     exec(_text)
 

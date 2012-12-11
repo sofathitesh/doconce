@@ -205,7 +205,9 @@ DATE: today
 TOC: on
 !ec
 
-Note: title and authors must have everything on a single line!
+!bwarning
+Title and authors must have all information *on a single line*!
+!ewarning
 
 !split
 ======= Doconce: abstract =======
@@ -278,7 +280,9 @@ See (ref{eq1})-(ref{myeq}).
 !split
 ======= Doconce: figures and movies =======
 
-Figure with HTML and LaTeX info, and caption, all on one line:
+!bnotice
+Figure with HTML and LaTeX info, and caption, *all on one line*:
+!enotice
 
 !bc
 FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
