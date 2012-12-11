@@ -2072,7 +2072,7 @@ def main():
                '--oneline_paragraphs', '--no-mako', '--no-preprocess',
                '--no-pygments-html', '--minted-latex-style=',
                '--pygments-html-style=', '--pygments-html-linenos',
-               '--html-solarized', '--latex-printed', '--html-lyx-admon',
+               '--html-solarized', '--latex-printed', '--html-color-admon',
                ]
 
     global _log, encoding, filename
