@@ -6,7 +6,7 @@ Doconce Quick Reference
 
 :Author: Hans Petter Langtangen
 
-:Date: Dec 9, 2012
+:Date: Dec 11, 2012
 
 .. Very preliminary
 
@@ -50,7 +50,7 @@ A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
 reads
 
-.. code-block:: py
+.. code-block:: text
 
 
         TITLE: On an Ultimate Markup Language
@@ -63,7 +63,7 @@ reads
 The entire title must appear on a single line.
 The author syntax is
 
-.. code-block:: py
+.. code-block:: text
 
 
         name Email: somename@adr.net at institution1 and institution2
@@ -122,7 +122,7 @@ consqutive numbers,
 and *description* lists, where each item starts with ``-`` followed
 by a keyword and a colon.
 
-.. code-block:: py
+.. code-block:: text
 
 
         Here is a bullet list:
@@ -218,7 +218,7 @@ Inline comments, in the text, that are meant as messages or notes to readers
 (authors in particular)
 are often useful and enabled by the syntax
 
-.. code-block:: py
+.. code-block:: text
 
 
         [name: running text]
@@ -249,7 +249,7 @@ Verbatim/Computer Code
 
 Inline verbatim code is typeset within back-ticks, as in
 
-.. code-block:: py
+.. code-block:: text
 
 
         Some sentence with `words in verbatim style`.
@@ -271,7 +271,7 @@ in programming ``X``, where ``X`` may be ``py`` for Python,
 defined verbatim environment in the ``ptex2tex`` configuration file
 (``.ptex2tex.cfg``). For ``sphinx`` output one can insert a comment
 
-.. code-block:: py
+.. code-block:: text
 
 
         # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
@@ -289,7 +289,7 @@ kinds of verbatim output.
 
 Computer code can also be copied from a file:
 
-.. code-block:: py
+.. code-block:: text
 
 
          @@@CODE doconce_program.sh
@@ -337,7 +337,7 @@ LaTeX way with the mathematics surrounded by dollar signs, as in
 ``latex``, and ``pdflatex``, inline mathematics may have a more human
 readable companion expression. The syntax is like
 
-.. code-block:: py
+.. code-block:: text
 
 
         $\sin(\norm{\bf u})$|$sin(||u||)$
@@ -353,7 +353,7 @@ and
 ``!et`` ("begin/end TeX") directives.
 For example,
 
-.. code-block:: py
+.. code-block:: text
 
 
         
@@ -412,7 +412,7 @@ Figures and Movies
 
 Figures and movies have almost equal syntax:
 
-.. code-block:: py
+.. code-block:: text
 
 
         FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
@@ -452,7 +452,7 @@ Tables
 The table in the section :ref:`quick:sections` was written with this
 syntax:
 
-.. code-block:: py
+.. code-block:: text
 
 
         |----------------c--------|------------------c--------------------|
@@ -494,7 +494,7 @@ The notion of labels, references, citations, and an index is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 
-.. code-block:: py
+.. code-block:: text
 
 
         label{name}
@@ -507,7 +507,7 @@ some abbreviations for a section and/or subsection for the topic and
 
 A reference to the label ``name`` is written as
 
-.. code-block:: py
+.. code-block:: text
 
 
         ref{name}
@@ -516,7 +516,7 @@ again with no backslash before ``ref``.
 
 Single citations are written as
 
-.. code-block:: py
+.. code-block:: text
 
 
         cite{name}
@@ -529,7 +529,7 @@ Bibliography citations often have ``name`` on the form
 Multiple citations at once is possible by separating the logical names
 by comma:
 
-.. code-block:: py
+.. code-block:: text
 
 
         cite{name1,name2,name3}
@@ -550,7 +550,7 @@ in the same document and another formulation if the reference is
 to an item in an external document. The syntax of a generalized
 reference is
 
-.. code-block:: py
+.. code-block:: text
 
 
         ref[internal][cite][external]
@@ -577,7 +577,7 @@ Doconce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
 
-.. code-block:: py
+.. code-block:: text
 
 
         index{name}
@@ -689,7 +689,7 @@ An exercise, problem, or project sections contains certain *elements*:
 
 A typical sketch of a a problem without subexercises goes as follows:
 
-.. code-block:: py
+.. code-block:: text
 
 
         ===== Problem: Derive the Formula for the Area of an Ellipse =====
@@ -714,7 +714,7 @@ An exercise with subproblems, answers and full solutions has this
 setup-up:
 
 
-.. code-block:: py
+.. code-block:: text
 
 
         ===== Exercise: Determine the Distance to the Moon =====
@@ -786,7 +786,7 @@ document, "comment out" a large portion of text, and to write format-specific
 constructions:
 
 
-.. code-block:: py
+.. code-block:: text
 
 
         # #include "myotherdoc.do.txt"

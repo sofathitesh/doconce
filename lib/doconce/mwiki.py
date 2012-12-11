@@ -119,7 +119,7 @@ def mwiki_ref_and_label(section_label2title, format, filestr):
     return wiki_ref_and_label_common(section_label2title, format, filestr)
 
 def mwiki_warning(block, format):
-    return '{{warning|%s}}' % block
+    return '\n{{warning|%s}}\n\n' % block
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,

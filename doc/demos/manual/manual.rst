@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Dec 9, 2012
+:Date: Dec 11, 2012
 
 .. lines beginning with # are comment lines
 

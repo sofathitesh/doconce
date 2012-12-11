@@ -15,7 +15,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 9, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 11, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -358,7 +358,7 @@ running <tt class="docutils literal"><span class="pre">preprocess</span></tt> an
 </div>
 <p>One can also remove all such comments from the original Doconce
 file by running:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">Terminal</span><span class="o">&gt;</span> <span class="n">doconce</span> <span class="n">remove_inline_comments</span> <span class="n">mydoc</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; doconce remove_inline_comments mydoc
 </pre></div>
 </div>
 <p>This action is convenient when a Doconce document reaches its final form
@@ -754,10 +754,10 @@ Links to local files in <tt class="docutils literal"><span class="pre">mydoc.rst
 files in the <tt class="docutils literal"><span class="pre">_static</span></tt> directory, see comment above.</p>
 <p><em>Step 4.</em> Edit the generated <tt class="docutils literal"><span class="pre">index.rst</span></tt> file so that <tt class="docutils literal"><span class="pre">mydoc.rst</span></tt>
 is included, i.e., add <tt class="docutils literal"><span class="pre">mydoc</span></tt> to the <tt class="docutils literal"><span class="pre">toctree</span></tt> section so that it becomes</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="o">..</span> <span class="n">toctree</span><span class="p">::</span>
-   <span class="p">:</span><span class="n">maxdepth</span><span class="p">:</span> <span class="mi">2</span>
+<div class="highlight-text"><div class="highlight"><pre>.. toctree::
+   :maxdepth: 2
 
-   <span class="n">mydoc</span>
+   mydoc
 </pre></div>
 </div>
 <p>(The spaces before <tt class="docutils literal"><span class="pre">mydoc</span></tt> are important!)</p>
@@ -829,18 +829,18 @@ lists, special lines, inline tags, and environments.</p>
 <h2>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h2>
 <p>An unordered bullet list makes use of the <tt class="docutils literal"><span class="pre">*</span></tt> as bullet sign
 and is indented as follows</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="o">*</span> <span class="n">item</span> <span class="mi">1</span>
+<div class="highlight-text"><div class="highlight"><pre>* item 1
 
-<span class="o">*</span> <span class="n">item</span> <span class="mi">2</span>
+* item 2
 
-  <span class="o">*</span> <span class="n">subitem</span> <span class="mi">1</span><span class="p">,</span> <span class="k">if</span> <span class="n">there</span> <span class="n">are</span> <span class="n">more</span>
-    <span class="n">lines</span><span class="p">,</span> <span class="n">each</span> <span class="n">line</span> <span class="n">must</span>
-    <span class="n">be</span> <span class="n">intended</span> <span class="k">as</span> <span class="n">shown</span> <span class="n">here</span>
+  * subitem 1, if there are more
+    lines, each line must
+    be intended as shown here
 
-  <span class="o">*</span> <span class="n">subitem</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="n">also</span> <span class="n">spans</span> <span class="n">two</span> <span class="n">lines</span>
+  * subitem 2,
+    also spans two lines
 
-<span class="o">*</span> <span class="n">item</span> <span class="mi">3</span>
+* item 3
 </pre></div>
 </div>
 <p>This list gets typeset as</p>
@@ -860,15 +860,15 @@ also spans two lines</li>
 </div></blockquote>
 <p>In an ordered list, each item starts with an <tt class="docutils literal"><span class="pre">o</span></tt> (as the first letter
 in &#8220;ordered&#8221;):</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">o</span> <span class="n">item</span> <span class="mi">1</span>
+<div class="highlight-text"><div class="highlight"><pre>o item 1
 
-<span class="n">o</span> <span class="n">item</span> <span class="mi">2</span>
+o item 2
 
-  <span class="o">*</span> <span class="n">subitem</span> <span class="mi">1</span>
+  * subitem 1
 
-  <span class="o">*</span> <span class="n">subitem</span> <span class="mi">2</span>
+  * subitem 2
 
-<span class="n">o</span> <span class="n">item</span> <span class="mi">3</span>
+o item 3
 </pre></div>
 </div>
 <p>resulting in</p>
@@ -887,12 +887,12 @@ in &#8220;ordered&#8221;):</p>
 applies to the outer list only.</p>
 <p>In a description list, each item is recognized by a dash followed
 by a keyword followed by a colon:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="o">-</span> <span class="n">keyword1</span><span class="p">:</span> <span class="n">explanation</span> <span class="n">of</span> <span class="n">keyword1</span>
+<div class="highlight-text"><div class="highlight"><pre>- keyword1: explanation of keyword1
 
-<span class="o">-</span> <span class="n">keyword2</span><span class="p">:</span> <span class="n">explanation</span>
-  <span class="n">of</span> <span class="n">keyword2</span> <span class="p">(</span><span class="n">remember</span> <span class="n">to</span> <span class="n">indent</span> <span class="n">properly</span>
-  <span class="k">if</span> <span class="n">there</span> <span class="n">are</span> <span class="n">multiple</span>
-  <span class="n">lines</span><span class="p">)</span>
+- keyword2: explanation
+  of keyword2 (remember to indent properly
+  if there are multiple
+  lines)
 </pre></div>
 </div>
 <p>The result becomes</p>
@@ -919,7 +919,7 @@ to identify a title of the document, the authors, and the date. The
 title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
 the syntax</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">name</span> <span class="n">at</span> <span class="n">institution1</span> <span class="ow">and</span> <span class="n">institution2</span> <span class="ow">and</span> <span class="n">institution3</span>
+<div class="highlight-text"><div class="highlight"><pre>name at institution1 and institution2 and institution3
 </pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">at</span></tt> with surrounding spaces
@@ -927,17 +927,17 @@ is essential for adding information about institution(s)
 to the author name, and the <tt class="docutils literal"><span class="pre">and</span></tt> with surrounding spaces is
 essential as delimiter between different institutions.
 An email address can optionally be included, using the syntax</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">name</span> <span class="n">Email</span><span class="p">:</span> <span class="n">somename</span><span class="nd">@site.net</span> <span class="n">at</span> <span class="n">institution1</span> <span class="ow">and</span> <span class="n">institution2</span>
+<div class="highlight-text"><div class="highlight"><pre>name Email: somename@site.net at institution1 and institution2
 </pre></div>
 </div>
 <p>Multiple authors require multiple <tt class="docutils literal"><span class="pre">AUTHOR:</span></tt> lines. All information
 associated with <tt class="docutils literal"><span class="pre">TITLE:</span></tt> and <tt class="docutils literal"><span class="pre">AUTHOR:</span></tt> keywords must appear on a single
 line.  Here is an example:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">TITLE</span><span class="p">:</span> <span class="n">On</span> <span class="n">an</span> <span class="n">Ultimate</span> <span class="n">Markup</span> <span class="n">Language</span>
-<span class="n">AUTHOR</span><span class="p">:</span> <span class="n">H</span><span class="o">.</span> <span class="n">P</span><span class="o">.</span> <span class="n">Langtangen</span> <span class="n">at</span> <span class="n">Center</span> <span class="k">for</span> <span class="n">Biomedical</span> <span class="n">Computing</span><span class="p">,</span> <span class="n">Simula</span> <span class="n">Research</span> <span class="n">Laboratory</span> <span class="ow">and</span> <span class="n">Dept</span><span class="o">.</span> <span class="n">of</span> <span class="n">Informatics</span><span class="p">,</span> <span class="n">Univ</span><span class="o">.</span> <span class="n">of</span> <span class="n">Oslo</span>
-<span class="n">AUTHOR</span><span class="p">:</span> <span class="n">Kaare</span> <span class="n">Dump</span> <span class="n">Email</span><span class="p">:</span> <span class="n">dump</span><span class="nd">@cyb.space.com</span> <span class="n">at</span> <span class="n">Segfault</span><span class="p">,</span> <span class="n">Cyberspace</span> <span class="n">Inc</span><span class="o">.</span>
-<span class="n">AUTHOR</span><span class="p">:</span> <span class="n">A</span><span class="o">.</span> <span class="n">Dummy</span> <span class="n">Author</span>
-<span class="n">DATE</span><span class="p">:</span> <span class="n">November</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2016</span>
+<div class="highlight-text"><div class="highlight"><pre>TITLE: On an Ultimate Markup Language
+AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory and Dept. of Informatics, Univ. of Oslo
+AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
+AUTHOR: A. Dummy Author
+DATE: November 9, 2016
 </pre></div>
 </div>
 <p>Note how one can specify a single institution, multiple institutions,
@@ -945,19 +945,19 @@ and no institution. In some formats (including <tt class="docutils literal"><spa
 only the author names appear. Some formats have
 &#8220;intelligence&#8221; in listing authors and institutions, e.g., the plain text
 format:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">Hans</span> <span class="n">Petter</span> <span class="n">Langtangen</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="n">Kaare</span> <span class="n">Dump</span>  <span class="p">(</span><span class="n">dump</span><span class="nd">@cyb.space.com</span><span class="p">)</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">A</span><span class="o">.</span> <span class="n">Dummy</span> <span class="n">Author</span>
+<div class="highlight-text"><div class="highlight"><pre>Hans Petter Langtangen [1, 2]
+Kaare Dump  (dump@cyb.space.com) [3]
+A. Dummy Author
 
-<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">Center</span> <span class="k">for</span> <span class="n">Biomedical</span> <span class="n">Computing</span><span class="p">,</span> <span class="n">Simula</span> <span class="n">Research</span> <span class="n">Laboratory</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">Department</span> <span class="n">of</span> <span class="n">Informatics</span><span class="p">,</span> <span class="n">University</span> <span class="n">of</span> <span class="n">Oslo</span>
-<span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">Segfault</span><span class="p">,</span> <span class="n">Cyberspace</span> <span class="n">Inc</span><span class="o">.</span>
+[1] Center for Biomedical Computing, Simula Research Laboratory
+[2] Department of Informatics, University of Oslo
+[3] Segfault, Cyberspace Inc.
 </pre></div>
 </div>
 <p>Similar typesetting is done for LaTeX and HTML formats.</p>
 <p>The current date can be specified as <tt class="docutils literal"><span class="pre">today</span></tt>.</p>
 <p id="index-5"><em>Table of Contents.</em> A table of contents can be generated by the line</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">TOC</span><span class="p">:</span> <span class="n">on</span>
+<div class="highlight-text"><div class="highlight"><pre>TOC: on
 </pre></div>
 </div>
 <p>This line is usually placed after the <tt class="docutils literal"><span class="pre">DATE:</span></tt> line.
@@ -981,32 +981,32 @@ or equal signs (=):</p>
 <em>must</em> be followed by a section heading (everything up to the first
 section heading is taken as part of the text of the abstract).</p>
 <p>Here are some examples:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">__Abstract</span><span class="o">.</span><span class="n">__</span> <span class="n">The</span> <span class="n">following</span> <span class="n">text</span> <span class="n">just</span> <span class="n">attempts</span> <span class="n">to</span> <span class="n">exemplify</span>
-<span class="n">various</span> <span class="n">section</span> <span class="n">headings</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>__Abstract.__ The following text just attempts to exemplify
+various section headings.
 
-<span class="n">Appendix</span> <span class="ow">is</span> <span class="n">supported</span> <span class="n">too</span><span class="p">:</span> <span class="n">just</span> <span class="n">let</span> <span class="n">the</span> <span class="n">heading</span> <span class="n">start</span> <span class="k">with</span> <span class="s">&quot;Appendix: &quot;</span>
-<span class="p">(</span><span class="n">this</span> <span class="n">affects</span> <span class="n">only</span> <span class="sb">`latex`</span> <span class="n">output</span><span class="p">,</span> <span class="n">where</span> <span class="n">the</span> <span class="n">appendix</span> <span class="n">formatting</span>
-<span class="ow">is</span> <span class="n">used</span> <span class="o">-</span> <span class="nb">all</span> <span class="n">other</span> <span class="n">formats</span> <span class="n">just</span> <span class="n">leave</span> <span class="n">the</span> <span class="n">heading</span> <span class="k">as</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">written</span><span class="p">)</span><span class="o">.</span>
+Appendix is supported too: just let the heading start with &quot;Appendix: &quot;
+(this affects only `latex` output, where the appendix formatting
+is used - all other formats just leave the heading as it is written).
 
-<span class="o">=========</span> <span class="n">Example</span> <span class="n">on</span> <span class="n">a</span> <span class="n">Chapter</span> <span class="n">Heading</span> <span class="o">=========</span>
+========= Example on a Chapter Heading =========
 
-<span class="n">Some</span> <span class="n">text</span><span class="o">.</span>
-
-
-<span class="o">=======</span> <span class="n">Example</span> <span class="n">on</span> <span class="n">a</span> <span class="n">Section</span> <span class="n">Heading</span> <span class="o">=======</span>
-
-<span class="n">The</span> <span class="n">running</span> <span class="n">text</span> <span class="n">goes</span> <span class="n">here</span><span class="o">.</span>
+Some text.
 
 
-<span class="o">=====</span> <span class="n">Example</span> <span class="n">on</span> <span class="n">a</span> <span class="n">Subsection</span> <span class="n">Heading</span> <span class="o">=====</span>
+======= Example on a Section Heading =======
 
-<span class="n">The</span> <span class="n">running</span> <span class="n">text</span> <span class="n">goes</span> <span class="n">here</span><span class="o">.</span>
+The running text goes here.
 
-<span class="o">===</span> <span class="n">Example</span> <span class="n">on</span> <span class="n">a</span> <span class="n">Subsubsection</span> <span class="n">Heading</span> <span class="o">===</span>
 
-<span class="n">The</span> <span class="n">running</span> <span class="n">text</span> <span class="n">goes</span> <span class="n">here</span><span class="o">.</span>
+===== Example on a Subsection Heading =====
 
-<span class="n">__A</span> <span class="n">Paragraph</span><span class="o">.</span><span class="n">__</span> <span class="n">The</span> <span class="n">running</span> <span class="n">text</span> <span class="n">goes</span> <span class="n">here</span><span class="o">.</span>
+The running text goes here.
+
+=== Example on a Subsubsection Heading ===
+
+The running text goes here.
+
+__A Paragraph.__ The running text goes here.
 </pre></div>
 </div>
 </div>
@@ -1016,7 +1016,7 @@ section heading is taken as part of the text of the abstract).</p>
 <div class="section" id="figures">
 <h2>Figures<a class="headerlink" href="#figures" title="Permalink to this headline">¶</a></h2>
 <p>Figures are recognized by the special line syntax</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">FIGURE</span><span class="p">:[</span><span class="n">filename</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">xxx</span> <span class="n">width</span><span class="o">=</span><span class="n">yyy</span> <span class="n">scale</span><span class="o">=</span><span class="n">zzz</span><span class="p">]</span> <span class="n">possible</span> <span class="n">caption</span>
+<div class="highlight-text"><div class="highlight"><pre>FIGURE:[filename, height=xxx width=yyy scale=zzz] possible caption
 </pre></div>
 </div>
 <p>The filename can be without extension, and Doconce will search for an
@@ -1034,7 +1034,7 @@ newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as <tt class="docutils literal"><span class="pre">FIGURE:</span></tt> will be
 included in the formatted caption).</p>
 <div class="figure" id="fig-viz">
-<img alt="_images/streamtubes.png" src="_images/streamtubes.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="_images/streamtubes.png"><img alt="_images/streamtubes.png" src="_images/streamtubes.png" style="width: 400px;" /></a>
 <p class="caption"><em>Streamtube visualization of a fluid flow</em></p>
 </div>
 <p>Combining several image files into one, in a table fashion, can be done by the
@@ -1053,7 +1053,7 @@ and <tt class="docutils literal"><span class="pre">-tile</span> <span class="pre
 feature works well for the <tt class="docutils literal"><span class="pre">latex</span></tt>, <tt class="docutils literal"><span class="pre">html</span></tt>, <tt class="docutils literal"><span class="pre">rst</span></tt>, and <tt class="docutils literal"><span class="pre">sphinx</span></tt> formats.
 Other formats try to generate some HTML file and link to that file
 for showing the movie.</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">MOVIE</span><span class="p">:</span> <span class="p">[</span><span class="n">filename</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">xxx</span> <span class="n">width</span><span class="o">=</span><span class="n">yyy</span><span class="p">]</span> <span class="n">possible</span> <span class="n">caption</span>
+<div class="highlight-text"><div class="highlight"><pre>MOVIE: [filename, height=xxx width=yyy] possible caption
 </pre></div>
 </div>
 <embed src="figs/mjolnir.mpeg" width=600 height=470 autoplay="false" loop="true"></embed>
@@ -1091,7 +1091,7 @@ of <em>embedded</em> YouTube movies. The recipe goes as follows:</p>
 <li>note the height and width of the embedded movie</li>
 </ol>
 <p>A typical <tt class="docutils literal"><span class="pre">MOVIE</span></tt> command with a YouTube movie is then</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">MOVIE</span><span class="p">:</span> <span class="p">[</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">youtube</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">embed</span><span class="o">/</span><span class="n">sI2uCHH3qIM</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">420</span> <span class="n">height</span><span class="o">=</span><span class="mi">315</span><span class="p">]</span>
+<div class="highlight-text"><div class="highlight"><pre>MOVIE: [http://www.youtube.com/embed/sI2uCHH3qIM, width=420 height=315]
 </pre></div>
 </div>
 <p>Doconce will be able to embed standard YouTube URLs also, but then
@@ -1110,19 +1110,19 @@ and <tt class="docutils literal"><span class="pre">verbatim</span> <span class="
 plus LaTeX/TeX inline mathematics, such as <span class="math">\(\nu = \sin(x)\)</span>.</p>
 <p>Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="o">*</span><span class="n">emphasized</span> <span class="n">words</span><span class="o">*</span>
+<div class="highlight-text"><div class="highlight"><pre>*emphasized words*
 </pre></div>
 </div>
 <p>Boldface font is recognized by an underscore instead of an asterisk:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">_several</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">boldface_</span> <span class="n">followed</span> <span class="n">by</span> <span class="o">*</span><span class="n">ephasized</span> <span class="n">text</span><span class="o">*.</span>
+<div class="highlight-text"><div class="highlight"><pre>_several words in boldface_ followed by *ephasized text*.
 </pre></div>
 </div>
 <p>The line above gets typeset as
 <strong>several words in boldface</strong> followed by <em>ephasized text</em>.</p>
 <p>Verbatim text, typically used for short inline code,
 is typeset between back-ticks:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="sb">`call myroutine(a, b)`</span> <span class="n">looks</span> <span class="n">like</span> <span class="n">a</span> <span class="n">Fortran</span> <span class="n">call</span>
-<span class="k">while</span> <span class="sb">`void myfunc(double *a, double *b)`</span> <span class="n">must</span> <span class="n">be</span> <span class="n">C</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>`call myroutine(a, b)` looks like a Fortran call
+while `void myfunc(double *a, double *b)` must be C.
 </pre></div>
 </div>
 <p>The typesetting result looks like this:
@@ -1138,7 +1138,7 @@ Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).</p>
 <p>Web addresses with links are typeset as</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">some</span> <span class="n">URL</span> <span class="n">like</span> <span class="s">&quot;Search Google&quot;</span><span class="p">:</span> <span class="s">&quot;http://google.com&quot;</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>some URL like &quot;Search Google&quot;: &quot;http://google.com&quot;.
 </pre></div>
 </div>
 <p>which appears as some URL like <a class="reference external" href="http://google.com">Search Google</a>.
@@ -1147,7 +1147,7 @@ Links to files ending in <tt class="docutils literal"><span class="pre">.txt</sp
 <tt class="docutils literal"><span class="pre">.f77</span></tt>, <tt class="docutils literal"><span class="pre">.f90</span></tt>, <tt class="docutils literal"><span class="pre">.f95</span></tt>, <tt class="docutils literal"><span class="pre">.sh</span></tt>, <tt class="docutils literal"><span class="pre">.csh</span></tt>, <tt class="docutils literal"><span class="pre">.ksh</span></tt>, <tt class="docutils literal"><span class="pre">.zsh</span></tt>,
 <tt class="docutils literal"><span class="pre">.c</span></tt>, <tt class="docutils literal"><span class="pre">.cpp</span></tt>, <tt class="docutils literal"><span class="pre">.cxx</span></tt>, <tt class="docutils literal"><span class="pre">.pl</span></tt>, and <tt class="docutils literal"><span class="pre">.java</span></tt> follows the same
 setup:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">see</span> <span class="n">the</span> <span class="s">&quot;Doconce Manual&quot;</span><span class="p">:</span> <span class="s">&quot;manual.do.txt&quot;</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>see the &quot;Doconce Manual&quot;: &quot;manual.do.txt&quot;.
 </pre></div>
 </div>
 <p>which appears as see the <a class="reference external" href="manual.do.txt">Doconce Manual</a>.
@@ -1182,25 +1182,25 @@ to transform the source code file to HTML format by running
 <tt class="docutils literal"><span class="pre">subdir/make.sh</span></tt>. Here is an example where the reader
 has the file available as <tt class="docutils literal"><span class="pre">src/myprog.py</span></tt> in her
 software and the document links to <tt class="docutils literal"><span class="pre">_static/myprog.py</span></tt>:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">See</span> <span class="n">the</span> <span class="n">code</span> <span class="n">URL</span><span class="p">:</span><span class="s">&quot;src/myprog.py&quot;</span> <span class="p">(</span><span class="s">&quot;view: &quot;</span><span class="n">_static</span><span class="o">/</span><span class="n">myprog</span><span class="o">.</span><span class="n">py</span><span class="o">.</span><span class="n">html</span><span class="s">&quot;).</span>
+<div class="highlight-text"><div class="highlight"><pre>See the code URL:&quot;src/myprog.py&quot; (&quot;view: &quot;_static/myprog.py.html&quot;).
 </pre></div>
 </div>
 <p>Links to files with other extensions are typeset with
 <em>the filename as link text</em>. The syntax consists of
 the keyword URL, followed by a colon, and then the filename enclosed
 in double quotes:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">URL</span><span class="p">:</span> <span class="s">&quot;manual.html&quot;</span>
+<div class="highlight-text"><div class="highlight"><pre>URL: &quot;manual.html&quot;
 </pre></div>
 </div>
 <p>resulting in the link <a class="reference external" href="manual.html">manual.html</a>.</p>
 <p>Similarly, to have the URL address itself as link text, put an &#8220;URL&#8221; or URL
 before the address enclosed in double quotes:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">Click</span> <span class="n">on</span> <span class="n">this</span> <span class="n">link</span><span class="p">:</span> <span class="n">URL</span><span class="p">:</span><span class="s">&quot;http://code.google.com/p/doconce&quot;</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.
 </pre></div>
 </div>
 <p>resulting in Click on this link: <a class="reference external" href="http://code.google.com/p/doconce">http://code.google.com/p/doconce</a>.</p>
 <p>Doconce also supports inline comments in the text:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="p">[</span><span class="n">name</span><span class="p">:</span> <span class="n">comment</span><span class="p">]</span>
+<div class="highlight-text"><div class="highlight"><pre>[name: comment]
 </pre></div>
 </div>
 <p>where <tt class="docutils literal"><span class="pre">name</span></tt> is the name of the author of the command, and <tt class="docutils literal"><span class="pre">comment</span></tt> is a
@@ -1225,10 +1225,11 @@ special formatting commands, which may appear annoying in plain
 text. Doconce therefore supports an extended inline math syntax where
 the writer can provide an alternative syntax suited for formats close
 to plain ASCII:</p>
-<div class="highlight-py"><pre>Here is an example on a linear system
+<div class="highlight-text"><div class="highlight"><pre>Here is an example on a linear system
 ${\bf A}{\bf x} = {\bf b}$|$Ax=b$,
 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and
-$\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.</pre>
+$\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$.
+</pre></div>
 </div>
 <p>That is, we provide two alternative expressions, both enclosed in
 dollar signs and separated by a pipe symbol, the expression to the
@@ -1247,10 +1248,10 @@ in the section <a class="reference internal" href="#inline-tagging"><em>Inline T
 <p>Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
 lines start with the hash <tt class="docutils literal"><span class="pre">#</span></tt>:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="c">#</span>
-<span class="c"># Here are some comment lines that do not affect any formatting.</span>
-<span class="c"># These lines are converted to comments in the output format.</span>
-<span class="c">#</span>
+<div class="highlight-text"><div class="highlight"><pre>#
+# Here are some comment lines that do not affect any formatting.
+# These lines are converted to comments in the output format.
+#
 </pre></div>
 </div>
 <p>Such comment lines may have some side effects in the <tt class="docutils literal"><span class="pre">rst</span></tt> and <tt class="docutils literal"><span class="pre">sphinx</span></tt>
@@ -1269,8 +1270,8 @@ comments to be in the source code of the output document.</p>
 <div class="section" id="cross-referencing">
 <h2>Cross-Referencing<a class="headerlink" href="#cross-referencing" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="index-13"></span><span class="target" id="index-14"></span><p id="index-15">References and labels are supported. The syntax is simple:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">label</span><span class="p">{</span><span class="n">section</span><span class="p">:</span><span class="n">verbatim</span><span class="p">}</span>   <span class="c"># defines a label</span>
-<span class="n">For</span> <span class="n">more</span> <span class="n">information</span> <span class="n">we</span> <span class="n">refer</span> <span class="n">to</span> <span class="n">Section</span> <span class="n">ref</span><span class="p">{</span><span class="n">section</span><span class="p">:</span><span class="n">verbatim</span><span class="p">}</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>label{section:verbatim}   # defines a label
+For more information we refer to Section ref{section:verbatim}.
 </pre></div>
 </div>
 <p>This syntax is close that that of labels and cross-references in
@@ -1313,7 +1314,7 @@ references to labels in external documents via the <tt class="docutils literal">
 the generalized references in Doconce has a syntax that may utilize
 the <tt class="docutils literal"><span class="pre">xr</span></tt> feature in LaTeX.</p>
 <p>The syntax of generalized references reads</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">ref</span><span class="p">[</span><span class="n">internal</span><span class="p">][</span><span class="n">cite</span><span class="p">][</span><span class="n">external</span><span class="p">]</span>
+<div class="highlight-text"><div class="highlight"><pre>ref[internal][cite][external]
 </pre></div>
 </div>
 <p>If all <cite>:ref:`label`</cite> references in the text <tt class="docutils literal"><span class="pre">internal</span></tt> are references
@@ -1327,19 +1328,19 @@ LaTeX package <tt class="docutils literal"><span class="pre">xr</span></tt> is u
 If none of the two situations above applies, the <tt class="docutils literal"><span class="pre">external</span></tt>
 text will be the output.</p>
 <p>Here is an example on a specific generalized reference:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">As</span> <span class="n">explained</span> <span class="ow">in</span>
-<span class="n">ref</span><span class="p">[</span><span class="n">Section</span> <span class="n">ref</span><span class="p">{</span><span class="n">subsec</span><span class="p">:</span><span class="n">ex</span><span class="p">}][</span><span class="ow">in</span> <span class="s">&quot;Langtangen, 2012&quot;</span><span class="p">:</span>
-<span class="s">&quot;http://code.google.com/p/doconce/wiki/Description&quot;</span>
-<span class="n">cite</span><span class="p">{</span><span class="n">testdoc</span><span class="p">:</span><span class="mi">12</span><span class="p">}][</span><span class="n">a</span> <span class="s">&quot;section&quot;</span><span class="p">:</span> <span class="s">&quot;testdoc.html#___sec2&quot;</span> <span class="ow">in</span>
-<span class="n">the</span> <span class="n">document</span> <span class="s">&quot;A Document for Testing Doconce&quot;</span><span class="p">:</span> <span class="s">&quot;testdoc.html&quot;</span>
-<span class="n">cite</span><span class="p">{</span><span class="n">testdoc</span><span class="p">:</span><span class="mi">12</span><span class="p">}],</span> <span class="n">Doconce</span> <span class="n">documents</span> <span class="n">may</span> <span class="n">include</span> <span class="n">movies</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>As explained in
+ref[Section ref{subsec:ex}][in &quot;Langtangen, 2012&quot;:
+&quot;http://code.google.com/p/doconce/wiki/Description&quot;
+cite{testdoc:12}][a &quot;section&quot;: &quot;testdoc.html#___sec2&quot; in
+the document &quot;A Document for Testing Doconce&quot;: &quot;testdoc.html&quot;
+cite{testdoc:12}], Doconce documents may include movies.
 </pre></div>
 </div>
 <p>In LaTeX, this becomes</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">As</span> <span class="n">explained</span> <span class="ow">in</span>
-<span class="n">Section</span><span class="o">~</span>\<span class="n">ref</span><span class="p">{</span><span class="n">subsec</span><span class="p">:</span><span class="n">ex</span><span class="p">}</span> <span class="ow">in</span>
-\<span class="n">href</span><span class="p">{{</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">code</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">p</span><span class="o">/</span><span class="n">doconce</span><span class="o">/</span><span class="n">source</span><span class="o">/</span><span class="n">browse</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">testdoc</span><span class="o">.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span><span class="p">}}{</span><span class="n">Langtangen</span><span class="p">,</span> <span class="mi">2012</span><span class="p">}</span>
-\<span class="n">cite</span><span class="p">{</span><span class="n">testdoc</span><span class="p">:</span><span class="mi">12</span><span class="p">},</span> <span class="n">Doconce</span> <span class="n">documents</span> <span class="n">may</span> <span class="n">include</span> <span class="n">movies</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>As explained in
+Section~\ref{subsec:ex} in
+\href{{http://code.google.com/p/doconce/source/browse/test/testdoc.do.txt}}{Langtangen, 2012}
+\cite{testdoc:12}, Doconce documents may include movies.
 </pre></div>
 </div>
 <p>Note that there is a specific numbered reference to an external
@@ -1350,44 +1351,46 @@ relevant link text. The link can be the same or different from
 links used in the &#8220;external&#8221; part of the reference (LaTeX cannot
 have links to local files, so a complete URL must be used).</p>
 <p>Translation to Sphinx or reStructuredText results in</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">As</span> <span class="n">explained</span> <span class="ow">in</span>
-<span class="n">a</span> <span class="sb">`section &lt;testdoc.html#___sec2&gt;`</span><span class="n">_</span> <span class="ow">in</span>
-<span class="n">the</span> <span class="n">document</span> <span class="sb">`A Document for Testing Doconce &lt;testdoc.html&gt;`</span><span class="n">_</span>
-<span class="p">[</span><span class="n">testdoc</span><span class="p">:</span><span class="mi">12</span><span class="p">]</span><span class="n">_</span><span class="p">,</span> <span class="n">Doconce</span> <span class="n">documents</span> <span class="n">may</span> <span class="n">include</span> <span class="n">movies</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>As explained in
+a `section &lt;testdoc.html#___sec2&gt;`_ in
+the document `A Document for Testing Doconce &lt;testdoc.html&gt;`_
+[testdoc:12]_, Doconce documents may include movies.
 </pre></div>
 </div>
 <p>In plain HTML, this becomes</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">As</span> <span class="n">explained</span> <span class="ow">in</span>
-<span class="n">a</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;testdoc.html#___sec2&quot;</span><span class="o">&gt;</span><span class="n">section</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="ow">in</span>
-<span class="n">the</span> <span class="n">document</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;testdoc.html&quot;</span><span class="o">&gt;</span><span class="n">A</span> <span class="n">Document</span> <span class="k">for</span> <span class="n">Testing</span> <span class="n">Doconce</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;#testdoc:12&quot;</span><span class="o">&gt;</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">Doconce</span> <span class="n">documents</span> <span class="n">may</span> <span class="n">include</span> <span class="n">movies</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>As explained in
+a &lt;a href=&quot;testdoc.html#___sec2&quot;&gt;section&lt;/a&gt; in
+the document &lt;a href=&quot;testdoc.html&quot;&gt;A Document for Testing Doconce&lt;/a&gt;
+&lt;a href=&quot;#testdoc:12&quot;&gt;[1]&lt;/a&gt;, Doconce documents may include movies.
 </pre></div>
 </div>
 <p>The plain text format reads</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">As</span> <span class="n">explained</span> <span class="ow">in</span>
-<span class="n">a</span> <span class="n">section</span> <span class="p">(</span><span class="n">testdoc</span><span class="o">.</span><span class="n">html</span><span class="c">#___sec2) in</span>
-<span class="n">the</span> <span class="n">document</span> <span class="n">A</span> <span class="n">Document</span> <span class="k">for</span> <span class="n">Testing</span> <span class="n">Doconce</span> <span class="p">(</span><span class="n">testdoc</span><span class="o">.</span><span class="n">html</span><span class="p">)</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Doconce</span> <span class="n">documents</span> <span class="n">may</span> <span class="n">include</span> <span class="n">movies</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>As explained in
+a section (testdoc.html#___sec2) in
+the document A Document for Testing Doconce (testdoc.html)
+[1], Doconce documents may include movies.
 </pre></div>
 </div>
 <p>And in Pandoc-exteded Markdown we have</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">As</span> <span class="n">explained</span> <span class="ow">in</span>
-<span class="n">a</span> <span class="p">[</span><span class="n">section</span><span class="p">](</span><span class="n">testdoc</span><span class="o">.</span><span class="n">html</span><span class="c">#___sec2) in</span>
-<span class="n">the</span> <span class="n">document</span> <span class="p">[</span><span class="n">A</span> <span class="n">Document</span> <span class="k">for</span> <span class="n">Testing</span> <span class="n">Doconce</span><span class="p">](</span><span class="n">testdoc</span><span class="o">.</span><span class="n">html</span><span class="p">)</span>
-<span class="nd">@testdoc</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="n">Doconce</span> <span class="n">documents</span> <span class="n">may</span> <span class="n">include</span> <span class="n">movies</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>As explained in
+a [section](testdoc.html#___sec2) in
+the document [A Document for Testing Doconce](testdoc.html)
+@testdoc:12, Doconce documents may include movies.
 </pre></div>
 </div>
 <div class="section" id="index-and-bibliography">
 <h2>Index and Bibliography<a class="headerlink" href="#index-and-bibliography" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="index-16"></span><span class="target" id="index-17"></span><p id="index-18">An index can be created for the <tt class="docutils literal"><span class="pre">latex</span></tt>, <tt class="docutils literal"><span class="pre">rst</span></tt>, and <tt class="docutils literal"><span class="pre">sphinx</span></tt> formats
 by the <tt class="docutils literal"><span class="pre">idx</span></tt> keyword, following a LaTeX-inspired syntax:</p>
-<div class="highlight-py"><pre>idx{some index entry}
+<div class="highlight-text"><div class="highlight"><pre>idx{some index entry}
 idx{main entry!subentry}
-idx{`verbatim_text` and more}</pre>
+idx{`verbatim_text` and more}
+</pre></div>
 </div>
 <p>The exclamation mark divides a main entry and a subentry. Backquotes
 surround verbatim text, which is correctly transformed in a LaTeX setting to</p>
-<div class="highlight-py"><pre>\index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}</pre>
+<div class="highlight-text"><div class="highlight"><pre>\index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
+</pre></div>
 </div>
 <p>Everything related to the index simply becomes invisible in plain
 text, Epytext, StructuredText, HTML, and wiki formats.  Note: <tt class="docutils literal"><span class="pre">idx</span></tt>
@@ -1400,7 +1403,7 @@ paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
 LaTeX is the output format).</p>
 <p>Literature citations also follow a LaTeX-inspired style:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="k">as</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">cite</span><span class="p">{</span><span class="n">Larsen_1986</span><span class="p">,</span><span class="n">Nielsen_Kjeldstrup_1999</span><span class="p">}</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}.
 </pre></div>
 </div>
 <p>Citation labels can be separated by comma. In LaTeX, this is directly
@@ -1408,7 +1411,7 @@ translated to the corresponding <tt class="docutils literal"><span class="pre">c
 and Sphinx the labels can be clicked, while in all the other text
 formats the labels are consecutively numbered so the above citation
 will typically look like</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="k">as</span> <span class="n">found</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">14</span><span class="p">]</span>
+<div class="highlight-text"><div class="highlight"><pre>as found in [3][14]
 </pre></div>
 </div>
 <p>if <tt class="docutils literal"><span class="pre">Larsen_1986</span></tt> has already appeared in the 3rd citation in the document
@@ -1421,17 +1424,17 @@ or simply a Python dictionary written in a file with extension <tt class="docuti
 The dictionary in the latter file should have the citation labels as
 keys, with corresponding values as the full reference text for an item
 in the bibliography. Doconce markup can be used in this text, e.g.,</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="p">{</span>
-<span class="s">&#39;Nielsen_Kjeldstrup_1999&#39;</span><span class="p">:</span> <span class="s">&quot;&quot;&quot;</span>
-<span class="s">K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languages*.</span>
-<span class="s">URL:&quot;http://some.where.net/nielsen/comments&quot;, 1999.</span>
-<span class="s">&quot;&quot;&quot;</span><span class="p">,</span>
-<span class="s">&#39;Larsen_1986&#39;</span><span class="p">:</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">O. B. Larsen. On Markup and Generality.</span>
-<span class="sd">*Personal Press*. 1986.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="p">}</span>
+<div class="highlight-text"><div class="highlight"><pre>{
+&#39;Nielsen_Kjeldstrup_1999&#39;: &quot;&quot;&quot;
+K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languages*.
+URL:&quot;http://some.where.net/nielsen/comments&quot;, 1999.
+&quot;&quot;&quot;,
+&#39;Larsen_1986&#39;:
+&quot;&quot;&quot;
+O. B. Larsen. On Markup and Generality.
+*Personal Press*. 1986.
+&quot;&quot;&quot;
+}
 </pre></div>
 </div>
 <p>In the <tt class="docutils literal"><span class="pre">latex</span></tt> and <tt class="docutils literal"><span class="pre">pdflatex</span></tt> formats, the <tt class="docutils literal"><span class="pre">.bib</span></tt> file will be used in
@@ -1487,13 +1490,13 @@ is a special feature of doconce :-) )</p>
 </tbody>
 </table>
 <p>is built up of pipe symbols and dashes:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="o">|--------------------------------|</span>
-<span class="o">|</span><span class="n">time</span>  <span class="o">|</span> <span class="n">velocity</span> <span class="o">|</span> <span class="n">acceleration</span> <span class="o">|</span>
-<span class="o">|--------------------------------|</span>
-<span class="o">|</span> <span class="mf">0.0</span>  <span class="o">|</span> <span class="mf">1.4186</span>   <span class="o">|</span> <span class="o">-</span><span class="mf">5.01</span>        <span class="o">|</span>
-<span class="o">|</span> <span class="mf">2.0</span>  <span class="o">|</span> <span class="mf">1.376512</span> <span class="o">|</span> <span class="mf">11.919</span>       <span class="o">|</span>
-<span class="o">|</span> <span class="mf">4.0</span>  <span class="o">|</span> <span class="mf">1.1E+1</span>   <span class="o">|</span> <span class="mf">14.717624</span>    <span class="o">|</span>
-<span class="o">|--------------------------------|</span>
+<div class="highlight-text"><div class="highlight"><pre>|--------------------------------|
+|time  | velocity | acceleration |
+|--------------------------------|
+| 0.0  | 1.4186   | -5.01        |
+| 2.0  | 1.376512 | 11.919       |
+| 4.0  | 1.1E+1   | 14.717624    |
+|--------------------------------|
 </pre></div>
 </div>
 <p>The pipes and column values do not need to be aligned (but why write
@@ -1523,12 +1526,12 @@ by a colon and a title of the exercise, problem, or project.
 The next line(s) may contain a label and specification of the
 name of result file (if the answer to the exercise is to be handed
 in) and a solution file. The Doconce code looks like this:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="o">=====</span> <span class="n">Project</span><span class="p">:</span> <span class="n">Determine</span> <span class="n">the</span> <span class="n">Distance</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Moon</span> <span class="o">=====</span>
-<span class="n">label</span><span class="p">{</span><span class="n">proj</span><span class="p">:</span><span class="n">moondist</span><span class="p">}</span>
-<span class="nb">file</span><span class="o">=</span><span class="n">earth2moon</span><span class="o">.</span><span class="n">pdf</span>
-<span class="n">solution</span><span class="o">=</span><span class="n">eart2moon_sol</span><span class="o">.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-text"><div class="highlight"><pre>===== Project: Determine the Distance to the Moon =====
+label{proj:moondist}
+file=earth2moon.pdf
+solution=eart2moon_sol.do.txt
 
-<span class="n">Here</span> <span class="n">goes</span> <span class="n">the</span> <span class="n">running</span> <span class="n">text</span> <span class="n">of</span> <span class="n">the</span> <span class="n">project</span><span class="o">....</span>
+Here goes the running text of the project....
 </pre></div>
 </div>
 <p>Doconce will recognize the exercise, problem, or project <em>title</em>,
@@ -1548,7 +1551,7 @@ which requires that the solution is in a separate file. Comment lines
 are inserted so that the beginning and end of answers and solutions can
 be identified and removed if desired.</p>
 <p>A full exercise set-up can be sketched as follows:</p>
-<div class="highlight-py"><pre>===== Exercise: Determine the Distance to the Moon =====
+<div class="highlight-text"><div class="highlight"><pre>===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
 file=earth2moon.pdf
 
@@ -1590,7 +1593,8 @@ directives is always typeset at the end of the exercise.
 
 !bsol
 Here goes a full solution of the whole exercise.
-!esol</pre>
+!esol
+</pre></div>
 </div>
 <p>The various elements of exercises are collected in a special data
 structure (list of dictionaries) stored in a file <tt class="docutils literal"><span class="pre">.mydoc.exerinfo</span></tt>,
@@ -1616,7 +1620,7 @@ by its label, which normally will translate to the section number
 (in LaTeX, for instance) or a link to the title of the section.
 The <em>title</em> is typeset without any leading &#8220;Exercise:&#8221;, &#8220;Problem:&#8221;,
 or &#8220;Project:&#8221; word, so that references like</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">see</span> <span class="n">Problem</span> <span class="n">ref</span><span class="p">{</span><span class="o">...</span><span class="p">}</span>
+<div class="highlight-text"><div class="highlight"><pre>see Problem ref{...}
 </pre></div>
 </div>
 <p>works well in all formats.</p>
@@ -1649,7 +1653,7 @@ supported for Sphinx as well.  The argument after <tt class="docutils literal"><
 Sphinx output mapped onto a valid Pygments language for typesetting of
 the verbatim block by Pygments. This mapping takes place in an
 optional comment to be inserted in the Doconce source file, e.g.,</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="c"># sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console</span>
+<div class="highlight-text"><div class="highlight"><pre># sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 </pre></div>
 </div>
 <p>Here, three arguments are defined: <tt class="docutils literal"><span class="pre">pycod</span></tt> for Python code,
@@ -1705,8 +1709,9 @@ common errors are naturally avoided).</p>
 </div>
 <p>Computer code can be copied directly from a file, if desired. The syntax
 is then</p>
-<div class="highlight-py"><pre>@@@CODE myfile.f
-@@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1</pre>
+<div class="highlight-text"><div class="highlight"><pre>@@@CODE myfile.f
+@@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1
+</pre></div>
 </div>
 <p>The first line implies that all lines in the file <tt class="docutils literal"><span class="pre">myfile.f</span></tt> are
 copied into a verbatim block, typset in a <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">Xpro</span></tt> environment, where
@@ -1777,7 +1782,7 @@ Copying the second set of parameters from the text</p>
 </pre></div>
 </div>
 <p>is easy with</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">from</span><span class="o">-</span><span class="n">to</span><span class="p">:</span> <span class="n">Start</span> <span class="n">Example</span> <span class="mi">2</span><span class="nd">@End</span> <span class="n">Example</span> <span class="mi">2</span>
+<div class="highlight-text"><div class="highlight"><pre>from-to: Start Example 2@End Example 2
 </pre></div>
 </div>
 <p>With only <tt class="docutils literal"><span class="pre">fromto:</span></tt> this would be impossible.</p>
@@ -1795,7 +1800,7 @@ file.)</p>
 the opening tag is <tt class="docutils literal"><span class="pre">!bt</span></tt> (begin TeX) and the closing tag is
 <tt class="docutils literal"><span class="pre">!et</span></tt>. It is important that <tt class="docutils literal"><span class="pre">!bt</span></tt> and <tt class="docutils literal"><span class="pre">!et</span></tt> appear on the beginning of the
 line and followed by a newline.</p>
-<div class="highlight-py"><div class="highlight"><pre>
+<div class="highlight-text"><div class="highlight"><pre>
 </pre></div>
 </div>
 <div class="math">
@@ -1891,10 +1896,10 @@ expressions).</p>
 </pre></div>
 </div>
 <p>The LaTeX block</p>
-<div class="highlight-py"><div class="highlight"><pre>\<span class="n">beqa</span>
-\<span class="n">x</span>\<span class="n">cdot</span>\<span class="n">normalvec</span> <span class="o">&amp;=&amp;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="p">{</span><span class="n">my</span><span class="p">:</span><span class="n">eq1</span><span class="p">}</span>\\
-\<span class="n">Ddt</span><span class="p">{</span>\<span class="n">uvec</span><span class="p">}</span> <span class="o">&amp;=&amp;</span> \<span class="n">Q</span> \<span class="n">ep</span>   <span class="n">label</span><span class="p">{</span><span class="n">my</span><span class="p">:</span><span class="n">eq2</span><span class="p">}</span>
-\<span class="n">eeqa</span>
+<div class="highlight-text"><div class="highlight"><pre>\beqa
+\x\cdot\normalvec &amp;=&amp; 0, label{my:eq1}\\
+\Ddt{\uvec} &amp;=&amp; \Q \ep   label{my:eq2}
+\eeqa
 </pre></div>
 </div>
 <p>will then be rendered to</p>
@@ -2045,7 +2050,7 @@ script, we may edit and fine-tune the output from Doconce.</p>
 <p>As an example, say you want a table of contents in the LaTeX output
 (Doconce does not support table of contents). By inserting a
 recognizable comment in the Doconce source, say</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="c"># table of contents</span>
+<div class="highlight-text"><div class="highlight"><pre># table of contents
 </pre></div>
 </div>
 <p>we can use this comment to edit the LaTeX file. First, we run
@@ -2053,8 +2058,8 @@ Doconce <tt class="docutils literal"><span class="pre">doconce</span> <span clas
 we use the <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">replace</span></tt> and <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">subst</span></tt> commands to
 replace the comment by the comment plus the table of contents command,
 or just the latter:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">Terminal</span><span class="o">&gt;</span> <span class="n">doconce</span> <span class="n">replace</span> <span class="s">&#39;% table of contents&#39;</span>
-          <span class="s">&#39;</span><span class="se">\t</span><span class="s">ableofcontents&#39;</span> <span class="n">mydoc</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">tex</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; doconce replace &#39;% table of contents&#39;
+          &#39;\tableofcontents&#39; mydoc.p.tex
 </pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">replace</span> <span class="pre">from_text</span> <span class="pre">to_text</span> <span class="pre">filename</span></tt> command performs a
@@ -2063,8 +2068,8 @@ string objects in Python). If we want to preserve the comment and add
 a new line with <tt class="docutils literal"><span class="pre">\tableofcontents</span></tt>, we should use <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">subst</span></tt>,
 which applies regular expressions for substitutions and thereby
 understands the newline character:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">Terminal</span><span class="o">&gt;</span> <span class="n">doconce</span> <span class="n">subst</span> <span class="s">&#39;% table of contents&#39;</span> \
-          <span class="s">&#39;% table of contents</span><span class="se">\n\\</span><span class="s">tableofcontents&#39;</span> <span class="n">mydoc</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">tex</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; doconce subst &#39;% table of contents&#39; \
+          &#39;% table of contents\n\\tableofcontents&#39; mydoc.p.tex
 </pre></div>
 </div>
 <p>Note the double backshlash in front of the <tt class="docutils literal"><span class="pre">t</span></tt> character: without it we
@@ -2098,11 +2103,12 @@ as ordinary text.</p>
 <p><em>Step 1.</em> Download the Doconce tarball from <tt class="docutils literal"><span class="pre">code.google.com/p/doconce</span></tt>,
 pack it out and go to the root directory.</p>
 <p><em>Step 2.</em> Copy the <tt class="docutils literal"><span class="pre">doconce-mode.el</span></tt> file to the home directory:</p>
-<div class="highlight-py"><pre>cp misc/.doconce-mode.el $HOME</pre>
+<div class="highlight-text"><div class="highlight"><pre>cp misc/.doconce-mode.el $HOME
+</pre></div>
 </div>
 <p><em>Step 3.</em> Add these lines to <tt class="docutils literal"><span class="pre">$HOME/.emacs</span></tt>:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="p">(</span><span class="n">load</span><span class="o">-</span><span class="nb">file</span> <span class="s">&quot;~/hg/.doconce-mode.el&quot;</span><span class="p">)</span>
-<span class="p">(</span><span class="n">setq</span> <span class="n">auto</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">alist</span><span class="p">(</span><span class="n">cons</span> <span class="s">&#39;(&quot;</span><span class="se">\\</span><span class="s">.do</span><span class="se">\\</span><span class="s">.txt$&quot; . doconce-mode) auto-mode-alist))</span>
+<div class="highlight-text"><div class="highlight"><pre>(load-file &quot;~/hg/.doconce-mode.el&quot;)
+(setq auto-mode-alist(cons &#39;(&quot;\\.do\\.txt$&quot; . doconce-mode) auto-mode-alist))
 </pre></div>
 </div>
 <p>Emacs will now recognize files with extension <tt class="docutils literal"><span class="pre">.do.txt</span></tt> and enter
@@ -2159,11 +2165,11 @@ correctly. Merge them into one common expression.</p>
 <div class="section" id="links-to-local-directories-do-not-work">
 <h3>Links to local directories do not work<a class="headerlink" href="#links-to-local-directories-do-not-work" title="Permalink to this headline">¶</a></h3>
 <p>Links of the type</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">see</span> <span class="n">the</span> <span class="s">&quot;examples directory&quot;</span><span class="p">:</span> <span class="s">&quot;src/examples&quot;</span>
+<div class="highlight-text"><div class="highlight"><pre>see the &quot;examples directory&quot;: &quot;src/examples&quot;
 </pre></div>
 </div>
 <p>do not work well. You need to link to a specific HTML file:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">see</span> <span class="n">the</span> <span class="s">&quot;examples directory&quot;</span><span class="p">:</span> <span class="s">&quot;src/examples/index.html&quot;</span>
+<div class="highlight-text"><div class="highlight"><pre>see the &quot;examples directory&quot;: &quot;src/examples/index.html&quot;
 </pre></div>
 </div>
 </div>
@@ -2171,11 +2177,11 @@ correctly. Merge them into one common expression.</p>
 <h3>Links are not typeset correctly<a class="headerlink" href="#links-are-not-typeset-correctly" title="Permalink to this headline">¶</a></h3>
 <p>Not all formats will allow formatting of the links. Verbatim words
 in links are allowed if the whole link is typeset in verbatim:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">see</span> <span class="n">the</span> <span class="n">directory</span> <span class="s">&quot;`examples`&quot;</span><span class="p">:</span> <span class="s">&quot;src/examples/index.html&quot;</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>see the directory &quot;`examples`&quot;: &quot;src/examples/index.html&quot;.
 </pre></div>
 </div>
 <p>However, the following will not be typeset correctly:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">see</span> <span class="n">the</span> <span class="s">&quot;`examples` directory&quot;</span><span class="p">:</span> <span class="s">&quot;src/examples/index.html&quot;</span>
+<div class="highlight-text"><div class="highlight"><pre>see the &quot;`examples` directory&quot;: &quot;src/examples/index.html&quot;
 </pre></div>
 </div>
 <p>The back-ticks must be removed, or the text can be reformulated as
@@ -2189,14 +2195,14 @@ in the line above it.</p>
 <h3>Strange non-English characters<a class="headerlink" href="#strange-non-english-characters" title="Permalink to this headline">¶</a></h3>
 <p>Check the encoding of the <tt class="docutils literal"><span class="pre">.do.txt</span></tt> file with the Unix <tt class="docutils literal"><span class="pre">file</span></tt> command
 or with</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">Terminal</span><span class="o">&gt;</span> <span class="n">doconce</span> <span class="n">guess_encoding</span> <span class="n">myfile</span><span class="o">.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; doconce guess_encoding myfile.do.txt
 </pre></div>
 </div>
 <p>If the encoding is utf-8, convert to latin-1 using either of
 the Unix commands</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">Terminal</span> <span class="n">doconce</span> <span class="n">change_encoding</span> <span class="n">utf</span><span class="o">-</span><span class="mi">8</span> <span class="n">LATIN1</span> <span class="n">myfile</span><span class="o">.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-text"><div class="highlight"><pre>Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt
 
-<span class="n">Terminal</span><span class="o">&gt;</span> <span class="n">iconv</span> <span class="o">-</span><span class="n">f</span> <span class="n">utf</span><span class="o">-</span><span class="mi">8</span> <span class="o">-</span><span class="n">t</span> <span class="n">LATIN1</span> <span class="n">myfile</span><span class="o">.</span><span class="n">do</span><span class="o">.</span><span class="n">txt</span> <span class="o">--</span><span class="n">output</span> <span class="n">newfile</span>
+Terminal&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 </pre></div>
 </div>
 </div>
@@ -2323,8 +2329,8 @@ verbatim environment.</p>
 <div class="section" id="latex-does-not-like-underscores-in-urls">
 <h3>LaTeX does not like underscores in URLs<a class="headerlink" href="#latex-does-not-like-underscores-in-urls" title="Permalink to this headline">¶</a></h3>
 <p>Suppose you have a URL reference like</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="o">..</span><span class="n">which</span> <span class="n">can</span> <span class="n">be</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">file</span> <span class="s">&quot;my_file.txt&quot;</span><span class="p">:</span>
-<span class="s">&quot;http://some.where.net/web/dir/my_file.txt&quot;</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>..which can be found in the file &quot;my_file.txt&quot;:
+&quot;http://some.where.net/web/dir/my_file.txt&quot;.
 </pre></div>
 </div>
 <p>LaTeX will stop with a message about a missing dollar sign. The reason
@@ -2332,8 +2338,8 @@ is that underscores in link texts need to be preceded by a backslash.
 However, this is incovenient to do in the Doconce source since the
 underscore is misleading in other formats.
 The remedy is to format the link text with inline verbatim tags (backticks):</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="o">..</span><span class="n">which</span> <span class="n">can</span> <span class="n">be</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">file</span> <span class="s">&quot;`my_file.txt`&quot;</span><span class="p">:</span>
-<span class="s">&quot;http://some.where.net/web/dir/my_file.txt&quot;</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>..which can be found in the file &quot;`my_file.txt`&quot;:
+&quot;http://some.where.net/web/dir/my_file.txt&quot;.
 </pre></div>
 </div>
 <p>Verbatim text in links works fine with underscores.</p>
@@ -2362,7 +2368,7 @@ using paragraph headings, which will look satisfactorily in all
 formats, but add comment lines that can be replaced by LaTeX environments
 via <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">replace</span></tt>. Theorems can be numbered using a variable in Mako.
 Here is an example on raw Doconce code:</p>
-<div class="highlight-py"><pre>&lt;%
+<div class="highlight-text"><div class="highlight"><pre>&lt;%
 theorem_counter = 4
 %&gt;
 
@@ -2384,10 +2390,11 @@ $\Diamond$|$END$
 # end proof
 
 As we see, the proof of Theorem ${theorem_counter} is a modest
-achievement.</pre>
+achievement.
+</pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">.p.tex</span></tt> output file now reads</p>
-<div class="highlight-py"><pre>% begin theorem
+<div class="highlight-text"><div class="highlight"><pre>% begin theorem
 label{theorem:fundamental1}
 
 
@@ -2402,7 +2409,8 @@ $\Diamond$
 % end proof
 
 As we see, the proof of Theorem 5 is a modest
-achievement.</pre>
+achievement.
+</pre></div>
 </div>
 <p>Note that with Mako variables we can easily create our own counters,
 and this works in any format. In LaTeX we can use both the generated
@@ -2423,7 +2431,7 @@ doconce replace <span class="s1">&#39;% end theorem&#39;</span> <span class="s1"
 <tt class="docutils literal"><span class="pre">mydoc.p.tex</span></tt> file and performs string substitutions and regex
 substitutions as needed.</p>
 <p>The resulting <tt class="docutils literal"><span class="pre">mydoc.tex</span></tt> file now becomes</p>
-<div class="highlight-py"><pre>\usepackage{theorem}
+<div class="highlight-text"><div class="highlight"><pre>\usepackage{theorem}
 \newtheorem{theorem}{Theorem}[section]
 
 ...
@@ -2443,7 +2451,8 @@ $\Diamond$
 % end proof
 
 As we see, the proof of Theorem 5 is a modest
-achievement.</pre>
+achievement.
+</pre></div>
 </div>
 <p>Even better, HTML output looks nice as well.</p>
 <p>Note that Doconce supports fancy environments for verbatim code (for example,
@@ -2452,7 +2461,7 @@ the <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> program 
 <div class="section" id="the-latex-file-does-not-compile">
 <h3>The LaTeX file does not compile<a class="headerlink" href="#the-latex-file-does-not-compile" title="Permalink to this headline">¶</a></h3>
 <p>If the problem is undefined control sequence involving</p>
-<div class="highlight-py"><div class="highlight"><pre>\<span class="n">code</span><span class="p">{</span><span class="o">...</span><span class="p">}</span>
+<div class="highlight-text"><div class="highlight"><pre>\code{...}
 </pre></div>
 </div>
 <p>the cause is usually a verbatim inline text (in back-ticks in the
@@ -2462,12 +2471,13 @@ that all inline verbatim text appears on the same line.</p>
 <div class="section" id="inline-verbatim-gives-error">
 <h3>Inline verbatim gives error<a class="headerlink" href="#inline-verbatim-gives-error" title="Permalink to this headline">¶</a></h3>
 <p>Check if the inline verbatim contains typical LaTeX commands, e.g.,</p>
-<div class="highlight-py"><pre>some text with `\usepackage{mypack}` is difficult because
+<div class="highlight-text"><div class="highlight"><pre>some text with `\usepackage{mypack}` is difficult because
 ptex2tex will replace this by \code{\usepackage{mypack}} and
 then replace this by
 {\fontsize{10pt}{10pt}\verb!\usepackage{mypack!}}
-which is wrong because ptex2tex applies regex that don't
-capture the second }</pre>
+which is wrong because ptex2tex applies regex that don&#39;t
+capture the second }
+</pre></div>
 </div>
 <p>The remedy is to place verbatim LaTeX commands in verbatim
 blocks - that is safe.</p>
@@ -2557,10 +2567,10 @@ templates these styles are not defined, resulting in a rule that
 spans the width and a centered caption. Changing the appearance
 of the rule and caption can either be done by inserting styles or
 simply by automatic editing of the HTML code in a little shell script:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="n">doconce</span> <span class="n">replace</span> <span class="s">&#39;&lt;p class=&quot;caption&quot;&gt;&#39;</span> \
- <span class="s">&#39;&lt;p style=&quot;width: 50%; font-style: italic; color: blue&quot;&gt;&#39;</span> <span class="n">mydoc</span><span class="o">.</span><span class="n">html</span>
-<span class="n">doconce</span> <span class="n">replace</span> <span class="s">&#39;&lt;hr class=&quot;figure&quot;&gt;&#39;</span> \
- <span class="s">&#39;&lt;hr style=&quot;width: 50%&quot;&gt;&#39;</span> <span class="n">mydoc</span><span class="o">.</span><span class="n">html</span>
+<div class="highlight-text"><div class="highlight"><pre>doconce replace &#39;&lt;p class=&quot;caption&quot;&gt;&#39; \
+ &#39;&lt;p style=&quot;width: 50%; font-style: italic; color: blue&quot;&gt;&#39; mydoc.html
+doconce replace &#39;&lt;hr class=&quot;figure&quot;&gt;&#39; \
+ &#39;&lt;hr style=&quot;width: 50%&quot;&gt;&#39; mydoc.html
 </pre></div>
 </div>
 </div>
@@ -2588,7 +2598,8 @@ to ensure that no formatting rules are not applied to these blocks.</p>
 handling of blank lines and comment lines.
 List parsing needs some awareness of the context.
 Each line is interpreted by a regular expression</p>
-<div class="highlight-py"><pre>(?P&lt;indent&gt; *(?P&lt;listtype&gt;[*o-] )? *)(?P&lt;keyword&gt;[^:]+?:)?(?P&lt;text&gt;.*)\s?</pre>
+<div class="highlight-text"><div class="highlight"><pre>(?P&lt;indent&gt; *(?P&lt;listtype&gt;[*o-] )? *)(?P&lt;keyword&gt;[^:]+?:)?(?P&lt;text&gt;.*)\s?
+</pre></div>
 </div>
 <p>That is, a possible indent (which we measure), an optional list
 item identifier, optional space, optional words ended by colon,
@@ -2622,15 +2633,15 @@ the doc string</em>. Note that <tt class="docutils literal"><span class="pre">ar
 only legal keywords (descriptions) for the description list in this
 context.  If the output format is Epytext (Epydoc) or Sphinx, such lists of
 arguments and variables are nicely formatted.</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="o">-</span> <span class="n">argument</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="n">value</span> <span class="p">(</span><span class="nb">float</span><span class="p">),</span>
-  <span class="n">which</span> <span class="n">must</span> <span class="n">be</span> <span class="n">a</span> <span class="n">positive</span> <span class="n">number</span><span class="o">.</span>
-<span class="o">-</span> <span class="n">keyword</span> <span class="n">argument</span> <span class="n">tolerance</span><span class="p">:</span> <span class="n">tolerance</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">stopping</span>
-  <span class="n">the</span> <span class="n">iterations</span><span class="o">.</span>
-<span class="o">-</span> <span class="k">return</span><span class="p">:</span> <span class="n">the</span> <span class="n">root</span> <span class="n">of</span> <span class="n">the</span> <span class="n">equation</span> <span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="k">if</span> <span class="n">found</span><span class="p">,</span> <span class="n">otherwise</span> <span class="bp">None</span><span class="o">.</span>
-<span class="o">-</span> <span class="n">instance</span> <span class="n">variable</span> <span class="n">eta</span><span class="p">:</span> <span class="n">surface</span> <span class="n">elevation</span> <span class="p">(</span><span class="n">array</span><span class="p">)</span><span class="o">.</span>
-<span class="o">-</span> <span class="k">class</span> <span class="nc">variable</span> <span class="n">items</span><span class="p">:</span> <span class="n">the</span> <span class="n">total</span> <span class="n">number</span> <span class="n">of</span> <span class="n">MyClass</span> <span class="n">objects</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span>
-<span class="o">-</span> <span class="n">module</span> <span class="n">variable</span> <span class="n">debug</span><span class="p">:</span> <span class="bp">True</span><span class="p">:</span> <span class="n">debug</span> <span class="n">mode</span> <span class="ow">is</span> <span class="n">on</span><span class="p">;</span> <span class="bp">False</span><span class="p">:</span> <span class="n">no</span> <span class="n">debugging</span>
-  <span class="p">(</span><span class="nb">bool</span> <span class="n">variable</span><span class="p">)</span><span class="o">.</span>
+<div class="highlight-text"><div class="highlight"><pre>- argument x: x value (float),
+  which must be a positive number.
+- keyword argument tolerance: tolerance (float) for stopping
+  the iterations.
+- return: the root of the equation (float), if found, otherwise None.
+- instance variable eta: surface elevation (array).
+- class variable items: the total number of MyClass objects (int).
+- module variable debug: True: debug mode is on; False: no debugging
+  (bool variable).
 </pre></div>
 </div>
 <p>The result depends on the output format: all formats except Epytext
@@ -2838,7 +2849,7 @@ groundwater flow.
     </div>
     <div class="footer">
         &copy; Copyright 2012, HPL.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2pre.
     </div>
   </body>
 </html>

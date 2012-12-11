@@ -726,7 +726,7 @@ def exercises(filestr, format):
                     exer['label'] = m_label.group(1)
             elif m_keywords:
                 exer['keywords'] = [name.strip() for name in
-                                    m_label.group(1).split(';')]
+                                    m_keywords.group(2).split(';')]
             elif m_file and not inside_subex:
                 if exer['file'] is None:  # only the first counts
                     exer['file'] = [name.strip() for name in
@@ -1015,8 +1015,8 @@ def typeset_envirs(filestr, format):
                            'remarks']:
                 # Just a plan paragraph with paragraph heading
                 def subst(m):
-                    return '\n\n__%s.__ %s\n' % (envir[0].upper() + envir[1:],
-                                                 m.group(1))
+                    return '\n\n__%s.__ %s\n\n' % (envir[0].upper() + envir[1:],
+                                                   m.group(1))
             elif envir == 'notes':
                 # Remove all text in notes
                 def subst(m):

@@ -50,9 +50,11 @@ doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
 #doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
 pandoc -f latex -t markdown -o testdoc.md testdoc.tex
 pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
+pandoc -v >> testdoc_pnd_l2h.html
 
 doconce format pandoc testdoc.do.txt
 pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
+pandoc -v >> testdoc_pnd_d2h.html
 
 # Test slides
 doconce format html slides --pygments-html-style=emacs

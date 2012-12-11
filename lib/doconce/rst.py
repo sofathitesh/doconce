@@ -327,6 +327,7 @@ def rst_notes(block, format):
     # Set notes in comments
     return """
 %s
+
 """ % (indent_lines(block, format, '..  '))
 
 
@@ -334,30 +335,35 @@ def rst_warning(block, format):
     return """
 .. warning::
 %s
+
 """ % (indent_lines(block, format, ' '*4))
 
 def rst_question(block, format):
     return """
 .. attention::
 %s
+
 """ % (indent_lines(block, format, ' '*3))
 
 def rst_hint(block, format):
     return """
 .. hint::
 %s
+
 """ % (indent_lines(block, format, ' '*3))
 
 def rst_notice(block, format):
     return """
 .. note::
 %s
+
 """ % (indent_lines(block, format, ' '*3))
 
 def rst_summary(block, format):
     return """
 .. important::
 %s
+
 """ % (indent_lines(block, format, ' '*3))
 
 
