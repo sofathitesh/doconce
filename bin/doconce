@@ -3759,10 +3759,10 @@ MathJax.Hub.Config({
 
         # Fix styles: native should have black background for neon and night
         if slide_syntax[slide_tp]['theme'] in ['neon', 'night']:
-                if style == 'native':
-                    # Change to black background
-                    part = part.replace('background: #202020',
-                                        'background: #000000')
+            if pygm_style == 'native':
+                # Change to black background
+                part = part.replace('background: #202020',
+                                    'background: #000000')
 
         # Pieces to pop up item by item as the user is clicking
         if '<!-- !bpop' in part:

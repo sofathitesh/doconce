@@ -96,6 +96,7 @@ based on HTML and vice versa.
 !split
 ======= Concerns I =======
 
+!bpop
  * Sphinx refers to figures by the caption (has to be short!) and
    strips away any math notation (avoid that!).
  * Sphinx refers to sections by the title, but removes math in the
@@ -105,10 +106,12 @@ based on HTML and vice versa.
  * Tables cannot be referred to by numbers and have to appear at a
    fixed position in the text.
  * Computer code has to appear at fixed positions in the text.
+!epop
 
 !split
 ======= Concerns II =======
 
+!bpop
  * Footnotes must appear as part of the running text (e.g., sentences
    surrounded by parenthesis), since only a few formats support footnotes.
  * Sphinx does not handle code blocks where the first line is indented.
@@ -119,10 +122,12 @@ based on HTML and vice versa.
    "bibitems" a la BibTeX must look sensible and consistent.
  * If you need several equations numbered in an `align` environment,
    recall that Sphinx and Markdown cannot handle this.
+!epop
 
 !split
 ======= Concerns III =======
 
+!bpop
  * Index words can appear anywhere in LaTeX, but should be outside
    paragraphs in other tools.
  * References to tables, program code and algorithms can only be
@@ -132,6 +137,7 @@ based on HTML and vice versa.
  * Curve plots with color lines do not work well in black-and-white
    printing. Make sure plots makes sense in color and BW (e.g., by
    using colors and markers).
+!epop
 
 !split
 ======= Solution I: Use a format that translates to many =======
@@ -299,6 +305,7 @@ Inline math as in LaTeX:
 !ec
 gets rendered as ...where $a=\int_{\Omega}fdx$.
 
+
 An equation environment is surrounded by `!bt` and `!et` tags
 (see the source of this document), the rest is plain LaTeX:
 
@@ -310,6 +317,8 @@ label{a:eq}\\
 label{b:eq}
 \end{align}
 !et
+
+
 Limit environments to
 !bc
 \[ ... \]
@@ -501,6 +510,8 @@ Very effective way to generate slides from running text:
  * Focus on key code snippets
  * Insert `!split` wherever you want a new slide to
    begin
+ * Insert `!bpop` and `!epop` around elements to pop up
+   in sequence
  * Use 7 `=` or 5 `=` in headings (H2 or H3)
  * Slides are made with HTML5 tools such as reveal.js, deck.js,
    csss, or dzslides

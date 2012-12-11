@@ -259,19 +259,23 @@ based on HTML and vice versa.
 <h2>Concerns I  <a name="___sec5"></a></h2>
 <p>
 
+
 <ul>
- <p><li> Sphinx refers to figures by the caption (has to be short!) and
+ <li class="fragment"> Sphinx refers to figures by the caption (has to be short!) and
    strips away any math notation (avoid that!).</li>
- <p><li> Sphinx refers to sections by the title, but removes math in the
+ <li class="fragment"> Sphinx refers to sections by the title, but removes math in the
    reference, so avoid math in headlines.</li>
- <p><li> Algorithms must be written up using basic elements like lists or
+ <li class="fragment"> Algorithms must be written up using basic elements like lists or
    paragraphs with headings.</li>
- <p><li> Tables cannot be referred to by numbers and have to appear at a
+ <li class="fragment"> Tables cannot be referred to by numbers and have to appear at a
    fixed position in the text.</li>
- <p><li> Computer code has to appear at fixed positions in the text.</li>
+ <li class="fragment"> Computer code has to appear at fixed positions in the text.</li>
 </ul>
 <p>
 
+
+
+<p>
 
 </section>
 
@@ -281,20 +285,24 @@ based on HTML and vice versa.
 <h2>Concerns II  <a name="___sec6"></a></h2>
 <p>
 
+
 <ul>
- <p><li> Footnotes must appear as part of the running text (e.g., sentences
+ <li class="fragment"> Footnotes must appear as part of the running text (e.g., sentences
    surrounded by parenthesis), since only a few formats support footnotes.</li>
- <p><li> Sphinx does not handle code blocks where the first line is indented.</li>
- <p><li> Multiple plots in the same figure: mount the plots to one image
+ <li class="fragment"> Sphinx does not handle code blocks where the first line is indented.</li>
+ <li class="fragment"> Multiple plots in the same figure: mount the plots to one image
    file and include this (<tt>montage</tt> for png, gif, jpeg; <tt>pdftk</tt>, <tt>pdfnup</tt>,
    and <tt>pdfcrop</tt> for PDF).</li>
- <p><li> Keys for items in the bibliography are made visible by Sphinx so
+ <li class="fragment"> Keys for items in the bibliography are made visible by Sphinx so
    "bibitems" a la BibTeX must look sensible and consistent.</li>
- <p><li> If you need several equations numbered in an <tt>align</tt> environment,
+ <li class="fragment"> If you need several equations numbered in an <tt>align</tt> environment,
    recall that Sphinx and Markdown cannot handle this.</li>
 </ul>
 <p>
 
+
+
+<p>
 
 </section>
 
@@ -304,19 +312,23 @@ based on HTML and vice versa.
 <h2>Concerns III  <a name="___sec7"></a></h2>
 <p>
 
+
 <ul>
- <p><li> Index words can appear anywhere in LaTeX, but should be outside
+ <li class="fragment"> Index words can appear anywhere in LaTeX, but should be outside
    paragraphs in other tools.</li>
- <p><li> References to tables, program code and algorithms can only be
+ <li class="fragment"> References to tables, program code and algorithms can only be
    made in LaTeX.</li>
- <p><li> Figures are floating in LaTeX, but fixed in other tools, so place
+ <li class="fragment"> Figures are floating in LaTeX, but fixed in other tools, so place
    figures exactly where they are needed the first time.</li>
- <p><li> Curve plots with color lines do not work well in black-and-white
+ <li class="fragment"> Curve plots with color lines do not work well in black-and-white
    printing. Make sure plots makes sense in color and BW (e.g., by
    using colors and markers).</li>
 </ul>
 <p>
 
+
+
+<p>
 
 </section>
 
@@ -588,6 +600,7 @@ Inline math as in LaTeX:
 gets rendered as ...where \( a=\int_{\Omega}fdx \).
 
 <p>
+
 An equation environment is surrounded by <tt>!bt</tt> and <tt>!et</tt> tags
 (see the source of this document), the rest is plain LaTeX:
 
@@ -595,11 +608,14 @@ An equation environment is surrounded by <tt>!bt</tt> and <tt>!et</tt> tags
 $$
 \begin{align}
 \frac{\partial u}{\partial t} &= \nabla^2 u,
-label{a:eq}\\
+\label{a:eq}\\
 \nabla\cdot\pmb{v} & = 0
-label{b:eq}
+\label{b:eq}
 \end{align}
 $$
+
+<p>
+
 Limit environments to
 <p>
 
@@ -879,16 +895,18 @@ Very effective way to generate slides from running text:
 <p>
 
 <ul>
- <p><li> Take a copy of your Doconce prose</li>
- <p><li> Strip off as much text as possible</li>
- <p><li> Emphasize key points in bullet items</li>
- <p><li> Focus on figures and movies</li>
- <p><li> Focus on key equations</li>
- <p><li> Focus on key code snippets</li>
- <p><li> Insert <tt>!split</tt> wherever you want a new slide to
+ <li> Take a copy of your Doconce prose</li>
+ <li> Strip off as much text as possible</li>
+ <li> Emphasize key points in bullet items</li>
+ <li> Focus on figures and movies</li>
+ <li> Focus on key equations</li>
+ <li> Focus on key code snippets</li>
+ <li> Insert <tt>!split</tt> wherever you want a new slide to
    begin</li>
- <p><li> Use 7 <tt>=</tt> or 5 <tt>=</tt> in headings (H2 or H3)</li>
- <p><li> Slides are made with HTML5 tools such as reveal.js, deck.js,
+ <li> Insert <tt>!bpop</tt> and <tt>!epop</tt> around elements to pop up
+   in sequence</li>
+ <li> Use 7 <tt>=</tt> or 5 <tt>=</tt> in headings (H2 or H3)</li>
+ <li> Slides are made with HTML5 tools such as reveal.js, deck.js,
    csss, or dzslides</li>
 </ul>
 <p>

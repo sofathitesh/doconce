@@ -1,13 +1,16 @@
+TITLE: On the Technicalities of Scientific Writing Anno 2012: The Doconce Way
 # index.html file for looking at the various versions of scientific_writing
 
-======= On the Technicalities of Scientific Writing Anno 2012: The Doconce Way =======
-
- * "Slides": "http://hplgit.github.com/teamods/doconce/scientific_writing.html" (using "reveal.js": "http://lab.hakim.se/reveal-js/")
+ * "Slides": "scientific_writing.html" (using "reveal.js": "http://lab.hakim.se/reveal-js/")
 
 Here are some other document versions of the slides:
 
- * "PDF (LaTeX)": "http://hplgit.github.com/teamods/doconce/scientific_writing_anslistings.pdf" (anslistings.sty for code)
- * "PDF (LaTeX)": "http://hplgit.github.com/teamods/doconce/scientific_writing_minted.pdf" (minted.sty for code)
- * "Sphinx": "http://hplgit.github.com/teamods/doconce/sphinx/index.html"
- * "Plain MathJax HTML": "http://hplgit.github.com/teamods/doconce/scientific_writing_plain.html"
- * "Solarized MathJax HTML": "http://hplgit.github.com/teamods/doconce/scientific_writing_solarized.html"
+ * "PDF (LaTeX)": "scientific_writing_anslistings.pdf" (anslistings.sty for code)
+ * "PDF (LaTeX)": "scientific_writing_minted.pdf" (minted.sty for code)
+ * "Sphinx": "sphinx/index.html"
+ * "Plain MathJax HTML": "scientific_writing_plain.html"
+ * "Solarized MathJax HTML": "scientific_writing_solarized.html"
+
+Doconce supports many slide styles:
+
+ * "Demos of different HTML5 slide styles": "demo/index.html"

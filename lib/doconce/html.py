@@ -541,9 +541,9 @@ def html_%s(block, format):
 </tr>
 </table>
 """ %% block
-    janko = "<div class="%s">%%s</div>" % block
+    janko = '<div class="%s">%%s</div>' %% block
     return lyx if '--html-lyx-admon' in sys.argv else janko
-''' % (_admon, _admon, _Admon, _Admon, admon)
+''' % (_admon, _admon, _Admon, _Admon, _admon)
     exec(_text)
 
 def define(FILENAME_EXTENSION,

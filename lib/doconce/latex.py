@@ -793,10 +793,10 @@ def define(FILENAME_EXTENSION,
     ENVIRS['latex'] = {
         'quote':         latex_quote,
         'warning':       latex_warning,
-        'tip':           latex_tip,
+        'question':      latex_question,
         'notice':        latex_notice,
         'hint':          latex_hint,
-        'summary':     latex_summary,
+        'summary':       latex_summary,
         'notes':         latex_notes,
        }
 

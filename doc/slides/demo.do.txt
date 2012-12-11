@@ -10,8 +10,6 @@ DATE: today
 The primary goal of this demo talk is to demonstrate how to write
 talks with doconce and get them rendered in numerous HTML formats.
 
-The current HTML format is XXX with YYY theme.
-
 The talk investigates the accuracy of three finite difference
 schemes for the ordinary differential equation $u'=-au$ with the
 aid of numerical experiments. Numerical artifacts are in particular
@@ -84,7 +82,6 @@ The numerical method is implemented in a Python function:
 
 @@@CODE src/dc_mod.py  fromto: def solver@def verify_three
 
-(pygments style "ZZZ")
 !split
 
 
