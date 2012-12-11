@@ -668,3 +668,24 @@ With label.
 ===== Appendix: Testing identical titles =====
 
 Without label.
+
+!bhint
+Here is a hint.
+!ehint
+
+!bwarning
+And here is a warning about something to pay attention to.
+!ewarning
+
+!bsummary
+Much testing in this document, otherwise stupid content.
+!esummary
+
+!bnotice
+Ah, we are close to the end.
+!enotice
+
+!bquestion
+So, how many admonition environments does Doconce support?
+!equestion
+
