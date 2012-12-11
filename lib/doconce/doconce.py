@@ -50,7 +50,7 @@ def doconce_envirs():
             'pop', 'slidecell',       # slides
             'notes', 'hint', 'remarks', # exercises and general
             'quote', 'notice',
-            'summary', 'warning', 'tip']
+            'summary', 'warning', 'question']
 
 #----------------------------------------------------------------------------
 # Translators: (do not include, use import as shown above)
@@ -1011,7 +1011,7 @@ def typeset_envirs(filestr, format):
             if envir == 'quote':
                 def subst(m):
                     return indent_lines(m.group(1), format, ' '*4) + '\n\n'
-            elif envir in ['warning', 'tip', 'hint', 'notice', 'important',
+            elif envir in ['warning', 'question', 'hint', 'notice', 'summary',
                            'remarks']:
                 # Just a plan paragraph with paragraph heading
                 def subst(m):
@@ -2072,7 +2072,7 @@ def main():
                '--oneline_paragraphs', '--no-mako', '--no-preprocess',
                '--no-pygments-html', '--minted-latex-style=',
                '--pygments-html-style=', '--pygments-html-linenos',
-               '--html-solarized', '--latex-printed'
+               '--html-solarized', '--latex-printed', '--html-lyx-admon',
                ]
 
     global _log, encoding, filename

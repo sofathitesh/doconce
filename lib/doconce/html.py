@@ -527,7 +527,7 @@ for _admon in ['warning', 'question', 'hint', 'notice', 'summary']:
     _text = '''
 def html_%s(block, format):
     lyx = """
-<table width="95%%" border="0">
+<table width="95%%%%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
 <img src="https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/lyx_%s.png" hspace="5" alt="%s"></td>
@@ -700,20 +700,20 @@ def define(FILENAME_EXTENSION,
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 
-    .notice, .success, .warning, .error, .validation {
+    .notice, .summary, .warning, .hint, .question {
     border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Message.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('html_images/Knob_Valid_Green.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('html_images/Knob_Attention.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Attention.png'); }
     .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('html_images/Knob_Info.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Info.png'); }
     .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('html_images/Knob_Forward.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Forward.png'); }
 """
     # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
 

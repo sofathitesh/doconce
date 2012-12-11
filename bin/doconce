@@ -2417,8 +2417,8 @@ def html_colorbullets():
         f = open(filename, 'r')
         text = f.read()
         f.close()
-        if '<li>' in text:
-            copy_datafiles(html_images)  # copy html_images subdir if needed
+        #if '<li>' in text:
+        #    copy_datafiles(html_images)  # copy html_images subdir if needed
         lines = text.splitlines()
         f = open(filename, 'w')
         level = 0
@@ -2433,9 +2433,11 @@ def html_colorbullets():
             if '<li>' in linel:
                 line = line.replace('<li>', """</tr><p><tr><td valign='top'><img src="BULLET"></td><td>""")
                 if level == 1:
-                    image_filename = html_imagefile(red_bullet)
+                    #image_filename = html_imagefile(red_bullet)
+                    image_filename = 'https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/' + red_bullet
                 elif level >= 2:
-                    image_filename = html_imagefile(green_bullet)
+                    #image_filename = html_imagefile(green_bullet)
+                    image_filename = 'https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/' + green_bullet
                 line = line.replace('BULLET', image_filename)
             f.write(line + '\n')
         f.close()
