@@ -371,9 +371,10 @@ ex:
 @@@CODE src/dc_mod.py  fromto: def solver@def verify_three
 !ec
 
- * Computer language can be specified:
-   * `!bc pycod` for Python snippet,
-   * `!bc pypro` for complete Python program
+Computer language can be specified:
+
+ * `!bc pycod` for Python snippet,
+ * `!bc pypro` for complete Python program
  * Similar for C (`c`), C++ (`cpp`), Fortran (`f`),
    Matlab (`m`): `!bc mpro`
  * From files: `.py` gives `!bc pycod`, `.f` gives `!bc fcod`, etc.

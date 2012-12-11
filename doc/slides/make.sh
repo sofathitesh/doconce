@@ -26,9 +26,11 @@ doconce ptex2tex $name envir=ans:nt
 pdflatex $name
 mv -f $name.pdf ${name}_anslistings.pdf
 
-doconce format sphinx $name
-doconce sphinx_dir author="H. P. Langtangen" theme=pyramid $name
-python automake_sphinx.py
+# sphinx doesn't handle math inside code well, we drop it since
+# other formats demonstrate doconce writing this way
+#doconce format sphinx $name
+#doconce sphinx_dir author="H. P. Langtangen" theme=pyramid $name
+#python automake_sphinx.py
 
 doconce format pandoc $name  # Markdown (pandoc extended)
 doconce format gwiki  $name  # Googlecode wiki
@@ -40,7 +42,6 @@ doconce format gwiki  $name  # Googlecode wiki
 pygmentize -l text -f html -o ${name}_doconce.html ${name}.do.txt
 
 cp -r ${name}*.pdf *.md ${name}*.html reveal.js ../demos/slides/
-cp -r sphinx-rootdir/_build/html ../demos/slides/sphinx
 
 doconce format html sw_index.do.txt
 cp sw_index.html ../demos/slides/index.html

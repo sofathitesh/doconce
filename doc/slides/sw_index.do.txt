@@ -7,7 +7,6 @@ Here are some other document versions of the slides:
 
  * "PDF (LaTeX)": "scientific_writing_anslistings.pdf" (anslistings.sty for code)
  * "PDF (LaTeX)": "scientific_writing_minted.pdf" (minted.sty for code)
- * "Sphinx": "sphinx/index.html"
  * "Plain MathJax HTML": "scientific_writing_plain.html"
  * "Solarized MathJax HTML": "scientific_writing_solarized.html"
 
