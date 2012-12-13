@@ -25,7 +25,7 @@ def recommended_html_styles_and_pygments_styles():
         'sky': ['default'],
         'night': ['fruity', 'native'],
         'darkgrey': ['native', 'monokai'],
-        'serif': ['native', 'monokai'],
+        'serif': ['perldoc'],
         },
         'csss': {
         'csss_default': ['monokai'],
