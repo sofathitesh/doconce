@@ -61,9 +61,9 @@ cat > ../demos/slides/demo/index.html <<EOF
 up in separate tabs. You may need to reload some pages to get the
 mathematics correctly rendered.
 <ul>
-<li> reveal.js: (the css style are slightly changed: left-adjusted,
+<li> reveal.js: (the css style files are slightly changed: left-adjusted,
 lower case headings with smaller fonts; "darkgray" corresponds to
-the "default" theme)
+the original "default" theme)
 <ul>
 <li><a href="demo_reveal_beige.html">reveal, beige theme</a>
 <li><a href="demo_reveal_beigesmall.html">reveal, beigesmall theme</a>
