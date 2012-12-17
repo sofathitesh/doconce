@@ -17,15 +17,11 @@ def zip_dir(dirname):
     system('zip -r %s.zip %s' % (dirname, dirname))
 
 if __name__ == '__main__':
-    # (important to not execute anything for epydoc)
     import os, shutil
-    # the insertdocstr script is part of the Doconce package
-    ##system('python ../../bin/doconce insertdocstr plain . ')
-
-    # pack zip files distributed as data with doconce
-    ##system('zip -r sphinx_themes.zip sphinx_themes')
-    software_dir = 'misc_software'
+    software_dir = 'bundled'
     os.chdir(software_dir)
+    # pack zip files distributed as data with doconce
+    system('zip -r sphinx_themes.zip sphinx_themes')
     system('zip -r html_images.zip html_images')
     rmtree('reveal.js')
     system('git clone git://github.com/hakimel/reveal.js.git')
@@ -70,45 +66,31 @@ if __name__ == '__main__':
     system("find deck.js/extensions -name '.git' -exec rm -rf {} \;")
     zip_dir('deck.js')
 
-    # minted.sty and anslistings.sty are not copied every time, get
-    # the latest versions from ptex2tex (manually)
-    zip_dir('latex_styles')
+    # Pack latex styles and figures in a zip file without any directory
+    # minted.sty and anslistings.sty are not copied from some
+    # repo every time, so get the latest versions from ptex2tex (manually)
+    os.chdir('latex_styles')
+    system('zip latex_styles *.sty *.pdf *.pdf *.eps')
+    os.chdir(os.pardir)
 
-    """
-    # No need to pack these - the styles and scripts are embedded
-    if not os.path.isdir('dzslides'):
-        system('git clone git://github.com/paulrouget/dzslides.git')
-    else:
-        system('cd dzslides; git pull origin master; cd ..')
-    system('zip -r dzslides.zip dzslides')
-    system('zip -d .git dzslides.zip')
-    """
-    system('cp *.zip ..')
+    for zfile in glob.glob('*.zip'):
+        shutil.copy(zfile, os.path.join(os.pardir, 'lib', 'doconce', zfile))
+
+    # back to root dir
     os.chdir(os.pardir)
 
     # remove files that are to be regenerated:
     #system('sh clean.sh')
-    os.chdir(os.path.join(os.pardir, os.pardir))
     thisdir = os.getcwd()
-    os.chdir(os.path.join('lib', 'doconce', 'docstrings'))
-    system('sh ./clean.sh')
-    os.chdir(thisdir)
-    os.chdir(os.path.join('doc', 'tutorial'))
-    system('sh ./clean.sh')
-    os.chdir(thisdir)
-    os.chdir(os.path.join('doc', 'manual'))
-    system('sh ./clean.sh')
-    os.chdir(thisdir)
-    os.chdir(os.path.join('doc', 'quickref'))
-    system('sh ./clean.sh')
-    os.chdir(thisdir)
-    os.chdir(os.path.join('doc', 'slides'))
-    system('sh ./clean.sh')
-    os.chdir(thisdir)
-    os.chdir('test')
-    system('sh ./clean.sh')
-    os.chdir(thisdir)
-    os.chdir('test')
-    system('sh ./clean.sh')
-    os.chdir(thisdir)
+    dirs = [os.path.join('lib', 'doconce', 'docstrings'),
+            os.path.join('doc', 'tutorial'),
+            os.path.join('doc', 'manual'),
+            os.path.join('doc', 'quickref'),
+            os.path.join('doc', 'slides'),
+            'test',
+            ]
+    for d in dirs:
+        os.chdir(d)
+        system('sh ./clean.sh')
+        os.chdir(thisdir)
 

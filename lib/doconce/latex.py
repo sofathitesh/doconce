@@ -643,10 +643,7 @@ def _get_admon_figs(filename):
               (filename, doconce_datafile, latexfigdir)
         shutil.copy(doconce_datafile, os.curdir)
         import zipfile
-        path2filename = 'latex_styles/' + filename
-        zipfile.ZipFile(datafile).extract(path2filename)
-        os.rename(path2filename, filename)
-        shutil.rmtree('latex_styles')
+        zipfile.ZipFile(datafile).extract(filename)
         os.remove(datafile)
         os.chdir(os.pardir)
 
