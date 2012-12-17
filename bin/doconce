@@ -1967,7 +1967,7 @@ Download preprocess from http://code.google.com/p/preprocess
         failure, output = commands.getstatusoutput('pygmentize')
         if failure:
             print 'You have requested the minted latex style, but this'
-            print 'requires the pygments package to be installed. On Debian/Ubuntu:'
+            print 'requires the pygments package to be installed. On Debian/Ubuntu: run'
             print 'Terminal> sudo apt-get install python-pygments'
             sys.exit(1)
 
@@ -2434,10 +2434,10 @@ def html_colorbullets():
                 line = line.replace('<li>', """</tr><p><tr><td valign='top'><img src="BULLET"></td><td>""")
                 if level == 1:
                     #image_filename = html_imagefile(red_bullet)
-                    image_filename = 'https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/' + red_bullet
+                    image_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/' + red_bullet
                 elif level >= 2:
                     #image_filename = html_imagefile(green_bullet)
-                    image_filename = 'https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/' + green_bullet
+                    image_filename = 'https://doconce.googlecode.com/hg/bundled/html_images/' + green_bullet
                 line = line.replace('BULLET', image_filename)
             f.write(line + '\n')
         f.close()
