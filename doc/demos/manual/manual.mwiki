@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Dec 11, 2012 ====
+==== Dec 20, 2012 ====
 
 <!--> lines beginning with # are comment lines -->
 
@@ -2336,6 +2336,11 @@ and that the rest of the non-LaTeX surrounding text is correctly indented.
 Using paragraphs instead of list items is a good idea also here.
 
 ==== Problems with reST/Sphinx Output ====
+
+==== Title level inconsistent ====
+
+reST does not like jumps in the levels of headings. For example, you cannot
+have a <code>===</code> heading after a <code>=======</code> heading.
 
 ==== Lists do not appear in .rst files ====
 

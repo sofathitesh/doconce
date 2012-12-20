@@ -17,9 +17,10 @@ def zip_dir(dirname):
     system('zip -r %s.zip %s' % (dirname, dirname))
 
 if __name__ == '__main__':
-    import os, shutil
+    import os, shutil, glob
     software_dir = 'bundled'
     os.chdir(software_dir)
+    system('sh clean.sh')
     # pack zip files distributed as data with doconce
     system('zip -r sphinx_themes.zip sphinx_themes')
     system('zip -r html_images.zip html_images')
@@ -70,7 +71,8 @@ if __name__ == '__main__':
     # minted.sty and anslistings.sty are not copied from some
     # repo every time, so get the latest versions from ptex2tex (manually)
     os.chdir('latex_styles')
-    system('zip latex_styles *.sty *.pdf *.pdf *.eps')
+    system('zip latex_styles.zip *.sty *.pdf *.pdf *.eps')
+    system('mv -f latex_styles.zip ..')
     os.chdir(os.pardir)
 
     for zfile in glob.glob('*.zip'):
@@ -78,6 +80,8 @@ if __name__ == '__main__':
 
     # back to root dir
     os.chdir(os.pardir)
+
+    system('bin/doconce insertdocstr lib/doconce')
 
     # remove files that are to be regenerated:
     #system('sh clean.sh')
@@ -88,6 +92,7 @@ if __name__ == '__main__':
             os.path.join('doc', 'quickref'),
             os.path.join('doc', 'slides'),
             'test',
+            'bundled',
             ]
     for d in dirs:
         os.chdir(d)

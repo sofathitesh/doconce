@@ -60,6 +60,7 @@ pandoc -v >> testdoc_pnd_d2h.html
 doconce format html slides --pygments-html-style=emacs
 doconce slides_html slides reveal --html-slide-type=beigesmall
 mv -f slides.html slides_reveal.html
+/bin/ls -R reveal.js >> slides_reveal.html
 doconce slides_html slides all
 
 # Test grab

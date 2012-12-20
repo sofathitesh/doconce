@@ -56,7 +56,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Dec 11, 2012
+Dec 20, 2012
 
 \end{DUfieldlist}
 
@@ -3446,6 +3446,18 @@ Using paragraphs instead of list items is a good idea also here.
   \addcontentsline{toc}{subsection}{Problems with reST/Sphinx Output}%
   \label{problems-with-rest-sphinx-output}%
 }
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Title level inconsistent%
+  \addcontentsline{toc}{subsubsection}{Title level inconsistent}%
+  \label{title-level-inconsistent}%
+}
+
+reST does not like jumps in the levels of headings. For example, you cannot
+have a \texttt{===} heading after a \texttt{=======} heading.
 
 
 %___________________________________________________________________________

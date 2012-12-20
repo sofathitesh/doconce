@@ -15,7 +15,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
+        URL_ROOT:    '',
         VERSION:     '0.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 11, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 20, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -553,60 +553,103 @@ list of capabilities:</p>
 <div class="highlight-bash"><div class="highlight"><pre>Usage: doconce <span class="nb">command</span> <span class="o">[</span>optional arguments<span class="o">]</span>
 commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean <span class="nb">help </span>latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
 
+
+<span class="c"># transform doconce file to another format</span>
 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|cwiki|pandoc|st|epytext file.do.txt
 
+<span class="c"># substitute a phrase by another using regular expressions</span>
 doconce subst <span class="o">[</span>-s -m -x --restore<span class="o">]</span> regex-pattern regex-replacement file1 file2 ...
 <span class="o">(</span>-s is the re.DOTALL modifier, -m is the re.MULTILINE modifier,
  -x is the re.VERBOSE modifier, --restore copies backup files back again<span class="o">)</span>
 
+<span class="c"># replace a phrase by another literally</span>
 doconce replace from-text to-text file1 file2 ...
 <span class="o">(</span>exact text substutition<span class="o">)</span>
 
+<span class="c"># doconce replace using from and to phrases from file</span>
 doconce replace_from_file file-with-from-to file1 file2 ...
 <span class="o">(</span>exact text substitution, but a <span class="nb">set </span>of from-to relations<span class="o">)</span>
 
+<span class="c"># gwiki format requires substitution of figure file names by URLs</span>
 doconce gwiki_figsubst file.gwiki URL-of-fig-dir
 
+<span class="c"># remove all inline comments in a doconce file</span>
 doconce remove_inline_comments file.do.txt
 
+<span class="c"># create a directory for the sphinx format</span>
 doconce sphinx_dir <span class="nv">author</span><span class="o">=</span><span class="s1">&#39;Me and you&#39;</span> <span class="nv">title</span><span class="o">=</span><span class="s1">&#39;Quick title&#39;</span> <span class="se">\</span>
     <span class="nv">version</span><span class="o">=</span>0.1 <span class="nv">dirname</span><span class="o">=</span>sphinx-rootdir <span class="nv">theme</span><span class="o">=</span>default <span class="se">\</span>
     file1 file2 file3
 <span class="o">(</span>requires sphinx version &gt;<span class="o">=</span> 1.1<span class="o">)</span>
 
+<span class="c"># replace latex-1 (non-ascii) characters by html codes</span>
 doconce latin2html file.html
 
+<span class="c"># walk through a directory tree and insert doconce files as</span>
+<span class="c"># docstrings in *.p.py files</span>
 doconce insertdocstr rootdir
 
+<span class="c"># remove all files that the doconce format can regenerate</span>
 doconce clean
-<span class="o">(</span>remove all files that the doconce format can regenerate<span class="o">)</span>
 
+<span class="c"># print the header (preamble) for latex file</span>
 doconce latex_header
+
+<span class="c"># print the footer for latex files</span>
 doconce latex_footer
 
+<span class="c"># change encoding</span>
 doconce change_encoding utf-8 latin1 filename
+
+<span class="c"># guess the encoding in a text</span>
 doconce guess_encoding filename
 
+<span class="c"># transform a .bbl file to a .rst file with reST bibliography format</span>
 doconce bbl2rst file.bbl
+
+<span class="c"># split a sphinx/rst file into parts</span>
 doconce split_rst complete_file.rst
+
+<span class="c"># edit URLs to local files and place them in _static</span>
 doconce sphinxfix_local_URLs file.rst
+
+<span class="c"># split an html file into parts according to !split commands</span>
 doconce split_html complete_file.html
+
+<span class="c"># create slides from a (doconce) html file</span>
 doconce slides_html slide_type complete_file.html
+
+<span class="c"># replace bullets in lists by colored bullets</span>
 doconce html_colorbullets file1.html file2.html ...
 
+<span class="c"># grab selected text from a file</span>
 doconce grab   --from<span class="o">[</span>-<span class="o">]</span> from-text <span class="o">[</span>--to<span class="o">[</span>-<span class="o">]</span> to-text<span class="o">]</span> somefile
+
+<span class="c"># remove selected text from a file</span>
 doconce remove --from<span class="o">[</span>-<span class="o">]</span> from-text <span class="o">[</span>--to<span class="o">[</span>-<span class="o">]</span> to-text<span class="o">]</span> somefile
+
+<span class="c"># remove answers to exercises</span>
 doconce remove_exercise_answers file_in_some_format
+
+<span class="c"># run spellcheck on a set of files</span>
 doconce spellcheck <span class="o">[</span>-d .mydict.txt<span class="o">]</span> *.do.txt
+
+<span class="c"># transform ptex2tex files (.p.tex) to ordinary latex file</span>
+<span class="c"># and manage the code environments</span>
 doconce ptex2tex mydoc -DMINTED <span class="nv">pycod</span><span class="o">=</span>minted <span class="nv">sys</span><span class="o">=</span>Verbatim <span class="se">\</span>
         <span class="nv">dat</span><span class="o">=</span><span class="se">\b</span>egin<span class="o">{</span>quote<span class="o">}</span><span class="se">\b</span>egin<span class="o">{</span>verbatim<span class="o">}</span>;<span class="se">\e</span>nd<span class="o">{</span>verbatim<span class="o">}</span><span class="se">\e</span>nd<span class="o">{</span>quote<span class="o">}</span>
 
+<span class="c"># expand short cut commands to full form in files</span>
 doconce expand_commands file1 file2 ...
+
+<span class="c"># combine several images into one</span>
 doconce combine_images image1 image2 ... output_file
-doconce latex_exercise_toc doconcefile.do.txt
-doconce list_labels doconcefile.do.txt | latexfile.tex
-doconce teamod name
-doconce assemble name master.do.txt
+
+<span class="c"># insert a table of exercises in a latex file myfile.p.tex</span>
+doconce latex_exercise_toc myfile
+
+<span class="c"># list all labels in a document (for purposes of cleaning them up)</span>
+doconce list_labels myfile
 </pre></div>
 </div>
 </div>
@@ -831,7 +874,7 @@ examine the Doconce source and the <tt class="docutils literal"><span class="pre
     </div>
     <div class="footer">
         &copy; Copyright 2012, HPL.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2pre.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>
