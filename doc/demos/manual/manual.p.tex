@@ -109,8 +109,8 @@
 
 % #endif
 
-\input{newcommands_replace}
 \input{newcommands_keep}
+\input{newcommands_replace}
 
 
 % ----------------- title -------------------------
@@ -182,13 +182,13 @@
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Dec 11, 2012}
+\date{Dec 20, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Dec 11, 2012}}
+{\large\textsf{Dec 20, 2012}}
 
 \end{center}
 \vfill
@@ -197,7 +197,7 @@
 % #else
 
 \begin{center}
-Dec 11, 2012
+Dec 20, 2012
 \end{center}
 
 \vspace{1cm}
@@ -2750,6 +2750,10 @@ and that the rest of the non-LaTeX surrounding text is correctly indented.
 Using paragraphs instead of list items is a good idea also here.
 
 \subsection{Problems with reST/Sphinx Output}
+
+\paragraph{Title level inconsistent.}
+reST does not like jumps in the levels of headings. For example, you cannot
+have a \code{===} heading after a \code{=======} heading.
 
 \paragraph{Lists do not appear in .rst files.}
 Check if you have a comment right above the list. That comment

@@ -1602,6 +1602,11 @@ Using paragraphs instead of list items is a good idea also here.
 
 ===== Problems with reST/Sphinx Output =====
 
+=== Title level inconsistent ===
+
+reST does not like jumps in the levels of headings. For example, you cannot
+have a `===` heading after a `=======` heading.
+
 === Lists do not appear in .rst files ===
 
 Check if you have a comment right above the list. That comment

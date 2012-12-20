@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Dec 11, 2012
+:Date: Dec 20, 2012
 
 .. lines beginning with # are comment lines
 
@@ -2713,6 +2713,12 @@ Using paragraphs instead of list items is a good idea also here.
 
 Problems with reST/Sphinx Output
 --------------------------------
+
+Title level inconsistent
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+reST does not like jumps in the levels of headings. For example, you cannot
+have a ``===`` heading after a ``=======`` heading.
 
 Lists do not appear in .rst files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

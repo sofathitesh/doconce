@@ -759,8 +759,9 @@ MathJax.Hub.Config({
 <body>
     """ % css
 
-    newcommands_files = [name for name in glob.glob('newcommands*.tex')
-                         if not name.endswith('.p.tex')]
+    newcommands_files = list(sorted([name
+                                     for name in glob.glob('newcommands*.tex')
+                                     if not name.endswith('.p.tex')]))
     newcommands = ''
     for filename in newcommands_files:
         f = open(filename, 'r')

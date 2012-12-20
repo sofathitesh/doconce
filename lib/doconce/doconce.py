@@ -1055,9 +1055,9 @@ def typeset_lists(filestr, format, debug_info=[]):
             if bug:
                 m = re.search(bug[0], line)
                 if m:
-                    print '>>> Syntax ERROR? "%s"\n    %s!' % \
+                    print '>>> syntax error: "%s"\n    %s' % \
                           (m.group(0), bug[1])
-                    print '    In line\n', line
+                    print '    in line\n', line
 
         if not line or line.isspace():  # blank line?
             if not lists:

@@ -959,8 +959,9 @@ def define(FILENAME_EXTENSION,
            INTRO['latex'] = INTRO['latex'].replace('usemintedstyle{default}',
                                            'usemintedstyle{%s}' % pygm_style)
 
-    newcommands_files = [name for name in glob.glob('newcommands*.tex')
-                         if not name.endswith('.p.tex')]
+    newcommands_files = list(sorted([name
+                                     for name in glob.glob('newcommands*.tex')
+                                     if not name.endswith('.p.tex')]))
     for filename in newcommands_files:
         if os.path.isfile(filename):
             INTRO['latex'] += r"""\input{%s}

@@ -2553,6 +2553,12 @@ Using paragraphs instead of list items is a good idea also here.
 Problems with reST/Sphinx Output
 --------------------------------
 
+Title level inconsistent
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+reST does not like jumps in the levels of headings. For example, you cannot
+have a C{===} heading after a C{=======} heading.
+
 Lists do not appear in .rst files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
