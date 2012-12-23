@@ -922,6 +922,8 @@ def define(FILENAME_EXTENSION,
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
+\setcounter{tocdepth}{2}
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
