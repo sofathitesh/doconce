@@ -1736,13 +1736,19 @@ or
        doconce ptex2tex file -Dvar1=val1 ... envir=ans:nt
 
 or
-       doconce ptex2tex file -DMINTED sys=\begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt] envir=minted
+       doconce ptex2tex file sys=\begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt]@\end{Verbatim} envir=minted
 
-Running the plain
+or
+
+       doconce ptex2tex file envir=Verbatim
+
+Here the Verbatim (from fancyvrb) is used for all environments, with
+some options added (base linestretch 0.85 and font size 9pt).
+
+The last command is equivalent to the default
 
    doconce ptex2tex
 
-also works, but then all environments will be plain latex verbatim.
 
 Note that specifications of how "!bc environment" is to be typeset
 in latex is done by environment=begin@end, where begin is the latex
@@ -1841,7 +1847,12 @@ def ptex2tex():
                                 envir_user_spec.append((envir, begin, end))
                 else:
                     # value is not minted or ans*
-                    begin = '\\' + 'begin{' + value + '}'
+                    options = ''
+                    if value == 'Verbatim':
+                        # provide lots of options
+                        options = '[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]'
+
+                    begin = '\\' + 'begin{' + value + '}' + options
                     end = '\\' + 'end{' + value + '}'
                     if envir == 'envir':
                         for e in envirs:
@@ -1883,6 +1894,10 @@ def ptex2tex():
             else:
                 print 'No package known for latex environment "%s" ' % latexenvir
     packages = list(packages)
+    # fancyvrb is needed for \code{...} -> \Verb!...! translation
+    if not 'fancyvrb' in packages:
+        packages.append('fancyvrb')
+
     #print 'packages:';  pprint.pprint(packages)
 
     if filename.endswith('.p.tex'):
@@ -1928,8 +1943,10 @@ Download preprocess from http://code.google.com/p/preprocess
             print '%s (!bc %s) -> %s' % (ptex2tex_begin, envir, begin)
 
     # Replace other known ptex2tex environments by a default choice
-    begin = r"""\begin{quote}\begin{verbatim}"""
-    end = r"""\end{verbatim}\end{quote}"""
+    begin = r"""\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]"""
+    end = r"""\end{Verbatim}"""
+    #begin = r"""\begin{quote}\begin{verbatim}"""
+    #end = r"""\end{verbatim}\end{quote}"""
     for envir in envirs:
         ptex2tex_begin = '\\' + 'b' + envir
         ptex2tex_end = '\\' + 'e' + envir
@@ -1946,8 +1963,10 @@ Download preprocess from http://code.google.com/p/preprocess
     else:
         filestr = filestr.replace(r'\usepackage{ptex2tex}', '')
 
+    # Copy less well-known latex packages to the current directory
+    # if the packages are not found on the (Unix) system
     import commands
-    for style in ['minted', 'anslistings']:
+    for style in ['minted', 'anslistings', 'fancyvrb']:
         if style in packages:
             failure, output = commands.getstatusoutput('kpsewhich %s.sty' % style)
             if output == '':
@@ -1974,13 +1993,18 @@ Download preprocess from http://code.google.com/p/preprocess
 
     # --- Treat the \code{} commands ---
 
-    # remove one newline (two implies far too long inline verbatim)
+    # Remove one newline (two implies far too long inline verbatim)
     pattern = re.compile(r'\\code\{([^\n}]*?)\n(.*?)\}', re.DOTALL)
     # (this pattern does not handle \code{...} with internal } AND \n!)
     filestr = pattern.sub(r'\code{\g<1> \g<2>}', filestr)
+    fontsize = 10          # should be configurable from the command line
+    verb_command = 'Verb'  # requires fancyvrb package, otherwise use std 'verb'
+    # First handle combination of \protect and \code
+    cpattern = re.compile(r"""\\protect\s*\\code\{(.*?)\}([ \n,.;:?!)"'-])""", re.DOTALL)
+    filestr = cpattern.sub(r'{\\fontsize{%spt}{%spt}\protect\\%s!\g<1>!}\g<2>' %
+                           (fontsize, fontsize, verb_command), filestr)
+    # Handle ordinary \code
     cpattern = re.compile(r"""\\code\{(.*?)\}([ \n,.;:?!)"'-])""", re.DOTALL)
-    fontsize = 10
-    verb_command = 'verb'
     filestr = cpattern.sub(r'{\\fontsize{%spt}{%spt}\\%s!\g<1>!}\g<2>' %
                            (fontsize, fontsize, verb_command), filestr)
     f = open(filename + '.tex', 'w')

@@ -109,6 +109,17 @@ usepackage{ptex2tex}
 \usepackage{movie15}
 % #endif
 """)
+    # \code{} in section headings and paragraph needs a \protect
+    cpattern = re.compile(r'^\s*(\\.*section\*?|\\paragraph)\{(.*)\}\s*$',
+                         re.MULTILINE)
+    headings = cpattern.findall(filestr)
+    for tp, heading in headings:
+        if '\\code{' in heading:
+            new_heading = heading.replace(r'\code{', r'\protect\code{')
+            filestr = filestr.replace(r'%s{%s}' % (tp, heading),
+                                      r'%s{%s}' % (tp, new_heading))
+            # Fix double }} for code ending (\section{...\code{...}})
+            filestr = re.sub(r'\\code\{(.*?)\}\}', r'\code{\g<1>} }', filestr)
 
     return filestr
 
@@ -142,16 +153,25 @@ def latex_figure(m, includegraphics=True):
         label = m.group(1).strip()
     else:
         label = ''
-    # `verbatim text` in backquotes does not work so we need to substitute
-    # by \texttt{}, and underscores need a backslash
+
+    # `verbatim_text` in backquotes is translated to \code{verbatim_text}
+    # which then becomes \Verb!verbatim_text! when running ptex2tex or
+    # doconce ptex2tex, but this command needs a \protect inside a caption.
+    # (\Verb requires the fancyvrb package.)
+    # Alternative: translate `verbatim_text` to {\rm\texttt{verbatim\_text}}.
+    verbatim_handler = 'Verb'  # alternative: 'texttt'
     verbatim_text = re.findall(r'(`[^`]+?`)', caption)
     verbatim_text_new = []
     for words in verbatim_text:
         new_words = words
-        if '_' in new_words:
-            new_words = new_words.replace('_', r'\_')
-        # Replace backquotes by {\rm\texttt{}}
-        new_words = r'{\rm\texttt{' + new_words[1:-1] + '}}'
+        if verbatim_handler == 'Verb':
+            new_words = '\\protect ' + new_words
+        elif verbatim_handler == 'texttt':
+            if '_' in new_words:
+                new_words = new_words.replace('_', r'\_')
+            # Replace backquotes by {\rm\texttt{}}
+            new_words = r'{\rm\texttt{' + new_words[1:-1] + '}}'
+        # else: do nothing
         verbatim_text_new.append(new_words)
     for from_, to_ in zip(verbatim_text, verbatim_text_new):
         caption = caption.replace(from_, to_)
@@ -267,6 +287,10 @@ def latex_table(table):
                 headline = False
 
             if headline:
+                """
+                # Verbatim text with \texttt is not necessary
+                # if \code{...} is translated to \Verb!...!.
+                #
                 # First fix verbatim inside multicolumn
                 # (recall that doconce.py table preparations
                 # translates `...` to \code{...})
@@ -278,6 +302,7 @@ def latex_table(table):
                                         r'texttt{%s}' % m.group(1),
                                         row[i])
                         row[i] = row[i].replace('_', '\\_')
+                """
 
                 row = [r'\multicolumn{1}{%s}{ %s }' % (a, r) \
                        for r, a in zip(row, heading_spec)]
@@ -539,7 +564,7 @@ def latex_index_bib(filestr, index, citations, bibfile):
     for word in index:
         pattern = 'idx{%s}' % word
         if '`' in word:
-            # Verbatim typesetting
+            # Verbatim typesetting (cannot use \Verb!...! in index)
             # Replace first `...` with texttt and ensure right sorting
             word = re.sub(r'^(.*?)`([^`]+?)`(.*)$',  # subst first `...`
             fix_latex_command_regex(r'\g<1>\g<2>@\g<1>{\rm\texttt{\g<2>}}\g<3>',
@@ -716,7 +741,7 @@ def define(FILENAME_EXTENSION,
         # The following verbatim is better if fixed fontsize is ok, since
         # \code{\latexcommand{arg1}} style formatting does not work well
         # with ptex2tex (the regex will not include the proper second }
-        #'verbatim':      r'\g<begin>{\footnotesize{10pt}{10pt}\verb!\g<subst>!\g<end>',
+        #'verbatim':      r'\g<begin>{\footnotesize{10pt}{10pt}\Verb!\g<subst>!\g<end>',
         'citation':      r'~\\cite{\g<subst>}',
         #'linkURL':       r'\g<begin>\href{\g<url>}{\g<link>}\g<end>',
         'linkURL2':      r'\href{{\g<url>}}{\g<link>}',
@@ -786,10 +811,6 @@ def define(FILENAME_EXTENSION,
         'movie':         latex_movie,
         'comment':       '%% %s',
         }
-    # should be configureable:
-    # [tex]
-    # verbatim = \code{, }
-    # verbatim = \verb!, !
 
     ENVIRS['latex'] = {
         'quote':         latex_quote,
