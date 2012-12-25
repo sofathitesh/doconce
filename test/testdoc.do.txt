@@ -153,8 +153,8 @@ and an extra space before the FIGURE keyword.
 
  FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 Movie ref{mymov} has a similar problem.
 
@@ -289,17 +289,26 @@ accordingly) and verbatim heading and entry:
 |6   |71,000|214        |`NaN`	|
 |-------------------------------|
 
-And add one with verbatim headings and rows starting with `|-` because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with `|-` because of a negative number,
+and `|` right after verbatim word (with no space):
 
 |-----------------------------------------|
-| exact | `sympy` | `numpy32` | `numpy64` |
+| exact | `v_1`   | $a_i$ + `v_2`|`verb_3_`|
 |---r--------r---------r-----------r------|
 |9      | 9.62    | 5.57      |  8.98     |
 |-20    | -23.39  | -7.65     | -19.93    |
 |10     | 17.74   | -4.50     |  9.96     |
 |0      | -9.19   | 4.13      | -0.26     |
 |-----------------------------------------|
+
+
+===== A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` =====
+
+__Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.__ Here
+is
+some text.
+
 
 ===== URLs =====
 label{subsubsec:ex}

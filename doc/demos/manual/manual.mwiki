@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Dec 20, 2012 ====
+==== Dec 25, 2012 ====
 
 <!--> lines beginning with # are comment lines -->
 
@@ -136,7 +136,7 @@ that <code>ptex2tex</code> potentially makes use of. Some more standard stylefil
 are also needed. These are installed by
 
 <syntaxhighlight lang="bash">
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 </code>
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -149,7 +149,11 @@ program.
 The ''minted'' LaTeX style is offered by <code>ptex2tex</code> and <code>doconce ptext2tex</code>
 is popular among many
 users. This style requires the package [http://pygments.org Pygments]
-to be installed:
+to be installed. On Debian Linux,
+<syntaxhighlight lang="bash">
+sudo apt-get install python-pygments
+</code>
+Alternatively, the package can be installed manually:
 <syntaxhighlight lang="bash">
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
@@ -157,7 +161,10 @@ sudo python setup.py install
 </code>
 
 If you use the minted style together with <code>ptex2tex</code>, you have to
-enable it by the <code>-DMINTED</code> command-line argument to <code>ptex2tex</code>.  All
+enable it by the <code>-DMINTED</code> command-line argument to <code>ptex2tex</code>.
+This is not necessary if you run the alternative <code>doconce ptex2tex</code> program.
+
+All
 use of the minted style requires the <code>-shell-escape</code> command-line
 argument when running LaTeX, i.e., <code>latex -shell-escape</code> or <code>pdflatex
 -shell-escape</code>.
@@ -2239,6 +2246,10 @@ in the line above it.
 
 Make sure there is a space before the first back-tick.
 
+==== Inline verbatim text is not formatted correctly ====
+
+Make sure there is whitespace surrounding the text in back-ticks.
+
 ==== Strange non-English characters ====
 
 Check the encoding of the <code>.do.txt</code> file with the Unix <code>file</code> command
@@ -2260,10 +2271,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run <code>doconce change_encoding</code> to change the encoding of the Doconce file.
-
-==== Inline verbatim text is not formatted correctly ====
-
-Make sure there is whitespace surrounding the text in back-ticks.
 
 ==== Too short underlining of reST headlines ====
 

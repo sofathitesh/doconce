@@ -1050,7 +1050,7 @@ that C{ptex2tex} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by::
 
 
-        sudo apt-get install texlive-latex-extra
+        sudo apt-get install texlive-latex-recommended texlive-latex-extra
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -1063,7 +1063,12 @@ program.
 The I{minted} LaTeX style is offered by C{ptex2tex} and C{doconce ptext2tex}
 is popular among many
 users. This style requires the package U{Pygments<http://pygments.org>}
-to be installed::
+to be installed. On Debian Linux::
+
+
+        sudo apt-get install python-pygments
+
+Alternatively, the package can be installed manually::
 
 
         hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -1072,7 +1077,10 @@ to be installed::
 
 
 If you use the minted style together with C{ptex2tex}, you have to
-enable it by the C{-DMINTED} command-line argument to C{ptex2tex}.  All
+enable it by the C{-DMINTED} command-line argument to C{ptex2tex}.
+This is not necessary if you run the alternative C{doconce ptex2tex} program.
+
+All
 use of the minted style requires the C{-shell-escape} command-line
 argument when running LaTeX, i.e., C{latex -shell-escape} or C{pdflatex
 -shell-escape}.

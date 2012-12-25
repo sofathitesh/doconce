@@ -2,7 +2,7 @@
 
 By *Hans Petter Langtangen*
 
-==== Dec 20, 2012 ====
+==== Dec 25, 2012 ====
 
  * When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format?
  * Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging?
@@ -923,7 +923,7 @@ that `ptex2tex` potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 {{{
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 }}}
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -936,7 +936,11 @@ program.
 The *minted* LaTeX style is offered by `ptex2tex` and `doconce ptext2tex`
 is popular among many
 users. This style requires the package [http://pygments.org Pygments]
-to be installed:
+to be installed. On Debian Linux,
+{{{
+sudo apt-get install python-pygments
+}}}
+Alternatively, the package can be installed manually:
 {{{
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
@@ -944,7 +948,10 @@ sudo python setup.py install
 }}}
 
 If you use the minted style together with `ptex2tex`, you have to
-enable it by the `-DMINTED` command-line argument to `ptex2tex`.  All
+enable it by the `-DMINTED` command-line argument to `ptex2tex`.
+This is not necessary if you run the alternative `doconce ptex2tex` program.
+
+All
 use of the minted style requires the `-shell-escape` command-line
 argument when running LaTeX, i.e., `latex -shell-escape` or `pdflatex
 -shell-escape`.

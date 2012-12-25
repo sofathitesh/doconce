@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Dec 20, 2012
+:Date: Dec 25, 2012
 
 .. lines beginning with # are comment lines
 
@@ -219,7 +219,7 @@ are also needed. These are installed by
 
 .. code-block:: console
 
-        sudo apt-get install texlive-latex-extra
+        sudo apt-get install texlive-latex-recommended texlive-latex-extra
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -232,7 +232,13 @@ program.
 The *minted* LaTeX style is offered by ``ptex2tex`` and ``doconce ptext2tex``
 is popular among many
 users. This style requires the package `Pygments <http://pygments.org>`_
-to be installed:
+to be installed. On Debian Linux,
+
+.. code-block:: console
+
+        sudo apt-get install python-pygments
+
+Alternatively, the package can be installed manually:
 
 .. code-block:: console
 
@@ -242,7 +248,10 @@ to be installed:
 
 
 If you use the minted style together with ``ptex2tex``, you have to
-enable it by the ``-DMINTED`` command-line argument to ``ptex2tex``.  All
+enable it by the ``-DMINTED`` command-line argument to ``ptex2tex``.
+This is not necessary if you run the alternative ``doconce ptex2tex`` program.
+
+All
 use of the minted style requires the ``-shell-escape`` command-line
 argument when running LaTeX, i.e., ``latex -shell-escape`` or ``pdflatex
 -shell-escape``.
@@ -2847,6 +2856,11 @@ Inline verbatim code is not detected
 
 Make sure there is a space before the first back-tick.
 
+Inline verbatim text is not formatted correctly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure there is whitespace surrounding the text in back-ticks.
+
 Strange non-English characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2876,11 +2890,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run ``doconce change_encoding`` to change the encoding of the Doconce file.
-
-Inline verbatim text is not formatted correctly
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Make sure there is whitespace surrounding the text in back-ticks.
 
 Too short underlining of reST headlines
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

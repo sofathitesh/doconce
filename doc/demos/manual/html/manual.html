@@ -15,7 +15,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 20, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 25, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -222,7 +222,7 @@ a script, <tt class="docutils literal"><span class="pre">cp2texmf.sh</span></tt>
 <p>This script copies some special stylefiles that
 that <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install texlive-latex-extra</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install texlive-latex-recommended texlive-latex-extra</span>
 </pre></div>
 </div>
 <p>on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
@@ -234,14 +234,20 @@ program.</p>
 <p>The <em>minted</em> LaTeX style is offered by <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> and <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">ptext2tex</span></tt>
 is popular among many
 users. This style requires the package <a class="reference external" href="http://pygments.org">Pygments</a>
-to be installed:</p>
+to be installed. On Debian Linux,</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install python-pygments</span>
+</pre></div>
+</div>
+<p>Alternatively, the package can be installed manually:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments</span>
 <span class="go">cd pygments</span>
 <span class="go">sudo python setup.py install</span>
 </pre></div>
 </div>
 <p>If you use the minted style together with <tt class="docutils literal"><span class="pre">ptex2tex</span></tt>, you have to
-enable it by the <tt class="docutils literal"><span class="pre">-DMINTED</span></tt> command-line argument to <tt class="docutils literal"><span class="pre">ptex2tex</span></tt>.  All
+enable it by the <tt class="docutils literal"><span class="pre">-DMINTED</span></tt> command-line argument to <tt class="docutils literal"><span class="pre">ptex2tex</span></tt>.
+This is not necessary if you run the alternative <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">ptex2tex</span></tt> program.</p>
+<p>All
 use of the minted style requires the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> command-line
 argument when running LaTeX, i.e., <tt class="docutils literal"><span class="pre">latex</span> <span class="pre">-shell-escape</span></tt> or <tt class="docutils literal"><span class="pre">pdflatex</span>
 <span class="pre">-shell-escape</span></tt>.</p>
@@ -1034,7 +1040,7 @@ newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as <tt class="docutils literal"><span class="pre">FIGURE:</span></tt> will be
 included in the formatted caption).</p>
 <div class="figure" id="fig-viz">
-<img alt="_images/streamtubes.png" src="_images/streamtubes.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="_images/streamtubes.png"><img alt="_images/streamtubes.png" src="_images/streamtubes.png" style="width: 400px;" /></a>
 <p class="caption"><em>Streamtube visualization of a fluid flow</em></p>
 </div>
 <p>Combining several image files into one, in a table fashion, can be done by the
@@ -2191,6 +2197,10 @@ in the line above it.</p>
 <h3>Inline verbatim code is not detected<a class="headerlink" href="#inline-verbatim-code-is-not-detected" title="Permalink to this headline">¶</a></h3>
 <p>Make sure there is a space before the first back-tick.</p>
 </div>
+<div class="section" id="inline-verbatim-text-is-not-formatted-correctly">
+<h3>Inline verbatim text is not formatted correctly<a class="headerlink" href="#inline-verbatim-text-is-not-formatted-correctly" title="Permalink to this headline">¶</a></h3>
+<p>Make sure there is whitespace surrounding the text in back-ticks.</p>
+</div>
 <div class="section" id="strange-non-english-characters">
 <h3>Strange non-English characters<a class="headerlink" href="#strange-non-english-characters" title="Permalink to this headline">¶</a></h3>
 <p>Check the encoding of the <tt class="docutils literal"><span class="pre">.do.txt</span></tt> file with the Unix <tt class="docutils literal"><span class="pre">file</span></tt> command
@@ -2212,10 +2222,6 @@ Terminal&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 the format of the file must be LATIN1 and not UTF-8. See
 the section &#8220;Strange non-English characters&#8221; above for how to
 run <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">change_encoding</span></tt> to change the encoding of the Doconce file.</p>
-</div>
-<div class="section" id="inline-verbatim-text-is-not-formatted-correctly">
-<h3>Inline verbatim text is not formatted correctly<a class="headerlink" href="#inline-verbatim-text-is-not-formatted-correctly" title="Permalink to this headline">¶</a></h3>
-<p>Make sure there is whitespace surrounding the text in back-ticks.</p>
 </div>
 <div class="section" id="too-short-underlining-of-rest-headlines">
 <h3>Too short underlining of reST headlines<a class="headerlink" href="#too-short-underlining-of-rest-headlines" title="Permalink to this headline">¶</a></h3>
@@ -2761,9 +2767,9 @@ groundwater flow.
 <li><a class="reference internal" href="#links-to-local-directories-do-not-work">Links to local directories do not work</a></li>
 <li><a class="reference internal" href="#links-are-not-typeset-correctly">Links are not typeset correctly</a></li>
 <li><a class="reference internal" href="#inline-verbatim-code-is-not-detected">Inline verbatim code is not detected</a></li>
+<li><a class="reference internal" href="#inline-verbatim-text-is-not-formatted-correctly">Inline verbatim text is not formatted correctly</a></li>
 <li><a class="reference internal" href="#strange-non-english-characters">Strange non-English characters</a></li>
 <li><a class="reference internal" href="#wrong-norwegian-charcters">Wrong Norwegian charcters</a></li>
-<li><a class="reference internal" href="#inline-verbatim-text-is-not-formatted-correctly">Inline verbatim text is not formatted correctly</a></li>
 <li><a class="reference internal" href="#too-short-underlining-of-rest-headlines">Too short underlining of reST headlines</a></li>
 <li><a class="reference internal" href="#found-bt-but-no-tex-blocks-extracted-bug">Found !bt but no tex blocks extracted (BUG)</a></li>
 </ul>
@@ -2855,7 +2861,7 @@ groundwater flow.
     </div>
     <div class="footer">
         &copy; Copyright 2012, HPL.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2pre.
     </div>
   </body>
 </html>
