@@ -1850,7 +1850,7 @@ def ptex2tex():
                     options = ''
                     if value == 'Verbatim':
                         # provide lots of options
-                        options = '[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]'
+                        options = r'[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]'
 
                     begin = '\\' + 'begin{' + value + '}' + options
                     end = '\\' + 'end{' + value + '}'
@@ -1997,9 +1997,16 @@ Download preprocess from http://code.google.com/p/preprocess
     pattern = re.compile(r'\\code\{([^\n}]*?)\n(.*?)\}', re.DOTALL)
     # (this pattern does not handle \code{...} with internal } AND \n!)
     filestr = pattern.sub(r'\code{\g<1> \g<2>}', filestr)
-    fontsize = 10          # should be configurable from the command line
     verb_command = 'Verb'  # requires fancyvrb package, otherwise use std 'verb'
-    # First handle combination of \protect and \code
+
+    cpattern = re.compile(r"""\\code\{(.*?)\}([ \n,.;:?!)"'-])""", re.DOTALL)
+    filestr = cpattern.sub(r'\\%s!\g<1>!\g<2>' % verb_command, filestr)
+
+    '''
+    # If fontsize is part of the \Verb command (which is not wise, since
+    # explicit fontsize is not suitable for section headings),
+    # first handle combination of \protect and \code
+    fontsize = 10          # should be configurable from the command line
     cpattern = re.compile(r"""\\protect\s*\\code\{(.*?)\}([ \n,.;:?!)"'-])""", re.DOTALL)
     filestr = cpattern.sub(r'{\\fontsize{%spt}{%spt}\protect\\%s!\g<1>!}\g<2>' %
                            (fontsize, fontsize, verb_command), filestr)
@@ -2007,6 +2014,7 @@ Download preprocess from http://code.google.com/p/preprocess
     cpattern = re.compile(r"""\\code\{(.*?)\}([ \n,.;:?!)"'-])""", re.DOTALL)
     filestr = cpattern.sub(r'{\\fontsize{%spt}{%spt}\\%s!\g<1>!}\g<2>' %
                            (fontsize, fontsize, verb_command), filestr)
+    '''
     f = open(filename + '.tex', 'w')
     f.write(filestr)
     f.close()

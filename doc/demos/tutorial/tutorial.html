@@ -91,7 +91,7 @@ MathJax.Hub.Config({
 
 
 <p>
-<center><h4>Dec 20, 2012</h4></center> <!-- date -->
+<center><h4>Dec 25, 2012</h4></center> <!-- date -->
 <p>
 
 
@@ -1314,7 +1314,7 @@ are also needed. These are installed by
 <p>
 <!-- begin verbatim block  sys-->
 <pre>
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 </pre>
 <! -- end verbatim block -->
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
@@ -1330,7 +1330,13 @@ program.
 The <em>minted</em> LaTeX style is offered by <tt>ptex2tex</tt> and <tt>doconce ptext2tex</tt>
 is popular among many
 users. This style requires the package <a href="http://pygments.org">Pygments</a>
-to be installed:
+to be installed. On Debian Linux,
+<!-- begin verbatim block  sys-->
+<pre>
+sudo apt-get install python-pygments
+</pre>
+<! -- end verbatim block -->
+Alternatively, the package can be installed manually:
 <!-- begin verbatim block  sys-->
 <pre>
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -1341,7 +1347,11 @@ sudo python setup.py install
 
 <p>
 If you use the minted style together with <tt>ptex2tex</tt>, you have to
-enable it by the <tt>-DMINTED</tt> command-line argument to <tt>ptex2tex</tt>.  All
+enable it by the <tt>-DMINTED</tt> command-line argument to <tt>ptex2tex</tt>.
+This is not necessary if you run the alternative <tt>doconce ptex2tex</tt> program.
+
+<p>
+All
 use of the minted style requires the <tt>-shell-escape</tt> command-line
 argument when running LaTeX, i.e., <tt>latex -shell-escape</tt> or <tt>pdflatex
 -shell-escape</tt>.

@@ -1,6 +1,6 @@
 % Doconce: Document Once, Include Anywhere
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Dec 20, 2012
+% Dec 25, 2012
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -1137,7 +1137,7 @@ are also needed. These are installed by
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
@@ -1151,7 +1151,13 @@ program.
 The *minted* LaTeX style is offered by `ptex2tex` and `doconce ptext2tex`
 is popular among many
 users. This style requires the package [Pygments](http://pygments.org)
-to be installed:
+to be installed. On Debian Linux,
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
+sudo apt-get install python-pygments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Alternatively, the package can be installed manually:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -1160,7 +1166,10 @@ sudo python setup.py install
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you use the minted style together with `ptex2tex`, you have to
-enable it by the `-DMINTED` command-line argument to `ptex2tex`.  All
+enable it by the `-DMINTED` command-line argument to `ptex2tex`.
+This is not necessary if you run the alternative `doconce ptex2tex` program.
+
+All
 use of the minted style requires the `-shell-escape` command-line
 argument when running LaTeX, i.e., `latex -shell-escape` or `pdflatex
 -shell-escape`.

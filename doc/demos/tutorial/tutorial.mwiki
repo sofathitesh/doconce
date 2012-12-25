@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Dec 20, 2012 ====
+==== Dec 25, 2012 ====
 
 <ul>
  <li> When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format? <li> Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging? <li> Do you have the same information scattered around in different   documents in different typesetting formats? Would it be a good idea   to write things once, in one format, stored in one place, and   include it anywhere?</ul>
@@ -894,7 +894,7 @@ that <code>ptex2tex</code> potentially makes use of. Some more standard stylefil
 are also needed. These are installed by
 
 <syntaxhighlight lang="bash">
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 </code>
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -907,7 +907,11 @@ program.
 The ''minted'' LaTeX style is offered by <code>ptex2tex</code> and <code>doconce ptext2tex</code>
 is popular among many
 users. This style requires the package [http://pygments.org Pygments]
-to be installed:
+to be installed. On Debian Linux,
+<syntaxhighlight lang="bash">
+sudo apt-get install python-pygments
+</code>
+Alternatively, the package can be installed manually:
 <syntaxhighlight lang="bash">
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
@@ -915,7 +919,10 @@ sudo python setup.py install
 </code>
 
 If you use the minted style together with <code>ptex2tex</code>, you have to
-enable it by the <code>-DMINTED</code> command-line argument to <code>ptex2tex</code>.  All
+enable it by the <code>-DMINTED</code> command-line argument to <code>ptex2tex</code>.
+This is not necessary if you run the alternative <code>doconce ptex2tex</code> program.
+
+All
 use of the minted style requires the <code>-shell-escape</code> command-line
 argument when running LaTeX, i.e., <code>latex -shell-escape</code> or <code>pdflatex
 -shell-escape</code>.

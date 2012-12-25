@@ -155,8 +155,8 @@ and an extra space before the FIGURE keyword.
 
  FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 Movie ref{mymov} has a similar problem.
 
@@ -291,17 +291,26 @@ accordingly) and verbatim heading and entry:
 |6   |71,000|214        |`NaN`	|
 |-------------------------------|
 
-And add one with verbatim headings and rows starting with `|-` because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with `|-` because of a negative number,
+and `|` right after verbatim word (with no space):
 
 |-----------------------------------------|
-| exact | `sympy` | `numpy32` | `numpy64` |
+| exact | `v_1`   | $a_i$ + `v_2`|`verb_3_`|
 |---r--------r---------r-----------r------|
 |9      | 9.62    | 5.57      |  8.98     |
 |-20    | -23.39  | -7.65     | -19.93    |
 |10     | 17.74   | -4.50     |  9.96     |
 |0      | -9.19   | 4.13      | -0.26     |
 |-----------------------------------------|
+
+
+===== A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2` =====
+
+__Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.__ Here
+is
+some text.
+
 
 ===== URLs =====
 label{subsubsec:ex}
@@ -842,26 +851,27 @@ $$
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec4"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:table"> Tables </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <tt>my_file_v1</tt> and <tt>my_file_v2</tt> </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec7"> LaTeX Mathematics </a><br>
-<a href="._part0002_testdoc.html#___sec8"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec8"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc.html#___sec9"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:2"> Project 2: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#proj:circle1"> Project 3: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec12"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec13"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 4: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec14"> Remarks </a><br>
-<a href="._part0002_testdoc.html#___sec15"> Here goes another section </a><br>
-<a href="._part0002_testdoc.html#___sec16"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec15"> Remarks </a><br>
+<a href="._part0002_testdoc.html#___sec16"> Here goes another section </a><br>
+<a href="._part0002_testdoc.html#___sec17"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 5: Make references to projects and problems </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 6: References in a headings do not work well in html </a><br>
-<a href="._part0002_testdoc.html#___sec19"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec20"> A subsection within an appendix </a><br>
-<a href="._part0002_testdoc.html#___sec21"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec22"> Appendix: Testing identical titles </a><br>
+<a href="._part0002_testdoc.html#___sec20"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec21"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc.html#___sec22"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec23"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec25"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec26"> Appendix: Testing identical titles </a><br>
 
 <p>
 
@@ -875,10 +885,25 @@ $$
 
 ************** File: testdoc.p.tex *****************
 %%
-%% Automatically generated ptex2tex (extended LaTeX) file
-%% from Doconce source
-%% http://code.google.com/p/doconce/
+%% This file is automatically generated from doconce source
 %%
+%% doconce: http://code.google.com/p/doconce/
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% Many preprocess options can be added:
+%%
+%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+% #endif
 
 % #ifndef LATEX_HEADING
 % #define LATEX_HEADING
@@ -896,10 +921,20 @@ $$
 % #ifdef PREAMBLE
 %-------------------------- begin preamble --------------------------
 % #ifdef BOOK
-\documentclass[twoside]{book}
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+chapterprefix=true,      % "Chapter" word at beginning of each chapter
+open=right               % start new chapters on odd-numbered pages
+10pt]{book}
 % #else
-\documentclass[twoside]{article}
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
 % #endif
+
+\listfiles               % print all files needed to compile this document
 
 % #ifdef A4PAPER
 \usepackage[a4paper]{geometry}
@@ -955,6 +990,8 @@ $$
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -1401,7 +1438,7 @@ repeat,
 % Test wrong syntax and multi-line caption
 
 
- Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files \code{../doc/manual/figs/wavepacket_*.png} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}}{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}})
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files \code{../doc/manual/figs/wavepacket_*.png} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} }{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} })
 
 
 % Check out the correct with and height of YouTube movies from the
@@ -1418,7 +1455,7 @@ and an extra space before the FIGURE keyword.
 \begin{figure}[ht]
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.eps}}
   \caption{
-  A long caption spanning several lines. \label{myfig}
+  A long caption spanning several lines and containing verbatim words like \protect \code{my\_file\_v1} and \protect \code{my\_file\_v2} as well as math with subscript as in $t_{i+1}$. \label{myfig}
   }
 \end{figure}
 %\clearpage % flush figures myfig
@@ -1547,7 +1584,7 @@ accordingly) and verbatim heading and entry:
 
 \begin{quote}\begin{tabular}{lrrr}
 \hline
-\multicolumn{1}{c}{ $i$ } & \multicolumn{1}{c}{ $h_i$ } & \multicolumn{1}{c}{ $\bar T_i$ } & \multicolumn{1}{c}{ \texttt{L\_i} } \\
+\multicolumn{1}{c}{ $i$ } & \multicolumn{1}{c}{ $h_i$ } & \multicolumn{1}{c}{ $\bar T_i$ } & \multicolumn{1}{c}{ \code{L\_i} } \\
 \hline
 0          & 0          & 288        & -0.0065    \\
 1          & 11,000     & 216        & 0.0        \\
@@ -1560,22 +1597,30 @@ accordingly) and verbatim heading and entry:
 \end{tabular}\end{quote}
 
 \noindent
-And add one with verbatim headings and rows starting with \code{|-} because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with \code{|-} because of a negative number,
+and \code{|} right after verbatim word (with no space):
 
 
 \begin{quote}\begin{tabular}{rrrr}
 \hline
-\multicolumn{1}{c}{ exact } & \multicolumn{1}{c}{ \texttt{sympy} } & \multicolumn{1}{c}{ \texttt{numpy32} } & \multicolumn{1}{c}{ \texttt{numpy64} } \\
+\multicolumn{1}{c}{ exact } & \multicolumn{1}{c}{ \code{v\_1} } & \multicolumn{1}{c}{ $a_i$ + \code{v\_2} } & \multicolumn{1}{c}{ \code{verb\_3\_} } \\
 \hline
-9              & 9.62           & 5.57           & 8.98           \\
--20            & -23.39         & -7.65          & -19.93         \\
-10             & 17.74          & -4.50          & 9.96           \\
-0              & -9.19          & 4.13           & -0.26          \\
+9                  & 9.62               & 5.57               & 8.98               \\
+-20                & -23.39             & -7.65              & -19.93             \\
+10                 & 17.74              & -4.50              & 9.96               \\
+0                  & -9.19              & 4.13               & -0.26              \\
 \hline
 \end{tabular}\end{quote}
 
 \noindent
+
+\subsection{A test of verbatim words in heading with subscript $a_i$: \protect\code{my\_file\_v1} and \protect\code{my\_file\_v2} }
+
+\paragraph{Files \protect\code{my\_file\_v1.py} and \protect\code{my\_file\_v2.py} define some math $a_{i-1}$.}
+Here
+is
+some text.
 
 \subsection{URLs}
 
@@ -1586,7 +1631,7 @@ the entire URL if desired, \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://fol
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
 \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{a link with
 newline}. Can test spaces with the link with word
-too: \href{{http://folk.uio.no/hpl}}{hpl} or \href{{http://folk.uio.no/hpl}}{hpl}. Also \code{file:///} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}}{link to a
+too: \href{{http://folk.uio.no/hpl}}{hpl} or \href{{http://folk.uio.no/hpl}}{hpl}. Also \code{file:///} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html} }{link to a
 file} is
 fine to have.
 
@@ -2060,16 +2105,21 @@ So, how many admonition environments does Doconce support?
 
 ************** File: testdoc.tex_ptex2tex *****************
 %%
-%% Automatically generated ptex2tex (extended LaTeX) file
-%% from Doconce source
-%% http://code.google.com/p/doconce/
+%% This file is automatically generated from doconce source
+%%
+%% doconce: http://code.google.com/p/doconce/
 %%
 
 
 
 
 %-------------------------- begin preamble --------------------------
-\documentclass[twoside]{article}
+\documentclass[%
+twoside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
+
+\listfiles               % print all files needed to compile this document
 
 
 
@@ -2098,6 +2148,8 @@ So, how many admonition environments does Doconce support?
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -2358,10 +2410,10 @@ output1
 output2
 \end{Verbatim}
 
-It is time to test {\fontsize{10pt}{10pt}\verb!verbatim inline font!} especially with {\fontsize{10pt}{10pt}\verb!a newline inside the text!} and an exclamation mark at the end: {\fontsize{10pt}{10pt}\verb!BEGIN!}! The
+It is time to test {\fontsize{10pt}{10pt}\Verb!verbatim inline font!} especially with {\fontsize{10pt}{10pt}\Verb!a newline inside the text!} and an exclamation mark at the end: {\fontsize{10pt}{10pt}\Verb!BEGIN!}! The
 exclamation mark inside the verbatim text is not smart for latex as
-we use ! in the {\fontsize{10pt}{10pt}\verb!verb!} typesetting... Also test backslashes
-like {\fontsize{10pt}{10pt}\verb!\begin!} and {\fontsize{10pt}{10pt}\verb!\end!} in inline verbatim text.
+we use ! in the {\fontsize{10pt}{10pt}\Verb!verb!} typesetting... Also test backslashes
+like {\fontsize{10pt}{10pt}\Verb!\begin!} and {\fontsize{10pt}{10pt}\Verb!\end!} in inline verbatim text.
 
 \subsection{Subsection 2}
 
@@ -2443,7 +2495,7 @@ repeat,
 % Test wrong syntax and multi-line caption
 
 
- Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files {\fontsize{10pt}{10pt}\verb!../doc/manual/figs/wavepacket_*.png!} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}}{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}})
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files {\fontsize{10pt}{10pt}\Verb!../doc/manual/figs/wavepacket_*.png!} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} }{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} })
 
 
 % Check out the correct with and height of YouTube movies from the
@@ -2460,7 +2512,7 @@ and an extra space before the FIGURE keyword.
 \begin{figure}[ht]
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
   \caption{
-  A long caption spanning several lines. \label{myfig}
+  A long caption spanning several lines and containing verbatim words like {\fontsize{10pt}{10pt}\protect\Verb!my\_file\_v1!} and {\fontsize{10pt}{10pt}\protect\Verb!my\_file\_v2!} as well as math with subscript as in $t_{i+1}$. \label{myfig}
   }
 \end{figure}
 %\clearpage % flush figures myfig
@@ -2503,7 +2555,7 @@ both inline and in block:
 
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
-the {\fontsize{10pt}{10pt}\verb!.tex!} by proper begin-end {\LaTeX} environments for theorems.
+the {\fontsize{10pt}{10pt}\Verb!.tex!} by proper begin-end {\LaTeX} environments for theorems.
 Should look nice in most formats!
 
 
@@ -2593,7 +2645,7 @@ accordingly) and verbatim heading and entry:
 
 \begin{quote}\begin{tabular}{lrrr}
 \hline
-\multicolumn{1}{c}{ $i$ } & \multicolumn{1}{c}{ $h_i$ } & \multicolumn{1}{c}{ $\bar T_i$ } & \multicolumn{1}{c}{ \texttt{L\_i} } \\
+\multicolumn{1}{c}{ $i$ } & \multicolumn{1}{c}{ $h_i$ } & \multicolumn{1}{c}{ $\bar T_i$ } & \multicolumn{1}{c}{ {\fontsize{10pt}{10pt}\Verb!L\_i!} } \\
 \hline
 0          & 0          & 288        & -0.0065    \\
 1          & 11,000     & 216        & 0.0        \\
@@ -2601,27 +2653,35 @@ accordingly) and verbatim heading and entry:
 3          & 32,000     & 228        & 0.0028     \\
 4          & 47,000     & 270        & 0.0        \\
 5          & 51,000     & 270        & -0.0028    \\
-6          & 71,000     & 214        & {\fontsize{10pt}{10pt}\verb!NaN!} \\
+6          & 71,000     & 214        & {\fontsize{10pt}{10pt}\Verb!NaN!} \\
 \hline
 \end{tabular}\end{quote}
 
 \noindent
-And add one with verbatim headings and rows starting with {\fontsize{10pt}{10pt}\verb!|-!} because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with {\fontsize{10pt}{10pt}\Verb!|-!} because of a negative number,
+and {\fontsize{10pt}{10pt}\Verb!|!} right after verbatim word (with no space):
 
 
 \begin{quote}\begin{tabular}{rrrr}
 \hline
-\multicolumn{1}{c}{ exact } & \multicolumn{1}{c}{ \texttt{sympy} } & \multicolumn{1}{c}{ \texttt{numpy32} } & \multicolumn{1}{c}{ \texttt{numpy64} } \\
+\multicolumn{1}{c}{ exact } & \multicolumn{1}{c}{ {\fontsize{10pt}{10pt}\Verb!v\_1!} } & \multicolumn{1}{c}{ $a_i$ + {\fontsize{10pt}{10pt}\Verb!v\_2!} } & \multicolumn{1}{c}{ {\fontsize{10pt}{10pt}\Verb!verb\_3\_!} } \\
 \hline
-9              & 9.62           & 5.57           & 8.98           \\
--20            & -23.39         & -7.65          & -19.93         \\
-10             & 17.74          & -4.50          & 9.96           \\
-0              & -9.19          & 4.13           & -0.26          \\
+9                  & 9.62               & 5.57               & 8.98               \\
+-20                & -23.39             & -7.65              & -19.93             \\
+10                 & 17.74              & -4.50              & 9.96               \\
+0                  & -9.19              & 4.13               & -0.26              \\
 \hline
 \end{tabular}\end{quote}
 
 \noindent
+
+\subsection{A test of verbatim words in heading with subscript $a_i$: {\fontsize{10pt}{10pt}\protect\Verb!my\_file\_v1!} and {\fontsize{10pt}{10pt}\protect\Verb!my\_file\_v2!} }
+
+\paragraph{Files {\fontsize{10pt}{10pt}\protect\Verb!my\_file\_v1.py!} and {\fontsize{10pt}{10pt}\protect\Verb!my\_file\_v2.py!} define some math $a_{i-1}$.}
+Here
+is
+some text.
 
 \subsection{URLs}
 
@@ -2632,11 +2692,11 @@ the entire URL if desired, \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://fol
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
 \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{a link with
 newline}. Can test spaces with the link with word
-too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also {\fontsize{10pt}{10pt}\verb!file:///!} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}}{link to a
+too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also {\fontsize{10pt}{10pt}\Verb!file:///!} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html} }{link to a
 file} is
 fine to have.
 
-Here are some tough tests of URLs, especially for the {\fontsize{10pt}{10pt}\verb!latex!} format:
+Here are some tough tests of URLs, especially for the {\fontsize{10pt}{10pt}\Verb!latex!} format:
 \href{{http://en.wikipedia.org/wiki/Newton%E2\%80\%93Cotes_formulas}}{Newton-Cotes}\footnote{\texttt{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes\_formulas}} formulas
 and a \href{{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}\footnote{\texttt{http://www.springer.com/mathematics/computational+science+\%26+engineering/book/978-3-642-23098-1}}.
 
@@ -2645,10 +2705,10 @@ and a \href{{http://www.springer.com/mathematics/computational+science+%26+engin
 
 % Note that when there is no http: or file:, it can be a file link
 % if the link name is URL, url, "URL", or "url". Such files should,
-% if rst output is desired, but placed in a {\fontsize{10pt}{10pt}\verb!_static*!} folder.
+% if rst output is desired, but placed in a {\fontsize{10pt}{10pt}\Verb!_static*!} folder.
 
 More tough tests: repeated URLs whose footnotes when using the
-{\fontsize{10pt}{10pt}\verb!--latex-printed!} option must be correct. We have
+{\fontsize{10pt}{10pt}\Verb!--latex-printed!} option must be correct. We have
 \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, and
 \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, which should result in exactly three
 footnotes.
@@ -2742,16 +2802,16 @@ let the program count the number of heads.
 % Test syntax error
 
 \paragraph{Hint 1.}
-Use {\fontsize{10pt}{10pt}\verb!r = random.random()!} and define head as {\fontsize{10pt}{10pt}\verb!r <= 0.5!}.
+Use {\fontsize{10pt}{10pt}\Verb!r = random.random()!} and define head as {\fontsize{10pt}{10pt}\Verb!r <= 0.5!}.
 
 \paragraph{Hint 2.}
 Draw an integer among $\{1,2\}$ with
-{\fontsize{10pt}{10pt}\verb!r = random.randint(1,2)!} and define head when {\fontsize{10pt}{10pt}\verb!r!} is 1.
+{\fontsize{10pt}{10pt}\Verb!r = random.randint(1,2)!} and define head when {\fontsize{10pt}{10pt}\Verb!r!} is 1.
 
 % --- begin short answer in exercise
 
 \paragraph{Answer.}
-If the {\fontsize{10pt}{10pt}\verb!random.random()!} function returns a number $<1/2$, let it be
+If the {\fontsize{10pt}{10pt}\Verb!random.random()!} function returns a number $<1/2$, let it be
 head, otherwise tail. Repeat this $N$ number of times.
 % --- end short answer in exercise
 
@@ -2772,7 +2832,7 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 \noindent
 
 % --- end solution of exercise
-Filenames: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}, {\fontsize{10pt}{10pt}\verb!flip_coin.pdf!}.
+Filenames: {\fontsize{10pt}{10pt}\Verb!flip_coin.py!}, {\fontsize{10pt}{10pt}\Verb!flip_coin.pdf!}.
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
 
@@ -2798,7 +2858,7 @@ drawing uniformly distributed random numbers from the interval $[0,1)$?
 
 \paragraph{Hint.}
 To answer this question empirically, let a program
-draw $N$ such random numbers using Python's standard {\fontsize{10pt}{10pt}\verb!random!} module,
+draw $N$ such random numbers using Python's standard {\fontsize{10pt}{10pt}\Verb!random!} module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
 compute the probability as $M/N$.
 
@@ -2826,7 +2886,7 @@ y &= y_0 + R\sin 2\pi t,
 where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ is a point on the circle.
-The formula can be used to generate {\fontsize{10pt}{10pt}\verb!n!} points on a circle:
+The formula can be used to generate {\fontsize{10pt}{10pt}\Verb!n!} points on a circle:
 
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import numpy as np
@@ -2845,7 +2905,7 @@ x, y = circle(2.0, 0, 0)
 % which we normally want to keep where they are.
 
 The goal of this project is to draw $N$ circles with random
-center and radius. Plot each circle using the {\fontsize{10pt}{10pt}\verb!circle!} function
+center and radius. Plot each circle using the {\fontsize{10pt}{10pt}\Verb!circle!} function
 above.
 
 
@@ -2853,7 +2913,7 @@ above.
 Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
 \paragraph{Hint.}
-Use the {\fontsize{10pt}{10pt}\verb!numpy.random!} module to draw the
+Use the {\fontsize{10pt}{10pt}\Verb!numpy.random!} module to draw the
 $x_0$, $y_0$, and $R$ quantities.
 
 % --- begin short answer in exercise
@@ -2871,12 +2931,12 @@ Here goes a full solution to part a).
 
 \paragraph{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
-\emph{Filename}: {\fontsize{10pt}{10pt}\verb!norm.py  !}.
+\emph{Filename}: {\fontsize{10pt}{10pt}\Verb!norm.py  !}.
 
 \paragraph{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
 
-Filename: {\fontsize{10pt}{10pt}\verb!circles.pdf!}.
+Filename: {\fontsize{10pt}{10pt}\Verb!circles.pdf!}.
 
 % Closing remarks for this Project
 
@@ -2918,7 +2978,7 @@ First hint to subexercise a).
 
 \paragraph{Hint 2.}
 Second hint to subexercise a).
-\emph{Filename}: {\fontsize{10pt}{10pt}\verb!subexer_a.pdf!}.
+\emph{Filename}: {\fontsize{10pt}{10pt}\Verb!subexer_a.pdf!}.
 
 % --- begin short answer in exercise
 
@@ -2931,7 +2991,7 @@ Here goes the text for subexercise b).
 
 \paragraph{Hint.}
 A hint for this subexercise.
-\emph{Filename}: {\fontsize{10pt}{10pt}\verb!subexer_b.pdf!}.
+\emph{Filename}: {\fontsize{10pt}{10pt}\Verb!subexer_b.pdf!}.
 
 % --- begin solution of exercise
 
@@ -2970,7 +3030,7 @@ With some text, before we continue with exercises.
 
 Pick a statement from Project~\ref{proj:circle1} or Problem~\ref{demo:ex:1}
 and verify it.
-Filename: {\fontsize{10pt}{10pt}\verb!verify_formula.py!}.
+Filename: {\fontsize{10pt}{10pt}\Verb!verify_formula.py!}.
 
 
 \end{exercise}
@@ -2990,7 +3050,7 @@ Filename: {\fontsize{10pt}{10pt}\verb!verify_formula.py!}.
 Refer to the previous exercise as Exercise~\ref{exer:some:formula},
 the two before that as Projects~\ref{demo:ex:2} and~\ref{proj:circle1},
 and this one as Project~\ref{exer:you}.
-Filename: {\fontsize{10pt}{10pt}\verb!selc_composed.pdf!}.
+Filename: {\fontsize{10pt}{10pt}\Verb!selc_composed.pdf!}.
 
 
 \end{exercise}
@@ -3101,25 +3161,32 @@ So, how many admonition environments does Doconce support?
 \bpycod (!bc pycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 \bcycod (!bc cycod) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{cython}
 \bcpppro (!bc cpppro) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{c++}
-\bccq (!bc ccq) -> \begin{quote}\begin{verbatim}
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 ----------- end of doconce ptex2tex output ----------------
 %%
-%% Automatically generated ptex2tex (extended LaTeX) file
-%% from Doconce source
-%% http://code.google.com/p/doconce/
+%% This file is automatically generated from doconce source
+%%
+%% doconce: http://code.google.com/p/doconce/
 %%
 
 
 
 
 %-------------------------- begin preamble --------------------------
-\documentclass[twoside]{book}
+\documentclass[%
+twoside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+chapterprefix=true,      % "Chapter" word at beginning of each chapter
+open=right               % start new chapters on odd-numbered pages
+10pt]{book}
+
+\listfiles               % print all files needed to compile this document
 
 
 
 \usepackage{relsize,epsfig,makeidx,amsmath,amsfonts}
 \usepackage[latin1]{inputenc}
-\usepackage{anslistings,minted} % packages needed for verbatim environments
+\usepackage{anslistings,minted,fancyvrb} % packages needed for verbatim environments
 
 
 % Set palatino as the default font family:
@@ -3142,6 +3209,8 @@ So, how many admonition environments does Doconce support?
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -3405,10 +3474,10 @@ output1
 output2
 end{Verbatim}end{quote}
 
-It is time to test {\fontsize{10pt}{10pt}\verb!verbatim inline font!} especially with {\fontsize{10pt}{10pt}\verb!a newline inside the text!} and an exclamation mark at the end: {\fontsize{10pt}{10pt}\verb!BEGIN!}! The
+It is time to test \Verb!verbatim inline font! especially with \Verb!a newline inside the text! and an exclamation mark at the end: \Verb!BEGIN!! The
 exclamation mark inside the verbatim text is not smart for latex as
-we use ! in the {\fontsize{10pt}{10pt}\verb!verb!} typesetting... Also test backslashes
-like {\fontsize{10pt}{10pt}\verb!\begin!} and {\fontsize{10pt}{10pt}\verb!\end!} in inline verbatim text.
+we use ! in the \Verb!verb! typesetting... Also test backslashes
+like \Verb!\begin! and \Verb!\end! in inline verbatim text.
 
 \subsection{Subsection 2}
 
@@ -3470,7 +3539,7 @@ Test of movies.
 % Test wrong syntax and multi-line caption
 
 
- Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files {\fontsize{10pt}{10pt}\verb!../doc/manual/figs/wavepacket_*.png!} in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}}{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}})
+ Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). \label{mymov}  (Movie of files \Verb!../doc/manual/figs/wavepacket_*.png! in \href{{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} }{\nolinkurl{file:///home/hpl/vc/doconce/test/wavepacket_0001.html} })
 
 
 % Check out the correct with and height of YouTube movies from the
@@ -3487,7 +3556,7 @@ and an extra space before the FIGURE keyword.
 \begin{figure}[ht]
   \centerline{\includegraphics[width=0.9\linewidth]{../doc/manual/figs/wavepacket_0001.png}}
   \caption{
-  A long caption spanning several lines. \label{myfig}
+  A long caption spanning several lines and containing verbatim words like \protect \Verb!my\_file\_v1! and \protect \Verb!my\_file\_v2! as well as math with subscript as in $t_{i+1}$. \label{myfig}
   }
 \end{figure}
 %\clearpage % flush figures myfig
@@ -3506,10 +3575,10 @@ Movie~\ref{mymov} has a similar problem.
 
 Functions do not always need to be advanced, here is one
 involving $\theta$:
-\begin{quote}\begin{verbatim}
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 def f(theta):
     return theta**2
-\end{verbatim}\end{quote}
+\end{Verbatim}
 
 \paragraph{More on $\theta$.}
 Here is more text following headline with math.
@@ -3528,7 +3597,7 @@ both inline and in block:
 
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
-the {\fontsize{10pt}{10pt}\verb!.tex!} by proper begin-end {\LaTeX} environments for theorems.
+the \Verb!.tex! by proper begin-end {\LaTeX} environments for theorems.
 Should look nice in most formats!
 
 
@@ -3585,7 +3654,7 @@ with the preprocessor.
 \end{table}
 
 The Doconce source code reads
-\begin{quote}\begin{verbatim}
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
   |--------------------------------|
   |time  | velocity | acceleration |
   |--l--------r-----------r--------|
@@ -3593,7 +3662,7 @@ The Doconce source code reads
   | 2.0  | 1.376512 | 11.919       |
   | 4.0  | 1.1E+1   | 14.717624    |
   |--------------------------------|
-\end{verbatim}\end{quote}
+\end{Verbatim}
 
 Here is yet another table to test that we can handle more than
 one table:
@@ -3616,7 +3685,7 @@ accordingly) and verbatim heading and entry:
 
 \begin{quote}\begin{tabular}{lrrr}
 \hline
-\multicolumn{1}{c}{ $i$ } & \multicolumn{1}{c}{ $h_i$ } & \multicolumn{1}{c}{ $\bar T_i$ } & \multicolumn{1}{c}{ \texttt{L\_i} } \\
+\multicolumn{1}{c}{ $i$ } & \multicolumn{1}{c}{ $h_i$ } & \multicolumn{1}{c}{ $\bar T_i$ } & \multicolumn{1}{c}{ \Verb!L\_i! } \\
 \hline
 0          & 0          & 288        & -0.0065    \\
 1          & 11,000     & 216        & 0.0        \\
@@ -3624,27 +3693,35 @@ accordingly) and verbatim heading and entry:
 3          & 32,000     & 228        & 0.0028     \\
 4          & 47,000     & 270        & 0.0        \\
 5          & 51,000     & 270        & -0.0028    \\
-6          & 71,000     & 214        & {\fontsize{10pt}{10pt}\verb!NaN!} \\
+6          & 71,000     & 214        & \Verb!NaN! \\
 \hline
 \end{tabular}\end{quote}
 
 \noindent
-And add one with verbatim headings and rows starting with {\fontsize{10pt}{10pt}\verb!|-!} because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with \Verb!|-! because of a negative number,
+and \Verb!|! right after verbatim word (with no space):
 
 
 \begin{quote}\begin{tabular}{rrrr}
 \hline
-\multicolumn{1}{c}{ exact } & \multicolumn{1}{c}{ \texttt{sympy} } & \multicolumn{1}{c}{ \texttt{numpy32} } & \multicolumn{1}{c}{ \texttt{numpy64} } \\
+\multicolumn{1}{c}{ exact } & \multicolumn{1}{c}{ \Verb!v\_1! } & \multicolumn{1}{c}{ $a_i$ + \Verb!v\_2! } & \multicolumn{1}{c}{ \Verb!verb\_3\_! } \\
 \hline
-9              & 9.62           & 5.57           & 8.98           \\
--20            & -23.39         & -7.65          & -19.93         \\
-10             & 17.74          & -4.50          & 9.96           \\
-0              & -9.19          & 4.13           & -0.26          \\
+9                  & 9.62               & 5.57               & 8.98               \\
+-20                & -23.39             & -7.65              & -19.93             \\
+10                 & 17.74              & -4.50              & 9.96               \\
+0                  & -9.19              & 4.13               & -0.26              \\
 \hline
 \end{tabular}\end{quote}
 
 \noindent
+
+\subsection{A test of verbatim words in heading with subscript $a_i$: \protect\Verb!my\_file\_v1! and \protect\Verb!my\_file\_v2! }
+
+\paragraph{Files \protect\Verb!my\_file\_v1.py! and \protect\Verb!my\_file\_v2.py! define some math $a_{i-1}$.}
+Here
+is
+some text.
 
 \subsection{URLs}
 
@@ -3655,11 +3732,11 @@ the entire URL if desired, \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://fol
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
 \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{a link with
 newline}. Can test spaces with the link with word
-too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also {\fontsize{10pt}{10pt}\verb!file:///!} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}}{link to a
+too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also \Verb!file:///! works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html} }{link to a
 file} is
 fine to have.
 
-Here are some tough tests of URLs, especially for the {\fontsize{10pt}{10pt}\verb!latex!} format:
+Here are some tough tests of URLs, especially for the \Verb!latex! format:
 \href{{http://en.wikipedia.org/wiki/Newton%E2\%80\%93Cotes_formulas}}{Newton-Cotes}\footnote{\texttt{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes\_formulas}} formulas
 and a \href{{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}\footnote{\texttt{http://www.springer.com/mathematics/computational+science+\%26+engineering/book/978-3-642-23098-1}}.
 
@@ -3668,10 +3745,10 @@ and a \href{{http://www.springer.com/mathematics/computational+science+%26+engin
 
 % Note that when there is no http: or file:, it can be a file link
 % if the link name is URL, url, "URL", or "url". Such files should,
-% if rst output is desired, but placed in a {\fontsize{10pt}{10pt}\verb!_static*!} folder.
+% if rst output is desired, but placed in a \Verb!_static*! folder.
 
 More tough tests: repeated URLs whose footnotes when using the
-{\fontsize{10pt}{10pt}\verb!--latex-printed!} option must be correct. We have
+\Verb!--latex-printed! option must be correct. We have
 \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, and
 \href{{http://google.com}}{google}\footnote{\texttt{http://google.com}}, which should result in exactly three
 footnotes.
@@ -3765,16 +3842,16 @@ let the program count the number of heads.
 % Test syntax error
 
 \paragraph{Hint 1.}
-Use {\fontsize{10pt}{10pt}\verb!r = random.random()!} and define head as {\fontsize{10pt}{10pt}\verb!r <= 0.5!}.
+Use \Verb!r = random.random()! and define head as \Verb!r <= 0.5!.
 
 \paragraph{Hint 2.}
 Draw an integer among $\{1,2\}$ with
-{\fontsize{10pt}{10pt}\verb!r = random.randint(1,2)!} and define head when {\fontsize{10pt}{10pt}\verb!r!} is 1.
+\Verb!r = random.randint(1,2)! and define head when \Verb!r! is 1.
 
 % --- begin short answer in exercise
 
 \paragraph{Answer.}
-If the {\fontsize{10pt}{10pt}\verb!random.random()!} function returns a number $<1/2$, let it be
+If the \Verb!random.random()! function returns a number $<1/2$, let it be
 head, otherwise tail. Repeat this $N$ number of times.
 % --- end short answer in exercise
 
@@ -3794,7 +3871,7 @@ print 'Flipping a coin %d times gave %d heads' % (N, heads)
 \end{minted}
 
 % --- end solution of exercise
-Filenames: {\fontsize{10pt}{10pt}\verb!flip_coin.py!}, {\fontsize{10pt}{10pt}\verb!flip_coin.pdf!}.
+Filenames: \Verb!flip_coin.py!, \Verb!flip_coin.pdf!.
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
 
 
@@ -3820,7 +3897,7 @@ drawing uniformly distributed random numbers from the interval $[0,1)$?
 
 \paragraph{Hint.}
 To answer this question empirically, let a program
-draw $N$ such random numbers using Python's standard {\fontsize{10pt}{10pt}\verb!random!} module,
+draw $N$ such random numbers using Python's standard \Verb!random! module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
 compute the probability as $M/N$.
 
@@ -3848,7 +3925,7 @@ y &= y_0 + R\sin 2\pi t,
 where $R$ is the radius of the circle, $(x_0,y_0)$ is the
 center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ is a point on the circle.
-The formula can be used to generate {\fontsize{10pt}{10pt}\verb!n!} points on a circle:
+The formula can be used to generate \Verb!n! points on a circle:
 
 \begin{python:nt}
 import numpy as np
@@ -3866,7 +3943,7 @@ x, y = circle(2.0, 0, 0)
 % which we normally want to keep where they are.
 
 The goal of this project is to draw $N$ circles with random
-center and radius. Plot each circle using the {\fontsize{10pt}{10pt}\verb!circle!} function
+center and radius. Plot each circle using the \Verb!circle! function
 above.
 
 
@@ -3874,7 +3951,7 @@ above.
 Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
 \paragraph{Hint.}
-Use the {\fontsize{10pt}{10pt}\verb!numpy.random!} module to draw the
+Use the \Verb!numpy.random! module to draw the
 $x_0$, $y_0$, and $R$ quantities.
 
 % --- begin short answer in exercise
@@ -3892,12 +3969,12 @@ Here goes a full solution to part a).
 
 \paragraph{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
-\emph{Filename}: {\fontsize{10pt}{10pt}\verb!norm.py  !}.
+\emph{Filename}: \Verb!norm.py  !.
 
 \paragraph{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
 
-Filename: {\fontsize{10pt}{10pt}\verb!circles.pdf!}.
+Filename: \Verb!circles.pdf!.
 
 % Closing remarks for this Project
 
@@ -3939,7 +4016,7 @@ First hint to subexercise a).
 
 \paragraph{Hint 2.}
 Second hint to subexercise a).
-\emph{Filename}: {\fontsize{10pt}{10pt}\verb!subexer_a.pdf!}.
+\emph{Filename}: \Verb!subexer_a.pdf!.
 
 % --- begin short answer in exercise
 
@@ -3952,7 +4029,7 @@ Here goes the text for subexercise b).
 
 \paragraph{Hint.}
 A hint for this subexercise.
-\emph{Filename}: {\fontsize{10pt}{10pt}\verb!subexer_b.pdf!}.
+\emph{Filename}: \Verb!subexer_b.pdf!.
 
 % --- begin solution of exercise
 
@@ -3991,7 +4068,7 @@ With some text, before we continue with exercises.
 
 Pick a statement from Project~\ref{proj:circle1} or Problem~\ref{demo:ex:1}
 and verify it.
-Filename: {\fontsize{10pt}{10pt}\verb!verify_formula.py!}.
+Filename: \Verb!verify_formula.py!.
 
 
 \end{exercise}
@@ -4011,7 +4088,7 @@ Filename: {\fontsize{10pt}{10pt}\verb!verify_formula.py!}.
 Refer to the previous exercise as Exercise~\ref{exer:some:formula},
 the two before that as Projects~\ref{demo:ex:2} and~\ref{proj:circle1},
 and this one as Project~\ref{exer:you}.
-Filename: {\fontsize{10pt}{10pt}\verb!selc_composed.pdf!}.
+Filename: \Verb!selc_composed.pdf!.
 
 
 \end{exercise}
@@ -4368,7 +4445,7 @@ and an extra space before the FIGURE keyword.
 .. figure:: ../doc/manual/figs/wavepacket_0001.png
    :width: 500
 
-   *A long caption spanning several lines*  (myfig)
+   *A long caption spanning several lines and containing verbatim words like ``my_file_v1`` and ``my_file_v2`` as well as math with subscript as in $t_{i+1}$*  (myfig)
 
 
 Movie `mymov`_ has a similar problem.
@@ -4493,17 +4570,27 @@ accordingly) and verbatim heading and entry:
 6           71,000       214   ``NaN``  
 ========  ========  ========  ========  
 
-And add one with verbatim headings and rows starting with ``|-`` because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with ``|-`` because of a negative number,
+and ``|`` right after verbatim word (with no space):
 
-===========  ===========  ===========  ===========  
-   exact      ``sympy``   ``numpy32``  ``numpy64``  
-===========  ===========  ===========  ===========  
-          9         9.62         5.57         8.98  
-        -20       -23.39        -7.65       -19.93  
-         10        17.74        -4.50         9.96  
-          0        -9.19         4.13        -0.26  
-===========  ===========  ===========  ===========  
+=============  =============  =============  =============  
+    exact         ``v_1``     a_i + ``v_2``   ``verb_3_``   
+=============  =============  =============  =============  
+            9           9.62           5.57           8.98  
+          -20         -23.39          -7.65         -19.93  
+           10          17.74          -4.50           9.96  
+            0          -9.19           4.13          -0.26  
+=============  =============  =============  =============  
+
+
+A test of verbatim words in heading with subscript a_i: ``my_file_v1`` and ``my_file_v2``
+-----------------------------------------------------------------------------------------
+
+*Files ``my_file_v1.py`` and ``my_file_v2.py`` define some math a_{i-1}.* Here
+is
+some text.
+
 
 .. _subsubsec:ex:
 
@@ -5177,7 +5264,7 @@ and an extra space before the FIGURE keyword.
 .. figure:: ../doc/manual/figs/wavepacket_0001.png
    :width: 500
 
-   *A long caption spanning several lines*
+   A long caption spanning several lines and containing verbatim words like ``my_file_v1`` and ``my_file_v2`` as well as math with subscript as in :math:`t_{i+1}`
 
 
 Movie :ref:`mymov` has a similar problem.
@@ -5322,17 +5409,27 @@ accordingly) and verbatim heading and entry:
 6                           71,000               214           ``NaN``  
 ================  ================  ================  ================  
 
-And add one with verbatim headings and rows starting with ``|-`` because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with ``|-`` because of a negative number,
+and ``|`` right after verbatim word (with no space):
 
-===========  ===========  ===========  ===========  
-   exact      ``sympy``   ``numpy32``  ``numpy64``  
-===========  ===========  ===========  ===========  
-          9         9.62         5.57         8.98  
-        -20       -23.39        -7.65       -19.93  
-         10        17.74        -4.50         9.96  
-          0        -9.19         4.13        -0.26  
-===========  ===========  ===========  ===========  
+=====================  =====================  =====================  =====================  
+        exact                 ``v_1``         :math:`a_i` + ``v_2``       ``verb_3_``       
+=====================  =====================  =====================  =====================  
+                    9                   9.62                   5.57                   8.98  
+                  -20                 -23.39                  -7.65                 -19.93  
+                   10                  17.74                  -4.50                   9.96  
+                    0                  -9.19                   4.13                  -0.26  
+=====================  =====================  =====================  =====================  
+
+
+A test of verbatim words in heading with subscript :math:`a_i`: ``my_file_v1`` and ``my_file_v2``
+-------------------------------------------------------------------------------------------------
+
+*Files ``my_file_v1.py`` and ``my_file_v2.py`` define some math :math:`a_{i-1}`.* Here
+is
+some text.
+
 
 .. _subsubsec:ex:
 
@@ -6026,7 +6123,7 @@ and an extra space before the FIGURE keyword.
 
 ---------------------------------------------------------------
 
-Figure:  A long caption spanning several lines. (myfig) 
+Figure:  A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in `t_{i+1}`. (myfig) 
 
 (the URL of the image file ../doc/manual/figs/wavepacket_0001.png must be inserted here)
 
@@ -6142,15 +6239,22 @@ accordingly) and verbatim heading and entry:
  ||  6              ||  71,000         ||  214            ||  `NaN`          ||
 
 
-And add one with verbatim headings and rows starting with `|-` because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with `|-` because of a negative number,
+and `|` right after verbatim word (with no space):
 
 
- ||    *exact*     ||   _`sympy`_    ||  _`numpy32`_   ||  _`numpy64`_   ||
- ||  9             ||  9.62          ||  5.57          ||  8.98          ||
- ||  -20           ||  -23.39        ||  -7.65         ||  -19.93        ||
- ||  10            ||  17.74         ||  -4.50         ||  9.96          ||
- ||  0             ||  -9.19         ||  4.13          ||  -0.26         ||
+ ||      *exact*       ||      _`v_1`_       ||  _`a_i` + `v_2`_   ||    _`verb_3_`_     ||
+ ||  9                 ||  9.62              ||  5.57              ||  8.98              ||
+ ||  -20               ||  -23.39            ||  -7.65             ||  -19.93            ||
+ ||  10                ||  17.74             ||  -4.50             ||  9.96              ||
+ ||  0                 ||  -9.19             ||  4.13              ||  -0.26             ||
+
+==== A test of verbatim words in heading with subscript `a_i`: `my_file_v1` and `my_file_v2` ====
+
+*Files `my_file_v1.py` and `my_file_v2.py` define some math `a_{i-1}`.* Here
+is
+some text.
 
 ==== URLs ====
 
@@ -6661,7 +6765,7 @@ Here is figure myfig with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
 
-[[File:../doc/manual/figs/wavepacket_0001.png|frame|alt=../doc/manual/figs/wavepacket_0001.png| A long caption spanning several lines. (myfig) ]]
+[[File:../doc/manual/figs/wavepacket_0001.png|frame|alt=../doc/manual/figs/wavepacket_0001.png| A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in <math>t_{i+1}</math>. (myfig) ]]
 
 
 Movie mymov has a similar problem.
@@ -6765,16 +6869,23 @@ accordingly) and verbatim heading and entry:
 <tr><td align="left">   5                        </td> <td align="right">   51,000                   </td> <td align="right">   270                      </td> <td align="right">   -0.0028                  </td> </tr>
 <tr><td align="left">   6                        </td> <td align="right">   71,000                   </td> <td align="right">   214                      </td> <td align="right">   <code>NaN</code>         </td> </tr>
 </table>
-And add one with verbatim headings and rows starting with <code>|-</code> because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with <code>|-</code> because of a negative number,
+and <code>|</code> right after verbatim word (with no space):
 
 <table border="1">
-<tr><td align="center"><b>        exact         </b></td> <td align="center"><b>  <code>sympy</code>  </b></td> <td align="center"><b> <code>numpy32</code> </b></td> <td align="center"><b> <code>numpy64</code> </b></td> </tr>
-<tr><td align="right">   9                       </td> <td align="right">   9.62                    </td> <td align="right">   5.57                    </td> <td align="right">   8.98                    </td> </tr>
-<tr><td align="right">   -20                     </td> <td align="right">   -23.39                  </td> <td align="right">   -7.65                   </td> <td align="right">   -19.93                  </td> </tr>
-<tr><td align="right">   10                      </td> <td align="right">   17.74                   </td> <td align="right">   -4.50                   </td> <td align="right">   9.96                    </td> </tr>
-<tr><td align="right">   0                       </td> <td align="right">   -9.19                   </td> <td align="right">   4.13                    </td> <td align="right">   -0.26                   </td> </tr>
+<tr><td align="center"><b>                exact                </b></td> <td align="center"><b>           <code>v_1</code>          </b></td> <td align="center"><b> <math>a_i</math> + <code>v_2</code> </b></td> <td align="center"><b>         <code>verb_3_</code>        </b></td> </tr>
+<tr><td align="right">   9                                      </td> <td align="right">   9.62                                   </td> <td align="right">   5.57                                   </td> <td align="right">   8.98                                   </td> </tr>
+<tr><td align="right">   -20                                    </td> <td align="right">   -23.39                                 </td> <td align="right">   -7.65                                  </td> <td align="right">   -19.93                                 </td> </tr>
+<tr><td align="right">   10                                     </td> <td align="right">   17.74                                  </td> <td align="right">   -4.50                                  </td> <td align="right">   9.96                                   </td> </tr>
+<tr><td align="right">   0                                      </td> <td align="right">   -9.19                                  </td> <td align="right">   4.13                                   </td> <td align="right">   -0.26                                  </td> </tr>
 </table>
+
+==== A test of verbatim words in heading with subscript <math>a_i</math>: <code>my_file_v1</code> and <code>my_file_v2</code> ====
+
+''Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math <math>a_{i-1}</math>.'' Here
+is
+some text.
 
 ==== URLs ====
 
@@ -7287,7 +7398,7 @@ Test of movies.
 Here is figure myfig with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
-{{../doc/manual/figs/wavepacket_0001.png| A long caption spanning several lines. (myfig) }}
+{{../doc/manual/figs/wavepacket_0001.png| A long caption spanning several lines and containing verbatim words like {{{my_file_v1}}} and {{{my_file_v2}}} as well as math with subscript as in {{{t_{i+1}}}}. (myfig) }}
 
 Movie mymov has a similar problem.
 
@@ -7396,15 +7507,23 @@ accordingly) and verbatim heading and entry:
  |  6                  |  71,000             |  214                |  {{{NaN}}}          |
 
 
-And add one with verbatim headings and rows starting with {{{|-}}} because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with {{{|-}}} because of a negative number,
+and {{{|}}} right after verbatim word (with no space):
 
 
- | =exact             | ={{{sympy}}}       | ={{{numpy32}}}     | ={{{numpy64}}}     |
- |  9                 |  9.62              |  5.57              |  8.98              |
- |  -20               |  -23.39            |  -7.65             |  -19.93            |
- |  10                |  17.74             |  -4.50             |  9.96              |
- |  0                 |  -9.19             |  4.13              |  -0.26             |
+ | =exact                     | ={{{v_1}}}                 | ={{{a_i}}} + {{{v_2}}}     | ={{{verb_3_}}}             |
+ |  9                         |  9.62                      |  5.57                      |  8.98                      |
+ |  -20                       |  -23.39                    |  -7.65                     |  -19.93                    |
+ |  10                        |  17.74                     |  -4.50                     |  9.96                      |
+ |  0                         |  -9.19                     |  4.13                      |  -0.26                     |
+
+
+== A test of verbatim words in heading with subscript {{{a_i}}}: {{{my_file_v1}}} and {{{my_file_v2}}} ==
+
+//Files {{{my_file_v1.py}}} and {{{my_file_v2.py}}} define some math {{{a_{i-1}}}}.// Here
+is
+some text.
 
 
 == URLs ==
@@ -7918,7 +8037,7 @@ Test of movies.
 Here is figure ref{myfig} with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
-FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. {myfig} 
+FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like 'my_file_v1' and 'my_file_v2' as well as math with subscript as in t_{i+1}. {myfig} 
 
 Movie ref{mymov} has a similar problem.
 
@@ -8015,17 +8134,24 @@ accordingly) and verbatim heading and entry:
 6           71,000       214     'NaN'  
 ========  ========  ========  ========  
 
-And add one with verbatim headings and rows starting with '|-' because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with '|-' because of a negative number,
+and '|' right after verbatim word (with no space):
 
-=========  =========  =========  =========  
-  exact     'sympy'   'numpy32'  'numpy64'  
-=========  =========  =========  =========  
-        9       9.62       5.57       8.98  
-      -20     -23.39      -7.65     -19.93  
-       10      17.74      -4.50       9.96  
-        0      -9.19       4.13      -0.26  
-=========  =========  =========  =========  
+===========  ===========  ===========  ===========  
+   exact        'v_1'     a_i + 'v_2'   'verb_3_'   
+===========  ===========  ===========  ===========  
+          9         9.62         5.57         8.98  
+        -20       -23.39        -7.65       -19.93  
+         10        17.74        -4.50         9.96  
+          0        -9.19         4.13        -0.26  
+===========  ===========  ===========  ===========  
+
+A test of verbatim words in heading with subscript a_i: 'my_file_v1' and 'my_file_v2'
+
+*Files 'my_file_v1.py' and 'my_file_v2.py' define some math a_{i-1}.* Here
+is
+some text.
 
 URLs
 
@@ -8452,7 +8578,7 @@ Test of movies.
 Here is figure ref{myfig} with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
-FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. {myfig} 
+FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like C{my_file_v1} and C{my_file_v2} as well as math with subscript as in M{t_{i+1}}. {myfig} 
 
 Movie ref{mymov} has a similar problem.
 
@@ -8558,17 +8684,27 @@ accordingly) and verbatim heading and entry:
 6                 71,000          214       C{NaN}  
 ===========  ===========  ===========  ===========  
 
-And add one with verbatim headings and rows starting with C{|-} because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with C{|-} because of a negative number,
+and C{|} right after verbatim word (with no space):
 
-==========  ==========  ==========  ==========  
-  exact      C{sympy}   C{numpy32}  C{numpy64}  
-==========  ==========  ==========  ==========  
-         9        9.62        5.57        8.98  
-       -20      -23.39       -7.65      -19.93  
-        10       17.74       -4.50        9.96  
-         0       -9.19        4.13       -0.26  
-==========  ==========  ==========  ==========  
+===============  ===============  ===============  ===============  
+     exact            C{v_1}      M{a_i} + C{v_2}     C{verb_3_}    
+===============  ===============  ===============  ===============  
+              9             9.62             5.57             8.98  
+            -20           -23.39            -7.65           -19.93  
+             10            17.74            -4.50             9.96  
+              0            -9.19             4.13            -0.26  
+===============  ===============  ===============  ===============  
+
+
+A test of verbatim words in heading with subscript M{a_i}: C{my_file_v1} and C{my_file_v2}
+------------------------------------------------------------------------------------------
+
+I{Files C{my_file_v1.py} and C{my_file_v2.py} define some math M{a_{i-1}}.} Here
+is
+some text.
+
 
 URLs
 ----
@@ -8911,6 +9047,7 @@ Table of contents:
    The \theta parameter (not \nabla?) 
    Custom Environments 
    Tables 
+   A test of verbatim words in heading with subscript a_i: my_file_v1 and my_file_v2 
    URLs 
    LaTeX Mathematics 
  Exercises 
@@ -9107,7 +9244,7 @@ Test of movies.
 Here is figure ref{myfig} with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
-FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. {myfig} 
+FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like my_file_v1 and my_file_v2 as well as math with subscript as in t_{i+1}. {myfig} 
 
 Movie ref{mymov} has a similar problem.
 
@@ -9213,17 +9350,27 @@ accordingly) and verbatim heading and entry:
 6           71,000       214       NaN  
 ========  ========  ========  ========  
 
-And add one with verbatim headings and rows starting with |- because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with |- because of a negative number,
+and | right after verbatim word (with no space):
 
-=======  =======  =======  =======  
- exact    sympy   numpy32  numpy64  
-=======  =======  =======  =======  
-      9     9.62     5.57     8.98  
-    -20   -23.39    -7.65   -19.93  
-     10    17.74    -4.50     9.96  
-      0    -9.19     4.13    -0.26  
-=======  =======  =======  =======  
+=========  =========  =========  =========  
+  exact       v_1     a_i + v_2   verb_3_   
+=========  =========  =========  =========  
+        9       9.62       5.57       8.98  
+      -20     -23.39      -7.65     -19.93  
+       10      17.74      -4.50       9.96  
+        0      -9.19       4.13      -0.26  
+=========  =========  =========  =========  
+
+
+A test of verbatim words in heading with subscript a_i: my_file_v1 and my_file_v2
+---------------------------------------------------------------------------------
+
+*Files my_file_v1.py and my_file_v2.py define some math a_{i-1}.* Here
+is
+some text.
+
 
 URLs
 ----
@@ -9740,7 +9887,7 @@ Test of movies.
 Here is figure ref{myfig} with a long multi-line caption
 and an extra space before the FIGURE keyword.
 
-FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. {myfig} 
+FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. {myfig} 
 
 Movie ref{mymov} has a similar problem.
 
@@ -9854,16 +10001,26 @@ accordingly) and verbatim heading and entry:
 6               71,000         214       `NaN`  
 
 
-And add one with verbatim headings and rows starting with `|-` because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with `|-` because of a negative number,
+and `|` right after verbatim word (with no space):
 
 
-  exact     `sympy`   `numpy32`  `numpy64`  
----------  ---------  ---------  ---------  
-        9       9.62       5.57       8.98  
-      -20     -23.39      -7.65     -19.93  
-       10      17.74      -4.50       9.96  
-        0      -9.19       4.13      -0.26  
+    exact          `v_1`      $a_i$ + `v_2`    `verb_3_`    
+-------------  -------------  -------------  -------------  
+            9           9.62           5.57           8.98  
+          -20         -23.39          -7.65         -19.93  
+           10          17.74          -4.50           9.96  
+            0          -9.19           4.13          -0.26  
+
+
+
+A test of verbatim words in heading with subscript $a_i$: `my_file_v1` and `my_file_v2`
+---------------------------------------------------------------------------------------
+
+*Files `my_file_v1.py` and `my_file_v2.py` define some math $a_{i-1}$.* Here
+is
+some text.
 
 
 URLs
@@ -10414,500 +10571,13 @@ iso-8859-1
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <title></title>
-  <script src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </head>
 <body>
-<p>newcommands<sub>r</sub>eplace</p>
-<p>The format of this document is plain, homemade LaTeX (from Doconce).</p>
-<p>This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.</p>
-<p>And exactly for test purposes we have an extra line here, which is part of the abstract.</p>
-<h1 id="section-1">Section 1</h1>
-<p>[sec1]</p>
-<p>Here is a nested list:</p>
-<ul>
-<li><p>item1</p></li>
-<li><p>item2</p></li>
-<li><p>item3 which continues on the next line to test that feature</p></li>
-<li><p>and a sublist</p>
-<ul>
-<li><p>with indented subitem1</p></li>
-<li><p>and a subitem2</p></li>
-</ul></li>
-<li><p>and perhaps an ordered sublist</p>
-<ol style="list-style-type: decimal">
-<li><p>first item</p></li>
-<li><p>second item, continuing on a new line</p></li>
-</ol></li>
-</ul>
-<blockquote>
-<p>Here are two lines that make up a block quote.</p>
-</blockquote>
-<h2 id="subsection-1">Subsection 1</h2>
-<p>More text, with a reference back to Section [sec1] and further to Section [subsubsec:ex].</p>
-<p>Let’s do some copying from files too. First from subroutine up to the very end,</p>
-<blockquote>
-<pre><code>      subroutine test()
-      integer i
-      real*8 r
-      r = 0
-      do i = 1, i
-         r = r + i
-      end do
-      return
-C     END1
 
-      program testme
-      call test()
-      return</code></pre>
-</blockquote>
-<p>and then just the subroutine,</p>
-<blockquote>
-<pre><code>
-      subroutine test()
-      integer i
-      real*8 r
-      r = 0
-      do i = 1, i
-         r = r + i
-      end do
-      return</code></pre>
-</blockquote>
-<p>and finally the complete file:</p>
-<blockquote>
-<pre><code>C     a comment
-
-      subroutine test()
-      integer i
-      real*8 r
-      r = 0
-      do i = 1, i
-         r = r + i
-      end do
-      return
-C     END1
-
-      program testme
-      call test()
-      return</code></pre>
-</blockquote>
-<p>Testing other code environments. First Python:</p>
-<blockquote>
-<pre><code>def f(x):
-    return x+1</code></pre>
-</blockquote>
-<p>Then Cython:</p>
-<blockquote>
-<pre><code>cpdef f(double x):
-    return x + 1</code></pre>
-</blockquote>
-<p>C++:</p>
-<blockquote>
-<pre><code>#include &lt;iostream&gt;
-
-int main()
-{
-   std::cout &lt;&lt; &quot;Sample output&quot; &lt;&lt; std::endl;
-   return 0
-}</code></pre>
-</blockquote>
-<p>System call:</p>
-<blockquote>
-<pre><code>Terminal&gt; mkdir test
-Terminal&gt; cd test
-Terminal&gt; myprog -f
-output1
-output2</code></pre>
-</blockquote>
-<p>It is time to test 10pt10pt<code>verbatim inline font</code> especially with 10pt10pt<code>a newline inside the text</code> and an exclamation mark at the end: 10pt10pt<code>BEGIN</code>! The exclamation mark inside the verbatim text is not smart for latex as we use ! in the 10pt10pt<code>verb</code> typesetting... Also test backslashes like 10pt10pt<code>\begin</code> and 10pt10pt<code>\end</code> in inline verbatim text.</p>
-<h2 id="subsection-2">Subsection 2</h2>
-<p>[subsec:ex]</p>
-<p>Test of figures. In particular we refer to Figure [fig:impact] in which there is a flow.</p>
-<p>[ht] <embed src="../doc/manual/figs/streamtubes.eps"> Visualization of flow by streamtubes. [fig:impact]</p>
-<p>Figures without captions are allowed.</p>
-<div class="figure">
-<embed src="../doc/manual/figs/streamtubes.eps"><p class="caption">image</p>
-</div>
-<p>Test of movies.</p>
-<p>[ht]</p>
-<p><a href="run:../doc/manual/figs/mjolnir.mpeg">../doc/manual/figs/mjolnir.mpeg</a></p>
-<p>Mjolnir tsunami (by Sylfest Glimsdal).</p>
-<p>[ht]</p>
-<p><a href="run:../doc/manual/figs/wavepacket.mpeg">../doc/manual/figs/wavepacket.mpeg</a></p>
-<p>Movie based on collection of frames (here just a few frames compared with the full wavepacket.mpeg movie). [mymov] (Movie of files 10pt10pt<code>../doc/manual/figs/wavepacket_*.png</code> in <a href="{file:///home/hpl/vc/doconce/test/wavepacket_0001.html}">file:///home/hpl/vc/doconce/test/wavepacket<sub>0</sub>001.html</a>)</p>
-<p>Movies can be uploaded to YouTube and embedded as HTML or as a link.: <a href="{http://www.youtube.com/watch?v=_O7iUiftbKU}">http://www.youtube.com/watch?v=<sub>O</sub>7iUiftbKU</a></p>
-<p>Here is figure [myfig] with a long multi-line caption and an extra space before the FIGURE keyword.</p>
-<p>[ht] <embed src="../doc/manual/figs/wavepacket_0001.eps"> A long caption spanning several lines. [myfig]</p>
-<p>Movie [mymov] has a similar problem.</p>
-<h2 id="the-theta-parameter-not-nabla">The \(\theta\) parameter (not \(\nabla\)?)</h2>
-<p>[decay:sec:theta]</p>
-<p>Functions do not always need to be advanced, here is one involving \(\theta\):</p>
-<blockquote>
-<pre><code>def f(theta):
-    return theta**2</code></pre>
-</blockquote>
-<h4 id="more-on-theta.">More on \(\theta\).</h4>
-<p>Here is more text following headline with math.</p>
-<p>Newcommands must also be tested in this : \(\half\), \(\halfi\), \(\x\), \(\Ddt{u}\), both inline and in block:</p>
-<p>\[\begin{aligned*}
-\Ddt{u} &amp;= 0\\ 
-\half &amp;= \halfi\\ 
-\half\x &amp;= \normalvec\end{aligned*}\]</p>
-<h2 id="custom-environments">Custom Environments</h2>
-<p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the 10pt10pt<code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!</p>
-<p>[theorem:fundamental1]</p>
-<h4 id="theorem-5.">Theorem 5.</h4>
-<p>Let \(a=1\) and \(b=2\). Then \(c=3\).</p>
-<h4 id="proof.">Proof.</h4>
-<p>Since \(c=a+b\), the result follows from straightforward addition. \(\Diamond\) As we see, the proof of Theorem 5 is a modest achievement.</p>
-<h2 id="tables">Tables</h2>
-<p>[subsec:table]</p>
-<p>Let us take this table from the manual:</p>
-<p>Testing table environment in LaTeX, enabled by testing on the &quot;latex&quot; format with the preprocessor. [mytab]</p>
-<blockquote>
-<table>
-<thead>
-<tr class="header">
-<th align="left">1c time</th>
-<th align="right">1c velocity</th>
-<th align="right">1c acceleration</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">0.0</td>
-<td align="right">1.4186</td>
-<td align="right">-5.01</td>
-</tr>
-<tr class="even">
-<td align="left">2.0</td>
-<td align="right">1.376512</td>
-<td align="right">11.919</td>
-</tr>
-<tr class="odd">
-<td align="left">4.0</td>
-<td align="right">1.1E+1</td>
-<td align="right">14.717624</td>
-</tr>
-</tbody>
-</table>
-<p>The Doconce source code reads</p>
-</blockquote>
-<blockquote>
-<pre><code>  |--------------------------------|
-  |time  | velocity | acceleration |
-  |--l--------r-----------r--------|
-  | 0.0  | 1.4186   | -5.01        |
-  | 2.0  | 1.376512 | 11.919       |
-  | 4.0  | 1.1E+1   | 14.717624    |
-  |--------------------------------|</code></pre>
-</blockquote>
-<p>Here is yet another table to test that we can handle more than one table:</p>
-<blockquote>
-<table>
-<thead>
-<tr class="header">
-<th align="left">1c time</th>
-<th align="left">1c velocity</th>
-<th align="left">1c acceleration</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">0.0</td>
-<td align="left">1.4186</td>
-<td align="left">-5.01</td>
-</tr>
-<tr class="even">
-<td align="left">1.0</td>
-<td align="left">1.376512</td>
-<td align="left">11.919</td>
-</tr>
-<tr class="odd">
-<td align="left">3.0</td>
-<td align="left">1.1E+1</td>
-<td align="left">14.717624</td>
-</tr>
-</tbody>
-</table>
-<p>And one with math headings (that are expanded and must be treated accordingly) and verbatim heading and entry:</p>
-</blockquote>
-<blockquote>
-<table>
-<thead>
-<tr class="header">
-<th align="left">1c \(i\)</th>
-<th align="right">1c \(h_i\)</th>
-<th align="right">1c \(\bar T_i\)</th>
-<th align="right">1c <code>L_i</code></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">0</td>
-<td align="right">0</td>
-<td align="right">288</td>
-<td align="right">-0.0065</td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="right">11,000</td>
-<td align="right">216</td>
-<td align="right">0.0</td>
-</tr>
-<tr class="odd">
-<td align="left">2</td>
-<td align="right">20,000</td>
-<td align="right">216</td>
-<td align="right">0.001</td>
-</tr>
-<tr class="even">
-<td align="left">3</td>
-<td align="right">32,000</td>
-<td align="right">228</td>
-<td align="right">0.0028</td>
-</tr>
-<tr class="odd">
-<td align="left">4</td>
-<td align="right">47,000</td>
-<td align="right">270</td>
-<td align="right">0.0</td>
-</tr>
-<tr class="even">
-<td align="left">5</td>
-<td align="right">51,000</td>
-<td align="right">270</td>
-<td align="right">-0.0028</td>
-</tr>
-<tr class="odd">
-<td align="left">6</td>
-<td align="right">71,000</td>
-<td align="right">214</td>
-<td align="right">10pt10pt<code>NaN</code></td>
-</tr>
-</tbody>
-</table>
-<p>And add one with verbatim headings and rows starting with 10pt10pt<code>|-</code> because of a negative number...</p>
-</blockquote>
-<blockquote>
-<table>
-<thead>
-<tr class="header">
-<th align="right">1c exact</th>
-<th align="right">1c <code>sympy</code></th>
-<th align="right">1c <code>numpy32</code></th>
-<th align="right">1c <code>numpy64</code></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">9</td>
-<td align="right">9.62</td>
-<td align="right">5.57</td>
-<td align="right">8.98</td>
-</tr>
-<tr class="even">
-<td align="right">-20</td>
-<td align="right">-23.39</td>
-<td align="right">-7.65</td>
-<td align="right">-19.93</td>
-</tr>
-<tr class="odd">
-<td align="right">10</td>
-<td align="right">17.74</td>
-<td align="right">-4.50</td>
-<td align="right">9.96</td>
-</tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">-9.19</td>
-<td align="right">4.13</td>
-<td align="right">-0.26</td>
-</tr>
-</tbody>
-</table>
-<h2>URLs</h2>
-</blockquote>
-<p>[subsubsec:ex]</p>
-<p>Testing of URLs: hpl’s home page <a href="{http://folk.uio.no/hpl}">hpl</a>, or the entire URL if desired, <a href="{http://folk.uio.no/hpl}">http://folk.uio.no/hpl</a>. Here is a plain file link <a href="{testdoc.do.txt}">testdoc.do.txt</a>, or <a href="{testdoc.do.txt}">testdoc.do.txt</a>, or <a href="{testdoc.do.txt}">testdoc.do.txt</a> or <a href="{testdoc.do.txt}">testdoc.do.txt</a> or <a href="{testdoc.do.txt}">a link with newline</a>. Can test spaces with the link with word too: <a href="{http://folk.uio.no/hpl}">hpl</a> or <a href="{http://folk.uio.no/hpl}">hpl</a>. Also 10pt10pt<code>file:///</code> works: <a href="{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}">link to a file</a> is fine to have.</p>
-<p>Here are some tough tests of URLs, especially for the 10pt10pt<code>latex</code> format: <a href="{http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}">Newton-Cotes</a> formulas and a <a href="{http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}">good book</a>.</p>
-<p>More tough tests: repeated URLs whose footnotes when using the 10pt10pt<code>--latex-printed</code> option must be correct. We have <a href="{http://google.com}">google</a>, <a href="{http://google.com}">google</a>, and <a href="{http://google.com}">google</a>, which should result in exactly three footnotes.</p>
-<h2 id="test-of-some-latex-fixes">Test of Some LaTeX Fixes</h2>
-<p>Let’s check abbr. of some common kind, e.g. the well-known i.e. expression as an example. Moreover, Dr. Tang and Prof. Monsen, or maybe also prof. Ting, will go to the Dept. of Science to test how Mr. Hansen is doing together with Ms. Larsen. A sentence containing &quot;refines lines&quot; could easily fool a regex substitution with only i.e. since the dot matches anything. Also, look at Fig. 4 to see how the data compares with Tab. [mytab].</p>
-<h2 id="latex-mathematics">LaTeX Mathematics</h2>
-<p>Here is an equation without label using backslash-bracket environment: \[a = b + c\] or with number and label, as in ([my:eq1]), using the equation environment:</p>
-<p>\[{\partial u\over\partial t} = \nabla^2 u \label{my:eq1}\]</p>
-<p>We can refer to this equation by ([my:eq1]).</p>
-<p>Here is a system without equation numbers, using the align-astrisk environment:</p>
-<p>\[\begin{aligned*}
-\pmb{a} &amp;= \pmb{q}\times\pmb{n} \\ 
-b &amp;= \nabla^2 u + \nabla^4 v\end{aligned*}\]</p>
-<p>And here is a system of equations with labels in an align environment:</p>
-<p>\[\begin{aligned*}
-a &amp;= q + 4 + 5+ 6 \label{eq1} \\ 
-b &amp;= \nabla^2 u + \nabla^4 x \label{eq2}\end{aligned*}\]</p>
-<p>We can refer to ([eq1])-([eq2]).</p>
-<p>Many of the next environments will fail in non-latex formats. Testing multiline:</p>
-<p>a = b = q +<br />f + u [multiline:eq1]</p>
-<p>Testing split:</p>
-<p>\[\label{split:envir:eq}
-\begin{split}
-a = b = q &amp;+ \\ 
-  &amp; f + \nabla\cdot\nabla u
-\end{split}\]</p>
-<p>We can refer to the last equation by ([split:envir:eq]).</p>
-<p>Testing gather:</p>
-<p>\[\begin{gathered}
-a = b \\ 
-c = d + 7 + 9\end{gathered}\]</p>
-<p>Testing alignat:</p>
-<p>\[\begin{aligned*}
-{2}
-a &amp;= q + 4 + 5+ 6\qquad &amp; \mbox{for } q\geq 0 \label{eq1a} \\ 
-b &amp;= \nabla^2 u + \nabla^4 x &amp; x\in\Omega \label{eq2a}\end{aligned*}\]</p>
-<p>Let us refer to ([eq1])-([eq2]) again, and to the alignat variant ([eq1a])-([eq2a]), and to ([my:eq1]).</p>
-<p>Testing eqnarray:</p>
-<p>\[\begin{aligned*}
-{\partial u\over\partial t} &amp;=&amp; \nabla^2 u + f, \label{myeq1}\\ 
-{\partial v\over\partial t} &amp;=&amp; \nabla\cdot(q(u)\nabla v) + g \label{myeq2}\end{aligned*}\]</p>
-<p>More mathematical typesetting is demonstrated in the coming exercises.</p>
-<p>Below, we have Problem [demo:ex:1] and Project [demo:ex:2], as well as Projects [proj:circle1] and [exer:you], and in between there we have Exercise [exer:some:formula].</p>
-<h1 id="exercises">Exercises</h1>
-<p>exerno</p>
-<h2 id="problem-1-flip-a-coin">Problem 1: Flip a Coin</h2>
-<p>[demo:ex:1] Make a program that simulates flipping a coin \(N\) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
-<h4 id="hint-1.">Hint 1.</h4>
-<p>Use 10pt10pt<code>r = random.random()</code> and define head as 10pt10pt<code>r &lt;= 0.5</code>.</p>
-<h4 id="hint-2.">Hint 2.</h4>
-<p>Draw an integer among \(\{1,2\}\) with 10pt10pt<code>r = random.randint(1,2)</code> and define head when 10pt10pt<code>r</code> is 1.</p>
-<h4 id="answer.">Answer.</h4>
-<p>If the 10pt10pt<code>random.random()</code> function returns a number \(&lt;1/2\), let it be head, otherwise tail. Repeat this \(N\) number of times.</p>
-<h4 id="solution.">Solution.</h4>
-<p>Code:</p>
-<blockquote>
-<pre><code>import sys, random
-N = int(sys.argv[1])
-heads = 0
-for i in range(N):
-    r = random.random()
-    if r &lt;= 0.5:
-        heads += 1
-print &#39;Flipping a coin %d times gave %d heads&#39; % (N, heads)</code></pre>
-</blockquote>
-<p>Filenames: 10pt10pt<code>flip_coin.py</code>, 10pt10pt<code>flip_coin.pdf</code>.</p>
-<p>exerno</p>
-<h2 id="project-2-compute-a-probability">Project 2: Compute a Probability</h2>
-<p>[demo:ex:2]</p>
-<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \([0,1)\)?</p>
-<h4 id="hint.">Hint.</h4>
-<p>To answer this question empirically, let a program draw \(N\) such random numbers using Python’s standard 10pt10pt<code>random</code> module, count how many of them, \(M\), that fall in the interval \((0.5,0.6)\), and compute the probability as \(M/N\).</p>
-<p>exerno</p>
-<h2 id="project-3-explore-distributions-of-random-circles">Project 3: Explore Distributions of Random Circles</h2>
-<p>[proj:circle1]</p>
-<p>The formula for a circle is given by</p>
-<p>\[\begin{aligned*}
-x &amp;= x_0 + R\cos 2\pi t,\\ 
-y &amp;= y_0 + R\sin 2\pi t,\end{aligned*}\]</p>
-<p>where \(R\) is the radius of the circle, \((x_0,y_0)\) is the center point, and \(t\) is a parameter in the unit interval \([0,1]\). For any \(t\), \((x,y)\) is a point on the circle. The formula can be used to generate 10pt10pt<code>n</code> points on a circle:</p>
-<blockquote>
-<pre><code>import numpy as np
-
-def circle(R, x0, y0, n=501):
-    t = np.linspace(0, 1, n)
-    x = x0 + R*np.cos(2*np.pi*t)
-    y = y0 + R*np.sin(2*np.pi*t)
-    return x, y
-
-x, y = circle(2.0, 0, 0)</code></pre>
-</blockquote>
-<p>The goal of this project is to draw \(N\) circles with random center and radius. Plot each circle using the 10pt10pt<code>circle</code> function above.</p>
-<h4 id="a">a)</h4>
-<p>Let \(R\) be normally distributed and \((x_0,y_0)\) uniformly distributed.</p>
-<h4 id="hint.-1">Hint.</h4>
-<p>Use the 10pt10pt<code>numpy.random</code> module to draw the \(x_0\), \(y_0\), and \(R\) quantities.</p>
-<h4 id="answer.-1">Answer.</h4>
-<p>Here goes the short answer to part a).</p>
-<h4 id="solution.-1">Solution.</h4>
-<p>Here goes a full solution to part a).</p>
-<h4 id="b">b)</h4>
-<p>Let \(R\) be uniformly distributed and \((x_0,y_0)\) normally distributed. <em>Filename</em>: 10pt10pt<code>norm.py</code>.</p>
-<h4 id="c">c)</h4>
-<p>Let \(R\) and \((x_0,y_0)\) be normally distributed.</p>
-<p>Filename: 10pt10pt<code>circles.pdf</code>.</p>
-<h4 id="remarks.">Remarks.</h4>
-<p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
-<p>exerno</p>
-<h2 id="exercise-4-determine-some-distance">Exercise 4: Determine some Distance</h2>
-<p>[exer:dist]</p>
-<p>Intro to this exercise. Questions are in subexercises below.</p>
-<h4 id="solution.-2">Solution.</h4>
-<p>Here goes a full solution of the whole exercise.</p>
-<h4 id="a-1">a)</h4>
-<p>Subexercises are numbered a), b), etc.</p>
-<h4 id="hint-1.-1">Hint 1.</h4>
-<p>First hint to subexercise a).</p>
-<h4 id="hint-2.-1">Hint 2.</h4>
-<p>Second hint to subexercise a). <em>Filename</em>: 10pt10pt<code>subexer_a.pdf</code>.</p>
-<h4 id="answer.-2">Answer.</h4>
-<p>Short answer to subexercise a).</p>
-<h4 id="b-1">b)</h4>
-<p>Here goes the text for subexercise b).</p>
-<h4 id="hint.-2">Hint.</h4>
-<p>A hint for this subexercise. <em>Filename</em>: 10pt10pt<code>subexer_b.pdf</code>.</p>
-<h4 id="solution.-3">Solution.</h4>
-<p>Here goes the solution of this subexercise.</p>
-<h4 id="remarks.-1">Remarks.</h4>
-<p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
-<h1 id="here-goes-another-section">Here goes another section</h1>
-<p>With some text, before we continue with exercises.</p>
-<h1 id="more-exercises">More Exercises</h1>
-<p>exerno</p>
-<h2 id="exercise-5-make-references-to-projects-and-problems">Exercise 5: Make references to projects and problems</h2>
-<p>[exer:some:formula]</p>
-<p>Pick a statement from Project [proj:circle1] or Problem [demo:ex:1] and verify it. Filename: 10pt10pt<code>verify_formula.py</code>.</p>
-<p>exerno</p>
-<h2 id="project-6-references-to-projectdemoex2-in-a-heading-works-for-latex">Project 6: References to Project [demo:ex:2] in a heading works for latex</h2>
-<p>[exer:you]</p>
-<p>Refer to the previous exercise as Exercise [exer:some:formula], the two before that as Projects [demo:ex:2] and [proj:circle1], and this one as Project [exer:you]. Filename: 10pt10pt<code>selc_composed.pdf</code>.</p>
-<h1 id="just-for-testing-part-i">Just for testing; part I</h1>
-<p>This is the first appendix.</p>
-<h2 id="a-subsection-within-an-appendix">A subsection within an appendix</h2>
-<h1 id="just-for-testing-part-ii">Just for testing; part II</h1>
-<p>This is more stuff for an appendix.</p>
-<h2 id="appendix-testing-identical-titles">Appendix: Testing identical titles</h2>
-<p>Without label.</p>
-<h2 id="appendix-testing-identical-titles-1">Appendix: Testing identical titles</h2>
-<p>[test:title:id1]</p>
-<p>With label.</p>
-<h2 id="appendix-testing-identical-titles-2">Appendix: Testing identical titles</h2>
-<p>[test:title:id2]</p>
-<p>With label.</p>
-<h2 id="appendix-testing-identical-titles-3">Appendix: Testing identical titles</h2>
-<p>Without label.</p>
-<p>hintbackgroundrgb0.87843, 0.95686, 1.0 2pt</p>
-<p>blackhintbackground</p>
-<p>0.8</p>
-<p><embed src="latex_figs/hint.eps"> -0.3in1.5in<strong>HINT</strong><br />Here is a hint.</p>
-<p>0.4pt warningbackgroundrgb1.0, 0.8235294, 0.8235294 2pt</p>
-<p>blackwarningbackground</p>
-<p>0.8</p>
-<p><embed src="latex_figs/warning.eps"> -0.3in1.5in<strong>WARNING</strong><br />And here is a warning about something to pay attention to.</p>
-<p>0.4pt summarybackgroundrgb0.988235, 0.964706, 0.862745 2pt</p>
-<p>blacksummarybackground</p>
-<p>0.8</p>
-<p><embed src="latex_figs/summary.eps"> -0.3in1.5in<strong>SUMMARY</strong><br />Much testing in this document, otherwise stupid content.</p>
-<p>0.4pt noticebackgroundrgb0.988235, 0.964706, 0.862745 2pt</p>
-<p>blacknoticebackground</p>
-<p>0.8</p>
-<p><embed src="latex_figs/notice.eps"> -0.3in1.5in<strong>NOTICE</strong><br />Ah, we are close to the end.</p>
-<p>0.4pt questionbackgroundrgb0.87843, 0.95686, 1.0 2pt</p>
-<p>blackquestionbackground</p>
-<p>0.8</p>
-<p><embed src="latex_figs/question.eps"> -0.3in1.5in<strong>QUESTION</strong><br />So, how many admonition environments does Doconce support?</p>
-<p>0.4pt</p>
 </body>
 </html>
-pandoc 1.9.1.1
-Compiled with citeproc-hs 0.3.4, texmath 0.6.0.3, highlighting-kate 0.5.0.5.
+pandoc 1.9.4.2
+Compiled with citeproc-hs 0.3.4, texmath 0.6.0.6, highlighting-kate 0.5.1.
 Syntax highlighting is supported for the following languages:
     Actionscript, Ada, Alert, Alert_indent, Apache, Asn1, Asp, Awk, Bash,
     Bibtex, Boo, C, Changelog, Clojure, Cmake, Coffeescript, Coldfusion,
@@ -11102,7 +10772,7 @@ output2</code></pre>
 <!-- Test multi-line caption in figure -->
 
 <p>Here is figure ref{myfig} with a long multi-line caption and an extra space before the FIGURE keyword.</p>
-<p>FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. {myfig}</p>
+<p>FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \(t_{i+1}\). {myfig}</p>
 <p>Movie ref{mymov} has a similar problem.</p>
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
@@ -11249,14 +10919,14 @@ output2</code></pre>
 </tr>
 </tbody>
 </table>
-<p>And add one with verbatim headings and rows starting with <code>|-</code> because of a negative number...</p>
+<p>And add one with verbatim headings (with underscores), and rows starting with <code>|-</code> because of a negative number, and <code>|</code> right after verbatim word (with no space):</p>
 <table>
 <thead>
 <tr class="header">
 <th align="center">exact</th>
-<th align="center"><code>sympy</code></th>
-<th align="left"><code>numpy32</code></th>
-<th align="left"><code>numpy64</code></th>
+<th align="center"><code>v_1</code></th>
+<th align="left">\(a_i\) + <code>v_2</code></th>
+<th align="center"><code>verb_3_</code></th>
 </tr>
 </thead>
 <tbody>
@@ -11264,28 +10934,30 @@ output2</code></pre>
 <td align="center">9</td>
 <td align="center">9.62</td>
 <td align="left">5.57</td>
-<td align="left">8.98</td>
+<td align="center">8.98</td>
 </tr>
 <tr class="even">
 <td align="center">-20</td>
 <td align="center">-23.39</td>
 <td align="left">-7.65</td>
-<td align="left">-19.93</td>
+<td align="center">-19.93</td>
 </tr>
 <tr class="odd">
 <td align="center">10</td>
 <td align="center">17.74</td>
 <td align="left">-4.50</td>
-<td align="left">9.96</td>
+<td align="center">9.96</td>
 </tr>
 <tr class="even">
 <td align="center">0</td>
 <td align="center">-9.19</td>
 <td align="left">4.13</td>
-<td align="left">-0.26</td>
+<td align="center">-0.26</td>
 </tr>
 </tbody>
 </table>
+<h2 id="a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2">A test of verbatim words in heading with subscript \(a_i\): <code>my_file_v1</code> and <code>my_file_v2</code></h2>
+<p><em>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \(a_{i-1}\).</em> Here is some text.</p>
 <h2 id="urls">URLs</h2>
 <p>Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or the entire URL if desired, <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>. Here is a plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or <testdoc.do.txt> or <testdoc.do.txt> or <a href="testdoc.do.txt">a link with newline</a>. Can test spaces with the link with word too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a file</a> is fine to have.</p>
 <p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>.</p>
@@ -11434,7 +11106,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <p>Filename: <code>circles.pdf</code>.</p>
 <!-- Closing remarks for this Project -->
 
-<p>Remarks <sub><sub><sub>~</sub></sub></sub></p>
+<p>Remarks ~~~~~~~</p>
 <p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
 <!-- --- end of exercise -->
 
@@ -11466,7 +11138,7 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 
 <!-- Closing remarks for this Exercise -->
 
-<p>Remarks <sub><sub><sub>~</sub></sub></sub></p>
+<p>Remarks ~~~~~~~</p>
 <p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
 <!-- --- end of exercise -->
 
@@ -11510,8 +11182,8 @@ x, y = circle(<span class="fl">2.0</span>, <span class="dv">0</span>, <span clas
 <p><em>Question.</em> So, how many admonition environments does Doconce support?</p>
 </body>
 </html>
-pandoc 1.9.1.1
-Compiled with citeproc-hs 0.3.4, texmath 0.6.0.3, highlighting-kate 0.5.0.5.
+pandoc 1.9.4.2
+Compiled with citeproc-hs 0.3.4, texmath 0.6.0.6, highlighting-kate 0.5.1.
 Syntax highlighting is supported for the following languages:
     Actionscript, Ada, Alert, Alert_indent, Apache, Asn1, Asp, Awk, Bash,
     Bibtex, Boo, C, Changelog, Clojure, Cmake, Coffeescript, Coldfusion,
@@ -12605,10 +12277,25 @@ the section <a href="#genrefs">Generalized References</a>."
 
 ************** File: author1.p.tex *****************
 %%
-%% Automatically generated ptex2tex (extended LaTeX) file
-%% from Doconce source
-%% http://code.google.com/p/doconce/
+%% This file is automatically generated from doconce source
 %%
+%% doconce: http://code.google.com/p/doconce/
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% Many preprocess options can be added:
+%%
+%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+% #endif
 
 % #ifndef LATEX_HEADING
 % #define LATEX_HEADING
@@ -12626,10 +12313,20 @@ the section <a href="#genrefs">Generalized References</a>."
 % #ifdef PREAMBLE
 %-------------------------- begin preamble --------------------------
 % #ifdef BOOK
-\documentclass[twoside]{book}
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+chapterprefix=true,      % "Chapter" word at beginning of each chapter
+open=right               % start new chapters on odd-numbered pages
+10pt]{book}
 % #else
-\documentclass[twoside]{article}
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
 % #endif
+
+\listfiles               % print all files needed to compile this document
 
 % #ifdef A4PAPER
 \usepackage[a4paper]{geometry}
@@ -12681,6 +12378,8 @@ the section <a href="#genrefs">Generalized References</a>."
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -13173,26 +12872,27 @@ $$
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec4"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsec:table"> Tables </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec6"> A test of verbatim words in heading with subscript \( a_i \): <tt>my_file_v1</tt> and <tt>my_file_v2</tt> </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#subsubsec:ex"> URLs </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec7"> LaTeX Mathematics </a><br>
-<a href="._part0002_testdoc.html#___sec8"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec8"> LaTeX Mathematics </a><br>
+<a href="._part0002_testdoc.html#___sec9"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:1"> Problem 1: Flip a Coin </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#demo:ex:2"> Project 2: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#proj:circle1"> Project 3: Explore Distributions of Random Circles </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec12"> Remarks </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec13"> Remarks </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:dist"> Exercise 4: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec14"> Remarks </a><br>
-<a href="._part0002_testdoc.html#___sec15"> Here goes another section </a><br>
-<a href="._part0002_testdoc.html#___sec16"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec15"> Remarks </a><br>
+<a href="._part0002_testdoc.html#___sec16"> Here goes another section </a><br>
+<a href="._part0002_testdoc.html#___sec17"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:some:formula"> Exercise 5: Make references to projects and problems </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#exer:you"> Project 6: References in a headings do not work well in html </a><br>
-<a href="._part0002_testdoc.html#___sec19"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec20"> A subsection within an appendix </a><br>
-<a href="._part0002_testdoc.html#___sec21"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec22"> Appendix: Testing identical titles </a><br>
+<a href="._part0002_testdoc.html#___sec20"> Appendix: Just for testing; part I </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec21"> A subsection within an appendix </a><br>
+<a href="._part0002_testdoc.html#___sec22"> Appendix: Just for testing; part II </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec23"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec25"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._part0002_testdoc.html#___sec26"> Appendix: Testing identical titles </a><br>
 
 <p>
 
@@ -13682,7 +13382,7 @@ and an extra space before the FIGURE keyword.
 
 <center> <! -- figure -->
 <hr class="figure">
-<center><p class="caption">Figure 2:  A long caption spanning several lines. <a name="myfig"></a> </p></center>
+<center><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <tt>my_file_v1</tt> and <tt>my_file_v2</tt> as well as math with subscript as in \( t_{i+1} \). <a name="myfig"></a> </p></center>
 <p><img src="../doc/manual/figs/wavepacket_0001.png" align="bottom" width=500></p>
 </center>
 
@@ -13824,18 +13524,29 @@ accordingly) and verbatim heading and entry:
 <tr><td align="left">   6                 </td> <td align="right">   71,000            </td> <td align="right">   214               </td> <td align="right">   <tt>NaN</tt>      </td> </tr>
 </table>
 <p>
-And add one with verbatim headings and rows starting with <tt>|-</tt> because
-of a negative number...
+And add one with verbatim headings (with underscores),
+and rows starting with <tt>|-</tt> because of a negative number,
+and <tt>|</tt> right after verbatim word (with no space):
 
 <p>
 <table border="1">
-<tr><td align="center"><b>      exact       </b></td> <td align="center"><b>  <tt>sympy</tt>  </b></td> <td align="center"><b> <tt>numpy32</tt> </b></td> <td align="center"><b> <tt>numpy64</tt> </b></td> </tr>
-<tr><td align="right">   9                   </td> <td align="right">   9.62                </td> <td align="right">   5.57                </td> <td align="right">   8.98                </td> </tr>
-<tr><td align="right">   -20                 </td> <td align="right">   -23.39              </td> <td align="right">   -7.65               </td> <td align="right">   -19.93              </td> </tr>
-<tr><td align="right">   10                  </td> <td align="right">   17.74               </td> <td align="right">   -4.50               </td> <td align="right">   9.96                </td> </tr>
-<tr><td align="right">   0                   </td> <td align="right">   -9.19               </td> <td align="right">   4.13                </td> <td align="right">   -0.26               </td> </tr>
+<tr><td align="center"><b>          exact           </b></td> <td align="center"><b>       <tt>v_1</tt>       </b></td> <td align="center"><b> \( a_i \) + <tt>v_2</tt> </b></td> <td align="center"><b>     <tt>verb_3_</tt>     </b></td> </tr>
+<tr><td align="right">   9                           </td> <td align="right">   9.62                        </td> <td align="right">   5.57                        </td> <td align="right">   8.98                        </td> </tr>
+<tr><td align="right">   -20                         </td> <td align="right">   -23.39                      </td> <td align="right">   -7.65                       </td> <td align="right">   -19.93                      </td> </tr>
+<tr><td align="right">   10                          </td> <td align="right">   17.74                       </td> <td align="right">   -4.50                       </td> <td align="right">   9.96                        </td> </tr>
+<tr><td align="right">   0                           </td> <td align="right">   -9.19                       </td> <td align="right">   4.13                        </td> <td align="right">   -0.26                       </td> </tr>
 </table>
 <p>
+
+
+<h3>A test of verbatim words in heading with subscript \( a_i \): <tt>my_file_v1</tt> and <tt>my_file_v2</tt>  <a name="___sec6"></a></h3>
+<p>
+<b>Files <tt>my_file_v1.py</tt> and <tt>my_file_v2.py</tt> define some math \( a_{i-1} \).</b> Here
+is
+some text.
+
+<p>
+
 
 <h3>URLs <a name="subsubsec:ex"></a></h3>
 <p>
@@ -13872,7 +13583,7 @@ footnotes.
 <p>
 
 
-<h3>LaTeX Mathematics  <a name="___sec7"></a></h3>
+<h3>LaTeX Mathematics  <a name="___sec8"></a></h3>
 <p>
 Here is an equation without label using backslash-bracket environment:
 $$ a = b + c $$
@@ -13965,7 +13676,7 @@ between there we have <a href="#exer:some:formula">Exercise 5: Make references t
 
 <p>
 
-<h2>Exercises  <a name="___sec8"></a></h2>
+<h2>Exercises  <a name="___sec9"></a></h2>
 <p>
 
 <!-- --- begin exercise -->
@@ -14110,7 +13821,7 @@ Filename: <tt>circles.pdf</tt>.
 
 <p>
 
-<h4>Remarks  <a name="___sec12"></a></h4>
+<h4>Remarks  <a name="___sec13"></a></h4>
 <p>
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
@@ -14159,7 +13870,7 @@ Intro to this exercise. Questions are in subexercises below.
 
 <p>
 
-<h4>Remarks  <a name="___sec14"></a></h4>
+<h4>Remarks  <a name="___sec15"></a></h4>
 <p>
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
@@ -14172,13 +13883,13 @@ remarks will appear at the end of the typeset exercise.
 <p>
 
 
-<h2>Here goes another section  <a name="___sec15"></a></h2>
+<h2>Here goes another section  <a name="___sec16"></a></h2>
 <p>
 With some text, before we continue with exercises.
 
 <p>
 
-<h2>More Exercises  <a name="___sec16"></a></h2>
+<h2>More Exercises  <a name="___sec17"></a></h2>
 <p>
 
 <!-- --- begin exercise -->
@@ -14214,22 +13925,22 @@ Filename: <tt>selc_composed.pdf</tt>.
 <p>
 
 
-<h2>Appendix: Just for testing; part I  <a name="___sec19"></a></h2>
+<h2>Appendix: Just for testing; part I  <a name="___sec20"></a></h2>
 <p>
 This is the first appendix.
 
 <p>
 
-<h3>A subsection within an appendix  <a name="___sec20"></a></h3>
+<h3>A subsection within an appendix  <a name="___sec21"></a></h3>
 <p>
 
-<h2>Appendix: Just for testing; part II  <a name="___sec21"></a></h2>
+<h2>Appendix: Just for testing; part II  <a name="___sec22"></a></h2>
 <p>
 This is more stuff for an appendix.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec22"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec23"></a></h3>
 <p>
 Without label.
 
@@ -14247,7 +13958,7 @@ With label.
 
 <p>
 
-<h3>Appendix: Testing identical titles  <a name="___sec25"></a></h3>
+<h3>Appendix: Testing identical titles  <a name="___sec26"></a></h3>
 <p>
 Without label.
 
@@ -16762,7 +16473,7 @@ are also needed. These are installed by
 <p>
 <!-- begin verbatim block  sys-->
 <pre>
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 </pre>
 <! -- end verbatim block -->
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
@@ -16778,7 +16489,13 @@ program.
 The <em>minted</em> LaTeX style is offered by <tt>ptex2tex</tt> and <tt>doconce ptext2tex</tt>
 is popular among many
 users. This style requires the package <a href="http://pygments.org">Pygments</a>
-to be installed:
+to be installed. On Debian Linux,
+<!-- begin verbatim block  sys-->
+<pre>
+sudo apt-get install python-pygments
+</pre>
+<! -- end verbatim block -->
+Alternatively, the package can be installed manually:
 <!-- begin verbatim block  sys-->
 <pre>
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -16789,7 +16506,11 @@ sudo python setup.py install
 
 <p>
 If you use the minted style together with <tt>ptex2tex</tt>, you have to
-enable it by the <tt>-DMINTED</tt> command-line argument to <tt>ptex2tex</tt>.  All
+enable it by the <tt>-DMINTED</tt> command-line argument to <tt>ptex2tex</tt>.
+This is not necessary if you run the alternative <tt>doconce ptex2tex</tt> program.
+
+<p>
+All
 use of the minted style requires the <tt>-shell-escape</tt> command-line
 argument when running LaTeX, i.e., <tt>latex -shell-escape</tt> or <tt>pdflatex
 -shell-escape</tt>.
@@ -16890,10 +16611,25 @@ Mercurial (<tt>hg</tt>) directories, go to the directory, run
 
 ************** File: tutorial.p.tex *****************
 %%
-%% Automatically generated ptex2tex (extended LaTeX) file
-%% from Doconce source
-%% http://code.google.com/p/doconce/
+%% This file is automatically generated from doconce source
 %%
+%% doconce: http://code.google.com/p/doconce/
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% Many preprocess options can be added:
+%%
+%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+% #endif
 
 % #ifndef LATEX_HEADING
 % #define LATEX_HEADING
@@ -16911,10 +16647,20 @@ Mercurial (<tt>hg</tt>) directories, go to the directory, run
 % #ifdef PREAMBLE
 %-------------------------- begin preamble --------------------------
 % #ifdef BOOK
-\documentclass[twoside]{book}
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+chapterprefix=true,      % "Chapter" word at beginning of each chapter
+open=right               % start new chapters on odd-numbered pages
+10pt]{book}
 % #else
-\documentclass[twoside]{article}
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
 % #endif
+
+\listfiles               % print all files needed to compile this document
 
 % #ifdef A4PAPER
 \usepackage[a4paper]{geometry}
@@ -16966,6 +16712,8 @@ Mercurial (<tt>hg</tt>) directories, go to the directory, run
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -18154,7 +17902,7 @@ that \code{ptex2tex} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 \bsys
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 \esys
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -18167,7 +17915,11 @@ program.
 The \emph{minted} {\LaTeX} style is offered by \code{ptex2tex} and \code{doconce ptext2tex}
 is popular among many
 users. This style requires the package \href{{http://pygments.org}}{Pygments}
-to be installed:
+to be installed. On Debian Linux,
+\bsys
+sudo apt-get install python-pygments
+\esys
+Alternatively, the package can be installed manually:
 \bsys
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
@@ -18175,7 +17927,10 @@ sudo python setup.py install
 \esys
 
 If you use the minted style together with \code{ptex2tex}, you have to
-enable it by the \code{-DMINTED} command-line argument to \code{ptex2tex}.  All
+enable it by the \code{-DMINTED} command-line argument to \code{ptex2tex}.
+This is not necessary if you run the alternative \code{doconce ptex2tex} program.
+
+All
 use of the minted style requires the \code{-shell-escape} command-line
 argument when running {\LaTeX}, i.e., \code{latex -shell-escape} or \code{pdflatex
 -shell-escape}.
@@ -19367,7 +19122,7 @@ that ``ptex2tex`` potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by::
 
 
-        sudo apt-get install texlive-latex-extra
+        sudo apt-get install texlive-latex-recommended texlive-latex-extra
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -19380,7 +19135,12 @@ program.
 The *minted* LaTeX style is offered by ``ptex2tex`` and ``doconce ptext2tex``
 is popular among many
 users. This style requires the package `Pygments <http://pygments.org>`_
-to be installed::
+to be installed. On Debian Linux::
+
+
+        sudo apt-get install python-pygments
+
+Alternatively, the package can be installed manually::
 
 
         hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -19389,7 +19149,10 @@ to be installed::
 
 
 If you use the minted style together with ``ptex2tex``, you have to
-enable it by the ``-DMINTED`` command-line argument to ``ptex2tex``.  All
+enable it by the ``-DMINTED`` command-line argument to ``ptex2tex``.
+This is not necessary if you run the alternative ``doconce ptex2tex`` program.
+
+All
 use of the minted style requires the ``-shell-escape`` command-line
 argument when running LaTeX, i.e., ``latex -shell-escape`` or ``pdflatex
 -shell-escape``.
@@ -20650,7 +20413,7 @@ are also needed. These are installed by
 
 .. code-block:: console
 
-        sudo apt-get install texlive-latex-extra
+        sudo apt-get install texlive-latex-recommended texlive-latex-extra
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -20663,7 +20426,13 @@ program.
 The *minted* LaTeX style is offered by ``ptex2tex`` and ``doconce ptext2tex``
 is popular among many
 users. This style requires the package `Pygments <http://pygments.org>`_
-to be installed:
+to be installed. On Debian Linux,
+
+.. code-block:: console
+
+        sudo apt-get install python-pygments
+
+Alternatively, the package can be installed manually:
 
 .. code-block:: console
 
@@ -20673,7 +20442,10 @@ to be installed:
 
 
 If you use the minted style together with ``ptex2tex``, you have to
-enable it by the ``-DMINTED`` command-line argument to ``ptex2tex``.  All
+enable it by the ``-DMINTED`` command-line argument to ``ptex2tex``.
+This is not necessary if you run the alternative ``doconce ptex2tex`` program.
+
+All
 use of the minted style requires the ``-shell-escape`` command-line
 argument when running LaTeX, i.e., ``latex -shell-escape`` or ``pdflatex
 -shell-escape``.
@@ -21684,7 +21456,7 @@ that `ptex2tex` potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 {{{
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 }}}
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -21697,7 +21469,11 @@ program.
 The *minted* LaTeX style is offered by `ptex2tex` and `doconce ptext2tex`
 is popular among many
 users. This style requires the package [http://pygments.org Pygments]
-to be installed:
+to be installed. On Debian Linux,
+{{{
+sudo apt-get install python-pygments
+}}}
+Alternatively, the package can be installed manually:
 {{{
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
@@ -21705,7 +21481,10 @@ sudo python setup.py install
 }}}
 
 If you use the minted style together with `ptex2tex`, you have to
-enable it by the `-DMINTED` command-line argument to `ptex2tex`.  All
+enable it by the `-DMINTED` command-line argument to `ptex2tex`.
+This is not necessary if you run the alternative `doconce ptex2tex` program.
+
+All
 use of the minted style requires the `-shell-escape` command-line
 argument when running LaTeX, i.e., `latex -shell-escape` or `pdflatex
 -shell-escape`.
@@ -22674,7 +22453,7 @@ that <code>ptex2tex</code> potentially makes use of. Some more standard stylefil
 are also needed. These are installed by
 
 <syntaxhighlight lang="bash">
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 </code>
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -22687,7 +22466,11 @@ program.
 The ''minted'' LaTeX style is offered by <code>ptex2tex</code> and <code>doconce ptext2tex</code>
 is popular among many
 users. This style requires the package [http://pygments.org Pygments]
-to be installed:
+to be installed. On Debian Linux,
+<syntaxhighlight lang="bash">
+sudo apt-get install python-pygments
+</code>
+Alternatively, the package can be installed manually:
 <syntaxhighlight lang="bash">
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
@@ -22695,7 +22478,10 @@ sudo python setup.py install
 </code>
 
 If you use the minted style together with <code>ptex2tex</code>, you have to
-enable it by the <code>-DMINTED</code> command-line argument to <code>ptex2tex</code>.  All
+enable it by the <code>-DMINTED</code> command-line argument to <code>ptex2tex</code>.
+This is not necessary if you run the alternative <code>doconce ptex2tex</code> program.
+
+All
 use of the minted style requires the <code>-shell-escape</code> command-line
 argument when running LaTeX, i.e., <code>latex -shell-escape</code> or <code>pdflatex
 -shell-escape</code>.
@@ -23708,7 +23494,7 @@ that {{{ptex2tex}}} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 {{{
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 }}}
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -23721,7 +23507,11 @@ program.
 The //minted// LaTeX style is offered by {{{ptex2tex}}} and {{{doconce ptext2tex}}}
 is popular among many
 users. This style requires the package [[http://pygments.org|Pygments]]
-to be installed:
+to be installed. On Debian Linux,
+{{{
+sudo apt-get install python-pygments
+}}}
+Alternatively, the package can be installed manually:
 {{{
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
@@ -23729,7 +23519,10 @@ sudo python setup.py install
 }}}
 
 If you use the minted style together with {{{ptex2tex}}}, you have to
-enable it by the {{{-DMINTED}}} command-line argument to {{{ptex2tex}}}.  All
+enable it by the {{{-DMINTED}}} command-line argument to {{{ptex2tex}}}.
+This is not necessary if you run the alternative {{{doconce ptex2tex}}} program.
+
+All
 use of the minted style requires the {{{-shell-escape}}} command-line
 argument when running LaTeX, i.e., {{{latex -shell-escape}}} or {{{pdflatex
 -shell-escape}}}.
@@ -24815,7 +24608,7 @@ that 'ptex2tex' potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by::
 
 
-        sudo apt-get install texlive-latex-extra
+        sudo apt-get install texlive-latex-recommended texlive-latex-extra
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -24828,7 +24621,12 @@ program.
 The *minted* LaTeX style is offered by 'ptex2tex' and 'doconce ptext2tex'
 is popular among many
 users. This style requires the package "http://pygments.org":Pygments
-to be installed::
+to be installed. On Debian Linux::
+
+
+        sudo apt-get install python-pygments
+
+Alternatively, the package can be installed manually::
 
 
         hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -24837,7 +24635,10 @@ to be installed::
 
 
 If you use the minted style together with 'ptex2tex', you have to
-enable it by the '-DMINTED' command-line argument to 'ptex2tex'.  All
+enable it by the '-DMINTED' command-line argument to 'ptex2tex'.
+This is not necessary if you run the alternative 'doconce ptex2tex' program.
+
+All
 use of the minted style requires the '-shell-escape' command-line
 argument when running LaTeX, i.e., 'latex -shell-escape' or 'pdflatex
 -shell-escape'.
@@ -25962,7 +25763,7 @@ that C{ptex2tex} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by::
 
 
-        sudo apt-get install texlive-latex-extra
+        sudo apt-get install texlive-latex-recommended texlive-latex-extra
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -25975,7 +25776,12 @@ program.
 The I{minted} LaTeX style is offered by C{ptex2tex} and C{doconce ptext2tex}
 is popular among many
 users. This style requires the package U{Pygments<http://pygments.org>}
-to be installed::
+to be installed. On Debian Linux::
+
+
+        sudo apt-get install python-pygments
+
+Alternatively, the package can be installed manually::
 
 
         hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -25984,7 +25790,10 @@ to be installed::
 
 
 If you use the minted style together with C{ptex2tex}, you have to
-enable it by the C{-DMINTED} command-line argument to C{ptex2tex}.  All
+enable it by the C{-DMINTED} command-line argument to C{ptex2tex}.
+This is not necessary if you run the alternative C{doconce ptex2tex} program.
+
+All
 use of the minted style requires the C{-shell-escape} command-line
 argument when running LaTeX, i.e., C{latex -shell-escape} or C{pdflatex
 -shell-escape}.
@@ -27156,7 +26965,7 @@ that ptex2tex potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by::
 
 
-        sudo apt-get install texlive-latex-extra
+        sudo apt-get install texlive-latex-recommended texlive-latex-extra
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -27169,7 +26978,12 @@ program.
 The *minted* LaTeX style is offered by ptex2tex and doconce ptext2tex
 is popular among many
 users. This style requires the package Pygments (http://pygments.org)
-to be installed::
+to be installed. On Debian Linux::
+
+
+        sudo apt-get install python-pygments
+
+Alternatively, the package can be installed manually::
 
 
         hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -27178,7 +26992,10 @@ to be installed::
 
 
 If you use the minted style together with ptex2tex, you have to
-enable it by the -DMINTED command-line argument to ptex2tex.  All
+enable it by the -DMINTED command-line argument to ptex2tex.
+This is not necessary if you run the alternative doconce ptex2tex program.
+
+All
 use of the minted style requires the -shell-escape command-line
 argument when running LaTeX, i.e., latex -shell-escape or pdflatex
 -shell-escape.
@@ -28394,7 +28211,7 @@ are also needed. These are installed by
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
@@ -28408,7 +28225,13 @@ program.
 The *minted* LaTeX style is offered by `ptex2tex` and `doconce ptext2tex`
 is popular among many
 users. This style requires the package [Pygments](http://pygments.org)
-to be installed:
+to be installed. On Debian Linux,
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
+sudo apt-get install python-pygments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Alternatively, the package can be installed manually:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -28417,7 +28240,10 @@ sudo python setup.py install
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you use the minted style together with `ptex2tex`, you have to
-enable it by the `-DMINTED` command-line argument to `ptex2tex`.  All
+enable it by the `-DMINTED` command-line argument to `ptex2tex`.
+This is not necessary if you run the alternative `doconce ptex2tex` program.
+
+All
 use of the minted style requires the `-shell-escape` command-line
 argument when running LaTeX, i.e., `latex -shell-escape` or `pdflatex
 -shell-escape`.
@@ -29339,7 +29165,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Thu, 20 Dec 2012 (21:40)</center>
+<center>Tue, 25 Dec 2012 (15:52)</center>
 
 
 
@@ -29470,7 +29296,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Thu, 20 Dec 2012 (21:40)</center>
+<center>Tue, 25 Dec 2012 (15:52)</center>
 
 
 
@@ -31253,6 +31079,10 @@ in the line above it.
 
 Make sure there is a space before the first back-tick.
 
+=== Inline verbatim text is not formatted correctly ===
+
+Make sure there is whitespace surrounding the text in back-ticks.
+
 === Strange non-English characters ===
 
 Check the encoding of the `.do.txt` file with the Unix `file` command
@@ -31274,10 +31104,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run `doconce change_encoding` to change the encoding of the Doconce file.
-
-=== Inline verbatim text is not formatted correctly ===
-
-Make sure there is whitespace surrounding the text in back-ticks.
 
 === Too short underlining of reST headlines ===
 
@@ -32084,7 +31910,7 @@ are also needed. These are installed by
 <p>
 <!-- begin verbatim block  sys-->
 <pre>
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 </pre>
 <! -- end verbatim block -->
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
@@ -32100,7 +31926,13 @@ program.
 The <em>minted</em> LaTeX style is offered by <tt>ptex2tex</tt> and <tt>doconce ptext2tex</tt>
 is popular among many
 users. This style requires the package <a href="http://pygments.org">Pygments</a>
-to be installed:
+to be installed. On Debian Linux,
+<!-- begin verbatim block  sys-->
+<pre>
+sudo apt-get install python-pygments
+</pre>
+<! -- end verbatim block -->
+Alternatively, the package can be installed manually:
 <!-- begin verbatim block  sys-->
 <pre>
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -32111,7 +31943,11 @@ sudo python setup.py install
 
 <p>
 If you use the minted style together with <tt>ptex2tex</tt>, you have to
-enable it by the <tt>-DMINTED</tt> command-line argument to <tt>ptex2tex</tt>.  All
+enable it by the <tt>-DMINTED</tt> command-line argument to <tt>ptex2tex</tt>.
+This is not necessary if you run the alternative <tt>doconce ptex2tex</tt> program.
+
+<p>
+All
 use of the minted style requires the <tt>-shell-escape</tt> command-line
 argument when running LaTeX, i.e., <tt>latex -shell-escape</tt> or <tt>pdflatex
 -shell-escape</tt>.
@@ -34750,7 +34586,13 @@ Make sure there is a space before the first back-tick.
 
 <p>
 
-<h4>Strange non-English characters  <a name="___sec53"></a></h4>
+<h4>Inline verbatim text is not formatted correctly  <a name="___sec53"></a></h4>
+<p>
+Make sure there is whitespace surrounding the text in back-ticks.
+
+<p>
+
+<h4>Strange non-English characters  <a name="___sec54"></a></h4>
 <p>
 Check the encoding of the <tt>.do.txt</tt> file with the Unix <tt>file</tt> command
 or with
@@ -34771,18 +34613,12 @@ Terminal&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 
 <p>
 
-<h4>Wrong Norwegian charcters  <a name="___sec54"></a></h4>
+<h4>Wrong Norwegian charcters  <a name="___sec55"></a></h4>
 <p>
 When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run <tt>doconce change_encoding</tt> to change the encoding of the Doconce file.
-
-<p>
-
-<h4>Inline verbatim text is not formatted correctly  <a name="___sec55"></a></h4>
-<p>
-Make sure there is whitespace surrounding the text in back-ticks.
 
 <p>
 
@@ -35383,10 +35219,25 @@ and Sphinx just typeset the list as a list with keywords.
 
 ************** File: manual.p.tex *****************
 %%
-%% Automatically generated ptex2tex (extended LaTeX) file
-%% from Doconce source
-%% http://code.google.com/p/doconce/
+%% This file is automatically generated from doconce source
 %%
+%% doconce: http://code.google.com/p/doconce/
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% Many preprocess options can be added:
+%%
+%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+% #endif
 
 % #ifndef LATEX_HEADING
 % #define LATEX_HEADING
@@ -35404,10 +35255,20 @@ and Sphinx just typeset the list as a list with keywords.
 % #ifdef PREAMBLE
 %-------------------------- begin preamble --------------------------
 % #ifdef BOOK
-\documentclass[twoside]{book}
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+chapterprefix=true,      % "Chapter" word at beginning of each chapter
+open=right               % start new chapters on odd-numbered pages
+10pt]{book}
 % #else
-\documentclass[twoside]{article}
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
 % #endif
+
+\listfiles               % print all files needed to compile this document
 
 % #ifdef A4PAPER
 \usepackage[a4paper]{geometry}
@@ -35463,6 +35324,8 @@ and Sphinx just typeset the list as a list with keywords.
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -35776,7 +35639,7 @@ that \code{ptex2tex} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 \bsys
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 \esys
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -35789,7 +35652,11 @@ program.
 The \emph{minted} {\LaTeX} style is offered by \code{ptex2tex} and \code{doconce ptext2tex}
 is popular among many
 users. This style requires the package \href{{http://pygments.org}}{Pygments}
-to be installed:
+to be installed. On Debian Linux,
+\bsys
+sudo apt-get install python-pygments
+\esys
+Alternatively, the package can be installed manually:
 \bsys
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
@@ -35797,7 +35664,10 @@ sudo python setup.py install
 \esys
 
 If you use the minted style together with \code{ptex2tex}, you have to
-enable it by the \code{-DMINTED} command-line argument to \code{ptex2tex}.  All
+enable it by the \code{-DMINTED} command-line argument to \code{ptex2tex}.
+This is not necessary if you run the alternative \code{doconce ptex2tex} program.
+
+All
 use of the minted style requires the \code{-shell-escape} command-line
 argument when running {\LaTeX}, i.e., \code{latex -shell-escape} or \code{pdflatex
 -shell-escape}.
@@ -38048,6 +37918,9 @@ in the line above it.
 \paragraph{Inline verbatim code is not detected.}
 Make sure there is a space before the first back-tick.
 
+\paragraph{Inline verbatim text is not formatted correctly.}
+Make sure there is whitespace surrounding the text in back-ticks.
+
 \paragraph{Strange non-English characters.}
 Check the encoding of the \code{.do.txt} file with the Unix \code{file} command
 or with
@@ -38067,9 +37940,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run \code{doconce change_encoding} to change the encoding of the Doconce file.
-
-\paragraph{Inline verbatim text is not formatted correctly.}
-Make sure there is whitespace surrounding the text in back-ticks.
 
 \paragraph{Too short underlining of reST headlines.}
 This may happen if there is a paragraph heading without
@@ -38726,7 +38596,7 @@ that ``ptex2tex`` potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by::
 
 
-        sudo apt-get install texlive-latex-extra
+        sudo apt-get install texlive-latex-recommended texlive-latex-extra
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -38739,7 +38609,12 @@ program.
 The *minted* LaTeX style is offered by ``ptex2tex`` and ``doconce ptext2tex``
 is popular among many
 users. This style requires the package `Pygments <http://pygments.org>`_
-to be installed::
+to be installed. On Debian Linux::
+
+
+        sudo apt-get install python-pygments
+
+Alternatively, the package can be installed manually::
 
 
         hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -38748,7 +38623,10 @@ to be installed::
 
 
 If you use the minted style together with ``ptex2tex``, you have to
-enable it by the ``-DMINTED`` command-line argument to ``ptex2tex``.  All
+enable it by the ``-DMINTED`` command-line argument to ``ptex2tex``.
+This is not necessary if you run the alternative ``doconce ptex2tex`` program.
+
+All
 use of the minted style requires the ``-shell-escape`` command-line
 argument when running LaTeX, i.e., ``latex -shell-escape`` or ``pdflatex
 -shell-escape``.
@@ -41126,6 +41004,11 @@ Inline verbatim code is not detected
 
 Make sure there is a space before the first back-tick.
 
+Inline verbatim text is not formatted correctly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure there is whitespace surrounding the text in back-ticks.
+
 Strange non-English characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -41151,11 +41034,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run ``doconce change_encoding`` to change the encoding of the Doconce file.
-
-Inline verbatim text is not formatted correctly
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Make sure there is whitespace surrounding the text in back-ticks.
 
 Too short underlining of reST headlines
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -41902,7 +41780,7 @@ are also needed. These are installed by
 
 .. code-block:: console
 
-        sudo apt-get install texlive-latex-extra
+        sudo apt-get install texlive-latex-recommended texlive-latex-extra
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -41915,7 +41793,13 @@ program.
 The *minted* LaTeX style is offered by ``ptex2tex`` and ``doconce ptext2tex``
 is popular among many
 users. This style requires the package `Pygments <http://pygments.org>`_
-to be installed:
+to be installed. On Debian Linux,
+
+.. code-block:: console
+
+        sudo apt-get install python-pygments
+
+Alternatively, the package can be installed manually:
 
 .. code-block:: console
 
@@ -41925,7 +41809,10 @@ to be installed:
 
 
 If you use the minted style together with ``ptex2tex``, you have to
-enable it by the ``-DMINTED`` command-line argument to ``ptex2tex``.  All
+enable it by the ``-DMINTED`` command-line argument to ``ptex2tex``.
+This is not necessary if you run the alternative ``doconce ptex2tex`` program.
+
+All
 use of the minted style requires the ``-shell-escape`` command-line
 argument when running LaTeX, i.e., ``latex -shell-escape`` or ``pdflatex
 -shell-escape``.
@@ -44530,6 +44417,11 @@ Inline verbatim code is not detected
 
 Make sure there is a space before the first back-tick.
 
+Inline verbatim text is not formatted correctly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure there is whitespace surrounding the text in back-ticks.
+
 Strange non-English characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -44559,11 +44451,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run ``doconce change_encoding`` to change the encoding of the Doconce file.
-
-Inline verbatim text is not formatted correctly
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Make sure there is whitespace surrounding the text in back-ticks.
 
 Too short underlining of reST headlines
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -45259,7 +45146,7 @@ that `ptex2tex` potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 {{{
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 }}}
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -45272,7 +45159,11 @@ program.
 The *minted* LaTeX style is offered by `ptex2tex` and `doconce ptext2tex`
 is popular among many
 users. This style requires the package [http://pygments.org Pygments]
-to be installed:
+to be installed. On Debian Linux,
+{{{
+sudo apt-get install python-pygments
+}}}
+Alternatively, the package can be installed manually:
 {{{
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
@@ -45280,7 +45171,10 @@ sudo python setup.py install
 }}}
 
 If you use the minted style together with `ptex2tex`, you have to
-enable it by the `-DMINTED` command-line argument to `ptex2tex`.  All
+enable it by the `-DMINTED` command-line argument to `ptex2tex`.
+This is not necessary if you run the alternative `doconce ptex2tex` program.
+
+All
 use of the minted style requires the `-shell-escape` command-line
 argument when running LaTeX, i.e., `latex -shell-escape` or `pdflatex
 -shell-escape`.
@@ -47403,6 +47297,10 @@ in the line above it.
 
 Make sure there is a space before the first back-tick.
 
+==== Inline verbatim text is not formatted correctly ====
+
+Make sure there is whitespace surrounding the text in back-ticks.
+
 ==== Strange non-English characters ====
 
 Check the encoding of the `.do.txt` file with the Unix `file` command
@@ -47424,10 +47322,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run `doconce change_encoding` to change the encoding of the Doconce file.
-
-==== Inline verbatim text is not formatted correctly ====
-
-Make sure there is whitespace surrounding the text in back-ticks.
 
 ==== Too short underlining of reST headlines ====
 
@@ -48024,7 +47918,7 @@ that <code>ptex2tex</code> potentially makes use of. Some more standard stylefil
 are also needed. These are installed by
 
 <syntaxhighlight lang="bash">
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 </code>
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -48037,7 +47931,11 @@ program.
 The ''minted'' LaTeX style is offered by <code>ptex2tex</code> and <code>doconce ptext2tex</code>
 is popular among many
 users. This style requires the package [http://pygments.org Pygments]
-to be installed:
+to be installed. On Debian Linux,
+<syntaxhighlight lang="bash">
+sudo apt-get install python-pygments
+</code>
+Alternatively, the package can be installed manually:
 <syntaxhighlight lang="bash">
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
@@ -48045,7 +47943,10 @@ sudo python setup.py install
 </code>
 
 If you use the minted style together with <code>ptex2tex</code>, you have to
-enable it by the <code>-DMINTED</code> command-line argument to <code>ptex2tex</code>.  All
+enable it by the <code>-DMINTED</code> command-line argument to <code>ptex2tex</code>.
+This is not necessary if you run the alternative <code>doconce ptex2tex</code> program.
+
+All
 use of the minted style requires the <code>-shell-escape</code> command-line
 argument when running LaTeX, i.e., <code>latex -shell-escape</code> or <code>pdflatex
 -shell-escape</code>.
@@ -50127,6 +50028,10 @@ in the line above it.
 
 Make sure there is a space before the first back-tick.
 
+==== Inline verbatim text is not formatted correctly ====
+
+Make sure there is whitespace surrounding the text in back-ticks.
+
 ==== Strange non-English characters ====
 
 Check the encoding of the <code>.do.txt</code> file with the Unix <code>file</code> command
@@ -50148,10 +50053,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run <code>doconce change_encoding</code> to change the encoding of the Doconce file.
-
-==== Inline verbatim text is not formatted correctly ====
-
-Make sure there is whitespace surrounding the text in back-ticks.
 
 ==== Too short underlining of reST headlines ====
 
@@ -50755,7 +50656,7 @@ that {{{ptex2tex}}} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 {{{
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 }}}
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -50768,7 +50669,11 @@ program.
 The //minted// LaTeX style is offered by {{{ptex2tex}}} and {{{doconce ptext2tex}}}
 is popular among many
 users. This style requires the package [[http://pygments.org|Pygments]]
-to be installed:
+to be installed. On Debian Linux,
+{{{
+sudo apt-get install python-pygments
+}}}
+Alternatively, the package can be installed manually:
 {{{
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
@@ -50776,7 +50681,10 @@ sudo python setup.py install
 }}}
 
 If you use the minted style together with {{{ptex2tex}}}, you have to
-enable it by the {{{-DMINTED}}} command-line argument to {{{ptex2tex}}}.  All
+enable it by the {{{-DMINTED}}} command-line argument to {{{ptex2tex}}}.
+This is not necessary if you run the alternative {{{doconce ptex2tex}}} program.
+
+All
 use of the minted style requires the {{{-shell-escape}}} command-line
 argument when running LaTeX, i.e., {{{latex -shell-escape}}} or {{{pdflatex
 -shell-escape}}}.
@@ -52908,6 +52816,10 @@ in the line above it.
 
 Make sure there is a space before the first back-tick.
 
+=== Inline verbatim text is not formatted correctly ===
+
+Make sure there is whitespace surrounding the text in back-ticks.
+
 === Strange non-English characters ===
 
 Check the encoding of the {{{.do.txt}}} file with the Unix {{{file}}} command
@@ -52929,10 +52841,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run {{{doconce change_encoding}}} to change the encoding of the Doconce file.
-
-=== Inline verbatim text is not formatted correctly ===
-
-Make sure there is whitespace surrounding the text in back-ticks.
 
 === Too short underlining of reST headlines ===
 
@@ -53570,7 +53478,7 @@ that 'ptex2tex' potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by::
 
 
-        sudo apt-get install texlive-latex-extra
+        sudo apt-get install texlive-latex-recommended texlive-latex-extra
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -53583,7 +53491,12 @@ program.
 The *minted* LaTeX style is offered by 'ptex2tex' and 'doconce ptext2tex'
 is popular among many
 users. This style requires the package "http://pygments.org":Pygments
-to be installed::
+to be installed. On Debian Linux::
+
+
+        sudo apt-get install python-pygments
+
+Alternatively, the package can be installed manually::
 
 
         hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -53592,7 +53505,10 @@ to be installed::
 
 
 If you use the minted style together with 'ptex2tex', you have to
-enable it by the '-DMINTED' command-line argument to 'ptex2tex'.  All
+enable it by the '-DMINTED' command-line argument to 'ptex2tex'.
+This is not necessary if you run the alternative 'doconce ptex2tex' program.
+
+All
 use of the minted style requires the '-shell-escape' command-line
 argument when running LaTeX, i.e., 'latex -shell-escape' or 'pdflatex
 -shell-escape'.
@@ -55744,6 +55660,10 @@ Inline verbatim code is not detected
 
 Make sure there is a space before the first back-tick.
 
+Inline verbatim text is not formatted correctly
+
+Make sure there is whitespace surrounding the text in back-ticks.
+
 Strange non-English characters
 
 Check the encoding of the '.do.txt' file with the Unix 'file' command
@@ -55767,10 +55687,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run 'doconce change_encoding' to change the encoding of the Doconce file.
-
-Inline verbatim text is not formatted correctly
-
-Make sure there is whitespace surrounding the text in back-ticks.
 
 Too short underlining of reST headlines
 
@@ -56423,7 +56339,7 @@ that C{ptex2tex} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by::
 
 
-        sudo apt-get install texlive-latex-extra
+        sudo apt-get install texlive-latex-recommended texlive-latex-extra
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -56436,7 +56352,12 @@ program.
 The I{minted} LaTeX style is offered by C{ptex2tex} and C{doconce ptext2tex}
 is popular among many
 users. This style requires the package U{Pygments<http://pygments.org>}
-to be installed::
+to be installed. On Debian Linux::
+
+
+        sudo apt-get install python-pygments
+
+Alternatively, the package can be installed manually::
 
 
         hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -56445,7 +56366,10 @@ to be installed::
 
 
 If you use the minted style together with C{ptex2tex}, you have to
-enable it by the C{-DMINTED} command-line argument to C{ptex2tex}.  All
+enable it by the C{-DMINTED} command-line argument to C{ptex2tex}.
+This is not necessary if you run the alternative C{doconce ptex2tex} program.
+
+All
 use of the minted style requires the C{-shell-escape} command-line
 argument when running LaTeX, i.e., C{latex -shell-escape} or C{pdflatex
 -shell-escape}.
@@ -58679,6 +58603,11 @@ Inline verbatim code is not detected
 
 Make sure there is a space before the first back-tick.
 
+Inline verbatim text is not formatted correctly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure there is whitespace surrounding the text in back-ticks.
+
 Strange non-English characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -58704,11 +58633,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run C{doconce change_encoding} to change the encoding of the Doconce file.
-
-Inline verbatim text is not formatted correctly
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Make sure there is whitespace surrounding the text in back-ticks.
 
 Too short underlining of reST headlines
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59401,7 +59325,7 @@ that ptex2tex potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by::
 
 
-        sudo apt-get install texlive-latex-extra
+        sudo apt-get install texlive-latex-recommended texlive-latex-extra
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -59414,7 +59338,12 @@ program.
 The *minted* LaTeX style is offered by ptex2tex and doconce ptext2tex
 is popular among many
 users. This style requires the package Pygments (http://pygments.org)
-to be installed::
+to be installed. On Debian Linux::
+
+
+        sudo apt-get install python-pygments
+
+Alternatively, the package can be installed manually::
 
 
         hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -59423,7 +59352,10 @@ to be installed::
 
 
 If you use the minted style together with ptex2tex, you have to
-enable it by the -DMINTED command-line argument to ptex2tex.  All
+enable it by the -DMINTED command-line argument to ptex2tex.
+This is not necessary if you run the alternative doconce ptex2tex program.
+
+All
 use of the minted style requires the -shell-escape command-line
 argument when running LaTeX, i.e., latex -shell-escape or pdflatex
 -shell-escape.
@@ -61685,6 +61617,11 @@ Inline verbatim code is not detected
 
 Make sure there is a space before the first back-tick.
 
+Inline verbatim text is not formatted correctly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure there is whitespace surrounding the text in back-ticks.
+
 Strange non-English characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -61710,11 +61647,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run doconce change_encoding to change the encoding of the Doconce file.
-
-Inline verbatim text is not formatted correctly
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Make sure there is whitespace surrounding the text in back-ticks.
 
 Too short underlining of reST headlines
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -62437,7 +62369,7 @@ are also needed. These are installed by
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
@@ -62451,7 +62383,13 @@ program.
 The *minted* LaTeX style is offered by `ptex2tex` and `doconce ptext2tex`
 is popular among many
 users. This style requires the package [Pygments](http://pygments.org)
-to be installed:
+to be installed. On Debian Linux,
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
+sudo apt-get install python-pygments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Alternatively, the package can be installed manually:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
@@ -62460,7 +62398,10 @@ sudo python setup.py install
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you use the minted style together with `ptex2tex`, you have to
-enable it by the `-DMINTED` command-line argument to `ptex2tex`.  All
+enable it by the `-DMINTED` command-line argument to `ptex2tex`.
+This is not necessary if you run the alternative `doconce ptex2tex` program.
+
+All
 use of the minted style requires the `-shell-escape` command-line
 argument when running LaTeX, i.e., `latex -shell-escape` or `pdflatex
 -shell-escape`.
@@ -64866,6 +64807,11 @@ Inline verbatim code is not detected
 
 Make sure there is a space before the first back-tick.
 
+Inline verbatim text is not formatted correctly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure there is whitespace surrounding the text in back-ticks.
+
 Strange non-English characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -64892,11 +64838,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run `doconce change_encoding` to change the encoding of the Doconce file.
-
-Inline verbatim text is not formatted correctly
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Make sure there is whitespace surrounding the text in back-ticks.
 
 Too short underlining of reST headlines
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -65518,7 +65459,7 @@ that `ptex2tex` potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 !bc sys
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 !ec
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -65531,7 +65472,11 @@ program.
 The *minted* LaTeX style is offered by `ptex2tex` and `doconce ptext2tex`
 is popular among many
 users. This style requires the package "Pygments": "http://pygments.org"
-to be installed:
+to be installed. On Debian Linux,
+!bc sys
+sudo apt-get install python-pygments
+!ec
+Alternatively, the package can be installed manually:
 !bc sys
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
@@ -65539,7 +65484,10 @@ sudo python setup.py install
 !ec
 
 If you use the minted style together with `ptex2tex`, you have to
-enable it by the `-DMINTED` command-line argument to `ptex2tex`.  All
+enable it by the `-DMINTED` command-line argument to `ptex2tex`.
+This is not necessary if you run the alternative `doconce ptex2tex` program.
+
+All
 use of the minted style requires the `-shell-escape` command-line
 argument when running LaTeX, i.e., `latex -shell-escape` or `pdflatex
 -shell-escape`.
@@ -67374,10 +67322,25 @@ examine the Doconce source and the <tt>doc/src/make.sh</tt> script).
 
 ************** File: quickref.p.tex *****************
 %%
-%% Automatically generated ptex2tex (extended LaTeX) file
-%% from Doconce source
-%% http://code.google.com/p/doconce/
+%% This file is automatically generated from doconce source
 %%
+%% doconce: http://code.google.com/p/doconce/
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% Many preprocess options can be added:
+%%
+%%      ptex2tex -DBOOK -DMINTED -DPALATINO -DA6PAPER -DLATEX_HEADING=traditional myfile
+%%      doconce ptex2tex myfile -DMINTED -DLATEX_HEADING=Springer-collection
+% #endif
 
 % #ifndef LATEX_HEADING
 % #define LATEX_HEADING
@@ -67395,10 +67358,20 @@ examine the Doconce source and the <tt>doc/src/make.sh</tt> script).
 % #ifdef PREAMBLE
 %-------------------------- begin preamble --------------------------
 % #ifdef BOOK
-\documentclass[twoside]{book}
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+chapterprefix=true,      % "Chapter" word at beginning of each chapter
+open=right               % start new chapters on odd-numbered pages
+10pt]{book}
 % #else
-\documentclass[twoside]{article}
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % or draft (marks overfull hboxes)
+10pt]{article}
 % #endif
+
+\listfiles               % print all files needed to compile this document
 
 % #ifdef A4PAPER
 \usepackage[a4paper]{geometry}
@@ -67450,6 +67423,8 @@ examine the Doconce source and the <tt>doc/src/make.sh</tt> script).
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
             ]{hyperref}
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}
 
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
@@ -75467,13 +75442,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -75525,13 +75500,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -75580,13 +75555,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -75634,48 +75609,61 @@ replacing % end theorem by \end{theorem} in testdoc.p.tex
 running preprocessor on testdoc.p.tex...  defines: 'MINTED', 'LATEX_HEADING', 'MOVIE15'  done
 done testdoc.p.tex -> testdoc.tex
 + pdflatex -shell-escape testdoc
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
 entering extended mode
 (./testdoc.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (/usr/share/texmf-texlive/tex/latex/moreverb/moreverb.sty
+<2008/02/07> (tvz))
+(/usr/share/texlive/texmf-dist/tex/latex/moreverb/moreverb.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
 (/home/hpl/texmf/tex/latex/misc/anslistings.sty
-(/usr/share/texmf-texlive/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 
 
 (/usr/share/texmf/tex/latex/xcolor/xcolor.sty
-(/etc/texmf/tex/latex/config/color.cfg))))
+
 (/home/hpl/texmf/tex/latex/misc/movie15.sty
 
 
@@ -75684,45 +75672,43 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 (/home/hpl/texmf/tex/latex/misc/minted.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./testdoc.w18))/usr/local/bin/pygmentize
+) (./testdoc.pyg)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-/usr/local/bin/pygmentize
-)
-(./testdoc.pyg) (/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package hyperref Message: Driver (autodetected): hpdftex.
 
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
-
-*hyperref using default driver hpdftex*
-
-
-(/usr/share/texmf-texlive/tex/latex/tools/theorem.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/theorem.sty
 
 Writing index file testdoc.idx
 No file testdoc.aux.
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) ABD: EveryShipout initializing macros
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+ABD: EveryShipout initializing macros
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 (./newcommands_replace.tex)
 
- [1{/var/lib/texmf/fonts/m
-ap/pdftex/updmap/pdftex.map}]
+ [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}]
 
 LaTeX Warning: Reference `demo:ex:1' on page 2 
 
@@ -75737,7 +75723,7 @@ LaTeX Warning: Reference `exer:dist' on page 2
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 2 undefined on input line 
-132.
+139.
 
 
 LaTeX Warning: Reference `exer:you' on page 2 
@@ -75752,24 +75738,21 @@ LaTeX Warning: Reference `subsubsec:ex' on page 3
 (./testdoc.out.pyg) (./testdoc.out.pyg [3]) (./testdoc.out.pyg)
 (./testdoc.out.pyg) (./testdoc.out.pyg) (./testdoc.out.pyg)
 Overfull \hbox (43.91478pt too wide) 
-[]\OT1/cmr/m/n/10 It is time to test []\OT1/cmtt/m/n/10 verbatim inline font \O
-T1/cmr/m/n/10 es-pe-cially with []\OT1/cmtt/m/n/10 a newline inside the text
-[4]
+[]\OT1/cmr/m/n/10 It is time to test [] es-pe-cially with []
 
-LaTeX Warning: Reference `fig:impact' on page 5 
+LaTeX Warning: Reference `fig:impact' on page 4 
 
-<../doc/manual/figs/streamtubes.png, id=41, 583.17876pt x 437.635pt>
-<use ../doc/manual/figs/streamtubes.png>
+<../doc/manual/figs/streamtubes.png, id=36, 583.17876pt x 437.635pt>
+<use ../doc/manual/figs/streamtubes.png> [4]
 <use ../doc/manual/figs/streamtubes.png>
 Underfull \vbox (badness 10000) has occurred while \output is active [5 <../doc
 /manual/figs/streamtubes.png>]
 Overfull \hbox (47.04507pt too wide) 
-\OT1/cmr/m/n/10 the full wavepacket.mpeg movie). [](Movie of files []\OT1/cmtt/
-m/n/10 ../doc/manual/figs/wavepacket_*.png
+\OT1/cmr/m/n/10 the full wavepacket.mpeg movie). [](Movie of files []
 
 LaTeX Warning: Reference `myfig' on page 6 
 
-<../doc/manual/figs/wavepacket_0001.png, id=83, 642.4pt x 481.8pt>
+<../doc/manual/figs/wavepacket_0001.png, id=84, 642.4pt x 481.8pt>
 <use ../doc/manual/figs/wavepacket_0001.png>
 
 LaTeX Warning: Reference `mymov' on page 6 
@@ -75801,16 +75784,38 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 [6] [7<<../doc/manual/figs/mjolnir.mpeg>>] [8<<../doc/manual/figs/wavepacket.mp
 eg>>]
 Underfull \vbox (badness 10000) has occurred while \output is active [9 <../doc
-/manual/figs/wavepacket_0001.png (PNG copy)>]
+/manual/figs/wavepacket_0001.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on 
+
+
 Overfull \hbox (78.30609pt too wide) 
 [][][]\OT1/cmtt/m/n/8 http://www.springer.com/mathematics/computational+science
 +%26+engineering/book/978-3-642-23098-1| 
 
 Overfull \hbox (31.36086pt too wide) 
 []\OT1/cmr/m/n/10 More tough tests: re-peated URLs whose foot-notes when us-ing
- the []\OT1/cmtt/m/n/10 --latex-printed
+ the []
+[10]
 
-LaTeX Warning: Reference `my:eq1' on page 10 
+LaTeX Warning: Reference `my:eq1' on page 11 
 
 
 Package amsmath Warning: Foreign command \over;
@@ -75818,9 +75823,8 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                 on 
 
 
-LaTeX Warning: Reference `my:eq1' on page 10 
+LaTeX Warning: Reference `my:eq1' on page 11 
 
-[10]
 
 LaTeX Warning: Reference `eq1' on page 11 
 
@@ -75828,8 +75832,8 @@ LaTeX Warning: Reference `eq1' on page 11
 LaTeX Warning: Reference `eq2' on page 11 
 
 
-LaTeX Warning: Reference `split:envir:eq' on page 11 undefined on input line 63
-4.
+LaTeX Warning: Reference `split:envir:eq' on page 11 undefined on input line 64
+9.
 
 
 LaTeX Warning: Reference `eq1' on page 11 
@@ -75846,24 +75850,25 @@ LaTeX Warning: Reference `eq2a' on page 11
 
 LaTeX Warning: Reference `my:eq1' on page 11 
 
+[11]
 
-LaTeX Warning: Reference `demo:ex:1' on page 11 
-
-
-LaTeX Warning: Reference `demo:ex:2' on page 11 
+LaTeX Warning: Reference `demo:ex:1' on page 12 
 
 
-LaTeX Warning: Reference `proj:circle1' on page 11 
+LaTeX Warning: Reference `demo:ex:2' on page 12 
+
+
+LaTeX Warning: Reference `proj:circle1' on page 12 
 
 
 
-LaTeX Warning: Reference `exer:you' on page 11 
+LaTeX Warning: Reference `exer:you' on page 12 
 
 
-LaTeX Warning: Reference `exer:some:formula' on page 11 undefined on input line
- 660.
+LaTeX Warning: Reference `exer:some:formula' on page 12 undefined on input line
+ 675.
 
-[11] (./testdoc.out.pyg) (./testdoc.out.pyg [12]) [13]
+(./testdoc.out.pyg) [12] (./testdoc.out.pyg) [13]
 
 LaTeX Warning: Reference `proj:circle1' on page 14 
 
@@ -75876,7 +75881,7 @@ LaTeX Warning: Reference `demo:ex:2' on page 14
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 14 undefined on input line
- 929.
+ 944.
 
 
 LaTeX Warning: Reference `demo:ex:2' on page 14 
@@ -75888,25 +75893,138 @@ LaTeX Warning: Reference `proj:circle1' on page 14
 
 LaTeX Warning: Reference `exer:you' on page 14 
 
-[14] <latex_figs/hint.pdf, id=231, 89.33376pt x 89.33376pt>
+[14] <latex_figs/hint.pdf, id=233, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=232, 89.33376pt x 89.33376pt>
+<latex_figs/warning.pdf, id=234, 89.33376pt x 89.33376pt>
 <use latex_figs/warning.pdf>
-<latex_figs/summary.pdf, id=233, 89.33376pt x 89.33376pt>
+<latex_figs/summary.pdf, id=235, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
-<latex_figs/notice.pdf, id=234, 89.33376pt x 89.33376pt>
+<latex_figs/notice.pdf, id=236, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=235, 89.33376pt x 89.33376pt>
+<latex_figs/question.pdf, id=237, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 No file testdoc.ind.
-[15 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/summary.pd
-f> <./latex_figs/notice.pdf> <./latex_figs/question.pdf>]
 
 Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
 (movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
 
-(./testdoc.aux)
+[15 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/summary.pd
+f> <./latex_figs/notice.pdf> <./latex_figs/question.pdf>] (./testdoc.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+ptex2tex.sty    
+fancyvrb.sty    2008/02/07
+moreverb.sty    2008/06/03 v2.3a `more' verbatim facilities
+verbatim.sty    2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+anslistings.sty    2009/03/28 code highlighting; provided by Olivier Verdier <o
+livier@maths.lth.se>
+listings.sty    2007/02/22 1.4 (Carsten Heinz)
+ lstmisc.sty    2007/02/22 1.4 (Carsten Heinz)
+listings.cfg    2007/02/22 1.4 listings configuration
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+ movie15.sty    2009/07/07
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+ ifdraft.sty    2008/08/11 v1.3 Detect class options draft and final (HO)
+everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+ testdoc.w18
+ testdoc.pyg
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+ theorem.sty    1995/11/23 v2.2c Theorem extension package (FMi)
+     thp.sty    1995/11/23 v2.2c Theorem extension package (FMi)
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omscmr.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+ testdoc.out.pyg
+../doc/manual/figs/streamtubes.png
+../doc/manual/figs/streamtubes.png
+../doc/manual/figs/wavepacket_0001.png
+ testdoc.out.pyg
+ testdoc.out.pyg
+latex_figs/hint.pdf
+latex_figs/warning.pdf
+latex_figs/summary.pdf
+latex_figs/notice.pdf
+latex_figs/question.pdf
+ ***********
+
+
+Package rerunfilecheck Warning: File `testdoc.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
 
 LaTeX Warning: There were undefined references.
 
@@ -75914,26 +76032,29 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
-(see the transcript file for additional information)</usr/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
-onts/cm/cmbx8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx
-9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/te
-xmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr
-6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/s
-hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/t
-ype1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-texlive/fonts/type1/public
-/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
-m/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pf
-b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-tex
-live/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/t
-ype1/public/amsfonts/symbols/msam10.pfb>
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmitt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 Output written on testdoc.pdf (15 pages, ).
 Transcript written on testdoc.log.
 + cp testdoc.tex testdoc.tex_ptex2tex
@@ -75957,13 +76078,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -76009,13 +76130,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -76061,13 +76182,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -76141,13 +76262,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -76195,13 +76316,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -76247,13 +76368,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -76311,13 +76432,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -76377,13 +76498,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -76432,13 +76553,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -76504,13 +76625,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -76542,15 +76663,20 @@ figure file ../doc/manual/figs/streamtubes:
     can use ../doc/manual/figs/streamtubes.eps for format latex
 output in testdoc.p.tex
 + doconce ptex2tex testdoc -DBOOK -DLATEX_HEADING=traditional
-\bpypro (!bc pypro) -> \begin{quote}\begin{verbatim}
-\bcpppro (!bc cpppro) -> \begin{quote}\begin{verbatim}
-\bfpro (!bc fpro) -> \begin{quote}\begin{verbatim}
-\bpycod (!bc pycod) -> \begin{quote}\begin{verbatim}
-\bcycod (!bc cycod) -> \begin{quote}\begin{verbatim}
-\bfcod (!bc fcod) -> \begin{quote}\begin{verbatim}
-\bsys (!bc sys) -> \begin{quote}\begin{verbatim}
-\bccq (!bc ccq) -> \begin{quote}\begin{verbatim}
+\bpypro (!bc pypro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bcpppro (!bc cpppro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bfpro (!bc fpro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bpycod (!bc pycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bcycod (!bc cycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bfcod (!bc fcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bsys (!bc sys) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85]
 + pandoc -f latex -t markdown -o testdoc.md testdoc.tex
+pandoc: 
+Error:
+"source" (line 255, column 18):
+unexpected "!"
+expecting letter, new-line, "{" or "\\"
 + pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 + pandoc -v
 + doconce format pandoc testdoc.do.txt
@@ -76570,13 +76696,13 @@ FIX: multi-line caption
 
  A long
 caption spanning
-several lines.
-label{myfig}
+several lines and containing verbatim words like `my_file_v1` and `my_file_v2`
+as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 -- fixed to one line
 
 FIX: FIGURE not at the beginning of the line - 1 fixes
- FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines. label{myfig} 
+ FIGURE: [../doc/manual/figs/wavepacket_0001.png, width=500] A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in $t_{i+1}$. label{myfig} 
 
 
 FIX: MOVIE not at the beginning of the line - 1 fixes
@@ -76800,78 +76926,80 @@ output in tutorial.p.tex
 running preprocessor on tutorial.p.tex...  defines: 'HELVETICA'  done
 done tutorial.p.tex -> tutorial.tex
 + latex tutorial.tex
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
 entering extended mode
 (./tutorial.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (/usr/share/texmf-texlive/tex/latex/moreverb/moreverb.sty
+<2008/02/07> (tvz))
+(/usr/share/texlive/texmf-dist/tex/latex/moreverb/moreverb.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
 
 (/home/hpl/texmf/tex/latex/misc/anslistings.sty
-(/usr/share/texmf-texlive/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 
 
 (/usr/share/texmf/tex/latex/xcolor/xcolor.sty
-(/etc/texmf/tex/latex/config/color.cfg))))
-
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 
 
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
-
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-*hyperref using default driver hdvips*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
+
+
+
+
+Package hyperref Message: Driver (default): hdvips.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 
 Writing index file tutorial.idx
 No file tutorial.aux.
 
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
@@ -76888,7 +77016,7 @@ LaTeX Warning: Reference `my:first:sec' on page 5
 
 
 LaTeX Warning: Reference `doconce2formats' on page 5 undefined on input line 37
-2.
+9.
 
 
 Package amsmath Warning: Foreign command \over;
@@ -76898,64 +77026,55 @@ Package amsmath Warning: Foreign command \over;
 [5]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
-les with names []\OT1/cmtt/m/n/10 newcommands.tex
+les with names []
 
 Overfull \hbox (11.08636pt too wide) 
-\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
-T1/cmtt/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []
 
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
-in the []\OT1/cmtt/m/n/10 newcommands*.tex
+in the []
 [6] [7] [8]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
- doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
+ doc-u-ment): []
 [9]
 
 LaTeX Warning: Reference `newcommands' on page 10 
 
 
 Overfull \hbox (55.19026pt too wide) 
-\OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
-/n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
-/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
-[]\OT1/phv/m/n/10 An op-tion []\OT1/cmtt/m/n/10 --latex-printed \OT1/phv/m/n/10
- makes some ad-just-ments for doc-u-ments aimed
+[]\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
 
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
--able through []\OT1/cmtt/m/n/10 -DLATEX_HEADING=traditional\OT1/phv/m/n/10 .
+-able through [].
 [10] [11]
 Overfull \hbox (11.05632pt too wide) 
-\OT1/phv/m/n/10 through the []\OT1/cmtt/m/n/10 *pro \OT1/phv/m/n/10 and []\OT1/
-cmtt/m/n/10 *cod \OT1/phv/m/n/10 vari-ables in []\OT1/cmtt/m/n/10 .ptex2tex.cfg
- \OT1/phv/m/n/10 or []\OT1/cmtt/m/n/10 $HOME/.ptex2tex.cfg\OT1/phv/m/n/10 ),
+\OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
 Overfull \hbox (0.55649pt too wide) 
-\OT1/phv/m/n/10 When run-ning []\OT1/cmtt/m/n/10 doconce ptex2tex mydoc envir=m
-inted \OT1/phv/m/n/10 (or other minted spec-
+\OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
-\OT1/phv/m/n/10 i-fi-ca-tions with []\OT1/cmtt/m/n/10 doconce ptex2tex\OT1/phv/
-m/n/10 ), the minted pack-age is au-to-mat-i-cally in-cluded
+\OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
+y in-cluded
 [12] [13]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
 [14]
 Overfull \hbox (6.8168pt too wide) 
-[]\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
+[]\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
+ries, []
 
 Overfull \hbox (10.33038pt too wide) 
-[]\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
-t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
+[]\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
 [15] [16]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
@@ -76966,14 +77085,100 @@ Overfull \hbox (21.15628pt too wide)
 [18] [19]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
-run a script, []\OT1/cmtt/m/n/10 cp2texmf.sh\OT1/phv/m/n/10 : 
+run a script, []: 
+
+Overfull \hbox (17.06206pt too wide) 
+\OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
 [20]
 Overfull \hbox (22.94165pt too wide) 
-\OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
-OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
-hv/m/n/10 .
+\OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
+[21]
 No file tutorial.ind.
-[21] [22] (./tutorial.aux)
+[22] (./tutorial.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+   dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+ptex2tex.sty    
+fancyvrb.sty    2008/02/07
+moreverb.sty    2008/06/03 v2.3a `more' verbatim facilities
+verbatim.sty    2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+anslistings.sty    2009/03/28 code highlighting; provided by Olivier Verdier <o
+livier@maths.lth.se>
+listings.sty    2007/02/22 1.4 (Carsten Heinz)
+ lstmisc.sty    2007/02/22 1.4 (Carsten Heinz)
+listings.cfg    2007/02/22 1.4 listings configuration
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+  helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+  hdvips.def    2012/05/13 v6.82q Hyperref driver for dvips
+ pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omsphv.fd    
+ ***********
+
+
+Package rerunfilecheck Warning: File `tutorial.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
 
 LaTeX Warning: There were undefined references.
 
@@ -76985,79 +77190,82 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Output written on tutorial.dvi (22 pages, ).
 Transcript written on tutorial.log.
 + latex tutorial.tex
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
 entering extended mode
 (./tutorial.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
 (/home/hpl/texmf/tex/latex/misc/ptex2tex.sty
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (/usr/share/texmf-texlive/tex/latex/moreverb/moreverb.sty
+<2008/02/07> (tvz))
+(/usr/share/texlive/texmf-dist/tex/latex/moreverb/moreverb.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
 
 (/home/hpl/texmf/tex/latex/misc/anslistings.sty
-(/usr/share/texmf-texlive/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 
 
 (/usr/share/texmf/tex/latex/xcolor/xcolor.sty
-(/etc/texmf/tex/latex/config/color.cfg))))
-
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 
 
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
-
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-*hyperref using default driver hdvips*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
+
+
+
+
+Package hyperref Message: Driver (default): hdvips.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 
 Writing index file tutorial.idx
 (./tutorial.aux) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(./tutorial.out) 
+(./tutorial.out) (./tutorial.out)
+
 
  [1]
 Overfull \hbox (8.67865pt too wide) 
@@ -77072,60 +77280,51 @@ Package amsmath Warning: Foreign command \over;
 [5]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
-les with names []\OT1/cmtt/m/n/10 newcommands.tex
+les with names []
 
 Overfull \hbox (11.08636pt too wide) 
-\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
-T1/cmtt/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []
 
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
-in the []\OT1/cmtt/m/n/10 newcommands*.tex
+in the []
 [6] [7] [8]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
- doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
+ doc-u-ment): []
 [9]
 Overfull \hbox (55.19026pt too wide) 
-\OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
-/n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
-/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
-[]\OT1/phv/m/n/10 An op-tion []\OT1/cmtt/m/n/10 --latex-printed \OT1/phv/m/n/10
- makes some ad-just-ments for doc-u-ments aimed
+[]\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
 
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
--able through []\OT1/cmtt/m/n/10 -DLATEX_HEADING=traditional\OT1/phv/m/n/10 .
+-able through [].
 [10] [11]
 Overfull \hbox (11.05632pt too wide) 
-\OT1/phv/m/n/10 through the []\OT1/cmtt/m/n/10 *pro \OT1/phv/m/n/10 and []\OT1/
-cmtt/m/n/10 *cod \OT1/phv/m/n/10 vari-ables in []\OT1/cmtt/m/n/10 .ptex2tex.cfg
- \OT1/phv/m/n/10 or []\OT1/cmtt/m/n/10 $HOME/.ptex2tex.cfg\OT1/phv/m/n/10 ),
+\OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
 Overfull \hbox (0.55649pt too wide) 
-\OT1/phv/m/n/10 When run-ning []\OT1/cmtt/m/n/10 doconce ptex2tex mydoc envir=m
-inted \OT1/phv/m/n/10 (or other minted spec-
+\OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
-\OT1/phv/m/n/10 i-fi-ca-tions with []\OT1/cmtt/m/n/10 doconce ptex2tex\OT1/phv/
-m/n/10 ), the minted pack-age is au-to-mat-i-cally in-cluded
+\OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
+y in-cluded
 [12] [13]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
 [14]
 Overfull \hbox (6.8168pt too wide) 
-[]\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
+[]\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
+ries, []
 
 Overfull \hbox (10.33038pt too wide) 
-[]\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
-t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
+[]\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
 [15] [16]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
@@ -77136,14 +77335,98 @@ Overfull \hbox (21.15628pt too wide)
 [18] [19]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
-run a script, []\OT1/cmtt/m/n/10 cp2texmf.sh\OT1/phv/m/n/10 : 
+run a script, []: 
+
+Overfull \hbox (17.06206pt too wide) 
+\OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
 [20]
 Overfull \hbox (22.94165pt too wide) 
-\OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
-OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
-hv/m/n/10 .
+\OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
+[21]
 No file tutorial.ind.
-[21] [22] (./tutorial.aux) )
+[22] (./tutorial.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+   dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+ptex2tex.sty    
+fancyvrb.sty    2008/02/07
+moreverb.sty    2008/06/03 v2.3a `more' verbatim facilities
+verbatim.sty    2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
+   color.sty    1999/02/16
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+anslistings.sty    2009/03/28 code highlighting; provided by Olivier Verdier <o
+livier@maths.lth.se>
+listings.sty    2007/02/22 1.4 (Carsten Heinz)
+ lstmisc.sty    2007/02/22 1.4 (Carsten Heinz)
+listings.cfg    2007/02/22 1.4 listings configuration
+  xcolor.sty    2007/01/21 v2.11 LaTeX color extensions (UK)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+  helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+  hdvips.def    2012/05/13 v6.82q Hyperref driver for dvips
+ pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+tutorial.out
+tutorial.out
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omsphv.fd    
+ ***********
+
+ )
 (see the transcript file for additional information)
 Output written on tutorial.dvi (22 pages, ).
 Transcript written on tutorial.log.
@@ -77158,7 +77441,7 @@ output in tutorial.rst
 + rm -rf sphinx-rootdir
 + doconce sphinx_dir tutorial
 Making sphinx-rootdir
-Welcome to the Sphinx 1.1.3 quickstart utility.
+Welcome to the Sphinx 1.2pre quickstart utility.
 
 Please enter values for the following settings (just press Enter to
 accept a default value, if one is given in brackets).
@@ -77232,8 +77515,7 @@ rm -rf _build/*
 + make html
 sphinx-build -b html -d _build/doctrees   . _build/html
 Making output directory...
-Running Sphinx v1.1.3
-WARNING: extension 'sphinxjp.themes.solarized' has no setup() function; is it really a Sphinx extension module?
+Running Sphinx v1.2pre
 loading pickled environment... not yet created
 building [html]: targets for 2 source files that are out of date
 updating environment: 2 added, 0 changed, 0 removed
@@ -77252,14 +77534,13 @@ writing additional files... (0 module code pages) genindex search
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 2 warnings.
+build succeeded, 1 warning.
 
 Build finished. The HTML pages are in _build/html.
 + make latex
 sphinx-build -b latex -d _build/doctrees   . _build/latex
 Making output directory...
-Running Sphinx v1.1.3
-WARNING: extension 'sphinxjp.themes.solarized' has no setup() function; is it really a Sphinx extension module?
+Running Sphinx v1.2pre
 loading pickled environment... done
 building [latex]: all documents
 updating environment: 0 added, 0 changed, 0 removed
@@ -77269,7 +77550,7 @@ resolving references...
 writing... /home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:: WARNING: unusable reference target found: tutorial.do.txt
 done
 copying TeX support files... done
-build succeeded, 2 warnings.
+build succeeded, 1 warning.
 
 Build finished; the LaTeX files are in _build/latex.
 Run `make' in that directory to run these through (pdf)latex (use `make latexpdf' here to do that automatically).
@@ -77278,83 +77559,76 @@ Run `make' in that directory to run these through (pdf)latex (use `make latexpdf
 rm -f *.dvi *.log *.ind *.aux *.toc *.syn *.idx *.out *.ilg *.pla
 + make all-pdf
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
 entering extended mode
 (./DoconceDocumentOnceIncludeAnywhere.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
 (./sphinxmanual.cls
 Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
-(/usr/share/texmf-texlive/tex/latex/base/report.cls
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 
-(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
-(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/english.ldf
 
 
  (./sphinx.sty
-(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
-(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
 
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
 
-(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
-Style option: `fancybox' v1.3 <2000/09/19> (tvz)
-)  (./tabulary.sty
-
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+) 
+(./tabulary.sty 
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz) 
+<2008/02/07> (tvz) (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+)) 
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)))
-
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+Package hyperref Message: Driver (autodetected): hpdftex.
 
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
-
-
-
-*hyperref using default driver hpdftex*
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
 
@@ -77362,25 +77636,28 @@ Writing index file DoconceDocumentOnceIncludeAnywhere.idx
 No file DoconceDocumentOnceIncludeAnywhere.aux.
 (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
 
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 Underfull \hbox (badness 10000) 
 
- [1{/var/lib/texmf/fonts/ma
-p/pdftex/updmap/pdftex.map}] [2]
+ [1{/var/lib/texmf/fon
+ts/map/pdftex/updmap/pdftex.map}] [2]
 Adding blank page after the table of contents.
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.113 \tableofcontents
+l.116 \tableofcontents
                        [1]pdfTeX warning (ext4): destination with the same iden
 tifier (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.113 \tableofcontents
+l.116 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
  [3] [4]
@@ -77390,7 +77667,7 @@ Chapter 3.
 [7] [8]
 
 LaTeX Warning: Hyper reference `tutorial:my-first-sec' on page 9 undefined on i
-nput line 421.
+nput line 424.
 
 
 LaTeX Warning: Hyper reference `tutorial:doconce2formats' on page 9 undefined o
@@ -77406,7 +77683,7 @@ Chapter 4.
 [11] [12]
 
 LaTeX Warning: Hyper reference `tutorial:newcommands' on page 13 undefined on i
-nput line 739.
+nput line 742.
 
 
 Underfull \hbox (badness 10000) 
@@ -77424,106 +77701,103 @@ Chapter 6.
 No file DoconceDocumentOnceIncludeAnywhere.ind.
 [25] (./DoconceDocumentOnceIncludeAnywhere.aux)
 
+Package rerunfilecheck Warning: File `DoconceDocumentOnceIncludeAnywhere.out' h
+as changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
-(see the transcript file for additional information)pdfTeX warning (dest): name
-{??} has been referenced but does not exist, replaced by a fixed one
-
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy
-10.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fon
-ts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helv
-etic/uhvbo8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></u
-sr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texli
-ve/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 203976 byte
+(see the transcript file for additional information){/usr/share/texlive/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 178079 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
 entering extended mode
 (./DoconceDocumentOnceIncludeAnywhere.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
 (./sphinxmanual.cls
 Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
-(/usr/share/texmf-texlive/tex/latex/base/report.cls
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 
-(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
-(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/english.ldf
 
 
  (./sphinx.sty
-(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
-(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
 
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
 
-(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
-Style option: `fancybox' v1.3 <2000/09/19> (tvz)
-)  (./tabulary.sty
-
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+) 
+(./tabulary.sty 
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz) 
+<2008/02/07> (tvz) (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+)) 
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)))
-
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+Package hyperref Message: Driver (autodetected): hpdftex.
 
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
-
-
-
-*hyperref using default driver hpdftex*
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
 
@@ -77531,27 +77805,31 @@ Writing index file DoconceDocumentOnceIncludeAnywhere.idx
 (./DoconceDocumentOnceIncludeAnywhere.aux)
 (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
 
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 (./DoconceDocumentOnceIncludeAnywhere.out)
 (./DoconceDocumentOnceIncludeAnywhere.out)
 Underfull \hbox (badness 10000) 
 
- [1{/var/lib/texmf/fonts/ma
-p/pdftex/updmap/pdftex.map}] [2] (./DoconceDocumentOnceIncludeAnywhere.toc)
+ [1{/var/lib/texmf/fon
+ts/map/pdftex/updmap/pdftex.map}] [2] (./DoconceDocumentOnceIncludeAnywhere.toc
+)
 Adding blank page after the table of contents.
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.113 \tableofcontents
+l.116 \tableofcontents
                        [1]pdfTeX warning (ext4): destination with the same iden
 tifier (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.113 \tableofcontents
+l.116 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
  [3] [4]
@@ -77581,98 +77859,91 @@ Chapter 5.
 Chapter 6.
 No file DoconceDocumentOnceIncludeAnywhere.ind.
 [25] (./DoconceDocumentOnceIncludeAnywhere.aux) )
-(see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/shar
-e/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/font
-s/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
-mri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 217189 byte
+(see the transcript file for additional information){/usr/share/texlive/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184156 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
 entering extended mode
 (./DoconceDocumentOnceIncludeAnywhere.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
 (./sphinxmanual.cls
 Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
-(/usr/share/texmf-texlive/tex/latex/base/report.cls
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 
-(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
-(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/english.ldf
 
 
  (./sphinx.sty
-(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
-(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
 
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
 
-(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
-Style option: `fancybox' v1.3 <2000/09/19> (tvz)
-)  (./tabulary.sty
-
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+) 
+(./tabulary.sty 
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz) 
+<2008/02/07> (tvz) (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+)) 
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)))
-
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+Package hyperref Message: Driver (autodetected): hpdftex.
 
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
-
-
-
-*hyperref using default driver hpdftex*
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
 
@@ -77680,27 +77951,31 @@ Writing index file DoconceDocumentOnceIncludeAnywhere.idx
 (./DoconceDocumentOnceIncludeAnywhere.aux)
 (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
 
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 (./DoconceDocumentOnceIncludeAnywhere.out)
 (./DoconceDocumentOnceIncludeAnywhere.out)
 Underfull \hbox (badness 10000) 
 
- [1{/var/lib/texmf/fonts/ma
-p/pdftex/updmap/pdftex.map}] [2] (./DoconceDocumentOnceIncludeAnywhere.toc)
+ [1{/var/lib/texmf/fon
+ts/map/pdftex/updmap/pdftex.map}] [2] (./DoconceDocumentOnceIncludeAnywhere.toc
+)
 Adding blank page after the table of contents.
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.113 \tableofcontents
+l.116 \tableofcontents
                        [1]pdfTeX warning (ext4): destination with the same iden
 tifier (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.113 \tableofcontents
+l.116 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
  [3] [4]
@@ -77730,104 +78005,97 @@ Chapter 5.
 Chapter 6.
 No file DoconceDocumentOnceIncludeAnywhere.ind.
 [25] (./DoconceDocumentOnceIncludeAnywhere.aux) )
-(see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/shar
-e/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/font
-s/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
-mri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 217189 byte
+(see the transcript file for additional information){/usr/share/texlive/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184156 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
-This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
+This is makeindex, version 2.15 [TeX Live 2012] (kpathsea + Thai support).
 Scanning style file ./python.ist......done (6 attributes redefined, 0 ignored).
 Scanning input file DoconceDocumentOnceIncludeAnywhere.idx...done (0 entries accepted, 0 rejected).
 Nothing written in DoconceDocumentOnceIncludeAnywhere.ind.
 Transcript written in DoconceDocumentOnceIncludeAnywhere.ilg.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
 entering extended mode
 (./DoconceDocumentOnceIncludeAnywhere.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
 (./sphinxmanual.cls
 Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
-(/usr/share/texmf-texlive/tex/latex/base/report.cls
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 
-(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
-(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/english.ldf
 
 
  (./sphinx.sty
-(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
-(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
 
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
 
-(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
-Style option: `fancybox' v1.3 <2000/09/19> (tvz)
-)  (./tabulary.sty
-
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+) 
+(./tabulary.sty 
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz) 
+<2008/02/07> (tvz) (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+)) 
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)))
-
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+Package hyperref Message: Driver (autodetected): hpdftex.
 
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
-
-
-
-*hyperref using default driver hpdftex*
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
 
@@ -77835,27 +78103,31 @@ Writing index file DoconceDocumentOnceIncludeAnywhere.idx
 (./DoconceDocumentOnceIncludeAnywhere.aux)
 (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
 
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 (./DoconceDocumentOnceIncludeAnywhere.out)
 (./DoconceDocumentOnceIncludeAnywhere.out)
 Underfull \hbox (badness 10000) 
 
- [1{/var/lib/texmf/fonts/ma
-p/pdftex/updmap/pdftex.map}] [2] (./DoconceDocumentOnceIncludeAnywhere.toc)
+ [1{/var/lib/texmf/fon
+ts/map/pdftex/updmap/pdftex.map}] [2] (./DoconceDocumentOnceIncludeAnywhere.toc
+)
 Adding blank page after the table of contents.
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.113 \tableofcontents
+l.116 \tableofcontents
                        [1]pdfTeX warning (ext4): destination with the same iden
 tifier (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.113 \tableofcontents
+l.116 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
  [3] [4]
@@ -77885,98 +78157,91 @@ Chapter 5.
 Chapter 6.
 (./DoconceDocumentOnceIncludeAnywhere.ind) [25]
 (./DoconceDocumentOnceIncludeAnywhere.aux) )
-(see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/shar
-e/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/font
-s/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
-mri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 217189 byte
+(see the transcript file for additional information){/usr/share/texlive/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184156 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
 entering extended mode
 (./DoconceDocumentOnceIncludeAnywhere.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
 (./sphinxmanual.cls
 Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
-(/usr/share/texmf-texlive/tex/latex/base/report.cls
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 
-(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
-(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/english.ldf
 
 
  (./sphinx.sty
-(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
-(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
 
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
 
-(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
-Style option: `fancybox' v1.3 <2000/09/19> (tvz)
-)  (./tabulary.sty
-
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+) 
+(./tabulary.sty 
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz) 
+<2008/02/07> (tvz) (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+)) 
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)))
-
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+Package hyperref Message: Driver (autodetected): hpdftex.
 
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
-
-
-
-*hyperref using default driver hpdftex*
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
 
@@ -77984,27 +78249,31 @@ Writing index file DoconceDocumentOnceIncludeAnywhere.idx
 (./DoconceDocumentOnceIncludeAnywhere.aux)
 (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
 
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 (./DoconceDocumentOnceIncludeAnywhere.out)
 (./DoconceDocumentOnceIncludeAnywhere.out)
 Underfull \hbox (badness 10000) 
 
- [1{/var/lib/texmf/fonts/ma
-p/pdftex/updmap/pdftex.map}] [2] (./DoconceDocumentOnceIncludeAnywhere.toc)
+ [1{/var/lib/texmf/fon
+ts/map/pdftex/updmap/pdftex.map}] [2] (./DoconceDocumentOnceIncludeAnywhere.toc
+)
 Adding blank page after the table of contents.
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.113 \tableofcontents
+l.116 \tableofcontents
                        [1]pdfTeX warning (ext4): destination with the same iden
 tifier (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.113 \tableofcontents
+l.116 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
  [3] [4]
@@ -78034,18 +78303,18 @@ Chapter 5.
 Chapter 6.
 (./DoconceDocumentOnceIncludeAnywhere.ind) [25]
 (./DoconceDocumentOnceIncludeAnywhere.aux) )
-(see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8
-a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/shar
-e/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/font
-s/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
-mri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 217189 byte
+(see the transcript file for additional information){/usr/share/texlive/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184156 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -78063,66 +78332,57 @@ tutorial.rst:1019: (WARNING/2) Duplicate explicit target name: "sphinx".
 + rst2latex.py tutorial.rst
 tutorial.rst:1019: (WARNING/2) Duplicate explicit target name: "sphinx".
 + latex tutorial.rst.tex
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
 entering extended mode
 (./tutorial.rst.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
 
-(/usr/share/texmf-texlive/tex/latex/cmap/cmap.sty
+(/usr/share/texlive/texmf-dist/tex/latex/cmap/cmap.sty
 
 Package cmap Warning: pdftex in DVI mode - exiting.
 
 ) 
-(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
-
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/helvet.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/helvet.sty
 
 
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
-
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-*hyperref using default driver hdvips*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
+
+
+
+
+Package hyperref Message: Driver (default): hdvips.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 No file tutorial.rst.aux.
 
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
@@ -78189,17 +78449,9 @@ LaTeX Warning: Hyper reference `a-subsection-with-sample-text' on page 5 undefi
 ned on 
 
 
-Overfull \hbox (19.78578pt too wide) 
-\T1/ptm/m/n/10 right af-ter the sec-tion ti-tle), as in the ref-er-ence to the 
-sec-tion [][][][][][]. 
-
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 5 undefi
 ned on 
 
-
-Overfull \hbox (6.71678pt too wide) 
-\T1/ptm/m/n/10 the out-put by a command-line ar-gu-ment (see the sec-tion [][][
-][][][]
 
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
@@ -78256,11 +78508,11 @@ m/n/10 ,
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
-
+[8]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd 
 
-[8]
+
 Overfull \hbox (15.73763pt too wide) 
 []\T1/ptm/m/it/10 Step 1. \T1/ptm/m/n/10 Fil-ter the do-conce text to a pre-LaT
 eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
@@ -78274,9 +78526,6 @@ Overfull \hbox (78.51936pt too wide)
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
-
-Overfull \hbox (2.10667pt too wide) 
-\T1/ptm/m/n/10 (see the sec-tion [][][][][][]).
 
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
@@ -78314,12 +78563,12 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
-
+[10]
 Overfull \hbox (27.6591pt too wide) 
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
  or \T1/pcr/m/n/10 $HOME/.ptex2tex.cfg\T1/ptm/m/n/10 ),
-[10]
+
 Overfull \hbox (4.47917pt too wide) 
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
@@ -78333,13 +78582,13 @@ Overfull \hbox (17.00006pt too wide)
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
-
+[11]
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-[11]
+
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
 
@@ -78369,14 +78618,14 @@ ports three: [][][][][][],
 Overfull \hbox (1.98695pt too wide) 
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-
+[15]
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
-[15]
+
 Overfull \hbox (107.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
-
+[16]
 Overfull \hbox (83.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
@@ -78384,13 +78633,21 @@ Overfull \hbox (83.00006pt too wide)
 Overfull \hbox (16.13748pt too wide) 
 []\T1/ptm/m/n/10 It may hap-pen that you need ad-di-tional style files, you can
  run a script, \T1/pcr/m/n/10 cp2texmf.sh\T1/ptm/m/n/10 : 
-[16]
+
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
+
+Overfull \hbox (101.00006pt too wide) 
+[]\T1/pcr/m/n/10 sudo apt-get install texlive-latex-recommended texlive-latex-e
+xtra 
 
 Overfull \hbox (95.00006pt too wide) 
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
+
+Overfull \hbox (42.85931pt too wide) 
+\T1/ptm/m/n/10 ment when run-ning La-TeX, i.e., \T1/pcr/m/n/10 latex -shell-esc
+ape \T1/ptm/m/n/10 or \T1/pcr/m/n/10 pdflatex -shell-escape\T1/ptm/m/n/10 . 
 
 Overfull \hbox (185.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
@@ -78403,6 +78660,11 @@ Overfull \hbox (161.00006pt too wide)
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
 [18] (./tutorial.rst.aux)
+
+Package rerunfilecheck Warning: File `tutorial.rst.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
 
 LaTeX Warning: There were undefined references.
 
@@ -78473,9 +78735,9 @@ output in tutorial.md
 [90 lines wrapped]
 + ps2pdf tutorial.cwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mwiki.ps tutorial.mwiki
-[tutorial.mwiki (plain): 20 pages on 20 sheets]
-[Total: 20 pages on 20 sheets] saved into the file `tutorial.mwiki.ps'
-[186 lines wrapped]
+[tutorial.mwiki (plain): 21 pages on 21 sheets]
+[Total: 21 pages on 21 sheets] saved into the file `tutorial.mwiki.ps'
+[187 lines wrapped]
 + ps2pdf tutorial.mwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.md.ps tutorial.md
 [tutorial.md (Modula 2): 22 pages on 22 sheets]
@@ -78485,7 +78747,7 @@ output in tutorial.md
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
 [tutorial.xml (plain): 19 pages on 19 sheets]
 [Total: 19 pages on 19 sheets] saved into the file `tutorial.xml.ps'
-[534 lines wrapped]
+[538 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.md.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.md.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -78594,7 +78856,7 @@ output in manual.rst
 + rm -rf sphinx-rootdir
 + doconce sphinx_dir author=HPL title=Doconce Manual version=0.6 manual.do.txt
 Making sphinx-rootdir
-Welcome to the Sphinx 1.1.3 quickstart utility.
+Welcome to the Sphinx 1.2pre quickstart utility.
 
 Please enter values for the following settings (just press Enter to
 accept a default value, if one is given in brackets).
@@ -78665,8 +78927,7 @@ rm -rf _build/*
 + make html
 sphinx-build -b html -d _build/doctrees   . _build/html
 Making output directory...
-Running Sphinx v1.1.3
-WARNING: extension 'sphinxjp.themes.solarized' has no setup() function; is it really a Sphinx extension module?
+Running Sphinx v1.2pre
 loading pickled environment... not yet created
 building [html]: targets for 2 source files that are out of date
 updating environment: 2 added, 0 changed, 0 removed
@@ -78686,14 +78947,13 @@ copying images... [100%] figs/streamtubes.png
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 1 warning.
+build succeeded.
 
 Build finished. The HTML pages are in _build/html.
 + make latex
 sphinx-build -b latex -d _build/doctrees   . _build/latex
 Making output directory...
-Running Sphinx v1.1.3
-WARNING: extension 'sphinxjp.themes.solarized' has no setup() function; is it really a Sphinx extension module?
+Running Sphinx v1.2pre
 loading pickled environment... done
 building [latex]: all documents
 updating environment: 0 added, 0 changed, 0 removed
@@ -78705,7 +78965,7 @@ writing... /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: 
 done
 copying images... figs/streamtubes.png
 copying TeX support files... done
-build succeeded, 3 warnings.
+build succeeded, 2 warnings.
 
 Build finished; the LaTeX files are in _build/latex.
 Run `make' in that directory to run these through (pdf)latex (use `make latexpdf' here to do that automatically).
@@ -78718,83 +78978,76 @@ Run `make' in that directory to run these through (pdf)latex (use `make latexpdf
 rm -f *.dvi *.log *.ind *.aux *.toc *.syn *.idx *.out *.ilg *.pla
 + make all-pdf
 pdflatex  'DoconceManual.tex'
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
 entering extended mode
 (./DoconceManual.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
 (./sphinxmanual.cls
 Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
-(/usr/share/texmf-texlive/tex/latex/base/report.cls
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 
-(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
-(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/english.ldf
 
 
  (./sphinx.sty
-(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
-(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
 
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
 
-(/usr/share/texmf-texlive/tex/latex/fancybox/fancybox.sty
-Style option: `fancybox' v1.3 <2000/09/19> (tvz)
-)  (./tabulary.sty
-
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancybox/fancybox.sty
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+) 
+(./tabulary.sty 
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz) 
+<2008/02/07> (tvz) (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+)) 
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)))
-
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+Package hyperref Message: Driver (autodetected): hpdftex.
 
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
-
-
-
-*hyperref using default driver hpdftex*
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
 
@@ -78802,25 +79055,28 @@ Writing index file DoconceManual.idx
 No file DoconceManual.aux.
 (/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
 
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 Underfull \hbox (badness 10000) 
 
- [1{/var/lib/texmf/fonts/ma
-p/pdftex/updmap/pdftex.map}] [2]
+ [1{/var/lib/texmf/fon
+ts/map/pdftex/updmap/pdftex.map}] [2]
 Adding blank page after the table of contents.
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.113 \tableofcontents
+l.116 \tableofcontents
                        [1]pdfTeX warning (ext4): destination with the same iden
 tifier (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.113 \tableofcontents
+l.116 \tableofcontents
                        [2] [1] [2]
 Chapter 1.
 [3] [4]
@@ -78833,7 +79089,7 @@ Chapter 4.
 [11] [12]
 
 LaTeX Warning: Hyper reference `manual:newcommands' on page 13 undefined on inp
-ut line 626.
+ut line 638.
 
 
 Underfull \hbox (badness 10000) 
@@ -78871,22 +79127,22 @@ LaTeX Warning: Hyper reference `manual:inline-tagging' on page 27 undefined on
 [27]
 
 LaTeX Warning: Hyper reference `manual:fig-viz' on page 28 undefined on input l
-ine 1693.
+ine 1705.
 
 
 LaTeX Warning: Hyper reference `manual:mathtext' on page 28 undefined on input 
-line 1695.
+line 1707.
 
 
 LaTeX Warning: Hyper reference `manual:newcommands' on page 28 undefined on inp
-ut line 1695.
+ut line 1707.
 
 
-LaTeX Warning: Reference `manual-myeq1' on page 28 undefined on input line 1697
+LaTeX Warning: Reference `manual-myeq1' on page 28 undefined on input line 1709
 .
 
 
-LaTeX Warning: Reference `manual-myeq2' on page 28 undefined on input line 1697
+LaTeX Warning: Reference `manual-myeq2' on page 28 undefined on input line 1709
 .
 
 
@@ -78902,7 +79158,7 @@ n
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 31 undefined on input 
-line 1897.
+line 1909.
 
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 31 undefined o
@@ -78910,7 +79166,7 @@ n
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 31 undefined on input 
-line 1898.
+line 1910.
 
 [31] [32] [33] [34] [35]
 ! FancyVerb Error:
@@ -78920,7 +79176,7 @@ line 1898.
 \space \space #1
 }
                                                   
-l.2293 \end{Verbatim}
+l.2305 \end{Verbatim}
                      
 ? OK, entering \nonstopmode...
 
@@ -78931,12 +79187,12 @@ Package amsmath Warning: Foreign command \over;
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2299 \end{gather}
+l.2311 \end{gather}
                    
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2299 \end{gather}
+l.2311 \end{gather}
                    
 
 Underfull \hbox (badness 10000) 
@@ -78966,27 +79222,30 @@ Chapter 10.
 No file DoconceManual.ind.
 [57] (./DoconceManual.aux)
 
+Package rerunfilecheck Warning: File `DoconceManual.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
-(see the transcript file for additional information)pdfTeX warning (dest): name
-{??} has been referenced but does not exist, replaced by a fixed one
-
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-r7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
-r/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texl
-ive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/ur
-w/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a
-.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share
-/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts
-/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utm
-ri8a.pfb>
+(see the transcript file for additional information){/usr/share/texlive/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helv
+etic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 Output written on DoconceManual.pdf (61 pages, ).
 Transcript written on DoconceManual.log.
 make: *** [DoconceManual.pdf] Error 1
@@ -79024,34 +79283,33 @@ output in manual.rst
 + doconce subst \.png  manual.rst.tex
 \.png replaced by  in manual.rst.tex
 + latex manual.rst.tex
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
 entering extended mode
 (./manual.rst.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
 
-(/usr/share/texmf-texlive/tex/latex/cmap/cmap.sty
+(/usr/share/texlive/texmf-dist/tex/latex/cmap/cmap.sty
 
 Package cmap Warning: pdftex in DVI mode - exiting.
 
 ) 
-(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
-
-
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
 
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
 
@@ -79059,36 +79317,28 @@ Package cmap Warning: pdftex in DVI mode - exiting.
 
 
 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
-
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
 
 
 
-*hyperref using default driver hdvips*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
+
+Package hyperref Message: Driver (default): hdvips.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 No file manual.rst.aux.
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
@@ -79120,10 +79370,18 @@ Overfull \hbox (16.13748pt too wide)
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
+
+Overfull \hbox (101.00006pt too wide) 
+[]\T1/pcr/m/n/10 sudo apt-get install texlive-latex-recommended texlive-latex-e
+xtra 
 [3]
 Overfull \hbox (95.00006pt too wide) 
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
+
+Overfull \hbox (42.85931pt too wide) 
+\T1/ptm/m/n/10 ment when run-ning La-TeX, i.e., \T1/pcr/m/n/10 latex -shell-esc
+ape \T1/ptm/m/n/10 or \T1/pcr/m/n/10 pdflatex -shell-escape\T1/ptm/m/n/10 . 
 
 Overfull \hbox (185.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
@@ -79135,7 +79393,7 @@ Overfull \hbox (59.00006pt too wide)
 Overfull \hbox (161.00006pt too wide) 
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
-
+[5]
 Overfull \hbox (179.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5  
    # preprocess  
@@ -79148,7 +79406,7 @@ Overfull \hbox (30.7872pt too wide)
 []\T1/ptm/m/n/10 The vari-able \T1/pcr/m/n/10 FORMAT \T1/ptm/m/n/10 is al-ways 
 de-fined as the cur-rent for-mat when run-ning \T1/pcr/m/n/10 preprocess\T1/ptm
 /m/n/10 .
-[5]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format latex mydoc --skip_inline_comments 
 
@@ -79163,11 +79421,11 @@ Overfull \hbox (0.81818pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format html mydoc --html-template=mytemplate
 .html 
-
+[6]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
-[6]
+
 Overfull \hbox (11.29898pt too wide) 
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
@@ -79186,7 +79444,7 @@ eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 7 undefined on inpu
-t line 711.
+t line 721.
 
 
 Overfull \hbox (78.51936pt too wide) 
@@ -79258,10 +79516,10 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
-
+[10]
 Overfull \hbox (29.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
-[10]
+
 Overfull \hbox (65.00006pt too wide) 
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
@@ -79353,10 +79611,6 @@ LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 19 un
 defined on 
 
 
-Overfull \hbox (69.25586pt too wide) 
-\T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
- the sec-tion [][][][][][]
-
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
 
@@ -79392,10 +79646,6 @@ LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 21 undef
 ined on 
 
 
-Overfull \hbox (3.53781pt too wide) 
-\T1/ptm/m/n/10 ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 (see t
-he sec-tion [][][][][][]
-
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
@@ -79417,7 +79667,7 @@ Overfull \hbox (83.00006pt too wide)
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
 
-LaTeX Warning: Hyper reference `fig-viz' on page 22 undefined on input line 196
+LaTeX Warning: Hyper reference `fig-viz' on page 22 undefined on input line 197
 9.
 
 
@@ -79426,18 +79676,11 @@ ndefined on
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 22 undefined on inp
-ut line 1971.
+ut line 1981.
 
-
-Overfull \hbox (21.44621pt too wide) 
-\T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
 
 LaTeX Warning: Hyper reference `id3' on page 22 
 
-
-Overfull \hbox (27.01674pt too wide) 
-[]\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
-ed in the sec-tion [][][][][][]. 
 [22]
 Overfull \hbox (5.00006pt too wide) 
 []\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in "Langtangen, 2012":  
@@ -79731,6 +79974,11 @@ Overfull \hbox (113.00006pt too wide)
 ugging  
 [46] [47] (./manual.rst.aux)
 
+Package rerunfilecheck Warning: File `manual.rst.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+
 LaTeX Warning: There were undefined references.
 
 
@@ -79741,34 +79989,33 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Output written on manual.rst.dvi (47 pages, ).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
 entering extended mode
 (./manual.rst.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
 
-(/usr/share/texmf-texlive/tex/latex/cmap/cmap.sty
+(/usr/share/texlive/texmf-dist/tex/latex/cmap/cmap.sty
 
 Package cmap Warning: pdftex in DVI mode - exiting.
 
 ) 
-(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
-
-
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
 
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
 
@@ -79776,37 +80023,30 @@ Package cmap Warning: pdftex in DVI mode - exiting.
 
 
 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
-
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
 
 
 
-*hyperref using default driver hdvips*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
+
+Package hyperref Message: Driver (default): hdvips.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
+
+(./manual.rst.aux) 
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(./manual.rst.out) (./manual.rst.out)
 
-(./manual.rst.out) 
 Overfull \hbox (1.15796pt too wide) 
 \T1/ptm/m/n/10 etc.). The Do-conce markup lan-guage sup-port this work-ing stra
 t-
@@ -79833,10 +80073,18 @@ Overfull \hbox (16.13748pt too wide)
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 sh cp2texmf.sh  # copy stylefiles to ~/texmf directory  
+
+Overfull \hbox (101.00006pt too wide) 
+[]\T1/pcr/m/n/10 sudo apt-get install texlive-latex-recommended texlive-latex-e
+xtra 
 [3]
 Overfull \hbox (95.00006pt too wide) 
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
+
+Overfull \hbox (42.85931pt too wide) 
+\T1/ptm/m/n/10 ment when run-ning La-TeX, i.e., \T1/pcr/m/n/10 latex -shell-esc
+ape \T1/ptm/m/n/10 or \T1/pcr/m/n/10 pdflatex -shell-escape\T1/ptm/m/n/10 . 
 
 Overfull \hbox (185.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
@@ -79848,7 +80096,7 @@ Overfull \hbox (59.00006pt too wide)
 Overfull \hbox (161.00006pt too wide) 
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
-
+[5]
 Overfull \hbox (179.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5  
    # preprocess  
@@ -79861,7 +80109,7 @@ Overfull \hbox (30.7872pt too wide)
 []\T1/ptm/m/n/10 The vari-able \T1/pcr/m/n/10 FORMAT \T1/ptm/m/n/10 is al-ways 
 de-fined as the cur-rent for-mat when run-ning \T1/pcr/m/n/10 preprocess\T1/ptm
 /m/n/10 .
-[5]
+
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format latex mydoc --skip_inline_comments 
 
@@ -79876,11 +80124,11 @@ Overfull \hbox (0.81818pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format html mydoc --html-template=mytemplate
 .html 
-
+[6]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
-[6]
+
 Overfull \hbox (11.29898pt too wide) 
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
@@ -79967,10 +80215,10 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
-
+[10]
 Overfull \hbox (29.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
-[10]
+
 Overfull \hbox (65.00006pt too wide) 
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
@@ -80539,91 +80787,101 @@ output in manual.p.tex
 + doconce replace usepackage{ptex2tex usepackage{subfigure manual.p.tex
 replacing usepackage{ptex2tex by usepackage{subfigure in manual.p.tex
 + doconce ptex2tex manual -DMINTED -DHELVETICA envir=Verbatim
-\bpro (!bc pro) -> \begin{Verbatim}
-\bfpro (!bc fpro) -> \begin{Verbatim}
-\bshpro (!bc shpro) -> \begin{Verbatim}
-\bcod (!bc cod) -> \begin{Verbatim}
-\bpycod (!bc pycod) -> \begin{Verbatim}
-\bcppcod (!bc cppcod) -> \begin{Verbatim}
-\bfcod (!bc fcod) -> \begin{Verbatim}
-\bsys (!bc sys) -> \begin{Verbatim}
-\bccq (!bc ccq) -> \begin{Verbatim}
+\bpro (!bc pro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bfpro (!bc fpro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bshpro (!bc shpro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bcod (!bc cod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bpycod (!bc pycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bcppcod (!bc cppcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bfcod (!bc fcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bsys (!bc sys) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 + pdflatex -shell-escape manual
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
 entering extended mode
 (./manual.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
 
 (/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg))
-
-
-
-(/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
-
-
-
-/usr/local/bin/pygmentize
-)
-(./manual.pyg) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
-
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+<2008/02/07> (tvz)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 
 
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
 
-*hyperref using default driver hpdftex*
+(./manual.w18))/usr/local/bin/pygmentize
+) (./manual.pyg)
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
 Writing index file manual.idx
 No file manual.aux.
 
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 (./newcommands_keep.tex) (./newcommands_replace.tex)
 
@@ -80632,138 +80890,126 @@ No file manual.aux.
 Overfull \hbox (8.67865pt too wide) 
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \vbox (badness 1400) has occurred while \output is active [2]
-[3]
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
-run a script, []\OT1/cmtt/m/n/10 cp2texmf.sh\OT1/phv/m/n/10 : 
+run a script, []: 
+
+Overfull \hbox (17.06206pt too wide) 
+\OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
 [4]
 Overfull \hbox (22.94165pt too wide) 
-\OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
-OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
-hv/m/n/10 .
+\OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5] [6]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
- doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
+ doc-u-ment): []
 [7]
 
 LaTeX Warning: Reference `newcommands' on page 8 
 
 
 Overfull \hbox (55.19026pt too wide) 
-\OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
-/n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
-/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
-[]\OT1/phv/m/n/10 An op-tion []\OT1/cmtt/m/n/10 --latex-printed \OT1/phv/m/n/10
- makes some ad-just-ments for doc-u-ments aimed
-[8]
+[]\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
--able through []\OT1/cmtt/m/n/10 -DLATEX_HEADING=traditional\OT1/phv/m/n/10 .
-[9]
+-able through [].
+[8] [9]
 Overfull \hbox (11.05632pt too wide) 
-\OT1/phv/m/n/10 through the []\OT1/cmtt/m/n/10 *pro \OT1/phv/m/n/10 and []\OT1/
-cmtt/m/n/10 *cod \OT1/phv/m/n/10 vari-ables in []\OT1/cmtt/m/n/10 .ptex2tex.cfg
- \OT1/phv/m/n/10 or []\OT1/cmtt/m/n/10 $HOME/.ptex2tex.cfg\OT1/phv/m/n/10 ),
+\OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
 Overfull \hbox (0.55649pt too wide) 
-\OT1/phv/m/n/10 When run-ning []\OT1/cmtt/m/n/10 doconce ptex2tex mydoc envir=m
-inted \OT1/phv/m/n/10 (or other minted spec-
+\OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
-\OT1/phv/m/n/10 i-fi-ca-tions with []\OT1/cmtt/m/n/10 doconce ptex2tex\OT1/phv/
-m/n/10 ), the minted pack-age is au-to-mat-i-cally in-cluded
-[10] [11]
+\OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
+y in-cluded
+[10]
 Overfull \hbox (22.24706pt too wide) 
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
-
+[11]
 Overfull \hbox (6.8168pt too wide) 
-[]\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
+[]\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
-[12]
+ries, []
+
 Overfull \hbox (10.33038pt too wide) 
-[]\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
-t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
-[13] [14]
+[]\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
+[12] [13]
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] [19]
-<figs/streamtubes.png, id=159, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [20 <./figs/streamtubes.png>]
+[14] [15] [16] [17] <figs/streamtubes.png, id=151, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 21 undefined on input li
-ne 1353.
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 20 undefined on input li
+ne 1367.
 
 
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
-s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
-1/cmtt/m/n/10 verbatim text
-[21] [22]
+s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
+[20] [21]
 
-LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-493.
-
-
-LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
-497.
-
-[23]
-
-LaTeX Warning: Reference `inline:tagging' on page 24 undefined on input line 15
-28.
-
-[24]
-
-LaTeX Warning: Reference `fig:viz' on page 25 
+LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
+507.
 
 
-LaTeX Warning: Reference `mathtext' on page 25 
+LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
+511.
 
 
-LaTeX Warning: Reference `newcommands' on page 25 
+LaTeX Warning: Reference `inline:tagging' on page 22 undefined on input line 15
+42.
+
+[22]
+
+LaTeX Warning: Reference `fig:viz' on page 23 
+
+
+LaTeX Warning: Reference `mathtext' on page 23 
+
+
+LaTeX Warning: Reference `newcommands' on page 23 
 
 
 
-LaTeX Warning: Reference `myeq1' on page 25 
+LaTeX Warning: Reference `myeq1' on page 23 
 
 
-LaTeX Warning: Reference `myeq2' on page 25 
+LaTeX Warning: Reference `myeq2' on page 23 
 
 
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
 
-LaTeX Warning: Reference `inline:tagging' on page 25 undefined on input line 15
-86.
+LaTeX Warning: Reference `inline:tagging' on page 23 undefined on input line 16
+00.
 
-[25] [26] [27]
+[23] [24] [25]
 
-LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-761.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 28 
+LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
+775.
 
 
-LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-762.
+LaTeX Warning: Citation `Osnes:98' on page 26 
 
 
-LaTeX Warning: Citation `Osnes:98' on page 28 
+LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
+776.
 
-[28] [29] [30] [31] [32] [33] [34]
+
+LaTeX Warning: Citation `Osnes:98' on page 26 
+
+[26] [27] [28] [29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -80771,66 +81017,147 @@ Package amsmath Warning: Foreign command \over;
 
 
 Overfull \hbox (56.23628pt too wide) 
-\OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
-html", "sphinx", "mwiki", "pandoc")
-
+\OT1/phv/m/n/10 Af-ter []
+[32]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
-les with names []\OT1/cmtt/m/n/10 newcommands.tex
+les with names []
 
 Overfull \hbox (11.08636pt too wide) 
-\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
-T1/cmtt/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []
 
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
-in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[35]
-Overfull \hbox (24.63646pt too wide) 
- \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
-com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
+in the []
 
+Overfull \hbox (24.63646pt too wide) 
+ []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
+com-mands in []: 
+[33]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
-\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
-m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
-mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
-1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[37]
+\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
+[], [],
+[34]
 
-LaTeX Warning: Reference `doconce2formats' on page 38 undefined on input line 2
-311.
+LaTeX Warning: Reference `doconce2formats' on page 35 undefined on input line 2
+325.
 
-[38]
+[35]
 Overfull \hbox (88.39946pt too wide) 
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
+n Do-conce []
 
 Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
-n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
-/m/n/10 doconce subst
-[39] [40] [41] [42]
+\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
+[36] [37] [38] [39]
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 43 undefined on input li
-ne 2614.
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 40 undefined on input li
+ne 2628.
 
-[43] [44] [45] [46] [47] [48]
+[40] [41] [42] [43] [44]
 Overfull \hbox (4.78592pt too wide) 
- \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
-/phv/m/n/10 The HTML header
-[49]
+ []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
+T1/phv/m/n/10 The HTML header
+[45]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
-v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
-/n/10 keyword argument\OT1/phv/m/n/10 ,
-[50]
+v/m/n/10 . Note that [], [],
+[46]
 No file manual.bbl.
 No file manual.ind.
-[51] (./manual.aux)
+[47] (./manual.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+subfigure.sty    2002/03/15 v2.1.5 subfigure package
+subfigure.cfg
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+  manual.w18
+  manual.pyg
+  helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+newcommands_keep.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omsphv.fd    
+figs/streamtubes.png
+ ***********
+
+
+Package rerunfilecheck Warning: File `manual.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
 
 LaTeX Warning: There were undefined references.
 
@@ -80838,99 +81165,108 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
-(see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10
-.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/s
-hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-t
-exlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/
-type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
-/share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
-ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (51 pages, ).
+(see the transcript file for additional information){/usr/share/texlive/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet
+ic/uhvro8a.pfb>
+Output written on manual.pdf (47 pages, ).
 Transcript written on manual.log.
 + bibtex manual
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
 The top-level auxiliary file: manual.aux
 The style file: plain.bst
 Database file #1: manual_bib.bib
 + makeindex manual
-This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
+This is makeindex, version 2.15 [TeX Live 2012] (kpathsea + Thai support).
 Scanning input file manual.idx....done (19 entries accepted, 0 rejected).
 Sorting entries....done (82 comparisons).
 Generating output file manual.ind....done (57 lines written, 0 warnings).
 Output written in manual.ind.
 Transcript written in manual.ilg.
 + pdflatex -shell-escape manual
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
 entering extended mode
 (./manual.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
 
 (/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg))
-
-
-
-(/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
-
-
-
-/usr/local/bin/pygmentize
-)
-(./manual.pyg) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
-
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+<2008/02/07> (tvz)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 
 
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
 
-*hyperref using default driver hpdftex*
+(./manual.w18))/usr/local/bin/pygmentize
+) (./manual.pyg)
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
 Writing index file manual.idx
@@ -80942,159 +81278,232 @@ LaTeX Warning: Label `myeq1' multiply defined.
 LaTeX Warning: Label `myeq2' multiply defined.
 
 ) 
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 
-(./manual.out) (./newcommands_keep.tex) (./newcommands_replace.tex)
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./manual.out) (./manual.out) (./newcommands_keep.tex)
+(./newcommands_replace.tex)
 
 
 
 Overfull \hbox (8.67865pt too wide) 
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \vbox (badness 1400) has occurred while \output is active [2]
-[3]
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
-run a script, []\OT1/cmtt/m/n/10 cp2texmf.sh\OT1/phv/m/n/10 : 
+run a script, []: 
+
+Overfull \hbox (17.06206pt too wide) 
+\OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
 [4]
 Overfull \hbox (22.94165pt too wide) 
-\OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
-OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
-hv/m/n/10 .
+\OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5] [6]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
- doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
+ doc-u-ment): []
 [7]
 Overfull \hbox (55.19026pt too wide) 
-\OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
-/n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
-/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
-[]\OT1/phv/m/n/10 An op-tion []\OT1/cmtt/m/n/10 --latex-printed \OT1/phv/m/n/10
- makes some ad-just-ments for doc-u-ments aimed
-[8]
+[]\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
--able through []\OT1/cmtt/m/n/10 -DLATEX_HEADING=traditional\OT1/phv/m/n/10 .
-[9]
+-able through [].
+[8] [9]
 Overfull \hbox (11.05632pt too wide) 
-\OT1/phv/m/n/10 through the []\OT1/cmtt/m/n/10 *pro \OT1/phv/m/n/10 and []\OT1/
-cmtt/m/n/10 *cod \OT1/phv/m/n/10 vari-ables in []\OT1/cmtt/m/n/10 .ptex2tex.cfg
- \OT1/phv/m/n/10 or []\OT1/cmtt/m/n/10 $HOME/.ptex2tex.cfg\OT1/phv/m/n/10 ),
+\OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
 Overfull \hbox (0.55649pt too wide) 
-\OT1/phv/m/n/10 When run-ning []\OT1/cmtt/m/n/10 doconce ptex2tex mydoc envir=m
-inted \OT1/phv/m/n/10 (or other minted spec-
+\OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
-\OT1/phv/m/n/10 i-fi-ca-tions with []\OT1/cmtt/m/n/10 doconce ptex2tex\OT1/phv/
-m/n/10 ), the minted pack-age is au-to-mat-i-cally in-cluded
-[10] [11]
+\OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
+y in-cluded
+[10]
 Overfull \hbox (22.24706pt too wide) 
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
-
+[11]
 Overfull \hbox (6.8168pt too wide) 
-[]\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
+[]\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
-[12]
+ries, []
+
 Overfull \hbox (10.33038pt too wide) 
-[]\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
-t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
-[13] [14]
+[]\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
+[12] [13]
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] [19]
-<figs/streamtubes.png, id=332, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [20 <./figs/streamtubes.png>]
+[14] [15] [16] [17] <figs/streamtubes.png, id=327, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
-s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
-1/cmtt/m/n/10 verbatim text
-[21] [22] [23] [24]
+s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
+[20] [21] [22]
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26] [27]
+[23] [24] [25]
 
-LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-761.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 28 
+LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
+775.
 
 
-LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
-762.
+LaTeX Warning: Citation `Osnes:98' on page 26 
 
 
-LaTeX Warning: Citation `Osnes:98' on page 28 
+LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
+776.
 
-[28] [29] [30] [31] [32] [33]
+
+LaTeX Warning: Citation `Osnes:98' on page 26 
+
+[26] [27] [28] [29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[34]
-Overfull \hbox (56.23628pt too wide) 
-\OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
-html", "sphinx", "mwiki", "pandoc")
 
+Overfull \hbox (56.23628pt too wide) 
+\OT1/phv/m/n/10 Af-ter []
+[32]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
-les with names []\OT1/cmtt/m/n/10 newcommands.tex
+les with names []
 
 Overfull \hbox (11.08636pt too wide) 
-\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
-T1/cmtt/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []
 
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
-in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[35]
-Overfull \hbox (24.63646pt too wide) 
- \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
-com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
+in the []
 
+Overfull \hbox (24.63646pt too wide) 
+ []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
+com-mands in []: 
+[33]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
-\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
-m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
-mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
-1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[37] [38]
+\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
+[], [],
+[34] [35]
 Overfull \hbox (88.39946pt too wide) 
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
+n Do-conce []
 
 Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
-n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
-/m/n/10 doconce subst
-[39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
+[36] [37] [38] [39] [40] [41] [42] [43] [44]
 Overfull \hbox (4.78592pt too wide) 
- \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
-/phv/m/n/10 The HTML header
-[49]
+ []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
+T1/phv/m/n/10 The HTML header
+[45]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
-v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
-/n/10 keyword argument\OT1/phv/m/n/10 ,
-[50] (./manual.bbl) (./manual.ind [51] [52]) (./manual.aux)
+v/m/n/10 . Note that [], [],
+[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+subfigure.sty    2002/03/15 v2.1.5 subfigure package
+subfigure.cfg
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+  manual.w18
+  manual.pyg
+  helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+  manual.out
+  manual.out
+newcommands_keep.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omsphv.fd    
+figs/streamtubes.png
+  manual.bbl
+  manual.ind
+ ***********
+
 
 LaTeX Warning: There were undefined references.
 
@@ -81102,87 +81511,96 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
  )
-(see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10
-.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/s
-hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-t
-exlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/
-type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
-/share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
-ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (52 pages, ).
+(see the transcript file for additional information){/usr/share/texlive/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet
+ic/uhvro8a.pfb>
+Output written on manual.pdf (48 pages, ).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
 entering extended mode
 (./manual.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
 
 (/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg))
-
-
-
-(/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
-
-
-
-/usr/local/bin/pygmentize
-)
-(./manual.pyg) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
-
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+<2008/02/07> (tvz)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 
 
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
 
-*hyperref using default driver hpdftex*
+(./manual.w18))/usr/local/bin/pygmentize
+) (./manual.pyg)
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 
 
 Writing index file manual.idx
@@ -81194,160 +81612,235 @@ LaTeX Warning: Label `myeq1' multiply defined.
 LaTeX Warning: Label `myeq2' multiply defined.
 
 ) 
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 
-(./manual.out) (./newcommands_keep.tex) (./newcommands_replace.tex)
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./manual.out) (./manual.out) (./newcommands_keep.tex)
+(./newcommands_replace.tex)
 
 
 
 Overfull \hbox (8.67865pt too wide) 
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \vbox (badness 1400) has occurred while \output is active [2]
-[3]
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
-run a script, []\OT1/cmtt/m/n/10 cp2texmf.sh\OT1/phv/m/n/10 : 
+run a script, []: 
+
+Overfull \hbox (17.06206pt too wide) 
+\OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
 [4]
 Overfull \hbox (22.94165pt too wide) 
-\OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
-OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
-hv/m/n/10 .
+\OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5] [6]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
- doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
+ doc-u-ment): []
 [7]
 Overfull \hbox (55.19026pt too wide) 
-\OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
-/n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
-/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
-[]\OT1/phv/m/n/10 An op-tion []\OT1/cmtt/m/n/10 --latex-printed \OT1/phv/m/n/10
- makes some ad-just-ments for doc-u-ments aimed
-[8]
+[]\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
--able through []\OT1/cmtt/m/n/10 -DLATEX_HEADING=traditional\OT1/phv/m/n/10 .
-[9]
+-able through [].
+[8] [9]
 Overfull \hbox (11.05632pt too wide) 
-\OT1/phv/m/n/10 through the []\OT1/cmtt/m/n/10 *pro \OT1/phv/m/n/10 and []\OT1/
-cmtt/m/n/10 *cod \OT1/phv/m/n/10 vari-ables in []\OT1/cmtt/m/n/10 .ptex2tex.cfg
- \OT1/phv/m/n/10 or []\OT1/cmtt/m/n/10 $HOME/.ptex2tex.cfg\OT1/phv/m/n/10 ),
+\OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
 Overfull \hbox (0.55649pt too wide) 
-\OT1/phv/m/n/10 When run-ning []\OT1/cmtt/m/n/10 doconce ptex2tex mydoc envir=m
-inted \OT1/phv/m/n/10 (or other minted spec-
+\OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
-\OT1/phv/m/n/10 i-fi-ca-tions with []\OT1/cmtt/m/n/10 doconce ptex2tex\OT1/phv/
-m/n/10 ), the minted pack-age is au-to-mat-i-cally in-cluded
-[10] [11]
+\OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
+y in-cluded
+[10]
 Overfull \hbox (22.24706pt too wide) 
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
-
+[11]
 Overfull \hbox (6.8168pt too wide) 
-[]\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
+[]\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
-[12]
+ries, []
+
 Overfull \hbox (10.33038pt too wide) 
-[]\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
-t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
-[13] [14]
+[]\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
+[12] [13]
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[15] [16] [17] [18] [19]
-<figs/streamtubes.png, id=332, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [20 <./figs/streamtubes.png>]
+[14] [15] [16] [17] <figs/streamtubes.png, id=327, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
-s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
-1/cmtt/m/n/10 verbatim text
-[21] [22] [23] [24]
+s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
+[20] [21] [22]
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26] [27] [28] [29] [30] [31] [32] [33]
+[23] [24] [25] [26] [27] [28] [29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[34]
-Overfull \hbox (56.23628pt too wide) 
-\OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
-html", "sphinx", "mwiki", "pandoc")
 
+Overfull \hbox (56.23628pt too wide) 
+\OT1/phv/m/n/10 Af-ter []
+[32]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
-les with names []\OT1/cmtt/m/n/10 newcommands.tex
+les with names []
 
 Overfull \hbox (11.08636pt too wide) 
-\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
-T1/cmtt/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []
 
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
-in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[35]
-Overfull \hbox (24.63646pt too wide) 
- \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
-com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
+in the []
 
+Overfull \hbox (24.63646pt too wide) 
+ []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
+com-mands in []: 
+[33]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
-\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
-m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
-mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
-1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[37] [38]
+\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
+[], [],
+[34] [35]
 Overfull \hbox (88.39946pt too wide) 
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
+n Do-conce []
 
 Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
-n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
-/m/n/10 doconce subst
-[39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
+[36] [37] [38] [39] [40] [41] [42] [43] [44]
 Overfull \hbox (4.78592pt too wide) 
- \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
-/phv/m/n/10 The HTML header
-[49]
+ []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
+T1/phv/m/n/10 The HTML header
+[45]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
-v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
-/n/10 keyword argument\OT1/phv/m/n/10 ,
-[50] (./manual.bbl) (./manual.ind [51] [52]) (./manual.aux)
+v/m/n/10 . Note that [], [],
+[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+  pdftex.def    2011/05/27 v0.06d Graphics/color for pdfTeX
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+subfigure.sty    2002/03/15 v2.1.5 subfigure package
+subfigure.cfg
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+  manual.w18
+  manual.pyg
+  helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+ hpdftex.def    2012/05/13 v6.82q Hyperref driver for pdfTeX
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
+supp-pdf.mkii
+epstopdf-base.sty    2010/02/09 v2.5 Base part for package epstopdf
+  grfext.sty    2010/08/19 v1.1 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+  manual.out
+  manual.out
+newcommands_keep.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omsphv.fd    
+figs/streamtubes.png
+  manual.bbl
+  manual.ind
+ ***********
+
 
 LaTeX Warning: There were multiply-defined labels.
 
  )
-(see the transcript file for additional information){/usr/share/texmf-texlive/f
-onts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10
-.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/s
-hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-t
-exlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/
-type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
-/share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texl
-ive/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on manual.pdf (52 pages, ).
+(see the transcript file for additional information){/usr/share/texlive/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet
+ic/uhvro8a.pfb>
+Output written on manual.pdf (48 pages, ).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -81379,85 +81872,92 @@ output in manual.p.tex
 + doconce replace usepackage{ptex2tex usepackage{subfigure manual.p.tex
 replacing usepackage{ptex2tex by usepackage{subfigure in manual.p.tex
 + doconce ptex2tex manual -DMINTED -DHELVETICA envir=Verbatim
-\bpro (!bc pro) -> \begin{Verbatim}
-\bfpro (!bc fpro) -> \begin{Verbatim}
-\bshpro (!bc shpro) -> \begin{Verbatim}
-\bcod (!bc cod) -> \begin{Verbatim}
-\bpycod (!bc pycod) -> \begin{Verbatim}
-\bcppcod (!bc cppcod) -> \begin{Verbatim}
-\bfcod (!bc fcod) -> \begin{Verbatim}
-\bsys (!bc sys) -> \begin{Verbatim}
-\bccq (!bc ccq) -> \begin{Verbatim}
+\bpro (!bc pro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bfpro (!bc fpro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bshpro (!bc shpro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bcod (!bc cod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bpycod (!bc pycod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bcppcod (!bc cppcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bfcod (!bc fcod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bsys (!bc sys) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 + latex -shell-escape manual
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
 entering extended mode
 (./manual.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
 
 (/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+<2008/02/07> (tvz)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
 
-
-
-/usr/local/bin/pygmentize
-)
-(./manual.pyg) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
-
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
 
-Implicit mode ON; LaTeX internals redefined
+(./manual.w18))/usr/local/bin/pygmentize
+) (./manual.pyg)
 
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-*hyperref using default driver hdvips*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
+
+
+
+
+Package hyperref Message: Driver (default): hdvips.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 
 Writing index file manual.idx
@@ -81469,9 +81969,9 @@ LaTeX Warning: Label `myeq1' multiply defined.
 LaTeX Warning: Label `myeq2' multiply defined.
 
 ) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(./manual.out)
+(./manual.out) (./manual.out)
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
 
@@ -81485,211 +81985,286 @@ such as Google
 [1]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-
-Underfull \vbox (badness 1400) has occurred while \output is active [2]
-[3]
+[2]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
-run a script, []\OT1/cmtt/m/n/10 cp2texmf.sh\OT1/phv/m/n/10 : 
+run a script, []: 
+[3]
+Overfull \hbox (17.06206pt too wide) 
+\OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
 [4]
 Overfull \hbox (22.94165pt too wide) 
-\OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
-OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
-hv/m/n/10 .
+\OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5] [6]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
- doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
+ doc-u-ment): []
 [7]
 Overfull \hbox (55.19026pt too wide) 
-\OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
-/n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
-/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
-[]\OT1/phv/m/n/10 An op-tion []\OT1/cmtt/m/n/10 --latex-printed \OT1/phv/m/n/10
- makes some ad-just-ments for doc-u-ments aimed
-[8]
+[]\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
--able through []\OT1/cmtt/m/n/10 -DLATEX_HEADING=traditional\OT1/phv/m/n/10 .
-[9]
+-able through [].
+[8] [9]
 Overfull \hbox (11.05632pt too wide) 
-\OT1/phv/m/n/10 through the []\OT1/cmtt/m/n/10 *pro \OT1/phv/m/n/10 and []\OT1/
-cmtt/m/n/10 *cod \OT1/phv/m/n/10 vari-ables in []\OT1/cmtt/m/n/10 .ptex2tex.cfg
- \OT1/phv/m/n/10 or []\OT1/cmtt/m/n/10 $HOME/.ptex2tex.cfg\OT1/phv/m/n/10 ),
+\OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
 Overfull \hbox (0.55649pt too wide) 
-\OT1/phv/m/n/10 When run-ning []\OT1/cmtt/m/n/10 doconce ptex2tex mydoc envir=m
-inted \OT1/phv/m/n/10 (or other minted spec-
+\OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
-\OT1/phv/m/n/10 i-fi-ca-tions with []\OT1/cmtt/m/n/10 doconce ptex2tex\OT1/phv/
-m/n/10 ), the minted pack-age is au-to-mat-i-cally in-cluded
-[10] [11]
+\OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
+y in-cluded
+[10]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
-
+[11]
 Overfull \hbox (6.8168pt too wide) 
-[]\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
+[]\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
-[12]
+ries, []
+
 Overfull \hbox (10.33038pt too wide) 
-[]\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
-t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
-[13] [14]
+[]\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
+[12] [13]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[15] [16] [17] [18] [19] <figs/streamtubes.eps> [20]
+[14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
-s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
-1/cmtt/m/n/10 verbatim text
-[21] [22] [23] [24]
+s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
+[20] [21] [22]
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26] [27]
+[23] [24] [25]
 Overfull \hbox (47.74467pt too wide) 
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[28] [29] [30] [31] [32] [33]
+[26] [27] [28] [29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[34]
-Overfull \hbox (56.23628pt too wide) 
-\OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
-html", "sphinx", "mwiki", "pandoc")
 
+Overfull \hbox (56.23628pt too wide) 
+\OT1/phv/m/n/10 Af-ter []
+[32]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
-les with names []\OT1/cmtt/m/n/10 newcommands.tex
+les with names []
 
 Overfull \hbox (11.08636pt too wide) 
-\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
-T1/cmtt/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []
 
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
-in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[35]
-Overfull \hbox (24.63646pt too wide) 
- \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
-com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
+in the []
 
+Overfull \hbox (24.63646pt too wide) 
+ []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
+com-mands in []: 
+[33]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
-\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
-m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
-mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
-1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[37] [38]
+\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
+[], [],
+[34] [35]
 Overfull \hbox (88.39946pt too wide) 
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
+n Do-conce []
 
 Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
-n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
-/m/n/10 doconce subst
-[39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
+[36] [37] [38] [39] [40] [41] [42] [43] [44]
 Overfull \hbox (4.78592pt too wide) 
- \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
-/phv/m/n/10 The HTML header
-[49]
+ []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
+T1/phv/m/n/10 The HTML header
+[45]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
-v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
-/n/10 keyword argument\OT1/phv/m/n/10 ,
-[50] (./manual.bbl) (./manual.ind [51] [52]) (./manual.aux)
+v/m/n/10 . Note that [], [],
+[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+   dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+subfigure.sty    2002/03/15 v2.1.5 subfigure package
+subfigure.cfg
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+  manual.w18
+  manual.pyg
+  helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+  hdvips.def    2012/05/13 v6.82q Hyperref driver for dvips
+ pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+  manual.out
+  manual.out
+newcommands_keep.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omsphv.fd    
+figs/streamtubes.eps
+  manual.bbl
+  manual.ind
+ ***********
+
 
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (52 pages, ).
+Output written on manual.dvi (48 pages, ).
 Transcript written on manual.log.
 + latex -shell-escape manual
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
 entering extended mode
 (./manual.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
 
 (/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+<2008/02/07> (tvz)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
 
-
-
-/usr/local/bin/pygmentize
-)
-(./manual.pyg) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
-
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
 
-Implicit mode ON; LaTeX internals redefined
+(./manual.w18))/usr/local/bin/pygmentize
+) (./manual.pyg)
 
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-*hyperref using default driver hdvips*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
+
+
+
+
+Package hyperref Message: Driver (default): hdvips.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 
 Writing index file manual.idx
@@ -81701,9 +82276,10 @@ LaTeX Warning: Label `myeq1' multiply defined.
 LaTeX Warning: Label `myeq2' multiply defined.
 
 ) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(./manual.out) (./newcommands_keep.tex) (./newcommands_replace.tex)
+(./manual.out) (./manual.out) (./newcommands_keep.tex)
+(./newcommands_replace.tex)
 
 
 
@@ -81713,223 +82289,298 @@ such as Google
 [1]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-
-Underfull \vbox (badness 1400) has occurred while \output is active [2]
-[3]
+[2]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
-run a script, []\OT1/cmtt/m/n/10 cp2texmf.sh\OT1/phv/m/n/10 : 
+run a script, []: 
+[3]
+Overfull \hbox (17.06206pt too wide) 
+\OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
 [4]
 Overfull \hbox (22.94165pt too wide) 
-\OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
-OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
-hv/m/n/10 .
+\OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5] [6]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
- doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
+ doc-u-ment): []
 [7]
 Overfull \hbox (55.19026pt too wide) 
-\OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
-/n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
-/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
-[]\OT1/phv/m/n/10 An op-tion []\OT1/cmtt/m/n/10 --latex-printed \OT1/phv/m/n/10
- makes some ad-just-ments for doc-u-ments aimed
-[8]
+[]\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
--able through []\OT1/cmtt/m/n/10 -DLATEX_HEADING=traditional\OT1/phv/m/n/10 .
-[9]
+-able through [].
+[8] [9]
 Overfull \hbox (11.05632pt too wide) 
-\OT1/phv/m/n/10 through the []\OT1/cmtt/m/n/10 *pro \OT1/phv/m/n/10 and []\OT1/
-cmtt/m/n/10 *cod \OT1/phv/m/n/10 vari-ables in []\OT1/cmtt/m/n/10 .ptex2tex.cfg
- \OT1/phv/m/n/10 or []\OT1/cmtt/m/n/10 $HOME/.ptex2tex.cfg\OT1/phv/m/n/10 ),
+\OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
 Overfull \hbox (0.55649pt too wide) 
-\OT1/phv/m/n/10 When run-ning []\OT1/cmtt/m/n/10 doconce ptex2tex mydoc envir=m
-inted \OT1/phv/m/n/10 (or other minted spec-
+\OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
-\OT1/phv/m/n/10 i-fi-ca-tions with []\OT1/cmtt/m/n/10 doconce ptex2tex\OT1/phv/
-m/n/10 ), the minted pack-age is au-to-mat-i-cally in-cluded
-[10] [11]
+\OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
+y in-cluded
+[10]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
-
+[11]
 Overfull \hbox (6.8168pt too wide) 
-[]\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
+[]\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
-[12]
+ries, []
+
 Overfull \hbox (10.33038pt too wide) 
-[]\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
-t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
-[13] [14]
+[]\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
+[12] [13]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[15] [16] [17] [18] [19] <figs/streamtubes.eps> [20]
+[14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
-s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
-1/cmtt/m/n/10 verbatim text
-[21] [22] [23] [24]
+s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
+[20] [21] [22]
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26] [27]
+[23] [24] [25]
 Overfull \hbox (47.74467pt too wide) 
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[28] [29] [30] [31] [32] [33]
+[26] [27] [28] [29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[34]
-Overfull \hbox (56.23628pt too wide) 
-\OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
-html", "sphinx", "mwiki", "pandoc")
 
+Overfull \hbox (56.23628pt too wide) 
+\OT1/phv/m/n/10 Af-ter []
+[32]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
-les with names []\OT1/cmtt/m/n/10 newcommands.tex
+les with names []
 
 Overfull \hbox (11.08636pt too wide) 
-\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
-T1/cmtt/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []
 
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
-in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[35]
-Overfull \hbox (24.63646pt too wide) 
- \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
-com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
+in the []
 
+Overfull \hbox (24.63646pt too wide) 
+ []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
+com-mands in []: 
+[33]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
-\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
-m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
-mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
-1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[37] [38]
+\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
+[], [],
+[34] [35]
 Overfull \hbox (88.39946pt too wide) 
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
+n Do-conce []
 
 Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
-n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
-/m/n/10 doconce subst
-[39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
+[36] [37] [38] [39] [40] [41] [42] [43] [44]
 Overfull \hbox (4.78592pt too wide) 
- \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
-/phv/m/n/10 The HTML header
-[49]
+ []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
+T1/phv/m/n/10 The HTML header
+[45]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
-v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
-/n/10 keyword argument\OT1/phv/m/n/10 ,
-[50] (./manual.bbl) (./manual.ind [51] [52]) (./manual.aux)
+v/m/n/10 . Note that [], [],
+[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+   dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+subfigure.sty    2002/03/15 v2.1.5 subfigure package
+subfigure.cfg
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+  manual.w18
+  manual.pyg
+  helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+  hdvips.def    2012/05/13 v6.82q Hyperref driver for dvips
+ pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+  manual.out
+  manual.out
+newcommands_keep.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omsphv.fd    
+figs/streamtubes.eps
+  manual.bbl
+  manual.ind
+ ***********
+
 
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (52 pages, ).
+Output written on manual.dvi (48 pages, ).
 Transcript written on manual.log.
 + bibtex manual
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
 The top-level auxiliary file: manual.aux
 The style file: plain.bst
 Database file #1: manual_bib.bib
 + makeindex manual
-This is makeindex, version 2.15 [TeX Live 2009] (kpathsea + Thai support).
+This is makeindex, version 2.15 [TeX Live 2012] (kpathsea + Thai support).
 Scanning input file manual.idx....done (19 entries accepted, 0 rejected).
 Sorting entries....done (82 comparisons).
 Generating output file manual.ind....done (57 lines written, 0 warnings).
 Output written in manual.ind.
 Transcript written in manual.ilg.
 + latex -shell-escape manual
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
 entering extended mode
 (./manual.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
 
 (/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+<2008/02/07> (tvz)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
 
-
-
-/usr/local/bin/pygmentize
-)
-(./manual.pyg) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
-
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
 
-Implicit mode ON; LaTeX internals redefined
+(./manual.w18))/usr/local/bin/pygmentize
+) (./manual.pyg)
 
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-*hyperref using default driver hdvips*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
+
+
+
+
+Package hyperref Message: Driver (default): hdvips.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 
 Writing index file manual.idx
@@ -81941,9 +82592,10 @@ LaTeX Warning: Label `myeq1' multiply defined.
 LaTeX Warning: Label `myeq2' multiply defined.
 
 ) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(./manual.out) (./newcommands_keep.tex) (./newcommands_replace.tex)
+(./manual.out) (./manual.out) (./newcommands_keep.tex)
+(./newcommands_replace.tex)
 
 
 
@@ -81953,211 +82605,286 @@ such as Google
 [1]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-
-Underfull \vbox (badness 1400) has occurred while \output is active [2]
-[3]
+[2]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
-run a script, []\OT1/cmtt/m/n/10 cp2texmf.sh\OT1/phv/m/n/10 : 
+run a script, []: 
+[3]
+Overfull \hbox (17.06206pt too wide) 
+\OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
 [4]
 Overfull \hbox (22.94165pt too wide) 
-\OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
-OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
-hv/m/n/10 .
+\OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5] [6]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
- doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
+ doc-u-ment): []
 [7]
 Overfull \hbox (55.19026pt too wide) 
-\OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
-/n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
-/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
-[]\OT1/phv/m/n/10 An op-tion []\OT1/cmtt/m/n/10 --latex-printed \OT1/phv/m/n/10
- makes some ad-just-ments for doc-u-ments aimed
-[8]
+[]\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
--able through []\OT1/cmtt/m/n/10 -DLATEX_HEADING=traditional\OT1/phv/m/n/10 .
-[9]
+-able through [].
+[8] [9]
 Overfull \hbox (11.05632pt too wide) 
-\OT1/phv/m/n/10 through the []\OT1/cmtt/m/n/10 *pro \OT1/phv/m/n/10 and []\OT1/
-cmtt/m/n/10 *cod \OT1/phv/m/n/10 vari-ables in []\OT1/cmtt/m/n/10 .ptex2tex.cfg
- \OT1/phv/m/n/10 or []\OT1/cmtt/m/n/10 $HOME/.ptex2tex.cfg\OT1/phv/m/n/10 ),
+\OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
 Overfull \hbox (0.55649pt too wide) 
-\OT1/phv/m/n/10 When run-ning []\OT1/cmtt/m/n/10 doconce ptex2tex mydoc envir=m
-inted \OT1/phv/m/n/10 (or other minted spec-
+\OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
-\OT1/phv/m/n/10 i-fi-ca-tions with []\OT1/cmtt/m/n/10 doconce ptex2tex\OT1/phv/
-m/n/10 ), the minted pack-age is au-to-mat-i-cally in-cluded
-[10] [11]
+\OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
+y in-cluded
+[10]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
-
+[11]
 Overfull \hbox (6.8168pt too wide) 
-[]\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
+[]\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
-[12]
+ries, []
+
 Overfull \hbox (10.33038pt too wide) 
-[]\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
-t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
-[13] [14]
+[]\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
+[12] [13]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[15] [16] [17] [18] [19] <figs/streamtubes.eps> [20]
+[14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
-s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
-1/cmtt/m/n/10 verbatim text
-[21] [22] [23] [24]
+s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
+[20] [21] [22]
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26] [27]
+[23] [24] [25]
 Overfull \hbox (47.74467pt too wide) 
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[28] [29] [30] [31] [32] [33]
+[26] [27] [28] [29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[34]
-Overfull \hbox (56.23628pt too wide) 
-\OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
-html", "sphinx", "mwiki", "pandoc")
 
+Overfull \hbox (56.23628pt too wide) 
+\OT1/phv/m/n/10 Af-ter []
+[32]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
-les with names []\OT1/cmtt/m/n/10 newcommands.tex
+les with names []
 
 Overfull \hbox (11.08636pt too wide) 
-\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
-T1/cmtt/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []
 
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
-in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[35]
-Overfull \hbox (24.63646pt too wide) 
- \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
-com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
+in the []
 
+Overfull \hbox (24.63646pt too wide) 
+ []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
+com-mands in []: 
+[33]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
-\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
-m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
-mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
-1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[37] [38]
+\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
+[], [],
+[34] [35]
 Overfull \hbox (88.39946pt too wide) 
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
+n Do-conce []
 
 Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
-n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
-/m/n/10 doconce subst
-[39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
+[36] [37] [38] [39] [40] [41] [42] [43] [44]
 Overfull \hbox (4.78592pt too wide) 
- \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
-/phv/m/n/10 The HTML header
-[49]
+ []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
+T1/phv/m/n/10 The HTML header
+[45]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
-v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
-/n/10 keyword argument\OT1/phv/m/n/10 ,
-[50] (./manual.bbl) (./manual.ind [51] [52]) (./manual.aux)
+v/m/n/10 . Note that [], [],
+[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+   dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+subfigure.sty    2002/03/15 v2.1.5 subfigure package
+subfigure.cfg
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+  manual.w18
+  manual.pyg
+  helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+  hdvips.def    2012/05/13 v6.82q Hyperref driver for dvips
+ pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+  manual.out
+  manual.out
+newcommands_keep.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omsphv.fd    
+figs/streamtubes.eps
+  manual.bbl
+  manual.ind
+ ***********
+
 
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (52 pages, ).
+Output written on manual.dvi (48 pages, ).
 Transcript written on manual.log.
 + latex -shell-escape manual
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
 entering extended mode
 (./manual.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
 
 (/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+<2008/02/07> (tvz)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
 
-
-
-/usr/local/bin/pygmentize
-)
-(./manual.pyg) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
-
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
 
-Implicit mode ON; LaTeX internals redefined
+(./manual.w18))/usr/local/bin/pygmentize
+) (./manual.pyg)
 
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-*hyperref using default driver hdvips*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
+
+
+
+
+Package hyperref Message: Driver (default): hdvips.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 
 Writing index file manual.idx
@@ -82169,9 +82896,10 @@ LaTeX Warning: Label `myeq1' multiply defined.
 LaTeX Warning: Label `myeq2' multiply defined.
 
 ) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(./manual.out) (./newcommands_keep.tex) (./newcommands_replace.tex)
+(./manual.out) (./manual.out) (./newcommands_keep.tex)
+(./newcommands_replace.tex)
 
 
 
@@ -82181,140 +82909,208 @@ such as Google
 [1]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-
-Underfull \vbox (badness 1400) has occurred while \output is active [2]
-[3]
+[2]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
-run a script, []\OT1/cmtt/m/n/10 cp2texmf.sh\OT1/phv/m/n/10 : 
+run a script, []: 
+[3]
+Overfull \hbox (17.06206pt too wide) 
+\OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
 [4]
 Overfull \hbox (22.94165pt too wide) 
-\OT1/phv/m/n/10 ries, go to the di-rec-tory, run []\OT1/cmtt/m/n/10 svn update\
-OT1/phv/m/n/10 , and then []\OT1/cmtt/m/n/10 sudo python setup.py install\OT1/p
-hv/m/n/10 .
+\OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 [5] [6]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
- doc-u-ment): []\OT1/cmtt/m/n/10 doconce format pandoc
+ doc-u-ment): []
 [7]
 Overfull \hbox (55.19026pt too wide) 
-\OT1/phv/m/n/10 be placed in files []\OT1/cmtt/m/n/10 newcommands.tex\OT1/phv/m
-/n/10 , []\OT1/cmtt/m/n/10 newcommands_keep.tex\OT1/phv/m/n/10 , or []\OT1/cmtt
-/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
-[]\OT1/phv/m/n/10 An op-tion []\OT1/cmtt/m/n/10 --latex-printed \OT1/phv/m/n/10
- makes some ad-just-ments for doc-u-ments aimed
-[8]
+[]\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
--able through []\OT1/cmtt/m/n/10 -DLATEX_HEADING=traditional\OT1/phv/m/n/10 .
-[9]
+-able through [].
+[8] [9]
 Overfull \hbox (11.05632pt too wide) 
-\OT1/phv/m/n/10 through the []\OT1/cmtt/m/n/10 *pro \OT1/phv/m/n/10 and []\OT1/
-cmtt/m/n/10 *cod \OT1/phv/m/n/10 vari-ables in []\OT1/cmtt/m/n/10 .ptex2tex.cfg
- \OT1/phv/m/n/10 or []\OT1/cmtt/m/n/10 $HOME/.ptex2tex.cfg\OT1/phv/m/n/10 ),
+\OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
 Overfull \hbox (0.55649pt too wide) 
-\OT1/phv/m/n/10 When run-ning []\OT1/cmtt/m/n/10 doconce ptex2tex mydoc envir=m
-inted \OT1/phv/m/n/10 (or other minted spec-
+\OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
-\OT1/phv/m/n/10 i-fi-ca-tions with []\OT1/cmtt/m/n/10 doconce ptex2tex\OT1/phv/
-m/n/10 ), the minted pack-age is au-to-mat-i-cally in-cluded
-[10] [11]
+\OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
+y in-cluded
+[10]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
-
+[11]
 Overfull \hbox (6.8168pt too wide) 
-[]\OT1/phv/m/n/10 The []\OT1/cmtt/m/n/10 doconce sphinx_dir \OT1/phv/m/n/10 com
--mand gen-er-ates a script []\OT1/cmtt/m/n/10 automake_sphinx.py
+[]\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
-ries, []\OT1/cmtt/m/n/10 automake_sphinx.py
-[12]
+ries, []
+
 Overfull \hbox (10.33038pt too wide) 
-[]\OT1/cmtt/m/n/10 _build/html_pyramid\OT1/phv/m/n/10 , re-spec-tively. With-ou
-t ar-gu-ments, []\OT1/cmtt/m/n/10 make-themes.sh \OT1/phv/m/n/10 makes
-[13] [14]
+[]\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
+[12] [13]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[15] [16] [17] [18] [19] <figs/streamtubes.eps> [20]
+[14] [15] [16] [17] <figs/streamtubes.eps> [18] [19]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
-s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []\OT
-1/cmtt/m/n/10 verbatim text
-[21] [22] [23] [24]
+s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
+[20] [21] [22]
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[25] [26] [27]
+[23] [24] [25]
 Overfull \hbox (47.74467pt too wide) 
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[28] [29] [30] [31] [32] [33]
+[26] [27] [28] [29] [30] [31]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[34]
-Overfull \hbox (56.23628pt too wide) 
-\OT1/phv/m/n/10 Af-ter []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdflatex", "
-html", "sphinx", "mwiki", "pandoc")
 
+Overfull \hbox (56.23628pt too wide) 
+\OT1/phv/m/n/10 Af-ter []
+[32]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
-les with names []\OT1/cmtt/m/n/10 newcommands.tex
+les with names []
 
 Overfull \hbox (11.08636pt too wide) 
-\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []\O
-T1/cmtt/m/n/10 newcommands_replace.tex
+\OT1/phv/m/n/10 else-where through-out the text will usu-ally be placed in []
 
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
-in the []\OT1/cmtt/m/n/10 newcommands*.tex
-[35]
-Overfull \hbox (24.63646pt too wide) 
- \OT1/phv/b/n/10 Ex-am-ple.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
-com-mands in []\OT1/cmtt/m/n/10 newcommand_replace.tex\OT1/phv/m/n/10 : 
+in the []
 
+Overfull \hbox (24.63646pt too wide) 
+ []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
+com-mands in []: 
+[33]
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[36]
+
 Overfull \hbox (1.76395pt too wide) 
-\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([]\OT1/cmtt/
-m/n/10 html\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 latex\OT1/phv/m/n/10 , []\OT1/c
-mtt/m/n/10 plain\OT1/phv/m/n/10 , []\OT1/cmtt/m/n/10 rst\OT1/phv/m/n/10 , []\OT
-1/cmtt/m/n/10 sphinx\OT1/phv/m/n/10 ,
-[37] [38]
+\OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
+[], [],
+[34] [35]
 Overfull \hbox (88.39946pt too wide) 
 \OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []\OT1/cmtt/m/n/10 doconce format latex mydoc
+n Do-conce []
 
 Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []\OT1/cmtt/m/n/10 mydoc.p.tex\OT1/phv/m/n/10 . The
-n we use the []\OT1/cmtt/m/n/10 doconce replace \OT1/phv/m/n/10 and []\OT1/cmtt
-/m/n/10 doconce subst
-[39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
+[36] [37] [38] [39] [40] [41] [42] [43] [44]
 Overfull \hbox (4.78592pt too wide) 
- \OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \OT1
-/phv/m/n/10 The HTML header
-[49]
+ []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
+T1/phv/m/n/10 The HTML header
+[45]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
-v/m/n/10 . Note that []\OT1/cmtt/m/n/10 argument\OT1/phv/m/n/10 , []\OT1/cmtt/m
-/n/10 keyword argument\OT1/phv/m/n/10 ,
-[50] (./manual.bbl) (./manual.ind [51] [52]) (./manual.aux)
+v/m/n/10 . Note that [], [],
+[46] (./manual.bbl) (./manual.ind [47] [48]) (./manual.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+   dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+subfigure.sty    2002/03/15 v2.1.5 subfigure package
+subfigure.cfg
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+fancyvrb.sty    2008/02/07
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+  manual.w18
+  manual.pyg
+  helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+  hdvips.def    2012/05/13 v6.82q Hyperref driver for dvips
+ pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+  manual.out
+  manual.out
+newcommands_keep.tex
+newcommands_replace.tex
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omsphv.fd    
+figs/streamtubes.eps
+  manual.bbl
+  manual.ind
+ ***********
+
 
 LaTeX Warning: There were multiply-defined labels.
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (52 pages, ).
+Output written on manual.dvi (48 pages, ).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt --no-mako
@@ -82440,80 +83236,87 @@ translating preprocessed doconce text in __tmp.do.txt to latex
 copy complete file doconce_program.sh  (format: shpro)
 output in quickref.p.tex
 + doconce ptex2tex quickref -DMINTED -DHELVETICA envir=Verbatim
-\bshpro (!bc shpro) -> \begin{Verbatim}
-\bsys (!bc sys) -> \begin{Verbatim}
-\bccq (!bc ccq) -> \begin{Verbatim}
+\bshpro (!bc shpro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bsys (!bc sys) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 + latex -shell-escape quickref.tex
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
 entering extended mode
 (./quickref.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)) (/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 
 
 
 
-/usr/local/bin/pygmentize
-) (./quickref.pyg) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./quickref.w18))/usr/local/bin/pygmentize
+) (./quickref.pyg)
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package hyperref Message: Driver (default): hdvips.
 
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-
-
-*hyperref using default driver hdvips*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 
 Writing index file quickref.idx
 No file quickref.aux.
 
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
@@ -82526,49 +83329,124 @@ Package hyperref Warning: old toc file detected, not used; run LaTeX again.
  [1] [2] [3] [4]
 Overfull \hbox (4.40137pt too wide) 
 \OT1/phv/m/n/10 fi-ca-tion copies from the first line match-ing the \OT1/phv/m/
-sl/10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 doconce clean
+sl/10 reg-u-lar ex-pres-sion []
 
 Overfull \hbox (27.8928pt too wide) 
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
-/10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 ^doconce split_rst\OT1/phv/m/n/10
- .
+/10 reg-u-lar ex-pres-sion []\OT1/phv/m/n/10 .
 [5]
 Overfull \hbox (10.99698pt too wide) 
-[]\OT1/phv/m/n/10 One can use []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdfla
-tex", "sphinx", "mwiki")
+[]\OT1/phv/m/n/10 One can use []
 
 Overfull \hbox (70.29608pt too wide) 
-\OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally []\OT1/cmt
-t/m/n/10 # #if FORMAT in ("latex", "pdflatex")\OT1/phv/m/n/10 )
+\OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally [])
 [6]
 
-LaTeX Warning: Reference `quick:sections' on page 7 undefined on input line 527
+LaTeX Warning: Reference `quick:sections' on page 7 undefined on input line 534
 .
 
 [7]
 Overfull \hbox (60.6356pt too wide) 
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
-\OT1/cmtt/m/n/10 name \OT1/phv/m/n/10 on the form []\OT1/cmtt/m/n/10 Author1_Au
-thor2_YYYY\OT1/phv/m/n/10 ,
-[8]
+ on the form [],
+
 Overfull \hbox (88.21638pt too wide) 
-[]\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
-/10 BIBFILE: name_bib.bib, name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
-[9] [10] [11] [12] [13]
+[]\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line [],
+[8] [9] [10] [11]
 Overfull \hbox (2.40855pt too wide) 
-\OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther []\
-OT1/cmtt/m/n/10 preprocess \OT1/phv/m/n/10 and/or []\OT1/cmtt/m/n/10 mako\OT1/p
-hv/m/n/10 .
+\OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther [] 
+and/or [].
 
 Overfull \hbox (0.18839pt too wide) 
-\OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing []\OT1/cmtt/m/n/10 prep
-rocess \OT1/phv/m/n/10 to in-clude an-other doc-u-ment, "com-
-[14]
+\OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing [] to in-clude an-other
+ doc-u-ment, "com-
+[12]
 Overfull \hbox (87.48466pt too wide) 
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
-[15] (./quickref.aux)
+[13] (./quickref.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+   dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+fancyvrb.sty    2008/02/07
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+quickref.w18
+quickref.pyg
+  helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+  hdvips.def    2012/05/13 v6.82q Hyperref driver for dvips
+ pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omsphv.fd    
+ ***********
+
+
+Package rerunfilecheck Warning: File `quickref.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
 
 LaTeX Warning: There were undefined references.
 
@@ -82577,124 +83455,205 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on quickref.dvi (15 pages, ).
+Output written on quickref.dvi (13 pages, ).
 Transcript written on quickref.log.
 + latex -shell-escape quickref.tex
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  \write18 enabled.
 entering extended mode
 (./quickref.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Examine \normalsize starts \@setfontsize size may be \@xpt. 
+Examine \small starts \@setfontsize size may be \@ixpt. 
+Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
+Examine \large starts \@setfontsize size may be \@xiipt. 
+Examine \Large starts \@setfontsize size may be \@xivpt. 
+Examine \LARGE starts \@setfontsize size may be \@xviipt. 
+Examine \scriptsize starts \@setfontsize size may be \@viipt. 
+Examine \tiny starts \@setfontsize size may be \@vpt. 
+Examine \huge starts \@setfontsize size may be \@xxpt. 
+Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 
-(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
-
-(/etc/texmf/tex/latex/config/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)) (/home/hpl/texmf/tex/latex/misc/minted.sty
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 
 
 
 
-/usr/local/bin/pygmentize
-) (./quickref.pyg) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+
+(./quickref.w18))/usr/local/bin/pygmentize
+) (./quickref.pyg)
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package hyperref Message: Driver (default): hdvips.
 
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-
-
-*hyperref using default driver hdvips*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 
 Writing index file quickref.idx
 (./quickref.aux) 
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(./quickref.out) 
+(./quickref.out) (./quickref.out)
+
 
  [1] [2] [3] [4]
 Overfull \hbox (4.40137pt too wide) 
 \OT1/phv/m/n/10 fi-ca-tion copies from the first line match-ing the \OT1/phv/m/
-sl/10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 doconce clean
+sl/10 reg-u-lar ex-pres-sion []
 
 Overfull \hbox (27.8928pt too wide) 
 \OT1/phv/m/n/10 up to, but not in-clud-ing the line match-ing the \OT1/phv/m/sl
-/10 reg-u-lar ex-pres-sion []\OT1/cmtt/m/n/10 ^doconce split_rst\OT1/phv/m/n/10
- .
-[5] [6]
+/10 reg-u-lar ex-pres-sion []\OT1/phv/m/n/10 .
+[5]
 Overfull \hbox (10.99698pt too wide) 
-[]\OT1/phv/m/n/10 One can use []\OT1/cmtt/m/n/10 #if FORMAT in ("latex", "pdfla
-tex", "sphinx", "mwiki")
+[]\OT1/phv/m/n/10 One can use []
 
 Overfull \hbox (70.29608pt too wide) 
-\OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally []\OT1/cmt
-t/m/n/10 # #if FORMAT in ("latex", "pdflatex")\OT1/phv/m/n/10 )
-[7] [8]
+\OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally [])
+[6] [7]
 Overfull \hbox (60.6356pt too wide) 
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
-\OT1/cmtt/m/n/10 name \OT1/phv/m/n/10 on the form []\OT1/cmtt/m/n/10 Author1_Au
-thor2_YYYY\OT1/phv/m/n/10 ,
+ on the form [],
 
 Overfull \hbox (88.21638pt too wide) 
-[]\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line []\OT1/cmtt/m/n
-/10 BIBFILE: name_bib.bib, name_bib.rst, name_bib.py\OT1/phv/m/n/10 ,
-[9] [10] [11] [12] [13]
+[]\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line [],
+[8] [9] [10] [11]
 Overfull \hbox (2.40855pt too wide) 
-\OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther []\
-OT1/cmtt/m/n/10 preprocess \OT1/phv/m/n/10 and/or []\OT1/cmtt/m/n/10 mako\OT1/p
-hv/m/n/10 .
-
+\OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther [] 
+and/or [].
+[12]
 Overfull \hbox (0.18839pt too wide) 
-\OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing []\OT1/cmtt/m/n/10 prep
-rocess \OT1/phv/m/n/10 to in-clude an-other doc-u-ment, "com-
-[14]
+\OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing [] to in-clude an-other
+ doc-u-ment, "com-
+
 Overfull \hbox (87.48466pt too wide) 
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
 No file quickref.ind.
-[15] (./quickref.aux) )
+[13] (./quickref.aux)
+
+ *File List*
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size10.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2011/09/21 ver 4.0
+  epsfig.sty    1999/02/16 v1.7a (e)psfig emulation (SPQR)
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+   dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+ makeidx.sty    2000/03/29 v1.0m Standard LaTeX package
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+  latin1.def    2008/03/30 v1.1d Input encoding file
+fancyvrb.sty    2008/02/07
+  minted.sty    2010/01/27 v1.6 Yet another Pygments shim for LaTeX
+   color.sty    2005/11/14 v1.0j Standard LaTeX Color (DPC)
+   color.cfg    2007/01/18 v1.5 color configuration of teTeX/TeXLive
+dvipsnam.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  ifthen.sty    2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+    calc.sty    2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+ifplatform.sty    2010/10/22 v0.4 Testing for the operating system
+pdftexcmds.sty    2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
+infwarerr.sty    2010/04/08 v1.3 Providing info/warning/error messages (HO)
+ifluatex.sty    2010/03/01 v1.3 Provides the ifluatex switch (HO)
+ ltxcmds.sty    2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+catchfile.sty    2011/03/01 v1.6 Catch the contents of a file (HO)
+etexcmds.sty    2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+quickref.w18
+quickref.pyg
+  helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
+hyperref.sty    2012/05/13 v6.82q Hypertext links for LaTeX
+hobsub-hyperref.sty    2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2012/05/28 v1.13 Construct package bundles (HO)
+  ifvtex.sty    2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable calculations with integers (HO)
+kvsetkeys.sty    2012/04/25 v1.16 Key value parser (HO)
+kvdefinekeys.sty    2011/04/07 v1.3 Define keys (HO)
+pdfescape.sty    2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2012/04/08 v1.3 Expandable calculations on big integers (HO)
+  bitset.sty    2011/01/30 v1.1 Handle bit-vector datatype (HO)
+uniquecounter.sty    2011/01/30 v1.2 Provide unlimited unique counter (HO)
+letltxmacro.sty    2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2012/05/28 v1.2 Wrapper for package hooks (HO)
+xcolor-patch.sty    2011/01/30 xcolor patch
+atveryend.sty    2011/06/30 v1.8 Hooks at the very end of document (HO)
+atbegshi.sty    2011/10/05 v1.16 At begin shipout hook (HO)
+refcount.sty    2011/10/16 v3.4 Data extraction from label references (HO)
+ hycolor.sty    2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+kvoptions.sty    2011/06/30 v3.11 Key value format for package options (HO)
+  pd1enc.def    2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+  hdvips.def    2012/05/13 v6.82q Hyperref driver for dvips
+ pdfmark.def    2012/05/13 v6.82q Hyperref definitions for pdfmark specials
+rerunfilecheck.sty    2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+  ot1phv.fd    2001/06/04 scalable font definitions for OT1/phv.
+ nameref.sty    2010/04/30 v2.40 Cross-referencing by name of section
+gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
+quickref.out
+quickref.out
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+  omsphv.fd    
+ ***********
+
+ )
 (see the transcript file for additional information)
-Output written on quickref.dvi (15 pages, ).
+Output written on quickref.dvi (13 pages, ).
 Transcript written on quickref.log.
 + dvipdf quickref.dvi
 + doconce format sphinx quickref --no-preprocess
@@ -82710,7 +83669,7 @@ output in quickref.rst
 + rm -rf sphinx-rootdir
 + doconce sphinx_dir author=HPL version=0.7 quickref
 Making sphinx-rootdir
-Welcome to the Sphinx 1.1.3 quickstart utility.
+Welcome to the Sphinx 1.2pre quickstart utility.
 
 Please enter values for the following settings (just press Enter to
 accept a default value, if one is given in brackets).
@@ -82789,8 +83748,7 @@ output in quickref.rst
 rm -rf _build/*
 sphinx-build -b html -d _build/doctrees   . _build/html
 Making output directory...
-Running Sphinx v1.1.3
-WARNING: extension 'sphinxjp.themes.solarized' has no setup() function; is it really a Sphinx extension module?
+Running Sphinx v1.2pre
 loading pickled environment... not yet created
 building [html]: targets for 2 source files that are out of date
 updating environment: 2 added, 0 changed, 0 removed
@@ -82808,7 +83766,7 @@ writing additional files... (0 module code pages) genindex search
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 1 warning.
+build succeeded.
 
 Build finished. The HTML pages are in _build/html.
 
@@ -82833,67 +83791,58 @@ output in quickref.rst
 + rst2html.py quickref.rst
 + rst2latex.py quickref.rst
 + latex quickref.rst.tex
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
 entering extended mode
 (./quickref.rst.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
 
-(/usr/share/texmf-texlive/tex/latex/cmap/cmap.sty
+(/usr/share/texlive/texmf-dist/tex/latex/cmap/cmap.sty
 
 Package cmap Warning: pdftex in DVI mode - exiting.
 
 ) 
-(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
-
-
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 
 
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/helvet.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/helvet.sty
 
 
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
-
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-*hyperref using default driver hdvips*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
+
+
+
+
+Package hyperref Message: Driver (default): hdvips.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 No file quickref.rst.aux.
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
@@ -83208,6 +84157,11 @@ Overfull \hbox (114.855pt too wide)
  
 [13] [14] (./quickref.rst.aux)
 
+Package rerunfilecheck Warning: File `quickref.rst.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+
 LaTeX Warning: There were undefined references.
 
 
@@ -83218,68 +84172,60 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Output written on quickref.rst.dvi (14 pages, ).
 Transcript written on quickref.rst.log.
 + latex quickref.rst.tex
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian)
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
+ restricted \write18 enabled.
 entering extended mode
 (./quickref.rst.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
 
-(/usr/share/texmf-texlive/tex/latex/cmap/cmap.sty
+(/usr/share/texlive/texmf-dist/tex/latex/cmap/cmap.sty
 
 Package cmap Warning: pdftex in DVI mode - exiting.
 
 ) 
-(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
-
-
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 
 
 
 
 
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/helvet.sty
 
 
-(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/helvet.sty
 
 
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
-
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
-
-
-(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
-
-Implicit mode ON; LaTeX internals redefined
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 
 
 
-*hyperref using default driver hdvips*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
 
 
-(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
-(/etc/texmf/tex/latex/config/color.cfg)
 
 
-(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
- (./quickref.rst.out
-) (./quickref.rst.out) 
+Package hyperref Message: Driver (default): hdvips.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
+
+(./quickref.rst.aux) 
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./quickref.rst.out) (./quickref.rst.out)
+
 
 
 

@@ -328,7 +328,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Dec 20, 2012</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Dec 25, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -1286,7 +1286,7 @@ cd ../..
 that <tt class="docutils literal">ptex2tex</tt> potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by:</p>
 <pre class="literal-block">
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 </pre>
 <p>on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -1297,14 +1297,20 @@ program.</p>
 <p>The <em>minted</em> LaTeX style is offered by <tt class="docutils literal">ptex2tex</tt> and <tt class="docutils literal">doconce ptext2tex</tt>
 is popular among many
 users. This style requires the package <a class="reference external" href="http://pygments.org">Pygments</a>
-to be installed:</p>
+to be installed. On Debian Linux:</p>
+<pre class="literal-block">
+sudo apt-get install python-pygments
+</pre>
+<p>Alternatively, the package can be installed manually:</p>
 <pre class="literal-block">
 hg clone ssh://hg&#64;bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
 sudo python setup.py install
 </pre>
 <p>If you use the minted style together with <tt class="docutils literal">ptex2tex</tt>, you have to
-enable it by the <tt class="docutils literal"><span class="pre">-DMINTED</span></tt> command-line argument to <tt class="docutils literal">ptex2tex</tt>.  All
+enable it by the <tt class="docutils literal"><span class="pre">-DMINTED</span></tt> command-line argument to <tt class="docutils literal">ptex2tex</tt>.
+This is not necessary if you run the alternative <tt class="docutils literal">doconce ptex2tex</tt> program.</p>
+<p>All
 use of the minted style requires the <tt class="docutils literal"><span class="pre">-shell-escape</span></tt> command-line
 argument when running LaTeX, i.e., <tt class="docutils literal">latex <span class="pre">-shell-escape</span></tt> or <tt class="docutils literal">pdflatex
 <span class="pre">-shell-escape</span></tt>.</p>

@@ -76,7 +76,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Dec 20, 2012
+Dec 25, 2012
 %
 \begin{itemize}
 
@@ -1500,7 +1500,7 @@ that \texttt{ptex2tex} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-sudo~apt-get~install~texlive-latex-extra
+sudo~apt-get~install~texlive-latex-recommended~texlive-latex-extra
 }
 \end{quote}
 
@@ -1515,7 +1515,14 @@ program.
 The \emph{minted} LaTeX style is offered by \texttt{ptex2tex} and \texttt{doconce ptext2tex}
 is popular among many
 users. This style requires the package \href{http://pygments.org}{Pygments}
-to be installed:
+to be installed. On Debian Linux:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~apt-get~install~python-pygments
+}
+\end{quote}
+
+Alternatively, the package can be installed manually:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 hg~clone~ssh://hg@bitbucket.org/birkenfeld/pygments-main~pygments\\
@@ -1525,7 +1532,10 @@ sudo~python~setup.py~install
 \end{quote}
 
 If you use the minted style together with \texttt{ptex2tex}, you have to
-enable it by the \texttt{-DMINTED} command-line argument to \texttt{ptex2tex}.  All
+enable it by the \texttt{-DMINTED} command-line argument to \texttt{ptex2tex}.
+This is not necessary if you run the alternative \texttt{doconce ptex2tex} program.
+
+All
 use of the minted style requires the \texttt{-shell-escape} command-line
 argument when running LaTeX, i.e., \texttt{latex -shell-escape} or \texttt{pdflatex
 -shell-escape}.

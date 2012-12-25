@@ -2,7 +2,7 @@
 <wiki:toc max_depth="2" />
 By **Hans Petter Langtangen**
 
-=== Dec 20, 2012 ===
+=== Dec 25, 2012 ===
 
 <wiki:comment> lines beginning with # are comment lines </wiki:comment>
 
@@ -143,7 +143,7 @@ that {{{ptex2tex}}} potentially makes use of. Some more standard stylefiles
 are also needed. These are installed by
 
 {{{
-sudo apt-get install texlive-latex-extra
+sudo apt-get install texlive-latex-recommended texlive-latex-extra
 }}}
 on Debian Linux (including Ubuntu) systems. TeXShop on Mac comes with
 the necessary stylefiles (if not, they can be found by googling and installed
@@ -156,7 +156,11 @@ program.
 The //minted// LaTeX style is offered by {{{ptex2tex}}} and {{{doconce ptext2tex}}}
 is popular among many
 users. This style requires the package [[http://pygments.org|Pygments]]
-to be installed:
+to be installed. On Debian Linux,
+{{{
+sudo apt-get install python-pygments
+}}}
+Alternatively, the package can be installed manually:
 {{{
 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygments
 cd pygments
@@ -164,7 +168,10 @@ sudo python setup.py install
 }}}
 
 If you use the minted style together with {{{ptex2tex}}}, you have to
-enable it by the {{{-DMINTED}}} command-line argument to {{{ptex2tex}}}.  All
+enable it by the {{{-DMINTED}}} command-line argument to {{{ptex2tex}}}.
+This is not necessary if you run the alternative {{{doconce ptex2tex}}} program.
+
+All
 use of the minted style requires the {{{-shell-escape}}} command-line
 argument when running LaTeX, i.e., {{{latex -shell-escape}}} or {{{pdflatex
 -shell-escape}}}.
@@ -2296,6 +2303,10 @@ in the line above it.
 
 Make sure there is a space before the first back-tick.
 
+=== Inline verbatim text is not formatted correctly ===
+
+Make sure there is whitespace surrounding the text in back-ticks.
+
 === Strange non-English characters ===
 
 Check the encoding of the {{{.do.txt}}} file with the Unix {{{file}}} command
@@ -2317,10 +2328,6 @@ When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
 the section "Strange non-English characters" above for how to
 run {{{doconce change_encoding}}} to change the encoding of the Doconce file.
-
-=== Inline verbatim text is not formatted correctly ===
-
-Make sure there is whitespace surrounding the text in back-ticks.
 
 === Too short underlining of reST headlines ===
 
