@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Dec 25, 2012</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Dec 26, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -545,7 +545,8 @@ using ReportLab instead of LaTeX. The enabling software is
 <a class="reference external" href="http://code.google.com/p/rst2pdf">rst2pdf</a>. Either download the tarball
 or clone the svn repository, go to the <tt class="docutils literal">rst2pdf</tt> directory and
 run the usual <tt class="docutils literal">sudo python setup.py install</tt>.</p>
-<p>Output to <tt class="docutils literal">sphinx</tt> requires of course <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a>,
+<p>Output to <tt class="docutils literal">sphinx</tt> requires of course the
+<a class="reference external" href="http://sphinx.pocoo.org">Sphinx software</a>,
 installed by:</p>
 <pre class="literal-block">
 hg clone https://bitbucket.org/birkenfeld/sphinx
@@ -932,7 +933,7 @@ Some links for going from LaTeX to Word are listed below.</p>
 </ul>
 </blockquote>
 </div>
-<div class="section" id="id2">
+<div class="section" id="sphinx">
 <h2>Sphinx</h2>
 <p>Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <tt class="docutils literal">doconce sphinx_dir</tt> command:</p>
@@ -1401,7 +1402,7 @@ the width and height might be inappropriate.</p>
 of computer code from a file directly into a verbatim environment, see
 the section <a class="reference internal" href="#blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</a> below.</p>
 </div>
-<div class="section" id="id3">
+<div class="section" id="id2">
 <span id="inline-tagging"></span><h2>Inline Tagging</h2>
 <p>Doconce supports tags for <em>emphasized phrases</em>, <strong>boldface phrases</strong>,
 and <tt class="docutils literal">verbatim text</tt> (also called type writer text, for inline code)
@@ -1554,7 +1555,7 @@ are vectors of length n.&quot;</p>
 <h2>Comments</h2>
 <p>Comments intended to be visible in the output document and read by
 readers are known as <em>inline comments</em> in Doconce and described
-in the section <a class="reference internal" href="#id3">Inline Tagging</a>.</p>
+in the section <a class="reference internal" href="#id2">Inline Tagging</a>.</p>
 <p>Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
 lines start with the hash <tt class="docutils literal">#</tt>:</p>
@@ -1605,7 +1606,7 @@ say Equations (myeq1)-(myeq2). A comparison of the output and
 the source of this document illustrates how labels and references
 are handled by the format in question.</p>
 <p>Hyperlinks to files or web addresses are handled as explained
-in the section <a class="reference internal" href="#id3">Inline Tagging</a>.</p>
+in the section <a class="reference internal" href="#id2">Inline Tagging</a>.</p>
 </div>
 </div>
 <div class="section" id="generalized-cross-referencing">
@@ -1766,8 +1767,8 @@ with the dictionary version of the references.</p>
 <p>Conversion of BibTeX databases to reST format can be
 done by the <a class="reference external" href="http://pypi.python.org/pypi/bibliograph.parsing/">bibliograph.parsing</a> tool.</p>
 <p>Finally, we here test the citation command and bibliography by
-citing a book <a class="citation-reference" href="#python-primer-09" id="id5">[Python:Primer:09]</a>, a paper <a class="citation-reference" href="#osnes-98" id="id6">[Osnes:98]</a>,
-and both of them simultaneously <a class="citation-reference" href="#python-primer-09" id="id7">[Python:Primer:09]</a> <a class="citation-reference" href="#osnes-98" id="id8">[Osnes:98]</a>.</p>
+citing a book <a class="citation-reference" href="#python-primer-09" id="id4">[Python:Primer:09]</a>, a paper <a class="citation-reference" href="#osnes-98" id="id5">[Osnes:98]</a>,
+and both of them simultaneously <a class="citation-reference" href="#python-primer-09" id="id6">[Python:Primer:09]</a> <a class="citation-reference" href="#osnes-98" id="id7">[Osnes:98]</a>.</p>
 <p>(<strong>somereader</strong>: comments, citations, and references in the latex style
 is a special feature of doconce :-) )</p>
 </div>
@@ -2991,7 +2992,7 @@ the iterations.</dd>
 <table class="docutils citation" frame="void" id="python-primer-09" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Python:Primer:09]</td><td><em>(<a class="fn-backref" href="#id5">1</a>, <a class="fn-backref" href="#id7">2</a>)</em> H. P. Langtangen.
+<tr><td class="label">[Python:Primer:09]</td><td><em>(<a class="fn-backref" href="#id4">1</a>, <a class="fn-backref" href="#id6">2</a>)</em> H. P. Langtangen.
 <em>A Primer on Scientific Programming with Python</em>.
 Springer, 2009.</td></tr>
 </tbody>
@@ -2999,7 +3000,7 @@ Springer, 2009.</td></tr>
 <table class="docutils citation" frame="void" id="osnes-98" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[Osnes:98]</td><td><em>(<a class="fn-backref" href="#id6">1</a>, <a class="fn-backref" href="#id8">2</a>)</em> H. Osnes and H. P. Langtangen.
+<tr><td class="label">[Osnes:98]</td><td><em>(<a class="fn-backref" href="#id5">1</a>, <a class="fn-backref" href="#id7">2</a>)</em> H. Osnes and H. P. Langtangen.
 An efficient probabilistic finite element method for stochastic
 groundwater flow.
 <em>Advances in Water Resources</em>, vol 22, 185-195, 1998.</td></tr>

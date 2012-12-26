@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Dec 25, 2012 ====
+==== Dec 26, 2012 ====
 
 <!--> lines beginning with # are comment lines -->
 
@@ -195,8 +195,10 @@ or clone the svn repository, go to the <code>rst2pdf</code> directory and
 run the usual <code>sudo python setup.py install</code>.
 
 
-Output to <code>sphinx</code> requires of course [http://sphinx.pocoo.org Sphinx],
+Output to <code>sphinx</code> requires of course the
+[http://sphinx.pocoo.org Sphinx software],
 installed by
+
 <syntaxhighlight lang="bash">
 hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx

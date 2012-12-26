@@ -149,8 +149,10 @@ or clone the svn repository, go to the `rst2pdf` directory and
 run the usual `sudo python setup.py install`.
 
 
-Output to `sphinx` requires of course "Sphinx": "http://sphinx.pocoo.org",
+Output to `sphinx` requires of course the
+"Sphinx software": "http://sphinx.pocoo.org",
 installed by
+
 !bc sys
 hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx

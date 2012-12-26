@@ -224,19 +224,26 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
     # with non-unique links in reST: add a counter to the title
     debugtext = ''
     section_pattern = r'^\s*(_{3,9}|={3,9})(.+?)(_{3,9}|={3,9})(\s*label\{(.+?)\})?'
-    m = re.findall(section_pattern, filestr, flags=re.MULTILINE)
+    all_sections = re.findall(section_pattern, filestr, flags=re.MULTILINE)
     # First count the no of titles with the same wording
     titles = {}
-    for heading, title, dummy2, dummy3, label in m:
+    max_heading = 3  # track the top heading level for correct TITLE typesetting
+    for heading, title, dummy2, dummy3, label in all_sections:
         entry = None if label == '' else label
         if title in titles:
             titles[title].append(entry)
         else:
             titles[title] = [entry]
+        max_heading = max(max_heading, len(heading))
+
+    # Typeset TITLE so that it gets the highest (but no higher) section sevel
+    filestr = re.sub(r'^TITLE:\s*(.+)$', '%s \g<1> %s\n' %
+                     ('='*max_heading, '='*max_heading),
+                     filestr, flags=re.MULTILINE)
     # Make new titles
     title_counter = {}   # count repeated titles
     sections = []
-    for heading, title, dummy2, dummy3, label in m:
+    for heading, title, dummy2, dummy3, label in all_sections:
         label = None if label == '' else label
         if len(titles[title]) > 1:
             if title in title_counter:
@@ -418,7 +425,8 @@ def define(FILENAME_EXTENSION,
         'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('latin-1'))),
         'paragraph':     r'*\g<subst>* ',  # extra blank
         'abstract':      r'\n*\g<type>.* \g<text>\n\g<rest>',
-        'title':         r'========= \g<subst> =========\n',  # doconce top section, is later replaced
+        #'title':         r'======= \g<subst> =======\n',  # doconce top section, must be the highest section level (but no higher than others, need more code)
+        'title':         None, # taken care of in ref_and_label_commoncode
         'date':          r':Date: \g<subst>\n',
         'author':        rst_author,
         'figure':        rst_figure,

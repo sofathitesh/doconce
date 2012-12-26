@@ -6,7 +6,7 @@ Doconce: Document Once, Include Anywhere
 
 :Author: Hans Petter Langtangen
 
-:Date: Dec 25, 2012
+:Date: Dec 26, 2012
 
  * When writing a note, report, manual, etc., do you find it difficult
    to choose the typesetting format? That is, to choose between plain
@@ -1178,7 +1178,8 @@ or clone the svn repository, go to the ``rst2pdf`` directory and
 run the usual ``sudo python setup.py install``.
 
 
-Output to ``sphinx`` requires of course `Sphinx <http://sphinx.pocoo.org>`_,
+Output to ``sphinx`` requires of course the
+`Sphinx software <http://sphinx.pocoo.org>`_,
 installed by::
 
 
