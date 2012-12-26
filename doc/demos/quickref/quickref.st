@@ -209,8 +209,8 @@ Inline verbatim code is typeset within back-ticks, as in::
 resulting in Some sentence with 'words in verbatim style'.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between '!bc xxx' and '!ec' directives (which must appear on the
-beginning of the line). A specification 'xxx' indicates what verbatim
+in between '!bc xxx' and '!ec' directives, which must appear on the
+beginning of the line. A specification 'xxx' indicates what verbatim
 formatting style that is to be used. Typical values for 'xxx' are
 nothing, 'cod' for a code snippet, 'pro' for a complete program,
 'sys' for a terminal session, 'dat' for a data file (or output from a
@@ -232,6 +232,16 @@ Pygments (which is what 'sphinx' applies to typeset computer code).
 The 'xxx' specifier has only effect for 'latex' and
 'sphinx' output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
+
+Here is an example of computer code (see the source of this document
+for exact syntax)::
+
+
+        from numpy import sin, cos, exp, pi
+        
+        def f(x, y, z, t):
+            return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+
 
 Computer code can also be copied from a file::
 
@@ -290,24 +300,18 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 '!bt'
 and
-'!et' ("begin/end TeX") directives.
-For example::
-
-
-        !bt
-        \begin{align*}
-        \nabla\cdot u &= 0,\\
-        \nabla\times u & 0.
-        \end{align*}
-        
-
-
-will appear as::
+'!et' (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result::
 
         \begin{align*}
-        \nabla\cdot u &= 0,\\
-        \nabla\times u & 0.
+        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\times \pmb{u} &= 0.
         \end{align*}
+
+Or a single equation::
+
+        \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
 
 One can use '#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")' to let

@@ -192,8 +192,8 @@ Some sentence with `words in verbatim style`.
 resulting in Some sentence with <code>words in verbatim style</code>.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between <code>!bc xxx</code> and <code>!ec</code> directives (which must appear on the
-beginning of the line). A specification <code>xxx</code> indicates what verbatim
+in between <code>!bc xxx</code> and <code>!ec</code> directives, which must appear on the
+beginning of the line. A specification <code>xxx</code> indicates what verbatim
 formatting style that is to be used. Typical values for <code>xxx</code> are
 nothing, <code>cod</code> for a code snippet, <code>pro</code> for a complete program,
 <code>sys</code> for a terminal session, <code>dat</code> for a data file (or output from a
@@ -215,7 +215,17 @@ The <code>xxx</code> specifier has only effect for <code>latex</code> and
 <code>sphinx</code> output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
-<!--> When showing copy from file in !bc envir, intent a character - otherwise -->
+Here is an example of computer code (see the source of this document
+for exact syntax):
+
+<syntaxhighlight lang="python">
+from numpy import sin, cos, exp, pi
+
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+</code>
+
+<!--> When showing copy from file in !bc envir, indent a character - otherwise -->
 <!--> ptex2tex is confused and starts copying... -->
 Computer code can also be copied from a file:
 <code>
@@ -269,22 +279,20 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 <code>!bt</code>
 and
-<code>!et</code> ("begin/end TeX") directives.
-For example,
-<code>
+<code>!et</code> (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:
+
 :<math>
 \begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
 \end{align*}
 </math>
-</code>
-will appear as
+Or a single equation:
+
 :<math>
-\begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
-\end{align*}
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 </math>
 
 One can use <code>#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")</code> to let

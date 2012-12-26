@@ -460,8 +460,8 @@ Some~sentence~with~`words~in~verbatim~style`.
 resulting in Some sentence with \texttt{words in verbatim style}.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between \texttt{!bc xxx} and \texttt{!ec} directives (which must appear on the
-beginning of the line). A specification \texttt{xxx} indicates what verbatim
+in between \texttt{!bc xxx} and \texttt{!ec} directives, which must appear on the
+beginning of the line. A specification \texttt{xxx} indicates what verbatim
 formatting style that is to be used. Typical values for \texttt{xxx} are
 nothing, \texttt{cod} for a code snippet, \texttt{pro} for a complete program,
 \texttt{sys} for a terminal session, \texttt{dat} for a data file (or output from a
@@ -486,7 +486,18 @@ The \texttt{xxx} specifier has only effect for \texttt{latex} and
 \texttt{sphinx} output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
-% When showing copy from file in !bc envir, intent a character - otherwise
+Here is an example of computer code (see the source of this document
+for exact syntax):
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+from~numpy~import~sin,~cos,~exp,~pi\\
+~\\
+def~f(x,~y,~z,~t):\\
+~~~~return~exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+}
+\end{quote}
+
+% When showing copy from file in !bc envir, indent a character - otherwise
 
 % ptex2tex is confused and starts copying...
 
@@ -567,25 +578,22 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 \texttt{!bt}
 and
-\texttt{!et} (``begin/end TeX'') directives.
-For example:
+\texttt{!et} (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-!bt\\
 \textbackslash{}begin\{align*\}\\
-\textbackslash{}nabla\textbackslash{}cdot~u~\&=~0,\textbackslash{}\textbackslash{}\\
-\textbackslash{}nabla\textbackslash{}times~u~\&~0.\\
+\textbackslash{}nabla\textbackslash{}cdot~\textbackslash{}pmb\{u\}~\&=~0,\textbackslash{}\textbackslash{}\\
+\textbackslash{}nabla\textbackslash{}times~\textbackslash{}pmb\{u\}~\&=~0.\\
 \textbackslash{}end\{align*\}
 }
 \end{quote}
 
-will appear as:
+Or a single equation:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-\textbackslash{}begin\{align*\}\\
-\textbackslash{}nabla\textbackslash{}cdot~u~\&=~0,\textbackslash{}\textbackslash{}\\
-\textbackslash{}nabla\textbackslash{}times~u~\&~0.\\
-\textbackslash{}end\{align*\}
+\textbackslash{}{[}~\textbackslash{}frac\{\textbackslash{}partial\textbackslash{}pmb\{u\}\}\{\textbackslash{}partial~t\}~+~\textbackslash{}pmb\{u\}\textbackslash{}cdot\textbackslash{}nabla\textbackslash{}pmb\{u\}~=~0.\textbackslash{}{]}
 }
 \end{quote}
 

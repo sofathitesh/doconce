@@ -373,8 +373,8 @@ resulting in Some sentence with <tt>words in verbatim style</tt>.
 
 <p>
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between <tt>!bc xxx</tt> and <tt>!ec</tt> directives (which must appear on the
-beginning of the line). A specification <tt>xxx</tt> indicates what verbatim
+in between <tt>!bc xxx</tt> and <tt>!ec</tt> directives, which must appear on the
+beginning of the line. A specification <tt>xxx</tt> indicates what verbatim
 formatting style that is to be used. Typical values for <tt>xxx</tt> are
 nothing, <tt>cod</tt> for a code snippet, <tt>pro</tt> for a complete program,
 <tt>sys</tt> for a terminal session, <tt>dat</tt> for a data file (or output from a
@@ -400,7 +400,21 @@ The <tt>xxx</tt> specifier has only effect for <tt>latex</tt> and
 kinds of verbatim output.
 
 <p>
-<!-- When showing copy from file in !bc envir, intent a character - otherwise -->
+Here is an example of computer code (see the source of this document
+for exact syntax):
+
+<p>
+<!-- begin verbatim block  cod-->
+<pre>
+from numpy import sin, cos, exp, pi
+
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+</pre>
+<! -- end verbatim block -->
+
+<p>
+<!-- When showing copy from file in !bc envir, indent a character - otherwise -->
 <!-- ptex2tex is confused and starts copying... -->
 Computer code can also be copied from a file:
 <!-- begin verbatim block -->
@@ -469,25 +483,21 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 <tt>!bt</tt>
 and
-<tt>!et</tt> ("begin/end TeX") directives.
-For example,
-<!-- begin verbatim block -->
-<pre>
+<tt>!et</tt> (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:
+
+<p>
 $$
 \begin{align*}
-\nabla\cdot u &amp;= 0,\\
-\nabla\times u &amp; 0.
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
 \end{align*}
 $$
-</pre>
-<! -- end verbatim block -->
-will appear as
-$$
-\begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
-\end{align*}
-$$
+Or a single equation:
+
+<p>
+$$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
 
 <p>
 One can use <tt>#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")</tt> to let

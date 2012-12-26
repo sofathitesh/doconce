@@ -15019,15 +15019,28 @@ This results in a professional LaTeX typesetting, but in other formats
 the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like $\nu = \sin(x)$|$v = sin(x)$ is
 typeset as
+
 !bc
 $\nu = \sin(x)$|$v = sin(x)$
 !ec
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats `latex`, `pdflatex`, `html`, `sphinx`, and `pandoc`
+are of interest
+and all these support inline LaTeX mathematics so then you will naturally
+drop the pipe symbol and write just
+
+!bc
+$\nu = \sin(x)$
+!ec
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
 Blocks of mathematics are better typeset with raw LaTeX, inside
 `!bt` and `!et` (begin tex / end tex) instructions.
 The result looks like this:
+
 !bt
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
@@ -15041,7 +15054,8 @@ LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
-`!bc` and `!ec` instructions, respectively. Such blocks look like
+`!bc` and `!ec` instructions, respectively. Such blocks are formatted as
+
 !bc cod
 from math import sin, pi
 def myfunc(x):
@@ -15529,18 +15543,36 @@ This results in a professional LaTeX typesetting, but in other formats
 the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like \( \nu = \sin(x) \) is
 typeset as
+
+<p>
 <!-- begin verbatim block -->
 <pre>
 $\nu = \sin(x)$|$v = sin(x)$
 </pre>
 <! -- end verbatim block -->
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats <tt>latex</tt>, <tt>pdflatex</tt>, <tt>html</tt>, <tt>sphinx</tt>, and <tt>pandoc</tt>
+are of interest
+and all these support inline LaTeX mathematics so then you will naturally
+drop the pipe symbol and write just
+
+<p>
+<!-- begin verbatim block -->
+<pre>
+$\nu = \sin(x)$
+</pre>
+<! -- end verbatim block -->
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
 <p>
 Blocks of mathematics are better typeset with raw LaTeX, inside
 <tt>!bt</tt> and <tt>!et</tt> (begin tex / end tex) instructions.
 The result looks like this:
+
+<p>
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
@@ -15555,7 +15587,9 @@ for those who can read LaTeX syntax.
 
 <p>
 You can have blocks of computer code, starting and ending with
-<tt>!bc</tt> and <tt>!ec</tt> instructions, respectively. Such blocks look like
+<tt>!bc</tt> and <tt>!ec</tt> instructions, respectively. Such blocks are formatted as
+
+<p>
 <!-- begin verbatim block  cod-->
 <pre>
 from math import sin, pi
@@ -16440,6 +16474,12 @@ sudo apt-get install python-pip
 Alternatively, one can install from the <tt>pip</tt> <a href="http://pypi.python.org/pypi/pip">source code</a>.
 
 <p>
+Mako can also be installed directly from
+<a href="http://www.makotemplates.org/download.html">source</a>: download the
+tarball, pack it out, go to the directory and run
+the usual <tt>sudo python setup.py install</tt>.
+
+<p>
 
 <h4>Ptex2tex for LaTeX Output  <a name="___sec20"></a></h4>
 <p>
@@ -17131,15 +17171,28 @@ This results in a professional {\LaTeX} typesetting, but in other formats
 the text version normally looks better than raw {\LaTeX} mathematics with
 backslashes. An inline formula like $\nu = \sin(x)$ is
 typeset as
+
 \bccq
 $\nu = \sin(x)$|$v = sin(x)$
 \eccq
 The pipe symbol acts as a delimiter between {\LaTeX} code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats \code{latex}, \code{pdflatex}, \code{html}, \code{sphinx}, and \code{pandoc}
+are of interest
+and all these support inline {\LaTeX} mathematics so then you will naturally
+drop the pipe symbol and write just
+
+\bccq
+$\nu = \sin(x)$
+\eccq
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special {\LaTeX} symbols in the {\LaTeX} code.
 
 Blocks of mathematics are better typeset with raw {\LaTeX}, inside
 \code{!bt} and \code{!et} (begin tex / end tex) instructions.
 The result looks like this:
+
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
@@ -17151,7 +17204,8 @@ for {\LaTeX} mathematics, and here the align environment in particular
 for those who can read {\LaTeX} syntax.
 
 You can have blocks of computer code, starting and ending with
-\code{!bc} and \code{!ec} instructions, respectively. Such blocks look like
+\code{!bc} and \code{!ec} instructions, respectively. Such blocks are formatted as
+
 \bcod
 from math import sin, pi
 def myfunc(x):
@@ -17882,6 +17936,11 @@ sudo apt-get install python-pip
 \esys
 Alternatively, one can install from the \code{pip} \href{{http://pypi.python.org/pypi/pip}}{source code}.
 
+Mako can also be installed directly from
+\href{{http://www.makotemplates.org/download.html}}{source}: download the
+tarball, pack it out, go to the directory and run
+the usual \code{sudo python setup.py install}.
+
 \paragraph{Ptex2tex for {\LaTeX} Output.}
 To make {\LaTeX} documents with very flexible choice of typesetting of
 verbatim code blocks you need \href{{http://code.google.com/p/ptex2tex}}{ptex2tex},
@@ -18296,7 +18355,18 @@ typeset as::
         $\nu = \sin(x)$|$v = sin(x)$
 
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats ``latex``, ``pdflatex``, ``html``, ``sphinx``, and ``pandoc``
+are of interest
+and all these support inline LaTeX mathematics so then you will naturally
+drop the pipe symbol and write just::
+
+
+        $\nu = \sin(x)$
+
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
 Blocks of mathematics are better typeset with raw LaTeX, inside
 ``!bt`` and ``!et`` (begin tex / end tex) instructions.
@@ -18314,7 +18384,7 @@ LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
-``!bc`` and ``!ec`` instructions, respectively. Such blocks look like::
+``!bc`` and ``!ec`` instructions, respectively. Such blocks are formatted as::
 
 
         from math import sin, pi
@@ -19102,6 +19172,11 @@ such as Ubuntu, the installation is simply done by::
 
 Alternatively, one can install from the ``pip`` `source code <http://pypi.python.org/pypi/pip>`_.
 
+Mako can also be installed directly from
+`source <http://www.makotemplates.org/download.html>`_: download the
+tarball, pack it out, go to the directory and run
+the usual ``sudo python setup.py install``.
+
 Ptex2tex for LaTeX Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -19520,17 +19595,33 @@ the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like :math:`\nu = \sin(x)` is
 typeset as
 
+
 .. code-block:: text
 
 
         $\nu = \sin(x)$|$v = sin(x)$
 
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats ``latex``, ``pdflatex``, ``html``, ``sphinx``, and ``pandoc``
+are of interest
+and all these support inline LaTeX mathematics so then you will naturally
+drop the pipe symbol and write just
+
+
+.. code-block:: text
+
+
+        $\nu = \sin(x)$
+
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
 Blocks of mathematics are better typeset with raw LaTeX, inside
 ``!bt`` and ``!et`` (begin tex / end tex) instructions.
 The result looks like this:
+
 
 .. math::
    :label: myeq1
@@ -19546,7 +19637,8 @@ LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
-``!bc`` and ``!ec`` instructions, respectively. Such blocks look like
+``!bc`` and ``!ec`` instructions, respectively. Such blocks are formatted as
+
 
 .. code-block:: python
 
@@ -20388,6 +20480,11 @@ such as Ubuntu, the installation is simply done by
 
 Alternatively, one can install from the ``pip`` `source code <http://pypi.python.org/pypi/pip>`_.
 
+Mako can also be installed directly from
+`source <http://www.makotemplates.org/download.html>`_: download the
+tarball, pack it out, go to the directory and run
+the usual ``sudo python setup.py install``.
+
 Ptex2tex for LaTeX Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -20716,15 +20813,28 @@ This results in a professional LaTeX typesetting, but in other formats
 the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like `v = sin(x)` is
 typeset as
+
 {{{
 $\nu = \sin(x)$|$v = sin(x)$
 }}}
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats `latex`, `pdflatex`, `html`, `sphinx`, and `pandoc`
+are of interest
+and all these support inline LaTeX mathematics so then you will naturally
+drop the pipe symbol and write just
+
+{{{
+$\nu = \sin(x)$
+}}}
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
 Blocks of mathematics are better typeset with raw LaTeX, inside
 `!bt` and `!et` (begin tex / end tex) instructions.
 The result looks like this:
+
 {{{
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
@@ -20738,7 +20848,8 @@ LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
-`!bc` and `!ec` instructions, respectively. Such blocks look like
+`!bc` and `!ec` instructions, respectively. Such blocks are formatted as
+
 {{{
 from math import sin, pi
 def myfunc(x):
@@ -21440,6 +21551,11 @@ sudo apt-get install python-pip
 }}}
 Alternatively, one can install from the `pip` [http://pypi.python.org/pypi/pip source code].
 
+Mako can also be installed directly from
+[http://www.makotemplates.org/download.html source]: download the
+tarball, pack it out, go to the directory and run
+the usual `sudo python setup.py install`.
+
 ==== Ptex2tex for LaTeX Output ====
 
 To make LaTeX documents with very flexible choice of typesetting of
@@ -21722,15 +21838,28 @@ This results in a professional LaTeX typesetting, but in other formats
 the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like <math>\nu = \sin(x)</math> is
 typeset as
+
 <code>
 $\nu = \sin(x)$|$v = sin(x)$
 </code>
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats <code>latex</code>, <code>pdflatex</code>, <code>html</code>, <code>sphinx</code>, and <code>pandoc</code>
+are of interest
+and all these support inline LaTeX mathematics so then you will naturally
+drop the pipe symbol and write just
+
+<code>
+$\nu = \sin(x)$
+</code>
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
 Blocks of mathematics are better typeset with raw LaTeX, inside
 <code>!bt</code> and <code>!et</code> (begin tex / end tex) instructions.
 The result looks like this:
+
 :<math>
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
@@ -21744,7 +21873,8 @@ LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
-<code>!bc</code> and <code>!ec</code> instructions, respectively. Such blocks look like
+<code>!bc</code> and <code>!ec</code> instructions, respectively. Such blocks are formatted as
+
 <syntaxhighlight lang="python">
 from math import sin, pi
 def myfunc(x):
@@ -22439,6 +22569,11 @@ sudo apt-get install python-pip
 </code>
 Alternatively, one can install from the <code>pip</code> [http://pypi.python.org/pypi/pip source code].
 
+Mako can also be installed directly from
+[http://www.makotemplates.org/download.html source]: download the
+tarball, pack it out, go to the directory and run
+the usual <code>sudo python setup.py install</code>.
+
 ==== Ptex2tex for LaTeX Output ====
 
 To make LaTeX documents with very flexible choice of typesetting of
@@ -22745,15 +22880,28 @@ This results in a professional LaTeX typesetting, but in other formats
 the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like v = sin(x) is
 typeset as
+
 {{{
 $\nu = \sin(x)$|$v = sin(x)$
 }}}
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats {{{latex}}}, {{{pdflatex}}}, {{{html}}}, {{{sphinx}}}, and {{{pandoc}}}
+are of interest
+and all these support inline LaTeX mathematics so then you will naturally
+drop the pipe symbol and write just
+
+{{{
+$\nu = \sin(x)$
+}}}
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
 Blocks of mathematics are better typeset with raw LaTeX, inside
 {{{!bt}}} and {{{!et}}} (begin tex / end tex) instructions.
 The result looks like this:
+
 {{{
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
@@ -22767,7 +22915,8 @@ LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
-{{{!bc}}} and {{{!ec}}} instructions, respectively. Such blocks look like
+{{{!bc}}} and {{{!ec}}} instructions, respectively. Such blocks are formatted as
+
 {{{
 from math import sin, pi
 def myfunc(x):
@@ -23482,6 +23631,11 @@ sudo apt-get install python-pip
 }}}
 Alternatively, one can install from the {{{pip}}} [[http://pypi.python.org/pypi/pip|source code]].
 
+Mako can also be installed directly from
+[[http://www.makotemplates.org/download.html|source]]: download the
+tarball, pack it out, go to the directory and run
+the usual {{{sudo python setup.py install}}}.
+
 === Ptex2tex for LaTeX Output ===
 
 To make LaTeX documents with very flexible choice of typesetting of
@@ -23849,7 +24003,18 @@ typeset as::
         $\nu = \sin(x)$|$v = sin(x)$
 
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats 'latex', 'pdflatex', 'html', 'sphinx', and 'pandoc'
+are of interest
+and all these support inline LaTeX mathematics so then you will naturally
+drop the pipe symbol and write just::
+
+
+        $\nu = \sin(x)$
+
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
 Blocks of mathematics are better typeset with raw LaTeX, inside
 '!bt' and '!et' (begin tex / end tex) instructions.
@@ -23867,7 +24032,7 @@ LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
-'!bc' and '!ec' instructions, respectively. Such blocks look like::
+'!bc' and '!ec' instructions, respectively. Such blocks are formatted as::
 
 
         from math import sin, pi
@@ -24598,6 +24763,11 @@ such as Ubuntu, the installation is simply done by::
 
 Alternatively, one can install from the 'pip' "http://pypi.python.org/pypi/pip":source code.
 
+Mako can also be installed directly from
+"http://www.makotemplates.org/download.html":source: download the
+tarball, pack it out, go to the directory and run
+the usual 'sudo python setup.py install'.
+
 Ptex2tex for LaTeX Output
 
 To make LaTeX documents with very flexible choice of typesetting of
@@ -24976,7 +25146,21 @@ typeset as::
 
 
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats C{latex}, C{pdflatex}, C{html}, C{sphinx}, and C{pandoc}
+are of interest
+and all these support inline LaTeX mathematics so then you will naturally
+drop the pipe symbol and write just::
+
+
+
+            NOTE: A verbatim block has been removed because
+                  it causes problems for Epytext.
+
+
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
 Blocks of mathematics are better typeset with raw LaTeX, inside
 C{!bt} and C{!et} (begin tex / end tex) instructions.
@@ -24994,7 +25178,7 @@ LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
-C{!bc} and C{!ec} instructions, respectively. Such blocks look like::
+C{!bc} and C{!ec} instructions, respectively. Such blocks are formatted as::
 
 
         from math import sin, pi
@@ -25753,6 +25937,11 @@ such as Ubuntu, the installation is simply done by::
 
 Alternatively, one can install from the C{pip} U{source code<http://pypi.python.org/pypi/pip>}.
 
+Mako can also be installed directly from
+U{source<http://www.makotemplates.org/download.html>}: download the
+tarball, pack it out, go to the directory and run
+the usual C{sudo python setup.py install}.
+
 Ptex2tex for LaTeX Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -26170,7 +26359,18 @@ typeset as::
         $\nu = \sin(x)$|$v = sin(x)$
 
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats latex, pdflatex, html, sphinx, and pandoc
+are of interest
+and all these support inline LaTeX mathematics so then you will naturally
+drop the pipe symbol and write just::
+
+
+        $\nu = \sin(x)$
+
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
 Blocks of mathematics are better typeset with raw LaTeX, inside
   !bt and !et (begin tex / end tex) instructions.
@@ -26188,7 +26388,7 @@ LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
-  !bc and !ec instructions, respectively. Such blocks look like::
+  !bc and !ec instructions, respectively. Such blocks are formatted as::
 
 
         from math import sin, pi
@@ -26956,6 +27156,11 @@ such as Ubuntu, the installation is simply done by::
 
 Alternatively, one can install from the pip source code (http://pypi.python.org/pypi/pip).
 
+Mako can also be installed directly from
+source (http://www.makotemplates.org/download.html): download the
+tarball, pack it out, go to the directory and run
+the usual sudo python setup.py install.
+
 Ptex2tex for LaTeX Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -27363,16 +27568,31 @@ the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like $\nu = \sin(x)$ is
 typeset as
 
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 $\nu = \sin(x)$|$v = sin(x)$
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats `latex`, `pdflatex`, `html`, `sphinx`, and `pandoc`
+are of interest
+and all these support inline LaTeX mathematics so then you will naturally
+drop the pipe symbol and write just
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+$\nu = \sin(x)$
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
 Blocks of mathematics are better typeset with raw LaTeX, inside
 `!bt` and `!et` (begin tex / end tex) instructions.
 The result looks like this:
+
 $$
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
@@ -27386,7 +27606,8 @@ LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
-`!bc` and `!ec` instructions, respectively. Such blocks look like
+`!bc` and `!ec` instructions, respectively. Such blocks are formatted as
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
 from math import sin, pi
@@ -28197,6 +28418,11 @@ sudo apt-get install python-pip
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Alternatively, one can install from the `pip` [source code](http://pypi.python.org/pypi/pip).
+
+Mako can also be installed directly from
+[source](http://www.makotemplates.org/download.html): download the
+tarball, pack it out, go to the directory and run
+the usual `sudo python setup.py install`.
 
 Ptex2tex for LaTeX Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -29184,7 +29410,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 26 Dec 2012 (01:22)</center>
+<center>Wed, 26 Dec 2012 (02:10)</center>
 
 
 
@@ -29315,7 +29541,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Wed, 26 Dec 2012 (01:22)</center>
+<center>Wed, 26 Dec 2012 (02:10)</center>
 
 
 
@@ -31894,6 +32120,12 @@ sudo apt-get install python-pip
 </pre>
 <! -- end verbatim block -->
 Alternatively, one can install from the <tt>pip</tt> <a href="http://pypi.python.org/pypi/pip">source code</a>.
+
+<p>
+Mako can also be installed directly from
+<a href="http://www.makotemplates.org/download.html">source</a>: download the
+tarball, pack it out, go to the directory and run
+the usual <tt>sudo python setup.py install</tt>.
 
 <p>
 
@@ -35638,6 +35870,11 @@ sudo apt-get install python-pip
 \esys
 Alternatively, one can install from the \code{pip} \href{{http://pypi.python.org/pypi/pip}}{source code}.
 
+Mako can also be installed directly from
+\href{{http://www.makotemplates.org/download.html}}{source}: download the
+tarball, pack it out, go to the directory and run
+the usual \code{sudo python setup.py install}.
+
 \paragraph{Ptex2tex for {\LaTeX} Output.}
 To make {\LaTeX} documents with very flexible choice of typesetting of
 verbatim code blocks you need \href{{http://code.google.com/p/ptex2tex}}{ptex2tex},
@@ -38594,6 +38831,11 @@ such as Ubuntu, the installation is simply done by::
         sudo apt-get install python-pip
 
 Alternatively, one can install from the ``pip`` `source code <http://pypi.python.org/pypi/pip>`_.
+
+Mako can also be installed directly from
+`source <http://www.makotemplates.org/download.html>`_: download the
+tarball, pack it out, go to the directory and run
+the usual ``sudo python setup.py install``.
 
 Ptex2tex for LaTeX Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -41773,6 +42015,11 @@ such as Ubuntu, the installation is simply done by
         sudo apt-get install python-pip
 
 Alternatively, one can install from the ``pip`` `source code <http://pypi.python.org/pypi/pip>`_.
+
+Mako can also be installed directly from
+`source <http://www.makotemplates.org/download.html>`_: download the
+tarball, pack it out, go to the directory and run
+the usual ``sudo python setup.py install``.
 
 Ptex2tex for LaTeX Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -45149,6 +45396,11 @@ sudo apt-get install python-pip
 }}}
 Alternatively, one can install from the `pip` [http://pypi.python.org/pypi/pip source code].
 
+Mako can also be installed directly from
+[http://www.makotemplates.org/download.html source]: download the
+tarball, pack it out, go to the directory and run
+the usual `sudo python setup.py install`.
+
 ==== Ptex2tex for LaTeX Output ====
 
 To make LaTeX documents with very flexible choice of typesetting of
@@ -47923,6 +48175,11 @@ sudo apt-get install python-pip
 </code>
 Alternatively, one can install from the <code>pip</code> [http://pypi.python.org/pypi/pip source code].
 
+Mako can also be installed directly from
+[http://www.makotemplates.org/download.html source]: download the
+tarball, pack it out, go to the directory and run
+the usual <code>sudo python setup.py install</code>.
+
 ==== Ptex2tex for LaTeX Output ====
 
 To make LaTeX documents with very flexible choice of typesetting of
@@ -50662,6 +50919,11 @@ such as Ubuntu, the installation is simply done by
 sudo apt-get install python-pip
 }}}
 Alternatively, one can install from the {{{pip}}} [[http://pypi.python.org/pypi/pip|source code]].
+
+Mako can also be installed directly from
+[[http://www.makotemplates.org/download.html|source]]: download the
+tarball, pack it out, go to the directory and run
+the usual {{{sudo python setup.py install}}}.
 
 === Ptex2tex for LaTeX Output ===
 
@@ -53486,6 +53748,11 @@ such as Ubuntu, the installation is simply done by::
         sudo apt-get install python-pip
 
 Alternatively, one can install from the 'pip' "http://pypi.python.org/pypi/pip":source code.
+
+Mako can also be installed directly from
+"http://www.makotemplates.org/download.html":source: download the
+tarball, pack it out, go to the directory and run
+the usual 'sudo python setup.py install'.
 
 Ptex2tex for LaTeX Output
 
@@ -56347,6 +56614,11 @@ such as Ubuntu, the installation is simply done by::
         sudo apt-get install python-pip
 
 Alternatively, one can install from the C{pip} U{source code<http://pypi.python.org/pypi/pip>}.
+
+Mako can also be installed directly from
+U{source<http://www.makotemplates.org/download.html>}: download the
+tarball, pack it out, go to the directory and run
+the usual C{sudo python setup.py install}.
 
 Ptex2tex for LaTeX Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59334,6 +59606,11 @@ such as Ubuntu, the installation is simply done by::
         sudo apt-get install python-pip
 
 Alternatively, one can install from the pip source code (http://pypi.python.org/pypi/pip).
+
+Mako can also be installed directly from
+source (http://www.makotemplates.org/download.html): download the
+tarball, pack it out, go to the directory and run
+the usual sudo python setup.py install.
 
 Ptex2tex for LaTeX Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -62374,6 +62651,11 @@ sudo apt-get install python-pip
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Alternatively, one can install from the `pip` [source code](http://pypi.python.org/pypi/pip).
+
+Mako can also be installed directly from
+[source](http://www.makotemplates.org/download.html): download the
+tarball, pack it out, go to the directory and run
+the usual `sudo python setup.py install`.
 
 Ptex2tex for LaTeX Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -65473,6 +65755,11 @@ sudo apt-get install python-pip
 !ec
 Alternatively, one can install from the `pip` "source code": "http://pypi.python.org/pypi/pip".
 
+Mako can also be installed directly from
+"source": "http://www.makotemplates.org/download.html": download the
+tarball, pack it out, go to the directory and run
+the usual `sudo python setup.py install`.
+
 === Ptex2tex for LaTeX Output ===
 
 To make LaTeX documents with very flexible choice of typesetting of
@@ -65913,8 +66200,8 @@ Some sentence with `words in verbatim style`.
 resulting in Some sentence with `words in verbatim style`.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between `!bc xxx` and `!ec` directives (which must appear on the
-beginning of the line). A specification `xxx` indicates what verbatim
+in between `!bc xxx` and `!ec` directives, which must appear on the
+beginning of the line. A specification `xxx` indicates what verbatim
 formatting style that is to be used. Typical values for `xxx` are
 nothing, `cod` for a code snippet, `pro` for a complete program,
 `sys` for a terminal session, `dat` for a data file (or output from a
@@ -65936,7 +66223,17 @@ The `xxx` specifier has only effect for `latex` and
 `sphinx` output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
-# When showing copy from file in !bc envir, intent a character - otherwise
+Here is an example of computer code (see the source of this document
+for exact syntax):
+
+!bc cod
+from numpy import sin, cos, exp, pi
+
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+!ec
+
+# When showing copy from file in !bc envir, indent a character - otherwise
 # ptex2tex is confused and starts copying...
 Computer code can also be copied from a file:
 !bc
@@ -65993,22 +66290,20 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 `!bt`
 and
-`!et` ("begin/end TeX") directives.
-For example,
-!bc
+`!et` (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:
+
 !bt
 \begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
 \end{align*}
 !et
-!ec
-will appear as
+Or a single equation:
+
 !bt
-\begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
-\end{align*}
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 !et
 
 One can use `#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")` to let
@@ -66728,8 +67023,8 @@ resulting in Some sentence with <tt>words in verbatim style</tt>.
 
 <p>
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between <tt>!bc xxx</tt> and <tt>!ec</tt> directives (which must appear on the
-beginning of the line). A specification <tt>xxx</tt> indicates what verbatim
+in between <tt>!bc xxx</tt> and <tt>!ec</tt> directives, which must appear on the
+beginning of the line. A specification <tt>xxx</tt> indicates what verbatim
 formatting style that is to be used. Typical values for <tt>xxx</tt> are
 nothing, <tt>cod</tt> for a code snippet, <tt>pro</tt> for a complete program,
 <tt>sys</tt> for a terminal session, <tt>dat</tt> for a data file (or output from a
@@ -66755,7 +67050,21 @@ The <tt>xxx</tt> specifier has only effect for <tt>latex</tt> and
 kinds of verbatim output.
 
 <p>
-<!-- When showing copy from file in !bc envir, intent a character - otherwise -->
+Here is an example of computer code (see the source of this document
+for exact syntax):
+
+<p>
+<!-- begin verbatim block  cod-->
+<pre>
+from numpy import sin, cos, exp, pi
+
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+</pre>
+<! -- end verbatim block -->
+
+<p>
+<!-- When showing copy from file in !bc envir, indent a character - otherwise -->
 <!-- ptex2tex is confused and starts copying... -->
 Computer code can also be copied from a file:
 <!-- begin verbatim block -->
@@ -66824,25 +67133,21 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 <tt>!bt</tt>
 and
-<tt>!et</tt> ("begin/end TeX") directives.
-For example,
-<!-- begin verbatim block -->
-<pre>
+<tt>!et</tt> (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:
+
+<p>
 $$
 \begin{align*}
-\nabla\cdot u &amp;= 0,\\
-\nabla\times u &amp; 0.
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
 \end{align*}
 $$
-</pre>
-<! -- end verbatim block -->
-will appear as
-$$
-\begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
-\end{align*}
-$$
+Or a single equation:
+
+<p>
+$$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
 
 <p>
 One can use <tt>#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")</tt> to let
@@ -67840,8 +68145,8 @@ Some sentence with `words in verbatim style`.
 resulting in Some sentence with \code{words in verbatim style}.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between \code{!bc xxx} and \code{!ec} directives (which must appear on the
-beginning of the line). A specification \code{xxx} indicates what verbatim
+in between \code{!bc xxx} and \code{!ec} directives, which must appear on the
+beginning of the line. A specification \code{xxx} indicates what verbatim
 formatting style that is to be used. Typical values for \code{xxx} are
 nothing, \code{cod} for a code snippet, \code{pro} for a complete program,
 \code{sys} for a terminal session, \code{dat} for a data file (or output from a
@@ -67863,7 +68168,17 @@ The \code{xxx} specifier has only effect for \code{latex} and
 \code{sphinx} output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
-% When showing copy from file in !bc envir, intent a character - otherwise
+Here is an example of computer code (see the source of this document
+for exact syntax):
+
+\bcod
+from numpy import sin, cos, exp, pi
+
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+\ecod
+
+% When showing copy from file in !bc envir, indent a character - otherwise
 % ptex2tex is confused and starts copying...
 Computer code can also be copied from a file:
 \bccq
@@ -67925,19 +68240,17 @@ will applied the expression to the right.
 Blocks of {\LaTeX} mathematics are written within
 \code{!bt}
 and
-\code{!et} ("begin/end TeX") directives.
-For example,
-\bccq
+\code{!et} (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:
+
 \begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
 \end{align*}
-\eccq
-will appear as
-\begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
-\end{align*}
+Or a single equation:
+
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
 One can use \code{#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")} to let
 the preprocessor choose a block of mathematics in {\LaTeX} format
@@ -68663,8 +68976,8 @@ Inline verbatim code is typeset within back-ticks, as in::
 resulting in Some sentence with ``words in verbatim style``.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between ``!bc xxx`` and ``!ec`` directives (which must appear on the
-beginning of the line). A specification ``xxx`` indicates what verbatim
+in between ``!bc xxx`` and ``!ec`` directives, which must appear on the
+beginning of the line. A specification ``xxx`` indicates what verbatim
 formatting style that is to be used. Typical values for ``xxx`` are
 nothing, ``cod`` for a code snippet, ``pro`` for a complete program,
 ``sys`` for a terminal session, ``dat`` for a data file (or output from a
@@ -68687,7 +69000,17 @@ The ``xxx`` specifier has only effect for ``latex`` and
 ``sphinx`` output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
-.. When showing copy from file in !bc envir, intent a character - otherwise
+Here is an example of computer code (see the source of this document
+for exact syntax)::
+
+
+        from numpy import sin, cos, exp, pi
+        
+        def f(x, y, z, t):
+            return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+
+
+.. When showing copy from file in !bc envir, indent a character - otherwise
 
 .. ptex2tex is confused and starts copying...
 
@@ -68750,24 +69073,18 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 ``!bt``
 and
-``!et`` ("begin/end TeX") directives.
-For example::
-
-
-        !bt
-        \begin{align*}
-        \nabla\cdot u &= 0,\\
-        \nabla\times u & 0.
-        \end{align*}
-        
-
-
-will appear as::
+``!et`` (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result::
 
         \begin{align*}
-        \nabla\cdot u &= 0,\\
-        \nabla\times u & 0.
+        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\times \pmb{u} &= 0.
         \end{align*}
+
+Or a single equation::
+
+        \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
 
 One can use ``#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")`` to let
@@ -69501,8 +69818,8 @@ Inline verbatim code is typeset within back-ticks, as in
 resulting in Some sentence with ``words in verbatim style``.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between ``!bc xxx`` and ``!ec`` directives (which must appear on the
-beginning of the line). A specification ``xxx`` indicates what verbatim
+in between ``!bc xxx`` and ``!ec`` directives, which must appear on the
+beginning of the line. A specification ``xxx`` indicates what verbatim
 formatting style that is to be used. Typical values for ``xxx`` are
 nothing, ``cod`` for a code snippet, ``pro`` for a complete program,
 ``sys`` for a terminal session, ``dat`` for a data file (or output from a
@@ -69527,7 +69844,19 @@ The ``xxx`` specifier has only effect for ``latex`` and
 ``sphinx`` output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
-.. When showing copy from file in !bc envir, intent a character - otherwise
+Here is an example of computer code (see the source of this document
+for exact syntax):
+
+
+.. code-block:: python
+
+        from numpy import sin, cos, exp, pi
+        
+        def f(x, y, z, t):
+            return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+
+
+.. When showing copy from file in !bc envir, indent a character - otherwise
 
 .. ptex2tex is confused and starts copying...
 
@@ -69594,28 +69923,22 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 ``!bt``
 and
-``!et`` ("begin/end TeX") directives.
-For example,
+``!et`` (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:
 
-.. code-block:: text
-
-
-        
-.. math::
-        \begin{align*}
-        \nabla\cdot u &= 0,\\
-        \nabla\times u & 0.
-        \end{align*}
-        
-
-
-will appear as
 
 .. math::
         
-        \nabla\cdot u &= 0,\\
-        \nabla\times u & 0.
+        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\times \pmb{u} &= 0.
         
+
+Or a single equation:
+
+
+.. math::
+         \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.
 
 
 One can use ``#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")`` to let
@@ -70325,8 +70648,8 @@ Some sentence with `words in verbatim style`.
 resulting in Some sentence with `words in verbatim style`.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between `!bc xxx` and `!ec` directives (which must appear on the
-beginning of the line). A specification `xxx` indicates what verbatim
+in between `!bc xxx` and `!ec` directives, which must appear on the
+beginning of the line. A specification `xxx` indicates what verbatim
 formatting style that is to be used. Typical values for `xxx` are
 nothing, `cod` for a code snippet, `pro` for a complete program,
 `sys` for a terminal session, `dat` for a data file (or output from a
@@ -70348,7 +70671,17 @@ The `xxx` specifier has only effect for `latex` and
 `sphinx` output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
-<wiki:comment> When showing copy from file in !bc envir, intent a character - otherwise </wiki:comment>
+Here is an example of computer code (see the source of this document
+for exact syntax):
+
+{{{
+from numpy import sin, cos, exp, pi
+
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+}}}
+
+<wiki:comment> When showing copy from file in !bc envir, indent a character - otherwise </wiki:comment>
 <wiki:comment> ptex2tex is confused and starts copying... </wiki:comment>
 Computer code can also be copied from a file:
 {{{
@@ -70402,22 +70735,20 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 `!bt`
 and
-`!et` ("begin/end TeX") directives.
-For example,
-{{{
-{{{
-\begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
-\end{align*}
-}}}
-}}}
-will appear as
+`!et` (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:
+
 {{{
 \begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
 \end{align*}
+}}}
+Or a single equation:
+
+{{{
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 }}}
 
 One can use `#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")` to let
@@ -71029,8 +71360,8 @@ Some sentence with `words in verbatim style`.
 resulting in Some sentence with <code>words in verbatim style</code>.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between <code>!bc xxx</code> and <code>!ec</code> directives (which must appear on the
-beginning of the line). A specification <code>xxx</code> indicates what verbatim
+in between <code>!bc xxx</code> and <code>!ec</code> directives, which must appear on the
+beginning of the line. A specification <code>xxx</code> indicates what verbatim
 formatting style that is to be used. Typical values for <code>xxx</code> are
 nothing, <code>cod</code> for a code snippet, <code>pro</code> for a complete program,
 <code>sys</code> for a terminal session, <code>dat</code> for a data file (or output from a
@@ -71052,7 +71383,17 @@ The <code>xxx</code> specifier has only effect for <code>latex</code> and
 <code>sphinx</code> output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
-<!--> When showing copy from file in !bc envir, intent a character - otherwise -->
+Here is an example of computer code (see the source of this document
+for exact syntax):
+
+<syntaxhighlight lang="python">
+from numpy import sin, cos, exp, pi
+
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+</code>
+
+<!--> When showing copy from file in !bc envir, indent a character - otherwise -->
 <!--> ptex2tex is confused and starts copying... -->
 Computer code can also be copied from a file:
 <code>
@@ -71106,22 +71447,20 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 <code>!bt</code>
 and
-<code>!et</code> ("begin/end TeX") directives.
-For example,
-<code>
+<code>!et</code> (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:
+
 :<math>
 \begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
 \end{align*}
 </math>
-</code>
-will appear as
+Or a single equation:
+
 :<math>
-\begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
-\end{align*}
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 </math>
 
 One can use <code>#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")</code> to let
@@ -71744,8 +72083,8 @@ Some sentence with `words in verbatim style`.
 resulting in Some sentence with {{{words in verbatim style}}}.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between {{{!bc xxx}}} and {{{!ec}}} directives (which must appear on the
-beginning of the line). A specification {{{xxx}}} indicates what verbatim
+in between {{{!bc xxx}}} and {{{!ec}}} directives, which must appear on the
+beginning of the line. A specification {{{xxx}}} indicates what verbatim
 formatting style that is to be used. Typical values for {{{xxx}}} are
 nothing, {{{cod}}} for a code snippet, {{{pro}}} for a complete program,
 {{{sys}}} for a terminal session, {{{dat}}} for a data file (or output from a
@@ -71767,7 +72106,17 @@ The {{{xxx}}} specifier has only effect for {{{latex}}} and
 {{{sphinx}}} output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
-<wiki:comment> When showing copy from file in !bc envir, intent a character - otherwise </wiki:comment>
+Here is an example of computer code (see the source of this document
+for exact syntax):
+
+{{{
+from numpy import sin, cos, exp, pi
+
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+}}}
+
+<wiki:comment> When showing copy from file in !bc envir, indent a character - otherwise </wiki:comment>
 <wiki:comment> ptex2tex is confused and starts copying... </wiki:comment>
 Computer code can also be copied from a file:
 {{{
@@ -71822,22 +72171,20 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 {{{!bt}}}
 and
-{{{!et}}} ("begin/end TeX") directives.
-For example,
-{{{
-{{{
-\begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
-\end{align*}
-}}}
-}}}
-will appear as
+{{{!et}}} (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:
+
 {{{
 \begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
 \end{align*}
+}}}
+Or a single equation:
+
+{{{
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 }}}
 
 One can use {{{#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")}}} to let
@@ -72474,8 +72821,8 @@ Inline verbatim code is typeset within back-ticks, as in::
 resulting in Some sentence with 'words in verbatim style'.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between '!bc xxx' and '!ec' directives (which must appear on the
-beginning of the line). A specification 'xxx' indicates what verbatim
+in between '!bc xxx' and '!ec' directives, which must appear on the
+beginning of the line. A specification 'xxx' indicates what verbatim
 formatting style that is to be used. Typical values for 'xxx' are
 nothing, 'cod' for a code snippet, 'pro' for a complete program,
 'sys' for a terminal session, 'dat' for a data file (or output from a
@@ -72497,6 +72844,16 @@ Pygments (which is what 'sphinx' applies to typeset computer code).
 The 'xxx' specifier has only effect for 'latex' and
 'sphinx' output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
+
+Here is an example of computer code (see the source of this document
+for exact syntax)::
+
+
+        from numpy import sin, cos, exp, pi
+        
+        def f(x, y, z, t):
+            return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+
 
 Computer code can also be copied from a file::
 
@@ -72555,24 +72912,18 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 '!bt'
 and
-'!et' ("begin/end TeX") directives.
-For example::
-
-
-        !bt
-        \begin{align*}
-        \nabla\cdot u &= 0,\\
-        \nabla\times u & 0.
-        \end{align*}
-        
-
-
-will appear as::
+'!et' (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result::
 
         \begin{align*}
-        \nabla\cdot u &= 0,\\
-        \nabla\times u & 0.
+        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\times \pmb{u} &= 0.
         \end{align*}
+
+Or a single equation::
+
+        \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
 
 One can use '#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")' to let
@@ -73243,8 +73594,8 @@ Inline verbatim code is typeset within back-ticks, as in::
 resulting in Some sentence with C{words in verbatim style}.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between C{!bc xxx} and C{!ec} directives (which must appear on the
-beginning of the line). A specification C{xxx} indicates what verbatim
+in between C{!bc xxx} and C{!ec} directives, which must appear on the
+beginning of the line. A specification C{xxx} indicates what verbatim
 formatting style that is to be used. Typical values for C{xxx} are
 nothing, C{cod} for a code snippet, C{pro} for a complete program,
 C{sys} for a terminal session, C{dat} for a data file (or output from a
@@ -73266,6 +73617,16 @@ Pygments (which is what C{sphinx} applies to typeset computer code).
 The C{xxx} specifier has only effect for C{latex} and
 C{sphinx} output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
+
+Here is an example of computer code (see the source of this document
+for exact syntax)::
+
+
+        from numpy import sin, cos, exp, pi
+        
+        def f(x, y, z, t):
+            return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+
 
 Computer code can also be copied from a file::
 
@@ -73328,16 +73689,16 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 C{!bt}
 and
-C{!et} ("begin/end TeX") directives.
-For example::
-
+C{!et} (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result::
 
 
             NOTE: A verbatim block has been removed because
                   it causes problems for Epytext.
 
 
-will appear as::
+Or a single equation::
 
 
             NOTE: A verbatim block has been removed because
@@ -74045,8 +74406,8 @@ Inline verbatim code is typeset within back-ticks, as in::
 resulting in Some sentence with words in verbatim style.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between !bc xxx and !ec directives (which must appear on the
-beginning of the line). A specification xxx indicates what verbatim
+in between !bc xxx and !ec directives, which must appear on the
+beginning of the line. A specification xxx indicates what verbatim
 formatting style that is to be used. Typical values for xxx are
 nothing, cod for a code snippet, pro for a complete program,
 sys for a terminal session, dat for a data file (or output from a
@@ -74068,6 +74429,16 @@ Pygments (which is what sphinx applies to typeset computer code).
 The xxx specifier has only effect for latex and
 sphinx output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
+
+Here is an example of computer code (see the source of this document
+for exact syntax)::
+
+
+        from numpy import sin, cos, exp, pi
+        
+        def f(x, y, z, t):
+            return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+
 
 Computer code can also be copied from a file::
 
@@ -74128,24 +74499,18 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
   !bt
 and
-  !et ("begin/end TeX") directives.
-For example::
-
-
-        !bt
-        \begin{align*}
-        \nabla\cdot u &= 0,\\
-        \nabla\times u & 0.
-        \end{align*}
-        
-
-
-will appear as::
+  !et (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result::
 
         \begin{align*}
-        \nabla\cdot u &= 0,\\
-        \nabla\times u & 0.
+        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\times \pmb{u} &= 0.
         \end{align*}
+
+Or a single equation::
+
+        \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
 
 One can use #if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki") to let
@@ -74872,8 +75237,8 @@ Some sentence with `words in verbatim style`.
 resulting in Some sentence with `words in verbatim style`.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between `!bc xxx` and `!ec` directives (which must appear on the
-beginning of the line). A specification `xxx` indicates what verbatim
+in between `!bc xxx` and `!ec` directives, which must appear on the
+beginning of the line. A specification `xxx` indicates what verbatim
 formatting style that is to be used. Typical values for `xxx` are
 nothing, `cod` for a code snippet, `pro` for a complete program,
 `sys` for a terminal session, `dat` for a data file (or output from a
@@ -74897,7 +75262,18 @@ The `xxx` specifier has only effect for `latex` and
 `sphinx` output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
-<!-- When showing copy from file in !bc envir, intent a character - otherwise -->
+Here is an example of computer code (see the source of this document
+for exact syntax):
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+from numpy import sin, cos, exp, pi
+
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<!-- When showing copy from file in !bc envir, indent a character - otherwise -->
 <!-- ptex2tex is confused and starts copying... -->
 Computer code can also be copied from a file:
 
@@ -74960,25 +75336,19 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 `!bt`
 and
-`!et` ("begin/end TeX") directives.
-For example,
+`!et` (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 $$
 \begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
 \end{align*}
 $$
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Or a single equation:
 
-will appear as
-$$
-\begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
-\end{align*}
-$$
+$$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
 
 One can use `#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")` to let
 the preprocessor choose a block of mathematics in LaTeX format
@@ -77058,12 +77428,13 @@ LaTeX Warning: Reference `my:first:sec' on page 5
 LaTeX Warning: Reference `doconce2formats' on page 5 undefined on input line 37
 9.
 
+[5]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[5]
+[6]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -77074,7 +77445,7 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[6] [7] [8]
+[7] [8]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -77088,21 +77459,21 @@ Overfull \hbox (55.19026pt too wide)
 
 Overfull \hbox (0.29683pt too wide) 
 []\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
-
+[10]
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
-[10] [11]
+[11]
 Overfull \hbox (11.05632pt too wide) 
 \OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
-
+[12]
 Overfull \hbox (0.55649pt too wide) 
 \OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
 \OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
 y in-cluded
-[12] [13]
+[13]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
 [14]
@@ -77126,13 +77497,12 @@ Overfull \hbox (21.15628pt too wide)
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-
+[20]
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
-[20]
+[21]
 Overfull \hbox (22.94165pt too wide) 
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
-[21]
 No file tutorial.ind.
 [22] (./tutorial.aux)
 
@@ -77311,13 +77681,13 @@ Writing index file tutorial.idx
 Overfull \hbox (8.67865pt too wide) 
 \OT1/phv/m/n/10 er-at-ing doc-u-ments in more com-pli-cated markup lan-guages, 
 such as Google
-[2] [3] [4]
+[2] [3] [4] [5]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on 
 
-[5]
+[6]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -77328,7 +77698,7 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[6] [7] [8]
+[7] [8]
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -77338,21 +77708,21 @@ Overfull \hbox (55.19026pt too wide)
 
 Overfull \hbox (0.29683pt too wide) 
 []\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
-
+[10]
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
-[10] [11]
+[11]
 Overfull \hbox (11.05632pt too wide) 
 \OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
-
+[12]
 Overfull \hbox (0.55649pt too wide) 
 \OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
 \OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
 y in-cluded
-[12] [13]
+[13]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
 [14]
@@ -77376,13 +77746,12 @@ Overfull \hbox (21.15628pt too wide)
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-
+[20]
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
-[20]
+[21]
 Overfull \hbox (22.94165pt too wide) 
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
-[21]
 No file tutorial.ind.
 [22] (./tutorial.aux)
 
@@ -77722,7 +78091,7 @@ Chapter 4.
 [11] [12]
 
 LaTeX Warning: Hyper reference `tutorial:newcommands' on page 13 undefined on i
-nput line 742.
+nput line 754.
 
 
 Underfull \hbox (badness 10000) 
@@ -77763,7 +78132,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 178093 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 178653 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -77909,7 +78278,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184163 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184733 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -78055,7 +78424,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184163 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184733 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -78207,7 +78576,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184163 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184733 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -78353,7 +78722,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184163 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184733 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -78519,7 +78888,7 @@ de-fined as the cur-rent for-mat when run-ning \T1/pcr/m/n/10 preprocess\T1/ptm
 
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format latex mydoc --skip_inline_comments 
-
+[7]
 Overfull \hbox (50.49731pt too wide) 
 \T1/ptm/m/n/10 blocks are type-set with aid of this pack-age. The command-line 
 ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
@@ -78527,7 +78896,7 @@ ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
 Overfull \hbox (0.81818pt too wide) 
 \T1/ptm/m/n/10 tags. The op-tion \T1/pcr/m/n/10 --pygments-html-linenos \T1/ptm
 /m/n/10 turns on line num-bers in Pygments-
-[7]
+
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format html mydoc --html-template=mytemplate
 .html 
@@ -78614,10 +78983,10 @@ c.txt
 
 Overfull \hbox (17.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
-
+[11]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
-[11]
+
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2xml.py   mydoc.rst > mydoc.xml  # XML  
 
@@ -78750,8 +79119,8 @@ output in tutorial.md
 [5 lines wrapped]
 + ps2pdf tutorial.do.ps tutorial.do.pdf
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.epytext.ps tutorial.epytext
-[tutorial.epytext (plain): 20 pages on 20 sheets]
-[Total: 20 pages on 20 sheets] saved into the file `tutorial.epytext.ps'
+[tutorial.epytext (plain): 21 pages on 21 sheets]
+[Total: 21 pages on 21 sheets] saved into the file `tutorial.epytext.ps'
 [21 lines wrapped]
 + ps2pdf tutorial.epytext.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.txt.ps tutorial.txt
@@ -78760,19 +79129,19 @@ output in tutorial.md
 [17 lines wrapped]
 + ps2pdf tutorial.txt.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.gwiki.ps tutorial.gwiki
-[tutorial.gwiki (plain): 19 pages on 19 sheets]
-[Total: 19 pages on 19 sheets] saved into the file `tutorial.gwiki.ps'
+[tutorial.gwiki (plain): 20 pages on 20 sheets]
+[Total: 20 pages on 20 sheets] saved into the file `tutorial.gwiki.ps'
 [77 lines wrapped]
 + ps2pdf tutorial.gwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.cwiki.ps tutorial.cwiki
 [tutorial.cwiki (plain): 20 pages on 20 sheets]
 [Total: 20 pages on 20 sheets] saved into the file `tutorial.cwiki.ps'
-[90 lines wrapped]
+[91 lines wrapped]
 + ps2pdf tutorial.cwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mwiki.ps tutorial.mwiki
 [tutorial.mwiki (plain): 21 pages on 21 sheets]
 [Total: 21 pages on 21 sheets] saved into the file `tutorial.mwiki.ps'
-[186 lines wrapped]
+[187 lines wrapped]
 + ps2pdf tutorial.mwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.md.ps tutorial.md
 [tutorial.md (Modula 2): 22 pages on 22 sheets]
@@ -78782,7 +79151,7 @@ output in tutorial.md
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
 [tutorial.xml (plain): 19 pages on 19 sheets]
 [Total: 19 pages on 19 sheets] saved into the file `tutorial.xml.ps'
-[536 lines wrapped]
+[542 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.md.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.md.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -79124,7 +79493,7 @@ Chapter 4.
 [11] [12]
 
 LaTeX Warning: Hyper reference `manual:newcommands' on page 13 undefined on inp
-ut line 639.
+ut line 644.
 
 
 Underfull \hbox (badness 10000) 
@@ -79139,7 +79508,7 @@ ee the sec-tion
 Chapter 5.
 [19] [20] [21] [22]
 Chapter 6.
-<streamtubes.png, id=170, 583.17876pt x 437.635pt> <use streamtubes.png>
+<streamtubes.png, id=171, 583.17876pt x 437.635pt> <use streamtubes.png>
 <use streamtubes.png> [23] [24 <./streamtubes.png>]
 
 LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 25 undefine
@@ -79162,22 +79531,22 @@ LaTeX Warning: Hyper reference `manual:inline-tagging' on page 27 undefined on
 [27]
 
 LaTeX Warning: Hyper reference `manual:fig-viz' on page 28 undefined on input l
-ine 1706.
+ine 1711.
 
 
 LaTeX Warning: Hyper reference `manual:mathtext' on page 28 undefined on input 
-line 1708.
+line 1713.
 
 
 LaTeX Warning: Hyper reference `manual:newcommands' on page 28 undefined on inp
-ut line 1708.
+ut line 1713.
 
 
-LaTeX Warning: Reference `manual-myeq1' on page 28 undefined on input line 1710
+LaTeX Warning: Reference `manual-myeq1' on page 28 undefined on input line 1715
 .
 
 
-LaTeX Warning: Reference `manual-myeq2' on page 28 undefined on input line 1710
+LaTeX Warning: Reference `manual-myeq2' on page 28 undefined on input line 1715
 .
 
 
@@ -79193,7 +79562,7 @@ n
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 31 undefined on input 
-line 1910.
+line 1915.
 
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 31 undefined o
@@ -79201,7 +79570,7 @@ n
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 31 undefined on input 
-line 1911.
+line 1916.
 
 [31] [32] [33] [34] [35]
 ! FancyVerb Error:
@@ -79211,7 +79580,7 @@ line 1911.
 \space \space #1
 }
                                                   
-l.2306 \end{Verbatim}
+l.2311 \end{Verbatim}
                      
 ? OK, entering \nonstopmode...
 
@@ -79222,12 +79591,12 @@ Package amsmath Warning: Foreign command \over;
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2312 \end{gather}
+l.2317 \end{gather}
                    
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2312 \end{gather}
+l.2317 \end{gather}
                    
 
 Underfull \hbox (badness 10000) 
@@ -79479,7 +79848,7 @@ eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 7 undefined on inpu
-t line 722.
+t line 727.
 
 
 Overfull \hbox (78.51936pt too wide) 
@@ -79703,7 +80072,7 @@ Overfull \hbox (83.00006pt too wide)
 . 
 
 LaTeX Warning: Hyper reference `fig-viz' on page 22 undefined on input line 198
-0.
+5.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 22 u
@@ -79711,7 +80080,7 @@ ndefined on
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 22 undefined on inp
-ut line 1982.
+ut line 1987.
 
 
 LaTeX Warning: Hyper reference `id2' on page 22 
@@ -80981,11 +81350,11 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[14] [15] [16] [17] <figs/streamtubes.png, id=151, 583.17876pt x 437.635pt>
+[14] [15] [16] [17] <figs/streamtubes.png, id=152, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 20 undefined on input li
-ne 1369.
+ne 1374.
 
 
 Overfull \hbox (42.0102pt too wide) 
@@ -80994,15 +81363,15 @@ s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
 [20] [21]
 
 LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-509.
+514.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-513.
+518.
 
 
 LaTeX Warning: Reference `inline:tagging' on page 22 undefined on input line 15
-44.
+49.
 
 [22]
 
@@ -81027,19 +81396,19 @@ Overfull \hbox (4.37044pt too wide)
 nces for (sub)sections,
 
 LaTeX Warning: Reference `inline:tagging' on page 23 undefined on input line 16
-02.
+07.
 
 [23] [24] [25]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
-777.
+782.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 26 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
-778.
+783.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 26 
@@ -81079,7 +81448,7 @@ Overfull \hbox (1.76395pt too wide)
 [34]
 
 LaTeX Warning: Reference `doconce2formats' on page 35 undefined on input line 2
-327.
+332.
 
 [35]
 Overfull \hbox (88.39946pt too wide) 
@@ -81091,7 +81460,7 @@ Overfull \hbox (9.3464pt too wide)
 [36] [37] [38] [39]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 40 undefined on input li
-ne 2630.
+ne 2635.
 
 [40] [41] [42] [43] [44]
 Overfull \hbox (4.78592pt too wide) 
@@ -81380,7 +81749,7 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[14] [15] [16] [17] <figs/streamtubes.png, id=327, 583.17876pt x 437.635pt>
+[14] [15] [16] [17] <figs/streamtubes.png, id=328, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
@@ -81392,14 +81761,14 @@ nces for (sub)sections,
 [23] [24] [25]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
-777.
+782.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 26 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
-778.
+783.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 26 
@@ -81714,7 +82083,7 @@ Overfull \hbox (10.33038pt too wide)
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[14] [15] [16] [17] <figs/streamtubes.png, id=327, 583.17876pt x 437.635pt>
+[14] [15] [16] [17] <figs/streamtubes.png, id=328, 583.17876pt x 437.635pt>
 <use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
@@ -82020,11 +82389,11 @@ such as Google
 [1]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-[2]
+[2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-[3]
+
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
 [4]
@@ -82324,11 +82693,11 @@ such as Google
 [1]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-[2]
+[2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-[3]
+
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
 [4]
@@ -82640,11 +83009,11 @@ such as Google
 [1]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-[2]
+[2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-[3]
+
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
 [4]
@@ -82944,11 +83313,11 @@ such as Google
 [1]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-[2]
+[2] [3]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-[3]
+
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
 [4]
@@ -83272,6 +83641,7 @@ copy complete file doconce_program.sh  (format: shpro)
 output in quickref.p.tex
 + doconce ptex2tex quickref -DMINTED -DHELVETICA envir=Verbatim
 \bshpro (!bc shpro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+\bcod (!bc cod) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 \bsys (!bc sys) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 \bccq (!bc ccq) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
 + latex -shell-escape quickref.tex
@@ -83377,7 +83747,7 @@ Overfull \hbox (70.29608pt too wide)
 \OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally [])
 [6]
 
-LaTeX Warning: Reference `quick:sections' on page 7 undefined on input line 534
+LaTeX Warning: Reference `quick:sections' on page 7 undefined on input line 542
 .
 
 [7]
@@ -83391,11 +83761,11 @@ Overfull \hbox (88.21638pt too wide)
 Overfull \hbox (2.40855pt too wide) 
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther [] 
 and/or [].
-
+[12]
 Overfull \hbox (0.18839pt too wide) 
 \OT1/phv/m/n/10 is a typ-i-cal ex-am-ple on uti-liz-ing [] to in-clude an-other
  doc-u-ment, "com-
-[12]
+
 Overfull \hbox (87.48466pt too wide) 
 []\OT1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee
 .ethz.ch/ creller/web/tricks/reST.html" 
@@ -83584,17 +83954,17 @@ Overfull \hbox (27.8928pt too wide)
 [5]
 Overfull \hbox (10.99698pt too wide) 
 []\OT1/phv/m/n/10 One can use []
-
+[6]
 Overfull \hbox (70.29608pt too wide) 
 \OT1/phv/m/n/10 pre-pro-ces-sor if-tests on the for-mat (typ-i-cally [])
-[6] [7]
+[7]
 Overfull \hbox (60.6356pt too wide) 
 \OT1/phv/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have []
  on the form [],
-
+[8]
 Overfull \hbox (88.21638pt too wide) 
 []\OT1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line [],
-[8] [9] [10] [11]
+[9] [10] [11]
 Overfull \hbox (2.40855pt too wide) 
 \OT1/phv/m/n/10 Doconce doc-u-ments may uti-lize a pre-pro-ces-sor, ei-ther [] 
 and/or [].
@@ -83933,11 +84303,14 @@ Overfull \hbox (35.00006pt too wide)
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
+[4]
+Overfull \hbox (5.00006pt too wide) 
+[]    \T1/pcr/m/n/10 return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z) 
 
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 @@@CODE doconce_program.sh  fromto: doconce clean@^doconce spl
 it_rst  
-[4]
+
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 @@@CODE doconce_program.sh  from-to: doconce clean@^doconce sp
 lit_rst 
@@ -83950,6 +84323,10 @@ Overfull \hbox (8.347pt too wide)
 \T1/ptm/m/n/10 cess-ful out-put in re-Struc-tred-Text), not di-rectly af-ter a 
 sec-tion/paragraph
 [5]
+Overfull \hbox (137.00006pt too wide) 
+[]\T1/pcr/m/n/10 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb
+{u} = 0.\] 
+
 Overfull \hbox (43.5697pt too wide) 
 []\T1/ptm/m/n/10 One can use \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex",
  "sphinx", "mwiki")
@@ -83974,17 +84351,17 @@ aption which must be on a single line. label{some:fig:label}
 Overfull \hbox (2.15817pt too wide) 
 []\T1/ptm/m/n/10 Combining sev-eral im-age files into one can be done by the \T
 1/pcr/m/n/10 convert \T1/ptm/m/n/10 and \T1/pcr/m/n/10 montage
-
+[6]
 Overfull \hbox (113.00006pt too wide) 
 \T1/pcr/m/n/10 montage file1.png file2.png ... file4.png -geometry +2+2  result
 .png  
-[6]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 convert -background white file1.png file2.png +append tmp.png 
 
 
 LaTeX Warning: Hyper reference `section-types' on page 7 undefined on input lin
-e 685.
+e 693.
 
 
 Overfull \hbox (107.00006pt too wide) 
@@ -84307,6 +84684,9 @@ Overfull \hbox (119.00006pt too wide)
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
 
+Overfull \hbox (5.00006pt too wide) 
+[]    \T1/pcr/m/n/10 return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z) 
+
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 @@@CODE doconce_program.sh  fromto: doconce clean@^doconce spl
 it_rst  
@@ -84323,6 +84703,10 @@ Overfull \hbox (8.347pt too wide)
 \T1/ptm/m/n/10 cess-ful out-put in re-Struc-tred-Text), not di-rectly af-ter a 
 sec-tion/paragraph
 [5]
+Overfull \hbox (137.00006pt too wide) 
+[]\T1/pcr/m/n/10 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb
+{u} = 0.\] 
+
 Overfull \hbox (43.5697pt too wide) 
 []\T1/ptm/m/n/10 One can use \T1/pcr/m/n/10 #if FORMAT in ("latex", "pdflatex",
  "sphinx", "mwiki")
@@ -84383,7 +84767,7 @@ Overfull \hbox (107.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 | subsubsection           | `=== Heading ===`            (3 `=
 `)  |  
-
+[7]
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 | paragraph               | `__Heading.__`               (2 `_
 `)  |  
@@ -84391,7 +84775,7 @@ Overfull \hbox (107.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 |-------------------------------------------------------------
 ----| 
-[7]
+
 Overfull \hbox (54.34767pt too wide) 
 \T1/ptm/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have \T1
 /pcr/m/n/10 name \T1/ptm/m/n/10 on the form \T1/pcr/m/n/10 Author1_Author2_YYYY
@@ -84435,7 +84819,7 @@ Overfull \hbox (83.00006pt too wide)
 Overfull \hbox (143.00006pt too wide) 
 [] \T1/pcr/m/n/10 -x is the re.VERBOSE modifier, --restore copies backup files 
 back again)  
-
+[9]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 # doconce replace using from and to phrases from file  
 
@@ -84444,7 +84828,7 @@ Overfull \hbox (59.00006pt too wide)
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 (exact text substitution, but a set of from-to relations)  
-[9]
+
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 # gwiki format requires substitution of figure file names by U
 RLs  
@@ -84471,11 +84855,11 @@ format
 
 Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 # edit URLs to local files and place them in _static  
-
+[10]
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 # split an html file into parts according to !split commands  
 
-[10]
+
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
 
@@ -84541,11 +84925,11 @@ marks
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
-
+[13]
 Overfull \hbox (263.00006pt too wide) 
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
-[13]
+
 Overfull \hbox (4.19656pt too wide) 
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
@@ -84600,6 +84984,8 @@ output in quickref.epytext
 Found preprocess-like statements, but --no-preprocess prevents running preprocess
 translating preprocessed doconce text in __tmp.do.txt to pandoc
 copy complete file doconce_program.sh  (format: shpro)
+Warning: latex envir \begin{quote} does not work well
+         pandoc extended markdown syntax handles only single equations
 output in quickref.md
 + rm -rf demo
 + mkdir demo

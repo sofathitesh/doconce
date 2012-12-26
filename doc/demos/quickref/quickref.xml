@@ -76,8 +76,8 @@ Running:</paragraph><literal_block xml:space="preserve">doconce format html mydo
 to turn on and off notes to readers and is frequently used while writing
 a document.</paragraph><paragraph>All inline comments to readers can also be physically
 removed from the Doconce source if desired:</paragraph><literal_block xml:space="preserve">doconce remove_inline_comments mydoc.do.txt</literal_block><paragraph>This action is appropriate when all issues with such comments are resolved.</paragraph></section><section ids="verbatim-computer-code" names="verbatim/computer\ code"><title refid="id8">Verbatim/Computer Code</title><paragraph>Inline verbatim code is typeset within back-ticks, as in:</paragraph><literal_block xml:space="preserve">Some sentence with `words in verbatim style`.</literal_block><paragraph>resulting in Some sentence with <literal>words in verbatim style</literal>.</paragraph><paragraph>Multi-line blocks of verbatim text, typically computer code, is typeset
-in between <literal>!bc xxx</literal> and <literal>!ec</literal> directives (which must appear on the
-beginning of the line). A specification <literal>xxx</literal> indicates what verbatim
+in between <literal>!bc xxx</literal> and <literal>!ec</literal> directives, which must appear on the
+beginning of the line. A specification <literal>xxx</literal> indicates what verbatim
 formatting style that is to be used. Typical values for <literal>xxx</literal> are
 nothing, <literal>cod</literal> for a code snippet, <literal>pro</literal> for a complete program,
 <literal>sys</literal> for a terminal session, <literal>dat</literal> for a data file (or output from a
@@ -91,7 +91,11 @@ defined verbatim environment in the <literal>ptex2tex</literal> configuration fi
 (<literal>.ptex2tex.cfg</literal>). For <literal>sphinx</literal> output one can insert a comment:</paragraph><literal_block xml:space="preserve"># sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console</literal_block><paragraph>that maps environments (<literal>xxx</literal>) onto valid language types for
 Pygments (which is what <literal>sphinx</literal> applies to typeset computer code).</paragraph><paragraph>The <literal>xxx</literal> specifier has only effect for <literal>latex</literal> and
 <literal>sphinx</literal> output. All other formats use a fixed monospace font for all
-kinds of verbatim output.</paragraph><comment xml:space="preserve">When showing copy from file in !bc envir, intent a character - otherwise</comment><comment xml:space="preserve">ptex2tex is confused and starts copying...</comment><paragraph>Computer code can also be copied from a file:</paragraph><literal_block xml:space="preserve">@@@CODE doconce_program.sh
+kinds of verbatim output.</paragraph><paragraph>Here is an example of computer code (see the source of this document
+for exact syntax):</paragraph><literal_block xml:space="preserve">from numpy import sin, cos, exp, pi
+
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)</literal_block><comment xml:space="preserve">When showing copy from file in !bc envir, indent a character - otherwise</comment><comment xml:space="preserve">ptex2tex is confused and starts copying...</comment><paragraph>Computer code can also be copied from a file:</paragraph><literal_block xml:space="preserve">@@@CODE doconce_program.sh
 @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
 @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst</literal_block><paragraph>The <literal>@@@CODE</literal> identifier must appear at the very beginning of the line.
 The first specification copies the complete file <literal>doconce_program.sh</literal>.
@@ -123,15 +127,12 @@ expressions are surrounded by dollar signs. Plain text formats and HTML
 will applied the expression to the right.</paragraph><paragraph>Blocks of LaTeX mathematics are written within
 <literal>!bt</literal>
 and
-<literal>!et</literal> (&quot;begin/end TeX&quot;) directives.
-For example:</paragraph><literal_block xml:space="preserve">!bt
-\begin{align*}
-\nabla\cdot u &amp;= 0,\\
-\nabla\times u &amp; 0.
-\end{align*}</literal_block><paragraph>will appear as:</paragraph><literal_block xml:space="preserve">\begin{align*}
-\nabla\cdot u &amp;= 0,\\
-\nabla\times u &amp; 0.
-\end{align*}</literal_block><paragraph>One can use <literal>#if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;, &quot;sphinx&quot;, &quot;mwiki&quot;)</literal> to let
+<literal>!et</literal> (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:</paragraph><literal_block xml:space="preserve">\begin{align*}
+\nabla\cdot \pmb{u} &amp;= 0,\\
+\nabla\times \pmb{u} &amp;= 0.
+\end{align*}</literal_block><paragraph>Or a single equation:</paragraph><literal_block xml:space="preserve">\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]</literal_block><paragraph>One can use <literal>#if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;, &quot;sphinx&quot;, &quot;mwiki&quot;)</literal> to let
 the preprocessor choose a block of mathematics in LaTeX format
 or (<literal>#else</literal>) a modified form more suited for plain text and wiki
 formats without support for mathematics.</paragraph><paragraph>Any LaTeX syntax is accepted, but if output in the <literal>sphinx</literal>, <literal>pandoc</literal>,

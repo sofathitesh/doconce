@@ -579,8 +579,8 @@ Some sentence with `words in verbatim style`.
 </pre>
 <p>resulting in Some sentence with <tt class="docutils literal">words in verbatim style</tt>.</p>
 <p>Multi-line blocks of verbatim text, typically computer code, is typeset
-in between <tt class="docutils literal">!bc xxx</tt> and <tt class="docutils literal">!ec</tt> directives (which must appear on the
-beginning of the line). A specification <tt class="docutils literal">xxx</tt> indicates what verbatim
+in between <tt class="docutils literal">!bc xxx</tt> and <tt class="docutils literal">!ec</tt> directives, which must appear on the
+beginning of the line. A specification <tt class="docutils literal">xxx</tt> indicates what verbatim
 formatting style that is to be used. Typical values for <tt class="docutils literal">xxx</tt> are
 nothing, <tt class="docutils literal">cod</tt> for a code snippet, <tt class="docutils literal">pro</tt> for a complete program,
 <tt class="docutils literal">sys</tt> for a terminal session, <tt class="docutils literal">dat</tt> for a data file (or output from a
@@ -600,7 +600,15 @@ Pygments (which is what <tt class="docutils literal">sphinx</tt> applies to type
 <p>The <tt class="docutils literal">xxx</tt> specifier has only effect for <tt class="docutils literal">latex</tt> and
 <tt class="docutils literal">sphinx</tt> output. All other formats use a fixed monospace font for all
 kinds of verbatim output.</p>
-<!-- When showing copy from file in !bc envir, intent a character - otherwise -->
+<p>Here is an example of computer code (see the source of this document
+for exact syntax):</p>
+<pre class="literal-block">
+from numpy import sin, cos, exp, pi
+
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+</pre>
+<!-- When showing copy from file in !bc envir, indent a character - otherwise -->
 <!-- ptex2tex is confused and starts copying... -->
 <p>Computer code can also be copied from a file:</p>
 <pre class="literal-block">
@@ -656,21 +664,18 @@ will applied the expression to the right.</p>
 <p>Blocks of LaTeX mathematics are written within
 <tt class="docutils literal">!bt</tt>
 and
-<tt class="docutils literal">!et</tt> (&quot;begin/end TeX&quot;) directives.
-For example:</p>
+<tt class="docutils literal">!et</tt> (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:</p>
 <pre class="literal-block">
-!bt
 \begin{align*}
-\nabla\cdot u &amp;= 0,\\
-\nabla\times u &amp; 0.
+\nabla\cdot \pmb{u} &amp;= 0,\\
+\nabla\times \pmb{u} &amp;= 0.
 \end{align*}
 </pre>
-<p>will appear as:</p>
+<p>Or a single equation:</p>
 <pre class="literal-block">
-\begin{align*}
-\nabla\cdot u &amp;= 0,\\
-\nabla\times u &amp; 0.
-\end{align*}
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 </pre>
 <p>One can use <tt class="docutils literal">#if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;, &quot;sphinx&quot;, &quot;mwiki&quot;)</tt> to let
 the preprocessor choose a block of mathematics in LaTeX format

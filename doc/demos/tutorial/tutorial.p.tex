@@ -516,15 +516,28 @@ This results in a professional {\LaTeX} typesetting, but in other formats
 the text version normally looks better than raw {\LaTeX} mathematics with
 backslashes. An inline formula like $\nu = \sin(x)$ is
 typeset as
+
 \bccq
 $\nu = \sin(x)$|$v = sin(x)$
 \eccq
 The pipe symbol acts as a delimiter between {\LaTeX} code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats \code{latex}, \code{pdflatex}, \code{html}, \code{sphinx}, and \code{pandoc}
+are of interest
+and all these support inline {\LaTeX} mathematics so then you will naturally
+drop the pipe symbol and write just
+
+\bccq
+$\nu = \sin(x)$
+\eccq
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special {\LaTeX} symbols in the {\LaTeX} code.
 
 Blocks of mathematics are better typeset with raw {\LaTeX}, inside
 \code{!bt} and \code{!et} (begin tex / end tex) instructions.
 The result looks like this:
+
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, \label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
@@ -536,7 +549,8 @@ for {\LaTeX} mathematics, and here the align environment in particular
 for those who can read {\LaTeX} syntax.
 
 You can have blocks of computer code, starting and ending with
-\code{!bc} and \code{!ec} instructions, respectively. Such blocks look like
+\code{!bc} and \code{!ec} instructions, respectively. Such blocks are formatted as
+
 \bcod
 from math import sin, pi
 def myfunc(x):
@@ -1266,6 +1280,11 @@ such as Ubuntu, the installation is simply done by
 sudo apt-get install python-pip
 \esys
 Alternatively, one can install from the \code{pip} \href{{http://pypi.python.org/pypi/pip}}{source code}.
+
+Mako can also be installed directly from
+\href{{http://www.makotemplates.org/download.html}}{source}: download the
+tarball, pack it out, go to the directory and run
+the usual \code{sudo python setup.py install}.
 
 \paragraph{Ptex2tex for {\LaTeX} Output.}
 To make {\LaTeX} documents with very flexible choice of typesetting of
