@@ -418,7 +418,7 @@ def define(FILENAME_EXTENSION,
         'subsubsection': lambda m: r'\g<subst>\n%s' % ('~'*len(m.group('subst').decode('latin-1'))),
         'paragraph':     r'*\g<subst>* ',  # extra blank
         'abstract':      r'\n*\g<type>.* \g<text>\n\g<rest>',
-        'title':         r'======= \g<subst> =======\n',  # doconce top section, is later replaced
+        'title':         r'========= \g<subst> =========\n',  # doconce top section, is later replaced
         'date':          r':Date: \g<subst>\n',
         'author':        rst_author,
         'figure':        rst_figure,
