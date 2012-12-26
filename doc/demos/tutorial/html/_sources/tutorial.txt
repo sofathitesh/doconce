@@ -281,17 +281,33 @@ the text version normally looks better than raw LaTeX mathematics with
 backslashes. An inline formula like :math:`\nu = \sin(x)` is
 typeset as
 
+
 .. code-block:: text
 
 
         $\nu = \sin(x)$|$v = sin(x)$
 
 The pipe symbol acts as a delimiter between LaTeX code and the plain text
-version of the formula.
+version of the formula. If you write a lot of mathematics, only the
+output formats ``latex``, ``pdflatex``, ``html``, ``sphinx``, and ``pandoc``
+are of interest
+and all these support inline LaTeX mathematics so then you will naturally
+drop the pipe symbol and write just
+
+
+.. code-block:: text
+
+
+        $\nu = \sin(x)$
+
+However, if you want more textual formats, like plain text or reStructuredText,
+the text after the pipe symbol may help to make the math formula more readable
+if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
 Blocks of mathematics are better typeset with raw LaTeX, inside
 ``!bt`` and ``!et`` (begin tex / end tex) instructions.
 The result looks like this:
+
 
 .. math::
    :label: myeq1
@@ -307,7 +323,8 @@ LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
-``!bc`` and ``!ec`` instructions, respectively. Such blocks look like
+``!bc`` and ``!ec`` instructions, respectively. Such blocks are formatted as
+
 
 .. code-block:: python
 
@@ -1148,6 +1165,11 @@ such as Ubuntu, the installation is simply done by
         sudo apt-get install python-pip
 
 Alternatively, one can install from the ``pip`` `source code <http://pypi.python.org/pypi/pip>`_.
+
+Mako can also be installed directly from
+`source <http://www.makotemplates.org/download.html>`_: download the
+tarball, pack it out, go to the directory and run
+the usual ``sudo python setup.py install``.
 
 Ptex2tex for LaTeX Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~

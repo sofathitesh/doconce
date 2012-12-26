@@ -285,8 +285,8 @@ removed from the Doconce source if desired:</p>
 </div>
 <p>resulting in Some sentence with <tt class="docutils literal"><span class="pre">words</span> <span class="pre">in</span> <span class="pre">verbatim</span> <span class="pre">style</span></tt>.</p>
 <p>Multi-line blocks of verbatim text, typically computer code, is typeset
-in between <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">xxx</span></tt> and <tt class="docutils literal"><span class="pre">!ec</span></tt> directives (which must appear on the
-beginning of the line). A specification <tt class="docutils literal"><span class="pre">xxx</span></tt> indicates what verbatim
+in between <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">xxx</span></tt> and <tt class="docutils literal"><span class="pre">!ec</span></tt> directives, which must appear on the
+beginning of the line. A specification <tt class="docutils literal"><span class="pre">xxx</span></tt> indicates what verbatim
 formatting style that is to be used. Typical values for <tt class="docutils literal"><span class="pre">xxx</span></tt> are
 nothing, <tt class="docutils literal"><span class="pre">cod</span></tt> for a code snippet, <tt class="docutils literal"><span class="pre">pro</span></tt> for a complete program,
 <tt class="docutils literal"><span class="pre">sys</span></tt> for a terminal session, <tt class="docutils literal"><span class="pre">dat</span></tt> for a data file (or output from a
@@ -306,6 +306,14 @@ Pygments (which is what <tt class="docutils literal"><span class="pre">sphinx</s
 <p>The <tt class="docutils literal"><span class="pre">xxx</span></tt> specifier has only effect for <tt class="docutils literal"><span class="pre">latex</span></tt> and
 <tt class="docutils literal"><span class="pre">sphinx</span></tt> output. All other formats use a fixed monospace font for all
 kinds of verbatim output.</p>
+<p>Here is an example of computer code (see the source of this document
+for exact syntax):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">pi</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Computer code can also be copied from a file:</p>
 <div class="highlight-text"><div class="highlight"><pre>@@@CODE doconce_program.sh
 @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
@@ -360,20 +368,15 @@ will applied the expression to the right.</p>
 <p>Blocks of LaTeX mathematics are written within
 <tt class="docutils literal"><span class="pre">!bt</span></tt>
 and
-<tt class="docutils literal"><span class="pre">!et</span></tt> (&#8220;begin/end TeX&#8221;) directives.
-For example,</p>
-<div class="highlight-text"><div class="highlight"><pre>
-</pre></div>
-</div>
+<tt class="docutils literal"><span class="pre">!et</span></tt> (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:</p>
 <div class="math">
-\[\begin{split}\begin{align*}
-\nabla\cdot u &amp;= 0,\\
-\nabla\times u &amp; 0.
-\end{align*}\end{split}\]</div>
-<p>will appear as</p>
+\[\begin{split}\nabla\cdot \pmb{u} &amp;= 0,\\
+\nabla\times \pmb{u} &amp;= 0.\end{split}\]</div>
+<p>Or a single equation:</p>
 <div class="math">
-\[\begin{split}\nabla\cdot u &amp;= 0,\\
-\nabla\times u &amp; 0.\end{split}\]</div>
+\[\frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]</div>
 <p>One can use <tt class="docutils literal"><span class="pre">#if</span> <span class="pre">FORMAT</span> <span class="pre">in</span> <span class="pre">(&quot;latex&quot;,</span> <span class="pre">&quot;pdflatex&quot;,</span> <span class="pre">&quot;sphinx&quot;,</span> <span class="pre">&quot;mwiki&quot;)</span></tt> to let
 the preprocessor choose a block of mathematics in LaTeX format
 or (<tt class="docutils literal"><span class="pre">#else</span></tt>) a modified form more suited for plain text and wiki

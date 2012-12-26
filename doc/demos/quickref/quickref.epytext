@@ -219,8 +219,8 @@ Inline verbatim code is typeset within back-ticks, as in::
 resulting in Some sentence with C{words in verbatim style}.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between C{!bc xxx} and C{!ec} directives (which must appear on the
-beginning of the line). A specification C{xxx} indicates what verbatim
+in between C{!bc xxx} and C{!ec} directives, which must appear on the
+beginning of the line. A specification C{xxx} indicates what verbatim
 formatting style that is to be used. Typical values for C{xxx} are
 nothing, C{cod} for a code snippet, C{pro} for a complete program,
 C{sys} for a terminal session, C{dat} for a data file (or output from a
@@ -242,6 +242,16 @@ Pygments (which is what C{sphinx} applies to typeset computer code).
 The C{xxx} specifier has only effect for C{latex} and
 C{sphinx} output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
+
+Here is an example of computer code (see the source of this document
+for exact syntax)::
+
+
+        from numpy import sin, cos, exp, pi
+        
+        def f(x, y, z, t):
+            return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+
 
 Computer code can also be copied from a file::
 
@@ -304,16 +314,16 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 C{!bt}
 and
-C{!et} ("begin/end TeX") directives.
-For example::
-
+C{!et} (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result::
 
 
             NOTE: A verbatim block has been removed because
                   it causes problems for Epytext.
 
 
-will appear as::
+Or a single equation::
 
 
             NOTE: A verbatim block has been removed because

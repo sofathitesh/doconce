@@ -477,8 +477,8 @@ Some sentence with `words in verbatim style`.
 resulting in Some sentence with \code{words in verbatim style}.
 
 Multi-line blocks of verbatim text, typically computer code, is typeset
-in between \code{!bc xxx} and \code{!ec} directives (which must appear on the
-beginning of the line). A specification \code{xxx} indicates what verbatim
+in between \code{!bc xxx} and \code{!ec} directives, which must appear on the
+beginning of the line. A specification \code{xxx} indicates what verbatim
 formatting style that is to be used. Typical values for \code{xxx} are
 nothing, \code{cod} for a code snippet, \code{pro} for a complete program,
 \code{sys} for a terminal session, \code{dat} for a data file (or output from a
@@ -500,7 +500,17 @@ The \code{xxx} specifier has only effect for \code{latex} and
 \code{sphinx} output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
-% When showing copy from file in !bc envir, intent a character - otherwise
+Here is an example of computer code (see the source of this document
+for exact syntax):
+
+\bcod
+from numpy import sin, cos, exp, pi
+
+def f(x, y, z, t):
+    return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+\ecod
+
+% When showing copy from file in !bc envir, indent a character - otherwise
 % ptex2tex is confused and starts copying...
 Computer code can also be copied from a file:
 \bccq
@@ -562,19 +572,17 @@ will applied the expression to the right.
 Blocks of {\LaTeX} mathematics are written within
 \code{!bt}
 and
-\code{!et} ("begin/end TeX") directives.
-For example,
-\bccq
+\code{!et} (begin/end TeX) directives starting on the beginning of a line
+(see the source of this document for precise syntax).
+Here is a result:
+
 \begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
 \end{align*}
-\eccq
-will appear as
-\begin{align*}
-\nabla\cdot u &= 0,\\
-\nabla\times u & 0.
-\end{align*}
+Or a single equation:
+
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
 One can use \code{#if FORMAT in ("latex", "pdflatex", "sphinx", "mwiki")} to let
 the preprocessor choose a block of mathematics in {\LaTeX} format

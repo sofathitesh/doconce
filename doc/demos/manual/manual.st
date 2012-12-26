@@ -146,6 +146,11 @@ such as Ubuntu, the installation is simply done by::
 
 Alternatively, one can install from the 'pip' "http://pypi.python.org/pypi/pip":source code.
 
+Mako can also be installed directly from
+"http://www.makotemplates.org/download.html":source: download the
+tarball, pack it out, go to the directory and run
+the usual 'sudo python setup.py install'.
+
 Ptex2tex for LaTeX Output
 
 To make LaTeX documents with very flexible choice of typesetting of
