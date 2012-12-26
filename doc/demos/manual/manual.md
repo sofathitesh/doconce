@@ -1,6 +1,6 @@
 % Doconce Description
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Dec 25, 2012
+% Dec 26, 2012
 
 <!-- lines beginning with # are comment lines -->
 
@@ -270,8 +270,10 @@ or clone the svn repository, go to the `rst2pdf` directory and
 run the usual `sudo python setup.py install`.
 
 
-Output to `sphinx` requires of course [Sphinx](http://sphinx.pocoo.org),
+Output to `sphinx` requires of course the
+[Sphinx software](http://sphinx.pocoo.org),
 installed by
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 hg clone https://bitbucket.org/birkenfeld/sphinx

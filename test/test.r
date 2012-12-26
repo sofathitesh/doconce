@@ -16551,8 +16551,11 @@ run the usual <tt>sudo python setup.py install</tt>.
 
 <p>
 
-Output to <tt>sphinx</tt> requires of course <a href="http://sphinx.pocoo.org">Sphinx</a>,
+Output to <tt>sphinx</tt> requires of course the
+<a href="http://sphinx.pocoo.org">Sphinx software</a>,
 installed by
+
+<p>
 <!-- begin verbatim block  sys-->
 <pre>
 hg clone https://bitbucket.org/birkenfeld/sphinx
@@ -17960,8 +17963,10 @@ or clone the svn repository, go to the \code{rst2pdf} directory and
 run the usual \code{sudo python setup.py install}.
 
 
-Output to \code{sphinx} requires of course \href{{http://sphinx.pocoo.org}}{Sphinx},
+Output to \code{sphinx} requires of course the
+\href{{http://sphinx.pocoo.org}}{Sphinx software},
 installed by
+
 \bsys
 hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
@@ -19186,7 +19191,8 @@ or clone the svn repository, go to the ``rst2pdf`` directory and
 run the usual ``sudo python setup.py install``.
 
 
-Output to ``sphinx`` requires of course `Sphinx <http://sphinx.pocoo.org>`_,
+Output to ``sphinx`` requires of course the
+`Sphinx software <http://sphinx.pocoo.org>`_,
 installed by::
 
 
@@ -20482,8 +20488,10 @@ or clone the svn repository, go to the ``rst2pdf`` directory and
 run the usual ``sudo python setup.py install``.
 
 
-Output to ``sphinx`` requires of course `Sphinx <http://sphinx.pocoo.org>`_,
+Output to ``sphinx`` requires of course the
+`Sphinx software <http://sphinx.pocoo.org>`_,
 installed by
+
 
 .. code-block:: console
 
@@ -21515,8 +21523,10 @@ or clone the svn repository, go to the `rst2pdf` directory and
 run the usual `sudo python setup.py install`.
 
 
-Output to `sphinx` requires of course [http://sphinx.pocoo.org Sphinx],
+Output to `sphinx` requires of course the
+[http://sphinx.pocoo.org Sphinx software],
 installed by
+
 {{{
 hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
@@ -22512,8 +22522,10 @@ or clone the svn repository, go to the <code>rst2pdf</code> directory and
 run the usual <code>sudo python setup.py install</code>.
 
 
-Output to <code>sphinx</code> requires of course [http://sphinx.pocoo.org Sphinx],
+Output to <code>sphinx</code> requires of course the
+[http://sphinx.pocoo.org Sphinx software],
 installed by
+
 <syntaxhighlight lang="bash">
 hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
@@ -23553,8 +23565,10 @@ or clone the svn repository, go to the {{{rst2pdf}}} directory and
 run the usual {{{sudo python setup.py install}}}.
 
 
-Output to {{{sphinx}}} requires of course [[http://sphinx.pocoo.org|Sphinx]],
+Output to {{{sphinx}}} requires of course the
+[[http://sphinx.pocoo.org|Sphinx software]],
 installed by
+
 {{{
 hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
@@ -24668,7 +24682,8 @@ or clone the svn repository, go to the 'rst2pdf' directory and
 run the usual 'sudo python setup.py install'.
 
 
-Output to 'sphinx' requires of course "http://sphinx.pocoo.org":Sphinx,
+Output to 'sphinx' requires of course the
+"http://sphinx.pocoo.org":Sphinx software,
 installed by::
 
 
@@ -25825,7 +25840,8 @@ or clone the svn repository, go to the C{rst2pdf} directory and
 run the usual C{sudo python setup.py install}.
 
 
-Output to C{sphinx} requires of course U{Sphinx<http://sphinx.pocoo.org>},
+Output to C{sphinx} requires of course the
+U{Sphinx software<http://sphinx.pocoo.org>},
 installed by::
 
 
@@ -27027,7 +27043,8 @@ or clone the svn repository, go to the rst2pdf directory and
 run the usual sudo python setup.py install.
 
 
-Output to sphinx requires of course Sphinx (http://sphinx.pocoo.org),
+Output to sphinx requires of course the
+Sphinx software (http://sphinx.pocoo.org),
 installed by::
 
 
@@ -28278,8 +28295,10 @@ or clone the svn repository, go to the `rst2pdf` directory and
 run the usual `sudo python setup.py install`.
 
 
-Output to `sphinx` requires of course [Sphinx](http://sphinx.pocoo.org),
+Output to `sphinx` requires of course the
+[Sphinx software](http://sphinx.pocoo.org),
 installed by
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 hg clone https://bitbucket.org/birkenfeld/sphinx
@@ -29165,7 +29184,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 25 Dec 2012 (15:52)</center>
+<center>Wed, 26 Dec 2012 (01:22)</center>
 
 
 
@@ -29296,7 +29315,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Tue, 25 Dec 2012 (15:52)</center>
+<center>Wed, 26 Dec 2012 (01:22)</center>
 
 
 
@@ -31988,8 +32007,11 @@ run the usual <tt>sudo python setup.py install</tt>.
 
 <p>
 
-Output to <tt>sphinx</tt> requires of course <a href="http://sphinx.pocoo.org">Sphinx</a>,
+Output to <tt>sphinx</tt> requires of course the
+<a href="http://sphinx.pocoo.org">Sphinx software</a>,
 installed by
+
+<p>
 <!-- begin verbatim block  sys-->
 <pre>
 hg clone https://bitbucket.org/birkenfeld/sphinx
@@ -35697,8 +35719,10 @@ or clone the svn repository, go to the \code{rst2pdf} directory and
 run the usual \code{sudo python setup.py install}.
 
 
-Output to \code{sphinx} requires of course \href{{http://sphinx.pocoo.org}}{Sphinx},
+Output to \code{sphinx} requires of course the
+\href{{http://sphinx.pocoo.org}}{Sphinx software},
 installed by
+
 \bsys
 hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
@@ -38660,7 +38684,8 @@ or clone the svn repository, go to the ``rst2pdf`` directory and
 run the usual ``sudo python setup.py install``.
 
 
-Output to ``sphinx`` requires of course `Sphinx <http://sphinx.pocoo.org>`_,
+Output to ``sphinx`` requires of course the
+`Sphinx software <http://sphinx.pocoo.org>`_,
 installed by::
 
 
@@ -41849,8 +41874,10 @@ or clone the svn repository, go to the ``rst2pdf`` directory and
 run the usual ``sudo python setup.py install``.
 
 
-Output to ``sphinx`` requires of course `Sphinx <http://sphinx.pocoo.org>`_,
+Output to ``sphinx`` requires of course the
+`Sphinx software <http://sphinx.pocoo.org>`_,
 installed by
+
 
 .. code-block:: console
 
@@ -45205,8 +45232,10 @@ or clone the svn repository, go to the `rst2pdf` directory and
 run the usual `sudo python setup.py install`.
 
 
-Output to `sphinx` requires of course [http://sphinx.pocoo.org Sphinx],
+Output to `sphinx` requires of course the
+[http://sphinx.pocoo.org Sphinx software],
 installed by
+
 {{{
 hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
@@ -47977,8 +48006,10 @@ or clone the svn repository, go to the <code>rst2pdf</code> directory and
 run the usual <code>sudo python setup.py install</code>.
 
 
-Output to <code>sphinx</code> requires of course [http://sphinx.pocoo.org Sphinx],
+Output to <code>sphinx</code> requires of course the
+[http://sphinx.pocoo.org Sphinx software],
 installed by
+
 <syntaxhighlight lang="bash">
 hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
@@ -50715,8 +50746,10 @@ or clone the svn repository, go to the {{{rst2pdf}}} directory and
 run the usual {{{sudo python setup.py install}}}.
 
 
-Output to {{{sphinx}}} requires of course [[http://sphinx.pocoo.org|Sphinx]],
+Output to {{{sphinx}}} requires of course the
+[[http://sphinx.pocoo.org|Sphinx software]],
 installed by
+
 {{{
 hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
@@ -53538,7 +53571,8 @@ or clone the svn repository, go to the 'rst2pdf' directory and
 run the usual 'sudo python setup.py install'.
 
 
-Output to 'sphinx' requires of course "http://sphinx.pocoo.org":Sphinx,
+Output to 'sphinx' requires of course the
+"http://sphinx.pocoo.org":Sphinx software,
 installed by::
 
 
@@ -56401,7 +56435,8 @@ or clone the svn repository, go to the C{rst2pdf} directory and
 run the usual C{sudo python setup.py install}.
 
 
-Output to C{sphinx} requires of course U{Sphinx<http://sphinx.pocoo.org>},
+Output to C{sphinx} requires of course the
+U{Sphinx software<http://sphinx.pocoo.org>},
 installed by::
 
 
@@ -59387,7 +59422,8 @@ or clone the svn repository, go to the rst2pdf directory and
 run the usual sudo python setup.py install.
 
 
-Output to sphinx requires of course Sphinx (http://sphinx.pocoo.org),
+Output to sphinx requires of course the
+Sphinx software (http://sphinx.pocoo.org),
 installed by::
 
 
@@ -62436,8 +62472,10 @@ or clone the svn repository, go to the `rst2pdf` directory and
 run the usual `sudo python setup.py install`.
 
 
-Output to `sphinx` requires of course [Sphinx](http://sphinx.pocoo.org),
+Output to `sphinx` requires of course the
+[Sphinx software](http://sphinx.pocoo.org),
 installed by
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 hg clone https://bitbucket.org/birkenfeld/sphinx
@@ -65519,8 +65557,10 @@ or clone the svn repository, go to the `rst2pdf` directory and
 run the usual `sudo python setup.py install`.
 
 
-Output to `sphinx` requires of course "Sphinx": "http://sphinx.pocoo.org",
+Output to `sphinx` requires of course the
+"Sphinx software": "http://sphinx.pocoo.org",
 installed by
+
 !bc sys
 hg clone https://bitbucket.org/birkenfeld/sphinx
 cd sphinx
@@ -68375,7 +68415,7 @@ examine the Doconce source and the \code{doc/src/make.sh} script).
    (http://code.google.com/p/doconce/)
 
 Doconce Quick Reference
-=======================
+-----------------------
 
 :Author: Hans Petter Langtangen
 
@@ -69206,7 +69246,7 @@ Resources
    (http://code.google.com/p/doconce/)
 
 Doconce Quick Reference
-=======================
+-----------------------
 
 :Author: Hans Petter Langtangen
 
@@ -77522,7 +77562,6 @@ updating environment: 2 added, 0 changed, 0 removed
 reading sources... [ 50%] index
 reading sources... [100%] tutorial
 
-/home/hpl/vc/doconce/doc/tutorial/sphinx-rootdir/tutorial.rst:1069: WARNING: Duplicate explicit target name: "sphinx".
 looking for now-outdated files... none found
 pickling environment... done
 checking consistency... done
@@ -77534,7 +77573,7 @@ writing additional files... (0 module code pages) genindex search
 copying static files... done
 dumping search index... done
 dumping object inventory... done
-build succeeded, 1 warning.
+build succeeded.
 
 Build finished. The HTML pages are in _build/html.
 + make latex
@@ -77724,7 +77763,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 178079 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 178093 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -77870,7 +77909,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184156 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184163 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -78016,7 +78055,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184156 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184163 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -78168,7 +78207,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184156 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184163 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -78314,7 +78353,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184156 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (29 pages, 184163 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -78324,13 +78363,9 @@ running preprocess -DFORMAT=rst  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to rst
 output in tutorial.rst
 + rst2xml.py tutorial.rst
-tutorial.rst:1019: (WARNING/2) Duplicate explicit target name: "sphinx".
 + rst2odt.py tutorial.rst
-tutorial.rst:1019: (WARNING/2) Duplicate explicit target name: "sphinx".
 + rst2html.py tutorial.rst
-tutorial.rst:1019: (WARNING/2) Duplicate explicit target name: "sphinx".
 + rst2latex.py tutorial.rst
-tutorial.rst:1019: (WARNING/2) Duplicate explicit target name: "sphinx".
 + latex tutorial.rst.tex
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
  restricted \write18 enabled.
@@ -78352,10 +78387,6 @@ Package cmap Warning: pdftex in DVI mode - exiting.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 
 
 
@@ -78381,6 +78412,10 @@ Package hyperref Message: Driver (default): hdvips.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
 
 No file tutorial.rst.aux.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
@@ -78737,7 +78772,7 @@ output in tutorial.md
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mwiki.ps tutorial.mwiki
 [tutorial.mwiki (plain): 21 pages on 21 sheets]
 [Total: 21 pages on 21 sheets] saved into the file `tutorial.mwiki.ps'
-[187 lines wrapped]
+[186 lines wrapped]
 + ps2pdf tutorial.mwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.md.ps tutorial.md
 [tutorial.md (Modula 2): 22 pages on 22 sheets]
@@ -78747,7 +78782,7 @@ output in tutorial.md
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
 [tutorial.xml (plain): 19 pages on 19 sheets]
 [Total: 19 pages on 19 sheets] saved into the file `tutorial.xml.ps'
-[538 lines wrapped]
+[536 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.md.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.md.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -79089,7 +79124,7 @@ Chapter 4.
 [11] [12]
 
 LaTeX Warning: Hyper reference `manual:newcommands' on page 13 undefined on inp
-ut line 638.
+ut line 639.
 
 
 Underfull \hbox (badness 10000) 
@@ -79127,22 +79162,22 @@ LaTeX Warning: Hyper reference `manual:inline-tagging' on page 27 undefined on
 [27]
 
 LaTeX Warning: Hyper reference `manual:fig-viz' on page 28 undefined on input l
-ine 1705.
+ine 1706.
 
 
 LaTeX Warning: Hyper reference `manual:mathtext' on page 28 undefined on input 
-line 1707.
+line 1708.
 
 
 LaTeX Warning: Hyper reference `manual:newcommands' on page 28 undefined on inp
-ut line 1707.
+ut line 1708.
 
 
-LaTeX Warning: Reference `manual-myeq1' on page 28 undefined on input line 1709
+LaTeX Warning: Reference `manual-myeq1' on page 28 undefined on input line 1710
 .
 
 
-LaTeX Warning: Reference `manual-myeq2' on page 28 undefined on input line 1709
+LaTeX Warning: Reference `manual-myeq2' on page 28 undefined on input line 1710
 .
 
 
@@ -79158,7 +79193,7 @@ n
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 31 undefined on input 
-line 1909.
+line 1910.
 
 
 LaTeX Warning: Hyper reference `manual:python-primer-09' on page 31 undefined o
@@ -79166,7 +79201,7 @@ n
 
 
 LaTeX Warning: Hyper reference `manual:osnes-98' on page 31 undefined on input 
-line 1910.
+line 1911.
 
 [31] [32] [33] [34] [35]
 ! FancyVerb Error:
@@ -79176,7 +79211,7 @@ line 1910.
 \space \space #1
 }
                                                   
-l.2305 \end{Verbatim}
+l.2306 \end{Verbatim}
                      
 ? OK, entering \nonstopmode...
 
@@ -79187,12 +79222,12 @@ Package amsmath Warning: Foreign command \over;
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2311 \end{gather}
+l.2312 \end{gather}
                    
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.2311 \end{gather}
+l.2312 \end{gather}
                    
 
 Underfull \hbox (badness 10000) 
@@ -79444,7 +79479,7 @@ eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 7 undefined on inpu
-t line 721.
+t line 722.
 
 
 Overfull \hbox (78.51936pt too wide) 
@@ -79652,7 +79687,7 @@ Overfull \hbox (23.00006pt too wide)
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
 
-LaTeX Warning: Hyper reference `id3' on page 21 
+LaTeX Warning: Hyper reference `id2' on page 21 
 
 
 Overfull \hbox (89.00006pt too wide) 
@@ -79667,8 +79702,8 @@ Overfull \hbox (83.00006pt too wide)
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
 
-LaTeX Warning: Hyper reference `fig-viz' on page 22 undefined on input line 197
-9.
+LaTeX Warning: Hyper reference `fig-viz' on page 22 undefined on input line 198
+0.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 22 u
@@ -79676,10 +79711,10 @@ ndefined on
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 22 undefined on inp
-ut line 1981.
+ut line 1982.
 
 
-LaTeX Warning: Hyper reference `id3' on page 22 
+LaTeX Warning: Hyper reference `id2' on page 22 
 
 [22]
 Overfull \hbox (5.00006pt too wide) 
@@ -80950,7 +80985,7 @@ Overfull \hbox (4.1082pt too wide)
 <use figs/streamtubes.png> [18] [19 <./figs/streamtubes.png>]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 20 undefined on input li
-ne 1367.
+ne 1369.
 
 
 Overfull \hbox (42.0102pt too wide) 
@@ -80959,15 +80994,15 @@ s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
 [20] [21]
 
 LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-507.
+509.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-511.
+513.
 
 
 LaTeX Warning: Reference `inline:tagging' on page 22 undefined on input line 15
-42.
+44.
 
 [22]
 
@@ -80992,19 +81027,19 @@ Overfull \hbox (4.37044pt too wide)
 nces for (sub)sections,
 
 LaTeX Warning: Reference `inline:tagging' on page 23 undefined on input line 16
-00.
+02.
 
 [23] [24] [25]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
-775.
+777.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 26 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
-776.
+778.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 26 
@@ -81044,7 +81079,7 @@ Overfull \hbox (1.76395pt too wide)
 [34]
 
 LaTeX Warning: Reference `doconce2formats' on page 35 undefined on input line 2
-325.
+327.
 
 [35]
 Overfull \hbox (88.39946pt too wide) 
@@ -81056,7 +81091,7 @@ Overfull \hbox (9.3464pt too wide)
 [36] [37] [38] [39]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 40 undefined on input li
-ne 2628.
+ne 2630.
 
 [40] [41] [42] [43] [44]
 Overfull \hbox (4.78592pt too wide) 
@@ -81357,14 +81392,14 @@ nces for (sub)sections,
 [23] [24] [25]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
-775.
+777.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 26 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 26 undefined on input line 1
-776.
+778.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 26 
@@ -83818,7 +83853,6 @@ Package cmap Warning: pdftex in DVI mode - exiting.
 
 
 
-
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/helvet.sty
 
 
@@ -83848,11 +83882,6 @@ No file quickref.rst.aux.
 Package hyperref Warning: Rerun to get /PageLabels entry.
 
 
-
-
-
-
-
 Package hyperref Warning: old toc file detected, not used; run LaTeX again.
 
 
@@ -83869,32 +83898,32 @@ Overfull \hbox (71.00006pt too wide)
 []\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 and institution2 
 
 [1]
-Overfull \hbox (4.50082pt too wide) in alignment at lines 174--182
+Overfull \hbox (4.50082pt too wide) in alignment at lines 169--177
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 182--190
+Overfull \hbox (4.50082pt too wide) in alignment at lines 177--185
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 190--192
+Overfull \hbox (4.50082pt too wide) in alignment at lines 185--187
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 192--193
+Overfull \hbox (4.50082pt too wide) in alignment at lines 187--188
  [] [] 
 
 Underfull \hbox (badness 10000) 
 []|\T1/pcr/m/n/10 ========= Heading ========
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 193--230
+Overfull \hbox (4.50082pt too wide) in alignment at lines 188--225
  [] [] 
 
 Overfull \hbox (27.20697pt too wide) 
 \T1/ptm/m/it/10 sized words\T1/ptm/m/n/10 . Sim-i-larly, an un-der-score sur-ro
 unds words that ap-pear in bold-face: \T1/pcr/m/n/10 _boldface_
-[2]
+
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 Note that sublists are consistently indented by one or more bl
 anks..  
-
+[2]
 Overfull \hbox (17.00006pt too wide) 
 [] \T1/pcr/m/n/10 - keyword3: and its description may fit on one line 
 [3]
@@ -83955,7 +83984,7 @@ Overfull \hbox (71.00006pt too wide)
 
 
 LaTeX Warning: Hyper reference `section-types' on page 7 undefined on input lin
-e 690.
+e 685.
 
 
 Overfull \hbox (107.00006pt too wide) 
@@ -84151,6 +84180,10 @@ ticolumn{1}{c}{acceleration} \\
 Overfull \hbox (4.19656pt too wide) 
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
+
+
+
+
 
 Overfull \hbox (114.855pt too wide) 
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''
@@ -84199,7 +84232,6 @@ Package cmap Warning: pdftex in DVI mode - exiting.
 
 
 
-
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/helvet.sty
 
 
@@ -84224,12 +84256,7 @@ Package hyperref Message: Driver (default): hdvips.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 
-(./quickref.rst.out) (./quickref.rst.out)
-
-
-
-
-
+(./quickref.rst.out) (./quickref.rst.out) (./quickref.rst.toc)
 
  [1]
 Overfull \hbox (467.00006pt too wide) 
@@ -84244,22 +84271,22 @@ Overfull \hbox (71.00006pt too wide)
 []\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 and institution2 
 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 174--182
+Overfull \hbox (4.50082pt too wide) in alignment at lines 169--177
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 182--190
+Overfull \hbox (4.50082pt too wide) in alignment at lines 177--185
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 190--192
+Overfull \hbox (4.50082pt too wide) in alignment at lines 185--187
  [] [] 
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 192--193
+Overfull \hbox (4.50082pt too wide) in alignment at lines 187--188
  [] [] 
 
 Underfull \hbox (badness 10000) 
 []|\T1/pcr/m/n/10 ========= Heading ========
 
-Overfull \hbox (4.50082pt too wide) in alignment at lines 193--230
+Overfull \hbox (4.50082pt too wide) in alignment at lines 188--225
  [] [] 
 [2]
 Overfull \hbox (27.20697pt too wide) 
@@ -84269,10 +84296,10 @@ unds words that ap-pear in bold-face: \T1/pcr/m/n/10 _boldface_
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 Note that sublists are consistently indented by one or more bl
 anks..  
-[3]
+
 Overfull \hbox (17.00006pt too wide) 
 [] \T1/pcr/m/n/10 - keyword3: and its description may fit on one line 
-
+[3]
 Overfull \hbox (35.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html mydoc.do.txt --skip_inline_comments 
 [4]
@@ -84304,11 +84331,11 @@ Overfull \hbox (12.58893pt too wide)
 []\T1/ptm/m/n/10 Use only the equa-tion en-vi-ron-ments \T1/pcr/m/n/10 \[\T1/pt
 m/m/n/10 , \T1/pcr/m/n/10 \]\T1/ptm/m/n/10 , \T1/pcr/m/n/10 equation\T1/ptm/m/n
 /10 , \T1/pcr/m/n/10 equation*\T1/ptm/m/n/10 ,
-[6]
+
 Overfull \hbox (12.28825pt too wide) 
 \T1/ptm/m/n/10 clude spe-cial code for \T1/pcr/m/n/10 latex \T1/ptm/m/n/10 and 
 \T1/pcr/m/n/10 pdflatex \T1/ptm/m/n/10 out-put and more straight-
-
+[6]
 Overfull \hbox (449.00006pt too wide) 
 \T1/pcr/m/n/10 FIGURE: [relative/path/to/figurefile, width=500] Here goes the c
 aption which must be on a single line. label{some:fig:label}  
@@ -84340,7 +84367,7 @@ Overfull \hbox (107.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 |----------------l--------|------------------l----------------
 ----|  
-[7]
+
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 | chapter                 | `========= Heading ========` (9 `=
 `)  |  
@@ -84364,7 +84391,7 @@ Overfull \hbox (107.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 |-------------------------------------------------------------
 ----| 
-
+[7]
 Overfull \hbox (54.34767pt too wide) 
 \T1/ptm/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have \T1
 /pcr/m/n/10 name \T1/ptm/m/n/10 on the form \T1/pcr/m/n/10 Author1_Author2_YYYY
@@ -84393,7 +84420,7 @@ tex expand_commands combine_images latex_exercise_toc
 Overfull \hbox (299.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
 i|cwiki|pandoc|st|epytext file.do.txt  
-[9]
+
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 # substitute a phrase by another using regular expressions  
 
@@ -84417,7 +84444,7 @@ Overfull \hbox (59.00006pt too wide)
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 (exact text substitution, but a set of from-to relations)  
-
+[9]
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 # gwiki format requires substitution of figure file names by U
 RLs  
@@ -84441,14 +84468,14 @@ Overfull \hbox (47.00006pt too wide)
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 # transform a .bbl file to a .rst file with reST bibliography 
 format  
-[10]
+
 Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 # edit URLs to local files and place them in _static  
 
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 # split an html file into parts according to !split commands  
 
-
+[10]
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce html_colorbullets file1.html file2.html ...  
 
@@ -84514,14 +84541,18 @@ marks
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
-[13]
+
 Overfull \hbox (263.00006pt too wide) 
 []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mul
 ticolumn{1}{c}{acceleration} \\  
-
+[13]
 Overfull \hbox (4.19656pt too wide) 
 [][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
 \T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
+
+
+
+
 
 Overfull \hbox (114.855pt too wide) 
 []\T1/ptm/m/n/10 Excellent ``Sphinx Tu-to-rial'' by C. Reller: ``[][][][][][]''

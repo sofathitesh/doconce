@@ -6,7 +6,7 @@ Doconce Description
 
 :Author: Hans Petter Langtangen
 
-:Date: Dec 25, 2012
+:Date: Dec 26, 2012
 
 .. lines beginning with # are comment lines
 
@@ -288,8 +288,10 @@ or clone the svn repository, go to the ``rst2pdf`` directory and
 run the usual ``sudo python setup.py install``.
 
 
-Output to ``sphinx`` requires of course `Sphinx <http://sphinx.pocoo.org>`_,
+Output to ``sphinx`` requires of course the
+`Sphinx software <http://sphinx.pocoo.org>`_,
 installed by
+
 
 .. code-block:: console
 

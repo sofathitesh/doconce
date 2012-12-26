@@ -56,13 +56,14 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 25, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 26, 2012</td>
 </tr>
 </tbody>
 </table>
 <p><strong>WARNING: This quick reference is very incomplete!</strong></p>
+</div>
 <div class="section" id="supported-formats">
-<h2>Supported Formats<a class="headerlink" href="#supported-formats" title="Permalink to this headline">¶</a></h2>
+<h1>Supported Formats<a class="headerlink" href="#supported-formats" title="Permalink to this headline">¶</a></h1>
 <p>Doconce currently translates files to the following formats:</p>
 <blockquote>
 <div><ul class="simple">
@@ -82,7 +83,7 @@
 <p>The best supported formats are <tt class="docutils literal"><span class="pre">latex</span></tt>, <tt class="docutils literal"><span class="pre">sphinx</span></tt>, <tt class="docutils literal"><span class="pre">html</span></tt>, and <tt class="docutils literal"><span class="pre">plain</span></tt>.</p>
 </div>
 <div class="section" id="title-authors-and-date">
-<h2>Title, Authors, and Date<a class="headerlink" href="#title-authors-and-date" title="Permalink to this headline">¶</a></h2>
+<h1>Title, Authors, and Date<a class="headerlink" href="#title-authors-and-date" title="Permalink to this headline">¶</a></h1>
 <p>A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
 reads</p>
@@ -111,7 +112,7 @@ current date is wanted, e.g., <tt class="docutils literal"><span class="pre">Feb
 <p>The table of contents is removed by writing <tt class="docutils literal"><span class="pre">TOC:</span> <span class="pre">off</span></tt>.</p>
 </div>
 <div class="section" id="section-types">
-<span id="quick-sections"></span><h2>Section Types<a class="headerlink" href="#section-types" title="Permalink to this headline">¶</a></h2>
+<span id="quick-sections"></span><h1>Section Types<a class="headerlink" href="#section-types" title="Permalink to this headline">¶</a></h1>
 <table border="1" class="docutils">
 <colgroup>
 <col width="50%" />
@@ -151,13 +152,13 @@ next heading.</p>
 is used - all other formats just leave the heading as it is written).</p>
 </div>
 <div class="section" id="inline-formatting">
-<h2>Inline Formatting<a class="headerlink" href="#inline-formatting" title="Permalink to this headline">¶</a></h2>
+<h1>Inline Formatting<a class="headerlink" href="#inline-formatting" title="Permalink to this headline">¶</a></h1>
 <p>Words surrounded by <tt class="docutils literal"><span class="pre">*</span></tt> are emphasized: <tt class="docutils literal"><span class="pre">*emphasized</span> <span class="pre">words*</span></tt> becomes
 <em>emphasized words</em>. Similarly, an underscore surrounds words that
 appear in boldface: <tt class="docutils literal"><span class="pre">_boldface_</span></tt> become <strong>boldface</strong>.</p>
 </div>
 <div class="section" id="lists">
-<h2>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h2>
+<h1>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h1>
 <p>There are three types of lists: <em>bullet lists</em>, where each item starts
 with <tt class="docutils literal"><span class="pre">*</span></tt>, <em>enumeration lists</em>, where each item starts with <tt class="docutils literal"><span class="pre">o</span></tt> and gets
 consqutive numbers,
@@ -243,7 +244,7 @@ lines</dd>
 </div></blockquote>
 </div>
 <div class="section" id="comments">
-<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<h1>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h1>
 <p>Lines starting with <tt class="docutils literal"><span class="pre">#</span></tt> are treated as comments in the document and
 translated to the proper syntax for comments in the output
 document. Such comment lines should not appear before LaTeX math
@@ -277,7 +278,7 @@ removed from the Doconce source if desired:</p>
 <p>This action is appropriate when all issues with such comments are resolved.</p>
 </div>
 <div class="section" id="verbatim-computer-code">
-<h2>Verbatim/Computer Code<a class="headerlink" href="#verbatim-computer-code" title="Permalink to this headline">¶</a></h2>
+<h1>Verbatim/Computer Code<a class="headerlink" href="#verbatim-computer-code" title="Permalink to this headline">¶</a></h1>
 <p>Inline verbatim code is typeset within back-ticks, as in</p>
 <div class="highlight-text"><div class="highlight"><pre>Some sentence with `words in verbatim style`.
 </pre></div>
@@ -339,7 +340,7 @@ paragraphs with headings.</li>
 </div></blockquote>
 </div>
 <div class="section" id="latex-mathematics">
-<h2>LaTeX Mathematics<a class="headerlink" href="#latex-mathematics" title="Permalink to this headline">¶</a></h2>
+<h1>LaTeX Mathematics<a class="headerlink" href="#latex-mathematics" title="Permalink to this headline">¶</a></h1>
 <p>Doconce supports inline mathematics and blocks of mathematics, using
 standard LaTeX syntax. The output formats <tt class="docutils literal"><span class="pre">sphinx</span></tt>, <tt class="docutils literal"><span class="pre">latex</span></tt>, and <tt class="docutils literal"><span class="pre">pdflatex</span></tt>
 work with this syntax while all other formats will just display the
@@ -405,7 +406,7 @@ PDF document.</li>
 <p><em>LaTeX Newcommands.</em> Text missing...</p>
 </div>
 <div class="section" id="figures-and-movies">
-<h2>Figures and Movies<a class="headerlink" href="#figures-and-movies" title="Permalink to this headline">¶</a></h2>
+<h1>Figures and Movies<a class="headerlink" href="#figures-and-movies" title="Permalink to this headline">¶</a></h1>
 <p>Figures and movies have almost equal syntax:</p>
 <div class="highlight-text"><div class="highlight"><pre>FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
@@ -433,7 +434,7 @@ will display the individual frame files as a movie.</p>
 The positioning of the figures can be controlled by <tt class="docutils literal"><span class="pre">-gravity</span></tt>.</p>
 </div>
 <div class="section" id="tables">
-<h2>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h2>
+<h1>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h1>
 <p>The table in the section <a class="reference internal" href="#quick-sections"><em>Section Types</em></a> was written with this
 syntax:</p>
 <div class="highlight-text"><div class="highlight"><pre>|----------------c--------|------------------c--------------------|
@@ -468,7 +469,7 @@ have no effect.</li>
 </div></blockquote>
 </div>
 <div class="section" id="labels-references-citations-and-index">
-<h2>Labels, References, Citations, and Index<a class="headerlink" href="#labels-references-citations-and-index" title="Permalink to this headline">¶</a></h2>
+<h1>Labels, References, Citations, and Index<a class="headerlink" href="#labels-references-citations-and-index" title="Permalink to this headline">¶</a></h1>
 <p>The notion of labels, references, citations, and an index is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax</p>
@@ -546,7 +547,7 @@ forthcoming text. The index is only produced for the <tt class="docutils literal
 <tt class="docutils literal"><span class="pre">sphinx</span></tt> formats.</p>
 </div>
 <div class="section" id="capabilities-of-the-doconce-program">
-<h2>Capabilities of the &#8220;doconce&#8221; Program<a class="headerlink" href="#capabilities-of-the-doconce-program" title="Permalink to this headline">¶</a></h2>
+<h1>Capabilities of the &#8220;doconce&#8221; Program<a class="headerlink" href="#capabilities-of-the-doconce-program" title="Permalink to this headline">¶</a></h1>
 <p>The <tt class="docutils literal"><span class="pre">doconce</span></tt> program can be used for a number of purposes besides
 transforming a <tt class="docutils literal"><span class="pre">.do.txt</span></tt> file to some format. Here is the
 list of capabilities:</p>
@@ -654,7 +655,7 @@ doconce list_labels myfile
 </div>
 </div>
 <div class="section" id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h1>
 <p>Doconce supports <em>Exercise</em>, <em>Problem</em>, and <em>Project</em>. These are typeset
 as ordinary sections and referred to by their section labels.
 An exercise, problem, or project sections contains certain <em>elements</em>:</p>
@@ -748,10 +749,10 @@ Here goes a full solution of the whole exercise.
 <p>By default, answers, solutions, and hints are typeset as paragraphs.</p>
 </div>
 <div class="section" id="labels-index-and-citations">
-<h2>Labels, Index, and Citations<a class="headerlink" href="#labels-index-and-citations" title="Permalink to this headline">¶</a></h2>
+<h1>Labels, Index, and Citations<a class="headerlink" href="#labels-index-and-citations" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="preprocessing">
-<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
+<h1>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h1>
 <p>Doconce documents may utilize a preprocessor, either <tt class="docutils literal"><span class="pre">preprocess</span></tt> and/or
 <tt class="docutils literal"><span class="pre">mako</span></tt>. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
@@ -797,13 +798,12 @@ some illustrations on how to utilize <tt class="docutils literal"><span class="p
 examine the Doconce source and the <tt class="docutils literal"><span class="pre">doc/src/make.sh</span></tt> script).</p>
 </div>
 <div class="section" id="resources">
-<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<h1>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h1>
 <blockquote>
 <div><ul class="simple">
 <li>Excellent &#8220;Sphinx Tutorial&#8221; by C. Reller: &#8220;<a class="reference external" href="http://people.ee.ethz.ch/~creller/web/tricks/reST.html">http://people.ee.ethz.ch/~creller/web/tricks/reST.html</a>&#8220;</li>
 </ul>
 </div></blockquote>
-</div>
 </div>
 
 
@@ -814,7 +814,7 @@ examine the Doconce source and the <tt class="docutils literal"><span class="pre
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Doconce Quick Reference</a><ul>
+<li><a class="reference internal" href="#">Doconce Quick Reference</a></li>
 <li><a class="reference internal" href="#supported-formats">Supported Formats</a></li>
 <li><a class="reference internal" href="#title-authors-and-date">Title, Authors, and Date</a></li>
 <li><a class="reference internal" href="#section-types">Section Types</a></li>
@@ -831,8 +831,6 @@ examine the Doconce source and the <tt class="docutils literal"><span class="pre
 <li><a class="reference internal" href="#labels-index-and-citations">Labels, Index, and Citations</a></li>
 <li><a class="reference internal" href="#preprocessing">Preprocessing</a></li>
 <li><a class="reference internal" href="#resources">Resources</a></li>
-</ul>
-</li>
 </ul>
 
   <h4>Previous topic</h4>

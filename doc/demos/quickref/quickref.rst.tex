@@ -8,7 +8,6 @@
 \usepackage{longtable,ltcaption,array}
 \setlength{\extrarowheight}{2pt}
 \newlength{\DUtablewidth} % internal use in tables
-\usepackage{tabularx}
 
 %%% Custom LaTeX preamble
 % PDF Standard Fonts
@@ -20,50 +19,46 @@
 
 %%% Fallback definitions for Docutils-specific commands
 
-% providelength (provide a length variable and set default, if it is new)
-\providecommand*{\DUprovidelength}[2]{
-  \ifthenelse{\isundefined{#1}}{\newlength{#1}\setlength{#1}{#2}}{}
-}
-
-% docinfo (width of docinfo table)
-\DUprovidelength{\DUdocinfowidth}{0.9\textwidth}
+% fieldlist environment
+\ifthenelse{\isundefined{\DUfieldlist}}{
+  \newenvironment{DUfieldlist}%
+    {\quote\description}
+    {\enddescription\endquote}
+}{}
 
 % hyperlinks:
 \ifthenelse{\isundefined{\hypersetup}}{
   \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
   \urlstyle{same} % normal text font (alternatives: tt, rm, sf)
 }{}
-\hypersetup{
-  pdftitle={Doconce Quick Reference},
-  pdfauthor={Hans Petter Langtangen}
-}
 
-%%% Title Data
-\title{\phantomsection%
-  Doconce Quick Reference%
-  \label{doconce-quick-reference}}
-\author{}
-\date{}
 
 %%% Body
 \begin{document}
-\maketitle
-
-% Docinfo
-\begin{center}
-\begin{tabularx}{\DUdocinfowidth}{lX}
-\textbf{Author}: &
-	Hans Petter Langtangen \\
-\textbf{Date}: &
-	Dec 25, 2012 \\
-\end{tabularx}
-\end{center}
 
 % Automatically generated reST file from Doconce source
 % (http://code.google.com/p/doconce/)
 
+
+%___________________________________________________________________________
+
+\section*{\phantomsection%
+  Doconce Quick Reference%
+  \addcontentsline{toc}{section}{Doconce Quick Reference}%
+  \label{doconce-quick-reference}%
+}
+%
+\begin{DUfieldlist}
+\item[{Author:}]
+Hans Petter Langtangen
+
+\item[{Date:}]
+Dec 26, 2012
+
+\end{DUfieldlist}
+
 \phantomsection\label{table-of-contents}
-\pdfbookmark[1]{Table of Contents}{table-of-contents}
+\pdfbookmark[2]{Table of Contents}{table-of-contents}
 \setcounter{tocdepth}{2}
 \renewcommand{\contentsname}{Table of Contents}
 \tableofcontents

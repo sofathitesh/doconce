@@ -2,11 +2,11 @@
    (http://code.google.com/p/doconce/)
 
 Doconce Quick Reference
-=======================
+-----------------------
 
 :Author: Hans Petter Langtangen
 
-:Date: Dec 25, 2012
+:Date: Dec 26, 2012
 
 .. contents:: Table of Contents
    :depth: 2
