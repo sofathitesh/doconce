@@ -105,8 +105,8 @@ based on HTML and vice versa.
    reference, so avoid math in headlines.
  * Algorithms must be written up using basic elements like lists or
    paragraphs with headings.
- * Tables cannot be referred to by numbers and have to appear at a
-   fixed position in the text.
+ * Tables cannot be referred to by numbers and have to appear at
+   fixed positions in the text.
  * Computer code has to appear at fixed positions in the text.
 !epop
 
@@ -138,7 +138,7 @@ based on HTML and vice versa.
    figures exactly where they are needed the first time.
  * Curve plots with color lines do not work well in black-and-white
    printing. Make sure plots makes sense in color and BW (e.g., by
-   using colors and markers).
+   using colors *and* markers).
 !epop
 
 !split
@@ -375,6 +375,11 @@ def solver(I, a, T, dt, theta):
         u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
     return u, t
 !ec
+
+The `!bc` command can be proceeded by a specification of the computer
+language: `pycod` for Python code snippet, `pypro` for complete Python
+program, `fcod` for Fortran snippet, `fpro` for Fortran program, and so
+forth (`c` for C, `cpp` for C++, `sh` for Unix shells, `m` for Matlab).
 
 !split
 ======= Doconce: copying code from source files =======
@@ -708,7 +713,7 @@ Much easier than running the Sphinx tools manually...
 ======= Doconce: output in other formats =======
 
 !bc
-doconce format pandoc doconcefile  # Markdown (pandoc extended)
+doconce format pandoc doconcefile  # (Pandoc extended) Markdown
 doconce format mwiki  doconcefile  # MediaWiki
 doconce format gwiki  doconcefile  # Googlecode wiki
 doconce format cwiki  doconcefile  # Creole wiki (Bitbucket)
@@ -726,6 +731,13 @@ doconce format plain  doconcefile  # plain, untagged text for email
  * Must have `preprocess` and `mako`
  * Need `latex`, `sphinx`, `pandoc`, etc. (see Installation in "manual": "http://code.google.com/p/doconce/wiki/Description")
  * For slides: only `preprocess` is needed :-)
+
+!split
+======= Writing tips =======
+
+ * See the *Concerns I, II and III* slides for issues when writing
+   for multiple formats.
+
 
 
 
