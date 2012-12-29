@@ -124,8 +124,26 @@ def syntax_check(filestr, format):
             w = line.split()
             if w[0] != w[-1]:
                 print '\ninconsistent no of = in heading:\n', line
+                print 'lengths: %d and %d, must be equal and odd' % \
+                      (w[0], w[-1])
                 _abort()
 
+    # Check that references have parenthesis (equations) or
+    # the right preceding keyword (Section, Chapter, Exercise, etc.)
+    pattern = re.compile(r'\s+([A-Za-z]+?)\s+(ref\{.+\})', re.MULTILINE)
+    refs = pattern.findall(filestr)
+    prefixes = ['chapter', 'section', 'figure',
+                'exercise', 'problem', 'project', 'example',
+                'and', 'or']
+    for prefix, ref in refs:
+        if prefix[-1] == 's':
+            prefix = prefix[:-1]  # skip plural
+        if not prefix.lower() in prefixes:
+            print 'found reference "%s %s" with unexpected word "%s" in front' % (prefix, ref, prefix),
+            print '(reference to equation, but missing parenthesis in (%s)?)' % (ref)
+
+    # Check that are environments !bc, !ec, !bans, !eans, etc.
+    # appear at the beginning of the line
     for envir in doconce_envirs():
         pattern = re.compile(r'^ +![eb]%s' % envir, re.MULTILINE)
         m = pattern.search(filestr)
@@ -343,10 +361,10 @@ def syntax_check(filestr, format):
         print '\n'.join(matches)
         _abort()
 
-    pattern = re.compile(r'^__[A-Za-z0-9,: ]+?__', re.MULTILINE)
+    pattern = re.compile(r'^__.+?[^.:?]__', re.MULTILINE)
     matches = pattern.findall(filestr)
     if matches:
-        print '*** warning: Missing period or similar after paragraph heading'
+        print '*** warning: missing ., : or ? after paragraph heading:'
         print '\n'.join(matches)
 
     pattern = r'idx\{[^}]*?\\_[^}]*?\}'
@@ -1975,6 +1993,7 @@ preprocess package (sudo apt-get install preprocess).
             return filename if preprocessor is None else resultfile
 
         # Check if there is SWIG code that can fool mako
+        # (Should check for Matlab comments too, inside code blocks...)
         swig_commands = [r'^%module\s+', r'%{', r'^%}']
         found_swig = False
         for swig_command in swig_commands:
@@ -2019,7 +2038,6 @@ python-mako package (sudo apt-get install python-mako).
         from mako.lookup import TemplateLookup
         lookup = TemplateLookup(directories=[os.curdir])
         temp = Template(filename=resultfile, lookup=lookup)
-        f = open(resultfile, 'w')
         kwargs = {'FORMAT': format}
         for option in preprocessor_options:
             if not option.startswith('--'):
@@ -2035,22 +2053,36 @@ python-mako package (sudo apt-get install python-mako).
                     kwargs[key] = value
         debugpr('Keyword arguments to be sent to mako: %s' % \
                 pprint.pformat(kwargs))
+        if preprocessor_options:
+            print 'mako variables:', kwargs
+
+
         try:
-            f.write(temp.render(**kwargs))
+            filestr = temp.render(**kwargs)
         except TypeError, e:
             if "'Undefined' object is not callable" in str(e):
                 calls = '\n'.join(re.findall(r'(\$\{[A-Za-z0-9_ ]+?\()[^}]+?\}', filestr))
-                print '${func(...)} calls undefined function "func",\ncheck all ${...} calls in the file(s) for possible typos and lack of includes!\n%s' % calls
+                print '*** mako error: ${func(...)} calls undefined function "func",\ncheck all ${...} calls in the file(s) for possible typos and lack of includes!\n%s' % calls
                 _abort()
+            else:
+                # Just dump everything mako has
+                print '*** mako error:'
+                filestr = temp.render(**kwargs)
+
+
         except NameError, e:
             if "Undefined" in str(e):
                 variables = '\n'.join(re.findall(r'\$\{[A-Za-z0-9_]+?\}', filestr))
-                print 'One or more ${var} variables are undefined, check all!\n%s' % variables
+                print '*** mako error: one or more ${var} variables are undefined, check all!\n%s' % variables
                 _abort()
+            else:
+                # Just dump everything mako has
+                print '*** mako error:'
+                filestr = temp.render(**kwargs)
 
+        f = open(resultfile, 'w')
+        f.write(filestr)
         f.close()
-        if preprocessor_options:
-            print 'mako variables:', kwargs
 
     if preprocessor is None:
         # no preprocessor syntax detected
