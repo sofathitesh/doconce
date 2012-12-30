@@ -435,10 +435,20 @@ def sphinx_code(filestr, code_blocks, code_block_types,
     for label in math_labels:
         filestr = filestr.replace('(:ref:`%s`)' % label, ':eq:`%s`' % label)
 
-    if multiple_math_labels:
-        print '\nDetected equation systems with multiple labels\n(that Sphinx will not handle - they will be removed\nand references to them will be empty):'
-        for labels in multiple_math_labels:
-            print ' '.join(labels)
+    multiple_math_labels_with_refs = [] # collect the labels with references
+    for labels in multiple_math_labels:
+        for label in labels:
+            ref = ':eq:`%s`' % label  # ref{} is translated to eq:``
+            if ref in filestr:
+                multiple_math_labels_with_refs.append(label)
+
+    if multiple_math_labels_with_refs:
+        print """
+Detected (align) equation systems with multiple labels
+(that Sphinx will not handle - labels will be removed
+and references to them will be empty):"""
+        for label in multiple_math_labels_with_refs:
+            print 'label{%s}' % label
         print
 
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')

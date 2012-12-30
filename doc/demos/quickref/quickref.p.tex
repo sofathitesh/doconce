@@ -203,13 +203,13 @@ final,                   % or draft (marks overfull hboxes)
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Dec 26, 2012}
+\date{Dec 30, 2012}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Dec 26, 2012}}
+{\large\textsf{Dec 30, 2012}}
 
 \end{center}
 \vfill
@@ -218,7 +218,7 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-Dec 26, 2012
+Dec 30, 2012
 \end{center}
 
 \vspace{1cm}
@@ -572,15 +572,33 @@ will applied the expression to the right.
 Blocks of {\LaTeX} mathematics are written within
 \code{!bt}
 and
-\code{!et} (begin/end TeX) directives starting on the beginning of a line
-(see the source of this document for precise syntax).
-Here is a result:
+\code{!et} (begin/end TeX) directives starting on the beginning of a line:
+
+\bccq
+!bt
+\begin{align*}
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
+\end{align*}
+!et
+\eccq
+% Note: !bt and !et (and !bc and !ec below) are used to illustrate
+% tex and code blocks in inside verbatim blocks and are replaced
+% by !bt, !et, !bc, and !ec after all other formatting is finished.
+This {\LaTeX} code gets rendered as
 
 \begin{align*}
 \nabla\cdot \pmb{u} &= 0,\\
 \nabla\times \pmb{u} &= 0.
 \end{align*}
-Or a single equation:
+Here is a single equation:
+
+\bccq
+!bt
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
+!et
+\eccq
+which results in
 
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
@@ -989,6 +1007,38 @@ Here goes a full solution of the whole exercise.
 
 \eccq
 By default, answers, solutions, and hints are typeset as paragraphs.
+
+\subsection{Environments}
+
+Doconce environments start with \code{!benvirname} and end with \code{!eenvirname},
+where \code{envirname} is the name of the environment. Here is a listing of
+the environments:
+
+\begin{itemize}
+ \item \code{c}: computer code (or verbatim text)
+
+ \item \code{t}: math blocks with {\LaTeX} syntax
+
+ \item \code{subex}: sub-exercise
+
+ \item \code{ans}: short answer to exercise or sub-exercise
+
+ \item \code{sol}: full solution to exercise or sub-exercise
+
+ \item \code{notes}: multi-line notes to be included or not
+
+ \item \code{quote}: indented text
+
+ \item \code{notice}, \code{summary}, \code{warning}, \code{question}, \code{hint}: boxes with
+    specialy typesetting (or symbols)
+
+ \item \code{pop}: text to gradually pop up in slide presentations
+
+ \item \code{slidecell}: indication of cells in a grid layout for elements on a
+   slide
+\end{itemize}
+
+\noindent
 
 \subsection{Labels, Index, and Citations}
 

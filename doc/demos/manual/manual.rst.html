@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Dec 26, 2012</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Dec 30, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -478,6 +478,33 @@ sudo apt-get install python-pip
 tarball, pack it out, go to the directory and run
 the usual <tt class="docutils literal">sudo python setup.py install</tt>.</p>
 </div>
+<div class="section" id="image-file-handling">
+<h3>Image file handling</h3>
+<p>Different output formats require different formats of image files.
+For example, PostScript or Encapuslated PostScript is required for <tt class="docutils literal">latex</tt>
+output, while HTML needs JPEG, GIF, or PNG formats.
+Doconce calls up programs from the ImageMagick suite for converting
+image files to a proper format if needed. The <a class="reference external" href="http://www.imagemagick.org/script/index.php">ImageMagick suite</a> can be installed on all major platforms.
+On Debian Linux (including Ubuntu) systems one can simply write:</p>
+<pre class="literal-block">
+sudo apt-get install imagemagick
+</pre>
+<p>The convenience program <tt class="docutils literal">doconce combine_images</tt>, for combining several
+images into one, will use <tt class="docutils literal">montage</tt> and <tt class="docutils literal">convert</tt> from ImageMagick and
+the <tt class="docutils literal">pdftk</tt>, <tt class="docutils literal">pdfnup</tt>, and <tt class="docutils literal">pdfcrop</tt> programs from the <tt class="docutils literal"><span class="pre">texlive-extra-utils</span></tt>
+Debian package. The latter gets installed by:</p>
+<pre class="literal-block">
+sudo apt-get install texlive-extra-utils
+</pre>
+</div>
+<div class="section" id="spellcheck">
+<h3>Spellcheck</h3>
+<p>The utility <tt class="docutils literal">doconce spellcheck</tt> applies the <tt class="docutils literal">ispell</tt> program for
+spellcheck. On Debian (including Ubuntu) it is installed by:</p>
+<pre class="literal-block">
+sudo apt-get install ispell
+</pre>
+</div>
 <div class="section" id="ptex2tex-for-latex-output">
 <h3>Ptex2tex for LaTeX Output</h3>
 <p>To make LaTeX documents with very flexible choice of typesetting of
@@ -568,6 +595,7 @@ easily done by:</p>
 <pre class="literal-block">
 sudo apt-get install pandoc
 </pre>
+<p>on Debian (Ubuntu) systems.</p>
 </div>
 <div class="section" id="epydoc-output">
 <h3>Epydoc Output</h3>
@@ -633,17 +661,24 @@ Terminal&gt; doconce format format mydoc.do.txt
 <pre class="literal-block">
 Terminal&gt; doconce format format mydoc
 </pre>
-<p>The <tt class="docutils literal">mako</tt> or <tt class="docutils literal">preprocess</tt> programs are always used to preprocess the
-file first, and options to <tt class="docutils literal">mako</tt> or <tt class="docutils literal">preprocess</tt> can be added after the
+<div class="section" id="preprocessing">
+<h2>Preprocessing</h2>
+<p>The <tt class="docutils literal">preprocess</tt> and <tt class="docutils literal">mako</tt> programs are used to preprocess the
+file, and options to <tt class="docutils literal">preprocess</tt> and/or <tt class="docutils literal">mako</tt> can be added after the
 filename. For example:</p>
 <pre class="literal-block">
 Terminal&gt; doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
 Terminal&gt; doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 </pre>
 <p>The variable <tt class="docutils literal">FORMAT</tt> is always defined as the current format when
-running <tt class="docutils literal">preprocess</tt>. That is, in the last example, <tt class="docutils literal">FORMAT</tt> is
+running <tt class="docutils literal">preprocess</tt> or <tt class="docutils literal">mako</tt>. That is, in the last example, <tt class="docutils literal">FORMAT</tt> is
 defined as <tt class="docutils literal">latex</tt>. Inside the Doconce document one can then perform
-format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;latex&quot;</tt>.</p>
+format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;latex&quot;</tt>
+(for <tt class="docutils literal">preprocess</tt>) or <tt class="docutils literal">% if FORMAT == &quot;latex&quot;:</tt> (for <tt class="docutils literal">mako</tt>).</p>
+</div>
+<div class="section" id="removal-of-inline-comments">
+<h2>Removal of inline comments</h2>
+<!-- mention notes also -->
 <p>The command-line arguments <tt class="docutils literal"><span class="pre">--no-preprocess</span></tt> and <tt class="docutils literal"><span class="pre">--no-mako</span></tt> turn off
 running <tt class="docutils literal">preprocess</tt> and <tt class="docutils literal">mako</tt>, respectively.</p>
 <p>Inline comments in the text are removed from the output by:</p>
@@ -657,6 +692,7 @@ Terminal&gt; doconce remove_inline_comments mydoc
 </pre>
 <p>This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.</p>
+</div>
 <div class="section" id="html">
 <h2>HTML</h2>
 <p>Making an HTML version of a Doconce file <tt class="docutils literal">mydoc.do.txt</tt>
@@ -1158,13 +1194,9 @@ also spans two lines</li>
 in &quot;ordered&quot;):</p>
 <pre class="literal-block">
 o item 1
-
 o item 2
-
   * subitem 1
-
   * subitem 2
-
 o item 3
 </pre>
 <p>resulting in</p>
@@ -1257,7 +1289,7 @@ A. Dummy Author
 TOC: on
 </pre>
 <p>This line is usually placed after the <tt class="docutils literal">DATE:</tt> line.
-A value <tt class="docutils literal">off</tt> turns off the table of contents.</p>
+The value <tt class="docutils literal">off</tt> turns off the table of contents.</p>
 <p><em>Section Headings.</em> Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
@@ -1612,9 +1644,8 @@ are handled by the format in question.</p>
 <p>Hyperlinks to files or web addresses are handled as explained
 in the section <a class="reference internal" href="#id2">Inline Tagging</a>.</p>
 </div>
-</div>
 <div class="section" id="generalized-cross-referencing">
-<span id="manual-genrefs"></span><h1>Generalized Cross-Referencing</h1>
+<span id="manual-genrefs"></span><h2>Generalized Cross-Referencing</h2>
 <p>Sometimes a series of individual documents may be assembled to one
 large document. The assembly impacts how references to sections
 are written: when referring to a section in the same document, a label
@@ -1693,6 +1724,7 @@ a [section](testdoc.html#___sec2) in
 the document [A Document for Testing Doconce](testdoc.html)
 &#64;testdoc:12, Doconce documents may include movies.
 </pre>
+</div>
 <div class="section" id="index-and-bibliography">
 <h2>Index and Bibliography</h2>
 <p>An index can be created for the <tt class="docutils literal">latex</tt>, <tt class="docutils literal">rst</tt>, and <tt class="docutils literal">sphinx</tt> formats
@@ -1954,18 +1986,36 @@ line</em>.  Before such a code block there must be a plain sentence
 (at least if successful transformation to reST and
 ASCII-type formats is desired). For example, a code block cannot come
 directly after a section/paragraph heading or a table.</p>
-<p>There may be an argument after the <tt class="docutils literal">!bc</tt> tag to specify a
-certain environment (for <tt class="docutils literal">ptex2tex</tt> or Sphinx) for typesetting
-the verbatim code. For instance, <tt class="docutils literal">!bc dat</tt> corresponds to
-the data file environment and <tt class="docutils literal">!bc cod</tt> is typically
-used for a code snippet. There are some predefined environments
-explained below. If there is
-no argument specifying the environment, one assumes some plain
-verbatim typesetting (for <tt class="docutils literal">ptex2tex</tt> this means the <tt class="docutils literal">ccq</tt> environment,
-which is defined in the config file <tt class="docutils literal">.ptex2tex.cfg</tt>,
+<p>Here is a plain code block:</p>
+<pre class="literal-block">
+!bc
+% Could be a comment line in some file
+% And some data
+1.003 1.025
+2.204 1.730
+3.001 1.198
+!ec
+</pre>
+<p>which gets rendered as:</p>
+<pre class="literal-block">
+% Could be a comment line in some file
+% And some data
+1.003 1.025
+2.204 1.730
+3.001 1.198
+</pre>
+<p>There may be an argument after the <tt class="docutils literal">!bc</tt> tag to specify a certain
+environment (for <tt class="docutils literal">ptex2tex</tt>, <tt class="docutils literal">doconce ptex2tex</tt>, or Sphinx) for
+typesetting the verbatim code. For instance, <tt class="docutils literal">!bc dat</tt> corresponds to
+the data file environment and <tt class="docutils literal">!bc cod</tt> is typically used for a code
+snippet. There are some predefined environments explained below. If
+there is no argument specifying the environment, one assumes some
+plain verbatim typesetting (for <tt class="docutils literal">ptex2tex</tt> this means the <tt class="docutils literal">ccq</tt>
+environment, which is defined in the config file <tt class="docutils literal">.ptex2tex.cfg</tt>,
 while for Sphinx it defaults to the <tt class="docutils literal">python</tt> environment).</p>
-<p>Since the config file for <tt class="docutils literal">ptex2tex</tt> can define what some environment
-maps onto with respect to typesetting, a similar possibility is
+<p>Since the config file for <tt class="docutils literal">ptex2tex</tt> and command-line arguments for
+the alternative <tt class="docutils literal">doconce ptex2tex</tt> program can define what some environments
+map onto with respect to typesetting, a similar possibility is
 supported for Sphinx as well.  The argument after <tt class="docutils literal">!bc</tt> is in case of
 Sphinx output mapped onto a valid Pygments language for typesetting of
 the verbatim block by Pygments. This mapping takes place in an
@@ -2005,6 +2055,25 @@ in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).</p>
 <p>Here is a verbatim code block with Python code (<tt class="docutils literal">pycod</tt> style):</p>
 <pre class="literal-block">
+!bc pycod
+# regular expressions for inline tags:
+inline_tag_begin = r'(?P&lt;begin&gt;(^|\s+))'
+inline_tag_end = r'(?P&lt;end&gt;[.,?!;:)\s])'
+INLINE_TAGS = {
+    'emphasize':
+    r'%s\*(?P&lt;subst&gt;[^ `][^*`]*)\*%s' % \
+    (inline_tag_begin, inline_tag_end),
+    'verbatim':
+    r'%s`(?P&lt;subst&gt;[^ ][^`]*)`%s' % \
+    (inline_tag_begin, inline_tag_end),
+    'bold':
+    r'%s_(?P&lt;subst&gt;[^ `][^_`]*)_%s' % \
+    (inline_tag_begin, inline_tag_end),
+}
+!ec
+</pre>
+<p>The typeset result of this block becomes:</p>
+<pre class="literal-block">
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P&lt;begin&gt;(^|\s+))'
 inline_tag_end = r'(?P&lt;end&gt;[.,?!;:)\s])'
@@ -2029,7 +2098,8 @@ void myfunc(double* x, const double&amp; myarr) {
 }
 </pre>
 <!-- When showing copy from file in !bc envir, intent a character - otherwise -->
-<!-- ptex2tex is confused and starts copying... -->
+<!-- ptex2tex is confused and starts copying. However, here (in make.sh) we use -->
+<!-- doconce ptex2tex which does not have this problem. -->
 <p>Computer code can be copied directly from a file, if desired. The syntax
 is then:</p>
 <pre class="literal-block">
@@ -2129,21 +2199,27 @@ line and followed by a newline:</p>
 {\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
+!et
 </pre>
-<p>Here is the result of the above <tt class="docutils literal">!bt</tt> - <tt class="docutils literal">!et</tt> block:</p>
+<p>Here is the result:</p>
 <pre class="literal-block">
 \begin{align}
 {\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
 </pre>
-<p>The support of LaTeX mathematics varies among the formats.  Output
-<tt class="docutils literal">latex</tt> and <tt class="docutils literal">pdflatex</tt> has of course full support. The <tt class="docutils literal">html</tt> format
-supports single equations and multiple equations via the align
-environment, also with labels. Although <tt class="docutils literal">sphinx</tt>, like <tt class="docutils literal">html</tt>, employs
-MathJax, it does not support labels in align environments.  Markdown
-(<tt class="docutils literal">pandoc</tt> format) allows single equations and inline mathematics.
-Going from Doconce to MS Word is most easily done by outputting in
+<p>The support of LaTeX mathematics varies among the formats:</p>
+<blockquote>
+<ul class="simple">
+<li>Output <tt class="docutils literal">latex</tt> and <tt class="docutils literal">pdflatex</tt> has of course full support.</li>
+<li>The <tt class="docutils literal">html</tt> format supports single equations and multiple equations
+via the align environment, also with labels.</li>
+<li>Although <tt class="docutils literal">sphinx</tt>, like <tt class="docutils literal">html</tt>, employs
+MathJax, it does not support labels in align environments.</li>
+<li>Markdown (<tt class="docutils literal">pandoc</tt> format) allows single equations and inline mathematics.</li>
+</ul>
+</blockquote>
+<p>Going from Doconce to MS Word is most easily done by outputting in
 the <tt class="docutils literal">latex</tt> format and then using the Pandoc program to translate
 from LaTeX to MS Word (note that only a subset of LaTeX will be
 translated correctly).</p>
@@ -2153,7 +2229,19 @@ in two versions. After <tt class="docutils literal">#if FORMAT in (&quot;latex&q
 &quot;sphinx&quot;, &quot;mwiki&quot;, &quot;pandoc&quot;)</tt> one places LaTeX mathematics, and after
 <tt class="docutils literal">#else</tt> one can write inline mathematics in a way that looks nice in
 plain text and wiki formats without support for mathematical
-typesetting.</p>
+typesetting. Such branching can be used with mako if-else statements
+alternatively:</p>
+<pre class="literal-block">
+% if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;, &quot;html&quot;, &quot;sphinx&quot;, &quot;mwiki&quot;, &quot;pandoc&quot;):
+!bt
+\[ \sin^2x + \cos^2x = 1,\]
+!et
+% else:
+!bc
+              sin^2(x) + cos^2(x) = 1,
+!ec
+% endif
+</pre>
 <div class="section" id="mathematics-for-powerpoint-openoffice">
 <h3>Mathematics for PowerPoint/OpenOffice</h3>
 <p>If you have LaTeX mathematics written in Doconce, it is fairly easy
@@ -2229,10 +2317,10 @@ expressions).</p>
 </pre>
 <p>will then be rendered to:</p>
 <pre class="literal-block">
-\begin{align}
-{\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
-\end{align}
+\begin{eqnarray}
+\x\cdot\normalvec &amp;=&amp; 0, label{my:eq1}\\
+\Ddt{{\vec u}} &amp;=&amp; \pmb{Q} {\thinspace . }   label{my:eq2}
+\end{eqnarray}
 </pre>
 <p>in the current format.</p>
 </div>
@@ -2622,7 +2710,8 @@ Using paragraphs instead of list items is a good idea also here.</p>
 <div class="section" id="title-level-inconsistent">
 <h3>Title level inconsistent</h3>
 <p>reST does not like jumps in the levels of headings. For example, you cannot
-have a <tt class="docutils literal">===</tt> heading after a <tt class="docutils literal"><span class="pre">=======</span></tt> heading.</p>
+have a <tt class="docutils literal">===</tt> (paragraph) heading after a <tt class="docutils literal"><span class="pre">=======</span></tt> (section) heading without
+a <tt class="docutils literal"><span class="pre">=====</span></tt> (subsection) heading in between.</p>
 </div>
 <div class="section" id="lists-do-not-appear-in-rst-files">
 <h3>Lists do not appear in .rst files</h3>

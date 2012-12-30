@@ -314,16 +314,30 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 C{!bt}
 and
-C{!et} (begin/end TeX) directives starting on the beginning of a line
-(see the source of this document for precise syntax).
-Here is a result::
+C{!et} (begin/end TeX) directives starting on the beginning of a line::
+
 
 
             NOTE: A verbatim block has been removed because
                   it causes problems for Epytext.
 
 
-Or a single equation::
+This LaTeX code gets rendered as::
+
+
+            NOTE: A verbatim block has been removed because
+                  it causes problems for Epytext.
+
+
+Here is a single equation::
+
+
+
+            NOTE: A verbatim block has been removed because
+                  it causes problems for Epytext.
+
+
+which results in::
 
 
             NOTE: A verbatim block has been removed because
@@ -729,6 +743,26 @@ setup-up::
 
 By default, answers, solutions, and hints are typeset as paragraphs.
 
+
+Environments
+------------
+
+Doconce environments start with C{!benvirname} and end with C{!eenvirname},
+where C{envirname} is the name of the environment. Here is a listing of
+the environments:
+
+ - C{c}: computer code (or verbatim text)
+ - C{t}: math blocks with LaTeX syntax
+ - C{subex}: sub-exercise
+ - C{ans}: short answer to exercise or sub-exercise
+ - C{sol}: full solution to exercise or sub-exercise
+ - C{notes}: multi-line notes to be included or not
+ - C{quote}: indented text
+ - C{notice}, C{summary}, C{warning}, C{question}, C{hint}: boxes with
+    specialy typesetting (or symbols)
+ - C{pop}: text to gradually pop up in slide presentations
+ - C{slidecell}: indication of cells in a grid layout for elements on a
+   slide
 
 Labels, Index, and Citations
 ----------------------------

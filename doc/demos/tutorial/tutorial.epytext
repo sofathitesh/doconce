@@ -1,3 +1,4 @@
+
 TITLE: Doconce: Document Once, Include Anywhere
 BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)DATE: today
 
@@ -22,84 +23,6 @@ BY: Hans Petter Langtangen (Simula Research Laboratory, and University of Oslo)D
 If any of these questions are of interest, you should keep on reading.
 
 
-The Doconce Concept
-===================
-
-Doconce is two things:
-
- 1. Doconce is a very simple and minimally tagged markup language that
-    looks like ordinary ASCII text (much like what you would use in an
-    email), but the text can be transformed to numerous other formats,
-    including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
-    (reST), Sphinx, Epytext, and also plain text (where non-obvious
-    formatting/tags are removed for clear reading in, e.g.,
-    emails). From reST you can (via C{rst2*} programs) go to XML, HTML,
-    LaTeX, PDF, OpenOffice, and from the latter (via C{unoconv}) to
-    RTF, numerous MS Word formats (including MS Office Open XML),
-    DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
-    Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-    Texinfo, MediaWiki, RTF, Groff, and other formats.
- 2. Doconce is a working strategy for never duplicating information.
-    Text is written in a single place and then transformed to
-    a number of different destinations of diverse type (software
-    source code, manuals, tutorials, books, wikis, memos, emails, etc.).
-    The Doconce markup language support this working strategy.
-    The slogan is: "Write once, include anywhere".
-
-Here are some Doconce features:
-
-  - Doconce markup does include tags, so the format is more tagged than
-    Markdown and Pandoc, but less than reST, and very much less than
-    LaTeX and HTML.
-  - Doconce can be converted to plain I{untagged} text,
-    often desirable for computer programs and email.
-  - Doconce has good support for copying in parts of computer code
-    directly from the source code files via regular expressions
-    for the start and end lines.
-  - Doconce has full support for LaTeX math and integrates well
-    with big LaTeX projects (books).
-  - Doconce is almost self-explanatory and is a handy starting point
-    for generating documents in more complicated markup languages, such
-    as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-    is just to make the initial versions of a Sphinx or wiki document.
-  - Contrary to the similar (and superior) Pandoc translator, Doconce
-    supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
-    lots of computer code environments in LaTeX, and a special exercise
-    syntax. Doconce also also runs preprocessors (including Mako)
-    such that the author can mix ordinary text with programming
-    construction for generating parts of the text.
-
-Doconce was particularly written for the following sample applications:
-
-  - Large books written in LaTeX, but where many pieces (computer demos,
-    projects, examples) can be written in Doconce to appear in other
-    contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.
-  - Software documentation, primarily Python doc strings, which one wants
-    to appear as plain untagged text for viewing in Pydoc, as reStructuredText
-    for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as LaTeX integrated in, e.g., a thesis.
-  - Quick memos, which start as plain text in email, then some small
-    amount of Doconce tagging is added, before the memos can appear as
-    Sphinx web pages, MS Word documents, or in wikis.
-
-History: Doconce was developed in 2006 at a time when most popular
-markup languages used quite some tagging.  Later, almost untagged
-markup languages like Markdown and Pandoc became popular. Doconce is
-not a replacement of Pandoc, which is a considerably more
-sophisticated project. Moreover, Doconce was developed mainly to
-fulfill the needs for a flexible source code base for books with much
-mathematics and computer code.
-
-Disclaimer: Doconce is a simple tool, largely based on interpreting
-and handling text through regular expressions. The possibility for
-tweaking the layout is obviously limited since the text can go to
-all sorts of sophisticated markup languages. Moreover, because of
-limitations of regular expressions, some formatting of Doconce syntax
-may face problems when transformed to HTML, LaTeX, Sphinx, and similar
-formats.
-
-
-
 What Does Doconce Look Like?
 ============================
 
@@ -107,8 +30,8 @@ Doconce text looks like ordinary text, but there are some almost invisible
 text constructions that allow you to control the formating. Here are
 som examples.
 
-  - Bullet lists arise from lines starting with an asterisk.
-  - I{Emphasized words} are surrounded by asterisks.
+  - Bullet lists arise from lines starting with C{*}.
+  - I{Emphasized words} are surrounded by C{*}.
   - B{Words in boldface} are surrounded by underscores.
   - Words from computer code are enclosed in back quotes and
     then typeset C{verbatim (in a monospace font)}.
@@ -135,12 +58,13 @@ som examples.
   - Visible comments can be inserted so that authors and readers can
     comment upon the text (and at any time turn on/off output of such
     comments).
-  - There is special support for advanced exercises features.
-  - With a simple preprocessor, Preprocess or Mako, one can include
+  - There is an exercise environment with many advanced features.
+  - With a preprocessor, Preprocess or Mako, one can include
     other documents (files) and large portions of text can be defined
     in or out of the text.
-  - With the Mako preprocessor one can even embed Python
-    code and use this to steer generation of Doconce text.
+  - With Mako one can also have Python code
+    embedded in the Doconce document and thereby parameterize the
+    text (e.g., one text can describe programming in two languages).
 
 Here is an example of some simple text written in the Doconce format::
 
@@ -150,7 +74,7 @@ Here is an example of some simple text written in the Doconce format::
         
         Ordinary text looks like ordinary text, and the tags used for
         _boldface_ words, *emphasized* words, and `computer` words look
-        natural in plain text.  Lists are typeset as you would do in an email,
+        natural in plain text.  Lists are typeset as you would do in email,
         
           * item 1
           * item 2
@@ -162,7 +86,7 @@ Here is an example of some simple text written in the Doconce format::
           o item 2
           o item 3
         
-        URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
+        URLs with a link word are possible, as in "hpl": "http://folk.uio.no/hpl".
         If the word is URL, the URL itself becomes the link name,
         as in "URL": "tutorial.do.txt".
         
@@ -264,8 +188,15 @@ However, if you want more textual formats, like plain text or reStructuredText,
 the text after the pipe symbol may help to make the math formula more readable
 if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
-Blocks of mathematics are better typeset with raw LaTeX, inside
-C{!bt} and C{!et} (begin tex / end tex) instructions.
+Blocks of mathematics are typeset with raw LaTeX, inside
+C{!bt} and C{!et} (begin TeX, end TeX) instructions::
+
+
+
+            NOTE: A verbatim block has been removed because
+                  it causes problems for Epytext.
+
+
 The result looks like this::
 
 
@@ -280,7 +211,19 @@ LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
-C{!bc} and C{!ec} instructions, respectively. Such blocks are formatted as::
+C{!bc} and C{!ec} instructions, respectively::
+
+
+        !bc pycod
+        from math import sin, pi
+        def myfunc(x):
+            return sin(pi*x)
+        
+        import integrate
+        I = integrate.trapezoidal(myfunc, 0, pi, 100)
+        !ec
+
+Such blocks are formatted as::
 
 
         from math import sin, pi
@@ -294,39 +237,17 @@ A code block must come after some plain sentence (at least for successful
 output to C{sphinx}, C{rst}, and ASCII-close formats),
 not directly after a section/paragraph heading or a table.
 
-It is possible to add a specification of an
-environment for typesetting the verbatim code block, e.g., C{!bc xxx}
-where C{xxx} is an identifier like C{pycod} for code snippet in Python,
-C{sys} for terminal session, etc. When Doconce is filtered to LaTeX,
-these identifiers are used as in C{ptex2tex} and defined in a
-configuration file C{.ptext2tex.cfg}, while when filtering
-to Sphinx, one can have a comment line in the Doconce file for
-mapping the identifiers to legal language names for Sphinx (which equals
-the legal language names for Pygments)::
-
-
-        # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
-
-By default, C{pro} and C{cod} are C{python}, C{sys} is C{console},
-while C{xpro} and C{xcod} are computer language specific for C{x}
-in C{f} (Fortran), C{c} (C), C{cpp} (C++), C{pl} (Perl), C{m} (Matlab),
-C{sh} (Unix shells), C{cy} (Cython), and C{py} (Python).
-
 
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!). A complete file is typeset
-with C{!bc pro}, while a part of a file is copied into a C{!bc cod}
-environment. What C{pro} and C{cod} mean is then defined through
-a C{.ptex2tex.cfg} file for LaTeX and a C{sphinx code-blocks}
-comment for Sphinx.
+avoiding copying information!).
 
-Another document can be included by writing C{#include "mynote.do.txt"}
-on a line starting with (another) hash sign.  Doconce documents have
+Another document can be included by writing C{# #include "mynote.do.txt"}
+at the beginning of a line.  Doconce documents have
 extension C{do.txt}. The C{do} part stands for doconce, while the
-trailing C{.txt} denotes a text document so that editors gives you the
-right writing enviroment for plain text.
+trailing C{.txt} denotes a text document so that editors gives you
+plain text editing capabilities.
 
 
 Macros (Newcommands), Cross-References, Index, and Bibliography
@@ -381,8 +302,12 @@ or just::
 
         Terminal> doconce format format mydoc
 
-The C{mako} or C{preprocess} programs are always used to preprocess the
-file first, and options to C{mako} or C{preprocess} can be added after the
+
+Preprocessing
+-------------
+
+The C{preprocess} and C{mako} programs are used to preprocess the
+file, and options to C{preprocess} and/or C{mako} can be added after the
 filename. For example::
 
 
@@ -390,9 +315,14 @@ filename. For example::
         Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 
 The variable C{FORMAT} is always defined as the current format when
-running C{preprocess}. That is, in the last example, C{FORMAT} is
+running C{preprocess} or C{mako}. That is, in the last example, C{FORMAT} is
 defined as C{latex}. Inside the Doconce document one can then perform
-format specific actions through tests like C{#if FORMAT == "latex"}.
+format specific actions through tests like C{#if FORMAT == "latex"}
+(for C{preprocess}) or C{% if FORMAT == "latex":} (for C{mako}).
+
+Removal of inline comments
+--------------------------
+
 
 The command-line arguments C{--no-preprocess} and C{--no-mako} turn off
 running C{preprocess} and C{mako}, respectively.
@@ -1044,6 +974,39 @@ U{source<http://www.makotemplates.org/download.html>}: download the
 tarball, pack it out, go to the directory and run
 the usual C{sudo python setup.py install}.
 
+Image file handling
+~~~~~~~~~~~~~~~~~~~
+
+Different output formats require different formats of image files.
+For example, PostScript or Encapuslated PostScript is required for C{latex}
+output, while HTML needs JPEG, GIF, or PNG formats.
+Doconce calls up programs from the ImageMagick suite for converting
+image files to a proper format if needed. The U{ImageMagick suite<http://www.imagemagick.org/script/index.php>} can be installed on all major platforms.
+On Debian Linux (including Ubuntu) systems one can simply write::
+
+
+        sudo apt-get install imagemagick
+
+
+The convenience program C{doconce combine_images}, for combining several
+images into one, will use C{montage} and C{convert} from ImageMagick and
+the C{pdftk}, C{pdfnup}, and C{pdfcrop} programs from the C{texlive-extra-utils}
+Debian package. The latter gets installed by::
+
+
+        sudo apt-get install texlive-extra-utils
+
+
+Spellcheck
+~~~~~~~~~~
+
+The utility C{doconce spellcheck} applies the C{ispell} program for
+spellcheck. On Debian (including Ubuntu) it is installed by::
+
+
+        sudo apt-get install ispell
+
+
 Ptex2tex for LaTeX Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1153,6 +1116,7 @@ easily done by::
 
         sudo apt-get install pandoc
 
+on Debian (Ubuntu) systems.
 
 Epydoc Output
 ~~~~~~~~~~~~~

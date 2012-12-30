@@ -1915,6 +1915,15 @@ def doconce2format(filestr, format):
     filestr = CODE[format](filestr, code_blocks, code_block_types,
                            tex_blocks, format)
     filestr += '\n'
+
+    # Final step: replace environments starting with | (instead of !)
+    # by ! (for illustration of doconce syntax inside !bc/!ec directives).
+    # Enough to consider |bc, |ec, |bt, and |et since all other environments
+    # are processed when code and tex blocks are removed from the document.
+    for envir in ['c', 't']:
+        filestr = filestr.replace('|b' + envir, '!b' + envir)
+        filestr = filestr.replace('|e' + envir, '!e' + envir)
+
     debugpr('%s\n**** The file after inserting intro/outro and tex/code blocks, and fixing last format-specific issues:\n\n%s\n\n' % \
           ('*'*80, filestr))
 
@@ -1923,7 +1932,7 @@ def doconce2format(filestr, format):
 
 def preprocess(filename, format, preprocessor_options=[]):
     """
-    Run mako or the preprocess script on filename and return the name
+    Run the preprocess and mako programs on filename and return the name
     of the resulting file. The preprocessor_options list contains
     the preprocessor options given on the command line.
     In addition, the preprocessor option FORMAT (=format) is
@@ -1934,16 +1943,18 @@ def preprocess(filename, format, preprocessor_options=[]):
     preprocessor = None
 
     # First guess if preprocess or mako is used
+
     preprocess_commands = r'^#\s*#(if|define|include)'
     if re.search(preprocess_commands, filestr, re.MULTILINE):
         #print 'run preprocess on', filename, 'to make', resultfile
         preprocessor = 'preprocess'
+        # Collect first -D... and -U... options on the command line
+        preprocess_options = [opt for opt in preprocessor_options
+                              if opt[:2] == '-D' or opt[:2] == '-U']
         # Add -D to name=value options (mako style parameters)
-        preprocess_options = preprocessor_options[:]  # copy
-        for i in range(len(preprocess_options)):
-            if preprocess_options[i][:2] != '-U' and \
-               preprocess_options[i][:2] != '-D':
-                preprocess_options[i] = '-D' + preprocess_options[i]
+        for opt in preprocessor_options:
+            if opt[0] != '-' and '=' in opt:
+                preprocess_options.append('-D' + opt)
         preprocess_options = ' '.join(preprocess_options)
         resultfile = '__tmp.do.txt'
 

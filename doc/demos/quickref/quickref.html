@@ -91,7 +91,7 @@ MathJax.Hub.Config({
 
 
 <p>
-<center><h4>Dec 26, 2012</h4></center> <!-- date -->
+<center><h4>Dec 30, 2012</h4></center> <!-- date -->
 <p>
 <h2>Table of contents</h2>
 
@@ -110,9 +110,10 @@ MathJax.Hub.Config({
 <a href="#___sec10"> Labels, References, Citations, and Index </a><br>
 <a href="#___sec11"> Capabilities of the "doconce" Program </a><br>
 <a href="#___sec12"> Exercises </a><br>
-<a href="#___sec13"> Labels, Index, and Citations </a><br>
-<a href="#___sec14"> Preprocessing </a><br>
-<a href="#___sec15"> Resources </a><br>
+<a href="#___sec13"> Environments </a><br>
+<a href="#___sec14"> Labels, Index, and Citations </a><br>
+<a href="#___sec15"> Preprocessing </a><br>
+<a href="#___sec16"> Resources </a><br>
 
 <p>
 
@@ -192,13 +193,13 @@ The table of contents is removed by writing <tt>TOC: off</tt>.
 <h3>Section Types <a name="quick:sections"></a></h3>
 <p>
 <table border="1">
-<tr><td align="center"><b>                                Section type                               </b></td> <td align="center"><b>                                   Syntax                                  </b></td> </tr>
-<tr><td align="left">   chapter                                                                      </td> <td align="left">   <tt>========= Heading  <a name="___sec3"></a>========</tt> (9 <tt>=</tt>)    </td> </tr>
-<tr><td align="left">   section                                                                      </td> <td align="left">   <tt>======= Heading  <a name="___sec4"></a>=======</tt>    (7 <tt>=</tt>)    </td> </tr>
-<tr><td align="left">   subsection                                                                   </td> <td align="left">   <tt>===== Heading  <a name="___sec5"></a>=====</tt>        (5 <tt>=</tt>)    </td> </tr>
-<tr><td align="left">   subsubsection                                                                </td> <td align="left">   <tt>=== Heading  <a name="___sec6"></a>===</tt>            (3 <tt>=</tt>)    </td> </tr>
-<tr><td align="left">   paragraph                                                                    </td> <td align="left">   <tt>__Heading.__</tt>               (2 <tt>_</tt>)                           </td> </tr>
-<tr><td align="left">   abstract                                                                     </td> <td align="left">   <tt>__Abstract.__</tt> Running text...                                       </td> </tr>
+<tr><td align="center"><b>                    Section type                    </b></td> <td align="center"><b>                       Syntax                       </b></td> </tr>
+<tr><td align="left">   chapter                                               </td> <td align="left">   <tt>========= Heading ========</tt> (9 <tt>=</tt>)    </td> </tr>
+<tr><td align="left">   section                                               </td> <td align="left">   <tt>======= Heading =======</tt>    (7 <tt>=</tt>)    </td> </tr>
+<tr><td align="left">   subsection                                            </td> <td align="left">   <tt>===== Heading =====</tt>        (5 <tt>=</tt>)    </td> </tr>
+<tr><td align="left">   subsubsection                                         </td> <td align="left">   <tt>=== Heading ===</tt>            (3 <tt>=</tt>)    </td> </tr>
+<tr><td align="left">   paragraph                                             </td> <td align="left">   <tt>__Heading.__</tt>               (2 <tt>_</tt>)    </td> </tr>
+<tr><td align="left">   abstract                                              </td> <td align="left">   <tt>__Abstract.__</tt> Running text...                </td> </tr>
 </table>
 <p>
 Note that abstracts are recognized by starting with <tt>__Abstract.__</tt> at
@@ -212,7 +213,7 @@ is used - all other formats just leave the heading as it is written).
 
 <p>
 
-<h3>Inline Formatting  <a name="___sec7"></a></h3>
+<h3>Inline Formatting  <a name="___sec3"></a></h3>
 <p>
 Words surrounded by <tt>*</tt> are emphasized: <tt>*emphasized words*</tt> becomes
 <em>emphasized words</em>. Similarly, an underscore surrounds words that
@@ -220,7 +221,7 @@ appear in boldface: <tt>_boldface_</tt> become <b>boldface</b>.
 
 <p>
 
-<h3>Lists  <a name="___sec8"></a></h3>
+<h3>Lists  <a name="___sec4"></a></h3>
 <p>
 There are three types of lists: <em>bullet lists</em>, where each item starts
 with <tt>*</tt>, <em>enumeration lists</em>, where each item starts with <tt>o</tt> and gets
@@ -313,7 +314,7 @@ And finally a description list:
    and its description may fit on one line
 </dl>
 
-<h3>Comments  <a name="___sec9"></a></h3>
+<h3>Comments  <a name="___sec5"></a></h3>
 <p>
 Lines starting with <tt>#</tt> are treated as comments in the document and
 translated to the proper syntax for comments in the output
@@ -361,7 +362,7 @@ This action is appropriate when all issues with such comments are resolved.
 
 <p>
 
-<h3>Verbatim/Computer Code  <a name="___sec10"></a></h3>
+<h3>Verbatim/Computer Code  <a name="___sec6"></a></h3>
 <p>
 Inline verbatim code is typeset within back-ticks, as in
 <!-- begin verbatim block -->
@@ -456,7 +457,7 @@ Important warnings:
    paragraphs with headings.</li>
 </ul>
 
-<h3>LaTeX Mathematics  <a name="___sec11"></a></h3>
+<h3>LaTeX Mathematics  <a name="___sec7"></a></h3>
 <p>
 Doconce supports inline mathematics and blocks of mathematics, using
 standard LaTeX syntax. The output formats <tt>sphinx</tt>, <tt>latex</tt>, and <tt>pdflatex</tt>
@@ -483,9 +484,23 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 <tt>!bt</tt>
 and
-<tt>!et</tt> (begin/end TeX) directives starting on the beginning of a line
-(see the source of this document for precise syntax).
-Here is a result:
+<tt>!et</tt> (begin/end TeX) directives starting on the beginning of a line:
+
+<p>
+<!-- begin verbatim block -->
+<pre>
+!bt
+\begin{align*}
+\nabla\cdot \pmb{u} &amp;= 0,\\
+\nabla\times \pmb{u} &amp;= 0.
+\end{align*}
+!et
+</pre>
+<! -- end verbatim block -->
+<!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
+<!-- tex and code blocks in inside verbatim blocks and are replaced -->
+<!-- by !bt, !et, !bc, and !ec after all other formatting is finished. -->
+This LaTeX code gets rendered as
 
 <p>
 $$
@@ -494,7 +509,17 @@ $$
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 $$
-Or a single equation:
+Here is a single equation:
+
+<p>
+<!-- begin verbatim block -->
+<pre>
+!bt
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
+!et
+</pre>
+<! -- end verbatim block -->
+which results in
 
 <p>
 $$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
@@ -538,14 +563,14 @@ the following rules are recommended:
 <p>
 
 
-<h3>Figures and Movies  <a name="___sec12"></a></h3>
+<h3>Figures and Movies  <a name="___sec8"></a></h3>
 <p>
 Figures and movies have almost equal syntax:
 <!-- begin verbatim block -->
 <pre>
-FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
+FIGURE: [relative/path/to/figurefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
-MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. \label{some:fig:label}
+MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
 
 </pre>
 <! -- end verbatim block -->
@@ -580,7 +605,7 @@ The positioning of the figures can be controlled by <tt>-gravity</tt>.
 <p>
 
 
-<h3>Tables  <a name="___sec13"></a></h3>
+<h3>Tables  <a name="___sec9"></a></h3>
 <p>
 The table in the section <a href="#quick:sections">Section Types</a> was written with this
 syntax:
@@ -620,14 +645,14 @@ Note that
    have no effect.</li>
 </ul>
 
-<h3>Labels, References, Citations, and Index  <a name="___sec14"></a></h3>
+<h3>Labels, References, Citations, and Index  <a name="___sec10"></a></h3>
 <p>
 The notion of labels, references, citations, and an index is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
 inserted anywhere, using the syntax
 <!-- begin verbatim block -->
 <pre>
-\label{name}
+label{name}
 </pre>
 <! -- end verbatim block -->
 with no backslash
@@ -722,7 +747,7 @@ forthcoming text. The index is only produced for the <tt>latex</tt>, <tt>rst</tt
 
 <p>
 
-<h3>Capabilities of the "doconce" Program  <a name="___sec15"></a></h3>
+<h3>Capabilities of the "doconce" Program  <a name="___sec11"></a></h3>
 <p>
 The <tt>doconce</tt> program can be used for a number of purposes besides
 transforming a <tt>.do.txt</tt> file to some format. Here is the
@@ -836,7 +861,7 @@ doconce list_labels myfile
 
 <p>
 
-<h3>Exercises  <a name="___sec16"></a></h3>
+<h3>Exercises  <a name="___sec12"></a></h3>
 <p>
 Doconce supports <em>Exercise</em>, <em>Problem</em>, and <em>Project</em>. These are typeset
 as ordinary sections and referred to by their section labels.
@@ -864,7 +889,7 @@ A typical sketch of a a problem without subexercises goes as follows:
 <!-- begin verbatim block -->
 <pre>
 ===== Problem: Derive the Formula for the Area of an Ellipse =====
-\label{problem:ellipsearea1}
+label{problem:ellipsearea1}
 file=ellipse_area.pdf
 solution=ellipse_area1_sol.pdf
 
@@ -889,7 +914,7 @@ setup-up:
 <!-- begin verbatim block -->
 <pre>
 ===== Exercise: Determine the Distance to the Moon =====
-\label{exer:moondist}
+label{exer:moondist}
 
 Intro to this exercise. Questions are in subexercises below.
 
@@ -942,10 +967,33 @@ By default, answers, solutions, and hints are typeset as paragraphs.
 <p>
 
 
-<h3>Labels, Index, and Citations  <a name="___sec17"></a></h3>
+<h3>Environments  <a name="___sec13"></a></h3>
+<p>
+Doconce environments start with <tt>!benvirname</tt> and end with <tt>!eenvirname</tt>,
+where <tt>envirname</tt> is the name of the environment. Here is a listing of
+the environments:
+
 <p>
 
-<h3>Preprocessing  <a name="___sec18"></a></h3>
+<ul>
+ <li> <tt>c</tt>: computer code (or verbatim text)</li>
+ <li> <tt>t</tt>: math blocks with LaTeX syntax</li>
+ <li> <tt>subex</tt>: sub-exercise</li>
+ <li> <tt>ans</tt>: short answer to exercise or sub-exercise</li>
+ <li> <tt>sol</tt>: full solution to exercise or sub-exercise</li>
+ <li> <tt>notes</tt>: multi-line notes to be included or not</li>
+ <li> <tt>quote</tt>: indented text</li>
+ <li> <tt>notice</tt>, <tt>summary</tt>, <tt>warning</tt>, <tt>question</tt>, <tt>hint</tt>: boxes with
+    specialy typesetting (or symbols)</li>
+ <li> <tt>pop</tt>: text to gradually pop up in slide presentations</li>
+ <li> <tt>slidecell</tt>: indication of cells in a grid layout for elements on a
+   slide</li>
+</ul>
+
+<h3>Labels, Index, and Citations  <a name="___sec14"></a></h3>
+<p>
+
+<h3>Preprocessing  <a name="___sec15"></a></h3>
 <p>
 Doconce documents may utilize a preprocessor, either <tt>preprocess</tt> and/or
 <tt>mako</tt>. The former is a C-style preprocessor that allows if-tests
@@ -966,7 +1014,7 @@ constructions:
 
 # #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)
 \begin{table}
-\caption{Some words... \label{mytab}}
+\caption{Some words... label{mytab}}
 \begin{tabular}{lrr}
 \hline\noalign{\smallskip}
 \multicolumn{1}{c}{time} &amp; \multicolumn{1}{c}{velocity} &amp; \multicolumn{1}{c}{acceleration} \\
@@ -1001,7 +1049,7 @@ examine the Doconce source and the <tt>doc/src/make.sh</tt> script).
 
 <p>
 
-<h3>Resources  <a name="___sec19"></a></h3>
+<h3>Resources  <a name="___sec16"></a></h3>
 <p>
 
 <ul>

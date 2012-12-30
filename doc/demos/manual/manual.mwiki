@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Dec 26, 2012 ====
+==== Dec 30, 2012 ====
 
 <!--> lines beginning with # are comment lines -->
 
@@ -117,6 +117,37 @@ Mako can also be installed directly from
 tarball, pack it out, go to the directory and run
 the usual <code>sudo python setup.py install</code>.
 
+==== Image file handling ====
+
+Different output formats require different formats of image files.
+For example, PostScript or Encapuslated PostScript is required for <code>latex</code>
+output, while HTML needs JPEG, GIF, or PNG formats.
+Doconce calls up programs from the ImageMagick suite for converting
+image files to a proper format if needed. The [http://www.imagemagick.org/script/index.php ImageMagick suite] can be installed on all major platforms.
+On Debian Linux (including Ubuntu) systems one can simply write
+
+<syntaxhighlight lang="bash">
+sudo apt-get install imagemagick
+</code>
+
+The convenience program <code>doconce combine_images</code>, for combining several
+images into one, will use <code>montage</code> and <code>convert</code> from ImageMagick and
+the <code>pdftk</code>, <code>pdfnup</code>, and <code>pdfcrop</code> programs from the <code>texlive-extra-utils</code>
+Debian package. The latter gets installed by
+
+<syntaxhighlight lang="bash">
+sudo apt-get install texlive-extra-utils
+</code>
+
+==== Spellcheck ====
+
+The utility <code>doconce spellcheck</code> applies the <code>ispell</code> program for
+spellcheck. On Debian (including Ubuntu) it is installed by
+
+<syntaxhighlight lang="bash">
+sudo apt-get install ispell
+</code>
+
 ==== Ptex2tex for LaTeX Output ====
 
 To make LaTeX documents with very flexible choice of typesetting of
@@ -221,6 +252,7 @@ easily done by
 <syntaxhighlight lang="bash">
 sudo apt-get install pandoc
 </code>
+on Debian (Ubuntu) systems.
 
 ==== Epydoc Output ====
 
@@ -295,17 +327,25 @@ or just
 <syntaxhighlight lang="bash">
 Terminal> doconce format format mydoc
 </code>
-The <code>mako</code> or <code>preprocess</code> programs are always used to preprocess the
-file first, and options to <code>mako</code> or <code>preprocess</code> can be added after the
+
+==== Preprocessing ====
+
+The <code>preprocess</code> and <code>mako</code> programs are used to preprocess the
+file, and options to <code>preprocess</code> and/or <code>mako</code> can be added after the
 filename. For example,
 <syntaxhighlight lang="bash">
 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
 Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 </code>
 The variable <code>FORMAT</code> is always defined as the current format when
-running <code>preprocess</code>. That is, in the last example, <code>FORMAT</code> is
+running <code>preprocess</code> or <code>mako</code>. That is, in the last example, <code>FORMAT</code> is
 defined as <code>latex</code>. Inside the Doconce document one can then perform
-format specific actions through tests like <code>#if FORMAT == "latex"</code>.
+format specific actions through tests like <code>#if FORMAT == "latex"</code>
+(for <code>preprocess</code>) or <code>% if FORMAT == "latex":</code> (for <code>mako</code>).
+
+==== Removal of inline comments ====
+
+<!--> mention notes also -->
 
 The command-line arguments <code>--no-preprocess</code> and <code>--no-mako</code> turn off
 running <code>preprocess</code> and <code>mako</code>, respectively.
@@ -845,13 +885,9 @@ in "ordered"):
 
 <code>
    o item 1
-
    o item 2
-
      * subitem 1
-
      * subitem 2
-
    o item 3
 </code>
 
@@ -946,7 +982,7 @@ The current date can be specified as <code>today</code>.
 TOC: on
 </code>
 This line is usually placed after the <code>DATE:</code> line.
-A value <code>off</code> turns off the table of contents.
+The value <code>off</code> turns off the table of contents.
 
 
 ''Section Headings.'' Section headings are recognized by being surrounded by equal signs (=) or
@@ -1326,9 +1362,7 @@ are handled by the format in question.
 Hyperlinks to files or web addresses are handled as explained
 in the section [#Inline_Tagging].
 
-
-
-== Generalized Cross-Referencing ==
+==== Generalized Cross-Referencing ====
 
 Sometimes a series of individual documents may be assembled to one
 large document. The assembly impacts how references to sections
@@ -1669,19 +1703,41 @@ line''.  Before such a code block there must be a plain sentence
 ASCII-type formats is desired). For example, a code block cannot come
 directly after a section/paragraph heading or a table.
 
-There may be an argument after the <code>!bc</code> tag to specify a
-certain environment (for <code>ptex2tex</code> or Sphinx) for typesetting
-the verbatim code. For instance, <code>!bc dat</code> corresponds to
-the data file environment and <code>!bc cod</code> is typically
-used for a code snippet. There are some predefined environments
-explained below. If there is
-no argument specifying the environment, one assumes some plain
-verbatim typesetting (for <code>ptex2tex</code> this means the <code>ccq</code> environment,
-which is defined in the config file <code>.ptex2tex.cfg</code>,
+Here is a plain code block:
+
+<code>
+!bc
+% Could be a comment line in some file
+% And some data
+1.003 1.025
+2.204 1.730
+3.001 1.198
+!ec
+</code>
+which gets rendered as
+
+<code>
+% Could be a comment line in some file
+% And some data
+1.003 1.025
+2.204 1.730
+3.001 1.198
+</code>
+
+
+There may be an argument after the <code>!bc</code> tag to specify a certain
+environment (for <code>ptex2tex</code>, <code>doconce ptex2tex</code>, or Sphinx) for
+typesetting the verbatim code. For instance, <code>!bc dat</code> corresponds to
+the data file environment and <code>!bc cod</code> is typically used for a code
+snippet. There are some predefined environments explained below. If
+there is no argument specifying the environment, one assumes some
+plain verbatim typesetting (for <code>ptex2tex</code> this means the <code>ccq</code>
+environment, which is defined in the config file <code>.ptex2tex.cfg</code>,
 while for Sphinx it defaults to the <code>python</code> environment).
 
-Since the config file for <code>ptex2tex</code> can define what some environment
-maps onto with respect to typesetting, a similar possibility is
+Since the config file for <code>ptex2tex</code> and command-line arguments for
+the alternative <code>doconce ptex2tex</code> program can define what some environments
+map onto with respect to typesetting, a similar possibility is
 supported for Sphinx as well.  The argument after <code>!bc</code> is in case of
 Sphinx output mapped onto a valid Pygments language for typesetting of
 the verbatim block by Pygments. This mapping takes place in an
@@ -1724,6 +1780,26 @@ in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).
 
 Here is a verbatim code block with Python code (<code>pycod</code> style):
+<code>
+!bc pycod
+# regular expressions for inline tags:
+inline_tag_begin = r'(?P<begin>(^|\s+))'
+inline_tag_end = r'(?P<end>[.,?!;:)\s])'
+INLINE_TAGS = {
+    'emphasize':
+    r'%s\*(?P<subst>[^ `][^*`]*)\*%s' % \
+    (inline_tag_begin, inline_tag_end),
+    'verbatim':
+    r'%s`(?P<subst>[^ ][^`]*)`%s' % \
+    (inline_tag_begin, inline_tag_end),
+    'bold':
+    r'%s_(?P<subst>[^ `][^_`]*)_%s' % \
+    (inline_tag_begin, inline_tag_end),
+}
+!ec
+</code>
+The typeset result of this block becomes
+
 <syntaxhighlight lang="python">
 # regular expressions for inline tags:
 inline_tag_begin = r'(?P<begin>(^|\s+))'
@@ -1750,12 +1826,13 @@ void myfunc(double* x, const double& myarr) {
 </code>
 
 <!--> When showing copy from file in !bc envir, intent a character - otherwise -->
-<!--> ptex2tex is confused and starts copying... -->
+<!--> ptex2tex is confused and starts copying. However, here (in make.sh) we use -->
+<!--> doconce ptex2tex which does not have this problem. -->
 Computer code can be copied directly from a file, if desired. The syntax
 is then
 <code>
- @@@CODE myfile.f
- @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1
+@@@CODE myfile.f
+@@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1
 </code>
 The first line implies that all lines in the file <code>myfile.f</code> are
 copied into a verbatim block, typset in a <code>!bc Xpro</code> environment, where
@@ -1851,14 +1928,15 @@ the opening tag is <code>!bt</code> (begin TeX) and the closing tag is
 <code>!et</code>. It is important that <code>!bt</code> and <code>!et</code> appear on the beginning of the
 line and followed by a newline.
 <code>
-:<math>
+!bt
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
 \end{align}
-</math>
+!et
 </code>
-Here is the result of the above <code>!bt</code> - <code>!et</code> block:
+Here is the result:
+
 :<math>
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
@@ -1866,12 +1944,12 @@ Here is the result of the above <code>!bt</code> - <code>!et</code> block:
 \end{align}
 </math>
 
-The support of LaTeX mathematics varies among the formats.  Output
-<code>latex</code> and <code>pdflatex</code> has of course full support. The <code>html</code> format
-supports single equations and multiple equations via the align
-environment, also with labels. Although <code>sphinx</code>, like <code>html</code>, employs
-MathJax, it does not support labels in align environments.  Markdown
-(<code>pandoc</code> format) allows single equations and inline mathematics.
+The support of LaTeX mathematics varies among the formats:
+
+
+<ul>
+ <li> Output <code>latex</code> and <code>pdflatex</code> has of course full support. <li> The <code>html</code> format supports single equations and multiple equations   via the align environment, also with labels. <li> Although <code>sphinx</code>, like <code>html</code>, employs   MathJax, it does not support labels in align environments. <li> Markdown (<code>pandoc</code> format) allows single equations and inline mathematics.</ul>
+
 Going from Doconce to MS Word is most easily done by outputting in
 the <code>latex</code> format and then using the Pandoc program to translate
 from LaTeX to MS Word (note that only a subset of LaTeX will be
@@ -1883,7 +1961,20 @@ in two versions. After <code>#if FORMAT in ("latex", "pdflatex", "html",
 "sphinx", "mwiki", "pandoc")</code> one places LaTeX mathematics, and after
 <code>#else</code> one can write inline mathematics in a way that looks nice in
 plain text and wiki formats without support for mathematical
-typesetting.
+typesetting. Such branching can be used with mako if-else statements
+alternatively:
+
+<code>
+% if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki", "pandoc"):
+!bt
+\[ \sin^2x + \cos^2x = 1,\]
+!et
+% else:
+!bc
+              sin^2(x) + cos^2(x) = 1,
+!ec
+% endif
+</code>
 
 ==== Mathematics for PowerPoint/OpenOffice ====
 
@@ -1945,10 +2036,10 @@ The LaTeX block
 </code>
 will then be rendered to
 :<math>
-\begin{align}
-{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
-{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
-\end{align}
+\begin{eqnarray}
+\x\cdot\normalvec &=& 0, label{my:eq1}\\
+\Ddt{{\vec u}} &=& \pmb{Q} {\thinspace . }   label{my:eq2}
+\end{eqnarray}
 </math>
 in the current format.
 
@@ -2354,7 +2445,8 @@ Using paragraphs instead of list items is a good idea also here.
 ==== Title level inconsistent ====
 
 reST does not like jumps in the levels of headings. For example, you cannot
-have a <code>===</code> heading after a <code>=======</code> heading.
+have a <code>===</code> (paragraph) heading after a <code>=======</code> (section) heading without
+a <code>=====</code> (subsection) heading in between.
 
 ==== Lists do not appear in .rst files ====
 

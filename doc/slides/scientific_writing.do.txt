@@ -325,8 +325,20 @@ Inline math as in LaTeX:
 gets rendered as ...where $a=\int_{\Omega}fdx$ is an integral.
 
 
-An equation environment is surrounded by `!bt` and `!et` tags
-(see the source of this document), the rest is plain LaTeX:
+An equation environment is surrounded by `!bt` and `!et` tags,
+the rest is plain LaTeX:
+
+!bc
+|bt
+\begin{align}
+\frac{\partial u}{\partial t} &= \nabla^2 u,
+label{a:eq}\\
+\nabla\cdot\pmb{v} & = 0
+label{b:eq}
+\end{align}
+|et
+!ec
+which is renereded as
 
 !bt
 \begin{align}
@@ -336,7 +348,6 @@ label{a:eq}\\
 label{b:eq}
 \end{align}
 !et
-
 
 Limit math environments to
 !bc
@@ -359,7 +370,25 @@ Limit math environments to
 !split
 ======= Doconce: displaying code =======
 
-Code is enclosed in `!bc` and `!ec` tags (see the source for this page).
+Code is enclosed in `!bc` and `!ec` tags:
+
+!bc
+|bc pycod
+def solver(I, a, T, dt, theta):
+    """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
+    dt = float(dt)           # avoid integer division
+    N = int(round(T/dt))     # no of time intervals
+    T = N*dt                 # adjust T to fit time step dt
+    u = zeros(N+1)           # array of u[n] values
+    t = linspace(0, T, N+1)  # time mesh
+
+    u[0] = I                 # assign initial condition
+    for n in range(0, N):    # n=0,1,...,N-1
+        u[n+1] = (1 - (1-theta)*a*dt)/(1 + theta*dt*a)*u[n]
+    return u, t
+|ec
+!ec
+This gets rendered as
 
 !bc pycod
 def solver(I, a, T, dt, theta):
@@ -376,7 +405,7 @@ def solver(I, a, T, dt, theta):
     return u, t
 !ec
 
-The `!bc` command can be proceeded by a specification of the computer
+The `!bc` command can be followed by a specification of the computer
 language: `pycod` for Python code snippet, `pypro` for complete Python
 program, `fcod` for Fortran snippet, `fpro` for Fortran program, and so
 forth (`c` for C, `cpp` for C++, `sh` for Unix shells, `m` for Matlab).
@@ -388,20 +417,25 @@ We recommend to copy as much code as possible directly from the
 source files:
 
 !bc
-@@@CODE file  fromto: start-regex@end-regex
+@@@CODE path/to/file
+@@@CODE path/to/file   fromto: start-regex@end-regex
+!ec
+For example, copying a code snippet starting with `def solver(` and
+ending with (line not included) `def next(x, y,` is specified by
+start and end regular expressions:
 
-ex:
-
-@@@CODE src/dc_mod.py  fromto: def solver@def verify_three
+!bc
+@@@CODE src/dc_mod.py  fromto: def solver\(@def next\(x,\s*y,
 !ec
 
-Computer language can be specified:
+Typesetting of code is implied by the file extension:
 
- * `!bc pycod` for Python snippet,
- * `!bc pypro` for complete Python program
- * Similar for C (`c`), C++ (`cpp`), Fortran (`f`),
-   Bash (`sh`), MATLAB (`m`), e.g., `!bc mpro`
- * From files: `.py` gives `!bc pycod`, `.f` gives `!bc fcod`, etc.
+ * `.py`: `pypro` if complete file, `pycod` if snippet
+ * `.f`, `.f90`, `f.95`: `fpro` and `fcod`
+ * `.cpp`, `.cxx`: `cpppro` and `cppcod`
+ * `.c`: `cpro` and `ccod`
+ * `.*sh`: `shpro` and `shcod`
+ * `.m`: `mpro` and `mcod`
  * `ptex2tex` can be used to choose between 40+ typesettings of
    computer code in LaTeX
  * `pygments` is used for code typesetting in HTML (about 10 different styles)
@@ -735,9 +769,40 @@ doconce format plain  doconcefile  # plain, untagged text for email
 !split
 ======= Writing tips =======
 
- * See the *Concerns I, II and III* slides for issues when writing
+ * See the previous *Concerns I, II and III* slides for issues when writing
    for multiple formats.
+ * Prepare figures in the right format: EPS for `latex`, PDF for `pdflatex`,
+   PNG, GIF or JPEG for HTML formats (`html`, and HTML output from
+   `sphinx`, `rst`, `pandoc`). One can omit the figure file extension and
+   `doconce` will pick the most appropriate file for the given output format.
+ * Let plotting programs produce both PDF/EPS and PNG files.
+   (Recall that PDF and EPS are vector graphics formats that can scale to
+   any size with much higher quality than PNG or other bitmap formats.)
+ * Use `doconce combine_images` to combine several images into one.
+ * Use `doconce spellcheck *.do.txt` to automatically spellcheck files.
 
+!split
+======= Writing tips for sphinx and other formats =======
+
+For output formats different from `latex`, `pdflatex`, and `html`, the
+following points are important:
+
+ * Do not use math in section headings or figure captions if output in
+   `sphinx` is wanted (such math are removed in references).
+ * Let all running text start in column 1 (`sphinx` is annoyed by intended
+   lines).
+ * Use progressive section headings: after chapter (`=========`) comes
+   section (`=======`), and then subsection (`=====`) before paragraph
+   heading (`===`). "Jumps", say `===` after `======` works fine for
+   `latex`, `pdflatex`, and `html`, but not for `rst` and `sphinx`.
+ * Place index entries (`idx{keyword}`) before the paragraph where they
+   are introduced (not inside the text). Also place index entries before
+   `===` headings.
+ * Be careful with labels in `align` math environments - `sphinx` and `pandoc`
+   cannot refer to them.
+ * Always have a line of running text before a code snippet or program.
+ * Do not insert comments before intented text, such as computer code and
+   lists.
 
 
 

@@ -11,17 +11,25 @@ or just
 !bc sys
 Terminal> doconce format format mydoc
 !ec
-The `mako` or `preprocess` programs are always used to preprocess the
-file first, and options to `mako` or `preprocess` can be added after the
+
+===== Preprocessing =====
+
+The `preprocess` and `mako` programs are used to preprocess the
+file, and options to `preprocess` and/or `mako` can be added after the
 filename. For example,
 !bc sys
 Terminal> doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
 Terminal> doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 !ec
 The variable `FORMAT` is always defined as the current format when
-running `preprocess`. That is, in the last example, `FORMAT` is
+running `preprocess` or `mako`. That is, in the last example, `FORMAT` is
 defined as `latex`. Inside the Doconce document one can then perform
-format specific actions through tests like `#if FORMAT == "latex"`.
+format specific actions through tests like `#if FORMAT == "latex"`
+(for `preprocess`) or `% if FORMAT == "latex":` (for `mako`).
+
+===== Removal of inline comments =====
+
+# mention notes also
 
 The command-line arguments `--no-preprocess` and `--no-mako` turn off
 running `preprocess` and `mako`, respectively.

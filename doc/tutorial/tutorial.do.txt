@@ -1,3 +1,5 @@
+# Missing: FIGURE, MOVIE, environments
+
 TITLE: Doconce: Document Once, Include Anywhere
 AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
 DATE: today
@@ -25,19 +27,15 @@ DATE: today
 If any of these questions are of interest, you should keep on reading.
 
 
-======= The Doconce Concept  =======
-
-# #include "_what_is.do.txt"
-
 ======= What Does Doconce Look Like? =======
 
 Doconce text looks like ordinary text, but there are some almost invisible
 text constructions that allow you to control the formating. Here are
 som examples.
 
-  * Bullet lists arise from lines starting with an asterisk.
+  * Bullet lists arise from lines starting with `*`.
 
-  * *Emphasized words* are surrounded by asterisks.
+  * *Emphasized words* are surrounded by `*`.
 
   * _Words in boldface_ are surrounded by underscores.
 
@@ -77,14 +75,15 @@ som examples.
     comment upon the text (and at any time turn on/off output of such
     comments).
 
-  * There is special support for advanced exercises features.
+  * There is an exercise environment with many advanced features.
 
-  * With a simple preprocessor, Preprocess or Mako, one can include
+  * With a preprocessor, Preprocess or Mako, one can include
     other documents (files) and large portions of text can be defined
     in or out of the text.
 
-  * With the Mako preprocessor one can even embed Python
-    code and use this to steer generation of Doconce text.
+  * With Mako one can also have Python code
+    embedded in the Doconce document and thereby parameterize the
+    text (e.g., one text can describe programming in two languages).
 
 Here is an example of some simple text written in the Doconce format:
 !bc
@@ -93,7 +92,7 @@ label{my:first:sec}
 
 Ordinary text looks like ordinary text, and the tags used for
 _boldface_ words, *emphasized* words, and `computer` words look
-natural in plain text.  Lists are typeset as you would do in an email,
+natural in plain text.  Lists are typeset as you would do in email,
 
   * item 1
   * item 2
@@ -105,7 +104,7 @@ Lists can also have automatically numbered items instead of bullets,
   o item 2
   o item 3
 
-URLs with a link word are possible, as in "hpl":"http://folk.uio.no/hpl".
+URLs with a link word are possible, as in "hpl": "http://folk.uio.no/hpl".
 If the word is URL, the URL itself becomes the link name,
 as in "URL": "tutorial.do.txt".
 
@@ -200,8 +199,20 @@ However, if you want more textual formats, like plain text or reStructuredText,
 the text after the pipe symbol may help to make the math formula more readable
 if there are backslahes or other special LaTeX symbols in the LaTeX code.
 
-Blocks of mathematics are better typeset with raw LaTeX, inside
-`!bt` and `!et` (begin tex / end tex) instructions.
+Blocks of mathematics are typeset with raw LaTeX, inside
+`!bt` and `!et` (begin TeX, end TeX) instructions:
+
+!bc
+|bt
+\begin{align}
+{\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\
+{\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
+\end{align}
+|et
+!ec
+# Note: |bt and |et (and |bc and |ec below) are used to illustrate
+# tex and code blocks in inside verbatim blocks and are replaced
+# by !bt, !et, !bc, and !ec after all other formatting is finished.
 The result looks like this:
 
 !bt
@@ -217,9 +228,21 @@ LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.
 
 You can have blocks of computer code, starting and ending with
-`!bc` and `!ec` instructions, respectively. Such blocks are formatted as
+`!bc` and `!ec` instructions, respectively.
 
-!bc cod
+!bc
+|bc pycod
+from math import sin, pi
+def myfunc(x):
+    return sin(pi*x)
+
+import integrate
+I = integrate.trapezoidal(myfunc, 0, pi, 100)
+|ec
+!ec
+Such blocks are formatted as
+
+!bc pycod
 from math import sin, pi
 def myfunc(x):
     return sin(pi*x)
@@ -231,42 +254,17 @@ A code block must come after some plain sentence (at least for successful
 output to `sphinx`, `rst`, and ASCII-close formats),
 not directly after a section/paragraph heading or a table.
 
-It is possible to add a specification of an
-environment for typesetting the verbatim code block, e.g., `!bc xxx`
-where `xxx` is an identifier like `pycod` for code snippet in Python,
-`sys` for terminal session, etc. When Doconce is filtered to LaTeX,
-these identifiers are used as in `ptex2tex` and defined in a
-configuration file `.ptext2tex.cfg`, while when filtering
-to Sphinx, one can have a comment line in the Doconce file for
-mapping the identifiers to legal language names for Sphinx (which equals
-the legal language names for Pygments):
-!bc
-# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
-!ec
-By default, `pro` and `cod` are `python`, `sys` is `console`,
-while `xpro` and `xcod` are computer language specific for `x`
-in `f` (Fortran), `c` (C), `cpp` (C++), `pl` (Perl), `m` (Matlab),
-`sh` (Unix shells), `cy` (Cython), and `py` (Python).
-
-# (Any sphinx code-block comment, whether inside verbatim code
-# blocks or outside, yields a mapping between bc arguments
-# and computer languages. In case of muliple definitions, the
-# first one is used.)
 
 One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!). A complete file is typeset
-with `!bc pro`, while a part of a file is copied into a `!bc cod`
-environment. What `pro` and `cod` mean is then defined through
-a `.ptex2tex.cfg` file for LaTeX and a `sphinx code-blocks`
-comment for Sphinx.
+avoiding copying information!).
 
-Another document can be included by writing `#include "mynote.do.txt"`
-on a line starting with (another) hash sign.  Doconce documents have
+Another document can be included by writing `# #include "mynote.do.txt"`
+at the beginning of a line.  Doconce documents have
 extension `do.txt`. The `do` part stands for doconce, while the
-trailing `.txt` denotes a text document so that editors gives you the
-right writing enviroment for plain text.
+trailing `.txt` denotes a text document so that editors gives you
+plain text editing capabilities.
 
 
 ===== Macros (Newcommands), Cross-References, Index, and Bibliography =====

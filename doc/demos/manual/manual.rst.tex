@@ -56,7 +56,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Dec 26, 2012
+Dec 30, 2012
 
 \end{DUfieldlist}
 
@@ -298,6 +298,54 @@ the usual \texttt{sudo python setup.py install}.
 %___________________________________________________________________________
 
 \subsubsection*{\phantomsection%
+  Image file handling%
+  \addcontentsline{toc}{subsubsection}{Image file handling}%
+  \label{image-file-handling}%
+}
+
+Different output formats require different formats of image files.
+For example, PostScript or Encapuslated PostScript is required for \texttt{latex}
+output, while HTML needs JPEG, GIF, or PNG formats.
+Doconce calls up programs from the ImageMagick suite for converting
+image files to a proper format if needed. The \href{http://www.imagemagick.org/script/index.php}{ImageMagick suite} can be installed on all major platforms.
+On Debian Linux (including Ubuntu) systems one can simply write:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~apt-get~install~imagemagick
+}
+\end{quote}
+
+The convenience program \texttt{doconce combine\_images}, for combining several
+images into one, will use \texttt{montage} and \texttt{convert} from ImageMagick and
+the \texttt{pdftk}, \texttt{pdfnup}, and \texttt{pdfcrop} programs from the \texttt{texlive-extra-utils}
+Debian package. The latter gets installed by:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~apt-get~install~texlive-extra-utils
+}
+\end{quote}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Spellcheck%
+  \addcontentsline{toc}{subsubsection}{Spellcheck}%
+  \label{spellcheck}%
+}
+
+The utility \texttt{doconce spellcheck} applies the \texttt{ispell} program for
+spellcheck. On Debian (including Ubuntu) it is installed by:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+sudo~apt-get~install~ispell
+}
+\end{quote}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
   Ptex2tex for LaTeX Output%
   \addcontentsline{toc}{subsubsection}{Ptex2tex for LaTeX Output}%
   \label{ptex2tex-for-latex-output}%
@@ -436,6 +484,8 @@ sudo~apt-get~install~pandoc
 }
 \end{quote}
 
+on Debian (Ubuntu) systems.
+
 
 %___________________________________________________________________________
 
@@ -547,8 +597,17 @@ Terminal>~doconce~format~format~mydoc
 }
 \end{quote}
 
-The \texttt{mako} or \texttt{preprocess} programs are always used to preprocess the
-file first, and options to \texttt{mako} or \texttt{preprocess} can be added after the
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Preprocessing%
+  \addcontentsline{toc}{subsection}{Preprocessing}%
+  \label{preprocessing}%
+}
+
+The \texttt{preprocess} and \texttt{mako} programs are used to preprocess the
+file, and options to \texttt{preprocess} and/or \texttt{mako} can be added after the
 filename. For example:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
@@ -558,9 +617,21 @@ Terminal>~doconce~format~latex~yourdoc~extra\_sections=True~VAR1=5~~\#~mako
 \end{quote}
 
 The variable \texttt{FORMAT} is always defined as the current format when
-running \texttt{preprocess}. That is, in the last example, \texttt{FORMAT} is
+running \texttt{preprocess} or \texttt{mako}. That is, in the last example, \texttt{FORMAT} is
 defined as \texttt{latex}. Inside the Doconce document one can then perform
-format specific actions through tests like \texttt{\#if FORMAT == "latex"}.
+format specific actions through tests like \texttt{\#if FORMAT == "latex"}
+(for \texttt{preprocess}) or \texttt{\% if FORMAT == "latex":} (for \texttt{mako}).
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Removal of inline comments%
+  \addcontentsline{toc}{subsection}{Removal of inline comments}%
+  \label{removal-of-inline-comments}%
+}
+
+% mention notes also
 
 The command-line arguments \texttt{-{}-no-preprocess} and \texttt{-{}-no-mako} turn off
 running \texttt{preprocess} and \texttt{mako}, respectively.
@@ -1317,13 +1388,9 @@ in ``ordered''):
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 o~item~1\\
-~\\
 o~item~2\\
-~\\
 ~~*~subitem~1\\
-~\\
 ~~*~subitem~2\\
-~\\
 o~item~3
 }
 \end{quote}
@@ -1467,7 +1534,7 @@ TOC:~on
 \end{quote}
 
 This line is usually placed after the \texttt{DATE:} line.
-A value \texttt{off} turns off the table of contents.
+The value \texttt{off} turns off the table of contents.
 
 \emph{Section Headings.} Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
@@ -1996,9 +2063,9 @@ in the section \hyperref[id2]{Inline Tagging}.
 
 %___________________________________________________________________________
 
-\section*{\phantomsection%
+\subsection*{\phantomsection%
   Generalized Cross-Referencing%
-  \addcontentsline{toc}{section}{Generalized Cross-Referencing}%
+  \addcontentsline{toc}{subsection}{Generalized Cross-Referencing}%
   \label{generalized-cross-referencing}%
   \label{manual-genrefs}%
 }
@@ -2461,19 +2528,43 @@ line}.  Before such a code block there must be a plain sentence
 ASCII-type formats is desired). For example, a code block cannot come
 directly after a section/paragraph heading or a table.
 
-There may be an argument after the \texttt{!bc} tag to specify a
-certain environment (for \texttt{ptex2tex} or Sphinx) for typesetting
-the verbatim code. For instance, \texttt{!bc dat} corresponds to
-the data file environment and \texttt{!bc cod} is typically
-used for a code snippet. There are some predefined environments
-explained below. If there is
-no argument specifying the environment, one assumes some plain
-verbatim typesetting (for \texttt{ptex2tex} this means the \texttt{ccq} environment,
-which is defined in the config file \texttt{.ptex2tex.cfg},
+Here is a plain code block:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+!bc\\
+\%~Could~be~a~comment~line~in~some~file\\
+\%~And~some~data\\
+1.003~1.025\\
+2.204~1.730\\
+3.001~1.198\\
+!ec
+}
+\end{quote}
+
+which gets rendered as:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+\%~Could~be~a~comment~line~in~some~file\\
+\%~And~some~data\\
+1.003~1.025\\
+2.204~1.730\\
+3.001~1.198
+}
+\end{quote}
+
+There may be an argument after the \texttt{!bc} tag to specify a certain
+environment (for \texttt{ptex2tex}, \texttt{doconce ptex2tex}, or Sphinx) for
+typesetting the verbatim code. For instance, \texttt{!bc dat} corresponds to
+the data file environment and \texttt{!bc cod} is typically used for a code
+snippet. There are some predefined environments explained below. If
+there is no argument specifying the environment, one assumes some
+plain verbatim typesetting (for \texttt{ptex2tex} this means the \texttt{ccq}
+environment, which is defined in the config file \texttt{.ptex2tex.cfg},
 while for Sphinx it defaults to the \texttt{python} environment).
 
-Since the config file for \texttt{ptex2tex} can define what some environment
-maps onto with respect to typesetting, a similar possibility is
+Since the config file for \texttt{ptex2tex} and command-line arguments for
+the alternative \texttt{doconce ptex2tex} program can define what some environments
+map onto with respect to typesetting, a similar possibility is
 supported for Sphinx as well.  The argument after \texttt{!bc} is in case of
 Sphinx output mapped onto a valid Pygments language for typesetting of
 the verbatim block by Pygments. This mapping takes place in an
@@ -2524,6 +2615,28 @@ common errors are naturally avoided).
 Here is a verbatim code block with Python code (\texttt{pycod} style):
 %
 \begin{quote}{\ttfamily \raggedright \noindent
+!bc~pycod\\
+\#~regular~expressions~for~inline~tags:\\
+inline\_tag\_begin~=~r'(?P<begin>(\textasciicircum{}|\textbackslash{}s+))'\\
+inline\_tag\_end~=~r'(?P<end>{[}.,?!;:)\textbackslash{}s{]})'\\
+INLINE\_TAGS~=~\{\\
+~~~~'emphasize':\\
+~~~~r'\%s\textbackslash{}*(?P<subst>{[}\textasciicircum{}~`{]}{[}\textasciicircum{}*`{]}*)\textbackslash{}*\%s'~\%~\textbackslash{}\\
+~~~~(inline\_tag\_begin,~inline\_tag\_end),\\
+~~~~'verbatim':\\
+~~~~r'\%s`(?P<subst>{[}\textasciicircum{}~{]}{[}\textasciicircum{}`{]}*)`\%s'~\%~\textbackslash{}\\
+~~~~(inline\_tag\_begin,~inline\_tag\_end),\\
+~~~~'bold':\\
+~~~~r'\%s\_(?P<subst>{[}\textasciicircum{}~`{]}{[}\textasciicircum{}\_`{]}*)\_\%s'~\%~\textbackslash{}\\
+~~~~(inline\_tag\_begin,~inline\_tag\_end),\\
+\}\\
+!ec
+}
+\end{quote}
+
+The typeset result of this block becomes:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
 \#~regular~expressions~for~inline~tags:\\
 inline\_tag\_begin~=~r'(?P<begin>(\textasciicircum{}|\textbackslash{}s+))'\\
 inline\_tag\_end~=~r'(?P<end>{[}.,?!;:)\textbackslash{}s{]})'\\
@@ -2554,7 +2667,9 @@ void~myfunc(double*~x,~const~double\&~myarr)~\{\\
 
 % When showing copy from file in !bc envir, intent a character - otherwise
 
-% ptex2tex is confused and starts copying...
+% ptex2tex is confused and starts copying. However, here (in make.sh) we use
+
+% doconce ptex2tex which does not have this problem.
 
 Computer code can be copied directly from a file, if desired. The syntax
 is then:
@@ -2680,11 +2795,12 @@ line and followed by a newline:
 \textbackslash{}begin\{align\}\\
 \{\textbackslash{}partial~u\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textasciicircum{}2~u~+~f,~label\{myeq1\}\textbackslash{}\textbackslash{}\\
 \{\textbackslash{}partial~v\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textbackslash{}cdot(q(u)\textbackslash{}nabla~v)~+~g.~label\{myeq2\}\\
-\textbackslash{}end\{align\}
+\textbackslash{}end\{align\}\\
+!et
 }
 \end{quote}
 
-Here is the result of the above \texttt{!bt} - \texttt{!et} block:
+Here is the result:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 \textbackslash{}begin\{align\}\\
@@ -2694,12 +2810,26 @@ Here is the result of the above \texttt{!bt} - \texttt{!et} block:
 }
 \end{quote}
 
-The support of LaTeX mathematics varies among the formats.  Output
-\texttt{latex} and \texttt{pdflatex} has of course full support. The \texttt{html} format
-supports single equations and multiple equations via the align
-environment, also with labels. Although \texttt{sphinx}, like \texttt{html}, employs
-MathJax, it does not support labels in align environments.  Markdown
-(\texttt{pandoc} format) allows single equations and inline mathematics.
+The support of LaTeX mathematics varies among the formats:
+%
+\begin{quote}
+%
+\begin{itemize}
+
+\item Output \texttt{latex} and \texttt{pdflatex} has of course full support.
+
+\item The \texttt{html} format supports single equations and multiple equations
+via the align environment, also with labels.
+
+\item Although \texttt{sphinx}, like \texttt{html}, employs
+MathJax, it does not support labels in align environments.
+
+\item Markdown (\texttt{pandoc} format) allows single equations and inline mathematics.
+
+\end{itemize}
+
+\end{quote}
+
 Going from Doconce to MS Word is most easily done by outputting in
 the \texttt{latex} format and then using the Pandoc program to translate
 from LaTeX to MS Word (note that only a subset of LaTeX will be
@@ -2711,7 +2841,21 @@ in two versions. After \texttt{\#if FORMAT in ("latex", "pdflatex", "html",
 "sphinx", "mwiki", "pandoc")} one places LaTeX mathematics, and after
 \texttt{\#else} one can write inline mathematics in a way that looks nice in
 plain text and wiki formats without support for mathematical
-typesetting.
+typesetting. Such branching can be used with mako if-else statements
+alternatively:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+\%~if~FORMAT~in~("latex",~"pdflatex",~"html",~"sphinx",~"mwiki",~"pandoc"):\\
+!bt\\
+\textbackslash{}{[}~\textbackslash{}sin\textasciicircum{}2x~+~\textbackslash{}cos\textasciicircum{}2x~=~1,\textbackslash{}{]}\\
+!et\\
+\%~else:\\
+!bc\\
+~~~~~~~~~~~~~~sin\textasciicircum{}2(x)~+~cos\textasciicircum{}2(x)~=~1,\\
+!ec\\
+\%~endif
+}
+\end{quote}
 
 
 %___________________________________________________________________________
@@ -2826,10 +2970,10 @@ The LaTeX block:
 will then be rendered to:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-\textbackslash{}begin\{align\}\\
-\{\textbackslash{}partial~u\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textasciicircum{}2~u~+~f,~label\{myeq1\}\textbackslash{}\textbackslash{}\\
-\{\textbackslash{}partial~v\textbackslash{}over\textbackslash{}partial~t\}~\&=~\textbackslash{}nabla\textbackslash{}cdot(q(u)\textbackslash{}nabla~v)~+~g.~label\{myeq2\}\\
-\textbackslash{}end\{align\}
+\textbackslash{}begin\{eqnarray\}\\
+\textbackslash{}x\textbackslash{}cdot\textbackslash{}normalvec~\&=\&~0,~label\{my:eq1\}\textbackslash{}\textbackslash{}\\
+\textbackslash{}Ddt\{\{\textbackslash{}vec~u\}\}~\&=\&~\textbackslash{}pmb\{Q\}~\{\textbackslash{}thinspace~.~\}~~~label\{my:eq2\}\\
+\textbackslash{}end\{eqnarray\}
 }
 \end{quote}
 
@@ -3473,7 +3617,8 @@ Using paragraphs instead of list items is a good idea also here.
 }
 
 reST does not like jumps in the levels of headings. For example, you cannot
-have a \texttt{===} heading after a \texttt{=======} heading.
+have a \texttt{===} (paragraph) heading after a \texttt{=======} (section) heading without
+a \texttt{=====} (subsection) heading in between.
 
 
 %___________________________________________________________________________

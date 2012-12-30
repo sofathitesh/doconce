@@ -6,7 +6,7 @@ Doconce Quick Reference
 
 :Author: Hans Petter Langtangen
 
-:Date: Dec 26, 2012
+:Date: Dec 30, 2012
 
 .. contents:: Table of Contents
    :depth: 2
@@ -347,16 +347,37 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 ``!bt``
 and
-``!et`` (begin/end TeX) directives starting on the beginning of a line
-(see the source of this document for precise syntax).
-Here is a result::
+``!et`` (begin/end TeX) directives starting on the beginning of a line::
+
+
+        !bt
+        \begin{align*}
+        \nabla\cdot \pmb{u} &= 0,\\
+        \nabla\times \pmb{u} &= 0.
+        \end{align*}
+        !et
+
+.. Note: !bt and !et (and !bc and !ec below) are used to illustrate
+
+.. tex and code blocks in inside verbatim blocks and are replaced
+
+.. by !bt, !et, !bc, and !ec after all other formatting is finished.
+
+This LaTeX code gets rendered as::
 
         \begin{align*}
         \nabla\cdot \pmb{u} &= 0,\\
         \nabla\times \pmb{u} &= 0.
         \end{align*}
 
-Or a single equation::
+Here is a single equation::
+
+
+        !bt
+        \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
+        !et
+
+which results in::
 
         \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
@@ -773,6 +794,35 @@ setup-up::
 
 By default, answers, solutions, and hints are typeset as paragraphs.
 
+
+Environments
+------------
+
+Doconce environments start with ``!benvirname`` and end with ``!eenvirname``,
+where ``envirname`` is the name of the environment. Here is a listing of
+the environments:
+
+ * ``c``: computer code (or verbatim text)
+
+ * ``t``: math blocks with LaTeX syntax
+
+ * ``subex``: sub-exercise
+
+ * ``ans``: short answer to exercise or sub-exercise
+
+ * ``sol``: full solution to exercise or sub-exercise
+
+ * ``notes``: multi-line notes to be included or not
+
+ * ``quote``: indented text
+
+ * ``notice``, ``summary``, ``warning``, ``question``, ``hint``: boxes with
+    specialy typesetting (or symbols)
+
+ * ``pop``: text to gradually pop up in slide presentations
+
+ * ``slidecell``: indication of cells in a grid layout for elements on a
+   slide
 
 Labels, Index, and Citations
 ----------------------------
