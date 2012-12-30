@@ -6,9 +6,9 @@ doconce format html tutorial  --no-pygments-html
 
 # latex
 doconce format latex tutorial
-ptex2tex -DHELVETICA tutorial
-latex tutorial.tex  # no -shell-escape since no -DMINTED to ptex2tex
-latex tutorial.tex
+ptex2tex -DMINTED -DHELVETICA tutorial
+latex -shell-escape tutorial.tex
+latex -shell-escape tutorial.tex
 dvipdf tutorial.dvi
 
 # Sphinx

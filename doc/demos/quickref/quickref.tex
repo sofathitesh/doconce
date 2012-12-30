@@ -104,7 +104,7 @@ final,                   % or draft (marks overfull hboxes)
 
 
 \begin{center}
-Dec 26, 2012
+Dec 30, 2012
 \end{center}
 
 \vspace{1cm}
@@ -457,15 +457,33 @@ will applied the expression to the right.
 Blocks of {\LaTeX} mathematics are written within
 \Verb!!bt!
 and
-\Verb!!et! (begin/end TeX) directives starting on the beginning of a line
-(see the source of this document for precise syntax).
-Here is a result:
+\Verb!!et! (begin/end TeX) directives starting on the beginning of a line:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+!bt
+\begin{align*}
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
+\end{align*}
+!et
+\end{Verbatim}
+% Note: !bt and !et (and !bc and !ec below) are used to illustrate
+% tex and code blocks in inside verbatim blocks and are replaced
+% by !bt, !et, !bc, and !ec after all other formatting is finished.
+This {\LaTeX} code gets rendered as
 
 \begin{align*}
 \nabla\cdot \pmb{u} &= 0,\\
 \nabla\times \pmb{u} &= 0.
 \end{align*}
-Or a single equation:
+Here is a single equation:
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
+!bt
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
+!et
+\end{Verbatim}
+which results in
 
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 
@@ -872,6 +890,38 @@ Here goes a full solution of the whole exercise.
 
 \end{Verbatim}
 By default, answers, solutions, and hints are typeset as paragraphs.
+
+\subsection{Environments}
+
+Doconce environments start with \Verb!!benvirname! and end with \Verb!!eenvirname!,
+where \Verb!envirname! is the name of the environment. Here is a listing of
+the environments:
+
+\begin{itemize}
+ \item \Verb!c!: computer code (or verbatim text)
+
+ \item \Verb!t!: math blocks with {\LaTeX} syntax
+
+ \item \Verb!subex!: sub-exercise
+
+ \item \Verb!ans!: short answer to exercise or sub-exercise
+
+ \item \Verb!sol!: full solution to exercise or sub-exercise
+
+ \item \Verb!notes!: multi-line notes to be included or not
+
+ \item \Verb!quote!: indented text
+
+ \item \Verb!notice!, \Verb!summary!, \Verb!warning!, \Verb!question!, \Verb!hint!: boxes with
+    specialy typesetting (or symbols)
+
+ \item \Verb!pop!: text to gradually pop up in slide presentations
+
+ \item \Verb!slidecell!: indication of cells in a grid layout for elements on a
+   slide
+\end{itemize}
+
+\noindent
 
 \subsection{Labels, Index, and Citations}
 

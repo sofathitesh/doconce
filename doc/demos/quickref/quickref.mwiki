@@ -2,7 +2,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Dec 26, 2012 ====
+==== Dec 30, 2012 ====
 
 __TOC__
 
@@ -279,9 +279,20 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 <code>!bt</code>
 and
-<code>!et</code> (begin/end TeX) directives starting on the beginning of a line
-(see the source of this document for precise syntax).
-Here is a result:
+<code>!et</code> (begin/end TeX) directives starting on the beginning of a line:
+
+<code>
+!bt
+\begin{align*}
+\nabla\cdot \pmb{u} &= 0,\\
+\nabla\times \pmb{u} &= 0.
+\end{align*}
+!et
+</code>
+<!--> Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
+<!--> tex and code blocks in inside verbatim blocks and are replaced -->
+<!--> by !bt, !et, !bc, and !ec after all other formatting is finished. -->
+This LaTeX code gets rendered as
 
 :<math>
 \begin{align*}
@@ -289,7 +300,14 @@ Here is a result:
 \nabla\times \pmb{u} &= 0.
 \end{align*}
 </math>
-Or a single equation:
+Here is a single equation:
+
+<code>
+!bt
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
+!et
+</code>
+which results in
 
 :<math>
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
@@ -641,6 +659,16 @@ Here goes a full solution of the whole exercise.
 
 </code>
 By default, answers, solutions, and hints are typeset as paragraphs.
+
+==== Environments ====
+
+Doconce environments start with <code>!benvirname</code> and end with <code>!eenvirname</code>,
+where <code>envirname</code> is the name of the environment. Here is a listing of
+the environments:
+
+
+<ul>
+ <li> <code>c</code>: computer code (or verbatim text) <li> <code>t</code>: math blocks with LaTeX syntax <li> <code>subex</code>: sub-exercise <li> <code>ans</code>: short answer to exercise or sub-exercise <li> <code>sol</code>: full solution to exercise or sub-exercise <li> <code>notes</code>: multi-line notes to be included or not <li> <code>quote</code>: indented text <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>, <code>hint</code>: boxes with    specialy typesetting (or symbols) <li> <code>pop</code>: text to gradually pop up in slide presentations <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a   slide</ul>
 
 ==== Labels, Index, and Citations ====
 

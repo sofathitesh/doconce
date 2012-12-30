@@ -341,6 +341,7 @@ def _spellcheck(filename, dictionaries=['.dict4spell.txt'], newdict=None,
     misspellings = 'tmp_misspelled_' + filename + '~'
     cmd = 'cat %s | ispell -l -t -d american %s > %s' % \
           (scratchfile, p_opt, misspellings)
+    #cmd = 'cat %s | aspell -t -d american list %s > %s'
     #print cmd
     os.system(cmd)
 

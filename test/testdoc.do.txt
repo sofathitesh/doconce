@@ -67,6 +67,8 @@ a block quote.
 More text, with a reference back to Section ref{sec1} and further
 to Section ref{subsubsec:ex}. idx{`somefunc` function}
 
+# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+
 Let's do some copying from files too. First from subroutine up to the very end,
 
 @@@CODE ../doc/manual/__testcode.f fromto: subroutine@
@@ -76,6 +78,14 @@ and finally the complete file:
 @@@CODE ../doc/manual/__testcode.f
 
 Testing other code environments. First Python:
+!bc
+|bc pycod
+def f(x):
+    return x+1
+|ec
+!ec
+which gets rendered as
+
 !bc pycod
 def f(x):
     return x+1
@@ -86,7 +96,7 @@ cpdef f(double x):
     return x + 1
 !ec
 
-# This one tests a + before a code environment
+# This one tests a + sign before a code environment
 C++:
 !bc cpppro
 #include <iostream>
@@ -97,6 +107,31 @@ int main()
    return 0
 }
 !ec
+# The next should get correctly typset in sphinx (cod is fcod)
+And a little bit of Fortran:
+
+!bc
+|bc cod
+      subroutine midpt(x, length, a, b)
+      real*8 a, b, x
+      x = (a + b)/2
+      length = b - a
+      return
+      end
+|ec
+!ec
+which then is typeset as
+
+!bc cod
+      subroutine midpt(x, length, a, b)
+      real*8 a, b, x
+      x = (a + b)/2
+      length = b - a
+      return
+      end
+!ec
+
+
 System call:
 !bc sys
 Terminal> mkdir test

@@ -319,6 +319,7 @@ ul.auto-toc {
 
 <!-- Automatically generated reST file from Doconce source
 (http://code.google.com/p/doconce/) -->
+<!-- Missing: FIGURE, MOVIE, environments -->
 <div class="section" id="doconce-document-once-include-anywhere">
 <h1>Doconce: Document Once, Include Anywhere</h1>
 <table class="docutils field-list" frame="void" rules="none">
@@ -328,7 +329,7 @@ ul.auto-toc {
 <tr class="field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Dec 26, 2012</p>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Dec 30, 2012</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -353,86 +354,6 @@ include it anywhere?</li>
 </table>
 <p>If any of these questions are of interest, you should keep on reading.</p>
 </div>
-<div class="section" id="the-doconce-concept">
-<h1>The Doconce Concept</h1>
-<p>Doconce is two things:</p>
-<blockquote>
-<ol class="arabic simple">
-<li>Doconce is a very simple and minimally tagged markup language that
-looks like ordinary ASCII text (much like what you would use in an
-email), but the text can be transformed to numerous other formats,
-including HTML, Pandoc, Google wiki, LaTeX, PDF, reStructuredText
-(reST), Sphinx, Epytext, and also plain text (where non-obvious
-formatting/tags are removed for clear reading in, e.g.,
-emails). From reST you can (via <tt class="docutils literal">rst2*</tt> programs) go to XML, HTML,
-LaTeX, PDF, OpenOffice, and from the latter (via <tt class="docutils literal">unoconv</tt>) to
-RTF, numerous MS Word formats (including MS Office Open XML),
-DocBook, PDF, MediaWiki, XHTML. From Pandoc one can generate
-Markdown, reST, LaTeX, HTML, PDF, DocBook XML, OpenOffice, GNU
-Texinfo, MediaWiki, RTF, Groff, and other formats.</li>
-<li>Doconce is a working strategy for never duplicating information.
-Text is written in a single place and then transformed to
-a number of different destinations of diverse type (software
-source code, manuals, tutorials, books, wikis, memos, emails, etc.).
-The Doconce markup language support this working strategy.
-The slogan is: &quot;Write once, include anywhere&quot;.</li>
-</ol>
-</blockquote>
-<p>Here are some Doconce features:</p>
-<blockquote>
-<ul class="simple">
-<li>Doconce markup does include tags, so the format is more tagged than
-Markdown and Pandoc, but less than reST, and very much less than
-LaTeX and HTML.</li>
-<li>Doconce can be converted to plain <em>untagged</em> text,
-often desirable for computer programs and email.</li>
-<li>Doconce has good support for copying in parts of computer code
-directly from the source code files via regular expressions
-for the start and end lines.</li>
-<li>Doconce has full support for LaTeX math and integrates well
-with big LaTeX projects (books).</li>
-<li>Doconce is almost self-explanatory and is a handy starting point
-for generating documents in more complicated markup languages, such
-as Google wiki, LaTeX, and Sphinx. A primary application of Doconce
-is just to make the initial versions of a Sphinx or wiki document.</li>
-<li>Contrary to the similar (and superior) Pandoc translator, Doconce
-supports Sphinx, Google wiki, Creole wiki (for bitbucket.org),
-lots of computer code environments in LaTeX, and a special exercise
-syntax. Doconce also also runs preprocessors (including Mako)
-such that the author can mix ordinary text with programming
-construction for generating parts of the text.</li>
-</ul>
-</blockquote>
-<p>Doconce was particularly written for the following sample applications:</p>
-<blockquote>
-<ul class="simple">
-<li>Large books written in LaTeX, but where many pieces (computer demos,
-projects, examples) can be written in Doconce to appear in other
-contexts in other formats, including plain HTML, Sphinx, wiki, or MS Word.</li>
-<li>Software documentation, primarily Python doc strings, which one wants
-to appear as plain untagged text for viewing in Pydoc, as reStructuredText
-for use with Sphinx, as wiki text when publishing the software at
-web sites, and as LaTeX integrated in, e.g., a thesis.</li>
-<li>Quick memos, which start as plain text in email, then some small
-amount of Doconce tagging is added, before the memos can appear as
-Sphinx web pages, MS Word documents, or in wikis.</li>
-</ul>
-</blockquote>
-<p>History: Doconce was developed in 2006 at a time when most popular
-markup languages used quite some tagging.  Later, almost untagged
-markup languages like Markdown and Pandoc became popular. Doconce is
-not a replacement of Pandoc, which is a considerably more
-sophisticated project. Moreover, Doconce was developed mainly to
-fulfill the needs for a flexible source code base for books with much
-mathematics and computer code.</p>
-<p>Disclaimer: Doconce is a simple tool, largely based on interpreting
-and handling text through regular expressions. The possibility for
-tweaking the layout is obviously limited since the text can go to
-all sorts of sophisticated markup languages. Moreover, because of
-limitations of regular expressions, some formatting of Doconce syntax
-may face problems when transformed to HTML, LaTeX, Sphinx, and similar
-formats.</p>
-</div>
 <div class="section" id="what-does-doconce-look-like">
 <h1>What Does Doconce Look Like?</h1>
 <p>Doconce text looks like ordinary text, but there are some almost invisible
@@ -440,8 +361,8 @@ text constructions that allow you to control the formating. Here are
 som examples.</p>
 <blockquote>
 <ul class="simple">
-<li>Bullet lists arise from lines starting with an asterisk.</li>
-<li><em>Emphasized words</em> are surrounded by asterisks.</li>
+<li>Bullet lists arise from lines starting with <tt class="docutils literal">*</tt>.</li>
+<li><em>Emphasized words</em> are surrounded by <tt class="docutils literal">*</tt>.</li>
 <li><strong>Words in boldface</strong> are surrounded by underscores.</li>
 <li>Words from computer code are enclosed in back quotes and
 then typeset <tt class="docutils literal">verbatim (in a monospace font)</tt>.</li>
@@ -468,12 +389,13 @@ the text.</li>
 <li>Visible comments can be inserted so that authors and readers can
 comment upon the text (and at any time turn on/off output of such
 comments).</li>
-<li>There is special support for advanced exercises features.</li>
-<li>With a simple preprocessor, Preprocess or Mako, one can include
+<li>There is an exercise environment with many advanced features.</li>
+<li>With a preprocessor, Preprocess or Mako, one can include
 other documents (files) and large portions of text can be defined
 in or out of the text.</li>
-<li>With the Mako preprocessor one can even embed Python
-code and use this to steer generation of Doconce text.</li>
+<li>With Mako one can also have Python code
+embedded in the Doconce document and thereby parameterize the
+text (e.g., one text can describe programming in two languages).</li>
 </ul>
 </blockquote>
 <p>Here is an example of some simple text written in the Doconce format:</p>
@@ -483,7 +405,7 @@ label{my:first:sec}
 
 Ordinary text looks like ordinary text, and the tags used for
 _boldface_ words, *emphasized* words, and `computer` words look
-natural in plain text.  Lists are typeset as you would do in an email,
+natural in plain text.  Lists are typeset as you would do in email,
 
   * item 1
   * item 2
@@ -495,7 +417,7 @@ Lists can also have automatically numbered items instead of bullets,
   o item 2
   o item 3
 
-URLs with a link word are possible, as in &quot;hpl&quot;:&quot;http://folk.uio.no/hpl&quot;.
+URLs with a link word are possible, as in &quot;hpl&quot;: &quot;http://folk.uio.no/hpl&quot;.
 If the word is URL, the URL itself becomes the link name,
 as in &quot;URL&quot;: &quot;tutorial.do.txt&quot;.
 
@@ -605,9 +527,20 @@ $\nu = \sin(x)$
 <p>However, if you want more textual formats, like plain text or reStructuredText,
 the text after the pipe symbol may help to make the math formula more readable
 if there are backslahes or other special LaTeX symbols in the LaTeX code.</p>
-<p>Blocks of mathematics are better typeset with raw LaTeX, inside
-<tt class="docutils literal">!bt</tt> and <tt class="docutils literal">!et</tt> (begin tex / end tex) instructions.
-The result looks like this:</p>
+<p>Blocks of mathematics are typeset with raw LaTeX, inside
+<tt class="docutils literal">!bt</tt> and <tt class="docutils literal">!et</tt> (begin TeX, end TeX) instructions:</p>
+<pre class="literal-block">
+!bt
+\begin{align}
+{\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
+{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g
+\end{align}
+!et
+</pre>
+<!-- Note: !bt and !et (and !bc and !ec below) are used to illustrate -->
+<!-- tex and code blocks in inside verbatim blocks and are replaced -->
+<!-- by !bt, !et, !bc, and !ec after all other formatting is finished. -->
+<p>The result looks like this:</p>
 <pre class="literal-block">
 \begin{align}
 {\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
@@ -620,7 +553,18 @@ for LaTeX mathematics, and here the align environment in particular
 LaTeX syntax appears in simpler formats, but can still be useful
 for those who can read LaTeX syntax.</p>
 <p>You can have blocks of computer code, starting and ending with
-<tt class="docutils literal">!bc</tt> and <tt class="docutils literal">!ec</tt> instructions, respectively. Such blocks are formatted as:</p>
+<tt class="docutils literal">!bc</tt> and <tt class="docutils literal">!ec</tt> instructions, respectively:</p>
+<pre class="literal-block">
+!bc pycod
+from math import sin, pi
+def myfunc(x):
+    return sin(pi*x)
+
+import integrate
+I = integrate.trapezoidal(myfunc, 0, pi, 100)
+!ec
+</pre>
+<p>Such blocks are formatted as:</p>
 <pre class="literal-block">
 from math import sin, pi
 def myfunc(x):
@@ -632,39 +576,15 @@ I = integrate.trapezoidal(myfunc, 0, pi, 100)
 <p>A code block must come after some plain sentence (at least for successful
 output to <tt class="docutils literal">sphinx</tt>, <tt class="docutils literal">rst</tt>, and ASCII-close formats),
 not directly after a section/paragraph heading or a table.</p>
-<p>It is possible to add a specification of an
-environment for typesetting the verbatim code block, e.g., <tt class="docutils literal">!bc xxx</tt>
-where <tt class="docutils literal">xxx</tt> is an identifier like <tt class="docutils literal">pycod</tt> for code snippet in Python,
-<tt class="docutils literal">sys</tt> for terminal session, etc. When Doconce is filtered to LaTeX,
-these identifiers are used as in <tt class="docutils literal">ptex2tex</tt> and defined in a
-configuration file <tt class="docutils literal">.ptext2tex.cfg</tt>, while when filtering
-to Sphinx, one can have a comment line in the Doconce file for
-mapping the identifiers to legal language names for Sphinx (which equals
-the legal language names for Pygments):</p>
-<pre class="literal-block">
-# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
-</pre>
-<p>By default, <tt class="docutils literal">pro</tt> and <tt class="docutils literal">cod</tt> are <tt class="docutils literal">python</tt>, <tt class="docutils literal">sys</tt> is <tt class="docutils literal">console</tt>,
-while <tt class="docutils literal">xpro</tt> and <tt class="docutils literal">xcod</tt> are computer language specific for <tt class="docutils literal">x</tt>
-in <tt class="docutils literal">f</tt> (Fortran), <tt class="docutils literal">c</tt> (C), <tt class="docutils literal">cpp</tt> (C++), <tt class="docutils literal">pl</tt> (Perl), <tt class="docutils literal">m</tt> (Matlab),
-<tt class="docutils literal">sh</tt> (Unix shells), <tt class="docutils literal">cy</tt> (Cython), and <tt class="docutils literal">py</tt> (Python).</p>
-<!-- (Any sphinx code-block comment, whether inside verbatim code -->
-<!-- blocks or outside, yields a mapping between bc arguments -->
-<!-- and computer languages. In case of muliple definitions, the -->
-<!-- first one is used.) -->
 <p>One can also copy computer code directly from files, either the
 complete file or specified parts.  Computer code is then never
 duplicated in the documentation (important for the principle of
-avoiding copying information!). A complete file is typeset
-with <tt class="docutils literal">!bc pro</tt>, while a part of a file is copied into a <tt class="docutils literal">!bc cod</tt>
-environment. What <tt class="docutils literal">pro</tt> and <tt class="docutils literal">cod</tt> mean is then defined through
-a <tt class="docutils literal">.ptex2tex.cfg</tt> file for LaTeX and a <tt class="docutils literal">sphinx <span class="pre">code-blocks</span></tt>
-comment for Sphinx.</p>
-<p>Another document can be included by writing <tt class="docutils literal">#include &quot;mynote.do.txt&quot;</tt>
-on a line starting with (another) hash sign.  Doconce documents have
+avoiding copying information!).</p>
+<p>Another document can be included by writing <tt class="docutils literal"># #include &quot;mynote.do.txt&quot;</tt>
+at the beginning of a line.  Doconce documents have
 extension <tt class="docutils literal">do.txt</tt>. The <tt class="docutils literal">do</tt> part stands for doconce, while the
-trailing <tt class="docutils literal">.txt</tt> denotes a text document so that editors gives you the
-right writing enviroment for plain text.</p>
+trailing <tt class="docutils literal">.txt</tt> denotes a text document so that editors gives you
+plain text editing capabilities.</p>
 </div>
 <div class="section" id="macros-newcommands-cross-references-index-and-bibliography">
 <span id="newcommands"></span><h2>Macros (Newcommands), Cross-References, Index, and Bibliography</h2>
@@ -712,17 +632,24 @@ Terminal&gt; doconce format format mydoc.do.txt
 <pre class="literal-block">
 Terminal&gt; doconce format format mydoc
 </pre>
-<p>The <tt class="docutils literal">mako</tt> or <tt class="docutils literal">preprocess</tt> programs are always used to preprocess the
-file first, and options to <tt class="docutils literal">mako</tt> or <tt class="docutils literal">preprocess</tt> can be added after the
+<div class="section" id="preprocessing">
+<h2>Preprocessing</h2>
+<p>The <tt class="docutils literal">preprocess</tt> and <tt class="docutils literal">mako</tt> programs are used to preprocess the
+file, and options to <tt class="docutils literal">preprocess</tt> and/or <tt class="docutils literal">mako</tt> can be added after the
 filename. For example:</p>
 <pre class="literal-block">
 Terminal&gt; doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess
 Terminal&gt; doconce format latex yourdoc extra_sections=True VAR1=5  # mako
 </pre>
 <p>The variable <tt class="docutils literal">FORMAT</tt> is always defined as the current format when
-running <tt class="docutils literal">preprocess</tt>. That is, in the last example, <tt class="docutils literal">FORMAT</tt> is
+running <tt class="docutils literal">preprocess</tt> or <tt class="docutils literal">mako</tt>. That is, in the last example, <tt class="docutils literal">FORMAT</tt> is
 defined as <tt class="docutils literal">latex</tt>. Inside the Doconce document one can then perform
-format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;latex&quot;</tt>.</p>
+format specific actions through tests like <tt class="docutils literal">#if FORMAT == &quot;latex&quot;</tt>
+(for <tt class="docutils literal">preprocess</tt>) or <tt class="docutils literal">% if FORMAT == &quot;latex&quot;:</tt> (for <tt class="docutils literal">mako</tt>).</p>
+</div>
+<div class="section" id="removal-of-inline-comments">
+<h2>Removal of inline comments</h2>
+<!-- mention notes also -->
 <p>The command-line arguments <tt class="docutils literal"><span class="pre">--no-preprocess</span></tt> and <tt class="docutils literal"><span class="pre">--no-mako</span></tt> turn off
 running <tt class="docutils literal">preprocess</tt> and <tt class="docutils literal">mako</tt>, respectively.</p>
 <p>Inline comments in the text are removed from the output by:</p>
@@ -736,6 +663,7 @@ Terminal&gt; doconce remove_inline_comments mydoc
 </pre>
 <p>This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.</p>
+</div>
 <div class="section" id="id1">
 <h2>HTML</h2>
 <p>Making an HTML version of a Doconce file <tt class="docutils literal">mydoc.do.txt</tt>
@@ -1279,6 +1207,33 @@ sudo apt-get install python-pip
 tarball, pack it out, go to the directory and run
 the usual <tt class="docutils literal">sudo python setup.py install</tt>.</p>
 </div>
+<div class="section" id="image-file-handling">
+<h3>Image file handling</h3>
+<p>Different output formats require different formats of image files.
+For example, PostScript or Encapuslated PostScript is required for <tt class="docutils literal">latex</tt>
+output, while HTML needs JPEG, GIF, or PNG formats.
+Doconce calls up programs from the ImageMagick suite for converting
+image files to a proper format if needed. The <a class="reference external" href="http://www.imagemagick.org/script/index.php">ImageMagick suite</a> can be installed on all major platforms.
+On Debian Linux (including Ubuntu) systems one can simply write:</p>
+<pre class="literal-block">
+sudo apt-get install imagemagick
+</pre>
+<p>The convenience program <tt class="docutils literal">doconce combine_images</tt>, for combining several
+images into one, will use <tt class="docutils literal">montage</tt> and <tt class="docutils literal">convert</tt> from ImageMagick and
+the <tt class="docutils literal">pdftk</tt>, <tt class="docutils literal">pdfnup</tt>, and <tt class="docutils literal">pdfcrop</tt> programs from the <tt class="docutils literal"><span class="pre">texlive-extra-utils</span></tt>
+Debian package. The latter gets installed by:</p>
+<pre class="literal-block">
+sudo apt-get install texlive-extra-utils
+</pre>
+</div>
+<div class="section" id="spellcheck">
+<h3>Spellcheck</h3>
+<p>The utility <tt class="docutils literal">doconce spellcheck</tt> applies the <tt class="docutils literal">ispell</tt> program for
+spellcheck. On Debian (including Ubuntu) it is installed by:</p>
+<pre class="literal-block">
+sudo apt-get install ispell
+</pre>
+</div>
 <div class="section" id="ptex2tex-for-latex-output">
 <h3>Ptex2tex for LaTeX Output</h3>
 <p>To make LaTeX documents with very flexible choice of typesetting of
@@ -1369,6 +1324,7 @@ easily done by:</p>
 <pre class="literal-block">
 sudo apt-get install pandoc
 </pre>
+<p>on Debian (Ubuntu) systems.</p>
 </div>
 <div class="section" id="epydoc-output">
 <h3>Epydoc Output</h3>

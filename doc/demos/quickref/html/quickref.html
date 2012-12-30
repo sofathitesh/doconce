@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 26, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 30, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -368,13 +368,26 @@ will applied the expression to the right.</p>
 <p>Blocks of LaTeX mathematics are written within
 <tt class="docutils literal"><span class="pre">!bt</span></tt>
 and
-<tt class="docutils literal"><span class="pre">!et</span></tt> (begin/end TeX) directives starting on the beginning of a line
-(see the source of this document for precise syntax).
-Here is a result:</p>
+<tt class="docutils literal"><span class="pre">!et</span></tt> (begin/end TeX) directives starting on the beginning of a line:</p>
+<div class="highlight-text"><div class="highlight"><pre>!bt
+\begin{align*}
+\nabla\cdot \pmb{u} &amp;= 0,\\
+\nabla\times \pmb{u} &amp;= 0.
+\end{align*}
+!et
+</pre></div>
+</div>
+<p>This LaTeX code gets rendered as</p>
 <div class="math">
 \[\begin{split}\nabla\cdot \pmb{u} &amp;= 0,\\
 \nabla\times \pmb{u} &amp;= 0.\end{split}\]</div>
-<p>Or a single equation:</p>
+<p>Here is a single equation:</p>
+<div class="highlight-text"><div class="highlight"><pre>!bt
+\[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
+!et
+</pre></div>
+</div>
+<p>which results in</p>
 <div class="math">
 \[\frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]</div>
 <p>One can use <tt class="docutils literal"><span class="pre">#if</span> <span class="pre">FORMAT</span> <span class="pre">in</span> <span class="pre">(&quot;latex&quot;,</span> <span class="pre">&quot;pdflatex&quot;,</span> <span class="pre">&quot;sphinx&quot;,</span> <span class="pre">&quot;mwiki&quot;)</span></tt> to let
@@ -751,6 +764,41 @@ Here goes a full solution of the whole exercise.
 </div>
 <p>By default, answers, solutions, and hints are typeset as paragraphs.</p>
 </div>
+<div class="section" id="environments">
+<h1>Environments<a class="headerlink" href="#environments" title="Permalink to this headline">¶</a></h1>
+<p>Doconce environments start with <tt class="docutils literal"><span class="pre">!benvirname</span></tt> and end with <tt class="docutils literal"><span class="pre">!eenvirname</span></tt>,
+where <tt class="docutils literal"><span class="pre">envirname</span></tt> is the name of the environment. Here is a listing of
+the environments:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><tt class="docutils literal"><span class="pre">c</span></tt>: computer code (or verbatim text)</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">t</span></tt>: math blocks with LaTeX syntax</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">subex</span></tt>: sub-exercise</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">ans</span></tt>: short answer to exercise or sub-exercise</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">sol</span></tt>: full solution to exercise or sub-exercise</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">notes</span></tt>: multi-line notes to be included or not</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">quote</span></tt>: indented text</p>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">notice</span></tt>, <tt class="docutils literal"><span class="pre">summary</span></tt>, <tt class="docutils literal"><span class="pre">warning</span></tt>, <tt class="docutils literal"><span class="pre">question</span></tt>, <tt class="docutils literal"><span class="pre">hint</span></tt>: boxes with</dt>
+<dd><p class="first last">specialy typesetting (or symbols)</p>
+</dd>
+</dl>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">pop</span></tt>: text to gradually pop up in slide presentations</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">slidecell</span></tt>: indication of cells in a grid layout for elements on a
+slide</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
 <div class="section" id="labels-index-and-citations">
 <h1>Labels, Index, and Citations<a class="headerlink" href="#labels-index-and-citations" title="Permalink to this headline">¶</a></h1>
 </div>
@@ -831,6 +879,7 @@ examine the Doconce source and the <tt class="docutils literal"><span class="pre
 <li><a class="reference internal" href="#labels-references-citations-and-index">Labels, References, Citations, and Index</a></li>
 <li><a class="reference internal" href="#capabilities-of-the-doconce-program">Capabilities of the &#8220;doconce&#8221; Program</a></li>
 <li><a class="reference internal" href="#exercises">Exercises</a></li>
+<li><a class="reference internal" href="#environments">Environments</a></li>
 <li><a class="reference internal" href="#labels-index-and-citations">Labels, Index, and Citations</a></li>
 <li><a class="reference internal" href="#preprocessing">Preprocessing</a></li>
 <li><a class="reference internal" href="#resources">Resources</a></li>

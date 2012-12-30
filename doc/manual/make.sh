@@ -64,7 +64,6 @@ $d2f pandoc manual.do.txt --no-mako
 
 # doconce pdflatex:
 $d2f pdflatex manual.do.txt --no-mako
-doconce replace 'usepackage{ptex2tex' 'usepackage{subfigure' manual.p.tex  # need subfigure latex package
 doconce ptex2tex manual -DMINTED -DHELVETICA envir=Verbatim
 pdflatex -shell-escape manual
 bibtex manual
@@ -75,7 +74,6 @@ cp manual.pdf manual_pdflatex.pdf
 
 # doconce latex:
 $d2f latex manual.do.txt --no-mako   # produces ptex2tex: manual.p.tex
-doconce replace 'usepackage{ptex2tex' 'usepackage{subfigure' manual.p.tex  # need subfigure latex package
 doconce ptex2tex manual -DMINTED -DHELVETICA envir=Verbatim
 latex -shell-escape manual
 latex -shell-escape manual

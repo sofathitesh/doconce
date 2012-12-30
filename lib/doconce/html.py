@@ -80,13 +80,20 @@ def html_code(filestr, code_blocks, code_block_types,
             code_blocks[i] = code_blocks[i].replace('>', '&gt;')
             code_blocks[i] = code_blocks[i].replace('"', '&quot;')
 
+    # Fix label -> \label in tex_blocks
+    for i in range(len(tex_blocks)):
+        if 'label' in tex_blocks[i]:
+            tex_blocks[i] = tex_blocks[i].replace(' label{', ' \\label{')
+            pattern = r'^label\{'
+            cpattern = re.compile(pattern, re.MULTILINE)
+            tex_blocks[i] = cpattern.sub('\\label{', tex_blocks[i])
+
     from doconce import debugpr
     debugpr('File before call to insert_code_and_tex (format html)\n%s'
             % filestr)
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
     debugpr('File after call to isnert_code_and tex (format html)\n%s'
             % filestr)
-
 
     if pygm:
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
@@ -109,11 +116,6 @@ def html_code(filestr, code_blocks, code_block_types,
 
         filestr = re.sub(r'\$\$\s*\\\[', '$$', filestr)
         filestr = re.sub(r'\\\]\s*\$\$', '$$', filestr)
-
-        filestr = filestr.replace(' label{', ' \\label{')
-        pattern = r'^label\{'
-        cpattern = re.compile(pattern, re.MULTILINE)
-        filestr = cpattern.sub('\\label{', filestr)
     else:
         filestr = c.sub(r'<blockquote><pre>\n', filestr)
         filestr = re.sub(r'!et\n', r'</pre></blockquote>\n', filestr)
@@ -432,9 +434,10 @@ def html_ref_and_label(section_label2title, format, filestr):
                                   '<a href="#%s">%s</a>' % (label, label))
 
     # insert enumerated anchors in all section headings without label
-    # anchors, in case we want a table of contents with linkes to each section
-    section_pattern = r'(_{3,9}|={3,9})(.+?)(_{3,9}|={3,9})'
-    m = re.findall(section_pattern, filestr)
+    # anchors, in case we want a table of contents with links to each section
+    section_pattern = re.compile(r'^\s*(_{3,9}|={3,9})(.+?)(_{3,9}|={3,9})\s*$',
+                                 re.MULTILINE)
+    m = section_pattern.findall(filestr)
     for i in range(len(m)):
         heading1, title, heading2 = m[i]
         if not '<a name="' in title:

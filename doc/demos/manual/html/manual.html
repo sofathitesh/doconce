@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 26, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 30, 2012</td>
 </tr>
 </tbody>
 </table>
@@ -206,6 +206,33 @@ such as Ubuntu, the installation is simply done by</p>
 tarball, pack it out, go to the directory and run
 the usual <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt>.</p>
 </div>
+<div class="section" id="image-file-handling">
+<h3>Image file handling<a class="headerlink" href="#image-file-handling" title="Permalink to this headline">¶</a></h3>
+<p>Different output formats require different formats of image files.
+For example, PostScript or Encapuslated PostScript is required for <tt class="docutils literal"><span class="pre">latex</span></tt>
+output, while HTML needs JPEG, GIF, or PNG formats.
+Doconce calls up programs from the ImageMagick suite for converting
+image files to a proper format if needed. The <a class="reference external" href="http://www.imagemagick.org/script/index.php">ImageMagick suite</a> can be installed on all major platforms.
+On Debian Linux (including Ubuntu) systems one can simply write</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install imagemagick</span>
+</pre></div>
+</div>
+<p>The convenience program <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">combine_images</span></tt>, for combining several
+images into one, will use <tt class="docutils literal"><span class="pre">montage</span></tt> and <tt class="docutils literal"><span class="pre">convert</span></tt> from ImageMagick and
+the <tt class="docutils literal"><span class="pre">pdftk</span></tt>, <tt class="docutils literal"><span class="pre">pdfnup</span></tt>, and <tt class="docutils literal"><span class="pre">pdfcrop</span></tt> programs from the <tt class="docutils literal"><span class="pre">texlive-extra-utils</span></tt>
+Debian package. The latter gets installed by</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install texlive-extra-utils</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="spellcheck">
+<h3>Spellcheck<a class="headerlink" href="#spellcheck" title="Permalink to this headline">¶</a></h3>
+<p>The utility <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">spellcheck</span></tt> applies the <tt class="docutils literal"><span class="pre">ispell</span></tt> program for
+spellcheck. On Debian (including Ubuntu) it is installed by</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install ispell</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="ptex2tex-for-latex-output">
 <h3>Ptex2tex for LaTeX Output<a class="headerlink" href="#ptex2tex-for-latex-output" title="Permalink to this headline">¶</a></h3>
 <p>To make LaTeX documents with very flexible choice of typesetting of
@@ -295,6 +322,7 @@ easily done by</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">sudo apt-get install pandoc</span>
 </pre></div>
 </div>
+<p>on Debian (Ubuntu) systems.</p>
 </div>
 <div class="section" id="epydoc-output">
 <h3>Epydoc Output<a class="headerlink" href="#epydoc-output" title="Permalink to this headline">¶</a></h3>
@@ -350,17 +378,23 @@ formats applies the script <tt class="docutils literal"><span class="pre">doconc
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format format mydoc</span>
 </pre></div>
 </div>
-<p>The <tt class="docutils literal"><span class="pre">mako</span></tt> or <tt class="docutils literal"><span class="pre">preprocess</span></tt> programs are always used to preprocess the
-file first, and options to <tt class="docutils literal"><span class="pre">mako</span></tt> or <tt class="docutils literal"><span class="pre">preprocess</span></tt> can be added after the
+<div class="section" id="preprocessing">
+<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="docutils literal"><span class="pre">preprocess</span></tt> and <tt class="docutils literal"><span class="pre">mako</span></tt> programs are used to preprocess the
+file, and options to <tt class="docutils literal"><span class="pre">preprocess</span></tt> and/or <tt class="docutils literal"><span class="pre">mako</span></tt> can be added after the
 filename. For example,</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format latex mydoc -Dextra_sections -DVAR1=5     # preprocess</span>
 <span class="go">Terminal&gt; doconce format latex yourdoc extra_sections=True VAR1=5  # mako</span>
 </pre></div>
 </div>
 <p>The variable <tt class="docutils literal"><span class="pre">FORMAT</span></tt> is always defined as the current format when
-running <tt class="docutils literal"><span class="pre">preprocess</span></tt>. That is, in the last example, <tt class="docutils literal"><span class="pre">FORMAT</span></tt> is
+running <tt class="docutils literal"><span class="pre">preprocess</span></tt> or <tt class="docutils literal"><span class="pre">mako</span></tt>. That is, in the last example, <tt class="docutils literal"><span class="pre">FORMAT</span></tt> is
 defined as <tt class="docutils literal"><span class="pre">latex</span></tt>. Inside the Doconce document one can then perform
-format specific actions through tests like <tt class="docutils literal"><span class="pre">#if</span> <span class="pre">FORMAT</span> <span class="pre">==</span> <span class="pre">&quot;latex&quot;</span></tt>.</p>
+format specific actions through tests like <tt class="docutils literal"><span class="pre">#if</span> <span class="pre">FORMAT</span> <span class="pre">==</span> <span class="pre">&quot;latex&quot;</span></tt>
+(for <tt class="docutils literal"><span class="pre">preprocess</span></tt>) or <tt class="docutils literal"><span class="pre">%</span> <span class="pre">if</span> <span class="pre">FORMAT</span> <span class="pre">==</span> <span class="pre">&quot;latex&quot;:</span></tt> (for <tt class="docutils literal"><span class="pre">mako</span></tt>).</p>
+</div>
+<div class="section" id="removal-of-inline-comments">
+<h2>Removal of inline comments<a class="headerlink" href="#removal-of-inline-comments" title="Permalink to this headline">¶</a></h2>
 <p>The command-line arguments <tt class="docutils literal"><span class="pre">--no-preprocess</span></tt> and <tt class="docutils literal"><span class="pre">--no-mako</span></tt> turn off
 running <tt class="docutils literal"><span class="pre">preprocess</span></tt> and <tt class="docutils literal"><span class="pre">mako</span></tt>, respectively.</p>
 <p>Inline comments in the text are removed from the output by</p>
@@ -374,6 +408,7 @@ file by running:</p>
 </div>
 <p>This action is convenient when a Doconce document reaches its final form
 and comments by different authors should be removed.</p>
+</div>
 <div class="section" id="html">
 <h2>HTML<a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h2>
 <p>Making an HTML version of a Doconce file <tt class="docutils literal"><span class="pre">mydoc.do.txt</span></tt>
@@ -872,13 +907,9 @@ also spans two lines</li>
 <p>In an ordered list, each item starts with an <tt class="docutils literal"><span class="pre">o</span></tt> (as the first letter
 in &#8220;ordered&#8221;):</p>
 <div class="highlight-text"><div class="highlight"><pre>o item 1
-
 o item 2
-
   * subitem 1
-
   * subitem 2
-
 o item 3
 </pre></div>
 </div>
@@ -972,7 +1003,7 @@ A. Dummy Author
 </pre></div>
 </div>
 <p>This line is usually placed after the <tt class="docutils literal"><span class="pre">DATE:</span></tt> line.
-A value <tt class="docutils literal"><span class="pre">off</span></tt> turns off the table of contents.</p>
+The value <tt class="docutils literal"><span class="pre">off</span></tt> turns off the table of contents.</p>
 <span class="target" id="index-6"></span><p id="index-7"><em>Section Headings.</em> Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
 section levels are recognized by the associated number of underscores
@@ -1308,9 +1339,8 @@ are handled by the format in question.</p>
 <p>Hyperlinks to files or web addresses are handled as explained
 in the section <a class="reference internal" href="#inline-tagging"><em>Inline Tagging</em></a>.</p>
 </div>
-</div>
 <div class="section" id="generalized-cross-referencing">
-<span id="manual-genrefs"></span><h1>Generalized Cross-Referencing<a class="headerlink" href="#generalized-cross-referencing" title="Permalink to this headline">¶</a></h1>
+<span id="manual-genrefs"></span><h2>Generalized Cross-Referencing<a class="headerlink" href="#generalized-cross-referencing" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes a series of individual documents may be assembled to one
 large document. The assembly impacts how references to sections
 are written: when referring to a section in the same document, a label
@@ -1388,6 +1418,7 @@ a [section](testdoc.html#___sec2) in
 the document [A Document for Testing Doconce](testdoc.html)
 @testdoc:12, Doconce documents may include movies.
 </pre></div>
+</div>
 </div>
 <div class="section" id="index-and-bibliography">
 <h2>Index and Bibliography<a class="headerlink" href="#index-and-bibliography" title="Permalink to this headline">¶</a></h2>
@@ -1648,18 +1679,36 @@ line</em>.  Before such a code block there must be a plain sentence
 (at least if successful transformation to reST and
 ASCII-type formats is desired). For example, a code block cannot come
 directly after a section/paragraph heading or a table.</p>
-<p>There may be an argument after the <tt class="docutils literal"><span class="pre">!bc</span></tt> tag to specify a
-certain environment (for <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> or Sphinx) for typesetting
-the verbatim code. For instance, <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">dat</span></tt> corresponds to
-the data file environment and <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">cod</span></tt> is typically
-used for a code snippet. There are some predefined environments
-explained below. If there is
-no argument specifying the environment, one assumes some plain
-verbatim typesetting (for <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> this means the <tt class="docutils literal"><span class="pre">ccq</span></tt> environment,
-which is defined in the config file <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt>,
+<p>Here is a plain code block:</p>
+<div class="highlight-text"><div class="highlight"><pre>!bc
+% Could be a comment line in some file
+% And some data
+1.003 1.025
+2.204 1.730
+3.001 1.198
+!ec
+</pre></div>
+</div>
+<p>which gets rendered as</p>
+<div class="highlight-text"><div class="highlight"><pre>% Could be a comment line in some file
+% And some data
+1.003 1.025
+2.204 1.730
+3.001 1.198
+</pre></div>
+</div>
+<p>There may be an argument after the <tt class="docutils literal"><span class="pre">!bc</span></tt> tag to specify a certain
+environment (for <tt class="docutils literal"><span class="pre">ptex2tex</span></tt>, <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">ptex2tex</span></tt>, or Sphinx) for
+typesetting the verbatim code. For instance, <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">dat</span></tt> corresponds to
+the data file environment and <tt class="docutils literal"><span class="pre">!bc</span> <span class="pre">cod</span></tt> is typically used for a code
+snippet. There are some predefined environments explained below. If
+there is no argument specifying the environment, one assumes some
+plain verbatim typesetting (for <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> this means the <tt class="docutils literal"><span class="pre">ccq</span></tt>
+environment, which is defined in the config file <tt class="docutils literal"><span class="pre">.ptex2tex.cfg</span></tt>,
 while for Sphinx it defaults to the <tt class="docutils literal"><span class="pre">python</span></tt> environment).</p>
-<p>Since the config file for <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> can define what some environment
-maps onto with respect to typesetting, a similar possibility is
+<p>Since the config file for <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> and command-line arguments for
+the alternative <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">ptex2tex</span></tt> program can define what some environments
+map onto with respect to typesetting, a similar possibility is
 supported for Sphinx as well.  The argument after <tt class="docutils literal"><span class="pre">!bc</span></tt> is in case of
 Sphinx output mapped onto a valid Pygments language for typesetting of
 the verbatim block by Pygments. This mapping takes place in an
@@ -1694,6 +1743,25 @@ general, we recommend to use paragraph headings instead of list items
 in combination with code blocks (it usually looks better, and some
 common errors are naturally avoided).</p>
 <p>Here is a verbatim code block with Python code (<tt class="docutils literal"><span class="pre">pycod</span></tt> style):</p>
+<div class="highlight-text"><div class="highlight"><pre>!bc pycod
+# regular expressions for inline tags:
+inline_tag_begin = r&#39;(?P&lt;begin&gt;(^|\s+))&#39;
+inline_tag_end = r&#39;(?P&lt;end&gt;[.,?!;:)\s])&#39;
+INLINE_TAGS = {
+    &#39;emphasize&#39;:
+    r&#39;%s\*(?P&lt;subst&gt;[^ `][^*`]*)\*%s&#39; % \
+    (inline_tag_begin, inline_tag_end),
+    &#39;verbatim&#39;:
+    r&#39;%s`(?P&lt;subst&gt;[^ ][^`]*)`%s&#39; % \
+    (inline_tag_begin, inline_tag_end),
+    &#39;bold&#39;:
+    r&#39;%s_(?P&lt;subst&gt;[^ `][^_`]*)_%s&#39; % \
+    (inline_tag_begin, inline_tag_end),
+}
+!ec
+</pre></div>
+</div>
+<p>The typeset result of this block becomes</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># regular expressions for inline tags:</span>
 <span class="n">inline_tag_begin</span> <span class="o">=</span> <span class="s">r&#39;(?P&lt;begin&gt;(^|\s+))&#39;</span>
 <span class="n">inline_tag_end</span> <span class="o">=</span> <span class="s">r&#39;(?P&lt;end&gt;[.,?!;:)\s])&#39;</span>
@@ -1811,25 +1879,30 @@ file.)</p>
 the opening tag is <tt class="docutils literal"><span class="pre">!bt</span></tt> (begin TeX) and the closing tag is
 <tt class="docutils literal"><span class="pre">!et</span></tt>. It is important that <tt class="docutils literal"><span class="pre">!bt</span></tt> and <tt class="docutils literal"><span class="pre">!et</span></tt> appear on the beginning of the
 line and followed by a newline.</p>
-<div class="highlight-text"><div class="highlight"><pre>
-</pre></div>
-</div>
-<div class="math">
-\[\begin{split}\begin{align}
+<div class="highlight-text"><div class="highlight"><pre>!bt
+\begin{align}
 {\partial u\over\partial t} &amp;= \nabla^2 u + f, label{myeq1}\\
 {\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g. label{myeq2}
-\end{align}\end{split}\]</div>
-<p>Here is the result of the above <tt class="docutils literal"><span class="pre">!bt</span></tt> - <tt class="docutils literal"><span class="pre">!et</span></tt> block:</p>
+\end{align}
+!et
+</pre></div>
+</div>
+<p>Here is the result:</p>
 <div class="math">
 \[\begin{split}{\partial u\over\partial t} &amp;= \nabla^2 u + f, \\
 {\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g.\end{split}\]</div>
-<p>The support of LaTeX mathematics varies among the formats.  Output
-<tt class="docutils literal"><span class="pre">latex</span></tt> and <tt class="docutils literal"><span class="pre">pdflatex</span></tt> has of course full support. The <tt class="docutils literal"><span class="pre">html</span></tt> format
-supports single equations and multiple equations via the align
-environment, also with labels. Although <tt class="docutils literal"><span class="pre">sphinx</span></tt>, like <tt class="docutils literal"><span class="pre">html</span></tt>, employs
-MathJax, it does not support labels in align environments.  Markdown
-(<tt class="docutils literal"><span class="pre">pandoc</span></tt> format) allows single equations and inline mathematics.
-Going from Doconce to MS Word is most easily done by outputting in
+<p>The support of LaTeX mathematics varies among the formats:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Output <tt class="docutils literal"><span class="pre">latex</span></tt> and <tt class="docutils literal"><span class="pre">pdflatex</span></tt> has of course full support.</li>
+<li>The <tt class="docutils literal"><span class="pre">html</span></tt> format supports single equations and multiple equations
+via the align environment, also with labels.</li>
+<li>Although <tt class="docutils literal"><span class="pre">sphinx</span></tt>, like <tt class="docutils literal"><span class="pre">html</span></tt>, employs
+MathJax, it does not support labels in align environments.</li>
+<li>Markdown (<tt class="docutils literal"><span class="pre">pandoc</span></tt> format) allows single equations and inline mathematics.</li>
+</ul>
+</div></blockquote>
+<p>Going from Doconce to MS Word is most easily done by outputting in
 the <tt class="docutils literal"><span class="pre">latex</span></tt> format and then using the Pandoc program to translate
 from LaTeX to MS Word (note that only a subset of LaTeX will be
 translated correctly).</p>
@@ -1839,7 +1912,19 @@ in two versions. After <tt class="docutils literal"><span class="pre">#if</span>
 <span class="pre">&quot;sphinx&quot;,</span> <span class="pre">&quot;mwiki&quot;,</span> <span class="pre">&quot;pandoc&quot;)</span></tt> one places LaTeX mathematics, and after
 <tt class="docutils literal"><span class="pre">#else</span></tt> one can write inline mathematics in a way that looks nice in
 plain text and wiki formats without support for mathematical
-typesetting.</p>
+typesetting. Such branching can be used with mako if-else statements
+alternatively:</p>
+<div class="highlight-text"><div class="highlight"><pre>% if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;, &quot;html&quot;, &quot;sphinx&quot;, &quot;mwiki&quot;, &quot;pandoc&quot;):
+!bt
+\[ \sin^2x + \cos^2x = 1,\]
+!et
+% else:
+!bc
+              sin^2(x) + cos^2(x) = 1,
+!ec
+% endif
+</pre></div>
+</div>
 <div class="section" id="mathematics-for-powerpoint-openoffice">
 <h3>Mathematics for PowerPoint/OpenOffice<a class="headerlink" href="#mathematics-for-powerpoint-openoffice" title="Permalink to this headline">¶</a></h3>
 <p>If you have LaTeX mathematics written in Doconce, it is fairly easy
@@ -1915,8 +2000,8 @@ expressions).</p>
 </div>
 <p>will then be rendered to</p>
 <div class="math">
-\[\begin{split}{\partial u\over\partial t} &amp;= \nabla^2 u + f, \\
-{\partial v\over\partial t} &amp;= \nabla\cdot(q(u)\nabla v) + g.\end{split}\]</div>
+\[\begin{split}\pmb{x}\cdot\pmb{n}  &amp;=  0, \\
+\frac{D{\vec u}{dt}}  &amp;=  \pmb{Q} {\thinspace . }\end{split}\]</div>
 <p>in the current format.</p>
 </div>
 <div class="section" id="preprocessing-steps">
@@ -2304,7 +2389,8 @@ Using paragraphs instead of list items is a good idea also here.</p>
 <div class="section" id="title-level-inconsistent">
 <h3>Title level inconsistent<a class="headerlink" href="#title-level-inconsistent" title="Permalink to this headline">¶</a></h3>
 <p>reST does not like jumps in the levels of headings. For example, you cannot
-have a <tt class="docutils literal"><span class="pre">===</span></tt> heading after a <tt class="docutils literal"><span class="pre">=======</span></tt> heading.</p>
+have a <tt class="docutils literal"><span class="pre">===</span></tt> (paragraph) heading after a <tt class="docutils literal"><span class="pre">=======</span></tt> (section) heading without
+a <tt class="docutils literal"><span class="pre">=====</span></tt> (subsection) heading in between.</p>
 </div>
 <div class="section" id="lists-do-not-appear-in-rst-files">
 <h3>Lists do not appear in .rst files<a class="headerlink" href="#lists-do-not-appear-in-rst-files" title="Permalink to this headline">¶</a></h3>
@@ -2710,6 +2796,8 @@ groundwater flow.
 <li><a class="reference internal" href="#doconce">Doconce</a></li>
 <li><a class="reference internal" href="#dependencies">Dependencies</a><ul>
 <li><a class="reference internal" href="#preprocessors">Preprocessors</a></li>
+<li><a class="reference internal" href="#image-file-handling">Image file handling</a></li>
+<li><a class="reference internal" href="#spellcheck">Spellcheck</a></li>
 <li><a class="reference internal" href="#ptex2tex-for-latex-output">Ptex2tex for LaTeX Output</a></li>
 <li><a class="reference internal" href="#restructuredtext-rest-output">reStructuredText (reST) Output</a></li>
 <li><a class="reference internal" href="#markdown-and-pandoc-output">Markdown and Pandoc Output</a></li>
@@ -2720,6 +2808,8 @@ groundwater flow.
 </ul>
 </li>
 <li><a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a><ul>
+<li><a class="reference internal" href="#preprocessing">Preprocessing</a></li>
+<li><a class="reference internal" href="#removal-of-inline-comments">Removal of inline comments</a></li>
 <li><a class="reference internal" href="#html">HTML</a></li>
 <li><a class="reference internal" href="#pandoc-and-markdown">Pandoc and Markdown</a></li>
 <li><a class="reference internal" href="#latex">LaTeX</a></li>
@@ -2743,9 +2833,7 @@ groundwater flow.
 <li><a class="reference internal" href="#inline-tagging">Inline Tagging</a></li>
 <li><a class="reference internal" href="#comments">Comments</a></li>
 <li><a class="reference internal" href="#cross-referencing">Cross-Referencing</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#generalized-cross-referencing">Generalized Cross-Referencing</a><ul>
+<li><a class="reference internal" href="#generalized-cross-referencing">Generalized Cross-Referencing</a></li>
 <li><a class="reference internal" href="#index-and-bibliography">Index and Bibliography</a></li>
 <li><a class="reference internal" href="#tables">Tables</a></li>
 <li><a class="reference internal" href="#exercises-problems-or-projects">Exercises, Problems, or Projects</a></li>

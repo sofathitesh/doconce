@@ -53,7 +53,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Dec 26, 2012
+Dec 30, 2012
 
 \end{DUfieldlist}
 
@@ -578,9 +578,25 @@ will applied the expression to the right.
 Blocks of LaTeX mathematics are written within
 \texttt{!bt}
 and
-\texttt{!et} (begin/end TeX) directives starting on the beginning of a line
-(see the source of this document for precise syntax).
-Here is a result:
+\texttt{!et} (begin/end TeX) directives starting on the beginning of a line:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+!bt\\
+\textbackslash{}begin\{align*\}\\
+\textbackslash{}nabla\textbackslash{}cdot~\textbackslash{}pmb\{u\}~\&=~0,\textbackslash{}\textbackslash{}\\
+\textbackslash{}nabla\textbackslash{}times~\textbackslash{}pmb\{u\}~\&=~0.\\
+\textbackslash{}end\{align*\}\\
+!et
+}
+\end{quote}
+
+% Note: !bt and !et (and !bc and !ec below) are used to illustrate
+
+% tex and code blocks in inside verbatim blocks and are replaced
+
+% by !bt, !et, !bc, and !ec after all other formatting is finished.
+
+This LaTeX code gets rendered as:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 \textbackslash{}begin\{align*\}\\
@@ -590,7 +606,16 @@ Here is a result:
 }
 \end{quote}
 
-Or a single equation:
+Here is a single equation:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+!bt\\
+\textbackslash{}{[}~\textbackslash{}frac\{\textbackslash{}partial\textbackslash{}pmb\{u\}\}\{\textbackslash{}partial~t\}~+~\textbackslash{}pmb\{u\}\textbackslash{}cdot\textbackslash{}nabla\textbackslash{}pmb\{u\}~=~0.\textbackslash{}{]}\\
+!et
+}
+\end{quote}
+
+which results in:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 \textbackslash{}{[}~\textbackslash{}frac\{\textbackslash{}partial\textbackslash{}pmb\{u\}\}\{\textbackslash{}partial~t\}~+~\textbackslash{}pmb\{u\}\textbackslash{}cdot\textbackslash{}nabla\textbackslash{}pmb\{u\}~=~0.\textbackslash{}{]}
@@ -1079,6 +1104,53 @@ Here~goes~a~full~solution~of~the~whole~exercise.\\
 \end{quote}
 
 By default, answers, solutions, and hints are typeset as paragraphs.
+
+
+%___________________________________________________________________________
+
+\section*{\phantomsection%
+  Environments%
+  \addcontentsline{toc}{section}{Environments}%
+  \label{environments}%
+}
+
+Doconce environments start with \texttt{!benvirname} and end with \texttt{!eenvirname},
+where \texttt{envirname} is the name of the environment. Here is a listing of
+the environments:
+%
+\begin{quote}
+%
+\begin{itemize}
+
+\item \texttt{c}: computer code (or verbatim text)
+
+\item \texttt{t}: math blocks with LaTeX syntax
+
+\item \texttt{subex}: sub-exercise
+
+\item \texttt{ans}: short answer to exercise or sub-exercise
+
+\item \texttt{sol}: full solution to exercise or sub-exercise
+
+\item \texttt{notes}: multi-line notes to be included or not
+
+\item \texttt{quote}: indented text
+
+\item %
+\begin{description}
+\item[{\texttt{notice}, \texttt{summary}, \texttt{warning}, \texttt{question}, \texttt{hint}: boxes with}] \leavevmode 
+specialy typesetting (or symbols)
+
+\end{description}
+
+\item \texttt{pop}: text to gradually pop up in slide presentations
+
+\item \texttt{slidecell}: indication of cells in a grid layout for elements on a
+slide
+
+\end{itemize}
+
+\end{quote}
 
 
 %___________________________________________________________________________
