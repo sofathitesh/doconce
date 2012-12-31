@@ -60,7 +60,9 @@ Dec 31, 2012
 
 \end{DUfieldlist}
 
-% lines beginning with # are comment lines
+% lines beginning with # are doconce comment lines
+
+% (documents can also have mako comment lines)
 
 
 %___________________________________________________________________________
@@ -3009,45 +3011,39 @@ The preprocess and mako programs always have the variable \texttt{FORMAT}
 defined as the desired output format of Doconce (\texttt{html}, \texttt{latex},
 \texttt{plain}, \texttt{rst}, \texttt{sphinx}, \texttt{epydoc}, \texttt{st}).  It is then easy to test on
 the value of \texttt{FORMAT} and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example:
+formats. Below is an example:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
-\#~If~PNGFIGS~is~defined,~PNG~files~are~used,~otherwise~Encapsulated\\
-\#~PostScript~files~are~used.\\
+First~some~math:\\
 ~\\
-\#~\#if~FORMAT~==~"latex"\\
-\#~Use~latex~with~subfigures~(a)~and~(b)\\
-\textbackslash{}begin\{figure\}\\
-label\{fig:wavepackets\}\\
-~~\textbackslash{}begin\{center\}\\
-\#~~\#ifdef~PNGFIGS\\
-\textbackslash{}subfigure{[}{]}\{\textbackslash{}includegraphics{[}width=0.49\textbackslash{}linewidth{]}\{figs/wavepacket\_0001\}\}\\
-\#~~\#else\\
-\textbackslash{}subfigure{[}{]}\{\textbackslash{}includegraphics{[}width=0.49\textbackslash{}linewidth{]}\{figs/wavepacket\_0001.eps\}\}\\
-\#~~\#endif\\
+!bt\\
+\textbackslash{}begin\{align\}\\
+x~\&=~3\\
+label\{x:eq1\}\textbackslash{}\textbackslash{}\\
+y~\&=~5\\
+label\{y:eq1\}\\
+\textbackslash{}end\{align\}\\
+!et\\
+Let~us~now~reason~about~this.\\
 ~\\
-\#~~\#ifdef~PNGFIGS\\
-\textbackslash{}subfigure{[}{]}\{\textbackslash{}includegraphics{[}width=0.49\textbackslash{}linewidth{]}\{figs/wavepacket\_0010\}\}\\
-\#~~\#else\\
-\textbackslash{}subfigure{[}{]}\{\textbackslash{}includegraphics{[}width=0.49\textbackslash{}linewidth{]}\{figs/wavepacket\_0010.eps\}\}\\
-\#~~\#endif\\
-~~\textbackslash{}end\{center\}\\
-~~\textbackslash{}caption\{\\
-~~Wavepackets~at~time~(a)~0.1~s~and~(b)~0.2~s.\\
-~~\}\\
-\textbackslash{}end\{figure\}\\
+\#~Sphinx~cannot~refer~to~labels~in~align~environments\\
 ~\\
+\#~\#if~FORMAT~in~("latex",~"pdflatex",~"html")\\
+From~(\textbackslash{}ref\{x:eq\})-(\textbackslash{}ref\{y:eq1\})~we~get~that\\
+\#~\#elif~FORMAT~==~"sphinx"\\
+From\\
+!bt\\
+\textbackslash{}{[}~x~=~3~\textbackslash{}{]}\\
+!et\\
+and\\
+!bt\\
+\textbackslash{}{[}~y=~5~\textbackslash{}{]}\\
+!et\\
+it~follows~that\\
 \#~\#else\\
-~\\
-\#~Use~default~Doconce~figure~handling~for~all~other~formats\\
-~\\
-FIGURE:{[}figs/wavepacket\_0001,~width=400{]}~Wavepacket~at~time~0.1~s.\\
-~\\
-FIGURE:{[}figs/wavepacket\_0010,~width=400{]}~Wavepacket~at~time~0.2~s.\\
-~\\
-\#~\#endif
+From~the~above~equations~it~follows~that\\
+\#~\#endif\\
+\$x+y\$~is~8.
 }
 \end{quote}
 

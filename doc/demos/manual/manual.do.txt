@@ -3,7 +3,8 @@ AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of O
 DATE: today
 
 
-# lines beginning with # are comment lines
+# lines beginning with # are doconce comment lines
+# (documents can also have mako comment lines)
 
 
 ======= What Is Doconce? =======
@@ -1312,9 +1313,7 @@ The preprocess and mako programs always have the variable `FORMAT`
 defined as the desired output format of Doconce (`html`, `latex`,
 `plain`, `rst`, `sphinx`, `epydoc`, `st`).  It is then easy to test on
 the value of `FORMAT` and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example:
+formats. Below is an example:
 
 @@@CODE _format_specific1.do.txt
 
