@@ -3,7 +3,8 @@ AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of O
 DATE: today
 
 
-# lines beginning with # are comment lines
+# lines beginning with # are doconce comment lines
+# (documents can also have mako comment lines)
 
 
 ======= What Is Doconce? =======
