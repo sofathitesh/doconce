@@ -26,7 +26,7 @@ cp -r figs sphinx-rootdir
 cd sphinx-rootdir
 make clean
 make html
-cd ../../..
+cd ..
 
 
 # rst:

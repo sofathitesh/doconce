@@ -1,34 +1,31 @@
-# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-# PostScript files are used.
 
-# #if FORMAT == "latex"
-# Use latex with subfigures (a) and (b)
-\begin{figure}
-label{fig:wavepackets}
-  \begin{center}
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-#  #endif
+First some math:
 
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-#  #endif
-  \end{center}
-  \caption{
-  Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-  }
-\end{figure}
+|bt
+\begin{align}
+x &= 3
+label{x:eq1}\\
+y &= 5
+label{y:eq1}
+\end{align}
+|et
+Let us now reason about this.
 
+# Sphinx cannot refer to labels in align environments
+
+# #if FORMAT in ("latex", "pdflatex", "html")
+From (\ref{x:eq})-(\ref{y:eq1}) we get that
+# #elif FORMAT == "sphinx"
+From
+|bt
+\[ x = 3 \]
+|et
+and
+|bt
+\[ y= 5 \]
+|et
+it follows that
 # #else
-
-# Use default Doconce figure handling for all other formats
-
-FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-
-FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-
+From the above equations it follows that
 # #endif
+$x+y$ is 8.

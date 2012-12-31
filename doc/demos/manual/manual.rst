@@ -8,7 +8,9 @@ Doconce Description
 
 :Date: Dec 31, 2012
 
-.. lines beginning with # are comment lines
+.. lines beginning with # are doconce comment lines
+
+.. (documents can also have mako comment lines)
 
 
 
@@ -2409,45 +2411,39 @@ The preprocess and mako programs always have the variable ``FORMAT``
 defined as the desired output format of Doconce (``html``, ``latex``,
 ``plain``, ``rst``, ``sphinx``, ``epydoc``, ``st``).  It is then easy to test on
 the value of ``FORMAT`` and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example::
+formats. Below is an example::
 
 
-        # If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-        # PostScript files are used.
+        First some math:
         
-        # #if FORMAT == "latex"
-        # Use latex with subfigures (a) and (b)
-        \begin{figure}
-        label{fig:wavepackets}
-          \begin{center}
-        #  #ifdef PNGFIGS
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-        #  #else
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-        #  #endif
+        !bt
+        \begin{align}
+        x &= 3
+        label{x:eq1}\\
+        y &= 5
+        label{y:eq1}
+        \end{align}
+        !et
+        Let us now reason about this.
         
-        #  #ifdef PNGFIGS
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-        #  #else
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-        #  #endif
-          \end{center}
-          \caption{
-          Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-          }
-        \end{figure}
+        # Sphinx cannot refer to labels in align environments
         
+        # #if FORMAT in ("latex", "pdflatex", "html")
+        From (\ref{x:eq})-(\ref{y:eq1}) we get that
+        # #elif FORMAT == "sphinx"
+        From
+        !bt
+        \[ x = 3 \]
+        !et
+        and
+        !bt
+        \[ y= 5 \]
+        !et
+        it follows that
         # #else
-        
-        # Use default Doconce figure handling for all other formats
-        
-        FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-        
-        FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-        
+        From the above equations it follows that
         # #endif
+        $x+y$ is 8.
 
 
 Other user-defined variables for the preprocessor can be set at

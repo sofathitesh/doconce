@@ -1313,9 +1313,7 @@ The preprocess and mako programs always have the variable `FORMAT`
 defined as the desired output format of Doconce (`html`, `latex`,
 `plain`, `rst`, `sphinx`, `epydoc`, `st`).  It is then easy to test on
 the value of `FORMAT` and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example:
+formats. Below is an example:
 
 @@@CODE _format_specific1.do.txt
 

@@ -29688,7 +29688,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 30 Dec 2012 (07:35)</center>
+<center>Mon, 31 Dec 2012 (06:07)</center>
 
 
 
@@ -29819,7 +29819,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Sun, 30 Dec 2012 (07:35)</center>
+<center>Mon, 31 Dec 2012 (06:07)</center>
 
 
 
@@ -29965,17 +29965,7 @@ cp -r figs sphinx-rootdir
 cd sphinx-rootdir
 make clean
 make html
-make latex
-doconce subst '\.\*' '.pdf' _build/latex/DoconceManual.tex  # .* doesn't work
-ln -s `pwd`/../figs _build/latex/figs
-cd _build/latex
-make clean
-# encounter some strange error with labels...
-make all-pdf <<EOF
-r
-EOF
-cp DoconceManual.pdf ../../../manual.sphinx.pdf
-cd ../../..
+cd ..
 
 
 # rst:
@@ -30035,7 +30025,7 @@ rm -f *.ps
 
 rm -rf demo
 mkdir demo
-cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.md sphinx-rootdir/_build/html demo
+cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.md sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -30101,7 +30091,8 @@ AUTHOR: Hans Petter Langtangen at Simula Research Laboratory and University of O
 DATE: today
 
 
-# lines beginning with # are comment lines
+# lines beginning with # are doconce comment lines
+# (documents can also have mako comment lines)
 
 
 ======= What Is Doconce? =======
@@ -31410,9 +31401,7 @@ The preprocess and mako programs always have the variable `FORMAT`
 defined as the desired output format of Doconce (`html`, `latex`,
 `plain`, `rst`, `sphinx`, `epydoc`, `st`).  It is then easy to test on
 the value of `FORMAT` and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example:
+formats. Below is an example:
 
 @@@CODE _format_specific1.do.txt
 
@@ -32265,7 +32254,8 @@ $$
 <center><h4>Jan 32, 2100</h4></center> <!-- date -->
 <p>
 
-<!-- lines beginning with # are comment lines -->
+<!-- lines beginning with # are doconce comment lines -->
+<!-- (documents can also have mako comment lines) -->
 
 <p>
 
@@ -34953,47 +34943,41 @@ The preprocess and mako programs always have the variable <tt>FORMAT</tt>
 defined as the desired output format of Doconce (<tt>html</tt>, <tt>latex</tt>,
 <tt>plain</tt>, <tt>rst</tt>, <tt>sphinx</tt>, <tt>epydoc</tt>, <tt>st</tt>).  It is then easy to test on
 the value of <tt>FORMAT</tt> and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example:
+formats. Below is an example:
 
 <p>
 <!-- begin verbatim block  pro-->
 <pre>
-# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-# PostScript files are used.
+First some math:
 
-# #if FORMAT == &quot;latex&quot;
-# Use latex with subfigures (a) and (b)
-\begin{figure}
-label{fig:wavepackets}
-  \begin{center}
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-#  #endif
+!bt
+\begin{align}
+x &amp;= 3
+label{x:eq1}\\
+y &amp;= 5
+label{y:eq1}
+\end{align}
+!et
+Let us now reason about this.
 
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-#  #endif
-  \end{center}
-  \caption{
-  Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-  }
-\end{figure}
+# Sphinx cannot refer to labels in align environments
 
+# #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;, &quot;html&quot;)
+From (\ref{x:eq})-(\ref{y:eq1}) we get that
+# #elif FORMAT == &quot;sphinx&quot;
+From
+!bt
+\[ x = 3 \]
+!et
+and
+!bt
+\[ y= 5 \]
+!et
+it follows that
 # #else
-
-# Use default Doconce figure handling for all other formats
-
-FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-
-FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-
+From the above equations it follows that
 # #endif
+$x+y$ is 8.
 </pre>
 <! -- end verbatim block -->
 
@@ -36168,7 +36152,8 @@ Jan 32, 2100
 % #endif
 
 
-% lines beginning with # are comment lines
+% lines beginning with # are doconce comment lines
+% (documents can also have mako comment lines)
 
 
 \section{What Is Doconce?}
@@ -38469,45 +38454,39 @@ The preprocess and mako programs always have the variable \code{FORMAT}
 defined as the desired output format of Doconce (\code{html}, \code{latex},
 \code{plain}, \code{rst}, \code{sphinx}, \code{epydoc}, \code{st}).  It is then easy to test on
 the value of \code{FORMAT} and take different actions for different
-formats. For example, one may create special {\LaTeX} output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example:
+formats. Below is an example:
 
 \bpro
-# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-# PostScript files are used.
+First some math:
 
-# #if FORMAT == "latex"
-# Use latex with subfigures (a) and (b)
-\begin{figure}
-label{fig:wavepackets}
-  \begin{center}
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-#  #endif
+!bt
+\begin{align}
+x &= 3
+label{x:eq1}\\
+y &= 5
+label{y:eq1}
+\end{align}
+!et
+Let us now reason about this.
 
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-#  #endif
-  \end{center}
-  \caption{
-  Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-  }
-\end{figure}
+# Sphinx cannot refer to labels in align environments
 
+# #if FORMAT in ("latex", "pdflatex", "html")
+From (\ref{x:eq})-(\ref{y:eq1}) we get that
+# #elif FORMAT == "sphinx"
+From
+!bt
+\[ x = 3 \]
+!et
+and
+!bt
+\[ y= 5 \]
+!et
+it follows that
 # #else
-
-# Use default Doconce figure handling for all other formats
-
-FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-
-FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-
+From the above equations it follows that
 # #endif
+$x+y$ is 8.
 \epro
 
 Other user-defined variables for the preprocessor can be set at
@@ -39230,7 +39209,9 @@ Doconce Description
 
 :Date: Jan 32, 2100
 
-.. lines beginning with # are comment lines
+.. lines beginning with # are doconce comment lines
+
+.. (documents can also have mako comment lines)
 
 
 
@@ -41631,45 +41612,39 @@ The preprocess and mako programs always have the variable ``FORMAT``
 defined as the desired output format of Doconce (``html``, ``latex``,
 ``plain``, ``rst``, ``sphinx``, ``epydoc``, ``st``).  It is then easy to test on
 the value of ``FORMAT`` and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example::
+formats. Below is an example::
 
 
-        # If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-        # PostScript files are used.
+        First some math:
         
-        # #if FORMAT == "latex"
-        # Use latex with subfigures (a) and (b)
-        \begin{figure}
-        label{fig:wavepackets}
-          \begin{center}
-        #  #ifdef PNGFIGS
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-        #  #else
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-        #  #endif
+        !bt
+        \begin{align}
+        x &= 3
+        label{x:eq1}\\
+        y &= 5
+        label{y:eq1}
+        \end{align}
+        !et
+        Let us now reason about this.
         
-        #  #ifdef PNGFIGS
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-        #  #else
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-        #  #endif
-          \end{center}
-          \caption{
-          Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-          }
-        \end{figure}
+        # Sphinx cannot refer to labels in align environments
         
+        # #if FORMAT in ("latex", "pdflatex", "html")
+        From (\ref{x:eq})-(\ref{y:eq1}) we get that
+        # #elif FORMAT == "sphinx"
+        From
+        !bt
+        \[ x = 3 \]
+        !et
+        and
+        !bt
+        \[ y= 5 \]
+        !et
+        it follows that
         # #else
-        
-        # Use default Doconce figure handling for all other formats
-        
-        FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-        
-        FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-        
+        From the above equations it follows that
         # #endif
+        $x+y$ is 8.
 
 
 Other user-defined variables for the preprocessor can be set at
@@ -42504,7 +42479,9 @@ Doconce Description
 
 :Date: Jan 32, 2100
 
-.. lines beginning with # are comment lines
+.. lines beginning with # are doconce comment lines
+
+.. (documents can also have mako comment lines)
 
 
 
@@ -45150,47 +45127,41 @@ The preprocess and mako programs always have the variable ``FORMAT``
 defined as the desired output format of Doconce (``html``, ``latex``,
 ``plain``, ``rst``, ``sphinx``, ``epydoc``, ``st``).  It is then easy to test on
 the value of ``FORMAT`` and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example:
+formats. Below is an example:
 
 
 .. code-block:: python
 
-        # If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-        # PostScript files are used.
+        First some math:
         
-        # #if FORMAT == "latex"
-        # Use latex with subfigures (a) and (b)
-        \begin{figure}
-        label{fig:wavepackets}
-          \begin{center}
-        #  #ifdef PNGFIGS
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-        #  #else
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-        #  #endif
+        !bt
+        \begin{align}
+        x &= 3
+        label{x:eq1}\\
+        y &= 5
+        label{y:eq1}
+        \end{align}
+        !et
+        Let us now reason about this.
         
-        #  #ifdef PNGFIGS
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-        #  #else
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-        #  #endif
-          \end{center}
-          \caption{
-          Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-          }
-        \end{figure}
+        # Sphinx cannot refer to labels in align environments
         
+        # #if FORMAT in ("latex", "pdflatex", "html")
+        From (\ref{x:eq})-(\ref{y:eq1}) we get that
+        # #elif FORMAT == "sphinx"
+        From
+        !bt
+        \[ x = 3 \]
+        !et
+        and
+        !bt
+        \[ y= 5 \]
+        !et
+        it follows that
         # #else
-        
-        # Use default Doconce figure handling for all other formats
-        
-        FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-        
-        FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-        
+        From the above equations it follows that
         # #endif
+        $x+y$ is 8.
 
 
 Other user-defined variables for the preprocessor can be set at
@@ -46073,7 +46044,8 @@ By *Hans Petter Langtangen*
 
 ==== Jan 32, 2100 ====
 
-<wiki:comment> lines beginning with # are comment lines </wiki:comment>
+<wiki:comment> lines beginning with # are doconce comment lines </wiki:comment>
+<wiki:comment> (documents can also have mako comment lines) </wiki:comment>
 
 
 
@@ -48183,45 +48155,39 @@ The preprocess and mako programs always have the variable `FORMAT`
 defined as the desired output format of Doconce (`html`, `latex`,
 `plain`, `rst`, `sphinx`, `epydoc`, `st`).  It is then easy to test on
 the value of `FORMAT` and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example:
+formats. Below is an example:
 
 {{{
-# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-# PostScript files are used.
+First some math:
 
-# #if FORMAT == "latex"
-# Use latex with subfigures (a) and (b)
-\begin{figure}
-label{fig:wavepackets}
-  \begin{center}
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-#  #endif
+!bt
+\begin{align}
+x &= 3
+label{x:eq1}\\
+y &= 5
+label{y:eq1}
+\end{align}
+!et
+Let us now reason about this.
 
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-#  #endif
-  \end{center}
-  \caption{
-  Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-  }
-\end{figure}
+# Sphinx cannot refer to labels in align environments
 
+# #if FORMAT in ("latex", "pdflatex", "html")
+From (\ref{x:eq})-(\ref{y:eq1}) we get that
+# #elif FORMAT == "sphinx"
+From
+!bt
+\[ x = 3 \]
+!et
+and
+!bt
+\[ y= 5 \]
+!et
+it follows that
 # #else
-
-# Use default Doconce figure handling for all other formats
-
-FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-
-FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-
+From the above equations it follows that
 # #endif
+$x+y$ is 8.
 }}}
 
 Other user-defined variables for the preprocessor can be set at
@@ -48951,7 +48917,8 @@ By '''Hans Petter Langtangen'''
 
 ==== Jan 32, 2100 ====
 
-<!--> lines beginning with # are comment lines -->
+<!--> lines beginning with # are doconce comment lines -->
+<!--> (documents can also have mako comment lines) -->
 
 
 
@@ -51013,45 +50980,39 @@ The preprocess and mako programs always have the variable <code>FORMAT</code>
 defined as the desired output format of Doconce (<code>html</code>, <code>latex</code>,
 <code>plain</code>, <code>rst</code>, <code>sphinx</code>, <code>epydoc</code>, <code>st</code>).  It is then easy to test on
 the value of <code>FORMAT</code> and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example:
+formats. Below is an example:
 
 <syntaxhighlight lang="python">
-# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-# PostScript files are used.
+First some math:
 
-# #if FORMAT == "latex"
-# Use latex with subfigures (a) and (b)
-\begin{figure}
-label{fig:wavepackets}
-  \begin{center}
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-#  #endif
+!bt
+\begin{align}
+x &= 3
+label{x:eq1}\\
+y &= 5
+label{y:eq1}
+\end{align}
+!et
+Let us now reason about this.
 
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-#  #endif
-  \end{center}
-  \caption{
-  Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-  }
-\end{figure}
+# Sphinx cannot refer to labels in align environments
 
+# #if FORMAT in ("latex", "pdflatex", "html")
+From (\ref{x:eq})-(\ref{y:eq1}) we get that
+# #elif FORMAT == "sphinx"
+From
+!bt
+\[ x = 3 \]
+!et
+and
+!bt
+\[ y= 5 \]
+!et
+it follows that
 # #else
-
-# Use default Doconce figure handling for all other formats
-
-FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-
-FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-
+From the above equations it follows that
 # #endif
+$x+y$ is 8.
 </code>
 
 Other user-defined variables for the preprocessor can be set at
@@ -51781,7 +51742,8 @@ By **Hans Petter Langtangen**
 
 === Jan 32, 2100 ===
 
-<wiki:comment> lines beginning with # are comment lines </wiki:comment>
+<wiki:comment> lines beginning with # are doconce comment lines </wiki:comment>
+<wiki:comment> (documents can also have mako comment lines) </wiki:comment>
 
 
 
@@ -53899,45 +53861,39 @@ The preprocess and mako programs always have the variable {{{FORMAT}}}
 defined as the desired output format of Doconce ({{{html}}}, {{{latex}}},
 {{{plain}}}, {{{rst}}}, {{{sphinx}}}, {{{epydoc}}}, {{{st}}}).  It is then easy to test on
 the value of {{{FORMAT}}} and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example:
+formats. Below is an example:
 
 {{{
-# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-# PostScript files are used.
+First some math:
 
-# #if FORMAT == "latex"
-# Use latex with subfigures (a) and (b)
-\begin{figure}
-label{fig:wavepackets}
-  \begin{center}
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-#  #endif
+!bt
+\begin{align}
+x &= 3
+label{x:eq1}\\
+y &= 5
+label{y:eq1}
+\end{align}
+!et
+Let us now reason about this.
 
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-#  #endif
-  \end{center}
-  \caption{
-  Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-  }
-\end{figure}
+# Sphinx cannot refer to labels in align environments
 
+# #if FORMAT in ("latex", "pdflatex", "html")
+From (\ref{x:eq})-(\ref{y:eq1}) we get that
+# #elif FORMAT == "sphinx"
+From
+!bt
+\[ x = 3 \]
+!et
+and
+!bt
+\[ y= 5 \]
+!et
+it follows that
 # #else
-
-# Use default Doconce figure handling for all other formats
-
-FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-
-FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-
+From the above equations it follows that
 # #endif
+$x+y$ is 8.
 }}}
 
 Other user-defined variables for the preprocessor can be set at
@@ -56840,45 +56796,39 @@ The preprocess and mako programs always have the variable 'FORMAT'
 defined as the desired output format of Doconce ('html', 'latex',
 'plain', 'rst', 'sphinx', 'epydoc', 'st').  It is then easy to test on
 the value of 'FORMAT' and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example::
+formats. Below is an example::
 
 
-        # If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-        # PostScript files are used.
+        First some math:
         
-        # #if FORMAT == "latex"
-        # Use latex with subfigures (a) and (b)
-        \begin{figure}
-        label{fig:wavepackets}
-          \begin{center}
-        #  #ifdef PNGFIGS
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-        #  #else
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-        #  #endif
+        !bt
+        \begin{align}
+        x &= 3
+        label{x:eq1}\\
+        y &= 5
+        label{y:eq1}
+        \end{align}
+        !et
+        Let us now reason about this.
         
-        #  #ifdef PNGFIGS
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-        #  #else
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-        #  #endif
-          \end{center}
-          \caption{
-          Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-          }
-        \end{figure}
+        # Sphinx cannot refer to labels in align environments
         
+        # #if FORMAT in ("latex", "pdflatex", "html")
+        From (\ref{x:eq})-(\ref{y:eq1}) we get that
+        # #elif FORMAT == "sphinx"
+        From
+        !bt
+        \[ x = 3 \]
+        !et
+        and
+        !bt
+        \[ y= 5 \]
+        !et
+        it follows that
         # #else
-        
-        # Use default Doconce figure handling for all other formats
-        
-        FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-        
-        FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-        
+        From the above equations it follows that
         # #endif
+        $x+y$ is 8.
 
 
 Other user-defined variables for the preprocessor can be set at
@@ -59863,45 +59813,39 @@ The preprocess and mako programs always have the variable C{FORMAT}
 defined as the desired output format of Doconce (C{html}, C{latex},
 C{plain}, C{rst}, C{sphinx}, C{epydoc}, C{st}).  It is then easy to test on
 the value of C{FORMAT} and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example::
+formats. Below is an example::
 
 
-        # If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-        # PostScript files are used.
+        First some math:
         
-        # #if FORMAT == "latex"
-        # Use latex with subfigures (a) and (b)
-        \begin{figure}
-        label{fig:wavepackets}
-          \begin{center}
-        #  #ifdef PNGFIGS
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-        #  #else
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-        #  #endif
+        !bt
+        \begin{align}
+        x &= 3
+        label{x:eq1}\\
+        y &= 5
+        label{y:eq1}
+        \end{align}
+        !et
+        Let us now reason about this.
         
-        #  #ifdef PNGFIGS
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-        #  #else
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-        #  #endif
-          \end{center}
-          \caption{
-          Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-          }
-        \end{figure}
+        # Sphinx cannot refer to labels in align environments
         
+        # #if FORMAT in ("latex", "pdflatex", "html")
+        From (\ref{x:eq})-(\ref{y:eq1}) we get that
+        # #elif FORMAT == "sphinx"
+        From
+        !bt
+        \[ x = 3 \]
+        !et
+        and
+        !bt
+        \[ y= 5 \]
+        !et
+        it follows that
         # #else
-        
-        # Use default Doconce figure handling for all other formats
-        
-        FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-        
-        FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-        
+        From the above equations it follows that
         # #endif
+        $x+y$ is 8.
 
 
 Other user-defined variables for the preprocessor can be set at
@@ -62985,45 +62929,39 @@ The preprocess and mako programs always have the variable FORMAT
 defined as the desired output format of Doconce (html, latex,
 plain, rst, sphinx, epydoc, st).  It is then easy to test on
 the value of FORMAT and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example::
+formats. Below is an example::
 
 
-        # If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-        # PostScript files are used.
+        First some math:
         
-        # #if FORMAT == "latex"
-        # Use latex with subfigures (a) and (b)
-        \begin{figure}
-        label{fig:wavepackets}
-          \begin{center}
-        #  #ifdef PNGFIGS
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-        #  #else
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-        #  #endif
+        !bt
+        \begin{align}
+        x &= 3
+        label{x:eq1}\\
+        y &= 5
+        label{y:eq1}
+        \end{align}
+        !et
+        Let us now reason about this.
         
-        #  #ifdef PNGFIGS
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-        #  #else
-        \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-        #  #endif
-          \end{center}
-          \caption{
-          Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-          }
-        \end{figure}
+        # Sphinx cannot refer to labels in align environments
         
+        # #if FORMAT in ("latex", "pdflatex", "html")
+        From (\ref{x:eq})-(\ref{y:eq1}) we get that
+        # #elif FORMAT == "sphinx"
+        From
+        !bt
+        \[ x = 3 \]
+        !et
+        and
+        !bt
+        \[ y= 5 \]
+        !et
+        it follows that
         # #else
-        
-        # Use default Doconce figure handling for all other formats
-        
-        FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-        
-        FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-        
+        From the above equations it follows that
         # #endif
+        $x+y$ is 8.
 
 
 Other user-defined variables for the preprocessor can be set at
@@ -63844,7 +63782,8 @@ Bibliography
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
 % Jan 32, 2100
 
-<!-- lines beginning with # are comment lines -->
+<!-- lines beginning with # are doconce comment lines -->
+<!-- (documents can also have mako comment lines) -->
 
 
 What Is Doconce?
@@ -66283,46 +66222,40 @@ The preprocess and mako programs always have the variable `FORMAT`
 defined as the desired output format of Doconce (`html`, `latex`,
 `plain`, `rst`, `sphinx`, `epydoc`, `st`).  It is then easy to test on
 the value of `FORMAT` and take different actions for different
-formats. For example, one may create special LaTeX output for figures,
-say with multiple plots within a figure, while other formats may apply
-a separate figure for each plot. Below is an example:
+formats. Below is an example:
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
-# If PNGFIGS is defined, PNG files are used, otherwise Encapsulated
-# PostScript files are used.
+First some math:
 
-# #if FORMAT == "latex"
-# Use latex with subfigures (a) and (b)
-\begin{figure}
-\label{fig:wavepackets}
-  \begin{center}
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0001.eps}}
-#  #endif
+!bt
+\begin{align}
+x &= 3
+\label{x:eq1}\\
+y &= 5
+\label{y:eq1}
+\end{align}
+!et
+Let us now reason about this.
 
-#  #ifdef PNGFIGS
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.png}}
-#  #else
-\subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavepacket_0010.eps}}
-#  #endif
-  \end{center}
-  \caption{
-  Wavepackets at time (a) 0.1 s and (b) 0.2 s.
-  }
-\end{figure}
+# Sphinx cannot refer to labels in align environments
 
+# #if FORMAT in ("latex", "pdflatex", "html")
+From (\ref{x:eq})-(\ref{y:eq1}) we get that
+# #elif FORMAT == "sphinx"
+From
+!bt
+\[ x = 3 \]
+!et
+and
+!bt
+\[ y= 5 \]
+!et
+it follows that
 # #else
-
-# Use default Doconce figure handling for all other formats
-
-FIGURE:[figs/wavepacket_0001.png, width=400] Wavepacket at time 0.1 s.
-
-FIGURE:[figs/wavepacket_0010.png, width=400] Wavepacket at time 0.2 s.
-
+From the above equations it follows that
 # #endif
+$x+y$ is 8.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Other user-defined variables for the preprocessor can be set at
@@ -81425,751 +81358,7 @@ dumping object inventory... done
 build succeeded.
 
 Build finished. The HTML pages are in _build/html.
-+ make latex
-sphinx-build -b latex -d _build/doctrees   . _build/latex
-Making output directory...
-Running Sphinx v1.2pre
-loading pickled environment... done
-building [latex]: all documents
-updating environment: 0 added, 0 changed, 0 removed
-looking for now-outdated files... none found
-processing DoconceManual.tex... index manual 
-resolving references...
-writing... /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.do.txt
-/home/hpl/vc/doconce/doc/manual/sphinx-rootdir/manual.rst:: WARNING: unusable reference target found: manual.html
-done
-copying images... figs/streamtubes.png
-copying TeX support files... done
-build succeeded, 2 warnings.
-
-Build finished; the LaTeX files are in _build/latex.
-Run `make' in that directory to run these through (pdf)latex (use `make latexpdf' here to do that automatically).
-+ doconce subst \.\* .pdf _build/latex/DoconceManual.tex
-\.\* replaced by .pdf in _build/latex/DoconceManual.tex
-+ pwd
-+ ln -s /home/hpl/vc/doconce/doc/manual/sphinx-rootdir/../figs _build/latex/figs
-+ cd _build/latex
-+ make clean
-rm -f *.dvi *.log *.ind *.aux *.toc *.syn *.idx *.out *.ilg *.pla
-+ make all-pdf
-pdflatex  'DoconceManual.tex'
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
- restricted \write18 enabled.
-entering extended mode
-(./DoconceManual.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(./sphinxmanual.cls
-Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
-(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
-Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-(/usr/share/texlive/texmf-dist/tex/generic/babel/english.ldf
-
-
- (./sphinx.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
-
-(/usr/share/texlive/texmf-dist/tex/latex/fancybox/fancybox.sty
-Style option: `fancybox' v1.4 <2010/05/15> (tvz)
-) 
-(./tabulary.sty 
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-
-
-
-
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
-
-(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz) (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-)) 
-
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-
-
-
-
-
-
-
-Package hyperref Message: Driver (autodetected): hpdftex.
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-
-
-
-Writing index file DoconceManual.idx
-No file DoconceManual.aux.
-(/home/hpl/texmf/tex/latex/misc/ts1cmr.fd)
-
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-
-Underfull \hbox (badness 10000) 
-
- [1{/var/lib/texmf/fon
-ts/map/pdftex/updmap/pdftex.map}] [2]
-Adding blank page after the table of contents.
-pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.116 \tableofcontents
-                       [1]pdfTeX warning (ext4): destination with the same iden
-tifier (name{page.ii}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.116 \tableofcontents
-                       [2] [1] [2]
-Chapter 1.
-[3] [4]
-Chapter 2.
-
- [5] [6]
-Chapter 3.
-[7] [8] [9] [10]
-Chapter 4.
-[11] [12]
-
-LaTeX Warning: Hyper reference `manual:newcommands' on page 13 undefined on inp
-ut line 686.
-
-
-Underfull \hbox (badness 10000) 
-[]\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
-s and sim-i-lar can be placed in files
-
-Underfull \hbox (badness 5359) 
-\T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 newcommands_keep.
-tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommands_replace.tex \T1/ptm/m/n/10 (s
-ee the sec-tion
-[13] [14] [15] [16] [17] [18]
-Chapter 5.
-[19] [20] [21] [22]
-Chapter 6.
-<streamtubes.png, id=176, 583.17876pt x 437.635pt> <use streamtubes.png>
-<use streamtubes.png> [23] [24 <./streamtubes.png>]
-
-LaTeX Warning: Hyper reference `manual:sec-verbatim-blocks' on page 25 undefine
-d on 
-
-[25]
-
-LaTeX Warning: Hyper reference `manual:doconce2formats' on page 26 undefined on
- 
-
-
-LaTeX Warning: Hyper reference `manual:doconce2formats' on page 26 undefined on
- 
-
-[26]
-
-LaTeX Warning: Hyper reference `manual:inline-tagging' on page 27 undefined on 
-
-
-[27]
-
-LaTeX Warning: Hyper reference `manual:fig-viz' on page 28 undefined on input l
-ine 1749.
-
-
-LaTeX Warning: Hyper reference `manual:mathtext' on page 28 undefined on input 
-line 1751.
-
-
-LaTeX Warning: Hyper reference `manual:newcommands' on page 28 undefined on inp
-ut line 1751.
-
-
-LaTeX Warning: Reference `manual-myeq1' on page 28 undefined on input line 1753
-.
-
-
-LaTeX Warning: Reference `manual-myeq2' on page 28 undefined on input line 1753
-.
-
-
-LaTeX Warning: Hyper reference `manual:inline-tagging' on page 28 undefined on 
-
-
-[28] [29]
-
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 30 undefined o
-n 
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 30 undefined on input 
-line 1953.
-
-
-LaTeX Warning: Hyper reference `manual:python-primer-09' on page 30 undefined o
-n 
-
-
-LaTeX Warning: Hyper reference `manual:osnes-98' on page 30 undefined on input 
-line 1954.
-
-[30] [31] [32] [33] [34] [35]
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on 
-
-
-Underfull \hbox (badness 10000) 
-[]\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
-x.ext.mathjax' \T1/ptm/m/n/10 (en-abled by de-fault)
-
-Underfull \hbox (badness 10000) 
-\T1/ptm/m/n/10 and \T1/pcr/m/n/10 'matplotlib.sphinxext.mathmpl' \T1/ptm/m/n/10
- (dis-abled by de-fault) lines, and un-com-ment the
-[36]
-! Argument of \frac  has an extra }.
-<inserted text> 
-                \par 
-l.2544 \end{gather}
-                   
-? OK, entering \nonstopmode...
-Runaway argument?
-! Paragraph ended before \frac  was complete.
-<to be read again> 
-                   \par 
-l.2544 \end{gather}
-                   
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2544 \end{gather}
-                   
-! Missing } inserted.
-<inserted text> 
-                }
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.2544 \end{gather}
-                   
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.2544 \end{gather}
-                   
-(That makes 100 errors; please try again.)
-!  ==> Fatal error occurred, no output PDF file produced!
-Transcript written on DoconceManual.log.
-make: *** [DoconceManual.pdf] Error 1
-+ cp DoconceManual.pdf ../../../manual.sphinx.pdf
-cp: cannot stat `DoconceManual.pdf': No such file or directory
-+ cd ../../..
++ cd ..
 + doconce format rst manual.do.txt --no-mako
 running preprocess -DFORMAT=rst  manual.do.txt > __tmp.do.txt
 Found Mako-like statements, but --no-mako prevents running the Mako preprocessor
@@ -82370,7 +81559,7 @@ eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 8 undefined on inpu
-t line 798.
+t line 800.
 
 
 Overfull \hbox (78.51936pt too wide) 
@@ -82595,7 +81784,7 @@ Overfull \hbox (83.00006pt too wide)
 . 
 
 LaTeX Warning: Hyper reference `fig-viz' on page 22 undefined on input line 205
-2.
+4.
 
 
 LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 22 u
@@ -82603,7 +81792,7 @@ ndefined on
 
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 22 undefined on inp
-ut line 2054.
+ut line 2056.
 
 [22]
 
@@ -82766,37 +81955,9 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (16.79616pt too wide) 
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-
-Overfull \hbox (107.00006pt too wide) 
-\T1/pcr/m/n/10 # If PNGFIGS is defined, PNG files are used, otherwise Encapsula
-ted  
 [34]
-Overfull \hbox (149.00006pt too wide) 
-[]\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
-acket_0001}}  
-
-Overfull \hbox (173.00006pt too wide) 
-[]\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
-acket_0001.eps}}  
-
-Overfull \hbox (149.00006pt too wide) 
-[]\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
-acket_0010}}  
-
-Overfull \hbox (173.00006pt too wide) 
-[]\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
-acket_0010.eps}}  
-
-Overfull \hbox (59.00006pt too wide) 
-[]\T1/pcr/m/n/10 # Use default Doconce figure handling for all other formats  
-
-Overfull \hbox (101.00006pt too wide) 
-[]\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0001, width=400] Wavepacket at time 0.
-1 s.  
-
-Overfull \hbox (101.00006pt too wide) 
-[]\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0010, width=400] Wavepacket at time 0.
-2 s.  
+Overfull \hbox (23.00006pt too wide) 
+[]\T1/pcr/m/n/10 # Sphinx cannot refer to labels in align environments  
 
 LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 35 undef
 ined on 
@@ -82828,16 +81989,16 @@ Overfull \hbox (59.00006pt too wide)
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
 ile 
-[39] [40]
+[39]
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 41 un
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 40 un
 defined on 
 
-[41] [42]
+[40] [41]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[42]
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
@@ -83460,37 +82621,9 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (16.79616pt too wide) 
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-
-Overfull \hbox (107.00006pt too wide) 
-\T1/pcr/m/n/10 # If PNGFIGS is defined, PNG files are used, otherwise Encapsula
-ted  
 [34]
-Overfull \hbox (149.00006pt too wide) 
-[]\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
-acket_0001}}  
-
-Overfull \hbox (173.00006pt too wide) 
-[]\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
-acket_0001.eps}}  
-
-Overfull \hbox (149.00006pt too wide) 
-[]\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
-acket_0010}}  
-
-Overfull \hbox (173.00006pt too wide) 
-[]\T1/pcr/m/n/10 \subfigure[]{\includegraphics[width=0.49\linewidth]{figs/wavep
-acket_0010.eps}}  
-
-Overfull \hbox (59.00006pt too wide) 
-[]\T1/pcr/m/n/10 # Use default Doconce figure handling for all other formats  
-
-Overfull \hbox (101.00006pt too wide) 
-[]\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0001, width=400] Wavepacket at time 0.
-1 s.  
-
-Overfull \hbox (101.00006pt too wide) 
-[]\T1/pcr/m/n/10 FIGURE:[figs/wavepacket_0010, width=400] Wavepacket at time 0.
-2 s.  
+Overfull \hbox (23.00006pt too wide) 
+[]\T1/pcr/m/n/10 # Sphinx cannot refer to labels in align environments  
 [35]
 Overfull \hbox (35.00006pt too wide) 
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
@@ -83518,11 +82651,11 @@ Overfull \hbox (59.00006pt too wide)
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
 ile 
-[39] [40] [41] [42]
+[39] [40] [41]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-
+[42]
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
@@ -83694,7 +82827,7 @@ Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{eqnarray} does not work well
          pandoc extended markdown syntax handles only single equations
-Warning: latex envir \begin{figure} does not work well
+Warning: latex envir \begin{align} does not work well
          pandoc extended markdown syntax handles only single equations
 Warning: latex envir \begin{theorem} does not work well
          pandoc extended markdown syntax handles only single equations
@@ -83887,7 +83020,7 @@ Overfull \hbox (4.1082pt too wide)
 <use figs/streamtubes.png> [19 <./figs/streamtubes.png>]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 20 undefined on input li
-ne 1408.
+ne 1409.
 
 [20]
 Overfull \hbox (42.0102pt too wide) 
@@ -83896,16 +83029,16 @@ s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
 [21]
 
 LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-548.
+549.
 
 
 LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-552.
+553.
 
 [22]
 
 LaTeX Warning: Reference `inline:tagging' on page 23 undefined on input line 15
-83.
+84.
 
 [23]
 
@@ -83930,19 +83063,19 @@ Overfull \hbox (4.37044pt too wide)
 nces for (sub)sections,
 
 LaTeX Warning: Reference `inline:tagging' on page 24 undefined on input line 16
-41.
+42.
 
 [24] [25] [26]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 27 undefined on input line 1
-815.
+816.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 27 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 27 undefined on input line 1
-816.
+817.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 27 
@@ -83981,7 +83114,7 @@ Overfull \hbox (1.76395pt too wide)
 [], [],
 
 LaTeX Warning: Reference `doconce2formats' on page 36 undefined on input line 2
-433.
+428.
 
 [36] [37]
 Overfull \hbox (88.39946pt too wide) 
@@ -83993,7 +83126,7 @@ Overfull \hbox (9.3464pt too wide)
 [38] [39] [40]
 
 LaTeX Warning: Reference `sec:verbatim:blocks' on page 41 undefined on input li
-ne 2736.
+ne 2731.
 
 [41] [42] [43] [44] [45]
 Overfull \hbox (4.78592pt too wide) 
@@ -84283,14 +83416,14 @@ nces for (sub)sections,
 [24] [25] [26]
 
 LaTeX Warning: Citation `Python:Primer:09' on page 27 undefined on input line 1
-815.
+816.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 27 
 
 
 LaTeX Warning: Citation `Python:Primer:09' on page 27 undefined on input line 1
-816.
+817.
 
 
 LaTeX Warning: Citation `Osnes:98' on page 27 
@@ -86059,8 +85192,7 @@ output in manual.mwiki
 + rm -f *.ps
 + rm -rf demo
 + mkdir demo
-+ cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.md sphinx-rootdir/_build/html demo
-cp: cannot stat `manual.sphinx.pdf': No such file or directory
++ cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.md sphinx-rootdir/_build/html demo
 + cd demo
 + cat
 + cd ..
