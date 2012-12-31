@@ -26,16 +26,6 @@ cp -r figs sphinx-rootdir
 cd sphinx-rootdir
 make clean
 make html
-make latex
-doconce subst '\.\*' '.pdf' _build/latex/DoconceManual.tex  # .* doesn't work
-ln -s `pwd`/../figs _build/latex/figs
-cd _build/latex
-make clean
-# encounter some strange error with labels...
-make all-pdf <<EOF
-r
-EOF
-cp DoconceManual.pdf ../../../manual.sphinx.pdf
 cd ../../..
 
 
@@ -96,7 +86,7 @@ rm -f *.ps
 
 rm -rf demo
 mkdir demo
-cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.sphinx.pdf manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.md sphinx-rootdir/_build/html demo
+cp -r manual.do.txt manual.html figs manual.p.tex manual.tex manual.pdf manual_pdflatex.pdf manual.rst manual.sphinx.rst manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.st manual.md sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
