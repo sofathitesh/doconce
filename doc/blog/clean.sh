@@ -1,2 +1,2 @@
 #!/bin/sh
-rm -f *.html *~
+rm -f demo.html *~

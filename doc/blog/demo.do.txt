@@ -5,9 +5,6 @@ Here is some simple mathematics:
 !bt
 \[ f(x) = \frac{1}{1 + x^2},\]
 !et
-
-# Always insert a blank line after math blocks (otherwise
-# the math block is not correctly rendered on blogspot.com)
 which can be implemented in a computer code:
 
 !bc pycod
@@ -29,7 +26,6 @@ Here is some simple mathematics:
 |bt
 \[ f(x) = \frac{1}{1 + x^2},\]
 |et
-
 which can be implemented in a computer code:
 
 |bc pycod
@@ -46,9 +42,10 @@ FIGURE: [https://doconce.googlecode.com/hg/doc/blog/plot.png]
 !bnotice
 
  o There must be is no title, author, or date.
- o If the Doconce code above is stored in a file `demo.do.txt`, run
+ o If the Doconce code above is stored in a file
+   "`demo.do.txt`": "https://doconce.googlecode.com/hg/doc/blog/demo.do.txt.html", run
    `doconce format html demo` to produce the HTML code, stored in
-   "`demo.html`": "https://doconce.googlecode.com/hg/doc/blog/demo.html".
+   "`demo.html`": "https://doconce.googlecode.com/hg/doc/blog/demo.html.html".
  o Copy the text in `demo.html` into the blog text area on
    URL: "doconce.blogspot.com".
  o Remember to first choose the *HTML-code* tab (and not just *Write*)
