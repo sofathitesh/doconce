@@ -205,13 +205,13 @@ final,                   % or draft (marks overfull hboxes)
 
 % #if LATEX_HEADING == "traditional"
 
-\date{Dec 31, 2012}
+\date{Jan 6, 2013}
 \maketitle
 
 % #elif LATEX_HEADING == "titlepage"
 
 \ \\ [10mm]
-{\large\textsf{Dec 31, 2012}}
+{\large\textsf{Jan 6, 2013}}
 
 \end{center}
 \vfill
@@ -220,7 +220,7 @@ final,                   % or draft (marks overfull hboxes)
 % #else
 
 \begin{center}
-Dec 31, 2012
+Jan 6, 2013
 \end{center}
 
 \vspace{1cm}
@@ -606,10 +606,16 @@ Terminal> doconce format html mydoc
 \esys
 The resulting file \code{mydoc.html} can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the \code{--html-solarized}
-command line argument, the \href{{http://ethanschoonover.com/solarized}}{solarized}
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument \code{--css=filename}. There is a default style with blue headings,
+and a style with the \href{{http://ethanschoonover.com/solarized}}{solarized}
+color palette, specified by the \code{--html-solarized} command line
+argument. If there is no file with name \code{filename} in the \code{--css=filename}
+specification, the blue or solarized styles are written to \code{filename}
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the \code{style} tags or by
+specifying a CSS file through the \code{--css=filename} option.
 
 If the Pygments package (including the \code{pygmentize} program)
 is installed, code blocks are typeset with
@@ -633,6 +639,32 @@ by \code{%(main)s}. Here is an example:
 \bsys
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 \esys
+
+\subsection{Blogs}
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (\code{blogname.blogspot.com})
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+{\LaTeX} mathematics and pretty (pygmentized) blocks of computer code.
+See this \href{{http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html}}{example} for details on blogging.
+
+
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+\setlength{\fboxrule}{2pt}
+\begin{center}
+\fcolorbox{black}{warningbackground}{
+\begin{minipage}{0.8\textwidth}
+\includegraphics[height=0.3in]{latex_figs/warning.eps}
+\vskip-0.3in\hskip1.5in{\large\bf WARNING} \\[0.4cm]
+In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
+\end{minipage}}
+\end{center}
+\setlength{\fboxrule}{0.4pt} % Back to default
 
 \subsection{Pandoc and Markdown}
 

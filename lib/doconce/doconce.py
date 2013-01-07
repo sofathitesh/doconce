@@ -1269,6 +1269,10 @@ def handle_figures(filestr, format):
         extensions = FIGURE_EXT[format]
     import sets; files = sets.Set(files)   # remove multiple occurences
     for figfile in files:
+        if figfile.startswith('http'):
+            # latex, pdflatex must download the file, not yet implemented
+            # html, sphinx and web-based formats can use the URL
+            continue
         file_found = False
         if not os.path.isfile(figfile):
             basepath, ext = os.path.splitext(figfile)
@@ -1829,12 +1833,17 @@ def doconce2format(filestr, format):
     debugpr('%s\n**** The tex blocks:\n\n%s\n\n' % \
           ('*'*80, pprint.pformat(tex_blocks)))
 
-    # remove linebreaks within paragraphs:
+    # Remove linebreaks within paragraphs
     if '--oneline_paragraphs' in sys.argv:  # (does not yet work well)
         filestr = make_one_line_paragraphs(filestr, format)
 
+    # Remove inline comments
     if '--skip_inline_comments' in sys.argv:
         filestr = subst_away_inline_comments(filestr)
+
+    # Fix stand-alone http(s) URLs (after verbatim blocks are removed)
+    pattern = r' (https?://.+?)([ ,?:;!])'
+    filestr = re.sub(pattern, ' URL: "\g<1>"\g<2>', filestr)
 
     # Next step: deal with exercises
     filestr = exercises(filestr, format)
@@ -1916,6 +1925,9 @@ def doconce2format(filestr, format):
                            tex_blocks, format)
     filestr += '\n'
 
+    debugpr('%s\n**** The file after inserting intro/outro and tex/code blocks, and fixing last format-specific issues:\n\n%s\n\n' % \
+          ('*'*80, filestr))
+
     # Final step: replace environments starting with | (instead of !)
     # by ! (for illustration of doconce syntax inside !bc/!ec directives).
     # Enough to consider |bc, |ec, |bt, and |et since all other environments
@@ -1924,7 +1936,7 @@ def doconce2format(filestr, format):
         filestr = filestr.replace('|b' + envir, '!b' + envir)
         filestr = filestr.replace('|e' + envir, '!e' + envir)
 
-    debugpr('%s\n**** The file after inserting intro/outro and tex/code blocks, and fixing last format-specific issues:\n\n%s\n\n' % \
+    debugpr('%s\n**** The file after replacing |bc and |bt environments by true !bt and !et (in code blocks):\n\n%s\n\n' % \
           ('*'*80, filestr))
 
     return filestr
@@ -2116,6 +2128,7 @@ def main():
                '--no-pygments-html', '--minted-latex-style=',
                '--pygments-html-style=', '--pygments-html-linenos',
                '--html-solarized', '--latex-printed', '--html-color-admon',
+               '--css=',
                ]
 
     global _log, encoding, filename

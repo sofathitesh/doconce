@@ -327,7 +327,7 @@ ul.auto-toc {
 <tbody valign="top">
 <tr class="field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">Dec 31, 2012</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">Jan 6, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -702,10 +702,16 @@ is performed by:</p>
 Terminal&gt; doconce format html mydoc
 </pre>
 <p>The resulting file <tt class="docutils literal">mydoc.html</tt> can be loaded into any web browser for viewing.</p>
-<p>The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the <tt class="docutils literal"><span class="pre">--html-solarized</span></tt>
-command line argument, the <a class="reference external" href="http://ethanschoonover.com/solarized">solarized</a>
-color palette is used.</p>
+<p>The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument <tt class="docutils literal"><span class="pre">--css=filename</span></tt>. There is a default style with blue headings,
+and a style with the <a class="reference external" href="http://ethanschoonover.com/solarized">solarized</a>
+color palette, specified by the <tt class="docutils literal"><span class="pre">--html-solarized</span></tt> command line
+argument. If there is no file with name <tt class="docutils literal">filename</tt> in the <tt class="docutils literal"><span class="pre">--css=filename</span></tt>
+specification, the blue or solarized styles are written to <tt class="docutils literal">filename</tt>
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the <tt class="docutils literal">style</tt> tags or by
+specifying a CSS file through the <tt class="docutils literal"><span class="pre">--css=filename</span></tt> option.</p>
 <p>If the Pygments package (including the <tt class="docutils literal">pygmentize</tt> program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument <tt class="docutils literal"><span class="pre">--no-pygments-html</span></tt>
@@ -727,6 +733,23 @@ by <tt class="docutils literal">%(main)s</tt>. Here is an example:</p>
 <pre class="literal-block">
 Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
 </pre>
+</div>
+<div class="section" id="blogs">
+<h2>Blogs</h2>
+<p>Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (<tt class="docutils literal">blogname.blogspot.com</tt>)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this <a class="reference external" href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html">example</a> for details on blogging.</p>
+<div class="warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.</p>
+</div>
 </div>
 <div class="section" id="pandoc-and-markdown">
 <h2>Pandoc and Markdown</h2>
@@ -1444,6 +1467,8 @@ the section <a class="reference internal" href="#blocks-of-verbatim-computer-cod
 <p>Doconce supports tags for <em>emphasized phrases</em>, <strong>boldface phrases</strong>,
 and <tt class="docutils literal">verbatim text</tt> (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as v = sin(x).</p>
+<div class="section" id="emphasized-words">
+<h3>Emphasized Words</h3>
 <p>Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in:</p>
 <pre class="literal-block">
@@ -1455,6 +1480,9 @@ _several words in boldface_ followed by *ephasized text*.
 </pre>
 <p>The line above gets typeset as
 <strong>several words in boldface</strong> followed by <em>ephasized text</em>.</p>
+</div>
+<div class="section" id="inline-verbatim-text">
+<h3>Inline Verbatim Text</h3>
 <p>Verbatim text, typically used for short inline code,
 is typeset between back-ticks:</p>
 <pre class="literal-block">
@@ -1467,19 +1495,39 @@ while <tt class="docutils literal">void myfunc(double *a, double *b)</tt> must b
 <p>It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and <tt class="docutils literal">ptex2tex</tt>) will have
 problems with inline verbatim text that is split over two lines.</p>
-<p>Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).</p>
+</div>
+</div>
+<div class="section" id="links-to-web-addresses">
+<h3>Links to Web Addresses</h3>
 <p>Web addresses with links are typeset as:</p>
 <pre class="literal-block">
 some URL like &quot;Search Google&quot;: &quot;http://google.com&quot;.
 </pre>
 <p>which appears as some URL like <a class="reference external" href="http://google.com">Search Google</a>.
-The space after colon is optional.
-Links to files ending in <tt class="docutils literal">.txt</tt>, <tt class="docutils literal">.html</tt>, <tt class="docutils literal">.pdf</tt>, <tt class="docutils literal">.py</tt>, <tt class="docutils literal">.f</tt>,
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.</p>
+<p>To have the URL address itself as link text, put an &quot;URL&quot; or URL
+before the address enclosed in double quotes:</p>
+<pre class="literal-block">
+Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.
+</pre>
+<p>which gets rendered as
+Click on this link: <a class="reference external" href="http://code.google.com/p/doconce">http://code.google.com/p/doconce</a>.</p>
+<p>(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)</p>
+</div>
+<div class="section" id="links-to-local-files">
+<h3>Links to Local Files</h3>
+<p>Links to files ending in <tt class="docutils literal">.txt</tt>, <tt class="docutils literal">.html</tt>, <tt class="docutils literal">.pdf</tt>, <tt class="docutils literal">.py</tt>, <tt class="docutils literal">.f</tt>,
 <tt class="docutils literal">.f77</tt>, <tt class="docutils literal">.f90</tt>, <tt class="docutils literal">.f95</tt>, <tt class="docutils literal">.sh</tt>, <tt class="docutils literal">.csh</tt>, <tt class="docutils literal">.ksh</tt>, <tt class="docutils literal">.zsh</tt>,
 <tt class="docutils literal">.c</tt>, <tt class="docutils literal">.cpp</tt>, <tt class="docutils literal">.cxx</tt>, <tt class="docutils literal">.pl</tt>, and <tt class="docutils literal">.java</tt> follows the same
 setup:</p>
@@ -1541,12 +1589,9 @@ URL: &quot;manual.html&quot;
 <!-- ``_static``, which must be manually copied to the Sphinx directory's -->
 <!-- ``_static`` directory - links in the ``.rst`` files are automatically -->
 <!-- adjusted.) -->
-<p>Similarly, to have the URL address itself as link text, put an &quot;URL&quot; or URL
-before the address enclosed in double quotes:</p>
-<pre class="literal-block">
-Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.
-</pre>
-<p>resulting in Click on this link: <a class="reference external" href="http://code.google.com/p/doconce">http://code.google.com/p/doconce</a>.</p>
+</div>
+<div class="section" id="inline-comments">
+<h3>Inline Comments</h3>
 <p>Doconce also supports inline comments in the text:</p>
 <pre class="literal-block">
 [name: comment]
@@ -1564,6 +1609,9 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the <tt class="docutils literal">.do.txt</tt> file
 (see the section <a class="reference internal" href="#from-doconce-to-other-formats">From Doconce to Other Formats</a>).</p>
+</div>
+<div class="section" id="inline-mathematics">
+<h3>Inline Mathematics</h3>
 <p>Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
 hence nice math formatting is only obtained in LaTeX, HTML, MediaWiki,
@@ -1588,11 +1636,12 @@ on a linear system Ax=b, where A
 is an nxn matrix, and x and b
 are vectors of length n.&quot;</p>
 </div>
+</div>
 <div class="section" id="comments">
 <h2>Comments</h2>
-<p>Comments intended to be visible in the output document and read by
-readers are known as <em>inline comments</em> in Doconce and described
-in the section <a class="reference internal" href="#id2">Inline Tagging</a>.</p>
+<p>Comments intended to be (sometimes) visible in the output document and
+read by readers are known as <em>inline comments</em> in Doconce and
+described in the section <a class="reference internal" href="#id2">Inline Tagging</a>.</p>
 <p>Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
 lines start with the hash <tt class="docutils literal">#</tt>:</p>
@@ -1612,8 +1661,11 @@ present in the Doconce source. Mako has two types of comments:
 lines starting with a double hash <tt class="docutils literal">##</tt> and lines enclosed by
 the <tt class="docutils literal">&lt;%doc&gt;</tt> (beginning) and <tt class="docutils literal">&lt;%doc/&gt;</tt> (closing) tags.</p>
 <p>If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.</p>
+<p>To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test <tt class="docutils literal"># #ifdef EXTRA</tt> in Preprocess).</p>
 </div>
 <div class="section" id="cross-referencing">
 <h2>Cross-Referencing</h2>
@@ -2442,7 +2494,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line:</p>
+if a sophisticated table is desired in LaTeX output, do something like:</p>
 <pre class="literal-block">
 # #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)
 # insert native LaTeX code for fancy table
@@ -2459,38 +2511,6 @@ alternatively script editing of the output from Doconce. That is,
 we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.</p>
-<p>As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say:</p>
-<pre class="literal-block">
-# table of contents
-</pre>
-<p>we can use this comment to edit the LaTeX file. First, we run
-Doconce <tt class="docutils literal">doconce format latex mydoc</tt> to produce <tt class="docutils literal">mydoc.p.tex</tt>. Then
-we use the <tt class="docutils literal">doconce replace</tt> and <tt class="docutils literal">doconce subst</tt> commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter:</p>
-<pre class="literal-block">
-Terminal&gt; doconce replace '% table of contents'
-          '\tableofcontents' mydoc.p.tex
-</pre>
-<p>The <tt class="docutils literal">doconce replace from_text to_text filename</tt> command performs a
-character-by-character replacement (using the <tt class="docutils literal">replace</tt> method in
-string objects in Python). If we want to preserve the comment and add
-a new line with <tt class="docutils literal">\tableofcontents</tt>, we should use <tt class="docutils literal">doconce subst</tt>,
-which applies regular expressions for substitutions and thereby
-understands the newline character:</p>
-<pre class="literal-block">
-Terminal&gt; doconce subst '% table of contents' \
-          '% table of contents\n\\tableofcontents' mydoc.p.tex
-</pre>
-<p>Note the double backshlash in front of the <tt class="docutils literal">t</tt> character: without it we
-would get a tab and no backslash.
-The <tt class="docutils literal">doconce subst</tt> is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.</p>
 </div>
 <div class="section" id="header-and-footer">
 <h2>Header and Footer</h2>
@@ -2499,10 +2519,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if <tt class="docutils literal">TITLE:</tt> or
-<tt class="docutils literal">#TITLE:</tt> is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.</p>
+stand-alone. We have introduced the convention that if <tt class="docutils literal">TITLE:</tt>
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.</p>
 </div>
 <div class="section" id="emacs-doconce-formatter">
 <h2>Emacs Doconce Formatter</h2>
@@ -2873,8 +2892,9 @@ As we see, the proof of Theorem 5 is a modest
 achievement.
 </pre>
 <p>Even better, HTML output looks nice as well.</p>
-<p>Note that Doconce supports fancy environments for verbatim code (for example,
-the <tt class="docutils literal">ptex2tex</tt> program with all its flexibility for choosing environments).</p>
+<p>Note that Doconce supports fancy environments for verbatim code via
+the <tt class="docutils literal">ptex2tex</tt> program with all its flexibility for choosing environments.
+Also <tt class="docutils literal">doconce ptex2tex</tt> has some flexibility for typesetting computer code.</p>
 </div>
 <div class="section" id="the-latex-file-does-not-compile">
 <h3>The LaTeX file does not compile</h3>

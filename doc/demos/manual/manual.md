@@ -1,6 +1,6 @@
 % Doconce Description
 % Hans Petter Langtangen at Simula Research Laboratory and University of Oslo
-% Dec 31, 2012
+% Jan 6, 2013
 
 <!-- lines beginning with # are doconce comment lines -->
 <!-- (documents can also have mako comment lines) -->
@@ -480,10 +480,16 @@ Terminal> doconce format html mydoc
 
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the `--html-solarized`
-command line argument, the [solarized](http://ethanschoonover.com/solarized)
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument `--css=filename`. There is a default style with blue headings,
+and a style with the [solarized](http://ethanschoonover.com/solarized)
+color palette, specified by the `--html-solarized` command line
+argument. If there is no file with name `filename` in the `--css=filename`
+specification, the blue or solarized styles are written to `filename`
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the `style` tags or by
+specifying a CSS file through the `--css=filename` option.
 
 If the Pygments package (including the `pygmentize` program)
 is installed, code blocks are typeset with
@@ -508,6 +514,24 @@ by `%(main)s`. Here is an example:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Blogs
+-----
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this [example](http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html) for details on blogging.
+
+
+
+*Warning.* In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 -------------------
@@ -1397,6 +1421,9 @@ Doconce supports tags for *emphasized phrases*, _boldface phrases_,
 and `verbatim text` (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as $\nu = \sin(x)$.
 
+Emphasized Words
+~~~~~~~~~~~~~~~~
+
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
 
@@ -1412,6 +1439,9 @@ _several words in boldface_ followed by *ephasized text*.
 
 The line above gets typeset as
 _several words in boldface_ followed by *ephasized text*.
+
+Inline Verbatim Text
+~~~~~~~~~~~~~~~~~~~~
 
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
@@ -1429,12 +1459,17 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and `ptex2tex`) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+
+
+*Notice.* Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
+
+Links to Web Addresses
+~~~~~~~~~~~~~~~~~~~~~~
 
 Web addresses with links are typeset as
 
@@ -1443,7 +1478,26 @@ some URL like "Search Google": "http://google.com".
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 which appears as some URL like [Search Google](http://google.com).
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Click on this link: URL:"http://code.google.com/p/doconce".
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+which gets rendered as
+Click on this link: <http://code.google.com/p/doconce>.
+
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+Links to Local Files
+~~~~~~~~~~~~~~~~~~~~
+
 Links to files ending in `.txt`, `.html`, `.pdf`, `.py`, `.f`,
 `.f77`, `.f90`, `.f95`, `.sh`, `.csh`, `.ksh`, `.zsh`,
 `.c`, `.cpp`, `.cxx`, `.pl`, and `.java` follows the same
@@ -1517,14 +1571,8 @@ resulting in the link <manual.html>.
 <!-- `_static` directory - links in the `.rst` files are automatically -->
 <!-- adjusted.) -->
 
-Similarly, to have the URL address itself as link text, put an "URL" or URL
-before the address enclosed in double quotes:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Click on this link: URL:"http://code.google.com/p/doconce".
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-resulting in Click on this link: <http://code.google.com/p/doconce>.
+Inline Comments
+~~~~~~~~~~~~~~~
 
 Doconce also supports inline comments in the text:
 
@@ -1545,6 +1593,9 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the `.do.txt` file
 (see the section [From Doconce to Other Formats](#s)).
+
+Inline Mathematics
+~~~~~~~~~~~~~~~~~~
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -1576,9 +1627,9 @@ are vectors of length $n$."
 Comments
 --------
 
-Comments intended to be visible in the output document and read by
-readers are known as *inline comments* in Doconce and described
-in the section [Inline Tagging](#g).
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as *inline comments* in Doconce and
+described in the section [Inline Tagging](#g).
 
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
@@ -1603,8 +1654,12 @@ lines starting with a double hash `##` and lines enclosed by
 the `<%doc>` (beginning) and `<%doc/>` (closing) tags.
 
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test `# #ifdef EXTRA` in Preprocess).
 
 
 Cross-Referencing
@@ -2551,7 +2606,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line
+if a sophisticated table is desired in LaTeX output, do something like
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
@@ -2573,44 +2628,6 @@ we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
-As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# table of contents
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-we can use this comment to edit the LaTeX file. First, we run
-Doconce `doconce format latex mydoc` to produce `mydoc.p.tex`. Then
-we use the `doconce replace` and `doconce subst` commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Terminal> doconce replace '% table of contents'
-          '\tableofcontents' mydoc.p.tex
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The `doconce replace from_text to_text filename` command performs a
-character-by-character replacement (using the `replace` method in
-string objects in Python). If we want to preserve the comment and add
-a new line with `\tableofcontents`, we should use `doconce subst`,
-which applies regular expressions for substitutions and thereby
-understands the newline character:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Terminal> doconce subst '% table of contents' \
-          '% table of contents\n\\tableofcontents' mydoc.p.tex
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Note the double backshlash in front of the `t` character: without it we
-would get a tab and no backslash.
-The `doconce subst` is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
 
 Header and Footer
 -----------------
@@ -2620,10 +2637,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if `TITLE:` or
-`#TITLE:` is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if `TITLE:`
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 
 Emacs Doconce Formatter
@@ -3068,8 +3084,9 @@ achievement.
 
 Even better, HTML output looks nice as well.
 
-Note that Doconce supports fancy environments for verbatim code (for example,
-the `ptex2tex` program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the `ptex2tex` program with all its flexibility for choosing environments.
+Also `doconce ptex2tex` has some flexibility for typesetting computer code.
 
 
 The LaTeX file does not compile

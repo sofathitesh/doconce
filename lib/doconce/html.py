@@ -2,9 +2,100 @@ import re, os, glob, sys, glob
 from common import table_analysis, plain_exercise, insert_code_and_tex, \
      indent_lines
 
-# how to replace code and LaTeX blocks by html (<pre>) environment:
+# Style sheets
+
+css_solarized = """\
+    body {
+      margin:5;
+      padding:0;
+      border:0;	/* Remove the border around the viewport in old versions of IE */
+      width:100%;
+      background: #fdf6e3;
+      min-width:600px;	/* Minimum width of layout - remove if not required */
+      font-family: Verdana, Helvetica, Arial, sans-serif;
+      font-size: 1.0em;
+      line-height: 1.3em;
+      color: #657b83;
+    }
+    a { color: #657b83; text-decoration:none; }
+    a:hover { color: #b58900; background: #eee8d5; text-decoration:none; }
+    h1, h2, h3 { margin:.8em 0 .2em 0; padding:0; line-height: 125%; }
+    h2 { font-variant: small-caps; }
+    pre {
+      background: #fdf6e3;
+      -webkit-box-shadow: inset 0 0 2px #000000;
+      -moz-box-shadow: inset 0 0 2px #000000;
+      box-shadow: inset 0 0 2px #000000;
+      color: #586e75;
+      margin-left: 0px;
+      font-family: 'Droid Sans Mono', monospace;
+      padding: 2px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+    }
+    tt { font-family: "Courier New", Courier; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p { text-indent: 0px; }
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+    .summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .warning  { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .hint     { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .question { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+"""
+
+css_blueish = """\
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    h1 { font-size: 1.8em; color: #1e36ce; }
+    h2 { font-size: 1.5em; color: #1e36ce; }
+    h3 { color: #1e36ce; }
+    a { color: #1e36ce; text-decoration:none; }
+    tt { font-family: "Courier New", Courier; }
+    pre { background: #ededed; color: #000; padding: 15px;}
+    p { text-indent: 0px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-style: normal; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+    .summary  { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .warning  { color: #9F6000; background-color: #FEEFB3;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .hint     { color: #00529B; background-color: #BDE5F8;
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .question { color: #4F8A10; background-color: #DFF2BF;
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+"""
+# too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
+
+
 def html_code(filestr, code_blocks, code_block_types,
               tex_blocks, format):
+    """Replace code and LaTeX blocks by html environments."""
 
     types2languages = dict(py='python', cy='cython', f='fortran',
                            c='c', cpp='c++', sh='bash', rst='rst',
@@ -109,21 +200,68 @@ def html_code(filestr, code_blocks, code_block_types,
                 filestr)
 
     MATH_TYPESETTING = 'MathJax'
-    c = re.compile(r'^!bt\n', re.MULTILINE)
+    c = re.compile(r'^!bt *\n', re.MULTILINE)
+    m1 = c.search(filestr)
+    from common import INLINE_TAGS
+    m2 = re.search(INLINE_TAGS['math'], filestr)
+    m3 = re.search(INLINE_TAGS['math2'], filestr)
+    math = bool(m1) or bool(m2) or bool(m3)
+
     if MATH_TYPESETTING == 'MathJax':
+        # LaTeX blocks are surrounded by $$
         filestr = re.sub(r'!bt *\n', '$$\n', filestr)
         filestr = re.sub(r'!et *\n', '$$\n', filestr)
 
+        # Remove inner \[..\] from equations $$ \[ ... \] $$
         filestr = re.sub(r'\$\$\s*\\\[', '$$', filestr)
         filestr = re.sub(r'\\\]\s*\$\$', '$$', filestr)
+        # Equation references (ref{...}) must be \eqref{...} in MathJax
+        filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
+
     else:
+        # Plain verbatim display of LaTeX syntax in math blocks
         filestr = c.sub(r'<blockquote><pre>\n', filestr)
-        filestr = re.sub(r'!et\n', r'</pre></blockquote>\n', filestr)
+        filestr = re.sub(r'!et *\n', r'</pre></blockquote>\n', filestr)
 
-    filestr = re.sub(r'\(ref\{(.+?)\}\)', r'\eqref{\g<1>}', filestr)
+    # --- Final fixes for html format ---
 
-    # Final fixes for html format
+    # Add MathJax script if math is present (math is defined right above)
+    if math:
+        newcommands_files = list(
+            sorted([name
+                    for name in glob.glob('newcommands*.tex')
+                    if not name.endswith('.p.tex')]))
+        newcommands = ''
+        for filename in newcommands_files:
+            f = open(filename, 'r')
+            text = f.read().strip()
+            if text:
+                newcommands += '\n<!-- %s -->\n' % filename + '$$\n' + text \
+                               + '\n$$\n\n'
+        mathjax = """
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- Fix slow MathJax rendering in IE8 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+"""
+        latex = '\n\n' + mathjax + newcommands + '\n\n'
+        if '<body>' in filestr:
+            # Add MathJax stuff after <body> tag
+            filestr = filestr.replace('<body>\n', '<body>' + latex)
+        else:
+            # Add MathJax stuff to the beginning
+            filestr = latex + filestr
 
     # Add </li> in lists
     cpattern = re.compile('<li>(.+?)(\s+)<li>', re.DOTALL)
@@ -159,10 +297,10 @@ def html_code(filestr, code_blocks, code_block_types,
         if arg.startswith('--html-template='):
             template = arg.split('=')[1]
             if header:
-                print 'Warning: HTML template %s ignored since the file has a title (and hence an HTML header)' % template
+                print 'Warning: HTML template %s ignored since the file has a title (and hence a generated HTML header)' % template
             authors = '<! -- author(s) -->' in filestr
             if authors:
-                print 'Warning: AUTHOR is not recommended when using HTML templates (looks no good)'
+                print 'Warning: AUTHOR is not recommended when using HTML templates (usually looks no good)'
             break
     if template and not header:
         title = ''
@@ -533,7 +671,7 @@ def html_%s(block, format):
 <table width="95%%%%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/lyx_%s.png" hspace="5" alt="%s"></td>
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_%s.png" hspace="5" alt="%s"></td>
 <th align="left" valign="middle"><b>%s</b></th>
 </tr>
 <tr>
@@ -643,84 +781,29 @@ def define(FILENAME_EXTENSION,
     EXERCISE['html'] = plain_exercise
     TOC['html'] = html_toc
 
-    # document start:
+    # Embedded style sheets
     if '--html-solarized' in sys.argv:
-        css = """\
-    body {
-      margin:5;
-      padding:0;
-      border:0;	/* Remove the border around the viewport in old versions of IE */
-      width:100%;
-      background: #fdf6e3;
-      min-width:600px;	/* Minimum width of layout - remove if not required */
-      font-family: Verdana, Helvetica, Arial, sans-serif;
-      font-size: 1.0em;
-      line-height: 1.3em;
-      color: #657b83;
-    }
-    a { color: #657b83; text-decoration:none; }
-    a:hover { color: #b58900; background: #eee8d5; text-decoration:none; }
-    h1, h2, h3 { margin:.8em 0 .2em 0; padding:0; line-height: 125%; }
-    h2 { font-variant: small-caps; }
-    pre {
-      background: #fdf6e3;
-      -webkit-box-shadow: inset 0 0 2px #000000;
-      -moz-box-shadow: inset 0 0 2px #000000;
-      box-shadow: inset 0 0 2px #000000;
-      color: #586e75;
-      margin-left: 0px;
-      font-family: 'Droid Sans Mono', monospace;
-      padding: 2px;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      border-radius: 4px;
-      -moz-background-clip: padding;
-      -webkit-background-clip: padding-box;
-      background-clip: padding-box;
-    }
-    tt { font-family: "Courier New", Courier; }
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    p { text-indent: 0px; }
-    p.caption { width: 80%; font-style: normal; text-align: left; }
-    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-"""
+        css = css_solarized
     else:
-        css = """\
-    body {
-      margin-top: 1.0em;
-      background-color: #ffffff;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
-    }
-    h1 { font-size: 1.8em; color: #1e36ce; }
-    h2 { font-size: 1.5em; color: #1e36ce; }
-    h3 { color: #1e36ce; }
-    a { color: #1e36ce; text-decoration:none; }
-    tt { font-family: "Courier New", Courier; }
-    pre { background: #ededed; color: #000; padding: 15px;}
-    p { text-indent: 0px; }
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    p.caption { width: 80%; font-style: normal; text-align: left; }
-    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+        css = css_blueish # default
 
-    .notice, .summary, .warning, .hint, .question {
-    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-    background-repeat: no-repeat; background-position: 10px center;
-    }
-    .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Message.png'); }
-    .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Valid_Green.png'); }
-    .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Attention.png'); }
-    .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Info.png'); }
-    .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Forward.png'); }
-"""
-    # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
+    style = """
+<style type="text/css">
+%s
+</style>
+""" % css
+    for arg in sys.argv:
+        if arg.startswith('--css='):
+            filename = arg.split('=')[1]
+            if not os.path.isfile(filename):
+                # Put the style in the file when the file does not exist
+                f = open(filename, 'w')
+                f.write(css)
+                f.close()
+            style = '<link rel="stylesheet" href="%s">' % filename
 
 
+    # Document start
     INTRO['html'] = """\
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
@@ -733,50 +816,13 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<!--
-Color definitions:  http://www.december.com/html/spec/color0.html
-CSS examples:       http://www.w3schools.com/css/css_examples.asp
--->
-
-<style type="text/css">
 %s
-</style>
-
-<!-- Use MathJax to render mathematics -->
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-     equationNumbers: {  autoNumber: "AMS"  },
-     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
-  }
-});
-</script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- Fix slow MathJax rendering in IE8 -->
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-
 </head>
-
 <body>
-    """ % css
-
-    newcommands_files = list(sorted([name
-                                     for name in glob.glob('newcommands*.tex')
-                                     if not name.endswith('.p.tex')]))
-    newcommands = ''
-    for filename in newcommands_files:
-        f = open(filename, 'r')
-        text = f.read().strip()
-        if text:
-            newcommands += '\n<!-- %s -->\n' % filename + '$$\n' + text \
-                           + '\n$$\n\n'
-    INTRO['html'] += newcommands
-    INTRO['html'] += """
 
 <!-- ------------------- main content ------------------------>
-"""
+    """ % style
+
     # document ending:
     OUTRO['html'] = """
 

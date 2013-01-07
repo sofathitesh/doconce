@@ -22,12 +22,34 @@
 
 %%% Fallback definitions for Docutils-specific commands
 
+% admonition (specially marked topic)
+\providecommand{\DUadmonition}[2][class-arg]{%
+  % try \DUadmonition#1{#2}:
+  \ifcsname DUadmonition#1\endcsname%
+    \csname DUadmonition#1\endcsname{#2}%
+  \else
+    \begin{center}
+      \fbox{\parbox{0.9\textwidth}{#2}}
+    \end{center}
+  \fi
+}
+
 % fieldlist environment
 \ifthenelse{\isundefined{\DUfieldlist}}{
   \newenvironment{DUfieldlist}%
     {\quote\description}
     {\enddescription\endquote}
 }{}
+
+% title for topics, admonitions and sidebar
+\providecommand*{\DUtitle}[2][class-arg]{%
+  % call \DUtitle#1{#2} if it exists:
+  \ifcsname DUtitle#1\endcsname%
+    \csname DUtitle#1\endcsname{#2}%
+  \else
+    \smallskip\noindent\textbf{#2}\smallskip%
+  \fi
+}
 
 % hyperlinks:
 \ifthenelse{\isundefined{\hypersetup}}{
@@ -56,7 +78,7 @@
 Hans Petter Langtangen
 
 \item[{Date:}]
-Dec 31, 2012
+Jan 6, 2013
 
 \end{DUfieldlist}
 
@@ -675,10 +697,16 @@ Terminal>~doconce~format~html~mydoc
 
 The resulting file \texttt{mydoc.html} can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the \texttt{-{}-html-solarized}
-command line argument, the \href{http://ethanschoonover.com/solarized}{solarized}
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument \texttt{-{}-css=filename}. There is a default style with blue headings,
+and a style with the \href{http://ethanschoonover.com/solarized}{solarized}
+color palette, specified by the \texttt{-{}-html-solarized} command line
+argument. If there is no file with name \texttt{filename} in the \texttt{-{}-css=filename}
+specification, the blue or solarized styles are written to \texttt{filename}
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the \texttt{style} tags or by
+specifying a CSS file through the \texttt{-{}-css=filename} option.
 
 If the Pygments package (including the \texttt{pygmentize} program)
 is installed, code blocks are typeset with
@@ -704,6 +732,32 @@ by \texttt{\%(main)s}. Here is an example:
 Terminal>~doconce~format~html~mydoc~-{}-html-template=mytemplate.html
 }
 \end{quote}
+
+
+%___________________________________________________________________________
+
+\subsection*{\phantomsection%
+  Blogs%
+  \addcontentsline{toc}{subsection}{Blogs}%
+  \label{blogs}%
+}
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (\texttt{blogname.blogspot.com})
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this \href{http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html}{example} for details on blogging.
+
+\DUadmonition[warning]{
+\DUtitle[warning]{Warning}
+
+In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
+}
 
 
 %___________________________________________________________________________
@@ -1775,6 +1829,15 @@ Doconce supports tags for \emph{emphasized phrases}, \textbf{boldface phrases},
 and \texttt{verbatim text} (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as v = sin(x).
 
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Emphasized Words%
+  \addcontentsline{toc}{subsubsection}{Emphasized Words}%
+  \label{emphasized-words}%
+}
+
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in:
 %
@@ -1793,6 +1856,15 @@ Boldface font is recognized by an underscore instead of an asterisk:
 The line above gets typeset as
 \textbf{several words in boldface} followed by \emph{ephasized text}.
 
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Inline Verbatim Text%
+  \addcontentsline{toc}{subsubsection}{Inline Verbatim Text}%
+  \label{inline-verbatim-text}%
+}
+
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
 %
@@ -1810,12 +1882,25 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and \texttt{ptex2tex}) will have
 problems with inline verbatim text that is split over two lines.
 
+\DUadmonition[note]{
+\DUtitle[note]{Note}
+
 Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
+}
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Links to Web Addresses%
+  \addcontentsline{toc}{subsubsection}{Links to Web Addresses}%
+  \label{links-to-web-addresses}%
+}
 
 Web addresses with links are typeset as:
 %
@@ -1825,7 +1910,33 @@ some~URL~like~"Search~Google":~"http://google.com".
 \end{quote}
 
 which appears as some URL like \href{http://google.com}{Search Google}.
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+To have the URL address itself as link text, put an ``URL'' or URL
+before the address enclosed in double quotes:
+%
+\begin{quote}{\ttfamily \raggedright \noindent
+Click~on~this~link:~URL:"http://code.google.com/p/doconce".
+}
+\end{quote}
+
+which gets rendered as
+Click on this link: \url{http://code.google.com/p/doconce}.
+
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Links to Local Files%
+  \addcontentsline{toc}{subsubsection}{Links to Local Files}%
+  \label{links-to-local-files}%
+}
+
 Links to files ending in \texttt{.txt}, \texttt{.html}, \texttt{.pdf}, \texttt{.py}, \texttt{.f},
 \texttt{.f77}, \texttt{.f90}, \texttt{.f95}, \texttt{.sh}, \texttt{.csh}, \texttt{.ksh}, \texttt{.zsh},
 \texttt{.c}, \texttt{.cpp}, \texttt{.cxx}, \texttt{.pl}, and \texttt{.java} follows the same
@@ -1922,15 +2033,14 @@ resulting in the link \url{manual.html}.
 
 % adjusted.)
 
-Similarly, to have the URL address itself as link text, put an ``URL'' or URL
-before the address enclosed in double quotes:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-Click~on~this~link:~URL:"http://code.google.com/p/doconce".
-}
-\end{quote}
 
-resulting in Click on this link: \url{http://code.google.com/p/doconce}.
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Inline Comments%
+  \addcontentsline{toc}{subsubsection}{Inline Comments}%
+  \label{inline-comments}%
+}
 
 Doconce also supports inline comments in the text:
 %
@@ -1952,6 +2062,15 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the \texttt{.do.txt} file
 (see the section \hyperref[from-doconce-to-other-formats]{From Doconce to Other Formats}).
+
+
+%___________________________________________________________________________
+
+\subsubsection*{\phantomsection%
+  Inline Mathematics%
+  \addcontentsline{toc}{subsubsection}{Inline Mathematics}%
+  \label{inline-mathematics}%
+}
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -1989,9 +2108,9 @@ are vectors of length n.''
   \label{comments}%
 }
 
-Comments intended to be visible in the output document and read by
-readers are known as \emph{inline comments} in Doconce and described
-in the section \hyperref[id2]{Inline Tagging}.
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as \emph{inline comments} in Doconce and
+described in the section \hyperref[id2]{Inline Tagging}.
 
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
@@ -2017,8 +2136,12 @@ lines starting with a double hash \texttt{\#\#} and lines enclosed by
 the \texttt{<\%doc>} (beginning) and \texttt{<\%doc/>} (closing) tags.
 
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test \texttt{\# \#ifdef EXTRA} in Preprocess).
 
 
 %___________________________________________________________________________
@@ -3130,7 +3253,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line:
+if a sophisticated table is desired in LaTeX output, do something like:
 %
 \begin{quote}{\ttfamily \raggedright \noindent
 \#~\#if~FORMAT~in~("latex",~"pdflatex")\\
@@ -3152,48 +3275,6 @@ we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
-As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-\#~table~of~contents
-}
-\end{quote}
-
-we can use this comment to edit the LaTeX file. First, we run
-Doconce \texttt{doconce format latex mydoc} to produce \texttt{mydoc.p.tex}. Then
-we use the \texttt{doconce replace} and \texttt{doconce subst} commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~replace~'\%~table~of~contents'\\
-~~~~~~~~~~'\textbackslash{}tableofcontents'~mydoc.p.tex
-}
-\end{quote}
-
-The \texttt{doconce replace from\_text to\_text filename} command performs a
-character-by-character replacement (using the \texttt{replace} method in
-string objects in Python). If we want to preserve the comment and add
-a new line with \texttt{\textbackslash{}tableofcontents}, we should use \texttt{doconce subst},
-which applies regular expressions for substitutions and thereby
-understands the newline character:
-%
-\begin{quote}{\ttfamily \raggedright \noindent
-Terminal>~doconce~subst~'\%~table~of~contents'~\textbackslash{}\\
-~~~~~~~~~~'\%~table~of~contents\textbackslash{}n\textbackslash{}\textbackslash{}tableofcontents'~mydoc.p.tex
-}
-\end{quote}
-
-Note the double backshlash in front of the \texttt{t} character: without it we
-would get a tab and no backslash.
-The \texttt{doconce subst} is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
-
 
 %___________________________________________________________________________
 
@@ -3208,10 +3289,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if \texttt{TITLE:} or
-\texttt{\#TITLE:} is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if \texttt{TITLE:}
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 
 %___________________________________________________________________________
@@ -3867,8 +3947,9 @@ achievement.
 
 Even better, HTML output looks nice as well.
 
-Note that Doconce supports fancy environments for verbatim code (for example,
-the \texttt{ptex2tex} program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the \texttt{ptex2tex} program with all its flexibility for choosing environments.
+Also \texttt{doconce ptex2tex} has some flexibility for typesetting computer code.
 
 
 %___________________________________________________________________________
