@@ -358,7 +358,10 @@ newline": "testdoc.do.txt". Can test spaces with the link with word
 too: "hpl": "http://folk.uio.no/hpl" or "hpl" :
 "http://folk.uio.no/hpl". Also `file:///` works: "link to a
 file":"file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in http://folk.uio.no/hpl, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the `latex` format:
 "Newton-Cotes":
@@ -749,10 +752,6 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<!--
-Color definitions:  http://www.december.com/html/spec/color0.html
-CSS examples:       http://www.w3schools.com/css/css_examples.asp
--->
 
 <style type="text/css">
     body {
@@ -793,9 +792,23 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+    .summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .warning  { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .hint     { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .question { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
 </style>
 
-<!-- Use MathJax to render mathematics -->
+</head>
+<body>
+
+
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -810,10 +823,7 @@ MathJax.Hub.Config({
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-</head>
 
-<body>
-    
 <!-- newcommands_replace.tex -->
 $$
 \newcommand{\x}{\pmb{x}}
@@ -826,9 +836,10 @@ $$
 
 
 
+
 <a name="part0000"></a>
 <!-- ------------------- main content ------------------------>
-
+    
 <p>
 
 
@@ -1703,7 +1714,10 @@ plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{t
 newline}. Can test spaces with the link with word
 too: \href{{http://folk.uio.no/hpl}}{hpl} or \href{{http://folk.uio.no/hpl}}{hpl}. Also \code{file:///} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html} }{link to a
 file} is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the \code{latex} format:
 \href{{http://en.wikipedia.org/wiki/Newton%E2\%80\%93Cotes_formulas}}{Newton-Cotes} formulas
@@ -2820,7 +2834,10 @@ plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{t
 newline}. Can test spaces with the link with word
 too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also {\fontsize{10pt}{10pt}\Verb!file:///!} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html} }{link to a
 file} is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the {\fontsize{10pt}{10pt}\Verb!latex!} format:
 \href{{http://en.wikipedia.org/wiki/Newton%E2\%80\%93Cotes_formulas}}{Newton-Cotes}\footnote{\texttt{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes\_formulas}} formulas
@@ -3896,7 +3913,10 @@ plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{t
 newline}. Can test spaces with the link with word
 too: \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}} or \href{{http://folk.uio.no/hpl}}{hpl}\footnote{\texttt{http://folk.uio.no/hpl}}. Also \Verb!file:///! works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html} }{link to a
 file} is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in \href{{http://folk.uio.no/hpl}}{\nolinkurl{http://folk.uio.no/hpl}}, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the \Verb!latex! format:
 \href{{http://en.wikipedia.org/wiki/Newton%E2\%80\%93Cotes_formulas}}{Newton-Cotes}\footnote{\texttt{http://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes\_formulas}} formulas
@@ -4803,7 +4823,10 @@ plain file link `<testdoc.do.txt>`_, or `<testdoc.do.txt>`_, or
 newline <testdoc.do.txt>`_. Can test spaces with the link with word
 too: `hpl <http://folk.uio.no/hpl>`_ or `hpl <http://folk.uio.no/hpl>`_. Also ``file:///`` works: `link to a
 file <file:///home/hpl/vc/doconce/doc/demos/manual/manual.html>`_ is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in `<http://folk.uio.no/hpl>`_, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the ``latex`` format:
 `Newton-Cotes <http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_ formulas
@@ -5687,7 +5710,10 @@ plain file link `<testdoc.do.txt>`_, or `<testdoc.do.txt>`_, or
 newline <testdoc.do.txt>`_. Can test spaces with the link with word
 too: `hpl <http://folk.uio.no/hpl>`_ or `hpl <http://folk.uio.no/hpl>`_. Also ``file:///`` works: `link to a
 file <file:///home/hpl/vc/doconce/doc/demos/manual/manual.html>`_ is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in `<http://folk.uio.no/hpl>`_, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the ``latex`` format:
 `Newton-Cotes <http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>`_ formulas
@@ -6544,7 +6570,10 @@ testdoc.do.txt or testdoc.do.txt or [testdoc.do.txt a link with
 newline]. Can test spaces with the link with word
 too: [http://folk.uio.no/hpl hpl] or [http://folk.uio.no/hpl hpl]. Also `file:///` works: [file:///home/hpl/vc/doconce/doc/demos/manual/manual.html link to a
 file] is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in http://folk.uio.no/hpl, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the `latex` format:
 [http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas Newton-Cotes] formulas
@@ -7210,7 +7239,10 @@ testdoc.do.txt or testdoc.do.txt or [testdoc.do.txt a link with
 newline]. Can test spaces with the link with word
 too: [http://folk.uio.no/hpl hpl] or [http://folk.uio.no/hpl hpl]. Also <code>file:///</code> works: [file:///home/hpl/vc/doconce/doc/demos/manual/manual.html link to a
 file] is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in http://folk.uio.no/hpl, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the <code>latex</code> format:
 [http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas Newton-Cotes] formulas
@@ -7884,7 +7916,10 @@ plain file link [[testdoc.do.txt]], or [[testdoc.do.txt]], or
 newline]]. Can test spaces with the link with word
 too: [[http://folk.uio.no/hpl|hpl]] or [[http://folk.uio.no/hpl|hpl]]. Also {{{file:///}}} works: [[file:///home/hpl/vc/doconce/doc/demos/manual/manual.html|link to a
 file]] is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in [[http://folk.uio.no/hpl]], if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the {{{latex}}} format:
 [[http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas|Newton-Cotes]] formulas
@@ -8544,7 +8579,10 @@ plain file link "testdoc.do.txt":testdoc.do.txt, or "testdoc.do.txt":testdoc.do.
 newline. Can test spaces with the link with word
 too: "http://folk.uio.no/hpl":hpl or "http://folk.uio.no/hpl":hpl. Also 'file:///' works: "file:///home/hpl/vc/doconce/doc/demos/manual/manual.html":link to a
 file is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in "http://folk.uio.no/hpl":http://folk.uio.no/hpl, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the 'latex' format:
 "http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas":Newton-Cotes formulas
@@ -9131,7 +9169,10 @@ U{testdoc.do.txt<testdoc.do.txt>} or U{testdoc.do.txt<testdoc.do.txt>} or U{a li
 newline<testdoc.do.txt>}. Can test spaces with the link with word
 too: U{hpl<http://folk.uio.no/hpl>} or U{hpl<http://folk.uio.no/hpl>}. Also C{file:///} works: U{link to a
 file<file:///home/hpl/vc/doconce/doc/demos/manual/manual.html>} is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in U{http://folk.uio.no/hpl<http://folk.uio.no/hpl>}, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the C{latex} format:
 U{Newton-Cotes<http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas>} formulas
@@ -9830,7 +9871,10 @@ testdoc.do.txt or testdoc.do.txt or a link with
 newline (testdoc.do.txt). Can test spaces with the link with word
 too: hpl (http://folk.uio.no/hpl) or hpl (http://folk.uio.no/hpl). Also file:/// works: link to a
 file (file:///home/hpl/vc/doconce/doc/demos/manual/manual.html) is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in http://folk.uio.no/hpl, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the latex format:
 Newton-Cotes (http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas) formulas
@@ -10520,7 +10564,10 @@ plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or
 newline](testdoc.do.txt). Can test spaces with the link with word
 too: [hpl](http://folk.uio.no/hpl) or [hpl](http://folk.uio.no/hpl). Also `file:///` works: [link to a
 file](file:///home/hpl/vc/doconce/doc/demos/manual/manual.html) is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in <http://folk.uio.no/hpl>, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 Here are some tough tests of URLs, especially for the `latex` format:
 [Newton-Cotes](http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas) formulas
@@ -11468,7 +11515,7 @@ output2</code></pre>
 <h2 id="a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2">A test of verbatim words in heading with subscript \(a_i\): <code>my_file_v1</code> and <code>my_file_v2</code></h2>
 <p><em>Files <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \(a_{i-1}\).</em> Here is some text.</p>
 <h2 id="urls">URLs</h2>
-<p>Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or the entire URL if desired, <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>. Here is a plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or <testdoc.do.txt> or <testdoc.do.txt> or <a href="testdoc.do.txt">a link with newline</a>. Can test spaces with the link with word too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a file</a> is fine to have.</p>
+<p>Testing of URLs: hpl's home page <a href="http://folk.uio.no/hpl">hpl</a>, or the entire URL if desired, <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>. Here is a plain file link <testdoc.do.txt>, or <testdoc.do.txt>, or <testdoc.do.txt> or <testdoc.do.txt> or <a href="testdoc.do.txt">a link with newline</a>. Can test spaces with the link with word too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="http://folk.uio.no/hpl"><code class="url">http://folk.uio.no/hpl</code></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
 <p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas">Newton-Cotes</a> formulas and a <a href="http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1">good book</a>.</p>
 <!-- Comments should be inserted outside paragraphs (because in the rst -->
 <!-- format extra blanks make a paragraph break). -->
@@ -12614,12 +12661,11 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<!--
-Color definitions:  http://www.december.com/html/spec/color0.html
-CSS examples:       http://www.w3schools.com/css/css_examples.asp
--->
 
 <style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
     body {
       margin-top: 1.0em;
       background-color: #ffffff;
@@ -12642,51 +12688,23 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Valid_Green.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Attention.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Info.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Forward.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
 </style>
 
-<!-- Use MathJax to render mathematics -->
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-     equationNumbers: {  autoNumber: "AMS"  },
-     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js"]
-  }
-});
-</script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- Fix slow MathJax rendering in IE8 -->
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-
 </head>
-
 <body>
-    
-<!-- newcommands_replace.tex -->
-$$
-\newcommand{\x}{\pmb{x}}
-\newcommand{\normalvec}{\pmb{n}}
-\newcommand{\Ddt}[1]{\frac{D#1}{dt}}
-\newcommand{\halfi}{1/2}
-\newcommand{\half}{\frac{1}{2}}
-\newcommand{\report}{test report}
-$$
-
-
 
 <!-- ------------------- main content ------------------------>
-
+    
 <title>Test of one author at one institution</title>
 
 <center><h1>Test of one author at one institution</h1></center>  <! -- document title -->
@@ -13244,10 +13262,6 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<!--
-Color definitions:  http://www.december.com/html/spec/color0.html
-CSS examples:       http://www.w3schools.com/css/css_examples.asp
--->
 
 <style type="text/css">
     body {
@@ -13288,9 +13302,23 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+    .summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .warning  { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .hint     { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .question { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
 </style>
 
-<!-- Use MathJax to render mathematics -->
+</head>
+<body>
+
+
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -13305,10 +13333,7 @@ MathJax.Hub.Config({
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-</head>
 
-<body>
-    
 <!-- newcommands_replace.tex -->
 $$
 \newcommand{\x}{\pmb{x}}
@@ -13321,9 +13346,10 @@ $$
 
 
 
+
 <a name="part0000"></a>
 <!-- ------------------- main content ------------------------>
-
+    
 <p>
 
 
@@ -13425,10 +13451,6 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<!--
-Color definitions:  http://www.december.com/html/spec/color0.html
-CSS examples:       http://www.w3schools.com/css/css_examples.asp
--->
 
 <style type="text/css">
     body {
@@ -13469,9 +13491,23 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+    .summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .warning  { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .hint     { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .question { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
 </style>
 
-<!-- Use MathJax to render mathematics -->
+</head>
+<body>
+
+
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -13486,10 +13522,7 @@ MathJax.Hub.Config({
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-</head>
 
-<body>
-    
 <!-- newcommands_replace.tex -->
 $$
 \newcommand{\x}{\pmb{x}}
@@ -13499,6 +13532,7 @@ $$
 \newcommand{\half}{\frac{1}{2}}
 \newcommand{\report}{test report}
 $$
+
 
 
 
@@ -13583,10 +13617,6 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<!--
-Color definitions:  http://www.december.com/html/spec/color0.html
-CSS examples:       http://www.w3schools.com/css/css_examples.asp
--->
 
 <style type="text/css">
     body {
@@ -13627,9 +13657,23 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
     p.caption { width: 80%; font-style: normal; text-align: left; }
     hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 
+    .notice, .summary, .warning, .hint, .question {
+    border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
+    background-repeat: no-repeat; background-position: 10px center;
+    }
+    .notice   { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
+    .summary  { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
+    .warning  { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
+    .hint     { background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
+    .question { background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
+
 </style>
 
-<!-- Use MathJax to render mathematics -->
+</head>
+<body>
+
+
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -13644,10 +13688,7 @@ MathJax.Hub.Config({
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-</head>
 
-<body>
-    
 <!-- newcommands_replace.tex -->
 $$
 \newcommand{\x}{\pmb{x}}
@@ -13657,6 +13698,7 @@ $$
 \newcommand{\half}{\frac{1}{2}}
 \newcommand{\report}{test report}
 $$
+
 
 
 
@@ -14128,7 +14170,10 @@ plain file link <a href="testdoc.do.txt"><tt>testdoc.do.txt</tt></a>, or <a href
 newline</a>. Can test spaces with the link with word
 too: <a href="http://folk.uio.no/hpl">hpl</a> or <a href="http://folk.uio.no/hpl">hpl</a>. Also <tt>file:///</tt> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html">link to a
 file</a> is
-fine to have.
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in <a href="http://folk.uio.no/hpl"><tt>http://folk.uio.no/hpl</tt></a>, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
 
 <p>
 Here are some tough tests of URLs, especially for the <tt>latex</tt> format:
@@ -14538,7 +14583,7 @@ Without label.
 <table width="95%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_hint.png" hspace="5" alt="Hint"></td>
 <th align="left" valign="middle"><b>Hint</b></th>
 </tr>
 <tr>
@@ -14553,7 +14598,7 @@ Without label.
 <table width="95%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/lyx_warning.png" hspace="5" alt="Warning"></td>
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_warning.png" hspace="5" alt="Warning"></td>
 <th align="left" valign="middle"><b>Warning</b></th>
 </tr>
 <tr>
@@ -14568,7 +14613,7 @@ Without label.
 <table width="95%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/lyx_summary.png" hspace="5" alt="Summary"></td>
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_summary.png" hspace="5" alt="Summary"></td>
 <th align="left" valign="middle"><b>Summary</b></th>
 </tr>
 <tr>
@@ -14583,7 +14628,7 @@ Without label.
 <table width="95%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
 <th align="left" valign="middle"><b>Notice</b></th>
 </tr>
 <tr>
@@ -14598,7 +14643,7 @@ Without label.
 <table width="95%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
-<img src="https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/lyx_question.png" hspace="5" alt="Question"></td>
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_question.png" hspace="5" alt="Question"></td>
 <th align="left" valign="middle"><b>Question</b></th>
 </tr>
 <tr>
@@ -14761,7 +14806,7 @@ MathJax.Hub.Config({
 
 <section>
 <!-- ------------------- main content ------------------------>
-
+    
 <title>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</title>
 
 <center><h1>On the Technicalities of Scientific Writing Anno 2012: The Doconce Way</h1></center>  <! -- document title -->
@@ -15751,12 +15796,11 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<!--
-Color definitions:  http://www.december.com/html/spec/color0.html
-CSS examples:       http://www.w3schools.com/css/css_examples.asp
--->
 
 <style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
     body {
       margin-top: 1.0em;
       background-color: #ffffff;
@@ -15779,19 +15823,23 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Valid_Green.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Attention.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Info.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Forward.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
 </style>
 
-<!-- Use MathJax to render mathematics -->
+</head>
+<body>
+
+
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -15806,13 +15854,11 @@ MathJax.Hub.Config({
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-</head>
 
-<body>
-    
+
 
 <!-- ------------------- main content ------------------------>
-<!-- Missing: FIGURE, MOVIE, environments -->
+    <!-- Missing: FIGURE, MOVIE, environments -->
 
 <p>
 
@@ -16252,10 +16298,16 @@ Terminal&gt; doconce format html mydoc
 The resulting file <tt>mydoc.html</tt> can be loaded into any web browser for viewing.
 
 <p>
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the <tt>--html-solarized</tt>
-command line argument, the <a href="http://ethanschoonover.com/solarized">solarized</a>
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument <tt>--css=filename</tt>. There is a default style with blue headings,
+and a style with the <a href="http://ethanschoonover.com/solarized">solarized</a>
+color palette, specified by the <tt>--html-solarized</tt> command line
+argument. If there is no file with name <tt>filename</tt> in the <tt>--css=filename</tt>
+specification, the blue or solarized styles are written to <tt>filename</tt>
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the <tt>style</tt> tags or by
+specifying a CSS file through the <tt>--css=filename</tt> option.
 
 <p>
 If the Pygments package (including the <tt>pygmentize</tt> program)
@@ -16286,7 +16338,37 @@ Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
 
 <p>
 
-<h3>Pandoc and Markdown  <a name="___sec8"></a></h3>
+<h3>Blogs  <a name="___sec8"></a></h3>
+<p>
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (<tt>blogname.blogspot.com</tt>)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this <a href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html">example</a> for details on blogging.
+
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_warning.png" hspace="5" alt="Warning"></td>
+<th align="left" valign="middle"><b>Warning</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.</p>
+</td>
+</tr>
+</table>
+<p>
+
+<h3>Pandoc and Markdown  <a name="___sec9"></a></h3>
 <p>
 Output in Pandoc's extended Markdown format results from
 <!-- begin verbatim block  sys-->
@@ -16347,7 +16429,7 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.
 <p>
 
 
-<h3>LaTeX  <a name="___sec9"></a></h3>
+<h3>LaTeX  <a name="___sec10"></a></h3>
 <p>
 Making a LaTeX file <tt>mydoc.tex</tt> from <tt>mydoc.do.txt</tt> is done in two steps:
 <!-- Note: putting code blocks inside a list is not successful in many -->
@@ -16522,7 +16604,7 @@ included so there is no need for the <tt>-DMINTED</tt> option.
 <p>
 
 
-<h3>PDFLaTeX  <a name="___sec10"></a></h3>
+<h3>PDFLaTeX  <a name="___sec11"></a></h3>
 <p>
 Running <tt>pdflatex</tt> instead of <tt>latex</tt> follows almost the same steps,
 but the start is
@@ -16543,7 +16625,7 @@ Terminal&gt; pdflatex -shell-escape mydoc
 
 <p>
 
-<h3>Plain ASCII Text  <a name="___sec11"></a></h3>
+<h3>Plain ASCII Text  <a name="___sec12"></a></h3>
 <p>
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
@@ -16556,7 +16638,7 @@ Terminal&gt; doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 <p>
 
-<h3>reStructuredText  <a name="___sec12"></a></h3>
+<h3>reStructuredText  <a name="___sec13"></a></h3>
 <p>
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
@@ -16614,7 +16696,7 @@ Some links for going from LaTeX to Word are listed below.
  <li> <a href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"><tt>http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</tt></a></li>
 </ul>
 
-<h3>Sphinx  <a name="___sec13"></a></h3>
+<h3>Sphinx  <a name="___sec14"></a></h3>
 <p>
 Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <tt>doconce sphinx_dir</tt> command:
@@ -16801,7 +16883,7 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 <p>
 
 
-<h3>Wiki Formats  <a name="___sec14"></a></h3>
+<h3>Wiki Formats  <a name="___sec15"></a></h3>
 <p>
 There are many different wiki formats, but Doconce only supports three:
 <a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>, MediaWiki, and Creole Wiki. These formats are called
@@ -16838,7 +16920,7 @@ standard LaTeX book or a Sphinx web document.
 <p>
 
 
-<h3>Tweaking the Doconce Output  <a name="___sec15"></a></h3>
+<h3>Tweaking the Doconce Output  <a name="___sec16"></a></h3>
 <p>
 Occasionally, one would like to tweak the output in a certain format
 from Doconce. One example is figure filenames when transforming
@@ -16855,7 +16937,7 @@ constitute comprehensive examples on how such scripts can be made.
 <p>
 
 
-<h3>Demos  <a name="___sec16"></a></h3>
+<h3>Demos  <a name="___sec17"></a></h3>
 <p>
 The current text is generated from a Doconce format stored in the file
 <!-- begin verbatim block -->
@@ -16879,10 +16961,10 @@ various formats. The <tt>make.sh</tt> script runs a set of translations.
 
 <p>
 
-<h2>Installation of Doconce and its Dependencies  <a name="___sec17"></a></h2>
+<h2>Installation of Doconce and its Dependencies  <a name="___sec18"></a></h2>
 <p>
 
-<h3>Doconce  <a name="___sec18"></a></h3>
+<h3>Doconce  <a name="___sec19"></a></h3>
 <p>
 Doconce itself is pure Python code hosted at <a href="http://code.google.com/p/doconce"><tt>http://code.google.com/p/doconce</tt></a>.  Its installation from the
 Mercurial (<tt>hg</tt>) source follows the standard procedure:
@@ -16927,10 +17009,10 @@ sudo apt-get install doconce
 
 <p>
 
-<h3>Dependencies  <a name="___sec19"></a></h3>
+<h3>Dependencies  <a name="___sec20"></a></h3>
 <p>
 
-<h4>Preprocessors  <a name="___sec20"></a></h4>
+<h4>Preprocessors  <a name="___sec21"></a></h4>
 <p>
 If you make use of the <a href="http://code.google.com/p/preprocess">Preprocess</a>
 preprocessor, this program must be installed:
@@ -16976,7 +17058,7 @@ the usual <tt>sudo python setup.py install</tt>.
 
 <p>
 
-<h4>Image file handling  <a name="___sec21"></a></h4>
+<h4>Image file handling  <a name="___sec22"></a></h4>
 <p>
 Different output formats require different formats of image files.
 For example, PostScript or Encapuslated PostScript is required for <tt>latex</tt>
@@ -17007,7 +17089,7 @@ sudo apt-get install texlive-extra-utils
 
 <p>
 
-<h4>Spellcheck  <a name="___sec22"></a></h4>
+<h4>Spellcheck  <a name="___sec23"></a></h4>
 <p>
 The utility <tt>doconce spellcheck</tt> applies the <tt>ispell</tt> program for
 spellcheck. On Debian (including Ubuntu) it is installed by
@@ -17021,7 +17103,7 @@ sudo apt-get install ispell
 
 <p>
 
-<h4>Ptex2tex for LaTeX Output  <a name="___sec23"></a></h4>
+<h4>Ptex2tex for LaTeX Output  <a name="___sec24"></a></h4>
 <p>
 To make LaTeX documents with very flexible choice of typesetting of
 verbatim code blocks you need <a href="http://code.google.com/p/ptex2tex">ptex2tex</a>,
@@ -17100,7 +17182,7 @@ argument when running LaTeX, i.e., <tt>latex -shell-escape</tt> or <tt>pdflatex
 
 <p>
 
-<h4>reStructuredText (reST) Output  <a name="___sec24"></a></h4>
+<h4>reStructuredText (reST) Output  <a name="___sec25"></a></h4>
 <p>
 The <tt>rst</tt> output from Doconce allows further transformation to LaTeX,
 HTML, XML, OpenOffice, and so on, through the <a href="http://docutils.sourceforge.net">docutils</a> package.  The installation of the
@@ -17147,7 +17229,7 @@ cd ..
 
 <p>
 
-<h4>Markdown and Pandoc Output  <a name="___sec25"></a></h4>
+<h4>Markdown and Pandoc Output  <a name="___sec26"></a></h4>
 <p>
 The Doconce format <tt>pandoc</tt> outputs the document in the Pandoc
 extended Markdown format, which via the <tt>pandoc</tt> program can be
@@ -17164,7 +17246,7 @@ on Debian (Ubuntu) systems.
 
 <p>
 
-<h4>Epydoc Output  <a name="___sec26"></a></h4>
+<h4>Epydoc Output  <a name="___sec27"></a></h4>
 <p>
 When the output format is <tt>epydoc</tt> one needs that program too, installed
 by
@@ -17802,10 +17884,16 @@ Terminal> doconce format html mydoc
 \esys
 The resulting file \code{mydoc.html} can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the \code{--html-solarized}
-command line argument, the \href{{http://ethanschoonover.com/solarized}}{solarized}
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument \code{--css=filename}. There is a default style with blue headings,
+and a style with the \href{{http://ethanschoonover.com/solarized}}{solarized}
+color palette, specified by the \code{--html-solarized} command line
+argument. If there is no file with name \code{filename} in the \code{--css=filename}
+specification, the blue or solarized styles are written to \code{filename}
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the \code{style} tags or by
+specifying a CSS file through the \code{--css=filename} option.
 
 If the Pygments package (including the \code{pygmentize} program)
 is installed, code blocks are typeset with
@@ -17829,6 +17917,32 @@ by \code{%(main)s}. Here is an example:
 \bsys
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 \esys
+
+\subsection{Blogs}
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (\code{blogname.blogspot.com})
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+{\LaTeX} mathematics and pretty (pygmentized) blocks of computer code.
+See this \href{{http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html}}{example} for details on blogging.
+
+
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+\setlength{\fboxrule}{2pt}
+\begin{center}
+\fcolorbox{black}{warningbackground}{
+\begin{minipage}{0.8\textwidth}
+\includegraphics[height=0.3in]{latex_figs/warning.eps}
+\vskip-0.3in\hskip1.5in{\large\bf WARNING} \\[0.4cm]
+In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
+\end{minipage}}
+\end{center}
+\setlength{\fboxrule}{0.4pt} % Back to default
 
 \subsection{Pandoc and Markdown}
 
@@ -18955,10 +19069,16 @@ is performed by::
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the ``--html-solarized``
-command line argument, the `solarized <http://ethanschoonover.com/solarized>`_
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument ``--css=filename``. There is a default style with blue headings,
+and a style with the `solarized <http://ethanschoonover.com/solarized>`_
+color palette, specified by the ``--html-solarized`` command line
+argument. If there is no file with name ``filename`` in the ``--css=filename``
+specification, the blue or solarized styles are written to ``filename``
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the ``style`` tags or by
+specifying a CSS file through the ``--css=filename`` option.
 
 If the Pygments package (including the ``pygmentize`` program)
 is installed, code blocks are typeset with
@@ -18983,6 +19103,24 @@ by ``%(main)s``. Here is an example::
 
         Terminal> doconce format html mydoc --html-template=mytemplate.html
 
+
+Blogs
+-----
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (``blogname.blogspot.com``)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this `example <http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html>`_ for details on blogging.
+
+
+.. warning::
+    In the comments one cannot paste raw HTML code with MathJax
+    scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 -------------------
@@ -20183,10 +20321,16 @@ is performed by
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the ``--html-solarized``
-command line argument, the `solarized <http://ethanschoonover.com/solarized>`_
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument ``--css=filename``. There is a default style with blue headings,
+and a style with the `solarized <http://ethanschoonover.com/solarized>`_
+color palette, specified by the ``--html-solarized`` command line
+argument. If there is no file with name ``filename`` in the ``--css=filename``
+specification, the blue or solarized styles are written to ``filename``
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the ``style`` tags or by
+specifying a CSS file through the ``--css=filename`` option.
 
 If the Pygments package (including the ``pygmentize`` program)
 is installed, code blocks are typeset with
@@ -20212,6 +20356,24 @@ by ``%(main)s``. Here is an example:
 
         Terminal> doconce format html mydoc --html-template=mytemplate.html
 
+
+Blogs
+-----
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (``blogname.blogspot.com``)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this `example <http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html>`_ for details on blogging.
+
+
+.. warning::
+    In the comments one cannot paste raw HTML code with MathJax
+    scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 -------------------
@@ -21369,10 +21531,16 @@ Terminal> doconce format html mydoc
 }}}
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the `--html-solarized`
-command line argument, the [http://ethanschoonover.com/solarized solarized]
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument `--css=filename`. There is a default style with blue headings,
+and a style with the [http://ethanschoonover.com/solarized solarized]
+color palette, specified by the `--html-solarized` command line
+argument. If there is no file with name `filename` in the `--css=filename`
+specification, the blue or solarized styles are written to `filename`
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the `style` tags or by
+specifying a CSS file through the `--css=filename` option.
 
 If the Pygments package (including the `pygmentize` program)
 is installed, code blocks are typeset with
@@ -21396,6 +21564,23 @@ by `%(main)s`. Here is an example:
 {{{
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 }}}
+
+==== Blogs ====
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this [http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html example] for details on blogging.
+
+
+
+*Warning.* In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 ==== Pandoc and Markdown ====
 
@@ -22397,10 +22582,16 @@ Terminal> doconce format html mydoc
 </code>
 The resulting file <code>mydoc.html</code> can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the <code>--html-solarized</code>
-command line argument, the [http://ethanschoonover.com/solarized solarized]
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument <code>--css=filename</code>. There is a default style with blue headings,
+and a style with the [http://ethanschoonover.com/solarized solarized]
+color palette, specified by the <code>--html-solarized</code> command line
+argument. If there is no file with name <code>filename</code> in the <code>--css=filename</code>
+specification, the blue or solarized styles are written to <code>filename</code>
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the <code>style</code> tags or by
+specifying a CSS file through the <code>--css=filename</code> option.
 
 If the Pygments package (including the <code>pygmentize</code> program)
 is installed, code blocks are typeset with
@@ -22424,6 +22615,22 @@ by <code>%(main)s</code>. Here is an example:
 <syntaxhighlight lang="bash">
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 </code>
+
+==== Blogs ====
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (<code>blogname.blogspot.com</code>)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this [http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html example] for details on blogging.
+
+
+{{warning|In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.}}
 
 ==== Pandoc and Markdown ====
 
@@ -23441,10 +23648,16 @@ Terminal> doconce format html mydoc
 }}}
 The resulting file {{{mydoc.html}}} can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the {{{--html-solarized}}}
-command line argument, the [[http://ethanschoonover.com/solarized|solarized]]
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument {{{--css=filename}}}. There is a default style with blue headings,
+and a style with the [[http://ethanschoonover.com/solarized|solarized]]
+color palette, specified by the {{{--html-solarized}}} command line
+argument. If there is no file with name {{{filename}}} in the {{{--css=filename}}}
+specification, the blue or solarized styles are written to {{{filename}}}
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the {{{style}}} tags or by
+specifying a CSS file through the {{{--css=filename}}} option.
 
 If the Pygments package (including the {{{pygmentize}}} program)
 is installed, code blocks are typeset with
@@ -23468,6 +23681,24 @@ by {{{%(main)s}}}. Here is an example:
 {{{
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 }}}
+
+
+== Blogs ==
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service ({{{blogname.blogspot.com}}})
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this [[http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html|example]] for details on blogging.
+
+
+
+//Warning.// In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 
 == Pandoc and Markdown ==
@@ -24517,10 +24748,16 @@ is performed by::
 
 The resulting file 'mydoc.html' can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the '--html-solarized'
-command line argument, the "http://ethanschoonover.com/solarized":solarized
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument '--css=filename'. There is a default style with blue headings,
+and a style with the "http://ethanschoonover.com/solarized":solarized
+color palette, specified by the '--html-solarized' command line
+argument. If there is no file with name 'filename' in the '--css=filename'
+specification, the blue or solarized styles are written to 'filename'
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the 'style' tags or by
+specifying a CSS file through the '--css=filename' option.
 
 If the Pygments package (including the 'pygmentize' program)
 is installed, code blocks are typeset with
@@ -24545,6 +24782,23 @@ by '%(main)s'. Here is an example::
 
         Terminal> doconce format html mydoc --html-template=mytemplate.html
 
+
+Blogs
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service ('blogname.blogspot.com')
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this "http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html":example for details on blogging.
+
+
+
+*Warning.* In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 
@@ -25634,10 +25888,16 @@ is performed by::
 
 The resulting file C{mydoc.html} can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the C{--html-solarized}
-command line argument, the U{solarized<http://ethanschoonover.com/solarized>}
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument C{--css=filename}. There is a default style with blue headings,
+and a style with the U{solarized<http://ethanschoonover.com/solarized>}
+color palette, specified by the C{--html-solarized} command line
+argument. If there is no file with name C{filename} in the C{--css=filename}
+specification, the blue or solarized styles are written to C{filename}
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the C{style} tags or by
+specifying a CSS file through the C{--css=filename} option.
 
 If the Pygments package (including the C{pygmentize} program)
 is installed, code blocks are typeset with
@@ -25662,6 +25922,24 @@ by C{%(main)s}. Here is an example::
 
         Terminal> doconce format html mydoc --html-template=mytemplate.html
 
+
+Blogs
+-----
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (C{blogname.blogspot.com})
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this U{example<http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html>} for details on blogging.
+
+
+
+I{Warning.} In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 -------------------
@@ -26802,10 +27080,16 @@ is performed by::
 
 The resulting file mydoc.html can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the --html-solarized
-command line argument, the solarized (http://ethanschoonover.com/solarized)
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument --css=filename. There is a default style with blue headings,
+and a style with the solarized (http://ethanschoonover.com/solarized)
+color palette, specified by the --html-solarized command line
+argument. If there is no file with name filename in the --css=filename
+specification, the blue or solarized styles are written to filename
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the style tags or by
+specifying a CSS file through the --css=filename option.
 
 If the Pygments package (including the pygmentize program)
 is installed, code blocks are typeset with
@@ -26830,6 +27114,24 @@ by %(main)s. Here is an example::
 
         Terminal> doconce format html mydoc --html-template=mytemplate.html
 
+
+Blogs
+-----
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (blogname.blogspot.com)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this example (http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html) for details on blogging.
+
+
+
+*Warning.* In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 -------------------
@@ -27995,10 +28297,16 @@ Terminal> doconce format html mydoc
 
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the `--html-solarized`
-command line argument, the [solarized](http://ethanschoonover.com/solarized)
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument `--css=filename`. There is a default style with blue headings,
+and a style with the [solarized](http://ethanschoonover.com/solarized)
+color palette, specified by the `--html-solarized` command line
+argument. If there is no file with name `filename` in the `--css=filename`
+specification, the blue or solarized styles are written to `filename`
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the `style` tags or by
+specifying a CSS file through the `--css=filename` option.
 
 If the Pygments package (including the `pygmentize` program)
 is installed, code blocks are typeset with
@@ -28023,6 +28331,24 @@ by `%(main)s`. Here is an example:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Blogs
+-----
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this [example](http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html) for details on blogging.
+
+
+
+*Warning.* In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 -------------------
@@ -28979,10 +29305,16 @@ Terminal> doconce format html mydoc
 !ec
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the `--html-solarized`
-command line argument, the "solarized": "http://ethanschoonover.com/solarized"
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument `--css=filename`. There is a default style with blue headings,
+and a style with the "solarized": "http://ethanschoonover.com/solarized"
+color palette, specified by the `--html-solarized` command line
+argument. If there is no file with name `filename` in the `--css=filename`
+specification, the blue or solarized styles are written to `filename`
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the `style` tags or by
+specifying a CSS file through the `--css=filename` option.
 
 If the Pygments package (including the `pygmentize` program)
 is installed, code blocks are typeset with
@@ -29006,6 +29338,23 @@ by `%(main)s`. Here is an example:
 !bc sys
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 !ec
+
+===== Blogs =====
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this "example": "http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html" for details on blogging.
+
+!bwarning
+In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
+!ewarning
 
 ===== Pandoc and Markdown =====
 
@@ -29688,7 +30037,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 31 Dec 2012 (06:07)</center>
+<center>Sun, 06 Jan 2013 (19:07)</center>
 
 
 
@@ -29819,7 +30168,7 @@ And here is a table:
 <h6>Dept. of Informatics, Univ. of Oslo</h6>
 </center>
 
-<center>Mon, 31 Dec 2012 (06:07)</center>
+<center>Sun, 06 Jan 2013 (19:07)</center>
 
 
 
@@ -30482,6 +30831,8 @@ Doconce supports tags for *emphasized phrases*, _boldface phrases_,
 and `verbatim text` (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as $\nu = \sin(x)$|$v = sin(x)$.
 
+=== Emphasized Words ===
+
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
 !bc
@@ -30494,6 +30845,8 @@ _several words in boldface_ followed by *ephasized text*.
 !ec
 The line above gets typeset as
 _several words in boldface_ followed by *ephasized text*.
+
+=== Inline Verbatim Text ===
 
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
@@ -30509,19 +30862,39 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and `ptex2tex`) will have
 problems with inline verbatim text that is split over two lines.
 
+!bnotice
 Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
+!enotice
+
+=== Links to Web Addresses ===
 
 Web addresses with links are typeset as
 !bc
 some URL like "Search Google": "http://google.com".
 !ec
 which appears as some URL like "Search Google": "http://google.com".
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+!bc
+Click on this link: URL:"http://code.google.com/p/doconce".
+!ec
+which gets rendered as
+Click on this link: URL: "http://code.google.com/p/doconce".
+
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+=== Links to Local Files ===
+
 Links to files ending in `.txt`, `.html`, `.pdf`, `.py`, `.f`,
 `.f77`, `.f90`, `.f95`, `.sh`, `.csh`, `.ksh`, `.zsh`,
 `.c`, `.cpp`, `.cxx`, `.pl`, and `.java` follows the same
@@ -30586,12 +30959,7 @@ resulting in the link URL: "manual.html".
 #`_static` directory - links in the `.rst` files are automatically
 #adjusted.)
 
-Similarly, to have the URL address itself as link text, put an "URL" or URL
-before the address enclosed in double quotes:
-!bc
-Click on this link: URL:"http://code.google.com/p/doconce".
-!ec
-resulting in Click on this link: URL: "http://code.google.com/p/doconce".
+=== Inline Comments ===
 
 Doconce also supports inline comments in the text:
 !bc
@@ -30610,6 +30978,8 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the `.do.txt` file
 (see Section ref{doconce2formats}).
+
+=== Inline Mathematics ===
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -30638,9 +31008,9 @@ are vectors of length $n$|$n$."
 
 ===== Comments =====
 
-Comments intended to be visible in the output document and read by
-readers are known as *inline comments* in Doconce and described
-in Section ref{inline:tagging}.
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as *inline comments* in Doconce and
+described in Section ref{inline:tagging}.
 
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
@@ -30663,8 +31033,12 @@ lines starting with a double hash `##` and lines enclosed by
 the `<%doc>` (beginning) and `<%doc/>` (closing) tags.
 
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test `# #ifdef EXTRA` in Preprocess).
 
 
 ===== Cross-Referencing =====
@@ -31474,7 +31848,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line
+if a sophisticated table is desired in LaTeX output, do something like
 
 @@@CODE _format_specific2.do.txt
 
@@ -31489,38 +31863,6 @@ we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
-As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say
-!bc
-# table of contents
-!ec
-we can use this comment to edit the LaTeX file. First, we run
-Doconce `doconce format latex mydoc` to produce `mydoc.p.tex`. Then
-we use the `doconce replace` and `doconce subst` commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter:
-!bc
-Terminal> doconce replace '% table of contents'
-          '\tableofcontents' mydoc.p.tex
-!ec
-The `doconce replace from_text to_text filename` command performs a
-character-by-character replacement (using the `replace` method in
-string objects in Python). If we want to preserve the comment and add
-a new line with `\tableofcontents`, we should use `doconce subst`,
-which applies regular expressions for substitutions and thereby
-understands the newline character:
-!bc
-Terminal> doconce subst '% table of contents' \
-          '% table of contents\n\\tableofcontents' mydoc.p.tex
-!ec
-Note the double backshlash in front of the `t` character: without it we
-would get a tab and no backslash.
-The `doconce subst` is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
 
 ===== Header and Footer =====
 
@@ -31529,10 +31871,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if `TITLE:` or
-`#TITLE:` is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if `TITLE:`
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 
 ===== Emacs Doconce Formatter =====
@@ -31916,8 +32257,9 @@ achievement.
 !ec
 Even better, HTML output looks nice as well.
 
-Note that Doconce supports fancy environments for verbatim code (for example,
-the `ptex2tex` program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the `ptex2tex` program with all its flexibility for choosing environments.
+Also `doconce ptex2tex` has some flexibility for typesetting computer code.
 
 
 === The LaTeX file does not compile ===
@@ -32150,12 +32492,11 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<!--
-Color definitions:  http://www.december.com/html/spec/color0.html
-CSS examples:       http://www.w3schools.com/css/css_examples.asp
--->
 
 <style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
     body {
       margin-top: 1.0em;
       background-color: #ffffff;
@@ -32178,19 +32519,23 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Valid_Green.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Attention.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Info.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Forward.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
 </style>
 
-<!-- Use MathJax to render mathematics -->
+</head>
+<body>
+
+
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -32205,10 +32550,7 @@ MathJax.Hub.Config({
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-</head>
 
-<body>
-    
 <!-- newcommands_keep.tex -->
 $$
 \newcommand{\x}{\pmb{x}}
@@ -32229,8 +32571,9 @@ $$
 
 
 
-<!-- ------------------- main content ------------------------>
 
+<!-- ------------------- main content ------------------------>
+    
 <title>Doconce Description</title>
 
 <center><h1>Doconce Description</h1></center>  <! -- document title -->
@@ -32791,10 +33134,16 @@ Terminal&gt; doconce format html mydoc
 The resulting file <tt>mydoc.html</tt> can be loaded into any web browser for viewing.
 
 <p>
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the <tt>--html-solarized</tt>
-command line argument, the <a href="http://ethanschoonover.com/solarized">solarized</a>
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument <tt>--css=filename</tt>. There is a default style with blue headings,
+and a style with the <a href="http://ethanschoonover.com/solarized">solarized</a>
+color palette, specified by the <tt>--html-solarized</tt> command line
+argument. If there is no file with name <tt>filename</tt> in the <tt>--css=filename</tt>
+specification, the blue or solarized styles are written to <tt>filename</tt>
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the <tt>style</tt> tags or by
+specifying a CSS file through the <tt>--css=filename</tt> option.
 
 <p>
 If the Pygments package (including the <tt>pygmentize</tt> program)
@@ -32825,7 +33174,37 @@ Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
 
 <p>
 
-<h3>Pandoc and Markdown  <a name="___sec16"></a></h3>
+<h3>Blogs  <a name="___sec16"></a></h3>
+<p>
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (<tt>blogname.blogspot.com</tt>)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this <a href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html">example</a> for details on blogging.
+
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_warning.png" hspace="5" alt="Warning"></td>
+<th align="left" valign="middle"><b>Warning</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.</p>
+</td>
+</tr>
+</table>
+<p>
+
+<h3>Pandoc and Markdown  <a name="___sec17"></a></h3>
 <p>
 Output in Pandoc's extended Markdown format results from
 <!-- begin verbatim block  sys-->
@@ -32886,7 +33265,7 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.
 <p>
 
 
-<h3>LaTeX  <a name="___sec17"></a></h3>
+<h3>LaTeX  <a name="___sec18"></a></h3>
 <p>
 Making a LaTeX file <tt>mydoc.tex</tt> from <tt>mydoc.do.txt</tt> is done in two steps:
 <!-- Note: putting code blocks inside a list is not successful in many -->
@@ -33061,7 +33440,7 @@ included so there is no need for the <tt>-DMINTED</tt> option.
 <p>
 
 
-<h3>PDFLaTeX  <a name="___sec18"></a></h3>
+<h3>PDFLaTeX  <a name="___sec19"></a></h3>
 <p>
 Running <tt>pdflatex</tt> instead of <tt>latex</tt> follows almost the same steps,
 but the start is
@@ -33082,7 +33461,7 @@ Terminal&gt; pdflatex -shell-escape mydoc
 
 <p>
 
-<h3>Plain ASCII Text  <a name="___sec19"></a></h3>
+<h3>Plain ASCII Text  <a name="___sec20"></a></h3>
 <p>
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
@@ -33095,7 +33474,7 @@ Terminal&gt; doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 <p>
 
-<h3>reStructuredText  <a name="___sec20"></a></h3>
+<h3>reStructuredText  <a name="___sec21"></a></h3>
 <p>
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
@@ -33153,7 +33532,7 @@ Some links for going from LaTeX to Word are listed below.
  <li> <a href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"><tt>http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</tt></a></li>
 </ul>
 
-<h3>Sphinx  <a name="___sec21"></a></h3>
+<h3>Sphinx  <a name="___sec22"></a></h3>
 <p>
 Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <tt>doconce sphinx_dir</tt> command:
@@ -33340,7 +33719,7 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 <p>
 
 
-<h3>Wiki Formats  <a name="___sec22"></a></h3>
+<h3>Wiki Formats  <a name="___sec23"></a></h3>
 <p>
 There are many different wiki formats, but Doconce only supports three:
 <a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>, MediaWiki, and Creole Wiki. These formats are called
@@ -33377,7 +33756,7 @@ standard LaTeX book or a Sphinx web document.
 <p>
 
 
-<h3>Tweaking the Doconce Output  <a name="___sec23"></a></h3>
+<h3>Tweaking the Doconce Output  <a name="___sec24"></a></h3>
 <p>
 Occasionally, one would like to tweak the output in a certain format
 from Doconce. One example is figure filenames when transforming
@@ -33394,14 +33773,14 @@ constitute comprehensive examples on how such scripts can be made.
 <p>
 
 
-<h2>The Doconce Markup Language  <a name="___sec24"></a></h2>
+<h2>The Doconce Markup Language  <a name="___sec25"></a></h2>
 <p>
 The Doconce format introduces four constructs to markup text:
 lists, special lines, inline tags, and environments.
 
 <p>
 
-<h3>Lists  <a name="___sec25"></a></h3>
+<h3>Lists  <a name="___sec26"></a></h3>
 <p>
 An unordered bullet list makes use of the <tt>*</tt> as bullet sign
 and is indented as follows
@@ -33509,7 +33888,7 @@ The result becomes
      lines)
 </dl>
 
-<h3>Special Lines  <a name="___sec26"></a></h3>
+<h3>Special Lines  <a name="___sec27"></a></h3>
 <p>
 The Doconce markup language has a concept called <em>special lines</em>.
 Such lines starts with a markup at the very beginning of the
@@ -33643,10 +34022,10 @@ __A Paragraph.__ The running text goes here.
 
 <p>
 
-<h2>Special Lines  <a name="___sec27"></a></h2>
+<h2>Special Lines  <a name="___sec28"></a></h2>
 <p>
 
-<h3>Figures  <a name="___sec28"></a></h3>
+<h3>Figures  <a name="___sec29"></a></h3>
 <p>
 <!-- Note: need extra blank after FIGURE and MOVIE in !bc environments -->
 <!-- because doconce treats !ec as part of the caption and moves the -->
@@ -33703,7 +34082,7 @@ and <tt>-tile x2</tt> means two rows).
 
 <p>
 
-<h3>Movies  <a name="___sec29"></a></h3>
+<h3>Movies  <a name="___sec30"></a></h3>
 <p>
 Here is an example on the <tt>MOVIE:</tt> keyword for embedding movies. This
 feature works well for the <tt>latex</tt>, <tt>html</tt>, <tt>rst</tt>, and <tt>sphinx</tt> formats.
@@ -33792,7 +34171,7 @@ the width and height might be inappropriate.
 <p>
 
 
-<h3>Copying Computer Code from Source Files  <a name="___sec30"></a></h3>
+<h3>Copying Computer Code from Source Files  <a name="___sec31"></a></h3>
 <p>
 Another type of special lines starts with <tt>@@@CODE</tt> and enables copying
 of computer code from a file directly into a verbatim environment, see
@@ -33807,6 +34186,9 @@ Doconce supports tags for <em>emphasized phrases</em>, <b>boldface phrases</b>,
 and <tt>verbatim text</tt> (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as \( \nu = \sin(x) \).
 
+<p>
+
+<h4>Emphasized Words  <a name="___sec33"></a></h4>
 <p>
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
@@ -33827,6 +34209,9 @@ The line above gets typeset as
 <b>several words in boldface</b> followed by <em>ephasized text</em>.
 
 <p>
+
+<h4>Inline Verbatim Text  <a name="___sec34"></a></h4>
+<p>
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
 <!-- begin verbatim block -->
@@ -33845,13 +34230,28 @@ the Doconce file, because some formats (LaTeX and <tt>ptex2tex</tt>) will have
 problems with inline verbatim text that is split over two lines.
 
 <p>
-Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_notice.png" hspace="5" alt="Notice"></td>
+<th align="left" valign="middle"><b>Notice</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
-very simple formatting usually avoids such problems).
+very simple formatting usually avoids such problems).</p>
+</td>
+</tr>
+</table>
+<p>
 
+<h4>Links to Web Addresses  <a name="___sec35"></a></h4>
 <p>
 Web addresses with links are typeset as
 <!-- begin verbatim block -->
@@ -33860,7 +34260,29 @@ some URL like &quot;Search Google&quot;: &quot;http://google.com&quot;.
 </pre>
 <! -- end verbatim block -->
 which appears as some URL like <a href="http://google.com">Search Google</a>.
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+<p>
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+<!-- begin verbatim block -->
+<pre>
+Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.
+</pre>
+<! -- end verbatim block -->
+which gets rendered as
+Click on this link: <a href="http://code.google.com/p/doconce"><tt>http://code.google.com/p/doconce</tt></a>.
+
+<p>
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+<p>
+
+<h4>Links to Local Files  <a name="___sec36"></a></h4>
+<p>
 Links to files ending in <tt>.txt</tt>, <tt>.html</tt>, <tt>.pdf</tt>, <tt>.py</tt>, <tt>.f</tt>,
 <tt>.f77</tt>, <tt>.f90</tt>, <tt>.f95</tt>, <tt>.sh</tt>, <tt>.csh</tt>, <tt>.ksh</tt>, <tt>.zsh</tt>,
 <tt>.c</tt>, <tt>.cpp</tt>, <tt>.cxx</tt>, <tt>.pl</tt>, and <tt>.java</tt> follows the same
@@ -33941,15 +34363,8 @@ resulting in the link <a href="manual.html"><tt>manual.html</tt></a>.
 <!-- adjusted.) -->
 
 <p>
-Similarly, to have the URL address itself as link text, put an "URL" or URL
-before the address enclosed in double quotes:
-<!-- begin verbatim block -->
-<pre>
-Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.
-</pre>
-<! -- end verbatim block -->
-resulting in Click on this link: <a href="http://code.google.com/p/doconce"><tt>http://code.google.com/p/doconce</tt></a>.
 
+<h4>Inline Comments  <a name="___sec37"></a></h4>
 <p>
 Doconce also supports inline comments in the text:
 <!-- begin verbatim block -->
@@ -33971,6 +34386,9 @@ and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the <tt>.do.txt</tt> file
 (see the section <a href="#doconce2formats">From Doconce to Other Formats</a>).
 
+<p>
+
+<h4>Inline Mathematics  <a name="___sec38"></a></h4>
 <p>
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -34002,11 +34420,11 @@ are vectors of length \( n \)."
 
 <p>
 
-<h3>Comments  <a name="___sec32"></a></h3>
+<h3>Comments  <a name="___sec39"></a></h3>
 <p>
-Comments intended to be visible in the output document and read by
-readers are known as <em>inline comments</em> in Doconce and described
-in the section <a href="#inline:tagging">Inline Tagging</a>.
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as <em>inline comments</em> in Doconce and
+described in the section <a href="#inline:tagging">Inline Tagging</a>.
 
 <p>
 Here we address comments in the Doconce source file that are not
@@ -34034,13 +34452,18 @@ the <tt><%doc></tt> (beginning) and <tt><%doc/></tt> (closing) tags.
 
 <p>
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+<p>
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test <tt># #ifdef EXTRA</tt> in Preprocess).
 
 <p>
 
 
-<h3>Cross-Referencing  <a name="___sec33"></a></h3>
+<h3>Cross-Referencing  <a name="___sec40"></a></h3>
 <p>
 References and labels are supported. The syntax is simple:
 <!-- begin verbatim block -->
@@ -34181,7 +34604,7 @@ the document [A Document for Testing Doconce](testdoc.html)
 
 <p>
 
-<h3>Index and Bibliography  <a name="___sec35"></a></h3>
+<h3>Index and Bibliography  <a name="___sec42"></a></h3>
 <p>
 An index can be created for the <tt>latex</tt>, <tt>rst</tt>, and <tt>sphinx</tt> formats
 by the <tt>idx</tt> keyword, following a LaTeX-inspired syntax:
@@ -34297,7 +34720,7 @@ is a special feature of doconce :-) </em>]
 <p>
 
 
-<h3>Tables  <a name="___sec36"></a></h3>
+<h3>Tables  <a name="___sec43"></a></h3>
 <p>
 A table like
 
@@ -34338,7 +34761,7 @@ the format and insert format-specific code for tables.
 <p>
 
 
-<h3>Exercises, Problems, or Projects  <a name="___sec37"></a></h3>
+<h3>Exercises, Problems, or Projects  <a name="___sec44"></a></h3>
 <p>
 Doconce has special support for three types of "exercises", named
 <em>exercise</em>, <em>problem</em>, or <em>project</em>.
@@ -34818,7 +35241,7 @@ alternatively:
 <p>
 
 
-<h4>Mathematics for PowerPoint/OpenOffice  <a name="___sec40"></a></h4>
+<h4>Mathematics for PowerPoint/OpenOffice  <a name="___sec47"></a></h4>
 <p>
 If you have LaTeX mathematics written in Doconce, it is fairly easy
 to generate PNG images of all mathematical formulas and equations for
@@ -34918,7 +35341,7 @@ in the current format.
 
 <p>
 
-<h3>Preprocessing Steps  <a name="___sec42"></a></h3>
+<h3>Preprocessing Steps  <a name="___sec49"></a></h3>
 <p>
 Doconce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
@@ -34992,7 +35415,7 @@ the writing of parts of the document.
 <p>
 
 
-<h3>Splitting Documents into Smaller Pieces  <a name="___sec43"></a></h3>
+<h3>Splitting Documents into Smaller Pieces  <a name="___sec50"></a></h3>
 <p>
 Long documents are conveniently split into smaller Doconce files.
 However, there must be a master document including all the pieces,
@@ -35052,14 +35475,14 @@ variable <tt>files</tt> above.
 <p>
 
 
-<h3>Missing Features  <a name="___sec44"></a></h3>
+<h3>Missing Features  <a name="___sec51"></a></h3>
 <p>
 Doconce does not aim to support sophisticated typesetting, simply because
 sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line
+if a sophisticated table is desired in LaTeX output, do something like
 
 <p>
 <!-- begin verbatim block  pro-->
@@ -35086,63 +35509,23 @@ a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
 <p>
-As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say
-<!-- begin verbatim block -->
-<pre>
-# table of contents
-</pre>
-<! -- end verbatim block -->
-we can use this comment to edit the LaTeX file. First, we run
-Doconce <tt>doconce format latex mydoc</tt> to produce <tt>mydoc.p.tex</tt>. Then
-we use the <tt>doconce replace</tt> and <tt>doconce subst</tt> commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter:
-<!-- begin verbatim block -->
-<pre>
-Terminal&gt; doconce replace '% table of contents'
-          '\tableofcontents' mydoc.p.tex
-</pre>
-<! -- end verbatim block -->
-The <tt>doconce replace from_text to_text filename</tt> command performs a
-character-by-character replacement (using the <tt>replace</tt> method in
-string objects in Python). If we want to preserve the comment and add
-a new line with <tt>\tableofcontents</tt>, we should use <tt>doconce subst</tt>,
-which applies regular expressions for substitutions and thereby
-understands the newline character:
-<!-- begin verbatim block -->
-<pre>
-Terminal&gt; doconce subst '% table of contents' \
-          '% table of contents\n\\tableofcontents' mydoc.p.tex
-</pre>
-<! -- end verbatim block -->
-Note the double backshlash in front of the <tt>t</tt> character: without it we
-would get a tab and no backslash.
-The <tt>doconce subst</tt> is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
 
-<p>
 
-<h3>Header and Footer  <a name="___sec45"></a></h3>
+<h3>Header and Footer  <a name="___sec52"></a></h3>
 <p>
 Some formats use a header and footer in the document. LaTeX and
 HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if <tt>TITLE:</tt> or
-<tt>#TITLE:</tt> is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if <tt>TITLE:</tt>
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 <p>
 
 
-<h3>Emacs Doconce Formatter  <a name="___sec46"></a></h3>
+<h3>Emacs Doconce Formatter  <a name="___sec53"></a></h3>
 <p>
 The file <tt>misc/.doconce-mode.el</tt> in the Doconce source distribution
 gives a "Doconce Editing Mode" in Emacs. The file is a rough edit of
@@ -35179,10 +35562,10 @@ the Doconce Editing Mode.
 <p>
 
 
-<h2>Troubleshooting  <a name="___sec47"></a></h2>
+<h2>Troubleshooting  <a name="___sec54"></a></h2>
 <p>
 
-<h3>Disclaimer  <a name="___sec48"></a></h3>
+<h3>Disclaimer  <a name="___sec55"></a></h3>
 <p>
 Doconce has some support for syntax checking.  If you encounter Python
 errors while running <tt>doconce format</tt>, the reason for the error is
@@ -35203,10 +35586,10 @@ well for his diverse applications of it.
 <p>
 
 
-<h3>General Problems  <a name="___sec49"></a></h3>
+<h3>General Problems  <a name="___sec56"></a></h3>
 <p>
 
-<h4>Something goes wrong in the preprocessing step  <a name="___sec50"></a></h4>
+<h4>Something goes wrong in the preprocessing step  <a name="___sec57"></a></h4>
 <p>
 Doconce automatically removes the file <tt>__tmp.do.txt</tt>, which is the
 resulting of the preprocessing stge and the file to examine if
@@ -35217,7 +35600,7 @@ something goes wrong in this stage (i.e., when <tt>mako</tt> and/or
 
 <p>
 
-<h4>Figure captions are incomplete  <a name="___sec51"></a></h4>
+<h4>Figure captions are incomplete  <a name="___sec58"></a></h4>
 <p>
 If only the first part of a figure caption in the Doconce file is seen
 in the target output format, the reason is usually that the caption
@@ -35226,7 +35609,7 @@ be written as <em>one line</em>, at the same line as the FIGURE keyword.
 
 <p>
 
-<h4>Preprocessor directives do not work  <a name="___sec52"></a></h4>
+<h4>Preprocessor directives do not work  <a name="___sec59"></a></h4>
 <p>
 Make sure the preprocessor instructions, in Preprocess or Mako, have
 correct syntax. Also make sure that you do not mix Preprocess and Mako
@@ -35234,14 +35617,14 @@ instructions. Doconce will then only run Preprocess.
 
 <p>
 
-<h4>Problems with boldface and emphasize  <a name="___sec53"></a></h4>
+<h4>Problems with boldface and emphasize  <a name="___sec60"></a></h4>
 <p>
 Two boldface or emphasize expressions after each other are not rendered
 correctly. Merge them into one common expression.
 
 <p>
 
-<h4>Links to local directories do not work  <a name="___sec54"></a></h4>
+<h4>Links to local directories do not work  <a name="___sec61"></a></h4>
 <p>
 Links of the type
 <!-- begin verbatim block -->
@@ -35258,7 +35641,7 @@ see the &quot;examples directory&quot;: &quot;src/examples/index.html&quot;
 
 <p>
 
-<h4>Links are not typeset correctly  <a name="___sec55"></a></h4>
+<h4>Links are not typeset correctly  <a name="___sec62"></a></h4>
 <p>
 Not all formats will allow formatting of the links. Verbatim words
 in links are allowed if the whole link is typeset in verbatim:
@@ -35279,19 +35662,19 @@ in the line above it.
 <p>
 
 
-<h4>Inline verbatim code is not detected  <a name="___sec56"></a></h4>
+<h4>Inline verbatim code is not detected  <a name="___sec63"></a></h4>
 <p>
 Make sure there is a space before the first back-tick.
 
 <p>
 
-<h4>Inline verbatim text is not formatted correctly  <a name="___sec57"></a></h4>
+<h4>Inline verbatim text is not formatted correctly  <a name="___sec64"></a></h4>
 <p>
 Make sure there is whitespace surrounding the text in back-ticks.
 
 <p>
 
-<h4>Strange non-English characters  <a name="___sec58"></a></h4>
+<h4>Strange non-English characters  <a name="___sec65"></a></h4>
 <p>
 Check the encoding of the <tt>.do.txt</tt> file with the Unix <tt>file</tt> command
 or with
@@ -35312,7 +35695,7 @@ Terminal&gt; iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
 
 <p>
 
-<h4>Wrong Norwegian charcters  <a name="___sec59"></a></h4>
+<h4>Wrong Norwegian charcters  <a name="___sec66"></a></h4>
 <p>
 When Doconce documents have characters not in the standard ASCII set,
 the format of the file must be LATIN1 and not UTF-8. See
@@ -35321,7 +35704,7 @@ run <tt>doconce change_encoding</tt> to change the encoding of the Doconce file.
 
 <p>
 
-<h4>Too short underlining of reST headlines  <a name="___sec60"></a></h4>
+<h4>Too short underlining of reST headlines  <a name="___sec67"></a></h4>
 <p>
 This may happen if there is a paragraph heading without
 proceeding text before some section heading.
@@ -35329,7 +35712,7 @@ proceeding text before some section heading.
 <p>
 
 
-<h4>Found !bt but no tex blocks extracted (BUG)  <a name="___sec61"></a></h4>
+<h4>Found !bt but no tex blocks extracted (BUG)  <a name="___sec68"></a></h4>
 <p>
 This message points to a bug, but has been resolved by removing blank lines
 between the text and the first <tt>!bt</tt> (inserting the blanks again did not
@@ -35337,10 +35720,10 @@ trigger the error message again...).
 
 <p>
 
-<h3>Problems with code or Tex Blocks  <a name="___sec62"></a></h3>
+<h3>Problems with code or Tex Blocks  <a name="___sec69"></a></h3>
 <p>
 
-<h4>Code or math block errors in reST  <a name="___sec63"></a></h4>
+<h4>Code or math block errors in reST  <a name="___sec70"></a></h4>
 <p>
 First note that a code or math block must come after some plain
 sentence (at least for successful output in reST), not directly
@@ -35363,7 +35746,7 @@ indicate a verbatim block of text).
 
 <p>
 
-<h4>Strange errors around code or TeX blocks in reST  <a name="___sec64"></a></h4>
+<h4>Strange errors around code or TeX blocks in reST  <a name="___sec71"></a></h4>
 <p>
 If <tt>idx</tt> commands for defining indices are placed inside paragraphs,
 and especially right before a code block, the reST translator
@@ -35374,7 +35757,7 @@ paragraphs.
 
 <p>
 
-<h4>Something is wrong with a verbatim code block  <a name="___sec65"></a></h4>
+<h4>Something is wrong with a verbatim code block  <a name="___sec72"></a></h4>
 <p>
 Check first that there is a "normal" sentence right before
 the block (this is important for reST and similar
@@ -35382,7 +35765,7 @@ the block (this is important for reST and similar
 
 <p>
 
-<h4>Code/TeX block is not shown in reST format  <a name="___sec66"></a></h4>
+<h4>Code/TeX block is not shown in reST format  <a name="___sec73"></a></h4>
 <p>
 A comment right before a code or tex block will treat the whole
 block also as a comment. It is important that there is normal
@@ -35390,7 +35773,7 @@ running text right before <tt>!bt</tt> and <tt>!bc</tt> environments.
 
 <p>
 
-<h4>Verbatim code blocks inside lists look ugly  <a name="___sec67"></a></h4>
+<h4>Verbatim code blocks inside lists look ugly  <a name="___sec74"></a></h4>
 <p>
 Read the the section <a href="#sec:verbatim:blocks">Blocks of Verbatim Computer Code</a> above.  Start the
 <tt>!bc</tt> and <tt>!ec</tt> tags in column 1 of the file, and be careful with
@@ -35401,7 +35784,7 @@ avoid verbatim code blocks inside lists (it makes life easier).
 
 <p>
 
-<h4>LaTeX code blocks inside lists look ugly  <a name="___sec68"></a></h4>
+<h4>LaTeX code blocks inside lists look ugly  <a name="___sec75"></a></h4>
 <p>
 Same solution as for computer code blocks as described in the
 previous paragraph. Make sure the <tt>!bt</tt> and <tt>!et</tt> tags are in column 1
@@ -35411,10 +35794,10 @@ Using paragraphs instead of list items is a good idea also here.
 <p>
 
 
-<h3>Problems with reST/Sphinx Output  <a name="___sec69"></a></h3>
+<h3>Problems with reST/Sphinx Output  <a name="___sec76"></a></h3>
 <p>
 
-<h4>Title level inconsistent  <a name="___sec70"></a></h4>
+<h4>Title level inconsistent  <a name="___sec77"></a></h4>
 <p>
 reST does not like jumps in the levels of headings. For example, you cannot
 have a <tt>===</tt> (paragraph) heading after a <tt>=======</tt> (section) heading without
@@ -35422,14 +35805,14 @@ a <tt>=====</tt> (subsection) heading in between.
 
 <p>
 
-<h4>Lists do not appear in .rst files  <a name="___sec71"></a></h4>
+<h4>Lists do not appear in .rst files  <a name="___sec78"></a></h4>
 <p>
 Check if you have a comment right above the list. That comment
 will include the list if the list is indentend. Remove the comment.
 
 <p>
 
-<h4>Error message "Undefined substitution..." from reST  <a name="___sec72"></a></h4>
+<h4>Error message "Undefined substitution..." from reST  <a name="___sec79"></a></h4>
 <p>
 This may happen if there is much inline math in the text. reST cannot
 understand inline LaTeX commands and interprets them as illegal code.
@@ -35437,7 +35820,7 @@ Just ignore these error messages.
 
 <p>
 
-<h4>Warning about duplicate link names  <a name="___sec73"></a></h4>
+<h4>Warning about duplicate link names  <a name="___sec80"></a></h4>
 <p>
 Link names should be unique, but if (e.g.) "file" is used as link text
 several places in a reST file, the links still work. The warning can
@@ -35445,7 +35828,7 @@ therefore be ignorned.
 
 <p>
 
-<h4>Inconsistent headings in reST  <a name="___sec74"></a></h4>
+<h4>Inconsistent headings in reST  <a name="___sec81"></a></h4>
 <p>
 The <tt>rst2*.py</tt> and Sphinx converters abort if the headers of sections
 are not consistent, i.e., a subsection must come under a section,
@@ -35456,7 +35839,7 @@ and make sure they decrease by two every time a lower level is encountered.
 
 <p>
 
-<h4>No code environment appears before "bc ipy" blocks  <a name="___sec75"></a></h4>
+<h4>No code environment appears before "bc ipy" blocks  <a name="___sec82"></a></h4>
 <p>
 The <tt>!bc ipy</tt> directive behaves this way for <tt>sphinx</tt> output because
 interactive sessions are automatically handled. If this is not
@@ -35465,10 +35848,10 @@ verbatim environment.
 
 <p>
 
-<h3>Problems with LaTeX Output  <a name="___sec76"></a></h3>
+<h3>Problems with LaTeX Output  <a name="___sec83"></a></h3>
 <p>
 
-<h4>LaTeX does not like underscores in URLs  <a name="___sec77"></a></h4>
+<h4>LaTeX does not like underscores in URLs  <a name="___sec84"></a></h4>
 <p>
 Suppose you have a URL reference like
 
@@ -35494,7 +35877,7 @@ Verbatim text in links works fine with underscores.
 
 <p>
 
-<h4>Error when running latex: You must have 'pygmentize' installed  <a name="___sec78"></a></h4>
+<h4>Error when running latex: You must have 'pygmentize' installed  <a name="___sec85"></a></h4>
 <p>
 This message points to the use of the minted style for typesetting verbatim
 code. You need to include the <tt>-shell-escape</tt> command-line argument when
@@ -35513,7 +35896,7 @@ When this package is included, <tt>latex</tt> or <tt>pdflatex</tt> runs the
 
 <p>
 
-<h4>How can I use my fancy LaTeX environments?  <a name="___sec79"></a></h4>
+<h4>How can I use my fancy LaTeX environments?  <a name="___sec86"></a></h4>
 <p>
 Doconce supports only basic formatting elements (headings, paragraphs,
 lists, etc.), while LaTeX users are used to fancy environments for, e.g.,
@@ -35625,13 +36008,14 @@ achievement.
 Even better, HTML output looks nice as well.
 
 <p>
-Note that Doconce supports fancy environments for verbatim code (for example,
-the <tt>ptex2tex</tt> program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the <tt>ptex2tex</tt> program with all its flexibility for choosing environments.
+Also <tt>doconce ptex2tex</tt> has some flexibility for typesetting computer code.
 
 <p>
 
 
-<h4>The LaTeX file does not compile  <a name="___sec80"></a></h4>
+<h4>The LaTeX file does not compile  <a name="___sec87"></a></h4>
 <p>
 If the problem is undefined control sequence involving
 <!-- begin verbatim block -->
@@ -35645,7 +36029,7 @@ that all inline verbatim text appears on the same line.
 
 <p>
 
-<h4>Inline verbatim gives error   <a name="___sec81"></a></h4>
+<h4>Inline verbatim gives error   <a name="___sec88"></a></h4>
 <p>
 Check if the inline verbatim contains typical LaTeX commands, e.g.,
 <!-- begin verbatim block -->
@@ -35668,7 +36052,7 @@ blocks - that is safe.
 <p>
 
 
-<h4>Errors in figure captions  <a name="___sec82"></a></h4>
+<h4>Errors in figure captions  <a name="___sec89"></a></h4>
 <p>
 Such errors typically arise from unbalanced curly braces, or dollar signs
 around math, and similar LaTeX syntax errors.
@@ -35681,7 +36065,7 @@ inside figure captions) and precede underscores by backslash.)
 
 <p>
 
-<h4>Chapters are ignored  <a name="___sec83"></a></h4>
+<h4>Chapters are ignored  <a name="___sec90"></a></h4>
 <p>
 The default LaTeX style is "article". If you chapters in the Doconce file,
 you need to run <tt>ptex2tex</tt> with the option <tt>-DBOOK</tt> to set the LaTeX
@@ -35689,7 +36073,7 @@ documentstyle to "book".
 
 <p>
 
-<h4>I want to tune the top of the LaTeX file  <a name="___sec84"></a></h4>
+<h4>I want to tune the top of the LaTeX file  <a name="___sec91"></a></h4>
 <p>
 The top of the LaTeX file, as generated by Doconce, is very simple.
 If this LaTeX code is not sufficient for your needs, there are
@@ -35716,17 +36100,17 @@ two ways out of it:
    replaced by the hand-written LaTeX "top" file.</li>
 </ol>
 
-<h3>Problems with gwiki Output  <a name="___sec85"></a></h3>
+<h3>Problems with gwiki Output  <a name="___sec92"></a></h3>
 <p>
 
-<h4>Strange nested lists in gwiki  <a name="___sec86"></a></h4>
+<h4>Strange nested lists in gwiki  <a name="___sec93"></a></h4>
 <p>
 Doconce cannot handle nested lists correctly in the gwiki format.
 Use nonnested lists or edit the <tt>.gwiki</tt> file directly.
 
 <p>
 
-<h4>Lists in gwiki look ugly in the gwiki source  <a name="___sec87"></a></h4>
+<h4>Lists in gwiki look ugly in the gwiki source  <a name="___sec94"></a></h4>
 <p>
 Because the Google Code wiki format requires all text of a list item to
 be on one line, Doconce simply concatenates lines in that format,
@@ -35737,10 +36121,10 @@ further.
 
 <p>
 
-<h3>Problems with HTML Output  <a name="___sec88"></a></h3>
+<h3>Problems with HTML Output  <a name="___sec95"></a></h3>
 <p>
 
-<h4>How can I change the layout of the HTML page?  <a name="___sec89"></a></h4>
+<h4>How can I change the layout of the HTML page?  <a name="___sec96"></a></h4>
 <p>
 The standard of way of controlling the HTML format is to use an
 HTML template. The Doconce source is then the body of text (leave
@@ -35765,7 +36149,7 @@ the HTML file (preferably done automatically via <tt>doconce replace</tt> and
 
 <p>
 
-<h4>Why do figures look ugly when using HTML templates?  <a name="___sec90"></a></h4>
+<h4>Why do figures look ugly when using HTML templates?  <a name="___sec97"></a></h4>
 <p>
 The HTML header that Doconce generates contain special styles for
 figure captions and the horizontal rule above figures. When using
@@ -35787,7 +36171,7 @@ doconce replace '&lt;hr class=&quot;figure&quot;&gt;' \
 <p>
 
 
-<h3>Debugging  <a name="___sec91"></a></h3>
+<h3>Debugging  <a name="___sec98"></a></h3>
 <p>
 Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. Doconce does a
@@ -35802,7 +36186,7 @@ format, and you need to know these steps to make use of the logfile.
 <p>
 
 
-<h2>Basic Parsing Ideas  <a name="___sec92"></a></h2>
+<h2>Basic Parsing Ideas  <a name="___sec99"></a></h2>
 <p>
 <!-- avoid list here since we have code in between (never a good idea) -->
 
@@ -35858,7 +36242,7 @@ LaTeX, and work further on the document in this format.
 <p>
 
 
-<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec93"></a></h3>
+<h3>Typesetting of Function Arguments, Return Values, and Variables  <a name="___sec100"></a></h3>
 <p>
 As part of comments (or doc strings) in computer code one often wishes
 to explain what a function takes of arguments and what the return
@@ -36574,10 +36958,16 @@ Terminal> doconce format html mydoc
 \esys
 The resulting file \code{mydoc.html} can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the \code{--html-solarized}
-command line argument, the \href{{http://ethanschoonover.com/solarized}}{solarized}
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument \code{--css=filename}. There is a default style with blue headings,
+and a style with the \href{{http://ethanschoonover.com/solarized}}{solarized}
+color palette, specified by the \code{--html-solarized} command line
+argument. If there is no file with name \code{filename} in the \code{--css=filename}
+specification, the blue or solarized styles are written to \code{filename}
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the \code{style} tags or by
+specifying a CSS file through the \code{--css=filename} option.
 
 If the Pygments package (including the \code{pygmentize} program)
 is installed, code blocks are typeset with
@@ -36601,6 +36991,32 @@ by \code{%(main)s}. Here is an example:
 \bsys
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 \esys
+
+\subsection{Blogs}
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (\code{blogname.blogspot.com})
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+{\LaTeX} mathematics and pretty (pygmentized) blocks of computer code.
+See this \href{{http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html}}{example} for details on blogging.
+
+
+\definecolor{warningbackground}{rgb}{1.0, 0.8235294, 0.8235294}
+\setlength{\fboxrule}{2pt}
+\begin{center}
+\fcolorbox{black}{warningbackground}{
+\begin{minipage}{0.8\textwidth}
+\includegraphics[height=0.3in]{latex_figs/warning.eps}
+\vskip-0.3in\hskip1.5in{\large\bf WARNING} \\[0.4cm]
+In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
+\end{minipage}}
+\end{center}
+\setlength{\fboxrule}{0.4pt} % Back to default
 
 \subsection{Pandoc and Markdown}
 
@@ -37481,6 +37897,7 @@ Doconce supports tags for \emph{emphasized phrases}, \textbf{boldface phrases},
 and \code{verbatim text} (also called type writer text, for inline code)
 plus {\LaTeX}/TeX inline mathematics, such as $\nu = \sin(x)$.
 
+\paragraph{Emphasized Words.}
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
 \bccq
@@ -37494,6 +37911,7 @@ _several words in boldface_ followed by *ephasized text*.
 The line above gets typeset as
 \textbf{several words in boldface} followed by \emph{ephasized text}.
 
+\paragraph{Inline Verbatim Text.}
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
 \bccq
@@ -37508,19 +37926,46 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats ({\LaTeX} and \code{ptex2tex}) will have
 problems with inline verbatim text that is split over two lines.
 
+
+\definecolor{noticebackground}{rgb}{0.988235, 0.964706, 0.862745}
+\setlength{\fboxrule}{2pt}
+\begin{center}
+\fcolorbox{black}{noticebackground}{
+\begin{minipage}{0.8\textwidth}
+\includegraphics[height=0.3in]{latex_figs/notice.eps}
+\vskip-0.3in\hskip1.5in{\large\bf NOTICE} \\[0.4cm]
 Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
+\end{minipage}}
+\end{center}
+\setlength{\fboxrule}{0.4pt} % Back to default
 
+\paragraph{Links to Web Addresses.}
 Web addresses with links are typeset as
 \bccq
 some URL like "Search Google": "http://google.com".
 \eccq
 which appears as some URL like \href{{http://google.com}}{Search Google}.
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+\bccq
+Click on this link: URL:"http://code.google.com/p/doconce".
+\eccq
+which gets rendered as
+Click on this link: \href{{http://code.google.com/p/doconce}}{\nolinkurl{http://code.google.com/p/doconce}}.
+
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+\paragraph{Links to Local Files.}
 Links to files ending in \code{.txt}, \code{.html}, \code{.pdf}, \code{.py}, \code{.f},
 \code{.f77}, \code{.f90}, \code{.f95}, \code{.sh}, \code{.csh}, \code{.ksh}, \code{.zsh},
 \code{.c}, \code{.cpp}, \code{.cxx}, \code{.pl}, and \code{.java} follows the same
@@ -37590,13 +38035,7 @@ resulting in the link \href{{manual.html}}{\nolinkurl{manual.html}}.
 % \code{_static} directory - links in the \code{.rst} files are automatically
 % adjusted.)
 
-Similarly, to have the URL address itself as link text, put an "URL" or URL
-before the address enclosed in double quotes:
-\bccq
-Click on this link: URL:"http://code.google.com/p/doconce".
-\eccq
-resulting in Click on this link: \href{{http://code.google.com/p/doconce}}{\nolinkurl{http://code.google.com/p/doconce}}.
-
+\paragraph{Inline Comments.}
 Doconce also supports inline comments in the text:
 \bccq
 [name: comment]
@@ -37615,6 +38054,7 @@ and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the \code{.do.txt} file
 (see Section~\ref{doconce2formats}).
 
+\paragraph{Inline Mathematics.}
 Inline mathematics is written as in {\LaTeX}, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
 hence nice math formatting is only obtained in {\LaTeX}, HTML, MediaWiki,
@@ -37642,9 +38082,9 @@ are vectors of length $n$."
 
 \subsection{Comments}
 
-Comments intended to be visible in the output document and read by
-readers are known as \emph{inline comments} in Doconce and described
-in Section~\ref{inline:tagging}.
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as \emph{inline comments} in Doconce and
+described in Section~\ref{inline:tagging}.
 
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
@@ -37667,8 +38107,12 @@ lines starting with a double hash \code{##} and lines enclosed by
 the \code{<%doc>} (beginning) and \code{<%doc/>} (closing) tags.
 
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test \code{# #ifdef EXTRA} in Preprocess).
 
 \subsection{Cross-Referencing}
 
@@ -38555,7 +38999,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in {\LaTeX} output, do something line
+if a sophisticated table is desired in {\LaTeX} output, do something like
 
 \bpro
 # #if FORMAT in ("latex", "pdflatex")
@@ -38576,39 +39020,6 @@ we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
-As an example, say you want a table of contents in the {\LaTeX} output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say
-\bccq
-# table of contents
-\eccq
-we can use this comment to edit the {\LaTeX} file. First, we run
-Doconce \code{doconce format latex mydoc} to produce \code{mydoc.p.tex}. Then
-we use the \code{doconce replace} and \code{doconce subst} commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter:
-\bccq
-Terminal> doconce replace '% table of contents'
-          '\tableofcontents' mydoc.p.tex
-\eccq
-The \code{doconce replace from_text to_text filename} command performs a
-character-by-character replacement (using the \code{replace} method in
-string objects in Python). If we want to preserve the comment and add
-a new line with \code{\tableofcontents}, we should use \code{doconce subst},
-which applies regular expressions for substitutions and thereby
-understands the newline character:
-\bccq
-Terminal> doconce subst '% table of contents' \
-          '% table of contents\n\\tableofcontents' mydoc.p.tex
-\eccq
-Note the double backshlash in front of the \code{t} character: without it we
-would get a tab and no backslash.
-The \code{doconce subst} is a powerful way to automatically edit the output
-from Doconce and fine-tune a {\LaTeX} document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant {\LaTeX} constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
-
 \subsection{Header and Footer}
 
 Some formats use a header and footer in the document. {\LaTeX} and
@@ -38616,10 +39027,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a {\LaTeX} context) if the document is
-stand-alone. We have introduce the convention that if \code{TITLE:} or
-\code{#TITLE:} is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if \code{TITLE:}
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 \subsection{Emacs Doconce Formatter}
 
@@ -38974,8 +39384,9 @@ achievement.
 \eccq
 Even better, HTML output looks nice as well.
 
-Note that Doconce supports fancy environments for verbatim code (for example,
-the \code{ptex2tex} program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the \code{ptex2tex} program with all its flexibility for choosing environments.
+Also \code{doconce ptex2tex} has some flexibility for typesetting computer code.
 
 \paragraph{The {\LaTeX} file does not compile.}
 If the problem is undefined control sequence involving
@@ -39675,10 +40086,16 @@ is performed by::
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the ``--html-solarized``
-command line argument, the `solarized <http://ethanschoonover.com/solarized>`_
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument ``--css=filename``. There is a default style with blue headings,
+and a style with the `solarized <http://ethanschoonover.com/solarized>`_
+color palette, specified by the ``--html-solarized`` command line
+argument. If there is no file with name ``filename`` in the ``--css=filename``
+specification, the blue or solarized styles are written to ``filename``
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the ``style`` tags or by
+specifying a CSS file through the ``--css=filename`` option.
 
 If the Pygments package (including the ``pygmentize`` program)
 is installed, code blocks are typeset with
@@ -39703,6 +40120,24 @@ by ``%(main)s``. Here is an example::
 
         Terminal> doconce format html mydoc --html-template=mytemplate.html
 
+
+Blogs
+-----
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (``blogname.blogspot.com``)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this `example <http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html>`_ for details on blogging.
+
+
+.. warning::
+    In the comments one cannot paste raw HTML code with MathJax
+    scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 -------------------
@@ -40578,6 +41013,9 @@ Doconce supports tags for *emphasized phrases*, **boldface phrases**,
 and ``verbatim text`` (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as v = sin(x).
 
+Emphasized Words
+~~~~~~~~~~~~~~~~
+
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in::
 
@@ -40592,6 +41030,9 @@ Boldface font is recognized by an underscore instead of an asterisk::
 
 The line above gets typeset as
 **several words in boldface** followed by *ephasized text*.
+
+Inline Verbatim Text
+~~~~~~~~~~~~~~~~~~~~
 
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks::
@@ -40608,12 +41049,17 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and ``ptex2tex``) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing back-ticks and asterisk (i.e., verbatim and
-emphasized code): the Doconce interpreter is not very smart so inline
-computer code can soon lead to problems in the final format. Go back to the
-Doconce source and modify it so the format to which you want to go
-becomes correct (sometimes a trial and error process - sticking to
-very simple formatting usually avoids such problems).
+
+.. note::
+   Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+   emphasized code): the Doconce interpreter is not very smart so inline
+   computer code can soon lead to problems in the final format. Go back to the
+   Doconce source and modify it so the format to which you want to go
+   becomes correct (sometimes a trial and error process - sticking to
+   very simple formatting usually avoids such problems).
+
+Links to Web Addresses
+~~~~~~~~~~~~~~~~~~~~~~
 
 Web addresses with links are typeset as::
 
@@ -40621,7 +41067,25 @@ Web addresses with links are typeset as::
         some URL like "Search Google": "http://google.com".
 
 which appears as some URL like `Search Google <http://google.com>`_.
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes::
+
+
+        Click on this link: URL:"http://code.google.com/p/doconce".
+
+which gets rendered as
+Click on this link: `<http://code.google.com/p/doconce>`_.
+
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+Links to Local Files
+~~~~~~~~~~~~~~~~~~~~
+
 Links to files ending in ``.txt``, ``.html``, ``.pdf``, ``.py``, ``.f``,
 ``.f77``, ``.f90``, ``.f95``, ``.sh``, ``.csh``, ``.ksh``, ``.zsh``,
 ``.c``, ``.cpp``, ``.cxx``, ``.pl``, and ``.java`` follows the same
@@ -40705,13 +41169,8 @@ resulting in the link `<manual.html>`_.
 .. adjusted.)
 
 
-Similarly, to have the URL address itself as link text, put an "URL" or URL
-before the address enclosed in double quotes::
-
-
-        Click on this link: URL:"http://code.google.com/p/doconce".
-
-resulting in Click on this link: `<http://code.google.com/p/doconce>`_.
+Inline Comments
+~~~~~~~~~~~~~~~
 
 Doconce also supports inline comments in the text::
 
@@ -40731,6 +41190,9 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the ``.do.txt`` file
 (see the section `From Doconce to Other Formats`_).
+
+Inline Mathematics
+~~~~~~~~~~~~~~~~~~
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -40760,9 +41222,9 @@ are vectors of length n."
 Comments
 --------
 
-Comments intended to be visible in the output document and read by
-readers are known as *inline comments* in Doconce and described
-in the section `Inline Tagging`_.
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as *inline comments* in Doconce and
+described in the section `Inline Tagging`_.
 
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
@@ -40786,8 +41248,12 @@ lines starting with a double hash ``##`` and lines enclosed by
 the ``<%doc>`` (beginning) and ``<%doc/>`` (closing) tags.
 
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test ``# #ifdef EXTRA`` in Preprocess).
 
 
 Cross-Referencing
@@ -41719,7 +42185,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line::
+if a sophisticated table is desired in LaTeX output, do something like::
 
 
         # #if FORMAT in ("latex", "pdflatex")
@@ -41740,41 +42206,6 @@ we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
-As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say::
-
-
-        # table of contents
-
-we can use this comment to edit the LaTeX file. First, we run
-Doconce ``doconce format latex mydoc`` to produce ``mydoc.p.tex``. Then
-we use the ``doconce replace`` and ``doconce subst`` commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter::
-
-
-        Terminal> doconce replace '% table of contents'
-                  '\tableofcontents' mydoc.p.tex
-
-The ``doconce replace from_text to_text filename`` command performs a
-character-by-character replacement (using the ``replace`` method in
-string objects in Python). If we want to preserve the comment and add
-a new line with ``\tableofcontents``, we should use ``doconce subst``,
-which applies regular expressions for substitutions and thereby
-understands the newline character::
-
-
-        Terminal> doconce subst '% table of contents' \
-                  '% table of contents\n\\tableofcontents' mydoc.p.tex
-
-Note the double backshlash in front of the ``t`` character: without it we
-would get a tab and no backslash.
-The ``doconce subst`` is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
 
 Header and Footer
 -----------------
@@ -41784,10 +42215,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if ``TITLE:`` or
-``#TITLE:`` is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if ``TITLE:``
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 
 Emacs Doconce Formatter
@@ -42218,8 +42648,9 @@ The resulting ``mydoc.tex`` file now becomes::
 
 Even better, HTML output looks nice as well.
 
-Note that Doconce supports fancy environments for verbatim code (for example,
-the ``ptex2tex`` program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the ``ptex2tex`` program with all its flexibility for choosing environments.
+Also ``doconce ptex2tex`` has some flexibility for typesetting computer code.
 
 
 The LaTeX file does not compile
@@ -42993,10 +43424,16 @@ is performed by
 
 The resulting file ``mydoc.html`` can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the ``--html-solarized``
-command line argument, the `solarized <http://ethanschoonover.com/solarized>`_
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument ``--css=filename``. There is a default style with blue headings,
+and a style with the `solarized <http://ethanschoonover.com/solarized>`_
+color palette, specified by the ``--html-solarized`` command line
+argument. If there is no file with name ``filename`` in the ``--css=filename``
+specification, the blue or solarized styles are written to ``filename``
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the ``style`` tags or by
+specifying a CSS file through the ``--css=filename`` option.
 
 If the Pygments package (including the ``pygmentize`` program)
 is installed, code blocks are typeset with
@@ -43022,6 +43459,24 @@ by ``%(main)s``. Here is an example:
 
         Terminal> doconce format html mydoc --html-template=mytemplate.html
 
+
+Blogs
+-----
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (``blogname.blogspot.com``)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this `example <http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html>`_ for details on blogging.
+
+
+.. warning::
+    In the comments one cannot paste raw HTML code with MathJax
+    scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 -------------------
@@ -43985,6 +44440,9 @@ Doconce supports tags for *emphasized phrases*, **boldface phrases**,
 and ``verbatim text`` (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as :math:`\nu = \sin(x)`.
 
+Emphasized Words
+~~~~~~~~~~~~~~~~
+
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
 
@@ -44004,6 +44462,9 @@ Boldface font is recognized by an underscore instead of an asterisk:
 The line above gets typeset as
 **several words in boldface** followed by *ephasized text*.
 
+Inline Verbatim Text
+~~~~~~~~~~~~~~~~~~~~
+
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
 
@@ -44021,12 +44482,17 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and ``ptex2tex``) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing back-ticks and asterisk (i.e., verbatim and
-emphasized code): the Doconce interpreter is not very smart so inline
-computer code can soon lead to problems in the final format. Go back to the
-Doconce source and modify it so the format to which you want to go
-becomes correct (sometimes a trial and error process - sticking to
-very simple formatting usually avoids such problems).
+
+.. note::
+   Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+   emphasized code): the Doconce interpreter is not very smart so inline
+   computer code can soon lead to problems in the final format. Go back to the
+   Doconce source and modify it so the format to which you want to go
+   becomes correct (sometimes a trial and error process - sticking to
+   very simple formatting usually avoids such problems).
+
+Links to Web Addresses
+~~~~~~~~~~~~~~~~~~~~~~
 
 Web addresses with links are typeset as
 
@@ -44036,7 +44502,27 @@ Web addresses with links are typeset as
         some URL like "Search Google": "http://google.com".
 
 which appears as some URL like `Search Google <http://google.com>`_.
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+
+.. code-block:: text
+
+
+        Click on this link: URL:"http://code.google.com/p/doconce".
+
+which gets rendered as
+Click on this link: `<http://code.google.com/p/doconce>`_.
+
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+Links to Local Files
+~~~~~~~~~~~~~~~~~~~~
+
 Links to files ending in ``.txt``, ``.html``, ``.pdf``, ``.py``, ``.f``,
 ``.f77``, ``.f90``, ``.f95``, ``.sh``, ``.csh``, ``.ksh``, ``.zsh``,
 ``.c``, ``.cpp``, ``.cxx``, ``.pl``, and ``.java`` follows the same
@@ -44127,15 +44613,8 @@ resulting in the link `<manual.html>`_.
 .. adjusted.)
 
 
-Similarly, to have the URL address itself as link text, put an "URL" or URL
-before the address enclosed in double quotes:
-
-.. code-block:: text
-
-
-        Click on this link: URL:"http://code.google.com/p/doconce".
-
-resulting in Click on this link: `<http://code.google.com/p/doconce>`_.
+Inline Comments
+~~~~~~~~~~~~~~~
 
 Doconce also supports inline comments in the text:
 
@@ -44157,6 +44636,9 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the ``.do.txt`` file
 (see the section :ref:`doconce2formats`).
+
+Inline Mathematics
+~~~~~~~~~~~~~~~~~~
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -44189,9 +44671,9 @@ are vectors of length :math:`n`."
 Comments
 --------
 
-Comments intended to be visible in the output document and read by
-readers are known as *inline comments* in Doconce and described
-in the section :ref:`inline:tagging`.
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as *inline comments* in Doconce and
+described in the section :ref:`inline:tagging`.
 
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
@@ -44217,8 +44699,12 @@ lines starting with a double hash ``##`` and lines enclosed by
 the ``<%doc>`` (beginning) and ``<%doc/>`` (closing) tags.
 
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test ``# #ifdef EXTRA`` in Preprocess).
 
 
 Cross-Referencing
@@ -45237,7 +45723,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line
+if a sophisticated table is desired in LaTeX output, do something like
 
 
 .. code-block:: python
@@ -45260,47 +45746,6 @@ we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
-As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say
-
-.. code-block:: text
-
-
-        # table of contents
-
-we can use this comment to edit the LaTeX file. First, we run
-Doconce ``doconce format latex mydoc`` to produce ``mydoc.p.tex``. Then
-we use the ``doconce replace`` and ``doconce subst`` commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter:
-
-.. code-block:: text
-
-
-        Terminal> doconce replace '% table of contents'
-                  '\tableofcontents' mydoc.p.tex
-
-The ``doconce replace from_text to_text filename`` command performs a
-character-by-character replacement (using the ``replace`` method in
-string objects in Python). If we want to preserve the comment and add
-a new line with ``\tableofcontents``, we should use ``doconce subst``,
-which applies regular expressions for substitutions and thereby
-understands the newline character:
-
-.. code-block:: text
-
-
-        Terminal> doconce subst '% table of contents' \
-                  '% table of contents\n\\tableofcontents' mydoc.p.tex
-
-Note the double backshlash in front of the ``t`` character: without it we
-would get a tab and no backslash.
-The ``doconce subst`` is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
 
 Header and Footer
 -----------------
@@ -45310,10 +45755,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if ``TITLE:`` or
-``#TITLE:`` is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if ``TITLE:``
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 
 Emacs Doconce Formatter
@@ -45774,8 +46218,9 @@ The resulting ``mydoc.tex`` file now becomes
 
 Even better, HTML output looks nice as well.
 
-Note that Doconce supports fancy environments for verbatim code (for example,
-the ``ptex2tex`` program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the ``ptex2tex`` program with all its flexibility for choosing environments.
+Also ``doconce ptex2tex`` has some flexibility for typesetting computer code.
 
 
 The LaTeX file does not compile
@@ -46417,10 +46862,16 @@ Terminal> doconce format html mydoc
 }}}
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the `--html-solarized`
-command line argument, the [http://ethanschoonover.com/solarized solarized]
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument `--css=filename`. There is a default style with blue headings,
+and a style with the [http://ethanschoonover.com/solarized solarized]
+color palette, specified by the `--html-solarized` command line
+argument. If there is no file with name `filename` in the `--css=filename`
+specification, the blue or solarized styles are written to `filename`
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the `style` tags or by
+specifying a CSS file through the `--css=filename` option.
 
 If the Pygments package (including the `pygmentize` program)
 is installed, code blocks are typeset with
@@ -46444,6 +46895,23 @@ by `%(main)s`. Here is an example:
 {{{
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 }}}
+
+==== Blogs ====
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this [http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html example] for details on blogging.
+
+
+
+*Warning.* In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 ==== Pandoc and Markdown ====
 
@@ -47232,6 +47700,8 @@ Doconce supports tags for *emphasized phrases*, *boldface phrases*,
 and `verbatim text` (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as `v = sin(x)`.
 
+==== Emphasized Words ====
+
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
 {{{
@@ -47244,6 +47714,8 @@ _several words in boldface_ followed by *ephasized text*.
 }}}
 The line above gets typeset as
 *several words in boldface* followed by *ephasized text*.
+
+==== Inline Verbatim Text ====
 
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
@@ -47259,19 +47731,39 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and `ptex2tex`) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+
+
+*Notice.* Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
 
+==== Links to Web Addresses ====
+
 Web addresses with links are typeset as
 {{{
 some URL like "Search Google": "http://google.com".
 }}}
 which appears as some URL like [http://google.com Search Google].
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+{{{
+Click on this link: URL:"http://code.google.com/p/doconce".
+}}}
+which gets rendered as
+Click on this link: http://code.google.com/p/doconce.
+
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+==== Links to Local Files ====
+
 Links to files ending in `.txt`, `.html`, `.pdf`, `.py`, `.f`,
 `.f77`, `.f90`, `.f95`, `.sh`, `.csh`, `.ksh`, `.zsh`,
 `.c`, `.cpp`, `.cxx`, `.pl`, and `.java` follows the same
@@ -47332,12 +47824,7 @@ resulting in the link manual.html.
 <wiki:comment> `_static` directory - links in the `.rst` files are automatically </wiki:comment>
 <wiki:comment> adjusted.) </wiki:comment>
 
-Similarly, to have the URL address itself as link text, put an "URL" or URL
-before the address enclosed in double quotes:
-{{{
-Click on this link: URL:"http://code.google.com/p/doconce".
-}}}
-resulting in Click on this link: http://code.google.com/p/doconce.
+==== Inline Comments ====
 
 Doconce also supports inline comments in the text:
 {{{
@@ -47356,6 +47843,8 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the `.do.txt` file
 (see the section [#From_Doconce_to_Other_Formats]).
+
+==== Inline Mathematics ====
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -47384,9 +47873,9 @@ are vectors of length `n`."
 
 ==== Comments ====
 
-Comments intended to be visible in the output document and read by
-readers are known as *inline comments* in Doconce and described
-in the section [#Inline_Tagging].
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as *inline comments* in Doconce and
+described in the section [#Inline_Tagging].
 
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
@@ -47409,8 +47898,12 @@ lines starting with a double hash `##` and lines enclosed by
 the `<%doc>` (beginning) and `<%doc/>` (closing) tags.
 
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test `# #ifdef EXTRA` in Preprocess).
 
 ==== Cross-Referencing ====
 
@@ -48256,7 +48749,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line
+if a sophisticated table is desired in LaTeX output, do something like
 
 {{{
 # #if FORMAT in ("latex", "pdflatex")
@@ -48277,39 +48770,6 @@ we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
-As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say
-{{{
-# table of contents
-}}}
-we can use this comment to edit the LaTeX file. First, we run
-Doconce `doconce format latex mydoc` to produce `mydoc.p.tex`. Then
-we use the `doconce replace` and `doconce subst` commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter:
-{{{
-Terminal> doconce replace '% table of contents'
-          '\tableofcontents' mydoc.p.tex
-}}}
-The `doconce replace from_text to_text filename` command performs a
-character-by-character replacement (using the `replace` method in
-string objects in Python). If we want to preserve the comment and add
-a new line with `\tableofcontents`, we should use `doconce subst`,
-which applies regular expressions for substitutions and thereby
-understands the newline character:
-{{{
-Terminal> doconce subst '% table of contents' \
-          '% table of contents\n\\tableofcontents' mydoc.p.tex
-}}}
-Note the double backshlash in front of the `t` character: without it we
-would get a tab and no backslash.
-The `doconce subst` is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
-
 ==== Header and Footer ====
 
 Some formats use a header and footer in the document. LaTeX and
@@ -48317,10 +48777,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if `TITLE:` or
-`#TITLE:` is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if `TITLE:`
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 ==== Emacs Doconce Formatter ====
 
@@ -48700,8 +49159,9 @@ achievement.
 }}}
 Even better, HTML output looks nice as well.
 
-Note that Doconce supports fancy environments for verbatim code (for example,
-the `ptex2tex` program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the `ptex2tex` program with all its flexibility for choosing environments.
+Also `doconce ptex2tex` has some flexibility for typesetting computer code.
 
 ==== The LaTeX file does not compile ====
 
@@ -49285,10 +49745,16 @@ Terminal> doconce format html mydoc
 </code>
 The resulting file <code>mydoc.html</code> can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the <code>--html-solarized</code>
-command line argument, the [http://ethanschoonover.com/solarized solarized]
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument <code>--css=filename</code>. There is a default style with blue headings,
+and a style with the [http://ethanschoonover.com/solarized solarized]
+color palette, specified by the <code>--html-solarized</code> command line
+argument. If there is no file with name <code>filename</code> in the <code>--css=filename</code>
+specification, the blue or solarized styles are written to <code>filename</code>
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the <code>style</code> tags or by
+specifying a CSS file through the <code>--css=filename</code> option.
 
 If the Pygments package (including the <code>pygmentize</code> program)
 is installed, code blocks are typeset with
@@ -49312,6 +49778,22 @@ by <code>%(main)s</code>. Here is an example:
 <syntaxhighlight lang="bash">
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 </code>
+
+==== Blogs ====
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (<code>blogname.blogspot.com</code>)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this [http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html example] for details on blogging.
+
+
+{{warning|In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.}}
 
 ==== Pandoc and Markdown ====
 
@@ -50065,6 +50547,8 @@ Doconce supports tags for ''emphasized phrases'', '''boldface phrases''',
 and <code>verbatim text</code> (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as <math>\nu = \sin(x)</math>.
 
+==== Emphasized Words ====
+
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
 <code>
@@ -50077,6 +50561,8 @@ _several words in boldface_ followed by *ephasized text*.
 </code>
 The line above gets typeset as
 '''several words in boldface''' followed by ''ephasized text''.
+
+==== Inline Verbatim Text ====
 
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
@@ -50092,19 +50578,39 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and <code>ptex2tex</code>) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+
+
+''Notice.'' Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
 
+==== Links to Web Addresses ====
+
 Web addresses with links are typeset as
 <code>
 some URL like "Search Google": "http://google.com".
 </code>
 which appears as some URL like [http://google.com Search Google].
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+<code>
+Click on this link: URL:"http://code.google.com/p/doconce".
+</code>
+which gets rendered as
+Click on this link: http://code.google.com/p/doconce.
+
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+==== Links to Local Files ====
+
 Links to files ending in <code>.txt</code>, <code>.html</code>, <code>.pdf</code>, <code>.py</code>, <code>.f</code>,
 <code>.f77</code>, <code>.f90</code>, <code>.f95</code>, <code>.sh</code>, <code>.csh</code>, <code>.ksh</code>, <code>.zsh</code>,
 <code>.c</code>, <code>.cpp</code>, <code>.cxx</code>, <code>.pl</code>, and <code>.java</code> follows the same
@@ -50164,12 +50670,7 @@ resulting in the link manual.html.
 <!--> <code>_static</code> directory - links in the <code>.rst</code> files are automatically -->
 <!--> adjusted.) -->
 
-Similarly, to have the URL address itself as link text, put an "URL" or URL
-before the address enclosed in double quotes:
-<code>
-Click on this link: URL:"http://code.google.com/p/doconce".
-</code>
-resulting in Click on this link: http://code.google.com/p/doconce.
+==== Inline Comments ====
 
 Doconce also supports inline comments in the text:
 <code>
@@ -50188,6 +50689,8 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the <code>.do.txt</code> file
 (see the section [#From_Doconce_to_Other_Formats]).
+
+==== Inline Mathematics ====
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -50216,9 +50719,9 @@ are vectors of length <math>n</math>."
 
 ==== Comments ====
 
-Comments intended to be visible in the output document and read by
-readers are known as ''inline comments'' in Doconce and described
-in the section [#Inline_Tagging].
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as ''inline comments'' in Doconce and
+described in the section [#Inline_Tagging].
 
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
@@ -50241,8 +50744,12 @@ lines starting with a double hash <code>##</code> and lines enclosed by
 the <code><%doc></code> (beginning) and <code><%doc/></code> (closing) tags.
 
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test <code># #ifdef EXTRA</code> in Preprocess).
 
 ==== Cross-Referencing ====
 
@@ -51081,7 +51588,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line
+if a sophisticated table is desired in LaTeX output, do something like
 
 <syntaxhighlight lang="python">
 # #if FORMAT in ("latex", "pdflatex")
@@ -51102,39 +51609,6 @@ we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
-As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say
-<code>
-# table of contents
-</code>
-we can use this comment to edit the LaTeX file. First, we run
-Doconce <code>doconce format latex mydoc</code> to produce <code>mydoc.p.tex</code>. Then
-we use the <code>doconce replace</code> and <code>doconce subst</code> commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter:
-<code>
-Terminal> doconce replace '% table of contents'
-          '\tableofcontents' mydoc.p.tex
-</code>
-The <code>doconce replace from_text to_text filename</code> command performs a
-character-by-character replacement (using the <code>replace</code> method in
-string objects in Python). If we want to preserve the comment and add
-a new line with <code>\tableofcontents</code>, we should use <code>doconce subst</code>,
-which applies regular expressions for substitutions and thereby
-understands the newline character:
-<code>
-Terminal> doconce subst '% table of contents' \
-          '% table of contents\n\\tableofcontents' mydoc.p.tex
-</code>
-Note the double backshlash in front of the <code>t</code> character: without it we
-would get a tab and no backslash.
-The <code>doconce subst</code> is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
-
 ==== Header and Footer ====
 
 Some formats use a header and footer in the document. LaTeX and
@@ -51142,10 +51616,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if <code>TITLE:</code> or
-<code>#TITLE:</code> is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if <code>TITLE:</code>
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 ==== Emacs Doconce Formatter ====
 
@@ -51525,8 +51998,9 @@ achievement.
 </code>
 Even better, HTML output looks nice as well.
 
-Note that Doconce supports fancy environments for verbatim code (for example,
-the <code>ptex2tex</code> program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the <code>ptex2tex</code> program with all its flexibility for choosing environments.
+Also <code>doconce ptex2tex</code> has some flexibility for typesetting computer code.
 
 ==== The LaTeX file does not compile ====
 
@@ -52121,10 +52595,16 @@ Terminal> doconce format html mydoc
 }}}
 The resulting file {{{mydoc.html}}} can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the {{{--html-solarized}}}
-command line argument, the [[http://ethanschoonover.com/solarized|solarized]]
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument {{{--css=filename}}}. There is a default style with blue headings,
+and a style with the [[http://ethanschoonover.com/solarized|solarized]]
+color palette, specified by the {{{--html-solarized}}} command line
+argument. If there is no file with name {{{filename}}} in the {{{--css=filename}}}
+specification, the blue or solarized styles are written to {{{filename}}}
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the {{{style}}} tags or by
+specifying a CSS file through the {{{--css=filename}}} option.
 
 If the Pygments package (including the {{{pygmentize}}} program)
 is installed, code blocks are typeset with
@@ -52148,6 +52628,24 @@ by {{{%(main)s}}}. Here is an example:
 {{{
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 }}}
+
+
+== Blogs ==
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service ({{{blogname.blogspot.com}}})
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this [[http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html|example]] for details on blogging.
+
+
+
+//Warning.// In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 
 == Pandoc and Markdown ==
@@ -52928,6 +53426,8 @@ Doconce supports tags for //emphasized phrases//, **boldface phrases**,
 and {{{verbatim text}}} (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as v = sin(x).
 
+=== Emphasized Words ===
+
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
 {{{
@@ -52940,6 +53440,8 @@ _several words in boldface_ followed by *ephasized text*.
 }}}
 The line above gets typeset as
 **several words in boldface** followed by //ephasized text//.
+
+=== Inline Verbatim Text ===
 
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
@@ -52955,19 +53457,39 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and {{{ptex2tex}}}) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+
+
+//Notice.// Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
 
+=== Links to Web Addresses ===
+
 Web addresses with links are typeset as
 {{{
 some URL like "Search Google": "http://google.com".
 }}}
 which appears as some URL like [[http://google.com|Search Google]].
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+{{{
+Click on this link: URL:"http://code.google.com/p/doconce".
+}}}
+which gets rendered as
+Click on this link: [[http://code.google.com/p/doconce]].
+
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+=== Links to Local Files ===
+
 Links to files ending in {{{.txt}}}, {{{.html}}}, {{{.pdf}}}, {{{.py}}}, {{{.f}}},
 {{{.f77}}}, {{{.f90}}}, {{{.f95}}}, {{{.sh}}}, {{{.csh}}}, {{{.ksh}}}, {{{.zsh}}},
 {{{.c}}}, {{{.cpp}}}, {{{.cxx}}}, {{{.pl}}}, and {{{.java}}} follows the same
@@ -53028,12 +53550,7 @@ resulting in the link [[manual.html]].
 <wiki:comment> {{{_static}}} directory - links in the {{{.rst}}} files are automatically </wiki:comment>
 <wiki:comment> adjusted.) </wiki:comment>
 
-Similarly, to have the URL address itself as link text, put an "URL" or URL
-before the address enclosed in double quotes:
-{{{
-Click on this link: URL:"http://code.google.com/p/doconce".
-}}}
-resulting in Click on this link: [[http://code.google.com/p/doconce]].
+=== Inline Comments ===
 
 Doconce also supports inline comments in the text:
 {{{
@@ -53052,6 +53569,8 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the {{{.do.txt}}} file
 (see the section [#From_Doconce_to_Other_Formats]).
+
+=== Inline Mathematics ===
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -53081,9 +53600,9 @@ are vectors of length n."
 
 == Comments ==
 
-Comments intended to be visible in the output document and read by
-readers are known as //inline comments// in Doconce and described
-in the section [#Inline_Tagging].
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as //inline comments// in Doconce and
+described in the section [#Inline_Tagging].
 
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
@@ -53106,8 +53625,12 @@ lines starting with a double hash {{{##}}} and lines enclosed by
 the {{{<%doc>}}} (beginning) and {{{<%doc/>}}} (closing) tags.
 
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test {{{# #ifdef EXTRA}}} in Preprocess).
 
 
 == Cross-Referencing ==
@@ -53964,7 +54487,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line
+if a sophisticated table is desired in LaTeX output, do something like
 
 {{{
 # #if FORMAT in ("latex", "pdflatex")
@@ -53985,39 +54508,6 @@ we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
-As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say
-{{{
-# table of contents
-}}}
-we can use this comment to edit the LaTeX file. First, we run
-Doconce {{{doconce format latex mydoc}}} to produce {{{mydoc.p.tex}}}. Then
-we use the {{{doconce replace}}} and {{{doconce subst}}} commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter:
-{{{
-Terminal> doconce replace '% table of contents'
-          '\tableofcontents' mydoc.p.tex
-}}}
-The {{{doconce replace from_text to_text filename}}} command performs a
-character-by-character replacement (using the {{{replace}}} method in
-string objects in Python). If we want to preserve the comment and add
-a new line with {{{\tableofcontents}}}, we should use {{{doconce subst}}},
-which applies regular expressions for substitutions and thereby
-understands the newline character:
-{{{
-Terminal> doconce subst '% table of contents' \
-          '% table of contents\n\\tableofcontents' mydoc.p.tex
-}}}
-Note the double backshlash in front of the {{{t}}} character: without it we
-would get a tab and no backslash.
-The {{{doconce subst}}} is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
-
 
 == Header and Footer ==
 
@@ -54026,10 +54516,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if {{{TITLE:}}} or
-{{{#TITLE:}}} is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if {{{TITLE:}}}
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 
 == Emacs Doconce Formatter ==
@@ -54415,8 +54904,9 @@ achievement.
 }}}
 Even better, HTML output looks nice as well.
 
-Note that Doconce supports fancy environments for verbatim code (for example,
-the {{{ptex2tex}}} program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the {{{ptex2tex}}} program with all its flexibility for choosing environments.
+Also {{{doconce ptex2tex}}} has some flexibility for typesetting computer code.
 
 === The LaTeX file does not compile ===
 
@@ -55026,10 +55516,16 @@ is performed by::
 
 The resulting file 'mydoc.html' can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the '--html-solarized'
-command line argument, the "http://ethanschoonover.com/solarized":solarized
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument '--css=filename'. There is a default style with blue headings,
+and a style with the "http://ethanschoonover.com/solarized":solarized
+color palette, specified by the '--html-solarized' command line
+argument. If there is no file with name 'filename' in the '--css=filename'
+specification, the blue or solarized styles are written to 'filename'
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the 'style' tags or by
+specifying a CSS file through the '--css=filename' option.
 
 If the Pygments package (including the 'pygmentize' program)
 is installed, code blocks are typeset with
@@ -55054,6 +55550,23 @@ by '%(main)s'. Here is an example::
 
         Terminal> doconce format html mydoc --html-template=mytemplate.html
 
+
+Blogs
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service ('blogname.blogspot.com')
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this "http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html":example for details on blogging.
+
+
+
+*Warning.* In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 
@@ -55843,6 +56356,8 @@ Doconce supports tags for *emphasized phrases*, **boldface phrases**,
 and 'verbatim text' (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as v = sin(x).
 
+Emphasized Words
+
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in::
 
@@ -55857,6 +56372,8 @@ Boldface font is recognized by an underscore instead of an asterisk::
 
 The line above gets typeset as
 **several words in boldface** followed by *ephasized text*.
+
+Inline Verbatim Text
 
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks::
@@ -55873,12 +56390,16 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and 'ptex2tex') will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+
+
+*Notice.* Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
+
+Links to Web Addresses
 
 Web addresses with links are typeset as::
 
@@ -55886,7 +56407,24 @@ Web addresses with links are typeset as::
         some URL like "Search Google": "http://google.com".
 
 which appears as some URL like "http://google.com":Search Google.
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes::
+
+
+        Click on this link: URL:"http://code.google.com/p/doconce".
+
+which gets rendered as
+Click on this link: "http://code.google.com/p/doconce":http://code.google.com/p/doconce.
+
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+Links to Local Files
+
 Links to files ending in '.txt', '.html', '.pdf', '.py', '.f',
 '.f77', '.f90', '.f95', '.sh', '.csh', '.ksh', '.zsh',
 '.c', '.cpp', '.cxx', '.pl', and '.java' follows the same
@@ -55941,14 +56479,7 @@ in double quotes::
 
 resulting in the link "manual.html":manual.html.
 
-
-Similarly, to have the URL address itself as link text, put an "URL" or URL
-before the address enclosed in double quotes::
-
-
-        Click on this link: URL:"http://code.google.com/p/doconce".
-
-resulting in Click on this link: "http://code.google.com/p/doconce":http://code.google.com/p/doconce.
+Inline Comments
 
 Doconce also supports inline comments in the text::
 
@@ -55968,6 +56499,8 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the '.do.txt' file
 (see the section "From Doconce to Other Formats").
+
+Inline Mathematics
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -55996,9 +56529,9 @@ are vectors of length n."
 
 Comments
 
-Comments intended to be visible in the output document and read by
-readers are known as *inline comments* in Doconce and described
-in the section "Inline Tagging".
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as *inline comments* in Doconce and
+described in the section "Inline Tagging".
 
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
@@ -56021,8 +56554,12 @@ lines starting with a double hash '##' and lines enclosed by
 the '<%doc>' (beginning) and '<%doc/>' (closing) tags.
 
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test '# #ifdef EXTRA' in Preprocess).
 
 Cross-Referencing
 
@@ -56898,7 +57435,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line::
+if a sophisticated table is desired in LaTeX output, do something like::
 
 
         # #if FORMAT in ("latex", "pdflatex")
@@ -56919,42 +57456,6 @@ we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
-As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say::
-
-
-        # table of contents
-
-we can use this comment to edit the LaTeX file. First, we run
-Doconce 'doconce format latex mydoc' to produce 'mydoc.p.tex'. Then
-we use the 'doconce replace' and 'doconce subst' commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter::
-
-
-        Terminal> doconce replace '% table of contents'
-                  '\tableofcontents' mydoc.p.tex
-
-The 'doconce replace from_text to_text filename' command performs a
-character-by-character replacement (using the 'replace' method in
-string objects in Python). If we want to preserve the comment and add
-a new line with '\tableofcontents', we should use 'doconce subst',
-which applies regular expressions for substitutions and thereby
-understands the newline character::
-
-
-        Terminal> doconce subst '% table of contents' \
-                  '% table of contents\n\\tableofcontents' mydoc.p.tex
-
-Note the double backshlash in front of the 't' character: without it we
-would get a tab and no backslash.
-The 'doconce subst' is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
-
 Header and Footer
 
 Some formats use a header and footer in the document. LaTeX and
@@ -56962,10 +57463,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if 'TITLE:' or
-'#TITLE:' is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if 'TITLE:'
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 Emacs Doconce Formatter
 
@@ -57354,8 +57854,9 @@ The resulting 'mydoc.tex' file now becomes::
 
 Even better, HTML output looks nice as well.
 
-Note that Doconce supports fancy environments for verbatim code (for example,
-the 'ptex2tex' program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the 'ptex2tex' program with all its flexibility for choosing environments.
+Also 'doconce ptex2tex' has some flexibility for typesetting computer code.
 
 The LaTeX file does not compile
 
@@ -57999,10 +58500,16 @@ is performed by::
 
 The resulting file C{mydoc.html} can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the C{--html-solarized}
-command line argument, the U{solarized<http://ethanschoonover.com/solarized>}
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument C{--css=filename}. There is a default style with blue headings,
+and a style with the U{solarized<http://ethanschoonover.com/solarized>}
+color palette, specified by the C{--html-solarized} command line
+argument. If there is no file with name C{filename} in the C{--css=filename}
+specification, the blue or solarized styles are written to C{filename}
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the C{style} tags or by
+specifying a CSS file through the C{--css=filename} option.
 
 If the Pygments package (including the C{pygmentize} program)
 is installed, code blocks are typeset with
@@ -58027,6 +58534,24 @@ by C{%(main)s}. Here is an example::
 
         Terminal> doconce format html mydoc --html-template=mytemplate.html
 
+
+Blogs
+-----
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (C{blogname.blogspot.com})
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this U{example<http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html>} for details on blogging.
+
+
+
+I{Warning.} In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 -------------------
@@ -58843,6 +59368,9 @@ Doconce supports tags for I{emphasized phrases}, B{boldface phrases},
 and C{verbatim text} (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as M{v = sin(x)}.
 
+Emphasized Words
+~~~~~~~~~~~~~~~~
+
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in::
 
@@ -58857,6 +59385,9 @@ Boldface font is recognized by an underscore instead of an asterisk::
 
 The line above gets typeset as
 B{several words in boldface} followed by I{ephasized text}.
+
+Inline Verbatim Text
+~~~~~~~~~~~~~~~~~~~~
 
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks::
@@ -58873,12 +59404,17 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and C{ptex2tex}) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+
+
+I{Notice.} Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
+
+Links to Web Addresses
+~~~~~~~~~~~~~~~~~~~~~~
 
 Web addresses with links are typeset as::
 
@@ -58886,7 +59422,25 @@ Web addresses with links are typeset as::
         some URL like "Search Google": "http://google.com".
 
 which appears as some URL like U{Search Google<http://google.com>}.
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes::
+
+
+        Click on this link: URL:"http://code.google.com/p/doconce".
+
+which gets rendered as
+Click on this link: U{http://code.google.com/p/doconce<http://code.google.com/p/doconce>}.
+
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+Links to Local Files
+~~~~~~~~~~~~~~~~~~~~
+
 Links to files ending in C{.txt}, C{.html}, C{.pdf}, C{.py}, C{.f},
 C{.f77}, C{.f90}, C{.f95}, C{.sh}, C{.csh}, C{.ksh}, C{.zsh},
 C{.c}, C{.cpp}, C{.cxx}, C{.pl}, and C{.java} follows the same
@@ -58943,13 +59497,8 @@ in double quotes::
 resulting in the link U{manual.html<manual.html>}.
 
 
-Similarly, to have the URL address itself as link text, put an "URL" or URL
-before the address enclosed in double quotes::
-
-
-        Click on this link: URL:"http://code.google.com/p/doconce".
-
-resulting in Click on this link: U{http://code.google.com/p/doconce<http://code.google.com/p/doconce>}.
+Inline Comments
+~~~~~~~~~~~~~~~
 
 Doconce also supports inline comments in the text::
 
@@ -58969,6 +59518,9 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the C{.do.txt} file
 (see the section "From Doconce to Other Formats").
+
+Inline Mathematics
+~~~~~~~~~~~~~~~~~~
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -58998,9 +59550,9 @@ are vectors of length M{n}."
 Comments
 --------
 
-Comments intended to be visible in the output document and read by
-readers are known as I{inline comments} in Doconce and described
-in the section "Inline Tagging".
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as I{inline comments} in Doconce and
+described in the section "Inline Tagging".
 
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
@@ -59024,8 +59576,12 @@ lines starting with a double hash C{##} and lines enclosed by
 the C{<%doc>} (beginning) and C{<%doc/>} (closing) tags.
 
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test C{# #ifdef EXTRA} in Preprocess).
 
 
 Cross-Referencing
@@ -59920,7 +60476,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line::
+if a sophisticated table is desired in LaTeX output, do something like::
 
 
         # #if FORMAT in ("latex", "pdflatex")
@@ -59941,43 +60497,6 @@ we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
-As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say::
-
-
-        # table of contents
-
-we can use this comment to edit the LaTeX file. First, we run
-Doconce C{doconce format latex mydoc} to produce C{mydoc.p.tex}. Then
-we use the C{doconce replace} and C{doconce subst} commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter::
-
-
-        Terminal> doconce replace '% table of contents'
-                  '\tableofcontents' mydoc.p.tex
-
-The C{doconce replace from_text to_text filename} command performs a
-character-by-character replacement (using the C{replace} method in
-string objects in Python). If we want to preserve the comment and add
-a new line with C{\tableofcontents}, we should use C{doconce subst},
-which applies regular expressions for substitutions and thereby
-understands the newline character::
-
-
-
-            NOTE: A verbatim block has been removed because
-                  it causes problems for Epytext.
-
-
-Note the double backshlash in front of the C{t} character: without it we
-would get a tab and no backslash.
-The C{doconce subst} is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
 
 Header and Footer
 -----------------
@@ -59987,10 +60506,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if C{TITLE:} or
-C{#TITLE:} is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if C{TITLE:}
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 
 Emacs Doconce Formatter
@@ -60402,8 +60920,9 @@ The resulting C{mydoc.tex} file now becomes::
 
 Even better, HTML output looks nice as well.
 
-Note that Doconce supports fancy environments for verbatim code (for example,
-the C{ptex2tex} program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the C{ptex2tex} program with all its flexibility for choosing environments.
+Also C{doconce ptex2tex} has some flexibility for typesetting computer code.
 
 
 The LaTeX file does not compile
@@ -61083,10 +61602,16 @@ is performed by::
 
 The resulting file mydoc.html can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the --html-solarized
-command line argument, the solarized (http://ethanschoonover.com/solarized)
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument --css=filename. There is a default style with blue headings,
+and a style with the solarized (http://ethanschoonover.com/solarized)
+color palette, specified by the --html-solarized command line
+argument. If there is no file with name filename in the --css=filename
+specification, the blue or solarized styles are written to filename
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the style tags or by
+specifying a CSS file through the --css=filename option.
 
 If the Pygments package (including the pygmentize program)
 is installed, code blocks are typeset with
@@ -61111,6 +61636,24 @@ by %(main)s. Here is an example::
 
         Terminal> doconce format html mydoc --html-template=mytemplate.html
 
+
+Blogs
+-----
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (blogname.blogspot.com)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this example (http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html) for details on blogging.
+
+
+
+*Warning.* In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 -------------------
@@ -61951,6 +62494,9 @@ Doconce supports tags for *emphasized phrases*, _boldface phrases_,
 and verbatim text (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as v = sin(x).
 
+Emphasized Words
+~~~~~~~~~~~~~~~~
+
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in::
 
@@ -61965,6 +62511,9 @@ Boldface font is recognized by an underscore instead of an asterisk::
 
 The line above gets typeset as
 _several words in boldface_ followed by *ephasized text*.
+
+Inline Verbatim Text
+~~~~~~~~~~~~~~~~~~~~
 
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks::
@@ -61981,12 +62530,17 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and ptex2tex) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+
+
+*Notice.* Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
+
+Links to Web Addresses
+~~~~~~~~~~~~~~~~~~~~~~
 
 Web addresses with links are typeset as::
 
@@ -61994,7 +62548,25 @@ Web addresses with links are typeset as::
         some URL like "Search Google": "http://google.com".
 
 which appears as some URL like Search Google (http://google.com).
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes::
+
+
+        Click on this link: URL:"http://code.google.com/p/doconce".
+
+which gets rendered as
+Click on this link: http://code.google.com/p/doconce.
+
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+Links to Local Files
+~~~~~~~~~~~~~~~~~~~~
+
 Links to files ending in .txt, .html, .pdf, .py, .f,
 .f77, .f90, .f95, .sh, .csh, .ksh, .zsh,
 .c, .cpp, .cxx, .pl, and .java follows the same
@@ -62053,13 +62625,8 @@ in double quotes::
 resulting in the link manual.html.
 
 
-Similarly, to have the URL address itself as link text, put an "URL" or URL
-before the address enclosed in double quotes::
-
-
-        Click on this link: URL:"http://code.google.com/p/doconce".
-
-resulting in Click on this link: http://code.google.com/p/doconce.
+Inline Comments
+~~~~~~~~~~~~~~~
 
 Doconce also supports inline comments in the text::
 
@@ -62079,6 +62646,9 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the .do.txt file
 (see the section "From Doconce to Other Formats").
+
+Inline Mathematics
+~~~~~~~~~~~~~~~~~~
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -62108,9 +62678,9 @@ are vectors of length n."
 Comments
 --------
 
-Comments intended to be visible in the output document and read by
-readers are known as *inline comments* in Doconce and described
-in the section "Inline Tagging".
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as *inline comments* in Doconce and
+described in the section "Inline Tagging".
 
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
@@ -62133,8 +62703,12 @@ lines starting with a double hash ## and lines enclosed by
 the <%doc> (beginning) and <%doc/> (closing) tags.
 
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test # #ifdef EXTRA in Preprocess).
 
 
 Cross-Referencing
@@ -63036,7 +63610,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line::
+if a sophisticated table is desired in LaTeX output, do something like::
 
 
         # #if FORMAT in ("latex", "pdflatex")
@@ -63057,41 +63631,6 @@ we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
-As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say::
-
-
-        # table of contents
-
-we can use this comment to edit the LaTeX file. First, we run
-Doconce doconce format latex mydoc to produce mydoc.p.tex. Then
-we use the doconce replace and doconce subst commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter::
-
-
-        Terminal> doconce replace '% table of contents'
-                  '\tableofcontents' mydoc.p.tex
-
-The doconce replace from_text to_text filename command performs a
-character-by-character replacement (using the replace method in
-string objects in Python). If we want to preserve the comment and add
-a new line with \tableofcontents, we should use doconce subst,
-which applies regular expressions for substitutions and thereby
-understands the newline character::
-
-
-        Terminal> doconce subst '% table of contents' \
-                  '% table of contents\n\\tableofcontents' mydoc.p.tex
-
-Note the double backshlash in front of the t character: without it we
-would get a tab and no backslash.
-The doconce subst is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
 
 Header and Footer
 -----------------
@@ -63101,10 +63640,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if TITLE: or
-#TITLE: is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if TITLE:
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 
 Emacs Doconce Formatter
@@ -63535,8 +64073,9 @@ The resulting mydoc.tex file now becomes::
 
 Even better, HTML output looks nice as well.
 
-Note that Doconce supports fancy environments for verbatim code (for example,
-the ptex2tex program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the ptex2tex program with all its flexibility for choosing environments.
+Also doconce ptex2tex has some flexibility for typesetting computer code.
 
 
 The LaTeX file does not compile
@@ -64260,10 +64799,16 @@ Terminal> doconce format html mydoc
 
 The resulting file `mydoc.html` can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the `--html-solarized`
-command line argument, the [solarized](http://ethanschoonover.com/solarized)
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument `--css=filename`. There is a default style with blue headings,
+and a style with the [solarized](http://ethanschoonover.com/solarized)
+color palette, specified by the `--html-solarized` command line
+argument. If there is no file with name `filename` in the `--css=filename`
+specification, the blue or solarized styles are written to `filename`
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the `style` tags or by
+specifying a CSS file through the `--css=filename` option.
 
 If the Pygments package (including the `pygmentize` program)
 is installed, code blocks are typeset with
@@ -64288,6 +64833,24 @@ by `%(main)s`. Here is an example:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Bash}
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Blogs
+-----
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (`blogname.blogspot.com`)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this [example](http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html) for details on blogging.
+
+
+
+*Warning.* In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 -------------------
@@ -65177,6 +65740,9 @@ Doconce supports tags for *emphasized phrases*, _boldface phrases_,
 and `verbatim text` (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as $\nu = \sin(x)$.
 
+Emphasized Words
+~~~~~~~~~~~~~~~~
+
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
 
@@ -65192,6 +65758,9 @@ _several words in boldface_ followed by *ephasized text*.
 
 The line above gets typeset as
 _several words in boldface_ followed by *ephasized text*.
+
+Inline Verbatim Text
+~~~~~~~~~~~~~~~~~~~~
 
 Verbatim text, typically used for short inline code,
 is typeset between back-ticks:
@@ -65209,12 +65778,17 @@ It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and `ptex2tex`) will have
 problems with inline verbatim text that is split over two lines.
 
-Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+
+
+*Notice.* Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).
+
+Links to Web Addresses
+~~~~~~~~~~~~~~~~~~~~~~
 
 Web addresses with links are typeset as
 
@@ -65223,7 +65797,26 @@ some URL like "Search Google": "http://google.com".
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 which appears as some URL like [Search Google](http://google.com).
-The space after colon is optional.
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.
+
+To have the URL address itself as link text, put an "URL" or URL
+before the address enclosed in double quotes:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Click on this link: URL:"http://code.google.com/p/doconce".
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+which gets rendered as
+Click on this link: <http://code.google.com/p/doconce>.
+
+(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)
+
+Links to Local Files
+~~~~~~~~~~~~~~~~~~~~
+
 Links to files ending in `.txt`, `.html`, `.pdf`, `.py`, `.f`,
 `.f77`, `.f90`, `.f95`, `.sh`, `.csh`, `.ksh`, `.zsh`,
 `.c`, `.cpp`, `.cxx`, `.pl`, and `.java` follows the same
@@ -65297,14 +65890,8 @@ resulting in the link <manual.html>.
 <!-- `_static` directory - links in the `.rst` files are automatically -->
 <!-- adjusted.) -->
 
-Similarly, to have the URL address itself as link text, put an "URL" or URL
-before the address enclosed in double quotes:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Click on this link: URL:"http://code.google.com/p/doconce".
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-resulting in Click on this link: <http://code.google.com/p/doconce>.
+Inline Comments
+~~~~~~~~~~~~~~~
 
 Doconce also supports inline comments in the text:
 
@@ -65325,6 +65912,9 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the `.do.txt` file
 (see the section [From Doconce to Other Formats](#s)).
+
+Inline Mathematics
+~~~~~~~~~~~~~~~~~~
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
@@ -65356,9 +65946,9 @@ are vectors of length $n$."
 Comments
 --------
 
-Comments intended to be visible in the output document and read by
-readers are known as *inline comments* in Doconce and described
-in the section [Inline Tagging](#g).
+Comments intended to be (sometimes) visible in the output document and
+read by readers are known as *inline comments* in Doconce and
+described in the section [Inline Tagging](#g).
 
 Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
@@ -65383,8 +65973,12 @@ lines starting with a double hash `##` and lines enclosed by
 the `<%doc>` (beginning) and `<%doc/>` (closing) tags.
 
 If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
+
+To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test `# #ifdef EXTRA` in Preprocess).
 
 
 Cross-Referencing
@@ -66331,7 +66925,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line
+if a sophisticated table is desired in LaTeX output, do something like
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
@@ -66353,44 +66947,6 @@ we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.
 
-As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# table of contents
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-we can use this comment to edit the LaTeX file. First, we run
-Doconce `doconce format latex mydoc` to produce `mydoc.p.tex`. Then
-we use the `doconce replace` and `doconce subst` commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Terminal> doconce replace '% table of contents'
-          '\tableofcontents' mydoc.p.tex
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The `doconce replace from_text to_text filename` command performs a
-character-by-character replacement (using the `replace` method in
-string objects in Python). If we want to preserve the comment and add
-a new line with `\tableofcontents`, we should use `doconce subst`,
-which applies regular expressions for substitutions and thereby
-understands the newline character:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Terminal> doconce subst '% table of contents' \
-          '% table of contents\n\\tableofcontents' mydoc.p.tex
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Note the double backshlash in front of the `t` character: without it we
-would get a tab and no backslash.
-The `doconce subst` is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.
 
 Header and Footer
 -----------------
@@ -66400,10 +66956,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if `TITLE:` or
-`#TITLE:` is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.
+stand-alone. We have introduced the convention that if `TITLE:`
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.
 
 
 Emacs Doconce Formatter
@@ -66848,8 +67403,9 @@ achievement.
 
 Even better, HTML output looks nice as well.
 
-Note that Doconce supports fancy environments for verbatim code (for example,
-the `ptex2tex` program with all its flexibility for choosing environments).
+Note that Doconce supports fancy environments for verbatim code via
+the `ptex2tex` program with all its flexibility for choosing environments.
+Also `doconce ptex2tex` has some flexibility for typesetting computer code.
 
 
 The LaTeX file does not compile
@@ -68136,12 +68692,11 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<!--
-Color definitions:  http://www.december.com/html/spec/color0.html
-CSS examples:       http://www.w3schools.com/css/css_examples.asp
--->
 
 <style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
     body {
       margin-top: 1.0em;
       background-color: #ffffff;
@@ -68164,19 +68719,23 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Valid_Green.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Attention.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Info.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Forward.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
 </style>
 
-<!-- Use MathJax to render mathematics -->
+</head>
+<body>
+
+
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -68191,13 +68750,11 @@ MathJax.Hub.Config({
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-</head>
 
-<body>
-    
+
 
 <!-- ------------------- main content ------------------------>
-
+    
 <title>Doconce Quick Reference</title>
 
 <center><h1>Doconce Quick Reference</h1></center>  <! -- document title -->
@@ -68884,7 +69441,7 @@ list of capabilities:
 <!-- begin verbatim block  shpro-->
 <pre>
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
 
 
 # transform doconce file to another format
@@ -69995,7 +70552,7 @@ list of capabilities:
 
 \bshpro
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
 
 
 # transform doconce file to another format
@@ -70890,7 +71447,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
         
         
         # transform doconce file to another format
@@ -71819,7 +72376,7 @@ list of capabilities:
 .. code-block:: bash
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
         
         
         # transform doconce file to another format
@@ -72616,7 +73173,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
 
 
 # transform doconce file to another format
@@ -73360,7 +73917,7 @@ list of capabilities:
 
 <syntaxhighlight lang="bash">
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
 
 
 # transform doconce file to another format
@@ -74120,7 +74677,7 @@ list of capabilities:
 
 {{{
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
 
 
 # transform doconce file to another format
@@ -74918,7 +75475,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
         
         
         # transform doconce file to another format
@@ -75737,7 +76294,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
         
         
         # transform doconce file to another format
@@ -76586,7 +77143,7 @@ list of capabilities::
 
 
         Usage: doconce command [optional arguments]
-        commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+        commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
         
         
         # transform doconce file to another format
@@ -77482,7 +78039,7 @@ list of capabilities:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Usage: doconce command [optional arguments]
-commands: format insertdocstr old2new_format gwiki_figsubst remove_inline_comments latin2html sphinx_dir subst replace replace_from_file clean help latex_header latex_footer guess_encoding change_encoding bbl2rst split_rst split_html slides_html html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2tex expand_commands combine_images latex_exercise_toc
+commands: format help sphinx_dir subst replace replace_from_file clean spellcheck ptex2tex expand_commands combine_images guess_encoding change_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_answers split_rst split_html slides_html latin2html latex_header latex_footer bbl2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code_links latex_exercise_toc insertdocstr old2new_format
 
 
 # transform doconce file to another format
@@ -78187,11 +78744,11 @@ LaTeX Warning: Reference `eq1' on page 11
 
 LaTeX Warning: Reference `eq2' on page 11 
 
-
-LaTeX Warning: Reference `split:envir:eq' on page 11 undefined on input line 70
-5.
-
 [11]
+
+LaTeX Warning: Reference `split:envir:eq' on page 12 undefined on input line 70
+8.
+
 
 LaTeX Warning: Reference `eq1' on page 12 
 
@@ -78222,9 +78779,9 @@ LaTeX Warning: Reference `exer:you' on page 12
 
 
 LaTeX Warning: Reference `exer:some:formula' on page 12 undefined on input line
- 731.
+ 734.
 
-(./testdoc.out.pyg) [12] (./testdoc.out.pyg) [13]
+(./testdoc.out.pyg [12]) (./testdoc.out.pyg) [13]
 
 LaTeX Warning: Reference `proj:circle1' on page 14 
 
@@ -78232,32 +78789,33 @@ LaTeX Warning: Reference `proj:circle1' on page 14
 
 LaTeX Warning: Reference `demo:ex:1' on page 14 
 
+[14]
 
-LaTeX Warning: Reference `demo:ex:2' on page 14 
-
-
-LaTeX Warning: Reference `exer:some:formula' on page 14 undefined on input line
- 1000.
+LaTeX Warning: Reference `demo:ex:2' on page 15 
 
 
-LaTeX Warning: Reference `demo:ex:2' on page 14 
+LaTeX Warning: Reference `exer:some:formula' on page 15 undefined on input line
+ 1003.
 
 
-LaTeX Warning: Reference `proj:circle1' on page 14 undefined on input line 1001
+LaTeX Warning: Reference `demo:ex:2' on page 15 
+
+
+LaTeX Warning: Reference `proj:circle1' on page 15 undefined on input line 1004
 .
 
 
-LaTeX Warning: Reference `exer:you' on page 14 
+LaTeX Warning: Reference `exer:you' on page 15 
 
-[14] <latex_figs/hint.pdf, id=235, 89.33376pt x 89.33376pt>
+<latex_figs/hint.pdf, id=230, 89.33376pt x 89.33376pt>
 <use latex_figs/hint.pdf>
-<latex_figs/warning.pdf, id=236, 89.33376pt x 89.33376pt>
-<use latex_figs/warning.pdf>
-<latex_figs/summary.pdf, id=237, 89.33376pt x 89.33376pt>
+<latex_figs/warning.pdf, id=231, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf> [15 <./latex_figs/hint.pdf>]
+<latex_figs/summary.pdf, id=253, 89.33376pt x 89.33376pt>
 <use latex_figs/summary.pdf>
-<latex_figs/notice.pdf, id=238, 89.33376pt x 89.33376pt>
+<latex_figs/notice.pdf, id=254, 89.33376pt x 89.33376pt>
 <use latex_figs/notice.pdf>
-<latex_figs/question.pdf, id=239, 89.33376pt x 89.33376pt>
+<latex_figs/question.pdf, id=255, 89.33376pt x 89.33376pt>
 <use latex_figs/question.pdf>
 No file testdoc.ind.
 
@@ -78265,8 +78823,8 @@ Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (movie15)                @@ Rerun to get object references right! @@
 (movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
 
-[15 <./latex_figs/hint.pdf> <./latex_figs/warning.pdf> <./latex_figs/summary.pd
-f> <./latex_figs/notice.pdf>] [16 <./latex_figs/question.pdf>] (./testdoc.aux)
+[16 <./latex_figs/warning.pdf> <./latex_figs/summary.pdf> <./latex_figs/notice.
+pdf> <./latex_figs/question.pdf>] (./testdoc.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -79290,6 +79848,7 @@ output in tutorial.html
 + doconce format latex tutorial
 running preprocess -DFORMAT=latex  tutorial.do.txt > __tmp.do.txt
 translating preprocessed doconce text in __tmp.do.txt to latex
+copying warning.eps from /usr/local/lib/python2.7/dist-packages/doconce/latex_styles.zip to subdirectory latex_figs
 output in tutorial.p.tex
 + ptex2tex -DMINTED -DHELVETICA tutorial
 running preprocessor on tutorial.p.tex...  defines: 'HELVETICA', 'MINTED'  done
@@ -79420,7 +79979,7 @@ in the []
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7]
+[6] [7] <latex_figs/warning.eps>
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -79434,52 +79993,52 @@ Overfull \hbox (55.19026pt too wide)
 
 Overfull \hbox (0.29683pt too wide) 
 []\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
-
+[9]
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
-[9] [10]
+[10]
 Overfull \hbox (11.05632pt too wide) 
 \OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
-
+[11]
 Overfull \hbox (0.55649pt too wide) 
 \OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
 \OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
 y in-cluded
-[11] [12]
+[12]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
-
+[13]
 Overfull \hbox (6.8168pt too wide) 
 []\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
-[13]
+
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []
-
+[14]
 Overfull \hbox (10.33038pt too wide) 
 []\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
-[14] [15]
+[15]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[16]
+[16] [17]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-[17] [18]
+[18] [19]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-[19]
+[20]
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
-[20]
+[21]
 Overfull \hbox (22.94165pt too wide) 
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 No file tutorial.ind.
-[21] (./tutorial.aux)
+[22] (./tutorial.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -79566,6 +80125,7 @@ gettitlestring.sty    2010/12/03 v1.4 Cleanup title references (HO)
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omsphv.fd    
 tutorial.out.pyg
+latex_figs/warning.eps
  ***********
 
 
@@ -79581,7 +80141,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (21 pages, ).
+Output written on tutorial.dvi (22 pages, ).
 Transcript written on tutorial.log.
 + latex -shell-escape tutorial.tex
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -79698,7 +80258,7 @@ in the []
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7]
+[6] [7] <latex_figs/warning.eps>
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
@@ -79708,52 +80268,52 @@ Overfull \hbox (55.19026pt too wide)
 
 Overfull \hbox (0.29683pt too wide) 
 []\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
-
+[9]
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
-[9] [10]
+[10]
 Overfull \hbox (11.05632pt too wide) 
 \OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
-
+[11]
 Overfull \hbox (0.55649pt too wide) 
 \OT1/phv/m/n/10 When run-ning [] (or other minted spec-
 
 Overfull \hbox (3.19841pt too wide) 
 \OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
 y in-cluded
-[11] [12]
+[12]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
-
+[13]
 Overfull \hbox (6.8168pt too wide) 
 []\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
-[13]
+
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []
-
+[14]
 Overfull \hbox (10.33038pt too wide) 
 []\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
-[14] [15]
+[15]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[16]
+[16] [17]
 Overfull \hbox (21.15628pt too wide) 
 \OT1/phv/m/n/10 Doconce it-self is pure Python code hosted at [][][][][][].
-[17] [18]
+[18] [19]
 Overfull \hbox (20.60986pt too wide) 
 \OT1/phv/m/n/10 It may hap-pen that you need ad-di-tional style files, you can 
 run a script, []: 
-[19]
+[20]
 Overfull \hbox (17.06206pt too wide) 
 \OT1/phv/m/n/10 ment when run-ning L[]T[]X, i.e., [] or []. 
-[20]
+[21]
 Overfull \hbox (22.94165pt too wide) 
 \OT1/phv/m/n/10 ries, go to the di-rec-tory, run [], and then [].
 No file tutorial.ind.
-[21] (./tutorial.aux)
+[22] (./tutorial.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -79842,11 +80402,12 @@ tutorial.out
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omsphv.fd    
 tutorial.out.pyg
+latex_figs/warning.eps
  ***********
 
  )
 (see the transcript file for additional information)
-Output written on tutorial.dvi (21 pages, ).
+Output written on tutorial.dvi (22 pages, ).
 Transcript written on tutorial.log.
 + dvipdf tutorial.dvi
 + doconce format sphinx tutorial
@@ -80095,10 +80656,13 @@ Package amsmath Warning: Foreign command \over;
 
 [7] [8]
 Chapter 3.
-[9] [10]
+[9]
+Underfull \hbox (badness 10000) 
+
+[10]
 
 LaTeX Warning: Hyper reference `tutorial:newcommands' on page 11 undefined on i
-nput line 661.
+nput line 685.
 
 
 Underfull \hbox (badness 10000) 
@@ -80139,7 +80703,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 176257 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 177695 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -80257,7 +80821,10 @@ Package amsmath Warning: Foreign command \over;
 
 [7] [8]
 Chapter 3.
-[9] [10]
+[9]
+Underfull \hbox (badness 10000) 
+
+[10]
 Underfull \hbox (badness 10000) 
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
@@ -80283,7 +80850,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 182163 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 183597 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -80401,7 +80968,10 @@ Package amsmath Warning: Foreign command \over;
 
 [7] [8]
 Chapter 3.
-[9] [10]
+[9]
+Underfull \hbox (badness 10000) 
+
+[10]
 Underfull \hbox (badness 10000) 
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
@@ -80427,7 +80997,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 182163 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 183597 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 makeindex -s python.ist 'DoconceDocumentOnceIncludeAnywhere.idx'
@@ -80551,7 +81121,10 @@ Package amsmath Warning: Foreign command \over;
 
 [7] [8]
 Chapter 3.
-[9] [10]
+[9]
+Underfull \hbox (badness 10000) 
+
+[10]
 Underfull \hbox (badness 10000) 
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
@@ -80577,7 +81150,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 182163 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 183597 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 pdflatex  'DoconceDocumentOnceIncludeAnywhere.tex'
@@ -80695,7 +81268,10 @@ Package amsmath Warning: Foreign command \over;
 
 [7] [8]
 Chapter 3.
-[9] [10]
+[9]
+Underfull \hbox (badness 10000) 
+
+[10]
 Underfull \hbox (badness 10000) 
 []\T1/ptm/m/n/10 LaTeX-specific com-mands (``new-com-mands'') in math for-mu-la
 s and sim-i-lar can be placed in files
@@ -80721,7 +81297,7 @@ exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 182163 byte
+Output written on DoconceDocumentOnceIncludeAnywhere.pdf (27 pages, 183597 byte
 s).
 Transcript written on DoconceDocumentOnceIncludeAnywhere.log.
 + cp DoconceDocumentOnceIncludeAnywhere.pdf ../../../tutorial.sphinx.pdf
@@ -80891,6 +81467,10 @@ T1/ptm/m/n/10 ) or \T1/pcr/m/n/10 % if FORMAT == "latex": \T1/ptm/m/n/10 (for
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format latex mydoc --skip_inline_comments 
 
+Overfull \hbox (0.13686pt too wide) 
+\T1/ptm/m/n/10 nal CSS file. The lat-ter is en-abled by the command-line ar-gu-
+ment \T1/pcr/m/n/10 --css=filename\T1/ptm/m/n/10 .
+
 Overfull \hbox (50.49731pt too wide) 
 \T1/ptm/m/n/10 blocks are type-set with aid of this pack-age. The command-line 
 ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
@@ -80914,7 +81494,7 @@ m/n/10 ,
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
-
+[7]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -t html -o mydoc.html -s --mathjax mydoc.mkd 
 
@@ -80923,7 +81503,6 @@ Overfull \hbox (15.73763pt too wide)
 []\T1/ptm/m/it/10 Step 1. \T1/ptm/m/n/10 Fil-ter the do-conce text to a pre-LaT
 eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
-[7]
 
 LaTeX Warning: Hyper reference `macros-newcommands-cross-references-index-and-b
 ibliography' on page 8 
@@ -80970,12 +81549,12 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
-
+[9]
 Overfull \hbox (27.6591pt too wide) 
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
  or \T1/pcr/m/n/10 $HOME/.ptex2tex.cfg\T1/ptm/m/n/10 ),
-[9]
+
 Overfull \hbox (4.47917pt too wide) 
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
@@ -80983,7 +81562,7 @@ ed \T1/ptm/m/n/10 (or other minted
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
-
+[10]
 Overfull \hbox (17.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
 
@@ -80995,7 +81574,7 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2odt.py   mydoc.rst > mydoc.odt  # OpenOffice 
-[10]
+
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
 
@@ -81005,11 +81584,11 @@ Overfull \hbox (29.00006pt too wide)
 Overfull \hbox (65.00006pt too wide) 
 []          \T1/pcr/m/n/10 title="some title" version=1.0 dirname=sphinxdir \  
 
-
+[11]
 Overfull \hbox (16.80876pt too wide) 
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
-[11]
+
 Overfull \hbox (6.80879pt too wide) 
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
@@ -81017,26 +81596,26 @@ ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 Overfull \hbox (15.89764pt too wide) 
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[12]
+[12] [13]
 Overfull \hbox (13.18697pt too wide) 
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][],
-[13]
+
 Overfull \hbox (1.98695pt too wide) 
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-
+[14]
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 hg clone https://doconce.googlecode.com/hg/ doconce  
-[14]
+
 Overfull \hbox (107.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://preprocess.googlecode.com/svn/trunk/ preproc
 ess  
-
+[15]
 Overfull \hbox (5.60612pt too wide) 
 \T1/ptm/m/n/10 Different out-put for-mats re-quire dif-fer-ent for-mats of im-a
 ge files. For ex-am-ple, PostScript
-[15]
+
 Overfull \hbox (83.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex 
  
@@ -81051,7 +81630,7 @@ Overfull \hbox (29.00006pt too wide)
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 sudo apt-get install texlive-latex-recommended texlive-latex-e
 xtra 
-
+[16]
 Overfull \hbox (95.00006pt too wide) 
 \T1/pcr/m/n/10 hg clone ssh://hg@bitbucket.org/birkenfeld/pygments-main pygment
 s  
@@ -81059,18 +81638,18 @@ s
 Overfull \hbox (42.85931pt too wide) 
 \T1/ptm/m/n/10 ment when run-ning La-TeX, i.e., \T1/pcr/m/n/10 latex -shell-esc
 ape \T1/ptm/m/n/10 or \T1/pcr/m/n/10 pdflatex -shell-escape\T1/ptm/m/n/10 . 
-[16]
+
 Overfull \hbox (185.00006pt too wide) 
 \T1/pcr/m/n/10 svn checkout http://docutils.svn.sourceforge.net/svnroot/docutil
 s/trunk/docutils  
 
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 sudo apt-get install unovonv libreoffice libreoffice-dmaths 
-
+[17]
 Overfull \hbox (161.00006pt too wide) 
 \T1/pcr/m/n/10 svn co https://epydoc.svn.sourceforge.net/svnroot/epydoc/trunk/e
 pydoc epydoc  
-[17] [18] (./tutorial.rst.aux)
+[18] (./tutorial.rst.aux)
 
 Package rerunfilecheck Warning: File `tutorial.rst.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
@@ -81128,39 +81707,39 @@ output in tutorial.md
 [5 lines wrapped]
 + ps2pdf tutorial.do.ps tutorial.do.pdf
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.epytext.ps tutorial.epytext
-[tutorial.epytext (plain): 20 pages on 20 sheets]
-[Total: 20 pages on 20 sheets] saved into the file `tutorial.epytext.ps'
-[22 lines wrapped]
+[tutorial.epytext (plain): 21 pages on 21 sheets]
+[Total: 21 pages on 21 sheets] saved into the file `tutorial.epytext.ps'
+[23 lines wrapped]
 + ps2pdf tutorial.epytext.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.txt.ps tutorial.txt
 [tutorial.txt (plain): 21 pages on 21 sheets]
 [Total: 21 pages on 21 sheets] saved into the file `tutorial.txt.ps'
-[18 lines wrapped]
+[19 lines wrapped]
 + ps2pdf tutorial.txt.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.gwiki.ps tutorial.gwiki
 [tutorial.gwiki (plain): 19 pages on 19 sheets]
 [Total: 19 pages on 19 sheets] saved into the file `tutorial.gwiki.ps'
-[46 lines wrapped]
+[47 lines wrapped]
 + ps2pdf tutorial.gwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.cwiki.ps tutorial.cwiki
-[tutorial.cwiki (plain): 19 pages on 19 sheets]
-[Total: 19 pages on 19 sheets] saved into the file `tutorial.cwiki.ps'
-[60 lines wrapped]
+[tutorial.cwiki (plain): 20 pages on 20 sheets]
+[Total: 20 pages on 20 sheets] saved into the file `tutorial.cwiki.ps'
+[62 lines wrapped]
 + ps2pdf tutorial.cwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.mwiki.ps tutorial.mwiki
-[tutorial.mwiki (plain): 20 pages on 20 sheets]
-[Total: 20 pages on 20 sheets] saved into the file `tutorial.mwiki.ps'
-[149 lines wrapped]
+[tutorial.mwiki (plain): 21 pages on 21 sheets]
+[Total: 21 pages on 21 sheets] saved into the file `tutorial.mwiki.ps'
+[151 lines wrapped]
 + ps2pdf tutorial.mwiki.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.md.ps tutorial.md
 [tutorial.md (Modula 2): 22 pages on 22 sheets]
 [Total: 22 pages on 22 sheets] saved into the file `tutorial.md.ps'
-[9 lines wrapped]
+[10 lines wrapped]
 + ps2pdf tutorial.md.ps
 + a2ps --left-title='' --right-title='' --left-footer='' --right-footer='' --footer='' -1 -o tutorial.xml.ps tutorial.xml
-[tutorial.xml (plain): 18 pages on 18 sheets]
-[Total: 18 pages on 18 sheets] saved into the file `tutorial.xml.ps'
-[528 lines wrapped]
+[tutorial.xml (plain): 19 pages on 19 sheets]
+[Total: 19 pages on 19 sheets] saved into the file `tutorial.xml.ps'
+[539 lines wrapped]
 + ps2pdf tutorial.xml.ps
 + rm -f tutorial.cwiki.ps tutorial.do.ps tutorial.epytext.ps tutorial.gwiki.ps tutorial.md.ps tutorial.mwiki.ps tutorial.txt.ps tutorial.xml.ps
 + pdftk tutorial.do.pdf tutorial.pdf tutorial.rst.pdf tutorial.sphinx.pdf tutorial.txt.pdf tutorial.epytext.pdf tutorial.gwiki.pdf tutorial.md.pdf tutorial.sphinx.pdf tutorial.xml.pdf cat output collection_of_results.pdf
@@ -81525,6 +82104,10 @@ T1/ptm/m/n/10 ) or \T1/pcr/m/n/10 % if FORMAT == "latex": \T1/ptm/m/n/10 (for
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format latex mydoc --skip_inline_comments 
 [6]
+Overfull \hbox (0.13686pt too wide) 
+\T1/ptm/m/n/10 nal CSS file. The lat-ter is en-abled by the command-line ar-gu-
+ment \T1/pcr/m/n/10 --css=filename\T1/ptm/m/n/10 .
+
 Overfull \hbox (50.49731pt too wide) 
 \T1/ptm/m/n/10 blocks are type-set with aid of this pack-age. The command-line 
 ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
@@ -81536,7 +82119,7 @@ Overfull \hbox (0.81818pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format html mydoc --html-template=mytemplate
 .html 
-
+[7]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
@@ -81545,7 +82128,7 @@ Overfull \hbox (11.29898pt too wide)
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
-[7]
+
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
@@ -81559,21 +82142,21 @@ eX form \T1/pcr/m/n/10 mydoc.p.tex \T1/ptm/m/n/10 for the \T1/pcr/m/n/10 ptex2t
 ex
 
 LaTeX Warning: Hyper reference `macros-newcommands' on page 8 undefined on inpu
-t line 800.
+t line 854.
 
 
 Overfull \hbox (78.51936pt too wide) 
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
-
+[8]
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 
 Overfull \hbox (47.28717pt too wide) 
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
-[8]
+
 Overfull \hbox (77.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
@@ -81594,7 +82177,7 @@ nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
 Overfull \hbox (54.6875pt too wide) 
 \T1/ptm/m/n/10 fy-ing \T1/pcr/m/n/10 envir=ans:nt \T1/ptm/m/n/10 means that all
  other en-vi-ron-ments are type-set with the \T1/pcr/m/n/10 anslistings.sty
-
+[9]
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 
@@ -81603,7 +82186,7 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
-[9]
+
 Overfull \hbox (27.6591pt too wide) 
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
@@ -81612,14 +82195,14 @@ Overfull \hbox (27.6591pt too wide)
 Overfull \hbox (4.47917pt too wide) 
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
-
+[10]
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
 
 Overfull \hbox (17.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
-[10]
+
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
@@ -81631,7 +82214,7 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
-
+[11]
 Overfull \hbox (29.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
@@ -81642,7 +82225,7 @@ Overfull \hbox (65.00006pt too wide)
 Overfull \hbox (16.80876pt too wide) 
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
-[11]
+
 Overfull \hbox (6.80879pt too wide) 
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
@@ -81650,19 +82233,19 @@ ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 Overfull \hbox (15.89764pt too wide) 
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[12]
+[12] [13]
 Overfull \hbox (13.18697pt too wide) 
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][],
-[13]
+
 Overfull \hbox (1.98695pt too wide) 
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[14]
+[14] [15]
 Overfull \hbox (1.65791pt too wide) 
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
-[15]
+
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 
@@ -81696,17 +82279,17 @@ ng
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 is used - all other formats just leave the heading as it is wr
 itten).  
-
+[17]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
-[17] <figs/streamtubes.eps>
+<figs/streamtubes.eps> [18]
 Overfull \hbox (11.00006pt too wide) 
 \T1/pcr/m/n/10 montage -background white -geometry 100% -tile 2x \  
-[18]
+
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
-
+[19]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
@@ -81722,23 +82305,26 @@ Overfull \hbox (131.00006pt too wide)
 []\T1/pcr/m/n/10 MOVIE: [http://www.youtube.com/embed/sI2uCHH3qIM, width=420 he
 ight=315] 
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 19 un
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 20 un
 defined on 
 
-[19]
+
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
-
+[20]
 Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 some URL like "Search Google": "http://google.com". 
 
+Overfull \hbox (59.00006pt too wide) 
+[]\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
+
 Overfull \hbox (22.65768pt too wide) 
 \T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
 RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
-[20]
+[21]
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
@@ -81750,25 +82336,21 @@ Overfull \hbox (107.00006pt too wide)
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) 
-[]\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
-
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 21 undef
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 22 undef
 ined on 
 
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 21 undef
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 22 undef
 ined on 
 
-
+[22]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
-[21]
 
-LaTeX Warning: Hyper reference `id2' on page 22 
+LaTeX Warning: Hyper reference `id2' on page 23 
 
 
 Overfull \hbox (89.00006pt too wide) 
@@ -81782,21 +82364,21 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
+[23]
 
-LaTeX Warning: Hyper reference `fig-viz' on page 22 undefined on input line 205
-4.
+LaTeX Warning: Hyper reference `fig-viz' on page 24 undefined on input line 217
+7.
 
 
-LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 22 u
+LaTeX Warning: Hyper reference `latex-blocks-of-mathematical-text' on page 24 u
 ndefined on 
 
 
-LaTeX Warning: Hyper reference `macros-newcommands' on page 22 undefined on inp
-ut line 2056.
+LaTeX Warning: Hyper reference `macros-newcommands' on page 24 undefined on inp
+ut line 2179.
 
-[22]
 
-LaTeX Warning: Hyper reference `id2' on page 23 
+LaTeX Warning: Hyper reference `id2' on page 24 
 
 
 Overfull \hbox (5.00006pt too wide) 
@@ -81811,7 +82393,7 @@ Overfull \hbox (41.00006pt too wide)
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 the document "A Document for Testing Doconce": "testdoc.html" 
  
-
+[24]
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 cite{testdoc:12}], Doconce documents may include movies. 
 
@@ -81825,7 +82407,7 @@ Overfull \hbox (41.00006pt too wide)
 Overfull \hbox (19.41716pt too wide) 
 []\T1/ptm/m/n/10 Note that there is a spe-cific num-bered ref-er-ence to an ex-
 ter-nal doc-u-ment, if \T1/pcr/m/n/10 subsec:ex
-[23]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 the document `A Document for Testing Doconce <testdoc.html>`_ 
  
@@ -81853,10 +82435,10 @@ Overfull \hbox (5.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
-
+[25]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
-[24]
+
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
@@ -81867,7 +82449,7 @@ Overfull \hbox (11.00006pt too wide)
 Overfull \hbox (7.29897pt too wide) 
 \T1/ptm/m/n/10 ther by man-ual edit-ing of \T1/pcr/m/n/10 myfile.bbl \T1/ptm/m/
 n/10 or us-ing \T1/pcr/m/n/10 doconce bbl2rst myfile.bbl
-
+[26]
 Overfull \hbox (13.43625pt too wide) 
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
@@ -81875,10 +82457,10 @@ Overfull \hbox (13.43625pt too wide)
 Overfull \hbox (24.53633pt too wide) 
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-[25]
+[27]
 Overfull \hbox (35.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
-[26]
+
 Overfull \hbox (21.27702pt too wide) 
 []\T1/ptm/m/n/10 The so-lu-tion en-vi-ron-ment al-lows in-line so-lu-tion as an
  al-ter-na-tive to the \T1/pcr/m/n/10 solution=...
@@ -81888,7 +82470,7 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 Here goes main body of text describing the exercise...  
-
+[28]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
@@ -81899,14 +82481,14 @@ marks
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
-[27] [28]
+[29]
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[29]
+[30]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[30] [31]
+[31] [32]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -81926,14 +82508,14 @@ label{myeq2}
 Overfull \hbox (3.77757pt too wide) 
 []\T1/ptm/m/n/10 Markdown (\T1/pcr/m/n/10 pandoc \T1/ptm/m/n/10 for-mat) al-low
 s sin-gle equa-tions and in-line math-
-
+[33]
 Overfull \hbox (3.0pt too wide) 
 \T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
 
 Overfull \hbox (149.00006pt too wide) 
 \T1/pcr/m/n/10 % if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki", 
 "pandoc"):  
-[32]
+
 Overfull \hbox (26.7087pt too wide) 
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
@@ -81945,7 +82527,7 @@ mathmpl'
 Overfull \hbox (31.34828pt too wide) 
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[33]
+[34]
 Overfull \hbox (24.36848pt too wide) 
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
@@ -81955,20 +82537,16 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (16.79616pt too wide) 
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[34]
+[35]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 # Sphinx cannot refer to labels in align environments  
 
-LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 35 undef
+LaTeX Warning: Hyper reference `from-doconce-to-other-formats' on page 36 undef
 ined on 
 
-[35]
+[36]
 Overfull \hbox (35.00006pt too wide) 
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[36]
-Overfull \hbox (77.00006pt too wide) 
-[]          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
- 
 [37]
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
@@ -81982,27 +82560,27 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
-
+[39]
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
 ile 
-[39]
+[40]
 
-LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 40 un
+LaTeX Warning: Hyper reference `blocks-of-verbatim-computer-code' on page 41 un
 defined on 
 
-[40] [41]
+[41] [42]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[42]
+
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-
+[43]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
@@ -82023,11 +82601,19 @@ Overfull \hbox (47.00006pt too wide)
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-[43]
+
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
+Overfull \hbox (9.14774pt too wide) 
+[]\T1/ptm/m/n/10 Note that Do-conce sup-ports fancy en-vi-ron-ments for ver-ba-
+tim code via the \T1/pcr/m/n/10 ptex2tex
+
+Overfull \hbox (2.15741pt too wide) 
+\T1/ptm/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron-men
+ts. Also \T1/pcr/m/n/10 doconce ptex2tex
+[44]
 Overfull \hbox (47.00006pt too wide) 
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
@@ -82037,15 +82623,15 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[44] [45]
+[45]
 Overfull \hbox (119.00006pt too wide) 
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-
+[46]
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[46]
+[47]
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
@@ -82064,7 +82650,7 @@ nt).
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[47] [48] (./manual.rst.aux)
+[48] [49] (./manual.rst.aux)
 
 Package rerunfilecheck Warning: File `manual.rst.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
@@ -82078,7 +82664,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (48 pages, ).
+Output written on manual.rst.dvi (49 pages, ).
 Transcript written on manual.rst.log.
 + latex manual.rst.tex
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -82212,6 +82798,10 @@ T1/ptm/m/n/10 ) or \T1/pcr/m/n/10 % if FORMAT == "latex": \T1/ptm/m/n/10 (for
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format latex mydoc --skip_inline_comments 
 [6]
+Overfull \hbox (0.13686pt too wide) 
+\T1/ptm/m/n/10 nal CSS file. The lat-ter is en-abled by the command-line ar-gu-
+ment \T1/pcr/m/n/10 --css=filename\T1/ptm/m/n/10 .
+
 Overfull \hbox (50.49731pt too wide) 
 \T1/ptm/m/n/10 blocks are type-set with aid of this pack-age. The command-line 
 ar-gu-ment \T1/pcr/m/n/10 --no-pygments-html
@@ -82223,7 +82813,7 @@ Overfull \hbox (0.81818pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format html mydoc --html-template=mytemplate
 .html 
-
+[7]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -R -t mediawiki -o mydoc.mwk --toc mydoc.mkd 
 
@@ -82232,7 +82822,7 @@ Overfull \hbox (11.29898pt too wide)
 \T1/pcr/m/n/10 format pandoc \T1/ptm/m/n/10 and then trans-lat-ing us-ing \T1/p
 cr/m/n/10 pandoc\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 doconce format latex\T1/ptm/
 m/n/10 ,
-[7]
+
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> pandoc -f latex -t docx -o mydoc.docx mydoc.tex 
 
@@ -82249,14 +82839,14 @@ Overfull \hbox (78.51936pt too wide)
 \T1/ptm/m/n/10 placed in files \T1/pcr/m/n/10 newcommands.tex\T1/ptm/m/n/10 , \
 T1/pcr/m/n/10 newcommands_keep.tex\T1/ptm/m/n/10 , or \T1/pcr/m/n/10 newcommand
 s_replace.tex
-
+[8]
 Overfull \hbox (59.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DHELVETICA  # alternative 
 
 Overfull \hbox (47.28717pt too wide) 
 \T1/ptm/m/n/10 dard La-TeX ``maketi-tle'' head-ing is also avail-able through \
 T1/pcr/m/n/10 -DLATEX_HEADING=traditional\T1/ptm/m/n/10 .
-[8]
+
 Overfull \hbox (77.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce ptex2tex mydoc -DLATEX_HEADING=traditional \  
 
@@ -82277,7 +82867,7 @@ nted \T1/ptm/m/n/10 above, which im-plies \T1/pcr/m/n/10 \begin{minted}{fortran
 Overfull \hbox (54.6875pt too wide) 
 \T1/ptm/m/n/10 fy-ing \T1/pcr/m/n/10 envir=ans:nt \T1/ptm/m/n/10 means that all
  other en-vi-ron-ments are type-set with the \T1/pcr/m/n/10 anslistings.sty
-
+[9]
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce replace 'section{' 'section*{' mydoc.tex  
 
@@ -82286,7 +82876,7 @@ Overfull \hbox (11.00006pt too wide)
 
 Overfull \hbox (53.00006pt too wide) 
 []          \T1/pcr/m/n/10 'title{\g<1> \\\\ [1.5mm] Using \g<2>' mydoc.tex 
-[9]
+
 Overfull \hbox (27.6591pt too wide) 
 \T1/ptm/m/n/10 through the \T1/pcr/m/n/10 *pro \T1/ptm/m/n/10 and \T1/pcr/m/n/1
 0 *cod \T1/ptm/m/n/10 vari-ables in \T1/pcr/m/n/10 .ptex2tex.cfg \T1/ptm/m/n/10
@@ -82295,14 +82885,14 @@ Overfull \hbox (27.6591pt too wide)
 Overfull \hbox (4.47917pt too wide) 
 []\T1/ptm/m/n/10 When run-ning \T1/pcr/m/n/10 doconce ptex2tex mydoc envir=mint
 ed \T1/ptm/m/n/10 (or other minted
-
+[10]
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> doconce format plain mydoc.do.txt  # results in mydo
 c.txt 
 
 Overfull \hbox (17.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> rst2html.py  mydoc.rst > mydoc.html # html  
-[10]
+
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> rst2latex.py mydoc.rst > mydoc.tex  # latex  
 
@@ -82314,7 +82904,7 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (13.07689pt too wide) 
 [][][][][][][] 
-
+[11]
 Overfull \hbox (29.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> doconce sphinx_dir author="authors' names" \  
 
@@ -82325,7 +82915,7 @@ Overfull \hbox (65.00006pt too wide)
 Overfull \hbox (16.80876pt too wide) 
 []\T1/ptm/m/n/10 The \T1/pcr/m/n/10 doconce sphinx_dir \T1/ptm/m/n/10 com-mand 
 gen-er-ates a script \T1/pcr/m/n/10 automake_sphinx.py
-[11]
+
 Overfull \hbox (6.80879pt too wide) 
 \T1/ptm/m/n/10 and \T1/pcr/m/n/10 _build/html_pyramid\T1/ptm/m/n/10 , re-spec-t
 ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
@@ -82333,19 +82923,19 @@ ively. With-out ar-gu-ments, \T1/pcr/m/n/10 make-themes.sh
 Overfull \hbox (15.89764pt too wide) 
 \T1/ptm/m/n/10 com-plete man-ual pro-ce-dure of gen-er-at-ing a Sphinx doc-u-me
 nt from a file \T1/pcr/m/n/10 mydoc.do.txt\T1/ptm/m/n/10 . 
-[12]
+[12] [13]
 Overfull \hbox (13.18697pt too wide) 
 \T1/ptm/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup-
 ports three: [][][][][][],
-[13]
+
 Overfull \hbox (1.98695pt too wide) 
 \T1/ptm/m/n/10 One ex-am-ple is fig-ure file-names when trans-form-ing Do-conce
  to re-Struc-tured-Text. Since
-[14]
+[14] [15]
 Overfull \hbox (1.65791pt too wide) 
 []\T1/ptm/m/n/10 explanation of key-word2 (re-mem-ber to in-dent prop-erly if t
 here
-[15]
+
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 name at institution1 and institution2 and institution3 
 
@@ -82379,17 +82969,17 @@ ng
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 is used - all other formats just leave the heading as it is wr
 itten).  
-
+[17]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 FIGURE:[filename, height=xxx width=yyy scale=zzz] possible cap
 tion 
-[17] <figs/streamtubes.eps>
+<figs/streamtubes.eps> [18]
 Overfull \hbox (11.00006pt too wide) 
 \T1/pcr/m/n/10 montage -background white -geometry 100% -tile 2x \  
-[18]
+
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 MOVIE: [filename, height=xxx width=yyy] possible caption 
-
+[19]
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> ptex2tex -DMOVIE15 -DEXTERNAL_MOVIE_VIEWER mydoc 
 
@@ -82408,20 +82998,23 @@ ight=315]
 Overfull \hbox (69.25586pt too wide) 
 \T1/ptm/m/n/10 code from a file di-rectly into a ver-ba-tim en-vi-ron-ment, see
  the sec-tion [][][][][][]
-[19]
+
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 _several words in boldface_ followed by *ephasized text*. 
-
+[20]
 Overfull \hbox (17.00006pt too wide) 
 []\T1/pcr/m/n/10 while `void myfunc(double *a, double *b)` must be C. 
 
 Overfull \hbox (11.00006pt too wide) 
 []\T1/pcr/m/n/10 some URL like "Search Google": "http://google.com". 
 
+Overfull \hbox (59.00006pt too wide) 
+[]\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
+
 Overfull \hbox (22.65768pt too wide) 
 \T1/ptm/m/n/10 un-less the \T1/pcr/m/n/10 .tex \T1/ptm/m/n/10 file has a full U
 RL spec-i-fied through a \T1/pcr/m/n/10 \hyperbaseurl
-[20]
+[21]
 Overfull \hbox (53.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal> pygmentize -l bash -f html -O full,style=emacs \  
 
@@ -82433,19 +83026,20 @@ Overfull \hbox (107.00006pt too wide)
 []\T1/pcr/m/n/10 See the code URL:"src/myprog.py" ("view: "_static/myprog.py.ht
 ml"). 
 
-Overfull \hbox (59.00006pt too wide) 
-[]\T1/pcr/m/n/10 Click on this link: URL:"http://code.google.com/p/doconce". 
-
 Overfull \hbox (3.53781pt too wide) 
 \T1/ptm/m/n/10 ment \T1/pcr/m/n/10 --skip_inline_comments \T1/ptm/m/n/10 (see t
 he sec-tion [][][][][][]
-
+[22]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 where $\bf A$|$A$ is an $n\times n$|$nxn$ matrix, and  
 
 Overfull \hbox (53.00006pt too wide) 
 []\T1/pcr/m/n/10 $\bf x$|$x$ and $\bf b$|$b$ are vectors of length $n$|$n$. 
-[21]
+
+Overfull \hbox (6.90701pt too wide) 
+\T1/ptm/m/n/10 ers are known as \T1/ptm/m/it/10 in-line com-ments \T1/ptm/m/n/1
+0 in Do-conce and de-scribed in the sec-tion [][][][][][]. 
+
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 # Here are some comment lines that do not affect any formattin
 g.  
@@ -82457,10 +83051,10 @@ Overfull \hbox (71.00006pt too wide)
 Overfull \hbox (83.00006pt too wide) 
 []\T1/pcr/m/n/10 For more information we refer to Section ref{section:verbatim}
 . 
-
+[23]
 Overfull \hbox (21.44621pt too wide) 
 \T1/ptm/m/n/10 ref-er-ences to the sec-tions [][][][][][] and [][][][][][]
-[22]
+
 Overfull \hbox (27.01674pt too wide) 
 []\T1/ptm/m/n/10 Hyperlinks to files or web ad-dresses are han-dled as ex-plain
 ed in the sec-tion [][][][][][]. 
@@ -82480,7 +83074,7 @@ Overfull \hbox (71.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 cite{testdoc:12}], Doconce documents may include movies. 
-
+[24]
 Overfull \hbox (263.00006pt too wide) 
 []\T1/pcr/m/n/10 \href{{http://code.google.com/p/doconce/source/browse/test/tes
 tdoc.do.txt}}{Langtangen, 2012}  
@@ -82491,7 +83085,7 @@ Overfull \hbox (41.00006pt too wide)
 Overfull \hbox (19.41716pt too wide) 
 []\T1/ptm/m/n/10 Note that there is a spe-cific num-bered ref-er-ence to an ex-
 ter-nal doc-u-ment, if \T1/pcr/m/n/10 subsec:ex
-[23]
+
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 the document `A Document for Testing Doconce <testdoc.html>`_ 
  
@@ -82519,10 +83113,10 @@ Overfull \hbox (5.00006pt too wide)
 Overfull \hbox (107.00006pt too wide) 
 []\T1/pcr/m/n/10 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and m
 ore}} 
-
+[25]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 as found in cite{Larsen_1986,Nielsen_Kjeldstrup_1999}. 
-[24]
+
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 K. Nielsen and A. Kjeldstrup. *Some Comments on Markup Languag
 es*.  
@@ -82533,7 +83127,7 @@ Overfull \hbox (11.00006pt too wide)
 Overfull \hbox (7.29897pt too wide) 
 \T1/ptm/m/n/10 ther by man-ual edit-ing of \T1/pcr/m/n/10 myfile.bbl \T1/ptm/m/
 n/10 or us-ing \T1/pcr/m/n/10 doconce bbl2rst myfile.bbl
-
+[26]
 Overfull \hbox (13.43625pt too wide) 
 []\T1/ptm/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done by
  the [][][][][][]
@@ -82541,10 +83135,10 @@ Overfull \hbox (13.43625pt too wide)
 Overfull \hbox (24.53633pt too wide) 
 [][][][][][]\T1/ptm/m/n/10 , a pa-per [][][][][][], and both of them si-mul-ta-
 ne-ously [][][][][][]
-[25]
+
 Overfull \hbox (35.00006pt too wide) 
 \T1/pcr/m/n/10 ===== Project: Determine the Distance to the Moon =====  
-[26]
+[27]
 Overfull \hbox (21.27702pt too wide) 
 []\T1/ptm/m/n/10 The so-lu-tion en-vi-ron-ment al-lows in-line so-lu-tion as an
  al-ter-na-tive to the \T1/pcr/m/n/10 solution=...
@@ -82554,7 +83148,7 @@ Overfull \hbox (41.00006pt too wide)
 
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 Here goes main body of text describing the exercise...  
-
+[28]
 Overfull \hbox (101.00006pt too wide) 
 []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summa
 rize  
@@ -82565,14 +83159,14 @@ marks
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.  
-[27] [28]
+[29]
 Overfull \hbox (119.00006pt too wide) 
 []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=
 console 
-[29]
+[30]
 Overfull \hbox (29.00006pt too wide) 
 []\T1/pcr/m/n/10 @@@CODE myfile.f fromto: subroutine\s+test@^C\s{5}END1 
-[30] [31]
+[31] [32]
 Overfull \hbox (71.00006pt too wide) 
 []\T1/pcr/m/n/10 {\partial u\over\partial t} &= \nabla^2 u + f, label{myeq1}\\ 
  
@@ -82595,11 +83189,11 @@ s sin-gle equa-tions and in-line math-
 
 Overfull \hbox (3.0pt too wide) 
 \T1/pcr/m/n/10 FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki",
-
+[33]
 Overfull \hbox (149.00006pt too wide) 
 \T1/pcr/m/n/10 % if FORMAT in ("latex", "pdflatex", "html", "sphinx", "mwiki", 
 "pandoc"):  
-[32]
+
 Overfull \hbox (26.7087pt too wide) 
 []\T1/ptm/m/n/10 Search for ``math'' and com-ment out the \T1/pcr/m/n/10 'sphin
 x.ext.mathjax'
@@ -82611,7 +83205,7 @@ mathmpl'
 Overfull \hbox (31.34828pt too wide) 
 \T1/ptm/m/n/10 (dis-abled by de-fault) lines, and un-com-ment the \T1/pcr/m/n/1
 0 'sphinx.extmath'
-[33]
+[34]
 Overfull \hbox (24.36848pt too wide) 
 []\T1/ptm/m/it/10 Example. \T1/ptm/m/n/10 Sup-pose we have the fol-low-ing com-
 mands in \T1/pcr/m/n/10 newcommand_replace.tex\T1/ptm/m/n/10 : 
@@ -82621,16 +83215,12 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (16.79616pt too wide) 
 \T1/ptm/m/n/10 pro-cess ([][][][][][]) and mako ([][][][][][]).
-[34]
+[35]
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 # Sphinx cannot refer to labels in align environments  
-[35]
+[36]
 Overfull \hbox (35.00006pt too wide) 
 []  \T1/pcr/m/n/10 doconce sphinx_dir dirname=$dir author='me and you' \  
-[36]
-Overfull \hbox (77.00006pt too wide) 
-[]          \T1/pcr/m/n/10 '% table of contents\n\\tableofcontents' mydoc.p.tex
- 
 [37]
 Overfull \hbox (167.00006pt too wide) 
 []\T1/pcr/m/n/10 (setq auto-mode-alist(cons '("\\.do\\.txt$" . doconce-mode) au
@@ -82644,22 +83234,22 @@ Overfull \hbox (53.00006pt too wide)
 
 Overfull \hbox (47.00006pt too wide) 
 []\T1/pcr/m/n/10 see the "`examples` directory": "src/examples/index.html" 
-
+[39]
 Overfull \hbox (59.00006pt too wide) 
 \T1/pcr/m/n/10 Terminal doconce change_encoding utf-8 LATIN1 myfile.do.txt  
 
 Overfull \hbox (95.00006pt too wide) 
 []\T1/pcr/m/n/10 Terminal> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newf
 ile 
-[39] [40] [41]
+[40] [41] [42]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
-[42]
+
 Overfull \hbox (77.00006pt too wide) 
 []\T1/pcr/m/n/10 As we see, the proof of Theorem ${theorem_counter} is a modest
   
-
+[43]
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
@@ -82680,11 +83270,19 @@ Overfull \hbox (47.00006pt too wide)
 
 Overfull \hbox (23.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce replace '% end theorem' '\end{theorem}' $file 
-[43]
+
 Overfull \hbox (89.00006pt too wide) 
 []\T1/pcr/m/n/10 Since $c=a+b$, the result follows from straightforward additio
 n.  
 
+Overfull \hbox (9.14774pt too wide) 
+[]\T1/ptm/m/n/10 Note that Do-conce sup-ports fancy en-vi-ron-ments for ver-ba-
+tim code via the \T1/pcr/m/n/10 ptex2tex
+
+Overfull \hbox (2.15741pt too wide) 
+\T1/ptm/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron-men
+ts. Also \T1/pcr/m/n/10 doconce ptex2tex
+[44]
 Overfull \hbox (47.00006pt too wide) 
 \T1/pcr/m/n/10 some text with `\usepackage{mypack}` is difficult because  
 
@@ -82694,15 +83292,15 @@ Overfull \hbox (65.00006pt too wide)
 
 Overfull \hbox (41.00006pt too wide) 
 []\T1/pcr/m/n/10 which is wrong because ptex2tex applies regex that don't  
-[44] [45]
+[45]
 Overfull \hbox (119.00006pt too wide) 
 [] \T1/pcr/m/n/10 '<p style="width: 50%; font-style: italic; color: blue">' myd
 oc.html  
-
+[46]
 Overfull \hbox (143.00006pt too wide) 
 []\T1/pcr/m/n/10 (?P<indent> *(?P<listtype>[*o-] )? *)(?P<keyword>[^:]+?:)?(?P<
 text>.*)\s? 
-[46]
+[47]
 Overfull \hbox (65.00006pt too wide) 
 []\T1/pcr/m/n/10 - keyword argument tolerance: tolerance (float) for stopping  
 
@@ -82721,9 +83319,9 @@ nt).
 Overfull \hbox (113.00006pt too wide) 
 []\T1/pcr/m/n/10 - module variable debug: True: debug mode is on; False: no deb
 ugging  
-[47] [48] (./manual.rst.aux) )
+[48] [49] (./manual.rst.aux) )
 (see the transcript file for additional information)
-Output written on manual.rst.dvi (48 pages, ).
+Output written on manual.rst.dvi (49 pages, ).
 Transcript written on manual.rst.log.
 + dvipdf manual.rst.dvi
 + doconce format plain manual.do.txt --skip_inline_comments --no-mako
@@ -82857,6 +83455,7 @@ copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
 figure file figs/streamtubes:
     can use figs/streamtubes.png for format pdflatex
+copying warning.pdf from /usr/local/lib/python2.7/dist-packages/doconce/latex_styles.zip to subdirectory latex_figs
 output in manual.p.tex
 + doconce ptex2tex manual -DMINTED -DHELVETICA envir=Verbatim
 \bpro (!bc pro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
@@ -82970,12 +83569,14 @@ Overfull \hbox (22.94165pt too wide)
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7]
+[6] [7] <latex_figs/warning.pdf, id=79, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf>
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
+[8 <./latex_figs/warning.pdf>]
 
-LaTeX Warning: Reference `newcommands' on page 8 
+LaTeX Warning: Reference `newcommands' on page 9 
 
 
 Overfull \hbox (55.19026pt too wide) 
@@ -82983,11 +83584,11 @@ Overfull \hbox (55.19026pt too wide)
 
 Overfull \hbox (0.29683pt too wide) 
 []\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
-[8]
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
-[9]
+[9] [10]
 Overfull \hbox (11.05632pt too wide) 
 \OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
@@ -82997,90 +83598,94 @@ Overfull \hbox (0.55649pt too wide)
 Overfull \hbox (3.19841pt too wide) 
 \OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
 y in-cluded
-[10] [11]
+[11]
 Overfull \hbox (22.24706pt too wide) 
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
-
+[12]
 Overfull \hbox (6.8168pt too wide) 
 []\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []
-[12]
+
 Overfull \hbox (10.33038pt too wide) 
 []\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
-[13]
+[13] [14]
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[14] [15] [16] [17] [18]
-<figs/streamtubes.png, id=163, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [19 <./figs/streamtubes.png>]
+[15] [16] [17] [18] <figs/streamtubes.png, id=168, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 20 undefined on input li
-ne 1409.
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 21 undefined on input li
+ne 1441.
 
-[20]
+
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21]
+[21] <latex_figs/notice.pdf, id=198, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf>
+Overfull \hbox (4.68658pt too wide) 
+\OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/
+10 http : / / code . google . com / p / doconce$[][]\OT1/phv/m/n/10 . 
+[22 <./latex_figs/notice.pdf>]
 
-LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-549.
+LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
+604.
 
 
-LaTeX Warning: Reference `doconce2formats' on page 22 undefined on input line 1
-553.
-
-[22]
-
-LaTeX Warning: Reference `inline:tagging' on page 23 undefined on input line 15
-84.
+LaTeX Warning: Reference `doconce2formats' on page 23 undefined on input line 1
+608.
 
 [23]
 
-LaTeX Warning: Reference `fig:viz' on page 24 
+LaTeX Warning: Reference `inline:tagging' on page 24 undefined on input line 16
+40.
+
+[24]
+
+LaTeX Warning: Reference `fig:viz' on page 25 
 
 
-LaTeX Warning: Reference `mathtext' on page 24 
+LaTeX Warning: Reference `mathtext' on page 25 
 
 
-LaTeX Warning: Reference `newcommands' on page 24 
+LaTeX Warning: Reference `newcommands' on page 25 
 
 
 
-LaTeX Warning: Reference `myeq1' on page 24 
+LaTeX Warning: Reference `myeq1' on page 25 
 
 
-LaTeX Warning: Reference `myeq2' on page 24 
+LaTeX Warning: Reference `myeq2' on page 25 
 
 
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
 
-LaTeX Warning: Reference `inline:tagging' on page 24 undefined on input line 16
-42.
+LaTeX Warning: Reference `inline:tagging' on page 25 undefined on input line 17
+02.
 
-[24] [25] [26]
+[25] [26] [27]
 
-LaTeX Warning: Citation `Python:Primer:09' on page 27 undefined on input line 1
-816.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 27 
+LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
+876.
 
 
-LaTeX Warning: Citation `Python:Primer:09' on page 27 undefined on input line 1
-817.
+LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
-LaTeX Warning: Citation `Osnes:98' on page 27 
+LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
+877.
 
-[27] [28] [29] [30] [31] [32]
+
+LaTeX Warning: Citation `Osnes:98' on page 28 
+
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -83089,7 +83694,7 @@ Package amsmath Warning: Foreign command \over;
 
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[33]
+[34]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -83100,7 +83705,7 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[34]
+[35]
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
@@ -83108,37 +83713,35 @@ com-mands in []:
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[35]
+[36]
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
 
-LaTeX Warning: Reference `doconce2formats' on page 36 undefined on input line 2
-428.
+LaTeX Warning: Reference `doconce2formats' on page 37 undefined on input line 2
+488.
 
-[36] [37]
-Overfull \hbox (88.39946pt too wide) 
-\OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []
+[37] [38] [39] [40] [41]
 
-Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
-[38] [39] [40]
+LaTeX Warning: Reference `sec:verbatim:blocks' on page 42 undefined on input li
+ne 2757.
 
-LaTeX Warning: Reference `sec:verbatim:blocks' on page 41 undefined on input li
-ne 2731.
-
-[41] [42] [43] [44] [45]
+[42] [43] [44]
+Overfull \hbox (48.87616pt too wide) 
+[] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
+-ments. Also []
+[45] [46]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[46] [47]
+[47]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
+[48]
 No file manual.bbl.
 No file manual.ind.
-[48] (./manual.aux)
+[49] (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -83217,7 +83820,9 @@ newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omsphv.fd    
+latex_figs/warning.pdf
 figs/streamtubes.png
+latex_figs/notice.pdf
  ***********
 
 
@@ -83245,7 +83850,7 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet
 ic/uhvro8a.pfb>
-Output written on manual.pdf (48 pages, ).
+Output written on manual.pdf (49 pages, ).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
@@ -83361,21 +83966,22 @@ Overfull \hbox (22.94165pt too wide)
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7]
+[6] [7] <latex_figs/warning.pdf, id=275, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf>
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
-
+[8 <./latex_figs/warning.pdf>]
 Overfull \hbox (55.19026pt too wide) 
 \OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
 []\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
-[8]
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
-[9]
+[9] [10]
 Overfull \hbox (11.05632pt too wide) 
 \OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
@@ -83385,50 +83991,54 @@ Overfull \hbox (0.55649pt too wide)
 Overfull \hbox (3.19841pt too wide) 
 \OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
 y in-cluded
-[10] [11]
+[11]
 Overfull \hbox (22.24706pt too wide) 
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
-
+[12]
 Overfull \hbox (6.8168pt too wide) 
 []\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []
-[12]
+
 Overfull \hbox (10.33038pt too wide) 
 []\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
-[13]
+[13] [14]
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[14] [15] [16] [17] [18]
-<figs/streamtubes.png, id=343, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [19 <./figs/streamtubes.png>] [20]
+[15] [16] [17] [18] <figs/streamtubes.png, id=353, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] [22] [23]
+[21] <latex_figs/notice.pdf, id=379, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf>
+Overfull \hbox (4.68658pt too wide) 
+\OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/
+10 http : / / code . google . com / p / doconce$[][]\OT1/phv/m/n/10 . 
+[22 <./latex_figs/notice.pdf>] [23] [24]
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[24] [25] [26]
+[25] [26] [27]
 
-LaTeX Warning: Citation `Python:Primer:09' on page 27 undefined on input line 1
-816.
-
-
-LaTeX Warning: Citation `Osnes:98' on page 27 
+LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
+876.
 
 
-LaTeX Warning: Citation `Python:Primer:09' on page 27 undefined on input line 1
-817.
+LaTeX Warning: Citation `Osnes:98' on page 28 
 
 
-LaTeX Warning: Citation `Osnes:98' on page 27 
+LaTeX Warning: Citation `Python:Primer:09' on page 28 undefined on input line 1
+877.
 
-[27] [28] [29] [30] [31] [32]
+
+LaTeX Warning: Citation `Osnes:98' on page 28 
+
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -83437,7 +84047,7 @@ Package amsmath Warning: Foreign command \over;
 
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[33]
+[34]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -83448,7 +84058,7 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[34]
+[35]
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
@@ -83456,26 +84066,23 @@ com-mands in []:
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[35]
+[36]
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[36] [37]
-Overfull \hbox (88.39946pt too wide) 
-\OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []
-
-Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
-[38] [39] [40] [41] [42] [43] [44] [45]
+[37] [38] [39] [40] [41] [42] [43] [44]
+Overfull \hbox (48.87616pt too wide) 
+[] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
+-ments. Also []
+[45] [46]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[46] [47]
+[47]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-(./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
+[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -83556,7 +84163,9 @@ newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omsphv.fd    
+latex_figs/warning.pdf
 figs/streamtubes.png
+latex_figs/notice.pdf
   manual.bbl
   manual.ind
  ***********
@@ -83581,7 +84190,7 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet
 ic/uhvro8a.pfb>
-Output written on manual.pdf (49 pages, ).
+Output written on manual.pdf (50 pages, ).
 Transcript written on manual.log.
 + pdflatex -shell-escape manual
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -83685,21 +84294,22 @@ Overfull \hbox (22.94165pt too wide)
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7]
+[6] [7] <latex_figs/warning.pdf, id=275, 89.33376pt x 89.33376pt>
+<use latex_figs/warning.pdf>
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
-
+[8 <./latex_figs/warning.pdf>]
 Overfull \hbox (55.19026pt too wide) 
 \OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
 []\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
-[8]
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
-[9]
+[9] [10]
 Overfull \hbox (11.05632pt too wide) 
 \OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
@@ -83709,35 +84319,39 @@ Overfull \hbox (0.55649pt too wide)
 Overfull \hbox (3.19841pt too wide) 
 \OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
 y in-cluded
-[10] [11]
+[11]
 Overfull \hbox (22.24706pt too wide) 
 [][][]$\OT1/cmtt/m/n/10 http : / / nileshbansal . blogspot . com / 2007 / 12 / 
 latex-[]to-[]openofficeword .
-
+[12]
 Overfull \hbox (6.8168pt too wide) 
 []\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []
-[12]
+
 Overfull \hbox (10.33038pt too wide) 
 []\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
-[13]
+[13] [14]
 Overfull \hbox (4.1082pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][]Google-
-[14] [15] [16] [17] [18]
-<figs/streamtubes.png, id=343, 583.17876pt x 437.635pt>
-<use figs/streamtubes.png> [19 <./figs/streamtubes.png>] [20]
+[15] [16] [17] [18] <figs/streamtubes.png, id=353, 583.17876pt x 437.635pt>
+<use figs/streamtubes.png> [19] [20 <./figs/streamtubes.png>]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] [22] [23]
+[21] <latex_figs/notice.pdf, id=379, 89.33376pt x 89.33376pt>
+<use latex_figs/notice.pdf>
+Overfull \hbox (4.68658pt too wide) 
+\OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][]$\OT1/cmtt/m/n/
+10 http : / / code . google . com / p / doconce$[][]\OT1/phv/m/n/10 . 
+[22 <./latex_figs/notice.pdf>] [23] [24]
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[24] [25] [26] [27] [28] [29] [30] [31] [32]
+[25] [26] [27] [28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -83746,7 +84360,7 @@ Package amsmath Warning: Foreign command \over;
 
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[33]
+[34]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -83757,7 +84371,7 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[34]
+[35]
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
@@ -83765,26 +84379,23 @@ com-mands in []:
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][]$\OT1/cmtt/m/n/10 http : / / www . makotemplates . org/$[]
 []\OT1/phv/m/n/10 ). The for-mer al-lows in-clude and if-else state-
-[35]
+[36]
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[36] [37]
-Overfull \hbox (88.39946pt too wide) 
-\OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []
-
-Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
-[38] [39] [40] [41] [42] [43] [44] [45]
+[37] [38] [39] [40] [41] [42] [43] [44]
+Overfull \hbox (48.87616pt too wide) 
+[] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
+-ments. Also []
+[45] [46]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[46] [47]
+[47]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-(./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
+[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -83865,7 +84476,9 @@ newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omsphv.fd    
+latex_figs/warning.pdf
 figs/streamtubes.png
+latex_figs/notice.pdf
   manual.bbl
   manual.ind
  ***********
@@ -83884,7 +84497,7 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet
 ic/uhvro8a.pfb>
-Output written on manual.pdf (49 pages, ).
+Output written on manual.pdf (50 pages, ).
 Transcript written on manual.log.
 + cp manual.pdf manual_pdflatex.pdf
 + doconce format latex manual.do.txt --no-mako
@@ -83912,6 +84525,7 @@ copy complete file _format_specific1.do.txt  (format: pro)
 copy complete file _format_specific2.do.txt  (format: pro)
 figure file figs/streamtubes:
     can use figs/streamtubes.eps for format latex
+copying warning.eps from /usr/local/lib/python2.7/dist-packages/doconce/latex_styles.zip to subdirectory latex_figs
 output in manual.p.tex
 + doconce ptex2tex manual -DMINTED -DHELVETICA envir=Verbatim
 \bpro (!bc pro) -> \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.85,xleftmargin=0mm]
@@ -84028,21 +84642,21 @@ Overfull \hbox (22.94165pt too wide)
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7]
+[6] [7] <latex_figs/warning.eps>
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
-
+[8]
 Overfull \hbox (55.19026pt too wide) 
 \OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
 []\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
-[8]
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
-[9]
+[9] [10]
 Overfull \hbox (11.05632pt too wide) 
 \OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
@@ -84052,36 +84666,39 @@ Overfull \hbox (0.55649pt too wide)
 Overfull \hbox (3.19841pt too wide) 
 \OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
 y in-cluded
-[10] [11]
+[11]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
-
+[12]
 Overfull \hbox (6.8168pt too wide) 
 []\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []
-[12]
+
 Overfull \hbox (10.33038pt too wide) 
 []\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
-[13]
+[13] [14]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[14] [15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
+[15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] [22] [23]
+[21] <latex_figs/notice.eps>
+Overfull \hbox (4.68658pt too wide) 
+\OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][][][][][]. 
+[22] [23] [24]
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[24] [25] [26]
+[25] [26] [27]
 Overfull \hbox (47.74467pt too wide) 
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[27] [28] [29] [30] [31] [32]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -84090,7 +84707,7 @@ Package amsmath Warning: Foreign command \over;
 
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[33]
+[34]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -84101,7 +84718,7 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[34]
+[35]
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
@@ -84109,26 +84726,23 @@ com-mands in []:
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[35]
+[36]
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[36] [37]
-Overfull \hbox (88.39946pt too wide) 
-\OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []
-
-Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
-[38] [39] [40] [41] [42] [43] [44] [45]
+[37] [38] [39] [40] [41] [42] [43] [44]
+Overfull \hbox (48.87616pt too wide) 
+[] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
+-ments. Also []
+[45] [46]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[46] [47]
+[47]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-(./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
+[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -84207,14 +84821,16 @@ newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omsphv.fd    
+latex_figs/warning.eps
 figs/streamtubes.eps
+latex_figs/notice.eps
   manual.bbl
   manual.ind
  ***********
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (49 pages, ).
+Output written on manual.dvi (50 pages, ).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -84318,21 +84934,21 @@ Overfull \hbox (22.94165pt too wide)
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7]
+[6] [7] <latex_figs/warning.eps>
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
-
+[8]
 Overfull \hbox (55.19026pt too wide) 
 \OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
 []\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
-[8]
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
-[9]
+[9] [10]
 Overfull \hbox (11.05632pt too wide) 
 \OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
@@ -84342,36 +84958,39 @@ Overfull \hbox (0.55649pt too wide)
 Overfull \hbox (3.19841pt too wide) 
 \OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
 y in-cluded
-[10] [11]
+[11]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
-
+[12]
 Overfull \hbox (6.8168pt too wide) 
 []\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []
-[12]
+
 Overfull \hbox (10.33038pt too wide) 
 []\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
-[13]
+[13] [14]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[14] [15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
+[15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] [22] [23]
+[21] <latex_figs/notice.eps>
+Overfull \hbox (4.68658pt too wide) 
+\OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][][][][][]. 
+[22] [23] [24]
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[24] [25] [26]
+[25] [26] [27]
 Overfull \hbox (47.74467pt too wide) 
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[27] [28] [29] [30] [31] [32]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -84380,7 +84999,7 @@ Package amsmath Warning: Foreign command \over;
 
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[33]
+[34]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -84391,7 +85010,7 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[34]
+[35]
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
@@ -84399,26 +85018,23 @@ com-mands in []:
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[35]
+[36]
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[36] [37]
-Overfull \hbox (88.39946pt too wide) 
-\OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []
-
-Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
-[38] [39] [40] [41] [42] [43] [44] [45]
+[37] [38] [39] [40] [41] [42] [43] [44]
+Overfull \hbox (48.87616pt too wide) 
+[] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
+-ments. Also []
+[45] [46]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[46] [47]
+[47]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-(./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
+[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -84497,14 +85113,16 @@ newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omsphv.fd    
+latex_figs/warning.eps
 figs/streamtubes.eps
+latex_figs/notice.eps
   manual.bbl
   manual.ind
  ***********
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (49 pages, ).
+Output written on manual.dvi (50 pages, ).
 Transcript written on manual.log.
 + bibtex manual
 This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
@@ -84620,21 +85238,21 @@ Overfull \hbox (22.94165pt too wide)
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7]
+[6] [7] <latex_figs/warning.eps>
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
-
+[8]
 Overfull \hbox (55.19026pt too wide) 
 \OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
 []\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
-[8]
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
-[9]
+[9] [10]
 Overfull \hbox (11.05632pt too wide) 
 \OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
@@ -84644,36 +85262,39 @@ Overfull \hbox (0.55649pt too wide)
 Overfull \hbox (3.19841pt too wide) 
 \OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
 y in-cluded
-[10] [11]
+[11]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
-
+[12]
 Overfull \hbox (6.8168pt too wide) 
 []\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []
-[12]
+
 Overfull \hbox (10.33038pt too wide) 
 []\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
-[13]
+[13] [14]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[14] [15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
+[15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] [22] [23]
+[21] <latex_figs/notice.eps>
+Overfull \hbox (4.68658pt too wide) 
+\OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][][][][][]. 
+[22] [23] [24]
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[24] [25] [26]
+[25] [26] [27]
 Overfull \hbox (47.74467pt too wide) 
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[27] [28] [29] [30] [31] [32]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -84682,7 +85303,7 @@ Package amsmath Warning: Foreign command \over;
 
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[33]
+[34]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -84693,7 +85314,7 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[34]
+[35]
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
@@ -84701,26 +85322,23 @@ com-mands in []:
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[35]
+[36]
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[36] [37]
-Overfull \hbox (88.39946pt too wide) 
-\OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []
-
-Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
-[38] [39] [40] [41] [42] [43] [44] [45]
+[37] [38] [39] [40] [41] [42] [43] [44]
+Overfull \hbox (48.87616pt too wide) 
+[] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
+-ments. Also []
+[45] [46]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[46] [47]
+[47]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-(./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
+[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -84799,14 +85417,16 @@ newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omsphv.fd    
+latex_figs/warning.eps
 figs/streamtubes.eps
+latex_figs/notice.eps
   manual.bbl
   manual.ind
  ***********
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (49 pages, ).
+Output written on manual.dvi (50 pages, ).
 Transcript written on manual.log.
 + latex -shell-escape manual
 This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian)
@@ -84910,21 +85530,21 @@ Overfull \hbox (22.94165pt too wide)
 [5]
 Overfull \hbox (50.08621pt too wide) 
 \OT1/phv/m/n/10 through tests like [] (for []) or []
-[6] [7]
+[6] [7] <latex_figs/warning.eps>
 Overfull \hbox (79.3756pt too wide) 
 \OT1/phv/m/n/10 There are two ways (ex-per-i-ment to find the best one for your
  doc-u-ment): []
-
+[8]
 Overfull \hbox (55.19026pt too wide) 
 \OT1/phv/m/n/10 be placed in files [], [], or []
 
 Overfull \hbox (0.29683pt too wide) 
 []\OT1/phv/m/n/10 An op-tion [] makes some ad-just-ments for doc-u-ments aimed
-[8]
+
 Overfull \hbox (96.83932pt too wide) 
 \OT1/phv/m/n/10 ever, the stan-dard L[]T[]X "maketi-tle" head-ing is also avail
 -able through [].
-[9]
+[9] [10]
 Overfull \hbox (11.05632pt too wide) 
 \OT1/phv/m/n/10 through the [] and [] vari-ables in [] or []),
 
@@ -84934,36 +85554,39 @@ Overfull \hbox (0.55649pt too wide)
 Overfull \hbox (3.19841pt too wide) 
 \OT1/phv/m/n/10 i-fi-ca-tions with []), the minted pack-age is au-to-mat-i-call
 y in-cluded
-[10] [11]
+[11]
 Overfull \hbox (43.24687pt too wide) 
 [][][][][][][] 
-
+[12]
 Overfull \hbox (6.8168pt too wide) 
 []\OT1/phv/m/n/10 The [] com-mand gen-er-ates a script []
 
 Overfull \hbox (0.74806pt too wide) 
 \OT1/phv/m/n/10 la-tion. If fig-ures or movies are lo-cated in other di-rec-to-
 ries, []
-[12]
+
 Overfull \hbox (10.33038pt too wide) 
 []\OT1/phv/m/n/10 , re-spec-tively. With-out ar-gu-ments, [] makes
-[13]
+[13] [14]
 Overfull \hbox (44.67775pt too wide) 
 \OT1/phv/m/n/10 There are many dif-fer-ent wiki for-mats, but Do-conce only sup
 -ports three: [][][][][][],
-[14] [15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
+[15] [16] [17] [18] <figs/streamtubes.eps> [19] [20]
 Overfull \hbox (42.0102pt too wide) 
 \OT1/phv/m/n/10 Doconce sup-ports tags for \OT1/phv/m/sl/10 em-pha-sized phrase
 s\OT1/phv/m/n/10 , \OT1/phv/b/n/10 bold-face phrases\OT1/phv/m/n/10 , and []
-[21] [22] [23]
+[21] <latex_figs/notice.eps>
+Overfull \hbox (4.68658pt too wide) 
+\OT1/phv/m/n/10 which gets ren-dered as Click on this link: [][][][][][]. 
+[22] [23] [24]
 Overfull \hbox (4.37044pt too wide) 
 []\OT1/phv/m/n/10 It is, in gen-eral, rec-om-mended to use la-bels and ref-er-e
 nces for (sub)sections,
-[24] [25] [26]
+[25] [26] [27]
 Overfull \hbox (47.74467pt too wide) 
 []\OT1/phv/m/n/10 Conversion of Bib-TeX databases to reST for-mat can be done b
 y the [][][][][][]
-[27] [28] [29] [30] [31] [32]
+[28] [29] [30] [31] [32] [33]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
@@ -84972,7 +85595,7 @@ Package amsmath Warning: Foreign command \over;
 
 Overfull \hbox (56.23628pt too wide) 
 \OT1/phv/m/n/10 Af-ter []
-[33]
+[34]
 Overfull \hbox (45.00818pt too wide) 
 \OT1/phv/m/n/10 L[]T[]X per-forms the ex-pan-sion it-self). New-com-mands in fi
 les with names []
@@ -84983,7 +85606,7 @@ Overfull \hbox (11.08636pt too wide)
 Overfull \hbox (33.35646pt too wide) 
 \OT1/phv/m/n/10 and ex-panded by Do-conce. The def-i-ni-tions of new-com-mands 
 in the []
-[34]
+[35]
 Overfull \hbox (24.63646pt too wide) 
  []\OT1/phv/b/n/10 Example.[] \OT1/phv/m/n/10 Sup-pose we have the fol-low-ing 
 com-mands in []: 
@@ -84991,26 +85614,23 @@ com-mands in []:
 Overfull \hbox (6.36638pt too wide) 
 \OT1/phv/m/n/10 ([][][][][][]). The for-mer al-lows in-clude and if-else state-
 
-[35]
+[36]
 Overfull \hbox (1.76395pt too wide) 
 \OT1/phv/m/n/10 fined as the de-sired out-put for-mat of Do-conce ([], [], [], 
 [], [],
-[36] [37]
-Overfull \hbox (88.39946pt too wide) 
-\OT1/phv/m/n/10 we can use this com-ment to edit the L[]T[]X file. First, we ru
-n Do-conce []
-
-Overfull \hbox (9.3464pt too wide) 
-\OT1/phv/m/n/10 to pro-duce []. Then we use the [] and []
-[38] [39] [40] [41] [42] [43] [44] [45]
+[37] [38] [39] [40] [41] [42] [43] [44]
+Overfull \hbox (48.87616pt too wide) 
+[] \OT1/phv/m/n/10 pro-gram with all its flex-i-bil-ity for choos-ing en-vi-ron
+-ments. Also []
+[45] [46]
 Overfull \hbox (4.78592pt too wide) 
  []\OT1/phv/b/n/10 Why do fig-ures look ugly when us-ing HTML tem-plates?.[] \O
 T1/phv/m/n/10 The HTML header
-[46] [47]
+[47]
 Overfull \hbox (1.82755pt too wide) 
 \OT1/phv/m/n/10 and \OT1/phv/m/sl/10 placed at the end of the doc string\OT1/ph
 v/m/n/10 . Note that [], [],
-(./manual.bbl) (./manual.ind [48] [49]) (./manual.aux)
+[48] (./manual.bbl) (./manual.ind [49] [50]) (./manual.aux)
 
  *File List*
  article.cls    2007/10/19 v1.4h Standard LaTeX document class
@@ -85089,14 +85709,16 @@ newcommands_replace.tex
     umsa.fd    2009/06/22 v3.00 AMS symbols A
     umsb.fd    2009/06/22 v3.00 AMS symbols B
   omsphv.fd    
+latex_figs/warning.eps
 figs/streamtubes.eps
+latex_figs/notice.eps
   manual.bbl
   manual.ind
  ***********
 
  )
 (see the transcript file for additional information)
-Output written on manual.dvi (49 pages, ).
+Output written on manual.dvi (50 pages, ).
 Transcript written on manual.log.
 + dvipdf manual.dvi
 + doconce format gwiki manual.do.txt --no-mako
@@ -86011,12 +86633,12 @@ Overfull \hbox (107.00006pt too wide)
 12}],  
 [8]
 Overfull \hbox (2291.00006pt too wide) 
-[]\T1/pcr/m/n/10 commands: format insertdocstr old2new_format gwiki_figsubst re
-move_inline_comments latin2html sphinx_dir subst replace replace_from_file clea
-n help latex_header latex_footer guess_encoding change_encoding bbl2rst split_r
-st split_html slides_html html_colorbullets list_labels teamod sphinxfix_localU
-RLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2
-tex expand_commands combine_images latex_exercise_toc  
+[]\T1/pcr/m/n/10 commands: format help sphinx_dir subst replace replace_from_fi
+le clean spellcheck ptex2tex expand_commands combine_images guess_encoding chan
+ge_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_a
+nswers split_rst split_html slides_html latin2html latex_header latex_footer bb
+l2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code
+_links latex_exercise_toc insertdocstr old2new_format  
 
 Overfull \hbox (299.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik
@@ -86400,12 +87022,12 @@ Overfull \hbox (107.00006pt too wide)
 12}],  
 
 Overfull \hbox (2291.00006pt too wide) 
-[]\T1/pcr/m/n/10 commands: format insertdocstr old2new_format gwiki_figsubst re
-move_inline_comments latin2html sphinx_dir subst replace replace_from_file clea
-n help latex_header latex_footer guess_encoding change_encoding bbl2rst split_r
-st split_html slides_html html_colorbullets list_labels teamod sphinxfix_localU
-RLs make_figure_code_links grab remove remove_exercise_answers spellcheck ptex2
-tex expand_commands combine_images latex_exercise_toc  
+[]\T1/pcr/m/n/10 commands: format help sphinx_dir subst replace replace_from_fi
+le clean spellcheck ptex2tex expand_commands combine_images guess_encoding chan
+ge_encoding gwiki_figsubst remove_inline_comments grab remove remove_exercise_a
+nswers split_rst split_html slides_html latin2html latex_header latex_footer bb
+l2rst html_colorbullets list_labels teamod sphinxfix_localURLs make_figure_code
+_links latex_exercise_toc insertdocstr old2new_format  
 [9]
 Overfull \hbox (299.00006pt too wide) 
 []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwik

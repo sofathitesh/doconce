@@ -57,7 +57,7 @@
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><p class="first">Hans Petter Langtangen</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Dec 31, 2012</p>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"><p class="first">Jan 6, 2013</p>
 <ul class="last simple">
 <li>When writing a note, report, manual, etc., do you find it difficult
 to choose the typesetting format? That is, to choose between plain
@@ -392,10 +392,16 @@ is performed by</p>
 </pre></div>
 </div>
 <p>The resulting file <tt class="docutils literal"><span class="pre">mydoc.html</span></tt> can be loaded into any web browser for viewing.</p>
-<p>The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the <tt class="docutils literal"><span class="pre">--html-solarized</span></tt>
-command line argument, the <a class="reference external" href="http://ethanschoonover.com/solarized">solarized</a>
-color palette is used.</p>
+<p>The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument <tt class="docutils literal"><span class="pre">--css=filename</span></tt>. There is a default style with blue headings,
+and a style with the <a class="reference external" href="http://ethanschoonover.com/solarized">solarized</a>
+color palette, specified by the <tt class="docutils literal"><span class="pre">--html-solarized</span></tt> command line
+argument. If there is no file with name <tt class="docutils literal"><span class="pre">filename</span></tt> in the <tt class="docutils literal"><span class="pre">--css=filename</span></tt>
+specification, the blue or solarized styles are written to <tt class="docutils literal"><span class="pre">filename</span></tt>
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the <tt class="docutils literal"><span class="pre">style</span></tt> tags or by
+specifying a CSS file through the <tt class="docutils literal"><span class="pre">--css=filename</span></tt> option.</p>
 <p>If the Pygments package (including the <tt class="docutils literal"><span class="pre">pygmentize</span></tt> program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument <tt class="docutils literal"><span class="pre">--no-pygments-html</span></tt>
@@ -416,6 +422,23 @@ from the source code of a page at the site; just insert <tt class="docutils lite
 by <tt class="docutils literal"><span class="pre">%(main)s</span></tt>. Here is an example:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format html mydoc --html-template=mytemplate.html</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="blogs">
+<h2>Blogs<a class="headerlink" href="#blogs" title="Permalink to this headline">¶</a></h2>
+<p>Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google&#8217;s Blogger service (<tt class="docutils literal"><span class="pre">blogname.blogspot.com</span></tt>)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google&#8217;s Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this <a class="reference external" href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html">example</a> for details on blogging.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.</p>
 </div>
 </div>
 <div class="section" id="pandoc-and-markdown">
@@ -1084,6 +1107,7 @@ Mercurial (<tt class="docutils literal"><span class="pre">hg</span></tt>) direct
 <li><a class="reference internal" href="#preprocessing">Preprocessing</a></li>
 <li><a class="reference internal" href="#removal-of-inline-comments">Removal of inline comments</a></li>
 <li><a class="reference internal" href="#id1">HTML</a></li>
+<li><a class="reference internal" href="#blogs">Blogs</a></li>
 <li><a class="reference internal" href="#pandoc-and-markdown">Pandoc and Markdown</a></li>
 <li><a class="reference internal" href="#id2">LaTeX</a></li>
 <li><a class="reference internal" href="#pdflatex">PDFLaTeX</a></li>
@@ -1149,7 +1173,7 @@ Mercurial (<tt class="docutils literal"><span class="pre">hg</span></tt>) direct
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Hans Petter Langtangen.
+        &copy; Copyright 2013, Hans Petter Langtangen.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2pre.
     </div>
   </body>

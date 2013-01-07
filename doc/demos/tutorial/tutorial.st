@@ -333,10 +333,16 @@ is performed by::
 
 The resulting file 'mydoc.html' can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the '--html-solarized'
-command line argument, the "http://ethanschoonover.com/solarized":solarized
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument '--css=filename'. There is a default style with blue headings,
+and a style with the "http://ethanschoonover.com/solarized":solarized
+color palette, specified by the '--html-solarized' command line
+argument. If there is no file with name 'filename' in the '--css=filename'
+specification, the blue or solarized styles are written to 'filename'
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the 'style' tags or by
+specifying a CSS file through the '--css=filename' option.
 
 If the Pygments package (including the 'pygmentize' program)
 is installed, code blocks are typeset with
@@ -361,6 +367,23 @@ by '%(main)s'. Here is an example::
 
         Terminal> doconce format html mydoc --html-template=mytemplate.html
 
+
+Blogs
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service ('blogname.blogspot.com')
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this "http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html":example for details on blogging.
+
+
+
+*Warning.* In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.
 
 Pandoc and Markdown
 

@@ -4,7 +4,7 @@
 
 By '''Hans Petter Langtangen'''
 
-==== Dec 31, 2012 ====
+==== Jan 6, 2013 ====
 
 <ul>
  <li> When writing a note, report, manual, etc., do you find it difficult   to choose the typesetting format? That is, to choose between plain   (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,   reStructuredText, Sphinx, XML, etc.  Would it be convenient to   start with some very simple text-like format that easily converts   to the formats listed above, and then at some later stage   eventually go with a particular format? <li> Do you need to write documents in varying formats but find it   difficult to remember all the typesetting details of various   formats like [http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf LaTeX], [http://www.htmlcodetutorial.com/ HTML], [http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html reStructuredText], [http://sphinx.pocoo.org/contents.html Sphinx], and [http://code.google.com/p/support/wiki/WikiSyntax wiki]? Would it be convenient   to generate the typesetting details of a particular format from a   very simple text-like format with minimal tagging? <li> Do you have the same information scattered around in different   documents in different typesetting formats? Would it be a good idea   to write things once, in one format, stored in one place, and   include it anywhere?</ul>
@@ -296,10 +296,16 @@ Terminal> doconce format html mydoc
 </code>
 The resulting file <code>mydoc.html</code> can be loaded into any web browser for viewing.
 
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the <code>--html-solarized</code>
-command line argument, the [http://ethanschoonover.com/solarized solarized]
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument <code>--css=filename</code>. There is a default style with blue headings,
+and a style with the [http://ethanschoonover.com/solarized solarized]
+color palette, specified by the <code>--html-solarized</code> command line
+argument. If there is no file with name <code>filename</code> in the <code>--css=filename</code>
+specification, the blue or solarized styles are written to <code>filename</code>
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the <code>style</code> tags or by
+specifying a CSS file through the <code>--css=filename</code> option.
 
 If the Pygments package (including the <code>pygmentize</code> program)
 is installed, code blocks are typeset with
@@ -323,6 +329,22 @@ by <code>%(main)s</code>. Here is an example:
 <syntaxhighlight lang="bash">
 Terminal> doconce format html mydoc --html-template=mytemplate.html
 </code>
+
+==== Blogs ====
+
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (<code>blogname.blogspot.com</code>)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this [http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html example] for details on blogging.
+
+
+{{warning|In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.}}
 
 ==== Pandoc and Markdown ====
 

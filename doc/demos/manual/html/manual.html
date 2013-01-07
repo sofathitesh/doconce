@@ -56,7 +56,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">Hans Petter Langtangen</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Dec 31, 2012</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">Jan 6, 2013</td>
 </tr>
 </tbody>
 </table>
@@ -417,10 +417,16 @@ is performed by</p>
 </pre></div>
 </div>
 <p>The resulting file <tt class="docutils literal"><span class="pre">mydoc.html</span></tt> can be loaded into any web browser for viewing.</p>
-<p>The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the <tt class="docutils literal"><span class="pre">--html-solarized</span></tt>
-command line argument, the <a class="reference external" href="http://ethanschoonover.com/solarized">solarized</a>
-color palette is used.</p>
+<p>The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument <tt class="docutils literal"><span class="pre">--css=filename</span></tt>. There is a default style with blue headings,
+and a style with the <a class="reference external" href="http://ethanschoonover.com/solarized">solarized</a>
+color palette, specified by the <tt class="docutils literal"><span class="pre">--html-solarized</span></tt> command line
+argument. If there is no file with name <tt class="docutils literal"><span class="pre">filename</span></tt> in the <tt class="docutils literal"><span class="pre">--css=filename</span></tt>
+specification, the blue or solarized styles are written to <tt class="docutils literal"><span class="pre">filename</span></tt>
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the <tt class="docutils literal"><span class="pre">style</span></tt> tags or by
+specifying a CSS file through the <tt class="docutils literal"><span class="pre">--css=filename</span></tt> option.</p>
 <p>If the Pygments package (including the <tt class="docutils literal"><span class="pre">pygmentize</span></tt> program)
 is installed, code blocks are typeset with
 aid of this package. The command-line argument <tt class="docutils literal"><span class="pre">--no-pygments-html</span></tt>
@@ -441,6 +447,23 @@ from the source code of a page at the site; just insert <tt class="docutils lite
 by <tt class="docutils literal"><span class="pre">%(main)s</span></tt>. Here is an example:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">Terminal&gt; doconce format html mydoc --html-template=mytemplate.html</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="blogs">
+<h2>Blogs<a class="headerlink" href="#blogs" title="Permalink to this headline">¶</a></h2>
+<p>Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google&#8217;s Blogger service (<tt class="docutils literal"><span class="pre">blogname.blogspot.com</span></tt>)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google&#8217;s Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this <a class="reference external" href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html">example</a> for details on blogging.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.</p>
 </div>
 </div>
 <div class="section" id="pandoc-and-markdown">
@@ -1150,6 +1173,8 @@ the section <a class="reference internal" href="#sec-verbatim-blocks"><em>Blocks
 <span class="target" id="index-8"></span><span class="target" id="index-9"></span><span class="target" id="index-10"></span><span class="target" id="index-11"></span><p id="index-12">Doconce supports tags for <em>emphasized phrases</em>, <strong>boldface phrases</strong>,
 and <tt class="docutils literal"><span class="pre">verbatim</span> <span class="pre">text</span></tt> (also called type writer text, for inline code)
 plus LaTeX/TeX inline mathematics, such as <span class="math">\(\nu = \sin(x)\)</span>.</p>
+<div class="section" id="emphasized-words">
+<h3>Emphasized Words<a class="headerlink" href="#emphasized-words" title="Permalink to this headline">¶</a></h3>
 <p>Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in</p>
 <div class="highlight-text"><div class="highlight"><pre>*emphasized words*
@@ -1161,6 +1186,9 @@ be no spaces between an asterisk and the emphasized text, as in</p>
 </div>
 <p>The line above gets typeset as
 <strong>several words in boldface</strong> followed by <em>ephasized text</em>.</p>
+</div>
+<div class="section" id="inline-verbatim-text">
+<h3>Inline Verbatim Text<a class="headerlink" href="#inline-verbatim-text" title="Permalink to this headline">¶</a></h3>
 <p>Verbatim text, typically used for short inline code,
 is typeset between back-ticks:</p>
 <div class="highlight-text"><div class="highlight"><pre>`call myroutine(a, b)` looks like a Fortran call
@@ -1173,19 +1201,39 @@ while <tt class="docutils literal"><span class="pre">void</span> <span class="pr
 <p>It is recommended to have inline verbatim text on the same line in
 the Doconce file, because some formats (LaTeX and <tt class="docutils literal"><span class="pre">ptex2tex</span></tt>) will have
 problems with inline verbatim text that is split over two lines.</p>
-<p>Watch out for mixing back-ticks and asterisk (i.e., verbatim and
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Watch out for mixing back-ticks and asterisk (i.e., verbatim and
 emphasized code): the Doconce interpreter is not very smart so inline
 computer code can soon lead to problems in the final format. Go back to the
 Doconce source and modify it so the format to which you want to go
 becomes correct (sometimes a trial and error process - sticking to
 very simple formatting usually avoids such problems).</p>
+</div>
+</div>
+<div class="section" id="links-to-web-addresses">
+<h3>Links to Web Addresses<a class="headerlink" href="#links-to-web-addresses" title="Permalink to this headline">¶</a></h3>
 <p>Web addresses with links are typeset as</p>
 <div class="highlight-text"><div class="highlight"><pre>some URL like &quot;Search Google&quot;: &quot;http://google.com&quot;.
 </pre></div>
 </div>
 <p>which appears as some URL like <a class="reference external" href="http://google.com">Search Google</a>.
-The space after colon is optional.
-Links to files ending in <tt class="docutils literal"><span class="pre">.txt</span></tt>, <tt class="docutils literal"><span class="pre">.html</span></tt>, <tt class="docutils literal"><span class="pre">.pdf</span></tt>, <tt class="docutils literal"><span class="pre">.py</span></tt>, <tt class="docutils literal"><span class="pre">.f</span></tt>,
+The space after colon is optional, but it is important to enclose the
+link and the URL in double quotes.</p>
+<p>To have the URL address itself as link text, put an &#8220;URL&#8221; or URL
+before the address enclosed in double quotes:</p>
+<div class="highlight-text"><div class="highlight"><pre>Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.
+</pre></div>
+</div>
+<p>which gets rendered as
+Click on this link: <a class="reference external" href="http://code.google.com/p/doconce">http://code.google.com/p/doconce</a>.</p>
+<p>(There is also support for lazy writing of URLs: any http or https web address
+with a leading space and a trailing space, comma, semi-colon, or question
+mark (but not period!) becomes a link with the web address as link text.)</p>
+</div>
+<div class="section" id="links-to-local-files">
+<h3>Links to Local Files<a class="headerlink" href="#links-to-local-files" title="Permalink to this headline">¶</a></h3>
+<p>Links to files ending in <tt class="docutils literal"><span class="pre">.txt</span></tt>, <tt class="docutils literal"><span class="pre">.html</span></tt>, <tt class="docutils literal"><span class="pre">.pdf</span></tt>, <tt class="docutils literal"><span class="pre">.py</span></tt>, <tt class="docutils literal"><span class="pre">.f</span></tt>,
 <tt class="docutils literal"><span class="pre">.f77</span></tt>, <tt class="docutils literal"><span class="pre">.f90</span></tt>, <tt class="docutils literal"><span class="pre">.f95</span></tt>, <tt class="docutils literal"><span class="pre">.sh</span></tt>, <tt class="docutils literal"><span class="pre">.csh</span></tt>, <tt class="docutils literal"><span class="pre">.ksh</span></tt>, <tt class="docutils literal"><span class="pre">.zsh</span></tt>,
 <tt class="docutils literal"><span class="pre">.c</span></tt>, <tt class="docutils literal"><span class="pre">.cpp</span></tt>, <tt class="docutils literal"><span class="pre">.cxx</span></tt>, <tt class="docutils literal"><span class="pre">.pl</span></tt>, and <tt class="docutils literal"><span class="pre">.java</span></tt> follows the same
 setup:</p>
@@ -1235,12 +1283,9 @@ in double quotes:</p>
 </pre></div>
 </div>
 <p>resulting in the link <a class="reference external" href="manual.html">manual.html</a>.</p>
-<p>Similarly, to have the URL address itself as link text, put an &#8220;URL&#8221; or URL
-before the address enclosed in double quotes:</p>
-<div class="highlight-text"><div class="highlight"><pre>Click on this link: URL:&quot;http://code.google.com/p/doconce&quot;.
-</pre></div>
 </div>
-<p>resulting in Click on this link: <a class="reference external" href="http://code.google.com/p/doconce">http://code.google.com/p/doconce</a>.</p>
+<div class="section" id="inline-comments">
+<h3>Inline Comments<a class="headerlink" href="#inline-comments" title="Permalink to this headline">¶</a></h3>
 <p>Doconce also supports inline comments in the text:</p>
 <div class="highlight-text"><div class="highlight"><pre>[name: comment]
 </pre></div>
@@ -1258,6 +1303,9 @@ are helpful during development of a document since different authors
 and readers can comment on formulations, missing points, etc.
 All such comments can easily be removed from the <tt class="docutils literal"><span class="pre">.do.txt</span></tt> file
 (see the section <a class="reference internal" href="#doconce2formats"><em>From Doconce to Other Formats</em></a>).</p>
+</div>
+<div class="section" id="inline-mathematics">
+<h3>Inline Mathematics<a class="headerlink" href="#inline-mathematics" title="Permalink to this headline">¶</a></h3>
 <p>Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including to dollar signs),
 hence nice math formatting is only obtained in LaTeX, HTML, MediaWiki,
@@ -1282,11 +1330,12 @@ on a linear system <span class="math">\({\bf A}{\bf x} = {\bf b}\)</span>, where
 is an <span class="math">\(n\times n\)</span> matrix, and <span class="math">\(\bf x\)</span> and <span class="math">\(\bf b\)</span>
 are vectors of length <span class="math">\(n\)</span>.&#8221;</p>
 </div>
+</div>
 <div class="section" id="comments">
 <h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
-<p>Comments intended to be visible in the output document and read by
-readers are known as <em>inline comments</em> in Doconce and described
-in the section <a class="reference internal" href="#inline-tagging"><em>Inline Tagging</em></a>.</p>
+<p>Comments intended to be (sometimes) visible in the output document and
+read by readers are known as <em>inline comments</em> in Doconce and
+described in the section <a class="reference internal" href="#inline-tagging"><em>Inline Tagging</em></a>.</p>
 <p>Here we address comments in the Doconce source file that are not
 intended to be visible in the output document. Basic comment
 lines start with the hash <tt class="docutils literal"><span class="pre">#</span></tt>:</p>
@@ -1306,8 +1355,11 @@ present in the Doconce source. Mako has two types of comments:
 lines starting with a double hash <tt class="docutils literal"><span class="pre">##</span></tt> and lines enclosed by
 the <tt class="docutils literal"><span class="pre">&lt;%doc&gt;</span></tt> (beginning) and <tt class="docutils literal"><span class="pre">&lt;%doc/&gt;</span></tt> (closing) tags.</p>
 <p>If you need a lot of comments in the Doconce file, consider using
-Mako comments instead of the single hash, unless you want to
+Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.</p>
+<p>To comment out or remove large sections, consider using the Preprocess
+preprocessor and an if-else block with a variable that is undefined
+(typically something like a test <tt class="docutils literal"><span class="pre">#</span> <span class="pre">#ifdef</span> <span class="pre">EXTRA</span></tt> in Preprocess).</p>
 </div>
 <div class="section" id="cross-referencing">
 <h2>Cross-Referencing<a class="headerlink" href="#cross-referencing" title="Permalink to this headline">¶</a></h2>
@@ -2119,7 +2171,7 @@ sophisticated typesetting usually depend quite strongly on the particular
 output format chosen. When a particular feature needed is not supported
 by Doconce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
-if a sophisticated table is desired in LaTeX output, do something line</p>
+if a sophisticated table is desired in LaTeX output, do something like</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)</span>
 <span class="c"># insert native LaTeX code for fancy table</span>
 <span class="c"># #else</span>
@@ -2136,38 +2188,6 @@ alternatively script editing of the output from Doconce. That is,
 we develop a Python or Bash script that runs the translation of
 a Doconce document to a ready docoment in another format. Inside this
 script, we may edit and fine-tune the output from Doconce.</p>
-<p>As an example, say you want a table of contents in the LaTeX output
-(Doconce does not support table of contents). By inserting a
-recognizable comment in the Doconce source, say</p>
-<div class="highlight-text"><div class="highlight"><pre># table of contents
-</pre></div>
-</div>
-<p>we can use this comment to edit the LaTeX file. First, we run
-Doconce <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">latex</span> <span class="pre">mydoc</span></tt> to produce <tt class="docutils literal"><span class="pre">mydoc.p.tex</span></tt>. Then
-we use the <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">replace</span></tt> and <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">subst</span></tt> commands to
-replace the comment by the comment plus the table of contents command,
-or just the latter:</p>
-<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; doconce replace &#39;% table of contents&#39;
-          &#39;\tableofcontents&#39; mydoc.p.tex
-</pre></div>
-</div>
-<p>The <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">replace</span> <span class="pre">from_text</span> <span class="pre">to_text</span> <span class="pre">filename</span></tt> command performs a
-character-by-character replacement (using the <tt class="docutils literal"><span class="pre">replace</span></tt> method in
-string objects in Python). If we want to preserve the comment and add
-a new line with <tt class="docutils literal"><span class="pre">\tableofcontents</span></tt>, we should use <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">subst</span></tt>,
-which applies regular expressions for substitutions and thereby
-understands the newline character:</p>
-<div class="highlight-text"><div class="highlight"><pre>Terminal&gt; doconce subst &#39;% table of contents&#39; \
-          &#39;% table of contents\n\\tableofcontents&#39; mydoc.p.tex
-</pre></div>
-</div>
-<p>Note the double backshlash in front of the <tt class="docutils literal"><span class="pre">t</span></tt> character: without it we
-would get a tab and no backslash.
-The <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">subst</span></tt> is a powerful way to automatically edit the output
-from Doconce and fine-tune a LaTeX document. Use of comment lines to
-identify portions of the file to be edited is a smart idea.
-Alternatively, the relevant LaTeX constructions can be inserted directly
-in the Doconce file using if-else preprocessor directives.</p>
 </div>
 <div class="section" id="header-and-footer">
 <h2>Header and Footer<a class="headerlink" href="#header-and-footer" title="Permalink to this headline">¶</a></h2>
@@ -2176,10 +2196,9 @@ HTML are two examples of such formats. When the document is to be
 included in another document (which is often the case with
 Doconce-based documents), the header and footer are not wanted, while
 these are needed (at least in a LaTeX context) if the document is
-stand-alone. We have introduce the convention that if <tt class="docutils literal"><span class="pre">TITLE:</span></tt> or
-<tt class="docutils literal"><span class="pre">#TITLE:</span></tt> is found at the beginning of the line (i.e., the document
-has, or has an intention have, a title), the header and footer
-are included, otherwise not.</p>
+stand-alone. We have introduced the convention that if <tt class="docutils literal"><span class="pre">TITLE:</span></tt>
+is found at the beginning of the line (i.e., the document
+has a title), the header and footer are included, otherwise not.</p>
 </div>
 <div class="section" id="emacs-doconce-formatter">
 <h2>Emacs Doconce Formatter<a class="headerlink" href="#emacs-doconce-formatter" title="Permalink to this headline">¶</a></h2>
@@ -2550,8 +2569,9 @@ achievement.
 </pre></div>
 </div>
 <p>Even better, HTML output looks nice as well.</p>
-<p>Note that Doconce supports fancy environments for verbatim code (for example,
-the <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> program with all its flexibility for choosing environments).</p>
+<p>Note that Doconce supports fancy environments for verbatim code via
+the <tt class="docutils literal"><span class="pre">ptex2tex</span></tt> program with all its flexibility for choosing environments.
+Also <tt class="docutils literal"><span class="pre">doconce</span> <span class="pre">ptex2tex</span></tt> has some flexibility for typesetting computer code.</p>
 </div>
 <div class="section" id="the-latex-file-does-not-compile">
 <h3>The LaTeX file does not compile<a class="headerlink" href="#the-latex-file-does-not-compile" title="Permalink to this headline">¶</a></h3>
@@ -2804,6 +2824,7 @@ groundwater flow.
 <li><a class="reference internal" href="#preprocessing">Preprocessing</a></li>
 <li><a class="reference internal" href="#removal-of-inline-comments">Removal of inline comments</a></li>
 <li><a class="reference internal" href="#html">HTML</a></li>
+<li><a class="reference internal" href="#blogs">Blogs</a></li>
 <li><a class="reference internal" href="#pandoc-and-markdown">Pandoc and Markdown</a></li>
 <li><a class="reference internal" href="#latex">LaTeX</a></li>
 <li><a class="reference internal" href="#pdflatex">PDFLaTeX</a></li>
@@ -2823,7 +2844,15 @@ groundwater flow.
 <li><a class="reference internal" href="#figures">Figures</a></li>
 <li><a class="reference internal" href="#movies">Movies</a></li>
 <li><a class="reference internal" href="#copying-computer-code-from-source-files">Copying Computer Code from Source Files</a></li>
-<li><a class="reference internal" href="#inline-tagging">Inline Tagging</a></li>
+<li><a class="reference internal" href="#inline-tagging">Inline Tagging</a><ul>
+<li><a class="reference internal" href="#emphasized-words">Emphasized Words</a></li>
+<li><a class="reference internal" href="#inline-verbatim-text">Inline Verbatim Text</a></li>
+<li><a class="reference internal" href="#links-to-web-addresses">Links to Web Addresses</a></li>
+<li><a class="reference internal" href="#links-to-local-files">Links to Local Files</a></li>
+<li><a class="reference internal" href="#inline-comments">Inline Comments</a></li>
+<li><a class="reference internal" href="#inline-mathematics">Inline Mathematics</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#comments">Comments</a></li>
 <li><a class="reference internal" href="#cross-referencing">Cross-Referencing</a></li>
 <li><a class="reference internal" href="#generalized-cross-referencing">Generalized Cross-Referencing</a></li>
@@ -2946,7 +2975,7 @@ groundwater flow.
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, HPL.
+        &copy; Copyright 2013, HPL.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2pre.
     </div>
   </body>

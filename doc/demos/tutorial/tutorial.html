@@ -9,12 +9,11 @@ Automatically generated HTML file from Doconce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
 
-<!--
-Color definitions:  http://www.december.com/html/spec/color0.html
-CSS examples:       http://www.w3schools.com/css/css_examples.asp
--->
 
 <style type="text/css">
+    /* Color definitions:  http://www.december.com/html/spec/color0.html
+       CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
     body {
       margin-top: 1.0em;
       background-color: #ffffff;
@@ -37,19 +36,23 @@ CSS examples:       http://www.w3schools.com/css/css_examples.asp
     background-repeat: no-repeat; background-position: 10px center;
     }
     .notice   { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Message.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Message.png'); }
     .summary  { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Valid_Green.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Valid_Green.png'); }
     .warning  { color: #9F6000; background-color: #FEEFB3;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Attention.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Attention.png'); }
     .hint     { color: #00529B; background-color: #BDE5F8;
-                background-image: url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Info.png'); }
+                background-image: url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Info.png'); }
     .question { color: #4F8A10; background-color: #DFF2BF;
-                background-image:url('https://doconce.googlecode.com/hg/lib/doconce/misc_software/html_images/Knob_Forward.png'); }
+                background-image:url('https://doconce.googlecode.com/hg/bundled/html_images/Knob_Forward.png'); }
 
 </style>
 
-<!-- Use MathJax to render mathematics -->
+</head>
+<body>
+
+
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
@@ -64,13 +67,11 @@ MathJax.Hub.Config({
 <!-- Fix slow MathJax rendering in IE8 -->
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-</head>
 
-<body>
-    
+
 
 <!-- ------------------- main content ------------------------>
-<!-- Missing: FIGURE, MOVIE, environments -->
+    <!-- Missing: FIGURE, MOVIE, environments -->
 
 <p>
 
@@ -94,7 +95,7 @@ MathJax.Hub.Config({
 
 
 <p>
-<center><h4>Dec 31, 2012</h4></center> <!-- date -->
+<center><h4>Jan 6, 2013</h4></center> <!-- date -->
 <p>
 
 
@@ -510,10 +511,16 @@ Terminal&gt; doconce format html mydoc
 The resulting file <tt>mydoc.html</tt> can be loaded into any web browser for viewing.
 
 <p>
-The HTML style is defined in the header of the file. The default style
-has blue section headings and white background. With the <tt>--html-solarized</tt>
-command line argument, the <a href="http://ethanschoonover.com/solarized">solarized</a>
-color palette is used.
+The HTML style can be defined either in the header of the HTML file or
+in an external CSS file. The latter is enabled by the command-line
+argument <tt>--css=filename</tt>. There is a default style with blue headings,
+and a style with the <a href="http://ethanschoonover.com/solarized">solarized</a>
+color palette, specified by the <tt>--html-solarized</tt> command line
+argument. If there is no file with name <tt>filename</tt> in the <tt>--css=filename</tt>
+specification, the blue or solarized styles are written to <tt>filename</tt>
+and linked from the HTML document. You can provide your own style sheet
+either by replacing the content inside the <tt>style</tt> tags or by
+specifying a CSS file through the <tt>--css=filename</tt> option.
 
 <p>
 If the Pygments package (including the <tt>pygmentize</tt> program)
@@ -544,7 +551,37 @@ Terminal&gt; doconce format html mydoc --html-template=mytemplate.html
 
 <p>
 
-<h3>Pandoc and Markdown  <a name="___sec8"></a></h3>
+<h3>Blogs  <a name="___sec8"></a></h3>
+<p>
+Doconce can be used for writing blogs provided the blog site accepts
+raw HTML code. Google's Blogger service (<tt>blogname.blogspot.com</tt>)
+is one example.
+Write the blog text as a Doconce document without any title, author, and
+date. Then generate HTML as described above. Copy the text and paste it
+into the text area in the blog, making sure the input format is HTML.
+On Google's Blogger service you can use Doconce to generate blogs with
+LaTeX mathematics and pretty (pygmentized) blocks of computer code.
+See this <a href="http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html">example</a> for details on blogging.
+
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://doconce.googlecode.com/hg/bundled/html_images/lyx_warning.png" hspace="5" alt="Warning"></td>
+<th align="left" valign="middle"><b>Warning</b></th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" valign="top">
+<p>In the comments one cannot paste raw HTML code with MathJax
+scripts so there is no support for mathematics in the comments.</p>
+</td>
+</tr>
+</table>
+<p>
+
+<h3>Pandoc and Markdown  <a name="___sec9"></a></h3>
 <p>
 Output in Pandoc's extended Markdown format results from
 <!-- begin verbatim block  sys-->
@@ -605,7 +642,7 @@ This recipe is a quick way of makeing HTML notes with (some) mathematics.
 <p>
 
 
-<h3>LaTeX  <a name="___sec9"></a></h3>
+<h3>LaTeX  <a name="___sec10"></a></h3>
 <p>
 Making a LaTeX file <tt>mydoc.tex</tt> from <tt>mydoc.do.txt</tt> is done in two steps:
 <!-- Note: putting code blocks inside a list is not successful in many -->
@@ -780,7 +817,7 @@ included so there is no need for the <tt>-DMINTED</tt> option.
 <p>
 
 
-<h3>PDFLaTeX  <a name="___sec10"></a></h3>
+<h3>PDFLaTeX  <a name="___sec11"></a></h3>
 <p>
 Running <tt>pdflatex</tt> instead of <tt>latex</tt> follows almost the same steps,
 but the start is
@@ -801,7 +838,7 @@ Terminal&gt; pdflatex -shell-escape mydoc
 
 <p>
 
-<h3>Plain ASCII Text  <a name="___sec11"></a></h3>
+<h3>Plain ASCII Text  <a name="___sec12"></a></h3>
 <p>
 We can go from Doconce "back to" plain untagged text suitable for viewing
 in terminal windows, inclusion in email text, or for insertion in
@@ -814,7 +851,7 @@ Terminal&gt; doconce format plain mydoc.do.txt  # results in mydoc.txt
 
 <p>
 
-<h3>reStructuredText  <a name="___sec12"></a></h3>
+<h3>reStructuredText  <a name="___sec13"></a></h3>
 <p>
 Going from Doconce to reStructuredText gives a lot of possibilities to
 go to other formats. First we filter the Doconce text to a
@@ -872,7 +909,7 @@ Some links for going from LaTeX to Word are listed below.
  <li> <a href="http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html"><tt>http://nileshbansal.blogspot.com/2007/12/latex-to-openofficeword.html</tt></a></li>
 </ul>
 
-<h3>Sphinx  <a name="___sec13"></a></h3>
+<h3>Sphinx  <a name="___sec14"></a></h3>
 <p>
 Sphinx documents demand quite some steps in their creation. We have automated
 most of the steps through the <tt>doconce sphinx_dir</tt> command:
@@ -1059,7 +1096,7 @@ all such arguments can be customized both for Sphinx and LaTeX output.
 <p>
 
 
-<h3>Wiki Formats  <a name="___sec14"></a></h3>
+<h3>Wiki Formats  <a name="___sec15"></a></h3>
 <p>
 There are many different wiki formats, but Doconce only supports three:
 <a href="http://code.google.com/p/support/wiki/WikiSyntax">Googlecode wiki</a>, MediaWiki, and Creole Wiki. These formats are called
@@ -1096,7 +1133,7 @@ standard LaTeX book or a Sphinx web document.
 <p>
 
 
-<h3>Tweaking the Doconce Output  <a name="___sec15"></a></h3>
+<h3>Tweaking the Doconce Output  <a name="___sec16"></a></h3>
 <p>
 Occasionally, one would like to tweak the output in a certain format
 from Doconce. One example is figure filenames when transforming
@@ -1113,7 +1150,7 @@ constitute comprehensive examples on how such scripts can be made.
 <p>
 
 
-<h3>Demos  <a name="___sec16"></a></h3>
+<h3>Demos  <a name="___sec17"></a></h3>
 <p>
 The current text is generated from a Doconce format stored in the file
 <!-- begin verbatim block -->
@@ -1137,10 +1174,10 @@ various formats. The <tt>make.sh</tt> script runs a set of translations.
 
 <p>
 
-<h2>Installation of Doconce and its Dependencies  <a name="___sec17"></a></h2>
+<h2>Installation of Doconce and its Dependencies  <a name="___sec18"></a></h2>
 <p>
 
-<h3>Doconce  <a name="___sec18"></a></h3>
+<h3>Doconce  <a name="___sec19"></a></h3>
 <p>
 Doconce itself is pure Python code hosted at <a href="http://code.google.com/p/doconce"><tt>http://code.google.com/p/doconce</tt></a>.  Its installation from the
 Mercurial (<tt>hg</tt>) source follows the standard procedure:
@@ -1185,10 +1222,10 @@ sudo apt-get install doconce
 
 <p>
 
-<h3>Dependencies  <a name="___sec19"></a></h3>
+<h3>Dependencies  <a name="___sec20"></a></h3>
 <p>
 
-<h4>Preprocessors  <a name="___sec20"></a></h4>
+<h4>Preprocessors  <a name="___sec21"></a></h4>
 <p>
 If you make use of the <a href="http://code.google.com/p/preprocess">Preprocess</a>
 preprocessor, this program must be installed:
@@ -1234,7 +1271,7 @@ the usual <tt>sudo python setup.py install</tt>.
 
 <p>
 
-<h4>Image file handling  <a name="___sec21"></a></h4>
+<h4>Image file handling  <a name="___sec22"></a></h4>
 <p>
 Different output formats require different formats of image files.
 For example, PostScript or Encapuslated PostScript is required for <tt>latex</tt>
@@ -1265,7 +1302,7 @@ sudo apt-get install texlive-extra-utils
 
 <p>
 
-<h4>Spellcheck  <a name="___sec22"></a></h4>
+<h4>Spellcheck  <a name="___sec23"></a></h4>
 <p>
 The utility <tt>doconce spellcheck</tt> applies the <tt>ispell</tt> program for
 spellcheck. On Debian (including Ubuntu) it is installed by
@@ -1279,7 +1316,7 @@ sudo apt-get install ispell
 
 <p>
 
-<h4>Ptex2tex for LaTeX Output  <a name="___sec23"></a></h4>
+<h4>Ptex2tex for LaTeX Output  <a name="___sec24"></a></h4>
 <p>
 To make LaTeX documents with very flexible choice of typesetting of
 verbatim code blocks you need <a href="http://code.google.com/p/ptex2tex">ptex2tex</a>,
@@ -1358,7 +1395,7 @@ argument when running LaTeX, i.e., <tt>latex -shell-escape</tt> or <tt>pdflatex
 
 <p>
 
-<h4>reStructuredText (reST) Output  <a name="___sec24"></a></h4>
+<h4>reStructuredText (reST) Output  <a name="___sec25"></a></h4>
 <p>
 The <tt>rst</tt> output from Doconce allows further transformation to LaTeX,
 HTML, XML, OpenOffice, and so on, through the <a href="http://docutils.sourceforge.net">docutils</a> package.  The installation of the
@@ -1405,7 +1442,7 @@ cd ..
 
 <p>
 
-<h4>Markdown and Pandoc Output  <a name="___sec25"></a></h4>
+<h4>Markdown and Pandoc Output  <a name="___sec26"></a></h4>
 <p>
 The Doconce format <tt>pandoc</tt> outputs the document in the Pandoc
 extended Markdown format, which via the <tt>pandoc</tt> program can be
@@ -1422,7 +1459,7 @@ on Debian (Ubuntu) systems.
 
 <p>
 
-<h4>Epydoc Output  <a name="___sec26"></a></h4>
+<h4>Epydoc Output  <a name="___sec27"></a></h4>
 <p>
 When the output format is <tt>epydoc</tt> one needs that program too, installed
 by
