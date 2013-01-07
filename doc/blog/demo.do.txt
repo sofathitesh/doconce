@@ -46,13 +46,13 @@ FIGURE: [https://doconce.googlecode.com/hg/doc/blog/plot.png]
 !bnotice
 
  o There must be is no title, author, or date.
- o If the Doconce above is stored in a file `demo.do.txt`, run
-   `doconce format html demo` to produce the HTML code, stored in `demo.html`.
+ o If the Doconce code above is stored in a file `demo.do.txt`, run
+   `doconce format html demo` to produce the HTML code, stored in
+   "`demo.html`": "https://doconce.googlecode.com/hg/doc/blog/demo.html".
  o Copy the text in `demo.html` into the blog text area on
    URL: "doconce.blogspot.com".
  o Remember to first choose the *HTML-code* tab (and not just *Write*)
    and to place the copied text between the `div` tags.
- o Remember to have blanks after LaTeX math blocks.
 
 !enotice
 
