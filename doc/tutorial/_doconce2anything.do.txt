@@ -103,7 +103,7 @@ LaTeX mathematics and pretty (pygmentized) blocks of computer code.
 See this "example": "http://doconce.blogspot.no/2013/01/demo-of-blog-text-generated-by-doconce.html" for details on blogging.
 
 !bwarning
-In the comments one cannot paste raw HTML code with MathJax
+In the comments after the blog one cannot paste raw HTML code with MathJax
 scripts so there is no support for mathematics in the comments.
 !ewarning
 

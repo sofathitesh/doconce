@@ -91,6 +91,7 @@ if __name__ == '__main__':
             os.path.join('doc', 'manual'),
             os.path.join('doc', 'quickref'),
             os.path.join('doc', 'slides'),
+            os.path.join('doc', 'blog'),
             'test',
             'bundled',
             ]
