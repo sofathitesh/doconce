@@ -248,8 +248,17 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format):
                 lines[i] = lines[i].replace(_MATH_BLOCK,
                                             '!bt\n%s!et' % tex)
                 break
+    try:
+        filestr = '\n'.join(lines) + '\n' # will fail if ord(char) > 127
+    except UnicodeDecodeError, e:
+        if "'ascii' codec can't decode" in e and 'position' in e:
+            pos = int(e.split('position')[1].split(':'))
+            print filestr[pos-50:pos], '[problematic char]', filestr[pos+1:pos+51]
+            sys.exit(1)
+        else:
+            print e
+            sys.exit(1)
 
-    filestr = '\n'.join(lines) + '\n' # will fail if ord(char) > 127
     return filestr
 
 def doconce_exercise_output(exer,
