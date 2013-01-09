@@ -701,6 +701,7 @@ def exercises(filestr, format):
 
     lines = filestr.splitlines()
     newlines = []  # lines in resulting file
+    # m_* variables: various match objects from regex searches
 
     for i in range(len(lines)):
         line = lines[i].lstrip()
@@ -796,6 +797,21 @@ def exercises(filestr, format):
             else:
                 instruction_line = False
 
+            # How to do multiple choice in exer or subex:
+            # !bmchoices, !emchoices (bchoices does not work since it starts with bc!)
+            # inside_mchoices: store all that text in subex/exer['multiple_choice']
+            # afterwards: interpret the text in multiple_choices
+            # syntax: Cf/Cr: ..., required E: ... for explanation (can be empty)
+            # Cf is a false choice, Cr is a right choice (or False:/True:)
+            # Easy to use a regex to pick out the structure of the multiple
+            # choice text (False|True):(.+?)(E|Explanation|$): (with $ explanations are optional - NO!!)
+            # Better: do a split on True: and then a split on False,
+            # for each True/False, extract E: if it exists (split?)
+            # (E|Explanation):(.+?)($|False|True)
+            # HTML can generate JavaScript a la INF1100 quiz (put all
+            # js in the html file), latex can use fancy constructions,
+            # others can use a plain list. --with-sol determines if
+            # the solution is published (as for the answer/solution).
             if inside_subex and not instruction_line:
                 if inside_answer:
                     subex['answer'].append(lines[i])
@@ -1045,6 +1061,8 @@ def typeset_envirs(filestr, format):
         filestr = cpattern.sub(subst, filestr)
     return filestr
 
+
+def check_URLs(filestr, format):
 
 
 def typeset_lists(filestr, format, debug_info=[]):
@@ -1841,8 +1859,9 @@ def doconce2format(filestr, format):
     if '--skip_inline_comments' in sys.argv:
         filestr = subst_away_inline_comments(filestr)
 
-    # Fix stand-alone http(s) URLs (after verbatim blocks are removed)
-    pattern = r' (https?://.+?)([ ,?:;!])'
+    # Fix stand-alone http(s) URLs (after verbatim blocks are removed,
+    # but before figure handling and inline_tag_subst)
+    pattern = r' (https?://.+?)([ ,?:;!)\n])'
     filestr = re.sub(pattern, ' URL: "\g<1>"\g<2>', filestr)
 
     # Next step: deal with exercises
@@ -1874,6 +1893,9 @@ def doconce2format(filestr, format):
 
     # Next step: deal with !b... !e... environments
     filestr = typeset_envirs(filestr, format)
+
+    # Next step: extract all URLs for checking
+    check_URLs(filestr, format)
 
     # Next step: do substitutions:
     filestr = inline_tag_subst(filestr, format)
