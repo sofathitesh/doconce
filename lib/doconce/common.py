@@ -455,7 +455,7 @@ INLINE_TAGS = {
     #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
 
     'linkURL2v':  # verbatim link "`filelink`": "https://bla-bla"
-    r'''"`(?P<link>[^"]+?)`" ?:\s*"(?P<url>(file:/|https?:)//.+?)"''',
+    r'''"`(?P<link>[^"]+?)`" ?:\s*"(?P<url>(file:/|https?:|ftp:)//.+?)"''',
 
     'linkURL3':  # "some link": "some/local/file/name.html" or .txt/.pdf/.py/.c/.cpp/.cxx/.f/.java/.pl files
     #r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>([^"]+?\.html?|[^"]+?\.txt|[^"]+?.pdf))"''',
