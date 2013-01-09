@@ -22,7 +22,7 @@ df = sm.lambdify(x, df_expr)  # turn expression into Python function
 # Plot f'(x)
 plt.figure()
 plt.plot(xcoor, df(xcoor))
-plt.savefig('dff_plot.png')
+plt.savefig('df_plot.png')
 plt.show()
 
 
