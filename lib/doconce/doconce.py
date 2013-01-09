@@ -797,6 +797,7 @@ def exercises(filestr, format):
             else:
                 instruction_line = False
 
+            # [[[
             # How to do multiple choice in exer or subex:
             # !bmchoices, !emchoices (bchoices does not work since it starts with bc!)
             # inside_mchoices: store all that text in subex/exer['multiple_choice']
@@ -1063,7 +1064,27 @@ def typeset_envirs(filestr, format):
 
 
 def check_URLs(filestr, format):
+    pass #[[[
+"""
+    'linkURL2':  # "some link": "https://bla-bla"
+    r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>(file:/|https?:)//.+?)"''',
+    #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
 
+    'linkURL2v':  # verbatim link "`filelink`": "https://bla-bla"
+    r'''"`(?P<link>[^"]+?)`" ?:\s*"(?P<url>(file:/|https?:|ftp:)//.+?)"''',
+
+    'linkURL3':  # "some link": "some/local/file/name.html" or .txt/.pdf/.py/.c/.cpp/.cxx/.f/.java/.pl files
+    #r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>([^"]+?\.html?|[^"]+?\.txt|[^"]+?.pdf))"''',
+    r'''"(?P<link>[^"]+?)" ?:''' + _linked_files,
+    #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
+    'linkURL3v':  # "`somefile`": "some/local/file/name.html" or .txt/.pdf/.py/.c/.cpp/.cxx/.f/.java/.pl files
+    r'''"`(?P<link>[^"]+?)`" ?:''' +  _linked_files,
+
+    'plainURL':
+    #r'"URL" ?: ?"(?P<url>.+?)"',
+    #r'"?(URL|url)"? ?: ?"(?P<url>.+?)"',
+    r'("URL"|"url"|URL|url) ?:\s*"(?P<url>.+?)"',
+"""
 
 def typeset_lists(filestr, format, debug_info=[]):
     """
