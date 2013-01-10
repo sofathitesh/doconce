@@ -19,6 +19,12 @@ from common import default_movie, plain_exercise, insert_code_and_tex
 
 def mwiki_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
+
+    # Remove labels from equations
+    for i in range(len(tex_blocks)):
+        if 'label{' in tex_blocks[i]:
+            tex_blocks[i] = re.sub(r'label\{.+?\}', '', tex_blocks[i])
+
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
 
     # Supported programming languages:
@@ -37,8 +43,8 @@ def mwiki_code(filestr, code_blocks, code_block_types,
         filestr = cpattern.sub('<syntaxhighlight lang="%s">\n' % \
                                envir2lang[key], filestr)
     c = re.compile(r'^!bc.*$\n', re.MULTILINE)
-    filestr = c.sub('<code>\n', filestr)
-    filestr = re.sub(r'!ec\n', '</code>\n', filestr)
+    filestr = c.sub('<syntaxhighlight lang="text">\n', filestr)
+    filestr = re.sub(r'!ec\n', '</syntaxhighlight>\n', filestr)
     c = re.compile(r'^!bt\n', re.MULTILINE)
     filestr = c.sub(':<math>\n', filestr)
     filestr = re.sub(r'!et\n', '</math>\n', filestr)
@@ -54,7 +60,8 @@ def mwiki_code(filestr, code_blocks, code_block_types,
 
 def mwiki_figure(m):
     filename = m.group('filename')
-    if not os.path.isfile(filename):
+    link = filename if filename.startswith('http') else None
+    if not link and not os.path.isfile(filename):
         raise IOError('no figure file %s' % filename)
 
     basename  = os.path.basename(filename)
@@ -70,18 +77,82 @@ def mwiki_figure(m):
             print 'Convert %s to PNG format manually' % filename
             sys.exit(1)
         filename = root + '.png'
-    caption = m.group('caption')
+
+    caption = m.group('caption').strip()
+    if caption != '':
+        caption = '|' + caption  # add | for non-empty caption
+    else:
+        # Avoid filename as caption when caption is empty
+        # see http://www.mediawiki.org/wiki/Help:Images
+        caption = '|<span title=""></span>'
     # keep label if it's there:
     caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
 
-    print """
-NOTE: Upload image file %s to the Wiki* site
-      (see http://en.wikipedia.org/wiki/Special:Upload for Wikipedia)
-""" % filename
+    size = ''
+    opts = m.group('options').strip()
+    if opts:
+        info = dict([s.split('=') for s in opts.split()])
+        if 'width' in info and 'height' in info:
+            size = '|%sx%spx' % (info['width'], info['height'])
+        elif 'width' in info:
+            size = '|%spx' % info['width']
+        elif 'height' in info:
+            size = '|x%spx' % info['height']
 
-    result = r"""
-[[File:%s|frame|alt=%s|%s]]
-""" % (filename, filename, caption)
+    if link:
+        # We link to some image on the web
+        filename = os.path.basename(filename)
+        link = os.path.dirname(link)
+        result = r"""
+[[File:%s|frame%s|link=%s|alt=%s%s]]
+""" % (filename, size, link, filename, caption)
+    else:
+        # We link to a file at wikimedia.org.
+        # Check if the file exists and find the appropriate wikimedia name.
+        # http://en.wikipedia.org/w/api.php?action=query&titles=Image:filename&prop=imageinfo&format=xml
+
+        # Skip directories - get the basename
+        filename = os.path.basename(filename)
+        import urllib
+        prms = urllib.urlencode({
+            'action': 'query', 'titles': 'Image:' + filename,
+            'prop': 'imageinfo', 'format': 'xml'})
+        url = 'http://en.wikipedia.org/w/api.php?' + prms
+        f = urllib.urlopen(url)
+        imageinfo = f.read()
+        f.close()
+        def get_data(name, text):
+            pattern = '%s="(.*?)"' % name
+            m = re.search(pattern, text)
+            if m:
+                match = m.group(1)
+                if 'Image:' in match:
+                    return match.split('Image:')[1]
+                if 'File:' in match:
+                    return match.split('File:')[1]
+                else:
+                    return match
+            else:
+                return None
+
+        data = ['from', 'to', 'title', 'missing', 'imagerepository',
+                'timestamp', 'user']
+        orig_filename = filename
+        filename = get_data('title', imageinfo)
+        user = get_data('user', imageinfo)
+        timestamp = get_data('timestamp', imageinfo)
+        if not user:
+            print 'NOTE: You must upload image file %s to common.wikimedia.org' % orig_filename
+            # see http://commons.wikimedia.org/wiki/Commons:Upload
+            # and http://commons.wikimedia.org/wiki/Special:UploadWizard
+
+            result = r"""
+[[File:%s|frame%s|alt=%s%s]] <!-- not yet uploaded to common.wikimedia.org -->
+""" % (filename, size, filename, caption)
+        else:
+            result = r"""
+[[File:%s|frame%s|alt=%s%s]] <!-- user: %s, filename: %s, timestamp: %s -->
+""" % (filename, size, filename, caption, user, orig_filename, timestamp)
     return result
 
 from common import table_analysis
@@ -165,7 +236,7 @@ def define(FILENAME_EXTENSION,
 #        'figure':        r'<\g<filename>>',
         'figure':        mwiki_figure,
         'movie':         default_movie,  # will not work for HTML movie player
-        'comment':       '<!--> %s -->',
+        'comment':       '<!-- %s -->',
         'abstract':      r'\n*\g<type>.* \g<text>\g<rest>',
         }
 
